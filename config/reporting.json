@@ -1,0 +1,22 @@
+{
+  "Dimensions": {
+    "X_Dimensions": {
+      "Size": true,
+      "Iteration": false
+    },
+    "Groups": {
+      "Query": true,
+      "Tool": true
+    }
+  },
+  "Summarize_Functions": [
+    {
+      "Name": "revalidation",
+      "Phases": [
+        "repair",
+        "recheck"
+      ]
+    }
+  ],
+  "Extension": ["png", "pdf"]
+}

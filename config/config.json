@@ -1,0 +1,13 @@
+{
+  "Queries": [
+    "OutageDetection",
+    "OutageAvoidance"
+  ],
+  "Tools": ["ModelJoin"],
+  "ChangeSets": [
+    "changes/changeSequence1.xmi"
+  ],
+  "Runs": 5,
+  "IterationCount": 20,
+  "Timeout": 6000
+}
