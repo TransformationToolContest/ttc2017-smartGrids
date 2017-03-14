@@ -1,0 +1,70 @@
+import "platform:/resource/CIM/model/61850.ecore"
+import "platform:/resource/CIM/model/schema.ecore"
+import "platform:/resource/CIM/model/COSEM.ecore"
+target "VoltagePhaseMeasurements"
+
+theta join CIM.IEC61968.Metering.MeterAsset with substationStandard.LNNodes.LNGroupM.MMXU where "CIM.IEC61968.Metering.MeterAsset.mRID = substationStandard.LNNodes.LNGroupM.MMXU.NamePlt.IdNs" as jointarget.PMUVoltageMeter {
+	keep attributes CIM.IEC61970.Core.IdentifiedObject.mRID
+	keep calculated attribute "substationStandard.LNNodes.LNGroupM.MMXU.PhV.phsA.cVal.mag.f" as PMUVoltageMeter.VoltageAMag:Double
+	keep calculated attribute "substationStandard.LNNodes.LNGroupM.MMXU.PhV.phsA.cVal.ang.f" as PMUVoltageMeter.VoltageAAng:Double
+	keep calculated attribute "substationStandard.LNNodes.LNGroupM.MMXU.PhV.phsB.cVal.mag.f" as PMUVoltageMeter.VoltageBMag:Double
+	keep calculated attribute "substationStandard.LNNodes.LNGroupM.MMXU.PhV.phsB.cVal.ang.f" as PMUVoltageMeter.VoltageBAng:Double
+	keep calculated attribute "substationStandard.LNNodes.LNGroupM.MMXU.PhV.phsC.cVal.mag.f" as PMUVoltageMeter.VoltageCMag:Double
+	keep calculated attribute "substationStandard.LNNodes.LNGroupM.MMXU.PhV.phsC.cVal.ang.f" as PMUVoltageMeter.VoltageCAng:Double
+	keep calculated attribute "substationStandard.LNNodes.LNGroupM.MMXU.PhV.neut.cVal.mag.f" as PMUVoltageMeter.VoltageNeutMag:Double
+	keep calculated attribute "substationStandard.LNNodes.LNGroupM.MMXU.PhV.neut.cVal.ang.f" as PMUVoltageMeter.VoltageNeutAng:Double
+	keep calculated attribute "substationStandard.LNNodes.LNGroupM.MMXU.PhV.net.cVal.mag.f" as PMUVoltageMeter.VoltageNetMag:Double
+	keep calculated attribute "substationStandard.LNNodes.LNGroupM.MMXU.PhV.net.cVal.ang.f" as PMUVoltageMeter.VoltageNetAng:Double
+	keep calculated attribute "substationStandard.LNNodes.LNGroupM.MMXU.PhV.res.cVal.mag.f" as PMUVoltageMeter.VoltageResMag:Double
+	keep calculated attribute "substationStandard.LNNodes.LNGroupM.MMXU.PhV.res.cVal.ang.f" as PMUVoltageMeter.VoltageResAng:Double
+	keep supertype CIM.IEC61968.Assets.Asset as type jointarget.Asset {
+		keep outgoing CIM.IEC61968.Assets.Asset.Location as type jointarget.Location {
+			keep outgoing CIM.IEC61968.Common.Location.Position as type jointarget.PositionPoint {
+				keep  attributes CIM.IEC61968.Common.PositionPoint.xPosition,
+				CIM.IEC61968.Common.PositionPoint.yPosition,
+				CIM.IEC61968.Common.PositionPoint.zPosition	
+			}
+			keep outgoing CIM.IEC61968.Common.Location.PowerSystemResources as type jointarget.PowerSystemResource {
+				keep subtype CIM.IEC61970.Core.ConductingEquipment as type jointarget.ConductingEquipment {
+					keep outgoing CIM.IEC61970.Core.ConductingEquipment.Terminals as type jointarget.Terminal {
+						keep outgoing CIM.IEC61970.Core.Terminal.TieFlow as type jointarget.TieFlow {
+							keep outgoing CIM.IEC61970.ControlArea.TieFlow.ControlArea as type jointarget.ControlArea {
+								keep attributes CIM.IEC61970.Core.IdentifiedObject.mRID
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}
+
+theta join CIM.IEC61968.Metering.MeterAsset with COSEM.PhysicalDevice where "CIM.IEC61968.Metering.MeterAsset.mRID = COSEM.PhysicalDevice.ID" as jointarget.PrivateMeterVoltage {
+	keep attributes COSEM.PhysicalDevice.ID
+	keep calculated attribute "COSEM.PhysicalDevice.ElectricityValues.VoltageL1" as PrivateMeterVoltage.VoltageA:Double
+	keep calculated attribute "COSEM.PhysicalDevice.ElectricityValues.VoltageL2" as PrivateMeterVoltage.VoltageB:Double
+	keep calculated attribute "COSEM.PhysicalDevice.ElectricityValues.VoltageL3" as PrivateMeterVoltage.VoltageC:Double
+	keep supertype CIM.IEC61968.Metering.EndDeviceAsset as type jointarget.EndDeviceAsset { 
+		keep outgoing CIM.IEC61968.Metering.EndDeviceAsset.ServiceDeliveryPoint as type jointarget.ServiceDeliveryPoint {
+			keep outgoing CIM.IEC61968.Metering.ServiceDeliveryPoint.EnergyConsumer as type jointarget.EnergyConsumer {
+				keep attributes CIM.IEC61970.Core.IdentifiedObject.mRID
+				keep subtype CIM.IEC61970.LoadModel.ConformLoad as type jointarget.ConformLoad {
+					keep outgoing CIM.IEC61970.LoadModel.ConformLoad.LoadGroup as type jointarget.ConformLoadGroup {
+						keep supertype CIM.IEC61970.LoadModel.LoadGroup as type jointarget.LoadGroup {
+							keep outgoing CIM.IEC61970.LoadModel.LoadGroup.SubLoadArea as type jointarget.SubLoadArea {
+								keep outgoing CIM.IEC61970.LoadModel.SubLoadArea.LoadArea as type jointarget.LoadArea {
+									keep outgoing CIM.IEC61970.LoadModel.EnergyArea.ControlArea as type jointarget.ControlArea
+								}
+							}
+						}
+					}
+				}
+				keep subtype CIM.IEC61970.LoadModel.NonConformLoad as type jointarget.NonConformLoad {
+					keep outgoing CIM.IEC61970.LoadModel.NonConformLoad.LoadGroup as type jointarget.NonConformLoadGroup {
+						keep supertype CIM.IEC61970.LoadModel.LoadGroup as type jointarget.LoadGroup
+					}
+				}
+			}
+		}
+	}
+}

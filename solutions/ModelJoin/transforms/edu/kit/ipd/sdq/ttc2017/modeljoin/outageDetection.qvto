@@ -1,0 +1,231 @@
+/* Generated ModelJoin transformation 
+ *
+ */
+transformation M1toM2(
+in __CIM: _CIM, 
+in __COSEM: _COSEM, 
+out __jointarget: _jointarget,
+out __mjtrace: _mjtrace);	
+	
+// source metamodels
+modeltype _CIM uses "http://iec.ch/TC57/2009/CIM-schema-cim14";
+modeltype _COSEM uses "cosem";
+// target metamodel
+modeltype _jointarget uses "ConsumerReachabilityView";
+// trace metamodel
+modeltype _mjtrace uses "ConsumerReachabilityView.trace";
+	
+//alway import ecore
+modeltype ECORE "strict" uses ecore('http://www.eclipse.org/emf/2002/Ecore');
+
+main() {
+-- ###
+-- # operations for target class EnergyConsumer
+-- ##
+
+-- get all elements of of type MeterAsset and PhysicalDevice
+var leftAllEnergyConsumer = __CIM.objectsOfType(_CIM::IEC61968::Metering::MeterAsset);
+var rightAllEnergyConsumer = __COSEM.objectsOfType(_COSEM::PhysicalDevice);
+
+-- theta join operation
+rightAllEnergyConsumer->forEach(rightEnergyConsumer) {
+	leftAllEnergyConsumer->map thetaJoin_MeterAsset_PhysicalDevice_To_EnergyConsumer(rightEnergyConsumer);
+};
+
+
+	-- keep outgoing references
+
+
+	var refAllLocation_6fe075db_f0bb_47b4_a0af_c12646dcf2ed = __jointarget.objectsOfType(_jointarget::EnergyConsumer);
+	refAllLocation_6fe075db_f0bb_47b4_a0af_c12646dcf2ed->forEach(elem) {
+		elem.invresolve()->selectByKind(_CIM::IEC61968::Assets::Asset)->collect(Location)->selectByKind(_CIM::IEC61968::Common::Location)->forEach(refElem) {
+			-- if source object at the end of the reference has already been mapped, update the reference with the mapped element
+			if (refElem.resolve()->notEmpty()) then {
+				elem.map update_keepOutgoing_Location(refElem.resolveone(_jointarget::Location));
+			-- if it has not been mapped yet, create new element and update reference
+			} else {
+				elem.map update_keepOutgoing_and_create_Location(refElem);
+			}endif;
+			refElem.resolveone(_jointarget::Location).map trace_keepOutgoing_Location(refElem);
+		};
+	};
+	-- keep outgoing references
+
+
+	var refAllPosition_1ab87f5f_92a7_461f_85c5_86b9bca2782e = __jointarget.objectsOfType(_jointarget::Location);
+	refAllPosition_1ab87f5f_92a7_461f_85c5_86b9bca2782e->forEach(elem) {
+		elem.invresolve()->selectByKind(_CIM::IEC61968::Common::Location)->collect(Position)->selectByKind(_CIM::IEC61968::Common::PositionPoint)->forEach(refElem) {
+			-- if source object at the end of the reference has already been mapped, update the reference with the mapped element
+			if (refElem.resolve()->notEmpty()) then {
+				elem.map update_keepOutgoing_Position(refElem.resolveone(_jointarget::PositionPoint));
+			-- if it has not been mapped yet, create new element and update reference
+			} else {
+				elem.map update_keepOutgoing_and_create_Position(refElem);
+			}endif;
+			refElem.resolveone(_jointarget::PositionPoint).map trace_keepOutgoing_Position(refElem);
+		};
+	};
+
+
+
+	-- keep attributes
+	var keepAttPositionPoint_07c5576a_ee8c_4d31_a9e7_379e2d479e8b = __jointarget.objectsOfType(_jointarget::PositionPoint);
+			keepAttPositionPoint_07c5576a_ee8c_4d31_a9e7_379e2d479e8b->forEach(elem) {
+				var sourceClass = elem.invresolveone(_CIM::IEC61968::Common::PositionPoint);
+				elem.map update_attribute_xPosition(sourceClass.xPosition)	
+				};
+			keepAttPositionPoint_07c5576a_ee8c_4d31_a9e7_379e2d479e8b->forEach(elem) {
+				var sourceClass = elem.invresolveone(_CIM::IEC61968::Common::PositionPoint);
+				elem.map update_attribute_yPosition(sourceClass.yPosition)	
+				};
+			keepAttPositionPoint_07c5576a_ee8c_4d31_a9e7_379e2d479e8b->forEach(elem) {
+				var sourceClass = elem.invresolveone(_CIM::IEC61968::Common::PositionPoint);
+				elem.map update_attribute_zPosition(sourceClass.zPosition)	
+				};
+
+
+
+	-- keep calculated
+	var keepAttEnergyConsumer_722935b7_4db1_4c7f_abb3_d2785104d19e = __jointarget.objectsOfType(_jointarget::EnergyConsumer);
+keepAttEnergyConsumer_722935b7_4db1_4c7f_abb3_d2785104d19e->forEach(elem) {
+	var leftElement = elem.invresolveone(_CIM::IEC61968::Metering::MeterAsset);
+	var rightElement =  elem.invresolveone(_COSEM::PhysicalDevice);
+	elem.map update_attribute_Reachability(leftElement, rightElement)	
+	};
+keepAttEnergyConsumer_722935b7_4db1_4c7f_abb3_d2785104d19e->forEach(elem) {
+	var leftElement = elem.invresolveone(_CIM::IEC61968::Metering::MeterAsset);
+	var rightElement =  elem.invresolveone(_COSEM::PhysicalDevice);
+	elem.map update_attribute_PowerA(leftElement, rightElement)	
+	};
+keepAttEnergyConsumer_722935b7_4db1_4c7f_abb3_d2785104d19e->forEach(elem) {
+	var leftElement = elem.invresolveone(_CIM::IEC61968::Metering::MeterAsset);
+	var rightElement =  elem.invresolveone(_COSEM::PhysicalDevice);
+	elem.map update_attribute_ID(leftElement, rightElement)	
+	};
+
+
+
+	-- keep aggregates
+
+	}
+	
+-- ##
+-- # Natural Join Mappings
+-- ##
+
+-- ##
+-- # Left Outer Join Mappings
+-- ##
+	
+-- ##
+-- # Theta Join Mappings
+-- ##
+
+-- mapping for EnergyConsumer
+mapping _CIM::IEC61968::Metering::MeterAsset::thetaJoin_MeterAsset_PhysicalDevice_To_EnergyConsumer(rightElement : _COSEM::PhysicalDevice) : _jointarget::EnergyConsumer 
+when {
+		self.mRID = rightElement.ID
+}
+{
+		-- create the target instances
+		end {
+			rightElement.map thetaJoin_update_PhysicalDevice(result);
+			result.map thetaJoin_trace_PhysicalDevice(self, rightElement)
+		}
+}
+
+-- additional mapping for the right element, so that it appears in the QVT mapping table (for resolve)
+mapping _COSEM::PhysicalDevice::thetaJoin_update_PhysicalDevice(rightElement : _jointarget::EnergyConsumer) : _jointarget::EnergyConsumer {
+	init {
+		result:=rightElement;
+	}
+}
+
+-- create the trace class instance
+mapping _jointarget::EnergyConsumer::thetaJoin_trace_PhysicalDevice(leftElement : _CIM::IEC61968::Metering::MeterAsset, rightElement : _COSEM::PhysicalDevice) : _mjtrace::join_MeterAsset_PhysicalDevice_EnergyConsumer {
+	left := leftElement;
+	right := rightElement;
+	target := self;
+}
+
+
+-- ##
+-- # Keep outgoing Mappings
+-- ##
+-- mappings for EnergyConsumer
+
+-- set the links for "Location" if instances already exist
+mapping inout _jointarget::EnergyConsumer::update_keepOutgoing_Location(elem : _jointarget::Location) {
+	self.Location:=elem;
+}
+
+-- set the links for "Location" if instances have to be created
+mapping inout _jointarget::EnergyConsumer::update_keepOutgoing_and_create_Location(elem : _CIM::IEC61968::Common::Location) {
+	self.Location:=elem.map Location_Location_to_Location();
+}
+
+-- create instances of the type of "Location"
+mapping _CIM::IEC61968::Common::Location::Location_Location_to_Location() : _jointarget::Location {
+}
+
+mapping _jointarget::Location::trace_keepOutgoing_Location(source : _CIM::IEC61968::Common::Location) : _mjtrace::ref_Location_Location_Location {
+	result.source := source;
+	result.target := self;
+}
+
+-- mappings for Location
+
+-- set the links for "Position" if instances already exist
+mapping inout _jointarget::Location::update_keepOutgoing_Position(elem : _jointarget::PositionPoint) {
+	self.Position:=elem;
+}
+
+-- set the links for "Position" if instances have to be created
+mapping inout _jointarget::Location::update_keepOutgoing_and_create_Position(elem : _CIM::IEC61968::Common::PositionPoint) {
+	self.Position:=elem.map Position_PositionPoint_to_PositionPoint();
+}
+
+-- create instances of the type of "Position"
+mapping _CIM::IEC61968::Common::PositionPoint::Position_PositionPoint_to_PositionPoint() : _jointarget::PositionPoint {
+}
+
+mapping _jointarget::PositionPoint::trace_keepOutgoing_Position(source : _CIM::IEC61968::Common::PositionPoint) : _mjtrace::ref_PositionPoint_PositionPoint_Position {
+	result.source := source;
+	result.target := self;
+}
+
+
+-- ##
+-- # Keep incoming Mappings
+-- ##
+-- ##
+-- # Keep attribute Mappings
+-- ##
+mapping inout _jointarget::PositionPoint::update_attribute_xPosition(attValue : String) {
+	self.xPosition:=attValue;
+}
+mapping inout _jointarget::PositionPoint::update_attribute_yPosition(attValue : String) {
+	self.yPosition:=attValue;
+}
+mapping inout _jointarget::PositionPoint::update_attribute_zPosition(attValue : String) {
+	self.zPosition:=attValue;
+}
+
+-- ##
+-- # Keep calculated Mappings
+-- ##
+mapping inout _jointarget::EnergyConsumer::update_attribute_Reachability(leftElement : _CIM::IEC61968::Metering::MeterAsset, rightElement : _COSEM::PhysicalDevice) {
+	self.Reachability:=rightElement.AutoConnect.Connection.oclAsType(Integer);
+}
+mapping inout _jointarget::EnergyConsumer::update_attribute_PowerA(leftElement : _CIM::IEC61968::Metering::MeterAsset, rightElement : _COSEM::PhysicalDevice) {
+	self.PowerA:=rightElement.ElectricityValues.ApparentPowermL1;
+}
+mapping inout _jointarget::EnergyConsumer::update_attribute_ID(leftElement : _CIM::IEC61968::Metering::MeterAsset, rightElement : _COSEM::PhysicalDevice) {
+	self.ID:=leftElement.ServiceDeliveryPoint.EnergyConsumer.mRID;
+}
+
+
+
+-- ##
+-- # Keep aggregate Mappings
+-- ##

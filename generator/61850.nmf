@@ -1,0 +1,1905 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<nmeta:Namespace xmi:version="2.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" Uri="http://www.transformation-tool-contest.eu/2017/smartGrids/substationStandard" Prefix="sub" Name="substationStandard" xmlns:xmi="http://www.omg.org/XMI" xmlns:nmeta="http://nmf.codeplex.com/nmeta/">
+  <ChildNamespaces Uri="http://www.transformation-tool-contest.eu/2017/smartGrids/substationStandard/LNNodes" Prefix="ln" Name="LNNodes">
+    <ChildNamespaces Uri="http://www.transformation-tool-contest.eu/2017/smartGrids/substationStandard/DomainLNs" Prefix="domain" Name="DomainLNs">
+      <Types xsi:type="nmeta:Class" Name="DomainLN">
+        <References ReferenceType="#//Dataclasses/INC" IsOrdered="True" IsUnique="True" LowerBound="1" Name="Mode" />
+        <References ReferenceType="#//Dataclasses/INS" IsOrdered="True" IsUnique="True" LowerBound="1" Name="Behaviour" />
+        <References ReferenceType="#//Dataclasses/INS" IsOrdered="True" IsUnique="True" LowerBound="1" Name="Health" />
+        <References ReferenceType="#//Dataclasses/LPL" IsOrdered="True" IsUnique="True" LowerBound="1" Name="NamePlt" />
+      </Types>
+    </ChildNamespaces>
+    <ChildNamespaces Uri="http://www.transformation-tool-contest.eu/2017/smartGrids/substationStandard/groupP" Prefix="groupP" Name="LNGroupP">
+      <Types xsi:type="nmeta:Class" BaseTypes="#//LNNodes/DomainLNs/DomainLN" Name="GroupP">
+        <References ReferenceType="#//Dataclasses/INC" IsOrdered="True" IsUnique="True" LowerBound="1" Name="OpCntRs" />
+      </Types>
+      <Types xsi:type="nmeta:Class" BaseTypes="#//LNNodes/LNGroupP/GroupP" Name="PDIF">
+        <References ReferenceType="#//Dataclasses/ACD" IsOrdered="True" IsUnique="True" LowerBound="1" Name="Str" />
+        <References ReferenceType="#//Dataclasses/ACT" IsOrdered="True" IsUnique="True" LowerBound="1" Name="Op" />
+        <References ReferenceType="#//Dataclasses/CSD" IsOrdered="True" IsUnique="True" LowerBound="1" Name="TmASt" />
+        <References ReferenceType="#//Dataclasses/WYE" IsOrdered="True" IsUnique="True" LowerBound="1" Name="DifAClc" />
+        <References ReferenceType="#//Dataclasses/WYE" IsOrdered="True" IsUnique="True" LowerBound="1" Name="RstA" />
+        <References ReferenceType="#//Dataclasses/ASG" IsOrdered="True" IsUnique="True" LowerBound="1" Name="LinCapac" />
+        <References ReferenceType="#//Dataclasses/ING" IsOrdered="True" IsUnique="True" LowerBound="1" Name="LoSet" />
+        <References ReferenceType="#//Dataclasses/ING" IsOrdered="True" IsUnique="True" LowerBound="1" Name="HiSet" />
+        <References ReferenceType="#//Dataclasses/ING" IsOrdered="True" IsUnique="True" LowerBound="1" Name="MinOpTmms" />
+        <References ReferenceType="#//Dataclasses/ING" IsOrdered="True" IsUnique="True" LowerBound="1" Name="MaxOpTmms" />
+        <References ReferenceType="#//Dataclasses/ING" IsOrdered="True" IsUnique="True" LowerBound="1" Name="RstMod" />
+        <References ReferenceType="#//Dataclasses/ING" IsOrdered="True" IsUnique="True" LowerBound="1" Name="RsDiTmms" />
+        <References ReferenceType="#//Dataclasses/CURVE" IsOrdered="True" IsUnique="True" LowerBound="1" Name="TmACrv" />
+      </Types>
+      <Types xsi:type="nmeta:Class" BaseTypes="#//LNNodes/LNGroupP/GroupP" Name="PDIR">
+        <References ReferenceType="#//Dataclasses/ACD" IsOrdered="True" IsUnique="True" LowerBound="1" Name="Str" />
+        <References ReferenceType="#//Dataclasses/ACT" IsOrdered="True" IsUnique="True" LowerBound="1" Name="Op" />
+        <References ReferenceType="#//Dataclasses/ING" IsOrdered="True" IsUnique="True" LowerBound="1" Name="RsDiTmms" />
+      </Types>
+      <Types xsi:type="nmeta:Class" BaseTypes="#//LNNodes/LNGroupP/GroupP" Name="PFRC">
+        <References ReferenceType="#//Dataclasses/ACD" IsOrdered="True" IsUnique="True" LowerBound="1" Name="Str" />
+        <References ReferenceType="#//Dataclasses/ACT" IsOrdered="True" IsUnique="True" LowerBound="1" Name="Op" />
+        <References ReferenceType="#//Dataclasses/SPS" IsOrdered="True" IsUnique="True" LowerBound="1" Name="BlkV" />
+        <References ReferenceType="#//Dataclasses/ASG" IsOrdered="True" IsUnique="True" LowerBound="1" Name="StrVal" />
+        <References ReferenceType="#//Dataclasses/ASG" IsOrdered="True" IsUnique="True" LowerBound="1" Name="BlkVal" />
+        <References ReferenceType="#//Dataclasses/ING" IsOrdered="True" IsUnique="True" LowerBound="1" Name="OpDiTmms" />
+        <References ReferenceType="#//Dataclasses/ING" IsOrdered="True" IsUnique="True" LowerBound="1" Name="RsDiTmms" />
+      </Types>
+      <Types xsi:type="nmeta:Class" BaseTypes="#//LNNodes/LNGroupP/GroupP" Name="PHAR">
+        <References ReferenceType="#//Dataclasses/ACD" IsOrdered="True" IsUnique="True" LowerBound="1" Name="Str" />
+        <References ReferenceType="#//Dataclasses/ING" IsOrdered="True" IsUnique="True" LowerBound="1" Name="HaRst" />
+        <References ReferenceType="#//Dataclasses/ASG" IsOrdered="True" IsUnique="True" LowerBound="1" Name="PhStr" />
+        <References ReferenceType="#//Dataclasses/ASG" IsOrdered="True" IsUnique="True" LowerBound="1" Name="PhStop" />
+        <References ReferenceType="#//Dataclasses/ING" IsOrdered="True" IsUnique="True" LowerBound="1" Name="OpDiTmms" />
+        <References ReferenceType="#//Dataclasses/ING" IsOrdered="True" IsUnique="True" LowerBound="1" Name="RsDiTmms" />
+      </Types>
+      <Types xsi:type="nmeta:Class" BaseTypes="#//LNNodes/LNGroupP/GroupP" Name="POPF">
+        <References ReferenceType="#//Dataclasses/ACD" IsOrdered="True" IsUnique="True" LowerBound="1" Name="Str" />
+        <References ReferenceType="#//Dataclasses/ACT" IsOrdered="True" IsUnique="True" LowerBound="1" Name="Op" />
+        <References ReferenceType="#//Dataclasses/SPS" IsOrdered="True" IsUnique="True" LowerBound="1" Name="BlkA" />
+        <References ReferenceType="#//Dataclasses/SPS" IsOrdered="True" IsUnique="True" LowerBound="1" Name="BlkV" />
+        <References ReferenceType="#//Dataclasses/ASG" IsOrdered="True" IsUnique="True" LowerBound="1" Name="StrVal" />
+        <References ReferenceType="#//Dataclasses/ING" IsOrdered="True" IsUnique="True" LowerBound="1" Name="OpDiTmms" />
+        <References ReferenceType="#//Dataclasses/ING" IsOrdered="True" IsUnique="True" LowerBound="1" Name="RsDiTmms" />
+        <References ReferenceType="#//Dataclasses/ASG" IsOrdered="True" IsUnique="True" LowerBound="1" Name="BlkValA" />
+        <References ReferenceType="#//Dataclasses/ASG" IsOrdered="True" IsUnique="True" LowerBound="1" Name="BlkValV" />
+      </Types>
+      <Types xsi:type="nmeta:Class" BaseTypes="#//LNNodes/LNGroupP/GroupP" Name="PPAM">
+        <References ReferenceType="#//Dataclasses/ACD" IsOrdered="True" IsUnique="True" LowerBound="1" Name="Str" />
+        <References ReferenceType="#//Dataclasses/ACT" IsOrdered="True" IsUnique="True" LowerBound="1" Name="Op" />
+        <References ReferenceType="#//Dataclasses/ASG" IsOrdered="True" IsUnique="True" Name="StrVal" />
+      </Types>
+      <Types xsi:type="nmeta:Class" BaseTypes="#//LNNodes/LNGroupP/GroupP" Name="PDIS">
+        <References ReferenceType="#//Dataclasses/ACD" IsOrdered="True" IsUnique="True" LowerBound="1" Name="Str" />
+        <References ReferenceType="#//Dataclasses/ACT" IsOrdered="True" IsUnique="True" LowerBound="1" Name="Op" />
+        <References ReferenceType="#//Dataclasses/ASG" IsOrdered="True" IsUnique="True" LowerBound="1" Name="PoRch" />
+        <References ReferenceType="#//Dataclasses/ASG" IsOrdered="True" IsUnique="True" LowerBound="1" Name="PhStr" />
+        <References ReferenceType="#//Dataclasses/ASG" IsOrdered="True" IsUnique="True" LowerBound="1" Name="GndStr" />
+        <References ReferenceType="#//Dataclasses/ING" IsOrdered="True" IsUnique="True" LowerBound="1" Name="DirMod" />
+        <References ReferenceType="#//Dataclasses/ASG" IsOrdered="True" IsUnique="True" LowerBound="1" Name="PctRch" />
+        <References ReferenceType="#//Dataclasses/ASG" IsOrdered="True" IsUnique="True" LowerBound="1" Name="Ofs" />
+        <References ReferenceType="#//Dataclasses/ASG" IsOrdered="True" IsUnique="True" LowerBound="1" Name="PctOfs" />
+        <References ReferenceType="#//Dataclasses/ASG" IsOrdered="True" IsUnique="True" LowerBound="1" Name="RisLod" />
+        <References ReferenceType="#//Dataclasses/ASG" IsOrdered="True" IsUnique="True" LowerBound="1" Name="AngLod" />
+        <References ReferenceType="#//Dataclasses/SPG" IsOrdered="True" IsUnique="True" LowerBound="1" Name="TmDlMod" />
+        <References ReferenceType="#//Dataclasses/ING" IsOrdered="True" IsUnique="True" LowerBound="1" Name="OpDlTmms" />
+        <References ReferenceType="#//Dataclasses/SPG" IsOrdered="True" IsUnique="True" LowerBound="1" Name="PhDlMod" />
+        <References ReferenceType="#//Dataclasses/ING" IsOrdered="True" IsUnique="True" LowerBound="1" Name="PhDlTmms" />
+        <References ReferenceType="#//Dataclasses/SPG" IsOrdered="True" IsUnique="True" LowerBound="1" Name="GndDlMod" />
+        <References ReferenceType="#//Dataclasses/ING" IsOrdered="True" IsUnique="True" LowerBound="1" Name="GndDlTmms" />
+        <References ReferenceType="#//Dataclasses/ASG" IsOrdered="True" IsUnique="True" LowerBound="1" Name="X1" />
+        <References ReferenceType="#//Dataclasses/ASG" IsOrdered="True" IsUnique="True" LowerBound="1" Name="LinAng" />
+        <References ReferenceType="#//Dataclasses/ASG" IsOrdered="True" IsUnique="True" LowerBound="1" Name="RisGndRch" />
+        <References ReferenceType="#//Dataclasses/ASG" IsOrdered="True" IsUnique="True" LowerBound="1" Name="RisPhRch" />
+        <References ReferenceType="#//Dataclasses/ASG" IsOrdered="True" IsUnique="True" LowerBound="1" Name="K0Fact" />
+        <References ReferenceType="#//Dataclasses/ASG" IsOrdered="True" IsUnique="True" LowerBound="1" Name="K0FactAng" />
+        <References ReferenceType="#//Dataclasses/ING" IsOrdered="True" IsUnique="True" LowerBound="1" Name="RsDlTmms" />
+      </Types>
+      <Types xsi:type="nmeta:Class" BaseTypes="#//LNNodes/LNGroupP/GroupP" Name="PDOP">
+        <References ReferenceType="#//Dataclasses/ACD" IsOrdered="True" IsUnique="True" LowerBound="1" Name="Str" />
+        <References ReferenceType="#//Dataclasses/ACT" IsOrdered="True" IsUnique="True" LowerBound="1" Name="Op" />
+        <References ReferenceType="#//Dataclasses/ING" IsOrdered="True" IsUnique="True" LowerBound="1" Name="DirMod" />
+        <References ReferenceType="#//Dataclasses/ASG" IsOrdered="True" IsUnique="True" LowerBound="1" Name="StrVal" />
+        <References ReferenceType="#//Dataclasses/ING" IsOrdered="True" IsUnique="True" LowerBound="1" Name="OpDlTmms" />
+        <References ReferenceType="#//Dataclasses/ING" IsOrdered="True" IsUnique="True" LowerBound="1" Name="RsDlTmms" />
+      </Types>
+      <Types xsi:type="nmeta:Class" BaseTypes="#//LNNodes/LNGroupP/GroupP" Name="PHIZ">
+        <References ReferenceType="#//Dataclasses/ACD" IsOrdered="True" IsUnique="True" LowerBound="1" Name="Str" />
+        <References ReferenceType="#//Dataclasses/ACT" IsOrdered="True" IsUnique="True" LowerBound="1" Name="Op" />
+        <References ReferenceType="#//Dataclasses/ASG" IsOrdered="True" IsUnique="True" LowerBound="1" Name="AStr" />
+        <References ReferenceType="#//Dataclasses/ASG" IsOrdered="True" IsUnique="True" LowerBound="1" Name="VStr" />
+        <References ReferenceType="#//Dataclasses/ASG" IsOrdered="True" IsUnique="True" LowerBound="1" Name="HVStr" />
+        <References ReferenceType="#//Dataclasses/ING" IsOrdered="True" IsUnique="True" LowerBound="1" Name="OpDlTmms" />
+        <References ReferenceType="#//Dataclasses/ING" IsOrdered="True" IsUnique="True" LowerBound="1" Name="RsDlTmms" />
+      </Types>
+      <Types xsi:type="nmeta:Class" BaseTypes="#//LNNodes/LNGroupP/GroupP" Name="PIOC">
+        <References ReferenceType="#//Dataclasses/ACD" IsOrdered="True" IsUnique="True" LowerBound="1" Name="Str" />
+        <References ReferenceType="#//Dataclasses/ACT" IsOrdered="True" IsUnique="True" LowerBound="1" Name="Op" />
+        <References ReferenceType="#//Dataclasses/ASG" IsOrdered="True" IsUnique="True" LowerBound="1" Name="StrVal" />
+      </Types>
+      <Types xsi:type="nmeta:Class" BaseTypes="#//LNNodes/LNGroupP/GroupP" Name="PMRI">
+        <References ReferenceType="#//Dataclasses/ACT" IsOrdered="True" IsUnique="True" LowerBound="1" Name="Op" />
+        <References ReferenceType="#//Dataclasses/SPS" IsOrdered="True" IsUnique="True" LowerBound="1" Name="StrInh" />
+        <References ReferenceType="#//Dataclasses/INS" IsOrdered="True" IsUnique="True" LowerBound="1" Name="StrInhTmm" />
+        <References ReferenceType="#//Dataclasses/ASG" IsOrdered="True" IsUnique="True" LowerBound="1" Name="SetA" />
+        <References ReferenceType="#//Dataclasses/ING" IsOrdered="True" IsUnique="True" LowerBound="1" Name="SetTms" />
+        <References ReferenceType="#//Dataclasses/ING" IsOrdered="True" IsUnique="True" LowerBound="1" Name="MaxNumStr" />
+        <References ReferenceType="#//Dataclasses/ING" IsOrdered="True" IsUnique="True" LowerBound="1" Name="MaxWrmStr" />
+        <References ReferenceType="#//Dataclasses/ING" IsOrdered="True" IsUnique="True" LowerBound="1" Name="MaxStrTmm" />
+        <References ReferenceType="#//Dataclasses/ING" IsOrdered="True" IsUnique="True" LowerBound="1" Name="EqTmm" />
+        <References ReferenceType="#//Dataclasses/ING" IsOrdered="True" IsUnique="True" LowerBound="1" Name="InhTmm" />
+      </Types>
+      <Types xsi:type="nmeta:Class" BaseTypes="#//LNNodes/LNGroupP/GroupP" Name="PMSS">
+        <References ReferenceType="#//Dataclasses/ACD" IsOrdered="True" IsUnique="True" LowerBound="1" Name="Str" />
+        <References ReferenceType="#//Dataclasses/ACT" IsOrdered="True" IsUnique="True" LowerBound="1" Name="Op" />
+        <References ReferenceType="#//Dataclasses/ASG" IsOrdered="True" IsUnique="True" LowerBound="1" Name="SetA" />
+        <References ReferenceType="#//Dataclasses/ING" IsOrdered="True" IsUnique="True" LowerBound="1" Name="SetTms" />
+        <References ReferenceType="#//Dataclasses/ASG" IsOrdered="True" IsUnique="True" LowerBound="1" Name="MotStr" />
+        <References ReferenceType="#//Dataclasses/ING" IsOrdered="True" IsUnique="True" LowerBound="1" Name="LokRotTms" />
+      </Types>
+      <Types xsi:type="nmeta:Class" BaseTypes="#//LNNodes/LNGroupP/GroupP" Name="PSCH">
+        <References ReferenceType="#//Dataclasses/SPS" IsOrdered="True" IsUnique="True" LowerBound="1" Name="ProTx" />
+        <References ReferenceType="#//Dataclasses/SPS" IsOrdered="True" IsUnique="True" LowerBound="1" Name="ProRx" />
+        <References ReferenceType="#//Dataclasses/ACD" IsOrdered="True" IsUnique="True" LowerBound="1" Name="Str" />
+        <References ReferenceType="#//Dataclasses/ACT" IsOrdered="True" IsUnique="True" LowerBound="1" Name="Op" />
+        <References ReferenceType="#//Dataclasses/ACT" IsOrdered="True" IsUnique="True" LowerBound="1" Name="CarRx" />
+        <References ReferenceType="#//Dataclasses/SPS" IsOrdered="True" IsUnique="True" LowerBound="1" Name="LosOfGrd" />
+        <References ReferenceType="#//Dataclasses/ACT" IsOrdered="True" IsUnique="True" LowerBound="1" Name="Echo" />
+        <References ReferenceType="#//Dataclasses/ACT" IsOrdered="True" IsUnique="True" LowerBound="1" Name="WeiOp" />
+        <References ReferenceType="#//Dataclasses/ACT" IsOrdered="True" IsUnique="True" LowerBound="1" Name="RvABlk" />
+        <References ReferenceType="#//Dataclasses/SPS" IsOrdered="True" IsUnique="True" LowerBound="1" Name="GrdRx" />
+        <References ReferenceType="#//Dataclasses/ING" IsOrdered="True" IsUnique="True" LowerBound="1" Name="SchTyp" />
+        <References ReferenceType="#//Dataclasses/ING" IsOrdered="True" IsUnique="True" LowerBound="1" Name="OpDlTmms" />
+        <References ReferenceType="#//Dataclasses/ING" IsOrdered="True" IsUnique="True" LowerBound="1" Name="CrdTmms" />
+        <References ReferenceType="#//Dataclasses/ING" IsOrdered="True" IsUnique="True" LowerBound="1" Name="DurTmms" />
+        <References ReferenceType="#//Dataclasses/ING" IsOrdered="True" IsUnique="True" LowerBound="1" Name="UnBlkMod" />
+        <References ReferenceType="#//Dataclasses/ING" IsOrdered="True" IsUnique="True" LowerBound="1" Name="SecTmms" />
+        <References ReferenceType="#//Dataclasses/ING" IsOrdered="True" IsUnique="True" LowerBound="1" Name="WeiMod" />
+        <References ReferenceType="#//Dataclasses/ING" IsOrdered="True" IsUnique="True" LowerBound="1" Name="WeiTmms" />
+        <References ReferenceType="#//Dataclasses/ASG" IsOrdered="True" IsUnique="True" LowerBound="1" Name="PPVVal" />
+        <References ReferenceType="#//Dataclasses/ASG" IsOrdered="True" IsUnique="True" LowerBound="1" Name="PhGndVal" />
+        <References ReferenceType="#//Dataclasses/ING" IsOrdered="True" IsUnique="True" LowerBound="1" Name="RvAMod" />
+        <References ReferenceType="#//Dataclasses/ING" IsOrdered="True" IsUnique="True" LowerBound="1" Name="RvATmms" />
+        <References ReferenceType="#//Dataclasses/ING" IsOrdered="True" IsUnique="True" LowerBound="1" Name="RvRsTmms" />
+      </Types>
+      <Types xsi:type="nmeta:Class" BaseTypes="#//LNNodes/LNGroupP/GroupP" Name="PSDE">
+        <References ReferenceType="#//Dataclasses/ACD" IsOrdered="True" IsUnique="True" LowerBound="1" Name="Str" />
+        <References ReferenceType="#//Dataclasses/ACT" IsOrdered="True" IsUnique="True" LowerBound="1" Name="Op" />
+        <References ReferenceType="#//Dataclasses/ASG" IsOrdered="True" IsUnique="True" LowerBound="1" Name="Ang" />
+        <References ReferenceType="#//Dataclasses/ASG" IsOrdered="True" IsUnique="True" LowerBound="1" Name="GndStr" />
+        <References ReferenceType="#//Dataclasses/ASG" IsOrdered="True" IsUnique="True" LowerBound="1" Name="GndOp" />
+        <References ReferenceType="#//Dataclasses/ING" IsOrdered="True" IsUnique="True" LowerBound="1" Name="StrDlTmms" />
+        <References ReferenceType="#//Dataclasses/ING" IsOrdered="True" IsUnique="True" LowerBound="1" Name="OpDlTmms" />
+        <References ReferenceType="#//Dataclasses/ING" IsOrdered="True" IsUnique="True" LowerBound="1" Name="DirMod" />
+      </Types>
+      <Types xsi:type="nmeta:Class" BaseTypes="#//LNNodes/LNGroupP/GroupP" Name="PDUP">
+        <References ReferenceType="#//Dataclasses/ACD" IsOrdered="True" IsUnique="True" LowerBound="1" Name="Str" />
+        <References ReferenceType="#//Dataclasses/ACT" IsOrdered="True" IsUnique="True" LowerBound="1" Name="Op" />
+        <References ReferenceType="#//Dataclasses/ASG" IsOrdered="True" IsUnique="True" LowerBound="1" Name="StrVal" />
+        <References ReferenceType="#//Dataclasses/ING" IsOrdered="True" IsUnique="True" LowerBound="1" Name="OpDlTmms" />
+        <References ReferenceType="#//Dataclasses/ING" IsOrdered="True" IsUnique="True" LowerBound="1" Name="RsDlTmms" />
+        <References ReferenceType="#//Dataclasses/ING" IsOrdered="True" IsUnique="True" LowerBound="1" Name="DirMod" />
+      </Types>
+      <Types xsi:type="nmeta:Class" BaseTypes="#//LNNodes/LNGroupP/GroupP" Name="PTEF">
+        <References ReferenceType="#//Dataclasses/ACD" IsOrdered="True" IsUnique="True" LowerBound="1" Name="Str" />
+        <References ReferenceType="#//Dataclasses/ACT" IsOrdered="True" IsUnique="True" LowerBound="1" Name="Op" />
+        <References ReferenceType="#//Dataclasses/ASG" IsOrdered="True" IsUnique="True" LowerBound="1" Name="GndStr" />
+        <References ReferenceType="#//Dataclasses/ING" IsOrdered="True" IsUnique="True" LowerBound="1" Name="DirMod" />
+      </Types>
+      <Types xsi:type="nmeta:Class" BaseTypes="#//LNNodes/LNGroupP/GroupP" Name="PTOC">
+        <References ReferenceType="#//Dataclasses/ACD" IsOrdered="True" IsUnique="True" LowerBound="1" Name="Str" />
+        <References ReferenceType="#//Dataclasses/ACT" IsOrdered="True" IsUnique="True" LowerBound="1" Name="Op" />
+        <References ReferenceType="#//Dataclasses/CSD" IsOrdered="True" IsUnique="True" LowerBound="1" Name="TmASt" />
+        <References ReferenceType="#//Dataclasses/CURVE" IsOrdered="True" IsUnique="True" LowerBound="1" Name="TmACrv" />
+        <References ReferenceType="#//Dataclasses/ASG" IsOrdered="True" IsUnique="True" LowerBound="1" Name="StrVal" />
+        <References ReferenceType="#//Dataclasses/ASG" IsOrdered="True" IsUnique="True" LowerBound="1" Name="TmMult" />
+        <References ReferenceType="#//Dataclasses/ING" IsOrdered="True" IsUnique="True" LowerBound="1" Name="MinOpTmms" />
+        <References ReferenceType="#//Dataclasses/ING" IsOrdered="True" IsUnique="True" LowerBound="1" Name="MaxOpTmms" />
+        <References ReferenceType="#//Dataclasses/ING" IsOrdered="True" IsUnique="True" LowerBound="1" Name="OpDlTmms" />
+        <References ReferenceType="#//Dataclasses/ING" IsOrdered="True" IsUnique="True" LowerBound="1" Name="TypRsCrv" />
+        <References ReferenceType="#//Dataclasses/ING" IsOrdered="True" IsUnique="True" LowerBound="1" Name="RsDlTmms" />
+        <References ReferenceType="#//Dataclasses/ING" IsOrdered="True" IsUnique="True" LowerBound="1" Name="DirMod" />
+      </Types>
+      <Types xsi:type="nmeta:Class" BaseTypes="#//LNNodes/LNGroupP/GroupP" Name="PTOF">
+        <References ReferenceType="#//Dataclasses/ACD" IsOrdered="True" IsUnique="True" LowerBound="1" Name="Str" />
+        <References ReferenceType="#//Dataclasses/ACT" IsOrdered="True" IsUnique="True" LowerBound="1" Name="Op" />
+        <References ReferenceType="#//Dataclasses/SPS" IsOrdered="True" IsUnique="True" LowerBound="1" Name="BlkV" />
+        <References ReferenceType="#//Dataclasses/ASG" IsOrdered="True" IsUnique="True" LowerBound="1" Name="StrVal" />
+        <References ReferenceType="#//Dataclasses/ASG" IsOrdered="True" IsUnique="True" LowerBound="1" Name="BlkVal" />
+        <References ReferenceType="#//Dataclasses/ING" IsOrdered="True" IsUnique="True" LowerBound="1" Name="OpDlTmms" />
+        <References ReferenceType="#//Dataclasses/ING" IsOrdered="True" IsUnique="True" LowerBound="1" Name="RsDlTmms" />
+      </Types>
+      <Types xsi:type="nmeta:Class" BaseTypes="#//LNNodes/LNGroupP/GroupP" Name="PTOV">
+        <References ReferenceType="#//Dataclasses/ACD" IsOrdered="True" IsUnique="True" LowerBound="1" Name="Str" />
+        <References ReferenceType="#//Dataclasses/ACT" IsOrdered="True" IsUnique="True" LowerBound="1" Name="Op" />
+        <References ReferenceType="#//Dataclasses/CSD" IsOrdered="True" IsUnique="True" LowerBound="1" Name="TmVst" />
+        <References ReferenceType="#//Dataclasses/CURVE" IsOrdered="True" IsUnique="True" LowerBound="1" Name="TmVCrv" />
+        <References ReferenceType="#//Dataclasses/ASG" IsOrdered="True" IsUnique="True" LowerBound="1" Name="StrVal" />
+        <References ReferenceType="#//Dataclasses/ASG" IsOrdered="True" IsUnique="True" LowerBound="1" Name="TmMult" />
+        <References ReferenceType="#//Dataclasses/ING" IsOrdered="True" IsUnique="True" LowerBound="1" Name="MinOpTmms" />
+        <References ReferenceType="#//Dataclasses/ING" IsOrdered="True" IsUnique="True" LowerBound="1" Name="MaxOpTmms" />
+        <References ReferenceType="#//Dataclasses/ING" IsOrdered="True" IsUnique="True" LowerBound="1" Name="OpDlTmms" />
+        <References ReferenceType="#//Dataclasses/ING" IsOrdered="True" IsUnique="True" LowerBound="1" Name="RsDlTmms" />
+      </Types>
+      <Types xsi:type="nmeta:Class" BaseTypes="#//LNNodes/LNGroupP/GroupP" Name="PTTR">
+        <References ReferenceType="#//Dataclasses/MV" IsOrdered="True" IsUnique="True" LowerBound="1" Name="Amp" />
+        <References ReferenceType="#//Dataclasses/MV" IsOrdered="True" IsUnique="True" LowerBound="1" Name="Tmp" />
+        <References ReferenceType="#//Dataclasses/MV" IsOrdered="True" IsUnique="True" LowerBound="1" Name="TmpRl" />
+        <References ReferenceType="#//Dataclasses/MV" IsOrdered="True" IsUnique="True" LowerBound="1" Name="LodRsvAlm" />
+        <References ReferenceType="#//Dataclasses/MV" IsOrdered="True" IsUnique="True" LowerBound="1" Name="LodRsvTr" />
+        <References ReferenceType="#//Dataclasses/MV" IsOrdered="True" IsUnique="True" LowerBound="1" Name="AgeRat" />
+        <References ReferenceType="#//Dataclasses/ACD" IsOrdered="True" IsUnique="True" LowerBound="1" Name="Str" />
+        <References ReferenceType="#//Dataclasses/ACT" IsOrdered="True" IsUnique="True" LowerBound="1" Name="Op" />
+        <References ReferenceType="#//Dataclasses/ACT" IsOrdered="True" IsUnique="True" LowerBound="1" Name="AlmThm" />
+        <References ReferenceType="#//Dataclasses/CSD" IsOrdered="True" IsUnique="True" LowerBound="1" Name="TmTmpSt" />
+        <References ReferenceType="#//Dataclasses/CSD" IsOrdered="True" IsUnique="True" LowerBound="1" Name="TmASt" />
+        <References ReferenceType="#//Dataclasses/CURVE" IsOrdered="True" IsUnique="True" LowerBound="1" Name="TmTmpCrv" />
+        <References ReferenceType="#//Dataclasses/CURVE" IsOrdered="True" IsUnique="True" LowerBound="1" Name="TmACrv" />
+        <References ReferenceType="#//Dataclasses/ASG" IsOrdered="True" IsUnique="True" LowerBound="1" Name="TmpMax" />
+        <References ReferenceType="#//Dataclasses/ASG" IsOrdered="True" IsUnique="True" LowerBound="1" Name="StrVal" />
+        <References ReferenceType="#//Dataclasses/ING" IsOrdered="True" IsUnique="True" LowerBound="1" Name="OpDlTmms" />
+        <References ReferenceType="#//Dataclasses/ING" IsOrdered="True" IsUnique="True" LowerBound="1" Name="MinOpTmms" />
+        <References ReferenceType="#//Dataclasses/ING" IsOrdered="True" IsUnique="True" LowerBound="1" Name="MaxOpTmms" />
+        <References ReferenceType="#//Dataclasses/ING" IsOrdered="True" IsUnique="True" LowerBound="1" Name="RsDlTmms" />
+        <References ReferenceType="#//Dataclasses/ING" IsOrdered="True" IsUnique="True" LowerBound="1" Name="ConsTms" />
+        <References ReferenceType="#//Dataclasses/ASG" IsOrdered="True" IsUnique="True" LowerBound="1" Name="AlmVal" />
+      </Types>
+      <Types xsi:type="nmeta:Class" BaseTypes="#//LNNodes/LNGroupP/GroupP" Name="PTUC">
+        <References ReferenceType="#//Dataclasses/ACD" IsOrdered="True" IsUnique="True" LowerBound="1" Name="Str" />
+        <References ReferenceType="#//Dataclasses/ACT" IsOrdered="True" IsUnique="True" LowerBound="1" Name="Op" />
+        <References ReferenceType="#//Dataclasses/CSD" IsOrdered="True" IsUnique="True" LowerBound="1" Name="TmASt" />
+        <References ReferenceType="#//Dataclasses/CURVE" IsOrdered="True" IsUnique="True" LowerBound="1" Name="TmACrv" />
+        <References ReferenceType="#//Dataclasses/ASG" IsOrdered="True" IsUnique="True" LowerBound="1" Name="StrVal" />
+        <References ReferenceType="#//Dataclasses/ING" IsOrdered="True" IsUnique="True" LowerBound="1" Name="OpDlTmms" />
+        <References ReferenceType="#//Dataclasses/ASG" IsOrdered="True" IsUnique="True" LowerBound="1" Name="TmMult" />
+        <References ReferenceType="#//Dataclasses/ING" IsOrdered="True" IsUnique="True" LowerBound="1" Name="MinOpTmms" />
+        <References ReferenceType="#//Dataclasses/ING" IsOrdered="True" IsUnique="True" LowerBound="1" Name="MaxOpTmms" />
+        <References ReferenceType="#//Dataclasses/ING" IsOrdered="True" IsUnique="True" LowerBound="1" Name="RsDlTmms" />
+        <References ReferenceType="#//Dataclasses/ING" IsOrdered="True" IsUnique="True" LowerBound="1" Name="ConsTms" />
+        <References ReferenceType="#//Dataclasses/ASG" IsOrdered="True" IsUnique="True" LowerBound="1" Name="AlmVal" />
+      </Types>
+      <Types xsi:type="nmeta:Class" BaseTypes="#//LNNodes/LNGroupP/GroupP" Name="PTUF">
+        <References ReferenceType="#//Dataclasses/ACD" IsOrdered="True" IsUnique="True" LowerBound="1" Name="Str" />
+        <References ReferenceType="#//Dataclasses/ACT" IsOrdered="True" IsUnique="True" LowerBound="1" Name="Op" />
+        <References ReferenceType="#//Dataclasses/SPS" IsOrdered="True" IsUnique="True" LowerBound="1" Name="BlkV" />
+        <References ReferenceType="#//Dataclasses/ASG" IsOrdered="True" IsUnique="True" LowerBound="1" Name="StrVal" />
+        <References ReferenceType="#//Dataclasses/ACT" IsOrdered="True" IsUnique="True" LowerBound="1" Name="BlkVal" />
+        <References ReferenceType="#//Dataclasses/ING" IsOrdered="True" IsUnique="True" LowerBound="1" Name="OpDlTmms" />
+        <References ReferenceType="#//Dataclasses/ING" IsOrdered="True" IsUnique="True" LowerBound="1" Name="RsDlTmms" />
+      </Types>
+      <Types xsi:type="nmeta:Class" BaseTypes="#//LNNodes/LNGroupP/GroupP" Name="PVOC">
+        <References ReferenceType="#//Dataclasses/ACD" IsOrdered="True" IsUnique="True" LowerBound="1" Name="Str" />
+        <References ReferenceType="#//Dataclasses/ACT" IsOrdered="True" IsUnique="True" LowerBound="1" Name="Op" />
+        <References ReferenceType="#//Dataclasses/CSD" IsOrdered="True" IsUnique="True" LowerBound="1" Name="AVSt" />
+        <References ReferenceType="#//Dataclasses/CSD" IsOrdered="True" IsUnique="True" LowerBound="1" Name="TmASt" />
+        <References ReferenceType="#//Dataclasses/ASG" IsOrdered="True" IsUnique="True" LowerBound="1" Name="TmMult" />
+        <References ReferenceType="#//Dataclasses/CURVE" IsOrdered="True" IsUnique="True" LowerBound="1" Name="AVCrv" />
+        <References ReferenceType="#//Dataclasses/CURVE" IsOrdered="True" IsUnique="True" LowerBound="1" Name="TmACrv" />
+        <References ReferenceType="#//Dataclasses/ING" IsOrdered="True" IsUnique="True" LowerBound="1" Name="MinOpTmms" />
+        <References ReferenceType="#//Dataclasses/ING" IsOrdered="True" IsUnique="True" LowerBound="1" Name="MaxOpTmms" />
+        <References ReferenceType="#//Dataclasses/ING" IsOrdered="True" IsUnique="True" LowerBound="1" Name="OpDlTmms" />
+        <References ReferenceType="#//Dataclasses/ING" IsOrdered="True" IsUnique="True" LowerBound="1" Name="TypRsCrv" />
+        <References ReferenceType="#//Dataclasses/ING" IsOrdered="True" IsUnique="True" LowerBound="1" Name="RsDlTmms" />
+      </Types>
+      <Types xsi:type="nmeta:Class" BaseTypes="#//LNNodes/LNGroupP/GroupP" Name="PVPH">
+        <References ReferenceType="#//Dataclasses/ACD" IsOrdered="True" IsUnique="True" LowerBound="1" Name="Str" />
+        <References ReferenceType="#//Dataclasses/ACT" IsOrdered="True" IsUnique="True" LowerBound="1" Name="Op" />
+        <References ReferenceType="#//Dataclasses/CSD" IsOrdered="True" IsUnique="True" LowerBound="1" Name="VHzSt" />
+        <References ReferenceType="#//Dataclasses/CURVE" IsOrdered="True" IsUnique="True" LowerBound="1" Name="VHzCrv" />
+        <References ReferenceType="#//Dataclasses/ASG" IsOrdered="True" IsUnique="True" LowerBound="1" Name="StrVal" />
+        <References ReferenceType="#//Dataclasses/ING" IsOrdered="True" IsUnique="True" LowerBound="1" Name="OpDlTmms" />
+        <References ReferenceType="#//Dataclasses/ING" IsOrdered="True" IsUnique="True" LowerBound="1" Name="TypRsCrv" />
+        <References ReferenceType="#//Dataclasses/ING" IsOrdered="True" IsUnique="True" LowerBound="1" Name="RsDlTmms" />
+        <References ReferenceType="#//Dataclasses/ASG" IsOrdered="True" IsUnique="True" LowerBound="1" Name="TmMult" />
+        <References ReferenceType="#//Dataclasses/ING" IsOrdered="True" IsUnique="True" LowerBound="1" Name="MinOpTmms" />
+        <References ReferenceType="#//Dataclasses/ING" IsOrdered="True" IsUnique="True" LowerBound="1" Name="MaxOpTmms" />
+      </Types>
+      <Types xsi:type="nmeta:Class" BaseTypes="#//LNNodes/LNGroupP/GroupP" Name="PTRC">
+        <References ReferenceType="#//Dataclasses/ACT" IsOrdered="True" IsUnique="True" LowerBound="1" Name="Tr" />
+        <References ReferenceType="#//Dataclasses/ACT" IsOrdered="True" IsUnique="True" LowerBound="1" Name="Op" />
+        <References ReferenceType="#//Dataclasses/ACD" IsOrdered="True" IsUnique="True" LowerBound="1" Name="Str" />
+        <References ReferenceType="#//Dataclasses/ING" IsOrdered="True" IsUnique="True" LowerBound="1" Name="TrMod" />
+        <References ReferenceType="#//Dataclasses/ING" IsOrdered="True" IsUnique="True" LowerBound="1" Name="TrPlsTmms" />
+      </Types>
+      <Types xsi:type="nmeta:Class" BaseTypes="#//LNNodes/LNGroupP/GroupP" Name="PTUV">
+        <References ReferenceType="#//Dataclasses/ACD" IsOrdered="True" IsUnique="True" LowerBound="1" Name="Str" />
+        <References ReferenceType="#//Dataclasses/ACT" IsOrdered="True" IsUnique="True" LowerBound="1" Name="Op" />
+        <References ReferenceType="#//Dataclasses/CSD" IsOrdered="True" IsUnique="True" LowerBound="1" Name="TmVSt" />
+        <References ReferenceType="#//Dataclasses/CURVE" IsOrdered="True" IsUnique="True" LowerBound="1" Name="TmVCrv" />
+        <References ReferenceType="#//Dataclasses/ASG" IsOrdered="True" IsUnique="True" LowerBound="1" Name="StrVal" />
+        <References ReferenceType="#//Dataclasses/ASG" IsOrdered="True" IsUnique="True" LowerBound="1" Name="TmMult" />
+        <References ReferenceType="#//Dataclasses/ING" IsOrdered="True" IsUnique="True" LowerBound="1" Name="MinOpTmms" />
+        <References ReferenceType="#//Dataclasses/ING" IsOrdered="True" IsUnique="True" LowerBound="1" Name="MaxOpTmms" />
+        <References ReferenceType="#//Dataclasses/ING" IsOrdered="True" IsUnique="True" LowerBound="1" Name="OpDlTmms" />
+        <References ReferenceType="#//Dataclasses/ING" IsOrdered="True" IsUnique="True" LowerBound="1" Name="RsDlTmms" />
+      </Types>
+      <Types xsi:type="nmeta:Class" BaseTypes="#//LNNodes/LNGroupP/GroupP" Name="PUPF">
+        <References ReferenceType="#//Dataclasses/ACD" IsOrdered="True" IsUnique="True" LowerBound="1" Name="Str" />
+        <References ReferenceType="#//Dataclasses/ACT" IsOrdered="True" IsUnique="True" LowerBound="1" Name="Op" />
+        <References ReferenceType="#//Dataclasses/SPS" IsOrdered="True" IsUnique="True" LowerBound="1" Name="BlkA" />
+        <References ReferenceType="#//Dataclasses/SPS" IsOrdered="True" IsUnique="True" LowerBound="1" Name="BlkV" />
+        <References ReferenceType="#//Dataclasses/ASG" IsOrdered="True" IsUnique="True" LowerBound="1" Name="StrVal" />
+        <References ReferenceType="#//Dataclasses/ING" IsOrdered="True" IsUnique="True" LowerBound="1" Name="OpDlTmms" />
+        <References ReferenceType="#//Dataclasses/ING" IsOrdered="True" IsUnique="True" LowerBound="1" Name="RsDlTmms" />
+        <References ReferenceType="#//Dataclasses/ASG" IsOrdered="True" IsUnique="True" LowerBound="1" Name="BlkValA" />
+        <References ReferenceType="#//Dataclasses/ASG" IsOrdered="True" IsUnique="True" LowerBound="1" Name="BlkValV" />
+      </Types>
+      <Types xsi:type="nmeta:Class" BaseTypes="#//LNNodes/LNGroupP/GroupP" Name="PZSU">
+        <References ReferenceType="#//Dataclasses/ACD" IsOrdered="True" IsUnique="True" LowerBound="1" Name="Str" />
+        <References ReferenceType="#//Dataclasses/ACT" IsOrdered="True" IsUnique="True" LowerBound="1" Name="Op" />
+        <References ReferenceType="#//Dataclasses/ASG" IsOrdered="True" IsUnique="True" LowerBound="1" Name="StrVal" />
+        <References ReferenceType="#//Dataclasses/ING" IsOrdered="True" IsUnique="True" LowerBound="1" Name="OpDlTmms" />
+        <References ReferenceType="#//Dataclasses/ING" IsOrdered="True" IsUnique="True" LowerBound="1" Name="RsDlTmms" />
+      </Types>
+    </ChildNamespaces>
+    <ChildNamespaces Uri="http://www.transformation-tool-contest.eu/2017/smartGrids/substationStandard/groupR" Prefix="groupr" Name="LNGroupR">
+      <Types xsi:type="nmeta:Class" BaseTypes="#//LNNodes/DomainLNs/DomainLN" Name="GroupR" />
+      <Types xsi:type="nmeta:Class" BaseTypes="#//LNNodes/LNGroupR/GroupR" Name="RDRE">
+        <References ReferenceType="#//Dataclasses/INC" IsOrdered="True" IsUnique="True" LowerBound="1" Name="OpCntRs" />
+        <References ReferenceType="#//Dataclasses/SPC" IsOrdered="True" IsUnique="True" LowerBound="1" Name="RcdTrg" />
+        <References ReferenceType="#//Dataclasses/SPC" IsOrdered="True" IsUnique="True" LowerBound="1" Name="MemRs" />
+        <References ReferenceType="#//Dataclasses/SPC" IsOrdered="True" IsUnique="True" LowerBound="1" Name="MemClr" />
+        <References ReferenceType="#//Dataclasses/SPS" IsOrdered="True" IsUnique="True" LowerBound="1" Name="RcdMade" />
+        <References ReferenceType="#//Dataclasses/INS" IsOrdered="True" IsUnique="True" LowerBound="1" Name="FltNum" />
+        <References ReferenceType="#//Dataclasses/INS" IsOrdered="True" IsUnique="True" LowerBound="1" Name="GriFltNum" />
+        <References ReferenceType="#//Dataclasses/SPS" IsOrdered="True" IsUnique="True" LowerBound="1" Name="RcdStr" />
+        <References ReferenceType="#//Dataclasses/INS" IsOrdered="True" IsUnique="True" LowerBound="1" Name="MemUsed" />
+        <References ReferenceType="#//Dataclasses/ING" IsOrdered="True" IsUnique="True" LowerBound="1" Name="TrgMod" />
+        <References ReferenceType="#//Dataclasses/ING" IsOrdered="True" IsUnique="True" LowerBound="1" Name="LevMod" />
+        <References ReferenceType="#//Dataclasses/ING" IsOrdered="True" IsUnique="True" LowerBound="1" Name="PreTmms" />
+        <References ReferenceType="#//Dataclasses/ING" IsOrdered="True" IsUnique="True" LowerBound="1" Name="PstTmms" />
+        <References ReferenceType="#//Dataclasses/ING" IsOrdered="True" IsUnique="True" LowerBound="1" Name="MemFull" />
+        <References ReferenceType="#//Dataclasses/ING" IsOrdered="True" IsUnique="True" LowerBound="1" Name="MaxNumRcd" />
+        <References ReferenceType="#//Dataclasses/ING" IsOrdered="True" IsUnique="True" LowerBound="1" Name="ReTrgMod" />
+        <References ReferenceType="#//Dataclasses/ING" IsOrdered="True" IsUnique="True" LowerBound="1" Name="PerTrgTms" />
+        <References ReferenceType="#//Dataclasses/ING" IsOrdered="True" IsUnique="True" LowerBound="1" Name="ExclTmms" />
+        <References ReferenceType="#//Dataclasses/ING" IsOrdered="True" IsUnique="True" LowerBound="1" Name="OpMod" />
+      </Types>
+      <Types xsi:type="nmeta:Class" BaseTypes="#//LNNodes/LNGroupR/GroupR" Name="RDRS">
+        <References ReferenceType="#//Dataclasses/SPC" IsOrdered="True" IsUnique="True" LowerBound="1" Name="AutoUpLod" />
+        <References ReferenceType="#//Dataclasses/SPC" IsOrdered="True" IsUnique="True" LowerBound="1" Name="DltRcd" />
+      </Types>
+      <Types xsi:type="nmeta:Class" BaseTypes="#//LNNodes/LNGroupR/GroupR" Name="RPSB">
+        <References ReferenceType="#//Dataclasses/INC" IsOrdered="True" IsUnique="True" LowerBound="1" Name="OpCntRs" />
+        <References ReferenceType="#//Dataclasses/ACD" IsOrdered="True" IsUnique="True" LowerBound="1" Name="Str" />
+        <References ReferenceType="#//Dataclasses/ACT" IsOrdered="True" IsUnique="True" LowerBound="1" Name="Op" />
+        <References ReferenceType="#//Dataclasses/SPS" IsOrdered="True" IsUnique="True" LowerBound="1" Name="BlkZn" />
+        <References ReferenceType="#//Dataclasses/SPG" IsOrdered="True" IsUnique="True" LowerBound="1" Name="ZeroEna" />
+        <References ReferenceType="#//Dataclasses/SPG" IsOrdered="True" IsUnique="True" LowerBound="1" Name="NgEna" />
+        <References ReferenceType="#//Dataclasses/SPG" IsOrdered="True" IsUnique="True" LowerBound="1" Name="MaxEna" />
+        <References ReferenceType="#//Dataclasses/ASG" IsOrdered="True" IsUnique="True" LowerBound="1" Name="SwgVal" />
+        <References ReferenceType="#//Dataclasses/ASG" IsOrdered="True" IsUnique="True" LowerBound="1" Name="SwgRis" />
+        <References ReferenceType="#//Dataclasses/ASG" IsOrdered="True" IsUnique="True" LowerBound="1" Name="SwgReact" />
+        <References ReferenceType="#//Dataclasses/ING" IsOrdered="True" IsUnique="True" LowerBound="1" Name="SwgTmms" />
+        <References ReferenceType="#//Dataclasses/ING" IsOrdered="True" IsUnique="True" LowerBound="1" Name="UnBlkTmms" />
+        <References ReferenceType="#//Dataclasses/ING" IsOrdered="True" IsUnique="True" LowerBound="1" Name="MaxNumSlp" />
+        <References ReferenceType="#//Dataclasses/ING" IsOrdered="True" IsUnique="True" LowerBound="1" Name="EvTmms" />
+      </Types>
+      <Types xsi:type="nmeta:Class" BaseTypes="#//LNNodes/LNGroupR/GroupR" Name="RBRF">
+        <References ReferenceType="#//Dataclasses/INC" IsOrdered="True" IsUnique="True" LowerBound="1" Name="OpCntRs" />
+        <References ReferenceType="#//Dataclasses/ACD" IsOrdered="True" IsUnique="True" LowerBound="1" Name="Str" />
+        <References ReferenceType="#//Dataclasses/ACT" IsOrdered="True" IsUnique="True" LowerBound="1" Name="OpEx" />
+        <References ReferenceType="#//Dataclasses/ACT" IsOrdered="True" IsUnique="True" LowerBound="1" Name="OpIn" />
+        <References ReferenceType="#//Dataclasses/ING" IsOrdered="True" IsUnique="True" LowerBound="1" Name="FailMod" />
+        <References ReferenceType="#//Dataclasses/ING" IsOrdered="True" IsUnique="True" LowerBound="1" Name="FailTmms" />
+        <References ReferenceType="#//Dataclasses/ING" IsOrdered="True" IsUnique="True" LowerBound="1" Name="SPlTrTmms" />
+        <References ReferenceType="#//Dataclasses/ING" IsOrdered="True" IsUnique="True" LowerBound="1" Name="TPTrTmms" />
+        <References ReferenceType="#//Dataclasses/ASG" IsOrdered="True" IsUnique="True" LowerBound="1" Name="DetValA" />
+        <References ReferenceType="#//Dataclasses/ING" IsOrdered="True" IsUnique="True" LowerBound="1" Name="ReTrMod" />
+      </Types>
+      <Types xsi:type="nmeta:Class" BaseTypes="#//LNNodes/LNGroupR/GroupR" Name="RADR">
+        <References ReferenceType="#//Dataclasses/INC" IsOrdered="True" IsUnique="True" LowerBound="1" Name="OpCntRs" />
+        <References ReferenceType="#//Dataclasses/SPS" IsOrdered="True" IsUnique="True" LowerBound="1" Name="ChTrg" />
+        <References ReferenceType="#//Dataclasses/ING" IsOrdered="True" IsUnique="True" LowerBound="1" Name="ChNum" />
+        <References ReferenceType="#//Dataclasses/ING" IsOrdered="True" IsUnique="True" LowerBound="1" Name="TrGMod" />
+        <References ReferenceType="#//Dataclasses/ING" IsOrdered="True" IsUnique="True" LowerBound="1" Name="LevMod" />
+        <References ReferenceType="#//Dataclasses/ASG" IsOrdered="True" IsUnique="True" LowerBound="1" Name="HiTrgLev" />
+        <References ReferenceType="#//Dataclasses/ASG" IsOrdered="True" IsUnique="True" LowerBound="1" Name="LoTrgLev" />
+        <References ReferenceType="#//Dataclasses/ING" IsOrdered="True" IsUnique="True" LowerBound="1" Name="PreTmms" />
+        <References ReferenceType="#//Dataclasses/ING" IsOrdered="True" IsUnique="True" LowerBound="1" Name="PstTmms" />
+      </Types>
+      <Types xsi:type="nmeta:Class" BaseTypes="#//LNNodes/LNGroupR/GroupR" Name="RBDR">
+        <References ReferenceType="#//Dataclasses/INC" IsOrdered="True" IsUnique="True" LowerBound="1" Name="OpCntRs" />
+        <References ReferenceType="#//Dataclasses/SPS" IsOrdered="True" IsUnique="True" LowerBound="1" Name="ChTrg" />
+        <References ReferenceType="#//Dataclasses/ING" IsOrdered="True" IsUnique="True" LowerBound="1" Name="ChNum" />
+        <References ReferenceType="#//Dataclasses/ING" IsOrdered="True" IsUnique="True" LowerBound="1" Name="TrgMod" />
+        <References ReferenceType="#//Dataclasses/ING" IsOrdered="True" IsUnique="True" LowerBound="1" Name="LevMod" />
+        <References ReferenceType="#//Dataclasses/ING" IsOrdered="True" IsUnique="True" LowerBound="1" Name="PreTmms" />
+        <References ReferenceType="#//Dataclasses/ING" IsOrdered="True" IsUnique="True" LowerBound="1" Name="PstTmms" />
+      </Types>
+      <Types xsi:type="nmeta:Class" BaseTypes="#//LNNodes/LNGroupR/GroupR" Name="RDIR">
+        <References ReferenceType="#//Dataclasses/ACD" IsOrdered="True" IsUnique="True" LowerBound="1" Name="Dir" />
+        <References ReferenceType="#//Dataclasses/ASG" IsOrdered="True" IsUnique="True" LowerBound="1" Name="ChrAng" />
+        <References ReferenceType="#//Dataclasses/ASG" IsOrdered="True" IsUnique="True" LowerBound="1" Name="MinFwdAng" />
+        <References ReferenceType="#//Dataclasses/ASG" IsOrdered="True" IsUnique="True" LowerBound="1" Name="MinRvAng" />
+        <References ReferenceType="#//Dataclasses/ASG" IsOrdered="True" IsUnique="True" LowerBound="1" Name="MaxFwdAng" />
+        <References ReferenceType="#//Dataclasses/ASG" IsOrdered="True" IsUnique="True" LowerBound="1" Name="MaxRvAng" />
+        <References ReferenceType="#//Dataclasses/ASG" IsOrdered="True" IsUnique="True" LowerBound="1" Name="BlkValA" />
+        <References ReferenceType="#//Dataclasses/ASG" IsOrdered="True" IsUnique="True" LowerBound="1" Name="BlkValV" />
+        <References ReferenceType="#//Dataclasses/ING" IsOrdered="True" IsUnique="True" LowerBound="1" Name="PolQty" />
+        <References ReferenceType="#//Dataclasses/ASG" IsOrdered="True" IsUnique="True" LowerBound="1" Name="MinPPV" />
+      </Types>
+      <Types xsi:type="nmeta:Class" BaseTypes="#//LNNodes/LNGroupR/GroupR" Name="RFLO">
+        <References ReferenceType="#//Dataclasses/INC" IsOrdered="True" IsUnique="True" LowerBound="1" Name="OpCntRs" />
+        <References ReferenceType="#//Dataclasses/CMV" IsOrdered="True" IsUnique="True" LowerBound="1" Name="FltZ" />
+        <References ReferenceType="#//Dataclasses/MV" IsOrdered="True" IsUnique="True" LowerBound="1" Name="FltDiskm" />
+        <References ReferenceType="#//Dataclasses/INS" IsOrdered="True" IsUnique="True" LowerBound="1" Name="FltLoop" />
+        <References ReferenceType="#//Dataclasses/ASG" IsOrdered="True" IsUnique="True" LowerBound="1" Name="LinLenKm" />
+        <References ReferenceType="#//Dataclasses/ASG" IsOrdered="True" IsUnique="True" LowerBound="1" Name="R1" />
+        <References ReferenceType="#//Dataclasses/ASG" IsOrdered="True" IsUnique="True" LowerBound="1" Name="X1" />
+        <References ReferenceType="#//Dataclasses/ASG" IsOrdered="True" IsUnique="True" LowerBound="1" Name="R0" />
+        <References ReferenceType="#//Dataclasses/ASG" IsOrdered="True" IsUnique="True" LowerBound="1" Name="X0" />
+        <References ReferenceType="#//Dataclasses/ASG" IsOrdered="True" IsUnique="True" LowerBound="1" Name="Z1Mod" />
+        <References ReferenceType="#//Dataclasses/ASG" IsOrdered="True" IsUnique="True" LowerBound="1" Name="Z1Ang" />
+        <References ReferenceType="#//Dataclasses/ASG" IsOrdered="True" IsUnique="True" LowerBound="1" Name="Z0Mod" />
+        <References ReferenceType="#//Dataclasses/ASG" IsOrdered="True" IsUnique="True" LowerBound="1" Name="Z0Ang" />
+        <References ReferenceType="#//Dataclasses/ASG" IsOrdered="True" IsUnique="True" LowerBound="1" Name="Rm0" />
+        <References ReferenceType="#//Dataclasses/ASG" IsOrdered="True" IsUnique="True" LowerBound="1" Name="Xm0" />
+        <References ReferenceType="#//Dataclasses/ASG" IsOrdered="True" IsUnique="True" LowerBound="1" Name="Zm0Mod" />
+        <References ReferenceType="#//Dataclasses/ASG" IsOrdered="True" IsUnique="True" LowerBound="1" Name="Zm0Ang" />
+      </Types>
+      <Types xsi:type="nmeta:Class" BaseTypes="#//LNNodes/LNGroupR/GroupR" Name="RREC">
+        <References ReferenceType="#//Dataclasses/INC" IsOrdered="True" IsUnique="True" LowerBound="1" Name="OpCntRs" />
+        <References ReferenceType="#//Dataclasses/SPC" IsOrdered="True" IsUnique="True" LowerBound="1" Name="BlkRec" />
+        <References ReferenceType="#//Dataclasses/SPC" IsOrdered="True" IsUnique="True" LowerBound="1" Name="ChkRec" />
+        <References ReferenceType="#//Dataclasses/SPS" IsOrdered="True" IsUnique="True" LowerBound="1" Name="Auto" />
+        <References ReferenceType="#//Dataclasses/ACT" IsOrdered="True" IsUnique="True" LowerBound="1" Name="Op" />
+        <References ReferenceType="#//Dataclasses/INS" IsOrdered="True" IsUnique="True" LowerBound="1" Name="AutoRecSt" />
+        <References ReferenceType="#//Dataclasses/ING" IsOrdered="True" IsUnique="True" LowerBound="1" Name="Rec1Tmms" />
+        <References ReferenceType="#//Dataclasses/ING" IsOrdered="True" IsUnique="True" LowerBound="1" Name="Rec2Tmms" />
+        <References ReferenceType="#//Dataclasses/ING" IsOrdered="True" IsUnique="True" LowerBound="1" Name="Rec3Tmms" />
+        <References ReferenceType="#//Dataclasses/ING" IsOrdered="True" IsUnique="True" LowerBound="1" Name="PlsTmms" />
+        <References ReferenceType="#//Dataclasses/ING" IsOrdered="True" IsUnique="True" LowerBound="1" Name="RclTmms" />
+      </Types>
+      <Types xsi:type="nmeta:Class" BaseTypes="#//LNNodes/LNGroupR/GroupR" Name="RSYN">
+        <References ReferenceType="#//Dataclasses/SPC" IsOrdered="True" IsUnique="True" LowerBound="1" Name="RHz" />
+        <References ReferenceType="#//Dataclasses/SPC" IsOrdered="True" IsUnique="True" LowerBound="1" Name="LHz" />
+        <References ReferenceType="#//Dataclasses/SPC" IsOrdered="True" IsUnique="True" LowerBound="1" Name="RV" />
+        <References ReferenceType="#//Dataclasses/SPC" IsOrdered="True" IsUnique="True" LowerBound="1" Name="LV" />
+        <References ReferenceType="#//Dataclasses/SPS" IsOrdered="True" IsUnique="True" LowerBound="1" Name="Rel" />
+        <References ReferenceType="#//Dataclasses/SPS" IsOrdered="True" IsUnique="True" LowerBound="1" Name="Vlnd" />
+        <References ReferenceType="#//Dataclasses/SPS" IsOrdered="True" IsUnique="True" LowerBound="1" Name="AngInd" />
+        <References ReferenceType="#//Dataclasses/SPS" IsOrdered="True" IsUnique="True" LowerBound="1" Name="HzInd" />
+        <References ReferenceType="#//Dataclasses/SPS" IsOrdered="True" IsUnique="True" LowerBound="1" Name="SynPrg" />
+        <References ReferenceType="#//Dataclasses/MV" IsOrdered="True" IsUnique="True" LowerBound="1" Name="DifVClc" />
+        <References ReferenceType="#//Dataclasses/MV" IsOrdered="True" IsUnique="True" LowerBound="1" Name="DifAngClc" />
+        <References ReferenceType="#//Dataclasses/ASG" IsOrdered="True" IsUnique="True" LowerBound="1" Name="DifV" />
+        <References ReferenceType="#//Dataclasses/ASG" IsOrdered="True" IsUnique="True" LowerBound="1" Name="DifHz" />
+        <References ReferenceType="#//Dataclasses/ASG" IsOrdered="True" IsUnique="True" LowerBound="1" Name="DifAng" />
+        <References ReferenceType="#//Dataclasses/ING" IsOrdered="True" IsUnique="True" LowerBound="1" Name="LivDeaMod" />
+        <References ReferenceType="#//Dataclasses/ASG" IsOrdered="True" IsUnique="True" LowerBound="1" Name="DeaLinVal" />
+        <References ReferenceType="#//Dataclasses/ASG" IsOrdered="True" IsUnique="True" LowerBound="1" Name="LivLinVal" />
+        <References ReferenceType="#//Dataclasses/ASG" IsOrdered="True" IsUnique="True" LowerBound="1" Name="DeaBusVal" />
+        <References ReferenceType="#//Dataclasses/ING" IsOrdered="True" IsUnique="True" LowerBound="1" Name="PlsTmms" />
+        <References ReferenceType="#//Dataclasses/ING" IsOrdered="True" IsUnique="True" LowerBound="1" Name="BkrTmms" />
+      </Types>
+    </ChildNamespaces>
+    <ChildNamespaces Uri="http://www.transformation-tool-contest.eu/2017/smartGrids/substationStandard/groupC" Prefix="groupc" Name="LNGroupC">
+      <Types xsi:type="nmeta:Class" BaseTypes="#//LNNodes/DomainLNs/DomainLN" Name="GroupC" />
+      <Types xsi:type="nmeta:Class" BaseTypes="#//LNNodes/LNGroupC/GroupC" Name="CALH">
+        <References ReferenceType="#//Dataclasses/SPS" IsOrdered="True" IsUnique="True" LowerBound="1" Name="GrAlm" />
+        <References ReferenceType="#//Dataclasses/SPS" IsOrdered="True" IsUnique="True" LowerBound="1" Name="GrWrn" />
+        <References ReferenceType="#//Dataclasses/SPS" IsOrdered="True" IsUnique="True" LowerBound="1" Name="AlmLstOv" />
+      </Types>
+      <Types xsi:type="nmeta:Class" BaseTypes="#//LNNodes/LNGroupC/GroupC" Name="CILO">
+        <References ReferenceType="#//Dataclasses/SPS" IsOrdered="True" IsUnique="True" LowerBound="1" Name="EnaOpn" />
+        <References ReferenceType="#//Dataclasses/SPS" IsOrdered="True" IsUnique="True" LowerBound="1" Name="EnaCls" />
+      </Types>
+      <Types xsi:type="nmeta:Class" BaseTypes="#//LNNodes/LNGroupC/GroupC" Name="CCGR">
+        <References ReferenceType="#//Dataclasses/ING" IsOrdered="True" IsUnique="True" LowerBound="1" Name="EEHealth" />
+        <References ReferenceType="#//Dataclasses/DPL" IsOrdered="True" IsUnique="True" LowerBound="1" Name="EEName" />
+        <References ReferenceType="#//Dataclasses/INS" IsOrdered="True" IsUnique="True" LowerBound="1" Name="OpTmh" />
+        <References ReferenceType="#//Dataclasses/MV" IsOrdered="True" IsUnique="True" LowerBound="1" Name="EnvTmp" />
+        <References ReferenceType="#//Dataclasses/MV" IsOrdered="True" IsUnique="True" LowerBound="1" Name="OilTmpIn" />
+        <References ReferenceType="#//Dataclasses/MV" IsOrdered="True" IsUnique="True" LowerBound="1" Name="OilTmpOut" />
+        <References ReferenceType="#//Dataclasses/MV" IsOrdered="True" IsUnique="True" LowerBound="1" Name="OilMotA" />
+        <References ReferenceType="#//Dataclasses/MV" IsOrdered="True" IsUnique="True" LowerBound="1" Name="FanFlw" />
+        <References ReferenceType="#//Dataclasses/MV" IsOrdered="True" IsUnique="True" LowerBound="1" Name="FanA" />
+        <References ReferenceType="#//Dataclasses/SPC" IsOrdered="True" IsUnique="True" LowerBound="1" Name="CECtl" />
+        <References ReferenceType="#//Dataclasses/INC" IsOrdered="True" IsUnique="True" LowerBound="1" Name="PmpCtlGen" />
+        <References ReferenceType="#//Dataclasses/INC" IsOrdered="True" IsUnique="True" LowerBound="1" Name="PmpCtl" />
+        <References ReferenceType="#//Dataclasses/INC" IsOrdered="True" IsUnique="True" LowerBound="1" Name="FanCtlGen" />
+        <References ReferenceType="#//Dataclasses/INC" IsOrdered="True" IsUnique="True" LowerBound="1" Name="FanCtl" />
+        <References ReferenceType="#//Dataclasses/SPS" IsOrdered="True" IsUnique="True" LowerBound="1" Name="Auto" />
+        <References ReferenceType="#//Dataclasses/SPS" IsOrdered="True" IsUnique="True" LowerBound="1" Name="FanOvCur" />
+        <References ReferenceType="#//Dataclasses/SPS" IsOrdered="True" IsUnique="True" LowerBound="1" Name="PmpOvCur" />
+        <References ReferenceType="#//Dataclasses/SPS" IsOrdered="True" IsUnique="True" LowerBound="1" Name="PmpAlm" />
+        <References ReferenceType="#//Dataclasses/ASG" IsOrdered="True" IsUnique="True" LowerBound="1" Name="OilTmpSet" />
+      </Types>
+      <Types xsi:type="nmeta:Class" BaseTypes="#//LNNodes/LNGroupC/GroupC" Name="CPOW">
+        <References ReferenceType="#//Dataclasses/SPS" IsOrdered="True" IsUnique="True" LowerBound="1" Name="TmExc" />
+        <References ReferenceType="#//Dataclasses/SPS" IsOrdered="True" IsUnique="True" LowerBound="1" Name="StrPOW" />
+        <References ReferenceType="#//Dataclasses/ACT" IsOrdered="True" IsUnique="True" LowerBound="1" Name="OpOpn" />
+        <References ReferenceType="#//Dataclasses/ACT" IsOrdered="True" IsUnique="True" LowerBound="1" Name="OpCls" />
+        <References ReferenceType="#//Dataclasses/ING" IsOrdered="True" IsUnique="True" LowerBound="1" Name="MaxDlTmms" />
+      </Types>
+      <Types xsi:type="nmeta:Class" BaseTypes="#//LNNodes/LNGroupC/GroupC" Name="CSWI">
+        <References ReferenceType="#//Dataclasses/SPS" IsOrdered="True" IsUnique="True" LowerBound="1" Name="Loc" />
+        <References ReferenceType="#//Dataclasses/INC" IsOrdered="True" IsUnique="True" LowerBound="1" Name="OpCntRs" />
+        <References ReferenceType="#//Dataclasses/DPC" IsOrdered="True" IsUnique="True" LowerBound="1" Name="Pos" />
+        <References ReferenceType="#//Dataclasses/DPC" IsOrdered="True" IsUnique="True" LowerBound="1" Name="PosA" />
+        <References ReferenceType="#//Dataclasses/DPC" IsOrdered="True" IsUnique="True" LowerBound="1" Name="PosB" />
+        <References ReferenceType="#//Dataclasses/DPC" IsOrdered="True" IsUnique="True" LowerBound="1" Name="PosC" />
+        <References ReferenceType="#//Dataclasses/ACT" IsOrdered="True" IsUnique="True" LowerBound="1" Name="OpOpn" />
+        <References ReferenceType="#//Dataclasses/ACT" IsOrdered="True" IsUnique="True" LowerBound="1" Name="OpCls" />
+      </Types>
+    </ChildNamespaces>
+    <ChildNamespaces Uri="http://www.transformation-tool-contest.eu/2017/smartGrids/substationStandard/groupA" Prefix="groupa" Name="LNGroupA">
+      <Types xsi:type="nmeta:Class" BaseTypes="#//LNNodes/DomainLNs/DomainLN" Name="GroupA">
+        <References ReferenceType="#//Dataclasses/SPS" IsOrdered="True" IsUnique="True" LowerBound="1" Name="Loc" />
+        <References ReferenceType="#//Dataclasses/INC" IsOrdered="True" IsUnique="True" LowerBound="1" Name="OpCntRs" />
+        <References ReferenceType="#//Dataclasses/SPS" IsOrdered="True" IsUnique="True" LowerBound="1" Name="Auto" />
+      </Types>
+      <Types xsi:type="nmeta:Class" BaseTypes="#//LNNodes/LNGroupA/GroupA" Name="ANCR">
+        <References ReferenceType="#//Dataclasses/BSC" IsOrdered="True" IsUnique="True" LowerBound="1" Name="TapChg" />
+        <References ReferenceType="#//Dataclasses/SPC" IsOrdered="True" IsUnique="True" LowerBound="1" Name="RCol" />
+        <References ReferenceType="#//Dataclasses/SPC" IsOrdered="True" IsUnique="True" LowerBound="1" Name="LCol" />
+      </Types>
+      <Types xsi:type="nmeta:Class" BaseTypes="#//LNNodes/LNGroupA/GroupA" Name="ARCO">
+        <References ReferenceType="#//Dataclasses/BSC" IsOrdered="True" IsUnique="True" LowerBound="1" Name="TapChg" />
+        <References ReferenceType="#//Dataclasses/SPS" IsOrdered="True" IsUnique="True" LowerBound="1" Name="VOvSt" />
+        <References ReferenceType="#//Dataclasses/SPS" IsOrdered="True" IsUnique="True" LowerBound="1" Name="NeutAlm" />
+        <References ReferenceType="#//Dataclasses/SPS" IsOrdered="True" IsUnique="True" LowerBound="1" Name="DschBlk" />
+      </Types>
+      <Types xsi:type="nmeta:Class" BaseTypes="#//LNNodes/LNGroupA/GroupA" Name="ATCC">
+        <References ReferenceType="#//Dataclasses/BSC" IsOrdered="True" IsUnique="True" LowerBound="1" Name="TapChg" />
+        <References ReferenceType="#//Dataclasses/ISC" IsOrdered="True" IsUnique="True" LowerBound="1" Name="TapPos" />
+        <References ReferenceType="#//Dataclasses/DPC" IsOrdered="True" IsUnique="True" LowerBound="1" Name="ParOp" />
+        <References ReferenceType="#//Dataclasses/SPC" IsOrdered="True" IsUnique="True" LowerBound="1" Name="LTCBlk" />
+        <References ReferenceType="#//Dataclasses/SPC" IsOrdered="True" IsUnique="True" LowerBound="1" Name="LTCDragRs" />
+        <References ReferenceType="#//Dataclasses/SPC" IsOrdered="True" IsUnique="True" LowerBound="1" Name="VRed1" />
+        <References ReferenceType="#//Dataclasses/SPC" IsOrdered="True" IsUnique="True" LowerBound="1" Name="VRed2" />
+        <References ReferenceType="#//Dataclasses/MV" IsOrdered="True" IsUnique="True" LowerBound="1" Name="CtlV" />
+        <References ReferenceType="#//Dataclasses/MV" IsOrdered="True" IsUnique="True" LowerBound="1" Name="LodA" />
+        <References ReferenceType="#//Dataclasses/MV" IsOrdered="True" IsUnique="True" LowerBound="1" Name="CircA" />
+        <References ReferenceType="#//Dataclasses/MV" IsOrdered="True" IsUnique="True" LowerBound="1" Name="PhAng" />
+        <References ReferenceType="#//Dataclasses/MV" IsOrdered="True" IsUnique="True" LowerBound="1" Name="HiCtlV" />
+        <References ReferenceType="#//Dataclasses/MV" IsOrdered="True" IsUnique="True" LowerBound="1" Name="LoCtlV" />
+        <References ReferenceType="#//Dataclasses/MV" IsOrdered="True" IsUnique="True" LowerBound="1" Name="HiDmdA" />
+        <References ReferenceType="#//Dataclasses/INS" IsOrdered="True" IsUnique="True" LowerBound="1" Name="HiTapPos" />
+        <References ReferenceType="#//Dataclasses/INS" IsOrdered="True" IsUnique="True" LowerBound="1" Name="LoTapPos" />
+        <References ReferenceType="#//Dataclasses/ASG" IsOrdered="True" IsUnique="True" LowerBound="1" Name="BndCtr" />
+        <References ReferenceType="#//Dataclasses/ASG" IsOrdered="True" IsUnique="True" LowerBound="1" Name="BndWid" />
+        <References ReferenceType="#//Dataclasses/ASG" IsOrdered="True" IsUnique="True" LowerBound="1" Name="CtlDlTmms" />
+        <References ReferenceType="#//Dataclasses/ASG" IsOrdered="True" IsUnique="True" LowerBound="1" Name="LDCR" />
+        <References ReferenceType="#//Dataclasses/ASG" IsOrdered="True" IsUnique="True" LowerBound="1" Name="LDCX" />
+        <References ReferenceType="#//Dataclasses/ASG" IsOrdered="True" IsUnique="True" LowerBound="1" Name="BlkLV" />
+        <References ReferenceType="#//Dataclasses/ASG" IsOrdered="True" IsUnique="True" LowerBound="1" Name="BlkRV" />
+        <References ReferenceType="#//Dataclasses/ASG" IsOrdered="True" IsUnique="True" LowerBound="1" Name="RnbkRV" />
+        <References ReferenceType="#//Dataclasses/ASG" IsOrdered="True" IsUnique="True" LowerBound="1" Name="LimLodA" />
+        <References ReferenceType="#//Dataclasses/SPG" IsOrdered="True" IsUnique="True" LowerBound="1" Name="LDC" />
+        <References ReferenceType="#//Dataclasses/SPG" IsOrdered="True" IsUnique="True" LowerBound="1" Name="TmDlChr" />
+        <References ReferenceType="#//Dataclasses/ASG" IsOrdered="True" IsUnique="True" LowerBound="1" Name="LDCZ" />
+        <References ReferenceType="#//Dataclasses/ASG" IsOrdered="True" IsUnique="True" LowerBound="1" Name="VRedVal" />
+        <References ReferenceType="#//Dataclasses/ASG" IsOrdered="True" IsUnique="True" LowerBound="1" Name="TapBlkR" />
+        <References ReferenceType="#//Dataclasses/ASG" IsOrdered="True" IsUnique="True" LowerBound="1" Name="TapBlkL" />
+      </Types>
+      <Types xsi:type="nmeta:Class" BaseTypes="#//LNNodes/LNGroupA/GroupA" Name="AVCO">
+        <References ReferenceType="#//Dataclasses/BSC" IsOrdered="True" IsUnique="True" LowerBound="1" Name="TapChg" />
+        <References ReferenceType="#//Dataclasses/SPS" IsOrdered="True" IsUnique="True" LowerBound="1" Name="BlkEF" />
+        <References ReferenceType="#//Dataclasses/SPS" IsOrdered="True" IsUnique="True" LowerBound="1" Name="BlkAOv" />
+        <References ReferenceType="#//Dataclasses/SPS" IsOrdered="True" IsUnique="True" LowerBound="1" Name="BlkVOv" />
+        <References ReferenceType="#//Dataclasses/ASG" IsOrdered="True" IsUnique="True" LowerBound="1" Name="LimAOv" />
+        <References ReferenceType="#//Dataclasses/ASG" IsOrdered="True" IsUnique="True" LowerBound="1" Name="LimVOv" />
+      </Types>
+    </ChildNamespaces>
+    <ChildNamespaces Uri="http://www.transformation-tool-contest.eu/2017/smartGrids/substationStandard/groupM" Prefix="groupm" Name="LNGroupM">
+      <Types xsi:type="nmeta:Class" BaseTypes="#//LNNodes/DomainLNs/DomainLN" Name="GroupM" />
+      <Types xsi:type="nmeta:Class" BaseTypes="#//LNNodes/LNGroupM/GroupM" Name="MDIF">
+        <References ReferenceType="#//Dataclasses/WYE" IsOrdered="True" IsUnique="True" LowerBound="1" Name="OpARem" />
+        <References ReferenceType="#//Dataclasses/SAV" IsOrdered="True" IsUnique="True" LowerBound="1" Name="Amp1" />
+        <References ReferenceType="#//Dataclasses/SAV" IsOrdered="True" IsUnique="True" LowerBound="1" Name="Amp2" />
+        <References ReferenceType="#//Dataclasses/SAV" IsOrdered="True" IsUnique="True" LowerBound="1" Name="Amp3" />
+      </Types>
+      <Types xsi:type="nmeta:Class" BaseTypes="#//LNNodes/LNGroupM/GroupM" Name="MHAI">
+        <References ReferenceType="#//Dataclasses/DPL" IsOrdered="True" IsUnique="True" LowerBound="1" Name="EEName" />
+        <References ReferenceType="#//Dataclasses/MV" IsOrdered="True" IsUnique="True" LowerBound="1" Name="Hz" />
+        <References ReferenceType="#//Dataclasses/HYWE" IsOrdered="True" IsUnique="True" LowerBound="1" Name="HA" />
+        <References ReferenceType="#//Dataclasses/HYWE" IsOrdered="True" IsUnique="True" LowerBound="1" Name="HPhV" />
+        <References ReferenceType="#//Dataclasses/HDEL" IsOrdered="True" IsUnique="True" LowerBound="1" Name="HPPV" />
+        <References ReferenceType="#//Dataclasses/HYWE" IsOrdered="True" IsUnique="True" LowerBound="1" Name="HW" />
+        <References ReferenceType="#//Dataclasses/HYWE" IsOrdered="True" IsUnique="True" LowerBound="1" Name="HVAr" />
+        <References ReferenceType="#//Dataclasses/HYWE" IsOrdered="True" IsUnique="True" LowerBound="1" Name="HVA" />
+        <References ReferenceType="#//Dataclasses/WYE" IsOrdered="True" IsUnique="True" LowerBound="1" Name="HRmsA" />
+        <References ReferenceType="#//Dataclasses/WYE" IsOrdered="True" IsUnique="True" LowerBound="1" Name="HRmsPhV" />
+        <References ReferenceType="#//Dataclasses/DEL" IsOrdered="True" IsUnique="True" LowerBound="1" Name="HRmsPPV" />
+        <References ReferenceType="#//Dataclasses/WYE" IsOrdered="True" IsUnique="True" LowerBound="1" Name="HTuW" />
+        <References ReferenceType="#//Dataclasses/WYE" IsOrdered="True" IsUnique="True" LowerBound="1" Name="HTsW" />
+        <References ReferenceType="#//Dataclasses/WYE" IsOrdered="True" IsUnique="True" LowerBound="1" Name="HATm" />
+        <References ReferenceType="#//Dataclasses/WYE" IsOrdered="True" IsUnique="True" LowerBound="1" Name="HKf" />
+        <References ReferenceType="#//Dataclasses/WYE" IsOrdered="True" IsUnique="True" LowerBound="1" Name="HTdf" />
+        <References ReferenceType="#//Dataclasses/WYE" IsOrdered="True" IsUnique="True" LowerBound="1" Name="ThdA" />
+        <References ReferenceType="#//Dataclasses/WYE" IsOrdered="True" IsUnique="True" LowerBound="1" Name="ThdOddA" />
+        <References ReferenceType="#//Dataclasses/WYE" IsOrdered="True" IsUnique="True" LowerBound="1" Name="ThdEvnA" />
+        <References ReferenceType="#//Dataclasses/WYE" IsOrdered="True" IsUnique="True" LowerBound="1" Name="ThdPhV" />
+        <References ReferenceType="#//Dataclasses/WYE" IsOrdered="True" IsUnique="True" LowerBound="1" Name="ThdOddPhV" />
+        <References ReferenceType="#//Dataclasses/WYE" IsOrdered="True" IsUnique="True" LowerBound="1" Name="ThdEvnV" />
+        <References ReferenceType="#//Dataclasses/DEL" IsOrdered="True" IsUnique="True" LowerBound="1" Name="ThdPPV" />
+        <References ReferenceType="#//Dataclasses/DEL" IsOrdered="True" IsUnique="True" LowerBound="1" Name="ThdOddPPV" />
+        <References ReferenceType="#//Dataclasses/DEL" IsOrdered="True" IsUnique="True" LowerBound="1" Name="ThdEvnPPV" />
+        <References ReferenceType="#//Dataclasses/WYE" IsOrdered="True" IsUnique="True" LowerBound="1" Name="HCfPhV" />
+        <References ReferenceType="#//Dataclasses/DEL" IsOrdered="True" IsUnique="True" LowerBound="1" Name="HCfPPV" />
+        <References ReferenceType="#//Dataclasses/WYE" IsOrdered="True" IsUnique="True" LowerBound="1" Name="HCfA" />
+        <References ReferenceType="#//Dataclasses/WYE" IsOrdered="True" IsUnique="True" LowerBound="1" Name="HTif" />
+        <References ReferenceType="#//Dataclasses/ASG" IsOrdered="True" IsUnique="True" LowerBound="1" Name="HzSet" />
+        <References ReferenceType="#//Dataclasses/ASG" IsOrdered="True" IsUnique="True" LowerBound="1" Name="EvTmms" />
+        <References ReferenceType="#//Dataclasses/ING" IsOrdered="True" IsUnique="True" LowerBound="1" Name="NumCyc" />
+        <References ReferenceType="#//Dataclasses/ASG" IsOrdered="True" IsUnique="True" LowerBound="1" Name="ThdAVal" />
+        <References ReferenceType="#//Dataclasses/ASG" IsOrdered="True" IsUnique="True" LowerBound="1" Name="ThdVVal" />
+        <References ReferenceType="#//Dataclasses/ING" IsOrdered="True" IsUnique="True" LowerBound="1" Name="ThdATmms" />
+        <References ReferenceType="#//Dataclasses/ING" IsOrdered="True" IsUnique="True" LowerBound="1" Name="ThdVTmms" />
+        <References ReferenceType="#//Dataclasses/ASG" IsOrdered="True" IsUnique="True" LowerBound="1" Name="NomA" />
+        <Attributes IsOrdered="True" IsUnique="True" Type="#//Enumerations/HealthStateKind" Name="EEHealth" />
+      </Types>
+      <Types xsi:type="nmeta:Class" BaseTypes="#//LNNodes/LNGroupM/GroupM" Name="MHAN">
+        <References ReferenceType="#//Dataclasses/DPL" IsOrdered="True" IsUnique="True" LowerBound="1" Name="EEName" />
+        <References ReferenceType="#//Dataclasses/MV" IsOrdered="True" IsUnique="True" LowerBound="1" Name="Hz" />
+        <References ReferenceType="#//Dataclasses/HMV" IsOrdered="True" IsUnique="True" LowerBound="1" Name="HaAmp" />
+        <References ReferenceType="#//Dataclasses/HMV" IsOrdered="True" IsUnique="True" LowerBound="1" Name="HaVol" />
+        <References ReferenceType="#//Dataclasses/HMV" IsOrdered="True" IsUnique="True" LowerBound="1" Name="HaWatt" />
+        <References ReferenceType="#//Dataclasses/HMV" IsOrdered="True" IsUnique="True" LowerBound="1" Name="HaVolAmpr" />
+        <References ReferenceType="#//Dataclasses/HMV" IsOrdered="True" IsUnique="True" LowerBound="1" Name="HaVolAmp" />
+        <References ReferenceType="#//Dataclasses/MV" IsOrdered="True" IsUnique="True" LowerBound="1" Name="HaRmsAmp" />
+        <References ReferenceType="#//Dataclasses/MV" IsOrdered="True" IsUnique="True" LowerBound="1" Name="HaRmsVol" />
+        <References ReferenceType="#//Dataclasses/MV" IsOrdered="True" IsUnique="True" LowerBound="1" Name="HaTuWatt" />
+        <References ReferenceType="#//Dataclasses/MV" IsOrdered="True" IsUnique="True" LowerBound="1" Name="HaTsWatt" />
+        <References ReferenceType="#//Dataclasses/MV" IsOrdered="True" IsUnique="True" LowerBound="1" Name="HaAmpTm" />
+        <References ReferenceType="#//Dataclasses/MV" IsOrdered="True" IsUnique="True" LowerBound="1" Name="HaKFact" />
+        <References ReferenceType="#//Dataclasses/MV" IsOrdered="True" IsUnique="True" LowerBound="1" Name="HaTdFact" />
+        <References ReferenceType="#//Dataclasses/MV" IsOrdered="True" IsUnique="True" LowerBound="1" Name="ThdAmp" />
+        <References ReferenceType="#//Dataclasses/MV" IsOrdered="True" IsUnique="True" LowerBound="1" Name="ThdOddAmp" />
+        <References ReferenceType="#//Dataclasses/MV" IsOrdered="True" IsUnique="True" LowerBound="1" Name="ThdEvnAmp" />
+        <References ReferenceType="#//Dataclasses/MV" IsOrdered="True" IsUnique="True" LowerBound="1" Name="TddAmp" />
+        <References ReferenceType="#//Dataclasses/MV" IsOrdered="True" IsUnique="True" LowerBound="1" Name="TddOddAmp" />
+        <References ReferenceType="#//Dataclasses/MV" IsOrdered="True" IsUnique="True" LowerBound="1" Name="TddEvnAmp" />
+        <References ReferenceType="#//Dataclasses/MV" IsOrdered="True" IsUnique="True" LowerBound="1" Name="ThdVol" />
+        <References ReferenceType="#//Dataclasses/MV" IsOrdered="True" IsUnique="True" LowerBound="1" Name="ThdOddVol" />
+        <References ReferenceType="#//Dataclasses/MV" IsOrdered="True" IsUnique="True" LowerBound="1" Name="ThdEvnVol" />
+        <References ReferenceType="#//Dataclasses/MV" IsOrdered="True" IsUnique="True" LowerBound="1" Name="HaCfAmp" />
+        <References ReferenceType="#//Dataclasses/MV" IsOrdered="True" IsUnique="True" LowerBound="1" Name="HaCfVol" />
+        <References ReferenceType="#//Dataclasses/MV" IsOrdered="True" IsUnique="True" LowerBound="1" Name="HaTiFact" />
+        <References ReferenceType="#//Dataclasses/ASG" IsOrdered="True" IsUnique="True" LowerBound="1" Name="HzSet" />
+        <References ReferenceType="#//Dataclasses/ASG" IsOrdered="True" IsUnique="True" LowerBound="1" Name="EvTmms" />
+        <References ReferenceType="#//Dataclasses/ING" IsOrdered="True" IsUnique="True" LowerBound="1" Name="NumCyc" />
+        <References ReferenceType="#//Dataclasses/ASG" IsOrdered="True" IsUnique="True" LowerBound="1" Name="ThdAVal" />
+        <References ReferenceType="#//Dataclasses/ASG" IsOrdered="True" IsUnique="True" LowerBound="1" Name="ThdVVal" />
+        <References ReferenceType="#//Dataclasses/ING" IsOrdered="True" IsUnique="True" LowerBound="1" Name="ThdATmms" />
+        <References ReferenceType="#//Dataclasses/ING" IsOrdered="True" IsUnique="True" LowerBound="1" Name="ThdVTmms" />
+        <References ReferenceType="#//Dataclasses/ASG" IsOrdered="True" IsUnique="True" LowerBound="1" Name="NomA" />
+        <Attributes IsOrdered="True" IsUnique="True" Type="#//Enumerations/HealthStateKind" Name="EEHealth" />
+      </Types>
+      <Types xsi:type="nmeta:Class" BaseTypes="#//LNNodes/LNGroupM/GroupM" Name="MMXU">
+        <References ReferenceType="#//Dataclasses/MV" IsOrdered="True" IsUnique="True" LowerBound="1" Name="TotW" />
+        <References ReferenceType="#//Dataclasses/MV" IsOrdered="True" IsUnique="True" LowerBound="1" Name="TotVAr" />
+        <References ReferenceType="#//Dataclasses/MV" IsOrdered="True" IsUnique="True" LowerBound="1" Name="TotVA" />
+        <References ReferenceType="#//Dataclasses/MV" IsOrdered="True" IsUnique="True" LowerBound="1" Name="TotPF" />
+        <References ReferenceType="#//Dataclasses/MV" IsOrdered="True" IsUnique="True" LowerBound="1" Name="Hz" />
+        <References ReferenceType="#//Dataclasses/DEL" IsOrdered="True" IsUnique="True" LowerBound="1" Name="PPV" />
+        <References ReferenceType="#//Dataclasses/WYE" IsOrdered="True" IsUnique="True" LowerBound="1" Name="PhV" />
+        <References ReferenceType="#//Dataclasses/WYE" IsOrdered="True" IsUnique="True" LowerBound="1" Name="A" />
+        <References ReferenceType="#//Dataclasses/WYE" IsOrdered="True" IsUnique="True" LowerBound="1" Name="W" />
+        <References ReferenceType="#//Dataclasses/WYE" IsOrdered="True" IsUnique="True" LowerBound="1" Name="VAr" />
+        <References ReferenceType="#//Dataclasses/WYE" IsOrdered="True" IsUnique="True" LowerBound="1" Name="VA" />
+        <References ReferenceType="#//Dataclasses/WYE" IsOrdered="True" IsUnique="True" LowerBound="1" Name="PF" />
+        <References ReferenceType="#//Dataclasses/WYE" IsOrdered="True" IsUnique="True" LowerBound="1" Name="Z" />
+        <Attributes IsOrdered="True" IsUnique="True" Type="#//Enumerations/HealthStateKind" Name="EEHealth" />
+      </Types>
+      <Types xsi:type="nmeta:Class" BaseTypes="#//LNNodes/LNGroupM/GroupM" Name="MSQI">
+        <References ReferenceType="#//Dataclasses/DPL" IsOrdered="True" IsUnique="True" LowerBound="1" Name="EEName" />
+        <References ReferenceType="#//Dataclasses/SEQ" IsOrdered="True" IsUnique="True" LowerBound="1" Name="SeqA" />
+        <References ReferenceType="#//Dataclasses/SEQ" IsOrdered="True" IsUnique="True" LowerBound="1" Name="SeqV" />
+        <References ReferenceType="#//Dataclasses/SEQ" IsOrdered="True" IsUnique="True" LowerBound="1" Name="DQ0Seq" />
+        <References ReferenceType="#//Dataclasses/WYE" IsOrdered="True" IsUnique="True" LowerBound="1" Name="ImbA" />
+        <References ReferenceType="#//Dataclasses/MV" IsOrdered="True" IsUnique="True" LowerBound="1" Name="ImbNgA" />
+        <References ReferenceType="#//Dataclasses/MV" IsOrdered="True" IsUnique="True" LowerBound="1" Name="ImbNgV" />
+        <References ReferenceType="#//Dataclasses/DEL" IsOrdered="True" IsUnique="True" LowerBound="1" Name="ImbPPV" />
+        <References ReferenceType="#//Dataclasses/MV" IsOrdered="True" IsUnique="True" LowerBound="1" Name="ImbV" />
+        <References ReferenceType="#//Dataclasses/MV" IsOrdered="True" IsUnique="True" LowerBound="1" Name="ImbZroA" />
+        <References ReferenceType="#//Dataclasses/MV" IsOrdered="True" IsUnique="True" LowerBound="1" Name="ImbZroV" />
+        <References ReferenceType="#//Dataclasses/WYE" IsOrdered="True" IsUnique="True" LowerBound="1" Name="MaxImbA" />
+        <References ReferenceType="#//Dataclasses/WYE" IsOrdered="True" IsUnique="True" LowerBound="1" Name="MaxImbPPV" />
+        <References ReferenceType="#//Dataclasses/WYE" IsOrdered="True" IsUnique="True" LowerBound="1" Name="MaxImbV" />
+        <Attributes IsOrdered="True" IsUnique="True" Type="#//Enumerations/HealthStateKind" Name="EEHealth" />
+      </Types>
+      <Types xsi:type="nmeta:Class" BaseTypes="#//LNNodes/LNGroupM/GroupM" Name="MMTR">
+        <References ReferenceType="#//Dataclasses/DPL" IsOrdered="True" IsUnique="True" LowerBound="1" Name="EEName" />
+        <References ReferenceType="#//Dataclasses/BCR" IsOrdered="True" IsUnique="True" LowerBound="1" Name="TotVAh" />
+        <References ReferenceType="#//Dataclasses/BCR" IsOrdered="True" IsUnique="True" LowerBound="1" Name="TotWh" />
+        <References ReferenceType="#//Dataclasses/BCR" IsOrdered="True" IsUnique="True" LowerBound="1" Name="TotVArh" />
+        <References ReferenceType="#//Dataclasses/BCR" IsOrdered="True" IsUnique="True" LowerBound="1" Name="SupWh" />
+        <References ReferenceType="#//Dataclasses/BCR" IsOrdered="True" IsUnique="True" LowerBound="1" Name="SupVArh" />
+        <References ReferenceType="#//Dataclasses/BCR" IsOrdered="True" IsUnique="True" LowerBound="1" Name="DmdWh" />
+        <References ReferenceType="#//Dataclasses/BCR" IsOrdered="True" IsUnique="True" LowerBound="1" Name="DmdVArh" />
+        <Attributes IsOrdered="True" IsUnique="True" Type="#//Enumerations/HealthStateKind" Name="EEHealth" />
+      </Types>
+      <Types xsi:type="nmeta:Class" BaseTypes="#//LNNodes/LNGroupM/GroupM" Name="MMXN">
+        <References ReferenceType="#//Dataclasses/DPL" IsOrdered="True" IsUnique="True" LowerBound="1" Name="EEName" />
+        <References ReferenceType="#//Dataclasses/MV" IsOrdered="True" IsUnique="True" LowerBound="1" Name="Amp" />
+        <References ReferenceType="#//Dataclasses/MV" IsOrdered="True" IsUnique="True" LowerBound="1" Name="Vol" />
+        <References ReferenceType="#//Dataclasses/MV" IsOrdered="True" IsUnique="True" LowerBound="1" Name="Watt" />
+        <References ReferenceType="#//Dataclasses/MV" IsOrdered="True" IsUnique="True" LowerBound="1" Name="VolAmpr" />
+        <References ReferenceType="#//Dataclasses/MV" IsOrdered="True" IsUnique="True" LowerBound="1" Name="VolAmp" />
+        <References ReferenceType="#//Dataclasses/MV" IsOrdered="True" IsUnique="True" LowerBound="1" Name="PwrFact" />
+        <References ReferenceType="#//Dataclasses/CMV" IsOrdered="True" IsUnique="True" LowerBound="1" Name="Imp" />
+        <References ReferenceType="#//Dataclasses/MV" IsOrdered="True" IsUnique="True" LowerBound="1" Name="Hz" />
+        <Attributes IsOrdered="True" IsUnique="True" Type="#//Enumerations/HealthStateKind" Name="EEHealth" />
+      </Types>
+      <Types xsi:type="nmeta:Class" BaseTypes="#//LNNodes/LNGroupM/GroupM" Name="MSTA">
+        <References ReferenceType="#//Dataclasses/DPL" IsOrdered="True" IsUnique="True" LowerBound="1" Name="EEName" />
+        <References ReferenceType="#//Dataclasses/MV" IsOrdered="True" IsUnique="True" LowerBound="1" Name="AvAmps" />
+        <References ReferenceType="#//Dataclasses/MV" IsOrdered="True" IsUnique="True" LowerBound="1" Name="MaxAmps" />
+        <References ReferenceType="#//Dataclasses/MV" IsOrdered="True" IsUnique="True" LowerBound="1" Name="MinAmps" />
+        <References ReferenceType="#//Dataclasses/MV" IsOrdered="True" IsUnique="True" LowerBound="1" Name="AvVolts" />
+        <References ReferenceType="#//Dataclasses/MV" IsOrdered="True" IsUnique="True" LowerBound="1" Name="MaxVolts" />
+        <References ReferenceType="#//Dataclasses/MV" IsOrdered="True" IsUnique="True" LowerBound="1" Name="MinVolts" />
+        <References ReferenceType="#//Dataclasses/MV" IsOrdered="True" IsUnique="True" LowerBound="1" Name="AvVA" />
+        <References ReferenceType="#//Dataclasses/MV" IsOrdered="True" IsUnique="True" LowerBound="1" Name="MaxVA" />
+        <References ReferenceType="#//Dataclasses/MV" IsOrdered="True" IsUnique="True" LowerBound="1" Name="MinVA" />
+        <References ReferenceType="#//Dataclasses/MV" IsOrdered="True" IsUnique="True" LowerBound="1" Name="AvW" />
+        <References ReferenceType="#//Dataclasses/MV" IsOrdered="True" IsUnique="True" LowerBound="1" Name="MaxW" />
+        <References ReferenceType="#//Dataclasses/MV" IsOrdered="True" IsUnique="True" LowerBound="1" Name="MinW" />
+        <References ReferenceType="#//Dataclasses/MV" IsOrdered="True" IsUnique="True" LowerBound="1" Name="AvVAr" />
+        <References ReferenceType="#//Dataclasses/MV" IsOrdered="True" IsUnique="True" LowerBound="1" Name="MaxVAr" />
+        <References ReferenceType="#//Dataclasses/MV" IsOrdered="True" IsUnique="True" LowerBound="1" Name="MinVAr" />
+        <References ReferenceType="#//Dataclasses/SPC" IsOrdered="True" IsUnique="True" LowerBound="1" Name="EvStr" />
+        <References ReferenceType="#//Dataclasses/ASG" IsOrdered="True" IsUnique="True" LowerBound="1" Name="EvTmms" />
+        <Attributes IsOrdered="True" IsUnique="True" Type="#//Enumerations/HealthStateKind" Name="EEHealth" />
+      </Types>
+    </ChildNamespaces>
+    <ChildNamespaces Uri="http://www.transformation-tool-contest.eu/2017/smartGrids/substationStandard/groupX" Prefix="groupx" Name="LNGroupX">
+      <Types xsi:type="nmeta:Class" BaseTypes="#//LNNodes/DomainLNs/DomainLN" Name="GroupX">
+        <References ReferenceType="#//Dataclasses/SPS" IsOrdered="True" IsUnique="True" LowerBound="1" Name="Loc" />
+        <References ReferenceType="#//Dataclasses/DPL" IsOrdered="True" IsUnique="True" LowerBound="1" Name="EEName" />
+        <References ReferenceType="#//Dataclasses/INS" IsOrdered="True" IsUnique="True" LowerBound="1" Name="OpCnt" />
+        <References ReferenceType="#//Dataclasses/DPC" IsOrdered="True" IsUnique="True" LowerBound="1" Name="Pos" />
+        <References ReferenceType="#//Dataclasses/SPC" IsOrdered="True" IsUnique="True" LowerBound="1" Name="BlkOpn" />
+        <References ReferenceType="#//Dataclasses/SPC" IsOrdered="True" IsUnique="True" LowerBound="1" Name="BlkCls" />
+        <References ReferenceType="#//Dataclasses/SPC" IsOrdered="True" IsUnique="True" LowerBound="1" Name="ChaMotEna" />
+        <Attributes IsOrdered="True" IsUnique="True" Type="#//Enumerations/HealthStateKind" Name="EEHealth" />
+      </Types>
+      <Types xsi:type="nmeta:Class" BaseTypes="#//LNNodes/LNGroupX/GroupX" Name="XCBR">
+        <References ReferenceType="#//Dataclasses/BCR" IsOrdered="True" IsUnique="True" LowerBound="1" Name="SumSwARs" />
+        <References ReferenceType="#//Dataclasses/INS" IsOrdered="True" IsUnique="True" LowerBound="1" Name="CBOpCap" />
+        <References ReferenceType="#//Dataclasses/INS" IsOrdered="True" IsUnique="True" LowerBound="1" Name="MaxOpCap" />
+        <References ReferenceType="#//LNNodes/LNGroupC/CSWI" IsOrdered="True" IsUnique="True" Name="SwitchControl" />
+        <Attributes IsOrdered="True" IsUnique="True" Type="#//Enumerations/SwitchingCapabilityKind" Name="POWCap" />
+      </Types>
+      <Types xsi:type="nmeta:Class" BaseTypes="#//LNNodes/LNGroupX/GroupX" Name="XSWI">
+        <References ReferenceType="#//LNNodes/LNGroupC/CSWI" IsOrdered="True" IsUnique="True" Name="SwitchControl" />
+        <Attributes IsOrdered="True" IsUnique="True" Type="#//Enumerations/SwitchingCapabilityKind" Name="SwOpCap" />
+        <Attributes IsOrdered="True" IsUnique="True" Type="#//Enumerations/SwitchingCapabilityKind" Name="MaxOpCap" />
+        <Attributes IsOrdered="True" IsUnique="True" Type="#//Enumerations/SwitchTypeKind" Name="SwTyp" />
+      </Types>
+    </ChildNamespaces>
+    <ChildNamespaces Uri="http://www.transformation-tool-contest.eu/2017/smartGrids/substationStandard/groupT" Prefix="groupt" Name="LNGroupT">
+      <Types xsi:type="nmeta:Class" BaseTypes="#//LNNodes/DomainLNs/DomainLN" Name="GroupT">
+        <References ReferenceType="#//Dataclasses/DPL" IsOrdered="True" IsUnique="True" LowerBound="1" Name="EEName" />
+        <References ReferenceType="#//Dataclasses/INS" IsOrdered="True" IsUnique="True" LowerBound="1" Name="OpTmh" />
+        <References ReferenceType="#//Dataclasses/ASG" IsOrdered="True" IsUnique="True" LowerBound="1" Name="HzRtg" />
+        <References ReferenceType="#//Dataclasses/ASG" IsOrdered="True" IsUnique="True" LowerBound="1" Name="Rat" />
+        <References ReferenceType="#//Dataclasses/ASG" IsOrdered="True" IsUnique="True" LowerBound="1" Name="Cor" />
+        <References ReferenceType="#//Dataclasses/ASG" IsOrdered="True" IsUnique="True" LowerBound="1" Name="AngCor" />
+        <Attributes IsOrdered="True" IsUnique="True" Type="#//Enumerations/HealthStateKind" Name="EEHealth" />
+      </Types>
+      <Types xsi:type="nmeta:Class" BaseTypes="#//LNNodes/LNGroupT/GroupT" Name="TCTR">
+        <References ReferenceType="#//Dataclasses/SAV" IsOrdered="True" IsUnique="True" LowerBound="1" Name="Amp" />
+        <References ReferenceType="#//Dataclasses/ASG" IsOrdered="True" IsUnique="True" LowerBound="1" Name="ARtg" />
+      </Types>
+      <Types xsi:type="nmeta:Class" BaseTypes="#//LNNodes/LNGroupT/GroupT" Name="TVTR">
+        <References ReferenceType="#//Dataclasses/SAV" IsOrdered="True" IsUnique="True" LowerBound="1" Name="Vol" />
+        <References ReferenceType="#//Dataclasses/SPS" IsOrdered="True" IsUnique="True" LowerBound="1" Name="FuFail" />
+        <References ReferenceType="#//Dataclasses/ASG" IsOrdered="True" IsUnique="True" LowerBound="1" Name="VRtg" />
+      </Types>
+    </ChildNamespaces>
+    <ChildNamespaces Uri="http://www.transformation-tool-contest.eu/2017/smartGrids/substationStandard/groupY" Prefix="groupy" Name="LNGroupY">
+      <Types xsi:type="nmeta:Class" BaseTypes="#//LNNodes/DomainLNs/DomainLN" Name="GroupY">
+        <References ReferenceType="#//Dataclasses/DPL" IsOrdered="True" IsUnique="True" LowerBound="1" Name="EEName" />
+        <Attributes IsOrdered="True" IsUnique="True" Type="#//Enumerations/HealthStateKind" Name="EEHealth" />
+      </Types>
+      <Types xsi:type="nmeta:Class" BaseTypes="#//LNNodes/LNGroupY/GroupY" Name="YEFN">
+        <References ReferenceType="#//Dataclasses/SPS" IsOrdered="True" IsUnique="True" LowerBound="1" Name="Loc" />
+        <References ReferenceType="#//Dataclasses/INS" IsOrdered="True" IsUnique="True" LowerBound="1" Name="OpTmh" />
+        <References ReferenceType="#//Dataclasses/MV" IsOrdered="True" IsUnique="True" LowerBound="1" Name="ECA" />
+        <References ReferenceType="#//Dataclasses/ISC" IsOrdered="True" IsUnique="True" LowerBound="1" Name="ColTapPos" />
+        <References ReferenceType="#//Dataclasses/APC" IsOrdered="True" IsUnique="True" LowerBound="1" Name="ColPos" />
+      </Types>
+      <Types xsi:type="nmeta:Class" BaseTypes="#//LNNodes/LNGroupY/GroupY" Name="YLTC">
+        <References ReferenceType="#//Dataclasses/INS" IsOrdered="True" IsUnique="True" LowerBound="1" Name="OpCnt" />
+        <References ReferenceType="#//Dataclasses/MV" IsOrdered="True" IsUnique="True" LowerBound="1" Name="Torq" />
+        <References ReferenceType="#//Dataclasses/MV" IsOrdered="True" IsUnique="True" LowerBound="1" Name="MotDrvA" />
+        <References ReferenceType="#//Dataclasses/ISC" IsOrdered="True" IsUnique="True" LowerBound="1" Name="TapPos" />
+        <References ReferenceType="#//Dataclasses/BSC" IsOrdered="True" IsUnique="True" LowerBound="1" Name="TapChg" />
+        <References ReferenceType="#//Dataclasses/SPS" IsOrdered="True" IsUnique="True" LowerBound="1" Name="EndPosR" />
+        <References ReferenceType="#//Dataclasses/SPS" IsOrdered="True" IsUnique="True" LowerBound="1" Name="EndPosL" />
+        <References ReferenceType="#//Dataclasses/SPS" IsOrdered="True" IsUnique="True" LowerBound="1" Name="OilFil" />
+      </Types>
+      <Types xsi:type="nmeta:Class" BaseTypes="#//LNNodes/LNGroupY/GroupY" Name="YPSH">
+        <References ReferenceType="#//Dataclasses/INS" IsOrdered="True" IsUnique="True" LowerBound="1" Name="OpTmh" />
+        <References ReferenceType="#//Dataclasses/DPC" IsOrdered="True" IsUnique="True" LowerBound="1" Name="Pos" />
+        <References ReferenceType="#//Dataclasses/SPC" IsOrdered="True" IsUnique="True" LowerBound="1" Name="BlkOpn" />
+        <References ReferenceType="#//Dataclasses/SPC" IsOrdered="True" IsUnique="True" LowerBound="1" Name="BlkCls" />
+        <References ReferenceType="#//Dataclasses/SPC" IsOrdered="True" IsUnique="True" LowerBound="1" Name="ChaMotEna" />
+        <Attributes IsOrdered="True" IsUnique="True" Type="#//Enumerations/SwitchingCapabilityKind" Name="ShOpCap" />
+        <Attributes IsOrdered="True" IsUnique="True" Type="#//Enumerations/SwitchingCapabilityKind" Name="MaxOpCap" />
+      </Types>
+      <Types xsi:type="nmeta:Class" BaseTypes="#//LNNodes/LNGroupY/GroupY" Name="YPTR">
+        <References ReferenceType="#//Dataclasses/INS" IsOrdered="True" IsUnique="True" LowerBound="1" Name="OpTmh" />
+        <References ReferenceType="#//Dataclasses/MV" IsOrdered="True" IsUnique="True" LowerBound="1" Name="HPTmp" />
+        <References ReferenceType="#//Dataclasses/SPS" IsOrdered="True" IsUnique="True" LowerBound="1" Name="HPZmpAlm" />
+        <References ReferenceType="#//Dataclasses/SPS" IsOrdered="True" IsUnique="True" LowerBound="1" Name="HPTmpTr" />
+        <References ReferenceType="#//Dataclasses/SPS" IsOrdered="True" IsUnique="True" LowerBound="1" Name="OANL" />
+        <References ReferenceType="#//Dataclasses/SPS" IsOrdered="True" IsUnique="True" LowerBound="1" Name="OpOvA" />
+        <References ReferenceType="#//Dataclasses/SPS" IsOrdered="True" IsUnique="True" LowerBound="1" Name="OpOvV" />
+        <References ReferenceType="#//Dataclasses/SPS" IsOrdered="True" IsUnique="True" LowerBound="1" Name="OpUnV" />
+        <References ReferenceType="#//Dataclasses/SPS" IsOrdered="True" IsUnique="True" LowerBound="1" Name="CGAlm" />
+        <References ReferenceType="#//Dataclasses/ASG" IsOrdered="True" IsUnique="True" LowerBound="1" Name="HiVRtg" />
+        <References ReferenceType="#//Dataclasses/ASG" IsOrdered="True" IsUnique="True" LowerBound="1" Name="LoVRtg" />
+        <References ReferenceType="#//Dataclasses/ASG" IsOrdered="True" IsUnique="True" LowerBound="1" Name="PwrRtg" />
+        <References ReferenceType="#//LNNodes/LNGroupA/ATCC" IsOrdered="True" IsUnique="True" Name="TransformerControl" />
+      </Types>
+    </ChildNamespaces>
+    <ChildNamespaces Uri="http://www.transformation-tool-contest.eu/2017/smartGrids/substationStandard/groupZ" Prefix="groupz" Name="LNGroupZ">
+      <Types xsi:type="nmeta:Class" BaseTypes="#//LNNodes/DomainLNs/DomainLN" Name="GroupZ" />
+      <Types xsi:type="nmeta:Class" BaseTypes="#//LNNodes/LNGroupZ/GroupZ" Name="ZAXN">
+        <References ReferenceType="#//Dataclasses/INS" IsOrdered="True" IsUnique="True" LowerBound="1" Name="OpTmh" />
+        <References ReferenceType="#//Dataclasses/MV" IsOrdered="True" IsUnique="True" LowerBound="1" Name="Vol" />
+        <References ReferenceType="#//Dataclasses/MV" IsOrdered="True" IsUnique="True" LowerBound="1" Name="Amp" />
+      </Types>
+      <Types xsi:type="nmeta:Class" BaseTypes="#//LNNodes/LNGroupZ/GroupZ" Name="ZGIL">
+        <References ReferenceType="#//Dataclasses/INS" IsOrdered="True" IsUnique="True" LowerBound="1" Name="OpTmh" />
+      </Types>
+      <Types xsi:type="nmeta:Class" BaseTypes="#//LNNodes/LNGroupZ/GroupZ" Name="ZBAT">
+        <References ReferenceType="#//Dataclasses/MV" IsOrdered="True" IsUnique="True" LowerBound="1" Name="OpTmh" />
+        <References ReferenceType="#//Dataclasses/MV" IsOrdered="True" IsUnique="True" LowerBound="1" Name="Vol" />
+        <References ReferenceType="#//Dataclasses/MV" IsOrdered="True" IsUnique="True" LowerBound="1" Name="VolChgRte" />
+        <References ReferenceType="#//Dataclasses/MV" IsOrdered="True" IsUnique="True" LowerBound="1" Name="Amp" />
+        <References ReferenceType="#//Dataclasses/SPC" IsOrdered="True" IsUnique="True" LowerBound="1" Name="BatTest" />
+        <References ReferenceType="#//Dataclasses/SPC" IsOrdered="True" IsUnique="True" LowerBound="1" Name="TestRsl" />
+        <References ReferenceType="#//Dataclasses/SPC" IsOrdered="True" IsUnique="True" LowerBound="1" Name="BatHi" />
+        <References ReferenceType="#//Dataclasses/SPC" IsOrdered="True" IsUnique="True" LowerBound="1" Name="BatLo" />
+        <References ReferenceType="#//Dataclasses/ASG" IsOrdered="True" IsUnique="True" LowerBound="1" Name="LoBatVal" />
+        <References ReferenceType="#//Dataclasses/ASG" IsOrdered="True" IsUnique="True" LowerBound="1" Name="HiBatVal" />
+      </Types>
+      <Types xsi:type="nmeta:Class" BaseTypes="#//LNNodes/LNGroupZ/GroupZ" Name="ZLIN">
+        <References ReferenceType="#//Dataclasses/INS" IsOrdered="True" IsUnique="True" LowerBound="1" Name="OpTmh" />
+      </Types>
+      <Types xsi:type="nmeta:Class" BaseTypes="#//LNNodes/LNGroupZ/GroupZ" Name="ZMOT">
+        <References ReferenceType="#//Dataclasses/INS" IsOrdered="True" IsUnique="True" LowerBound="1" Name="OpTmh" />
+        <References ReferenceType="#//Dataclasses/SPC" IsOrdered="True" IsUnique="True" LowerBound="1" Name="DExt" />
+        <References ReferenceType="#//Dataclasses/SPS" IsOrdered="True" IsUnique="True" LowerBound="1" Name="LosOil" />
+        <References ReferenceType="#//Dataclasses/SPS" IsOrdered="True" IsUnique="True" LowerBound="1" Name="LosVac" />
+        <References ReferenceType="#//Dataclasses/SPS" IsOrdered="True" IsUnique="True" LowerBound="1" Name="PresAlm" />
+      </Types>
+      <Types xsi:type="nmeta:Class" BaseTypes="#//LNNodes/LNGroupZ/GroupZ" Name="ZREA">
+        <References ReferenceType="#//Dataclasses/INS" IsOrdered="True" IsUnique="True" LowerBound="1" Name="OpTmh" />
+        <References ReferenceType="#//LNNodes/LNGroupA/ARCO" IsOrdered="True" IsUnique="True" Name="ReactorControl" />
+      </Types>
+      <Types xsi:type="nmeta:Class" BaseTypes="#//LNNodes/LNGroupZ/GroupZ" Name="ZBSH">
+        <References ReferenceType="#//Dataclasses/INS" IsOrdered="True" IsUnique="True" LowerBound="1" Name="OpTmh" />
+        <References ReferenceType="#//Dataclasses/MV" IsOrdered="True" IsUnique="True" LowerBound="1" Name="React" />
+        <References ReferenceType="#//Dataclasses/MV" IsOrdered="True" IsUnique="True" LowerBound="1" Name="LosFact" />
+        <References ReferenceType="#//Dataclasses/MV" IsOrdered="True" IsUnique="True" LowerBound="1" Name="Vol" />
+        <References ReferenceType="#//Dataclasses/ASG" IsOrdered="True" IsUnique="True" LowerBound="1" Name="RefReact" />
+        <References ReferenceType="#//Dataclasses/ASG" IsOrdered="True" IsUnique="True" LowerBound="1" Name="RefPF" />
+        <References ReferenceType="#//Dataclasses/ASG" IsOrdered="True" IsUnique="True" LowerBound="1" Name="RefV" />
+      </Types>
+      <Types xsi:type="nmeta:Class" BaseTypes="#//LNNodes/LNGroupZ/GroupZ" Name="ZRRC">
+        <References ReferenceType="#//Dataclasses/INS" IsOrdered="True" IsUnique="True" LowerBound="1" Name="OpTmh" />
+      </Types>
+      <Types xsi:type="nmeta:Class" BaseTypes="#//LNNodes/LNGroupZ/GroupZ" Name="ZSAR">
+        <References ReferenceType="#//Dataclasses/INS" IsOrdered="True" IsUnique="True" LowerBound="1" Name="OpCnt" />
+        <References ReferenceType="#//Dataclasses/SPS" IsOrdered="True" IsUnique="True" LowerBound="1" Name="OPSA" />
+      </Types>
+      <Types xsi:type="nmeta:Class" BaseTypes="#//LNNodes/LNGroupZ/GroupZ" Name="ZTCF">
+        <References ReferenceType="#//Dataclasses/INS" IsOrdered="True" IsUnique="True" LowerBound="1" Name="OpTmh" />
+        <References ReferenceType="#//Dataclasses/ASG" IsOrdered="True" IsUnique="True" LowerBound="1" Name="PwrFrq" />
+      </Types>
+      <Types xsi:type="nmeta:Class" BaseTypes="#//LNNodes/LNGroupZ/GroupZ" Name="ZTCR">
+        <References ReferenceType="#//Dataclasses/INS" IsOrdered="True" IsUnique="True" LowerBound="1" Name="OpTmh" />
+      </Types>
+      <Types xsi:type="nmeta:Class" BaseTypes="#//LNNodes/LNGroupZ/GroupZ" Name="ZCAB">
+        <References ReferenceType="#//Dataclasses/INS" IsOrdered="True" IsUnique="True" LowerBound="1" Name="OpTmh" />
+      </Types>
+      <Types xsi:type="nmeta:Class" BaseTypes="#//LNNodes/LNGroupZ/GroupZ" Name="ZCAP">
+        <References ReferenceType="#//Dataclasses/INS" IsOrdered="True" IsUnique="True" LowerBound="1" Name="OpTmh" />
+        <References ReferenceType="#//Dataclasses/SPC" IsOrdered="True" IsUnique="True" LowerBound="1" Name="CapDS" />
+        <References ReferenceType="#//Dataclasses/SPS" IsOrdered="True" IsUnique="True" LowerBound="1" Name="DschBlk" />
+        <References ReferenceType="#//LNNodes/LNGroupA/ARCO" IsOrdered="True" IsUnique="True" Name="CapControl" />
+      </Types>
+      <Types xsi:type="nmeta:Class" BaseTypes="#//LNNodes/LNGroupZ/GroupZ" Name="ZCON">
+        <References ReferenceType="#//Dataclasses/INS" IsOrdered="True" IsUnique="True" LowerBound="1" Name="OpTmh" />
+      </Types>
+      <Types xsi:type="nmeta:Class" BaseTypes="#//LNNodes/LNGroupZ/GroupZ" Name="ZGEN">
+        <References ReferenceType="#//Dataclasses/INS" IsOrdered="True" IsUnique="True" LowerBound="1" Name="OpTmh" />
+        <References ReferenceType="#//Dataclasses/DPC" IsOrdered="True" IsUnique="True" LowerBound="1" Name="GnCtl" />
+        <References ReferenceType="#//Dataclasses/SPC" IsOrdered="True" IsUnique="True" LowerBound="1" Name="DExt" />
+        <References ReferenceType="#//Dataclasses/SPC" IsOrdered="True" IsUnique="True" LowerBound="1" Name="AuxSCO" />
+        <References ReferenceType="#//Dataclasses/SPC" IsOrdered="True" IsUnique="True" LowerBound="1" Name="StopVlv" />
+        <References ReferenceType="#//Dataclasses/SPC" IsOrdered="True" IsUnique="True" LowerBound="1" Name="ReactPwrR" />
+        <References ReferenceType="#//Dataclasses/SPC" IsOrdered="True" IsUnique="True" LowerBound="1" Name="ReactPwrL" />
+        <References ReferenceType="#//Dataclasses/MV" IsOrdered="True" IsUnique="True" LowerBound="1" Name="GnSpd" />
+        <References ReferenceType="#//Dataclasses/SPS" IsOrdered="True" IsUnique="True" LowerBound="1" Name="OANL" />
+        <References ReferenceType="#//Dataclasses/SPS" IsOrdered="True" IsUnique="True" LowerBound="1" Name="ClkRot" />
+        <References ReferenceType="#//Dataclasses/SPS" IsOrdered="True" IsUnique="True" LowerBound="1" Name="CntClkRot" />
+        <References ReferenceType="#//Dataclasses/SPS" IsOrdered="True" IsUnique="True" LowerBound="1" Name="OpUnExt" />
+        <References ReferenceType="#//Dataclasses/SPS" IsOrdered="True" IsUnique="True" LowerBound="1" Name="OpOvExt" />
+        <References ReferenceType="#//Dataclasses/SPS" IsOrdered="True" IsUnique="True" LowerBound="1" Name="LosOil" />
+        <References ReferenceType="#//Dataclasses/SPS" IsOrdered="True" IsUnique="True" LowerBound="1" Name="LosVac" />
+        <References ReferenceType="#//Dataclasses/SPS" IsOrdered="True" IsUnique="True" LowerBound="1" Name="PresAlm" />
+        <References ReferenceType="#//Dataclasses/ASG" IsOrdered="True" IsUnique="True" LowerBound="1" Name="DmdPwr" />
+        <References ReferenceType="#//Dataclasses/ASG" IsOrdered="True" IsUnique="True" LowerBound="1" Name="PwrRtg" />
+        <References ReferenceType="#//Dataclasses/ASG" IsOrdered="True" IsUnique="True" LowerBound="1" Name="VRtg" />
+        <Attributes IsOrdered="True" IsUnique="True" Type="#//Enumerations/GeneratorStateKind" Name="GnSt" />
+      </Types>
+    </ChildNamespaces>
+  </ChildNamespaces>
+  <ChildNamespaces Uri="http://www.transformation-tool-contest.eu/2017/smartGrids/dataclasses" Prefix="data" Name="Dataclasses">
+    <Types xsi:type="nmeta:Class" Name="TimeStamp">
+      <References ReferenceType="#//Dataclasses/P_TimeStamp" IsOrdered="True" IsUnique="True" LowerBound="1" Name="val" />
+    </Types>
+    <Types xsi:type="nmeta:Class" Name="P_TimeStamp">
+      <References ReferenceType="#//Dataclasses/TimeQuality" IsOrdered="True" IsUnique="True" LowerBound="1" Name="timeQuality" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Integer" Name="secondSinceEpoch" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Integer" Name="fractionOfSecond" />
+    </Types>
+    <Types xsi:type="nmeta:Class" Name="TimeQuality">
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Boolean" Name="leapSecondsKnown" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Boolean" Name="clockFailure" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Boolean" Name="clockNotSynchronized" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="#//Enumerations/TimeAccuracyKind" Name="timeAccuracy" />
+    </Types>
+    <Types xsi:type="nmeta:Class" Name="AnalogueValue">
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Integer" Name="i" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Float" Name="f" />
+    </Types>
+    <Types xsi:type="nmeta:Class" Name="AngleReference">
+      <Attributes IsOrdered="True" IsUnique="True" Type="#//Enumerations/AngleReferenceKind" Name="val" />
+    </Types>
+    <Types xsi:type="nmeta:Class" Name="BSControl">
+      <Attributes IsOrdered="True" IsUnique="True" Type="#//Enumerations/BSControlKind" Name="val" />
+    </Types>
+    <Types xsi:type="nmeta:Class" Name="CMVAngleReference">
+      <Attributes IsOrdered="True" IsUnique="True" Type="#//Enumerations/CMVAngleReferenceKind" Name="val" />
+    </Types>
+    <Types xsi:type="nmeta:Class" Name="ControlOutput">
+      <Attributes IsOrdered="True" IsUnique="True" Type="#//Enumerations/ControlOutputKind" Name="val" />
+    </Types>
+    <Types xsi:type="nmeta:Class" Name="CtlModels">
+      <Attributes IsOrdered="True" IsUnique="True" Type="#//Enumerations/CtlModelsKind" Name="val" />
+    </Types>
+    <Types xsi:type="nmeta:Class" Name="CurveChar">
+      <Attributes IsOrdered="True" IsUnique="True" Type="#//Enumerations/CurveCharKind" Name="val" />
+    </Types>
+    <Types xsi:type="nmeta:Class" Name="DirectionPhase">
+      <Attributes IsOrdered="True" IsUnique="True" Type="#//Enumerations/DirectionPhaseKind" Name="val" />
+    </Types>
+    <Types xsi:type="nmeta:Class" Name="DPStatus">
+      <Attributes IsOrdered="True" IsUnique="True" Type="#//Enumerations/DPStatusKind" Name="val" />
+    </Types>
+    <Types xsi:type="nmeta:Class" Name="FaultDirection">
+      <Attributes IsOrdered="True" IsUnique="True" Type="#//Enumerations/FaultDirectionKind" Name="val" />
+    </Types>
+    <Types xsi:type="nmeta:Class" Name="MagReference">
+      <Attributes IsOrdered="True" IsUnique="True" Type="#//Enumerations/MagReferenceKind" Name="val" />
+    </Types>
+    <Types xsi:type="nmeta:Class" Name="Multiplier">
+      <Attributes IsOrdered="True" IsUnique="True" Type="#//Enumerations/MultiplierKind" Name="val" />
+    </Types>
+    <Types xsi:type="nmeta:Class" Name="Originator">
+      <References ReferenceType="#//Dataclasses/OriginatorCategory" IsOrdered="True" IsUnique="True" LowerBound="1" Name="orCat" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//String" Name="orident" />
+    </Types>
+    <Types xsi:type="nmeta:Class" Name="OriginatorCategory">
+      <Attributes IsOrdered="True" IsUnique="True" Type="#//Enumerations/OriginatorCategoryKind" Name="val" />
+    </Types>
+    <Types xsi:type="nmeta:Class" Name="PhaseReference">
+      <Attributes IsOrdered="True" IsUnique="True" Type="#//Enumerations/PhaseReferenceKind" Name="val" />
+    </Types>
+    <Types xsi:type="nmeta:Class" Name="Point">
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Float" Name="xVal" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Float" Name="yVal" />
+    </Types>
+    <Types xsi:type="nmeta:Class" Name="PointArray">
+      <References ReferenceType="#//Dataclasses/Point" IsOrdered="True" IsUnique="True" LowerBound="1" UpperBound="-1" Name="point" />
+    </Types>
+    <Types xsi:type="nmeta:Class" Name="PulseConfig">
+      <References ReferenceType="#//Dataclasses/ControlOutput" IsOrdered="True" IsUnique="True" LowerBound="1" Name="cmdQual" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Integer" Name="onDur" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Integer" Name="offDur" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Integer" Name="numPls" />
+    </Types>
+    <Types xsi:type="nmeta:Class" Name="Quality">
+      <References ReferenceType="#//Dataclasses/DetailQual" IsOrdered="True" IsUnique="True" LowerBound="1" Name="detailQual" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Boolean" Name="test" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Boolean" Name="operatorBlocked" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="#//Enumerations/ValidityKind" Name="validity" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="#//Enumerations/SourceKind" Name="source" />
+    </Types>
+    <Types xsi:type="nmeta:Class" Name="DetailQual">
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Boolean" Name="overflow" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Boolean" Name="outOfRange" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Boolean" Name="badReference" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Boolean" Name="oscillatory" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Boolean" Name="failure" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Boolean" Name="oldData" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Boolean" Name="inconsistent" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Boolean" Name="inaccurate" />
+    </Types>
+    <Types xsi:type="nmeta:Class" Name="Range">
+      <Attributes IsOrdered="True" IsUnique="True" Type="#//Enumerations/RangeKind" Name="val" />
+    </Types>
+    <Types xsi:type="nmeta:Class" Name="RangeConfig">
+      <References ReferenceType="#//Dataclasses/AnalogueValue" IsOrdered="True" IsUnique="True" LowerBound="1" Name="hhLim" />
+      <References ReferenceType="#//Dataclasses/AnalogueValue" IsOrdered="True" IsUnique="True" LowerBound="1" Name="hLim" />
+      <References ReferenceType="#//Dataclasses/AnalogueValue" IsOrdered="True" IsUnique="True" LowerBound="1" Name="lLim" />
+      <References ReferenceType="#//Dataclasses/AnalogueValue" IsOrdered="True" IsUnique="True" LowerBound="1" Name="llLim" />
+      <References ReferenceType="#//Dataclasses/AnalogueValue" IsOrdered="True" IsUnique="True" LowerBound="1" Name="min" />
+      <References ReferenceType="#//Dataclasses/AnalogueValue" IsOrdered="True" IsUnique="True" LowerBound="1" Name="max" />
+    </Types>
+    <Types xsi:type="nmeta:Class" Name="SboClasses">
+      <Attributes IsOrdered="True" IsUnique="True" Type="#//Enumerations/SboClassesKind" Name="val" />
+    </Types>
+    <Types xsi:type="nmeta:Class" Name="ScaledValueConfig">
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Float" Name="scaleFactor" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Float" Name="offset" />
+    </Types>
+    <Types xsi:type="nmeta:Class" Name="Sequence">
+      <Attributes IsOrdered="True" IsUnique="True" Type="#//Enumerations/SequenceKind" Name="val" />
+    </Types>
+    <Types xsi:type="nmeta:Class" Name="Severity">
+      <Attributes IsOrdered="True" IsUnique="True" Type="#//Enumerations/SeverityKind" Name="val" />
+    </Types>
+    <Types xsi:type="nmeta:Class" Name="SlUnits">
+      <Attributes IsOrdered="True" IsUnique="True" Type="#//Enumerations/SIUnitsKind" Name="SlUnitsKind" />
+    </Types>
+    <Types xsi:type="nmeta:Class" Name="Units">
+      <References ReferenceType="#//Dataclasses/SlUnits" IsOrdered="True" IsUnique="True" LowerBound="1" Name="SlUnits" />
+      <References ReferenceType="#//Dataclasses/Multiplier" IsOrdered="True" IsUnique="True" LowerBound="1" Name="multiplier" />
+    </Types>
+    <Types xsi:type="nmeta:Class" Name="ValWithTrans">
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Integer" Name="posVal" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Boolean" Name="transInd" />
+    </Types>
+    <Types xsi:type="nmeta:Class" Name="Vector">
+      <References ReferenceType="#//Dataclasses/AnalogueValue" IsOrdered="True" IsUnique="True" LowerBound="1" Name="mag" />
+      <References ReferenceType="#//Dataclasses/AnalogueValue" IsOrdered="True" IsUnique="True" LowerBound="1" Name="ang" />
+    </Types>
+    <Types xsi:type="nmeta:Class" Name="VectorArray">
+      <References ReferenceType="#//Dataclasses/Vector" IsOrdered="True" IsUnique="True" LowerBound="1" UpperBound="-1" Name="Vector" />
+    </Types>
+    <Types xsi:type="nmeta:Class" Name="C_PrimitiveCDC">
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//String" Name="cdcNs" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//String" Name="cdcName" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//String" Name="dataNs" />
+    </Types>
+    <Types xsi:type="nmeta:Class" Name="C_ComposedCDC">
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//String" Name="cdcNs" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//String" Name="cdcName" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//String" Name="dataNs" />
+    </Types>
+    <Types xsi:type="nmeta:Class" Name="StatusInfo">
+      <References ReferenceType="#//Dataclasses/TimeStamp" IsOrdered="True" IsUnique="True" LowerBound="1" Name="t" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//String" Name="d" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//String" Name="dU" />
+    </Types>
+    <Types xsi:type="nmeta:Class" Name="SPS">
+      <References ReferenceType="#//Dataclasses/Quality" IsOrdered="True" IsUnique="True" LowerBound="1" Name="q" />
+      <References ReferenceType="#//Dataclasses/Quality" IsOrdered="True" IsUnique="True" LowerBound="1" Name="subQ" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Boolean" Name="stVal" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Boolean" Name="subEna" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Boolean" Name="subVal" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//String" Name="subID" />
+    </Types>
+    <Types xsi:type="nmeta:Class" Name="INS">
+      <References ReferenceType="#//Dataclasses/Quality" IsOrdered="True" IsUnique="True" LowerBound="1" Name="q" />
+      <References ReferenceType="#//Dataclasses/Quality" IsOrdered="True" IsUnique="True" LowerBound="1" Name="subQ" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Integer" Name="stVal" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Boolean" Name="subEna" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Integer" Name="subVal" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//String" Name="subID" />
+    </Types>
+    <Types xsi:type="nmeta:Class" Name="DPS">
+      <References ReferenceType="#//Dataclasses/DPStatus" IsOrdered="True" IsUnique="True" LowerBound="1" Name="stVal" />
+      <References ReferenceType="#//Dataclasses/Quality" IsOrdered="True" IsUnique="True" LowerBound="1" Name="q" />
+      <References ReferenceType="#//Dataclasses/DPStatus" IsOrdered="True" IsUnique="True" LowerBound="1" Name="subVal" />
+      <References ReferenceType="#//Dataclasses/Quality" IsOrdered="True" IsUnique="True" LowerBound="1" Name="subQ" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Boolean" Name="subEna" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//String" Name="subID" />
+    </Types>
+    <Types xsi:type="nmeta:Class" Name="ACT">
+      <References ReferenceType="#//Dataclasses/Quality" IsOrdered="True" IsUnique="True" LowerBound="1" Name="q" />
+      <References ReferenceType="#//Dataclasses/TimeStamp" IsOrdered="True" IsUnique="True" LowerBound="1" Name="operTm" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Boolean" Name="general" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Boolean" Name="phsA" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Boolean" Name="phsB" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Boolean" Name="phsC" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Boolean" Name="neut" />
+    </Types>
+    <Types xsi:type="nmeta:Class" Name="ACD">
+      <References ReferenceType="#//Dataclasses/FaultDirection" IsOrdered="True" IsUnique="True" LowerBound="1" Name="dirGeneral" />
+      <References ReferenceType="#//Dataclasses/DirectionPhase" IsOrdered="True" IsUnique="True" LowerBound="1" Name="dirPhsA" />
+      <References ReferenceType="#//Dataclasses/DirectionPhase" IsOrdered="True" IsUnique="True" LowerBound="1" Name="dirPhsB" />
+      <References ReferenceType="#//Dataclasses/DirectionPhase" IsOrdered="True" IsUnique="True" LowerBound="1" Name="dirPhsC" />
+      <References ReferenceType="#//Dataclasses/DirectionPhase" IsOrdered="True" IsUnique="True" LowerBound="1" Name="dirNeut" />
+      <References ReferenceType="#//Dataclasses/Quality" IsOrdered="True" IsUnique="True" LowerBound="1" Name="q" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Boolean" Name="general" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Boolean" Name="phsA" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Boolean" Name="phsB" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Boolean" Name="phsC" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Boolean" Name="neut" />
+    </Types>
+    <Types xsi:type="nmeta:Class" Name="SEC">
+      <References ReferenceType="#//Dataclasses/Severity" IsOrdered="True" IsUnique="True" LowerBound="1" Name="sev" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Integer" Name="cnt" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//String" Name="addr" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//String" Name="addInfo" />
+    </Types>
+    <Types xsi:type="nmeta:Class" Name="BCR">
+      <References ReferenceType="#//Dataclasses/TimeStamp" IsOrdered="True" IsUnique="True" LowerBound="1" Name="frTm" />
+      <References ReferenceType="#//Dataclasses/Quality" IsOrdered="True" IsUnique="True" LowerBound="1" Name="q" />
+      <References ReferenceType="#//Dataclasses/Units" IsOrdered="True" IsUnique="True" LowerBound="1" Name="units" />
+      <References ReferenceType="#//Dataclasses/TimeStamp" IsOrdered="True" IsUnique="True" LowerBound="1" Name="strTm" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Integer" Name="actVal" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Integer" Name="frVal" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Float" Name="pulsQty" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Boolean" Name="frEna" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Integer" Name="frPd" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Boolean" Name="frRs" />
+    </Types>
+    <Types xsi:type="nmeta:Class" Name="PrimitiveMeasureAndInfo">
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//String" Name="d" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//String" Name="dU" />
+    </Types>
+    <Types xsi:type="nmeta:Class" Name="ComposedMeasureAndInfo">
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//String" Name="d" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//String" Name="dU" />
+    </Types>
+    <Types xsi:type="nmeta:Class" Name="MV">
+      <References ReferenceType="#//Dataclasses/AnalogueValue" IsOrdered="True" IsUnique="True" LowerBound="1" Name="instMag" />
+      <References ReferenceType="#//Dataclasses/AnalogueValue" IsOrdered="True" IsUnique="True" LowerBound="1" Name="mag" />
+      <References ReferenceType="#//Dataclasses/Range" IsOrdered="True" IsUnique="True" LowerBound="1" Name="range" />
+      <References ReferenceType="#//Dataclasses/Quality" IsOrdered="True" IsUnique="True" LowerBound="1" Name="q" />
+      <References ReferenceType="#//Dataclasses/TimeStamp" IsOrdered="True" IsUnique="True" LowerBound="1" Name="t" />
+      <References ReferenceType="#//Dataclasses/AnalogueValue" IsOrdered="True" IsUnique="True" LowerBound="1" Name="subMag" />
+      <References ReferenceType="#//Dataclasses/Quality" IsOrdered="True" IsUnique="True" LowerBound="1" Name="subQ" />
+      <References ReferenceType="#//Dataclasses/Units" IsOrdered="True" IsUnique="True" LowerBound="1" Name="units" />
+      <References ReferenceType="#//Dataclasses/ScaledValueConfig" IsOrdered="True" IsUnique="True" LowerBound="1" Name="sVC" />
+      <References ReferenceType="#//Dataclasses/RangeConfig" IsOrdered="True" IsUnique="True" LowerBound="1" Name="rangeC" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Boolean" Name="subEna" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//String" Name="subID" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Integer" Name="db" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Integer" Name="zeroDb" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Integer" Name="smpRate" />
+    </Types>
+    <Types xsi:type="nmeta:Class" Name="CMV">
+      <References ReferenceType="#//Dataclasses/Vector" IsOrdered="True" IsUnique="True" LowerBound="1" Name="instCVal" />
+      <References ReferenceType="#//Dataclasses/Vector" IsOrdered="True" IsUnique="True" LowerBound="1" Name="cVal" />
+      <References ReferenceType="#//Dataclasses/Range" IsOrdered="True" IsUnique="True" LowerBound="1" Name="range" />
+      <References ReferenceType="#//Dataclasses/Quality" IsOrdered="True" IsUnique="True" LowerBound="1" Name="q" />
+      <References ReferenceType="#//Dataclasses/TimeStamp" IsOrdered="True" IsUnique="True" LowerBound="1" Name="t" />
+      <References ReferenceType="#//Dataclasses/Vector" IsOrdered="True" IsUnique="True" Name="subCVal" />
+      <References ReferenceType="#//Dataclasses/Quality" IsOrdered="True" IsUnique="True" LowerBound="1" Name="subQ" />
+      <References ReferenceType="#//Dataclasses/Units" IsOrdered="True" IsUnique="True" LowerBound="1" Name="units" />
+      <References ReferenceType="#//Dataclasses/RangeConfig" IsOrdered="True" IsUnique="True" LowerBound="1" Name="rangeC" />
+      <References ReferenceType="#//Dataclasses/ScaledValueConfig" IsOrdered="True" IsUnique="True" LowerBound="1" Name="magSVC" />
+      <References ReferenceType="#//Dataclasses/ScaledValueConfig" IsOrdered="True" IsUnique="True" LowerBound="1" Name="angSVC" />
+      <References ReferenceType="#//Dataclasses/CMVAngleReference" IsOrdered="True" IsUnique="True" LowerBound="1" Name="angRef" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Boolean" Name="subEna" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//String" Name="subID" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Integer" Name="db" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Integer" Name="zeroDb" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Integer" Name="smpRate" />
+    </Types>
+    <Types xsi:type="nmeta:Class" Name="SAV">
+      <References ReferenceType="#//Dataclasses/AnalogueValue" IsOrdered="True" IsUnique="True" LowerBound="1" Name="instMag" />
+      <References ReferenceType="#//Dataclasses/Quality" IsOrdered="True" IsUnique="True" LowerBound="1" Name="q" />
+      <References ReferenceType="#//Dataclasses/TimeStamp" IsOrdered="True" IsUnique="True" LowerBound="1" Name="t" />
+      <References ReferenceType="#//Dataclasses/Units" IsOrdered="True" IsUnique="True" LowerBound="1" Name="units" />
+      <References ReferenceType="#//Dataclasses/ScaledValueConfig" IsOrdered="True" IsUnique="True" LowerBound="1" Name="sVC" />
+      <References ReferenceType="#//Dataclasses/AnalogueValue" IsOrdered="True" IsUnique="True" LowerBound="1" Name="min" />
+      <References ReferenceType="#//Dataclasses/AnalogueValue" IsOrdered="True" IsUnique="True" LowerBound="1" Name="max" />
+    </Types>
+    <Types xsi:type="nmeta:Class" Name="DEL">
+      <References ReferenceType="#//Dataclasses/CMV" IsOrdered="True" IsUnique="True" LowerBound="1" Name="phsAB" />
+      <References ReferenceType="#//Dataclasses/CMV" IsOrdered="True" IsUnique="True" LowerBound="1" Name="phsBC" />
+      <References ReferenceType="#//Dataclasses/CMV" IsOrdered="True" IsUnique="True" LowerBound="1" Name="phsCA" />
+      <References ReferenceType="#//Dataclasses/AngleReference" IsOrdered="True" IsUnique="True" LowerBound="1" Name="angRef" />
+    </Types>
+    <Types xsi:type="nmeta:Class" Name="WYE">
+      <References ReferenceType="#//Dataclasses/CMV" IsOrdered="True" IsUnique="True" LowerBound="1" Name="phsA" />
+      <References ReferenceType="#//Dataclasses/CMV" IsOrdered="True" IsUnique="True" LowerBound="1" Name="phsB" />
+      <References ReferenceType="#//Dataclasses/CMV" IsOrdered="True" IsUnique="True" LowerBound="1" Name="phsC" />
+      <References ReferenceType="#//Dataclasses/CMV" IsOrdered="True" IsUnique="True" LowerBound="1" Name="neut" />
+      <References ReferenceType="#//Dataclasses/CMV" IsOrdered="True" IsUnique="True" LowerBound="1" Name="net" />
+      <References ReferenceType="#//Dataclasses/CMV" IsOrdered="True" IsUnique="True" LowerBound="1" Name="res" />
+      <References ReferenceType="#//Dataclasses/AngleReference" IsOrdered="True" IsUnique="True" LowerBound="1" Name="angRef" />
+    </Types>
+    <Types xsi:type="nmeta:Class" Name="SEQ">
+      <References ReferenceType="#//Dataclasses/CMV" IsOrdered="True" IsUnique="True" LowerBound="1" Name="c1" />
+      <References ReferenceType="#//Dataclasses/CMV" IsOrdered="True" IsUnique="True" LowerBound="1" Name="c2" />
+      <References ReferenceType="#//Dataclasses/CMV" IsOrdered="True" IsUnique="True" LowerBound="1" Name="c3" />
+      <References ReferenceType="#//Dataclasses/Sequence" IsOrdered="True" IsUnique="True" LowerBound="1" Name="seqT" />
+      <References ReferenceType="#//Dataclasses/PhaseReference" IsOrdered="True" IsUnique="True" LowerBound="1" Name="phsRef" />
+    </Types>
+    <Types xsi:type="nmeta:Class" Name="HMV">
+      <References ReferenceType="#//Dataclasses/Quality" IsOrdered="True" IsUnique="True" LowerBound="1" Name="q" />
+      <References ReferenceType="#//Dataclasses/TimeStamp" IsOrdered="True" IsUnique="True" LowerBound="1" Name="t" />
+      <References ReferenceType="#//Dataclasses/VectorArray" IsOrdered="True" IsUnique="True" LowerBound="1" Name="har" />
+      <References ReferenceType="#//Dataclasses/Units" IsOrdered="True" IsUnique="True" LowerBound="1" Name="units" />
+      <References ReferenceType="#//Dataclasses/MagReference" IsOrdered="True" IsUnique="True" LowerBound="1" Name="hvRef" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Integer" Name="numHar" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Integer" Name="numCyc" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Integer" Name="evalTm" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Integer" Name="smpRate" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Float" Name="frequency" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Integer" Name="rmsCyc" />
+    </Types>
+    <Types xsi:type="nmeta:Class" Name="HYWE">
+      <References ReferenceType="#//Dataclasses/Quality" IsOrdered="True" IsUnique="True" LowerBound="1" Name="q" />
+      <References ReferenceType="#//Dataclasses/TimeStamp" IsOrdered="True" IsUnique="True" LowerBound="1" Name="t" />
+      <References ReferenceType="#//Dataclasses/VectorArray" IsOrdered="True" IsUnique="True" LowerBound="1" Name="phsAHar" />
+      <References ReferenceType="#//Dataclasses/VectorArray" IsOrdered="True" IsUnique="True" LowerBound="1" Name="phsBHar" />
+      <References ReferenceType="#//Dataclasses/VectorArray" IsOrdered="True" IsUnique="True" LowerBound="1" Name="phsCHar" />
+      <References ReferenceType="#//Dataclasses/VectorArray" IsOrdered="True" IsUnique="True" LowerBound="1" Name="neutHar" />
+      <References ReferenceType="#//Dataclasses/VectorArray" IsOrdered="True" IsUnique="True" LowerBound="1" Name="netHar" />
+      <References ReferenceType="#//Dataclasses/VectorArray" IsOrdered="True" IsUnique="True" LowerBound="1" Name="resHar" />
+      <References ReferenceType="#//Dataclasses/Units" IsOrdered="True" IsUnique="True" LowerBound="1" Name="units" />
+      <References ReferenceType="#//Dataclasses/AngleReference" IsOrdered="True" IsUnique="True" LowerBound="1" Name="angRef" />
+      <References ReferenceType="#//Dataclasses/MagReference" IsOrdered="True" IsUnique="True" LowerBound="1" Name="hvRef" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Integer" Name="numHar" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Integer" Name="numCyc" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Integer" Name="evalTm" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Integer" Name="smpRate" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Float" Name="frequency" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Integer" Name="rmsCyc" />
+    </Types>
+    <Types xsi:type="nmeta:Class" Name="HDEL">
+      <References ReferenceType="#//Dataclasses/Quality" IsOrdered="True" IsUnique="True" LowerBound="1" Name="q" />
+      <References ReferenceType="#//Dataclasses/TimeStamp" IsOrdered="True" IsUnique="True" LowerBound="1" Name="t" />
+      <References ReferenceType="#//Dataclasses/VectorArray" IsOrdered="True" IsUnique="True" LowerBound="1" Name="phsABHar" />
+      <References ReferenceType="#//Dataclasses/VectorArray" IsOrdered="True" IsUnique="True" LowerBound="1" Name="phsBCHar" />
+      <References ReferenceType="#//Dataclasses/VectorArray" IsOrdered="True" IsUnique="True" LowerBound="1" Name="phsCAHar" />
+      <References ReferenceType="#//Dataclasses/Units" IsOrdered="True" IsUnique="True" LowerBound="1" Name="units" />
+      <References ReferenceType="#//Dataclasses/AngleReference" IsOrdered="True" IsUnique="True" LowerBound="1" Name="angRef" />
+      <References ReferenceType="#//Dataclasses/MagReference" IsOrdered="True" IsUnique="True" LowerBound="1" Name="hvRef" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Integer" Name="numHar" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Integer" Name="numCyc" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Integer" Name="evalTm" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Integer" Name="smpRate" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Float" Name="frequency" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Integer" Name="rmsCyc" />
+    </Types>
+    <Types xsi:type="nmeta:Class" Name="ControllableStatusInfo">
+      <References ReferenceType="#//Dataclasses/TimeStamp" IsOrdered="True" IsUnique="True" LowerBound="1" Name="operTm" />
+      <References ReferenceType="#//Dataclasses/Originator" IsOrdered="True" IsUnique="True" LowerBound="1" Name="origin" />
+      <References ReferenceType="#//Dataclasses/Originator" IsOrdered="True" IsUnique="True" LowerBound="1" Name="_origin" />
+      <References ReferenceType="#//Dataclasses/Quality" IsOrdered="True" IsUnique="True" LowerBound="1" Name="subQ" />
+      <References ReferenceType="#//Dataclasses/CtlModels" IsOrdered="True" IsUnique="True" LowerBound="1" Name="ctlModel" />
+      <References ReferenceType="#//Dataclasses/SboClasses" IsOrdered="True" IsUnique="True" LowerBound="1" Name="sboClass" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Integer" Name="ctlNum" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Integer" Name="_ctlNum" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Boolean" Name="stSeld" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Boolean" Name="subEna" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//String" Name="subID" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Integer" Name="sboTimeout" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//String" Name="d" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//String" Name="dU" />
+    </Types>
+    <Types xsi:type="nmeta:Class" Name="SPC">
+      <References ReferenceType="#//Dataclasses/Quality" IsOrdered="True" IsUnique="True" LowerBound="1" Name="q" />
+      <References ReferenceType="#//Dataclasses/TimeStamp" IsOrdered="True" IsUnique="True" LowerBound="1" Name="t" />
+      <References ReferenceType="#//Dataclasses/PulseConfig" IsOrdered="True" IsUnique="True" LowerBound="1" Name="pulseConfig" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Boolean" Name="ctlVal" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Boolean" Name="stVal" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Boolean" Name="subVal" />
+    </Types>
+    <Types xsi:type="nmeta:Class" Name="DPC">
+      <References ReferenceType="#//Dataclasses/DPStatus" IsOrdered="True" IsUnique="True" LowerBound="1" Name="stVal" />
+      <References ReferenceType="#//Dataclasses/Quality" IsOrdered="True" IsUnique="True" LowerBound="1" Name="q" />
+      <References ReferenceType="#//Dataclasses/TimeStamp" IsOrdered="True" IsUnique="True" LowerBound="1" Name="t" />
+      <References ReferenceType="#//Dataclasses/DPStatus" IsOrdered="True" IsUnique="True" LowerBound="1" Name="subVal" />
+      <References ReferenceType="#//Dataclasses/PulseConfig" IsOrdered="True" IsUnique="True" LowerBound="1" Name="pulseConfig" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Boolean" Name="ctlVal" />
+    </Types>
+    <Types xsi:type="nmeta:Class" Name="INC">
+      <References ReferenceType="#//Dataclasses/Quality" IsOrdered="True" IsUnique="True" LowerBound="1" Name="q" />
+      <References ReferenceType="#//Dataclasses/TimeStamp" IsOrdered="True" IsUnique="True" LowerBound="1" Name="t" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Integer" Name="ctlVal" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Integer" Name="stVal" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Integer" Name="subVal" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Integer" Name="minVal" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Integer" Name="maxVal" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Integer" Name="stepSize" />
+    </Types>
+    <Types xsi:type="nmeta:Class" Name="BSC">
+      <References ReferenceType="#//Dataclasses/BSControl" IsOrdered="True" IsUnique="True" LowerBound="1" Name="ctlVal" />
+      <References ReferenceType="#//Dataclasses/ValWithTrans" IsOrdered="True" IsUnique="True" LowerBound="1" Name="valWTr" />
+      <References ReferenceType="#//Dataclasses/Quality" IsOrdered="True" IsUnique="True" LowerBound="1" Name="q" />
+      <References ReferenceType="#//Dataclasses/TimeStamp" IsOrdered="True" IsUnique="True" LowerBound="1" Name="t" />
+      <References ReferenceType="#//Dataclasses/ValWithTrans" IsOrdered="True" IsUnique="True" LowerBound="1" Name="subVal" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Boolean" Name="persistent" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Integer" Name="minVal" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Integer" Name="maxVal" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Integer" Name="stepSize" />
+    </Types>
+    <Types xsi:type="nmeta:Class" Name="ISC">
+      <References ReferenceType="#//Dataclasses/ValWithTrans" IsOrdered="True" IsUnique="True" LowerBound="1" Name="valWTr" />
+      <References ReferenceType="#//Dataclasses/TimeStamp" IsOrdered="True" IsUnique="True" LowerBound="1" Name="t" />
+      <References ReferenceType="#//Dataclasses/Quality" IsOrdered="True" IsUnique="True" LowerBound="1" Name="q" />
+      <References ReferenceType="#//Dataclasses/ValWithTrans" IsOrdered="True" IsUnique="True" LowerBound="1" Name="subVal" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Integer" Name="ctlVal" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Integer" Name="minVal" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Integer" Name="maxVal" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Integer" Name="stepSize" />
+    </Types>
+    <Types xsi:type="nmeta:Class" Name="ControllableAnalogueInfo">
+      <References ReferenceType="#//Dataclasses/APC" IsOrdered="True" IsUnique="True" LowerBound="1" UpperBound="-1" Name="APC" />
+      <References ReferenceType="#//Dataclasses/C_PrimitiveCDC" IsOrdered="True" IsUnique="True" LowerBound="1" UpperBound="-1" Name="C_PrimitiveCDC" />
+    </Types>
+    <Types xsi:type="nmeta:Class" Name="APC">
+      <References ReferenceType="#//Dataclasses/AnalogueValue" IsOrdered="True" IsUnique="True" LowerBound="1" Name="setMag" />
+      <References ReferenceType="#//Dataclasses/AnalogueValue" IsOrdered="True" IsUnique="True" LowerBound="1" Name="_setMag" />
+      <References ReferenceType="#//Dataclasses/Originator" IsOrdered="True" IsUnique="True" LowerBound="1" Name="origin" />
+      <References ReferenceType="#//Dataclasses/Originator" IsOrdered="True" IsUnique="True" LowerBound="1" Name="_origin" />
+      <References ReferenceType="#//Dataclasses/TimeStamp" IsOrdered="True" IsUnique="True" LowerBound="1" Name="operTm" />
+      <References ReferenceType="#//Dataclasses/Quality" IsOrdered="True" IsUnique="True" LowerBound="1" Name="q" />
+      <References ReferenceType="#//Dataclasses/TimeStamp" IsOrdered="True" IsUnique="True" LowerBound="1" Name="t" />
+      <References ReferenceType="#//Dataclasses/CtlModels" IsOrdered="True" IsUnique="True" LowerBound="1" Name="ctlModel" />
+      <References ReferenceType="#//Dataclasses/Units" IsOrdered="True" IsUnique="True" LowerBound="1" Name="units" />
+      <References ReferenceType="#//Dataclasses/ScaledValueConfig" IsOrdered="True" IsUnique="True" LowerBound="1" Name="sVC" />
+      <References ReferenceType="#//Dataclasses/AnalogueValue" IsOrdered="True" IsUnique="True" LowerBound="1" Name="minVal" />
+      <References ReferenceType="#//Dataclasses/AnalogueValue" IsOrdered="True" IsUnique="True" LowerBound="1" Name="maxVal" />
+      <References ReferenceType="#//Dataclasses/AnalogueValue" IsOrdered="True" IsUnique="True" LowerBound="1" Name="stepSize" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//String" Name="d" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//String" Name="dU" />
+    </Types>
+    <Types xsi:type="nmeta:Class" Name="SPG">
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Boolean" Name="setVal" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Boolean" Name="_setVal" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Boolean" Name="__setVal" />
+    </Types>
+    <Types xsi:type="nmeta:Class" Name="ING">
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Integer" Name="setVal" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Integer" Name="_setVal" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Integer" Name="__setVal" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Integer" Name="minVal" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Integer" Name="maxVal" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Integer" Name="stepSize" />
+    </Types>
+    <Types xsi:type="nmeta:Class" Name="AnalogueSettings">
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//String" Name="d" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//String" Name="dU" />
+    </Types>
+    <Types xsi:type="nmeta:Class" Name="ASG">
+      <References ReferenceType="#//Dataclasses/AnalogueValue" IsOrdered="True" IsUnique="True" LowerBound="1" Name="setMag" />
+      <References ReferenceType="#//Dataclasses/AnalogueValue" IsOrdered="True" IsUnique="True" LowerBound="1" Name="_setMag" />
+      <References ReferenceType="#//Dataclasses/AnalogueValue" IsOrdered="True" IsUnique="True" LowerBound="1" Name="__setMag" />
+      <References ReferenceType="#//Dataclasses/Units" IsOrdered="True" IsUnique="True" LowerBound="1" Name="units" />
+      <References ReferenceType="#//Dataclasses/ScaledValueConfig" IsOrdered="True" IsUnique="True" LowerBound="1" Name="sVC" />
+      <References ReferenceType="#//Dataclasses/AnalogueValue" IsOrdered="True" IsUnique="True" LowerBound="1" Name="minVal" />
+      <References ReferenceType="#//Dataclasses/AnalogueValue" IsOrdered="True" IsUnique="True" LowerBound="1" Name="maxVal" />
+      <References ReferenceType="#//Dataclasses/AnalogueValue" IsOrdered="True" IsUnique="True" LowerBound="1" Name="stepSize" />
+    </Types>
+    <Types xsi:type="nmeta:Class" Name="CURVE">
+      <References ReferenceType="#//Dataclasses/CurveChar" IsOrdered="True" IsUnique="True" LowerBound="1" Name="setCharact" />
+      <References ReferenceType="#//Dataclasses/CurveChar" IsOrdered="True" IsUnique="True" LowerBound="1" Name="_setCharact" />
+      <References ReferenceType="#//Dataclasses/CurveChar" IsOrdered="True" IsUnique="True" LowerBound="1" Name="__setCharact" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Float" Name="setParA" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Float" Name="setParB" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Float" Name="setParC" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Float" Name="setParD" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Float" Name="setParE" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Float" Name="setParF" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Float" Name="_setParA" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Float" Name="_setParB" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Float" Name="_setParC" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Float" Name="_setParD" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Float" Name="_setParE" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Float" Name="_setParF" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Float" Name="__setParA" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Float" Name="__setParB" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Float" Name="__setParC" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Float" Name="__setParD" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Float" Name="__setParE" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Float" Name="__setParF" />
+    </Types>
+    <Types xsi:type="nmeta:Class" Name="DescriptionInfo">
+      <References ReferenceType="#//Dataclasses/DPL" IsOrdered="True" IsUnique="True" LowerBound="1" UpperBound="-1" Name="DPL" />
+      <References ReferenceType="#//Dataclasses/LPL" IsOrdered="True" IsUnique="True" LowerBound="1" UpperBound="-1" Name="LPL" />
+      <References ReferenceType="#//Dataclasses/CSD" IsOrdered="True" IsUnique="True" LowerBound="1" UpperBound="-1" Name="CSD" />
+      <References ReferenceType="#//Dataclasses/C_PrimitiveCDC" IsOrdered="True" IsUnique="True" LowerBound="1" UpperBound="-1" Name="C_PrimitiveCDC" />
+    </Types>
+    <Types xsi:type="nmeta:Class" Name="DPL">
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//String" Name="vendor" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//String" Name="hwRev" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//String" Name="swRev" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//String" Name="serNum" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//String" Name="model" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//String" Name="location" />
+    </Types>
+    <Types xsi:type="nmeta:Class" Name="LPL">
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//String" Name="vendor" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//String" Name="swRev" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//String" Name="d" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//String" Name="dU" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//String" Name="configRev" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//String" Name="IdNs" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//String" Name="lnNs" />
+    </Types>
+    <Types xsi:type="nmeta:Class" Name="CSD">
+      <References ReferenceType="#//Dataclasses/Units" IsOrdered="True" IsUnique="True" LowerBound="1" Name="xUnit" />
+      <References ReferenceType="#//Dataclasses/Units" IsOrdered="True" IsUnique="True" LowerBound="1" Name="yUnit" />
+      <References ReferenceType="#//Dataclasses/PointArray" IsOrdered="True" IsUnique="True" LowerBound="1" Name="crvPts" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//String" Name="xD" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//String" Name="yD" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Integer" Name="numPts" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//String" Name="d" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//String" Name="dU" />
+    </Types>
+  </ChildNamespaces>
+  <ChildNamespaces Uri="http://www.transformation-tool-contest.eu/2017/smartGrids/enumerations" Prefix="enum" Name="Enumerations">
+    <Types xsi:type="nmeta:Enumeration" Name="TimeAccuracyKind">
+      <Literals Value="7" Name="T0" />
+      <Literals Value="10" Name="T1" />
+      <Literals Value="14" Name="T2" />
+      <Literals Value="16" Name="T3" />
+      <Literals Value="18" Name="T4" />
+      <Literals Value="20" Name="T5" />
+      <Literals Value="31" Name="unspecified" />
+    </Types>
+    <Types xsi:type="nmeta:Enumeration" Name="AngleReferenceKind">
+      <Literals Name="Va" />
+      <Literals Name="Vb" />
+      <Literals Name="Vc" />
+      <Literals Name="Aa" />
+      <Literals Name="Ab" />
+      <Literals Name="Ac" />
+      <Literals Name="Vab" />
+      <Literals Name="Vbc" />
+      <Literals Name="Vca" />
+      <Literals Name="Vother" />
+      <Literals Name="Aother" />
+    </Types>
+    <Types xsi:type="nmeta:Enumeration" Name="BSControlKind">
+      <Literals Name="stop" />
+      <Literals Name="lower" />
+      <Literals Name="higher" />
+      <Literals Name="reserved" />
+    </Types>
+    <Types xsi:type="nmeta:Enumeration" Name="CMVAngleReferenceKind">
+      <Literals Name="volt" />
+      <Literals Name="ampere" />
+      <Literals Name="other" />
+    </Types>
+    <Types xsi:type="nmeta:Enumeration" Name="ControlOutputKind">
+      <Literals Name="pulse" />
+      <Literals Name="persistent" />
+    </Types>
+    <Types xsi:type="nmeta:Enumeration" Name="CtlModelsKind">
+      <Literals Name="statusOnly" />
+      <Literals Name="directWithNormalSecurity" />
+      <Literals Name="sboWithNormalSecurity" />
+      <Literals Name="directWithEnhancedSecurity" />
+      <Literals Name="sboWithEnhancedSecurity" />
+    </Types>
+    <Types xsi:type="nmeta:Enumeration" Name="CurveCharKind">
+      <Literals Name="ansiExtremelyInverse" />
+      <Literals Name="ansiVeryInverse" />
+      <Literals Name="ansiNormalInverse" />
+      <Literals Name="ansiModerateInverse" />
+      <Literals Name="ansiDefiniteTime" />
+      <Literals Name="longTimeExtremelyInverse" />
+      <Literals Name="longTimeVeryInverse" />
+      <Literals Name="longTimeInverse" />
+      <Literals Name="iecNormalInverse" />
+      <Literals Name="iecVeryInverse" />
+      <Literals Name="iecInverse" />
+      <Literals Name="iecExtremelyInverse" />
+      <Literals Name="iecShortTimeInverse" />
+      <Literals Name="iecLongTimeInverse" />
+      <Literals Name="iecDefiniteTime" />
+      <Literals Name="reserved" />
+      <Literals Name="formula1" />
+      <Literals Name="formula2" />
+      <Literals Name="formula3" />
+      <Literals Name="formula4" />
+      <Literals Name="formula5" />
+      <Literals Name="formula6" />
+      <Literals Name="formula7" />
+      <Literals Name="formula8" />
+      <Literals Name="formula9" />
+      <Literals Name="formula10" />
+      <Literals Name="formula11" />
+      <Literals Name="formula12" />
+      <Literals Name="formula13" />
+      <Literals Name="formula14" />
+      <Literals Name="formula15" />
+      <Literals Name="formula16" />
+      <Literals Name="vendorPoints1" />
+      <Literals Name="vendorPoints2" />
+      <Literals Name="vendorPoints3" />
+      <Literals Name="vendorPoints4" />
+      <Literals Name="vendorPoints5" />
+      <Literals Name="vendorPoints6" />
+      <Literals Name="vendorPoints7" />
+      <Literals Name="vendorPoints8" />
+      <Literals Name="vendorPoints9" />
+      <Literals Name="vendorPoints10" />
+      <Literals Name="vendorPoints11" />
+      <Literals Name="vendorPoints12" />
+      <Literals Name="vendorPoints13" />
+      <Literals Name="vendorPoints14" />
+      <Literals Name="vendorPoints15" />
+      <Literals Name="vendorPoints16" />
+    </Types>
+    <Types xsi:type="nmeta:Enumeration" Name="DPStatusKind">
+      <Literals Name="intermediateState" />
+      <Literals Name="offOrFalse" />
+      <Literals Name="onOrTrue" />
+      <Literals Name="badState" />
+    </Types>
+    <Types xsi:type="nmeta:Enumeration" Name="DirectionPhaseKind">
+      <Literals Name="unknown" />
+      <Literals Name="forward" />
+      <Literals Name="backward" />
+    </Types>
+    <Types xsi:type="nmeta:Enumeration" Name="FaultDirectionKind">
+      <Literals Name="unknown" />
+      <Literals Name="forward" />
+      <Literals Name="backward" />
+      <Literals Name="both" />
+    </Types>
+    <Types xsi:type="nmeta:Enumeration" Name="MagReferenceKind">
+      <Literals Name="fundamental" />
+      <Literals Name="rms" />
+      <Literals Name="absolute" />
+    </Types>
+    <Types xsi:type="nmeta:Enumeration" Name="MultiplierKind">
+      <Literals Name="yocto" />
+      <Literals Name="zepto" />
+      <Literals Name="atto" />
+      <Literals Name="femto" />
+      <Literals Name="pico" />
+      <Literals Name="nano" />
+      <Literals Name="micro" />
+      <Literals Name="milli" />
+      <Literals Name="centi" />
+      <Literals Name="deci" />
+      <Literals Name="none" />
+      <Literals Name="deca" />
+      <Literals Name="hecto" />
+      <Literals Name="kilo" />
+      <Literals Name="mega" />
+      <Literals Name="giga" />
+      <Literals Name="tera" />
+      <Literals Name="petra" />
+      <Literals Name="exa" />
+      <Literals Name="zetta" />
+      <Literals Name="yotta" />
+    </Types>
+    <Types xsi:type="nmeta:Enumeration" Name="OriginatorCategoryKind">
+      <Literals Name="notSupported" />
+      <Literals Name="bayControl" />
+      <Literals Name="stationControl" />
+      <Literals Name="remoteControl" />
+      <Literals Name="automaticBay" />
+      <Literals Name="automaticStation" />
+      <Literals Name="automaticRemote" />
+      <Literals Name="maintenance" />
+      <Literals Name="process" />
+    </Types>
+    <Types xsi:type="nmeta:Enumeration" Name="PhaseReferenceKind">
+      <Literals Name="a" />
+      <Literals Name="b" />
+      <Literals Name="c" />
+    </Types>
+    <Types xsi:type="nmeta:Enumeration" Name="RangeKind">
+      <Literals Name="normal" />
+      <Literals Name="high" />
+      <Literals Name="low" />
+      <Literals Name="highHigh" />
+      <Literals Name="lowLow" />
+    </Types>
+    <Types xsi:type="nmeta:Enumeration" Name="SboClassesKind">
+      <Literals Name="operateOnce" />
+      <Literals Name="operateMany" />
+    </Types>
+    <Types xsi:type="nmeta:Enumeration" Name="SequenceKind">
+      <Literals Name="posNegZero" />
+      <Literals Name="dirQuadZero" />
+    </Types>
+    <Types xsi:type="nmeta:Enumeration" Name="SeverityKind">
+      <Literals Name="unknown" />
+      <Literals Name="critical" />
+      <Literals Name="major" />
+      <Literals Name="minor" />
+      <Literals Name="warning" />
+    </Types>
+    <Types xsi:type="nmeta:Enumeration" Name="SIUnitsKind">
+      <Literals Name="dimensionless" />
+      <Literals Name="meter" />
+      <Literals Name="kilogram" />
+      <Literals Name="second" />
+      <Literals Name="ampere" />
+      <Literals Name="Kelvin" />
+      <Literals Name="mole" />
+      <Literals Name="candela" />
+      <Literals Name="degree" />
+      <Literals Name="radian" />
+      <Literals Name="steradian" />
+      <Literals Name="Gray" />
+      <Literals Name="becquerel" />
+      <Literals Name="degreeCelsius" />
+      <Literals Name="sievert" />
+      <Literals Name="farad" />
+      <Literals Name="coulomb" />
+      <Literals Name="siemens" />
+      <Literals Name="henry" />
+      <Literals Name="volt" />
+      <Literals Name="ohm" />
+      <Literals Name="joule" />
+      <Literals Name="newton" />
+      <Literals Name="hertz" />
+      <Literals Name="lux" />
+      <Literals Name="lumen" />
+      <Literals Name="weber" />
+      <Literals Name="tesla" />
+      <Literals Name="wattGeneral" />
+      <Literals Name="pascal" />
+      <Literals Name="squareMeter" />
+      <Literals Name="cubicMeter" />
+      <Literals Name="meterPerSecond" />
+      <Literals Name="meterPerSquareSecond" />
+      <Literals Name="cubicMeterPerSecond" />
+      <Literals Name="meterPerCubicMeter" />
+      <Literals Name="kilogramMeter" />
+      <Literals Name="kilogramPerCubicMeter" />
+      <Literals Name="squareMeterPerSecond" />
+      <Literals Name="wattPerMeterKelvin" />
+      <Literals Name="joulePerKelvin" />
+      <Literals Name="partPerMillion" />
+      <Literals Name="rotationPerSecond" />
+      <Literals Name="radianPerSecond" />
+      <Literals Name="voltAmpere" />
+      <Literals Name="watt" />
+      <Literals Name="voltAmpereReactive" />
+      <Literals Name="phaseAngleDegree" />
+      <Literals Name="cosTheta" />
+      <Literals Name="voltSecond" />
+      <Literals Name="voltSquare" />
+      <Literals Name="ampSecond" />
+      <Literals Name="ampSquare" />
+      <Literals Name="ampSquareSecond" />
+      <Literals Name="voltAmpereHour" />
+      <Literals Name="wattHour" />
+      <Literals Name="voltAmpereReactiveHour" />
+      <Literals Name="voltPerHertz" />
+    </Types>
+    <Types xsi:type="nmeta:Enumeration" Name="AutoReclosingStatusKind">
+      <Literals Name="ready" />
+      <Literals Name="inProgress" />
+      <Literals Name="successfull" />
+    </Types>
+    <Types xsi:type="nmeta:Enumeration" Name="BreakerOperatingCapabilityKind">
+      <Literals Name="none" />
+      <Literals Name="open" />
+      <Literals Name="closeOpen" />
+      <Literals Name="openCloseOpen" />
+      <Literals Name="closeOpenCloseOpen" />
+    </Types>
+    <Types xsi:type="nmeta:Enumeration" Name="CurrentReversalModeKind">
+      <Literals Name="off" />
+      <Literals Name="on" />
+    </Types>
+    <Types xsi:type="nmeta:Enumeration" Name="DirectionModeKind">
+      <Literals Name="nonDirectional" />
+      <Literals Name="forward" />
+      <Literals Name="reverse" />
+    </Types>
+    <Types xsi:type="nmeta:Enumeration" Name="FailureDetectionModeKind">
+      <Literals Name="current" />
+      <Literals Name="breakerStatus" />
+      <Literals Name="both" />
+      <Literals Name="other" />
+    </Types>
+    <Types xsi:type="nmeta:Enumeration" Name="FanControlKind">
+      <Literals Name="inactive" />
+      <Literals Name="stage1" />
+      <Literals Name="stage2" />
+      <Literals Name="stage3" />
+    </Types>
+    <Types xsi:type="nmeta:Enumeration" Name="FaultLoopKind">
+      <Literals Name="phAToGround" />
+      <Literals Name="phBToGround" />
+      <Literals Name="phCToGround" />
+      <Literals Name="phAToPhB" />
+      <Literals Name="phBToPhC" />
+      <Literals Name="phCToPhA" />
+      <Literals Name="other" />
+    </Types>
+    <Types xsi:type="nmeta:Enumeration" Name="GeneratorStateKind">
+      <Literals Name="stopped" />
+      <Literals Name="stopping" />
+      <Literals Name="started" />
+      <Literals Name="starting" />
+      <Literals Name="disabled" />
+    </Types>
+    <Types xsi:type="nmeta:Enumeration" Name="HealthStateKind">
+      <Literals Name="ok" />
+      <Literals Name="warning" />
+      <Literals Name="alarm" />
+    </Types>
+    <Types xsi:type="nmeta:Enumeration" Name="InternalTriggerModeKind">
+      <Literals Name="positiveOrRising" />
+      <Literals Name="negativeOrFalling" />
+      <Literals Name="both" />
+      <Literals Name="other" />
+    </Types>
+    <Types xsi:type="nmeta:Enumeration" Name="ModeBehaviourKind">
+      <Literals Name="on" />
+      <Literals Name="blocked" />
+      <Literals Name="test" />
+      <Literals Name="testBlocked" />
+      <Literals Name="off" />
+    </Types>
+    <Types xsi:type="nmeta:Enumeration" Name="LiveDeadModeKind">
+      <Literals Name="lineLive" />
+      <Literals Name="bothDead" />
+      <Literals Name="busLive" />
+      <Literals Name="bothDeadOrLineLive" />
+      <Literals Name="bothDeadOrBusLive" />
+      <Literals Name="lineLiveBusDeadOrBusLiveLineDead" />
+      <Literals Name="bothDeadOrOnlyOneLive" />
+    </Types>
+    <Types xsi:type="nmeta:Enumeration" Name="PolarizingQuantityKind">
+      <Literals Name="none" />
+      <Literals Name="zeroSeqCurrent" />
+      <Literals Name="zeroSeqVoltage" />
+      <Literals Name="negSeqVoltage" />
+      <Literals Name="phToPhVoltages" />
+      <Literals Name="phToGroundVoltages" />
+    </Types>
+    <Types xsi:type="nmeta:Enumeration" Name="PumpControlKind">
+      <Literals Name="inactive" />
+      <Literals Name="stage1" />
+      <Literals Name="stage2" />
+      <Literals Name="stage3" />
+    </Types>
+    <Types xsi:type="nmeta:Enumeration" Name="RecordingModeKind">
+      <Literals Name="overwrite" />
+      <Literals Name="stopWhenFull" />
+    </Types>
+    <Types xsi:type="nmeta:Enumeration" Name="ResetCurveKind">
+      <Literals Name="none" />
+      <Literals Name="definiteTimeDelayed" />
+      <Literals Name="inverse" />
+    </Types>
+    <Types xsi:type="nmeta:Enumeration" Name="RestraintModeKind">
+      <Literals Name="none" />
+      <Literals Name="harm2" />
+      <Literals Name="harm5" />
+      <Literals Name="harm2AndHarm5" />
+      <Literals Name="waveformAnalysis" />
+      <Literals Name="harm2AndWaveformAnalysis" />
+      <Literals Name="other" />
+    </Types>
+    <Types xsi:type="nmeta:Enumeration" Name="RetripModeKind">
+      <Literals Name="off" />
+      <Literals Name="noCheck" />
+      <Literals Name="currentCheck" />
+      <Literals Name="breakerStatusCheck" />
+      <Literals Name="bothChecks" />
+      <Literals Name="other" />
+    </Types>
+    <Types xsi:type="nmeta:Enumeration" Name="SchemeTypeKind">
+      <Literals Name="none" />
+      <Literals Name="intertrip" />
+      <Literals Name="permissiveUnderReach" />
+      <Literals Name="permissiveOverReach" />
+      <Literals Name="blocking" />
+    </Types>
+    <Types xsi:type="nmeta:Enumeration" Name="SwitchingCapabilityKind">
+      <Literals Name="none" />
+      <Literals Name="open" />
+      <Literals Name="close" />
+      <Literals Name="both" />
+    </Types>
+    <Types xsi:type="nmeta:Enumeration" Name="SwitchTypeKind">
+      <Literals Name="loadBreak" />
+      <Literals Name="disconnector" />
+      <Literals Name="earthingSwitch" />
+      <Literals Name="highSpeedEarthingSwitch" />
+    </Types>
+    <Types xsi:type="nmeta:Enumeration" Name="TriggerSourceKind">
+      <Literals Name="internal" />
+      <Literals Name="external" />
+      <Literals Name="both" />
+    </Types>
+    <Types xsi:type="nmeta:Enumeration" Name="TripModeKind">
+      <Literals Name="threePhase" />
+      <Literals Name="oneOrThreePhase" />
+      <Literals Name="specific" />
+    </Types>
+    <Types xsi:type="nmeta:Enumeration" Name="UnblockFunctionModeKind">
+      <Literals Name="off" />
+      <Literals Name="permanent" />
+      <Literals Name="timeWindow" />
+    </Types>
+    <Types xsi:type="nmeta:Enumeration" Name="WeakEndInfeedModeKind">
+      <Literals Name="off" />
+      <Literals Name="operate" />
+      <Literals Name="echo" />
+      <Literals Name="echoAndOperate" />
+    </Types>
+    <Types xsi:type="nmeta:Enumeration" Name="ValidityKind">
+      <Literals Name="good" />
+      <Literals Name="invalid" />
+      <Literals Name="questionable" />
+    </Types>
+    <Types xsi:type="nmeta:Enumeration" Name="SourceKind">
+      <Literals Name="process" />
+      <Literals Name="substituted" />
+    </Types>
+    <Types xsi:type="nmeta:Enumeration" Name="FcKind">
+      <Literals Name="ST" />
+      <Literals Name="MX" />
+      <Literals Name="CO" />
+      <Literals Name="MC" />
+      <Literals Name="SP" />
+      <Literals Name="SV" />
+      <Literals Name="CF" />
+      <Literals Name="DC" />
+      <Literals Name="SG" />
+      <Literals Name="SE" />
+      <Literals Name="EX" />
+      <Literals Name="XX" />
+    </Types>
+    <Types xsi:type="nmeta:Enumeration" Name="TrgOpKind">
+      <Literals Name="none" />
+      <Literals Name="dchg" />
+      <Literals Name="qchg" />
+      <Literals Name="dupd" />
+      <Literals Name="dchgDupd" />
+    </Types>
+    <Types xsi:type="nmeta:Enumeration" Name="PresenceCondition">
+      <Literals Name="M" />
+      <Literals Name="O" />
+      <Literals Name="PICS_SUBST" />
+      <Literals Name="GC_1" />
+      <Literals Name="GC_2_n" />
+      <Literals Name="GC_CON" />
+      <Literals Name="AC_LN0_M" />
+      <Literals Name="AC_LN0_EX" />
+      <Literals Name="AC_DLD_M" />
+      <Literals Name="AC_DLN_M" />
+      <Literals Name="AC_DLNDA_M" />
+      <Literals Name="AC_SCAV" />
+      <Literals Name="AC_ST" />
+      <Literals Name="AC_CO_M" />
+      <Literals Name="AC_CO_O" />
+      <Literals Name="AC_SG_M" />
+      <Literals Name="AC_SG_O" />
+      <Literals Name="AC_NSG_M" />
+      <Literals Name="AC_NSG_O" />
+      <Literals Name="AC_RMS_M" />
+    </Types>
+  </ChildNamespaces>
+  <Types xsi:type="nmeta:Class" Name="Substandard">
+    <References IsContainment="True" ReferenceType="#//LNNodes/DomainLNs/DomainLN" IsOrdered="True" IsUnique="True" UpperBound="-1" Name="LN" />
+    <References IsContainment="True" ReferenceType="#//Dataclasses/LPL" IsOrdered="True" IsUnique="True" UpperBound="-1" Name="NamePlt" />
+    <References IsContainment="True" ReferenceType="#//Dataclasses/LPL" IsOrdered="True" IsUnique="True" UpperBound="-1" Name="LPL" />
+    <References IsContainment="True" ReferenceType="#//Dataclasses/DPC" IsOrdered="True" IsUnique="True" UpperBound="-1" Name="DPC" />
+    <References IsContainment="True" ReferenceType="#//Dataclasses/ACT" IsOrdered="True" IsUnique="True" UpperBound="-1" Name="ACT" />
+    <References IsContainment="True" ReferenceType="#//Dataclasses/SPS" IsOrdered="True" IsUnique="True" UpperBound="-1" Name="SPS" />
+    <References IsContainment="True" ReferenceType="#//Dataclasses/BSC" IsOrdered="True" IsUnique="True" UpperBound="-1" Name="BSC" />
+    <References IsContainment="True" ReferenceType="#//Dataclasses/ISC" IsOrdered="True" IsUnique="True" UpperBound="-1" Name="ISC" />
+    <References IsContainment="True" ReferenceType="#//Dataclasses/SPC" IsOrdered="True" IsUnique="True" UpperBound="-1" Name="SPC" />
+    <References IsContainment="True" ReferenceType="#//Dataclasses/MV" IsOrdered="True" IsUnique="True" UpperBound="-1" Name="MV" />
+    <References IsContainment="True" ReferenceType="#//Dataclasses/INS" IsOrdered="True" IsUnique="True" UpperBound="-1" Name="INS" />
+    <References IsContainment="True" ReferenceType="#//Dataclasses/ASG" IsOrdered="True" IsUnique="True" UpperBound="-1" Name="ASG" />
+    <References IsContainment="True" ReferenceType="#//Dataclasses/WYE" IsOrdered="True" IsUnique="True" UpperBound="-1" Name="WYE" />
+    <References IsContainment="True" ReferenceType="#//Dataclasses/DPStatus" IsOrdered="True" IsUnique="True" UpperBound="-1" Name="DPStatus" />
+    <References IsContainment="True" ReferenceType="#//Dataclasses/AnalogueValue" IsOrdered="True" IsUnique="True" UpperBound="-1" Name="AnalogueValue" />
+    <References IsContainment="True" ReferenceType="#//Dataclasses/CMV" IsOrdered="True" IsUnique="True" UpperBound="-1" Name="CMV" />
+    <References IsContainment="True" ReferenceType="#//Dataclasses/ValWithTrans" IsOrdered="True" IsUnique="True" UpperBound="-1" Name="ValWithTrans" />
+    <References IsContainment="True" ReferenceType="#//Dataclasses/BSControl" IsOrdered="True" IsUnique="True" UpperBound="-1" Name="BSControl" />
+    <References IsContainment="True" ReferenceType="#//Dataclasses/Vector" IsOrdered="True" IsUnique="True" UpperBound="-1" Name="Vector" />
+  </Types>
+</nmeta:Namespace>

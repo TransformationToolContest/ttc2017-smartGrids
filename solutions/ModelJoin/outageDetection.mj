@@ -1,0 +1,20 @@
+import "platform:/resource/CIM/model/61850.ecore"
+import "platform:/resource/CIM/model/schema.ecore"
+import "platform:/resource/CIM/model/COSEM.ecore"
+target "ConsumerReachabilityView"
+
+theta join CIM.IEC61968.Metering.MeterAsset with COSEM.PhysicalDevice where "CIM.IEC61968.Metering.MeterAsset.mRID = COSEM.PhysicalDevice.ID" as jointarget.EnergyConsumer {
+	keep calculated attribute "COSEM.PhysicalDevice.AutoConnect.Connection" as EnergyConsumer.Reachability:Integer
+	keep calculated attribute "COSEM.PhysicalDevice.ElectricityValues.ApparentPowermL1" as EnergyConsumer.PowerA:Double
+	keep calculated attribute "COSEM.PhysicalDevice.ElectricityValues.ApparentPowermL2" as EnergyConsumer.PowerA:Double
+	keep calculated attribute "COSEM.PhysicalDevice.ElectricityValues.ApparentPowermL3" as EnergyConsumer.PowerA:Double
+	keep calculated attribute "CIM.IEC61968.Metering.MeterAsset.ServiceDeliveryPoint.EnergyConsumer.mRID" as EnergyConsumer.ID:String
+	keep calculated attribute "if CIM.IEC61968.Metering.MeterAsset.ServiceDeliveryPoint.EnergyConsumer->oclIsKindOf(CIM.IEC61970.LoadModel.ConformLoad) then CIM.IEC61968.Metering.MeterAsset.ServiceDeliveryPoint.EnergyConsumer.ConformLoadGroup.SubLoadArea.LoadArea.ControlArea.mRID else CIM.IEC61968.Metering.MeterAsset.ServiceDeliveryPoint.EnergyConsumer.NonConformLoadGroup.SubLoadArea.LoadArea.ControlArea.mRID endif" as Consumer.ControlAreaID:String
+	keep outgoing CIM.IEC61968.Assets.Asset.Location as type jointarget.Location {
+		keep outgoing CIM.IEC61968.Common.Location.Position as type jointarget.PositionPoint {
+			keep attributes CIM.IEC61968.Common.PositionPoint.xPosition,
+			CIM.IEC61968.Common.PositionPoint.yPosition,
+			CIM.IEC61968.Common.PositionPoint.zPosition
+		}
+	}
+}

@@ -1,0 +1,941 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<nmeta:Namespace xmi:version="2.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" Uri="http://www.transformation-tool-contest.eu/2017/smartGrids/cosem" Prefix="cosem" Name="COSEM" xmlns:xmi="http://www.omg.org/XMI" xmlns:nmeta="http://nmf.codeplex.com/nmeta/">
+  <ChildNamespaces Uri="data" Prefix="data" Name="Datatypes">
+    <Types xsi:type="nmeta:Class" Name="scal_unit_type">
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Integer" Name="scaler" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="#//Datatypes/Units" Name="Unit" />
+    </Types>
+    <Types xsi:type="nmeta:Enumeration" Name="Units">
+      <Literals Name="year" />
+      <Literals Name="month" />
+      <Literals Name="week" />
+      <Literals Name="day" />
+      <Literals Name="hour" />
+      <Literals Name="min" />
+      <Literals Name="second" />
+      <Literals Name="degree" />
+      <Literals Name="degree_celsius" />
+      <Literals Name="currency" />
+      <Literals Name="metre" />
+      <Literals Name="metre_per_second" />
+      <Literals Name="cubic_metre" />
+      <Literals Name="cubic_metre_per_hour" />
+      <Literals Name="litre" />
+      <Literals Name="kilogram" />
+      <Literals Name="newton" />
+      <Literals Name="newton_meter" />
+      <Literals Name="pascal" />
+      <Literals Name="bar" />
+      <Literals Name="joule" />
+      <Literals Name="joule_per_hour" />
+      <Literals Name="watt" />
+      <Literals Name="volt_ampere" />
+      <Literals Name="var" />
+      <Literals Name="watt_hour" />
+      <Literals Name="volt_ampere_hour" />
+      <Literals Name="var_hour" />
+      <Literals Name="ampere" />
+      <Literals Name="coulomb" />
+      <Literals Name="volt" />
+      <Literals Name="volt_per_metre" />
+      <Literals Name="farad" />
+      <Literals Name="ohm" />
+      <Literals Name="weber" />
+      <Literals Name="tesla" />
+      <Literals Name="ampere_per_metre" />
+      <Literals Name="henry" />
+      <Literals Name="hertz" />
+      <Literals Name="active_energy_meter_constant" />
+      <Literals Name="reactive_energy_meter_constant" />
+      <Literals Name="apparent_energy_meter_constant" />
+      <Literals Name="volt_squared_hours" />
+      <Literals Name="ampere_squared_hours" />
+      <Literals Name="kilogram_per_second" />
+      <Literals Name="siemens" />
+      <Literals Name="kelvin" />
+      <Literals Name="percentage" />
+      <Literals Name="Ampere_hour" />
+      <Literals Name="energy_per_volume" />
+      <Literals Name="mole_percent" />
+      <Literals Name="calorific_value" />
+      <Literals Name="mass_density" />
+      <Literals Name="pascal_second" />
+      <Literals Name="Joule_kilogram" />
+      <Literals Name="Signal_strength_milliwatt" />
+      <Literals Name="Signal_strenght_microvolt" />
+      <Literals Name="count" />
+    </Types>
+    <Types xsi:type="nmeta:Enumeration" Name="DisconnectControlState">
+      <Literals Name="Disconnected" />
+      <Literals Value="1" Name="Connected" />
+      <Literals Value="2" Name="Ready_for_reconnection" />
+    </Types>
+    <Types xsi:type="nmeta:Enumeration" Name="DisconnectControlTransition">
+      <Literals Name="remote_reconnect" />
+      <Literals Name="remote_disconnect" />
+      <Literals Name="manual_reconnect" />
+      <Literals Name="manual_disconnect" />
+      <Literals Name="local_disconnect" />
+      <Literals Name="local_reconnect" />
+    </Types>
+  </ChildNamespaces>
+  <ChildNamespaces Uri="interface" Prefix="inter" Name="InterfaceClasses">
+    <Types xsi:type="nmeta:Class" BaseTypes="#//InterfaceClasses/Base" Name="S_FSK_PHY_MACsetup" />
+    <Types xsi:type="nmeta:Class" BaseTypes="#//InterfaceClasses/Base" Name="S_FSKActiveinitiator" />
+    <Types xsi:type="nmeta:Class" BaseTypes="#//InterfaceClasses/Base" Name="S_FSKMACsynctimeouts" />
+    <Types xsi:type="nmeta:Class" BaseTypes="#//InterfaceClasses/Base" Name="S_FSKMACcounters" />
+    <Types xsi:type="nmeta:Class" BaseTypes="#//InterfaceClasses/Base" Name="IEC61334_4_32LLCsetup" />
+    <Types xsi:type="nmeta:Class" BaseTypes="#//InterfaceClasses/Base" Name="S_FSKReportingsystemlist" />
+    <Types xsi:type="nmeta:Class" BaseTypes="#//InterfaceClasses/Base" Name="t61334_32_LLC_SSCS_setup" />
+    <Types xsi:type="nmeta:Class" BaseTypes="#//InterfaceClasses/Base" Name="PRIME_NB_OFDM_PLC_Phy_layer_counters" />
+    <Types xsi:type="nmeta:Class" BaseTypes="#//InterfaceClasses/Base" Name="PRIME_NB_OFDM_PLC_MACsetup" />
+    <Types xsi:type="nmeta:Class" BaseTypes="#//InterfaceClasses/Base" Name="PRIME_NB_OFDM_PLC_MAC_counters" />
+    <Types xsi:type="nmeta:Class" BaseTypes="#//InterfaceClasses/Base" Name="PRIME_NB_OFDM_PLC_MAC_functionalparams" />
+    <Types xsi:type="nmeta:Class" BaseTypes="#//InterfaceClasses/Base" Name="PRIME_NB_OFDM_PLC_MACnetworkadmindata" />
+    <Types xsi:type="nmeta:Class" BaseTypes="#//InterfaceClasses/Base" Name="PRIME_NB_OFDM_PLC_Application_identification" />
+    <Types xsi:type="nmeta:Class" BaseTypes="#//InterfaceClasses/Base" Name="G3_PLC_MAC_layer_counters" />
+    <Types xsi:type="nmeta:Class" BaseTypes="#//InterfaceClasses/Base" Name="G3_PLC_MAC_setup" />
+    <Types xsi:type="nmeta:Class" BaseTypes="#//InterfaceClasses/Base" Name="G3_PLC_6LoWPAN" />
+    <Types xsi:type="nmeta:Class" BaseTypes="#//InterfaceClasses/Base" Name="ZigBee_SAS_startup" />
+    <Types xsi:type="nmeta:Class" BaseTypes="#//InterfaceClasses/Base" Name="ZigBee_SAS_join" />
+    <Types xsi:type="nmeta:Class" BaseTypes="#//InterfaceClasses/Base" Name="ZigBee_SAS_APS_fragmentation" />
+    <Types xsi:type="nmeta:Class" BaseTypes="#//InterfaceClasses/Base" Name="ZigBeenetworkcontrol" />
+    <Types xsi:type="nmeta:Class" BaseTypes="#//InterfaceClasses/Base" Name="ZigBeetunnelsetup" />
+    <Types xsi:type="nmeta:Class" BaseTypes="#//InterfaceClasses/Base" Name="TCP_UDPsetup" />
+    <Types xsi:type="nmeta:Class" BaseTypes="#//InterfaceClasses/Base" Name="IPv4setup" />
+    <Types xsi:type="nmeta:Class" BaseTypes="#//InterfaceClasses/Base" Name="IPv6setup" />
+    <Types xsi:type="nmeta:Class" BaseTypes="#//InterfaceClasses/Base" Name="MACaddresssetup" />
+    <Types xsi:type="nmeta:Class" BaseTypes="#//InterfaceClasses/Base" Name="PPPsetup" />
+    <Types xsi:type="nmeta:Class" BaseTypes="#//InterfaceClasses/Base" Name="SMTPsetup" />
+    <Types xsi:type="nmeta:Class" BaseTypes="#//InterfaceClasses/Base" Name="Modemconfiguration" />
+    <Types xsi:type="nmeta:Class" BaseTypes="#//InterfaceClasses/Base" Name="Auto_answer" />
+    <Types xsi:type="nmeta:Class" BaseTypes="#//InterfaceClasses/Base" Name="Auto_connect" />
+    <Types xsi:type="nmeta:Class" BaseTypes="#//InterfaceClasses/Base" Name="GPRS_modem_setup" />
+    <Types xsi:type="nmeta:Class" BaseTypes="#//InterfaceClasses/Base" Name="GSM_Diagnostic" />
+    <Types xsi:type="nmeta:Class" BaseTypes="#//InterfaceClasses/Base" Name="IEC_twisted_pair_setup" />
+    <Types xsi:type="nmeta:Class" BaseTypes="#//InterfaceClasses/Base" Name="M_Bus_slave_port_setup" />
+    <Types xsi:type="nmeta:Class" BaseTypes="#//InterfaceClasses/Base" Name="M_Bus_client" />
+    <Types xsi:type="nmeta:Class" BaseTypes="#//InterfaceClasses/Base" Name="Wireless_Mode_Q_Channel" />
+    <Types xsi:type="nmeta:Class" BaseTypes="#//InterfaceClasses/Base" Name="M_Bus_master_port_setup" />
+    <Types xsi:type="nmeta:Class" BaseTypes="#//InterfaceClasses/Base" Name="DLMS_COSEM_Server_M_Bus_port_setup" />
+    <Types xsi:type="nmeta:Class" BaseTypes="#//InterfaceClasses/Base" Name="M_Bus_diagnostic" />
+    <Types xsi:type="nmeta:Class" BaseTypes="#//InterfaceClasses/Base" Name="Scripttable">
+      <References ReferenceType="#//InterfaceClasses/Script" IsOrdered="True" IsUnique="True" UpperBound="-1" Name="includes" />
+      <Operations IsOrdered="True" IsUnique="True" Name="execute" />
+    </Types>
+    <Types xsi:type="nmeta:Class" Name="Script" />
+    <Types xsi:type="nmeta:Class" BaseTypes="#//InterfaceClasses/Base" Name="Schedule" />
+    <Types xsi:type="nmeta:Class" BaseTypes="#//InterfaceClasses/Base" Name="Specialdaystable" />
+    <Types xsi:type="nmeta:Class" BaseTypes="#//InterfaceClasses/Base" Name="Activitycalendar" />
+    <Types xsi:type="nmeta:Class" BaseTypes="#//InterfaceClasses/Base" Name="Registermonitor" />
+    <Types xsi:type="nmeta:Class" BaseTypes="#//InterfaceClasses/Base" Name="Singleactionschedule" />
+    <Types xsi:type="nmeta:Class" BaseTypes="#//InterfaceClasses/Base" Name="Parametermonitor" />
+    <Types xsi:type="nmeta:Class" BaseTypes="#//InterfaceClasses/Base" Name="Sensormanager" />
+    <Types xsi:type="nmeta:Class" BaseTypes="#//InterfaceClasses/Base" Name="Arbitrator" />
+    <Types xsi:type="nmeta:Class" BaseTypes="#//InterfaceClasses/Base" Name="DisconnectControl">
+      <Attributes IsOrdered="True" IsUnique="True" Type="#//Datatypes/DisconnectControlState" Name="state" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="#//Datatypes/DisconnectControlTransition" Name="transition" />
+    </Types>
+    <Types xsi:type="nmeta:Class" BaseTypes="#//InterfaceClasses/Base" Name="Limiter" />
+    <Types xsi:type="nmeta:Class" BaseTypes="#//InterfaceClasses/Base" Name="Account" />
+    <Types xsi:type="nmeta:Class" BaseTypes="#//InterfaceClasses/Base" Name="Credit" />
+    <Types xsi:type="nmeta:Class" BaseTypes="#//InterfaceClasses/Base" Name="Charge" />
+    <Types xsi:type="nmeta:Class" BaseTypes="#//InterfaceClasses/Base" Name="Tokengateway" />
+    <Types xsi:type="nmeta:Class" BaseTypes="#//InterfaceClasses/Base" Name="IEC_local_port_setup" />
+    <Types xsi:type="nmeta:Class" BaseTypes="#//InterfaceClasses/Base" Name="IEC_HDLC_setup" />
+    <Types xsi:type="nmeta:Class" BaseTypes="#//InterfaceClasses/Base" Name="IEC_8802_2_LLC_Type_1" />
+    <Types xsi:type="nmeta:Class" BaseTypes="#//InterfaceClasses/Base" Name="IEC_8802_2_LLC_G3_NB" />
+    <Types xsi:type="nmeta:Class" BaseTypes="#//InterfaceClasses/Base" Name="IEC8802_2LLCType3" />
+    <Types xsi:type="nmeta:Class" BaseTypes="#//InterfaceClasses/Data" Name="Register">
+      <References ReferenceType="#//Datatypes/scal_unit_type" IsOrdered="True" IsUnique="True" LowerBound="1" Name="scaler_unit" />
+      <Operations IsOrdered="True" IsUnique="True" Name="reset" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Float" Name="value" />
+    </Types>
+    <Types xsi:type="nmeta:Class" BaseTypes="#//InterfaceClasses/Base" Name="SAPAssignment">
+      <References ReferenceType="#//LogicalDeviceName" IsOrdered="True" IsUnique="True" Name="ldnname" />
+    </Types>
+    <Types xsi:type="nmeta:Class" BaseTypes="#//InterfaceClasses/Base" Name="AssociationLN">
+      <References ReferenceType="#//InterfaceClasses/ApplicationAssociation" IsOrdered="True" IsUnique="True" LowerBound="1" Name="AA" />
+    </Types>
+    <Types xsi:type="nmeta:Class" BaseTypes="#//InterfaceClasses/Base" Name="Data" />
+    <Types xsi:type="nmeta:Class" BaseTypes="#//InterfaceClasses/Register" Name="ExtendedRegister" />
+    <Types xsi:type="nmeta:Class" BaseTypes="#//InterfaceClasses/ExtendedRegister" Name="DemandRegister">
+      <Operations IsOrdered="True" IsUnique="True" Name="calculate_current_average_value" />
+      <Operations IsOrdered="True" IsUnique="True" Name="calculate_last_average_value" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Integer" Name="number_of_periods" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Integer" Name="period" />
+    </Types>
+    <Types xsi:type="nmeta:Class" BaseTypes="#//InterfaceClasses/Base" Name="RegisterActivation" />
+    <Types xsi:type="nmeta:Class" BaseTypes="#//InterfaceClasses/Base" Name="Profilegeneric" />
+    <Types xsi:type="nmeta:Class" Name="Base">
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//String" Name="logical_name" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//String" Name="OBIScode" />
+    </Types>
+    <Types xsi:type="nmeta:Class" BaseTypes="#//InterfaceClasses/Base" Name="Utilitytables" />
+    <Types xsi:type="nmeta:Class" BaseTypes="#//InterfaceClasses/Base" Name="Registertable" />
+    <Types xsi:type="nmeta:Class" BaseTypes="#//InterfaceClasses/Base" Name="Compactdata">
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//String" Name="compact_buffer" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//String" Name="template_id" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//String" Name="template_description" />
+    </Types>
+    <Types xsi:type="nmeta:Class" BaseTypes="#//InterfaceClasses/Base" Name="Statusmapping" />
+    <Types xsi:type="nmeta:Class" BaseTypes="#//InterfaceClasses/Base" Name="AssociationSN" />
+    <Types xsi:type="nmeta:Class" BaseTypes="#//InterfaceClasses/Base" Name="Imagetransfer" />
+    <Types xsi:type="nmeta:Class" BaseTypes="#//InterfaceClasses/Base" Name="Dataprotection" />
+    <Types xsi:type="nmeta:Class" BaseTypes="#//InterfaceClasses/Base" Name="Pushsetup" />
+    <Types xsi:type="nmeta:Class" BaseTypes="#//InterfaceClasses/Base" Name="Securitysetup" />
+    <Types xsi:type="nmeta:Class" BaseTypes="#//InterfaceClasses/Base" Name="Clock">
+      <Operations IsOrdered="True" IsUnique="True" Name="adjust_to_quarter" />
+      <Operations IsOrdered="True" IsUnique="True" Name="adjust_to_measuring_period" />
+      <Operations IsOrdered="True" IsUnique="True" Name="adjust_to_minute" />
+      <Operations IsOrdered="True" IsUnique="True" Name="adjust_to_present_time" />
+      <Operations IsOrdered="True" IsUnique="True" Name="present_adjusting_time" />
+      <Operations IsOrdered="True" IsUnique="True" Name="shift_time" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//String" Name="time" />
+      <Attributes IsOrdered="True" IsUnique="True" UpperBound="720" Type="http://nmf.codeplex.com/nmeta/#//Long" Name="time_zone" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//String" Name="status" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//String" Name="daylight_savings_begin" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//String" Name="daylight_savings_end" />
+      <Attributes IsOrdered="True" IsUnique="True" UpperBound="120" Type="http://nmf.codeplex.com/nmeta/#//Integer" Name="daylight_savings_deviation" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Boolean" Name="daylight_savings_enabled" />
+    </Types>
+    <Types xsi:type="nmeta:Class" Name="ApplicationAssociation" />
+  </ChildNamespaces>
+  <ChildNamespaces Uri="objects" Prefix="objects" Name="COSEMObjects">
+    <Types xsi:type="nmeta:Class" BaseTypes="#//InterfaceClasses/Data" Name="ProgramEntries">
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//String" Name="ActiveFirmwareIdentifier" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//String" Name="ActiveFirmwareVersion" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//String" Name="ActiveFirmwareSignature" />
+    </Types>
+    <Types xsi:type="nmeta:Class" BaseTypes="#//InterfaceClasses/Data" Name="BillingPeriodValues">
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Integer" Name="BillingPeriodCounter" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Integer" Name="NumberAvailableBillingPeriods" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//String" Name="TimestampRecentBillingPeriod" />
+    </Types>
+    <Types xsi:type="nmeta:Class" BaseTypes="#//InterfaceClasses/Data" Name="TimeEntries">
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//String" Name="LocalTime" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//String" Name="LocalDate" />
+    </Types>
+    <Types xsi:type="nmeta:Class" BaseTypes="#//InterfaceClasses/Clock" Name="ClockObject">
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//String" Name="Time" />
+    </Types>
+    <Types xsi:type="nmeta:Class" BaseTypes="#//InterfaceClasses/Data" Name="UNIXClock">
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//String" Name="value" />
+    </Types>
+    <Types xsi:type="nmeta:Class" BaseTypes="#//InterfaceClasses/Modemconfiguration" Name="ModemConfigurationObject" />
+    <Types xsi:type="nmeta:Class" BaseTypes="#//InterfaceClasses/Auto_connect" Name="AutoConnectObject">
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Boolean" Name="Connection" />
+    </Types>
+    <Types xsi:type="nmeta:Class" BaseTypes="#//InterfaceClasses/Auto_answer" Name="AutoAnswerObject">
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Boolean" Name="Answer" />
+    </Types>
+    <Types xsi:type="nmeta:Class" BaseTypes="#//InterfaceClasses/Scripttable" Name="ScriptTable">
+      <References ReferenceType="#//COSEMObjects/GlobalMeterReset" IsOrdered="True" IsUnique="True" Name="globalMeterReset" />
+      <References ReferenceType="#//COSEMObjects/MDIReset" IsOrdered="True" IsUnique="True" Name="MDIReset" />
+      <References ReferenceType="#//COSEMObjects/Tariffication" IsOrdered="True" IsUnique="True" Name="Tariffication" />
+      <References ReferenceType="#//COSEMObjects/ActivateTestMode" IsOrdered="True" IsUnique="True" Name="AcitvateTest" />
+      <References ReferenceType="#//COSEMObjects/ActivateNormalMode" IsOrdered="True" IsUnique="True" Name="ActivateNormal" />
+      <References ReferenceType="#//COSEMObjects/SetOutputSignal" IsOrdered="True" IsUnique="True" Name="SetOutput" />
+      <References ReferenceType="#//COSEMObjects/SwitchOpticalTestOutput" IsOrdered="True" IsUnique="True" Name="SwitchOptical" />
+      <References ReferenceType="#//COSEMObjects/PowerQualityMeasurementManagement" IsOrdered="True" IsUnique="True" Name="PowerQuality" />
+      <References ReferenceType="#//COSEMObjects/DisconnectControl" IsOrdered="True" IsUnique="True" Name="Disconnect" />
+      <References ReferenceType="#//COSEMObjects/ImageActivation" IsOrdered="True" IsUnique="True" Name="Image" />
+      <References ReferenceType="#//COSEMObjects/Push" IsOrdered="True" IsUnique="True" Name="Push" />
+      <References ReferenceType="#//COSEMObjects/Broadcast" IsOrdered="True" IsUnique="True" Name="Broadcast" />
+    </Types>
+    <Types xsi:type="nmeta:Class" BaseTypes="#//InterfaceClasses/Scripttable" Name="GlobalMeterReset" />
+    <Types xsi:type="nmeta:Class" BaseTypes="#//InterfaceClasses/Scripttable" Name="MDIReset" />
+    <Types xsi:type="nmeta:Class" BaseTypes="#//InterfaceClasses/Scripttable" Name="Tariffication" />
+    <Types xsi:type="nmeta:Class" BaseTypes="#//InterfaceClasses/Scripttable" Name="ActivateTestMode" />
+    <Types xsi:type="nmeta:Class" BaseTypes="#//InterfaceClasses/Scripttable" Name="ActivateNormalMode" />
+    <Types xsi:type="nmeta:Class" BaseTypes="#//InterfaceClasses/Scripttable" Name="SetOutputSignal" />
+    <Types xsi:type="nmeta:Class" BaseTypes="#//InterfaceClasses/Scripttable" Name="SwitchOpticalTestOutput" />
+    <Types xsi:type="nmeta:Class" BaseTypes="#//InterfaceClasses/Scripttable" Name="PowerQualityMeasurementManagement" />
+    <Types xsi:type="nmeta:Class" BaseTypes="#//InterfaceClasses/Scripttable" Name="DisconnectControl" />
+    <Types xsi:type="nmeta:Class" BaseTypes="#//InterfaceClasses/Scripttable" Name="ImageActivation" />
+    <Types xsi:type="nmeta:Class" BaseTypes="#//InterfaceClasses/Scripttable" Name="Push" />
+    <Types xsi:type="nmeta:Class" BaseTypes="#//InterfaceClasses/Scripttable" Name="Broadcast" />
+    <Types xsi:type="nmeta:Class" BaseTypes="#//InterfaceClasses/Specialdaystable" Name="SpecialDays" />
+    <Types xsi:type="nmeta:Class" BaseTypes="#//InterfaceClasses/Schedule" Name="ScheduleObject" />
+    <Types xsi:type="nmeta:Class" BaseTypes="#//InterfaceClasses/Activitycalendar" Name="ActivityCalendarObject" />
+    <Types xsi:type="nmeta:Class" BaseTypes="#//InterfaceClasses/RegisterActivation" Name="RegisterActivationObject" />
+    <Types xsi:type="nmeta:Class" BaseTypes="#//InterfaceClasses/Singleactionschedule" Name="SingleActionScheduleObject">
+      <References ReferenceType="#//COSEMObjects/DisconnectControlSchedule" IsOrdered="True" IsUnique="True" Name="disconnect" />
+      <References ReferenceType="#//COSEMObjects/EndOfBillingPeriodSchedule" IsOrdered="True" IsUnique="True" Name="BillingPeriodEnd" />
+      <References ReferenceType="#//COSEMObjects/ImageActivationSchedule" IsOrdered="True" IsUnique="True" Name="Image" />
+      <References ReferenceType="#//COSEMObjects/OutputControlSchedule" IsOrdered="True" IsUnique="True" Name="Output" />
+      <References ReferenceType="#//COSEMObjects/PushSchedule" IsOrdered="True" IsUnique="True" Name="Push" />
+    </Types>
+    <Types xsi:type="nmeta:Class" BaseTypes="#//InterfaceClasses/Singleactionschedule" Name="DisconnectControlSchedule" />
+    <Types xsi:type="nmeta:Class" BaseTypes="#//InterfaceClasses/Singleactionschedule" Name="EndOfBillingPeriodSchedule" />
+    <Types xsi:type="nmeta:Class" BaseTypes="#//InterfaceClasses/Singleactionschedule" Name="ImageActivationSchedule" />
+    <Types xsi:type="nmeta:Class" BaseTypes="#//InterfaceClasses/Singleactionschedule" Name="OutputControlSchedule" />
+    <Types xsi:type="nmeta:Class" BaseTypes="#//InterfaceClasses/Singleactionschedule" Name="PushSchedule" />
+    <Types xsi:type="nmeta:Class" BaseTypes="#//InterfaceClasses/Registermonitor" Name="RegisterMonitorObject" />
+    <Types xsi:type="nmeta:Class" BaseTypes="#//InterfaceClasses/Registermonitor" Name="AlarmMonitor" />
+    <Types xsi:type="nmeta:Class" BaseTypes="#//InterfaceClasses/Parametermonitor" Name="ParameterMonitorObject" />
+    <Types xsi:type="nmeta:Class" BaseTypes="#//InterfaceClasses/Limiter" Name="LimiterObject" />
+    <Types xsi:type="nmeta:Class" BaseTypes="#//InterfaceClasses/Account" Name="AccountObject" />
+    <Types xsi:type="nmeta:Class" BaseTypes="#//InterfaceClasses/Credit" Name="CreditObject" />
+    <Types xsi:type="nmeta:Class" BaseTypes="#//InterfaceClasses/Charge" Name="ChargeObject" />
+    <Types xsi:type="nmeta:Class" BaseTypes="#//InterfaceClasses/Tokengateway" Name="TokenGatewayObject" />
+    <Types xsi:type="nmeta:Class" BaseTypes="#//InterfaceClasses/Data" Name="MaxCreditLimit">
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Double" Name="value" />
+    </Types>
+    <Types xsi:type="nmeta:Class" BaseTypes="#//InterfaceClasses/Data" Name="MaxVendLimit">
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Double" Name="value" />
+    </Types>
+    <Types xsi:type="nmeta:Class" BaseTypes="#//InterfaceClasses/IEC_local_port_setup" Name="IECOpticalPortSetup" />
+    <Types xsi:type="nmeta:Class" BaseTypes="#//InterfaceClasses/IEC_local_port_setup" Name="IECElectricalPortSetup" />
+    <Types xsi:type="nmeta:Class" BaseTypes="#//InterfaceClasses/Profilegeneric" Name="StandardReadout">
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//String" Name="GeneralLocalPortReadout" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//String" Name="GeneralDisplayReadout" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//String" Name="AlternateDisplayReadout" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//String" Name="ServiceDisplayReadout" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//String" Name="ListConfigMeterData" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//String" Name="AdditionalReadout" />
+    </Types>
+    <Types xsi:type="nmeta:Class" BaseTypes="#//InterfaceClasses/Data" Name="StandardReadoutParam" />
+    <Types xsi:type="nmeta:Class" BaseTypes="#//InterfaceClasses/IEC_HDLC_setup" Name="IECHDLCSetupObject" />
+    <Types xsi:type="nmeta:Class" BaseTypes="#//InterfaceClasses/IEC_twisted_pair_setup" Name="IECTwistedPairSetupObject" />
+    <Types xsi:type="nmeta:Class" BaseTypes="#//InterfaceClasses/MACaddresssetup" Name="IECTwistedPairMACAddressSetup" />
+    <Types xsi:type="nmeta:Class" BaseTypes="#//InterfaceClasses/Data" Name="IECTwistedPairFatalErrorRegister" />
+    <Types xsi:type="nmeta:Class" BaseTypes="#//InterfaceClasses/Profilegeneric" Name="IEC62056_3_1ShortReadout" />
+    <Types xsi:type="nmeta:Class" BaseTypes="#//InterfaceClasses/Profilegeneric" Name="IEC62056_3_1LongReadout" />
+    <Types xsi:type="nmeta:Class" BaseTypes="#//InterfaceClasses/Profilegeneric" Name="IEC_62056_3_1AlternateReadoutProfile" />
+    <Types xsi:type="nmeta:Class" BaseTypes="#//InterfaceClasses/M_Bus_slave_port_setup" Name="M_BusSlavePortSetupObject" />
+    <Types xsi:type="nmeta:Class" BaseTypes="#//InterfaceClasses/M_Bus_client" Name="M_BusClientObject" />
+    <Types xsi:type="nmeta:Class" BaseTypes="#//InterfaceClasses/ExtendedRegister" Name="M_BusValue" />
+    <Types xsi:type="nmeta:Class" BaseTypes="#//InterfaceClasses/Profilegeneric" Name="M_BusProfileGeneric" />
+    <Types xsi:type="nmeta:Class" BaseTypes="#//InterfaceClasses/DisconnectControl" Name="M_BusDisconnectControl" />
+    <Types xsi:type="nmeta:Class" BaseTypes="#//InterfaceClasses/Profilegeneric" Name="M_BusControlLog" />
+    <Types xsi:type="nmeta:Class" BaseTypes="#//InterfaceClasses/M_Bus_master_port_setup" Name="M_BusMasterPortSetupObject" />
+    <Types xsi:type="nmeta:Class" BaseTypes="#//InterfaceClasses/Wireless_Mode_Q_Channel" Name="WirelessModeQChannelObject" />
+    <Types xsi:type="nmeta:Class" BaseTypes="#//InterfaceClasses/DLMS_COSEM_Server_M_Bus_port_setup" Name="DLMS_COSEMServerM_BusPortSetupObject" />
+    <Types xsi:type="nmeta:Class" BaseTypes="#//InterfaceClasses/M_Bus_diagnostic" Name="M_BusDiagnosticObject" />
+    <Types xsi:type="nmeta:Class" BaseTypes="#//InterfaceClasses/TCP_UDPsetup" Name="TCP_UDPSetupObject" />
+    <Types xsi:type="nmeta:Class" BaseTypes="#//InterfaceClasses/IPv4setup" Name="IPv4SetupObject" />
+    <Types xsi:type="nmeta:Class" BaseTypes="#//InterfaceClasses/MACaddresssetup" Name="MACAddressSetupObject" />
+    <Types xsi:type="nmeta:Class" BaseTypes="#//InterfaceClasses/PPPsetup" Name="PPPSetupObject" />
+    <Types xsi:type="nmeta:Class" BaseTypes="#//InterfaceClasses/GPRS_modem_setup" Name="GPRSModemSetupObject" />
+    <Types xsi:type="nmeta:Class" BaseTypes="#//InterfaceClasses/SMTPsetup" Name="SMTPSetupObject" />
+    <Types xsi:type="nmeta:Class" BaseTypes="#//InterfaceClasses/GSM_Diagnostic" Name="GSMDiagnosticObject" />
+    <Types xsi:type="nmeta:Class" BaseTypes="#//InterfaceClasses/IPv6setup" Name="IPv6SetupObject" />
+    <Types xsi:type="nmeta:Class" BaseTypes="#//InterfaceClasses/Pushsetup" Name="PushSetupObject" />
+    <Types xsi:type="nmeta:Class" BaseTypes="#//InterfaceClasses/S_FSK_PHY_MACsetup" Name="S_FSKPhy_MACSetupObject" />
+    <Types xsi:type="nmeta:Class" BaseTypes="#//InterfaceClasses/S_FSKActiveinitiator" Name="S_FSKActiveInitiatorObject" />
+    <Types xsi:type="nmeta:Class" BaseTypes="#//InterfaceClasses/S_FSKMACsynctimeouts" Name="S_FSKMACSynchronizationTimeouts" />
+    <Types xsi:type="nmeta:Class" BaseTypes="#//InterfaceClasses/S_FSKMACcounters" Name="S_FSKMACCountersObject" />
+    <Types xsi:type="nmeta:Class" BaseTypes="#//InterfaceClasses/IEC61334_4_32LLCsetup" Name="IEC61334_4_32LLCSetupObject" />
+    <Types xsi:type="nmeta:Class" BaseTypes="#//InterfaceClasses/S_FSKReportingsystemlist" Name="S_FSKReportingSystemListObject" />
+    <Types xsi:type="nmeta:Class" BaseTypes="#//InterfaceClasses/IEC_8802_2_LLC_Type_1" Name="ISO_IEC8802_2LLCType1SetupObject" />
+    <Types xsi:type="nmeta:Class" BaseTypes="#//InterfaceClasses/IEC_8802_2_LLC_G3_NB" Name="ISO_IEC8802_2LLCType2Setup" />
+    <Types xsi:type="nmeta:Class" BaseTypes="#//InterfaceClasses/IEC8802_2LLCType3" Name="ISO_IEC8802_2LLCType3Setup" />
+    <Types xsi:type="nmeta:Class" BaseTypes="#//InterfaceClasses/t61334_32_LLC_SSCS_setup" Name="t61334_4_32LLCSSCSsetupobject" />
+    <Types xsi:type="nmeta:Class" BaseTypes="#//InterfaceClasses/PRIME_NB_OFDM_PLC_Phy_layer_counters" Name="PRIME_NB_OFDM_PLC_Physical_layer_counters_object" />
+    <Types xsi:type="nmeta:Class" BaseTypes="#//InterfaceClasses/PRIME_NB_OFDM_PLC_MACsetup" Name="PRIME_NB_OFDM_PLC_MAC_setup_object" />
+    <Types xsi:type="nmeta:Class" BaseTypes="#//InterfaceClasses/PRIME_NB_OFDM_PLC_MAC_functionalparams" Name="PRIME_NB_OFDM_PLC_MAC_functional_parameters_object" />
+    <Types xsi:type="nmeta:Class" BaseTypes="#//InterfaceClasses/PRIME_NB_OFDM_PLC_MAC_counters" Name="PRIME_NB_OFDM_PLC_MAC_counters_object" />
+    <Types xsi:type="nmeta:Class" BaseTypes="#//InterfaceClasses/PRIME_NB_OFDM_PLC_MACnetworkadmindata" Name="PRIME_NB_OFDM_PLC_MAC_network_administration_data_object" />
+    <Types xsi:type="nmeta:Class" BaseTypes="#//InterfaceClasses/MACaddresssetup" Name="PRIME_NB_OFDM_PLC_MAC_address_setup" />
+    <Types xsi:type="nmeta:Class" BaseTypes="#//InterfaceClasses/PRIME_NB_OFDM_PLC_Application_identification" Name="PRIME_NB_OFDM_PLC_Application_identification_object" />
+    <Types xsi:type="nmeta:Class" BaseTypes="#//InterfaceClasses/G3_PLC_MAC_layer_counters" Name="G3_PLC_MAC_layer_counters_object" />
+    <Types xsi:type="nmeta:Class" BaseTypes="#//InterfaceClasses/G3_PLC_MAC_setup" Name="G3_PLC_MAC_setup_object" />
+    <Types xsi:type="nmeta:Class" BaseTypes="#//InterfaceClasses/G3_PLC_6LoWPAN" Name="G3_PLC_6LoWPAN_adaptation_layer_setup_object" />
+    <Types xsi:type="nmeta:Class" BaseTypes="#//InterfaceClasses/ZigBee_SAS_startup" Name="ZigBee_SAS_startup_object" />
+    <Types xsi:type="nmeta:Class" BaseTypes="#//InterfaceClasses/ZigBee_SAS_join" Name="ZigBee_SAS_join_object" />
+    <Types xsi:type="nmeta:Class" BaseTypes="#//InterfaceClasses/ZigBee_SAS_APS_fragmentation" Name="ZigBee_SAS_APS_fragmentation_object" />
+    <Types xsi:type="nmeta:Class" BaseTypes="#//InterfaceClasses/ZigBeenetworkcontrol" Name="ZigBee_network_control_object" />
+    <Types xsi:type="nmeta:Class" BaseTypes="#//InterfaceClasses/ZigBeetunnelsetup" Name="ZigBee_tunnel_setup_object" />
+    <Types xsi:type="nmeta:Class" BaseTypes="#//InterfaceClasses/AssociationLN" Name="CurrentAssociation" />
+    <Types xsi:type="nmeta:Class" BaseTypes="#//InterfaceClasses/SAPAssignment" Name="SAPAssignmentCurrent" />
+    <Types xsi:type="nmeta:Class" BaseTypes="#//InterfaceClasses/Securitysetup" Name="SecuritySetupObject" />
+    <Types xsi:type="nmeta:Class" BaseTypes="#//InterfaceClasses/Data" Name="InvocationCounter">
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Integer" Name="value" />
+    </Types>
+    <Types xsi:type="nmeta:Class" BaseTypes="#//InterfaceClasses/Dataprotection" Name="DataProtectionObject" />
+    <Types xsi:type="nmeta:Class" BaseTypes="#//InterfaceClasses/Imagetransfer" Name="ImageTransferObject" />
+    <Types xsi:type="nmeta:Class" BaseTypes="#//InterfaceClasses/Utilitytables" Name="UtilitiesTableObject">
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//String" Name="Standard" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//String" Name="Manufacturer" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//String" Name="StdPending" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//String" Name="MfgPending" />
+    </Types>
+    <Types xsi:type="nmeta:Class" BaseTypes="#//InterfaceClasses/Compactdata" Name="CompactDataObject" />
+    <Types xsi:type="nmeta:Class" BaseTypes="#//InterfaceClasses/Data" Name="DeviceID">
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//String" Name="value" />
+    </Types>
+    <Types xsi:type="nmeta:Class" BaseTypes="#//InterfaceClasses/Data" Name="MeteringPointID">
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//String" Name="value" />
+    </Types>
+    <Types xsi:type="nmeta:Class" BaseTypes="#//InterfaceClasses/Data" Name="ParameterChangesObject">
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Integer" Name="NumberConfigProgramChanges" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//DateTime" Name="DateLastConfigChange" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//DateTime" Name="DateLastSwitchChange" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//DateTime" Name="DateLastRippleControlChange" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//String" Name="StatusSecuritySwitches" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//DateTime" Name="DateLastCalibration" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//DateTime" Name="DateNextConfig" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//DateTime" Name="DateActivationPassivCalendar" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Integer" Name="NumberProtectedConfigChanges" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//DateTime" Name="DateLastProtectedConfigChange" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//DateTime" Name="DateLastClockSynch" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//DateTime" Name="DateLastFirmwareActivation" />
+    </Types>
+    <Types xsi:type="nmeta:Class" BaseTypes="#//InterfaceClasses/Data" Name="I_O_control_signal_objects_contentsmanufacturerspecific">
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//String" Name="value" />
+    </Types>
+    <Types xsi:type="nmeta:Class" BaseTypes="#//InterfaceClasses/Statusmapping" Name="I_O_control_signal_objects_contentsmappedtoareferencetable" />
+    <Types xsi:type="nmeta:Class" BaseTypes="#//InterfaceClasses/Profilegeneric" Name="I_O_control_signal_objects_global" />
+    <Types xsi:type="nmeta:Class" BaseTypes="#//InterfaceClasses/DisconnectControl" Name="Disconnectcontrolobject" />
+    <Types xsi:type="nmeta:Class" BaseTypes="#//InterfaceClasses/Arbitrator" Name="GeneralpurposeArbitrator" />
+    <Types xsi:type="nmeta:Class" BaseTypes="#//InterfaceClasses/Data" Name="IOControlSignalsManufacturer">
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//String" Name="value" />
+    </Types>
+    <Types xsi:type="nmeta:Class" BaseTypes="#//InterfaceClasses/Statusmapping" Name="IOControlSignalsMapped" />
+    <Types xsi:type="nmeta:Class" BaseTypes="#//InterfaceClasses/Profilegeneric" Name="IOControlSignalsGlobal" />
+    <Types xsi:type="nmeta:Class" BaseTypes="#//InterfaceClasses/DisconnectControl" Name="DisconnectControlObject" />
+    <Types xsi:type="nmeta:Class" BaseTypes="#//InterfaceClasses/Arbitrator" Name="GeneralPurposeArbitrator" />
+    <Types xsi:type="nmeta:Class" BaseTypes="#//InterfaceClasses/Data" Name="InternalControlManu">
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//String" Name="value" />
+    </Types>
+    <Types xsi:type="nmeta:Class" BaseTypes="#//InterfaceClasses/Statusmapping" Name="InternalControlMapped" />
+    <Types xsi:type="nmeta:Class" BaseTypes="#//InterfaceClasses/Profilegeneric" Name="InternalControlGlobal" />
+    <Types xsi:type="nmeta:Class" BaseTypes="#//InterfaceClasses/Data" Name="InternalOperatingStatusManu" />
+    <Types xsi:type="nmeta:Class" BaseTypes="#//InterfaceClasses/Statusmapping" Name="InternalOperatingStatusMapped" />
+    <Types xsi:type="nmeta:Class" BaseTypes="#//InterfaceClasses/Registertable" Name="InternalOperatingStatusGlobal" />
+    <Types xsi:type="nmeta:Class" BaseTypes="#//InterfaceClasses/Data" Name="StatusRegisterManu" />
+    <Types xsi:type="nmeta:Class" BaseTypes="#//InterfaceClasses/Statusmapping" Name="StatusRegisterMapped" />
+    <Types xsi:type="nmeta:Class" BaseTypes="#//InterfaceClasses/Data" Name="ErrorRegisterObject">
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//String" Name="value" />
+    </Types>
+    <Types xsi:type="nmeta:Class" BaseTypes="#//InterfaceClasses/Profilegeneric" Name="ErrorProfileObject" />
+    <Types xsi:type="nmeta:Class" BaseTypes="#//InterfaceClasses/Registertable" Name="ErrorTableObject" />
+    <Types xsi:type="nmeta:Class" BaseTypes="#//InterfaceClasses/Data" Name="AlarmRegisterObject">
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//String" Name="value" />
+    </Types>
+    <Types xsi:type="nmeta:Class" BaseTypes="#//InterfaceClasses/Data" Name="AlarmFilterObject">
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//String" Name="value" />
+    </Types>
+    <Types xsi:type="nmeta:Class" BaseTypes="#//InterfaceClasses/Data" Name="AlarmDescriptorObject">
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//String" Name="value" />
+    </Types>
+    <Types xsi:type="nmeta:Class" BaseTypes="#//InterfaceClasses/Profilegeneric" Name="EventLog" />
+    <Types xsi:type="nmeta:Class" BaseTypes="#//InterfaceClasses/Data" Name="ElectricityID">
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//String" Name="value" />
+    </Types>
+    <Types xsi:type="nmeta:Class" BaseTypes="#//InterfaceClasses/Data" Name="ElectricityProgramEntries">
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//String" Name="Activefirmwareidentifier" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Integer" Name="Parameterrecordnumber" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Integer" Name="Timeswitchprogramnumber" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Integer" Name="RCRprogramnumber" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//String" Name="MeterconnectiondiagramID" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//String" Name="Passivecalendarname" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//String" Name="Activefirmwaresignature" />
+    </Types>
+    <Types xsi:type="nmeta:Class" BaseTypes="#//InterfaceClasses/Data" Name="OutputPulseValues_constants">
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Double" Name="ActiveenergymetrologicalLED" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Double" Name="ReactiveenergymetrologicalLED" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Double" Name="ApparentenergymetrologicalLED" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Double" Name="Activeenergyoutputpulse" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Double" Name="Reactiveenergyoutputpulse" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Double" Name="Apparentenergyoutputpulse" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Double" Name="Volt_squaredhoursmetrologicalLED" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Double" Name="Ampere_squaredhoursmetrologicalLED" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Double" Name="Volt_squaredhoursoutputpulse" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Double" Name="Ampere_squaredhoursoutputpulse" />
+    </Types>
+    <Types xsi:type="nmeta:Class" BaseTypes="#//InterfaceClasses/Data" Name="ReadingFactorAndCT_VTratio">
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Double" Name="Readingfactorforpower" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Double" Name="Readingfactorforenergy" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Integer" Name="Transformerratio_currentzähler" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Integer" Name="Transformerratio_voltagezähler" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Integer" Name="Overalltransformerratiozähler" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Integer" Name="Transformerratio_currentnenner" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Integer" Name="Transformerratio_voltagenenner" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Integer" Name="Overalltransformer_rationenner" />
+    </Types>
+    <Types xsi:type="nmeta:Class" BaseTypes="#//InterfaceClasses/Data" Name="ElectricityNominalValues">
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Double" Name="Voltage" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Double" Name="Nominalcurrent" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Double" Name="Frequency" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Double" Name="Maximumcurrent" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Double" Name="Reference_voltage_for_power_quality_measurement" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Double" Name="Reference_voltage_for_aux_power_supply" />
+    </Types>
+    <Types xsi:type="nmeta:Class" BaseTypes="#//InterfaceClasses/Data" Name="InputPulseValuesOrConstants">
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Double" Name="ActiveEnergy" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Double" Name="Reactive_energy" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Double" Name="Apparent_energy" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Double" Name="Volt_squared_hours" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Double" Name="Ampere_squared_hours" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Double" Name="Unitless_quantities" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Double" Name="Active_energy_export" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Double" Name="Reactive_energy_export" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Double" Name="Apparent_energy_export" />
+    </Types>
+    <Types xsi:type="nmeta:Class" BaseTypes="#//InterfaceClasses/Data" Name="MeasurementPeriod_recordingInterval_billingPeriodDuration">
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//String" Name="Measurement_period_1_for_averaging_scheme_1" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//String" Name="Measurement_period_2_for_averagingscheme_2" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//String" Name="Measurement_period_3_for_instantaneous_value" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//String" Name="Measurement_period_4_for_test_value" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//String" Name="Recording_interval_1_for_loadprofile" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//String" Name="Recording_interval_2_for_loadprofile" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//String" Name="Billingperiod" />
+    </Types>
+    <Types xsi:type="nmeta:Class" BaseTypes="#//InterfaceClasses/Data" Name="ElectricityTimeEntries">
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//String" Name="Time_expired_since_last_end_of_billing_period" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//String" Name="Localtime" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//String" Name="Localdate" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//String" Name="Weekday" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//String" Name="Timeoflastreset" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//String" Name="Dateoflastreset" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//String" Name="Outputpulseduration" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//String" Name="Clocksynchronizationwindow" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//String" Name="Clock_synchronization_method" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//String" Name="Clock_time_shift_limit" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//String" Name="Billing_period_reset_lockout_time" />
+    </Types>
+    <Types xsi:type="nmeta:Class" BaseTypes="#//InterfaceClasses/Data" Name="Coefficients">
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Double" Name="Transformer_magnetic_losses" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Double" Name="Transformer_iron_losses" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Double" Name="Line_resistance_losses" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Double" Name="Line_reactance_losses" />
+    </Types>
+    <Types xsi:type="nmeta:Class" BaseTypes="#//InterfaceClasses/Data" Name="MeasurementMethods">
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//String" Name="Algorithm_for_active_power_measurement" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//String" Name="Algorithm_for_active_energy_management" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//String" Name="Algorithm_for_reactive_power_measurement" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//String" Name="Algorithm_for_reactive_energy_measurement" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//String" Name="Algorithm_for_apparent_power_measurement" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//String" Name="Algorithm_for_apparent_energy_measurement" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//String" Name="Algorithm_for_power_factor_calculation" />
+    </Types>
+    <Types xsi:type="nmeta:Class" BaseTypes="#//InterfaceClasses/Data" Name="ElectricityMeteringPointID">
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//String" Name="value" />
+    </Types>
+    <Types xsi:type="nmeta:Class" BaseTypes="#//InterfaceClasses/Data" Name="ElectricityRelatedStatusData">
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//String" Name="Status_information_missing_voltage" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//String" Name="Status_information_missing_current" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//String" Name="Status_information_current_without_voltage" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//String" Name="Status_information_auxiliary_power_supply" />
+    </Types>
+    <Types xsi:type="nmeta:Class" BaseTypes="#//InterfaceClasses/Statusmapping" Name="ElectricityRelatedStatusDataMapped" />
+    <Types xsi:type="nmeta:Class" BaseTypes="#//InterfaceClasses/Data" Name="BatteryEntries">
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Integer" Name="Battery_use_time_counter" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//String" Name="Battery_charge_display" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//String" Name="Date_of_next_battery_change" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Double" Name="Battery_voltage" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Double" Name="Battery_initial_capacity" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//String" Name="Battery_installation_date_and_time" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//String" Name="Battery_estimated_remaining_use_time" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Integer" Name="Aux_supply_use_time_counter" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Double" Name="Aux_voltage" />
+    </Types>
+    <Types xsi:type="nmeta:Class" BaseTypes="#//InterfaceClasses/Data" Name="PowerFailureMonitoring">
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Integer" Name="FailuresAllPhases" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Integer" Name="FailuresL1" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Integer" Name="FailuresL2" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Integer" Name="FailuresL3" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Integer" Name="FailuresAny" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//String" Name="Auxiliarysupply" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Integer" Name="LongFailsAll" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Integer" Name="LongFailsL1" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Integer" Name="LongFailsL2" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Integer" Name="LongFailsL3" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Integer" Name="LongFailsAny" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//String" Name="TimeAll" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//String" Name="TimeL1" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//String" Name="TimeL2" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//String" Name="TimeL3" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//String" Name="TimeAny" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Integer" Name="DurationAll" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Integer" Name="DurationL1" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Integer" Name="DurationL2" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Integer" Name="DurationL3" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Integer" Name="DurationAny" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Integer" Name="Time_threshold_long_powerfailure" />
+    </Types>
+    <Types xsi:type="nmeta:Class" BaseTypes="#//InterfaceClasses/Data" Name="OperatingTime">
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//String" Name="Timeofoperation" />
+    </Types>
+    <Types xsi:type="nmeta:Class" BaseTypes="#//InterfaceClasses/Register" Name="EnvironmentRelatedParameters">
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Double" Name="ambient_temperature" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Double" Name="Ambient_pressure" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Double" Name="Relative_humidity" />
+    </Types>
+    <Types xsi:type="nmeta:Class" BaseTypes="#//InterfaceClasses/Register" Name="StatusRegister" />
+    <Types xsi:type="nmeta:Class" BaseTypes="#//InterfaceClasses/Data" Name="EventCode">
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//String" Name="event_code_object" />
+    </Types>
+    <Types xsi:type="nmeta:Class" BaseTypes="#//InterfaceClasses/Data" Name="CommunicationPortLogParameters">
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//String" Name="Reserved" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//String" Name="Number_connections" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//String" Name="Communication_port_parameter" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//String" Name="GSM_field_strength" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//String" Name="Communicationaddress" />
+    </Types>
+    <Types xsi:type="nmeta:Class" BaseTypes="#//InterfaceClasses/Data" Name="ConsumerMessage">
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//String" Name="Consumer_message_via_local_consumer_information_port" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//String" Name="Consumer_message_via_meter_display" />
+    </Types>
+    <Types xsi:type="nmeta:Class" BaseTypes="#//InterfaceClasses/Data" Name="CurrentlyActiveTariff">
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//String" Name="value" />
+    </Types>
+    <Types xsi:type="nmeta:Class" BaseTypes="#//InterfaceClasses/Data" Name="EventCounterObject">
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Integer" Name="value" />
+    </Types>
+    <Types xsi:type="nmeta:Class" BaseTypes="#//InterfaceClasses/Data" Name="ProfileEntryDigitalSignatureObject">
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//String" Name="value" />
+    </Types>
+    <Types xsi:type="nmeta:Class" BaseTypes="#//InterfaceClasses/Data" Name="MeterTemperEventRelatedObject">
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Integer" Name="Meter_open_event_counter" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//String" Name="Meter_open_event_timestamp" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Integer" Name="Meter_open_event_duration" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Integer" Name="Meter_open_event_cumulative_duration" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Integer" Name="Terminal_cover_open_event_counter" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//String" Name="Terminal_cover_open_event_time" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Integer" Name="Terminal_cover_open_event_duration" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Integer" Name="Terminal_cover_open_event_cumulative_duration" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Integer" Name="Tilt_event_counter" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//String" Name="Tilt_event_time" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Integer" Name="Tilt_event_duration" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Integer" Name="Tilt_event_cumulative_duration" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Integer" Name="Strong_DC_magnetic_field_event_counter" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//String" Name="Strong_DC_magnetic_field_event_time" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Integer" Name="Strong_DC_magnetic_field_event_duration" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Integer" Name="Strong_DC_magnetic_field_event_cumulative_duration" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Integer" Name="Supply_control_switch_event_counter" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//String" Name="Supply_control_switch_event_time" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Integer" Name="Supply_control_switch_event_duration" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Integer" Name="Supply_control_switch_event_cumulative_duration" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Integer" Name="Metrology_tamper_event_counter" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//String" Name="Metrology_tamper_event_time" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Integer" Name="Metrology_tamper_event_duration" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Integer" Name="Metrology_tamper_event_cumulative_duration" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Integer" Name="Communication_tamper_event_counter" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//String" Name="Communication_tamper_event_time" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Integer" Name="Communication_tamper_event_duration" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Integer" Name="Communication_tamper_event_cumulative_duration" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//String" Name="Manufacturer_specific" />
+    </Types>
+    <Types xsi:type="nmeta:Class" BaseTypes="#//InterfaceClasses/Data" Name="ElectricityValues">
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Double" Name="ActivePowerpL1" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Double" Name="ActivePowerpall" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Double" Name="ActivePowerpL2" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Double" Name="ActivePowerpL3" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Double" Name="ActivePowermL2" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Double" Name="ActivePowermL1" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Double" Name="ActivePowermL3" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Double" Name="ActivePowermall" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Double" Name="ReactivePowerpL1" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Double" Name="ReactivePowerpL2" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Double" Name="ReactivePowerpL3" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Double" Name="ReactivePowerpall" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Double" Name="ReactivePowermL1" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Double" Name="ReactivePowermL2" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Double" Name="ReactivePowermL3" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Double" Name="ReactivePowermall" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Double" Name="ReactivePowerQIL1" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Double" Name="ReactivePowerQIL2" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Double" Name="ReactivePowerQIL3" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Double" Name="ReactivePowerQIall" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Double" Name="ReactivePowerQIIL1" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Double" Name="ReactivePowerQIIL2" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Double" Name="ReactivePowerQIIL3" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Double" Name="ReactivePowerQIIall" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Double" Name="ReactivePowerQIIIL1" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Double" Name="ReactivePowerQIIIL2" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Double" Name="ReactivePowerQIIIL3" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Double" Name="ReactivePowerQIIIall" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Double" Name="ReactivePowerQIVL1" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Double" Name="ReactivePowerQIVL2" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Double" Name="ReactivePowerQIVL3" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Double" Name="ReactivePowerQIVall" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Double" Name="ApparentPowerpL1" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Double" Name="ApparentPowerpL2" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Double" Name="ApparentPowerpL3" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Double" Name="ApparentPowerpAll" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Double" Name="ApparentPowermL1" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Double" Name="ApparentPowermL2" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Double" Name="ApparentPowermL3" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Double" Name="ApparentPowermAll" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Double" Name="CurrentL1" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Double" Name="CurrentL2" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Double" Name="CurrentL3" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Double" Name="CurrentAll" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Double" Name="VoltageL1" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Double" Name="VoltageL2" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Double" Name="VoltageL3" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Double" Name="VoltageAll" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Double" Name="PowerFactorL1" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Double" Name="PowerFactorL2" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Double" Name="PowerFactorL3" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Double" Name="PowerFactorAll" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Double" Name="SupplyFrequencyL1" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Double" Name="SupplyFrequencyL2" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Double" Name="SupplyFrequencyL3" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Double" Name="SupplyFrequencyAll" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Double" Name="ActivePowerAbsPL1" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Double" Name="ActivePowerAbsPL2" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Double" Name="ActivePowerAbsPL3" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Double" Name="ActivePowerAbsPAll" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Double" Name="ActivePowerAbsML1" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Double" Name="ActivePowerAbsML2" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Double" Name="ActivePowerAbsML3" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Double" Name="ActivePowerAbsMAll" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Double" Name="ActivePowerQIL1" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Double" Name="ActivePowerQIL2" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Double" Name="ActivePowerQIL3" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Double" Name="ActivePowerQIall" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Double" Name="ActivePowerQIIL1" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Double" Name="ActivePowerQIIL2" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Double" Name="ActivePowerQIIL3" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Double" Name="ActivePowerQIIall" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Double" Name="ActivePowerQIIIL1" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Double" Name="ActivePowerQIIIL2" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Double" Name="ActivePowerQIIIL3" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Double" Name="ActivePowerQIIIall" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Double" Name="ActivePowerQIVL1" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Double" Name="ActivePowerQIVL2" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Double" Name="ActivePowerQIVL3" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Double" Name="ActivePowerQIVall" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Double" Name="Angles" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Integer" Name="Pulses" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Double" Name="Ampere_squaredHours" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Double" Name="Volt_squaredHours" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Double" Name="NeutralCurrent" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Double" Name="NeutralVoltage" />
+    </Types>
+    <Types xsi:type="nmeta:Class" BaseTypes="#//InterfaceClasses/Data" Name="MeasurementValues">
+      <References ReferenceType="#//COSEMObjects/ElectricityValues" IsOrdered="True" IsUnique="True" LowerBound="1" Name="calculations" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Double" Name="Billing_period_average" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Double" Name="Cumulative_minimum" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Double" Name="Cumulative_maximum" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Double" Name="Minimum" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Double" Name="Current_average" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Double" Name="Last_average" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Double" Name="Maximum" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Double" Name="Instantaneous_value" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Double" Name="Time_integral" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Double" Name="Under_limit_threshold" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Double" Name="Under_limit_occurrence_counter" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Double" Name="Under_limit_duration" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Double" Name="Under_limit_magnitude" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Double" Name="Over_limit_threshold" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Double" Name="Over_limit_occurrence_counter" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Double" Name="Over_limit_duration" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Double" Name="Over_limit_magnitude" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Boolean" Name="Missing_threshold" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Boolean" Name="Missing_occurrence_counter" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Boolean" Name="Missing_duration" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Boolean" Name="Missing_magnitude" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//String" Name="Time_threshold_for_under_limit" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//String" Name="Time_threshold_for_over_limit" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//String" Name="Time_threshold_for_missing_magnitude" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Double" Name="Contracted_value" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Double" Name="Minimum_for_recording_interval" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Double" Name="Maximum_for_recording_interval" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Double" Name="Test_average" />
+    </Types>
+    <Types xsi:type="nmeta:Class" BaseTypes="#//InterfaceClasses/Data" Name="ElectricityHarmonics">
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Double" Name="total" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Double" Name="fundamental_harmonic" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Double" Name="harmonic" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Double" Name="Total_Harmoni_Distortion" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Double" Name="Total_Demand_Distortion" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Double" Name="All_harmonics" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Double" Name="All_harmonics_to_nominal_value_ratio" />
+    </Types>
+    <Types xsi:type="nmeta:Class" BaseTypes="#//InterfaceClasses/Data" Name="ExtendedPhaseAngleMeasurement">
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Double" Name="FromUL1toUL2" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Double" Name="FromUL1toUL3" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Double" Name="FromUL1toIL1" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Double" Name="FromUL1toIL2" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Double" Name="FromUL1toIL3" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Double" Name="FromUL1toIL0" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Double" Name="FromUL2toUL1" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Double" Name="FromUL2toUL3" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Double" Name="FromUL2toIL1" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Double" Name="FromUL2toIL2" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Double" Name="FromUL2toIL3" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Double" Name="FromUL2toIL0" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Double" Name="FromUL3toUL1" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Double" Name="FromUL3toUL2" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Double" Name="FromUL3toIL1" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Double" Name="FromUL3toIL2" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Double" Name="FromUL3toIL3" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Double" Name="FromUL3toIL0" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Double" Name="FromIL1toUL1" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Double" Name="FromIL1toUL2" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Double" Name="FromIL1toUL3" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Double" Name="FromIL1toIL2" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Double" Name="FromIL1toIL3" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Double" Name="FromIL1toIL0" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Double" Name="FromIL2toUL1" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Double" Name="FromIL2toUL2" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Double" Name="FromIL2toUL3" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Double" Name="FromIL2toIL1" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Double" Name="FromIL2toIL3" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Double" Name="FromIL2toIL0" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Double" Name="FromIL3toUL1" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Double" Name="FromIL3toUL2" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Double" Name="FromIL3toUL3" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Double" Name="FromIL3toIL1" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Double" Name="FromIL3toIL2" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Double" Name="FromIL3toIL0" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Double" Name="FromIL0toUL1" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Double" Name="FromIL0toUL2" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Double" Name="FromIL0toUL3" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Double" Name="FromIL0toIL1" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Double" Name="FromIL0toIL2" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Double" Name="FromIL0toIL3" />
+    </Types>
+    <Types xsi:type="nmeta:Class" BaseTypes="#//InterfaceClasses/Data" Name="TransformerAndLineLosses">
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Double" Name="Active_line_losses_P" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Double" Name="Active_line_losses_M" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Double" Name="Active_line_losses" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Double" Name="Active_transformer_losses_P" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Double" Name="Active_transformer_losses_M" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Double" Name="Active_transformer_losses" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Double" Name="Active_losses_P" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Double" Name="Active_losses_M" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Double" Name="Active_losses" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Double" Name="Reactive_line_losses_P" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Double" Name="Reactive_line_losses_M" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Double" Name="Reactive_line_losses" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Double" Name="Reactive_transformer_losses_P" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Double" Name="Reactive_transformer_losses_M" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Double" Name="Reactive_transformer_losses" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Double" Name="Reactive_losses_P" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Double" Name="Reactive_losses_M" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Double" Name="Reactive_losses" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Double" Name="Total_normalized_transformer_losses" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Double" Name="Total_normalized_line_losses" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Double" Name="Compensated_active_gross_P" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Double" Name="Compensated_active_net_P" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Double" Name="Compensated_active_gross_M" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Double" Name="Compensated_active_net_M" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Double" Name="Compensated_reactive_gross_P" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Double" Name="Compensated_reactive_net_P" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Double" Name="Compensated_reactive_gross_M" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Double" Name="Compensated_reactive_net_M" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Double" Name="L1active_line_losses" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Double" Name="L1active_line_losses_M" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Double" Name="L1active_transformer_losses_P" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Double" Name="L1active_transformer_losses_M" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Double" Name="L1active_transformer_losses" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Double" Name="L1active_losses_P" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Double" Name="L1active_losses_M" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Double" Name="L1active_losses" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Double" Name="L1reactive_line_losses_P" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Double" Name="L1reactive_line_losses_M" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Double" Name="L1reactive_line_losses" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Double" Name="L1reactive_transformer_losses_P" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Double" Name="L1reactive_transformer_losses_M" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Double" Name="L1reactive_transformer_losses" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Double" Name="L1Reactive_losses_P" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Double" Name="L1Reactive_losses_M" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Double" Name="L1Reactive_losses" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Double" Name="L1Ampere_squared_hours" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Double" Name="L1Volt_squared_hours" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Double" Name="L2active_line_losses_P" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Double" Name="L2active_line_losses_M" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Double" Name="L2active_transformer_losses_P" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Double" Name="L2active_transformer_losses_M" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Double" Name="L2active_transformer_losses" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Double" Name="L2active_losses_P" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Double" Name="L2active_losses_M" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Double" Name="L2active_losses" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Double" Name="L2reactive_line_losses_P" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Double" Name="L2reactive_line_losses_M" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Double" Name="L2reactive_line_losses" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Double" Name="L2reactive_transformer_losses" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Double" Name="L2reactive_transformer_losses_P" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Double" Name="L2reactive_transformer_losses_M" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Double" Name="L2reactive_losses" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Double" Name="L2reactive_losses_P" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Double" Name="L2reactive_losses_M" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Double" Name="L2Ampere_squared_hours" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Double" Name="L2Volt_squared_hours" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Double" Name="L3Active_line_losses_P" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Double" Name="L3Active_line_losses_M" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Double" Name="L3active_transformer_losses_P" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Double" Name="L3active_transformer_losses_M" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Double" Name="L3active_transformer_losses" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Double" Name="L3active_losses_P" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Double" Name="L3active_losses_M" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Double" Name="L3active_losses" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Double" Name="L3reactive_line_losses_P" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Double" Name="L3reactive_line_losses_M" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Double" Name="L3reactive_line_losses" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Double" Name="L3reactive_transformer_losses_P" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Double" Name="L3reactive_transformer_losses_M" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Double" Name="L3reactive_transformer_losses" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Double" Name="L3reactive_losses_P" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Double" Name="L3reactive_losses_M" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Double" Name="L3reactive_losses" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Double" Name="L3Ampere_squared_hours" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Double" Name="L3Volt_Squared_hours" />
+    </Types>
+  </ChildNamespaces>
+  <Types xsi:type="nmeta:Class" Name="LogicalDevice">
+    <References IsContainment="True" ReferenceType="#//COSEMObjects/CurrentAssociation" IsOrdered="True" IsUnique="True" LowerBound="1" Name="AA" />
+    <References IsContainment="True" ReferenceType="#//LogicalDeviceName" IsOrdered="True" IsUnique="True" Name="name" />
+    <References IsContainment="True" ReferenceType="#//COSEMObjects/AutoConnectObject" IsOrdered="True" IsUnique="True" Name="AutoConnect" />
+    <References IsContainment="True" ReferenceType="#//COSEMObjects/BillingPeriodValues" IsOrdered="True" IsUnique="True" Name="BillingPeriodValues" />
+    <References IsContainment="True" ReferenceType="#//COSEMObjects/ElectricityID" IsOrdered="True" IsUnique="True" Name="ElectricityID" />
+    <References IsContainment="True" ReferenceType="#//COSEMObjects/ElectricityProgramEntries" IsOrdered="True" IsUnique="True" Name="ProgramEntries" />
+    <References IsContainment="True" ReferenceType="#//COSEMObjects/OutputPulseValues_constants" IsOrdered="True" IsUnique="True" Name="OutputPulse" />
+    <References IsContainment="True" ReferenceType="#//COSEMObjects/ReadingFactorAndCT_VTratio" IsOrdered="True" IsUnique="True" Name="ReadingFactor" />
+    <References IsContainment="True" ReferenceType="#//COSEMObjects/ElectricityNominalValues" IsOrdered="True" IsUnique="True" Name="NominalValues" />
+    <References IsContainment="True" ReferenceType="#//COSEMObjects/InputPulseValuesOrConstants" IsOrdered="True" IsUnique="True" Name="InputPulse" />
+    <References IsContainment="True" ReferenceType="#//COSEMObjects/MeasurementPeriod_recordingInterval_billingPeriodDuration" IsOrdered="True" IsUnique="True" Name="MeasurementPeriod" />
+    <References IsContainment="True" ReferenceType="#//COSEMObjects/TimeEntries" IsOrdered="True" IsUnique="True" Name="TimeEntries" />
+    <References IsContainment="True" ReferenceType="#//COSEMObjects/TransformerAndLineLosses" IsOrdered="True" IsUnique="True" Name="TransformerLineLosses" />
+    <References IsContainment="True" ReferenceType="#//COSEMObjects/MeasurementMethods" IsOrdered="True" IsUnique="True" Name="MeasurementAlgorithm" />
+    <References IsContainment="True" ReferenceType="#//COSEMObjects/MeteringPointID" IsOrdered="True" IsUnique="True" Name="MeteringPoint" />
+    <References IsContainment="True" ReferenceType="#//COSEMObjects/ElectricityRelatedStatusData" IsOrdered="True" IsUnique="True" Name="ElectricityRelatedStatus" />
+    <References IsContainment="True" ReferenceType="#//COSEMObjects/RegisterMonitorObject" IsOrdered="True" IsUnique="True" Name="RegisterMonitor" />
+    <References IsContainment="True" ReferenceType="#//COSEMObjects/ElectricityValues" IsOrdered="True" IsUnique="True" Name="ElectricityValues" />
+    <References IsContainment="True" ReferenceType="#//COSEMObjects/MeasurementValues" IsOrdered="True" IsUnique="True" Name="MeasurementValueTypes" />
+    <References IsContainment="True" ReferenceType="#//COSEMObjects/ElectricityHarmonics" IsOrdered="True" IsUnique="True" Name="Harmonics" />
+    <References IsContainment="True" ReferenceType="#//COSEMObjects/CurrentlyActiveTariff" IsOrdered="True" IsUnique="True" Name="Tariffs" />
+    <References IsContainment="True" ReferenceType="#//COSEMObjects/ExtendedPhaseAngleMeasurement" IsOrdered="True" IsUnique="True" Name="Phaseangles" />
+    <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//String" Name="ID" />
+  </Types>
+  <Types xsi:type="nmeta:Class" Name="PhysicalDevice">
+    <References ReferenceType="#//ManagementLogicalDevice" IsOrdered="True" IsUnique="True" Name="managementLogicalDevice" />
+    <References ReferenceType="#//LogicalDevice" IsOrdered="True" IsUnique="True" UpperBound="-1" Name="LogicalDevice" />
+    <References IsContainment="True" ReferenceType="#//COSEMObjects/ElectricityRelatedStatusData" IsOrdered="True" IsUnique="True" Name="ElectricityRelatedStatus" />
+    <References IsContainment="True" ReferenceType="#//COSEMObjects/CurrentAssociation" IsOrdered="True" IsUnique="True" LowerBound="1" Name="AA" />
+    <References IsContainment="True" ReferenceType="#//COSEMObjects/AutoConnectObject" IsOrdered="True" IsUnique="True" Name="AutoConnect" />
+    <References IsContainment="True" ReferenceType="#//COSEMObjects/BillingPeriodValues" IsOrdered="True" IsUnique="True" Name="BillingPeriodValues" />
+    <References IsContainment="True" ReferenceType="#//COSEMObjects/ElectricityID" IsOrdered="True" IsUnique="True" Name="ElectricityID" />
+    <References IsContainment="True" ReferenceType="#//COSEMObjects/ElectricityProgramEntries" IsOrdered="True" IsUnique="True" Name="ProgramEntries" />
+    <References IsContainment="True" ReferenceType="#//COSEMObjects/OutputPulseValues_constants" IsOrdered="True" IsUnique="True" Name="OutputPulse" />
+    <References IsContainment="True" ReferenceType="#//COSEMObjects/ReadingFactorAndCT_VTratio" IsOrdered="True" IsUnique="True" Name="ReadingFactor" />
+    <References IsContainment="True" ReferenceType="#//COSEMObjects/ElectricityNominalValues" IsOrdered="True" IsUnique="True" Name="NominalValues" />
+    <References IsContainment="True" ReferenceType="#//COSEMObjects/InputPulseValuesOrConstants" IsOrdered="True" IsUnique="True" Name="InputPulse" />
+    <References IsContainment="True" ReferenceType="#//COSEMObjects/MeasurementPeriod_recordingInterval_billingPeriodDuration" IsOrdered="True" IsUnique="True" Name="MeasurementPeriod" />
+    <References IsContainment="True" ReferenceType="#//COSEMObjects/TimeEntries" IsOrdered="True" IsUnique="True" Name="TimeEntries" />
+    <References IsContainment="True" ReferenceType="#//COSEMObjects/TransformerAndLineLosses" IsOrdered="True" IsUnique="True" Name="TransformerLineLosses" />
+    <References IsContainment="True" ReferenceType="#//COSEMObjects/MeasurementMethods" IsOrdered="True" IsUnique="True" Name="MeasurementAlgorithm" />
+    <References IsContainment="True" ReferenceType="#//COSEMObjects/MeteringPointID" IsOrdered="True" IsUnique="True" Name="MeteringPoint" />
+    <References IsContainment="True" ReferenceType="#//COSEMObjects/RegisterMonitorObject" IsOrdered="True" IsUnique="True" Name="RegisterMonitor" />
+    <References IsContainment="True" ReferenceType="#//COSEMObjects/ElectricityValues" IsOrdered="True" IsUnique="True" Name="ElectricityValues" />
+    <References IsContainment="True" ReferenceType="#//COSEMObjects/MeasurementValues" IsOrdered="True" IsUnique="True" Name="MeasurementValueTypes" />
+    <References IsContainment="True" ReferenceType="#//COSEMObjects/ElectricityHarmonics" IsOrdered="True" IsUnique="True" Name="Harmonics" />
+    <References IsContainment="True" ReferenceType="#//COSEMObjects/CurrentlyActiveTariff" IsOrdered="True" IsUnique="True" Name="Tariffs" />
+    <References IsContainment="True" ReferenceType="#//COSEMObjects/ExtendedPhaseAngleMeasurement" IsOrdered="True" IsUnique="True" Name="Phaseangles" />
+    <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//String" Name="ID" />
+  </Types>
+  <Types xsi:type="nmeta:Class" BaseTypes="#//LogicalDevice" Name="ManagementLogicalDevice" />
+  <Types xsi:type="nmeta:Class" Name="LogicalDeviceName">
+    <References IsContainment="True" ReferenceType="#//COSEMObjects/SAPAssignmentCurrent" IsOrdered="True" IsUnique="True" LowerBound="1" Name="name" />
+  </Types>
+  <Types xsi:type="nmeta:Class" Name="COSEM">
+    <References IsContainment="True" ReferenceType="#//PhysicalDevice" IsOrdered="True" IsUnique="True" UpperBound="-1" Name="PhysicalDevice" />
+    <References IsContainment="True" ReferenceType="#//LogicalDevice" IsOrdered="True" IsUnique="True" UpperBound="-1" Name="LogicalDevice" />
+  </Types>
+</nmeta:Namespace>
