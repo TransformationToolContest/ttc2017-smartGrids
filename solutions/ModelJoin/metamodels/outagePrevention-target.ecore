@@ -2,11 +2,11 @@
 <ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="jointarget" nsURI="http://www.transformation-tool-contest.eu/2017/smartGrids/VoltagePhaseMeasurements" nsPrefix="jt">
   <eAnnotations source="edu.kit.ipd.sdq.mdsd.mj.sourceModels" references="schema.ecore#/ COSEM.ecore#/ 61850.ecore#/"/>
-  <eAnnotations source="edu.kit.ipd.sdq.mdsd.mj.traceModel" references="Viewtype6-trace.ecore#/"/>
+  <eAnnotations source="edu.kit.ipd.sdq.mdsd.mj.traceModel" references="outagePrevention-trace.ecore#/"/>
   <eClassifiers xsi:type="ecore:EClass" name="PMUVoltageMeter" eSuperTypes="#//Asset #//EndDeviceAsset">
     <eAnnotations source="edu.kit.ipd.sdq.mdsd.mj.classTrace.left" references="schema.ecore#//IEC61968/Metering/MeterAsset"/>
     <eAnnotations source="edu.kit.ipd.sdq.mdsd.mj.classTrace.right" references="61850.ecore#//LNNodes/LNGroupM/MMXU"/>
-    <eAnnotations source="edu.kit.ipd.sdq.mdsd.mj.classTrace.jointrace" references="Viewtype6-trace.ecore#//join_MeterAsset_MMXU_PMUVoltageMeter"/>
+    <eAnnotations source="edu.kit.ipd.sdq.mdsd.mj.classTrace.jointrace" references="outagePrevention-trace.ecore#//join_MeterAsset_MMXU_PMUVoltageMeter"/>
     <eAnnotations source="edu.kit.ipd.sdq.mdsd.mj.createdBy">
       <details key="order" value="1"/>
       <details key="operator" value="thetajoin"/>
@@ -102,7 +102,7 @@
   <eClassifiers xsi:type="ecore:EClass" name="PrivateMeterVoltage" eSuperTypes="#//Asset #//EndDeviceAsset">
     <eAnnotations source="edu.kit.ipd.sdq.mdsd.mj.classTrace.left" references="schema.ecore#//IEC61968/Metering/MeterAsset"/>
     <eAnnotations source="edu.kit.ipd.sdq.mdsd.mj.classTrace.right" references="COSEM.ecore#//PhysicalDevice"/>
-    <eAnnotations source="edu.kit.ipd.sdq.mdsd.mj.classTrace.jointrace" references="Viewtype6-trace.ecore#//join_MeterAsset_PhysicalDevice_PrivateMeterVoltage"/>
+    <eAnnotations source="edu.kit.ipd.sdq.mdsd.mj.classTrace.jointrace" references="outagePrevention-trace.ecore#//join_MeterAsset_PhysicalDevice_PrivateMeterVoltage"/>
     <eAnnotations source="edu.kit.ipd.sdq.mdsd.mj.createdBy">
       <details key="order" value="2"/>
       <details key="operator" value="thetajoin"/>
@@ -154,7 +154,7 @@
       <eAnnotations source="edu.kit.ipd.sdq.mdsd.mj.classTrace.oftype" references="schema.ecore#//IEC61968/Common/Location"/>
       <eAnnotations source="edu.kit.ipd.sdq.mdsd.mj.classTrace.reference" references="schema.ecore#//IEC61968/Assets/Asset/Location"/>
       <eAnnotations source="edu.kit.ipd.sdq.mdsd.mj.classTrace" references="schema.ecore#//IEC61968/Assets/Asset"/>
-      <eAnnotations source="edu.kit.ipd.sdq.mdsd.mj.classTrace.reftrace" references="Viewtype6-trace.ecore#//ref_Location_Location_Location"/>
+      <eAnnotations source="edu.kit.ipd.sdq.mdsd.mj.classTrace.reftrace" references="outagePrevention-trace.ecore#//ref_Location_Location_Location"/>
     </eStructuralFeatures>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Location">
@@ -163,7 +163,7 @@
       <details key="operator" value="keepoutgoing"/>
       <details key="order" value="4"/>
     </eAnnotations>
-    <eAnnotations source="edu.kit.ipd.sdq.mdsd.mj.classTrace.reftrace" references="Viewtype6-trace.ecore#//ref_Location_Location_Location"/>
+    <eAnnotations source="edu.kit.ipd.sdq.mdsd.mj.classTrace.reftrace" references="outagePrevention-trace.ecore#//ref_Location_Location_Location"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="Position" eType="#//PositionPoint">
       <eAnnotations source="edu.kit.ipd.sdq.mdsd.mj.createdBy">
         <details key="operator" value="keepoutgoing"/>
@@ -171,7 +171,7 @@
       <eAnnotations source="edu.kit.ipd.sdq.mdsd.mj.classTrace.oftype" references="schema.ecore#//IEC61968/Common/PositionPoint"/>
       <eAnnotations source="edu.kit.ipd.sdq.mdsd.mj.classTrace.reference" references="schema.ecore#//IEC61968/Common/Location/Position"/>
       <eAnnotations source="edu.kit.ipd.sdq.mdsd.mj.classTrace" references="schema.ecore#//IEC61968/Common/Location"/>
-      <eAnnotations source="edu.kit.ipd.sdq.mdsd.mj.classTrace.reftrace" references="Viewtype6-trace.ecore#//ref_PositionPoint_PositionPoint_Position"/>
+      <eAnnotations source="edu.kit.ipd.sdq.mdsd.mj.classTrace.reftrace" references="outagePrevention-trace.ecore#//ref_PositionPoint_PositionPoint_Position"/>
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EReference" name="PowerSystemResources" upperBound="-1"
         eType="#//PowerSystemResource">
@@ -187,7 +187,7 @@
       <eAnnotations source="edu.kit.ipd.sdq.mdsd.mj.classTrace.oftype" references="schema.ecore#//IEC61970/Core/PowerSystemResource"/>
       <eAnnotations source="edu.kit.ipd.sdq.mdsd.mj.classTrace.reference" references="schema.ecore#//IEC61968/Common/Location/PowerSystemResources"/>
       <eAnnotations source="edu.kit.ipd.sdq.mdsd.mj.classTrace" references="schema.ecore#//IEC61968/Common/Location"/>
-      <eAnnotations source="edu.kit.ipd.sdq.mdsd.mj.classTrace.reftrace" references="Viewtype6-trace.ecore#//ref_PowerSystemResource_PowerSystemResource_PowerSystemResources"/>
+      <eAnnotations source="edu.kit.ipd.sdq.mdsd.mj.classTrace.reftrace" references="outagePrevention-trace.ecore#//ref_PowerSystemResource_PowerSystemResource_PowerSystemResources"/>
     </eStructuralFeatures>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="PositionPoint">
@@ -196,7 +196,7 @@
       <details key="operator" value="keepoutgoing"/>
       <details key="order" value="5"/>
     </eAnnotations>
-    <eAnnotations source="edu.kit.ipd.sdq.mdsd.mj.classTrace.reftrace" references="Viewtype6-trace.ecore#//ref_PositionPoint_PositionPoint_Position"/>
+    <eAnnotations source="edu.kit.ipd.sdq.mdsd.mj.classTrace.reftrace" references="outagePrevention-trace.ecore#//ref_PositionPoint_PositionPoint_Position"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="xPosition" lowerBound="1"
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
       <eAnnotations source="http://iec.ch/TC57/2009/CIM-schema-cim14">
@@ -249,7 +249,7 @@
       <details key="operator" value="keepoutgoing"/>
       <details key="order" value="6"/>
     </eAnnotations>
-    <eAnnotations source="edu.kit.ipd.sdq.mdsd.mj.classTrace.reftrace" references="Viewtype6-trace.ecore#//ref_PowerSystemResource_PowerSystemResource_PowerSystemResources"/>
+    <eAnnotations source="edu.kit.ipd.sdq.mdsd.mj.classTrace.reftrace" references="outagePrevention-trace.ecore#//ref_PowerSystemResource_PowerSystemResource_PowerSystemResources"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ConductingEquipment" eSuperTypes="#//PowerSystemResource">
     <eAnnotations source="edu.kit.ipd.sdq.mdsd.mj.classTrace" references="schema.ecore#//IEC61970/Core/ConductingEquipment"/>
@@ -271,7 +271,7 @@
       <eAnnotations source="edu.kit.ipd.sdq.mdsd.mj.classTrace.oftype" references="schema.ecore#//IEC61970/Core/Terminal"/>
       <eAnnotations source="edu.kit.ipd.sdq.mdsd.mj.classTrace.reference" references="schema.ecore#//IEC61970/Core/ConductingEquipment/Terminals"/>
       <eAnnotations source="edu.kit.ipd.sdq.mdsd.mj.classTrace" references="schema.ecore#//IEC61970/Core/ConductingEquipment"/>
-      <eAnnotations source="edu.kit.ipd.sdq.mdsd.mj.classTrace.reftrace" references="Viewtype6-trace.ecore#//ref_Terminal_Terminal_Terminals"/>
+      <eAnnotations source="edu.kit.ipd.sdq.mdsd.mj.classTrace.reftrace" references="outagePrevention-trace.ecore#//ref_Terminal_Terminal_Terminals"/>
     </eStructuralFeatures>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Terminal">
@@ -280,7 +280,7 @@
       <details key="operator" value="keepoutgoing"/>
       <details key="order" value="8"/>
     </eAnnotations>
-    <eAnnotations source="edu.kit.ipd.sdq.mdsd.mj.classTrace.reftrace" references="Viewtype6-trace.ecore#//ref_Terminal_Terminal_Terminals"/>
+    <eAnnotations source="edu.kit.ipd.sdq.mdsd.mj.classTrace.reftrace" references="outagePrevention-trace.ecore#//ref_Terminal_Terminal_Terminals"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="TieFlow" upperBound="-1"
         eType="#//TieFlow">
       <eAnnotations source="http://iec.ch/TC57/2009/CIM-schema-cim14">
@@ -295,7 +295,7 @@
       <eAnnotations source="edu.kit.ipd.sdq.mdsd.mj.classTrace.oftype" references="schema.ecore#//IEC61970/ControlArea/TieFlow"/>
       <eAnnotations source="edu.kit.ipd.sdq.mdsd.mj.classTrace.reference" references="schema.ecore#//IEC61970/Core/Terminal/TieFlow"/>
       <eAnnotations source="edu.kit.ipd.sdq.mdsd.mj.classTrace" references="schema.ecore#//IEC61970/Core/Terminal"/>
-      <eAnnotations source="edu.kit.ipd.sdq.mdsd.mj.classTrace.reftrace" references="Viewtype6-trace.ecore#//ref_TieFlow_TieFlow_TieFlow"/>
+      <eAnnotations source="edu.kit.ipd.sdq.mdsd.mj.classTrace.reftrace" references="outagePrevention-trace.ecore#//ref_TieFlow_TieFlow_TieFlow"/>
     </eStructuralFeatures>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="TieFlow">
@@ -304,7 +304,7 @@
       <details key="operator" value="keepoutgoing"/>
       <details key="order" value="9"/>
     </eAnnotations>
-    <eAnnotations source="edu.kit.ipd.sdq.mdsd.mj.classTrace.reftrace" references="Viewtype6-trace.ecore#//ref_TieFlow_TieFlow_TieFlow"/>
+    <eAnnotations source="edu.kit.ipd.sdq.mdsd.mj.classTrace.reftrace" references="outagePrevention-trace.ecore#//ref_TieFlow_TieFlow_TieFlow"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="ControlArea" eType="#//ControlArea">
       <eAnnotations source="http://iec.ch/TC57/2009/CIM-schema-cim14">
         <details key="Documentation" value="The control area of the tie flows."/>
@@ -318,7 +318,7 @@
       <eAnnotations source="edu.kit.ipd.sdq.mdsd.mj.classTrace.oftype" references="schema.ecore#//IEC61970/ControlArea/ControlArea"/>
       <eAnnotations source="edu.kit.ipd.sdq.mdsd.mj.classTrace.reference" references="schema.ecore#//IEC61970/ControlArea/TieFlow/ControlArea"/>
       <eAnnotations source="edu.kit.ipd.sdq.mdsd.mj.classTrace" references="schema.ecore#//IEC61970/ControlArea/TieFlow"/>
-      <eAnnotations source="edu.kit.ipd.sdq.mdsd.mj.classTrace.reftrace" references="Viewtype6-trace.ecore#//ref_ControlArea_ControlArea_ControlArea"/>
+      <eAnnotations source="edu.kit.ipd.sdq.mdsd.mj.classTrace.reftrace" references="outagePrevention-trace.ecore#//ref_ControlArea_ControlArea_ControlArea"/>
     </eStructuralFeatures>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ControlArea">
@@ -327,7 +327,7 @@
       <details key="operator" value="keepoutgoing"/>
       <details key="order" value="19"/>
     </eAnnotations>
-    <eAnnotations source="edu.kit.ipd.sdq.mdsd.mj.classTrace.reftrace" references="Viewtype6-trace.ecore#//ref_ControlArea_ControlArea_ControlArea"/>
+    <eAnnotations source="edu.kit.ipd.sdq.mdsd.mj.classTrace.reftrace" references="outagePrevention-trace.ecore#//ref_ControlArea_ControlArea_ControlArea"/>
     <eAnnotations source="edu.kit.ipd.sdq.mdsd.mj.classTrace.reftrace"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="mRID" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
       <eAnnotations source="http://iec.ch/TC57/2009/CIM-schema-cim14">
@@ -363,7 +363,7 @@
       <eAnnotations source="edu.kit.ipd.sdq.mdsd.mj.classTrace.oftype" references="schema.ecore#//IEC61968/Metering/ServiceDeliveryPoint"/>
       <eAnnotations source="edu.kit.ipd.sdq.mdsd.mj.classTrace.reference" references="schema.ecore#//IEC61968/Metering/EndDeviceAsset/ServiceDeliveryPoint"/>
       <eAnnotations source="edu.kit.ipd.sdq.mdsd.mj.classTrace" references="schema.ecore#//IEC61968/Metering/EndDeviceAsset"/>
-      <eAnnotations source="edu.kit.ipd.sdq.mdsd.mj.classTrace.reftrace" references="Viewtype6-trace.ecore#//ref_ServiceDeliveryPoint_ServiceDeliveryPoint_ServiceDeliveryPoint"/>
+      <eAnnotations source="edu.kit.ipd.sdq.mdsd.mj.classTrace.reftrace" references="outagePrevention-trace.ecore#//ref_ServiceDeliveryPoint_ServiceDeliveryPoint_ServiceDeliveryPoint"/>
     </eStructuralFeatures>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ServiceDeliveryPoint">
@@ -372,7 +372,7 @@
       <details key="operator" value="keepoutgoing"/>
       <details key="order" value="12"/>
     </eAnnotations>
-    <eAnnotations source="edu.kit.ipd.sdq.mdsd.mj.classTrace.reftrace" references="Viewtype6-trace.ecore#//ref_ServiceDeliveryPoint_ServiceDeliveryPoint_ServiceDeliveryPoint"/>
+    <eAnnotations source="edu.kit.ipd.sdq.mdsd.mj.classTrace.reftrace" references="outagePrevention-trace.ecore#//ref_ServiceDeliveryPoint_ServiceDeliveryPoint_ServiceDeliveryPoint"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="EnergyConsumer" eType="#//EnergyConsumer">
       <eAnnotations source="edu.kit.ipd.sdq.mdsd.mj.createdBy">
         <details key="operator" value="keepoutgoing"/>
@@ -380,7 +380,7 @@
       <eAnnotations source="edu.kit.ipd.sdq.mdsd.mj.classTrace.oftype" references="schema.ecore#//IEC61970/Wires/EnergyConsumer"/>
       <eAnnotations source="edu.kit.ipd.sdq.mdsd.mj.classTrace.reference" references="schema.ecore#//IEC61968/Metering/ServiceDeliveryPoint/EnergyConsumer"/>
       <eAnnotations source="edu.kit.ipd.sdq.mdsd.mj.classTrace" references="schema.ecore#//IEC61968/Metering/ServiceDeliveryPoint"/>
-      <eAnnotations source="edu.kit.ipd.sdq.mdsd.mj.classTrace.reftrace" references="Viewtype6-trace.ecore#//ref_EnergyConsumer_EnergyConsumer_EnergyConsumer"/>
+      <eAnnotations source="edu.kit.ipd.sdq.mdsd.mj.classTrace.reftrace" references="outagePrevention-trace.ecore#//ref_EnergyConsumer_EnergyConsumer_EnergyConsumer"/>
     </eStructuralFeatures>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="EnergyConsumer">
@@ -389,7 +389,7 @@
       <details key="operator" value="keepoutgoing"/>
       <details key="order" value="13"/>
     </eAnnotations>
-    <eAnnotations source="edu.kit.ipd.sdq.mdsd.mj.classTrace.reftrace" references="Viewtype6-trace.ecore#//ref_EnergyConsumer_EnergyConsumer_EnergyConsumer"/>
+    <eAnnotations source="edu.kit.ipd.sdq.mdsd.mj.classTrace.reftrace" references="outagePrevention-trace.ecore#//ref_EnergyConsumer_EnergyConsumer_EnergyConsumer"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="mRID" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
       <eAnnotations source="http://iec.ch/TC57/2009/CIM-schema-cim14">
         <details key="Documentation" value="A Model Authority issues mRIDs. Given that each Model Authority has a unique id and this id is part of the mRID, then the mRID is globally unique."/>
@@ -424,7 +424,7 @@
       <eAnnotations source="edu.kit.ipd.sdq.mdsd.mj.classTrace.oftype" references="schema.ecore#//IEC61970/LoadModel/ConformLoadGroup"/>
       <eAnnotations source="edu.kit.ipd.sdq.mdsd.mj.classTrace.reference" references="schema.ecore#//IEC61970/LoadModel/ConformLoad/LoadGroup"/>
       <eAnnotations source="edu.kit.ipd.sdq.mdsd.mj.classTrace" references="schema.ecore#//IEC61970/LoadModel/ConformLoad"/>
-      <eAnnotations source="edu.kit.ipd.sdq.mdsd.mj.classTrace.reftrace" references="Viewtype6-trace.ecore#//ref_ConformLoadGroup_ConformLoadGroup_LoadGroup"/>
+      <eAnnotations source="edu.kit.ipd.sdq.mdsd.mj.classTrace.reftrace" references="outagePrevention-trace.ecore#//ref_ConformLoadGroup_ConformLoadGroup_LoadGroup"/>
     </eStructuralFeatures>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ConformLoadGroup" eSuperTypes="#//LoadGroup">
@@ -433,7 +433,7 @@
       <details key="operator" value="keepoutgoing"/>
       <details key="order" value="15"/>
     </eAnnotations>
-    <eAnnotations source="edu.kit.ipd.sdq.mdsd.mj.classTrace.reftrace" references="Viewtype6-trace.ecore#//ref_ConformLoadGroup_ConformLoadGroup_LoadGroup"/>
+    <eAnnotations source="edu.kit.ipd.sdq.mdsd.mj.classTrace.reftrace" references="outagePrevention-trace.ecore#//ref_ConformLoadGroup_ConformLoadGroup_LoadGroup"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="LoadGroup">
     <eAnnotations source="edu.kit.ipd.sdq.mdsd.mj.classTrace" references="schema.ecore#//IEC61970/LoadModel/LoadGroup"/>
@@ -458,7 +458,7 @@
       <eAnnotations source="edu.kit.ipd.sdq.mdsd.mj.classTrace.oftype" references="schema.ecore#//IEC61970/LoadModel/SubLoadArea"/>
       <eAnnotations source="edu.kit.ipd.sdq.mdsd.mj.classTrace.reference" references="schema.ecore#//IEC61970/LoadModel/LoadGroup/SubLoadArea"/>
       <eAnnotations source="edu.kit.ipd.sdq.mdsd.mj.classTrace" references="schema.ecore#//IEC61970/LoadModel/LoadGroup"/>
-      <eAnnotations source="edu.kit.ipd.sdq.mdsd.mj.classTrace.reftrace" references="Viewtype6-trace.ecore#//ref_SubLoadArea_SubLoadArea_SubLoadArea"/>
+      <eAnnotations source="edu.kit.ipd.sdq.mdsd.mj.classTrace.reftrace" references="outagePrevention-trace.ecore#//ref_SubLoadArea_SubLoadArea_SubLoadArea"/>
     </eStructuralFeatures>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="SubLoadArea">
@@ -467,7 +467,7 @@
       <details key="operator" value="keepoutgoing"/>
       <details key="order" value="17"/>
     </eAnnotations>
-    <eAnnotations source="edu.kit.ipd.sdq.mdsd.mj.classTrace.reftrace" references="Viewtype6-trace.ecore#//ref_SubLoadArea_SubLoadArea_SubLoadArea"/>
+    <eAnnotations source="edu.kit.ipd.sdq.mdsd.mj.classTrace.reftrace" references="outagePrevention-trace.ecore#//ref_SubLoadArea_SubLoadArea_SubLoadArea"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="LoadArea" eType="#//LoadArea">
       <eAnnotations source="http://iec.ch/TC57/2009/CIM-schema-cim14">
         <details key="Documentation" value="The LoadArea where the SubLoadArea belongs."/>
@@ -481,7 +481,7 @@
       <eAnnotations source="edu.kit.ipd.sdq.mdsd.mj.classTrace.oftype" references="schema.ecore#//IEC61970/LoadModel/LoadArea"/>
       <eAnnotations source="edu.kit.ipd.sdq.mdsd.mj.classTrace.reference" references="schema.ecore#//IEC61970/LoadModel/SubLoadArea/LoadArea"/>
       <eAnnotations source="edu.kit.ipd.sdq.mdsd.mj.classTrace" references="schema.ecore#//IEC61970/LoadModel/SubLoadArea"/>
-      <eAnnotations source="edu.kit.ipd.sdq.mdsd.mj.classTrace.reftrace" references="Viewtype6-trace.ecore#//ref_LoadArea_LoadArea_LoadArea"/>
+      <eAnnotations source="edu.kit.ipd.sdq.mdsd.mj.classTrace.reftrace" references="outagePrevention-trace.ecore#//ref_LoadArea_LoadArea_LoadArea"/>
     </eStructuralFeatures>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="LoadArea">
@@ -490,7 +490,7 @@
       <details key="operator" value="keepoutgoing"/>
       <details key="order" value="18"/>
     </eAnnotations>
-    <eAnnotations source="edu.kit.ipd.sdq.mdsd.mj.classTrace.reftrace" references="Viewtype6-trace.ecore#//ref_LoadArea_LoadArea_LoadArea"/>
+    <eAnnotations source="edu.kit.ipd.sdq.mdsd.mj.classTrace.reftrace" references="outagePrevention-trace.ecore#//ref_LoadArea_LoadArea_LoadArea"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="ControlArea" eType="#//ControlArea">
       <eAnnotations source="http://iec.ch/TC57/2009/CIM-schema-cim14">
         <details key="Documentation" value="The control area specification that is used for the load forecast."/>
@@ -526,7 +526,7 @@
       <eAnnotations source="edu.kit.ipd.sdq.mdsd.mj.classTrace.oftype" references="schema.ecore#//IEC61970/LoadModel/NonConformLoadGroup"/>
       <eAnnotations source="edu.kit.ipd.sdq.mdsd.mj.classTrace.reference" references="schema.ecore#//IEC61970/LoadModel/NonConformLoad/LoadGroup"/>
       <eAnnotations source="edu.kit.ipd.sdq.mdsd.mj.classTrace" references="schema.ecore#//IEC61970/LoadModel/NonConformLoad"/>
-      <eAnnotations source="edu.kit.ipd.sdq.mdsd.mj.classTrace.reftrace" references="Viewtype6-trace.ecore#//ref_NonConformLoadGroup_NonConformLoadGroup_LoadGroup"/>
+      <eAnnotations source="edu.kit.ipd.sdq.mdsd.mj.classTrace.reftrace" references="outagePrevention-trace.ecore#//ref_NonConformLoadGroup_NonConformLoadGroup_LoadGroup"/>
     </eStructuralFeatures>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="NonConformLoadGroup" eSuperTypes="#//LoadGroup">
@@ -535,6 +535,6 @@
       <details key="operator" value="keepoutgoing"/>
       <details key="order" value="21"/>
     </eAnnotations>
-    <eAnnotations source="edu.kit.ipd.sdq.mdsd.mj.classTrace.reftrace" references="Viewtype6-trace.ecore#//ref_NonConformLoadGroup_NonConformLoadGroup_LoadGroup"/>
+    <eAnnotations source="edu.kit.ipd.sdq.mdsd.mj.classTrace.reftrace" references="outagePrevention-trace.ecore#//ref_NonConformLoadGroup_NonConformLoadGroup_LoadGroup"/>
   </eClassifiers>
 </ecore:EPackage>

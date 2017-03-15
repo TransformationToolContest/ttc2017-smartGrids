@@ -6,18 +6,18 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="right" ordered="false"
         eType="ecore:EClass COSEM.ecore#//PhysicalDevice"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="target" ordered="false"
-        eType="ecore:EClass Viewtype5-target.ecore#//EnergyConsumer"/>
+        eType="ecore:EClass outageDetection-target.ecore#//EnergyConsumer"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ref_Location_Location_Location">
     <eStructuralFeatures xsi:type="ecore:EReference" name="source" ordered="false"
         eType="ecore:EClass schema.ecore#//IEC61968/Common/Location"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="target" ordered="false"
-        eType="ecore:EClass Viewtype5-target.ecore#//Location"/>
+        eType="ecore:EClass outageDetection-target.ecore#//Location"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ref_PositionPoint_PositionPoint_Position">
     <eStructuralFeatures xsi:type="ecore:EReference" name="source" ordered="false"
         eType="ecore:EClass schema.ecore#//IEC61968/Common/PositionPoint"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="target" ordered="false"
-        eType="ecore:EClass Viewtype5-target.ecore#//PositionPoint"/>
+        eType="ecore:EClass outageDetection-target.ecore#//PositionPoint"/>
   </eClassifiers>
 </ecore:EPackage>

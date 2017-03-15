@@ -10,12 +10,12 @@ out __mjtrace: _mjtrace);
 	
 // source metamodels
 modeltype _CIM uses "http://iec.ch/TC57/2009/CIM-schema-cim14";
-modeltype _substationStandard uses "substationStandard";
-modeltype _COSEM uses "cosem";
+modeltype _substationStandard uses "http://www.transformation-tool-contest.eu/2017/smartGrids/substationStandard";
+modeltype _COSEM uses "http://www.transformation-tool-contest.eu/2017/smartGrids/cosem";
 // target metamodel
-modeltype _jointarget uses "VoltagePhaseMeasurements";
+modeltype _jointarget uses "http://www.transformation-tool-contest.eu/2017/smartGrids/VoltagePhaseMeasurements";
 // trace metamodel
-modeltype _mjtrace uses "VoltagePhaseMeasurements.trace";
+modeltype _mjtrace uses "http://www.transformation-tool-contest.eu/2017/smartGrids/VoltagePhaseMeasurements.trace";
 	
 //alway import ecore
 modeltype ECORE "strict" uses ecore('http://www.eclipse.org/emf/2002/Ecore');
