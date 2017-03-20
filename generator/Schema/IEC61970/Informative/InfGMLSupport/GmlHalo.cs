@@ -45,7 +45,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfGMLSupport
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61970/Informative/InfGMLSupport/Gml" +
         "Halo")]
     [DebuggerDisplayAttribute("GmlHalo {UUID}")]
-    public class GmlHalo : IdentifiedObject, IGmlHalo, IModelElement
+    public partial class GmlHalo : IdentifiedObject, IGmlHalo, IModelElement
     {
         
         /// <summary>
@@ -53,10 +53,16 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfGMLSupport
         /// </summary>
         private float _opacity;
         
+        private static Lazy<ITypedElement> _opacityAttribute = new Lazy<ITypedElement>(RetrieveOpacityAttribute);
+        
         /// <summary>
         /// The backing field for the Radius property
         /// </summary>
         private string _radius;
+        
+        private static Lazy<ITypedElement> _radiusAttribute = new Lazy<ITypedElement>(RetrieveRadiusAttribute);
+        
+        private static Lazy<ITypedElement> _gmlTextSymbolsReference = new Lazy<ITypedElement>(RetrieveGmlTextSymbolsReference);
         
         /// <summary>
         /// The backing field for the GmlTextSymbols property
@@ -90,10 +96,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfGMLSupport
                     float old = this._opacity;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnOpacityChanging(e);
-                    this.OnPropertyChanging("Opacity", e);
+                    this.OnPropertyChanging("Opacity", e, _opacityAttribute);
                     this._opacity = value;
                     this.OnOpacityChanged(e);
-                    this.OnPropertyChanged("Opacity", e);
+                    this.OnPropertyChanged("Opacity", e, _opacityAttribute);
                 }
             }
         }
@@ -116,10 +122,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfGMLSupport
                     string old = this._radius;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnRadiusChanging(e);
-                    this.OnPropertyChanging("Radius", e);
+                    this.OnPropertyChanging("Radius", e, _radiusAttribute);
                     this._radius = value;
                     this.OnRadiusChanged(e);
-                    this.OnPropertyChanged("Radius", e);
+                    this.OnPropertyChanged("Radius", e, _radiusAttribute);
                 }
             }
         }
@@ -186,6 +192,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfGMLSupport
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> RadiusChanged;
         
+        private static ITypedElement RetrieveOpacityAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(GmlHalo.ClassInstance)).Resolve("opacity")));
+        }
+        
         /// <summary>
         /// Raises the OpacityChanging event
         /// </summary>
@@ -210,6 +221,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfGMLSupport
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveRadiusAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(GmlHalo.ClassInstance)).Resolve("radius")));
         }
         
         /// <summary>
@@ -238,6 +254,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfGMLSupport
             }
         }
         
+        private static ITypedElement RetrieveGmlTextSymbolsReference()
+        {
+            return ((ITypedElement)(((ModelElement)(GmlHalo.ClassInstance)).Resolve("GmlTextSymbols")));
+        }
+        
         /// <summary>
         /// Forwards CollectionChanging notifications for the GmlTextSymbols property to the parent model element
         /// </summary>
@@ -245,7 +266,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfGMLSupport
         /// <param name="e">The original event data</param>
         private void GmlTextSymbolsCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("GmlTextSymbols", e);
+            this.OnCollectionChanging("GmlTextSymbols", e, _gmlTextSymbolsReference);
         }
         
         /// <summary>
@@ -255,7 +276,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfGMLSupport
         /// <param name="e">The original event data</param>
         private void GmlTextSymbolsCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("GmlTextSymbols", e);
+            this.OnCollectionChanged("GmlTextSymbols", e, _gmlTextSymbolsReference);
         }
         
         /// <summary>
@@ -459,7 +480,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfGMLSupport
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public OpacityProxy(IGmlHalo modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "opacity")
             {
             }
             
@@ -477,24 +498,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfGMLSupport
                     this.ModelElement.Opacity = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.OpacityChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.OpacityChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -508,7 +511,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfGMLSupport
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public RadiusProxy(IGmlHalo modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "radius")
             {
             }
             
@@ -525,24 +528,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfGMLSupport
                 {
                     this.ModelElement.Radius = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.RadiusChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.RadiusChanged -= handler;
             }
         }
     }

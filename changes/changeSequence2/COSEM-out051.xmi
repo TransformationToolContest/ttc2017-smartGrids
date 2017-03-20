@@ -1,0 +1,174 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<cosem:COSEM xmi:version="2.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xmi="http://www.omg.org/XMI" xmlns:cosem="http://www.transformation-tool-contest.eu/2017/smartGrids/cosem">
+  <PhysicalDevice ID="_1648201SmartMeter" />
+  <PhysicalDevice ID="_1656201SmartMeter" />
+  <PhysicalDevice ID="_1661201SmartMeter" />
+  <PhysicalDevice ID="_1710201SmartMeter" />
+  <PhysicalDevice ID="_3794201SmartMeter" />
+  <PhysicalDevice ID="_3801201SmartMeter" />
+  <PhysicalDevice ID="_4800201SmartMeter">
+    <AutoConnect Connection="True" />
+    <ElectricityValues ActivePowerpL1="45" ActivePowerpall="45" ActivePowerpL2="0" ActivePowerpL3="0" ActivePowermL2="0" ActivePowermL1="230" ActivePowermL3="0" ActivePowermall="230" ReactivePowerpL1="10" ReactivePowerpL2="0" ReactivePowerpL3="0" ReactivePowerpall="10" ReactivePowermL1="32" ReactivePowermL2="0" ReactivePowermL3="0" ReactivePowermall="32" ReactivePowerQIL1="22" ReactivePowerQIL2="0" ReactivePowerQIL3="0" ReactivePowerQIall="22" ReactivePowerQIIL1="0" ReactivePowerQIIL2="0" ReactivePowerQIIL3="0" ReactivePowerQIIall="0" ReactivePowerQIIIL1="0" ReactivePowerQIIIL2="0" ReactivePowerQIIIL3="0" ReactivePowerQIIIall="0" ReactivePowerQIVL1="0" ReactivePowerQIVL2="0" ReactivePowerQIVL3="0" ReactivePowerQIVall="0" ApparentPowerpL1="68" ApparentPowerpL2="0" ApparentPowerpL3="0" ApparentPowerpAll="68" ApparentPowermL1="309.3933100000001" ApparentPowermL2="0.30301" ApparentPowermL3="0.30301" ApparentPowermAll="300" CurrentL1="382" CurrentL2="0" CurrentL3="0" CurrentAll="382" VoltageL1="41.51505" VoltageL2="0.30301" VoltageL3="0.30301" VoltageAll="40" PowerFactorL1="0" PowerFactorL2="0" PowerFactorL3="0" PowerFactorAll="0" SupplyFrequencyL1="50" SupplyFrequencyL2="50" SupplyFrequencyL3="50" SupplyFrequencyAll="50" ActivePowerAbsPL1="0" ActivePowerAbsPL2="0" ActivePowerAbsPL3="0" ActivePowerAbsPAll="0" ActivePowerAbsML1="0" ActivePowerAbsML2="0" ActivePowerAbsML3="0" ActivePowerAbsMAll="0" ActivePowerQIL1="0" ActivePowerQIL2="0" ActivePowerQIL3="0" ActivePowerQIall="0" ActivePowerQIIL1="0" ActivePowerQIIL2="0" ActivePowerQIIL3="0" ActivePowerQIIall="0" ActivePowerQIIIL1="0" ActivePowerQIIIL2="0" ActivePowerQIIIL3="0" ActivePowerQIIIall="0" ActivePowerQIVL1="0" ActivePowerQIVL2="0" ActivePowerQIVL3="0" ActivePowerQIVall="0" Angles="90" Pulses="0" Ampere_squaredHours="0" Volt_squaredHours="0" NeutralCurrent="0" NeutralVoltage="0" />
+  </PhysicalDevice>
+  <PhysicalDevice ID="_5850201SmartMeter" />
+  <PhysicalDevice ID="_5855201SmartMeter">
+    <AutoConnect Connection="False" />
+    <ElectricityValues ActivePowerpL1="45" ActivePowerpall="45" ActivePowerpL2="0" ActivePowerpL3="0" ActivePowermL2="0" ActivePowermL1="230" ActivePowermL3="0" ActivePowermall="230" ReactivePowerpL1="10" ReactivePowerpL2="0" ReactivePowerpL3="0" ReactivePowerpall="10" ReactivePowermL1="32" ReactivePowermL2="0" ReactivePowermL3="0" ReactivePowermall="32" ReactivePowerQIL1="22" ReactivePowerQIL2="0" ReactivePowerQIL3="0" ReactivePowerQIall="22" ReactivePowerQIIL1="0" ReactivePowerQIIL2="0" ReactivePowerQIIL3="0" ReactivePowerQIIall="0" ReactivePowerQIIIL1="0" ReactivePowerQIIIL2="0" ReactivePowerQIIIL3="0" ReactivePowerQIIIall="0" ReactivePowerQIVL1="0" ReactivePowerQIVL2="0" ReactivePowerQIVL3="0" ReactivePowerQIVall="0" ApparentPowerpL1="68" ApparentPowerpL2="0" ApparentPowerpL3="0" ApparentPowerpAll="68" ApparentPowermL1="315.81311553100016" ApparentPowermL2="0.510100501" ApparentPowermL3="0.510100501" ApparentPowermAll="300" CurrentL1="382" CurrentL2="0" CurrentL3="0" CurrentAll="382" VoltageL1="42.550502505000011" VoltageL2="0.510100501" VoltageL3="0.510100501" VoltageAll="40" PowerFactorL1="0" PowerFactorL2="0" PowerFactorL3="0" PowerFactorAll="0" SupplyFrequencyL1="50" SupplyFrequencyL2="50" SupplyFrequencyL3="50" SupplyFrequencyAll="50" ActivePowerAbsPL1="0" ActivePowerAbsPL2="0" ActivePowerAbsPL3="0" ActivePowerAbsPAll="0" ActivePowerAbsML1="0" ActivePowerAbsML2="0" ActivePowerAbsML3="0" ActivePowerAbsMAll="0" ActivePowerQIL1="0" ActivePowerQIL2="0" ActivePowerQIL3="0" ActivePowerQIall="0" ActivePowerQIIL1="0" ActivePowerQIIL2="0" ActivePowerQIIL3="0" ActivePowerQIIall="0" ActivePowerQIIIL1="0" ActivePowerQIIIL2="0" ActivePowerQIIIL3="0" ActivePowerQIIIall="0" ActivePowerQIVL1="0" ActivePowerQIVL2="0" ActivePowerQIVL3="0" ActivePowerQIVall="0" Angles="90" Pulses="0" Ampere_squaredHours="0" Volt_squaredHours="0" NeutralCurrent="0" NeutralVoltage="0" />
+  </PhysicalDevice>
+  <PhysicalDevice ID="_7040201SmartMeter">
+    <AutoConnect Connection="False" />
+    <ElectricityValues ActivePowerpL1="45" ActivePowerpall="45" ActivePowerpL2="0" ActivePowerpL3="0" ActivePowermL2="0" ActivePowermL1="230" ActivePowermL3="0" ActivePowermall="230" ReactivePowerpL1="10" ReactivePowerpL2="0" ReactivePowerpL3="0" ReactivePowerpall="10" ReactivePowermL1="32" ReactivePowermL2="0" ReactivePowermL3="0" ReactivePowermall="32" ReactivePowerQIL1="22" ReactivePowerQIL2="0" ReactivePowerQIL3="0" ReactivePowerQIall="22" ReactivePowerQIIL1="0" ReactivePowerQIIL2="0" ReactivePowerQIIL3="0" ReactivePowerQIIall="0" ReactivePowerQIIIL1="0" ReactivePowerQIIIL2="0" ReactivePowerQIIIL3="0" ReactivePowerQIIIall="0" ReactivePowerQIVL1="0" ReactivePowerQIVL2="0" ReactivePowerQIVL3="0" ReactivePowerQIVall="0" ApparentPowerpL1="68" ApparentPowerpL2="0" ApparentPowerpL3="0" ApparentPowerpAll="68" ApparentPowermL1="325.68557874470508" ApparentPowermL2="0.828567056280801" ApparentPowermL3="0.828567056280801" ApparentPowermAll="300" CurrentL1="382" CurrentL2="0" CurrentL3="0" CurrentAll="382" VoltageL1="44.142835281404018" VoltageL2="0.828567056280801" VoltageL3="0.828567056280801" VoltageAll="40" PowerFactorL1="0" PowerFactorL2="0" PowerFactorL3="0" PowerFactorAll="0" SupplyFrequencyL1="50" SupplyFrequencyL2="50" SupplyFrequencyL3="50" SupplyFrequencyAll="50" ActivePowerAbsPL1="0" ActivePowerAbsPL2="0" ActivePowerAbsPL3="0" ActivePowerAbsPAll="0" ActivePowerAbsML1="0" ActivePowerAbsML2="0" ActivePowerAbsML3="0" ActivePowerAbsMAll="0" ActivePowerQIL1="0" ActivePowerQIL2="0" ActivePowerQIL3="0" ActivePowerQIall="0" ActivePowerQIIL1="0" ActivePowerQIIL2="0" ActivePowerQIIL3="0" ActivePowerQIIall="0" ActivePowerQIIIL1="0" ActivePowerQIIIL2="0" ActivePowerQIIIL3="0" ActivePowerQIIIall="0" ActivePowerQIVL1="0" ActivePowerQIVL2="0" ActivePowerQIVL3="0" ActivePowerQIVall="0" Angles="90" Pulses="0" Ampere_squaredHours="0" Volt_squaredHours="0" NeutralCurrent="0" NeutralVoltage="0" />
+  </PhysicalDevice>
+  <PhysicalDevice ID="_7422201SmartMeter" />
+  <PhysicalDevice ID="_7684201SmartMeter" />
+  <PhysicalDevice ID="_50310201SmartMeter" />
+  <PhysicalDevice ID="_2800201SmartMeter">
+    <AutoConnect Connection="True" />
+    <ElectricityValues ActivePowerpL1="45" ActivePowerpall="45" ActivePowerpL2="0" ActivePowerpL3="0" ActivePowermL2="0" ActivePowermL1="230" ActivePowermL3="0" ActivePowermall="230" ReactivePowerpL1="10" ReactivePowerpL2="0" ReactivePowerpL3="0" ReactivePowerpall="10" ReactivePowermL1="32" ReactivePowermL2="0" ReactivePowermL3="0" ReactivePowermall="32" ReactivePowerQIL1="22" ReactivePowerQIL2="0" ReactivePowerQIL3="0" ReactivePowerQIall="22" ReactivePowerQIIL1="0" ReactivePowerQIIL2="0" ReactivePowerQIIL3="0" ReactivePowerQIIall="0" ReactivePowerQIIIL1="0" ReactivePowerQIIIL2="0" ReactivePowerQIIIL3="0" ReactivePowerQIIIall="0" ReactivePowerQIVL1="0" ReactivePowerQIVL2="0" ReactivePowerQIVL3="0" ReactivePowerQIVall="0" ApparentPowerpL1="68" ApparentPowerpL2="0" ApparentPowerpL3="0" ApparentPowerpAll="68" ApparentPowermL1="322.3619591531733" ApparentPowermL2="0.7213535210701" ApparentPowermL3="0.7213535210701" ApparentPowermAll="300" CurrentL1="382" CurrentL2="0" CurrentL3="0" CurrentAll="382" VoltageL1="43.606767605350512" VoltageL2="0.7213535210701" VoltageL3="0.7213535210701" VoltageAll="40" PowerFactorL1="0" PowerFactorL2="0" PowerFactorL3="0" PowerFactorAll="0" SupplyFrequencyL1="50" SupplyFrequencyL2="50" SupplyFrequencyL3="50" SupplyFrequencyAll="50" ActivePowerAbsPL1="0" ActivePowerAbsPL2="0" ActivePowerAbsPL3="0" ActivePowerAbsPAll="0" ActivePowerAbsML1="0" ActivePowerAbsML2="0" ActivePowerAbsML3="0" ActivePowerAbsMAll="0" ActivePowerQIL1="0" ActivePowerQIL2="0" ActivePowerQIL3="0" ActivePowerQIall="0" ActivePowerQIIL1="0" ActivePowerQIIL2="0" ActivePowerQIIL3="0" ActivePowerQIIall="0" ActivePowerQIIIL1="0" ActivePowerQIIIL2="0" ActivePowerQIIIL3="0" ActivePowerQIIIall="0" ActivePowerQIVL1="0" ActivePowerQIVL2="0" ActivePowerQIVL3="0" ActivePowerQIVall="0" Angles="90" Pulses="0" Ampere_squaredHours="0" Volt_squaredHours="0" NeutralCurrent="0" NeutralVoltage="0" />
+  </PhysicalDevice>
+  <PhysicalDevice ID="_4731201SmartMeter" />
+  <PhysicalDevice ID="_5837201SmartMeter" />
+  <PhysicalDevice ID="_6263201SmartMeter">
+    <AutoConnect Connection="True" />
+    <ElectricityValues ActivePowerpL1="45" ActivePowerpall="45" ActivePowerpL2="0" ActivePowerpL3="0" ActivePowermL2="0" ActivePowermL1="230" ActivePowermL3="0" ActivePowermall="230" ReactivePowerpL1="10" ReactivePowerpL2="0" ReactivePowerpL3="0" ReactivePowerpall="10" ReactivePowermL1="32" ReactivePowermL2="0" ReactivePowermL3="0" ReactivePowermall="32" ReactivePowerQIL1="22" ReactivePowerQIL2="0" ReactivePowerQIL3="0" ReactivePowerQIall="22" ReactivePowerQIIL1="0" ReactivePowerQIIL2="0" ReactivePowerQIIL3="0" ReactivePowerQIIall="0" ReactivePowerQIIIL1="0" ReactivePowerQIIIL2="0" ReactivePowerQIIIL3="0" ReactivePowerQIIIall="0" ReactivePowerQIVL1="0" ReactivePowerQIVL2="0" ReactivePowerQIVL3="0" ReactivePowerQIVall="0" ApparentPowerpL1="68" ApparentPowerpL2="0" ApparentPowerpL3="0" ApparentPowerpAll="68" ApparentPowermL1="312.58724310000014" ApparentPowermL2="0.4060401" ApparentPowermL3="0.4060401" ApparentPowermAll="300" CurrentL1="382" CurrentL2="0" CurrentL3="0" CurrentAll="382" VoltageL1="42.030200500000007" VoltageL2="0.4060401" VoltageL3="0.4060401" VoltageAll="40" PowerFactorL1="0" PowerFactorL2="0" PowerFactorL3="0" PowerFactorAll="0" SupplyFrequencyL1="50" SupplyFrequencyL2="50" SupplyFrequencyL3="50" SupplyFrequencyAll="50" ActivePowerAbsPL1="0" ActivePowerAbsPL2="0" ActivePowerAbsPL3="0" ActivePowerAbsPAll="0" ActivePowerAbsML1="0" ActivePowerAbsML2="0" ActivePowerAbsML3="0" ActivePowerAbsMAll="0" ActivePowerQIL1="0" ActivePowerQIL2="0" ActivePowerQIL3="0" ActivePowerQIall="0" ActivePowerQIIL1="0" ActivePowerQIIL2="0" ActivePowerQIIL3="0" ActivePowerQIIall="0" ActivePowerQIIIL1="0" ActivePowerQIIIL2="0" ActivePowerQIIIL3="0" ActivePowerQIIIall="0" ActivePowerQIVL1="0" ActivePowerQIVL2="0" ActivePowerQIVL3="0" ActivePowerQIVall="0" Angles="90" Pulses="0" Ampere_squaredHours="0" Volt_squaredHours="0" NeutralCurrent="0" NeutralVoltage="0" />
+  </PhysicalDevice>
+  <PhysicalDevice ID="7f0a519e-925f-455e-b0ce-a5f6467702e5" />
+  <PhysicalDevice ID="ee911bf0-82bc-4a84-880c-5c3af53d5648" />
+  <PhysicalDevice ID="bb61e800-bab6-4284-ada8-0c3c554812b6">
+    <AutoConnect Connection="False" />
+    <ElectricityValues ActivePowerpL1="45" ActivePowerpall="45" ActivePowermL1="230" ActivePowermall="230" ReactivePowerpL1="10" ReactivePowerpall="10" ReactivePowermL1="32" ReactivePowermall="32" ReactivePowerQIall="22" ReactivePowerQIIIL1="22" ApparentPowerpL1="68" ApparentPowerpAll="68" ApparentPowermL1="309.3933100000001" ApparentPowermL2="0.30301" ApparentPowermL3="0.30301" ApparentPowermAll="300" CurrentL1="382" CurrentAll="382" VoltageL1="41.51505" VoltageL2="0.30301" VoltageL3="0.30301" VoltageAll="40" SupplyFrequencyL1="50" SupplyFrequencyL2="50" SupplyFrequencyL3="50" SupplyFrequencyAll="50" Angles="90" />
+  </PhysicalDevice>
+  <PhysicalDevice ID="ccec51e3-8cbd-486b-9cac-10a86224788e">
+    <AutoConnect Connection="True" />
+    <ElectricityValues ActivePowerpL1="45" ActivePowerpall="45" ActivePowermL1="230" ActivePowermall="230" ReactivePowerpL1="10" ReactivePowerpall="10" ReactivePowermL1="32" ReactivePowermall="32" ReactivePowerQIall="22" ReactivePowerQIIIL1="22" ApparentPowerpL1="68" ApparentPowerpAll="68" ApparentPowermL1="309.3933100000001" ApparentPowermL2="0.30301" ApparentPowermL3="0.30301" ApparentPowermAll="300" CurrentL1="382" CurrentAll="382" VoltageL1="41.51505" VoltageL2="0.30301" VoltageL3="0.30301" VoltageAll="40" SupplyFrequencyL1="50" SupplyFrequencyL2="50" SupplyFrequencyL3="50" SupplyFrequencyAll="50" Angles="90" />
+  </PhysicalDevice>
+  <PhysicalDevice ID="38e4dde4-258d-4c01-8c03-1fdd7283c944">
+    <AutoConnect Connection="False" />
+    <ElectricityValues ActivePowerpL1="45" ActivePowerpall="45" ActivePowermL1="230" ActivePowermall="230" ReactivePowerpL1="10" ReactivePowerpall="10" ReactivePowermL1="32" ReactivePowermall="32" ReactivePowerQIall="22" ReactivePowerQIIIL1="22" ApparentPowerpL1="68" ApparentPowerpAll="68" ApparentPowermL1="303.1" ApparentPowermL2="0.1" ApparentPowermL3="0.1" ApparentPowermAll="300" CurrentL1="382" CurrentAll="382" VoltageL1="40.5" VoltageL2="0.1" VoltageL3="0.1" VoltageAll="40" SupplyFrequencyL1="50" SupplyFrequencyL2="50" SupplyFrequencyL3="50" SupplyFrequencyAll="50" Angles="90" />
+  </PhysicalDevice>
+  <PhysicalDevice ID="4a55ba52-0806-437e-bd4d-f929b8af6a5a" />
+  <PhysicalDevice ID="adf1ea71-3964-44c4-846c-a4c3916ed727">
+    <AutoConnect Connection="False" />
+    <ElectricityValues ActivePowerpL1="45" ActivePowerpall="45" ActivePowermL1="230" ActivePowermall="230" ReactivePowerpL1="10" ReactivePowerpall="10" ReactivePowermL1="32" ReactivePowermall="32" ReactivePowerQIall="22" ReactivePowerQIIIL1="22" ApparentPowerpL1="68" ApparentPowerpAll="68" ApparentPowermL1="312.58724310000014" ApparentPowermL2="0.4060401" ApparentPowermL3="0.4060401" ApparentPowermAll="300" CurrentL1="382" CurrentAll="382" VoltageL1="42.030200500000007" VoltageL2="0.4060401" VoltageL3="0.4060401" VoltageAll="40" SupplyFrequencyL1="50" SupplyFrequencyL2="50" SupplyFrequencyL3="50" SupplyFrequencyAll="50" Angles="90" />
+  </PhysicalDevice>
+  <PhysicalDevice ID="a6f95cd0-c845-4e4b-b6a7-bae48a186aa9" />
+  <PhysicalDevice ID="e76841c4-c371-4aa4-8b4f-62100f9b5e1f" />
+  <PhysicalDevice ID="4320186b-3363-4215-a722-9fd9f62b747b" />
+  <PhysicalDevice ID="b52e49d1-e0c0-4255-afac-5977f7a4ce80" />
+  <PhysicalDevice ID="83fd61bf-121a-4e13-b283-8ea22f33c2ce" />
+  <PhysicalDevice ID="c3cba353-c37f-4443-b6e5-43a757ed4f01" />
+  <PhysicalDevice ID="20d5a81e-058d-4aed-86c7-d2985d14623e" />
+  <PhysicalDevice ID="157a44fb-cc4b-4af4-b453-7ef31f92b67a">
+    <AutoConnect Connection="True" />
+    <ElectricityValues ActivePowerpL1="45" ActivePowerpall="45" ActivePowermL1="230" ActivePowermall="230" ReactivePowerpL1="10" ReactivePowerpall="10" ReactivePowermL1="32" ReactivePowermall="32" ReactivePowerQIall="22" ReactivePowerQIIIL1="22" ApparentPowerpL1="68" ApparentPowerpAll="68" ApparentPowermL1="312.58724310000014" ApparentPowermL2="0.4060401" ApparentPowermL3="0.4060401" ApparentPowermAll="300" CurrentL1="382" CurrentAll="382" VoltageL1="42.030200500000007" VoltageL2="0.4060401" VoltageL3="0.4060401" VoltageAll="40" SupplyFrequencyL1="50" SupplyFrequencyL2="50" SupplyFrequencyL3="50" SupplyFrequencyAll="50" Angles="90" />
+  </PhysicalDevice>
+  <PhysicalDevice ID="2b0e678c-7ddb-4a9c-9dfc-e93d001da5c3" />
+  <PhysicalDevice ID="0dbbeac8-b9dd-4fc0-8e42-33adbbac507c" />
+  <PhysicalDevice ID="cc3a3ac0-a283-4a43-9e21-cc5b061c5c78" />
+  <PhysicalDevice ID="0fa94f17-202d-49b0-abb2-1478c3caa8d3">
+    <AutoConnect Connection="True" />
+    <ElectricityValues ActivePowerpL1="45" ActivePowerpall="45" ActivePowermL1="230" ActivePowermall="230" ReactivePowerpL1="10" ReactivePowerpall="10" ReactivePowermL1="32" ReactivePowermall="32" ReactivePowerQIall="22" ReactivePowerQIIIL1="22" ApparentPowerpL1="68" ApparentPowerpAll="68" ApparentPowermL1="303.1" ApparentPowermL2="0.1" ApparentPowermL3="0.1" ApparentPowermAll="300" CurrentL1="382" CurrentAll="382" VoltageL1="40.5" VoltageL2="0.1" VoltageL3="0.1" VoltageAll="40" SupplyFrequencyL1="50" SupplyFrequencyL2="50" SupplyFrequencyL3="50" SupplyFrequencyAll="50" Angles="90" />
+  </PhysicalDevice>
+  <PhysicalDevice ID="25728ace-b55b-4971-a010-bc5f129cf7a3">
+    <AutoConnect Connection="True" />
+    <ElectricityValues ActivePowerpL1="45" ActivePowerpall="45" ActivePowermL1="230" ActivePowermall="230" ReactivePowerpL1="10" ReactivePowerpall="10" ReactivePowermL1="32" ReactivePowermall="32" ReactivePowerQIall="22" ReactivePowerQIIIL1="22" ApparentPowerpL1="68" ApparentPowerpAll="68" ApparentPowermL1="300" ApparentPowermAll="300" CurrentL1="382" CurrentAll="382" VoltageL1="40" VoltageAll="40" SupplyFrequencyL1="50" SupplyFrequencyL2="50" SupplyFrequencyL3="50" SupplyFrequencyAll="50" Angles="90" />
+  </PhysicalDevice>
+  <PhysicalDevice ID="cf0a2a69-b89c-417b-802d-afb9e9e29a28" />
+  <PhysicalDevice ID="7cff2e3a-3b63-415a-a93d-a2b366bb6da1">
+    <AutoConnect Connection="False" />
+    <ElectricityValues ActivePowerpL1="45" ActivePowerpall="45" ActivePowermL1="230" ActivePowermall="230" ReactivePowerpL1="10" ReactivePowerpall="10" ReactivePowermL1="32" ReactivePowermall="32" ReactivePowerQIall="22" ReactivePowerQIIIL1="22" ApparentPowerpL1="68" ApparentPowerpAll="68" ApparentPowermL1="309.3933100000001" ApparentPowermL2="0.30301" ApparentPowermL3="0.30301" ApparentPowermAll="300" CurrentL1="382" CurrentAll="382" VoltageL1="41.51505" VoltageL2="0.30301" VoltageL3="0.30301" VoltageAll="40" SupplyFrequencyL1="50" SupplyFrequencyL2="50" SupplyFrequencyL3="50" SupplyFrequencyAll="50" Angles="90" />
+  </PhysicalDevice>
+  <PhysicalDevice ID="77de5cda-6dc6-42b6-b8c4-506c99e60834">
+    <AutoConnect Connection="True" />
+    <ElectricityValues ActivePowerpL1="45" ActivePowerpall="45" ActivePowermL1="230" ActivePowermall="230" ReactivePowerpL1="10" ReactivePowerpall="10" ReactivePowermL1="32" ReactivePowermall="32" ReactivePowerQIall="22" ReactivePowerQIIIL1="22" ApparentPowerpL1="68" ApparentPowerpAll="68" ApparentPowermL1="303.1" ApparentPowermL2="0.1" ApparentPowermL3="0.1" ApparentPowermAll="300" CurrentL1="382" CurrentAll="382" VoltageL1="40.5" VoltageL2="0.1" VoltageL3="0.1" VoltageAll="40" SupplyFrequencyL1="50" SupplyFrequencyL2="50" SupplyFrequencyL3="50" SupplyFrequencyAll="50" Angles="90" />
+  </PhysicalDevice>
+  <PhysicalDevice ID="f886db60-563d-4ea7-97cf-f0f4a3d51618" />
+  <PhysicalDevice ID="7d262f66-f3d9-4d25-9694-d5c29cbce163" />
+  <PhysicalDevice ID="2c7220c6-41d1-46e3-8caf-ede5556e106e">
+    <AutoConnect Connection="True" />
+    <ElectricityValues ActivePowerpL1="45" ActivePowerpall="45" ActivePowermL1="230" ActivePowermall="230" ReactivePowerpL1="10" ReactivePowerpall="10" ReactivePowermL1="32" ReactivePowermall="32" ReactivePowerQIall="22" ReactivePowerQIIIL1="22" ApparentPowerpL1="68" ApparentPowerpAll="68" ApparentPowermL1="300" ApparentPowermAll="300" CurrentL1="382" CurrentAll="382" VoltageL1="40" VoltageAll="40" SupplyFrequencyL1="50" SupplyFrequencyL2="50" SupplyFrequencyL3="50" SupplyFrequencyAll="50" Angles="90" />
+  </PhysicalDevice>
+  <PhysicalDevice ID="061b00ff-88aa-4b63-a8ee-39148e80b106">
+    <AutoConnect Connection="True" />
+    <ElectricityValues ActivePowerpL1="45" ActivePowerpall="45" ActivePowermL1="230" ActivePowermall="230" ReactivePowerpL1="10" ReactivePowerpall="10" ReactivePowermL1="32" ReactivePowermall="32" ReactivePowerQIall="22" ReactivePowerQIIIL1="22" ApparentPowerpL1="68" ApparentPowerpAll="68" ApparentPowermL1="303.1" ApparentPowermL2="0.1" ApparentPowermL3="0.1" ApparentPowermAll="300" CurrentL1="382" CurrentAll="382" VoltageL1="40.5" VoltageL2="0.1" VoltageL3="0.1" VoltageAll="40" SupplyFrequencyL1="50" SupplyFrequencyL2="50" SupplyFrequencyL3="50" SupplyFrequencyAll="50" Angles="90" />
+  </PhysicalDevice>
+  <PhysicalDevice ID="de7b47c8-898a-42cd-8cd9-67aa8d34b16e">
+    <AutoConnect Connection="True" />
+    <ElectricityValues ActivePowerpL1="45" ActivePowerpall="45" ActivePowermL1="230" ActivePowermall="230" ReactivePowerpL1="10" ReactivePowerpall="10" ReactivePowermL1="32" ReactivePowermall="32" ReactivePowerQIall="22" ReactivePowerQIIIL1="22" ApparentPowerpL1="68" ApparentPowerpAll="68" ApparentPowermL1="309.3933100000001" ApparentPowermL2="0.30301" ApparentPowermL3="0.30301" ApparentPowermAll="300" CurrentL1="382" CurrentAll="382" VoltageL1="41.51505" VoltageL2="0.30301" VoltageL3="0.30301" VoltageAll="40" SupplyFrequencyL1="50" SupplyFrequencyL2="50" SupplyFrequencyL3="50" SupplyFrequencyAll="50" Angles="90" />
+  </PhysicalDevice>
+  <PhysicalDevice ID="9c14654d-b758-469b-b5dc-ecc2d148b8d2">
+    <AutoConnect Connection="True" />
+    <ElectricityValues ActivePowerpL1="45" ActivePowerpall="45" ActivePowermL1="230" ActivePowermall="230" ReactivePowerpL1="10" ReactivePowerpall="10" ReactivePowermL1="32" ReactivePowermall="32" ReactivePowerQIall="22" ReactivePowerQIIIL1="22" ApparentPowerpL1="68" ApparentPowerpAll="68" ApparentPowermL1="306.23100000000005" ApparentPowermL2="0.201" ApparentPowermL3="0.201" ApparentPowermAll="300" CurrentL1="382" CurrentAll="382" VoltageL1="41.005" VoltageL2="0.201" VoltageL3="0.201" VoltageAll="40" SupplyFrequencyL1="50" SupplyFrequencyL2="50" SupplyFrequencyL3="50" SupplyFrequencyAll="50" Angles="90" />
+  </PhysicalDevice>
+  <PhysicalDevice ID="86216a20-22d4-4733-a46b-8fc61077f7ed">
+    <AutoConnect Connection="True" />
+    <ElectricityValues ActivePowerpL1="45" ActivePowerpall="45" ActivePowermL1="230" ActivePowermall="230" ReactivePowerpL1="10" ReactivePowerpall="10" ReactivePowermL1="32" ReactivePowermall="32" ReactivePowerQIall="22" ReactivePowerQIIIL1="22" ApparentPowerpL1="68" ApparentPowerpAll="68" ApparentPowermL1="303.1" ApparentPowermL2="0.1" ApparentPowermL3="0.1" ApparentPowermAll="300" CurrentL1="382" CurrentAll="382" VoltageL1="40.5" VoltageL2="0.1" VoltageL3="0.1" VoltageAll="40" SupplyFrequencyL1="50" SupplyFrequencyL2="50" SupplyFrequencyL3="50" SupplyFrequencyAll="50" Angles="90" />
+  </PhysicalDevice>
+  <PhysicalDevice ID="cf7df985-2013-4a6a-8baa-9521612450be">
+    <AutoConnect Connection="False" />
+    <ElectricityValues ActivePowerpL1="45" ActivePowerpall="45" ActivePowermL1="230" ActivePowermall="230" ReactivePowerpL1="10" ReactivePowerpall="10" ReactivePowermL1="32" ReactivePowermall="32" ReactivePowerQIall="22" ReactivePowerQIIIL1="22" ApparentPowerpL1="68" ApparentPowerpAll="68" ApparentPowermL1="309.3933100000001" ApparentPowermL2="0.30301" ApparentPowermL3="0.30301" ApparentPowermAll="300" CurrentL1="382" CurrentAll="382" VoltageL1="41.51505" VoltageL2="0.30301" VoltageL3="0.30301" VoltageAll="40" SupplyFrequencyL1="50" SupplyFrequencyL2="50" SupplyFrequencyL3="50" SupplyFrequencyAll="50" Angles="90" />
+  </PhysicalDevice>
+  <PhysicalDevice ID="9524f2c6-6db7-486b-9ddf-abc2552688a1">
+    <AutoConnect Connection="True" />
+    <ElectricityValues ActivePowerpL1="45" ActivePowerpall="45" ActivePowermL1="230" ActivePowermall="230" ReactivePowerpL1="10" ReactivePowerpall="10" ReactivePowermL1="32" ReactivePowermall="32" ReactivePowerQIall="22" ReactivePowerQIIIL1="22" ApparentPowerpL1="68" ApparentPowerpAll="68" ApparentPowermL1="303.1" ApparentPowermL2="0.1" ApparentPowermL3="0.1" ApparentPowermAll="300" CurrentL1="382" CurrentAll="382" VoltageL1="40.5" VoltageL2="0.1" VoltageL3="0.1" VoltageAll="40" SupplyFrequencyL1="50" SupplyFrequencyL2="50" SupplyFrequencyL3="50" SupplyFrequencyAll="50" Angles="90" />
+  </PhysicalDevice>
+  <PhysicalDevice ID="31398e7f-77a8-4c4e-8052-d709fe7f3936" />
+  <PhysicalDevice ID="6cc2a320-088f-46bc-a804-fdb6a99d93f4">
+    <AutoConnect Connection="True" />
+    <ElectricityValues ActivePowerpL1="45" ActivePowerpall="45" ActivePowermL1="230" ActivePowermall="230" ReactivePowerpL1="10" ReactivePowerpall="10" ReactivePowermL1="32" ReactivePowermall="32" ReactivePowerQIall="22" ReactivePowerQIIIL1="22" ApparentPowerpL1="68" ApparentPowerpAll="68" ApparentPowermL1="306.23100000000005" ApparentPowermL2="0.201" ApparentPowermL3="0.201" ApparentPowermAll="300" CurrentL1="382" CurrentAll="382" VoltageL1="41.005" VoltageL2="0.201" VoltageL3="0.201" VoltageAll="40" SupplyFrequencyL1="50" SupplyFrequencyL2="50" SupplyFrequencyL3="50" SupplyFrequencyAll="50" Angles="90" />
+  </PhysicalDevice>
+  <PhysicalDevice ID="86e806f3-a52b-4f95-945c-5090caf599e1">
+    <AutoConnect Connection="True" />
+    <ElectricityValues ActivePowerpL1="45" ActivePowerpall="45" ActivePowermL1="230" ActivePowermall="230" ReactivePowerpL1="10" ReactivePowerpall="10" ReactivePowermL1="32" ReactivePowermall="32" ReactivePowerQIall="22" ReactivePowerQIIIL1="22" ApparentPowerpL1="68" ApparentPowerpAll="68" ApparentPowermL1="300" ApparentPowermAll="300" CurrentL1="382" CurrentAll="382" VoltageL1="40" VoltageAll="40" SupplyFrequencyL1="50" SupplyFrequencyL2="50" SupplyFrequencyL3="50" SupplyFrequencyAll="50" Angles="90" />
+  </PhysicalDevice>
+  <PhysicalDevice ID="06e2dffd-7c18-49df-b02b-ffc9f4b4e291" />
+  <PhysicalDevice ID="61721943-684b-40cd-814e-f624a00bc261">
+    <AutoConnect Connection="True" />
+    <ElectricityValues ActivePowerpL1="45" ActivePowerpall="45" ActivePowermL1="230" ActivePowermall="230" ReactivePowerpL1="10" ReactivePowerpall="10" ReactivePowermL1="32" ReactivePowermall="32" ReactivePowerQIall="22" ReactivePowerQIIIL1="22" ApparentPowerpL1="68" ApparentPowerpAll="68" ApparentPowermL1="303.1" ApparentPowermL2="0.1" ApparentPowermL3="0.1" ApparentPowermAll="300" CurrentL1="382" CurrentAll="382" VoltageL1="40.5" VoltageL2="0.1" VoltageL3="0.1" VoltageAll="40" SupplyFrequencyL1="50" SupplyFrequencyL2="50" SupplyFrequencyL3="50" SupplyFrequencyAll="50" Angles="90" />
+  </PhysicalDevice>
+  <PhysicalDevice ID="f3cc8c70-e31e-4b2c-9ebd-b7193b501585">
+    <AutoConnect Connection="True" />
+    <ElectricityValues ActivePowerpL1="45" ActivePowerpall="45" ActivePowermL1="230" ActivePowermall="230" ReactivePowerpL1="10" ReactivePowerpall="10" ReactivePowermL1="32" ReactivePowermall="32" ReactivePowerQIall="22" ReactivePowerQIIIL1="22" ApparentPowerpL1="68" ApparentPowerpAll="68" ApparentPowermL1="300" ApparentPowermAll="300" CurrentL1="382" CurrentAll="382" VoltageL1="40" VoltageAll="40" SupplyFrequencyL1="50" SupplyFrequencyL2="50" SupplyFrequencyL3="50" SupplyFrequencyAll="50" Angles="90" />
+  </PhysicalDevice>
+  <PhysicalDevice ID="63d28589-2138-4642-b81a-4e6d3bdea920">
+    <AutoConnect Connection="True" />
+    <ElectricityValues ActivePowerpL1="45" ActivePowerpall="45" ActivePowermL1="230" ActivePowermall="230" ReactivePowerpL1="10" ReactivePowerpall="10" ReactivePowermL1="32" ReactivePowermall="32" ReactivePowerQIall="22" ReactivePowerQIIIL1="22" ApparentPowerpL1="68" ApparentPowerpAll="68" ApparentPowermL1="300" ApparentPowermAll="300" CurrentL1="382" CurrentAll="382" VoltageL1="40" VoltageAll="40" SupplyFrequencyL1="50" SupplyFrequencyL2="50" SupplyFrequencyL3="50" SupplyFrequencyAll="50" Angles="90" />
+  </PhysicalDevice>
+  <PhysicalDevice ID="22e76216-684c-467c-866b-354f148005b2">
+    <AutoConnect Connection="False" />
+    <ElectricityValues ActivePowerpL1="45" ActivePowerpall="45" ActivePowermL1="230" ActivePowermall="230" ReactivePowerpL1="10" ReactivePowerpall="10" ReactivePowermL1="32" ReactivePowermall="32" ReactivePowerQIall="22" ReactivePowerQIIIL1="22" ApparentPowerpL1="68" ApparentPowerpAll="68" ApparentPowermL1="303.1" ApparentPowermL2="0.1" ApparentPowermL3="0.1" ApparentPowermAll="300" CurrentL1="382" CurrentAll="382" VoltageL1="40.5" VoltageL2="0.1" VoltageL3="0.1" VoltageAll="40" SupplyFrequencyL1="50" SupplyFrequencyL2="50" SupplyFrequencyL3="50" SupplyFrequencyAll="50" Angles="90" />
+  </PhysicalDevice>
+  <PhysicalDevice ID="d4a349fa-0710-4cde-873a-7ca68eb4b661" />
+  <PhysicalDevice ID="8c483714-1a15-4ab0-b358-5a3c3ca554f5">
+    <AutoConnect Connection="True" />
+    <ElectricityValues ActivePowerpL1="45" ActivePowerpall="45" ActivePowermL1="230" ActivePowermall="230" ReactivePowerpL1="10" ReactivePowerpall="10" ReactivePowermL1="32" ReactivePowermall="32" ReactivePowerQIall="22" ReactivePowerQIIIL1="22" ApparentPowerpL1="68" ApparentPowerpAll="68" ApparentPowermL1="300" ApparentPowermAll="300" CurrentL1="382" CurrentAll="382" VoltageL1="40" VoltageAll="40" SupplyFrequencyL1="50" SupplyFrequencyL2="50" SupplyFrequencyL3="50" SupplyFrequencyAll="50" Angles="90" />
+  </PhysicalDevice>
+  <PhysicalDevice ID="70cca67a-15be-45e5-8f6a-7ce1c65016f4">
+    <AutoConnect Connection="True" />
+    <ElectricityValues ActivePowerpL1="45" ActivePowerpall="45" ActivePowermL1="230" ActivePowermall="230" ReactivePowerpL1="10" ReactivePowerpall="10" ReactivePowermL1="32" ReactivePowermall="32" ReactivePowerQIall="22" ReactivePowerQIIIL1="22" ApparentPowerpL1="68" ApparentPowerpAll="68" ApparentPowermL1="300" ApparentPowermAll="300" CurrentL1="382" CurrentAll="382" VoltageL1="40" VoltageAll="40" SupplyFrequencyL1="50" SupplyFrequencyL2="50" SupplyFrequencyL3="50" SupplyFrequencyAll="50" Angles="90" />
+  </PhysicalDevice>
+  <PhysicalDevice ID="51c27480-e008-40f1-9879-2b7b5313ac82">
+    <AutoConnect Connection="True" />
+    <ElectricityValues ActivePowerpL1="45" ActivePowerpall="45" ActivePowermL1="230" ActivePowermall="230" ReactivePowerpL1="10" ReactivePowerpall="10" ReactivePowermL1="32" ReactivePowermall="32" ReactivePowerQIall="22" ReactivePowerQIIIL1="22" ApparentPowerpL1="68" ApparentPowerpAll="68" ApparentPowermL1="300" ApparentPowermAll="300" CurrentL1="382" CurrentAll="382" VoltageL1="40" VoltageAll="40" SupplyFrequencyL1="50" SupplyFrequencyL2="50" SupplyFrequencyL3="50" SupplyFrequencyAll="50" Angles="90" />
+  </PhysicalDevice>
+  <PhysicalDevice ID="7901b2e4-bb64-41d1-8704-95a789abdaf4">
+    <AutoConnect Connection="True" />
+    <ElectricityValues ActivePowerpL1="45" ActivePowerpall="45" ActivePowermL1="230" ActivePowermall="230" ReactivePowerpL1="10" ReactivePowerpall="10" ReactivePowermL1="32" ReactivePowermall="32" ReactivePowerQIall="22" ReactivePowerQIIIL1="22" ApparentPowerpL1="68" ApparentPowerpAll="68" ApparentPowermL1="300" ApparentPowermAll="300" CurrentL1="382" CurrentAll="382" VoltageL1="40" VoltageAll="40" SupplyFrequencyL1="50" SupplyFrequencyL2="50" SupplyFrequencyL3="50" SupplyFrequencyAll="50" Angles="90" />
+  </PhysicalDevice>
+  <PhysicalDevice ID="36a95cdd-ea6d-43f5-96fe-c4ea1ac8820a">
+    <AutoConnect Connection="True" />
+    <ElectricityValues ActivePowerpL1="45" ActivePowerpall="45" ActivePowermL1="230" ActivePowermall="230" ReactivePowerpL1="10" ReactivePowerpall="10" ReactivePowermL1="32" ReactivePowermall="32" ReactivePowerQIall="22" ReactivePowerQIIIL1="22" ApparentPowerpL1="68" ApparentPowerpAll="68" ApparentPowermL1="300" ApparentPowermAll="300" CurrentL1="382" CurrentAll="382" VoltageL1="40" VoltageAll="40" SupplyFrequencyL1="50" SupplyFrequencyL2="50" SupplyFrequencyL3="50" SupplyFrequencyAll="50" Angles="90" />
+  </PhysicalDevice>
+  <PhysicalDevice ID="3dd4655f-269b-4ebb-8f1c-d4db4f3795b2">
+    <AutoConnect Connection="True" />
+    <ElectricityValues ActivePowerpL1="45" ActivePowerpall="45" ActivePowermL1="230" ActivePowermall="230" ReactivePowerpL1="10" ReactivePowerpall="10" ReactivePowermL1="32" ReactivePowermall="32" ReactivePowerQIall="22" ReactivePowerQIIIL1="22" ApparentPowerpL1="68" ApparentPowerpAll="68" ApparentPowermL1="300" ApparentPowermAll="300" CurrentL1="382" CurrentAll="382" VoltageL1="40" VoltageAll="40" SupplyFrequencyL1="50" SupplyFrequencyL2="50" SupplyFrequencyL3="50" SupplyFrequencyAll="50" Angles="90" />
+  </PhysicalDevice>
+  <PhysicalDevice ID="4308c09f-92bc-4820-bdf1-51aeb9a8cd14">
+    <AutoConnect Connection="True" />
+    <ElectricityValues ActivePowerpL1="45" ActivePowerpall="45" ActivePowermL1="230" ActivePowermall="230" ReactivePowerpL1="10" ReactivePowerpall="10" ReactivePowermL1="32" ReactivePowermall="32" ReactivePowerQIall="22" ReactivePowerQIIIL1="22" ApparentPowerpL1="68" ApparentPowerpAll="68" ApparentPowermL1="306.23100000000005" ApparentPowermL2="0.201" ApparentPowermL3="0.201" ApparentPowermAll="300" CurrentL1="382" CurrentAll="382" VoltageL1="41.005" VoltageL2="0.201" VoltageL3="0.201" VoltageAll="40" SupplyFrequencyL1="50" SupplyFrequencyL2="50" SupplyFrequencyL3="50" SupplyFrequencyAll="50" Angles="90" />
+  </PhysicalDevice>
+  <PhysicalDevice ID="a2e115d2-4591-429c-af90-a64fe12ceef6">
+    <AutoConnect Connection="True" />
+    <ElectricityValues ActivePowerpL1="45" ActivePowerpall="45" ActivePowermL1="230" ActivePowermall="230" ReactivePowerpL1="10" ReactivePowerpall="10" ReactivePowermL1="32" ReactivePowermall="32" ReactivePowerQIall="22" ReactivePowerQIIIL1="22" ApparentPowerpL1="68" ApparentPowerpAll="68" ApparentPowermL1="300" ApparentPowermAll="300" CurrentL1="382" CurrentAll="382" VoltageL1="40" VoltageAll="40" SupplyFrequencyL1="50" SupplyFrequencyL2="50" SupplyFrequencyL3="50" SupplyFrequencyAll="50" Angles="90" />
+  </PhysicalDevice>
+</cosem:COSEM>

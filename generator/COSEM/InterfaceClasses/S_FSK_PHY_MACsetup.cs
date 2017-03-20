@@ -40,7 +40,7 @@ namespace TTC2017.SmartGrids.COSEM.InterfaceClasses
     [XmlNamespacePrefixAttribute("inter")]
     [ModelRepresentationClassAttribute("http://www.transformation-tool-contest.eu/2017/smartGrids/cosem#//InterfaceClasse" +
         "s/S_FSK_PHY_MACsetup")]
-    public class S_FSK_PHY_MACsetup : Base, IS_FSK_PHY_MACsetup, IModelElement
+    public partial class S_FSK_PHY_MACsetup : Base, IS_FSK_PHY_MACsetup, IModelElement
     {
         
         private static IClass _classInstance;

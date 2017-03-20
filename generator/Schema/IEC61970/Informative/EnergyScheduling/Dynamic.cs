@@ -49,8 +49,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.EnergyScheduling
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61970/Informative/EnergyScheduling/" +
         "Dynamic")]
     [DebuggerDisplayAttribute("Dynamic {UUID}")]
-    public class Dynamic : EnergyTransaction, IDynamic, IModelElement
+    public partial class Dynamic : EnergyTransaction, IDynamic, IModelElement
     {
+        
+        private static Lazy<ITypedElement> _tieLinesReference = new Lazy<ITypedElement>(RetrieveTieLinesReference);
         
         /// <summary>
         /// The backing field for the TieLines property
@@ -108,6 +110,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.EnergyScheduling
             }
         }
         
+        private static ITypedElement RetrieveTieLinesReference()
+        {
+            return ((ITypedElement)(((ModelElement)(Dynamic.ClassInstance)).Resolve("TieLines")));
+        }
+        
         /// <summary>
         /// Forwards CollectionChanging notifications for the TieLines property to the parent model element
         /// </summary>
@@ -115,7 +122,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.EnergyScheduling
         /// <param name="e">The original event data</param>
         private void TieLinesCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("TieLines", e);
+            this.OnCollectionChanging("TieLines", e, _tieLinesReference);
         }
         
         /// <summary>
@@ -125,7 +132,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.EnergyScheduling
         /// <param name="e">The original event data</param>
         private void TieLinesCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("TieLines", e);
+            this.OnCollectionChanged("TieLines", e, _tieLinesReference);
         }
         
         /// <summary>

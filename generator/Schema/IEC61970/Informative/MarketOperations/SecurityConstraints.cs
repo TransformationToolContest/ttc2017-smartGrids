@@ -50,7 +50,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61970/Informative/MarketOperations/" +
         "SecurityConstraints")]
     [DebuggerDisplayAttribute("SecurityConstraints {UUID}")]
-    public class SecurityConstraints : IdentifiedObject, ISecurityConstraints, IModelElement
+    public partial class SecurityConstraints : IdentifiedObject, ISecurityConstraints, IModelElement
     {
         
         /// <summary>
@@ -58,15 +58,23 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
         /// </summary>
         private float _minMW;
         
+        private static Lazy<ITypedElement> _minMWAttribute = new Lazy<ITypedElement>(RetrieveMinMWAttribute);
+        
         /// <summary>
         /// The backing field for the MaxMW property
         /// </summary>
         private float _maxMW;
         
+        private static Lazy<ITypedElement> _maxMWAttribute = new Lazy<ITypedElement>(RetrieveMaxMWAttribute);
+        
         /// <summary>
         /// The backing field for the ActualMW property
         /// </summary>
         private float _actualMW;
+        
+        private static Lazy<ITypedElement> _actualMWAttribute = new Lazy<ITypedElement>(RetrieveActualMWAttribute);
+        
+        private static Lazy<ITypedElement> _rTOReference = new Lazy<ITypedElement>(RetrieveRTOReference);
         
         /// <summary>
         /// The backing field for the RTO property
@@ -93,10 +101,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
                     float old = this._minMW;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnMinMWChanging(e);
-                    this.OnPropertyChanging("MinMW", e);
+                    this.OnPropertyChanging("MinMW", e, _minMWAttribute);
                     this._minMW = value;
                     this.OnMinMWChanged(e);
-                    this.OnPropertyChanged("MinMW", e);
+                    this.OnPropertyChanged("MinMW", e, _minMWAttribute);
                 }
             }
         }
@@ -119,10 +127,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
                     float old = this._maxMW;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnMaxMWChanging(e);
-                    this.OnPropertyChanging("MaxMW", e);
+                    this.OnPropertyChanging("MaxMW", e, _maxMWAttribute);
                     this._maxMW = value;
                     this.OnMaxMWChanged(e);
-                    this.OnPropertyChanged("MaxMW", e);
+                    this.OnPropertyChanged("MaxMW", e, _maxMWAttribute);
                 }
             }
         }
@@ -145,10 +153,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
                     float old = this._actualMW;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnActualMWChanging(e);
-                    this.OnPropertyChanging("ActualMW", e);
+                    this.OnPropertyChanging("ActualMW", e, _actualMWAttribute);
                     this._actualMW = value;
                     this.OnActualMWChanged(e);
-                    this.OnPropertyChanged("ActualMW", e);
+                    this.OnPropertyChanged("ActualMW", e, _actualMWAttribute);
                 }
             }
         }
@@ -171,7 +179,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
                     IRTO old = this._rTO;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnRTOChanging(e);
-                    this.OnPropertyChanging("RTO", e);
+                    this.OnPropertyChanging("RTO", e, _rTOReference);
                     this._rTO = value;
                     if ((old != null))
                     {
@@ -184,7 +192,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
                         value.Deleted += this.OnResetRTO;
                     }
                     this.OnRTOChanged(e);
-                    this.OnPropertyChanged("RTO", e);
+                    this.OnPropertyChanged("RTO", e, _rTOReference);
                 }
             }
         }
@@ -256,6 +264,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> RTOChanged;
         
+        private static ITypedElement RetrieveMinMWAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(SecurityConstraints.ClassInstance)).Resolve("minMW")));
+        }
+        
         /// <summary>
         /// Raises the MinMWChanging event
         /// </summary>
@@ -280,6 +293,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveMaxMWAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(SecurityConstraints.ClassInstance)).Resolve("maxMW")));
         }
         
         /// <summary>
@@ -308,6 +326,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
             }
         }
         
+        private static ITypedElement RetrieveActualMWAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(SecurityConstraints.ClassInstance)).Resolve("actualMW")));
+        }
+        
         /// <summary>
         /// Raises the ActualMWChanging event
         /// </summary>
@@ -332,6 +355,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveRTOReference()
+        {
+            return ((ITypedElement)(((ModelElement)(SecurityConstraints.ClassInstance)).Resolve("RTO")));
         }
         
         /// <summary>
@@ -595,7 +623,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public MinMWProxy(ISecurityConstraints modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "minMW")
             {
             }
             
@@ -613,24 +641,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
                     this.ModelElement.MinMW = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.MinMWChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.MinMWChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -644,7 +654,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public MaxMWProxy(ISecurityConstraints modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "maxMW")
             {
             }
             
@@ -662,24 +672,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
                     this.ModelElement.MaxMW = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.MaxMWChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.MaxMWChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -693,7 +685,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public ActualMWProxy(ISecurityConstraints modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "actualMW")
             {
             }
             
@@ -711,24 +703,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
                     this.ModelElement.ActualMW = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ActualMWChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ActualMWChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -742,7 +716,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public RTOProxy(ISecurityConstraints modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "RTO")
             {
             }
             
@@ -759,24 +733,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
                 {
                     this.ModelElement.RTO = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.RTOChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.RTOChanged -= handler;
             }
         }
     }

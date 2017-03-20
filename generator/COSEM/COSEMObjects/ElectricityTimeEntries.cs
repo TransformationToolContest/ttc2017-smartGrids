@@ -39,7 +39,7 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
     [XmlNamespacePrefixAttribute("objects")]
     [ModelRepresentationClassAttribute("http://www.transformation-tool-contest.eu/2017/smartGrids/cosem#//COSEMObjects/El" +
         "ectricityTimeEntries")]
-    public class ElectricityTimeEntries : Data, IElectricityTimeEntries, IModelElement
+    public partial class ElectricityTimeEntries : Data, IElectricityTimeEntries, IModelElement
     {
         
         /// <summary>
@@ -47,55 +47,77 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
         /// </summary>
         private string _time_expired_since_last_end_of_billing_period;
         
+        private static Lazy<ITypedElement> _time_expired_since_last_end_of_billing_periodAttribute = new Lazy<ITypedElement>(RetrieveTime_expired_since_last_end_of_billing_periodAttribute);
+        
         /// <summary>
         /// The backing field for the Localtime property
         /// </summary>
         private string _localtime;
+        
+        private static Lazy<ITypedElement> _localtimeAttribute = new Lazy<ITypedElement>(RetrieveLocaltimeAttribute);
         
         /// <summary>
         /// The backing field for the Localdate property
         /// </summary>
         private string _localdate;
         
+        private static Lazy<ITypedElement> _localdateAttribute = new Lazy<ITypedElement>(RetrieveLocaldateAttribute);
+        
         /// <summary>
         /// The backing field for the Weekday property
         /// </summary>
         private string _weekday;
+        
+        private static Lazy<ITypedElement> _weekdayAttribute = new Lazy<ITypedElement>(RetrieveWeekdayAttribute);
         
         /// <summary>
         /// The backing field for the Timeoflastreset property
         /// </summary>
         private string _timeoflastreset;
         
+        private static Lazy<ITypedElement> _timeoflastresetAttribute = new Lazy<ITypedElement>(RetrieveTimeoflastresetAttribute);
+        
         /// <summary>
         /// The backing field for the Dateoflastreset property
         /// </summary>
         private string _dateoflastreset;
+        
+        private static Lazy<ITypedElement> _dateoflastresetAttribute = new Lazy<ITypedElement>(RetrieveDateoflastresetAttribute);
         
         /// <summary>
         /// The backing field for the Outputpulseduration property
         /// </summary>
         private string _outputpulseduration;
         
+        private static Lazy<ITypedElement> _outputpulsedurationAttribute = new Lazy<ITypedElement>(RetrieveOutputpulsedurationAttribute);
+        
         /// <summary>
         /// The backing field for the Clocksynchronizationwindow property
         /// </summary>
         private string _clocksynchronizationwindow;
+        
+        private static Lazy<ITypedElement> _clocksynchronizationwindowAttribute = new Lazy<ITypedElement>(RetrieveClocksynchronizationwindowAttribute);
         
         /// <summary>
         /// The backing field for the Clock_synchronization_method property
         /// </summary>
         private string _clock_synchronization_method;
         
+        private static Lazy<ITypedElement> _clock_synchronization_methodAttribute = new Lazy<ITypedElement>(RetrieveClock_synchronization_methodAttribute);
+        
         /// <summary>
         /// The backing field for the Clock_time_shift_limit property
         /// </summary>
         private string _clock_time_shift_limit;
         
+        private static Lazy<ITypedElement> _clock_time_shift_limitAttribute = new Lazy<ITypedElement>(RetrieveClock_time_shift_limitAttribute);
+        
         /// <summary>
         /// The backing field for the Billing_period_reset_lockout_time property
         /// </summary>
         private string _billing_period_reset_lockout_time;
+        
+        private static Lazy<ITypedElement> _billing_period_reset_lockout_timeAttribute = new Lazy<ITypedElement>(RetrieveBilling_period_reset_lockout_timeAttribute);
         
         private static IClass _classInstance;
         
@@ -116,10 +138,10 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     string old = this._time_expired_since_last_end_of_billing_period;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnTime_expired_since_last_end_of_billing_periodChanging(e);
-                    this.OnPropertyChanging("Time_expired_since_last_end_of_billing_period", e);
+                    this.OnPropertyChanging("Time_expired_since_last_end_of_billing_period", e, _time_expired_since_last_end_of_billing_periodAttribute);
                     this._time_expired_since_last_end_of_billing_period = value;
                     this.OnTime_expired_since_last_end_of_billing_periodChanged(e);
-                    this.OnPropertyChanged("Time_expired_since_last_end_of_billing_period", e);
+                    this.OnPropertyChanged("Time_expired_since_last_end_of_billing_period", e, _time_expired_since_last_end_of_billing_periodAttribute);
                 }
             }
         }
@@ -141,10 +163,10 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     string old = this._localtime;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnLocaltimeChanging(e);
-                    this.OnPropertyChanging("Localtime", e);
+                    this.OnPropertyChanging("Localtime", e, _localtimeAttribute);
                     this._localtime = value;
                     this.OnLocaltimeChanged(e);
-                    this.OnPropertyChanged("Localtime", e);
+                    this.OnPropertyChanged("Localtime", e, _localtimeAttribute);
                 }
             }
         }
@@ -166,10 +188,10 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     string old = this._localdate;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnLocaldateChanging(e);
-                    this.OnPropertyChanging("Localdate", e);
+                    this.OnPropertyChanging("Localdate", e, _localdateAttribute);
                     this._localdate = value;
                     this.OnLocaldateChanged(e);
-                    this.OnPropertyChanged("Localdate", e);
+                    this.OnPropertyChanged("Localdate", e, _localdateAttribute);
                 }
             }
         }
@@ -191,10 +213,10 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     string old = this._weekday;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnWeekdayChanging(e);
-                    this.OnPropertyChanging("Weekday", e);
+                    this.OnPropertyChanging("Weekday", e, _weekdayAttribute);
                     this._weekday = value;
                     this.OnWeekdayChanged(e);
-                    this.OnPropertyChanged("Weekday", e);
+                    this.OnPropertyChanged("Weekday", e, _weekdayAttribute);
                 }
             }
         }
@@ -216,10 +238,10 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     string old = this._timeoflastreset;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnTimeoflastresetChanging(e);
-                    this.OnPropertyChanging("Timeoflastreset", e);
+                    this.OnPropertyChanging("Timeoflastreset", e, _timeoflastresetAttribute);
                     this._timeoflastreset = value;
                     this.OnTimeoflastresetChanged(e);
-                    this.OnPropertyChanged("Timeoflastreset", e);
+                    this.OnPropertyChanged("Timeoflastreset", e, _timeoflastresetAttribute);
                 }
             }
         }
@@ -241,10 +263,10 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     string old = this._dateoflastreset;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnDateoflastresetChanging(e);
-                    this.OnPropertyChanging("Dateoflastreset", e);
+                    this.OnPropertyChanging("Dateoflastreset", e, _dateoflastresetAttribute);
                     this._dateoflastreset = value;
                     this.OnDateoflastresetChanged(e);
-                    this.OnPropertyChanged("Dateoflastreset", e);
+                    this.OnPropertyChanged("Dateoflastreset", e, _dateoflastresetAttribute);
                 }
             }
         }
@@ -266,10 +288,10 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     string old = this._outputpulseduration;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnOutputpulsedurationChanging(e);
-                    this.OnPropertyChanging("Outputpulseduration", e);
+                    this.OnPropertyChanging("Outputpulseduration", e, _outputpulsedurationAttribute);
                     this._outputpulseduration = value;
                     this.OnOutputpulsedurationChanged(e);
-                    this.OnPropertyChanged("Outputpulseduration", e);
+                    this.OnPropertyChanged("Outputpulseduration", e, _outputpulsedurationAttribute);
                 }
             }
         }
@@ -291,10 +313,10 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     string old = this._clocksynchronizationwindow;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnClocksynchronizationwindowChanging(e);
-                    this.OnPropertyChanging("Clocksynchronizationwindow", e);
+                    this.OnPropertyChanging("Clocksynchronizationwindow", e, _clocksynchronizationwindowAttribute);
                     this._clocksynchronizationwindow = value;
                     this.OnClocksynchronizationwindowChanged(e);
-                    this.OnPropertyChanged("Clocksynchronizationwindow", e);
+                    this.OnPropertyChanged("Clocksynchronizationwindow", e, _clocksynchronizationwindowAttribute);
                 }
             }
         }
@@ -316,10 +338,10 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     string old = this._clock_synchronization_method;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnClock_synchronization_methodChanging(e);
-                    this.OnPropertyChanging("Clock_synchronization_method", e);
+                    this.OnPropertyChanging("Clock_synchronization_method", e, _clock_synchronization_methodAttribute);
                     this._clock_synchronization_method = value;
                     this.OnClock_synchronization_methodChanged(e);
-                    this.OnPropertyChanged("Clock_synchronization_method", e);
+                    this.OnPropertyChanged("Clock_synchronization_method", e, _clock_synchronization_methodAttribute);
                 }
             }
         }
@@ -341,10 +363,10 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     string old = this._clock_time_shift_limit;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnClock_time_shift_limitChanging(e);
-                    this.OnPropertyChanging("Clock_time_shift_limit", e);
+                    this.OnPropertyChanging("Clock_time_shift_limit", e, _clock_time_shift_limitAttribute);
                     this._clock_time_shift_limit = value;
                     this.OnClock_time_shift_limitChanged(e);
-                    this.OnPropertyChanged("Clock_time_shift_limit", e);
+                    this.OnPropertyChanged("Clock_time_shift_limit", e, _clock_time_shift_limitAttribute);
                 }
             }
         }
@@ -366,10 +388,10 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     string old = this._billing_period_reset_lockout_time;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnBilling_period_reset_lockout_timeChanging(e);
-                    this.OnPropertyChanging("Billing_period_reset_lockout_time", e);
+                    this.OnPropertyChanging("Billing_period_reset_lockout_time", e, _billing_period_reset_lockout_timeAttribute);
                     this._billing_period_reset_lockout_time = value;
                     this.OnBilling_period_reset_lockout_timeChanged(e);
-                    this.OnPropertyChanged("Billing_period_reset_lockout_time", e);
+                    this.OnPropertyChanged("Billing_period_reset_lockout_time", e, _billing_period_reset_lockout_timeAttribute);
                 }
             }
         }
@@ -500,6 +522,11 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> Billing_period_reset_lockout_timeChanged;
         
+        private static ITypedElement RetrieveTime_expired_since_last_end_of_billing_periodAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(ElectricityTimeEntries.ClassInstance)).Resolve("Time_expired_since_last_end_of_billing_period")));
+        }
+        
         /// <summary>
         /// Raises the Time_expired_since_last_end_of_billing_periodChanging event
         /// </summary>
@@ -524,6 +551,11 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveLocaltimeAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(ElectricityTimeEntries.ClassInstance)).Resolve("Localtime")));
         }
         
         /// <summary>
@@ -552,6 +584,11 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             }
         }
         
+        private static ITypedElement RetrieveLocaldateAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(ElectricityTimeEntries.ClassInstance)).Resolve("Localdate")));
+        }
+        
         /// <summary>
         /// Raises the LocaldateChanging event
         /// </summary>
@@ -576,6 +613,11 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveWeekdayAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(ElectricityTimeEntries.ClassInstance)).Resolve("Weekday")));
         }
         
         /// <summary>
@@ -604,6 +646,11 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             }
         }
         
+        private static ITypedElement RetrieveTimeoflastresetAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(ElectricityTimeEntries.ClassInstance)).Resolve("Timeoflastreset")));
+        }
+        
         /// <summary>
         /// Raises the TimeoflastresetChanging event
         /// </summary>
@@ -628,6 +675,11 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveDateoflastresetAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(ElectricityTimeEntries.ClassInstance)).Resolve("Dateoflastreset")));
         }
         
         /// <summary>
@@ -656,6 +708,11 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             }
         }
         
+        private static ITypedElement RetrieveOutputpulsedurationAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(ElectricityTimeEntries.ClassInstance)).Resolve("Outputpulseduration")));
+        }
+        
         /// <summary>
         /// Raises the OutputpulsedurationChanging event
         /// </summary>
@@ -680,6 +737,11 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveClocksynchronizationwindowAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(ElectricityTimeEntries.ClassInstance)).Resolve("Clocksynchronizationwindow")));
         }
         
         /// <summary>
@@ -708,6 +770,11 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             }
         }
         
+        private static ITypedElement RetrieveClock_synchronization_methodAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(ElectricityTimeEntries.ClassInstance)).Resolve("Clock_synchronization_method")));
+        }
+        
         /// <summary>
         /// Raises the Clock_synchronization_methodChanging event
         /// </summary>
@@ -734,6 +801,11 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             }
         }
         
+        private static ITypedElement RetrieveClock_time_shift_limitAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(ElectricityTimeEntries.ClassInstance)).Resolve("Clock_time_shift_limit")));
+        }
+        
         /// <summary>
         /// Raises the Clock_time_shift_limitChanging event
         /// </summary>
@@ -758,6 +830,11 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveBilling_period_reset_lockout_timeAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(ElectricityTimeEntries.ClassInstance)).Resolve("Billing_period_reset_lockout_time")));
         }
         
         /// <summary>
@@ -930,7 +1007,7 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public Time_expired_since_last_end_of_billing_periodProxy(IElectricityTimeEntries modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "Time_expired_since_last_end_of_billing_period")
             {
             }
             
@@ -948,24 +1025,6 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     this.ModelElement.Time_expired_since_last_end_of_billing_period = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.Time_expired_since_last_end_of_billing_periodChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.Time_expired_since_last_end_of_billing_periodChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -979,7 +1038,7 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public LocaltimeProxy(IElectricityTimeEntries modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "Localtime")
             {
             }
             
@@ -997,24 +1056,6 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     this.ModelElement.Localtime = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.LocaltimeChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.LocaltimeChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1028,7 +1069,7 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public LocaldateProxy(IElectricityTimeEntries modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "Localdate")
             {
             }
             
@@ -1046,24 +1087,6 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     this.ModelElement.Localdate = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.LocaldateChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.LocaldateChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1077,7 +1100,7 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public WeekdayProxy(IElectricityTimeEntries modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "Weekday")
             {
             }
             
@@ -1095,24 +1118,6 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     this.ModelElement.Weekday = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.WeekdayChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.WeekdayChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1126,7 +1131,7 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public TimeoflastresetProxy(IElectricityTimeEntries modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "Timeoflastreset")
             {
             }
             
@@ -1144,24 +1149,6 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     this.ModelElement.Timeoflastreset = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.TimeoflastresetChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.TimeoflastresetChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1175,7 +1162,7 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public DateoflastresetProxy(IElectricityTimeEntries modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "Dateoflastreset")
             {
             }
             
@@ -1193,24 +1180,6 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     this.ModelElement.Dateoflastreset = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.DateoflastresetChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.DateoflastresetChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1224,7 +1193,7 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public OutputpulsedurationProxy(IElectricityTimeEntries modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "Outputpulseduration")
             {
             }
             
@@ -1242,24 +1211,6 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     this.ModelElement.Outputpulseduration = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.OutputpulsedurationChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.OutputpulsedurationChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1273,7 +1224,7 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public ClocksynchronizationwindowProxy(IElectricityTimeEntries modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "Clocksynchronizationwindow")
             {
             }
             
@@ -1291,24 +1242,6 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     this.ModelElement.Clocksynchronizationwindow = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ClocksynchronizationwindowChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ClocksynchronizationwindowChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1322,7 +1255,7 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public Clock_synchronization_methodProxy(IElectricityTimeEntries modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "Clock_synchronization_method")
             {
             }
             
@@ -1340,24 +1273,6 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     this.ModelElement.Clock_synchronization_method = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.Clock_synchronization_methodChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.Clock_synchronization_methodChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1371,7 +1286,7 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public Clock_time_shift_limitProxy(IElectricityTimeEntries modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "Clock_time_shift_limit")
             {
             }
             
@@ -1389,24 +1304,6 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     this.ModelElement.Clock_time_shift_limit = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.Clock_time_shift_limitChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.Clock_time_shift_limitChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1420,7 +1317,7 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public Billing_period_reset_lockout_timeProxy(IElectricityTimeEntries modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "Billing_period_reset_lockout_time")
             {
             }
             
@@ -1437,24 +1334,6 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                 {
                     this.ModelElement.Billing_period_reset_lockout_time = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.Billing_period_reset_lockout_timeChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.Billing_period_reset_lockout_timeChanged -= handler;
             }
         }
     }

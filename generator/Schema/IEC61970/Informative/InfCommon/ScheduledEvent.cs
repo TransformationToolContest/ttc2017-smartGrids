@@ -47,7 +47,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfCommon
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61970/Informative/InfCommon/Schedul" +
         "edEvent")]
     [DebuggerDisplayAttribute("ScheduledEvent {UUID}")]
-    public class ScheduledEvent : IdentifiedObject, IScheduledEvent, IModelElement
+    public partial class ScheduledEvent : IdentifiedObject, IScheduledEvent, IModelElement
     {
         
         /// <summary>
@@ -55,35 +55,51 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfCommon
         /// </summary>
         private float _duration;
         
+        private static Lazy<ITypedElement> _durationAttribute = new Lazy<ITypedElement>(RetrieveDurationAttribute);
+        
         /// <summary>
         /// The backing field for the Category property
         /// </summary>
         private string _category;
+        
+        private static Lazy<ITypedElement> _categoryAttribute = new Lazy<ITypedElement>(RetrieveCategoryAttribute);
+        
+        private static Lazy<ITypedElement> _documentReference = new Lazy<ITypedElement>(RetrieveDocumentReference);
         
         /// <summary>
         /// The backing field for the Document property
         /// </summary>
         private IDocument _document;
         
+        private static Lazy<ITypedElement> _timePointReference = new Lazy<ITypedElement>(RetrieveTimePointReference);
+        
         /// <summary>
         /// The backing field for the TimePoint property
         /// </summary>
         private ITimePoint _timePoint;
+        
+        private static Lazy<ITypedElement> _scheduleParameterInfoReference = new Lazy<ITypedElement>(RetrieveScheduleParameterInfoReference);
         
         /// <summary>
         /// The backing field for the ScheduleParameterInfo property
         /// </summary>
         private IScheduleParameterInfo _scheduleParameterInfo;
         
+        private static Lazy<ITypedElement> _activityRecordReference = new Lazy<ITypedElement>(RetrieveActivityRecordReference);
+        
         /// <summary>
         /// The backing field for the ActivityRecord property
         /// </summary>
         private IActivityRecord _activityRecord;
         
+        private static Lazy<ITypedElement> _assetsReference = new Lazy<ITypedElement>(RetrieveAssetsReference);
+        
         /// <summary>
         /// The backing field for the Assets property
         /// </summary>
         private ScheduledEventAssetsCollection _assets;
+        
+        private static Lazy<ITypedElement> _statusReference = new Lazy<ITypedElement>(RetrieveStatusReference);
         
         /// <summary>
         /// The backing field for the Status property
@@ -117,10 +133,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfCommon
                     float old = this._duration;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnDurationChanging(e);
-                    this.OnPropertyChanging("Duration", e);
+                    this.OnPropertyChanging("Duration", e, _durationAttribute);
                     this._duration = value;
                     this.OnDurationChanged(e);
-                    this.OnPropertyChanged("Duration", e);
+                    this.OnPropertyChanged("Duration", e, _durationAttribute);
                 }
             }
         }
@@ -143,10 +159,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfCommon
                     string old = this._category;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnCategoryChanging(e);
-                    this.OnPropertyChanging("Category", e);
+                    this.OnPropertyChanging("Category", e, _categoryAttribute);
                     this._category = value;
                     this.OnCategoryChanged(e);
-                    this.OnPropertyChanged("Category", e);
+                    this.OnPropertyChanged("Category", e, _categoryAttribute);
                 }
             }
         }
@@ -169,7 +185,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfCommon
                     IDocument old = this._document;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnDocumentChanging(e);
-                    this.OnPropertyChanging("Document", e);
+                    this.OnPropertyChanging("Document", e, _documentReference);
                     this._document = value;
                     if ((old != null))
                     {
@@ -182,7 +198,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfCommon
                         value.Deleted += this.OnResetDocument;
                     }
                     this.OnDocumentChanged(e);
-                    this.OnPropertyChanged("Document", e);
+                    this.OnPropertyChanged("Document", e, _documentReference);
                 }
             }
         }
@@ -205,7 +221,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfCommon
                     ITimePoint old = this._timePoint;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnTimePointChanging(e);
-                    this.OnPropertyChanging("TimePoint", e);
+                    this.OnPropertyChanging("TimePoint", e, _timePointReference);
                     this._timePoint = value;
                     if ((old != null))
                     {
@@ -218,7 +234,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfCommon
                         value.Deleted += this.OnResetTimePoint;
                     }
                     this.OnTimePointChanged(e);
-                    this.OnPropertyChanged("TimePoint", e);
+                    this.OnPropertyChanged("TimePoint", e, _timePointReference);
                 }
             }
         }
@@ -241,7 +257,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfCommon
                     IScheduleParameterInfo old = this._scheduleParameterInfo;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnScheduleParameterInfoChanging(e);
-                    this.OnPropertyChanging("ScheduleParameterInfo", e);
+                    this.OnPropertyChanging("ScheduleParameterInfo", e, _scheduleParameterInfoReference);
                     this._scheduleParameterInfo = value;
                     if ((old != null))
                     {
@@ -254,7 +270,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfCommon
                         value.Deleted += this.OnResetScheduleParameterInfo;
                     }
                     this.OnScheduleParameterInfoChanged(e);
-                    this.OnPropertyChanged("ScheduleParameterInfo", e);
+                    this.OnPropertyChanged("ScheduleParameterInfo", e, _scheduleParameterInfoReference);
                 }
             }
         }
@@ -277,7 +293,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfCommon
                     IActivityRecord old = this._activityRecord;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnActivityRecordChanging(e);
-                    this.OnPropertyChanging("ActivityRecord", e);
+                    this.OnPropertyChanging("ActivityRecord", e, _activityRecordReference);
                     this._activityRecord = value;
                     if ((old != null))
                     {
@@ -290,7 +306,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfCommon
                         value.Deleted += this.OnResetActivityRecord;
                     }
                     this.OnActivityRecordChanged(e);
-                    this.OnPropertyChanged("ActivityRecord", e);
+                    this.OnPropertyChanged("ActivityRecord", e, _activityRecordReference);
                 }
             }
         }
@@ -328,7 +344,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfCommon
                     IStatus old = this._status;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnStatusChanging(e);
-                    this.OnPropertyChanging("Status", e);
+                    this.OnPropertyChanging("Status", e, _statusReference);
                     this._status = value;
                     if ((old != null))
                     {
@@ -339,7 +355,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfCommon
                         value.Deleted += this.OnResetStatus;
                     }
                     this.OnStatusChanged(e);
-                    this.OnPropertyChanged("Status", e);
+                    this.OnPropertyChanged("Status", e, _statusReference);
                 }
             }
         }
@@ -441,6 +457,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfCommon
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> StatusChanged;
         
+        private static ITypedElement RetrieveDurationAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(ScheduledEvent.ClassInstance)).Resolve("duration")));
+        }
+        
         /// <summary>
         /// Raises the DurationChanging event
         /// </summary>
@@ -467,6 +488,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfCommon
             }
         }
         
+        private static ITypedElement RetrieveCategoryAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(ScheduledEvent.ClassInstance)).Resolve("category")));
+        }
+        
         /// <summary>
         /// Raises the CategoryChanging event
         /// </summary>
@@ -491,6 +517,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfCommon
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveDocumentReference()
+        {
+            return ((ITypedElement)(((ModelElement)(ScheduledEvent.ClassInstance)).Resolve("Document")));
         }
         
         /// <summary>
@@ -529,6 +560,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfCommon
             this.Document = null;
         }
         
+        private static ITypedElement RetrieveTimePointReference()
+        {
+            return ((ITypedElement)(((ModelElement)(ScheduledEvent.ClassInstance)).Resolve("TimePoint")));
+        }
+        
         /// <summary>
         /// Raises the TimePointChanging event
         /// </summary>
@@ -563,6 +599,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfCommon
         private void OnResetTimePoint(object sender, System.EventArgs eventArgs)
         {
             this.TimePoint = null;
+        }
+        
+        private static ITypedElement RetrieveScheduleParameterInfoReference()
+        {
+            return ((ITypedElement)(((ModelElement)(ScheduledEvent.ClassInstance)).Resolve("ScheduleParameterInfo")));
         }
         
         /// <summary>
@@ -601,6 +642,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfCommon
             this.ScheduleParameterInfo = null;
         }
         
+        private static ITypedElement RetrieveActivityRecordReference()
+        {
+            return ((ITypedElement)(((ModelElement)(ScheduledEvent.ClassInstance)).Resolve("ActivityRecord")));
+        }
+        
         /// <summary>
         /// Raises the ActivityRecordChanging event
         /// </summary>
@@ -637,6 +683,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfCommon
             this.ActivityRecord = null;
         }
         
+        private static ITypedElement RetrieveAssetsReference()
+        {
+            return ((ITypedElement)(((ModelElement)(ScheduledEvent.ClassInstance)).Resolve("Assets")));
+        }
+        
         /// <summary>
         /// Forwards CollectionChanging notifications for the Assets property to the parent model element
         /// </summary>
@@ -644,7 +695,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfCommon
         /// <param name="e">The original event data</param>
         private void AssetsCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("Assets", e);
+            this.OnCollectionChanging("Assets", e, _assetsReference);
         }
         
         /// <summary>
@@ -654,7 +705,12 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfCommon
         /// <param name="e">The original event data</param>
         private void AssetsCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("Assets", e);
+            this.OnCollectionChanged("Assets", e, _assetsReference);
+        }
+        
+        private static ITypedElement RetrieveStatusReference()
+        {
+            return ((ITypedElement)(((ModelElement)(ScheduledEvent.ClassInstance)).Resolve("status")));
         }
         
         /// <summary>
@@ -1129,7 +1185,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfCommon
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public DurationProxy(IScheduledEvent modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "duration")
             {
             }
             
@@ -1147,24 +1203,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfCommon
                     this.ModelElement.Duration = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.DurationChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.DurationChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1178,7 +1216,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfCommon
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public CategoryProxy(IScheduledEvent modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "category")
             {
             }
             
@@ -1196,24 +1234,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfCommon
                     this.ModelElement.Category = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.CategoryChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.CategoryChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1227,7 +1247,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfCommon
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public DocumentProxy(IScheduledEvent modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "Document")
             {
             }
             
@@ -1245,24 +1265,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfCommon
                     this.ModelElement.Document = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.DocumentChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.DocumentChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1276,7 +1278,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfCommon
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public TimePointProxy(IScheduledEvent modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "TimePoint")
             {
             }
             
@@ -1294,24 +1296,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfCommon
                     this.ModelElement.TimePoint = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.TimePointChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.TimePointChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1325,7 +1309,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfCommon
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public ScheduleParameterInfoProxy(IScheduledEvent modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "ScheduleParameterInfo")
             {
             }
             
@@ -1343,24 +1327,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfCommon
                     this.ModelElement.ScheduleParameterInfo = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ScheduleParameterInfoChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ScheduleParameterInfoChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1374,7 +1340,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfCommon
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public ActivityRecordProxy(IScheduledEvent modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "ActivityRecord")
             {
             }
             
@@ -1392,24 +1358,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfCommon
                     this.ModelElement.ActivityRecord = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ActivityRecordChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ActivityRecordChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1423,7 +1371,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfCommon
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public StatusProxy(IScheduledEvent modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "status")
             {
             }
             
@@ -1440,24 +1388,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfCommon
                 {
                     this.ModelElement.Status = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.StatusChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.StatusChanged -= handler;
             }
         }
     }

@@ -45,7 +45,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfTypeAsset
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61970/Informative/InfTypeAsset/Gene" +
         "ratorTypeAsset")]
     [DebuggerDisplayAttribute("GeneratorTypeAsset {UUID}")]
-    public class GeneratorTypeAsset : ElectricalTypeAsset, IGeneratorTypeAsset, IModelElement
+    public partial class GeneratorTypeAsset : ElectricalTypeAsset, IGeneratorTypeAsset, IModelElement
     {
         
         /// <summary>
@@ -53,80 +53,112 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfTypeAsset
         /// </summary>
         private float _xDirectSync;
         
+        private static Lazy<ITypedElement> _xDirectSyncAttribute = new Lazy<ITypedElement>(RetrieveXDirectSyncAttribute);
+        
         /// <summary>
         /// The backing field for the RDirectSync property
         /// </summary>
         private float _rDirectSync;
+        
+        private static Lazy<ITypedElement> _rDirectSyncAttribute = new Lazy<ITypedElement>(RetrieveRDirectSyncAttribute);
         
         /// <summary>
         /// The backing field for the RQuadTrans property
         /// </summary>
         private float _rQuadTrans;
         
+        private static Lazy<ITypedElement> _rQuadTransAttribute = new Lazy<ITypedElement>(RetrieveRQuadTransAttribute);
+        
         /// <summary>
         /// The backing field for the XQuadSync property
         /// </summary>
         private float _xQuadSync;
+        
+        private static Lazy<ITypedElement> _xQuadSyncAttribute = new Lazy<ITypedElement>(RetrieveXQuadSyncAttribute);
         
         /// <summary>
         /// The backing field for the XQuadSubtrans property
         /// </summary>
         private float _xQuadSubtrans;
         
+        private static Lazy<ITypedElement> _xQuadSubtransAttribute = new Lazy<ITypedElement>(RetrieveXQuadSubtransAttribute);
+        
         /// <summary>
         /// The backing field for the MinP property
         /// </summary>
         private float _minP;
+        
+        private static Lazy<ITypedElement> _minPAttribute = new Lazy<ITypedElement>(RetrieveMinPAttribute);
         
         /// <summary>
         /// The backing field for the MinQ property
         /// </summary>
         private float _minQ;
         
+        private static Lazy<ITypedElement> _minQAttribute = new Lazy<ITypedElement>(RetrieveMinQAttribute);
+        
         /// <summary>
         /// The backing field for the MaxQ property
         /// </summary>
         private float _maxQ;
+        
+        private static Lazy<ITypedElement> _maxQAttribute = new Lazy<ITypedElement>(RetrieveMaxQAttribute);
         
         /// <summary>
         /// The backing field for the MaxP property
         /// </summary>
         private float _maxP;
         
+        private static Lazy<ITypedElement> _maxPAttribute = new Lazy<ITypedElement>(RetrieveMaxPAttribute);
+        
         /// <summary>
         /// The backing field for the RQuadSync property
         /// </summary>
         private float _rQuadSync;
+        
+        private static Lazy<ITypedElement> _rQuadSyncAttribute = new Lazy<ITypedElement>(RetrieveRQuadSyncAttribute);
         
         /// <summary>
         /// The backing field for the XDirectSubtrans property
         /// </summary>
         private float _xDirectSubtrans;
         
+        private static Lazy<ITypedElement> _xDirectSubtransAttribute = new Lazy<ITypedElement>(RetrieveXDirectSubtransAttribute);
+        
         /// <summary>
         /// The backing field for the XDirectTrans property
         /// </summary>
         private float _xDirectTrans;
+        
+        private static Lazy<ITypedElement> _xDirectTransAttribute = new Lazy<ITypedElement>(RetrieveXDirectTransAttribute);
         
         /// <summary>
         /// The backing field for the RDirectTrans property
         /// </summary>
         private float _rDirectTrans;
         
+        private static Lazy<ITypedElement> _rDirectTransAttribute = new Lazy<ITypedElement>(RetrieveRDirectTransAttribute);
+        
         /// <summary>
         /// The backing field for the RDirectSubtrans property
         /// </summary>
         private float _rDirectSubtrans;
+        
+        private static Lazy<ITypedElement> _rDirectSubtransAttribute = new Lazy<ITypedElement>(RetrieveRDirectSubtransAttribute);
         
         /// <summary>
         /// The backing field for the XQuadTrans property
         /// </summary>
         private float _xQuadTrans;
         
+        private static Lazy<ITypedElement> _xQuadTransAttribute = new Lazy<ITypedElement>(RetrieveXQuadTransAttribute);
+        
         /// <summary>
         /// The backing field for the RQuadSubtrans property
         /// </summary>
         private float _rQuadSubtrans;
+        
+        private static Lazy<ITypedElement> _rQuadSubtransAttribute = new Lazy<ITypedElement>(RetrieveRQuadSubtransAttribute);
         
         private static IClass _classInstance;
         
@@ -148,10 +180,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfTypeAsset
                     float old = this._xDirectSync;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnXDirectSyncChanging(e);
-                    this.OnPropertyChanging("XDirectSync", e);
+                    this.OnPropertyChanging("XDirectSync", e, _xDirectSyncAttribute);
                     this._xDirectSync = value;
                     this.OnXDirectSyncChanged(e);
-                    this.OnPropertyChanged("XDirectSync", e);
+                    this.OnPropertyChanged("XDirectSync", e, _xDirectSyncAttribute);
                 }
             }
         }
@@ -174,10 +206,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfTypeAsset
                     float old = this._rDirectSync;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnRDirectSyncChanging(e);
-                    this.OnPropertyChanging("RDirectSync", e);
+                    this.OnPropertyChanging("RDirectSync", e, _rDirectSyncAttribute);
                     this._rDirectSync = value;
                     this.OnRDirectSyncChanged(e);
-                    this.OnPropertyChanged("RDirectSync", e);
+                    this.OnPropertyChanged("RDirectSync", e, _rDirectSyncAttribute);
                 }
             }
         }
@@ -200,10 +232,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfTypeAsset
                     float old = this._rQuadTrans;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnRQuadTransChanging(e);
-                    this.OnPropertyChanging("RQuadTrans", e);
+                    this.OnPropertyChanging("RQuadTrans", e, _rQuadTransAttribute);
                     this._rQuadTrans = value;
                     this.OnRQuadTransChanged(e);
-                    this.OnPropertyChanged("RQuadTrans", e);
+                    this.OnPropertyChanged("RQuadTrans", e, _rQuadTransAttribute);
                 }
             }
         }
@@ -226,10 +258,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfTypeAsset
                     float old = this._xQuadSync;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnXQuadSyncChanging(e);
-                    this.OnPropertyChanging("XQuadSync", e);
+                    this.OnPropertyChanging("XQuadSync", e, _xQuadSyncAttribute);
                     this._xQuadSync = value;
                     this.OnXQuadSyncChanged(e);
-                    this.OnPropertyChanged("XQuadSync", e);
+                    this.OnPropertyChanged("XQuadSync", e, _xQuadSyncAttribute);
                 }
             }
         }
@@ -252,10 +284,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfTypeAsset
                     float old = this._xQuadSubtrans;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnXQuadSubtransChanging(e);
-                    this.OnPropertyChanging("XQuadSubtrans", e);
+                    this.OnPropertyChanging("XQuadSubtrans", e, _xQuadSubtransAttribute);
                     this._xQuadSubtrans = value;
                     this.OnXQuadSubtransChanged(e);
-                    this.OnPropertyChanged("XQuadSubtrans", e);
+                    this.OnPropertyChanged("XQuadSubtrans", e, _xQuadSubtransAttribute);
                 }
             }
         }
@@ -278,10 +310,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfTypeAsset
                     float old = this._minP;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnMinPChanging(e);
-                    this.OnPropertyChanging("MinP", e);
+                    this.OnPropertyChanging("MinP", e, _minPAttribute);
                     this._minP = value;
                     this.OnMinPChanged(e);
-                    this.OnPropertyChanged("MinP", e);
+                    this.OnPropertyChanged("MinP", e, _minPAttribute);
                 }
             }
         }
@@ -304,10 +336,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfTypeAsset
                     float old = this._minQ;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnMinQChanging(e);
-                    this.OnPropertyChanging("MinQ", e);
+                    this.OnPropertyChanging("MinQ", e, _minQAttribute);
                     this._minQ = value;
                     this.OnMinQChanged(e);
-                    this.OnPropertyChanged("MinQ", e);
+                    this.OnPropertyChanged("MinQ", e, _minQAttribute);
                 }
             }
         }
@@ -330,10 +362,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfTypeAsset
                     float old = this._maxQ;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnMaxQChanging(e);
-                    this.OnPropertyChanging("MaxQ", e);
+                    this.OnPropertyChanging("MaxQ", e, _maxQAttribute);
                     this._maxQ = value;
                     this.OnMaxQChanged(e);
-                    this.OnPropertyChanged("MaxQ", e);
+                    this.OnPropertyChanged("MaxQ", e, _maxQAttribute);
                 }
             }
         }
@@ -356,10 +388,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfTypeAsset
                     float old = this._maxP;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnMaxPChanging(e);
-                    this.OnPropertyChanging("MaxP", e);
+                    this.OnPropertyChanging("MaxP", e, _maxPAttribute);
                     this._maxP = value;
                     this.OnMaxPChanged(e);
-                    this.OnPropertyChanged("MaxP", e);
+                    this.OnPropertyChanged("MaxP", e, _maxPAttribute);
                 }
             }
         }
@@ -382,10 +414,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfTypeAsset
                     float old = this._rQuadSync;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnRQuadSyncChanging(e);
-                    this.OnPropertyChanging("RQuadSync", e);
+                    this.OnPropertyChanging("RQuadSync", e, _rQuadSyncAttribute);
                     this._rQuadSync = value;
                     this.OnRQuadSyncChanged(e);
-                    this.OnPropertyChanged("RQuadSync", e);
+                    this.OnPropertyChanged("RQuadSync", e, _rQuadSyncAttribute);
                 }
             }
         }
@@ -408,10 +440,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfTypeAsset
                     float old = this._xDirectSubtrans;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnXDirectSubtransChanging(e);
-                    this.OnPropertyChanging("XDirectSubtrans", e);
+                    this.OnPropertyChanging("XDirectSubtrans", e, _xDirectSubtransAttribute);
                     this._xDirectSubtrans = value;
                     this.OnXDirectSubtransChanged(e);
-                    this.OnPropertyChanged("XDirectSubtrans", e);
+                    this.OnPropertyChanged("XDirectSubtrans", e, _xDirectSubtransAttribute);
                 }
             }
         }
@@ -434,10 +466,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfTypeAsset
                     float old = this._xDirectTrans;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnXDirectTransChanging(e);
-                    this.OnPropertyChanging("XDirectTrans", e);
+                    this.OnPropertyChanging("XDirectTrans", e, _xDirectTransAttribute);
                     this._xDirectTrans = value;
                     this.OnXDirectTransChanged(e);
-                    this.OnPropertyChanged("XDirectTrans", e);
+                    this.OnPropertyChanged("XDirectTrans", e, _xDirectTransAttribute);
                 }
             }
         }
@@ -460,10 +492,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfTypeAsset
                     float old = this._rDirectTrans;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnRDirectTransChanging(e);
-                    this.OnPropertyChanging("RDirectTrans", e);
+                    this.OnPropertyChanging("RDirectTrans", e, _rDirectTransAttribute);
                     this._rDirectTrans = value;
                     this.OnRDirectTransChanged(e);
-                    this.OnPropertyChanged("RDirectTrans", e);
+                    this.OnPropertyChanged("RDirectTrans", e, _rDirectTransAttribute);
                 }
             }
         }
@@ -486,10 +518,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfTypeAsset
                     float old = this._rDirectSubtrans;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnRDirectSubtransChanging(e);
-                    this.OnPropertyChanging("RDirectSubtrans", e);
+                    this.OnPropertyChanging("RDirectSubtrans", e, _rDirectSubtransAttribute);
                     this._rDirectSubtrans = value;
                     this.OnRDirectSubtransChanged(e);
-                    this.OnPropertyChanged("RDirectSubtrans", e);
+                    this.OnPropertyChanged("RDirectSubtrans", e, _rDirectSubtransAttribute);
                 }
             }
         }
@@ -512,10 +544,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfTypeAsset
                     float old = this._xQuadTrans;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnXQuadTransChanging(e);
-                    this.OnPropertyChanging("XQuadTrans", e);
+                    this.OnPropertyChanging("XQuadTrans", e, _xQuadTransAttribute);
                     this._xQuadTrans = value;
                     this.OnXQuadTransChanged(e);
-                    this.OnPropertyChanged("XQuadTrans", e);
+                    this.OnPropertyChanged("XQuadTrans", e, _xQuadTransAttribute);
                 }
             }
         }
@@ -538,10 +570,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfTypeAsset
                     float old = this._rQuadSubtrans;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnRQuadSubtransChanging(e);
-                    this.OnPropertyChanging("RQuadSubtrans", e);
+                    this.OnPropertyChanging("RQuadSubtrans", e, _rQuadSubtransAttribute);
                     this._rQuadSubtrans = value;
                     this.OnRQuadSubtransChanged(e);
-                    this.OnPropertyChanged("RQuadSubtrans", e);
+                    this.OnPropertyChanged("RQuadSubtrans", e, _rQuadSubtransAttribute);
                 }
             }
         }
@@ -722,6 +754,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfTypeAsset
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> RQuadSubtransChanged;
         
+        private static ITypedElement RetrieveXDirectSyncAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(GeneratorTypeAsset.ClassInstance)).Resolve("xDirectSync")));
+        }
+        
         /// <summary>
         /// Raises the XDirectSyncChanging event
         /// </summary>
@@ -746,6 +783,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfTypeAsset
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveRDirectSyncAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(GeneratorTypeAsset.ClassInstance)).Resolve("rDirectSync")));
         }
         
         /// <summary>
@@ -774,6 +816,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfTypeAsset
             }
         }
         
+        private static ITypedElement RetrieveRQuadTransAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(GeneratorTypeAsset.ClassInstance)).Resolve("rQuadTrans")));
+        }
+        
         /// <summary>
         /// Raises the RQuadTransChanging event
         /// </summary>
@@ -798,6 +845,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfTypeAsset
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveXQuadSyncAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(GeneratorTypeAsset.ClassInstance)).Resolve("xQuadSync")));
         }
         
         /// <summary>
@@ -826,6 +878,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfTypeAsset
             }
         }
         
+        private static ITypedElement RetrieveXQuadSubtransAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(GeneratorTypeAsset.ClassInstance)).Resolve("xQuadSubtrans")));
+        }
+        
         /// <summary>
         /// Raises the XQuadSubtransChanging event
         /// </summary>
@@ -850,6 +907,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfTypeAsset
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveMinPAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(GeneratorTypeAsset.ClassInstance)).Resolve("minP")));
         }
         
         /// <summary>
@@ -878,6 +940,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfTypeAsset
             }
         }
         
+        private static ITypedElement RetrieveMinQAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(GeneratorTypeAsset.ClassInstance)).Resolve("minQ")));
+        }
+        
         /// <summary>
         /// Raises the MinQChanging event
         /// </summary>
@@ -902,6 +969,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfTypeAsset
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveMaxQAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(GeneratorTypeAsset.ClassInstance)).Resolve("maxQ")));
         }
         
         /// <summary>
@@ -930,6 +1002,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfTypeAsset
             }
         }
         
+        private static ITypedElement RetrieveMaxPAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(GeneratorTypeAsset.ClassInstance)).Resolve("maxP")));
+        }
+        
         /// <summary>
         /// Raises the MaxPChanging event
         /// </summary>
@@ -954,6 +1031,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfTypeAsset
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveRQuadSyncAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(GeneratorTypeAsset.ClassInstance)).Resolve("rQuadSync")));
         }
         
         /// <summary>
@@ -982,6 +1064,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfTypeAsset
             }
         }
         
+        private static ITypedElement RetrieveXDirectSubtransAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(GeneratorTypeAsset.ClassInstance)).Resolve("xDirectSubtrans")));
+        }
+        
         /// <summary>
         /// Raises the XDirectSubtransChanging event
         /// </summary>
@@ -1006,6 +1093,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfTypeAsset
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveXDirectTransAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(GeneratorTypeAsset.ClassInstance)).Resolve("xDirectTrans")));
         }
         
         /// <summary>
@@ -1034,6 +1126,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfTypeAsset
             }
         }
         
+        private static ITypedElement RetrieveRDirectTransAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(GeneratorTypeAsset.ClassInstance)).Resolve("rDirectTrans")));
+        }
+        
         /// <summary>
         /// Raises the RDirectTransChanging event
         /// </summary>
@@ -1058,6 +1155,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfTypeAsset
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveRDirectSubtransAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(GeneratorTypeAsset.ClassInstance)).Resolve("rDirectSubtrans")));
         }
         
         /// <summary>
@@ -1086,6 +1188,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfTypeAsset
             }
         }
         
+        private static ITypedElement RetrieveXQuadTransAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(GeneratorTypeAsset.ClassInstance)).Resolve("xQuadTrans")));
+        }
+        
         /// <summary>
         /// Raises the XQuadTransChanging event
         /// </summary>
@@ -1110,6 +1217,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfTypeAsset
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveRQuadSubtransAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(GeneratorTypeAsset.ClassInstance)).Resolve("rQuadSubtrans")));
         }
         
         /// <summary>
@@ -1327,7 +1439,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfTypeAsset
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public XDirectSyncProxy(IGeneratorTypeAsset modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "xDirectSync")
             {
             }
             
@@ -1345,24 +1457,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfTypeAsset
                     this.ModelElement.XDirectSync = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.XDirectSyncChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.XDirectSyncChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1376,7 +1470,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfTypeAsset
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public RDirectSyncProxy(IGeneratorTypeAsset modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "rDirectSync")
             {
             }
             
@@ -1394,24 +1488,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfTypeAsset
                     this.ModelElement.RDirectSync = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.RDirectSyncChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.RDirectSyncChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1425,7 +1501,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfTypeAsset
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public RQuadTransProxy(IGeneratorTypeAsset modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "rQuadTrans")
             {
             }
             
@@ -1443,24 +1519,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfTypeAsset
                     this.ModelElement.RQuadTrans = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.RQuadTransChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.RQuadTransChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1474,7 +1532,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfTypeAsset
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public XQuadSyncProxy(IGeneratorTypeAsset modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "xQuadSync")
             {
             }
             
@@ -1492,24 +1550,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfTypeAsset
                     this.ModelElement.XQuadSync = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.XQuadSyncChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.XQuadSyncChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1523,7 +1563,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfTypeAsset
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public XQuadSubtransProxy(IGeneratorTypeAsset modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "xQuadSubtrans")
             {
             }
             
@@ -1541,24 +1581,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfTypeAsset
                     this.ModelElement.XQuadSubtrans = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.XQuadSubtransChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.XQuadSubtransChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1572,7 +1594,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfTypeAsset
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public MinPProxy(IGeneratorTypeAsset modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "minP")
             {
             }
             
@@ -1590,24 +1612,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfTypeAsset
                     this.ModelElement.MinP = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.MinPChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.MinPChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1621,7 +1625,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfTypeAsset
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public MinQProxy(IGeneratorTypeAsset modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "minQ")
             {
             }
             
@@ -1639,24 +1643,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfTypeAsset
                     this.ModelElement.MinQ = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.MinQChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.MinQChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1670,7 +1656,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfTypeAsset
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public MaxQProxy(IGeneratorTypeAsset modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "maxQ")
             {
             }
             
@@ -1688,24 +1674,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfTypeAsset
                     this.ModelElement.MaxQ = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.MaxQChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.MaxQChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1719,7 +1687,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfTypeAsset
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public MaxPProxy(IGeneratorTypeAsset modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "maxP")
             {
             }
             
@@ -1737,24 +1705,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfTypeAsset
                     this.ModelElement.MaxP = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.MaxPChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.MaxPChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1768,7 +1718,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfTypeAsset
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public RQuadSyncProxy(IGeneratorTypeAsset modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "rQuadSync")
             {
             }
             
@@ -1786,24 +1736,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfTypeAsset
                     this.ModelElement.RQuadSync = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.RQuadSyncChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.RQuadSyncChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1817,7 +1749,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfTypeAsset
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public XDirectSubtransProxy(IGeneratorTypeAsset modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "xDirectSubtrans")
             {
             }
             
@@ -1835,24 +1767,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfTypeAsset
                     this.ModelElement.XDirectSubtrans = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.XDirectSubtransChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.XDirectSubtransChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1866,7 +1780,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfTypeAsset
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public XDirectTransProxy(IGeneratorTypeAsset modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "xDirectTrans")
             {
             }
             
@@ -1884,24 +1798,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfTypeAsset
                     this.ModelElement.XDirectTrans = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.XDirectTransChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.XDirectTransChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1915,7 +1811,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfTypeAsset
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public RDirectTransProxy(IGeneratorTypeAsset modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "rDirectTrans")
             {
             }
             
@@ -1933,24 +1829,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfTypeAsset
                     this.ModelElement.RDirectTrans = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.RDirectTransChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.RDirectTransChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1964,7 +1842,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfTypeAsset
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public RDirectSubtransProxy(IGeneratorTypeAsset modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "rDirectSubtrans")
             {
             }
             
@@ -1982,24 +1860,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfTypeAsset
                     this.ModelElement.RDirectSubtrans = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.RDirectSubtransChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.RDirectSubtransChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -2013,7 +1873,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfTypeAsset
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public XQuadTransProxy(IGeneratorTypeAsset modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "xQuadTrans")
             {
             }
             
@@ -2031,24 +1891,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfTypeAsset
                     this.ModelElement.XQuadTrans = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.XQuadTransChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.XQuadTransChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -2062,7 +1904,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfTypeAsset
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public RQuadSubtransProxy(IGeneratorTypeAsset modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "rQuadSubtrans")
             {
             }
             
@@ -2079,24 +1921,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfTypeAsset
                 {
                     this.ModelElement.RQuadSubtrans = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.RQuadSubtransChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.RQuadSubtransChanged -= handler;
             }
         }
     }

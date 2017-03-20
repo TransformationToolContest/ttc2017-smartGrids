@@ -53,8 +53,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
     [XmlNamespacePrefixAttribute("cimWires")]
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61970/Wires/HeatExchanger")]
     [DebuggerDisplayAttribute("HeatExchanger {UUID}")]
-    public class HeatExchanger : Equipment, IHeatExchanger, IModelElement
+    public partial class HeatExchanger : Equipment, IHeatExchanger, IModelElement
     {
+        
+        private static Lazy<ITypedElement> _powerTransformerReference = new Lazy<ITypedElement>(RetrievePowerTransformerReference);
         
         /// <summary>
         /// The backing field for the PowerTransformer property
@@ -81,7 +83,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
                     IPowerTransformer old = this._powerTransformer;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnPowerTransformerChanging(e);
-                    this.OnPropertyChanging("PowerTransformer", e);
+                    this.OnPropertyChanging("PowerTransformer", e, _powerTransformerReference);
                     this._powerTransformer = value;
                     if ((old != null))
                     {
@@ -94,7 +96,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
                         value.Deleted += this.OnResetPowerTransformer;
                     }
                     this.OnPowerTransformerChanged(e);
-                    this.OnPropertyChanged("PowerTransformer", e);
+                    this.OnPropertyChanged("PowerTransformer", e, _powerTransformerReference);
                 }
             }
         }
@@ -134,6 +136,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
         /// Gets fired when the PowerTransformer property changed its value
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> PowerTransformerChanged;
+        
+        private static ITypedElement RetrievePowerTransformerReference()
+        {
+            return ((ITypedElement)(((ModelElement)(HeatExchanger.ClassInstance)).Resolve("PowerTransformer")));
+        }
         
         /// <summary>
         /// Raises the PowerTransformerChanging event
@@ -357,7 +364,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public PowerTransformerProxy(IHeatExchanger modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "PowerTransformer")
             {
             }
             
@@ -374,24 +381,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
                 {
                     this.ModelElement.PowerTransformer = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.PowerTransformerChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.PowerTransformerChanged -= handler;
             }
         }
     }

@@ -43,13 +43,17 @@ namespace TTC2017.SmartGrids.SubstationStandard.LNNodes.LNGroupZ
     [XmlNamespacePrefixAttribute("groupz")]
     [ModelRepresentationClassAttribute("http://www.transformation-tool-contest.eu/2017/smartGrids/substationStandard#//LN" +
         "Nodes/LNGroupZ/ZREA")]
-    public class ZREA : TTC2017.SmartGrids.SubstationStandard.LNNodes.LNGroupZ.GroupZ, IZREA, IModelElement
+    public partial class ZREA : TTC2017.SmartGrids.SubstationStandard.LNNodes.LNGroupZ.GroupZ, IZREA, IModelElement
     {
+        
+        private static Lazy<ITypedElement> _opTmhReference = new Lazy<ITypedElement>(RetrieveOpTmhReference);
         
         /// <summary>
         /// The backing field for the OpTmh property
         /// </summary>
         private IINS _opTmh;
+        
+        private static Lazy<ITypedElement> _reactorControlReference = new Lazy<ITypedElement>(RetrieveReactorControlReference);
         
         /// <summary>
         /// The backing field for the ReactorControl property
@@ -75,7 +79,7 @@ namespace TTC2017.SmartGrids.SubstationStandard.LNNodes.LNGroupZ
                     IINS old = this._opTmh;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnOpTmhChanging(e);
-                    this.OnPropertyChanging("OpTmh", e);
+                    this.OnPropertyChanging("OpTmh", e, _opTmhReference);
                     this._opTmh = value;
                     if ((old != null))
                     {
@@ -86,7 +90,7 @@ namespace TTC2017.SmartGrids.SubstationStandard.LNNodes.LNGroupZ
                         value.Deleted += this.OnResetOpTmh;
                     }
                     this.OnOpTmhChanged(e);
-                    this.OnPropertyChanged("OpTmh", e);
+                    this.OnPropertyChanged("OpTmh", e, _opTmhReference);
                 }
             }
         }
@@ -108,7 +112,7 @@ namespace TTC2017.SmartGrids.SubstationStandard.LNNodes.LNGroupZ
                     IARCO old = this._reactorControl;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnReactorControlChanging(e);
-                    this.OnPropertyChanging("ReactorControl", e);
+                    this.OnPropertyChanging("ReactorControl", e, _reactorControlReference);
                     this._reactorControl = value;
                     if ((old != null))
                     {
@@ -119,7 +123,7 @@ namespace TTC2017.SmartGrids.SubstationStandard.LNNodes.LNGroupZ
                         value.Deleted += this.OnResetReactorControl;
                     }
                     this.OnReactorControlChanged(e);
-                    this.OnPropertyChanged("ReactorControl", e);
+                    this.OnPropertyChanged("ReactorControl", e, _reactorControlReference);
                 }
             }
         }
@@ -171,6 +175,11 @@ namespace TTC2017.SmartGrids.SubstationStandard.LNNodes.LNGroupZ
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> ReactorControlChanged;
         
+        private static ITypedElement RetrieveOpTmhReference()
+        {
+            return ((ITypedElement)(((ModelElement)(ZREA.ClassInstance)).Resolve("OpTmh")));
+        }
+        
         /// <summary>
         /// Raises the OpTmhChanging event
         /// </summary>
@@ -205,6 +214,11 @@ namespace TTC2017.SmartGrids.SubstationStandard.LNNodes.LNGroupZ
         private void OnResetOpTmh(object sender, System.EventArgs eventArgs)
         {
             this.OpTmh = null;
+        }
+        
+        private static ITypedElement RetrieveReactorControlReference()
+        {
+            return ((ITypedElement)(((ModelElement)(ZREA.ClassInstance)).Resolve("ReactorControl")));
         }
         
         /// <summary>
@@ -473,7 +487,7 @@ namespace TTC2017.SmartGrids.SubstationStandard.LNNodes.LNGroupZ
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public OpTmhProxy(IZREA modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "OpTmh")
             {
             }
             
@@ -491,24 +505,6 @@ namespace TTC2017.SmartGrids.SubstationStandard.LNNodes.LNGroupZ
                     this.ModelElement.OpTmh = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.OpTmhChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.OpTmhChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -522,7 +518,7 @@ namespace TTC2017.SmartGrids.SubstationStandard.LNNodes.LNGroupZ
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public ReactorControlProxy(IZREA modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "ReactorControl")
             {
             }
             
@@ -539,24 +535,6 @@ namespace TTC2017.SmartGrids.SubstationStandard.LNNodes.LNGroupZ
                 {
                     this.ModelElement.ReactorControl = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ReactorControlChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ReactorControlChanged -= handler;
             }
         }
     }

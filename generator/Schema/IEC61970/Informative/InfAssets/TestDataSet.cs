@@ -53,7 +53,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61970/Informative/InfAssets/TestDat" +
         "aSet")]
     [DebuggerDisplayAttribute("TestDataSet {UUID}")]
-    public class TestDataSet : ProcedureDataSet, ITestDataSet, IModelElement
+    public partial class TestDataSet : ProcedureDataSet, ITestDataSet, IModelElement
     {
         
         /// <summary>
@@ -61,15 +61,21 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
         /// </summary>
         private DateTime _specimenToLabDateTime;
         
+        private static Lazy<ITypedElement> _specimenToLabDateTimeAttribute = new Lazy<ITypedElement>(RetrieveSpecimenToLabDateTimeAttribute);
+        
         /// <summary>
         /// The backing field for the SpecimenID property
         /// </summary>
         private string _specimenID;
         
+        private static Lazy<ITypedElement> _specimenIDAttribute = new Lazy<ITypedElement>(RetrieveSpecimenIDAttribute);
+        
         /// <summary>
         /// The backing field for the Conclusion property
         /// </summary>
         private string _conclusion;
+        
+        private static Lazy<ITypedElement> _conclusionAttribute = new Lazy<ITypedElement>(RetrieveConclusionAttribute);
         
         private static IClass _classInstance;
         
@@ -91,10 +97,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
                     DateTime old = this._specimenToLabDateTime;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnSpecimenToLabDateTimeChanging(e);
-                    this.OnPropertyChanging("SpecimenToLabDateTime", e);
+                    this.OnPropertyChanging("SpecimenToLabDateTime", e, _specimenToLabDateTimeAttribute);
                     this._specimenToLabDateTime = value;
                     this.OnSpecimenToLabDateTimeChanged(e);
-                    this.OnPropertyChanged("SpecimenToLabDateTime", e);
+                    this.OnPropertyChanged("SpecimenToLabDateTime", e, _specimenToLabDateTimeAttribute);
                 }
             }
         }
@@ -117,10 +123,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
                     string old = this._specimenID;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnSpecimenIDChanging(e);
-                    this.OnPropertyChanging("SpecimenID", e);
+                    this.OnPropertyChanging("SpecimenID", e, _specimenIDAttribute);
                     this._specimenID = value;
                     this.OnSpecimenIDChanged(e);
-                    this.OnPropertyChanged("SpecimenID", e);
+                    this.OnPropertyChanged("SpecimenID", e, _specimenIDAttribute);
                 }
             }
         }
@@ -143,10 +149,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
                     string old = this._conclusion;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnConclusionChanging(e);
-                    this.OnPropertyChanging("Conclusion", e);
+                    this.OnPropertyChanging("Conclusion", e, _conclusionAttribute);
                     this._conclusion = value;
                     this.OnConclusionChanged(e);
-                    this.OnPropertyChanged("Conclusion", e);
+                    this.OnPropertyChanged("Conclusion", e, _conclusionAttribute);
                 }
             }
         }
@@ -197,6 +203,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> ConclusionChanged;
         
+        private static ITypedElement RetrieveSpecimenToLabDateTimeAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(TestDataSet.ClassInstance)).Resolve("specimenToLabDateTime")));
+        }
+        
         /// <summary>
         /// Raises the SpecimenToLabDateTimeChanging event
         /// </summary>
@@ -223,6 +234,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
             }
         }
         
+        private static ITypedElement RetrieveSpecimenIDAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(TestDataSet.ClassInstance)).Resolve("specimenID")));
+        }
+        
         /// <summary>
         /// Raises the SpecimenIDChanging event
         /// </summary>
@@ -247,6 +263,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveConclusionAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(TestDataSet.ClassInstance)).Resolve("conclusion")));
         }
         
         /// <summary>
@@ -347,7 +368,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public SpecimenToLabDateTimeProxy(ITestDataSet modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "specimenToLabDateTime")
             {
             }
             
@@ -365,24 +386,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
                     this.ModelElement.SpecimenToLabDateTime = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.SpecimenToLabDateTimeChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.SpecimenToLabDateTimeChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -396,7 +399,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public SpecimenIDProxy(ITestDataSet modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "specimenID")
             {
             }
             
@@ -414,24 +417,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
                     this.ModelElement.SpecimenID = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.SpecimenIDChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.SpecimenIDChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -445,7 +430,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public ConclusionProxy(ITestDataSet modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "conclusion")
             {
             }
             
@@ -462,24 +447,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
                 {
                     this.ModelElement.Conclusion = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ConclusionChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ConclusionChanged -= handler;
             }
         }
     }

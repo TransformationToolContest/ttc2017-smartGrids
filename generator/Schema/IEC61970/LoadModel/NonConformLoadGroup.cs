@@ -44,13 +44,17 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.LoadModel
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61970/LoadModel/NonConformLoadGroup" +
         "")]
     [DebuggerDisplayAttribute("NonConformLoadGroup {UUID}")]
-    public class NonConformLoadGroup : LoadGroup, INonConformLoadGroup, IModelElement
+    public partial class NonConformLoadGroup : LoadGroup, INonConformLoadGroup, IModelElement
     {
+        
+        private static Lazy<ITypedElement> _nonConformLoadSchedulesReference = new Lazy<ITypedElement>(RetrieveNonConformLoadSchedulesReference);
         
         /// <summary>
         /// The backing field for the NonConformLoadSchedules property
         /// </summary>
         private NonConformLoadGroupNonConformLoadSchedulesCollection _nonConformLoadSchedules;
+        
+        private static Lazy<ITypedElement> _energyConsumersReference = new Lazy<ITypedElement>(RetrieveEnergyConsumersReference);
         
         /// <summary>
         /// The backing field for the EnergyConsumers property
@@ -126,6 +130,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.LoadModel
             }
         }
         
+        private static ITypedElement RetrieveNonConformLoadSchedulesReference()
+        {
+            return ((ITypedElement)(((ModelElement)(NonConformLoadGroup.ClassInstance)).Resolve("NonConformLoadSchedules")));
+        }
+        
         /// <summary>
         /// Forwards CollectionChanging notifications for the NonConformLoadSchedules property to the parent model element
         /// </summary>
@@ -133,7 +142,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.LoadModel
         /// <param name="e">The original event data</param>
         private void NonConformLoadSchedulesCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("NonConformLoadSchedules", e);
+            this.OnCollectionChanging("NonConformLoadSchedules", e, _nonConformLoadSchedulesReference);
         }
         
         /// <summary>
@@ -143,7 +152,12 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.LoadModel
         /// <param name="e">The original event data</param>
         private void NonConformLoadSchedulesCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("NonConformLoadSchedules", e);
+            this.OnCollectionChanged("NonConformLoadSchedules", e, _nonConformLoadSchedulesReference);
+        }
+        
+        private static ITypedElement RetrieveEnergyConsumersReference()
+        {
+            return ((ITypedElement)(((ModelElement)(NonConformLoadGroup.ClassInstance)).Resolve("EnergyConsumers")));
         }
         
         /// <summary>
@@ -153,7 +167,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.LoadModel
         /// <param name="e">The original event data</param>
         private void EnergyConsumersCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("EnergyConsumers", e);
+            this.OnCollectionChanging("EnergyConsumers", e, _energyConsumersReference);
         }
         
         /// <summary>
@@ -163,7 +177,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.LoadModel
         /// <param name="e">The original event data</param>
         private void EnergyConsumersCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("EnergyConsumers", e);
+            this.OnCollectionChanged("EnergyConsumers", e, _energyConsumersReference);
         }
         
         /// <summary>

@@ -46,7 +46,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfPaymentMetering
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61970/Informative/InfPaymentMeterin" +
         "g/ReceiptSummary")]
     [DebuggerDisplayAttribute("ReceiptSummary {UUID}")]
-    public class ReceiptSummary : Element, IReceiptSummary, IModelElement
+    public partial class ReceiptSummary : Element, IReceiptSummary, IModelElement
     {
         
         /// <summary>
@@ -54,10 +54,16 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfPaymentMetering
         /// </summary>
         private Nullable<TenderKind> _tenderKind;
         
+        private static Lazy<ITypedElement> _tenderKindAttribute = new Lazy<ITypedElement>(RetrieveTenderKindAttribute);
+        
+        private static Lazy<ITypedElement> _lineReference = new Lazy<ITypedElement>(RetrieveLineReference);
+        
         /// <summary>
         /// The backing field for the Line property
         /// </summary>
         private ILineDetail _line;
+        
+        private static Lazy<ITypedElement> _shiftReference = new Lazy<ITypedElement>(RetrieveShiftReference);
         
         /// <summary>
         /// The backing field for the Shift property
@@ -84,10 +90,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfPaymentMetering
                     Nullable<TenderKind> old = this._tenderKind;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnTenderKindChanging(e);
-                    this.OnPropertyChanging("TenderKind", e);
+                    this.OnPropertyChanging("TenderKind", e, _tenderKindAttribute);
                     this._tenderKind = value;
                     this.OnTenderKindChanged(e);
-                    this.OnPropertyChanged("TenderKind", e);
+                    this.OnPropertyChanged("TenderKind", e, _tenderKindAttribute);
                 }
             }
         }
@@ -110,7 +116,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfPaymentMetering
                     ILineDetail old = this._line;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnLineChanging(e);
-                    this.OnPropertyChanging("Line", e);
+                    this.OnPropertyChanging("Line", e, _lineReference);
                     this._line = value;
                     if ((old != null))
                     {
@@ -121,7 +127,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfPaymentMetering
                         value.Deleted += this.OnResetLine;
                     }
                     this.OnLineChanged(e);
-                    this.OnPropertyChanged("Line", e);
+                    this.OnPropertyChanged("Line", e, _lineReference);
                 }
             }
         }
@@ -144,7 +150,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfPaymentMetering
                     IShift old = this._shift;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnShiftChanging(e);
-                    this.OnPropertyChanging("Shift", e);
+                    this.OnPropertyChanging("Shift", e, _shiftReference);
                     this._shift = value;
                     if ((old != null))
                     {
@@ -157,7 +163,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfPaymentMetering
                         value.Deleted += this.OnResetShift;
                     }
                     this.OnShiftChanged(e);
-                    this.OnPropertyChanged("Shift", e);
+                    this.OnPropertyChanged("Shift", e, _shiftReference);
                 }
             }
         }
@@ -219,6 +225,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfPaymentMetering
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> ShiftChanged;
         
+        private static ITypedElement RetrieveTenderKindAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(ReceiptSummary.ClassInstance)).Resolve("tenderKind")));
+        }
+        
         /// <summary>
         /// Raises the TenderKindChanging event
         /// </summary>
@@ -243,6 +254,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfPaymentMetering
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveLineReference()
+        {
+            return ((ITypedElement)(((ModelElement)(ReceiptSummary.ClassInstance)).Resolve("line")));
         }
         
         /// <summary>
@@ -279,6 +295,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfPaymentMetering
         private void OnResetLine(object sender, System.EventArgs eventArgs)
         {
             this.Line = null;
+        }
+        
+        private static ITypedElement RetrieveShiftReference()
+        {
+            return ((ITypedElement)(((ModelElement)(ReceiptSummary.ClassInstance)).Resolve("Shift")));
         }
         
         /// <summary>
@@ -567,7 +588,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfPaymentMetering
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public TenderKindProxy(IReceiptSummary modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "tenderKind")
             {
             }
             
@@ -585,24 +606,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfPaymentMetering
                     this.ModelElement.TenderKind = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.TenderKindChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.TenderKindChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -616,7 +619,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfPaymentMetering
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public LineProxy(IReceiptSummary modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "line")
             {
             }
             
@@ -634,24 +637,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfPaymentMetering
                     this.ModelElement.Line = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.LineChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.LineChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -665,7 +650,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfPaymentMetering
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public ShiftProxy(IReceiptSummary modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "Shift")
             {
             }
             
@@ -682,24 +667,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfPaymentMetering
                 {
                     this.ModelElement.Shift = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ShiftChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ShiftChanged -= handler;
             }
         }
     }

@@ -47,18 +47,24 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.Financial
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61970/Informative/Financial/Generat" +
         "ionProvider")]
     [DebuggerDisplayAttribute("GenerationProvider {UUID}")]
-    public class GenerationProvider : ErpOrganisation, IGenerationProvider, IModelElement
+    public partial class GenerationProvider : ErpOrganisation, IGenerationProvider, IModelElement
     {
+        
+        private static Lazy<ITypedElement> _servicePointReference = new Lazy<ITypedElement>(RetrieveServicePointReference);
         
         /// <summary>
         /// The backing field for the ServicePoint property
         /// </summary>
         private GenerationProviderServicePointCollection _servicePoint;
         
+        private static Lazy<ITypedElement> _generatingUnitsReference = new Lazy<ITypedElement>(RetrieveGeneratingUnitsReference);
+        
         /// <summary>
         /// The backing field for the GeneratingUnits property
         /// </summary>
         private GenerationProviderGeneratingUnitsCollection _generatingUnits;
+        
+        private static Lazy<ITypedElement> _energyProductsReference = new Lazy<ITypedElement>(RetrieveEnergyProductsReference);
         
         /// <summary>
         /// The backing field for the EnergyProducts property
@@ -152,6 +158,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.Financial
             }
         }
         
+        private static ITypedElement RetrieveServicePointReference()
+        {
+            return ((ITypedElement)(((ModelElement)(GenerationProvider.ClassInstance)).Resolve("ServicePoint")));
+        }
+        
         /// <summary>
         /// Forwards CollectionChanging notifications for the ServicePoint property to the parent model element
         /// </summary>
@@ -159,7 +170,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.Financial
         /// <param name="e">The original event data</param>
         private void ServicePointCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("ServicePoint", e);
+            this.OnCollectionChanging("ServicePoint", e, _servicePointReference);
         }
         
         /// <summary>
@@ -169,7 +180,12 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.Financial
         /// <param name="e">The original event data</param>
         private void ServicePointCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("ServicePoint", e);
+            this.OnCollectionChanged("ServicePoint", e, _servicePointReference);
+        }
+        
+        private static ITypedElement RetrieveGeneratingUnitsReference()
+        {
+            return ((ITypedElement)(((ModelElement)(GenerationProvider.ClassInstance)).Resolve("GeneratingUnits")));
         }
         
         /// <summary>
@@ -179,7 +195,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.Financial
         /// <param name="e">The original event data</param>
         private void GeneratingUnitsCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("GeneratingUnits", e);
+            this.OnCollectionChanging("GeneratingUnits", e, _generatingUnitsReference);
         }
         
         /// <summary>
@@ -189,7 +205,12 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.Financial
         /// <param name="e">The original event data</param>
         private void GeneratingUnitsCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("GeneratingUnits", e);
+            this.OnCollectionChanged("GeneratingUnits", e, _generatingUnitsReference);
+        }
+        
+        private static ITypedElement RetrieveEnergyProductsReference()
+        {
+            return ((ITypedElement)(((ModelElement)(GenerationProvider.ClassInstance)).Resolve("EnergyProducts")));
         }
         
         /// <summary>
@@ -199,7 +220,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.Financial
         /// <param name="e">The original event data</param>
         private void EnergyProductsCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("EnergyProducts", e);
+            this.OnCollectionChanging("EnergyProducts", e, _energyProductsReference);
         }
         
         /// <summary>
@@ -209,7 +230,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.Financial
         /// <param name="e">The original event data</param>
         private void EnergyProductsCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("EnergyProducts", e);
+            this.OnCollectionChanged("EnergyProducts", e, _energyProductsReference);
         }
         
         /// <summary>

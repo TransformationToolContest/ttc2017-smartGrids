@@ -42,8 +42,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.GenerationDynamics
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61970/Generation/GenerationDynamics" +
         "/CTTempActivePowerCurve")]
     [DebuggerDisplayAttribute("CTTempActivePowerCurve {UUID}")]
-    public class CTTempActivePowerCurve : Curve, ICTTempActivePowerCurve, IModelElement
+    public partial class CTTempActivePowerCurve : Curve, ICTTempActivePowerCurve, IModelElement
     {
+        
+        private static Lazy<ITypedElement> _combustionTurbineReference = new Lazy<ITypedElement>(RetrieveCombustionTurbineReference);
         
         /// <summary>
         /// The backing field for the CombustionTurbine property
@@ -70,7 +72,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.GenerationDynamics
                     ICombustionTurbine old = this._combustionTurbine;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnCombustionTurbineChanging(e);
-                    this.OnPropertyChanging("CombustionTurbine", e);
+                    this.OnPropertyChanging("CombustionTurbine", e, _combustionTurbineReference);
                     this._combustionTurbine = value;
                     if ((old != null))
                     {
@@ -83,7 +85,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.GenerationDynamics
                         value.Deleted += this.OnResetCombustionTurbine;
                     }
                     this.OnCombustionTurbineChanged(e);
-                    this.OnPropertyChanged("CombustionTurbine", e);
+                    this.OnPropertyChanged("CombustionTurbine", e, _combustionTurbineReference);
                 }
             }
         }
@@ -124,6 +126,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.GenerationDynamics
         /// Gets fired when the CombustionTurbine property changed its value
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> CombustionTurbineChanged;
+        
+        private static ITypedElement RetrieveCombustionTurbineReference()
+        {
+            return ((ITypedElement)(((ModelElement)(CTTempActivePowerCurve.ClassInstance)).Resolve("CombustionTurbine")));
+        }
         
         /// <summary>
         /// Raises the CombustionTurbineChanging event
@@ -348,7 +355,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.GenerationDynamics
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public CombustionTurbineProxy(ICTTempActivePowerCurve modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "CombustionTurbine")
             {
             }
             
@@ -365,24 +372,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.GenerationDynamics
                 {
                     this.ModelElement.CombustionTurbine = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.CombustionTurbineChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.CombustionTurbineChanged -= handler;
             }
         }
     }

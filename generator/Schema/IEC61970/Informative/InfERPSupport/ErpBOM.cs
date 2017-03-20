@@ -56,13 +56,17 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfERPSupport
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61970/Informative/InfERPSupport/Erp" +
         "BOM")]
     [DebuggerDisplayAttribute("ErpBOM {UUID}")]
-    public class ErpBOM : Document, IErpBOM, IModelElement
+    public partial class ErpBOM : Document, IErpBOM, IModelElement
     {
+        
+        private static Lazy<ITypedElement> _erpBomItemDatasReference = new Lazy<ITypedElement>(RetrieveErpBomItemDatasReference);
         
         /// <summary>
         /// The backing field for the ErpBomItemDatas property
         /// </summary>
         private ErpBOMErpBomItemDatasCollection _erpBomItemDatas;
+        
+        private static Lazy<ITypedElement> _designReference = new Lazy<ITypedElement>(RetrieveDesignReference);
         
         /// <summary>
         /// The backing field for the Design property
@@ -111,7 +115,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfERPSupport
                     IDesign old = this._design;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnDesignChanging(e);
-                    this.OnPropertyChanging("Design", e);
+                    this.OnPropertyChanging("Design", e, _designReference);
                     this._design = value;
                     if ((old != null))
                     {
@@ -124,7 +128,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfERPSupport
                         value.Deleted += this.OnResetDesign;
                     }
                     this.OnDesignChanged(e);
-                    this.OnPropertyChanged("Design", e);
+                    this.OnPropertyChanged("Design", e, _designReference);
                 }
             }
         }
@@ -166,6 +170,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfERPSupport
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> DesignChanged;
         
+        private static ITypedElement RetrieveErpBomItemDatasReference()
+        {
+            return ((ITypedElement)(((ModelElement)(ErpBOM.ClassInstance)).Resolve("ErpBomItemDatas")));
+        }
+        
         /// <summary>
         /// Forwards CollectionChanging notifications for the ErpBomItemDatas property to the parent model element
         /// </summary>
@@ -173,7 +182,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfERPSupport
         /// <param name="e">The original event data</param>
         private void ErpBomItemDatasCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("ErpBomItemDatas", e);
+            this.OnCollectionChanging("ErpBomItemDatas", e, _erpBomItemDatasReference);
         }
         
         /// <summary>
@@ -183,7 +192,12 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfERPSupport
         /// <param name="e">The original event data</param>
         private void ErpBomItemDatasCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("ErpBomItemDatas", e);
+            this.OnCollectionChanged("ErpBomItemDatas", e, _erpBomItemDatasReference);
+        }
+        
+        private static ITypedElement RetrieveDesignReference()
+        {
+            return ((ITypedElement)(((ModelElement)(ErpBOM.ClassInstance)).Resolve("Design")));
         }
         
         /// <summary>
@@ -457,7 +471,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfERPSupport
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public DesignProxy(IErpBOM modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "Design")
             {
             }
             
@@ -474,24 +488,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfERPSupport
                 {
                     this.ModelElement.Design = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.DesignChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.DesignChanged -= handler;
             }
         }
     }

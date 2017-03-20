@@ -53,13 +53,17 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61970/Informative/InfAssets/Mountin" +
         "gConnection")]
     [DebuggerDisplayAttribute("MountingConnection {UUID}")]
-    public class MountingConnection : IdentifiedObject, IMountingConnection, IModelElement
+    public partial class MountingConnection : IdentifiedObject, IMountingConnection, IModelElement
     {
+        
+        private static Lazy<ITypedElement> _structureInfosReference = new Lazy<ITypedElement>(RetrieveStructureInfosReference);
         
         /// <summary>
         /// The backing field for the StructureInfos property
         /// </summary>
         private MountingConnectionStructureInfosCollection _structureInfos;
+        
+        private static Lazy<ITypedElement> _mountingPointsReference = new Lazy<ITypedElement>(RetrieveMountingPointsReference);
         
         /// <summary>
         /// The backing field for the MountingPoints property
@@ -135,6 +139,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
             }
         }
         
+        private static ITypedElement RetrieveStructureInfosReference()
+        {
+            return ((ITypedElement)(((ModelElement)(MountingConnection.ClassInstance)).Resolve("StructureInfos")));
+        }
+        
         /// <summary>
         /// Forwards CollectionChanging notifications for the StructureInfos property to the parent model element
         /// </summary>
@@ -142,7 +151,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
         /// <param name="e">The original event data</param>
         private void StructureInfosCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("StructureInfos", e);
+            this.OnCollectionChanging("StructureInfos", e, _structureInfosReference);
         }
         
         /// <summary>
@@ -152,7 +161,12 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
         /// <param name="e">The original event data</param>
         private void StructureInfosCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("StructureInfos", e);
+            this.OnCollectionChanged("StructureInfos", e, _structureInfosReference);
+        }
+        
+        private static ITypedElement RetrieveMountingPointsReference()
+        {
+            return ((ITypedElement)(((ModelElement)(MountingConnection.ClassInstance)).Resolve("MountingPoints")));
         }
         
         /// <summary>
@@ -162,7 +176,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
         /// <param name="e">The original event data</param>
         private void MountingPointsCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("MountingPoints", e);
+            this.OnCollectionChanging("MountingPoints", e, _mountingPointsReference);
         }
         
         /// <summary>
@@ -172,7 +186,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
         /// <param name="e">The original event data</param>
         private void MountingPointsCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("MountingPoints", e);
+            this.OnCollectionChanged("MountingPoints", e, _mountingPointsReference);
         }
         
         /// <summary>

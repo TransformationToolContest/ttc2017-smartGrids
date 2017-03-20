@@ -51,7 +51,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Meas
     [XmlNamespacePrefixAttribute("cimMeas")]
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61970/Meas/CurrentTransformer")]
     [DebuggerDisplayAttribute("CurrentTransformer {UUID}")]
-    public class CurrentTransformer : Equipment, ICurrentTransformer, IModelElement
+    public partial class CurrentTransformer : Equipment, ICurrentTransformer, IModelElement
     {
         
         /// <summary>
@@ -59,30 +59,42 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Meas
         /// </summary>
         private float _maxRatio;
         
+        private static Lazy<ITypedElement> _maxRatioAttribute = new Lazy<ITypedElement>(RetrieveMaxRatioAttribute);
+        
         /// <summary>
         /// The backing field for the CoreCount property
         /// </summary>
         private int _coreCount;
+        
+        private static Lazy<ITypedElement> _coreCountAttribute = new Lazy<ITypedElement>(RetrieveCoreCountAttribute);
         
         /// <summary>
         /// The backing field for the CtClass property
         /// </summary>
         private string _ctClass;
         
+        private static Lazy<ITypedElement> _ctClassAttribute = new Lazy<ITypedElement>(RetrieveCtClassAttribute);
+        
         /// <summary>
         /// The backing field for the Usage property
         /// </summary>
         private string _usage;
+        
+        private static Lazy<ITypedElement> _usageAttribute = new Lazy<ITypedElement>(RetrieveUsageAttribute);
         
         /// <summary>
         /// The backing field for the AccuracyLimit property
         /// </summary>
         private string _accuracyLimit;
         
+        private static Lazy<ITypedElement> _accuracyLimitAttribute = new Lazy<ITypedElement>(RetrieveAccuracyLimitAttribute);
+        
         /// <summary>
         /// The backing field for the AccuracyClass property
         /// </summary>
         private string _accuracyClass;
+        
+        private static Lazy<ITypedElement> _accuracyClassAttribute = new Lazy<ITypedElement>(RetrieveAccuracyClassAttribute);
         
         private static IClass _classInstance;
         
@@ -104,10 +116,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Meas
                     float old = this._maxRatio;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnMaxRatioChanging(e);
-                    this.OnPropertyChanging("MaxRatio", e);
+                    this.OnPropertyChanging("MaxRatio", e, _maxRatioAttribute);
                     this._maxRatio = value;
                     this.OnMaxRatioChanged(e);
-                    this.OnPropertyChanged("MaxRatio", e);
+                    this.OnPropertyChanged("MaxRatio", e, _maxRatioAttribute);
                 }
             }
         }
@@ -130,10 +142,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Meas
                     int old = this._coreCount;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnCoreCountChanging(e);
-                    this.OnPropertyChanging("CoreCount", e);
+                    this.OnPropertyChanging("CoreCount", e, _coreCountAttribute);
                     this._coreCount = value;
                     this.OnCoreCountChanged(e);
-                    this.OnPropertyChanged("CoreCount", e);
+                    this.OnPropertyChanged("CoreCount", e, _coreCountAttribute);
                 }
             }
         }
@@ -156,10 +168,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Meas
                     string old = this._ctClass;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnCtClassChanging(e);
-                    this.OnPropertyChanging("CtClass", e);
+                    this.OnPropertyChanging("CtClass", e, _ctClassAttribute);
                     this._ctClass = value;
                     this.OnCtClassChanged(e);
-                    this.OnPropertyChanged("CtClass", e);
+                    this.OnPropertyChanged("CtClass", e, _ctClassAttribute);
                 }
             }
         }
@@ -182,10 +194,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Meas
                     string old = this._usage;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnUsageChanging(e);
-                    this.OnPropertyChanging("Usage", e);
+                    this.OnPropertyChanging("Usage", e, _usageAttribute);
                     this._usage = value;
                     this.OnUsageChanged(e);
-                    this.OnPropertyChanged("Usage", e);
+                    this.OnPropertyChanged("Usage", e, _usageAttribute);
                 }
             }
         }
@@ -208,10 +220,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Meas
                     string old = this._accuracyLimit;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnAccuracyLimitChanging(e);
-                    this.OnPropertyChanging("AccuracyLimit", e);
+                    this.OnPropertyChanging("AccuracyLimit", e, _accuracyLimitAttribute);
                     this._accuracyLimit = value;
                     this.OnAccuracyLimitChanged(e);
-                    this.OnPropertyChanged("AccuracyLimit", e);
+                    this.OnPropertyChanged("AccuracyLimit", e, _accuracyLimitAttribute);
                 }
             }
         }
@@ -234,10 +246,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Meas
                     string old = this._accuracyClass;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnAccuracyClassChanging(e);
-                    this.OnPropertyChanging("AccuracyClass", e);
+                    this.OnPropertyChanging("AccuracyClass", e, _accuracyClassAttribute);
                     this._accuracyClass = value;
                     this.OnAccuracyClassChanged(e);
-                    this.OnPropertyChanged("AccuracyClass", e);
+                    this.OnPropertyChanged("AccuracyClass", e, _accuracyClassAttribute);
                 }
             }
         }
@@ -317,6 +329,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Meas
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> AccuracyClassChanged;
         
+        private static ITypedElement RetrieveMaxRatioAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(CurrentTransformer.ClassInstance)).Resolve("maxRatio")));
+        }
+        
         /// <summary>
         /// Raises the MaxRatioChanging event
         /// </summary>
@@ -341,6 +358,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Meas
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveCoreCountAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(CurrentTransformer.ClassInstance)).Resolve("coreCount")));
         }
         
         /// <summary>
@@ -369,6 +391,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Meas
             }
         }
         
+        private static ITypedElement RetrieveCtClassAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(CurrentTransformer.ClassInstance)).Resolve("ctClass")));
+        }
+        
         /// <summary>
         /// Raises the CtClassChanging event
         /// </summary>
@@ -393,6 +420,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Meas
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveUsageAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(CurrentTransformer.ClassInstance)).Resolve("usage")));
         }
         
         /// <summary>
@@ -421,6 +453,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Meas
             }
         }
         
+        private static ITypedElement RetrieveAccuracyLimitAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(CurrentTransformer.ClassInstance)).Resolve("accuracyLimit")));
+        }
+        
         /// <summary>
         /// Raises the AccuracyLimitChanging event
         /// </summary>
@@ -445,6 +482,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Meas
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveAccuracyClassAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(CurrentTransformer.ClassInstance)).Resolve("accuracyClass")));
         }
         
         /// <summary>
@@ -571,7 +613,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Meas
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public MaxRatioProxy(ICurrentTransformer modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "maxRatio")
             {
             }
             
@@ -589,24 +631,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Meas
                     this.ModelElement.MaxRatio = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.MaxRatioChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.MaxRatioChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -620,7 +644,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Meas
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public CoreCountProxy(ICurrentTransformer modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "coreCount")
             {
             }
             
@@ -638,24 +662,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Meas
                     this.ModelElement.CoreCount = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.CoreCountChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.CoreCountChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -669,7 +675,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Meas
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public CtClassProxy(ICurrentTransformer modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "ctClass")
             {
             }
             
@@ -687,24 +693,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Meas
                     this.ModelElement.CtClass = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.CtClassChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.CtClassChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -718,7 +706,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Meas
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public UsageProxy(ICurrentTransformer modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "usage")
             {
             }
             
@@ -736,24 +724,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Meas
                     this.ModelElement.Usage = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.UsageChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.UsageChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -767,7 +737,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Meas
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public AccuracyLimitProxy(ICurrentTransformer modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "accuracyLimit")
             {
             }
             
@@ -785,24 +755,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Meas
                     this.ModelElement.AccuracyLimit = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.AccuracyLimitChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.AccuracyLimitChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -816,7 +768,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Meas
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public AccuracyClassProxy(ICurrentTransformer modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "accuracyClass")
             {
             }
             
@@ -833,24 +785,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Meas
                 {
                     this.ModelElement.AccuracyClass = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.AccuracyClassChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.AccuracyClassChanged -= handler;
             }
         }
     }

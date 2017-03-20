@@ -40,7 +40,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Contingency
     [XmlNamespacePrefixAttribute("cimContingency")]
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61970/Contingency/Contingency")]
     [DebuggerDisplayAttribute("Contingency {UUID}")]
-    public class Contingency : IdentifiedObject, IContingency, IModelElement
+    public partial class Contingency : IdentifiedObject, IContingency, IModelElement
     {
         
         /// <summary>
@@ -48,10 +48,16 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Contingency
         /// </summary>
         private bool _mustStudy;
         
+        private static Lazy<ITypedElement> _mustStudyAttribute = new Lazy<ITypedElement>(RetrieveMustStudyAttribute);
+        
+        private static Lazy<ITypedElement> _contingencyConstraintLimitReference = new Lazy<ITypedElement>(RetrieveContingencyConstraintLimitReference);
+        
         /// <summary>
         /// The backing field for the ContingencyConstraintLimit property
         /// </summary>
         private ContingencyContingencyConstraintLimitCollection _contingencyConstraintLimit;
+        
+        private static Lazy<ITypedElement> _contingencyElementReference = new Lazy<ITypedElement>(RetrieveContingencyElementReference);
         
         /// <summary>
         /// The backing field for the ContingencyElement property
@@ -88,10 +94,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Contingency
                     bool old = this._mustStudy;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnMustStudyChanging(e);
-                    this.OnPropertyChanging("MustStudy", e);
+                    this.OnPropertyChanging("MustStudy", e, _mustStudyAttribute);
                     this._mustStudy = value;
                     this.OnMustStudyChanged(e);
-                    this.OnPropertyChanged("MustStudy", e);
+                    this.OnPropertyChanged("MustStudy", e, _mustStudyAttribute);
                 }
             }
         }
@@ -162,6 +168,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Contingency
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> MustStudyChanged;
         
+        private static ITypedElement RetrieveMustStudyAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(Contingency.ClassInstance)).Resolve("mustStudy")));
+        }
+        
         /// <summary>
         /// Raises the MustStudyChanging event
         /// </summary>
@@ -188,6 +199,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Contingency
             }
         }
         
+        private static ITypedElement RetrieveContingencyConstraintLimitReference()
+        {
+            return ((ITypedElement)(((ModelElement)(Contingency.ClassInstance)).Resolve("ContingencyConstraintLimit")));
+        }
+        
         /// <summary>
         /// Forwards CollectionChanging notifications for the ContingencyConstraintLimit property to the parent model element
         /// </summary>
@@ -195,7 +211,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Contingency
         /// <param name="e">The original event data</param>
         private void ContingencyConstraintLimitCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("ContingencyConstraintLimit", e);
+            this.OnCollectionChanging("ContingencyConstraintLimit", e, _contingencyConstraintLimitReference);
         }
         
         /// <summary>
@@ -205,7 +221,12 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Contingency
         /// <param name="e">The original event data</param>
         private void ContingencyConstraintLimitCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("ContingencyConstraintLimit", e);
+            this.OnCollectionChanged("ContingencyConstraintLimit", e, _contingencyConstraintLimitReference);
+        }
+        
+        private static ITypedElement RetrieveContingencyElementReference()
+        {
+            return ((ITypedElement)(((ModelElement)(Contingency.ClassInstance)).Resolve("ContingencyElement")));
         }
         
         /// <summary>
@@ -215,7 +236,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Contingency
         /// <param name="e">The original event data</param>
         private void ContingencyElementCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("ContingencyElement", e);
+            this.OnCollectionChanging("ContingencyElement", e, _contingencyElementReference);
         }
         
         /// <summary>
@@ -225,7 +246,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Contingency
         /// <param name="e">The original event data</param>
         private void ContingencyElementCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("ContingencyElement", e);
+            this.OnCollectionChanged("ContingencyElement", e, _contingencyElementReference);
         }
         
         /// <summary>
@@ -457,7 +478,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Contingency
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public MustStudyProxy(IContingency modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "mustStudy")
             {
             }
             
@@ -474,24 +495,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Contingency
                 {
                     this.ModelElement.MustStudy = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.MustStudyChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.MustStudyChanged -= handler;
             }
         }
     }

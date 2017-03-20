@@ -53,7 +53,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61970/Informative/InfAssets/Undergr" +
         "oundStructureInfo")]
     [DebuggerDisplayAttribute("UndergroundStructureInfo {UUID}")]
-    public class UndergroundStructureInfo : StructureInfo, IUndergroundStructureInfo, IModelElement
+    public partial class UndergroundStructureInfo : StructureInfo, IUndergroundStructureInfo, IModelElement
     {
         
         /// <summary>
@@ -61,20 +61,28 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
         /// </summary>
         private string _material;
         
+        private static Lazy<ITypedElement> _materialAttribute = new Lazy<ITypedElement>(RetrieveMaterialAttribute);
+        
         /// <summary>
         /// The backing field for the HasVentilation property
         /// </summary>
         private bool _hasVentilation;
+        
+        private static Lazy<ITypedElement> _hasVentilationAttribute = new Lazy<ITypedElement>(RetrieveHasVentilationAttribute);
         
         /// <summary>
         /// The backing field for the SealingWarrantyExpiresDate property
         /// </summary>
         private string _sealingWarrantyExpiresDate;
         
+        private static Lazy<ITypedElement> _sealingWarrantyExpiresDateAttribute = new Lazy<ITypedElement>(RetrieveSealingWarrantyExpiresDateAttribute);
+        
         /// <summary>
         /// The backing field for the Kind property
         /// </summary>
         private Nullable<UndergroundStructureKind> _kind;
+        
+        private static Lazy<ITypedElement> _kindAttribute = new Lazy<ITypedElement>(RetrieveKindAttribute);
         
         private static IClass _classInstance;
         
@@ -96,10 +104,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
                     string old = this._material;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnMaterialChanging(e);
-                    this.OnPropertyChanging("Material", e);
+                    this.OnPropertyChanging("Material", e, _materialAttribute);
                     this._material = value;
                     this.OnMaterialChanged(e);
-                    this.OnPropertyChanged("Material", e);
+                    this.OnPropertyChanged("Material", e, _materialAttribute);
                 }
             }
         }
@@ -122,10 +130,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
                     bool old = this._hasVentilation;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnHasVentilationChanging(e);
-                    this.OnPropertyChanging("HasVentilation", e);
+                    this.OnPropertyChanging("HasVentilation", e, _hasVentilationAttribute);
                     this._hasVentilation = value;
                     this.OnHasVentilationChanged(e);
-                    this.OnPropertyChanged("HasVentilation", e);
+                    this.OnPropertyChanged("HasVentilation", e, _hasVentilationAttribute);
                 }
             }
         }
@@ -148,10 +156,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
                     string old = this._sealingWarrantyExpiresDate;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnSealingWarrantyExpiresDateChanging(e);
-                    this.OnPropertyChanging("SealingWarrantyExpiresDate", e);
+                    this.OnPropertyChanging("SealingWarrantyExpiresDate", e, _sealingWarrantyExpiresDateAttribute);
                     this._sealingWarrantyExpiresDate = value;
                     this.OnSealingWarrantyExpiresDateChanged(e);
-                    this.OnPropertyChanged("SealingWarrantyExpiresDate", e);
+                    this.OnPropertyChanged("SealingWarrantyExpiresDate", e, _sealingWarrantyExpiresDateAttribute);
                 }
             }
         }
@@ -174,10 +182,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
                     Nullable<UndergroundStructureKind> old = this._kind;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnKindChanging(e);
-                    this.OnPropertyChanging("Kind", e);
+                    this.OnPropertyChanging("Kind", e, _kindAttribute);
                     this._kind = value;
                     this.OnKindChanged(e);
-                    this.OnPropertyChanged("Kind", e);
+                    this.OnPropertyChanged("Kind", e, _kindAttribute);
                 }
             }
         }
@@ -238,6 +246,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> KindChanged;
         
+        private static ITypedElement RetrieveMaterialAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(UndergroundStructureInfo.ClassInstance)).Resolve("material")));
+        }
+        
         /// <summary>
         /// Raises the MaterialChanging event
         /// </summary>
@@ -262,6 +275,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveHasVentilationAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(UndergroundStructureInfo.ClassInstance)).Resolve("hasVentilation")));
         }
         
         /// <summary>
@@ -290,6 +308,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
             }
         }
         
+        private static ITypedElement RetrieveSealingWarrantyExpiresDateAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(UndergroundStructureInfo.ClassInstance)).Resolve("sealingWarrantyExpiresDate")));
+        }
+        
         /// <summary>
         /// Raises the SealingWarrantyExpiresDateChanging event
         /// </summary>
@@ -314,6 +337,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveKindAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(UndergroundStructureInfo.ClassInstance)).Resolve("kind")));
         }
         
         /// <summary>
@@ -423,7 +451,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public MaterialProxy(IUndergroundStructureInfo modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "material")
             {
             }
             
@@ -441,24 +469,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
                     this.ModelElement.Material = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.MaterialChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.MaterialChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -472,7 +482,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public HasVentilationProxy(IUndergroundStructureInfo modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "hasVentilation")
             {
             }
             
@@ -490,24 +500,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
                     this.ModelElement.HasVentilation = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.HasVentilationChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.HasVentilationChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -521,7 +513,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public SealingWarrantyExpiresDateProxy(IUndergroundStructureInfo modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "sealingWarrantyExpiresDate")
             {
             }
             
@@ -539,24 +531,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
                     this.ModelElement.SealingWarrantyExpiresDate = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.SealingWarrantyExpiresDateChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.SealingWarrantyExpiresDateChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -570,7 +544,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public KindProxy(IUndergroundStructureInfo modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "kind")
             {
             }
             
@@ -587,24 +561,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
                 {
                     this.ModelElement.Kind = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.KindChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.KindChanged -= handler;
             }
         }
     }

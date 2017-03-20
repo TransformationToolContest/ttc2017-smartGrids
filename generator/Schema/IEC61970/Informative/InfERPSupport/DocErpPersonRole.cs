@@ -56,13 +56,17 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfERPSupport
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61970/Informative/InfERPSupport/Doc" +
         "ErpPersonRole")]
     [DebuggerDisplayAttribute("DocErpPersonRole {UUID}")]
-    public class DocErpPersonRole : Role, IDocErpPersonRole, IModelElement
+    public partial class DocErpPersonRole : Role, IDocErpPersonRole, IModelElement
     {
+        
+        private static Lazy<ITypedElement> _erpPersonReference = new Lazy<ITypedElement>(RetrieveErpPersonReference);
         
         /// <summary>
         /// The backing field for the ErpPerson property
         /// </summary>
         private IErpPerson _erpPerson;
+        
+        private static Lazy<ITypedElement> _documentReference = new Lazy<ITypedElement>(RetrieveDocumentReference);
         
         /// <summary>
         /// The backing field for the Document property
@@ -89,7 +93,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfERPSupport
                     IErpPerson old = this._erpPerson;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnErpPersonChanging(e);
-                    this.OnPropertyChanging("ErpPerson", e);
+                    this.OnPropertyChanging("ErpPerson", e, _erpPersonReference);
                     this._erpPerson = value;
                     if ((old != null))
                     {
@@ -102,7 +106,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfERPSupport
                         value.Deleted += this.OnResetErpPerson;
                     }
                     this.OnErpPersonChanged(e);
-                    this.OnPropertyChanged("ErpPerson", e);
+                    this.OnPropertyChanged("ErpPerson", e, _erpPersonReference);
                 }
             }
         }
@@ -125,7 +129,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfERPSupport
                     IDocument old = this._document;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnDocumentChanging(e);
-                    this.OnPropertyChanging("Document", e);
+                    this.OnPropertyChanging("Document", e, _documentReference);
                     this._document = value;
                     if ((old != null))
                     {
@@ -138,7 +142,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfERPSupport
                         value.Deleted += this.OnResetDocument;
                     }
                     this.OnDocumentChanged(e);
-                    this.OnPropertyChanged("Document", e);
+                    this.OnPropertyChanged("Document", e, _documentReference);
                 }
             }
         }
@@ -190,6 +194,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfERPSupport
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> DocumentChanged;
         
+        private static ITypedElement RetrieveErpPersonReference()
+        {
+            return ((ITypedElement)(((ModelElement)(DocErpPersonRole.ClassInstance)).Resolve("ErpPerson")));
+        }
+        
         /// <summary>
         /// Raises the ErpPersonChanging event
         /// </summary>
@@ -224,6 +233,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfERPSupport
         private void OnResetErpPerson(object sender, System.EventArgs eventArgs)
         {
             this.ErpPerson = null;
+        }
+        
+        private static ITypedElement RetrieveDocumentReference()
+        {
+            return ((ITypedElement)(((ModelElement)(DocErpPersonRole.ClassInstance)).Resolve("Document")));
         }
         
         /// <summary>
@@ -492,7 +506,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfERPSupport
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public ErpPersonProxy(IDocErpPersonRole modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "ErpPerson")
             {
             }
             
@@ -510,24 +524,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfERPSupport
                     this.ModelElement.ErpPerson = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ErpPersonChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ErpPersonChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -541,7 +537,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfERPSupport
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public DocumentProxy(IDocErpPersonRole modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "Document")
             {
             }
             
@@ -558,24 +554,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfERPSupport
                 {
                     this.ModelElement.Document = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.DocumentChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.DocumentChanged -= handler;
             }
         }
     }

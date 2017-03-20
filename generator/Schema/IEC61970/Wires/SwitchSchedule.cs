@@ -53,8 +53,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
     [XmlNamespacePrefixAttribute("cimWires")]
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61970/Wires/SwitchSchedule")]
     [DebuggerDisplayAttribute("SwitchSchedule {UUID}")]
-    public class SwitchSchedule : SeasonDayTypeSchedule, ISwitchSchedule, IModelElement
+    public partial class SwitchSchedule : SeasonDayTypeSchedule, ISwitchSchedule, IModelElement
     {
+        
+        private static Lazy<ITypedElement> _switchReference = new Lazy<ITypedElement>(RetrieveSwitchReference);
         
         /// <summary>
         /// The backing field for the Switch property
@@ -81,7 +83,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
                     ISwitch old = this._switch;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnSwitchChanging(e);
-                    this.OnPropertyChanging("Switch", e);
+                    this.OnPropertyChanging("Switch", e, _switchReference);
                     this._switch = value;
                     if ((old != null))
                     {
@@ -94,7 +96,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
                         value.Deleted += this.OnResetSwitch;
                     }
                     this.OnSwitchChanged(e);
-                    this.OnPropertyChanged("Switch", e);
+                    this.OnPropertyChanged("Switch", e, _switchReference);
                 }
             }
         }
@@ -134,6 +136,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
         /// Gets fired when the Switch property changed its value
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> SwitchChanged;
+        
+        private static ITypedElement RetrieveSwitchReference()
+        {
+            return ((ITypedElement)(((ModelElement)(SwitchSchedule.ClassInstance)).Resolve("Switch")));
+        }
         
         /// <summary>
         /// Raises the SwitchChanging event
@@ -357,7 +364,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public SwitchProxy(ISwitchSchedule modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "Switch")
             {
             }
             
@@ -374,24 +381,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
                 {
                     this.ModelElement.Switch = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.SwitchChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.SwitchChanged -= handler;
             }
         }
     }

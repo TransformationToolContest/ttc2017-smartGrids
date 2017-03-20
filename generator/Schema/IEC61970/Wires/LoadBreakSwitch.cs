@@ -53,13 +53,15 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
     [XmlNamespacePrefixAttribute("cimWires")]
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61970/Wires/LoadBreakSwitch")]
     [DebuggerDisplayAttribute("LoadBreakSwitch {UUID}")]
-    public class LoadBreakSwitch : ProtectedSwitch, ILoadBreakSwitch, IModelElement
+    public partial class LoadBreakSwitch : ProtectedSwitch, ILoadBreakSwitch, IModelElement
     {
         
         /// <summary>
         /// The backing field for the RatedCurrent property
         /// </summary>
         private float _ratedCurrent;
+        
+        private static Lazy<ITypedElement> _ratedCurrentAttribute = new Lazy<ITypedElement>(RetrieveRatedCurrentAttribute);
         
         private static IClass _classInstance;
         
@@ -81,10 +83,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
                     float old = this._ratedCurrent;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnRatedCurrentChanging(e);
-                    this.OnPropertyChanging("RatedCurrent", e);
+                    this.OnPropertyChanging("RatedCurrent", e, _ratedCurrentAttribute);
                     this._ratedCurrent = value;
                     this.OnRatedCurrentChanged(e);
-                    this.OnPropertyChanged("RatedCurrent", e);
+                    this.OnPropertyChanged("RatedCurrent", e, _ratedCurrentAttribute);
                 }
             }
         }
@@ -113,6 +115,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
         /// Gets fired when the RatedCurrent property changed its value
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> RatedCurrentChanged;
+        
+        private static ITypedElement RetrieveRatedCurrentAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(LoadBreakSwitch.ClassInstance)).Resolve("ratedCurrent")));
+        }
         
         /// <summary>
         /// Raises the RatedCurrentChanging event
@@ -193,7 +200,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public RatedCurrentProxy(ILoadBreakSwitch modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "ratedCurrent")
             {
             }
             
@@ -210,24 +217,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
                 {
                     this.ModelElement.RatedCurrent = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.RatedCurrentChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.RatedCurrentChanged -= handler;
             }
         }
     }

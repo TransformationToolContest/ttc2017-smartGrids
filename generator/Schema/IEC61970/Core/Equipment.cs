@@ -57,7 +57,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Core
     [XmlNamespacePrefixAttribute("cimCore")]
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61970/Core/Equipment")]
     [DebuggerDisplayAttribute("Equipment {UUID}")]
-    public class Equipment : PowerSystemResource, IEquipment, IModelElement
+    public partial class Equipment : PowerSystemResource, IEquipment, IModelElement
     {
         
         /// <summary>
@@ -65,25 +65,37 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Core
         /// </summary>
         private bool _normaIlyInService;
         
+        private static Lazy<ITypedElement> _normaIlyInServiceAttribute = new Lazy<ITypedElement>(RetrieveNormaIlyInServiceAttribute);
+        
         /// <summary>
         /// The backing field for the Aggregate property
         /// </summary>
         private bool _aggregate;
+        
+        private static Lazy<ITypedElement> _aggregateAttribute = new Lazy<ITypedElement>(RetrieveAggregateAttribute);
+        
+        private static Lazy<ITypedElement> _operationalLimitSetReference = new Lazy<ITypedElement>(RetrieveOperationalLimitSetReference);
         
         /// <summary>
         /// The backing field for the OperationalLimitSet property
         /// </summary>
         private EquipmentOperationalLimitSetCollection _operationalLimitSet;
         
+        private static Lazy<ITypedElement> _contingencyEquipmentReference = new Lazy<ITypedElement>(RetrieveContingencyEquipmentReference);
+        
         /// <summary>
         /// The backing field for the ContingencyEquipment property
         /// </summary>
         private EquipmentContingencyEquipmentCollection _contingencyEquipment;
         
+        private static Lazy<ITypedElement> _customerAgreementsReference = new Lazy<ITypedElement>(RetrieveCustomerAgreementsReference);
+        
         /// <summary>
         /// The backing field for the CustomerAgreements property
         /// </summary>
         private EquipmentCustomerAgreementsCollection _customerAgreements;
+        
+        private static Lazy<ITypedElement> _equipmentContainerReference = new Lazy<ITypedElement>(RetrieveEquipmentContainerReference);
         
         /// <summary>
         /// The backing field for the EquipmentContainer property
@@ -123,10 +135,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Core
                     bool old = this._normaIlyInService;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnNormaIlyInServiceChanging(e);
-                    this.OnPropertyChanging("NormaIlyInService", e);
+                    this.OnPropertyChanging("NormaIlyInService", e, _normaIlyInServiceAttribute);
                     this._normaIlyInService = value;
                     this.OnNormaIlyInServiceChanged(e);
-                    this.OnPropertyChanged("NormaIlyInService", e);
+                    this.OnPropertyChanged("NormaIlyInService", e, _normaIlyInServiceAttribute);
                 }
             }
         }
@@ -149,10 +161,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Core
                     bool old = this._aggregate;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnAggregateChanging(e);
-                    this.OnPropertyChanging("Aggregate", e);
+                    this.OnPropertyChanging("Aggregate", e, _aggregateAttribute);
                     this._aggregate = value;
                     this.OnAggregateChanged(e);
-                    this.OnPropertyChanged("Aggregate", e);
+                    this.OnPropertyChanged("Aggregate", e, _aggregateAttribute);
                 }
             }
         }
@@ -220,7 +232,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Core
                     IEquipmentContainer old = this._equipmentContainer;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnEquipmentContainerChanging(e);
-                    this.OnPropertyChanging("EquipmentContainer", e);
+                    this.OnPropertyChanging("EquipmentContainer", e, _equipmentContainerReference);
                     this._equipmentContainer = value;
                     if ((old != null))
                     {
@@ -233,7 +245,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Core
                         value.Deleted += this.OnResetEquipmentContainer;
                     }
                     this.OnEquipmentContainerChanged(e);
-                    this.OnPropertyChanged("EquipmentContainer", e);
+                    this.OnPropertyChanged("EquipmentContainer", e, _equipmentContainerReference);
                 }
             }
         }
@@ -294,6 +306,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Core
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> EquipmentContainerChanged;
         
+        private static ITypedElement RetrieveNormaIlyInServiceAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(Equipment.ClassInstance)).Resolve("normaIlyInService")));
+        }
+        
         /// <summary>
         /// Raises the NormaIlyInServiceChanging event
         /// </summary>
@@ -318,6 +335,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Core
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveAggregateAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(Equipment.ClassInstance)).Resolve("aggregate")));
         }
         
         /// <summary>
@@ -346,6 +368,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Core
             }
         }
         
+        private static ITypedElement RetrieveOperationalLimitSetReference()
+        {
+            return ((ITypedElement)(((ModelElement)(Equipment.ClassInstance)).Resolve("OperationalLimitSet")));
+        }
+        
         /// <summary>
         /// Forwards CollectionChanging notifications for the OperationalLimitSet property to the parent model element
         /// </summary>
@@ -353,7 +380,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Core
         /// <param name="e">The original event data</param>
         private void OperationalLimitSetCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("OperationalLimitSet", e);
+            this.OnCollectionChanging("OperationalLimitSet", e, _operationalLimitSetReference);
         }
         
         /// <summary>
@@ -363,7 +390,12 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Core
         /// <param name="e">The original event data</param>
         private void OperationalLimitSetCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("OperationalLimitSet", e);
+            this.OnCollectionChanged("OperationalLimitSet", e, _operationalLimitSetReference);
+        }
+        
+        private static ITypedElement RetrieveContingencyEquipmentReference()
+        {
+            return ((ITypedElement)(((ModelElement)(Equipment.ClassInstance)).Resolve("ContingencyEquipment")));
         }
         
         /// <summary>
@@ -373,7 +405,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Core
         /// <param name="e">The original event data</param>
         private void ContingencyEquipmentCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("ContingencyEquipment", e);
+            this.OnCollectionChanging("ContingencyEquipment", e, _contingencyEquipmentReference);
         }
         
         /// <summary>
@@ -383,7 +415,12 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Core
         /// <param name="e">The original event data</param>
         private void ContingencyEquipmentCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("ContingencyEquipment", e);
+            this.OnCollectionChanged("ContingencyEquipment", e, _contingencyEquipmentReference);
+        }
+        
+        private static ITypedElement RetrieveCustomerAgreementsReference()
+        {
+            return ((ITypedElement)(((ModelElement)(Equipment.ClassInstance)).Resolve("CustomerAgreements")));
         }
         
         /// <summary>
@@ -393,7 +430,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Core
         /// <param name="e">The original event data</param>
         private void CustomerAgreementsCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("CustomerAgreements", e);
+            this.OnCollectionChanging("CustomerAgreements", e, _customerAgreementsReference);
         }
         
         /// <summary>
@@ -403,7 +440,12 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Core
         /// <param name="e">The original event data</param>
         private void CustomerAgreementsCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("CustomerAgreements", e);
+            this.OnCollectionChanged("CustomerAgreements", e, _customerAgreementsReference);
+        }
+        
+        private static ITypedElement RetrieveEquipmentContainerReference()
+        {
+            return ((ITypedElement)(((ModelElement)(Equipment.ClassInstance)).Resolve("EquipmentContainer")));
         }
         
         /// <summary>
@@ -781,7 +823,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Core
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public NormaIlyInServiceProxy(IEquipment modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "normaIlyInService")
             {
             }
             
@@ -799,24 +841,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Core
                     this.ModelElement.NormaIlyInService = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.NormaIlyInServiceChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.NormaIlyInServiceChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -830,7 +854,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Core
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public AggregateProxy(IEquipment modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "aggregate")
             {
             }
             
@@ -848,24 +872,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Core
                     this.ModelElement.Aggregate = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.AggregateChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.AggregateChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -879,7 +885,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Core
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public EquipmentContainerProxy(IEquipment modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "EquipmentContainer")
             {
             }
             
@@ -896,24 +902,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Core
                 {
                     this.ModelElement.EquipmentContainer = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.EquipmentContainerChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.EquipmentContainerChanged -= handler;
             }
         }
     }

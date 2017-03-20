@@ -50,7 +50,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61970/Informative/MarketOperations/" +
         "Bid")]
     [DebuggerDisplayAttribute("Bid {UUID}")]
-    public class Bid : Document, IBid, IModelElement
+    public partial class Bid : Document, IBid, IModelElement
     {
         
         /// <summary>
@@ -58,25 +58,37 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
         /// </summary>
         private DateTime _stopTime;
         
+        private static Lazy<ITypedElement> _stopTimeAttribute = new Lazy<ITypedElement>(RetrieveStopTimeAttribute);
+        
         /// <summary>
         /// The backing field for the MarketType property
         /// </summary>
         private string _marketType;
+        
+        private static Lazy<ITypedElement> _marketTypeAttribute = new Lazy<ITypedElement>(RetrieveMarketTypeAttribute);
         
         /// <summary>
         /// The backing field for the StartTime property
         /// </summary>
         private DateTime _startTime;
         
+        private static Lazy<ITypedElement> _startTimeAttribute = new Lazy<ITypedElement>(RetrieveStartTimeAttribute);
+        
+        private static Lazy<ITypedElement> _productBidsReference = new Lazy<ITypedElement>(RetrieveProductBidsReference);
+        
         /// <summary>
         /// The backing field for the ProductBids property
         /// </summary>
         private BidProductBidsCollection _productBids;
         
+        private static Lazy<ITypedElement> _bidClearingReference = new Lazy<ITypedElement>(RetrieveBidClearingReference);
+        
         /// <summary>
         /// The backing field for the BidClearing property
         /// </summary>
         private IBidClearing _bidClearing;
+        
+        private static Lazy<ITypedElement> _marketReference = new Lazy<ITypedElement>(RetrieveMarketReference);
         
         /// <summary>
         /// The backing field for the Market property
@@ -110,10 +122,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
                     DateTime old = this._stopTime;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnStopTimeChanging(e);
-                    this.OnPropertyChanging("StopTime", e);
+                    this.OnPropertyChanging("StopTime", e, _stopTimeAttribute);
                     this._stopTime = value;
                     this.OnStopTimeChanged(e);
-                    this.OnPropertyChanged("StopTime", e);
+                    this.OnPropertyChanged("StopTime", e, _stopTimeAttribute);
                 }
             }
         }
@@ -136,10 +148,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
                     string old = this._marketType;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnMarketTypeChanging(e);
-                    this.OnPropertyChanging("MarketType", e);
+                    this.OnPropertyChanging("MarketType", e, _marketTypeAttribute);
                     this._marketType = value;
                     this.OnMarketTypeChanged(e);
-                    this.OnPropertyChanged("MarketType", e);
+                    this.OnPropertyChanged("MarketType", e, _marketTypeAttribute);
                 }
             }
         }
@@ -162,10 +174,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
                     DateTime old = this._startTime;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnStartTimeChanging(e);
-                    this.OnPropertyChanging("StartTime", e);
+                    this.OnPropertyChanging("StartTime", e, _startTimeAttribute);
                     this._startTime = value;
                     this.OnStartTimeChanged(e);
-                    this.OnPropertyChanged("StartTime", e);
+                    this.OnPropertyChanged("StartTime", e, _startTimeAttribute);
                 }
             }
         }
@@ -203,7 +215,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
                     IBidClearing old = this._bidClearing;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnBidClearingChanging(e);
-                    this.OnPropertyChanging("BidClearing", e);
+                    this.OnPropertyChanging("BidClearing", e, _bidClearingReference);
                     this._bidClearing = value;
                     if ((old != null))
                     {
@@ -216,7 +228,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
                         value.Deleted += this.OnResetBidClearing;
                     }
                     this.OnBidClearingChanged(e);
-                    this.OnPropertyChanged("BidClearing", e);
+                    this.OnPropertyChanged("BidClearing", e, _bidClearingReference);
                 }
             }
         }
@@ -239,7 +251,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
                     IMarket old = this._market;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnMarketChanging(e);
-                    this.OnPropertyChanging("Market", e);
+                    this.OnPropertyChanging("Market", e, _marketReference);
                     this._market = value;
                     if ((old != null))
                     {
@@ -252,7 +264,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
                         value.Deleted += this.OnResetMarket;
                     }
                     this.OnMarketChanged(e);
-                    this.OnPropertyChanged("Market", e);
+                    this.OnPropertyChanged("Market", e, _marketReference);
                 }
             }
         }
@@ -334,6 +346,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> MarketChanged;
         
+        private static ITypedElement RetrieveStopTimeAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(Bid.ClassInstance)).Resolve("stopTime")));
+        }
+        
         /// <summary>
         /// Raises the StopTimeChanging event
         /// </summary>
@@ -358,6 +375,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveMarketTypeAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(Bid.ClassInstance)).Resolve("marketType")));
         }
         
         /// <summary>
@@ -386,6 +408,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
             }
         }
         
+        private static ITypedElement RetrieveStartTimeAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(Bid.ClassInstance)).Resolve("startTime")));
+        }
+        
         /// <summary>
         /// Raises the StartTimeChanging event
         /// </summary>
@@ -412,6 +439,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
             }
         }
         
+        private static ITypedElement RetrieveProductBidsReference()
+        {
+            return ((ITypedElement)(((ModelElement)(Bid.ClassInstance)).Resolve("ProductBids")));
+        }
+        
         /// <summary>
         /// Forwards CollectionChanging notifications for the ProductBids property to the parent model element
         /// </summary>
@@ -419,7 +451,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
         /// <param name="e">The original event data</param>
         private void ProductBidsCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("ProductBids", e);
+            this.OnCollectionChanging("ProductBids", e, _productBidsReference);
         }
         
         /// <summary>
@@ -429,7 +461,12 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
         /// <param name="e">The original event data</param>
         private void ProductBidsCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("ProductBids", e);
+            this.OnCollectionChanged("ProductBids", e, _productBidsReference);
+        }
+        
+        private static ITypedElement RetrieveBidClearingReference()
+        {
+            return ((ITypedElement)(((ModelElement)(Bid.ClassInstance)).Resolve("BidClearing")));
         }
         
         /// <summary>
@@ -466,6 +503,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
         private void OnResetBidClearing(object sender, System.EventArgs eventArgs)
         {
             this.BidClearing = null;
+        }
+        
+        private static ITypedElement RetrieveMarketReference()
+        {
+            return ((ITypedElement)(((ModelElement)(Bid.ClassInstance)).Resolve("Market")));
         }
         
         /// <summary>
@@ -820,7 +862,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public StopTimeProxy(IBid modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "stopTime")
             {
             }
             
@@ -838,24 +880,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
                     this.ModelElement.StopTime = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.StopTimeChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.StopTimeChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -869,7 +893,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public MarketTypeProxy(IBid modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "marketType")
             {
             }
             
@@ -887,24 +911,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
                     this.ModelElement.MarketType = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.MarketTypeChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.MarketTypeChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -918,7 +924,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public StartTimeProxy(IBid modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "startTime")
             {
             }
             
@@ -936,24 +942,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
                     this.ModelElement.StartTime = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.StartTimeChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.StartTimeChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -967,7 +955,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public BidClearingProxy(IBid modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "BidClearing")
             {
             }
             
@@ -985,24 +973,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
                     this.ModelElement.BidClearing = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.BidClearingChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.BidClearingChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1016,7 +986,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public MarketProxy(IBid modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "Market")
             {
             }
             
@@ -1033,24 +1003,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
                 {
                     this.ModelElement.Market = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.MarketChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.MarketChanged -= handler;
             }
         }
     }

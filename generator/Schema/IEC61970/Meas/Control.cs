@@ -51,7 +51,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Meas
     [XmlNamespacePrefixAttribute("cimMeas")]
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61970/Meas/Control")]
     [DebuggerDisplayAttribute("Control {UUID}")]
-    public class Control : IdentifiedObject, IControl, IModelElement
+    public partial class Control : IdentifiedObject, IControl, IModelElement
     {
         
         /// <summary>
@@ -59,25 +59,37 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Meas
         /// </summary>
         private bool _operationInProgress;
         
+        private static Lazy<ITypedElement> _operationInProgressAttribute = new Lazy<ITypedElement>(RetrieveOperationInProgressAttribute);
+        
         /// <summary>
         /// The backing field for the TimeStamp property
         /// </summary>
         private DateTime _timeStamp;
+        
+        private static Lazy<ITypedElement> _timeStampAttribute = new Lazy<ITypedElement>(RetrieveTimeStampAttribute);
+        
+        private static Lazy<ITypedElement> _regulatingCondEqReference = new Lazy<ITypedElement>(RetrieveRegulatingCondEqReference);
         
         /// <summary>
         /// The backing field for the RegulatingCondEq property
         /// </summary>
         private IRegulatingCondEq _regulatingCondEq;
         
+        private static Lazy<ITypedElement> _controlTypeReference = new Lazy<ITypedElement>(RetrieveControlTypeReference);
+        
         /// <summary>
         /// The backing field for the ControlType property
         /// </summary>
         private IControlType _controlType;
         
+        private static Lazy<ITypedElement> _unitReference = new Lazy<ITypedElement>(RetrieveUnitReference);
+        
         /// <summary>
         /// The backing field for the Unit property
         /// </summary>
         private IUnit _unit;
+        
+        private static Lazy<ITypedElement> _remoteControlReference = new Lazy<ITypedElement>(RetrieveRemoteControlReference);
         
         /// <summary>
         /// The backing field for the RemoteControl property
@@ -104,10 +116,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Meas
                     bool old = this._operationInProgress;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnOperationInProgressChanging(e);
-                    this.OnPropertyChanging("OperationInProgress", e);
+                    this.OnPropertyChanging("OperationInProgress", e, _operationInProgressAttribute);
                     this._operationInProgress = value;
                     this.OnOperationInProgressChanged(e);
-                    this.OnPropertyChanged("OperationInProgress", e);
+                    this.OnPropertyChanged("OperationInProgress", e, _operationInProgressAttribute);
                 }
             }
         }
@@ -130,10 +142,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Meas
                     DateTime old = this._timeStamp;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnTimeStampChanging(e);
-                    this.OnPropertyChanging("TimeStamp", e);
+                    this.OnPropertyChanging("TimeStamp", e, _timeStampAttribute);
                     this._timeStamp = value;
                     this.OnTimeStampChanged(e);
-                    this.OnPropertyChanged("TimeStamp", e);
+                    this.OnPropertyChanged("TimeStamp", e, _timeStampAttribute);
                 }
             }
         }
@@ -156,7 +168,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Meas
                     IRegulatingCondEq old = this._regulatingCondEq;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnRegulatingCondEqChanging(e);
-                    this.OnPropertyChanging("RegulatingCondEq", e);
+                    this.OnPropertyChanging("RegulatingCondEq", e, _regulatingCondEqReference);
                     this._regulatingCondEq = value;
                     if ((old != null))
                     {
@@ -169,7 +181,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Meas
                         value.Deleted += this.OnResetRegulatingCondEq;
                     }
                     this.OnRegulatingCondEqChanged(e);
-                    this.OnPropertyChanged("RegulatingCondEq", e);
+                    this.OnPropertyChanged("RegulatingCondEq", e, _regulatingCondEqReference);
                 }
             }
         }
@@ -192,7 +204,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Meas
                     IControlType old = this._controlType;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnControlTypeChanging(e);
-                    this.OnPropertyChanging("ControlType", e);
+                    this.OnPropertyChanging("ControlType", e, _controlTypeReference);
                     this._controlType = value;
                     if ((old != null))
                     {
@@ -205,7 +217,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Meas
                         value.Deleted += this.OnResetControlType;
                     }
                     this.OnControlTypeChanged(e);
-                    this.OnPropertyChanged("ControlType", e);
+                    this.OnPropertyChanged("ControlType", e, _controlTypeReference);
                 }
             }
         }
@@ -228,7 +240,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Meas
                     IUnit old = this._unit;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnUnitChanging(e);
-                    this.OnPropertyChanging("Unit", e);
+                    this.OnPropertyChanging("Unit", e, _unitReference);
                     this._unit = value;
                     if ((old != null))
                     {
@@ -241,7 +253,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Meas
                         value.Deleted += this.OnResetUnit;
                     }
                     this.OnUnitChanged(e);
-                    this.OnPropertyChanged("Unit", e);
+                    this.OnPropertyChanged("Unit", e, _unitReference);
                 }
             }
         }
@@ -264,7 +276,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Meas
                     IRemoteControl old = this._remoteControl;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnRemoteControlChanging(e);
-                    this.OnPropertyChanging("RemoteControl", e);
+                    this.OnPropertyChanging("RemoteControl", e, _remoteControlReference);
                     this._remoteControl = value;
                     if ((old != null))
                     {
@@ -277,7 +289,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Meas
                         value.Deleted += this.OnResetRemoteControl;
                     }
                     this.OnRemoteControlChanged(e);
-                    this.OnPropertyChanged("RemoteControl", e);
+                    this.OnPropertyChanged("RemoteControl", e, _remoteControlReference);
                 }
             }
         }
@@ -368,6 +380,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Meas
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> RemoteControlChanged;
         
+        private static ITypedElement RetrieveOperationInProgressAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(Control.ClassInstance)).Resolve("operationInProgress")));
+        }
+        
         /// <summary>
         /// Raises the OperationInProgressChanging event
         /// </summary>
@@ -394,6 +411,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Meas
             }
         }
         
+        private static ITypedElement RetrieveTimeStampAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(Control.ClassInstance)).Resolve("timeStamp")));
+        }
+        
         /// <summary>
         /// Raises the TimeStampChanging event
         /// </summary>
@@ -418,6 +440,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Meas
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveRegulatingCondEqReference()
+        {
+            return ((ITypedElement)(((ModelElement)(Control.ClassInstance)).Resolve("RegulatingCondEq")));
         }
         
         /// <summary>
@@ -456,6 +483,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Meas
             this.RegulatingCondEq = null;
         }
         
+        private static ITypedElement RetrieveControlTypeReference()
+        {
+            return ((ITypedElement)(((ModelElement)(Control.ClassInstance)).Resolve("ControlType")));
+        }
+        
         /// <summary>
         /// Raises the ControlTypeChanging event
         /// </summary>
@@ -492,6 +524,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Meas
             this.ControlType = null;
         }
         
+        private static ITypedElement RetrieveUnitReference()
+        {
+            return ((ITypedElement)(((ModelElement)(Control.ClassInstance)).Resolve("Unit")));
+        }
+        
         /// <summary>
         /// Raises the UnitChanging event
         /// </summary>
@@ -526,6 +563,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Meas
         private void OnResetUnit(object sender, System.EventArgs eventArgs)
         {
             this.Unit = null;
+        }
+        
+        private static ITypedElement RetrieveRemoteControlReference()
+        {
+            return ((ITypedElement)(((ModelElement)(Control.ClassInstance)).Resolve("RemoteControl")));
         }
         
         /// <summary>
@@ -908,7 +950,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Meas
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public OperationInProgressProxy(IControl modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "operationInProgress")
             {
             }
             
@@ -926,24 +968,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Meas
                     this.ModelElement.OperationInProgress = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.OperationInProgressChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.OperationInProgressChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -957,7 +981,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Meas
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public TimeStampProxy(IControl modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "timeStamp")
             {
             }
             
@@ -975,24 +999,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Meas
                     this.ModelElement.TimeStamp = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.TimeStampChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.TimeStampChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1006,7 +1012,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Meas
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public RegulatingCondEqProxy(IControl modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "RegulatingCondEq")
             {
             }
             
@@ -1024,24 +1030,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Meas
                     this.ModelElement.RegulatingCondEq = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.RegulatingCondEqChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.RegulatingCondEqChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1055,7 +1043,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Meas
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public ControlTypeProxy(IControl modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "ControlType")
             {
             }
             
@@ -1073,24 +1061,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Meas
                     this.ModelElement.ControlType = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ControlTypeChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ControlTypeChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1104,7 +1074,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Meas
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public UnitProxy(IControl modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "Unit")
             {
             }
             
@@ -1122,24 +1092,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Meas
                     this.ModelElement.Unit = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.UnitChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.UnitChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1153,7 +1105,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Meas
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public RemoteControlProxy(IControl modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "RemoteControl")
             {
             }
             
@@ -1170,24 +1122,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Meas
                 {
                     this.ModelElement.RemoteControl = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.RemoteControlChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.RemoteControlChanged -= handler;
             }
         }
     }

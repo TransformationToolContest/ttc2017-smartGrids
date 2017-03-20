@@ -50,7 +50,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61970/Informative/MarketOperations/" +
         "TransmissionReliabilityMargin")]
     [DebuggerDisplayAttribute("TransmissionReliabilityMargin {UUID}")]
-    public class TransmissionReliabilityMargin : IdentifiedObject, ITransmissionReliabilityMargin, IModelElement
+    public partial class TransmissionReliabilityMargin : IdentifiedObject, ITransmissionReliabilityMargin, IModelElement
     {
         
         /// <summary>
@@ -58,15 +58,23 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
         /// </summary>
         private string _trmType;
         
+        private static Lazy<ITypedElement> _trmTypeAttribute = new Lazy<ITypedElement>(RetrieveTrmTypeAttribute);
+        
         /// <summary>
         /// The backing field for the ValueUnit property
         /// </summary>
         private string _valueUnit;
         
+        private static Lazy<ITypedElement> _valueUnitAttribute = new Lazy<ITypedElement>(RetrieveValueUnitAttribute);
+        
         /// <summary>
         /// The backing field for the TrmValue property
         /// </summary>
         private float _trmValue;
+        
+        private static Lazy<ITypedElement> _trmValueAttribute = new Lazy<ITypedElement>(RetrieveTrmValueAttribute);
+        
+        private static Lazy<ITypedElement> _flowgateReference = new Lazy<ITypedElement>(RetrieveFlowgateReference);
         
         /// <summary>
         /// The backing field for the Flowgate property
@@ -99,10 +107,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
                     string old = this._trmType;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnTrmTypeChanging(e);
-                    this.OnPropertyChanging("TrmType", e);
+                    this.OnPropertyChanging("TrmType", e, _trmTypeAttribute);
                     this._trmType = value;
                     this.OnTrmTypeChanged(e);
-                    this.OnPropertyChanged("TrmType", e);
+                    this.OnPropertyChanged("TrmType", e, _trmTypeAttribute);
                 }
             }
         }
@@ -125,10 +133,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
                     string old = this._valueUnit;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnValueUnitChanging(e);
-                    this.OnPropertyChanging("ValueUnit", e);
+                    this.OnPropertyChanging("ValueUnit", e, _valueUnitAttribute);
                     this._valueUnit = value;
                     this.OnValueUnitChanged(e);
-                    this.OnPropertyChanged("ValueUnit", e);
+                    this.OnPropertyChanged("ValueUnit", e, _valueUnitAttribute);
                 }
             }
         }
@@ -151,10 +159,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
                     float old = this._trmValue;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnTrmValueChanging(e);
-                    this.OnPropertyChanging("TrmValue", e);
+                    this.OnPropertyChanging("TrmValue", e, _trmValueAttribute);
                     this._trmValue = value;
                     this.OnTrmValueChanged(e);
-                    this.OnPropertyChanged("TrmValue", e);
+                    this.OnPropertyChanged("TrmValue", e, _trmValueAttribute);
                 }
             }
         }
@@ -231,6 +239,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> TrmValueChanged;
         
+        private static ITypedElement RetrieveTrmTypeAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(TransmissionReliabilityMargin.ClassInstance)).Resolve("TrmType")));
+        }
+        
         /// <summary>
         /// Raises the TrmTypeChanging event
         /// </summary>
@@ -255,6 +268,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveValueUnitAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(TransmissionReliabilityMargin.ClassInstance)).Resolve("valueUnit")));
         }
         
         /// <summary>
@@ -283,6 +301,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
             }
         }
         
+        private static ITypedElement RetrieveTrmValueAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(TransmissionReliabilityMargin.ClassInstance)).Resolve("trmValue")));
+        }
+        
         /// <summary>
         /// Raises the TrmValueChanging event
         /// </summary>
@@ -309,6 +332,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
             }
         }
         
+        private static ITypedElement RetrieveFlowgateReference()
+        {
+            return ((ITypedElement)(((ModelElement)(TransmissionReliabilityMargin.ClassInstance)).Resolve("Flowgate")));
+        }
+        
         /// <summary>
         /// Forwards CollectionChanging notifications for the Flowgate property to the parent model element
         /// </summary>
@@ -316,7 +344,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
         /// <param name="e">The original event data</param>
         private void FlowgateCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("Flowgate", e);
+            this.OnCollectionChanging("Flowgate", e, _flowgateReference);
         }
         
         /// <summary>
@@ -326,7 +354,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
         /// <param name="e">The original event data</param>
         private void FlowgateCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("Flowgate", e);
+            this.OnCollectionChanged("Flowgate", e, _flowgateReference);
         }
         
         /// <summary>
@@ -539,7 +567,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public TrmTypeProxy(ITransmissionReliabilityMargin modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "TrmType")
             {
             }
             
@@ -557,24 +585,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
                     this.ModelElement.TrmType = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.TrmTypeChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.TrmTypeChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -588,7 +598,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public ValueUnitProxy(ITransmissionReliabilityMargin modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "valueUnit")
             {
             }
             
@@ -606,24 +616,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
                     this.ModelElement.ValueUnit = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ValueUnitChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ValueUnitChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -637,7 +629,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public TrmValueProxy(ITransmissionReliabilityMargin modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "trmValue")
             {
             }
             
@@ -654,24 +646,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
                 {
                     this.ModelElement.TrmValue = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.TrmValueChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.TrmValueChanged -= handler;
             }
         }
     }

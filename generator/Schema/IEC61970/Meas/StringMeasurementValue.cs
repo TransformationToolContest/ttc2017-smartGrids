@@ -51,13 +51,17 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Meas
     [XmlNamespacePrefixAttribute("cimMeas")]
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61970/Meas/StringMeasurementValue")]
     [DebuggerDisplayAttribute("StringMeasurementValue {UUID}")]
-    public class StringMeasurementValue : MeasurementValue, IStringMeasurementValue, IModelElement
+    public partial class StringMeasurementValue : MeasurementValue, IStringMeasurementValue, IModelElement
     {
         
         /// <summary>
         /// The backing field for the Value property
         /// </summary>
         private string _value;
+        
+        private static Lazy<ITypedElement> _valueAttribute = new Lazy<ITypedElement>(RetrieveValueAttribute);
+        
+        private static Lazy<ITypedElement> _stringMeasurementReference = new Lazy<ITypedElement>(RetrieveStringMeasurementReference);
         
         /// <summary>
         /// The backing field for the StringMeasurement property
@@ -84,10 +88,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Meas
                     string old = this._value;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnValueChanging(e);
-                    this.OnPropertyChanging("Value", e);
+                    this.OnPropertyChanging("Value", e, _valueAttribute);
                     this._value = value;
                     this.OnValueChanged(e);
-                    this.OnPropertyChanged("Value", e);
+                    this.OnPropertyChanged("Value", e, _valueAttribute);
                 }
             }
         }
@@ -110,7 +114,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Meas
                     IStringMeasurement old = this._stringMeasurement;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnStringMeasurementChanging(e);
-                    this.OnPropertyChanging("StringMeasurement", e);
+                    this.OnPropertyChanging("StringMeasurement", e, _stringMeasurementReference);
                     this._stringMeasurement = value;
                     if ((old != null))
                     {
@@ -123,7 +127,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Meas
                         value.Deleted += this.OnResetStringMeasurement;
                     }
                     this.OnStringMeasurementChanged(e);
-                    this.OnPropertyChanged("StringMeasurement", e);
+                    this.OnPropertyChanged("StringMeasurement", e, _stringMeasurementReference);
                 }
             }
         }
@@ -174,6 +178,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Meas
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> StringMeasurementChanged;
         
+        private static ITypedElement RetrieveValueAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(StringMeasurementValue.ClassInstance)).Resolve("value")));
+        }
+        
         /// <summary>
         /// Raises the ValueChanging event
         /// </summary>
@@ -198,6 +207,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Meas
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveStringMeasurementReference()
+        {
+            return ((ITypedElement)(((ModelElement)(StringMeasurementValue.ClassInstance)).Resolve("StringMeasurement")));
         }
         
         /// <summary>
@@ -442,7 +456,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Meas
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public ValueProxy(IStringMeasurementValue modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "value")
             {
             }
             
@@ -460,24 +474,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Meas
                     this.ModelElement.Value = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ValueChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ValueChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -491,7 +487,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Meas
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public StringMeasurementProxy(IStringMeasurementValue modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "StringMeasurement")
             {
             }
             
@@ -508,24 +504,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Meas
                 {
                     this.ModelElement.StringMeasurement = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.StringMeasurementChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.StringMeasurementChanged -= handler;
             }
         }
     }

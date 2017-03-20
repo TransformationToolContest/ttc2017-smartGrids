@@ -48,7 +48,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Assets
     [XmlNamespacePrefixAttribute("cimAssets")]
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61968/Assets/Seal")]
     [DebuggerDisplayAttribute("Seal {UUID}")]
-    public class Seal : IdentifiedObject, ISeal, IModelElement
+    public partial class Seal : IdentifiedObject, ISeal, IModelElement
     {
         
         /// <summary>
@@ -56,20 +56,30 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Assets
         /// </summary>
         private Nullable<SealConditionKind> _condition;
         
+        private static Lazy<ITypedElement> _conditionAttribute = new Lazy<ITypedElement>(RetrieveConditionAttribute);
+        
         /// <summary>
         /// The backing field for the SealNumber property
         /// </summary>
         private string _sealNumber;
+        
+        private static Lazy<ITypedElement> _sealNumberAttribute = new Lazy<ITypedElement>(RetrieveSealNumberAttribute);
         
         /// <summary>
         /// The backing field for the AppliedDateTime property
         /// </summary>
         private DateTime _appliedDateTime;
         
+        private static Lazy<ITypedElement> _appliedDateTimeAttribute = new Lazy<ITypedElement>(RetrieveAppliedDateTimeAttribute);
+        
         /// <summary>
         /// The backing field for the Kind property
         /// </summary>
         private Nullable<SealKind> _kind;
+        
+        private static Lazy<ITypedElement> _kindAttribute = new Lazy<ITypedElement>(RetrieveKindAttribute);
+        
+        private static Lazy<ITypedElement> _assetContainerReference = new Lazy<ITypedElement>(RetrieveAssetContainerReference);
         
         /// <summary>
         /// The backing field for the AssetContainer property
@@ -96,10 +106,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Assets
                     Nullable<SealConditionKind> old = this._condition;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnConditionChanging(e);
-                    this.OnPropertyChanging("Condition", e);
+                    this.OnPropertyChanging("Condition", e, _conditionAttribute);
                     this._condition = value;
                     this.OnConditionChanged(e);
-                    this.OnPropertyChanged("Condition", e);
+                    this.OnPropertyChanged("Condition", e, _conditionAttribute);
                 }
             }
         }
@@ -122,10 +132,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Assets
                     string old = this._sealNumber;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnSealNumberChanging(e);
-                    this.OnPropertyChanging("SealNumber", e);
+                    this.OnPropertyChanging("SealNumber", e, _sealNumberAttribute);
                     this._sealNumber = value;
                     this.OnSealNumberChanged(e);
-                    this.OnPropertyChanged("SealNumber", e);
+                    this.OnPropertyChanged("SealNumber", e, _sealNumberAttribute);
                 }
             }
         }
@@ -148,10 +158,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Assets
                     DateTime old = this._appliedDateTime;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnAppliedDateTimeChanging(e);
-                    this.OnPropertyChanging("AppliedDateTime", e);
+                    this.OnPropertyChanging("AppliedDateTime", e, _appliedDateTimeAttribute);
                     this._appliedDateTime = value;
                     this.OnAppliedDateTimeChanged(e);
-                    this.OnPropertyChanged("AppliedDateTime", e);
+                    this.OnPropertyChanged("AppliedDateTime", e, _appliedDateTimeAttribute);
                 }
             }
         }
@@ -174,10 +184,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Assets
                     Nullable<SealKind> old = this._kind;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnKindChanging(e);
-                    this.OnPropertyChanging("Kind", e);
+                    this.OnPropertyChanging("Kind", e, _kindAttribute);
                     this._kind = value;
                     this.OnKindChanged(e);
-                    this.OnPropertyChanged("Kind", e);
+                    this.OnPropertyChanged("Kind", e, _kindAttribute);
                 }
             }
         }
@@ -200,7 +210,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Assets
                     IAssetContainer old = this._assetContainer;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnAssetContainerChanging(e);
-                    this.OnPropertyChanging("AssetContainer", e);
+                    this.OnPropertyChanging("AssetContainer", e, _assetContainerReference);
                     this._assetContainer = value;
                     if ((old != null))
                     {
@@ -213,7 +223,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Assets
                         value.Deleted += this.OnResetAssetContainer;
                     }
                     this.OnAssetContainerChanged(e);
-                    this.OnPropertyChanged("AssetContainer", e);
+                    this.OnPropertyChanged("AssetContainer", e, _assetContainerReference);
                 }
             }
         }
@@ -294,6 +304,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Assets
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> AssetContainerChanged;
         
+        private static ITypedElement RetrieveConditionAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(Seal.ClassInstance)).Resolve("condition")));
+        }
+        
         /// <summary>
         /// Raises the ConditionChanging event
         /// </summary>
@@ -318,6 +333,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Assets
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveSealNumberAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(Seal.ClassInstance)).Resolve("sealNumber")));
         }
         
         /// <summary>
@@ -346,6 +366,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Assets
             }
         }
         
+        private static ITypedElement RetrieveAppliedDateTimeAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(Seal.ClassInstance)).Resolve("appliedDateTime")));
+        }
+        
         /// <summary>
         /// Raises the AppliedDateTimeChanging event
         /// </summary>
@@ -372,6 +397,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Assets
             }
         }
         
+        private static ITypedElement RetrieveKindAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(Seal.ClassInstance)).Resolve("kind")));
+        }
+        
         /// <summary>
         /// Raises the KindChanging event
         /// </summary>
@@ -396,6 +426,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Assets
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveAssetContainerReference()
+        {
+            return ((ITypedElement)(((ModelElement)(Seal.ClassInstance)).Resolve("AssetContainer")));
         }
         
         /// <summary>
@@ -667,7 +702,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Assets
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public ConditionProxy(ISeal modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "condition")
             {
             }
             
@@ -685,24 +720,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Assets
                     this.ModelElement.Condition = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ConditionChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ConditionChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -716,7 +733,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Assets
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public SealNumberProxy(ISeal modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "sealNumber")
             {
             }
             
@@ -734,24 +751,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Assets
                     this.ModelElement.SealNumber = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.SealNumberChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.SealNumberChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -765,7 +764,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Assets
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public AppliedDateTimeProxy(ISeal modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "appliedDateTime")
             {
             }
             
@@ -783,24 +782,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Assets
                     this.ModelElement.AppliedDateTime = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.AppliedDateTimeChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.AppliedDateTimeChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -814,7 +795,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Assets
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public KindProxy(ISeal modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "kind")
             {
             }
             
@@ -832,24 +813,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Assets
                     this.ModelElement.Kind = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.KindChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.KindChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -863,7 +826,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Assets
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public AssetContainerProxy(ISeal modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "AssetContainer")
             {
             }
             
@@ -880,24 +843,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Assets
                 {
                     this.ModelElement.AssetContainer = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.AssetContainerChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.AssetContainerChanged -= handler;
             }
         }
     }

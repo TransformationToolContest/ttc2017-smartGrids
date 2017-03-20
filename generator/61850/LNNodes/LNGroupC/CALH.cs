@@ -41,18 +41,24 @@ namespace TTC2017.SmartGrids.SubstationStandard.LNNodes.LNGroupC
     [XmlNamespacePrefixAttribute("groupc")]
     [ModelRepresentationClassAttribute("http://www.transformation-tool-contest.eu/2017/smartGrids/substationStandard#//LN" +
         "Nodes/LNGroupC/CALH")]
-    public class CALH : TTC2017.SmartGrids.SubstationStandard.LNNodes.LNGroupC.GroupC, ICALH, IModelElement
+    public partial class CALH : TTC2017.SmartGrids.SubstationStandard.LNNodes.LNGroupC.GroupC, ICALH, IModelElement
     {
+        
+        private static Lazy<ITypedElement> _grAlmReference = new Lazy<ITypedElement>(RetrieveGrAlmReference);
         
         /// <summary>
         /// The backing field for the GrAlm property
         /// </summary>
         private ISPS _grAlm;
         
+        private static Lazy<ITypedElement> _grWrnReference = new Lazy<ITypedElement>(RetrieveGrWrnReference);
+        
         /// <summary>
         /// The backing field for the GrWrn property
         /// </summary>
         private ISPS _grWrn;
+        
+        private static Lazy<ITypedElement> _almLstOvReference = new Lazy<ITypedElement>(RetrieveAlmLstOvReference);
         
         /// <summary>
         /// The backing field for the AlmLstOv property
@@ -78,7 +84,7 @@ namespace TTC2017.SmartGrids.SubstationStandard.LNNodes.LNGroupC
                     ISPS old = this._grAlm;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnGrAlmChanging(e);
-                    this.OnPropertyChanging("GrAlm", e);
+                    this.OnPropertyChanging("GrAlm", e, _grAlmReference);
                     this._grAlm = value;
                     if ((old != null))
                     {
@@ -89,7 +95,7 @@ namespace TTC2017.SmartGrids.SubstationStandard.LNNodes.LNGroupC
                         value.Deleted += this.OnResetGrAlm;
                     }
                     this.OnGrAlmChanged(e);
-                    this.OnPropertyChanged("GrAlm", e);
+                    this.OnPropertyChanged("GrAlm", e, _grAlmReference);
                 }
             }
         }
@@ -111,7 +117,7 @@ namespace TTC2017.SmartGrids.SubstationStandard.LNNodes.LNGroupC
                     ISPS old = this._grWrn;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnGrWrnChanging(e);
-                    this.OnPropertyChanging("GrWrn", e);
+                    this.OnPropertyChanging("GrWrn", e, _grWrnReference);
                     this._grWrn = value;
                     if ((old != null))
                     {
@@ -122,7 +128,7 @@ namespace TTC2017.SmartGrids.SubstationStandard.LNNodes.LNGroupC
                         value.Deleted += this.OnResetGrWrn;
                     }
                     this.OnGrWrnChanged(e);
-                    this.OnPropertyChanged("GrWrn", e);
+                    this.OnPropertyChanged("GrWrn", e, _grWrnReference);
                 }
             }
         }
@@ -144,7 +150,7 @@ namespace TTC2017.SmartGrids.SubstationStandard.LNNodes.LNGroupC
                     ISPS old = this._almLstOv;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnAlmLstOvChanging(e);
-                    this.OnPropertyChanging("AlmLstOv", e);
+                    this.OnPropertyChanging("AlmLstOv", e, _almLstOvReference);
                     this._almLstOv = value;
                     if ((old != null))
                     {
@@ -155,7 +161,7 @@ namespace TTC2017.SmartGrids.SubstationStandard.LNNodes.LNGroupC
                         value.Deleted += this.OnResetAlmLstOv;
                     }
                     this.OnAlmLstOvChanged(e);
-                    this.OnPropertyChanged("AlmLstOv", e);
+                    this.OnPropertyChanged("AlmLstOv", e, _almLstOvReference);
                 }
             }
         }
@@ -217,6 +223,11 @@ namespace TTC2017.SmartGrids.SubstationStandard.LNNodes.LNGroupC
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> AlmLstOvChanged;
         
+        private static ITypedElement RetrieveGrAlmReference()
+        {
+            return ((ITypedElement)(((ModelElement)(CALH.ClassInstance)).Resolve("GrAlm")));
+        }
+        
         /// <summary>
         /// Raises the GrAlmChanging event
         /// </summary>
@@ -253,6 +264,11 @@ namespace TTC2017.SmartGrids.SubstationStandard.LNNodes.LNGroupC
             this.GrAlm = null;
         }
         
+        private static ITypedElement RetrieveGrWrnReference()
+        {
+            return ((ITypedElement)(((ModelElement)(CALH.ClassInstance)).Resolve("GrWrn")));
+        }
+        
         /// <summary>
         /// Raises the GrWrnChanging event
         /// </summary>
@@ -287,6 +303,11 @@ namespace TTC2017.SmartGrids.SubstationStandard.LNNodes.LNGroupC
         private void OnResetGrWrn(object sender, System.EventArgs eventArgs)
         {
             this.GrWrn = null;
+        }
+        
+        private static ITypedElement RetrieveAlmLstOvReference()
+        {
+            return ((ITypedElement)(((ModelElement)(CALH.ClassInstance)).Resolve("AlmLstOv")));
         }
         
         /// <summary>
@@ -598,7 +619,7 @@ namespace TTC2017.SmartGrids.SubstationStandard.LNNodes.LNGroupC
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public GrAlmProxy(ICALH modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "GrAlm")
             {
             }
             
@@ -616,24 +637,6 @@ namespace TTC2017.SmartGrids.SubstationStandard.LNNodes.LNGroupC
                     this.ModelElement.GrAlm = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.GrAlmChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.GrAlmChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -647,7 +650,7 @@ namespace TTC2017.SmartGrids.SubstationStandard.LNNodes.LNGroupC
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public GrWrnProxy(ICALH modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "GrWrn")
             {
             }
             
@@ -665,24 +668,6 @@ namespace TTC2017.SmartGrids.SubstationStandard.LNNodes.LNGroupC
                     this.ModelElement.GrWrn = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.GrWrnChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.GrWrnChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -696,7 +681,7 @@ namespace TTC2017.SmartGrids.SubstationStandard.LNNodes.LNGroupC
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public AlmLstOvProxy(ICALH modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "AlmLstOv")
             {
             }
             
@@ -713,24 +698,6 @@ namespace TTC2017.SmartGrids.SubstationStandard.LNNodes.LNGroupC
                 {
                     this.ModelElement.AlmLstOv = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.AlmLstOvChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.AlmLstOvChanged -= handler;
             }
         }
     }

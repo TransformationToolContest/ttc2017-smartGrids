@@ -1,0 +1,4 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<changes:ModelChangeSet xmi:version="2.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xmi="http://www.omg.org/XMI" xmlns:changes="http://nmf.codeplex.com/changes">
+  <changes xsi:type="changes:AttributeChange" oldValue="True" newValue="False" feature="http://www.transformation-tool-contest.eu/2017/smartGrids/cosem#//COSEMObjects/AutoConnectObject/Connection" affectedElement="..\..\models/COSEM.xmi#//@PhysicalDevice.17/@AutoConnect" />
+</changes:ModelChangeSet>

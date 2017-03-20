@@ -50,8 +50,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61970/Informative/MarketOperations/" +
         "TerminalConstraintTerm")]
     [DebuggerDisplayAttribute("TerminalConstraintTerm {UUID}")]
-    public class TerminalConstraintTerm : ConstraintTerm, ITerminalConstraintTerm, IModelElement
+    public partial class TerminalConstraintTerm : ConstraintTerm, ITerminalConstraintTerm, IModelElement
     {
+        
+        private static Lazy<ITypedElement> _terminalReference = new Lazy<ITypedElement>(RetrieveTerminalReference);
         
         /// <summary>
         /// The backing field for the Terminal property
@@ -78,7 +80,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
                     ITerminal old = this._terminal;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnTerminalChanging(e);
-                    this.OnPropertyChanging("Terminal", e);
+                    this.OnPropertyChanging("Terminal", e, _terminalReference);
                     this._terminal = value;
                     if ((old != null))
                     {
@@ -91,7 +93,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
                         value.Deleted += this.OnResetTerminal;
                     }
                     this.OnTerminalChanged(e);
-                    this.OnPropertyChanged("Terminal", e);
+                    this.OnPropertyChanged("Terminal", e, _terminalReference);
                 }
             }
         }
@@ -132,6 +134,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
         /// Gets fired when the Terminal property changed its value
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> TerminalChanged;
+        
+        private static ITypedElement RetrieveTerminalReference()
+        {
+            return ((ITypedElement)(((ModelElement)(TerminalConstraintTerm.ClassInstance)).Resolve("Terminal")));
+        }
         
         /// <summary>
         /// Raises the TerminalChanging event
@@ -356,7 +363,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public TerminalProxy(ITerminalConstraintTerm modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "Terminal")
             {
             }
             
@@ -373,24 +380,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
                 {
                     this.ModelElement.Terminal = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.TerminalChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.TerminalChanged -= handler;
             }
         }
     }

@@ -56,18 +56,24 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfERPSupport
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61970/Informative/InfERPSupport/Erp" +
         "LedBudLineItem")]
     [DebuggerDisplayAttribute("ErpLedBudLineItem {UUID}")]
-    public class ErpLedBudLineItem : IdentifiedObject, IErpLedBudLineItem, IModelElement
+    public partial class ErpLedBudLineItem : IdentifiedObject, IErpLedBudLineItem, IModelElement
     {
+        
+        private static Lazy<ITypedElement> _erpLedgerBudgetReference = new Lazy<ITypedElement>(RetrieveErpLedgerBudgetReference);
         
         /// <summary>
         /// The backing field for the ErpLedgerBudget property
         /// </summary>
         private IErpLedgerBudget _erpLedgerBudget;
         
+        private static Lazy<ITypedElement> _statusReference = new Lazy<ITypedElement>(RetrieveStatusReference);
+        
         /// <summary>
         /// The backing field for the Status property
         /// </summary>
         private IStatus _status;
+        
+        private static Lazy<ITypedElement> _erpLedBudLineItemReference = new Lazy<ITypedElement>(RetrieveErpLedBudLineItemReference);
         
         /// <summary>
         /// The backing field for the ErpLedBudLineItem_ property
@@ -94,7 +100,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfERPSupport
                     IErpLedgerBudget old = this._erpLedgerBudget;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnErpLedgerBudgetChanging(e);
-                    this.OnPropertyChanging("ErpLedgerBudget", e);
+                    this.OnPropertyChanging("ErpLedgerBudget", e, _erpLedgerBudgetReference);
                     this._erpLedgerBudget = value;
                     if ((old != null))
                     {
@@ -107,7 +113,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfERPSupport
                         value.Deleted += this.OnResetErpLedgerBudget;
                     }
                     this.OnErpLedgerBudgetChanged(e);
-                    this.OnPropertyChanged("ErpLedgerBudget", e);
+                    this.OnPropertyChanged("ErpLedgerBudget", e, _erpLedgerBudgetReference);
                 }
             }
         }
@@ -130,7 +136,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfERPSupport
                     IStatus old = this._status;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnStatusChanging(e);
-                    this.OnPropertyChanging("Status", e);
+                    this.OnPropertyChanging("Status", e, _statusReference);
                     this._status = value;
                     if ((old != null))
                     {
@@ -141,7 +147,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfERPSupport
                         value.Deleted += this.OnResetStatus;
                     }
                     this.OnStatusChanged(e);
-                    this.OnPropertyChanged("Status", e);
+                    this.OnPropertyChanged("Status", e, _statusReference);
                 }
             }
         }
@@ -165,7 +171,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfERPSupport
                     IErpLedgerEntry old = this._erpLedBudLineItem_;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnErpLedBudLineItem_Changing(e);
-                    this.OnPropertyChanging("ErpLedBudLineItem_", e);
+                    this.OnPropertyChanging("ErpLedBudLineItem_", e, _erpLedBudLineItemReference);
                     this._erpLedBudLineItem_ = value;
                     if ((old != null))
                     {
@@ -178,7 +184,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfERPSupport
                         value.Deleted += this.OnResetErpLedBudLineItem_;
                     }
                     this.OnErpLedBudLineItem_Changed(e);
-                    this.OnPropertyChanged("ErpLedBudLineItem_", e);
+                    this.OnPropertyChanged("ErpLedBudLineItem_", e, _erpLedBudLineItemReference);
                 }
             }
         }
@@ -240,6 +246,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfERPSupport
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> ErpLedBudLineItem_Changed;
         
+        private static ITypedElement RetrieveErpLedgerBudgetReference()
+        {
+            return ((ITypedElement)(((ModelElement)(ErpLedBudLineItem.ClassInstance)).Resolve("ErpLedgerBudget")));
+        }
+        
         /// <summary>
         /// Raises the ErpLedgerBudgetChanging event
         /// </summary>
@@ -276,6 +287,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfERPSupport
             this.ErpLedgerBudget = null;
         }
         
+        private static ITypedElement RetrieveStatusReference()
+        {
+            return ((ITypedElement)(((ModelElement)(ErpLedBudLineItem.ClassInstance)).Resolve("status")));
+        }
+        
         /// <summary>
         /// Raises the StatusChanging event
         /// </summary>
@@ -310,6 +326,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfERPSupport
         private void OnResetStatus(object sender, System.EventArgs eventArgs)
         {
             this.Status = null;
+        }
+        
+        private static ITypedElement RetrieveErpLedBudLineItemReference()
+        {
+            return ((ITypedElement)(((ModelElement)(ErpLedBudLineItem.ClassInstance)).Resolve("ErpLedBudLineItem")));
         }
         
         /// <summary>
@@ -621,7 +642,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfERPSupport
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public ErpLedgerBudgetProxy(IErpLedBudLineItem modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "ErpLedgerBudget")
             {
             }
             
@@ -639,24 +660,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfERPSupport
                     this.ModelElement.ErpLedgerBudget = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ErpLedgerBudgetChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ErpLedgerBudgetChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -670,7 +673,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfERPSupport
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public StatusProxy(IErpLedBudLineItem modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "status")
             {
             }
             
@@ -688,24 +691,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfERPSupport
                     this.ModelElement.Status = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.StatusChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.StatusChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -719,7 +704,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfERPSupport
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public ErpLedBudLineItemProxy(IErpLedBudLineItem modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "ErpLedBudLineItem")
             {
             }
             
@@ -736,24 +721,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfERPSupport
                 {
                     this.ModelElement.ErpLedBudLineItem_ = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ErpLedBudLineItem_Changed += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ErpLedBudLineItem_Changed -= handler;
             }
         }
     }

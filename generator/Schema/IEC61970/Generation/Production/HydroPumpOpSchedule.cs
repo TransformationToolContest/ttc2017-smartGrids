@@ -46,8 +46,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61970/Generation/Production/HydroPu" +
         "mpOpSchedule")]
     [DebuggerDisplayAttribute("HydroPumpOpSchedule {UUID}")]
-    public class HydroPumpOpSchedule : RegularIntervalSchedule, IHydroPumpOpSchedule, IModelElement
+    public partial class HydroPumpOpSchedule : RegularIntervalSchedule, IHydroPumpOpSchedule, IModelElement
     {
+        
+        private static Lazy<ITypedElement> _hydroPumpReference = new Lazy<ITypedElement>(RetrieveHydroPumpReference);
         
         /// <summary>
         /// The backing field for the HydroPump property
@@ -74,7 +76,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
                     IHydroPump old = this._hydroPump;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnHydroPumpChanging(e);
-                    this.OnPropertyChanging("HydroPump", e);
+                    this.OnPropertyChanging("HydroPump", e, _hydroPumpReference);
                     this._hydroPump = value;
                     if ((old != null))
                     {
@@ -87,7 +89,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
                         value.Deleted += this.OnResetHydroPump;
                     }
                     this.OnHydroPumpChanged(e);
-                    this.OnPropertyChanged("HydroPump", e);
+                    this.OnPropertyChanged("HydroPump", e, _hydroPumpReference);
                 }
             }
         }
@@ -128,6 +130,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
         /// Gets fired when the HydroPump property changed its value
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> HydroPumpChanged;
+        
+        private static ITypedElement RetrieveHydroPumpReference()
+        {
+            return ((ITypedElement)(((ModelElement)(HydroPumpOpSchedule.ClassInstance)).Resolve("HydroPump")));
+        }
         
         /// <summary>
         /// Raises the HydroPumpChanging event
@@ -352,7 +359,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public HydroPumpProxy(IHydroPumpOpSchedule modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "HydroPump")
             {
             }
             
@@ -369,24 +376,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
                 {
                     this.ModelElement.HydroPump = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.HydroPumpChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.HydroPumpChanged -= handler;
             }
         }
     }

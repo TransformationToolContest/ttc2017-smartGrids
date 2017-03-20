@@ -53,7 +53,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61970/Informative/InfAssets/Electri" +
         "calAsset")]
     [DebuggerDisplayAttribute("ElectricalAsset {UUID}")]
-    public class ElectricalAsset : Asset, IElectricalAsset, IModelElement
+    public partial class ElectricalAsset : Asset, IElectricalAsset, IModelElement
     {
         
         /// <summary>
@@ -61,15 +61,23 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
         /// </summary>
         private Nullable<PhaseCode> _phaseCode;
         
+        private static Lazy<ITypedElement> _phaseCodeAttribute = new Lazy<ITypedElement>(RetrievePhaseCodeAttribute);
+        
         /// <summary>
         /// The backing field for the IsConnected property
         /// </summary>
         private bool _isConnected;
         
+        private static Lazy<ITypedElement> _isConnectedAttribute = new Lazy<ITypedElement>(RetrieveIsConnectedAttribute);
+        
+        private static Lazy<ITypedElement> _conductingEquipmentReference = new Lazy<ITypedElement>(RetrieveConductingEquipmentReference);
+        
         /// <summary>
         /// The backing field for the ConductingEquipment property
         /// </summary>
         private IConductingEquipment _conductingEquipment;
+        
+        private static Lazy<ITypedElement> _electricalInfosReference = new Lazy<ITypedElement>(RetrieveElectricalInfosReference);
         
         /// <summary>
         /// The backing field for the ElectricalInfos property
@@ -103,10 +111,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
                     Nullable<PhaseCode> old = this._phaseCode;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnPhaseCodeChanging(e);
-                    this.OnPropertyChanging("PhaseCode", e);
+                    this.OnPropertyChanging("PhaseCode", e, _phaseCodeAttribute);
                     this._phaseCode = value;
                     this.OnPhaseCodeChanged(e);
-                    this.OnPropertyChanged("PhaseCode", e);
+                    this.OnPropertyChanged("PhaseCode", e, _phaseCodeAttribute);
                 }
             }
         }
@@ -129,10 +137,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
                     bool old = this._isConnected;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnIsConnectedChanging(e);
-                    this.OnPropertyChanging("IsConnected", e);
+                    this.OnPropertyChanging("IsConnected", e, _isConnectedAttribute);
                     this._isConnected = value;
                     this.OnIsConnectedChanged(e);
-                    this.OnPropertyChanged("IsConnected", e);
+                    this.OnPropertyChanged("IsConnected", e, _isConnectedAttribute);
                 }
             }
         }
@@ -155,7 +163,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
                     IConductingEquipment old = this._conductingEquipment;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnConductingEquipmentChanging(e);
-                    this.OnPropertyChanging("ConductingEquipment", e);
+                    this.OnPropertyChanging("ConductingEquipment", e, _conductingEquipmentReference);
                     this._conductingEquipment = value;
                     if ((old != null))
                     {
@@ -168,7 +176,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
                         value.Deleted += this.OnResetConductingEquipment;
                     }
                     this.OnConductingEquipmentChanged(e);
-                    this.OnPropertyChanged("ConductingEquipment", e);
+                    this.OnPropertyChanged("ConductingEquipment", e, _conductingEquipmentReference);
                 }
             }
         }
@@ -245,6 +253,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> ConductingEquipmentChanged;
         
+        private static ITypedElement RetrievePhaseCodeAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(ElectricalAsset.ClassInstance)).Resolve("phaseCode")));
+        }
+        
         /// <summary>
         /// Raises the PhaseCodeChanging event
         /// </summary>
@@ -271,6 +284,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
             }
         }
         
+        private static ITypedElement RetrieveIsConnectedAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(ElectricalAsset.ClassInstance)).Resolve("isConnected")));
+        }
+        
         /// <summary>
         /// Raises the IsConnectedChanging event
         /// </summary>
@@ -295,6 +313,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveConductingEquipmentReference()
+        {
+            return ((ITypedElement)(((ModelElement)(ElectricalAsset.ClassInstance)).Resolve("ConductingEquipment")));
         }
         
         /// <summary>
@@ -333,6 +356,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
             this.ConductingEquipment = null;
         }
         
+        private static ITypedElement RetrieveElectricalInfosReference()
+        {
+            return ((ITypedElement)(((ModelElement)(ElectricalAsset.ClassInstance)).Resolve("ElectricalInfos")));
+        }
+        
         /// <summary>
         /// Forwards CollectionChanging notifications for the ElectricalInfos property to the parent model element
         /// </summary>
@@ -340,7 +368,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
         /// <param name="e">The original event data</param>
         private void ElectricalInfosCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("ElectricalInfos", e);
+            this.OnCollectionChanging("ElectricalInfos", e, _electricalInfosReference);
         }
         
         /// <summary>
@@ -350,7 +378,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
         /// <param name="e">The original event data</param>
         private void ElectricalInfosCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("ElectricalInfos", e);
+            this.OnCollectionChanged("ElectricalInfos", e, _electricalInfosReference);
         }
         
         /// <summary>
@@ -617,7 +645,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public PhaseCodeProxy(IElectricalAsset modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "phaseCode")
             {
             }
             
@@ -635,24 +663,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
                     this.ModelElement.PhaseCode = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.PhaseCodeChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.PhaseCodeChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -666,7 +676,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public IsConnectedProxy(IElectricalAsset modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "isConnected")
             {
             }
             
@@ -684,24 +694,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
                     this.ModelElement.IsConnected = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.IsConnectedChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.IsConnectedChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -715,7 +707,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public ConductingEquipmentProxy(IElectricalAsset modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "ConductingEquipment")
             {
             }
             
@@ -732,24 +724,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
                 {
                     this.ModelElement.ConductingEquipment = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ConductingEquipmentChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ConductingEquipmentChanged -= handler;
             }
         }
     }

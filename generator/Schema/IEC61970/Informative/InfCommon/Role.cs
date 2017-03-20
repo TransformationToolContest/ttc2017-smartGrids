@@ -46,13 +46,17 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfCommon
     [XmlNamespacePrefixAttribute("cimInfCommon")]
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61970/Informative/InfCommon/Role")]
     [DebuggerDisplayAttribute("Role {UUID}")]
-    public class Role : IdentifiedObject, IRole, IModelElement
+    public partial class Role : IdentifiedObject, IRole, IModelElement
     {
         
         /// <summary>
         /// The backing field for the Category property
         /// </summary>
         private string _category;
+        
+        private static Lazy<ITypedElement> _categoryAttribute = new Lazy<ITypedElement>(RetrieveCategoryAttribute);
+        
+        private static Lazy<ITypedElement> _statusReference = new Lazy<ITypedElement>(RetrieveStatusReference);
         
         /// <summary>
         /// The backing field for the Status property
@@ -79,10 +83,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfCommon
                     string old = this._category;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnCategoryChanging(e);
-                    this.OnPropertyChanging("Category", e);
+                    this.OnPropertyChanging("Category", e, _categoryAttribute);
                     this._category = value;
                     this.OnCategoryChanged(e);
-                    this.OnPropertyChanged("Category", e);
+                    this.OnPropertyChanged("Category", e, _categoryAttribute);
                 }
             }
         }
@@ -105,7 +109,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfCommon
                     IStatus old = this._status;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnStatusChanging(e);
-                    this.OnPropertyChanging("Status", e);
+                    this.OnPropertyChanging("Status", e, _statusReference);
                     this._status = value;
                     if ((old != null))
                     {
@@ -116,7 +120,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfCommon
                         value.Deleted += this.OnResetStatus;
                     }
                     this.OnStatusChanged(e);
-                    this.OnPropertyChanged("Status", e);
+                    this.OnPropertyChanged("Status", e, _statusReference);
                 }
             }
         }
@@ -167,6 +171,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfCommon
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> StatusChanged;
         
+        private static ITypedElement RetrieveCategoryAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(Role.ClassInstance)).Resolve("category")));
+        }
+        
         /// <summary>
         /// Raises the CategoryChanging event
         /// </summary>
@@ -191,6 +200,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfCommon
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveStatusReference()
+        {
+            return ((ITypedElement)(((ModelElement)(Role.ClassInstance)).Resolve("status")));
         }
         
         /// <summary>
@@ -435,7 +449,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfCommon
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public CategoryProxy(IRole modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "category")
             {
             }
             
@@ -453,24 +467,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfCommon
                     this.ModelElement.Category = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.CategoryChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.CategoryChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -484,7 +480,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfCommon
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public StatusProxy(IRole modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "status")
             {
             }
             
@@ -501,24 +497,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfCommon
                 {
                     this.ModelElement.Status = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.StatusChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.StatusChanged -= handler;
             }
         }
     }

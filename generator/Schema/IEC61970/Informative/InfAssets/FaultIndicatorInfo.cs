@@ -53,13 +53,15 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61970/Informative/InfAssets/FaultIn" +
         "dicatorInfo")]
     [DebuggerDisplayAttribute("FaultIndicatorInfo {UUID}")]
-    public class FaultIndicatorInfo : ElectricalInfo, IFaultIndicatorInfo, IModelElement
+    public partial class FaultIndicatorInfo : ElectricalInfo, IFaultIndicatorInfo, IModelElement
     {
         
         /// <summary>
         /// The backing field for the ResetKind property
         /// </summary>
         private Nullable<FaultIndicatorResetKind> _resetKind;
+        
+        private static Lazy<ITypedElement> _resetKindAttribute = new Lazy<ITypedElement>(RetrieveResetKindAttribute);
         
         private static IClass _classInstance;
         
@@ -81,10 +83,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
                     Nullable<FaultIndicatorResetKind> old = this._resetKind;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnResetKindChanging(e);
-                    this.OnPropertyChanging("ResetKind", e);
+                    this.OnPropertyChanging("ResetKind", e, _resetKindAttribute);
                     this._resetKind = value;
                     this.OnResetKindChanged(e);
-                    this.OnPropertyChanged("ResetKind", e);
+                    this.OnPropertyChanged("ResetKind", e, _resetKindAttribute);
                 }
             }
         }
@@ -114,6 +116,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
         /// Gets fired when the ResetKind property changed its value
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> ResetKindChanged;
+        
+        private static ITypedElement RetrieveResetKindAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(FaultIndicatorInfo.ClassInstance)).Resolve("resetKind")));
+        }
         
         /// <summary>
         /// Raises the ResetKindChanging event
@@ -195,7 +202,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public ResetKindProxy(IFaultIndicatorInfo modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "resetKind")
             {
             }
             
@@ -212,24 +219,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
                 {
                     this.ModelElement.ResetKind = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ResetKindChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ResetKindChanged -= handler;
             }
         }
     }

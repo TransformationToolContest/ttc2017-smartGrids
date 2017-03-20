@@ -41,7 +41,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfMetering
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61970/Informative/InfMetering/GasMe" +
         "teringFunction")]
     [DebuggerDisplayAttribute("GasMeteringFunction {UUID}")]
-    public class GasMeteringFunction : DeviceFunction, IGasMeteringFunction, IModelElement
+    public partial class GasMeteringFunction : DeviceFunction, IGasMeteringFunction, IModelElement
     {
         
         private static IClass _classInstance;

@@ -39,7 +39,7 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
     [XmlNamespacePrefixAttribute("objects")]
     [ModelRepresentationClassAttribute("http://www.transformation-tool-contest.eu/2017/smartGrids/cosem#//COSEMObjects/Po" +
         "werFailureMonitoring")]
-    public class PowerFailureMonitoring : Data, IPowerFailureMonitoring, IModelElement
+    public partial class PowerFailureMonitoring : Data, IPowerFailureMonitoring, IModelElement
     {
         
         /// <summary>
@@ -47,110 +47,154 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
         /// </summary>
         private Nullable<int> _failuresAllPhases;
         
+        private static Lazy<ITypedElement> _failuresAllPhasesAttribute = new Lazy<ITypedElement>(RetrieveFailuresAllPhasesAttribute);
+        
         /// <summary>
         /// The backing field for the FailuresL1 property
         /// </summary>
         private Nullable<int> _failuresL1;
+        
+        private static Lazy<ITypedElement> _failuresL1Attribute = new Lazy<ITypedElement>(RetrieveFailuresL1Attribute);
         
         /// <summary>
         /// The backing field for the FailuresL2 property
         /// </summary>
         private Nullable<int> _failuresL2;
         
+        private static Lazy<ITypedElement> _failuresL2Attribute = new Lazy<ITypedElement>(RetrieveFailuresL2Attribute);
+        
         /// <summary>
         /// The backing field for the FailuresL3 property
         /// </summary>
         private Nullable<int> _failuresL3;
+        
+        private static Lazy<ITypedElement> _failuresL3Attribute = new Lazy<ITypedElement>(RetrieveFailuresL3Attribute);
         
         /// <summary>
         /// The backing field for the FailuresAny property
         /// </summary>
         private Nullable<int> _failuresAny;
         
+        private static Lazy<ITypedElement> _failuresAnyAttribute = new Lazy<ITypedElement>(RetrieveFailuresAnyAttribute);
+        
         /// <summary>
         /// The backing field for the Auxiliarysupply property
         /// </summary>
         private string _auxiliarysupply;
+        
+        private static Lazy<ITypedElement> _auxiliarysupplyAttribute = new Lazy<ITypedElement>(RetrieveAuxiliarysupplyAttribute);
         
         /// <summary>
         /// The backing field for the LongFailsAll property
         /// </summary>
         private Nullable<int> _longFailsAll;
         
+        private static Lazy<ITypedElement> _longFailsAllAttribute = new Lazy<ITypedElement>(RetrieveLongFailsAllAttribute);
+        
         /// <summary>
         /// The backing field for the LongFailsL1 property
         /// </summary>
         private Nullable<int> _longFailsL1;
+        
+        private static Lazy<ITypedElement> _longFailsL1Attribute = new Lazy<ITypedElement>(RetrieveLongFailsL1Attribute);
         
         /// <summary>
         /// The backing field for the LongFailsL2 property
         /// </summary>
         private Nullable<int> _longFailsL2;
         
+        private static Lazy<ITypedElement> _longFailsL2Attribute = new Lazy<ITypedElement>(RetrieveLongFailsL2Attribute);
+        
         /// <summary>
         /// The backing field for the LongFailsL3 property
         /// </summary>
         private Nullable<int> _longFailsL3;
+        
+        private static Lazy<ITypedElement> _longFailsL3Attribute = new Lazy<ITypedElement>(RetrieveLongFailsL3Attribute);
         
         /// <summary>
         /// The backing field for the LongFailsAny property
         /// </summary>
         private Nullable<int> _longFailsAny;
         
+        private static Lazy<ITypedElement> _longFailsAnyAttribute = new Lazy<ITypedElement>(RetrieveLongFailsAnyAttribute);
+        
         /// <summary>
         /// The backing field for the TimeAll property
         /// </summary>
         private string _timeAll;
+        
+        private static Lazy<ITypedElement> _timeAllAttribute = new Lazy<ITypedElement>(RetrieveTimeAllAttribute);
         
         /// <summary>
         /// The backing field for the TimeL1 property
         /// </summary>
         private string _timeL1;
         
+        private static Lazy<ITypedElement> _timeL1Attribute = new Lazy<ITypedElement>(RetrieveTimeL1Attribute);
+        
         /// <summary>
         /// The backing field for the TimeL2 property
         /// </summary>
         private string _timeL2;
+        
+        private static Lazy<ITypedElement> _timeL2Attribute = new Lazy<ITypedElement>(RetrieveTimeL2Attribute);
         
         /// <summary>
         /// The backing field for the TimeL3 property
         /// </summary>
         private string _timeL3;
         
+        private static Lazy<ITypedElement> _timeL3Attribute = new Lazy<ITypedElement>(RetrieveTimeL3Attribute);
+        
         /// <summary>
         /// The backing field for the TimeAny property
         /// </summary>
         private string _timeAny;
+        
+        private static Lazy<ITypedElement> _timeAnyAttribute = new Lazy<ITypedElement>(RetrieveTimeAnyAttribute);
         
         /// <summary>
         /// The backing field for the DurationAll property
         /// </summary>
         private Nullable<int> _durationAll;
         
+        private static Lazy<ITypedElement> _durationAllAttribute = new Lazy<ITypedElement>(RetrieveDurationAllAttribute);
+        
         /// <summary>
         /// The backing field for the DurationL1 property
         /// </summary>
         private Nullable<int> _durationL1;
+        
+        private static Lazy<ITypedElement> _durationL1Attribute = new Lazy<ITypedElement>(RetrieveDurationL1Attribute);
         
         /// <summary>
         /// The backing field for the DurationL2 property
         /// </summary>
         private Nullable<int> _durationL2;
         
+        private static Lazy<ITypedElement> _durationL2Attribute = new Lazy<ITypedElement>(RetrieveDurationL2Attribute);
+        
         /// <summary>
         /// The backing field for the DurationL3 property
         /// </summary>
         private Nullable<int> _durationL3;
+        
+        private static Lazy<ITypedElement> _durationL3Attribute = new Lazy<ITypedElement>(RetrieveDurationL3Attribute);
         
         /// <summary>
         /// The backing field for the DurationAny property
         /// </summary>
         private Nullable<int> _durationAny;
         
+        private static Lazy<ITypedElement> _durationAnyAttribute = new Lazy<ITypedElement>(RetrieveDurationAnyAttribute);
+        
         /// <summary>
         /// The backing field for the Time_threshold_long_powerfailure property
         /// </summary>
         private Nullable<int> _time_threshold_long_powerfailure;
+        
+        private static Lazy<ITypedElement> _time_threshold_long_powerfailureAttribute = new Lazy<ITypedElement>(RetrieveTime_threshold_long_powerfailureAttribute);
         
         private static IClass _classInstance;
         
@@ -171,10 +215,10 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     Nullable<int> old = this._failuresAllPhases;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnFailuresAllPhasesChanging(e);
-                    this.OnPropertyChanging("FailuresAllPhases", e);
+                    this.OnPropertyChanging("FailuresAllPhases", e, _failuresAllPhasesAttribute);
                     this._failuresAllPhases = value;
                     this.OnFailuresAllPhasesChanged(e);
-                    this.OnPropertyChanged("FailuresAllPhases", e);
+                    this.OnPropertyChanged("FailuresAllPhases", e, _failuresAllPhasesAttribute);
                 }
             }
         }
@@ -196,10 +240,10 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     Nullable<int> old = this._failuresL1;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnFailuresL1Changing(e);
-                    this.OnPropertyChanging("FailuresL1", e);
+                    this.OnPropertyChanging("FailuresL1", e, _failuresL1Attribute);
                     this._failuresL1 = value;
                     this.OnFailuresL1Changed(e);
-                    this.OnPropertyChanged("FailuresL1", e);
+                    this.OnPropertyChanged("FailuresL1", e, _failuresL1Attribute);
                 }
             }
         }
@@ -221,10 +265,10 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     Nullable<int> old = this._failuresL2;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnFailuresL2Changing(e);
-                    this.OnPropertyChanging("FailuresL2", e);
+                    this.OnPropertyChanging("FailuresL2", e, _failuresL2Attribute);
                     this._failuresL2 = value;
                     this.OnFailuresL2Changed(e);
-                    this.OnPropertyChanged("FailuresL2", e);
+                    this.OnPropertyChanged("FailuresL2", e, _failuresL2Attribute);
                 }
             }
         }
@@ -246,10 +290,10 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     Nullable<int> old = this._failuresL3;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnFailuresL3Changing(e);
-                    this.OnPropertyChanging("FailuresL3", e);
+                    this.OnPropertyChanging("FailuresL3", e, _failuresL3Attribute);
                     this._failuresL3 = value;
                     this.OnFailuresL3Changed(e);
-                    this.OnPropertyChanged("FailuresL3", e);
+                    this.OnPropertyChanged("FailuresL3", e, _failuresL3Attribute);
                 }
             }
         }
@@ -271,10 +315,10 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     Nullable<int> old = this._failuresAny;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnFailuresAnyChanging(e);
-                    this.OnPropertyChanging("FailuresAny", e);
+                    this.OnPropertyChanging("FailuresAny", e, _failuresAnyAttribute);
                     this._failuresAny = value;
                     this.OnFailuresAnyChanged(e);
-                    this.OnPropertyChanged("FailuresAny", e);
+                    this.OnPropertyChanged("FailuresAny", e, _failuresAnyAttribute);
                 }
             }
         }
@@ -296,10 +340,10 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     string old = this._auxiliarysupply;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnAuxiliarysupplyChanging(e);
-                    this.OnPropertyChanging("Auxiliarysupply", e);
+                    this.OnPropertyChanging("Auxiliarysupply", e, _auxiliarysupplyAttribute);
                     this._auxiliarysupply = value;
                     this.OnAuxiliarysupplyChanged(e);
-                    this.OnPropertyChanged("Auxiliarysupply", e);
+                    this.OnPropertyChanged("Auxiliarysupply", e, _auxiliarysupplyAttribute);
                 }
             }
         }
@@ -321,10 +365,10 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     Nullable<int> old = this._longFailsAll;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnLongFailsAllChanging(e);
-                    this.OnPropertyChanging("LongFailsAll", e);
+                    this.OnPropertyChanging("LongFailsAll", e, _longFailsAllAttribute);
                     this._longFailsAll = value;
                     this.OnLongFailsAllChanged(e);
-                    this.OnPropertyChanged("LongFailsAll", e);
+                    this.OnPropertyChanged("LongFailsAll", e, _longFailsAllAttribute);
                 }
             }
         }
@@ -346,10 +390,10 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     Nullable<int> old = this._longFailsL1;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnLongFailsL1Changing(e);
-                    this.OnPropertyChanging("LongFailsL1", e);
+                    this.OnPropertyChanging("LongFailsL1", e, _longFailsL1Attribute);
                     this._longFailsL1 = value;
                     this.OnLongFailsL1Changed(e);
-                    this.OnPropertyChanged("LongFailsL1", e);
+                    this.OnPropertyChanged("LongFailsL1", e, _longFailsL1Attribute);
                 }
             }
         }
@@ -371,10 +415,10 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     Nullable<int> old = this._longFailsL2;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnLongFailsL2Changing(e);
-                    this.OnPropertyChanging("LongFailsL2", e);
+                    this.OnPropertyChanging("LongFailsL2", e, _longFailsL2Attribute);
                     this._longFailsL2 = value;
                     this.OnLongFailsL2Changed(e);
-                    this.OnPropertyChanged("LongFailsL2", e);
+                    this.OnPropertyChanged("LongFailsL2", e, _longFailsL2Attribute);
                 }
             }
         }
@@ -396,10 +440,10 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     Nullable<int> old = this._longFailsL3;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnLongFailsL3Changing(e);
-                    this.OnPropertyChanging("LongFailsL3", e);
+                    this.OnPropertyChanging("LongFailsL3", e, _longFailsL3Attribute);
                     this._longFailsL3 = value;
                     this.OnLongFailsL3Changed(e);
-                    this.OnPropertyChanged("LongFailsL3", e);
+                    this.OnPropertyChanged("LongFailsL3", e, _longFailsL3Attribute);
                 }
             }
         }
@@ -421,10 +465,10 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     Nullable<int> old = this._longFailsAny;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnLongFailsAnyChanging(e);
-                    this.OnPropertyChanging("LongFailsAny", e);
+                    this.OnPropertyChanging("LongFailsAny", e, _longFailsAnyAttribute);
                     this._longFailsAny = value;
                     this.OnLongFailsAnyChanged(e);
-                    this.OnPropertyChanged("LongFailsAny", e);
+                    this.OnPropertyChanged("LongFailsAny", e, _longFailsAnyAttribute);
                 }
             }
         }
@@ -446,10 +490,10 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     string old = this._timeAll;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnTimeAllChanging(e);
-                    this.OnPropertyChanging("TimeAll", e);
+                    this.OnPropertyChanging("TimeAll", e, _timeAllAttribute);
                     this._timeAll = value;
                     this.OnTimeAllChanged(e);
-                    this.OnPropertyChanged("TimeAll", e);
+                    this.OnPropertyChanged("TimeAll", e, _timeAllAttribute);
                 }
             }
         }
@@ -471,10 +515,10 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     string old = this._timeL1;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnTimeL1Changing(e);
-                    this.OnPropertyChanging("TimeL1", e);
+                    this.OnPropertyChanging("TimeL1", e, _timeL1Attribute);
                     this._timeL1 = value;
                     this.OnTimeL1Changed(e);
-                    this.OnPropertyChanged("TimeL1", e);
+                    this.OnPropertyChanged("TimeL1", e, _timeL1Attribute);
                 }
             }
         }
@@ -496,10 +540,10 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     string old = this._timeL2;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnTimeL2Changing(e);
-                    this.OnPropertyChanging("TimeL2", e);
+                    this.OnPropertyChanging("TimeL2", e, _timeL2Attribute);
                     this._timeL2 = value;
                     this.OnTimeL2Changed(e);
-                    this.OnPropertyChanged("TimeL2", e);
+                    this.OnPropertyChanged("TimeL2", e, _timeL2Attribute);
                 }
             }
         }
@@ -521,10 +565,10 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     string old = this._timeL3;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnTimeL3Changing(e);
-                    this.OnPropertyChanging("TimeL3", e);
+                    this.OnPropertyChanging("TimeL3", e, _timeL3Attribute);
                     this._timeL3 = value;
                     this.OnTimeL3Changed(e);
-                    this.OnPropertyChanged("TimeL3", e);
+                    this.OnPropertyChanged("TimeL3", e, _timeL3Attribute);
                 }
             }
         }
@@ -546,10 +590,10 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     string old = this._timeAny;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnTimeAnyChanging(e);
-                    this.OnPropertyChanging("TimeAny", e);
+                    this.OnPropertyChanging("TimeAny", e, _timeAnyAttribute);
                     this._timeAny = value;
                     this.OnTimeAnyChanged(e);
-                    this.OnPropertyChanged("TimeAny", e);
+                    this.OnPropertyChanged("TimeAny", e, _timeAnyAttribute);
                 }
             }
         }
@@ -571,10 +615,10 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     Nullable<int> old = this._durationAll;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnDurationAllChanging(e);
-                    this.OnPropertyChanging("DurationAll", e);
+                    this.OnPropertyChanging("DurationAll", e, _durationAllAttribute);
                     this._durationAll = value;
                     this.OnDurationAllChanged(e);
-                    this.OnPropertyChanged("DurationAll", e);
+                    this.OnPropertyChanged("DurationAll", e, _durationAllAttribute);
                 }
             }
         }
@@ -596,10 +640,10 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     Nullable<int> old = this._durationL1;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnDurationL1Changing(e);
-                    this.OnPropertyChanging("DurationL1", e);
+                    this.OnPropertyChanging("DurationL1", e, _durationL1Attribute);
                     this._durationL1 = value;
                     this.OnDurationL1Changed(e);
-                    this.OnPropertyChanged("DurationL1", e);
+                    this.OnPropertyChanged("DurationL1", e, _durationL1Attribute);
                 }
             }
         }
@@ -621,10 +665,10 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     Nullable<int> old = this._durationL2;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnDurationL2Changing(e);
-                    this.OnPropertyChanging("DurationL2", e);
+                    this.OnPropertyChanging("DurationL2", e, _durationL2Attribute);
                     this._durationL2 = value;
                     this.OnDurationL2Changed(e);
-                    this.OnPropertyChanged("DurationL2", e);
+                    this.OnPropertyChanged("DurationL2", e, _durationL2Attribute);
                 }
             }
         }
@@ -646,10 +690,10 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     Nullable<int> old = this._durationL3;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnDurationL3Changing(e);
-                    this.OnPropertyChanging("DurationL3", e);
+                    this.OnPropertyChanging("DurationL3", e, _durationL3Attribute);
                     this._durationL3 = value;
                     this.OnDurationL3Changed(e);
-                    this.OnPropertyChanged("DurationL3", e);
+                    this.OnPropertyChanged("DurationL3", e, _durationL3Attribute);
                 }
             }
         }
@@ -671,10 +715,10 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     Nullable<int> old = this._durationAny;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnDurationAnyChanging(e);
-                    this.OnPropertyChanging("DurationAny", e);
+                    this.OnPropertyChanging("DurationAny", e, _durationAnyAttribute);
                     this._durationAny = value;
                     this.OnDurationAnyChanged(e);
-                    this.OnPropertyChanged("DurationAny", e);
+                    this.OnPropertyChanged("DurationAny", e, _durationAnyAttribute);
                 }
             }
         }
@@ -696,10 +740,10 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     Nullable<int> old = this._time_threshold_long_powerfailure;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnTime_threshold_long_powerfailureChanging(e);
-                    this.OnPropertyChanging("Time_threshold_long_powerfailure", e);
+                    this.OnPropertyChanging("Time_threshold_long_powerfailure", e, _time_threshold_long_powerfailureAttribute);
                     this._time_threshold_long_powerfailure = value;
                     this.OnTime_threshold_long_powerfailureChanged(e);
-                    this.OnPropertyChanged("Time_threshold_long_powerfailure", e);
+                    this.OnPropertyChanged("Time_threshold_long_powerfailure", e, _time_threshold_long_powerfailureAttribute);
                 }
             }
         }
@@ -940,6 +984,11 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> Time_threshold_long_powerfailureChanged;
         
+        private static ITypedElement RetrieveFailuresAllPhasesAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(PowerFailureMonitoring.ClassInstance)).Resolve("FailuresAllPhases")));
+        }
+        
         /// <summary>
         /// Raises the FailuresAllPhasesChanging event
         /// </summary>
@@ -964,6 +1013,11 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveFailuresL1Attribute()
+        {
+            return ((ITypedElement)(((ModelElement)(PowerFailureMonitoring.ClassInstance)).Resolve("FailuresL1")));
         }
         
         /// <summary>
@@ -992,6 +1046,11 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             }
         }
         
+        private static ITypedElement RetrieveFailuresL2Attribute()
+        {
+            return ((ITypedElement)(((ModelElement)(PowerFailureMonitoring.ClassInstance)).Resolve("FailuresL2")));
+        }
+        
         /// <summary>
         /// Raises the FailuresL2Changing event
         /// </summary>
@@ -1016,6 +1075,11 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveFailuresL3Attribute()
+        {
+            return ((ITypedElement)(((ModelElement)(PowerFailureMonitoring.ClassInstance)).Resolve("FailuresL3")));
         }
         
         /// <summary>
@@ -1044,6 +1108,11 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             }
         }
         
+        private static ITypedElement RetrieveFailuresAnyAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(PowerFailureMonitoring.ClassInstance)).Resolve("FailuresAny")));
+        }
+        
         /// <summary>
         /// Raises the FailuresAnyChanging event
         /// </summary>
@@ -1068,6 +1137,11 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveAuxiliarysupplyAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(PowerFailureMonitoring.ClassInstance)).Resolve("Auxiliarysupply")));
         }
         
         /// <summary>
@@ -1096,6 +1170,11 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             }
         }
         
+        private static ITypedElement RetrieveLongFailsAllAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(PowerFailureMonitoring.ClassInstance)).Resolve("LongFailsAll")));
+        }
+        
         /// <summary>
         /// Raises the LongFailsAllChanging event
         /// </summary>
@@ -1120,6 +1199,11 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveLongFailsL1Attribute()
+        {
+            return ((ITypedElement)(((ModelElement)(PowerFailureMonitoring.ClassInstance)).Resolve("LongFailsL1")));
         }
         
         /// <summary>
@@ -1148,6 +1232,11 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             }
         }
         
+        private static ITypedElement RetrieveLongFailsL2Attribute()
+        {
+            return ((ITypedElement)(((ModelElement)(PowerFailureMonitoring.ClassInstance)).Resolve("LongFailsL2")));
+        }
+        
         /// <summary>
         /// Raises the LongFailsL2Changing event
         /// </summary>
@@ -1172,6 +1261,11 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveLongFailsL3Attribute()
+        {
+            return ((ITypedElement)(((ModelElement)(PowerFailureMonitoring.ClassInstance)).Resolve("LongFailsL3")));
         }
         
         /// <summary>
@@ -1200,6 +1294,11 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             }
         }
         
+        private static ITypedElement RetrieveLongFailsAnyAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(PowerFailureMonitoring.ClassInstance)).Resolve("LongFailsAny")));
+        }
+        
         /// <summary>
         /// Raises the LongFailsAnyChanging event
         /// </summary>
@@ -1224,6 +1323,11 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveTimeAllAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(PowerFailureMonitoring.ClassInstance)).Resolve("TimeAll")));
         }
         
         /// <summary>
@@ -1252,6 +1356,11 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             }
         }
         
+        private static ITypedElement RetrieveTimeL1Attribute()
+        {
+            return ((ITypedElement)(((ModelElement)(PowerFailureMonitoring.ClassInstance)).Resolve("TimeL1")));
+        }
+        
         /// <summary>
         /// Raises the TimeL1Changing event
         /// </summary>
@@ -1276,6 +1385,11 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveTimeL2Attribute()
+        {
+            return ((ITypedElement)(((ModelElement)(PowerFailureMonitoring.ClassInstance)).Resolve("TimeL2")));
         }
         
         /// <summary>
@@ -1304,6 +1418,11 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             }
         }
         
+        private static ITypedElement RetrieveTimeL3Attribute()
+        {
+            return ((ITypedElement)(((ModelElement)(PowerFailureMonitoring.ClassInstance)).Resolve("TimeL3")));
+        }
+        
         /// <summary>
         /// Raises the TimeL3Changing event
         /// </summary>
@@ -1328,6 +1447,11 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveTimeAnyAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(PowerFailureMonitoring.ClassInstance)).Resolve("TimeAny")));
         }
         
         /// <summary>
@@ -1356,6 +1480,11 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             }
         }
         
+        private static ITypedElement RetrieveDurationAllAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(PowerFailureMonitoring.ClassInstance)).Resolve("DurationAll")));
+        }
+        
         /// <summary>
         /// Raises the DurationAllChanging event
         /// </summary>
@@ -1380,6 +1509,11 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveDurationL1Attribute()
+        {
+            return ((ITypedElement)(((ModelElement)(PowerFailureMonitoring.ClassInstance)).Resolve("DurationL1")));
         }
         
         /// <summary>
@@ -1408,6 +1542,11 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             }
         }
         
+        private static ITypedElement RetrieveDurationL2Attribute()
+        {
+            return ((ITypedElement)(((ModelElement)(PowerFailureMonitoring.ClassInstance)).Resolve("DurationL2")));
+        }
+        
         /// <summary>
         /// Raises the DurationL2Changing event
         /// </summary>
@@ -1432,6 +1571,11 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveDurationL3Attribute()
+        {
+            return ((ITypedElement)(((ModelElement)(PowerFailureMonitoring.ClassInstance)).Resolve("DurationL3")));
         }
         
         /// <summary>
@@ -1460,6 +1604,11 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             }
         }
         
+        private static ITypedElement RetrieveDurationAnyAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(PowerFailureMonitoring.ClassInstance)).Resolve("DurationAny")));
+        }
+        
         /// <summary>
         /// Raises the DurationAnyChanging event
         /// </summary>
@@ -1484,6 +1633,11 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveTime_threshold_long_powerfailureAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(PowerFailureMonitoring.ClassInstance)).Resolve("Time_threshold_long_powerfailure")));
         }
         
         /// <summary>
@@ -1755,7 +1909,7 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public FailuresAllPhasesProxy(IPowerFailureMonitoring modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "FailuresAllPhases")
             {
             }
             
@@ -1773,24 +1927,6 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     this.ModelElement.FailuresAllPhases = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.FailuresAllPhasesChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.FailuresAllPhasesChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1804,7 +1940,7 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public FailuresL1Proxy(IPowerFailureMonitoring modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "FailuresL1")
             {
             }
             
@@ -1822,24 +1958,6 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     this.ModelElement.FailuresL1 = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.FailuresL1Changed += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.FailuresL1Changed -= handler;
-            }
         }
         
         /// <summary>
@@ -1853,7 +1971,7 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public FailuresL2Proxy(IPowerFailureMonitoring modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "FailuresL2")
             {
             }
             
@@ -1871,24 +1989,6 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     this.ModelElement.FailuresL2 = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.FailuresL2Changed += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.FailuresL2Changed -= handler;
-            }
         }
         
         /// <summary>
@@ -1902,7 +2002,7 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public FailuresL3Proxy(IPowerFailureMonitoring modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "FailuresL3")
             {
             }
             
@@ -1920,24 +2020,6 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     this.ModelElement.FailuresL3 = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.FailuresL3Changed += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.FailuresL3Changed -= handler;
-            }
         }
         
         /// <summary>
@@ -1951,7 +2033,7 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public FailuresAnyProxy(IPowerFailureMonitoring modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "FailuresAny")
             {
             }
             
@@ -1969,24 +2051,6 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     this.ModelElement.FailuresAny = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.FailuresAnyChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.FailuresAnyChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -2000,7 +2064,7 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public AuxiliarysupplyProxy(IPowerFailureMonitoring modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "Auxiliarysupply")
             {
             }
             
@@ -2018,24 +2082,6 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     this.ModelElement.Auxiliarysupply = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.AuxiliarysupplyChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.AuxiliarysupplyChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -2049,7 +2095,7 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public LongFailsAllProxy(IPowerFailureMonitoring modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "LongFailsAll")
             {
             }
             
@@ -2067,24 +2113,6 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     this.ModelElement.LongFailsAll = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.LongFailsAllChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.LongFailsAllChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -2098,7 +2126,7 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public LongFailsL1Proxy(IPowerFailureMonitoring modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "LongFailsL1")
             {
             }
             
@@ -2116,24 +2144,6 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     this.ModelElement.LongFailsL1 = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.LongFailsL1Changed += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.LongFailsL1Changed -= handler;
-            }
         }
         
         /// <summary>
@@ -2147,7 +2157,7 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public LongFailsL2Proxy(IPowerFailureMonitoring modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "LongFailsL2")
             {
             }
             
@@ -2165,24 +2175,6 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     this.ModelElement.LongFailsL2 = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.LongFailsL2Changed += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.LongFailsL2Changed -= handler;
-            }
         }
         
         /// <summary>
@@ -2196,7 +2188,7 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public LongFailsL3Proxy(IPowerFailureMonitoring modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "LongFailsL3")
             {
             }
             
@@ -2214,24 +2206,6 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     this.ModelElement.LongFailsL3 = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.LongFailsL3Changed += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.LongFailsL3Changed -= handler;
-            }
         }
         
         /// <summary>
@@ -2245,7 +2219,7 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public LongFailsAnyProxy(IPowerFailureMonitoring modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "LongFailsAny")
             {
             }
             
@@ -2263,24 +2237,6 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     this.ModelElement.LongFailsAny = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.LongFailsAnyChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.LongFailsAnyChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -2294,7 +2250,7 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public TimeAllProxy(IPowerFailureMonitoring modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "TimeAll")
             {
             }
             
@@ -2312,24 +2268,6 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     this.ModelElement.TimeAll = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.TimeAllChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.TimeAllChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -2343,7 +2281,7 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public TimeL1Proxy(IPowerFailureMonitoring modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "TimeL1")
             {
             }
             
@@ -2361,24 +2299,6 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     this.ModelElement.TimeL1 = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.TimeL1Changed += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.TimeL1Changed -= handler;
-            }
         }
         
         /// <summary>
@@ -2392,7 +2312,7 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public TimeL2Proxy(IPowerFailureMonitoring modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "TimeL2")
             {
             }
             
@@ -2410,24 +2330,6 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     this.ModelElement.TimeL2 = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.TimeL2Changed += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.TimeL2Changed -= handler;
-            }
         }
         
         /// <summary>
@@ -2441,7 +2343,7 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public TimeL3Proxy(IPowerFailureMonitoring modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "TimeL3")
             {
             }
             
@@ -2459,24 +2361,6 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     this.ModelElement.TimeL3 = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.TimeL3Changed += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.TimeL3Changed -= handler;
-            }
         }
         
         /// <summary>
@@ -2490,7 +2374,7 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public TimeAnyProxy(IPowerFailureMonitoring modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "TimeAny")
             {
             }
             
@@ -2508,24 +2392,6 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     this.ModelElement.TimeAny = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.TimeAnyChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.TimeAnyChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -2539,7 +2405,7 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public DurationAllProxy(IPowerFailureMonitoring modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "DurationAll")
             {
             }
             
@@ -2557,24 +2423,6 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     this.ModelElement.DurationAll = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.DurationAllChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.DurationAllChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -2588,7 +2436,7 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public DurationL1Proxy(IPowerFailureMonitoring modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "DurationL1")
             {
             }
             
@@ -2606,24 +2454,6 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     this.ModelElement.DurationL1 = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.DurationL1Changed += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.DurationL1Changed -= handler;
-            }
         }
         
         /// <summary>
@@ -2637,7 +2467,7 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public DurationL2Proxy(IPowerFailureMonitoring modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "DurationL2")
             {
             }
             
@@ -2655,24 +2485,6 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     this.ModelElement.DurationL2 = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.DurationL2Changed += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.DurationL2Changed -= handler;
-            }
         }
         
         /// <summary>
@@ -2686,7 +2498,7 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public DurationL3Proxy(IPowerFailureMonitoring modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "DurationL3")
             {
             }
             
@@ -2704,24 +2516,6 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     this.ModelElement.DurationL3 = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.DurationL3Changed += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.DurationL3Changed -= handler;
-            }
         }
         
         /// <summary>
@@ -2735,7 +2529,7 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public DurationAnyProxy(IPowerFailureMonitoring modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "DurationAny")
             {
             }
             
@@ -2753,24 +2547,6 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     this.ModelElement.DurationAny = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.DurationAnyChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.DurationAnyChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -2784,7 +2560,7 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public Time_threshold_long_powerfailureProxy(IPowerFailureMonitoring modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "Time_threshold_long_powerfailure")
             {
             }
             
@@ -2801,24 +2577,6 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                 {
                     this.ModelElement.Time_threshold_long_powerfailure = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.Time_threshold_long_powerfailureChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.Time_threshold_long_powerfailureChanged -= handler;
             }
         }
     }

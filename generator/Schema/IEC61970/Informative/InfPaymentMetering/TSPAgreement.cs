@@ -46,7 +46,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfPaymentMetering
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61970/Informative/InfPaymentMeterin" +
         "g/TSPAgreement")]
     [DebuggerDisplayAttribute("TSPAgreement {UUID}")]
-    public class TSPAgreement : Agreement, ITSPAgreement, IModelElement
+    public partial class TSPAgreement : Agreement, ITSPAgreement, IModelElement
     {
         
         private static IClass _classInstance;

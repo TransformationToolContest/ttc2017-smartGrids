@@ -47,23 +47,31 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.Financial
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61970/Informative/Financial/Markete" +
         "r")]
     [DebuggerDisplayAttribute("Marketer {UUID}")]
-    public class Marketer : ErpOrganisation, IMarketer, IModelElement
+    public partial class Marketer : ErpOrganisation, IMarketer, IModelElement
     {
+        
+        private static Lazy<ITypedElement> _resells_EnergyProductReference = new Lazy<ITypedElement>(RetrieveResells_EnergyProductReference);
         
         /// <summary>
         /// The backing field for the Resells_EnergyProduct property
         /// </summary>
         private MarketerResells_EnergyProductCollection _resells_EnergyProduct;
         
+        private static Lazy<ITypedElement> _heldByReference = new Lazy<ITypedElement>(RetrieveHeldByReference);
+        
         /// <summary>
         /// The backing field for the HeldBy property
         /// </summary>
         private MarketerHeldByCollection _heldBy;
         
+        private static Lazy<ITypedElement> _holdsTitleTo_EnergyProductsReference = new Lazy<ITypedElement>(RetrieveHoldsTitleTo_EnergyProductsReference);
+        
         /// <summary>
         /// The backing field for the HoldsTitleTo_EnergyProducts property
         /// </summary>
         private MarketerHoldsTitleTo_EnergyProductsCollection _holdsTitleTo_EnergyProducts;
+        
+        private static Lazy<ITypedElement> _resoldByReference = new Lazy<ITypedElement>(RetrieveResoldByReference);
         
         /// <summary>
         /// The backing field for the ResoldBy property
@@ -148,7 +156,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.Financial
                     IServiceReservation old = this._resoldBy;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnResoldByChanging(e);
-                    this.OnPropertyChanging("ResoldBy", e);
+                    this.OnPropertyChanging("ResoldBy", e, _resoldByReference);
                     this._resoldBy = value;
                     if ((old != null))
                     {
@@ -161,7 +169,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.Financial
                         value.Deleted += this.OnResetResoldBy;
                     }
                     this.OnResoldByChanged(e);
-                    this.OnPropertyChanged("ResoldBy", e);
+                    this.OnPropertyChanged("ResoldBy", e, _resoldByReference);
                 }
             }
         }
@@ -203,6 +211,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.Financial
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> ResoldByChanged;
         
+        private static ITypedElement RetrieveResells_EnergyProductReference()
+        {
+            return ((ITypedElement)(((ModelElement)(Marketer.ClassInstance)).Resolve("Resells_EnergyProduct")));
+        }
+        
         /// <summary>
         /// Forwards CollectionChanging notifications for the Resells_EnergyProduct property to the parent model element
         /// </summary>
@@ -210,7 +223,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.Financial
         /// <param name="e">The original event data</param>
         private void Resells_EnergyProductCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("Resells_EnergyProduct", e);
+            this.OnCollectionChanging("Resells_EnergyProduct", e, _resells_EnergyProductReference);
         }
         
         /// <summary>
@@ -220,7 +233,12 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.Financial
         /// <param name="e">The original event data</param>
         private void Resells_EnergyProductCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("Resells_EnergyProduct", e);
+            this.OnCollectionChanged("Resells_EnergyProduct", e, _resells_EnergyProductReference);
+        }
+        
+        private static ITypedElement RetrieveHeldByReference()
+        {
+            return ((ITypedElement)(((ModelElement)(Marketer.ClassInstance)).Resolve("HeldBy")));
         }
         
         /// <summary>
@@ -230,7 +248,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.Financial
         /// <param name="e">The original event data</param>
         private void HeldByCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("HeldBy", e);
+            this.OnCollectionChanging("HeldBy", e, _heldByReference);
         }
         
         /// <summary>
@@ -240,7 +258,12 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.Financial
         /// <param name="e">The original event data</param>
         private void HeldByCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("HeldBy", e);
+            this.OnCollectionChanged("HeldBy", e, _heldByReference);
+        }
+        
+        private static ITypedElement RetrieveHoldsTitleTo_EnergyProductsReference()
+        {
+            return ((ITypedElement)(((ModelElement)(Marketer.ClassInstance)).Resolve("HoldsTitleTo_EnergyProducts")));
         }
         
         /// <summary>
@@ -250,7 +273,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.Financial
         /// <param name="e">The original event data</param>
         private void HoldsTitleTo_EnergyProductsCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("HoldsTitleTo_EnergyProducts", e);
+            this.OnCollectionChanging("HoldsTitleTo_EnergyProducts", e, _holdsTitleTo_EnergyProductsReference);
         }
         
         /// <summary>
@@ -260,7 +283,12 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.Financial
         /// <param name="e">The original event data</param>
         private void HoldsTitleTo_EnergyProductsCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("HoldsTitleTo_EnergyProducts", e);
+            this.OnCollectionChanged("HoldsTitleTo_EnergyProducts", e, _holdsTitleTo_EnergyProductsReference);
+        }
+        
+        private static ITypedElement RetrieveResoldByReference()
+        {
+            return ((ITypedElement)(((ModelElement)(Marketer.ClassInstance)).Resolve("ResoldBy")));
         }
         
         /// <summary>
@@ -609,7 +637,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.Financial
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public ResoldByProxy(IMarketer modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "ResoldBy")
             {
             }
             
@@ -626,24 +654,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.Financial
                 {
                     this.ModelElement.ResoldBy = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ResoldByChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ResoldByChanged -= handler;
             }
         }
     }

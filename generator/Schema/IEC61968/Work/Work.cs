@@ -43,7 +43,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Work
     [XmlNamespacePrefixAttribute("cimWork")]
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61968/Work/Work")]
     [DebuggerDisplayAttribute("Work {UUID}")]
-    public class Work : Document, IWork, IModelElement
+    public partial class Work : Document, IWork, IModelElement
     {
         
         /// <summary>
@@ -51,60 +51,86 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Work
         /// </summary>
         private string _priority;
         
+        private static Lazy<ITypedElement> _priorityAttribute = new Lazy<ITypedElement>(RetrievePriorityAttribute);
+        
         /// <summary>
         /// The backing field for the RequestDateTime property
         /// </summary>
         private DateTime _requestDateTime;
+        
+        private static Lazy<ITypedElement> _requestDateTimeAttribute = new Lazy<ITypedElement>(RetrieveRequestDateTimeAttribute);
         
         /// <summary>
         /// The backing field for the Kind property
         /// </summary>
         private Nullable<WorkKind> _kind;
         
+        private static Lazy<ITypedElement> _kindAttribute = new Lazy<ITypedElement>(RetrieveKindAttribute);
+        
+        private static Lazy<ITypedElement> _workTasksReference = new Lazy<ITypedElement>(RetrieveWorkTasksReference);
+        
         /// <summary>
         /// The backing field for the WorkTasks property
         /// </summary>
         private WorkWorkTasksCollection _workTasks;
+        
+        private static Lazy<ITypedElement> _designsReference = new Lazy<ITypedElement>(RetrieveDesignsReference);
         
         /// <summary>
         /// The backing field for the Designs property
         /// </summary>
         private WorkDesignsCollection _designs;
         
+        private static Lazy<ITypedElement> _businessCaseReference = new Lazy<ITypedElement>(RetrieveBusinessCaseReference);
+        
         /// <summary>
         /// The backing field for the BusinessCase property
         /// </summary>
         private IBusinessCase _businessCase;
+        
+        private static Lazy<ITypedElement> _workFlowStepsReference = new Lazy<ITypedElement>(RetrieveWorkFlowStepsReference);
         
         /// <summary>
         /// The backing field for the WorkFlowSteps property
         /// </summary>
         private WorkWorkFlowStepsCollection _workFlowSteps;
         
+        private static Lazy<ITypedElement> _workCostDetailsReference = new Lazy<ITypedElement>(RetrieveWorkCostDetailsReference);
+        
         /// <summary>
         /// The backing field for the WorkCostDetails property
         /// </summary>
         private WorkWorkCostDetailsCollection _workCostDetails;
+        
+        private static Lazy<ITypedElement> _erpProjectAccountingReference = new Lazy<ITypedElement>(RetrieveErpProjectAccountingReference);
         
         /// <summary>
         /// The backing field for the ErpProjectAccounting property
         /// </summary>
         private IErpProjectAccounting _erpProjectAccounting;
         
+        private static Lazy<ITypedElement> _projectReference = new Lazy<ITypedElement>(RetrieveProjectReference);
+        
         /// <summary>
         /// The backing field for the Project property
         /// </summary>
         private IProject _project;
+        
+        private static Lazy<ITypedElement> _requestReference = new Lazy<ITypedElement>(RetrieveRequestReference);
         
         /// <summary>
         /// The backing field for the Request property
         /// </summary>
         private IRequest _request;
         
+        private static Lazy<ITypedElement> _workBillingInfoReference = new Lazy<ITypedElement>(RetrieveWorkBillingInfoReference);
+        
         /// <summary>
         /// The backing field for the WorkBillingInfo property
         /// </summary>
         private IWorkBillingInfo _workBillingInfo;
+        
+        private static Lazy<ITypedElement> _customersReference = new Lazy<ITypedElement>(RetrieveCustomersReference);
         
         /// <summary>
         /// The backing field for the Customers property
@@ -150,10 +176,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Work
                     string old = this._priority;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnPriorityChanging(e);
-                    this.OnPropertyChanging("Priority", e);
+                    this.OnPropertyChanging("Priority", e, _priorityAttribute);
                     this._priority = value;
                     this.OnPriorityChanged(e);
-                    this.OnPropertyChanged("Priority", e);
+                    this.OnPropertyChanged("Priority", e, _priorityAttribute);
                 }
             }
         }
@@ -176,10 +202,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Work
                     DateTime old = this._requestDateTime;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnRequestDateTimeChanging(e);
-                    this.OnPropertyChanging("RequestDateTime", e);
+                    this.OnPropertyChanging("RequestDateTime", e, _requestDateTimeAttribute);
                     this._requestDateTime = value;
                     this.OnRequestDateTimeChanged(e);
-                    this.OnPropertyChanged("RequestDateTime", e);
+                    this.OnPropertyChanged("RequestDateTime", e, _requestDateTimeAttribute);
                 }
             }
         }
@@ -202,10 +228,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Work
                     Nullable<WorkKind> old = this._kind;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnKindChanging(e);
-                    this.OnPropertyChanging("Kind", e);
+                    this.OnPropertyChanging("Kind", e, _kindAttribute);
                     this._kind = value;
                     this.OnKindChanged(e);
-                    this.OnPropertyChanged("Kind", e);
+                    this.OnPropertyChanged("Kind", e, _kindAttribute);
                 }
             }
         }
@@ -258,7 +284,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Work
                     IBusinessCase old = this._businessCase;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnBusinessCaseChanging(e);
-                    this.OnPropertyChanging("BusinessCase", e);
+                    this.OnPropertyChanging("BusinessCase", e, _businessCaseReference);
                     this._businessCase = value;
                     if ((old != null))
                     {
@@ -271,7 +297,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Work
                         value.Deleted += this.OnResetBusinessCase;
                     }
                     this.OnBusinessCaseChanged(e);
-                    this.OnPropertyChanged("BusinessCase", e);
+                    this.OnPropertyChanged("BusinessCase", e, _businessCaseReference);
                 }
             }
         }
@@ -324,7 +350,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Work
                     IErpProjectAccounting old = this._erpProjectAccounting;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnErpProjectAccountingChanging(e);
-                    this.OnPropertyChanging("ErpProjectAccounting", e);
+                    this.OnPropertyChanging("ErpProjectAccounting", e, _erpProjectAccountingReference);
                     this._erpProjectAccounting = value;
                     if ((old != null))
                     {
@@ -337,7 +363,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Work
                         value.Deleted += this.OnResetErpProjectAccounting;
                     }
                     this.OnErpProjectAccountingChanged(e);
-                    this.OnPropertyChanged("ErpProjectAccounting", e);
+                    this.OnPropertyChanged("ErpProjectAccounting", e, _erpProjectAccountingReference);
                 }
             }
         }
@@ -360,7 +386,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Work
                     IProject old = this._project;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnProjectChanging(e);
-                    this.OnPropertyChanging("Project", e);
+                    this.OnPropertyChanging("Project", e, _projectReference);
                     this._project = value;
                     if ((old != null))
                     {
@@ -373,7 +399,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Work
                         value.Deleted += this.OnResetProject;
                     }
                     this.OnProjectChanged(e);
-                    this.OnPropertyChanged("Project", e);
+                    this.OnPropertyChanged("Project", e, _projectReference);
                 }
             }
         }
@@ -396,7 +422,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Work
                     IRequest old = this._request;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnRequestChanging(e);
-                    this.OnPropertyChanging("Request", e);
+                    this.OnPropertyChanging("Request", e, _requestReference);
                     this._request = value;
                     if ((old != null))
                     {
@@ -409,7 +435,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Work
                         value.Deleted += this.OnResetRequest;
                     }
                     this.OnRequestChanged(e);
-                    this.OnPropertyChanged("Request", e);
+                    this.OnPropertyChanged("Request", e, _requestReference);
                 }
             }
         }
@@ -432,7 +458,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Work
                     IWorkBillingInfo old = this._workBillingInfo;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnWorkBillingInfoChanging(e);
-                    this.OnPropertyChanging("WorkBillingInfo", e);
+                    this.OnPropertyChanging("WorkBillingInfo", e, _workBillingInfoReference);
                     this._workBillingInfo = value;
                     if ((old != null))
                     {
@@ -445,7 +471,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Work
                         value.Deleted += this.OnResetWorkBillingInfo;
                     }
                     this.OnWorkBillingInfoChanged(e);
-                    this.OnPropertyChanged("WorkBillingInfo", e);
+                    this.OnPropertyChanged("WorkBillingInfo", e, _workBillingInfoReference);
                 }
             }
         }
@@ -571,6 +597,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Work
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> WorkBillingInfoChanged;
         
+        private static ITypedElement RetrievePriorityAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(Work.ClassInstance)).Resolve("priority")));
+        }
+        
         /// <summary>
         /// Raises the PriorityChanging event
         /// </summary>
@@ -595,6 +626,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Work
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveRequestDateTimeAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(Work.ClassInstance)).Resolve("requestDateTime")));
         }
         
         /// <summary>
@@ -623,6 +659,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Work
             }
         }
         
+        private static ITypedElement RetrieveKindAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(Work.ClassInstance)).Resolve("kind")));
+        }
+        
         /// <summary>
         /// Raises the KindChanging event
         /// </summary>
@@ -649,6 +690,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Work
             }
         }
         
+        private static ITypedElement RetrieveWorkTasksReference()
+        {
+            return ((ITypedElement)(((ModelElement)(Work.ClassInstance)).Resolve("WorkTasks")));
+        }
+        
         /// <summary>
         /// Forwards CollectionChanging notifications for the WorkTasks property to the parent model element
         /// </summary>
@@ -656,7 +702,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Work
         /// <param name="e">The original event data</param>
         private void WorkTasksCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("WorkTasks", e);
+            this.OnCollectionChanging("WorkTasks", e, _workTasksReference);
         }
         
         /// <summary>
@@ -666,7 +712,12 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Work
         /// <param name="e">The original event data</param>
         private void WorkTasksCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("WorkTasks", e);
+            this.OnCollectionChanged("WorkTasks", e, _workTasksReference);
+        }
+        
+        private static ITypedElement RetrieveDesignsReference()
+        {
+            return ((ITypedElement)(((ModelElement)(Work.ClassInstance)).Resolve("Designs")));
         }
         
         /// <summary>
@@ -676,7 +727,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Work
         /// <param name="e">The original event data</param>
         private void DesignsCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("Designs", e);
+            this.OnCollectionChanging("Designs", e, _designsReference);
         }
         
         /// <summary>
@@ -686,7 +737,12 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Work
         /// <param name="e">The original event data</param>
         private void DesignsCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("Designs", e);
+            this.OnCollectionChanged("Designs", e, _designsReference);
+        }
+        
+        private static ITypedElement RetrieveBusinessCaseReference()
+        {
+            return ((ITypedElement)(((ModelElement)(Work.ClassInstance)).Resolve("BusinessCase")));
         }
         
         /// <summary>
@@ -725,6 +781,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Work
             this.BusinessCase = null;
         }
         
+        private static ITypedElement RetrieveWorkFlowStepsReference()
+        {
+            return ((ITypedElement)(((ModelElement)(Work.ClassInstance)).Resolve("WorkFlowSteps")));
+        }
+        
         /// <summary>
         /// Forwards CollectionChanging notifications for the WorkFlowSteps property to the parent model element
         /// </summary>
@@ -732,7 +793,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Work
         /// <param name="e">The original event data</param>
         private void WorkFlowStepsCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("WorkFlowSteps", e);
+            this.OnCollectionChanging("WorkFlowSteps", e, _workFlowStepsReference);
         }
         
         /// <summary>
@@ -742,7 +803,12 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Work
         /// <param name="e">The original event data</param>
         private void WorkFlowStepsCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("WorkFlowSteps", e);
+            this.OnCollectionChanged("WorkFlowSteps", e, _workFlowStepsReference);
+        }
+        
+        private static ITypedElement RetrieveWorkCostDetailsReference()
+        {
+            return ((ITypedElement)(((ModelElement)(Work.ClassInstance)).Resolve("WorkCostDetails")));
         }
         
         /// <summary>
@@ -752,7 +818,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Work
         /// <param name="e">The original event data</param>
         private void WorkCostDetailsCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("WorkCostDetails", e);
+            this.OnCollectionChanging("WorkCostDetails", e, _workCostDetailsReference);
         }
         
         /// <summary>
@@ -762,7 +828,12 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Work
         /// <param name="e">The original event data</param>
         private void WorkCostDetailsCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("WorkCostDetails", e);
+            this.OnCollectionChanged("WorkCostDetails", e, _workCostDetailsReference);
+        }
+        
+        private static ITypedElement RetrieveErpProjectAccountingReference()
+        {
+            return ((ITypedElement)(((ModelElement)(Work.ClassInstance)).Resolve("ErpProjectAccounting")));
         }
         
         /// <summary>
@@ -801,6 +872,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Work
             this.ErpProjectAccounting = null;
         }
         
+        private static ITypedElement RetrieveProjectReference()
+        {
+            return ((ITypedElement)(((ModelElement)(Work.ClassInstance)).Resolve("Project")));
+        }
+        
         /// <summary>
         /// Raises the ProjectChanging event
         /// </summary>
@@ -835,6 +911,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Work
         private void OnResetProject(object sender, System.EventArgs eventArgs)
         {
             this.Project = null;
+        }
+        
+        private static ITypedElement RetrieveRequestReference()
+        {
+            return ((ITypedElement)(((ModelElement)(Work.ClassInstance)).Resolve("Request")));
         }
         
         /// <summary>
@@ -873,6 +954,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Work
             this.Request = null;
         }
         
+        private static ITypedElement RetrieveWorkBillingInfoReference()
+        {
+            return ((ITypedElement)(((ModelElement)(Work.ClassInstance)).Resolve("WorkBillingInfo")));
+        }
+        
         /// <summary>
         /// Raises the WorkBillingInfoChanging event
         /// </summary>
@@ -909,6 +995,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Work
             this.WorkBillingInfo = null;
         }
         
+        private static ITypedElement RetrieveCustomersReference()
+        {
+            return ((ITypedElement)(((ModelElement)(Work.ClassInstance)).Resolve("Customers")));
+        }
+        
         /// <summary>
         /// Forwards CollectionChanging notifications for the Customers property to the parent model element
         /// </summary>
@@ -916,7 +1007,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Work
         /// <param name="e">The original event data</param>
         private void CustomersCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("Customers", e);
+            this.OnCollectionChanging("Customers", e, _customersReference);
         }
         
         /// <summary>
@@ -926,7 +1017,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Work
         /// <param name="e">The original event data</param>
         private void CustomersCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("Customers", e);
+            this.OnCollectionChanged("Customers", e, _customersReference);
         }
         
         /// <summary>
@@ -1525,7 +1616,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Work
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public PriorityProxy(IWork modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "priority")
             {
             }
             
@@ -1543,24 +1634,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Work
                     this.ModelElement.Priority = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.PriorityChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.PriorityChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1574,7 +1647,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Work
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public RequestDateTimeProxy(IWork modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "requestDateTime")
             {
             }
             
@@ -1592,24 +1665,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Work
                     this.ModelElement.RequestDateTime = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.RequestDateTimeChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.RequestDateTimeChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1623,7 +1678,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Work
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public KindProxy(IWork modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "kind")
             {
             }
             
@@ -1641,24 +1696,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Work
                     this.ModelElement.Kind = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.KindChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.KindChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1672,7 +1709,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Work
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public BusinessCaseProxy(IWork modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "BusinessCase")
             {
             }
             
@@ -1690,24 +1727,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Work
                     this.ModelElement.BusinessCase = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.BusinessCaseChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.BusinessCaseChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1721,7 +1740,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Work
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public ErpProjectAccountingProxy(IWork modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "ErpProjectAccounting")
             {
             }
             
@@ -1739,24 +1758,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Work
                     this.ModelElement.ErpProjectAccounting = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ErpProjectAccountingChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ErpProjectAccountingChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1770,7 +1771,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Work
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public ProjectProxy(IWork modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "Project")
             {
             }
             
@@ -1788,24 +1789,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Work
                     this.ModelElement.Project = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ProjectChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ProjectChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1819,7 +1802,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Work
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public RequestProxy(IWork modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "Request")
             {
             }
             
@@ -1837,24 +1820,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Work
                     this.ModelElement.Request = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.RequestChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.RequestChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1868,7 +1833,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Work
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public WorkBillingInfoProxy(IWork modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "WorkBillingInfo")
             {
             }
             
@@ -1885,24 +1850,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Work
                 {
                     this.ModelElement.WorkBillingInfo = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.WorkBillingInfoChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.WorkBillingInfoChanged -= handler;
             }
         }
     }

@@ -42,7 +42,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.LoadControl
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61968/LoadControl/RemoteConnectDisc" +
         "onnectInfo")]
     [DebuggerDisplayAttribute("RemoteConnectDisconnectInfo {UUID}")]
-    public class RemoteConnectDisconnectInfo : Element, IRemoteConnectDisconnectInfo, IModelElement
+    public partial class RemoteConnectDisconnectInfo : Element, IRemoteConnectDisconnectInfo, IModelElement
     {
         
         /// <summary>
@@ -50,60 +50,84 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.LoadControl
         /// </summary>
         private float _powerLimit;
         
+        private static Lazy<ITypedElement> _powerLimitAttribute = new Lazy<ITypedElement>(RetrievePowerLimitAttribute);
+        
         /// <summary>
         /// The backing field for the CustomerVoltageLimit property
         /// </summary>
         private float _customerVoltageLimit;
+        
+        private static Lazy<ITypedElement> _customerVoltageLimitAttribute = new Lazy<ITypedElement>(RetrieveCustomerVoltageLimitAttribute);
         
         /// <summary>
         /// The backing field for the EnergyLimit property
         /// </summary>
         private float _energyLimit;
         
+        private static Lazy<ITypedElement> _energyLimitAttribute = new Lazy<ITypedElement>(RetrieveEnergyLimitAttribute);
+        
         /// <summary>
         /// The backing field for the IsEnergyLimiting property
         /// </summary>
         private bool _isEnergyLimiting;
+        
+        private static Lazy<ITypedElement> _isEnergyLimitingAttribute = new Lazy<ITypedElement>(RetrieveIsEnergyLimitingAttribute);
         
         /// <summary>
         /// The backing field for the EnergyUsageWarning property
         /// </summary>
         private float _energyUsageWarning;
         
+        private static Lazy<ITypedElement> _energyUsageWarningAttribute = new Lazy<ITypedElement>(RetrieveEnergyUsageWarningAttribute);
+        
         /// <summary>
         /// The backing field for the NeedsVoltageLimitCheck property
         /// </summary>
         private bool _needsVoltageLimitCheck;
+        
+        private static Lazy<ITypedElement> _needsVoltageLimitCheckAttribute = new Lazy<ITypedElement>(RetrieveNeedsVoltageLimitCheckAttribute);
         
         /// <summary>
         /// The backing field for the EnergyUsageStartDateTime property
         /// </summary>
         private DateTime _energyUsageStartDateTime;
         
+        private static Lazy<ITypedElement> _energyUsageStartDateTimeAttribute = new Lazy<ITypedElement>(RetrieveEnergyUsageStartDateTimeAttribute);
+        
         /// <summary>
         /// The backing field for the UsePushbutton property
         /// </summary>
         private bool _usePushbutton;
+        
+        private static Lazy<ITypedElement> _usePushbuttonAttribute = new Lazy<ITypedElement>(RetrieveUsePushbuttonAttribute);
         
         /// <summary>
         /// The backing field for the IsArmDisconnect property
         /// </summary>
         private bool _isArmDisconnect;
         
+        private static Lazy<ITypedElement> _isArmDisconnectAttribute = new Lazy<ITypedElement>(RetrieveIsArmDisconnectAttribute);
+        
         /// <summary>
         /// The backing field for the IsArmConnect property
         /// </summary>
         private bool _isArmConnect;
+        
+        private static Lazy<ITypedElement> _isArmConnectAttribute = new Lazy<ITypedElement>(RetrieveIsArmConnectAttribute);
         
         /// <summary>
         /// The backing field for the NeedsPowerLimitCheck property
         /// </summary>
         private bool _needsPowerLimitCheck;
         
+        private static Lazy<ITypedElement> _needsPowerLimitCheckAttribute = new Lazy<ITypedElement>(RetrieveNeedsPowerLimitCheckAttribute);
+        
         /// <summary>
         /// The backing field for the ArmedTimeout property
         /// </summary>
         private float _armedTimeout;
+        
+        private static Lazy<ITypedElement> _armedTimeoutAttribute = new Lazy<ITypedElement>(RetrieveArmedTimeoutAttribute);
         
         private static IClass _classInstance;
         
@@ -125,10 +149,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.LoadControl
                     float old = this._powerLimit;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnPowerLimitChanging(e);
-                    this.OnPropertyChanging("PowerLimit", e);
+                    this.OnPropertyChanging("PowerLimit", e, _powerLimitAttribute);
                     this._powerLimit = value;
                     this.OnPowerLimitChanged(e);
-                    this.OnPropertyChanged("PowerLimit", e);
+                    this.OnPropertyChanged("PowerLimit", e, _powerLimitAttribute);
                 }
             }
         }
@@ -151,10 +175,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.LoadControl
                     float old = this._customerVoltageLimit;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnCustomerVoltageLimitChanging(e);
-                    this.OnPropertyChanging("CustomerVoltageLimit", e);
+                    this.OnPropertyChanging("CustomerVoltageLimit", e, _customerVoltageLimitAttribute);
                     this._customerVoltageLimit = value;
                     this.OnCustomerVoltageLimitChanged(e);
-                    this.OnPropertyChanged("CustomerVoltageLimit", e);
+                    this.OnPropertyChanged("CustomerVoltageLimit", e, _customerVoltageLimitAttribute);
                 }
             }
         }
@@ -177,10 +201,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.LoadControl
                     float old = this._energyLimit;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnEnergyLimitChanging(e);
-                    this.OnPropertyChanging("EnergyLimit", e);
+                    this.OnPropertyChanging("EnergyLimit", e, _energyLimitAttribute);
                     this._energyLimit = value;
                     this.OnEnergyLimitChanged(e);
-                    this.OnPropertyChanged("EnergyLimit", e);
+                    this.OnPropertyChanged("EnergyLimit", e, _energyLimitAttribute);
                 }
             }
         }
@@ -203,10 +227,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.LoadControl
                     bool old = this._isEnergyLimiting;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnIsEnergyLimitingChanging(e);
-                    this.OnPropertyChanging("IsEnergyLimiting", e);
+                    this.OnPropertyChanging("IsEnergyLimiting", e, _isEnergyLimitingAttribute);
                     this._isEnergyLimiting = value;
                     this.OnIsEnergyLimitingChanged(e);
-                    this.OnPropertyChanged("IsEnergyLimiting", e);
+                    this.OnPropertyChanged("IsEnergyLimiting", e, _isEnergyLimitingAttribute);
                 }
             }
         }
@@ -229,10 +253,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.LoadControl
                     float old = this._energyUsageWarning;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnEnergyUsageWarningChanging(e);
-                    this.OnPropertyChanging("EnergyUsageWarning", e);
+                    this.OnPropertyChanging("EnergyUsageWarning", e, _energyUsageWarningAttribute);
                     this._energyUsageWarning = value;
                     this.OnEnergyUsageWarningChanged(e);
-                    this.OnPropertyChanged("EnergyUsageWarning", e);
+                    this.OnPropertyChanged("EnergyUsageWarning", e, _energyUsageWarningAttribute);
                 }
             }
         }
@@ -255,10 +279,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.LoadControl
                     bool old = this._needsVoltageLimitCheck;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnNeedsVoltageLimitCheckChanging(e);
-                    this.OnPropertyChanging("NeedsVoltageLimitCheck", e);
+                    this.OnPropertyChanging("NeedsVoltageLimitCheck", e, _needsVoltageLimitCheckAttribute);
                     this._needsVoltageLimitCheck = value;
                     this.OnNeedsVoltageLimitCheckChanged(e);
-                    this.OnPropertyChanged("NeedsVoltageLimitCheck", e);
+                    this.OnPropertyChanged("NeedsVoltageLimitCheck", e, _needsVoltageLimitCheckAttribute);
                 }
             }
         }
@@ -281,10 +305,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.LoadControl
                     DateTime old = this._energyUsageStartDateTime;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnEnergyUsageStartDateTimeChanging(e);
-                    this.OnPropertyChanging("EnergyUsageStartDateTime", e);
+                    this.OnPropertyChanging("EnergyUsageStartDateTime", e, _energyUsageStartDateTimeAttribute);
                     this._energyUsageStartDateTime = value;
                     this.OnEnergyUsageStartDateTimeChanged(e);
-                    this.OnPropertyChanged("EnergyUsageStartDateTime", e);
+                    this.OnPropertyChanged("EnergyUsageStartDateTime", e, _energyUsageStartDateTimeAttribute);
                 }
             }
         }
@@ -307,10 +331,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.LoadControl
                     bool old = this._usePushbutton;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnUsePushbuttonChanging(e);
-                    this.OnPropertyChanging("UsePushbutton", e);
+                    this.OnPropertyChanging("UsePushbutton", e, _usePushbuttonAttribute);
                     this._usePushbutton = value;
                     this.OnUsePushbuttonChanged(e);
-                    this.OnPropertyChanged("UsePushbutton", e);
+                    this.OnPropertyChanged("UsePushbutton", e, _usePushbuttonAttribute);
                 }
             }
         }
@@ -333,10 +357,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.LoadControl
                     bool old = this._isArmDisconnect;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnIsArmDisconnectChanging(e);
-                    this.OnPropertyChanging("IsArmDisconnect", e);
+                    this.OnPropertyChanging("IsArmDisconnect", e, _isArmDisconnectAttribute);
                     this._isArmDisconnect = value;
                     this.OnIsArmDisconnectChanged(e);
-                    this.OnPropertyChanged("IsArmDisconnect", e);
+                    this.OnPropertyChanged("IsArmDisconnect", e, _isArmDisconnectAttribute);
                 }
             }
         }
@@ -359,10 +383,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.LoadControl
                     bool old = this._isArmConnect;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnIsArmConnectChanging(e);
-                    this.OnPropertyChanging("IsArmConnect", e);
+                    this.OnPropertyChanging("IsArmConnect", e, _isArmConnectAttribute);
                     this._isArmConnect = value;
                     this.OnIsArmConnectChanged(e);
-                    this.OnPropertyChanged("IsArmConnect", e);
+                    this.OnPropertyChanged("IsArmConnect", e, _isArmConnectAttribute);
                 }
             }
         }
@@ -385,10 +409,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.LoadControl
                     bool old = this._needsPowerLimitCheck;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnNeedsPowerLimitCheckChanging(e);
-                    this.OnPropertyChanging("NeedsPowerLimitCheck", e);
+                    this.OnPropertyChanging("NeedsPowerLimitCheck", e, _needsPowerLimitCheckAttribute);
                     this._needsPowerLimitCheck = value;
                     this.OnNeedsPowerLimitCheckChanged(e);
-                    this.OnPropertyChanged("NeedsPowerLimitCheck", e);
+                    this.OnPropertyChanged("NeedsPowerLimitCheck", e, _needsPowerLimitCheckAttribute);
                 }
             }
         }
@@ -411,10 +435,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.LoadControl
                     float old = this._armedTimeout;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnArmedTimeoutChanging(e);
-                    this.OnPropertyChanging("ArmedTimeout", e);
+                    this.OnPropertyChanging("ArmedTimeout", e, _armedTimeoutAttribute);
                     this._armedTimeout = value;
                     this.OnArmedTimeoutChanged(e);
-                    this.OnPropertyChanged("ArmedTimeout", e);
+                    this.OnPropertyChanged("ArmedTimeout", e, _armedTimeoutAttribute);
                 }
             }
         }
@@ -555,6 +579,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.LoadControl
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> ArmedTimeoutChanged;
         
+        private static ITypedElement RetrievePowerLimitAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(RemoteConnectDisconnectInfo.ClassInstance)).Resolve("powerLimit")));
+        }
+        
         /// <summary>
         /// Raises the PowerLimitChanging event
         /// </summary>
@@ -579,6 +608,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.LoadControl
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveCustomerVoltageLimitAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(RemoteConnectDisconnectInfo.ClassInstance)).Resolve("customerVoltageLimit")));
         }
         
         /// <summary>
@@ -607,6 +641,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.LoadControl
             }
         }
         
+        private static ITypedElement RetrieveEnergyLimitAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(RemoteConnectDisconnectInfo.ClassInstance)).Resolve("energyLimit")));
+        }
+        
         /// <summary>
         /// Raises the EnergyLimitChanging event
         /// </summary>
@@ -631,6 +670,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.LoadControl
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveIsEnergyLimitingAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(RemoteConnectDisconnectInfo.ClassInstance)).Resolve("isEnergyLimiting")));
         }
         
         /// <summary>
@@ -659,6 +703,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.LoadControl
             }
         }
         
+        private static ITypedElement RetrieveEnergyUsageWarningAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(RemoteConnectDisconnectInfo.ClassInstance)).Resolve("energyUsageWarning")));
+        }
+        
         /// <summary>
         /// Raises the EnergyUsageWarningChanging event
         /// </summary>
@@ -683,6 +732,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.LoadControl
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveNeedsVoltageLimitCheckAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(RemoteConnectDisconnectInfo.ClassInstance)).Resolve("needsVoltageLimitCheck")));
         }
         
         /// <summary>
@@ -711,6 +765,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.LoadControl
             }
         }
         
+        private static ITypedElement RetrieveEnergyUsageStartDateTimeAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(RemoteConnectDisconnectInfo.ClassInstance)).Resolve("energyUsageStartDateTime")));
+        }
+        
         /// <summary>
         /// Raises the EnergyUsageStartDateTimeChanging event
         /// </summary>
@@ -735,6 +794,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.LoadControl
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveUsePushbuttonAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(RemoteConnectDisconnectInfo.ClassInstance)).Resolve("usePushbutton")));
         }
         
         /// <summary>
@@ -763,6 +827,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.LoadControl
             }
         }
         
+        private static ITypedElement RetrieveIsArmDisconnectAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(RemoteConnectDisconnectInfo.ClassInstance)).Resolve("isArmDisconnect")));
+        }
+        
         /// <summary>
         /// Raises the IsArmDisconnectChanging event
         /// </summary>
@@ -787,6 +856,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.LoadControl
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveIsArmConnectAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(RemoteConnectDisconnectInfo.ClassInstance)).Resolve("isArmConnect")));
         }
         
         /// <summary>
@@ -815,6 +889,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.LoadControl
             }
         }
         
+        private static ITypedElement RetrieveNeedsPowerLimitCheckAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(RemoteConnectDisconnectInfo.ClassInstance)).Resolve("needsPowerLimitCheck")));
+        }
+        
         /// <summary>
         /// Raises the NeedsPowerLimitCheckChanging event
         /// </summary>
@@ -839,6 +918,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.LoadControl
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveArmedTimeoutAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(RemoteConnectDisconnectInfo.ClassInstance)).Resolve("armedTimeout")));
         }
         
         /// <summary>
@@ -1020,7 +1104,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.LoadControl
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public PowerLimitProxy(IRemoteConnectDisconnectInfo modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "powerLimit")
             {
             }
             
@@ -1038,24 +1122,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.LoadControl
                     this.ModelElement.PowerLimit = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.PowerLimitChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.PowerLimitChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1069,7 +1135,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.LoadControl
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public CustomerVoltageLimitProxy(IRemoteConnectDisconnectInfo modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "customerVoltageLimit")
             {
             }
             
@@ -1087,24 +1153,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.LoadControl
                     this.ModelElement.CustomerVoltageLimit = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.CustomerVoltageLimitChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.CustomerVoltageLimitChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1118,7 +1166,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.LoadControl
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public EnergyLimitProxy(IRemoteConnectDisconnectInfo modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "energyLimit")
             {
             }
             
@@ -1136,24 +1184,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.LoadControl
                     this.ModelElement.EnergyLimit = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.EnergyLimitChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.EnergyLimitChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1167,7 +1197,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.LoadControl
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public IsEnergyLimitingProxy(IRemoteConnectDisconnectInfo modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "isEnergyLimiting")
             {
             }
             
@@ -1185,24 +1215,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.LoadControl
                     this.ModelElement.IsEnergyLimiting = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.IsEnergyLimitingChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.IsEnergyLimitingChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1216,7 +1228,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.LoadControl
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public EnergyUsageWarningProxy(IRemoteConnectDisconnectInfo modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "energyUsageWarning")
             {
             }
             
@@ -1234,24 +1246,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.LoadControl
                     this.ModelElement.EnergyUsageWarning = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.EnergyUsageWarningChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.EnergyUsageWarningChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1265,7 +1259,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.LoadControl
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public NeedsVoltageLimitCheckProxy(IRemoteConnectDisconnectInfo modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "needsVoltageLimitCheck")
             {
             }
             
@@ -1283,24 +1277,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.LoadControl
                     this.ModelElement.NeedsVoltageLimitCheck = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.NeedsVoltageLimitCheckChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.NeedsVoltageLimitCheckChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1314,7 +1290,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.LoadControl
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public EnergyUsageStartDateTimeProxy(IRemoteConnectDisconnectInfo modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "energyUsageStartDateTime")
             {
             }
             
@@ -1332,24 +1308,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.LoadControl
                     this.ModelElement.EnergyUsageStartDateTime = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.EnergyUsageStartDateTimeChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.EnergyUsageStartDateTimeChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1363,7 +1321,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.LoadControl
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public UsePushbuttonProxy(IRemoteConnectDisconnectInfo modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "usePushbutton")
             {
             }
             
@@ -1381,24 +1339,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.LoadControl
                     this.ModelElement.UsePushbutton = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.UsePushbuttonChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.UsePushbuttonChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1412,7 +1352,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.LoadControl
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public IsArmDisconnectProxy(IRemoteConnectDisconnectInfo modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "isArmDisconnect")
             {
             }
             
@@ -1430,24 +1370,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.LoadControl
                     this.ModelElement.IsArmDisconnect = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.IsArmDisconnectChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.IsArmDisconnectChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1461,7 +1383,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.LoadControl
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public IsArmConnectProxy(IRemoteConnectDisconnectInfo modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "isArmConnect")
             {
             }
             
@@ -1479,24 +1401,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.LoadControl
                     this.ModelElement.IsArmConnect = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.IsArmConnectChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.IsArmConnectChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1510,7 +1414,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.LoadControl
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public NeedsPowerLimitCheckProxy(IRemoteConnectDisconnectInfo modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "needsPowerLimitCheck")
             {
             }
             
@@ -1528,24 +1432,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.LoadControl
                     this.ModelElement.NeedsPowerLimitCheck = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.NeedsPowerLimitCheckChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.NeedsPowerLimitCheckChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1559,7 +1445,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.LoadControl
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public ArmedTimeoutProxy(IRemoteConnectDisconnectInfo modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "armedTimeout")
             {
             }
             
@@ -1576,24 +1462,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.LoadControl
                 {
                     this.ModelElement.ArmedTimeout = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ArmedTimeoutChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ArmedTimeoutChanged -= handler;
             }
         }
     }

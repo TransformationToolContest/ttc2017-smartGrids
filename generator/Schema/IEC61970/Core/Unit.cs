@@ -57,18 +57,24 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Core
     [XmlNamespacePrefixAttribute("cimCore")]
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61970/Core/Unit")]
     [DebuggerDisplayAttribute("Unit {UUID}")]
-    public class Unit : IdentifiedObject, IUnit, IModelElement
+    public partial class Unit : IdentifiedObject, IUnit, IModelElement
     {
+        
+        private static Lazy<ITypedElement> _controlsReference = new Lazy<ITypedElement>(RetrieveControlsReference);
         
         /// <summary>
         /// The backing field for the Controls property
         /// </summary>
         private UnitControlsCollection _controls;
         
+        private static Lazy<ITypedElement> _protectionEquipmentsReference = new Lazy<ITypedElement>(RetrieveProtectionEquipmentsReference);
+        
         /// <summary>
         /// The backing field for the ProtectionEquipments property
         /// </summary>
         private UnitProtectionEquipmentsCollection _protectionEquipments;
+        
+        private static Lazy<ITypedElement> _measurementsReference = new Lazy<ITypedElement>(RetrieveMeasurementsReference);
         
         /// <summary>
         /// The backing field for the Measurements property
@@ -161,6 +167,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Core
             }
         }
         
+        private static ITypedElement RetrieveControlsReference()
+        {
+            return ((ITypedElement)(((ModelElement)(Unit.ClassInstance)).Resolve("Controls")));
+        }
+        
         /// <summary>
         /// Forwards CollectionChanging notifications for the Controls property to the parent model element
         /// </summary>
@@ -168,7 +179,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Core
         /// <param name="e">The original event data</param>
         private void ControlsCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("Controls", e);
+            this.OnCollectionChanging("Controls", e, _controlsReference);
         }
         
         /// <summary>
@@ -178,7 +189,12 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Core
         /// <param name="e">The original event data</param>
         private void ControlsCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("Controls", e);
+            this.OnCollectionChanged("Controls", e, _controlsReference);
+        }
+        
+        private static ITypedElement RetrieveProtectionEquipmentsReference()
+        {
+            return ((ITypedElement)(((ModelElement)(Unit.ClassInstance)).Resolve("ProtectionEquipments")));
         }
         
         /// <summary>
@@ -188,7 +204,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Core
         /// <param name="e">The original event data</param>
         private void ProtectionEquipmentsCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("ProtectionEquipments", e);
+            this.OnCollectionChanging("ProtectionEquipments", e, _protectionEquipmentsReference);
         }
         
         /// <summary>
@@ -198,7 +214,12 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Core
         /// <param name="e">The original event data</param>
         private void ProtectionEquipmentsCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("ProtectionEquipments", e);
+            this.OnCollectionChanged("ProtectionEquipments", e, _protectionEquipmentsReference);
+        }
+        
+        private static ITypedElement RetrieveMeasurementsReference()
+        {
+            return ((ITypedElement)(((ModelElement)(Unit.ClassInstance)).Resolve("Measurements")));
         }
         
         /// <summary>
@@ -208,7 +229,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Core
         /// <param name="e">The original event data</param>
         private void MeasurementsCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("Measurements", e);
+            this.OnCollectionChanging("Measurements", e, _measurementsReference);
         }
         
         /// <summary>
@@ -218,7 +239,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Core
         /// <param name="e">The original event data</param>
         private void MeasurementsCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("Measurements", e);
+            this.OnCollectionChanged("Measurements", e, _measurementsReference);
         }
         
         /// <summary>

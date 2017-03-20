@@ -45,7 +45,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfGMLSupport
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61970/Informative/InfGMLSupport/Gml" +
         "GeometryStyle")]
     [DebuggerDisplayAttribute("GmlGeometryStyle {UUID}")]
-    public class GmlGeometryStyle : IdentifiedObject, IGmlGeometryStyle, IModelElement
+    public partial class GmlGeometryStyle : IdentifiedObject, IGmlGeometryStyle, IModelElement
     {
         
         /// <summary>
@@ -53,20 +53,30 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfGMLSupport
         /// </summary>
         private string _geometryType;
         
+        private static Lazy<ITypedElement> _geometryTypeAttribute = new Lazy<ITypedElement>(RetrieveGeometryTypeAttribute);
+        
         /// <summary>
         /// The backing field for the Symbol property
         /// </summary>
         private string _symbol;
+        
+        private static Lazy<ITypedElement> _symbolAttribute = new Lazy<ITypedElement>(RetrieveSymbolAttribute);
         
         /// <summary>
         /// The backing field for the GeometryProperty property
         /// </summary>
         private string _geometryProperty;
         
+        private static Lazy<ITypedElement> _geometryPropertyAttribute = new Lazy<ITypedElement>(RetrieveGeometryPropertyAttribute);
+        
+        private static Lazy<ITypedElement> _gmlLabelStyleReference = new Lazy<ITypedElement>(RetrieveGmlLabelStyleReference);
+        
         /// <summary>
         /// The backing field for the GmlLabelStyle property
         /// </summary>
         private IGmlLabelStyle _gmlLabelStyle;
+        
+        private static Lazy<ITypedElement> _gmlFeatureStyleReference = new Lazy<ITypedElement>(RetrieveGmlFeatureStyleReference);
         
         /// <summary>
         /// The backing field for the GmlFeatureStyle property
@@ -93,10 +103,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfGMLSupport
                     string old = this._geometryType;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnGeometryTypeChanging(e);
-                    this.OnPropertyChanging("GeometryType", e);
+                    this.OnPropertyChanging("GeometryType", e, _geometryTypeAttribute);
                     this._geometryType = value;
                     this.OnGeometryTypeChanged(e);
-                    this.OnPropertyChanged("GeometryType", e);
+                    this.OnPropertyChanged("GeometryType", e, _geometryTypeAttribute);
                 }
             }
         }
@@ -119,10 +129,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfGMLSupport
                     string old = this._symbol;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnSymbolChanging(e);
-                    this.OnPropertyChanging("Symbol", e);
+                    this.OnPropertyChanging("Symbol", e, _symbolAttribute);
                     this._symbol = value;
                     this.OnSymbolChanged(e);
-                    this.OnPropertyChanged("Symbol", e);
+                    this.OnPropertyChanged("Symbol", e, _symbolAttribute);
                 }
             }
         }
@@ -145,10 +155,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfGMLSupport
                     string old = this._geometryProperty;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnGeometryPropertyChanging(e);
-                    this.OnPropertyChanging("GeometryProperty", e);
+                    this.OnPropertyChanging("GeometryProperty", e, _geometryPropertyAttribute);
                     this._geometryProperty = value;
                     this.OnGeometryPropertyChanged(e);
-                    this.OnPropertyChanged("GeometryProperty", e);
+                    this.OnPropertyChanged("GeometryProperty", e, _geometryPropertyAttribute);
                 }
             }
         }
@@ -171,7 +181,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfGMLSupport
                     IGmlLabelStyle old = this._gmlLabelStyle;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnGmlLabelStyleChanging(e);
-                    this.OnPropertyChanging("GmlLabelStyle", e);
+                    this.OnPropertyChanging("GmlLabelStyle", e, _gmlLabelStyleReference);
                     this._gmlLabelStyle = value;
                     if ((old != null))
                     {
@@ -184,7 +194,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfGMLSupport
                         value.Deleted += this.OnResetGmlLabelStyle;
                     }
                     this.OnGmlLabelStyleChanged(e);
-                    this.OnPropertyChanged("GmlLabelStyle", e);
+                    this.OnPropertyChanged("GmlLabelStyle", e, _gmlLabelStyleReference);
                 }
             }
         }
@@ -207,7 +217,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfGMLSupport
                     IGmlFeatureStyle old = this._gmlFeatureStyle;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnGmlFeatureStyleChanging(e);
-                    this.OnPropertyChanging("GmlFeatureStyle", e);
+                    this.OnPropertyChanging("GmlFeatureStyle", e, _gmlFeatureStyleReference);
                     this._gmlFeatureStyle = value;
                     if ((old != null))
                     {
@@ -220,7 +230,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfGMLSupport
                         value.Deleted += this.OnResetGmlFeatureStyle;
                     }
                     this.OnGmlFeatureStyleChanged(e);
-                    this.OnPropertyChanged("GmlFeatureStyle", e);
+                    this.OnPropertyChanged("GmlFeatureStyle", e, _gmlFeatureStyleReference);
                 }
             }
         }
@@ -302,6 +312,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfGMLSupport
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> GmlFeatureStyleChanged;
         
+        private static ITypedElement RetrieveGeometryTypeAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(GmlGeometryStyle.ClassInstance)).Resolve("geometryType")));
+        }
+        
         /// <summary>
         /// Raises the GeometryTypeChanging event
         /// </summary>
@@ -326,6 +341,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfGMLSupport
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveSymbolAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(GmlGeometryStyle.ClassInstance)).Resolve("symbol")));
         }
         
         /// <summary>
@@ -354,6 +374,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfGMLSupport
             }
         }
         
+        private static ITypedElement RetrieveGeometryPropertyAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(GmlGeometryStyle.ClassInstance)).Resolve("geometryProperty")));
+        }
+        
         /// <summary>
         /// Raises the GeometryPropertyChanging event
         /// </summary>
@@ -378,6 +403,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfGMLSupport
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveGmlLabelStyleReference()
+        {
+            return ((ITypedElement)(((ModelElement)(GmlGeometryStyle.ClassInstance)).Resolve("GmlLabelStyle")));
         }
         
         /// <summary>
@@ -414,6 +444,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfGMLSupport
         private void OnResetGmlLabelStyle(object sender, System.EventArgs eventArgs)
         {
             this.GmlLabelStyle = null;
+        }
+        
+        private static ITypedElement RetrieveGmlFeatureStyleReference()
+        {
+            return ((ITypedElement)(((ModelElement)(GmlGeometryStyle.ClassInstance)).Resolve("GmlFeatureStyle")));
         }
         
         /// <summary>
@@ -720,7 +755,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfGMLSupport
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public GeometryTypeProxy(IGmlGeometryStyle modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "geometryType")
             {
             }
             
@@ -738,24 +773,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfGMLSupport
                     this.ModelElement.GeometryType = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.GeometryTypeChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.GeometryTypeChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -769,7 +786,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfGMLSupport
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public SymbolProxy(IGmlGeometryStyle modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "symbol")
             {
             }
             
@@ -787,24 +804,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfGMLSupport
                     this.ModelElement.Symbol = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.SymbolChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.SymbolChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -818,7 +817,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfGMLSupport
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public GeometryPropertyProxy(IGmlGeometryStyle modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "geometryProperty")
             {
             }
             
@@ -836,24 +835,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfGMLSupport
                     this.ModelElement.GeometryProperty = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.GeometryPropertyChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.GeometryPropertyChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -867,7 +848,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfGMLSupport
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public GmlLabelStyleProxy(IGmlGeometryStyle modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "GmlLabelStyle")
             {
             }
             
@@ -885,24 +866,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfGMLSupport
                     this.ModelElement.GmlLabelStyle = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.GmlLabelStyleChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.GmlLabelStyleChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -916,7 +879,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfGMLSupport
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public GmlFeatureStyleProxy(IGmlGeometryStyle modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "GmlFeatureStyle")
             {
             }
             
@@ -933,24 +896,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfGMLSupport
                 {
                     this.ModelElement.GmlFeatureStyle = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.GmlFeatureStyleChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.GmlFeatureStyleChanged -= handler;
             }
         }
     }

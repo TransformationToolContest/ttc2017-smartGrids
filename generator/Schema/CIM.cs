@@ -37,8 +37,10 @@ namespace TTC2017.SmartGrids.CIM
     [XmlNamespaceAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14")]
     [XmlNamespacePrefixAttribute("cim")]
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//CIM")]
-    public class CIM : ModelElement, ICIM, IModelElement
+    public partial class CIM : ModelElement, ICIM, IModelElement
     {
+        
+        private static Lazy<ITypedElement> _iDobjectReference = new Lazy<ITypedElement>(RetrieveIDobjectReference);
         
         /// <summary>
         /// The backing field for the IDobject property
@@ -106,6 +108,11 @@ namespace TTC2017.SmartGrids.CIM
             }
         }
         
+        private static ITypedElement RetrieveIDobjectReference()
+        {
+            return ((ITypedElement)(((ModelElement)(CIM.ClassInstance)).Resolve("IDobject")));
+        }
+        
         /// <summary>
         /// Forwards CollectionChanging notifications for the IDobject property to the parent model element
         /// </summary>
@@ -113,7 +120,7 @@ namespace TTC2017.SmartGrids.CIM
         /// <param name="e">The original event data</param>
         private void IDobjectCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("IDobject", e);
+            this.OnCollectionChanging("IDobject", e, _iDobjectReference);
         }
         
         /// <summary>
@@ -123,7 +130,7 @@ namespace TTC2017.SmartGrids.CIM
         /// <param name="e">The original event data</param>
         private void IDobjectCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("IDobject", e);
+            this.OnCollectionChanged("IDobject", e, _iDobjectReference);
         }
         
         /// <summary>
@@ -175,6 +182,20 @@ namespace TTC2017.SmartGrids.CIM
                 return this._iDobject;
             }
             return base.GetCollectionForFeature(feature);
+        }
+        
+        /// <summary>
+        /// Gets the property name for the given container
+        /// </summary>
+        /// <returns>The name of the respective container reference</returns>
+        /// <param name="container">The container object</param>
+        protected override string GetCompositionName(object container)
+        {
+            if ((container == this._iDobject))
+            {
+                return "IDobject";
+            }
+            return base.GetCompositionName(container);
         }
         
         /// <summary>

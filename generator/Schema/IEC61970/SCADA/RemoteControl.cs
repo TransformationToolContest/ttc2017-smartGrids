@@ -40,7 +40,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.SCADA
     [XmlNamespacePrefixAttribute("cimSCADA")]
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61970/SCADA/RemoteControl")]
     [DebuggerDisplayAttribute("RemoteControl {UUID}")]
-    public class RemoteControl : RemotePoint, IRemoteControl, IModelElement
+    public partial class RemoteControl : RemotePoint, IRemoteControl, IModelElement
     {
         
         /// <summary>
@@ -48,15 +48,23 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.SCADA
         /// </summary>
         private float _actuatorMaximum;
         
+        private static Lazy<ITypedElement> _actuatorMaximumAttribute = new Lazy<ITypedElement>(RetrieveActuatorMaximumAttribute);
+        
         /// <summary>
         /// The backing field for the RemoteControlled property
         /// </summary>
         private bool _remoteControlled;
         
+        private static Lazy<ITypedElement> _remoteControlledAttribute = new Lazy<ITypedElement>(RetrieveRemoteControlledAttribute);
+        
         /// <summary>
         /// The backing field for the ActuatorMinimum property
         /// </summary>
         private float _actuatorMinimum;
+        
+        private static Lazy<ITypedElement> _actuatorMinimumAttribute = new Lazy<ITypedElement>(RetrieveActuatorMinimumAttribute);
+        
+        private static Lazy<ITypedElement> _controlReference = new Lazy<ITypedElement>(RetrieveControlReference);
         
         /// <summary>
         /// The backing field for the Control property
@@ -83,10 +91,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.SCADA
                     float old = this._actuatorMaximum;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnActuatorMaximumChanging(e);
-                    this.OnPropertyChanging("ActuatorMaximum", e);
+                    this.OnPropertyChanging("ActuatorMaximum", e, _actuatorMaximumAttribute);
                     this._actuatorMaximum = value;
                     this.OnActuatorMaximumChanged(e);
-                    this.OnPropertyChanged("ActuatorMaximum", e);
+                    this.OnPropertyChanged("ActuatorMaximum", e, _actuatorMaximumAttribute);
                 }
             }
         }
@@ -109,10 +117,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.SCADA
                     bool old = this._remoteControlled;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnRemoteControlledChanging(e);
-                    this.OnPropertyChanging("RemoteControlled", e);
+                    this.OnPropertyChanging("RemoteControlled", e, _remoteControlledAttribute);
                     this._remoteControlled = value;
                     this.OnRemoteControlledChanged(e);
-                    this.OnPropertyChanged("RemoteControlled", e);
+                    this.OnPropertyChanged("RemoteControlled", e, _remoteControlledAttribute);
                 }
             }
         }
@@ -135,10 +143,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.SCADA
                     float old = this._actuatorMinimum;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnActuatorMinimumChanging(e);
-                    this.OnPropertyChanging("ActuatorMinimum", e);
+                    this.OnPropertyChanging("ActuatorMinimum", e, _actuatorMinimumAttribute);
                     this._actuatorMinimum = value;
                     this.OnActuatorMinimumChanged(e);
-                    this.OnPropertyChanged("ActuatorMinimum", e);
+                    this.OnPropertyChanged("ActuatorMinimum", e, _actuatorMinimumAttribute);
                 }
             }
         }
@@ -161,7 +169,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.SCADA
                     IControl old = this._control;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnControlChanging(e);
-                    this.OnPropertyChanging("Control", e);
+                    this.OnPropertyChanging("Control", e, _controlReference);
                     this._control = value;
                     if ((old != null))
                     {
@@ -174,7 +182,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.SCADA
                         value.Deleted += this.OnResetControl;
                     }
                     this.OnControlChanged(e);
-                    this.OnPropertyChanged("Control", e);
+                    this.OnPropertyChanged("Control", e, _controlReference);
                 }
             }
         }
@@ -245,6 +253,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.SCADA
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> ControlChanged;
         
+        private static ITypedElement RetrieveActuatorMaximumAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(RemoteControl.ClassInstance)).Resolve("actuatorMaximum")));
+        }
+        
         /// <summary>
         /// Raises the ActuatorMaximumChanging event
         /// </summary>
@@ -269,6 +282,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.SCADA
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveRemoteControlledAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(RemoteControl.ClassInstance)).Resolve("remoteControlled")));
         }
         
         /// <summary>
@@ -297,6 +315,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.SCADA
             }
         }
         
+        private static ITypedElement RetrieveActuatorMinimumAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(RemoteControl.ClassInstance)).Resolve("actuatorMinimum")));
+        }
+        
         /// <summary>
         /// Raises the ActuatorMinimumChanging event
         /// </summary>
@@ -321,6 +344,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.SCADA
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveControlReference()
+        {
+            return ((ITypedElement)(((ModelElement)(RemoteControl.ClassInstance)).Resolve("Control")));
         }
         
         /// <summary>
@@ -583,7 +611,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.SCADA
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public ActuatorMaximumProxy(IRemoteControl modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "actuatorMaximum")
             {
             }
             
@@ -601,24 +629,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.SCADA
                     this.ModelElement.ActuatorMaximum = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ActuatorMaximumChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ActuatorMaximumChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -632,7 +642,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.SCADA
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public RemoteControlledProxy(IRemoteControl modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "remoteControlled")
             {
             }
             
@@ -650,24 +660,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.SCADA
                     this.ModelElement.RemoteControlled = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.RemoteControlledChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.RemoteControlledChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -681,7 +673,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.SCADA
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public ActuatorMinimumProxy(IRemoteControl modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "actuatorMinimum")
             {
             }
             
@@ -699,24 +691,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.SCADA
                     this.ModelElement.ActuatorMinimum = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ActuatorMinimumChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ActuatorMinimumChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -730,7 +704,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.SCADA
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public ControlProxy(IRemoteControl modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "Control")
             {
             }
             
@@ -747,24 +721,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.SCADA
                 {
                     this.ModelElement.Control = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ControlChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ControlChanged -= handler;
             }
         }
     }

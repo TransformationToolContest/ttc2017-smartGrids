@@ -56,7 +56,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfERPSupport
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61970/Informative/InfERPSupport/Org" +
         "OrgRole")]
     [DebuggerDisplayAttribute("OrgOrgRole {UUID}")]
-    public class OrgOrgRole : Role, IOrgOrgRole, IModelElement
+    public partial class OrgOrgRole : Role, IOrgOrgRole, IModelElement
     {
         
         /// <summary>
@@ -64,10 +64,16 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfERPSupport
         /// </summary>
         private string _clientID;
         
+        private static Lazy<ITypedElement> _clientIDAttribute = new Lazy<ITypedElement>(RetrieveClientIDAttribute);
+        
+        private static Lazy<ITypedElement> _childOrganisationReference = new Lazy<ITypedElement>(RetrieveChildOrganisationReference);
+        
         /// <summary>
         /// The backing field for the ChildOrganisation property
         /// </summary>
         private IErpOrganisation _childOrganisation;
+        
+        private static Lazy<ITypedElement> _parentOrganisationReference = new Lazy<ITypedElement>(RetrieveParentOrganisationReference);
         
         /// <summary>
         /// The backing field for the ParentOrganisation property
@@ -94,10 +100,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfERPSupport
                     string old = this._clientID;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnClientIDChanging(e);
-                    this.OnPropertyChanging("ClientID", e);
+                    this.OnPropertyChanging("ClientID", e, _clientIDAttribute);
                     this._clientID = value;
                     this.OnClientIDChanged(e);
-                    this.OnPropertyChanged("ClientID", e);
+                    this.OnPropertyChanged("ClientID", e, _clientIDAttribute);
                 }
             }
         }
@@ -120,7 +126,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfERPSupport
                     IErpOrganisation old = this._childOrganisation;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnChildOrganisationChanging(e);
-                    this.OnPropertyChanging("ChildOrganisation", e);
+                    this.OnPropertyChanging("ChildOrganisation", e, _childOrganisationReference);
                     this._childOrganisation = value;
                     if ((old != null))
                     {
@@ -133,7 +139,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfERPSupport
                         value.Deleted += this.OnResetChildOrganisation;
                     }
                     this.OnChildOrganisationChanged(e);
-                    this.OnPropertyChanged("ChildOrganisation", e);
+                    this.OnPropertyChanged("ChildOrganisation", e, _childOrganisationReference);
                 }
             }
         }
@@ -156,7 +162,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfERPSupport
                     IErpOrganisation old = this._parentOrganisation;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnParentOrganisationChanging(e);
-                    this.OnPropertyChanging("ParentOrganisation", e);
+                    this.OnPropertyChanging("ParentOrganisation", e, _parentOrganisationReference);
                     this._parentOrganisation = value;
                     if ((old != null))
                     {
@@ -169,7 +175,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfERPSupport
                         value.Deleted += this.OnResetParentOrganisation;
                     }
                     this.OnParentOrganisationChanged(e);
-                    this.OnPropertyChanged("ParentOrganisation", e);
+                    this.OnPropertyChanged("ParentOrganisation", e, _parentOrganisationReference);
                 }
             }
         }
@@ -231,6 +237,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfERPSupport
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> ParentOrganisationChanged;
         
+        private static ITypedElement RetrieveClientIDAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(OrgOrgRole.ClassInstance)).Resolve("clientID")));
+        }
+        
         /// <summary>
         /// Raises the ClientIDChanging event
         /// </summary>
@@ -255,6 +266,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfERPSupport
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveChildOrganisationReference()
+        {
+            return ((ITypedElement)(((ModelElement)(OrgOrgRole.ClassInstance)).Resolve("ChildOrganisation")));
         }
         
         /// <summary>
@@ -291,6 +307,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfERPSupport
         private void OnResetChildOrganisation(object sender, System.EventArgs eventArgs)
         {
             this.ChildOrganisation = null;
+        }
+        
+        private static ITypedElement RetrieveParentOrganisationReference()
+        {
+            return ((ITypedElement)(((ModelElement)(OrgOrgRole.ClassInstance)).Resolve("ParentOrganisation")));
         }
         
         /// <summary>
@@ -579,7 +600,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfERPSupport
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public ClientIDProxy(IOrgOrgRole modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "clientID")
             {
             }
             
@@ -597,24 +618,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfERPSupport
                     this.ModelElement.ClientID = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ClientIDChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ClientIDChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -628,7 +631,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfERPSupport
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public ChildOrganisationProxy(IOrgOrgRole modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "ChildOrganisation")
             {
             }
             
@@ -646,24 +649,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfERPSupport
                     this.ModelElement.ChildOrganisation = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ChildOrganisationChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ChildOrganisationChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -677,7 +662,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfERPSupport
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public ParentOrganisationProxy(IOrgOrgRole modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "ParentOrganisation")
             {
             }
             
@@ -694,24 +679,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfERPSupport
                 {
                     this.ModelElement.ParentOrganisation = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ParentOrganisationChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ParentOrganisationChanged -= handler;
             }
         }
     }

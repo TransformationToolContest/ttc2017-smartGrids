@@ -49,7 +49,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.EnergyScheduling
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61970/Informative/EnergyScheduling/" +
         "Block")]
     [DebuggerDisplayAttribute("Block {UUID}")]
-    public class Block : EnergyTransaction, IBlock, IModelElement
+    public partial class Block : EnergyTransaction, IBlock, IModelElement
     {
         
         private static IClass _classInstance;

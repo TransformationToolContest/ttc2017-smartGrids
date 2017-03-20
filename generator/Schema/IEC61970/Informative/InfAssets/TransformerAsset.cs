@@ -53,7 +53,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61970/Informative/InfAssets/Transfo" +
         "rmerAsset")]
     [DebuggerDisplayAttribute("TransformerAsset {UUID}")]
-    public class TransformerAsset : Asset, ITransformerAsset, IModelElement
+    public partial class TransformerAsset : Asset, ITransformerAsset, IModelElement
     {
         
         /// <summary>
@@ -61,20 +61,30 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
         /// </summary>
         private DateTime _reconditionedDateTime;
         
+        private static Lazy<ITypedElement> _reconditionedDateTimeAttribute = new Lazy<ITypedElement>(RetrieveReconditionedDateTimeAttribute);
+        
+        private static Lazy<ITypedElement> _powerRatingsReference = new Lazy<ITypedElement>(RetrievePowerRatingsReference);
+        
         /// <summary>
         /// The backing field for the PowerRatings property
         /// </summary>
         private TransformerAssetPowerRatingsCollection _powerRatings;
+        
+        private static Lazy<ITypedElement> _transformerObservationsReference = new Lazy<ITypedElement>(RetrieveTransformerObservationsReference);
         
         /// <summary>
         /// The backing field for the TransformerObservations property
         /// </summary>
         private TransformerAssetTransformerObservationsCollection _transformerObservations;
         
+        private static Lazy<ITypedElement> _transformerAssetModelReference = new Lazy<ITypedElement>(RetrieveTransformerAssetModelReference);
+        
         /// <summary>
         /// The backing field for the TransformerAssetModel property
         /// </summary>
         private ITransformerAssetModel _transformerAssetModel;
+        
+        private static Lazy<ITypedElement> _transformerInfoReference = new Lazy<ITypedElement>(RetrieveTransformerInfoReference);
         
         /// <summary>
         /// The backing field for the TransformerInfo property
@@ -111,10 +121,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
                     DateTime old = this._reconditionedDateTime;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnReconditionedDateTimeChanging(e);
-                    this.OnPropertyChanging("ReconditionedDateTime", e);
+                    this.OnPropertyChanging("ReconditionedDateTime", e, _reconditionedDateTimeAttribute);
                     this._reconditionedDateTime = value;
                     this.OnReconditionedDateTimeChanged(e);
-                    this.OnPropertyChanged("ReconditionedDateTime", e);
+                    this.OnPropertyChanged("ReconditionedDateTime", e, _reconditionedDateTimeAttribute);
                 }
             }
         }
@@ -167,7 +177,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
                     ITransformerAssetModel old = this._transformerAssetModel;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnTransformerAssetModelChanging(e);
-                    this.OnPropertyChanging("TransformerAssetModel", e);
+                    this.OnPropertyChanging("TransformerAssetModel", e, _transformerAssetModelReference);
                     this._transformerAssetModel = value;
                     if ((old != null))
                     {
@@ -180,7 +190,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
                         value.Deleted += this.OnResetTransformerAssetModel;
                     }
                     this.OnTransformerAssetModelChanged(e);
-                    this.OnPropertyChanged("TransformerAssetModel", e);
+                    this.OnPropertyChanged("TransformerAssetModel", e, _transformerAssetModelReference);
                 }
             }
         }
@@ -203,7 +213,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
                     ITransformerInfo old = this._transformerInfo;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnTransformerInfoChanging(e);
-                    this.OnPropertyChanging("TransformerInfo", e);
+                    this.OnPropertyChanging("TransformerInfo", e, _transformerInfoReference);
                     this._transformerInfo = value;
                     if ((old != null))
                     {
@@ -216,7 +226,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
                         value.Deleted += this.OnResetTransformerInfo;
                     }
                     this.OnTransformerInfoChanged(e);
-                    this.OnPropertyChanged("TransformerInfo", e);
+                    this.OnPropertyChanged("TransformerInfo", e, _transformerInfoReference);
                 }
             }
         }
@@ -278,6 +288,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> TransformerInfoChanged;
         
+        private static ITypedElement RetrieveReconditionedDateTimeAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(TransformerAsset.ClassInstance)).Resolve("reconditionedDateTime")));
+        }
+        
         /// <summary>
         /// Raises the ReconditionedDateTimeChanging event
         /// </summary>
@@ -304,6 +319,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
             }
         }
         
+        private static ITypedElement RetrievePowerRatingsReference()
+        {
+            return ((ITypedElement)(((ModelElement)(TransformerAsset.ClassInstance)).Resolve("PowerRatings")));
+        }
+        
         /// <summary>
         /// Forwards CollectionChanging notifications for the PowerRatings property to the parent model element
         /// </summary>
@@ -311,7 +331,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
         /// <param name="e">The original event data</param>
         private void PowerRatingsCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("PowerRatings", e);
+            this.OnCollectionChanging("PowerRatings", e, _powerRatingsReference);
         }
         
         /// <summary>
@@ -321,7 +341,12 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
         /// <param name="e">The original event data</param>
         private void PowerRatingsCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("PowerRatings", e);
+            this.OnCollectionChanged("PowerRatings", e, _powerRatingsReference);
+        }
+        
+        private static ITypedElement RetrieveTransformerObservationsReference()
+        {
+            return ((ITypedElement)(((ModelElement)(TransformerAsset.ClassInstance)).Resolve("TransformerObservations")));
         }
         
         /// <summary>
@@ -331,7 +356,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
         /// <param name="e">The original event data</param>
         private void TransformerObservationsCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("TransformerObservations", e);
+            this.OnCollectionChanging("TransformerObservations", e, _transformerObservationsReference);
         }
         
         /// <summary>
@@ -341,7 +366,12 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
         /// <param name="e">The original event data</param>
         private void TransformerObservationsCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("TransformerObservations", e);
+            this.OnCollectionChanged("TransformerObservations", e, _transformerObservationsReference);
+        }
+        
+        private static ITypedElement RetrieveTransformerAssetModelReference()
+        {
+            return ((ITypedElement)(((ModelElement)(TransformerAsset.ClassInstance)).Resolve("TransformerAssetModel")));
         }
         
         /// <summary>
@@ -378,6 +408,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
         private void OnResetTransformerAssetModel(object sender, System.EventArgs eventArgs)
         {
             this.TransformerAssetModel = null;
+        }
+        
+        private static ITypedElement RetrieveTransformerInfoReference()
+        {
+            return ((ITypedElement)(((ModelElement)(TransformerAsset.ClassInstance)).Resolve("TransformerInfo")));
         }
         
         /// <summary>
@@ -752,7 +787,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public ReconditionedDateTimeProxy(ITransformerAsset modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "reconditionedDateTime")
             {
             }
             
@@ -770,24 +805,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
                     this.ModelElement.ReconditionedDateTime = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ReconditionedDateTimeChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ReconditionedDateTimeChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -801,7 +818,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public TransformerAssetModelProxy(ITransformerAsset modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "TransformerAssetModel")
             {
             }
             
@@ -819,24 +836,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
                     this.ModelElement.TransformerAssetModel = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.TransformerAssetModelChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.TransformerAssetModelChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -850,7 +849,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public TransformerInfoProxy(ITransformerAsset modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "TransformerInfo")
             {
             }
             
@@ -867,24 +866,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
                 {
                     this.ModelElement.TransformerInfo = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.TransformerInfoChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.TransformerInfoChanged -= handler;
             }
         }
     }

@@ -47,7 +47,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Customers
     [XmlNamespacePrefixAttribute("cimCustomers")]
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61968/Customers/Customer")]
     [DebuggerDisplayAttribute("Customer {UUID}")]
-    public class Customer : Organisation, ICustomer, IModelElement
+    public partial class Customer : Organisation, ICustomer, IModelElement
     {
         
         /// <summary>
@@ -55,55 +55,79 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Customers
         /// </summary>
         private Nullable<CustomerKind> _kind;
         
+        private static Lazy<ITypedElement> _kindAttribute = new Lazy<ITypedElement>(RetrieveKindAttribute);
+        
         /// <summary>
         /// The backing field for the SpecialNeed property
         /// </summary>
         private string _specialNeed;
+        
+        private static Lazy<ITypedElement> _specialNeedAttribute = new Lazy<ITypedElement>(RetrieveSpecialNeedAttribute);
         
         /// <summary>
         /// The backing field for the PucNumber property
         /// </summary>
         private string _pucNumber;
         
+        private static Lazy<ITypedElement> _pucNumberAttribute = new Lazy<ITypedElement>(RetrievePucNumberAttribute);
+        
         /// <summary>
         /// The backing field for the Vip property
         /// </summary>
         private bool _vip;
+        
+        private static Lazy<ITypedElement> _vipAttribute = new Lazy<ITypedElement>(RetrieveVipAttribute);
+        
+        private static Lazy<ITypedElement> _plannedOutageReference = new Lazy<ITypedElement>(RetrievePlannedOutageReference);
         
         /// <summary>
         /// The backing field for the PlannedOutage property
         /// </summary>
         private IPlannedOutage _plannedOutage;
         
+        private static Lazy<ITypedElement> _endDeviceAssetsReference = new Lazy<ITypedElement>(RetrieveEndDeviceAssetsReference);
+        
         /// <summary>
         /// The backing field for the EndDeviceAssets property
         /// </summary>
         private CustomerEndDeviceAssetsCollection _endDeviceAssets;
+        
+        private static Lazy<ITypedElement> _statusReference = new Lazy<ITypedElement>(RetrieveStatusReference);
         
         /// <summary>
         /// The backing field for the Status property
         /// </summary>
         private IStatus _status;
         
+        private static Lazy<ITypedElement> _troubleTicketsReference = new Lazy<ITypedElement>(RetrieveTroubleTicketsReference);
+        
         /// <summary>
         /// The backing field for the TroubleTickets property
         /// </summary>
         private CustomerTroubleTicketsCollection _troubleTickets;
+        
+        private static Lazy<ITypedElement> _erpPersonsReference = new Lazy<ITypedElement>(RetrieveErpPersonsReference);
         
         /// <summary>
         /// The backing field for the ErpPersons property
         /// </summary>
         private CustomerErpPersonsCollection _erpPersons;
         
+        private static Lazy<ITypedElement> _outageNotificationsReference = new Lazy<ITypedElement>(RetrieveOutageNotificationsReference);
+        
         /// <summary>
         /// The backing field for the OutageNotifications property
         /// </summary>
         private CustomerOutageNotificationsCollection _outageNotifications;
         
+        private static Lazy<ITypedElement> _worksReference = new Lazy<ITypedElement>(RetrieveWorksReference);
+        
         /// <summary>
         /// The backing field for the Works property
         /// </summary>
         private CustomerWorksCollection _works;
+        
+        private static Lazy<ITypedElement> _customerAgreementsReference = new Lazy<ITypedElement>(RetrieveCustomerAgreementsReference);
         
         /// <summary>
         /// The backing field for the CustomerAgreements property
@@ -152,10 +176,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Customers
                     Nullable<CustomerKind> old = this._kind;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnKindChanging(e);
-                    this.OnPropertyChanging("Kind", e);
+                    this.OnPropertyChanging("Kind", e, _kindAttribute);
                     this._kind = value;
                     this.OnKindChanged(e);
-                    this.OnPropertyChanged("Kind", e);
+                    this.OnPropertyChanged("Kind", e, _kindAttribute);
                 }
             }
         }
@@ -178,10 +202,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Customers
                     string old = this._specialNeed;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnSpecialNeedChanging(e);
-                    this.OnPropertyChanging("SpecialNeed", e);
+                    this.OnPropertyChanging("SpecialNeed", e, _specialNeedAttribute);
                     this._specialNeed = value;
                     this.OnSpecialNeedChanged(e);
-                    this.OnPropertyChanged("SpecialNeed", e);
+                    this.OnPropertyChanged("SpecialNeed", e, _specialNeedAttribute);
                 }
             }
         }
@@ -204,10 +228,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Customers
                     string old = this._pucNumber;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnPucNumberChanging(e);
-                    this.OnPropertyChanging("PucNumber", e);
+                    this.OnPropertyChanging("PucNumber", e, _pucNumberAttribute);
                     this._pucNumber = value;
                     this.OnPucNumberChanged(e);
-                    this.OnPropertyChanged("PucNumber", e);
+                    this.OnPropertyChanged("PucNumber", e, _pucNumberAttribute);
                 }
             }
         }
@@ -230,10 +254,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Customers
                     bool old = this._vip;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnVipChanging(e);
-                    this.OnPropertyChanging("Vip", e);
+                    this.OnPropertyChanging("Vip", e, _vipAttribute);
                     this._vip = value;
                     this.OnVipChanged(e);
-                    this.OnPropertyChanged("Vip", e);
+                    this.OnPropertyChanged("Vip", e, _vipAttribute);
                 }
             }
         }
@@ -256,7 +280,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Customers
                     IPlannedOutage old = this._plannedOutage;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnPlannedOutageChanging(e);
-                    this.OnPropertyChanging("PlannedOutage", e);
+                    this.OnPropertyChanging("PlannedOutage", e, _plannedOutageReference);
                     this._plannedOutage = value;
                     if ((old != null))
                     {
@@ -269,7 +293,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Customers
                         value.Deleted += this.OnResetPlannedOutage;
                     }
                     this.OnPlannedOutageChanged(e);
-                    this.OnPropertyChanged("PlannedOutage", e);
+                    this.OnPropertyChanged("PlannedOutage", e, _plannedOutageReference);
                 }
             }
         }
@@ -307,7 +331,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Customers
                     IStatus old = this._status;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnStatusChanging(e);
-                    this.OnPropertyChanging("Status", e);
+                    this.OnPropertyChanging("Status", e, _statusReference);
                     this._status = value;
                     if ((old != null))
                     {
@@ -318,7 +342,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Customers
                         value.Deleted += this.OnResetStatus;
                     }
                     this.OnStatusChanged(e);
-                    this.OnPropertyChanged("Status", e);
+                    this.OnPropertyChanged("Status", e, _statusReference);
                 }
             }
         }
@@ -484,6 +508,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Customers
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> StatusChanged;
         
+        private static ITypedElement RetrieveKindAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(Customer.ClassInstance)).Resolve("kind")));
+        }
+        
         /// <summary>
         /// Raises the KindChanging event
         /// </summary>
@@ -508,6 +537,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Customers
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveSpecialNeedAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(Customer.ClassInstance)).Resolve("specialNeed")));
         }
         
         /// <summary>
@@ -536,6 +570,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Customers
             }
         }
         
+        private static ITypedElement RetrievePucNumberAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(Customer.ClassInstance)).Resolve("pucNumber")));
+        }
+        
         /// <summary>
         /// Raises the PucNumberChanging event
         /// </summary>
@@ -562,6 +601,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Customers
             }
         }
         
+        private static ITypedElement RetrieveVipAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(Customer.ClassInstance)).Resolve("vip")));
+        }
+        
         /// <summary>
         /// Raises the VipChanging event
         /// </summary>
@@ -586,6 +630,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Customers
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrievePlannedOutageReference()
+        {
+            return ((ITypedElement)(((ModelElement)(Customer.ClassInstance)).Resolve("PlannedOutage")));
         }
         
         /// <summary>
@@ -624,6 +673,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Customers
             this.PlannedOutage = null;
         }
         
+        private static ITypedElement RetrieveEndDeviceAssetsReference()
+        {
+            return ((ITypedElement)(((ModelElement)(Customer.ClassInstance)).Resolve("EndDeviceAssets")));
+        }
+        
         /// <summary>
         /// Forwards CollectionChanging notifications for the EndDeviceAssets property to the parent model element
         /// </summary>
@@ -631,7 +685,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Customers
         /// <param name="e">The original event data</param>
         private void EndDeviceAssetsCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("EndDeviceAssets", e);
+            this.OnCollectionChanging("EndDeviceAssets", e, _endDeviceAssetsReference);
         }
         
         /// <summary>
@@ -641,7 +695,12 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Customers
         /// <param name="e">The original event data</param>
         private void EndDeviceAssetsCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("EndDeviceAssets", e);
+            this.OnCollectionChanged("EndDeviceAssets", e, _endDeviceAssetsReference);
+        }
+        
+        private static ITypedElement RetrieveStatusReference()
+        {
+            return ((ITypedElement)(((ModelElement)(Customer.ClassInstance)).Resolve("status")));
         }
         
         /// <summary>
@@ -680,6 +739,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Customers
             this.Status = null;
         }
         
+        private static ITypedElement RetrieveTroubleTicketsReference()
+        {
+            return ((ITypedElement)(((ModelElement)(Customer.ClassInstance)).Resolve("TroubleTickets")));
+        }
+        
         /// <summary>
         /// Forwards CollectionChanging notifications for the TroubleTickets property to the parent model element
         /// </summary>
@@ -687,7 +751,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Customers
         /// <param name="e">The original event data</param>
         private void TroubleTicketsCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("TroubleTickets", e);
+            this.OnCollectionChanging("TroubleTickets", e, _troubleTicketsReference);
         }
         
         /// <summary>
@@ -697,7 +761,12 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Customers
         /// <param name="e">The original event data</param>
         private void TroubleTicketsCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("TroubleTickets", e);
+            this.OnCollectionChanged("TroubleTickets", e, _troubleTicketsReference);
+        }
+        
+        private static ITypedElement RetrieveErpPersonsReference()
+        {
+            return ((ITypedElement)(((ModelElement)(Customer.ClassInstance)).Resolve("ErpPersons")));
         }
         
         /// <summary>
@@ -707,7 +776,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Customers
         /// <param name="e">The original event data</param>
         private void ErpPersonsCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("ErpPersons", e);
+            this.OnCollectionChanging("ErpPersons", e, _erpPersonsReference);
         }
         
         /// <summary>
@@ -717,7 +786,12 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Customers
         /// <param name="e">The original event data</param>
         private void ErpPersonsCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("ErpPersons", e);
+            this.OnCollectionChanged("ErpPersons", e, _erpPersonsReference);
+        }
+        
+        private static ITypedElement RetrieveOutageNotificationsReference()
+        {
+            return ((ITypedElement)(((ModelElement)(Customer.ClassInstance)).Resolve("OutageNotifications")));
         }
         
         /// <summary>
@@ -727,7 +801,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Customers
         /// <param name="e">The original event data</param>
         private void OutageNotificationsCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("OutageNotifications", e);
+            this.OnCollectionChanging("OutageNotifications", e, _outageNotificationsReference);
         }
         
         /// <summary>
@@ -737,7 +811,12 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Customers
         /// <param name="e">The original event data</param>
         private void OutageNotificationsCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("OutageNotifications", e);
+            this.OnCollectionChanged("OutageNotifications", e, _outageNotificationsReference);
+        }
+        
+        private static ITypedElement RetrieveWorksReference()
+        {
+            return ((ITypedElement)(((ModelElement)(Customer.ClassInstance)).Resolve("Works")));
         }
         
         /// <summary>
@@ -747,7 +826,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Customers
         /// <param name="e">The original event data</param>
         private void WorksCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("Works", e);
+            this.OnCollectionChanging("Works", e, _worksReference);
         }
         
         /// <summary>
@@ -757,7 +836,12 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Customers
         /// <param name="e">The original event data</param>
         private void WorksCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("Works", e);
+            this.OnCollectionChanged("Works", e, _worksReference);
+        }
+        
+        private static ITypedElement RetrieveCustomerAgreementsReference()
+        {
+            return ((ITypedElement)(((ModelElement)(Customer.ClassInstance)).Resolve("CustomerAgreements")));
         }
         
         /// <summary>
@@ -767,7 +851,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Customers
         /// <param name="e">The original event data</param>
         private void CustomerAgreementsCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("CustomerAgreements", e);
+            this.OnCollectionChanging("CustomerAgreements", e, _customerAgreementsReference);
         }
         
         /// <summary>
@@ -777,7 +861,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Customers
         /// <param name="e">The original event data</param>
         private void CustomerAgreementsCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("CustomerAgreements", e);
+            this.OnCollectionChanged("CustomerAgreements", e, _customerAgreementsReference);
         }
         
         /// <summary>
@@ -1294,7 +1378,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Customers
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public KindProxy(ICustomer modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "kind")
             {
             }
             
@@ -1312,24 +1396,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Customers
                     this.ModelElement.Kind = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.KindChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.KindChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1343,7 +1409,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Customers
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public SpecialNeedProxy(ICustomer modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "specialNeed")
             {
             }
             
@@ -1361,24 +1427,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Customers
                     this.ModelElement.SpecialNeed = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.SpecialNeedChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.SpecialNeedChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1392,7 +1440,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Customers
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public PucNumberProxy(ICustomer modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "pucNumber")
             {
             }
             
@@ -1410,24 +1458,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Customers
                     this.ModelElement.PucNumber = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.PucNumberChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.PucNumberChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1441,7 +1471,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Customers
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public VipProxy(ICustomer modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "vip")
             {
             }
             
@@ -1459,24 +1489,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Customers
                     this.ModelElement.Vip = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.VipChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.VipChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1490,7 +1502,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Customers
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public PlannedOutageProxy(ICustomer modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "PlannedOutage")
             {
             }
             
@@ -1508,24 +1520,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Customers
                     this.ModelElement.PlannedOutage = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.PlannedOutageChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.PlannedOutageChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1539,7 +1533,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Customers
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public StatusProxy(ICustomer modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "status")
             {
             }
             
@@ -1556,24 +1550,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Customers
                 {
                     this.ModelElement.Status = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.StatusChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.StatusChanged -= handler;
             }
         }
     }

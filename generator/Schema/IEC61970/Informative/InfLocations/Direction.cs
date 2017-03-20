@@ -46,13 +46,17 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfLocations
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61970/Informative/InfLocations/Dire" +
         "ction")]
     [DebuggerDisplayAttribute("Direction {UUID}")]
-    public class Direction : Element, IDirection, IModelElement
+    public partial class Direction : Element, IDirection, IModelElement
     {
         
         /// <summary>
         /// The backing field for the DirectionInfo property
         /// </summary>
         private string _directionInfo;
+        
+        private static Lazy<ITypedElement> _directionInfoAttribute = new Lazy<ITypedElement>(RetrieveDirectionInfoAttribute);
+        
+        private static Lazy<ITypedElement> _locationReference = new Lazy<ITypedElement>(RetrieveLocationReference);
         
         /// <summary>
         /// The backing field for the Location property
@@ -79,10 +83,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfLocations
                     string old = this._directionInfo;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnDirectionInfoChanging(e);
-                    this.OnPropertyChanging("DirectionInfo", e);
+                    this.OnPropertyChanging("DirectionInfo", e, _directionInfoAttribute);
                     this._directionInfo = value;
                     this.OnDirectionInfoChanged(e);
-                    this.OnPropertyChanged("DirectionInfo", e);
+                    this.OnPropertyChanged("DirectionInfo", e, _directionInfoAttribute);
                 }
             }
         }
@@ -105,7 +109,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfLocations
                     ILocation old = this._location;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnLocationChanging(e);
-                    this.OnPropertyChanging("Location", e);
+                    this.OnPropertyChanging("Location", e, _locationReference);
                     this._location = value;
                     if ((old != null))
                     {
@@ -118,7 +122,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfLocations
                         value.Deleted += this.OnResetLocation;
                     }
                     this.OnLocationChanged(e);
-                    this.OnPropertyChanged("Location", e);
+                    this.OnPropertyChanged("Location", e, _locationReference);
                 }
             }
         }
@@ -170,6 +174,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfLocations
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> LocationChanged;
         
+        private static ITypedElement RetrieveDirectionInfoAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(Direction.ClassInstance)).Resolve("directionInfo")));
+        }
+        
         /// <summary>
         /// Raises the DirectionInfoChanging event
         /// </summary>
@@ -194,6 +203,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfLocations
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveLocationReference()
+        {
+            return ((ITypedElement)(((ModelElement)(Direction.ClassInstance)).Resolve("Location")));
         }
         
         /// <summary>
@@ -439,7 +453,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfLocations
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public DirectionInfoProxy(IDirection modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "directionInfo")
             {
             }
             
@@ -457,24 +471,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfLocations
                     this.ModelElement.DirectionInfo = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.DirectionInfoChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.DirectionInfoChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -488,7 +484,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfLocations
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public LocationProxy(IDirection modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "Location")
             {
             }
             
@@ -505,24 +501,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfLocations
                 {
                     this.ModelElement.Location = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.LocationChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.LocationChanged -= handler;
             }
         }
     }

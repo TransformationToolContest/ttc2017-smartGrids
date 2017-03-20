@@ -53,7 +53,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
     [XmlNamespacePrefixAttribute("cimWires")]
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61970/Wires/EnergyConsumer")]
     [DebuggerDisplayAttribute("EnergyConsumer {UUID}")]
-    public class EnergyConsumer : ConductingEquipment, IEnergyConsumer, IModelElement
+    public partial class EnergyConsumer : ConductingEquipment, IEnergyConsumer, IModelElement
     {
         
         /// <summary>
@@ -61,35 +61,51 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
         /// </summary>
         private float _pfixed;
         
+        private static Lazy<ITypedElement> _pfixedAttribute = new Lazy<ITypedElement>(RetrievePfixedAttribute);
+        
         /// <summary>
         /// The backing field for the QfixedPct property
         /// </summary>
         private float _qfixedPct;
+        
+        private static Lazy<ITypedElement> _qfixedPctAttribute = new Lazy<ITypedElement>(RetrieveQfixedPctAttribute);
         
         /// <summary>
         /// The backing field for the CustomerCount property
         /// </summary>
         private int _customerCount;
         
+        private static Lazy<ITypedElement> _customerCountAttribute = new Lazy<ITypedElement>(RetrieveCustomerCountAttribute);
+        
         /// <summary>
         /// The backing field for the PfixedPct property
         /// </summary>
         private float _pfixedPct;
+        
+        private static Lazy<ITypedElement> _pfixedPctAttribute = new Lazy<ITypedElement>(RetrievePfixedPctAttribute);
         
         /// <summary>
         /// The backing field for the Qfixed property
         /// </summary>
         private float _qfixed;
         
+        private static Lazy<ITypedElement> _qfixedAttribute = new Lazy<ITypedElement>(RetrieveQfixedAttribute);
+        
+        private static Lazy<ITypedElement> _serviceDeliveryPointsReference = new Lazy<ITypedElement>(RetrieveServiceDeliveryPointsReference);
+        
         /// <summary>
         /// The backing field for the ServiceDeliveryPoints property
         /// </summary>
         private EnergyConsumerServiceDeliveryPointsCollection _serviceDeliveryPoints;
         
+        private static Lazy<ITypedElement> _powerCutZoneReference = new Lazy<ITypedElement>(RetrievePowerCutZoneReference);
+        
         /// <summary>
         /// The backing field for the PowerCutZone property
         /// </summary>
         private IPowerCutZone _powerCutZone;
+        
+        private static Lazy<ITypedElement> _loadResponseReference = new Lazy<ITypedElement>(RetrieveLoadResponseReference);
         
         /// <summary>
         /// The backing field for the LoadResponse property
@@ -123,10 +139,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
                     float old = this._pfixed;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnPfixedChanging(e);
-                    this.OnPropertyChanging("Pfixed", e);
+                    this.OnPropertyChanging("Pfixed", e, _pfixedAttribute);
                     this._pfixed = value;
                     this.OnPfixedChanged(e);
-                    this.OnPropertyChanged("Pfixed", e);
+                    this.OnPropertyChanged("Pfixed", e, _pfixedAttribute);
                 }
             }
         }
@@ -149,10 +165,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
                     float old = this._qfixedPct;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnQfixedPctChanging(e);
-                    this.OnPropertyChanging("QfixedPct", e);
+                    this.OnPropertyChanging("QfixedPct", e, _qfixedPctAttribute);
                     this._qfixedPct = value;
                     this.OnQfixedPctChanged(e);
-                    this.OnPropertyChanged("QfixedPct", e);
+                    this.OnPropertyChanged("QfixedPct", e, _qfixedPctAttribute);
                 }
             }
         }
@@ -175,10 +191,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
                     int old = this._customerCount;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnCustomerCountChanging(e);
-                    this.OnPropertyChanging("CustomerCount", e);
+                    this.OnPropertyChanging("CustomerCount", e, _customerCountAttribute);
                     this._customerCount = value;
                     this.OnCustomerCountChanged(e);
-                    this.OnPropertyChanged("CustomerCount", e);
+                    this.OnPropertyChanged("CustomerCount", e, _customerCountAttribute);
                 }
             }
         }
@@ -201,10 +217,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
                     float old = this._pfixedPct;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnPfixedPctChanging(e);
-                    this.OnPropertyChanging("PfixedPct", e);
+                    this.OnPropertyChanging("PfixedPct", e, _pfixedPctAttribute);
                     this._pfixedPct = value;
                     this.OnPfixedPctChanged(e);
-                    this.OnPropertyChanged("PfixedPct", e);
+                    this.OnPropertyChanged("PfixedPct", e, _pfixedPctAttribute);
                 }
             }
         }
@@ -227,10 +243,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
                     float old = this._qfixed;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnQfixedChanging(e);
-                    this.OnPropertyChanging("Qfixed", e);
+                    this.OnPropertyChanging("Qfixed", e, _qfixedAttribute);
                     this._qfixed = value;
                     this.OnQfixedChanged(e);
-                    this.OnPropertyChanged("Qfixed", e);
+                    this.OnPropertyChanged("Qfixed", e, _qfixedAttribute);
                 }
             }
         }
@@ -268,7 +284,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
                     IPowerCutZone old = this._powerCutZone;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnPowerCutZoneChanging(e);
-                    this.OnPropertyChanging("PowerCutZone", e);
+                    this.OnPropertyChanging("PowerCutZone", e, _powerCutZoneReference);
                     this._powerCutZone = value;
                     if ((old != null))
                     {
@@ -281,7 +297,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
                         value.Deleted += this.OnResetPowerCutZone;
                     }
                     this.OnPowerCutZoneChanged(e);
-                    this.OnPropertyChanged("PowerCutZone", e);
+                    this.OnPropertyChanged("PowerCutZone", e, _powerCutZoneReference);
                 }
             }
         }
@@ -304,7 +320,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
                     ILoadResponseCharacteristic old = this._loadResponse;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnLoadResponseChanging(e);
-                    this.OnPropertyChanging("LoadResponse", e);
+                    this.OnPropertyChanging("LoadResponse", e, _loadResponseReference);
                     this._loadResponse = value;
                     if ((old != null))
                     {
@@ -317,7 +333,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
                         value.Deleted += this.OnResetLoadResponse;
                     }
                     this.OnLoadResponseChanged(e);
-                    this.OnPropertyChanged("LoadResponse", e);
+                    this.OnPropertyChanged("LoadResponse", e, _loadResponseReference);
                 }
             }
         }
@@ -418,6 +434,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> LoadResponseChanged;
         
+        private static ITypedElement RetrievePfixedAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(EnergyConsumer.ClassInstance)).Resolve("pfixed")));
+        }
+        
         /// <summary>
         /// Raises the PfixedChanging event
         /// </summary>
@@ -442,6 +463,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveQfixedPctAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(EnergyConsumer.ClassInstance)).Resolve("qfixedPct")));
         }
         
         /// <summary>
@@ -470,6 +496,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
             }
         }
         
+        private static ITypedElement RetrieveCustomerCountAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(EnergyConsumer.ClassInstance)).Resolve("customerCount")));
+        }
+        
         /// <summary>
         /// Raises the CustomerCountChanging event
         /// </summary>
@@ -494,6 +525,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrievePfixedPctAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(EnergyConsumer.ClassInstance)).Resolve("pfixedPct")));
         }
         
         /// <summary>
@@ -522,6 +558,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
             }
         }
         
+        private static ITypedElement RetrieveQfixedAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(EnergyConsumer.ClassInstance)).Resolve("qfixed")));
+        }
+        
         /// <summary>
         /// Raises the QfixedChanging event
         /// </summary>
@@ -548,6 +589,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
             }
         }
         
+        private static ITypedElement RetrieveServiceDeliveryPointsReference()
+        {
+            return ((ITypedElement)(((ModelElement)(EnergyConsumer.ClassInstance)).Resolve("ServiceDeliveryPoints")));
+        }
+        
         /// <summary>
         /// Forwards CollectionChanging notifications for the ServiceDeliveryPoints property to the parent model element
         /// </summary>
@@ -555,7 +601,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
         /// <param name="e">The original event data</param>
         private void ServiceDeliveryPointsCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("ServiceDeliveryPoints", e);
+            this.OnCollectionChanging("ServiceDeliveryPoints", e, _serviceDeliveryPointsReference);
         }
         
         /// <summary>
@@ -565,7 +611,12 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
         /// <param name="e">The original event data</param>
         private void ServiceDeliveryPointsCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("ServiceDeliveryPoints", e);
+            this.OnCollectionChanged("ServiceDeliveryPoints", e, _serviceDeliveryPointsReference);
+        }
+        
+        private static ITypedElement RetrievePowerCutZoneReference()
+        {
+            return ((ITypedElement)(((ModelElement)(EnergyConsumer.ClassInstance)).Resolve("PowerCutZone")));
         }
         
         /// <summary>
@@ -602,6 +653,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
         private void OnResetPowerCutZone(object sender, System.EventArgs eventArgs)
         {
             this.PowerCutZone = null;
+        }
+        
+        private static ITypedElement RetrieveLoadResponseReference()
+        {
+            return ((ITypedElement)(((ModelElement)(EnergyConsumer.ClassInstance)).Resolve("LoadResponse")));
         }
         
         /// <summary>
@@ -973,7 +1029,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public PfixedProxy(IEnergyConsumer modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "pfixed")
             {
             }
             
@@ -991,24 +1047,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
                     this.ModelElement.Pfixed = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.PfixedChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.PfixedChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1022,7 +1060,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public QfixedPctProxy(IEnergyConsumer modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "qfixedPct")
             {
             }
             
@@ -1040,24 +1078,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
                     this.ModelElement.QfixedPct = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.QfixedPctChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.QfixedPctChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1071,7 +1091,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public CustomerCountProxy(IEnergyConsumer modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "customerCount")
             {
             }
             
@@ -1089,24 +1109,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
                     this.ModelElement.CustomerCount = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.CustomerCountChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.CustomerCountChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1120,7 +1122,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public PfixedPctProxy(IEnergyConsumer modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "pfixedPct")
             {
             }
             
@@ -1138,24 +1140,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
                     this.ModelElement.PfixedPct = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.PfixedPctChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.PfixedPctChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1169,7 +1153,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public QfixedProxy(IEnergyConsumer modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "qfixed")
             {
             }
             
@@ -1187,24 +1171,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
                     this.ModelElement.Qfixed = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.QfixedChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.QfixedChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1218,7 +1184,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public PowerCutZoneProxy(IEnergyConsumer modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "PowerCutZone")
             {
             }
             
@@ -1236,24 +1202,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
                     this.ModelElement.PowerCutZone = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.PowerCutZoneChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.PowerCutZoneChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1267,7 +1215,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public LoadResponseProxy(IEnergyConsumer modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "LoadResponse")
             {
             }
             
@@ -1284,24 +1232,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
                 {
                     this.ModelElement.LoadResponse = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.LoadResponseChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.LoadResponseChanged -= handler;
             }
         }
     }

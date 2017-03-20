@@ -54,7 +54,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Metering
     [XmlNamespacePrefixAttribute("cimMetering")]
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61968/Metering/Register")]
     [DebuggerDisplayAttribute("Register {UUID}")]
-    public class Register : IdentifiedObject, IRegister, IModelElement
+    public partial class Register : IdentifiedObject, IRegister, IModelElement
     {
         
         /// <summary>
@@ -62,15 +62,23 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Metering
         /// </summary>
         private int _leftDigitCount;
         
+        private static Lazy<ITypedElement> _leftDigitCountAttribute = new Lazy<ITypedElement>(RetrieveLeftDigitCountAttribute);
+        
         /// <summary>
         /// The backing field for the RightDigitCount property
         /// </summary>
         private int _rightDigitCount;
         
+        private static Lazy<ITypedElement> _rightDigitCountAttribute = new Lazy<ITypedElement>(RetrieveRightDigitCountAttribute);
+        
+        private static Lazy<ITypedElement> _readingTypeReference = new Lazy<ITypedElement>(RetrieveReadingTypeReference);
+        
         /// <summary>
         /// The backing field for the ReadingType property
         /// </summary>
         private IReadingType _readingType;
+        
+        private static Lazy<ITypedElement> _deviceFunctionReference = new Lazy<ITypedElement>(RetrieveDeviceFunctionReference);
         
         /// <summary>
         /// The backing field for the DeviceFunction property
@@ -97,10 +105,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Metering
                     int old = this._leftDigitCount;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnLeftDigitCountChanging(e);
-                    this.OnPropertyChanging("LeftDigitCount", e);
+                    this.OnPropertyChanging("LeftDigitCount", e, _leftDigitCountAttribute);
                     this._leftDigitCount = value;
                     this.OnLeftDigitCountChanged(e);
-                    this.OnPropertyChanged("LeftDigitCount", e);
+                    this.OnPropertyChanged("LeftDigitCount", e, _leftDigitCountAttribute);
                 }
             }
         }
@@ -123,10 +131,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Metering
                     int old = this._rightDigitCount;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnRightDigitCountChanging(e);
-                    this.OnPropertyChanging("RightDigitCount", e);
+                    this.OnPropertyChanging("RightDigitCount", e, _rightDigitCountAttribute);
                     this._rightDigitCount = value;
                     this.OnRightDigitCountChanged(e);
-                    this.OnPropertyChanged("RightDigitCount", e);
+                    this.OnPropertyChanged("RightDigitCount", e, _rightDigitCountAttribute);
                 }
             }
         }
@@ -149,7 +157,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Metering
                     IReadingType old = this._readingType;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnReadingTypeChanging(e);
-                    this.OnPropertyChanging("ReadingType", e);
+                    this.OnPropertyChanging("ReadingType", e, _readingTypeReference);
                     this._readingType = value;
                     if ((old != null))
                     {
@@ -162,7 +170,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Metering
                         value.Deleted += this.OnResetReadingType;
                     }
                     this.OnReadingTypeChanged(e);
-                    this.OnPropertyChanged("ReadingType", e);
+                    this.OnPropertyChanged("ReadingType", e, _readingTypeReference);
                 }
             }
         }
@@ -185,7 +193,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Metering
                     IDeviceFunction old = this._deviceFunction;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnDeviceFunctionChanging(e);
-                    this.OnPropertyChanging("DeviceFunction", e);
+                    this.OnPropertyChanging("DeviceFunction", e, _deviceFunctionReference);
                     this._deviceFunction = value;
                     if ((old != null))
                     {
@@ -198,7 +206,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Metering
                         value.Deleted += this.OnResetDeviceFunction;
                     }
                     this.OnDeviceFunctionChanged(e);
-                    this.OnPropertyChanged("DeviceFunction", e);
+                    this.OnPropertyChanged("DeviceFunction", e, _deviceFunctionReference);
                 }
             }
         }
@@ -269,6 +277,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Metering
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> DeviceFunctionChanged;
         
+        private static ITypedElement RetrieveLeftDigitCountAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(Register.ClassInstance)).Resolve("leftDigitCount")));
+        }
+        
         /// <summary>
         /// Raises the LeftDigitCountChanging event
         /// </summary>
@@ -295,6 +308,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Metering
             }
         }
         
+        private static ITypedElement RetrieveRightDigitCountAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(Register.ClassInstance)).Resolve("rightDigitCount")));
+        }
+        
         /// <summary>
         /// Raises the RightDigitCountChanging event
         /// </summary>
@@ -319,6 +337,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Metering
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveReadingTypeReference()
+        {
+            return ((ITypedElement)(((ModelElement)(Register.ClassInstance)).Resolve("ReadingType")));
         }
         
         /// <summary>
@@ -355,6 +378,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Metering
         private void OnResetReadingType(object sender, System.EventArgs eventArgs)
         {
             this.ReadingType = null;
+        }
+        
+        private static ITypedElement RetrieveDeviceFunctionReference()
+        {
+            return ((ITypedElement)(((ModelElement)(Register.ClassInstance)).Resolve("DeviceFunction")));
         }
         
         /// <summary>
@@ -651,7 +679,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Metering
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public LeftDigitCountProxy(IRegister modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "leftDigitCount")
             {
             }
             
@@ -669,24 +697,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Metering
                     this.ModelElement.LeftDigitCount = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.LeftDigitCountChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.LeftDigitCountChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -700,7 +710,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Metering
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public RightDigitCountProxy(IRegister modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "rightDigitCount")
             {
             }
             
@@ -718,24 +728,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Metering
                     this.ModelElement.RightDigitCount = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.RightDigitCountChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.RightDigitCountChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -749,7 +741,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Metering
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public ReadingTypeProxy(IRegister modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "ReadingType")
             {
             }
             
@@ -767,24 +759,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Metering
                     this.ModelElement.ReadingType = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ReadingTypeChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ReadingTypeChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -798,7 +772,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Metering
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public DeviceFunctionProxy(IRegister modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "DeviceFunction")
             {
             }
             
@@ -815,24 +789,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Metering
                 {
                     this.ModelElement.DeviceFunction = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.DeviceFunctionChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.DeviceFunctionChanged -= handler;
             }
         }
     }

@@ -41,8 +41,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Contingency
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61970/Contingency/ContingencyElemen" +
         "t")]
     [DebuggerDisplayAttribute("ContingencyElement {UUID}")]
-    public class ContingencyElement : IdentifiedObject, IContingencyElement, IModelElement
+    public partial class ContingencyElement : IdentifiedObject, IContingencyElement, IModelElement
     {
+        
+        private static Lazy<ITypedElement> _contingencyReference = new Lazy<ITypedElement>(RetrieveContingencyReference);
         
         /// <summary>
         /// The backing field for the Contingency property
@@ -69,7 +71,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Contingency
                     IContingency old = this._contingency;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnContingencyChanging(e);
-                    this.OnPropertyChanging("Contingency", e);
+                    this.OnPropertyChanging("Contingency", e, _contingencyReference);
                     this._contingency = value;
                     if ((old != null))
                     {
@@ -82,7 +84,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Contingency
                         value.Deleted += this.OnResetContingency;
                     }
                     this.OnContingencyChanged(e);
-                    this.OnPropertyChanged("Contingency", e);
+                    this.OnPropertyChanged("Contingency", e, _contingencyReference);
                 }
             }
         }
@@ -123,6 +125,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Contingency
         /// Gets fired when the Contingency property changed its value
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> ContingencyChanged;
+        
+        private static ITypedElement RetrieveContingencyReference()
+        {
+            return ((ITypedElement)(((ModelElement)(ContingencyElement.ClassInstance)).Resolve("Contingency")));
+        }
         
         /// <summary>
         /// Raises the ContingencyChanging event
@@ -347,7 +354,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Contingency
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public ContingencyProxy(IContingencyElement modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "Contingency")
             {
             }
             
@@ -364,24 +371,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Contingency
                 {
                     this.ModelElement.Contingency = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ContingencyChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ContingencyChanged -= handler;
             }
         }
     }

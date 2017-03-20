@@ -39,7 +39,7 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
     [XmlNamespacePrefixAttribute("objects")]
     [ModelRepresentationClassAttribute("http://www.transformation-tool-contest.eu/2017/smartGrids/cosem#//COSEMObjects/Li" +
         "miterObject")]
-    public class LimiterObject : Limiter, ILimiterObject, IModelElement
+    public partial class LimiterObject : Limiter, ILimiterObject, IModelElement
     {
         
         private static IClass _classInstance;

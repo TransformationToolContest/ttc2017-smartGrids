@@ -49,28 +49,38 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.EnergyScheduling
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61970/Informative/EnergyScheduling/" +
         "EnergyProduct")]
     [DebuggerDisplayAttribute("EnergyProduct {UUID}")]
-    public class EnergyProduct : Agreement, IEnergyProduct, IModelElement
+    public partial class EnergyProduct : Agreement, IEnergyProduct, IModelElement
     {
+        
+        private static Lazy<ITypedElement> _generationProviderReference = new Lazy<ITypedElement>(RetrieveGenerationProviderReference);
         
         /// <summary>
         /// The backing field for the GenerationProvider property
         /// </summary>
         private IGenerationProvider _generationProvider;
         
+        private static Lazy<ITypedElement> _titleHeldBy_MarketerReference = new Lazy<ITypedElement>(RetrieveTitleHeldBy_MarketerReference);
+        
         /// <summary>
         /// The backing field for the TitleHeldBy_Marketer property
         /// </summary>
         private IMarketer _titleHeldBy_Marketer;
+        
+        private static Lazy<ITypedElement> _energyTransactionsReference = new Lazy<ITypedElement>(RetrieveEnergyTransactionsReference);
         
         /// <summary>
         /// The backing field for the EnergyTransactions property
         /// </summary>
         private EnergyProductEnergyTransactionsCollection _energyTransactions;
         
+        private static Lazy<ITypedElement> _resoldBy_MarketersReference = new Lazy<ITypedElement>(RetrieveResoldBy_MarketersReference);
+        
         /// <summary>
         /// The backing field for the ResoldBy_Marketers property
         /// </summary>
         private EnergyProductResoldBy_MarketersCollection _resoldBy_Marketers;
+        
+        private static Lazy<ITypedElement> _servicePointReference = new Lazy<ITypedElement>(RetrieveServicePointReference);
         
         /// <summary>
         /// The backing field for the ServicePoint property
@@ -110,7 +120,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.EnergyScheduling
                     IGenerationProvider old = this._generationProvider;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnGenerationProviderChanging(e);
-                    this.OnPropertyChanging("GenerationProvider", e);
+                    this.OnPropertyChanging("GenerationProvider", e, _generationProviderReference);
                     this._generationProvider = value;
                     if ((old != null))
                     {
@@ -123,7 +133,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.EnergyScheduling
                         value.Deleted += this.OnResetGenerationProvider;
                     }
                     this.OnGenerationProviderChanged(e);
-                    this.OnPropertyChanged("GenerationProvider", e);
+                    this.OnPropertyChanged("GenerationProvider", e, _generationProviderReference);
                 }
             }
         }
@@ -146,7 +156,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.EnergyScheduling
                     IMarketer old = this._titleHeldBy_Marketer;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnTitleHeldBy_MarketerChanging(e);
-                    this.OnPropertyChanging("TitleHeldBy_Marketer", e);
+                    this.OnPropertyChanging("TitleHeldBy_Marketer", e, _titleHeldBy_MarketerReference);
                     this._titleHeldBy_Marketer = value;
                     if ((old != null))
                     {
@@ -159,7 +169,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.EnergyScheduling
                         value.Deleted += this.OnResetTitleHeldBy_Marketer;
                     }
                     this.OnTitleHeldBy_MarketerChanged(e);
-                    this.OnPropertyChanged("TitleHeldBy_Marketer", e);
+                    this.OnPropertyChanged("TitleHeldBy_Marketer", e, _titleHeldBy_MarketerReference);
                 }
             }
         }
@@ -256,6 +266,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.EnergyScheduling
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> TitleHeldBy_MarketerChanged;
         
+        private static ITypedElement RetrieveGenerationProviderReference()
+        {
+            return ((ITypedElement)(((ModelElement)(EnergyProduct.ClassInstance)).Resolve("GenerationProvider")));
+        }
+        
         /// <summary>
         /// Raises the GenerationProviderChanging event
         /// </summary>
@@ -290,6 +305,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.EnergyScheduling
         private void OnResetGenerationProvider(object sender, System.EventArgs eventArgs)
         {
             this.GenerationProvider = null;
+        }
+        
+        private static ITypedElement RetrieveTitleHeldBy_MarketerReference()
+        {
+            return ((ITypedElement)(((ModelElement)(EnergyProduct.ClassInstance)).Resolve("TitleHeldBy_Marketer")));
         }
         
         /// <summary>
@@ -328,6 +348,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.EnergyScheduling
             this.TitleHeldBy_Marketer = null;
         }
         
+        private static ITypedElement RetrieveEnergyTransactionsReference()
+        {
+            return ((ITypedElement)(((ModelElement)(EnergyProduct.ClassInstance)).Resolve("EnergyTransactions")));
+        }
+        
         /// <summary>
         /// Forwards CollectionChanging notifications for the EnergyTransactions property to the parent model element
         /// </summary>
@@ -335,7 +360,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.EnergyScheduling
         /// <param name="e">The original event data</param>
         private void EnergyTransactionsCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("EnergyTransactions", e);
+            this.OnCollectionChanging("EnergyTransactions", e, _energyTransactionsReference);
         }
         
         /// <summary>
@@ -345,7 +370,12 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.EnergyScheduling
         /// <param name="e">The original event data</param>
         private void EnergyTransactionsCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("EnergyTransactions", e);
+            this.OnCollectionChanged("EnergyTransactions", e, _energyTransactionsReference);
+        }
+        
+        private static ITypedElement RetrieveResoldBy_MarketersReference()
+        {
+            return ((ITypedElement)(((ModelElement)(EnergyProduct.ClassInstance)).Resolve("ResoldBy_Marketers")));
         }
         
         /// <summary>
@@ -355,7 +385,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.EnergyScheduling
         /// <param name="e">The original event data</param>
         private void ResoldBy_MarketersCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("ResoldBy_Marketers", e);
+            this.OnCollectionChanging("ResoldBy_Marketers", e, _resoldBy_MarketersReference);
         }
         
         /// <summary>
@@ -365,7 +395,12 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.EnergyScheduling
         /// <param name="e">The original event data</param>
         private void ResoldBy_MarketersCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("ResoldBy_Marketers", e);
+            this.OnCollectionChanged("ResoldBy_Marketers", e, _resoldBy_MarketersReference);
+        }
+        
+        private static ITypedElement RetrieveServicePointReference()
+        {
+            return ((ITypedElement)(((ModelElement)(EnergyProduct.ClassInstance)).Resolve("ServicePoint")));
         }
         
         /// <summary>
@@ -375,7 +410,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.EnergyScheduling
         /// <param name="e">The original event data</param>
         private void ServicePointCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("ServicePoint", e);
+            this.OnCollectionChanging("ServicePoint", e, _servicePointReference);
         }
         
         /// <summary>
@@ -385,7 +420,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.EnergyScheduling
         /// <param name="e">The original event data</param>
         private void ServicePointCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("ServicePoint", e);
+            this.OnCollectionChanged("ServicePoint", e, _servicePointReference);
         }
         
         /// <summary>
@@ -742,7 +777,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.EnergyScheduling
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public GenerationProviderProxy(IEnergyProduct modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "GenerationProvider")
             {
             }
             
@@ -760,24 +795,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.EnergyScheduling
                     this.ModelElement.GenerationProvider = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.GenerationProviderChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.GenerationProviderChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -791,7 +808,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.EnergyScheduling
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public TitleHeldBy_MarketerProxy(IEnergyProduct modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "TitleHeldBy_Marketer")
             {
             }
             
@@ -808,24 +825,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.EnergyScheduling
                 {
                     this.ModelElement.TitleHeldBy_Marketer = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.TitleHeldBy_MarketerChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.TitleHeldBy_MarketerChanged -= handler;
             }
         }
     }

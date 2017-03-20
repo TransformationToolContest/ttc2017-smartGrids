@@ -46,7 +46,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61970/Generation/Production/Startup" +
         "Model")]
     [DebuggerDisplayAttribute("StartupModel {UUID}")]
-    public class StartupModel : IdentifiedObject, IStartupModel, IModelElement
+    public partial class StartupModel : IdentifiedObject, IStartupModel, IModelElement
     {
         
         /// <summary>
@@ -54,65 +54,93 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
         /// </summary>
         private float _fixedMaintCost;
         
+        private static Lazy<ITypedElement> _fixedMaintCostAttribute = new Lazy<ITypedElement>(RetrieveFixedMaintCostAttribute);
+        
         /// <summary>
         /// The backing field for the RiskFactorCost property
         /// </summary>
         private float _riskFactorCost;
+        
+        private static Lazy<ITypedElement> _riskFactorCostAttribute = new Lazy<ITypedElement>(RetrieveRiskFactorCostAttribute);
         
         /// <summary>
         /// The backing field for the StbyAuxP property
         /// </summary>
         private float _stbyAuxP;
         
+        private static Lazy<ITypedElement> _stbyAuxPAttribute = new Lazy<ITypedElement>(RetrieveStbyAuxPAttribute);
+        
         /// <summary>
         /// The backing field for the StartupDate property
         /// </summary>
         private DateTime _startupDate;
+        
+        private static Lazy<ITypedElement> _startupDateAttribute = new Lazy<ITypedElement>(RetrieveStartupDateAttribute);
         
         /// <summary>
         /// The backing field for the MinimumDownTime property
         /// </summary>
         private float _minimumDownTime;
         
+        private static Lazy<ITypedElement> _minimumDownTimeAttribute = new Lazy<ITypedElement>(RetrieveMinimumDownTimeAttribute);
+        
         /// <summary>
         /// The backing field for the MinimumRunTime property
         /// </summary>
         private float _minimumRunTime;
+        
+        private static Lazy<ITypedElement> _minimumRunTimeAttribute = new Lazy<ITypedElement>(RetrieveMinimumRunTimeAttribute);
         
         /// <summary>
         /// The backing field for the StartupPriority property
         /// </summary>
         private int _startupPriority;
         
+        private static Lazy<ITypedElement> _startupPriorityAttribute = new Lazy<ITypedElement>(RetrieveStartupPriorityAttribute);
+        
         /// <summary>
         /// The backing field for the StartupCost property
         /// </summary>
         private float _startupCost;
+        
+        private static Lazy<ITypedElement> _startupCostAttribute = new Lazy<ITypedElement>(RetrieveStartupCostAttribute);
         
         /// <summary>
         /// The backing field for the HotStandbyHeat property
         /// </summary>
         private float _hotStandbyHeat;
         
+        private static Lazy<ITypedElement> _hotStandbyHeatAttribute = new Lazy<ITypedElement>(RetrieveHotStandbyHeatAttribute);
+        
         /// <summary>
         /// The backing field for the IncrementalMaintCost property
         /// </summary>
         private float _incrementalMaintCost;
+        
+        private static Lazy<ITypedElement> _incrementalMaintCostAttribute = new Lazy<ITypedElement>(RetrieveIncrementalMaintCostAttribute);
+        
+        private static Lazy<ITypedElement> _startIgnFuelCurveReference = new Lazy<ITypedElement>(RetrieveStartIgnFuelCurveReference);
         
         /// <summary>
         /// The backing field for the StartIgnFuelCurve property
         /// </summary>
         private IStartIgnFuelCurve _startIgnFuelCurve;
         
+        private static Lazy<ITypedElement> _startRampCurveReference = new Lazy<ITypedElement>(RetrieveStartRampCurveReference);
+        
         /// <summary>
         /// The backing field for the StartRampCurve property
         /// </summary>
         private IStartRampCurve _startRampCurve;
         
+        private static Lazy<ITypedElement> _startMainFuelCurveReference = new Lazy<ITypedElement>(RetrieveStartMainFuelCurveReference);
+        
         /// <summary>
         /// The backing field for the StartMainFuelCurve property
         /// </summary>
         private IStartMainFuelCurve _startMainFuelCurve;
+        
+        private static Lazy<ITypedElement> _thermalGeneratingUnitReference = new Lazy<ITypedElement>(RetrieveThermalGeneratingUnitReference);
         
         /// <summary>
         /// The backing field for the ThermalGeneratingUnit property
@@ -139,10 +167,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
                     float old = this._fixedMaintCost;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnFixedMaintCostChanging(e);
-                    this.OnPropertyChanging("FixedMaintCost", e);
+                    this.OnPropertyChanging("FixedMaintCost", e, _fixedMaintCostAttribute);
                     this._fixedMaintCost = value;
                     this.OnFixedMaintCostChanged(e);
-                    this.OnPropertyChanged("FixedMaintCost", e);
+                    this.OnPropertyChanged("FixedMaintCost", e, _fixedMaintCostAttribute);
                 }
             }
         }
@@ -165,10 +193,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
                     float old = this._riskFactorCost;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnRiskFactorCostChanging(e);
-                    this.OnPropertyChanging("RiskFactorCost", e);
+                    this.OnPropertyChanging("RiskFactorCost", e, _riskFactorCostAttribute);
                     this._riskFactorCost = value;
                     this.OnRiskFactorCostChanged(e);
-                    this.OnPropertyChanged("RiskFactorCost", e);
+                    this.OnPropertyChanged("RiskFactorCost", e, _riskFactorCostAttribute);
                 }
             }
         }
@@ -191,10 +219,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
                     float old = this._stbyAuxP;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnStbyAuxPChanging(e);
-                    this.OnPropertyChanging("StbyAuxP", e);
+                    this.OnPropertyChanging("StbyAuxP", e, _stbyAuxPAttribute);
                     this._stbyAuxP = value;
                     this.OnStbyAuxPChanged(e);
-                    this.OnPropertyChanged("StbyAuxP", e);
+                    this.OnPropertyChanged("StbyAuxP", e, _stbyAuxPAttribute);
                 }
             }
         }
@@ -217,10 +245,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
                     DateTime old = this._startupDate;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnStartupDateChanging(e);
-                    this.OnPropertyChanging("StartupDate", e);
+                    this.OnPropertyChanging("StartupDate", e, _startupDateAttribute);
                     this._startupDate = value;
                     this.OnStartupDateChanged(e);
-                    this.OnPropertyChanged("StartupDate", e);
+                    this.OnPropertyChanged("StartupDate", e, _startupDateAttribute);
                 }
             }
         }
@@ -243,10 +271,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
                     float old = this._minimumDownTime;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnMinimumDownTimeChanging(e);
-                    this.OnPropertyChanging("MinimumDownTime", e);
+                    this.OnPropertyChanging("MinimumDownTime", e, _minimumDownTimeAttribute);
                     this._minimumDownTime = value;
                     this.OnMinimumDownTimeChanged(e);
-                    this.OnPropertyChanged("MinimumDownTime", e);
+                    this.OnPropertyChanged("MinimumDownTime", e, _minimumDownTimeAttribute);
                 }
             }
         }
@@ -269,10 +297,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
                     float old = this._minimumRunTime;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnMinimumRunTimeChanging(e);
-                    this.OnPropertyChanging("MinimumRunTime", e);
+                    this.OnPropertyChanging("MinimumRunTime", e, _minimumRunTimeAttribute);
                     this._minimumRunTime = value;
                     this.OnMinimumRunTimeChanged(e);
-                    this.OnPropertyChanged("MinimumRunTime", e);
+                    this.OnPropertyChanged("MinimumRunTime", e, _minimumRunTimeAttribute);
                 }
             }
         }
@@ -295,10 +323,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
                     int old = this._startupPriority;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnStartupPriorityChanging(e);
-                    this.OnPropertyChanging("StartupPriority", e);
+                    this.OnPropertyChanging("StartupPriority", e, _startupPriorityAttribute);
                     this._startupPriority = value;
                     this.OnStartupPriorityChanged(e);
-                    this.OnPropertyChanged("StartupPriority", e);
+                    this.OnPropertyChanged("StartupPriority", e, _startupPriorityAttribute);
                 }
             }
         }
@@ -321,10 +349,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
                     float old = this._startupCost;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnStartupCostChanging(e);
-                    this.OnPropertyChanging("StartupCost", e);
+                    this.OnPropertyChanging("StartupCost", e, _startupCostAttribute);
                     this._startupCost = value;
                     this.OnStartupCostChanged(e);
-                    this.OnPropertyChanged("StartupCost", e);
+                    this.OnPropertyChanged("StartupCost", e, _startupCostAttribute);
                 }
             }
         }
@@ -347,10 +375,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
                     float old = this._hotStandbyHeat;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnHotStandbyHeatChanging(e);
-                    this.OnPropertyChanging("HotStandbyHeat", e);
+                    this.OnPropertyChanging("HotStandbyHeat", e, _hotStandbyHeatAttribute);
                     this._hotStandbyHeat = value;
                     this.OnHotStandbyHeatChanged(e);
-                    this.OnPropertyChanged("HotStandbyHeat", e);
+                    this.OnPropertyChanged("HotStandbyHeat", e, _hotStandbyHeatAttribute);
                 }
             }
         }
@@ -373,10 +401,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
                     float old = this._incrementalMaintCost;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnIncrementalMaintCostChanging(e);
-                    this.OnPropertyChanging("IncrementalMaintCost", e);
+                    this.OnPropertyChanging("IncrementalMaintCost", e, _incrementalMaintCostAttribute);
                     this._incrementalMaintCost = value;
                     this.OnIncrementalMaintCostChanged(e);
-                    this.OnPropertyChanged("IncrementalMaintCost", e);
+                    this.OnPropertyChanged("IncrementalMaintCost", e, _incrementalMaintCostAttribute);
                 }
             }
         }
@@ -399,7 +427,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
                     IStartIgnFuelCurve old = this._startIgnFuelCurve;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnStartIgnFuelCurveChanging(e);
-                    this.OnPropertyChanging("StartIgnFuelCurve", e);
+                    this.OnPropertyChanging("StartIgnFuelCurve", e, _startIgnFuelCurveReference);
                     this._startIgnFuelCurve = value;
                     if ((old != null))
                     {
@@ -412,7 +440,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
                         value.Deleted += this.OnResetStartIgnFuelCurve;
                     }
                     this.OnStartIgnFuelCurveChanged(e);
-                    this.OnPropertyChanged("StartIgnFuelCurve", e);
+                    this.OnPropertyChanged("StartIgnFuelCurve", e, _startIgnFuelCurveReference);
                 }
             }
         }
@@ -435,7 +463,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
                     IStartRampCurve old = this._startRampCurve;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnStartRampCurveChanging(e);
-                    this.OnPropertyChanging("StartRampCurve", e);
+                    this.OnPropertyChanging("StartRampCurve", e, _startRampCurveReference);
                     this._startRampCurve = value;
                     if ((old != null))
                     {
@@ -448,7 +476,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
                         value.Deleted += this.OnResetStartRampCurve;
                     }
                     this.OnStartRampCurveChanged(e);
-                    this.OnPropertyChanged("StartRampCurve", e);
+                    this.OnPropertyChanged("StartRampCurve", e, _startRampCurveReference);
                 }
             }
         }
@@ -471,7 +499,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
                     IStartMainFuelCurve old = this._startMainFuelCurve;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnStartMainFuelCurveChanging(e);
-                    this.OnPropertyChanging("StartMainFuelCurve", e);
+                    this.OnPropertyChanging("StartMainFuelCurve", e, _startMainFuelCurveReference);
                     this._startMainFuelCurve = value;
                     if ((old != null))
                     {
@@ -484,7 +512,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
                         value.Deleted += this.OnResetStartMainFuelCurve;
                     }
                     this.OnStartMainFuelCurveChanged(e);
-                    this.OnPropertyChanged("StartMainFuelCurve", e);
+                    this.OnPropertyChanged("StartMainFuelCurve", e, _startMainFuelCurveReference);
                 }
             }
         }
@@ -507,7 +535,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
                     IThermalGeneratingUnit old = this._thermalGeneratingUnit;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnThermalGeneratingUnitChanging(e);
-                    this.OnPropertyChanging("ThermalGeneratingUnit", e);
+                    this.OnPropertyChanging("ThermalGeneratingUnit", e, _thermalGeneratingUnitReference);
                     this._thermalGeneratingUnit = value;
                     if ((old != null))
                     {
@@ -520,7 +548,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
                         value.Deleted += this.OnResetThermalGeneratingUnit;
                     }
                     this.OnThermalGeneratingUnitChanged(e);
-                    this.OnPropertyChanged("ThermalGeneratingUnit", e);
+                    this.OnPropertyChanged("ThermalGeneratingUnit", e, _thermalGeneratingUnitReference);
                 }
             }
         }
@@ -692,6 +720,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> ThermalGeneratingUnitChanged;
         
+        private static ITypedElement RetrieveFixedMaintCostAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(StartupModel.ClassInstance)).Resolve("fixedMaintCost")));
+        }
+        
         /// <summary>
         /// Raises the FixedMaintCostChanging event
         /// </summary>
@@ -716,6 +749,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveRiskFactorCostAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(StartupModel.ClassInstance)).Resolve("riskFactorCost")));
         }
         
         /// <summary>
@@ -744,6 +782,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
             }
         }
         
+        private static ITypedElement RetrieveStbyAuxPAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(StartupModel.ClassInstance)).Resolve("stbyAuxP")));
+        }
+        
         /// <summary>
         /// Raises the StbyAuxPChanging event
         /// </summary>
@@ -768,6 +811,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveStartupDateAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(StartupModel.ClassInstance)).Resolve("startupDate")));
         }
         
         /// <summary>
@@ -796,6 +844,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
             }
         }
         
+        private static ITypedElement RetrieveMinimumDownTimeAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(StartupModel.ClassInstance)).Resolve("minimumDownTime")));
+        }
+        
         /// <summary>
         /// Raises the MinimumDownTimeChanging event
         /// </summary>
@@ -820,6 +873,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveMinimumRunTimeAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(StartupModel.ClassInstance)).Resolve("minimumRunTime")));
         }
         
         /// <summary>
@@ -848,6 +906,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
             }
         }
         
+        private static ITypedElement RetrieveStartupPriorityAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(StartupModel.ClassInstance)).Resolve("startupPriority")));
+        }
+        
         /// <summary>
         /// Raises the StartupPriorityChanging event
         /// </summary>
@@ -872,6 +935,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveStartupCostAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(StartupModel.ClassInstance)).Resolve("startupCost")));
         }
         
         /// <summary>
@@ -900,6 +968,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
             }
         }
         
+        private static ITypedElement RetrieveHotStandbyHeatAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(StartupModel.ClassInstance)).Resolve("hotStandbyHeat")));
+        }
+        
         /// <summary>
         /// Raises the HotStandbyHeatChanging event
         /// </summary>
@@ -926,6 +999,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
             }
         }
         
+        private static ITypedElement RetrieveIncrementalMaintCostAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(StartupModel.ClassInstance)).Resolve("incrementalMaintCost")));
+        }
+        
         /// <summary>
         /// Raises the IncrementalMaintCostChanging event
         /// </summary>
@@ -950,6 +1028,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveStartIgnFuelCurveReference()
+        {
+            return ((ITypedElement)(((ModelElement)(StartupModel.ClassInstance)).Resolve("StartIgnFuelCurve")));
         }
         
         /// <summary>
@@ -988,6 +1071,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
             this.StartIgnFuelCurve = null;
         }
         
+        private static ITypedElement RetrieveStartRampCurveReference()
+        {
+            return ((ITypedElement)(((ModelElement)(StartupModel.ClassInstance)).Resolve("StartRampCurve")));
+        }
+        
         /// <summary>
         /// Raises the StartRampCurveChanging event
         /// </summary>
@@ -1024,6 +1112,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
             this.StartRampCurve = null;
         }
         
+        private static ITypedElement RetrieveStartMainFuelCurveReference()
+        {
+            return ((ITypedElement)(((ModelElement)(StartupModel.ClassInstance)).Resolve("StartMainFuelCurve")));
+        }
+        
         /// <summary>
         /// Raises the StartMainFuelCurveChanging event
         /// </summary>
@@ -1058,6 +1151,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
         private void OnResetStartMainFuelCurve(object sender, System.EventArgs eventArgs)
         {
             this.StartMainFuelCurve = null;
+        }
+        
+        private static ITypedElement RetrieveThermalGeneratingUnitReference()
+        {
+            return ((ITypedElement)(((ModelElement)(StartupModel.ClassInstance)).Resolve("ThermalGeneratingUnit")));
         }
         
         /// <summary>
@@ -1513,7 +1611,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public FixedMaintCostProxy(IStartupModel modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "fixedMaintCost")
             {
             }
             
@@ -1531,24 +1629,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
                     this.ModelElement.FixedMaintCost = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.FixedMaintCostChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.FixedMaintCostChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1562,7 +1642,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public RiskFactorCostProxy(IStartupModel modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "riskFactorCost")
             {
             }
             
@@ -1580,24 +1660,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
                     this.ModelElement.RiskFactorCost = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.RiskFactorCostChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.RiskFactorCostChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1611,7 +1673,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public StbyAuxPProxy(IStartupModel modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "stbyAuxP")
             {
             }
             
@@ -1629,24 +1691,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
                     this.ModelElement.StbyAuxP = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.StbyAuxPChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.StbyAuxPChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1660,7 +1704,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public StartupDateProxy(IStartupModel modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "startupDate")
             {
             }
             
@@ -1678,24 +1722,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
                     this.ModelElement.StartupDate = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.StartupDateChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.StartupDateChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1709,7 +1735,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public MinimumDownTimeProxy(IStartupModel modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "minimumDownTime")
             {
             }
             
@@ -1727,24 +1753,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
                     this.ModelElement.MinimumDownTime = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.MinimumDownTimeChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.MinimumDownTimeChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1758,7 +1766,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public MinimumRunTimeProxy(IStartupModel modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "minimumRunTime")
             {
             }
             
@@ -1776,24 +1784,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
                     this.ModelElement.MinimumRunTime = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.MinimumRunTimeChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.MinimumRunTimeChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1807,7 +1797,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public StartupPriorityProxy(IStartupModel modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "startupPriority")
             {
             }
             
@@ -1825,24 +1815,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
                     this.ModelElement.StartupPriority = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.StartupPriorityChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.StartupPriorityChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1856,7 +1828,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public StartupCostProxy(IStartupModel modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "startupCost")
             {
             }
             
@@ -1874,24 +1846,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
                     this.ModelElement.StartupCost = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.StartupCostChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.StartupCostChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1905,7 +1859,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public HotStandbyHeatProxy(IStartupModel modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "hotStandbyHeat")
             {
             }
             
@@ -1923,24 +1877,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
                     this.ModelElement.HotStandbyHeat = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.HotStandbyHeatChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.HotStandbyHeatChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1954,7 +1890,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public IncrementalMaintCostProxy(IStartupModel modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "incrementalMaintCost")
             {
             }
             
@@ -1972,24 +1908,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
                     this.ModelElement.IncrementalMaintCost = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.IncrementalMaintCostChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.IncrementalMaintCostChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -2003,7 +1921,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public StartIgnFuelCurveProxy(IStartupModel modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "StartIgnFuelCurve")
             {
             }
             
@@ -2021,24 +1939,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
                     this.ModelElement.StartIgnFuelCurve = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.StartIgnFuelCurveChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.StartIgnFuelCurveChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -2052,7 +1952,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public StartRampCurveProxy(IStartupModel modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "StartRampCurve")
             {
             }
             
@@ -2070,24 +1970,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
                     this.ModelElement.StartRampCurve = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.StartRampCurveChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.StartRampCurveChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -2101,7 +1983,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public StartMainFuelCurveProxy(IStartupModel modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "StartMainFuelCurve")
             {
             }
             
@@ -2119,24 +2001,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
                     this.ModelElement.StartMainFuelCurve = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.StartMainFuelCurveChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.StartMainFuelCurveChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -2150,7 +2014,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public ThermalGeneratingUnitProxy(IStartupModel modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "ThermalGeneratingUnit")
             {
             }
             
@@ -2167,24 +2031,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
                 {
                     this.ModelElement.ThermalGeneratingUnit = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ThermalGeneratingUnitChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ThermalGeneratingUnitChanged -= handler;
             }
         }
     }

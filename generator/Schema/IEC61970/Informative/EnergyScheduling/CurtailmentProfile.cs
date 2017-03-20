@@ -49,8 +49,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.EnergyScheduling
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61970/Informative/EnergyScheduling/" +
         "CurtailmentProfile")]
     [DebuggerDisplayAttribute("CurtailmentProfile {UUID}")]
-    public class CurtailmentProfile : Profile, ICurtailmentProfile, IModelElement
+    public partial class CurtailmentProfile : Profile, ICurtailmentProfile, IModelElement
     {
+        
+        private static Lazy<ITypedElement> _energyTransactionReference = new Lazy<ITypedElement>(RetrieveEnergyTransactionReference);
         
         /// <summary>
         /// The backing field for the EnergyTransaction property
@@ -77,7 +79,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.EnergyScheduling
                     IEnergyTransaction old = this._energyTransaction;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnEnergyTransactionChanging(e);
-                    this.OnPropertyChanging("EnergyTransaction", e);
+                    this.OnPropertyChanging("EnergyTransaction", e, _energyTransactionReference);
                     this._energyTransaction = value;
                     if ((old != null))
                     {
@@ -90,7 +92,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.EnergyScheduling
                         value.Deleted += this.OnResetEnergyTransaction;
                     }
                     this.OnEnergyTransactionChanged(e);
-                    this.OnPropertyChanged("EnergyTransaction", e);
+                    this.OnPropertyChanged("EnergyTransaction", e, _energyTransactionReference);
                 }
             }
         }
@@ -131,6 +133,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.EnergyScheduling
         /// Gets fired when the EnergyTransaction property changed its value
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> EnergyTransactionChanged;
+        
+        private static ITypedElement RetrieveEnergyTransactionReference()
+        {
+            return ((ITypedElement)(((ModelElement)(CurtailmentProfile.ClassInstance)).Resolve("EnergyTransaction")));
+        }
         
         /// <summary>
         /// Raises the EnergyTransactionChanging event
@@ -355,7 +362,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.EnergyScheduling
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public EnergyTransactionProxy(ICurtailmentProfile modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "EnergyTransaction")
             {
             }
             
@@ -372,24 +379,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.EnergyScheduling
                 {
                     this.ModelElement.EnergyTransaction = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.EnergyTransactionChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.EnergyTransactionChanged -= handler;
             }
         }
     }

@@ -46,13 +46,17 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfLocations
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61970/Informative/InfLocations/OrgP" +
         "ropertyRole")]
     [DebuggerDisplayAttribute("OrgPropertyRole {UUID}")]
-    public class OrgPropertyRole : Role, IOrgPropertyRole, IModelElement
+    public partial class OrgPropertyRole : Role, IOrgPropertyRole, IModelElement
     {
+        
+        private static Lazy<ITypedElement> _erpOrganisationReference = new Lazy<ITypedElement>(RetrieveErpOrganisationReference);
         
         /// <summary>
         /// The backing field for the ErpOrganisation property
         /// </summary>
         private IErpOrganisation _erpOrganisation;
+        
+        private static Lazy<ITypedElement> _landPropertyReference = new Lazy<ITypedElement>(RetrieveLandPropertyReference);
         
         /// <summary>
         /// The backing field for the LandProperty property
@@ -86,7 +90,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfLocations
                     IErpOrganisation old = this._erpOrganisation;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnErpOrganisationChanging(e);
-                    this.OnPropertyChanging("ErpOrganisation", e);
+                    this.OnPropertyChanging("ErpOrganisation", e, _erpOrganisationReference);
                     this._erpOrganisation = value;
                     if ((old != null))
                     {
@@ -99,7 +103,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfLocations
                         value.Deleted += this.OnResetErpOrganisation;
                     }
                     this.OnErpOrganisationChanged(e);
-                    this.OnPropertyChanged("ErpOrganisation", e);
+                    this.OnPropertyChanged("ErpOrganisation", e, _erpOrganisationReference);
                 }
             }
         }
@@ -156,6 +160,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfLocations
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> ErpOrganisationChanged;
         
+        private static ITypedElement RetrieveErpOrganisationReference()
+        {
+            return ((ITypedElement)(((ModelElement)(OrgPropertyRole.ClassInstance)).Resolve("ErpOrganisation")));
+        }
+        
         /// <summary>
         /// Raises the ErpOrganisationChanging event
         /// </summary>
@@ -192,6 +201,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfLocations
             this.ErpOrganisation = null;
         }
         
+        private static ITypedElement RetrieveLandPropertyReference()
+        {
+            return ((ITypedElement)(((ModelElement)(OrgPropertyRole.ClassInstance)).Resolve("LandProperty")));
+        }
+        
         /// <summary>
         /// Forwards CollectionChanging notifications for the LandProperty property to the parent model element
         /// </summary>
@@ -199,7 +213,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfLocations
         /// <param name="e">The original event data</param>
         private void LandPropertyCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("LandProperty", e);
+            this.OnCollectionChanging("LandProperty", e, _landPropertyReference);
         }
         
         /// <summary>
@@ -209,7 +223,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfLocations
         /// <param name="e">The original event data</param>
         private void LandPropertyCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("LandProperty", e);
+            this.OnCollectionChanged("LandProperty", e, _landPropertyReference);
         }
         
         /// <summary>
@@ -447,7 +461,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfLocations
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public ErpOrganisationProxy(IOrgPropertyRole modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "ErpOrganisation")
             {
             }
             
@@ -464,24 +478,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfLocations
                 {
                     this.ModelElement.ErpOrganisation = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ErpOrganisationChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ErpOrganisationChanged -= handler;
             }
         }
     }

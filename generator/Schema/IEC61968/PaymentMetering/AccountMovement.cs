@@ -47,7 +47,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.PaymentMetering
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61968/PaymentMetering/AccountMoveme" +
         "nt")]
     [DebuggerDisplayAttribute("AccountMovement {UUID}")]
-    public class AccountMovement : Element, IAccountMovement, IModelElement
+    public partial class AccountMovement : Element, IAccountMovement, IModelElement
     {
         
         /// <summary>
@@ -55,15 +55,21 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.PaymentMetering
         /// </summary>
         private string _reason;
         
+        private static Lazy<ITypedElement> _reasonAttribute = new Lazy<ITypedElement>(RetrieveReasonAttribute);
+        
         /// <summary>
         /// The backing field for the Amount property
         /// </summary>
         private float _amount;
         
+        private static Lazy<ITypedElement> _amountAttribute = new Lazy<ITypedElement>(RetrieveAmountAttribute);
+        
         /// <summary>
         /// The backing field for the DateTime property
         /// </summary>
         private DateTime _dateTime;
+        
+        private static Lazy<ITypedElement> _dateTimeAttribute = new Lazy<ITypedElement>(RetrieveDateTimeAttribute);
         
         private static IClass _classInstance;
         
@@ -85,10 +91,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.PaymentMetering
                     string old = this._reason;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnReasonChanging(e);
-                    this.OnPropertyChanging("Reason", e);
+                    this.OnPropertyChanging("Reason", e, _reasonAttribute);
                     this._reason = value;
                     this.OnReasonChanged(e);
-                    this.OnPropertyChanged("Reason", e);
+                    this.OnPropertyChanged("Reason", e, _reasonAttribute);
                 }
             }
         }
@@ -111,10 +117,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.PaymentMetering
                     float old = this._amount;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnAmountChanging(e);
-                    this.OnPropertyChanging("Amount", e);
+                    this.OnPropertyChanging("Amount", e, _amountAttribute);
                     this._amount = value;
                     this.OnAmountChanged(e);
-                    this.OnPropertyChanged("Amount", e);
+                    this.OnPropertyChanged("Amount", e, _amountAttribute);
                 }
             }
         }
@@ -137,10 +143,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.PaymentMetering
                     DateTime old = this._dateTime;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnDateTimeChanging(e);
-                    this.OnPropertyChanging("DateTime", e);
+                    this.OnPropertyChanging("DateTime", e, _dateTimeAttribute);
                     this._dateTime = value;
                     this.OnDateTimeChanged(e);
-                    this.OnPropertyChanged("DateTime", e);
+                    this.OnPropertyChanged("DateTime", e, _dateTimeAttribute);
                 }
             }
         }
@@ -191,6 +197,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.PaymentMetering
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> DateTimeChanged;
         
+        private static ITypedElement RetrieveReasonAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(AccountMovement.ClassInstance)).Resolve("reason")));
+        }
+        
         /// <summary>
         /// Raises the ReasonChanging event
         /// </summary>
@@ -217,6 +228,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.PaymentMetering
             }
         }
         
+        private static ITypedElement RetrieveAmountAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(AccountMovement.ClassInstance)).Resolve("amount")));
+        }
+        
         /// <summary>
         /// Raises the AmountChanging event
         /// </summary>
@@ -241,6 +257,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.PaymentMetering
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveDateTimeAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(AccountMovement.ClassInstance)).Resolve("dateTime")));
         }
         
         /// <summary>
@@ -341,7 +362,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.PaymentMetering
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public ReasonProxy(IAccountMovement modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "reason")
             {
             }
             
@@ -359,24 +380,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.PaymentMetering
                     this.ModelElement.Reason = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ReasonChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ReasonChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -390,7 +393,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.PaymentMetering
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public AmountProxy(IAccountMovement modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "amount")
             {
             }
             
@@ -408,24 +411,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.PaymentMetering
                     this.ModelElement.Amount = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.AmountChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.AmountChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -439,7 +424,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.PaymentMetering
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public DateTimeProxy(IAccountMovement modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "dateTime")
             {
             }
             
@@ -456,24 +441,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.PaymentMetering
                 {
                     this.ModelElement.DateTime = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.DateTimeChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.DateTimeChanged -= handler;
             }
         }
     }

@@ -50,7 +50,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61970/Informative/MarketOperations/" +
         "Settlement")]
     [DebuggerDisplayAttribute("Settlement {UUID}")]
-    public class Settlement : Document, ISettlement, IModelElement
+    public partial class Settlement : Document, ISettlement, IModelElement
     {
         
         /// <summary>
@@ -58,15 +58,23 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
         /// </summary>
         private DateTime _tradeDate;
         
+        private static Lazy<ITypedElement> _tradeDateAttribute = new Lazy<ITypedElement>(RetrieveTradeDateAttribute);
+        
+        private static Lazy<ITypedElement> _marketReference = new Lazy<ITypedElement>(RetrieveMarketReference);
+        
         /// <summary>
         /// The backing field for the Market property
         /// </summary>
         private IMarket _market;
         
+        private static Lazy<ITypedElement> _erpLedgerEntriesReference = new Lazy<ITypedElement>(RetrieveErpLedgerEntriesReference);
+        
         /// <summary>
         /// The backing field for the ErpLedgerEntries property
         /// </summary>
         private SettlementErpLedgerEntriesCollection _erpLedgerEntries;
+        
+        private static Lazy<ITypedElement> _erpInvoiceLineItemsReference = new Lazy<ITypedElement>(RetrieveErpInvoiceLineItemsReference);
         
         /// <summary>
         /// The backing field for the ErpInvoiceLineItems property
@@ -103,10 +111,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
                     DateTime old = this._tradeDate;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnTradeDateChanging(e);
-                    this.OnPropertyChanging("TradeDate", e);
+                    this.OnPropertyChanging("TradeDate", e, _tradeDateAttribute);
                     this._tradeDate = value;
                     this.OnTradeDateChanged(e);
-                    this.OnPropertyChanged("TradeDate", e);
+                    this.OnPropertyChanged("TradeDate", e, _tradeDateAttribute);
                 }
             }
         }
@@ -129,7 +137,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
                     IMarket old = this._market;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnMarketChanging(e);
-                    this.OnPropertyChanging("Market", e);
+                    this.OnPropertyChanging("Market", e, _marketReference);
                     this._market = value;
                     if ((old != null))
                     {
@@ -142,7 +150,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
                         value.Deleted += this.OnResetMarket;
                     }
                     this.OnMarketChanged(e);
-                    this.OnPropertyChanged("Market", e);
+                    this.OnPropertyChanged("Market", e, _marketReference);
                 }
             }
         }
@@ -224,6 +232,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> MarketChanged;
         
+        private static ITypedElement RetrieveTradeDateAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(Settlement.ClassInstance)).Resolve("tradeDate")));
+        }
+        
         /// <summary>
         /// Raises the TradeDateChanging event
         /// </summary>
@@ -248,6 +261,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveMarketReference()
+        {
+            return ((ITypedElement)(((ModelElement)(Settlement.ClassInstance)).Resolve("Market")));
         }
         
         /// <summary>
@@ -286,6 +304,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
             this.Market = null;
         }
         
+        private static ITypedElement RetrieveErpLedgerEntriesReference()
+        {
+            return ((ITypedElement)(((ModelElement)(Settlement.ClassInstance)).Resolve("ErpLedgerEntries")));
+        }
+        
         /// <summary>
         /// Forwards CollectionChanging notifications for the ErpLedgerEntries property to the parent model element
         /// </summary>
@@ -293,7 +316,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
         /// <param name="e">The original event data</param>
         private void ErpLedgerEntriesCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("ErpLedgerEntries", e);
+            this.OnCollectionChanging("ErpLedgerEntries", e, _erpLedgerEntriesReference);
         }
         
         /// <summary>
@@ -303,7 +326,12 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
         /// <param name="e">The original event data</param>
         private void ErpLedgerEntriesCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("ErpLedgerEntries", e);
+            this.OnCollectionChanged("ErpLedgerEntries", e, _erpLedgerEntriesReference);
+        }
+        
+        private static ITypedElement RetrieveErpInvoiceLineItemsReference()
+        {
+            return ((ITypedElement)(((ModelElement)(Settlement.ClassInstance)).Resolve("ErpInvoiceLineItems")));
         }
         
         /// <summary>
@@ -313,7 +341,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
         /// <param name="e">The original event data</param>
         private void ErpInvoiceLineItemsCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("ErpInvoiceLineItems", e);
+            this.OnCollectionChanging("ErpInvoiceLineItems", e, _erpInvoiceLineItemsReference);
         }
         
         /// <summary>
@@ -323,7 +351,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
         /// <param name="e">The original event data</param>
         private void ErpInvoiceLineItemsCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("ErpInvoiceLineItems", e);
+            this.OnCollectionChanged("ErpInvoiceLineItems", e, _erpInvoiceLineItemsReference);
         }
         
         /// <summary>
@@ -619,7 +647,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public TradeDateProxy(ISettlement modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "tradeDate")
             {
             }
             
@@ -637,24 +665,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
                     this.ModelElement.TradeDate = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.TradeDateChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.TradeDateChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -668,7 +678,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public MarketProxy(ISettlement modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "Market")
             {
             }
             
@@ -685,24 +695,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
                 {
                     this.ModelElement.Market = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.MarketChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.MarketChanged -= handler;
             }
         }
     }

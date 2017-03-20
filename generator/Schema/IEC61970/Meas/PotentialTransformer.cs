@@ -51,7 +51,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Meas
     [XmlNamespacePrefixAttribute("cimMeas")]
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61970/Meas/PotentialTransformer")]
     [DebuggerDisplayAttribute("PotentialTransformer {UUID}")]
-    public class PotentialTransformer : Equipment, IPotentialTransformer, IModelElement
+    public partial class PotentialTransformer : Equipment, IPotentialTransformer, IModelElement
     {
         
         /// <summary>
@@ -59,15 +59,21 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Meas
         /// </summary>
         private float _nominalRatio;
         
+        private static Lazy<ITypedElement> _nominalRatioAttribute = new Lazy<ITypedElement>(RetrieveNominalRatioAttribute);
+        
         /// <summary>
         /// The backing field for the PtClass property
         /// </summary>
         private string _ptClass;
         
+        private static Lazy<ITypedElement> _ptClassAttribute = new Lazy<ITypedElement>(RetrievePtClassAttribute);
+        
         /// <summary>
         /// The backing field for the AccuracyClass property
         /// </summary>
         private string _accuracyClass;
+        
+        private static Lazy<ITypedElement> _accuracyClassAttribute = new Lazy<ITypedElement>(RetrieveAccuracyClassAttribute);
         
         private static IClass _classInstance;
         
@@ -89,10 +95,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Meas
                     float old = this._nominalRatio;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnNominalRatioChanging(e);
-                    this.OnPropertyChanging("NominalRatio", e);
+                    this.OnPropertyChanging("NominalRatio", e, _nominalRatioAttribute);
                     this._nominalRatio = value;
                     this.OnNominalRatioChanged(e);
-                    this.OnPropertyChanged("NominalRatio", e);
+                    this.OnPropertyChanged("NominalRatio", e, _nominalRatioAttribute);
                 }
             }
         }
@@ -115,10 +121,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Meas
                     string old = this._ptClass;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnPtClassChanging(e);
-                    this.OnPropertyChanging("PtClass", e);
+                    this.OnPropertyChanging("PtClass", e, _ptClassAttribute);
                     this._ptClass = value;
                     this.OnPtClassChanged(e);
-                    this.OnPropertyChanged("PtClass", e);
+                    this.OnPropertyChanged("PtClass", e, _ptClassAttribute);
                 }
             }
         }
@@ -141,10 +147,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Meas
                     string old = this._accuracyClass;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnAccuracyClassChanging(e);
-                    this.OnPropertyChanging("AccuracyClass", e);
+                    this.OnPropertyChanging("AccuracyClass", e, _accuracyClassAttribute);
                     this._accuracyClass = value;
                     this.OnAccuracyClassChanged(e);
-                    this.OnPropertyChanged("AccuracyClass", e);
+                    this.OnPropertyChanged("AccuracyClass", e, _accuracyClassAttribute);
                 }
             }
         }
@@ -194,6 +200,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Meas
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> AccuracyClassChanged;
         
+        private static ITypedElement RetrieveNominalRatioAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(PotentialTransformer.ClassInstance)).Resolve("nominalRatio")));
+        }
+        
         /// <summary>
         /// Raises the NominalRatioChanging event
         /// </summary>
@@ -220,6 +231,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Meas
             }
         }
         
+        private static ITypedElement RetrievePtClassAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(PotentialTransformer.ClassInstance)).Resolve("ptClass")));
+        }
+        
         /// <summary>
         /// Raises the PtClassChanging event
         /// </summary>
@@ -244,6 +260,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Meas
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveAccuracyClassAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(PotentialTransformer.ClassInstance)).Resolve("accuracyClass")));
         }
         
         /// <summary>
@@ -343,7 +364,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Meas
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public NominalRatioProxy(IPotentialTransformer modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "nominalRatio")
             {
             }
             
@@ -361,24 +382,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Meas
                     this.ModelElement.NominalRatio = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.NominalRatioChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.NominalRatioChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -392,7 +395,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Meas
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public PtClassProxy(IPotentialTransformer modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "ptClass")
             {
             }
             
@@ -410,24 +413,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Meas
                     this.ModelElement.PtClass = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.PtClassChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.PtClassChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -441,7 +426,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Meas
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public AccuracyClassProxy(IPotentialTransformer modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "accuracyClass")
             {
             }
             
@@ -458,24 +443,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Meas
                 {
                     this.ModelElement.AccuracyClass = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.AccuracyClassChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.AccuracyClassChanged -= handler;
             }
         }
     }

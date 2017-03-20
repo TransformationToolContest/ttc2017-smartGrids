@@ -47,13 +47,17 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.Financial
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61970/Informative/Financial/OpenAcc" +
         "essProduct")]
     [DebuggerDisplayAttribute("OpenAccessProduct {UUID}")]
-    public class OpenAccessProduct : Agreement, IOpenAccessProduct, IModelElement
+    public partial class OpenAccessProduct : Agreement, IOpenAccessProduct, IModelElement
     {
+        
+        private static Lazy<ITypedElement> _providedBy_TransmissionServiceReference = new Lazy<ITypedElement>(RetrieveProvidedBy_TransmissionServiceReference);
         
         /// <summary>
         /// The backing field for the ProvidedBy_TransmissionService property
         /// </summary>
         private OpenAccessProductProvidedBy_TransmissionServiceCollection _providedBy_TransmissionService;
+        
+        private static Lazy<ITypedElement> _ancillaryServicesReference = new Lazy<ITypedElement>(RetrieveAncillaryServicesReference);
         
         /// <summary>
         /// The backing field for the AncillaryServices property
@@ -129,6 +133,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.Financial
             }
         }
         
+        private static ITypedElement RetrieveProvidedBy_TransmissionServiceReference()
+        {
+            return ((ITypedElement)(((ModelElement)(OpenAccessProduct.ClassInstance)).Resolve("ProvidedBy_TransmissionService")));
+        }
+        
         /// <summary>
         /// Forwards CollectionChanging notifications for the ProvidedBy_TransmissionService property to the parent model element
         /// </summary>
@@ -136,7 +145,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.Financial
         /// <param name="e">The original event data</param>
         private void ProvidedBy_TransmissionServiceCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("ProvidedBy_TransmissionService", e);
+            this.OnCollectionChanging("ProvidedBy_TransmissionService", e, _providedBy_TransmissionServiceReference);
         }
         
         /// <summary>
@@ -146,7 +155,12 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.Financial
         /// <param name="e">The original event data</param>
         private void ProvidedBy_TransmissionServiceCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("ProvidedBy_TransmissionService", e);
+            this.OnCollectionChanged("ProvidedBy_TransmissionService", e, _providedBy_TransmissionServiceReference);
+        }
+        
+        private static ITypedElement RetrieveAncillaryServicesReference()
+        {
+            return ((ITypedElement)(((ModelElement)(OpenAccessProduct.ClassInstance)).Resolve("AncillaryServices")));
         }
         
         /// <summary>
@@ -156,7 +170,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.Financial
         /// <param name="e">The original event data</param>
         private void AncillaryServicesCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("AncillaryServices", e);
+            this.OnCollectionChanging("AncillaryServices", e, _ancillaryServicesReference);
         }
         
         /// <summary>
@@ -166,7 +180,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.Financial
         /// <param name="e">The original event data</param>
         private void AncillaryServicesCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("AncillaryServices", e);
+            this.OnCollectionChanged("AncillaryServices", e, _ancillaryServicesReference);
         }
         
         /// <summary>

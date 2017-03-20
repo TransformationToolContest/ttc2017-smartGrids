@@ -39,7 +39,7 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
     [XmlNamespacePrefixAttribute("objects")]
     [ModelRepresentationClassAttribute("http://www.transformation-tool-contest.eu/2017/smartGrids/cosem#//COSEMObjects/St" +
         "andardReadoutParam")]
-    public class StandardReadoutParam : Data, IStandardReadoutParam, IModelElement
+    public partial class StandardReadoutParam : Data, IStandardReadoutParam, IModelElement
     {
         
         private static IClass _classInstance;

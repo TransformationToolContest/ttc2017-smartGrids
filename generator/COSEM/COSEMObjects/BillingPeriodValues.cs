@@ -39,7 +39,7 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
     [XmlNamespacePrefixAttribute("objects")]
     [ModelRepresentationClassAttribute("http://www.transformation-tool-contest.eu/2017/smartGrids/cosem#//COSEMObjects/Bi" +
         "llingPeriodValues")]
-    public class BillingPeriodValues : Data, IBillingPeriodValues, IModelElement
+    public partial class BillingPeriodValues : Data, IBillingPeriodValues, IModelElement
     {
         
         /// <summary>
@@ -47,15 +47,21 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
         /// </summary>
         private Nullable<int> _billingPeriodCounter;
         
+        private static Lazy<ITypedElement> _billingPeriodCounterAttribute = new Lazy<ITypedElement>(RetrieveBillingPeriodCounterAttribute);
+        
         /// <summary>
         /// The backing field for the NumberAvailableBillingPeriods property
         /// </summary>
         private Nullable<int> _numberAvailableBillingPeriods;
         
+        private static Lazy<ITypedElement> _numberAvailableBillingPeriodsAttribute = new Lazy<ITypedElement>(RetrieveNumberAvailableBillingPeriodsAttribute);
+        
         /// <summary>
         /// The backing field for the TimestampRecentBillingPeriod property
         /// </summary>
         private string _timestampRecentBillingPeriod;
+        
+        private static Lazy<ITypedElement> _timestampRecentBillingPeriodAttribute = new Lazy<ITypedElement>(RetrieveTimestampRecentBillingPeriodAttribute);
         
         private static IClass _classInstance;
         
@@ -76,10 +82,10 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     Nullable<int> old = this._billingPeriodCounter;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnBillingPeriodCounterChanging(e);
-                    this.OnPropertyChanging("BillingPeriodCounter", e);
+                    this.OnPropertyChanging("BillingPeriodCounter", e, _billingPeriodCounterAttribute);
                     this._billingPeriodCounter = value;
                     this.OnBillingPeriodCounterChanged(e);
-                    this.OnPropertyChanged("BillingPeriodCounter", e);
+                    this.OnPropertyChanged("BillingPeriodCounter", e, _billingPeriodCounterAttribute);
                 }
             }
         }
@@ -101,10 +107,10 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     Nullable<int> old = this._numberAvailableBillingPeriods;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnNumberAvailableBillingPeriodsChanging(e);
-                    this.OnPropertyChanging("NumberAvailableBillingPeriods", e);
+                    this.OnPropertyChanging("NumberAvailableBillingPeriods", e, _numberAvailableBillingPeriodsAttribute);
                     this._numberAvailableBillingPeriods = value;
                     this.OnNumberAvailableBillingPeriodsChanged(e);
-                    this.OnPropertyChanged("NumberAvailableBillingPeriods", e);
+                    this.OnPropertyChanged("NumberAvailableBillingPeriods", e, _numberAvailableBillingPeriodsAttribute);
                 }
             }
         }
@@ -126,10 +132,10 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     string old = this._timestampRecentBillingPeriod;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnTimestampRecentBillingPeriodChanging(e);
-                    this.OnPropertyChanging("TimestampRecentBillingPeriod", e);
+                    this.OnPropertyChanging("TimestampRecentBillingPeriod", e, _timestampRecentBillingPeriodAttribute);
                     this._timestampRecentBillingPeriod = value;
                     this.OnTimestampRecentBillingPeriodChanged(e);
-                    this.OnPropertyChanged("TimestampRecentBillingPeriod", e);
+                    this.OnPropertyChanged("TimestampRecentBillingPeriod", e, _timestampRecentBillingPeriodAttribute);
                 }
             }
         }
@@ -180,6 +186,11 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> TimestampRecentBillingPeriodChanged;
         
+        private static ITypedElement RetrieveBillingPeriodCounterAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(BillingPeriodValues.ClassInstance)).Resolve("BillingPeriodCounter")));
+        }
+        
         /// <summary>
         /// Raises the BillingPeriodCounterChanging event
         /// </summary>
@@ -206,6 +217,11 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             }
         }
         
+        private static ITypedElement RetrieveNumberAvailableBillingPeriodsAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(BillingPeriodValues.ClassInstance)).Resolve("NumberAvailableBillingPeriods")));
+        }
+        
         /// <summary>
         /// Raises the NumberAvailableBillingPeriodsChanging event
         /// </summary>
@@ -230,6 +246,11 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveTimestampRecentBillingPeriodAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(BillingPeriodValues.ClassInstance)).Resolve("TimestampRecentBillingPeriod")));
         }
         
         /// <summary>
@@ -330,7 +351,7 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public BillingPeriodCounterProxy(IBillingPeriodValues modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "BillingPeriodCounter")
             {
             }
             
@@ -348,24 +369,6 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     this.ModelElement.BillingPeriodCounter = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.BillingPeriodCounterChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.BillingPeriodCounterChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -379,7 +382,7 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public NumberAvailableBillingPeriodsProxy(IBillingPeriodValues modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "NumberAvailableBillingPeriods")
             {
             }
             
@@ -397,24 +400,6 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     this.ModelElement.NumberAvailableBillingPeriods = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.NumberAvailableBillingPeriodsChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.NumberAvailableBillingPeriodsChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -428,7 +413,7 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public TimestampRecentBillingPeriodProxy(IBillingPeriodValues modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "TimestampRecentBillingPeriod")
             {
             }
             
@@ -445,24 +430,6 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                 {
                     this.ModelElement.TimestampRecentBillingPeriod = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.TimestampRecentBillingPeriodChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.TimestampRecentBillingPeriodChanged -= handler;
             }
         }
     }

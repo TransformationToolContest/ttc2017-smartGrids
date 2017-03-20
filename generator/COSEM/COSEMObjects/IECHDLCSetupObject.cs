@@ -39,7 +39,7 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
     [XmlNamespacePrefixAttribute("objects")]
     [ModelRepresentationClassAttribute("http://www.transformation-tool-contest.eu/2017/smartGrids/cosem#//COSEMObjects/IE" +
         "CHDLCSetupObject")]
-    public class IECHDLCSetupObject : IEC_HDLC_setup, IIECHDLCSetupObject, IModelElement
+    public partial class IECHDLCSetupObject : IEC_HDLC_setup, IIECHDLCSetupObject, IModelElement
     {
         
         private static IClass _classInstance;

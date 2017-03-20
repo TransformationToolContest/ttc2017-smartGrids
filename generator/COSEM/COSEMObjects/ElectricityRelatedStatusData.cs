@@ -39,7 +39,7 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
     [XmlNamespacePrefixAttribute("objects")]
     [ModelRepresentationClassAttribute("http://www.transformation-tool-contest.eu/2017/smartGrids/cosem#//COSEMObjects/El" +
         "ectricityRelatedStatusData")]
-    public class ElectricityRelatedStatusData : Data, IElectricityRelatedStatusData, IModelElement
+    public partial class ElectricityRelatedStatusData : Data, IElectricityRelatedStatusData, IModelElement
     {
         
         /// <summary>
@@ -47,20 +47,28 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
         /// </summary>
         private string _status_information_missing_voltage;
         
+        private static Lazy<ITypedElement> _status_information_missing_voltageAttribute = new Lazy<ITypedElement>(RetrieveStatus_information_missing_voltageAttribute);
+        
         /// <summary>
         /// The backing field for the Status_information_missing_current property
         /// </summary>
         private string _status_information_missing_current;
+        
+        private static Lazy<ITypedElement> _status_information_missing_currentAttribute = new Lazy<ITypedElement>(RetrieveStatus_information_missing_currentAttribute);
         
         /// <summary>
         /// The backing field for the Status_information_current_without_voltage property
         /// </summary>
         private string _status_information_current_without_voltage;
         
+        private static Lazy<ITypedElement> _status_information_current_without_voltageAttribute = new Lazy<ITypedElement>(RetrieveStatus_information_current_without_voltageAttribute);
+        
         /// <summary>
         /// The backing field for the Status_information_auxiliary_power_supply property
         /// </summary>
         private string _status_information_auxiliary_power_supply;
+        
+        private static Lazy<ITypedElement> _status_information_auxiliary_power_supplyAttribute = new Lazy<ITypedElement>(RetrieveStatus_information_auxiliary_power_supplyAttribute);
         
         private static IClass _classInstance;
         
@@ -81,10 +89,10 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     string old = this._status_information_missing_voltage;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnStatus_information_missing_voltageChanging(e);
-                    this.OnPropertyChanging("Status_information_missing_voltage", e);
+                    this.OnPropertyChanging("Status_information_missing_voltage", e, _status_information_missing_voltageAttribute);
                     this._status_information_missing_voltage = value;
                     this.OnStatus_information_missing_voltageChanged(e);
-                    this.OnPropertyChanged("Status_information_missing_voltage", e);
+                    this.OnPropertyChanged("Status_information_missing_voltage", e, _status_information_missing_voltageAttribute);
                 }
             }
         }
@@ -106,10 +114,10 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     string old = this._status_information_missing_current;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnStatus_information_missing_currentChanging(e);
-                    this.OnPropertyChanging("Status_information_missing_current", e);
+                    this.OnPropertyChanging("Status_information_missing_current", e, _status_information_missing_currentAttribute);
                     this._status_information_missing_current = value;
                     this.OnStatus_information_missing_currentChanged(e);
-                    this.OnPropertyChanged("Status_information_missing_current", e);
+                    this.OnPropertyChanged("Status_information_missing_current", e, _status_information_missing_currentAttribute);
                 }
             }
         }
@@ -131,10 +139,10 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     string old = this._status_information_current_without_voltage;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnStatus_information_current_without_voltageChanging(e);
-                    this.OnPropertyChanging("Status_information_current_without_voltage", e);
+                    this.OnPropertyChanging("Status_information_current_without_voltage", e, _status_information_current_without_voltageAttribute);
                     this._status_information_current_without_voltage = value;
                     this.OnStatus_information_current_without_voltageChanged(e);
-                    this.OnPropertyChanged("Status_information_current_without_voltage", e);
+                    this.OnPropertyChanged("Status_information_current_without_voltage", e, _status_information_current_without_voltageAttribute);
                 }
             }
         }
@@ -156,10 +164,10 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     string old = this._status_information_auxiliary_power_supply;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnStatus_information_auxiliary_power_supplyChanging(e);
-                    this.OnPropertyChanging("Status_information_auxiliary_power_supply", e);
+                    this.OnPropertyChanging("Status_information_auxiliary_power_supply", e, _status_information_auxiliary_power_supplyAttribute);
                     this._status_information_auxiliary_power_supply = value;
                     this.OnStatus_information_auxiliary_power_supplyChanged(e);
-                    this.OnPropertyChanged("Status_information_auxiliary_power_supply", e);
+                    this.OnPropertyChanged("Status_information_auxiliary_power_supply", e, _status_information_auxiliary_power_supplyAttribute);
                 }
             }
         }
@@ -220,6 +228,11 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> Status_information_auxiliary_power_supplyChanged;
         
+        private static ITypedElement RetrieveStatus_information_missing_voltageAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(ElectricityRelatedStatusData.ClassInstance)).Resolve("Status_information_missing_voltage")));
+        }
+        
         /// <summary>
         /// Raises the Status_information_missing_voltageChanging event
         /// </summary>
@@ -244,6 +257,11 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveStatus_information_missing_currentAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(ElectricityRelatedStatusData.ClassInstance)).Resolve("Status_information_missing_current")));
         }
         
         /// <summary>
@@ -272,6 +290,11 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             }
         }
         
+        private static ITypedElement RetrieveStatus_information_current_without_voltageAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(ElectricityRelatedStatusData.ClassInstance)).Resolve("Status_information_current_without_voltage")));
+        }
+        
         /// <summary>
         /// Raises the Status_information_current_without_voltageChanging event
         /// </summary>
@@ -296,6 +319,11 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveStatus_information_auxiliary_power_supplyAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(ElectricityRelatedStatusData.ClassInstance)).Resolve("Status_information_auxiliary_power_supply")));
         }
         
         /// <summary>
@@ -405,7 +433,7 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public Status_information_missing_voltageProxy(IElectricityRelatedStatusData modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "Status_information_missing_voltage")
             {
             }
             
@@ -423,24 +451,6 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     this.ModelElement.Status_information_missing_voltage = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.Status_information_missing_voltageChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.Status_information_missing_voltageChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -454,7 +464,7 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public Status_information_missing_currentProxy(IElectricityRelatedStatusData modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "Status_information_missing_current")
             {
             }
             
@@ -472,24 +482,6 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     this.ModelElement.Status_information_missing_current = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.Status_information_missing_currentChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.Status_information_missing_currentChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -503,7 +495,7 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public Status_information_current_without_voltageProxy(IElectricityRelatedStatusData modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "Status_information_current_without_voltage")
             {
             }
             
@@ -521,24 +513,6 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     this.ModelElement.Status_information_current_without_voltage = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.Status_information_current_without_voltageChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.Status_information_current_without_voltageChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -552,7 +526,7 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public Status_information_auxiliary_power_supplyProxy(IElectricityRelatedStatusData modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "Status_information_auxiliary_power_supply")
             {
             }
             
@@ -569,24 +543,6 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                 {
                     this.ModelElement.Status_information_auxiliary_power_supply = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.Status_information_auxiliary_power_supplyChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.Status_information_auxiliary_power_supplyChanged -= handler;
             }
         }
     }

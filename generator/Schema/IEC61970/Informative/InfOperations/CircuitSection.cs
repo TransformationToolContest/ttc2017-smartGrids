@@ -50,7 +50,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfOperations
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61970/Informative/InfOperations/Cir" +
         "cuitSection")]
     [DebuggerDisplayAttribute("CircuitSection {UUID}")]
-    public class CircuitSection : IdentifiedObject, ICircuitSection, IModelElement
+    public partial class CircuitSection : IdentifiedObject, ICircuitSection, IModelElement
     {
         
         /// <summary>
@@ -58,20 +58,30 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfOperations
         /// </summary>
         private Nullable<CircuitConnectionKind> _connectionKind;
         
+        private static Lazy<ITypedElement> _connectionKindAttribute = new Lazy<ITypedElement>(RetrieveConnectionKindAttribute);
+        
+        private static Lazy<ITypedElement> _circuitsReference = new Lazy<ITypedElement>(RetrieveCircuitsReference);
+        
         /// <summary>
         /// The backing field for the Circuits property
         /// </summary>
         private ObservableAssociationOrderedSet<ICircuit> _circuits;
+        
+        private static Lazy<ITypedElement> _networkDataSetsReference = new Lazy<ITypedElement>(RetrieveNetworkDataSetsReference);
         
         /// <summary>
         /// The backing field for the NetworkDataSets property
         /// </summary>
         private CircuitSectionNetworkDataSetsCollection _networkDataSets;
         
+        private static Lazy<ITypedElement> _powerSystemResourcesReference = new Lazy<ITypedElement>(RetrievePowerSystemResourcesReference);
+        
         /// <summary>
         /// The backing field for the PowerSystemResources property
         /// </summary>
         private CircuitSectionPowerSystemResourcesCollection _powerSystemResources;
+        
+        private static Lazy<ITypedElement> _conductorAssetsReference = new Lazy<ITypedElement>(RetrieveConductorAssetsReference);
         
         /// <summary>
         /// The backing field for the ConductorAssets property
@@ -114,10 +124,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfOperations
                     Nullable<CircuitConnectionKind> old = this._connectionKind;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnConnectionKindChanging(e);
-                    this.OnPropertyChanging("ConnectionKind", e);
+                    this.OnPropertyChanging("ConnectionKind", e, _connectionKindAttribute);
                     this._connectionKind = value;
                     this.OnConnectionKindChanged(e);
-                    this.OnPropertyChanged("ConnectionKind", e);
+                    this.OnPropertyChanged("ConnectionKind", e, _connectionKindAttribute);
                 }
             }
         }
@@ -218,6 +228,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfOperations
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> ConnectionKindChanged;
         
+        private static ITypedElement RetrieveConnectionKindAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(CircuitSection.ClassInstance)).Resolve("connectionKind")));
+        }
+        
         /// <summary>
         /// Raises the ConnectionKindChanging event
         /// </summary>
@@ -244,6 +259,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfOperations
             }
         }
         
+        private static ITypedElement RetrieveCircuitsReference()
+        {
+            return ((ITypedElement)(((ModelElement)(CircuitSection.ClassInstance)).Resolve("Circuits")));
+        }
+        
         /// <summary>
         /// Forwards CollectionChanging notifications for the Circuits property to the parent model element
         /// </summary>
@@ -251,7 +271,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfOperations
         /// <param name="e">The original event data</param>
         private void CircuitsCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("Circuits", e);
+            this.OnCollectionChanging("Circuits", e, _circuitsReference);
         }
         
         /// <summary>
@@ -261,7 +281,12 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfOperations
         /// <param name="e">The original event data</param>
         private void CircuitsCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("Circuits", e);
+            this.OnCollectionChanged("Circuits", e, _circuitsReference);
+        }
+        
+        private static ITypedElement RetrieveNetworkDataSetsReference()
+        {
+            return ((ITypedElement)(((ModelElement)(CircuitSection.ClassInstance)).Resolve("NetworkDataSets")));
         }
         
         /// <summary>
@@ -271,7 +296,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfOperations
         /// <param name="e">The original event data</param>
         private void NetworkDataSetsCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("NetworkDataSets", e);
+            this.OnCollectionChanging("NetworkDataSets", e, _networkDataSetsReference);
         }
         
         /// <summary>
@@ -281,7 +306,12 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfOperations
         /// <param name="e">The original event data</param>
         private void NetworkDataSetsCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("NetworkDataSets", e);
+            this.OnCollectionChanged("NetworkDataSets", e, _networkDataSetsReference);
+        }
+        
+        private static ITypedElement RetrievePowerSystemResourcesReference()
+        {
+            return ((ITypedElement)(((ModelElement)(CircuitSection.ClassInstance)).Resolve("PowerSystemResources")));
         }
         
         /// <summary>
@@ -291,7 +321,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfOperations
         /// <param name="e">The original event data</param>
         private void PowerSystemResourcesCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("PowerSystemResources", e);
+            this.OnCollectionChanging("PowerSystemResources", e, _powerSystemResourcesReference);
         }
         
         /// <summary>
@@ -301,7 +331,12 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfOperations
         /// <param name="e">The original event data</param>
         private void PowerSystemResourcesCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("PowerSystemResources", e);
+            this.OnCollectionChanged("PowerSystemResources", e, _powerSystemResourcesReference);
+        }
+        
+        private static ITypedElement RetrieveConductorAssetsReference()
+        {
+            return ((ITypedElement)(((ModelElement)(CircuitSection.ClassInstance)).Resolve("ConductorAssets")));
         }
         
         /// <summary>
@@ -311,7 +346,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfOperations
         /// <param name="e">The original event data</param>
         private void ConductorAssetsCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("ConductorAssets", e);
+            this.OnCollectionChanging("ConductorAssets", e, _conductorAssetsReference);
         }
         
         /// <summary>
@@ -321,7 +356,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfOperations
         /// <param name="e">The original event data</param>
         private void ConductorAssetsCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("ConductorAssets", e);
+            this.OnCollectionChanged("ConductorAssets", e, _conductorAssetsReference);
         }
         
         /// <summary>
@@ -630,7 +665,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfOperations
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public ConnectionKindProxy(ICircuitSection modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "connectionKind")
             {
             }
             
@@ -647,24 +682,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfOperations
                 {
                     this.ModelElement.ConnectionKind = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ConnectionKindChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ConnectionKindChanged -= handler;
             }
         }
     }

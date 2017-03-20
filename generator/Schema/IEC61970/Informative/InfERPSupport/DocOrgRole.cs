@@ -56,13 +56,17 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfERPSupport
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61970/Informative/InfERPSupport/Doc" +
         "OrgRole")]
     [DebuggerDisplayAttribute("DocOrgRole {UUID}")]
-    public class DocOrgRole : Role, IDocOrgRole, IModelElement
+    public partial class DocOrgRole : Role, IDocOrgRole, IModelElement
     {
+        
+        private static Lazy<ITypedElement> _documentReference = new Lazy<ITypedElement>(RetrieveDocumentReference);
         
         /// <summary>
         /// The backing field for the Document property
         /// </summary>
         private IDocument _document;
+        
+        private static Lazy<ITypedElement> _erpOrganisationReference = new Lazy<ITypedElement>(RetrieveErpOrganisationReference);
         
         /// <summary>
         /// The backing field for the ErpOrganisation property
@@ -89,7 +93,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfERPSupport
                     IDocument old = this._document;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnDocumentChanging(e);
-                    this.OnPropertyChanging("Document", e);
+                    this.OnPropertyChanging("Document", e, _documentReference);
                     this._document = value;
                     if ((old != null))
                     {
@@ -102,7 +106,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfERPSupport
                         value.Deleted += this.OnResetDocument;
                     }
                     this.OnDocumentChanged(e);
-                    this.OnPropertyChanged("Document", e);
+                    this.OnPropertyChanged("Document", e, _documentReference);
                 }
             }
         }
@@ -125,7 +129,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfERPSupport
                     IErpOrganisation old = this._erpOrganisation;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnErpOrganisationChanging(e);
-                    this.OnPropertyChanging("ErpOrganisation", e);
+                    this.OnPropertyChanging("ErpOrganisation", e, _erpOrganisationReference);
                     this._erpOrganisation = value;
                     if ((old != null))
                     {
@@ -138,7 +142,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfERPSupport
                         value.Deleted += this.OnResetErpOrganisation;
                     }
                     this.OnErpOrganisationChanged(e);
-                    this.OnPropertyChanged("ErpOrganisation", e);
+                    this.OnPropertyChanged("ErpOrganisation", e, _erpOrganisationReference);
                 }
             }
         }
@@ -190,6 +194,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfERPSupport
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> ErpOrganisationChanged;
         
+        private static ITypedElement RetrieveDocumentReference()
+        {
+            return ((ITypedElement)(((ModelElement)(DocOrgRole.ClassInstance)).Resolve("Document")));
+        }
+        
         /// <summary>
         /// Raises the DocumentChanging event
         /// </summary>
@@ -224,6 +233,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfERPSupport
         private void OnResetDocument(object sender, System.EventArgs eventArgs)
         {
             this.Document = null;
+        }
+        
+        private static ITypedElement RetrieveErpOrganisationReference()
+        {
+            return ((ITypedElement)(((ModelElement)(DocOrgRole.ClassInstance)).Resolve("ErpOrganisation")));
         }
         
         /// <summary>
@@ -492,7 +506,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfERPSupport
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public DocumentProxy(IDocOrgRole modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "Document")
             {
             }
             
@@ -510,24 +524,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfERPSupport
                     this.ModelElement.Document = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.DocumentChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.DocumentChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -541,7 +537,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfERPSupport
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public ErpOrganisationProxy(IDocOrgRole modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "ErpOrganisation")
             {
             }
             
@@ -558,24 +554,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfERPSupport
                 {
                     this.ModelElement.ErpOrganisation = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ErpOrganisationChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ErpOrganisationChanged -= handler;
             }
         }
     }

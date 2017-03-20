@@ -40,8 +40,10 @@ namespace TTC2017.SmartGrids.COSEM.InterfaceClasses
     [XmlNamespacePrefixAttribute("inter")]
     [ModelRepresentationClassAttribute("http://www.transformation-tool-contest.eu/2017/smartGrids/cosem#//InterfaceClasse" +
         "s/SAPAssignment")]
-    public class SAPAssignment : Base, ISAPAssignment, IModelElement
+    public partial class SAPAssignment : Base, ISAPAssignment, IModelElement
     {
+        
+        private static Lazy<ITypedElement> _ldnnameReference = new Lazy<ITypedElement>(RetrieveLdnnameReference);
         
         /// <summary>
         /// The backing field for the Ldnname property
@@ -68,7 +70,7 @@ namespace TTC2017.SmartGrids.COSEM.InterfaceClasses
                     ILogicalDeviceName old = this._ldnname;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnLdnnameChanging(e);
-                    this.OnPropertyChanging("Ldnname", e);
+                    this.OnPropertyChanging("Ldnname", e, _ldnnameReference);
                     this._ldnname = value;
                     if ((old != null))
                     {
@@ -79,7 +81,7 @@ namespace TTC2017.SmartGrids.COSEM.InterfaceClasses
                         value.Deleted += this.OnResetLdnname;
                     }
                     this.OnLdnnameChanged(e);
-                    this.OnPropertyChanged("Ldnname", e);
+                    this.OnPropertyChanged("Ldnname", e, _ldnnameReference);
                 }
             }
         }
@@ -120,6 +122,11 @@ namespace TTC2017.SmartGrids.COSEM.InterfaceClasses
         /// Gets fired when the Ldnname property changed its value
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> LdnnameChanged;
+        
+        private static ITypedElement RetrieveLdnnameReference()
+        {
+            return ((ITypedElement)(((ModelElement)(SAPAssignment.ClassInstance)).Resolve("ldnname")));
+        }
         
         /// <summary>
         /// Raises the LdnnameChanging event
@@ -344,7 +351,7 @@ namespace TTC2017.SmartGrids.COSEM.InterfaceClasses
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public LdnnameProxy(ISAPAssignment modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "ldnname")
             {
             }
             
@@ -361,24 +368,6 @@ namespace TTC2017.SmartGrids.COSEM.InterfaceClasses
                 {
                     this.ModelElement.Ldnname = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.LdnnameChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.LdnnameChanged -= handler;
             }
         }
     }

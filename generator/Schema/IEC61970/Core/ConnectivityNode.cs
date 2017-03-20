@@ -57,38 +57,52 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Core
     [XmlNamespacePrefixAttribute("cimCore")]
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61970/Core/ConnectivityNode")]
     [DebuggerDisplayAttribute("ConnectivityNode {UUID}")]
-    public class ConnectivityNode : IdentifiedObject, IConnectivityNode, IModelElement
+    public partial class ConnectivityNode : IdentifiedObject, IConnectivityNode, IModelElement
     {
+        
+        private static Lazy<ITypedElement> _connectivityNodeContainerReference = new Lazy<ITypedElement>(RetrieveConnectivityNodeContainerReference);
         
         /// <summary>
         /// The backing field for the ConnectivityNodeContainer property
         /// </summary>
         private IConnectivityNodeContainer _connectivityNodeContainer;
         
+        private static Lazy<ITypedElement> _topologicalNodeReference = new Lazy<ITypedElement>(RetrieveTopologicalNodeReference);
+        
         /// <summary>
         /// The backing field for the TopologicalNode property
         /// </summary>
         private ITopologicalNode _topologicalNode;
+        
+        private static Lazy<ITypedElement> _busNameMarkerReference = new Lazy<ITypedElement>(RetrieveBusNameMarkerReference);
         
         /// <summary>
         /// The backing field for the BusNameMarker property
         /// </summary>
         private IBusNameMarker _busNameMarker;
         
+        private static Lazy<ITypedElement> _lossPenaltyFactorsReference = new Lazy<ITypedElement>(RetrieveLossPenaltyFactorsReference);
+        
         /// <summary>
         /// The backing field for the LossPenaltyFactors property
         /// </summary>
         private ConnectivityNodeLossPenaltyFactorsCollection _lossPenaltyFactors;
+        
+        private static Lazy<ITypedElement> _nodeConstraintTermsReference = new Lazy<ITypedElement>(RetrieveNodeConstraintTermsReference);
         
         /// <summary>
         /// The backing field for the NodeConstraintTerms property
         /// </summary>
         private ConnectivityNodeNodeConstraintTermsCollection _nodeConstraintTerms;
         
+        private static Lazy<ITypedElement> _terminalsReference = new Lazy<ITypedElement>(RetrieveTerminalsReference);
+        
         /// <summary>
         /// The backing field for the Terminals property
         /// </summary>
         private ConnectivityNodeTerminalsCollection _terminals;
+        
+        private static Lazy<ITypedElement> _pnodeReference = new Lazy<ITypedElement>(RetrievePnodeReference);
         
         /// <summary>
         /// The backing field for the Pnode property
@@ -128,7 +142,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Core
                     IConnectivityNodeContainer old = this._connectivityNodeContainer;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnConnectivityNodeContainerChanging(e);
-                    this.OnPropertyChanging("ConnectivityNodeContainer", e);
+                    this.OnPropertyChanging("ConnectivityNodeContainer", e, _connectivityNodeContainerReference);
                     this._connectivityNodeContainer = value;
                     if ((old != null))
                     {
@@ -141,7 +155,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Core
                         value.Deleted += this.OnResetConnectivityNodeContainer;
                     }
                     this.OnConnectivityNodeContainerChanged(e);
-                    this.OnPropertyChanged("ConnectivityNodeContainer", e);
+                    this.OnPropertyChanged("ConnectivityNodeContainer", e, _connectivityNodeContainerReference);
                 }
             }
         }
@@ -164,7 +178,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Core
                     ITopologicalNode old = this._topologicalNode;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnTopologicalNodeChanging(e);
-                    this.OnPropertyChanging("TopologicalNode", e);
+                    this.OnPropertyChanging("TopologicalNode", e, _topologicalNodeReference);
                     this._topologicalNode = value;
                     if ((old != null))
                     {
@@ -177,7 +191,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Core
                         value.Deleted += this.OnResetTopologicalNode;
                     }
                     this.OnTopologicalNodeChanged(e);
-                    this.OnPropertyChanged("TopologicalNode", e);
+                    this.OnPropertyChanged("TopologicalNode", e, _topologicalNodeReference);
                 }
             }
         }
@@ -200,7 +214,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Core
                     IBusNameMarker old = this._busNameMarker;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnBusNameMarkerChanging(e);
-                    this.OnPropertyChanging("BusNameMarker", e);
+                    this.OnPropertyChanging("BusNameMarker", e, _busNameMarkerReference);
                     this._busNameMarker = value;
                     if ((old != null))
                     {
@@ -213,7 +227,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Core
                         value.Deleted += this.OnResetBusNameMarker;
                     }
                     this.OnBusNameMarkerChanged(e);
-                    this.OnPropertyChanged("BusNameMarker", e);
+                    this.OnPropertyChanged("BusNameMarker", e, _busNameMarkerReference);
                 }
             }
         }
@@ -281,7 +295,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Core
                     IPnode old = this._pnode;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnPnodeChanging(e);
-                    this.OnPropertyChanging("Pnode", e);
+                    this.OnPropertyChanging("Pnode", e, _pnodeReference);
                     this._pnode = value;
                     if ((old != null))
                     {
@@ -294,7 +308,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Core
                         value.Deleted += this.OnResetPnode;
                     }
                     this.OnPnodeChanged(e);
-                    this.OnPropertyChanged("Pnode", e);
+                    this.OnPropertyChanged("Pnode", e, _pnodeReference);
                 }
             }
         }
@@ -365,6 +379,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Core
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> PnodeChanged;
         
+        private static ITypedElement RetrieveConnectivityNodeContainerReference()
+        {
+            return ((ITypedElement)(((ModelElement)(ConnectivityNode.ClassInstance)).Resolve("ConnectivityNodeContainer")));
+        }
+        
         /// <summary>
         /// Raises the ConnectivityNodeContainerChanging event
         /// </summary>
@@ -399,6 +418,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Core
         private void OnResetConnectivityNodeContainer(object sender, System.EventArgs eventArgs)
         {
             this.ConnectivityNodeContainer = null;
+        }
+        
+        private static ITypedElement RetrieveTopologicalNodeReference()
+        {
+            return ((ITypedElement)(((ModelElement)(ConnectivityNode.ClassInstance)).Resolve("TopologicalNode")));
         }
         
         /// <summary>
@@ -437,6 +461,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Core
             this.TopologicalNode = null;
         }
         
+        private static ITypedElement RetrieveBusNameMarkerReference()
+        {
+            return ((ITypedElement)(((ModelElement)(ConnectivityNode.ClassInstance)).Resolve("BusNameMarker")));
+        }
+        
         /// <summary>
         /// Raises the BusNameMarkerChanging event
         /// </summary>
@@ -473,6 +502,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Core
             this.BusNameMarker = null;
         }
         
+        private static ITypedElement RetrieveLossPenaltyFactorsReference()
+        {
+            return ((ITypedElement)(((ModelElement)(ConnectivityNode.ClassInstance)).Resolve("LossPenaltyFactors")));
+        }
+        
         /// <summary>
         /// Forwards CollectionChanging notifications for the LossPenaltyFactors property to the parent model element
         /// </summary>
@@ -480,7 +514,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Core
         /// <param name="e">The original event data</param>
         private void LossPenaltyFactorsCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("LossPenaltyFactors", e);
+            this.OnCollectionChanging("LossPenaltyFactors", e, _lossPenaltyFactorsReference);
         }
         
         /// <summary>
@@ -490,7 +524,12 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Core
         /// <param name="e">The original event data</param>
         private void LossPenaltyFactorsCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("LossPenaltyFactors", e);
+            this.OnCollectionChanged("LossPenaltyFactors", e, _lossPenaltyFactorsReference);
+        }
+        
+        private static ITypedElement RetrieveNodeConstraintTermsReference()
+        {
+            return ((ITypedElement)(((ModelElement)(ConnectivityNode.ClassInstance)).Resolve("NodeConstraintTerms")));
         }
         
         /// <summary>
@@ -500,7 +539,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Core
         /// <param name="e">The original event data</param>
         private void NodeConstraintTermsCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("NodeConstraintTerms", e);
+            this.OnCollectionChanging("NodeConstraintTerms", e, _nodeConstraintTermsReference);
         }
         
         /// <summary>
@@ -510,7 +549,12 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Core
         /// <param name="e">The original event data</param>
         private void NodeConstraintTermsCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("NodeConstraintTerms", e);
+            this.OnCollectionChanged("NodeConstraintTerms", e, _nodeConstraintTermsReference);
+        }
+        
+        private static ITypedElement RetrieveTerminalsReference()
+        {
+            return ((ITypedElement)(((ModelElement)(ConnectivityNode.ClassInstance)).Resolve("Terminals")));
         }
         
         /// <summary>
@@ -520,7 +564,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Core
         /// <param name="e">The original event data</param>
         private void TerminalsCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("Terminals", e);
+            this.OnCollectionChanging("Terminals", e, _terminalsReference);
         }
         
         /// <summary>
@@ -530,7 +574,12 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Core
         /// <param name="e">The original event data</param>
         private void TerminalsCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("Terminals", e);
+            this.OnCollectionChanged("Terminals", e, _terminalsReference);
+        }
+        
+        private static ITypedElement RetrievePnodeReference()
+        {
+            return ((ITypedElement)(((ModelElement)(ConnectivityNode.ClassInstance)).Resolve("Pnode")));
         }
         
         /// <summary>
@@ -1008,7 +1057,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Core
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public ConnectivityNodeContainerProxy(IConnectivityNode modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "ConnectivityNodeContainer")
             {
             }
             
@@ -1026,24 +1075,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Core
                     this.ModelElement.ConnectivityNodeContainer = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ConnectivityNodeContainerChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ConnectivityNodeContainerChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1057,7 +1088,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Core
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public TopologicalNodeProxy(IConnectivityNode modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "TopologicalNode")
             {
             }
             
@@ -1075,24 +1106,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Core
                     this.ModelElement.TopologicalNode = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.TopologicalNodeChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.TopologicalNodeChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1106,7 +1119,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Core
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public BusNameMarkerProxy(IConnectivityNode modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "BusNameMarker")
             {
             }
             
@@ -1124,24 +1137,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Core
                     this.ModelElement.BusNameMarker = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.BusNameMarkerChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.BusNameMarkerChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1155,7 +1150,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Core
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public PnodeProxy(IConnectivityNode modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "Pnode")
             {
             }
             
@@ -1172,24 +1167,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Core
                 {
                     this.ModelElement.Pnode = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.PnodeChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.PnodeChanged -= handler;
             }
         }
     }

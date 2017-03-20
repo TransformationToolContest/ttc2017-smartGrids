@@ -53,7 +53,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61970/Informative/InfAssets/Bushing" +
         "Info")]
     [DebuggerDisplayAttribute("BushingInfo {UUID}")]
-    public class BushingInfo : AssetInfo, IBushingInfo, IModelElement
+    public partial class BushingInfo : AssetInfo, IBushingInfo, IModelElement
     {
         
         /// <summary>
@@ -61,30 +61,44 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
         /// </summary>
         private float _c2PowerFactor;
         
+        private static Lazy<ITypedElement> _c2PowerFactorAttribute = new Lazy<ITypedElement>(RetrieveC2PowerFactorAttribute);
+        
         /// <summary>
         /// The backing field for the C2Capacitance property
         /// </summary>
         private float _c2Capacitance;
+        
+        private static Lazy<ITypedElement> _c2CapacitanceAttribute = new Lazy<ITypedElement>(RetrieveC2CapacitanceAttribute);
         
         /// <summary>
         /// The backing field for the C1Capacitance property
         /// </summary>
         private float _c1Capacitance;
         
+        private static Lazy<ITypedElement> _c1CapacitanceAttribute = new Lazy<ITypedElement>(RetrieveC1CapacitanceAttribute);
+        
         /// <summary>
         /// The backing field for the C1PowerFactor property
         /// </summary>
         private float _c1PowerFactor;
+        
+        private static Lazy<ITypedElement> _c1PowerFactorAttribute = new Lazy<ITypedElement>(RetrieveC1PowerFactorAttribute);
         
         /// <summary>
         /// The backing field for the InsulationKind property
         /// </summary>
         private Nullable<BushingInsulationKind> _insulationKind;
         
+        private static Lazy<ITypedElement> _insulationKindAttribute = new Lazy<ITypedElement>(RetrieveInsulationKindAttribute);
+        
+        private static Lazy<ITypedElement> _bushingInsulationPFsReference = new Lazy<ITypedElement>(RetrieveBushingInsulationPFsReference);
+        
         /// <summary>
         /// The backing field for the BushingInsulationPFs property
         /// </summary>
         private BushingInfoBushingInsulationPFsCollection _bushingInsulationPFs;
+        
+        private static Lazy<ITypedElement> _terminalReference = new Lazy<ITypedElement>(RetrieveTerminalReference);
         
         /// <summary>
         /// The backing field for the Terminal property
@@ -118,10 +132,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
                     float old = this._c2PowerFactor;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnC2PowerFactorChanging(e);
-                    this.OnPropertyChanging("C2PowerFactor", e);
+                    this.OnPropertyChanging("C2PowerFactor", e, _c2PowerFactorAttribute);
                     this._c2PowerFactor = value;
                     this.OnC2PowerFactorChanged(e);
-                    this.OnPropertyChanged("C2PowerFactor", e);
+                    this.OnPropertyChanged("C2PowerFactor", e, _c2PowerFactorAttribute);
                 }
             }
         }
@@ -144,10 +158,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
                     float old = this._c2Capacitance;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnC2CapacitanceChanging(e);
-                    this.OnPropertyChanging("C2Capacitance", e);
+                    this.OnPropertyChanging("C2Capacitance", e, _c2CapacitanceAttribute);
                     this._c2Capacitance = value;
                     this.OnC2CapacitanceChanged(e);
-                    this.OnPropertyChanged("C2Capacitance", e);
+                    this.OnPropertyChanged("C2Capacitance", e, _c2CapacitanceAttribute);
                 }
             }
         }
@@ -170,10 +184,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
                     float old = this._c1Capacitance;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnC1CapacitanceChanging(e);
-                    this.OnPropertyChanging("C1Capacitance", e);
+                    this.OnPropertyChanging("C1Capacitance", e, _c1CapacitanceAttribute);
                     this._c1Capacitance = value;
                     this.OnC1CapacitanceChanged(e);
-                    this.OnPropertyChanged("C1Capacitance", e);
+                    this.OnPropertyChanged("C1Capacitance", e, _c1CapacitanceAttribute);
                 }
             }
         }
@@ -196,10 +210,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
                     float old = this._c1PowerFactor;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnC1PowerFactorChanging(e);
-                    this.OnPropertyChanging("C1PowerFactor", e);
+                    this.OnPropertyChanging("C1PowerFactor", e, _c1PowerFactorAttribute);
                     this._c1PowerFactor = value;
                     this.OnC1PowerFactorChanged(e);
-                    this.OnPropertyChanged("C1PowerFactor", e);
+                    this.OnPropertyChanged("C1PowerFactor", e, _c1PowerFactorAttribute);
                 }
             }
         }
@@ -222,10 +236,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
                     Nullable<BushingInsulationKind> old = this._insulationKind;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnInsulationKindChanging(e);
-                    this.OnPropertyChanging("InsulationKind", e);
+                    this.OnPropertyChanging("InsulationKind", e, _insulationKindAttribute);
                     this._insulationKind = value;
                     this.OnInsulationKindChanged(e);
-                    this.OnPropertyChanged("InsulationKind", e);
+                    this.OnPropertyChanged("InsulationKind", e, _insulationKindAttribute);
                 }
             }
         }
@@ -263,7 +277,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
                     ITerminal old = this._terminal;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnTerminalChanging(e);
-                    this.OnPropertyChanging("Terminal", e);
+                    this.OnPropertyChanging("Terminal", e, _terminalReference);
                     this._terminal = value;
                     if ((old != null))
                     {
@@ -276,7 +290,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
                         value.Deleted += this.OnResetTerminal;
                     }
                     this.OnTerminalChanged(e);
-                    this.OnPropertyChanged("Terminal", e);
+                    this.OnPropertyChanged("Terminal", e, _terminalReference);
                 }
             }
         }
@@ -368,6 +382,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> TerminalChanged;
         
+        private static ITypedElement RetrieveC2PowerFactorAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(BushingInfo.ClassInstance)).Resolve("c2PowerFactor")));
+        }
+        
         /// <summary>
         /// Raises the C2PowerFactorChanging event
         /// </summary>
@@ -392,6 +411,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveC2CapacitanceAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(BushingInfo.ClassInstance)).Resolve("c2Capacitance")));
         }
         
         /// <summary>
@@ -420,6 +444,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
             }
         }
         
+        private static ITypedElement RetrieveC1CapacitanceAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(BushingInfo.ClassInstance)).Resolve("c1Capacitance")));
+        }
+        
         /// <summary>
         /// Raises the C1CapacitanceChanging event
         /// </summary>
@@ -444,6 +473,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveC1PowerFactorAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(BushingInfo.ClassInstance)).Resolve("c1PowerFactor")));
         }
         
         /// <summary>
@@ -472,6 +506,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
             }
         }
         
+        private static ITypedElement RetrieveInsulationKindAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(BushingInfo.ClassInstance)).Resolve("insulationKind")));
+        }
+        
         /// <summary>
         /// Raises the InsulationKindChanging event
         /// </summary>
@@ -498,6 +537,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
             }
         }
         
+        private static ITypedElement RetrieveBushingInsulationPFsReference()
+        {
+            return ((ITypedElement)(((ModelElement)(BushingInfo.ClassInstance)).Resolve("BushingInsulationPFs")));
+        }
+        
         /// <summary>
         /// Forwards CollectionChanging notifications for the BushingInsulationPFs property to the parent model element
         /// </summary>
@@ -505,7 +549,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
         /// <param name="e">The original event data</param>
         private void BushingInsulationPFsCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("BushingInsulationPFs", e);
+            this.OnCollectionChanging("BushingInsulationPFs", e, _bushingInsulationPFsReference);
         }
         
         /// <summary>
@@ -515,7 +559,12 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
         /// <param name="e">The original event data</param>
         private void BushingInsulationPFsCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("BushingInsulationPFs", e);
+            this.OnCollectionChanged("BushingInsulationPFs", e, _bushingInsulationPFsReference);
+        }
+        
+        private static ITypedElement RetrieveTerminalReference()
+        {
+            return ((ITypedElement)(((ModelElement)(BushingInfo.ClassInstance)).Resolve("Terminal")));
         }
         
         /// <summary>
@@ -845,7 +894,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public C2PowerFactorProxy(IBushingInfo modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "c2PowerFactor")
             {
             }
             
@@ -863,24 +912,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
                     this.ModelElement.C2PowerFactor = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.C2PowerFactorChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.C2PowerFactorChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -894,7 +925,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public C2CapacitanceProxy(IBushingInfo modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "c2Capacitance")
             {
             }
             
@@ -912,24 +943,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
                     this.ModelElement.C2Capacitance = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.C2CapacitanceChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.C2CapacitanceChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -943,7 +956,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public C1CapacitanceProxy(IBushingInfo modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "c1Capacitance")
             {
             }
             
@@ -961,24 +974,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
                     this.ModelElement.C1Capacitance = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.C1CapacitanceChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.C1CapacitanceChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -992,7 +987,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public C1PowerFactorProxy(IBushingInfo modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "c1PowerFactor")
             {
             }
             
@@ -1010,24 +1005,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
                     this.ModelElement.C1PowerFactor = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.C1PowerFactorChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.C1PowerFactorChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1041,7 +1018,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public InsulationKindProxy(IBushingInfo modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "insulationKind")
             {
             }
             
@@ -1059,24 +1036,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
                     this.ModelElement.InsulationKind = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.InsulationKindChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.InsulationKindChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1090,7 +1049,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public TerminalProxy(IBushingInfo modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "Terminal")
             {
             }
             
@@ -1107,24 +1066,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
                 {
                     this.ModelElement.Terminal = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.TerminalChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.TerminalChanged -= handler;
             }
         }
     }

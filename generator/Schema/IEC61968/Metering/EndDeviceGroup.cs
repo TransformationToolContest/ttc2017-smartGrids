@@ -54,7 +54,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Metering
     [XmlNamespacePrefixAttribute("cimMetering")]
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61968/Metering/EndDeviceGroup")]
     [DebuggerDisplayAttribute("EndDeviceGroup {UUID}")]
-    public class EndDeviceGroup : IdentifiedObject, IEndDeviceGroup, IModelElement
+    public partial class EndDeviceGroup : IdentifiedObject, IEndDeviceGroup, IModelElement
     {
         
         /// <summary>
@@ -62,15 +62,23 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Metering
         /// </summary>
         private int _groupAddress;
         
+        private static Lazy<ITypedElement> _groupAddressAttribute = new Lazy<ITypedElement>(RetrieveGroupAddressAttribute);
+        
+        private static Lazy<ITypedElement> _demandResponseProgramReference = new Lazy<ITypedElement>(RetrieveDemandResponseProgramReference);
+        
         /// <summary>
         /// The backing field for the DemandResponseProgram property
         /// </summary>
         private IDemandResponseProgram _demandResponseProgram;
         
+        private static Lazy<ITypedElement> _endDeviceAssetsReference = new Lazy<ITypedElement>(RetrieveEndDeviceAssetsReference);
+        
         /// <summary>
         /// The backing field for the EndDeviceAssets property
         /// </summary>
         private EndDeviceGroupEndDeviceAssetsCollection _endDeviceAssets;
+        
+        private static Lazy<ITypedElement> _endDeviceControlsReference = new Lazy<ITypedElement>(RetrieveEndDeviceControlsReference);
         
         /// <summary>
         /// The backing field for the EndDeviceControls property
@@ -107,10 +115,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Metering
                     int old = this._groupAddress;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnGroupAddressChanging(e);
-                    this.OnPropertyChanging("GroupAddress", e);
+                    this.OnPropertyChanging("GroupAddress", e, _groupAddressAttribute);
                     this._groupAddress = value;
                     this.OnGroupAddressChanged(e);
-                    this.OnPropertyChanged("GroupAddress", e);
+                    this.OnPropertyChanged("GroupAddress", e, _groupAddressAttribute);
                 }
             }
         }
@@ -133,7 +141,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Metering
                     IDemandResponseProgram old = this._demandResponseProgram;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnDemandResponseProgramChanging(e);
-                    this.OnPropertyChanging("DemandResponseProgram", e);
+                    this.OnPropertyChanging("DemandResponseProgram", e, _demandResponseProgramReference);
                     this._demandResponseProgram = value;
                     if ((old != null))
                     {
@@ -146,7 +154,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Metering
                         value.Deleted += this.OnResetDemandResponseProgram;
                     }
                     this.OnDemandResponseProgramChanged(e);
-                    this.OnPropertyChanged("DemandResponseProgram", e);
+                    this.OnPropertyChanged("DemandResponseProgram", e, _demandResponseProgramReference);
                 }
             }
         }
@@ -227,6 +235,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Metering
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> DemandResponseProgramChanged;
         
+        private static ITypedElement RetrieveGroupAddressAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(EndDeviceGroup.ClassInstance)).Resolve("groupAddress")));
+        }
+        
         /// <summary>
         /// Raises the GroupAddressChanging event
         /// </summary>
@@ -251,6 +264,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Metering
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveDemandResponseProgramReference()
+        {
+            return ((ITypedElement)(((ModelElement)(EndDeviceGroup.ClassInstance)).Resolve("DemandResponseProgram")));
         }
         
         /// <summary>
@@ -289,6 +307,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Metering
             this.DemandResponseProgram = null;
         }
         
+        private static ITypedElement RetrieveEndDeviceAssetsReference()
+        {
+            return ((ITypedElement)(((ModelElement)(EndDeviceGroup.ClassInstance)).Resolve("EndDeviceAssets")));
+        }
+        
         /// <summary>
         /// Forwards CollectionChanging notifications for the EndDeviceAssets property to the parent model element
         /// </summary>
@@ -296,7 +319,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Metering
         /// <param name="e">The original event data</param>
         private void EndDeviceAssetsCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("EndDeviceAssets", e);
+            this.OnCollectionChanging("EndDeviceAssets", e, _endDeviceAssetsReference);
         }
         
         /// <summary>
@@ -306,7 +329,12 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Metering
         /// <param name="e">The original event data</param>
         private void EndDeviceAssetsCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("EndDeviceAssets", e);
+            this.OnCollectionChanged("EndDeviceAssets", e, _endDeviceAssetsReference);
+        }
+        
+        private static ITypedElement RetrieveEndDeviceControlsReference()
+        {
+            return ((ITypedElement)(((ModelElement)(EndDeviceGroup.ClassInstance)).Resolve("EndDeviceControls")));
         }
         
         /// <summary>
@@ -316,7 +344,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Metering
         /// <param name="e">The original event data</param>
         private void EndDeviceControlsCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("EndDeviceControls", e);
+            this.OnCollectionChanging("EndDeviceControls", e, _endDeviceControlsReference);
         }
         
         /// <summary>
@@ -326,7 +354,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Metering
         /// <param name="e">The original event data</param>
         private void EndDeviceControlsCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("EndDeviceControls", e);
+            this.OnCollectionChanged("EndDeviceControls", e, _endDeviceControlsReference);
         }
         
         /// <summary>
@@ -621,7 +649,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Metering
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public GroupAddressProxy(IEndDeviceGroup modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "groupAddress")
             {
             }
             
@@ -639,24 +667,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Metering
                     this.ModelElement.GroupAddress = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.GroupAddressChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.GroupAddressChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -670,7 +680,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Metering
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public DemandResponseProgramProxy(IEndDeviceGroup modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "DemandResponseProgram")
             {
             }
             
@@ -687,24 +697,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Metering
                 {
                     this.ModelElement.DemandResponseProgram = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.DemandResponseProgramChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.DemandResponseProgramChanged -= handler;
             }
         }
     }

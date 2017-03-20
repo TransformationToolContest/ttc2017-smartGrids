@@ -53,7 +53,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
     [XmlNamespacePrefixAttribute("cimWires")]
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61970/Wires/RatioTapChanger")]
     [DebuggerDisplayAttribute("RatioTapChanger {UUID}")]
-    public class RatioTapChanger : TapChanger, IRatioTapChanger, IModelElement
+    public partial class RatioTapChanger : TapChanger, IRatioTapChanger, IModelElement
     {
         
         /// <summary>
@@ -61,15 +61,23 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
         /// </summary>
         private Nullable<TransformerControlMode> _tculControlMode;
         
+        private static Lazy<ITypedElement> _tculControlModeAttribute = new Lazy<ITypedElement>(RetrieveTculControlModeAttribute);
+        
+        private static Lazy<ITypedElement> _ratioVariationCurveReference = new Lazy<ITypedElement>(RetrieveRatioVariationCurveReference);
+        
         /// <summary>
         /// The backing field for the RatioVariationCurve property
         /// </summary>
         private IRatioVariationCurve _ratioVariationCurve;
         
+        private static Lazy<ITypedElement> _transformerWindingReference = new Lazy<ITypedElement>(RetrieveTransformerWindingReference);
+        
         /// <summary>
         /// The backing field for the TransformerWinding property
         /// </summary>
         private ITransformerWinding _transformerWinding;
+        
+        private static Lazy<ITypedElement> _windingReference = new Lazy<ITypedElement>(RetrieveWindingReference);
         
         /// <summary>
         /// The backing field for the Winding property
@@ -96,10 +104,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
                     Nullable<TransformerControlMode> old = this._tculControlMode;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnTculControlModeChanging(e);
-                    this.OnPropertyChanging("TculControlMode", e);
+                    this.OnPropertyChanging("TculControlMode", e, _tculControlModeAttribute);
                     this._tculControlMode = value;
                     this.OnTculControlModeChanged(e);
-                    this.OnPropertyChanged("TculControlMode", e);
+                    this.OnPropertyChanged("TculControlMode", e, _tculControlModeAttribute);
                 }
             }
         }
@@ -122,7 +130,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
                     IRatioVariationCurve old = this._ratioVariationCurve;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnRatioVariationCurveChanging(e);
-                    this.OnPropertyChanging("RatioVariationCurve", e);
+                    this.OnPropertyChanging("RatioVariationCurve", e, _ratioVariationCurveReference);
                     this._ratioVariationCurve = value;
                     if ((old != null))
                     {
@@ -135,7 +143,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
                         value.Deleted += this.OnResetRatioVariationCurve;
                     }
                     this.OnRatioVariationCurveChanged(e);
-                    this.OnPropertyChanged("RatioVariationCurve", e);
+                    this.OnPropertyChanged("RatioVariationCurve", e, _ratioVariationCurveReference);
                 }
             }
         }
@@ -158,7 +166,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
                     ITransformerWinding old = this._transformerWinding;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnTransformerWindingChanging(e);
-                    this.OnPropertyChanging("TransformerWinding", e);
+                    this.OnPropertyChanging("TransformerWinding", e, _transformerWindingReference);
                     this._transformerWinding = value;
                     if ((old != null))
                     {
@@ -171,7 +179,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
                         value.Deleted += this.OnResetTransformerWinding;
                     }
                     this.OnTransformerWindingChanged(e);
-                    this.OnPropertyChanged("TransformerWinding", e);
+                    this.OnPropertyChanged("TransformerWinding", e, _transformerWindingReference);
                 }
             }
         }
@@ -194,7 +202,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
                     IDistributionTransformerWinding old = this._winding;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnWindingChanging(e);
-                    this.OnPropertyChanging("Winding", e);
+                    this.OnPropertyChanging("Winding", e, _windingReference);
                     this._winding = value;
                     if ((old != null))
                     {
@@ -207,7 +215,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
                         value.Deleted += this.OnResetWinding;
                     }
                     this.OnWindingChanged(e);
-                    this.OnPropertyChanged("Winding", e);
+                    this.OnPropertyChanged("Winding", e, _windingReference);
                 }
             }
         }
@@ -278,6 +286,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> WindingChanged;
         
+        private static ITypedElement RetrieveTculControlModeAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(RatioTapChanger.ClassInstance)).Resolve("tculControlMode")));
+        }
+        
         /// <summary>
         /// Raises the TculControlModeChanging event
         /// </summary>
@@ -302,6 +315,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveRatioVariationCurveReference()
+        {
+            return ((ITypedElement)(((ModelElement)(RatioTapChanger.ClassInstance)).Resolve("RatioVariationCurve")));
         }
         
         /// <summary>
@@ -340,6 +358,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
             this.RatioVariationCurve = null;
         }
         
+        private static ITypedElement RetrieveTransformerWindingReference()
+        {
+            return ((ITypedElement)(((ModelElement)(RatioTapChanger.ClassInstance)).Resolve("TransformerWinding")));
+        }
+        
         /// <summary>
         /// Raises the TransformerWindingChanging event
         /// </summary>
@@ -374,6 +397,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
         private void OnResetTransformerWinding(object sender, System.EventArgs eventArgs)
         {
             this.TransformerWinding = null;
+        }
+        
+        private static ITypedElement RetrieveWindingReference()
+        {
+            return ((ITypedElement)(((ModelElement)(RatioTapChanger.ClassInstance)).Resolve("Winding")));
         }
         
         /// <summary>
@@ -704,7 +732,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public TculControlModeProxy(IRatioTapChanger modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "tculControlMode")
             {
             }
             
@@ -722,24 +750,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
                     this.ModelElement.TculControlMode = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.TculControlModeChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.TculControlModeChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -753,7 +763,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public RatioVariationCurveProxy(IRatioTapChanger modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "RatioVariationCurve")
             {
             }
             
@@ -771,24 +781,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
                     this.ModelElement.RatioVariationCurve = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.RatioVariationCurveChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.RatioVariationCurveChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -802,7 +794,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public TransformerWindingProxy(IRatioTapChanger modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "TransformerWinding")
             {
             }
             
@@ -820,24 +812,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
                     this.ModelElement.TransformerWinding = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.TransformerWindingChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.TransformerWindingChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -851,7 +825,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public WindingProxy(IRatioTapChanger modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "Winding")
             {
             }
             
@@ -868,24 +842,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
                 {
                     this.ModelElement.Winding = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.WindingChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.WindingChanged -= handler;
             }
         }
     }

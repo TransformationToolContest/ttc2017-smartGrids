@@ -39,7 +39,7 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
     [XmlNamespacePrefixAttribute("objects")]
     [ModelRepresentationClassAttribute("http://www.transformation-tool-contest.eu/2017/smartGrids/cosem#//COSEMObjects/MA" +
         "CAddressSetupObject")]
-    public class MACAddressSetupObject : MACaddresssetup, IMACAddressSetupObject, IModelElement
+    public partial class MACAddressSetupObject : MACaddresssetup, IMACAddressSetupObject, IModelElement
     {
         
         private static IClass _classInstance;

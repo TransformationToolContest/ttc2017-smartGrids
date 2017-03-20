@@ -50,13 +50,17 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfOperations
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61970/Informative/InfOperations/Org" +
         "PsrRole")]
     [DebuggerDisplayAttribute("OrgPsrRole {UUID}")]
-    public class OrgPsrRole : Role, IOrgPsrRole, IModelElement
+    public partial class OrgPsrRole : Role, IOrgPsrRole, IModelElement
     {
+        
+        private static Lazy<ITypedElement> _powerSystemResourceReference = new Lazy<ITypedElement>(RetrievePowerSystemResourceReference);
         
         /// <summary>
         /// The backing field for the PowerSystemResource property
         /// </summary>
         private IPowerSystemResource _powerSystemResource;
+        
+        private static Lazy<ITypedElement> _erpOrganisationReference = new Lazy<ITypedElement>(RetrieveErpOrganisationReference);
         
         /// <summary>
         /// The backing field for the ErpOrganisation property
@@ -83,7 +87,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfOperations
                     IPowerSystemResource old = this._powerSystemResource;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnPowerSystemResourceChanging(e);
-                    this.OnPropertyChanging("PowerSystemResource", e);
+                    this.OnPropertyChanging("PowerSystemResource", e, _powerSystemResourceReference);
                     this._powerSystemResource = value;
                     if ((old != null))
                     {
@@ -96,7 +100,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfOperations
                         value.Deleted += this.OnResetPowerSystemResource;
                     }
                     this.OnPowerSystemResourceChanged(e);
-                    this.OnPropertyChanged("PowerSystemResource", e);
+                    this.OnPropertyChanged("PowerSystemResource", e, _powerSystemResourceReference);
                 }
             }
         }
@@ -119,7 +123,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfOperations
                     IErpOrganisation old = this._erpOrganisation;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnErpOrganisationChanging(e);
-                    this.OnPropertyChanging("ErpOrganisation", e);
+                    this.OnPropertyChanging("ErpOrganisation", e, _erpOrganisationReference);
                     this._erpOrganisation = value;
                     if ((old != null))
                     {
@@ -132,7 +136,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfOperations
                         value.Deleted += this.OnResetErpOrganisation;
                     }
                     this.OnErpOrganisationChanged(e);
-                    this.OnPropertyChanged("ErpOrganisation", e);
+                    this.OnPropertyChanged("ErpOrganisation", e, _erpOrganisationReference);
                 }
             }
         }
@@ -184,6 +188,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfOperations
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> ErpOrganisationChanged;
         
+        private static ITypedElement RetrievePowerSystemResourceReference()
+        {
+            return ((ITypedElement)(((ModelElement)(OrgPsrRole.ClassInstance)).Resolve("PowerSystemResource")));
+        }
+        
         /// <summary>
         /// Raises the PowerSystemResourceChanging event
         /// </summary>
@@ -218,6 +227,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfOperations
         private void OnResetPowerSystemResource(object sender, System.EventArgs eventArgs)
         {
             this.PowerSystemResource = null;
+        }
+        
+        private static ITypedElement RetrieveErpOrganisationReference()
+        {
+            return ((ITypedElement)(((ModelElement)(OrgPsrRole.ClassInstance)).Resolve("ErpOrganisation")));
         }
         
         /// <summary>
@@ -486,7 +500,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfOperations
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public PowerSystemResourceProxy(IOrgPsrRole modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "PowerSystemResource")
             {
             }
             
@@ -504,24 +518,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfOperations
                     this.ModelElement.PowerSystemResource = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.PowerSystemResourceChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.PowerSystemResourceChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -535,7 +531,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfOperations
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public ErpOrganisationProxy(IOrgPsrRole modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "ErpOrganisation")
             {
             }
             
@@ -552,24 +548,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfOperations
                 {
                     this.ModelElement.ErpOrganisation = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ErpOrganisationChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ErpOrganisationChanged -= handler;
             }
         }
     }

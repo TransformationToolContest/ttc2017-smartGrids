@@ -50,13 +50,17 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61970/Informative/MarketOperations/" +
         "CapacityBenefitMargin")]
     [DebuggerDisplayAttribute("CapacityBenefitMargin {UUID}")]
-    public class CapacityBenefitMargin : Profile, ICapacityBenefitMargin, IModelElement
+    public partial class CapacityBenefitMargin : Profile, ICapacityBenefitMargin, IModelElement
     {
+        
+        private static Lazy<ITypedElement> _seasonReference = new Lazy<ITypedElement>(RetrieveSeasonReference);
         
         /// <summary>
         /// The backing field for the Season property
         /// </summary>
         private ISeason _season;
+        
+        private static Lazy<ITypedElement> _flowgateReference = new Lazy<ITypedElement>(RetrieveFlowgateReference);
         
         /// <summary>
         /// The backing field for the Flowgate property
@@ -90,7 +94,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
                     ISeason old = this._season;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnSeasonChanging(e);
-                    this.OnPropertyChanging("Season", e);
+                    this.OnPropertyChanging("Season", e, _seasonReference);
                     this._season = value;
                     if ((old != null))
                     {
@@ -103,7 +107,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
                         value.Deleted += this.OnResetSeason;
                     }
                     this.OnSeasonChanged(e);
-                    this.OnPropertyChanged("Season", e);
+                    this.OnPropertyChanged("Season", e, _seasonReference);
                 }
             }
         }
@@ -160,6 +164,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> SeasonChanged;
         
+        private static ITypedElement RetrieveSeasonReference()
+        {
+            return ((ITypedElement)(((ModelElement)(CapacityBenefitMargin.ClassInstance)).Resolve("Season")));
+        }
+        
         /// <summary>
         /// Raises the SeasonChanging event
         /// </summary>
@@ -196,6 +205,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
             this.Season = null;
         }
         
+        private static ITypedElement RetrieveFlowgateReference()
+        {
+            return ((ITypedElement)(((ModelElement)(CapacityBenefitMargin.ClassInstance)).Resolve("Flowgate")));
+        }
+        
         /// <summary>
         /// Forwards CollectionChanging notifications for the Flowgate property to the parent model element
         /// </summary>
@@ -203,7 +217,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
         /// <param name="e">The original event data</param>
         private void FlowgateCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("Flowgate", e);
+            this.OnCollectionChanging("Flowgate", e, _flowgateReference);
         }
         
         /// <summary>
@@ -213,7 +227,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
         /// <param name="e">The original event data</param>
         private void FlowgateCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("Flowgate", e);
+            this.OnCollectionChanged("Flowgate", e, _flowgateReference);
         }
         
         /// <summary>
@@ -451,7 +465,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public SeasonProxy(ICapacityBenefitMargin modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "Season")
             {
             }
             
@@ -468,24 +482,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
                 {
                     this.ModelElement.Season = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.SeasonChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.SeasonChanged -= handler;
             }
         }
     }

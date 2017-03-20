@@ -50,13 +50,17 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61970/Informative/MarketOperations/" +
         "StartUpCostCurve")]
     [DebuggerDisplayAttribute("StartUpCostCurve {UUID}")]
-    public class StartUpCostCurve : Curve, IStartUpCostCurve, IModelElement
+    public partial class StartUpCostCurve : Curve, IStartUpCostCurve, IModelElement
     {
+        
+        private static Lazy<ITypedElement> _generatingBidsReference = new Lazy<ITypedElement>(RetrieveGeneratingBidsReference);
         
         /// <summary>
         /// The backing field for the GeneratingBids property
         /// </summary>
         private StartUpCostCurveGeneratingBidsCollection _generatingBids;
+        
+        private static Lazy<ITypedElement> _registeredGeneratorsReference = new Lazy<ITypedElement>(RetrieveRegisteredGeneratorsReference);
         
         /// <summary>
         /// The backing field for the RegisteredGenerators property
@@ -132,6 +136,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
             }
         }
         
+        private static ITypedElement RetrieveGeneratingBidsReference()
+        {
+            return ((ITypedElement)(((ModelElement)(StartUpCostCurve.ClassInstance)).Resolve("GeneratingBids")));
+        }
+        
         /// <summary>
         /// Forwards CollectionChanging notifications for the GeneratingBids property to the parent model element
         /// </summary>
@@ -139,7 +148,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
         /// <param name="e">The original event data</param>
         private void GeneratingBidsCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("GeneratingBids", e);
+            this.OnCollectionChanging("GeneratingBids", e, _generatingBidsReference);
         }
         
         /// <summary>
@@ -149,7 +158,12 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
         /// <param name="e">The original event data</param>
         private void GeneratingBidsCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("GeneratingBids", e);
+            this.OnCollectionChanged("GeneratingBids", e, _generatingBidsReference);
+        }
+        
+        private static ITypedElement RetrieveRegisteredGeneratorsReference()
+        {
+            return ((ITypedElement)(((ModelElement)(StartUpCostCurve.ClassInstance)).Resolve("RegisteredGenerators")));
         }
         
         /// <summary>
@@ -159,7 +173,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
         /// <param name="e">The original event data</param>
         private void RegisteredGeneratorsCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("RegisteredGenerators", e);
+            this.OnCollectionChanging("RegisteredGenerators", e, _registeredGeneratorsReference);
         }
         
         /// <summary>
@@ -169,7 +183,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
         /// <param name="e">The original event data</param>
         private void RegisteredGeneratorsCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("RegisteredGenerators", e);
+            this.OnCollectionChanged("RegisteredGenerators", e, _registeredGeneratorsReference);
         }
         
         /// <summary>

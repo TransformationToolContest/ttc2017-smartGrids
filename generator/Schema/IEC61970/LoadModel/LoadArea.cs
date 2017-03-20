@@ -43,8 +43,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.LoadModel
     [XmlNamespacePrefixAttribute("cimLoadModel")]
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61970/LoadModel/LoadArea")]
     [DebuggerDisplayAttribute("LoadArea {UUID}")]
-    public class LoadArea : EnergyArea, ILoadArea, IModelElement
+    public partial class LoadArea : EnergyArea, ILoadArea, IModelElement
     {
+        
+        private static Lazy<ITypedElement> _subLoadAreasReference = new Lazy<ITypedElement>(RetrieveSubLoadAreasReference);
         
         /// <summary>
         /// The backing field for the SubLoadAreas property
@@ -101,6 +103,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.LoadModel
             }
         }
         
+        private static ITypedElement RetrieveSubLoadAreasReference()
+        {
+            return ((ITypedElement)(((ModelElement)(LoadArea.ClassInstance)).Resolve("SubLoadAreas")));
+        }
+        
         /// <summary>
         /// Forwards CollectionChanging notifications for the SubLoadAreas property to the parent model element
         /// </summary>
@@ -108,7 +115,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.LoadModel
         /// <param name="e">The original event data</param>
         private void SubLoadAreasCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("SubLoadAreas", e);
+            this.OnCollectionChanging("SubLoadAreas", e, _subLoadAreasReference);
         }
         
         /// <summary>
@@ -118,7 +125,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.LoadModel
         /// <param name="e">The original event data</param>
         private void SubLoadAreasCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("SubLoadAreas", e);
+            this.OnCollectionChanged("SubLoadAreas", e, _subLoadAreasReference);
         }
         
         /// <summary>

@@ -56,8 +56,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfERPSupport
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61970/Informative/InfERPSupport/Erp" +
         "TimeSheet")]
     [DebuggerDisplayAttribute("ErpTimeSheet {UUID}")]
-    public class ErpTimeSheet : Document, IErpTimeSheet, IModelElement
+    public partial class ErpTimeSheet : Document, IErpTimeSheet, IModelElement
     {
+        
+        private static Lazy<ITypedElement> _erpTimeEntriesReference = new Lazy<ITypedElement>(RetrieveErpTimeEntriesReference);
         
         /// <summary>
         /// The backing field for the ErpTimeEntries property
@@ -115,6 +117,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfERPSupport
             }
         }
         
+        private static ITypedElement RetrieveErpTimeEntriesReference()
+        {
+            return ((ITypedElement)(((ModelElement)(ErpTimeSheet.ClassInstance)).Resolve("ErpTimeEntries")));
+        }
+        
         /// <summary>
         /// Forwards CollectionChanging notifications for the ErpTimeEntries property to the parent model element
         /// </summary>
@@ -122,7 +129,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfERPSupport
         /// <param name="e">The original event data</param>
         private void ErpTimeEntriesCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("ErpTimeEntries", e);
+            this.OnCollectionChanging("ErpTimeEntries", e, _erpTimeEntriesReference);
         }
         
         /// <summary>
@@ -132,7 +139,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfERPSupport
         /// <param name="e">The original event data</param>
         private void ErpTimeEntriesCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("ErpTimeEntries", e);
+            this.OnCollectionChanged("ErpTimeEntries", e, _erpTimeEntriesReference);
         }
         
         /// <summary>

@@ -53,7 +53,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
     [XmlNamespacePrefixAttribute("cimWires")]
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61970/Wires/Breaker")]
     [DebuggerDisplayAttribute("Breaker {UUID}")]
-    public class Breaker : ProtectedSwitch, IBreaker, IModelElement
+    public partial class Breaker : ProtectedSwitch, IBreaker, IModelElement
     {
         
         /// <summary>
@@ -61,10 +61,14 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
         /// </summary>
         private float _ratedCurrent;
         
+        private static Lazy<ITypedElement> _ratedCurrentAttribute = new Lazy<ITypedElement>(RetrieveRatedCurrentAttribute);
+        
         /// <summary>
         /// The backing field for the InTransitTime property
         /// </summary>
         private float _inTransitTime;
+        
+        private static Lazy<ITypedElement> _inTransitTimeAttribute = new Lazy<ITypedElement>(RetrieveInTransitTimeAttribute);
         
         private static IClass _classInstance;
         
@@ -86,10 +90,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
                     float old = this._ratedCurrent;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnRatedCurrentChanging(e);
-                    this.OnPropertyChanging("RatedCurrent", e);
+                    this.OnPropertyChanging("RatedCurrent", e, _ratedCurrentAttribute);
                     this._ratedCurrent = value;
                     this.OnRatedCurrentChanged(e);
-                    this.OnPropertyChanged("RatedCurrent", e);
+                    this.OnPropertyChanged("RatedCurrent", e, _ratedCurrentAttribute);
                 }
             }
         }
@@ -112,10 +116,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
                     float old = this._inTransitTime;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnInTransitTimeChanging(e);
-                    this.OnPropertyChanging("InTransitTime", e);
+                    this.OnPropertyChanging("InTransitTime", e, _inTransitTimeAttribute);
                     this._inTransitTime = value;
                     this.OnInTransitTimeChanged(e);
-                    this.OnPropertyChanged("InTransitTime", e);
+                    this.OnPropertyChanged("InTransitTime", e, _inTransitTimeAttribute);
                 }
             }
         }
@@ -155,6 +159,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> InTransitTimeChanged;
         
+        private static ITypedElement RetrieveRatedCurrentAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(Breaker.ClassInstance)).Resolve("ratedCurrent")));
+        }
+        
         /// <summary>
         /// Raises the RatedCurrentChanging event
         /// </summary>
@@ -179,6 +188,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveInTransitTimeAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(Breaker.ClassInstance)).Resolve("inTransitTime")));
         }
         
         /// <summary>
@@ -269,7 +283,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public RatedCurrentProxy(IBreaker modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "ratedCurrent")
             {
             }
             
@@ -287,24 +301,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
                     this.ModelElement.RatedCurrent = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.RatedCurrentChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.RatedCurrentChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -318,7 +314,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public InTransitTimeProxy(IBreaker modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "inTransitTime")
             {
             }
             
@@ -335,24 +331,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
                 {
                     this.ModelElement.InTransitTime = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.InTransitTimeChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.InTransitTimeChanged -= handler;
             }
         }
     }

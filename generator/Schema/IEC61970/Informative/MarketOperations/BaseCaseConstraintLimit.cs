@@ -50,8 +50,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61970/Informative/MarketOperations/" +
         "BaseCaseConstraintLimit")]
     [DebuggerDisplayAttribute("BaseCaseConstraintLimit {UUID}")]
-    public class BaseCaseConstraintLimit : Curve, IBaseCaseConstraintLimit, IModelElement
+    public partial class BaseCaseConstraintLimit : Curve, IBaseCaseConstraintLimit, IModelElement
     {
+        
+        private static Lazy<ITypedElement> _securityConstraintSumReference = new Lazy<ITypedElement>(RetrieveSecurityConstraintSumReference);
         
         /// <summary>
         /// The backing field for the SecurityConstraintSum property
@@ -78,7 +80,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
                     ISecurityConstraintSum old = this._securityConstraintSum;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnSecurityConstraintSumChanging(e);
-                    this.OnPropertyChanging("SecurityConstraintSum", e);
+                    this.OnPropertyChanging("SecurityConstraintSum", e, _securityConstraintSumReference);
                     this._securityConstraintSum = value;
                     if ((old != null))
                     {
@@ -91,7 +93,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
                         value.Deleted += this.OnResetSecurityConstraintSum;
                     }
                     this.OnSecurityConstraintSumChanged(e);
-                    this.OnPropertyChanged("SecurityConstraintSum", e);
+                    this.OnPropertyChanged("SecurityConstraintSum", e, _securityConstraintSumReference);
                 }
             }
         }
@@ -132,6 +134,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
         /// Gets fired when the SecurityConstraintSum property changed its value
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> SecurityConstraintSumChanged;
+        
+        private static ITypedElement RetrieveSecurityConstraintSumReference()
+        {
+            return ((ITypedElement)(((ModelElement)(BaseCaseConstraintLimit.ClassInstance)).Resolve("SecurityConstraintSum")));
+        }
         
         /// <summary>
         /// Raises the SecurityConstraintSumChanging event
@@ -356,7 +363,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public SecurityConstraintSumProxy(IBaseCaseConstraintLimit modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "SecurityConstraintSum")
             {
             }
             
@@ -373,24 +380,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
                 {
                     this.ModelElement.SecurityConstraintSum = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.SecurityConstraintSumChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.SecurityConstraintSumChanged -= handler;
             }
         }
     }

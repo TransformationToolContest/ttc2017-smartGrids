@@ -53,13 +53,17 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
     [XmlNamespacePrefixAttribute("cimWires")]
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61970/Wires/CompositeSwitch")]
     [DebuggerDisplayAttribute("CompositeSwitch {UUID}")]
-    public class CompositeSwitch : Equipment, ICompositeSwitch, IModelElement
+    public partial class CompositeSwitch : Equipment, ICompositeSwitch, IModelElement
     {
         
         /// <summary>
         /// The backing field for the CompositeSwitchType property
         /// </summary>
         private string _compositeSwitchType;
+        
+        private static Lazy<ITypedElement> _compositeSwitchTypeAttribute = new Lazy<ITypedElement>(RetrieveCompositeSwitchTypeAttribute);
+        
+        private static Lazy<ITypedElement> _switchesReference = new Lazy<ITypedElement>(RetrieveSwitchesReference);
         
         /// <summary>
         /// The backing field for the Switches property
@@ -93,10 +97,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
                     string old = this._compositeSwitchType;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnCompositeSwitchTypeChanging(e);
-                    this.OnPropertyChanging("CompositeSwitchType", e);
+                    this.OnPropertyChanging("CompositeSwitchType", e, _compositeSwitchTypeAttribute);
                     this._compositeSwitchType = value;
                     this.OnCompositeSwitchTypeChanged(e);
-                    this.OnPropertyChanged("CompositeSwitchType", e);
+                    this.OnPropertyChanged("CompositeSwitchType", e, _compositeSwitchTypeAttribute);
                 }
             }
         }
@@ -152,6 +156,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> CompositeSwitchTypeChanged;
         
+        private static ITypedElement RetrieveCompositeSwitchTypeAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(CompositeSwitch.ClassInstance)).Resolve("compositeSwitchType")));
+        }
+        
         /// <summary>
         /// Raises the CompositeSwitchTypeChanging event
         /// </summary>
@@ -178,6 +187,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
             }
         }
         
+        private static ITypedElement RetrieveSwitchesReference()
+        {
+            return ((ITypedElement)(((ModelElement)(CompositeSwitch.ClassInstance)).Resolve("Switches")));
+        }
+        
         /// <summary>
         /// Forwards CollectionChanging notifications for the Switches property to the parent model element
         /// </summary>
@@ -185,7 +199,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
         /// <param name="e">The original event data</param>
         private void SwitchesCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("Switches", e);
+            this.OnCollectionChanging("Switches", e, _switchesReference);
         }
         
         /// <summary>
@@ -195,7 +209,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
         /// <param name="e">The original event data</param>
         private void SwitchesCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("Switches", e);
+            this.OnCollectionChanged("Switches", e, _switchesReference);
         }
         
         /// <summary>
@@ -389,7 +403,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public CompositeSwitchTypeProxy(ICompositeSwitch modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "compositeSwitchType")
             {
             }
             
@@ -406,24 +420,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
                 {
                     this.ModelElement.CompositeSwitchType = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.CompositeSwitchTypeChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.CompositeSwitchTypeChanged -= handler;
             }
         }
     }

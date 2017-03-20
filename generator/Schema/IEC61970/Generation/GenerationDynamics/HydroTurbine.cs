@@ -42,7 +42,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.GenerationDynamics
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61970/Generation/GenerationDynamics" +
         "/HydroTurbine")]
     [DebuggerDisplayAttribute("HydroTurbine {UUID}")]
-    public class HydroTurbine : PrimeMover, IHydroTurbine, IModelElement
+    public partial class HydroTurbine : PrimeMover, IHydroTurbine, IModelElement
     {
         
         /// <summary>
@@ -50,55 +50,77 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.GenerationDynamics
         /// </summary>
         private float _maxHeadMaxP;
         
+        private static Lazy<ITypedElement> _maxHeadMaxPAttribute = new Lazy<ITypedElement>(RetrieveMaxHeadMaxPAttribute);
+        
         /// <summary>
         /// The backing field for the TransientDroopTime property
         /// </summary>
         private float _transientDroopTime;
+        
+        private static Lazy<ITypedElement> _transientDroopTimeAttribute = new Lazy<ITypedElement>(RetrieveTransientDroopTimeAttribute);
         
         /// <summary>
         /// The backing field for the GateUpperLimit property
         /// </summary>
         private float _gateUpperLimit;
         
+        private static Lazy<ITypedElement> _gateUpperLimitAttribute = new Lazy<ITypedElement>(RetrieveGateUpperLimitAttribute);
+        
         /// <summary>
         /// The backing field for the MinHeadMaxP property
         /// </summary>
         private float _minHeadMaxP;
+        
+        private static Lazy<ITypedElement> _minHeadMaxPAttribute = new Lazy<ITypedElement>(RetrieveMinHeadMaxPAttribute);
         
         /// <summary>
         /// The backing field for the TurbineRating property
         /// </summary>
         private float _turbineRating;
         
+        private static Lazy<ITypedElement> _turbineRatingAttribute = new Lazy<ITypedElement>(RetrieveTurbineRatingAttribute);
+        
         /// <summary>
         /// The backing field for the TurbineType property
         /// </summary>
         private Nullable<TurbineType> _turbineType;
+        
+        private static Lazy<ITypedElement> _turbineTypeAttribute = new Lazy<ITypedElement>(RetrieveTurbineTypeAttribute);
         
         /// <summary>
         /// The backing field for the SpeedRating property
         /// </summary>
         private float _speedRating;
         
+        private static Lazy<ITypedElement> _speedRatingAttribute = new Lazy<ITypedElement>(RetrieveSpeedRatingAttribute);
+        
         /// <summary>
         /// The backing field for the GateRateLimit property
         /// </summary>
         private float _gateRateLimit;
+        
+        private static Lazy<ITypedElement> _gateRateLimitAttribute = new Lazy<ITypedElement>(RetrieveGateRateLimitAttribute);
         
         /// <summary>
         /// The backing field for the WaterStartingTime property
         /// </summary>
         private float _waterStartingTime;
         
+        private static Lazy<ITypedElement> _waterStartingTimeAttribute = new Lazy<ITypedElement>(RetrieveWaterStartingTimeAttribute);
+        
         /// <summary>
         /// The backing field for the TransientRegulation property
         /// </summary>
         private float _transientRegulation;
         
+        private static Lazy<ITypedElement> _transientRegulationAttribute = new Lazy<ITypedElement>(RetrieveTransientRegulationAttribute);
+        
         /// <summary>
         /// The backing field for the SpeedRegulation property
         /// </summary>
         private float _speedRegulation;
+        
+        private static Lazy<ITypedElement> _speedRegulationAttribute = new Lazy<ITypedElement>(RetrieveSpeedRegulationAttribute);
         
         private static IClass _classInstance;
         
@@ -120,10 +142,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.GenerationDynamics
                     float old = this._maxHeadMaxP;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnMaxHeadMaxPChanging(e);
-                    this.OnPropertyChanging("MaxHeadMaxP", e);
+                    this.OnPropertyChanging("MaxHeadMaxP", e, _maxHeadMaxPAttribute);
                     this._maxHeadMaxP = value;
                     this.OnMaxHeadMaxPChanged(e);
-                    this.OnPropertyChanged("MaxHeadMaxP", e);
+                    this.OnPropertyChanged("MaxHeadMaxP", e, _maxHeadMaxPAttribute);
                 }
             }
         }
@@ -146,10 +168,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.GenerationDynamics
                     float old = this._transientDroopTime;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnTransientDroopTimeChanging(e);
-                    this.OnPropertyChanging("TransientDroopTime", e);
+                    this.OnPropertyChanging("TransientDroopTime", e, _transientDroopTimeAttribute);
                     this._transientDroopTime = value;
                     this.OnTransientDroopTimeChanged(e);
-                    this.OnPropertyChanged("TransientDroopTime", e);
+                    this.OnPropertyChanged("TransientDroopTime", e, _transientDroopTimeAttribute);
                 }
             }
         }
@@ -172,10 +194,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.GenerationDynamics
                     float old = this._gateUpperLimit;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnGateUpperLimitChanging(e);
-                    this.OnPropertyChanging("GateUpperLimit", e);
+                    this.OnPropertyChanging("GateUpperLimit", e, _gateUpperLimitAttribute);
                     this._gateUpperLimit = value;
                     this.OnGateUpperLimitChanged(e);
-                    this.OnPropertyChanged("GateUpperLimit", e);
+                    this.OnPropertyChanged("GateUpperLimit", e, _gateUpperLimitAttribute);
                 }
             }
         }
@@ -198,10 +220,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.GenerationDynamics
                     float old = this._minHeadMaxP;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnMinHeadMaxPChanging(e);
-                    this.OnPropertyChanging("MinHeadMaxP", e);
+                    this.OnPropertyChanging("MinHeadMaxP", e, _minHeadMaxPAttribute);
                     this._minHeadMaxP = value;
                     this.OnMinHeadMaxPChanged(e);
-                    this.OnPropertyChanged("MinHeadMaxP", e);
+                    this.OnPropertyChanged("MinHeadMaxP", e, _minHeadMaxPAttribute);
                 }
             }
         }
@@ -224,10 +246,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.GenerationDynamics
                     float old = this._turbineRating;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnTurbineRatingChanging(e);
-                    this.OnPropertyChanging("TurbineRating", e);
+                    this.OnPropertyChanging("TurbineRating", e, _turbineRatingAttribute);
                     this._turbineRating = value;
                     this.OnTurbineRatingChanged(e);
-                    this.OnPropertyChanged("TurbineRating", e);
+                    this.OnPropertyChanged("TurbineRating", e, _turbineRatingAttribute);
                 }
             }
         }
@@ -250,10 +272,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.GenerationDynamics
                     Nullable<TurbineType> old = this._turbineType;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnTurbineTypeChanging(e);
-                    this.OnPropertyChanging("TurbineType", e);
+                    this.OnPropertyChanging("TurbineType", e, _turbineTypeAttribute);
                     this._turbineType = value;
                     this.OnTurbineTypeChanged(e);
-                    this.OnPropertyChanged("TurbineType", e);
+                    this.OnPropertyChanged("TurbineType", e, _turbineTypeAttribute);
                 }
             }
         }
@@ -276,10 +298,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.GenerationDynamics
                     float old = this._speedRating;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnSpeedRatingChanging(e);
-                    this.OnPropertyChanging("SpeedRating", e);
+                    this.OnPropertyChanging("SpeedRating", e, _speedRatingAttribute);
                     this._speedRating = value;
                     this.OnSpeedRatingChanged(e);
-                    this.OnPropertyChanged("SpeedRating", e);
+                    this.OnPropertyChanged("SpeedRating", e, _speedRatingAttribute);
                 }
             }
         }
@@ -302,10 +324,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.GenerationDynamics
                     float old = this._gateRateLimit;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnGateRateLimitChanging(e);
-                    this.OnPropertyChanging("GateRateLimit", e);
+                    this.OnPropertyChanging("GateRateLimit", e, _gateRateLimitAttribute);
                     this._gateRateLimit = value;
                     this.OnGateRateLimitChanged(e);
-                    this.OnPropertyChanged("GateRateLimit", e);
+                    this.OnPropertyChanged("GateRateLimit", e, _gateRateLimitAttribute);
                 }
             }
         }
@@ -328,10 +350,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.GenerationDynamics
                     float old = this._waterStartingTime;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnWaterStartingTimeChanging(e);
-                    this.OnPropertyChanging("WaterStartingTime", e);
+                    this.OnPropertyChanging("WaterStartingTime", e, _waterStartingTimeAttribute);
                     this._waterStartingTime = value;
                     this.OnWaterStartingTimeChanged(e);
-                    this.OnPropertyChanged("WaterStartingTime", e);
+                    this.OnPropertyChanged("WaterStartingTime", e, _waterStartingTimeAttribute);
                 }
             }
         }
@@ -354,10 +376,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.GenerationDynamics
                     float old = this._transientRegulation;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnTransientRegulationChanging(e);
-                    this.OnPropertyChanging("TransientRegulation", e);
+                    this.OnPropertyChanging("TransientRegulation", e, _transientRegulationAttribute);
                     this._transientRegulation = value;
                     this.OnTransientRegulationChanged(e);
-                    this.OnPropertyChanged("TransientRegulation", e);
+                    this.OnPropertyChanged("TransientRegulation", e, _transientRegulationAttribute);
                 }
             }
         }
@@ -380,10 +402,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.GenerationDynamics
                     float old = this._speedRegulation;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnSpeedRegulationChanging(e);
-                    this.OnPropertyChanging("SpeedRegulation", e);
+                    this.OnPropertyChanging("SpeedRegulation", e, _speedRegulationAttribute);
                     this._speedRegulation = value;
                     this.OnSpeedRegulationChanged(e);
-                    this.OnPropertyChanged("SpeedRegulation", e);
+                    this.OnPropertyChanged("SpeedRegulation", e, _speedRegulationAttribute);
                 }
             }
         }
@@ -514,6 +536,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.GenerationDynamics
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> SpeedRegulationChanged;
         
+        private static ITypedElement RetrieveMaxHeadMaxPAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(HydroTurbine.ClassInstance)).Resolve("maxHeadMaxP")));
+        }
+        
         /// <summary>
         /// Raises the MaxHeadMaxPChanging event
         /// </summary>
@@ -538,6 +565,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.GenerationDynamics
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveTransientDroopTimeAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(HydroTurbine.ClassInstance)).Resolve("transientDroopTime")));
         }
         
         /// <summary>
@@ -566,6 +598,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.GenerationDynamics
             }
         }
         
+        private static ITypedElement RetrieveGateUpperLimitAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(HydroTurbine.ClassInstance)).Resolve("gateUpperLimit")));
+        }
+        
         /// <summary>
         /// Raises the GateUpperLimitChanging event
         /// </summary>
@@ -590,6 +627,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.GenerationDynamics
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveMinHeadMaxPAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(HydroTurbine.ClassInstance)).Resolve("minHeadMaxP")));
         }
         
         /// <summary>
@@ -618,6 +660,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.GenerationDynamics
             }
         }
         
+        private static ITypedElement RetrieveTurbineRatingAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(HydroTurbine.ClassInstance)).Resolve("turbineRating")));
+        }
+        
         /// <summary>
         /// Raises the TurbineRatingChanging event
         /// </summary>
@@ -642,6 +689,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.GenerationDynamics
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveTurbineTypeAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(HydroTurbine.ClassInstance)).Resolve("turbineType")));
         }
         
         /// <summary>
@@ -670,6 +722,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.GenerationDynamics
             }
         }
         
+        private static ITypedElement RetrieveSpeedRatingAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(HydroTurbine.ClassInstance)).Resolve("speedRating")));
+        }
+        
         /// <summary>
         /// Raises the SpeedRatingChanging event
         /// </summary>
@@ -694,6 +751,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.GenerationDynamics
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveGateRateLimitAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(HydroTurbine.ClassInstance)).Resolve("gateRateLimit")));
         }
         
         /// <summary>
@@ -722,6 +784,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.GenerationDynamics
             }
         }
         
+        private static ITypedElement RetrieveWaterStartingTimeAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(HydroTurbine.ClassInstance)).Resolve("waterStartingTime")));
+        }
+        
         /// <summary>
         /// Raises the WaterStartingTimeChanging event
         /// </summary>
@@ -748,6 +815,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.GenerationDynamics
             }
         }
         
+        private static ITypedElement RetrieveTransientRegulationAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(HydroTurbine.ClassInstance)).Resolve("transientRegulation")));
+        }
+        
         /// <summary>
         /// Raises the TransientRegulationChanging event
         /// </summary>
@@ -772,6 +844,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.GenerationDynamics
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveSpeedRegulationAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(HydroTurbine.ClassInstance)).Resolve("speedRegulation")));
         }
         
         /// <summary>
@@ -944,7 +1021,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.GenerationDynamics
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public MaxHeadMaxPProxy(IHydroTurbine modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "maxHeadMaxP")
             {
             }
             
@@ -962,24 +1039,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.GenerationDynamics
                     this.ModelElement.MaxHeadMaxP = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.MaxHeadMaxPChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.MaxHeadMaxPChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -993,7 +1052,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.GenerationDynamics
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public TransientDroopTimeProxy(IHydroTurbine modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "transientDroopTime")
             {
             }
             
@@ -1011,24 +1070,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.GenerationDynamics
                     this.ModelElement.TransientDroopTime = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.TransientDroopTimeChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.TransientDroopTimeChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1042,7 +1083,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.GenerationDynamics
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public GateUpperLimitProxy(IHydroTurbine modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "gateUpperLimit")
             {
             }
             
@@ -1060,24 +1101,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.GenerationDynamics
                     this.ModelElement.GateUpperLimit = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.GateUpperLimitChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.GateUpperLimitChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1091,7 +1114,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.GenerationDynamics
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public MinHeadMaxPProxy(IHydroTurbine modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "minHeadMaxP")
             {
             }
             
@@ -1109,24 +1132,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.GenerationDynamics
                     this.ModelElement.MinHeadMaxP = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.MinHeadMaxPChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.MinHeadMaxPChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1140,7 +1145,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.GenerationDynamics
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public TurbineRatingProxy(IHydroTurbine modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "turbineRating")
             {
             }
             
@@ -1158,24 +1163,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.GenerationDynamics
                     this.ModelElement.TurbineRating = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.TurbineRatingChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.TurbineRatingChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1189,7 +1176,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.GenerationDynamics
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public TurbineTypeProxy(IHydroTurbine modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "turbineType")
             {
             }
             
@@ -1207,24 +1194,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.GenerationDynamics
                     this.ModelElement.TurbineType = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.TurbineTypeChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.TurbineTypeChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1238,7 +1207,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.GenerationDynamics
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public SpeedRatingProxy(IHydroTurbine modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "speedRating")
             {
             }
             
@@ -1256,24 +1225,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.GenerationDynamics
                     this.ModelElement.SpeedRating = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.SpeedRatingChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.SpeedRatingChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1287,7 +1238,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.GenerationDynamics
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public GateRateLimitProxy(IHydroTurbine modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "gateRateLimit")
             {
             }
             
@@ -1305,24 +1256,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.GenerationDynamics
                     this.ModelElement.GateRateLimit = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.GateRateLimitChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.GateRateLimitChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1336,7 +1269,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.GenerationDynamics
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public WaterStartingTimeProxy(IHydroTurbine modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "waterStartingTime")
             {
             }
             
@@ -1354,24 +1287,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.GenerationDynamics
                     this.ModelElement.WaterStartingTime = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.WaterStartingTimeChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.WaterStartingTimeChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1385,7 +1300,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.GenerationDynamics
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public TransientRegulationProxy(IHydroTurbine modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "transientRegulation")
             {
             }
             
@@ -1403,24 +1318,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.GenerationDynamics
                     this.ModelElement.TransientRegulation = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.TransientRegulationChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.TransientRegulationChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1434,7 +1331,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.GenerationDynamics
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public SpeedRegulationProxy(IHydroTurbine modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "speedRegulation")
             {
             }
             
@@ -1451,24 +1348,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.GenerationDynamics
                 {
                     this.ModelElement.SpeedRegulation = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.SpeedRegulationChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.SpeedRegulationChanged -= handler;
             }
         }
     }

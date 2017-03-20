@@ -57,7 +57,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Core
     [XmlNamespacePrefixAttribute("cimCore")]
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61970/Core/OperatingShare")]
     [DebuggerDisplayAttribute("OperatingShare {UUID}")]
-    public class OperatingShare : Element, IOperatingShare, IModelElement
+    public partial class OperatingShare : Element, IOperatingShare, IModelElement
     {
         
         /// <summary>
@@ -65,10 +65,16 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Core
         /// </summary>
         private float _percentage;
         
+        private static Lazy<ITypedElement> _percentageAttribute = new Lazy<ITypedElement>(RetrievePercentageAttribute);
+        
+        private static Lazy<ITypedElement> _powerSystemResourceReference = new Lazy<ITypedElement>(RetrievePowerSystemResourceReference);
+        
         /// <summary>
         /// The backing field for the PowerSystemResource property
         /// </summary>
         private IPowerSystemResource _powerSystemResource;
+        
+        private static Lazy<ITypedElement> _operatingParticipantReference = new Lazy<ITypedElement>(RetrieveOperatingParticipantReference);
         
         /// <summary>
         /// The backing field for the OperatingParticipant property
@@ -95,10 +101,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Core
                     float old = this._percentage;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnPercentageChanging(e);
-                    this.OnPropertyChanging("Percentage", e);
+                    this.OnPropertyChanging("Percentage", e, _percentageAttribute);
                     this._percentage = value;
                     this.OnPercentageChanged(e);
-                    this.OnPropertyChanged("Percentage", e);
+                    this.OnPropertyChanged("Percentage", e, _percentageAttribute);
                 }
             }
         }
@@ -121,7 +127,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Core
                     IPowerSystemResource old = this._powerSystemResource;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnPowerSystemResourceChanging(e);
-                    this.OnPropertyChanging("PowerSystemResource", e);
+                    this.OnPropertyChanging("PowerSystemResource", e, _powerSystemResourceReference);
                     this._powerSystemResource = value;
                     if ((old != null))
                     {
@@ -134,7 +140,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Core
                         value.Deleted += this.OnResetPowerSystemResource;
                     }
                     this.OnPowerSystemResourceChanged(e);
-                    this.OnPropertyChanged("PowerSystemResource", e);
+                    this.OnPropertyChanged("PowerSystemResource", e, _powerSystemResourceReference);
                 }
             }
         }
@@ -157,7 +163,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Core
                     IOperatingParticipant old = this._operatingParticipant;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnOperatingParticipantChanging(e);
-                    this.OnPropertyChanging("OperatingParticipant", e);
+                    this.OnPropertyChanging("OperatingParticipant", e, _operatingParticipantReference);
                     this._operatingParticipant = value;
                     if ((old != null))
                     {
@@ -170,7 +176,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Core
                         value.Deleted += this.OnResetOperatingParticipant;
                     }
                     this.OnOperatingParticipantChanged(e);
-                    this.OnPropertyChanged("OperatingParticipant", e);
+                    this.OnPropertyChanged("OperatingParticipant", e, _operatingParticipantReference);
                 }
             }
         }
@@ -231,6 +237,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Core
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> OperatingParticipantChanged;
         
+        private static ITypedElement RetrievePercentageAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(OperatingShare.ClassInstance)).Resolve("percentage")));
+        }
+        
         /// <summary>
         /// Raises the PercentageChanging event
         /// </summary>
@@ -255,6 +266,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Core
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrievePowerSystemResourceReference()
+        {
+            return ((ITypedElement)(((ModelElement)(OperatingShare.ClassInstance)).Resolve("PowerSystemResource")));
         }
         
         /// <summary>
@@ -291,6 +307,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Core
         private void OnResetPowerSystemResource(object sender, System.EventArgs eventArgs)
         {
             this.PowerSystemResource = null;
+        }
+        
+        private static ITypedElement RetrieveOperatingParticipantReference()
+        {
+            return ((ITypedElement)(((ModelElement)(OperatingShare.ClassInstance)).Resolve("OperatingParticipant")));
         }
         
         /// <summary>
@@ -578,7 +599,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Core
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public PercentageProxy(IOperatingShare modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "percentage")
             {
             }
             
@@ -596,24 +617,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Core
                     this.ModelElement.Percentage = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.PercentageChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.PercentageChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -627,7 +630,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Core
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public PowerSystemResourceProxy(IOperatingShare modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "PowerSystemResource")
             {
             }
             
@@ -645,24 +648,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Core
                     this.ModelElement.PowerSystemResource = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.PowerSystemResourceChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.PowerSystemResourceChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -676,7 +661,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Core
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public OperatingParticipantProxy(IOperatingShare modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "OperatingParticipant")
             {
             }
             
@@ -693,24 +678,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Core
                 {
                     this.ModelElement.OperatingParticipant = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.OperatingParticipantChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.OperatingParticipantChanged -= handler;
             }
         }
     }

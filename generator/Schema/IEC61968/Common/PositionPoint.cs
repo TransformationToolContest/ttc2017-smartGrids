@@ -51,7 +51,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Common
     [XmlNamespacePrefixAttribute("cimCommon")]
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61968/Common/PositionPoint")]
     [DebuggerDisplayAttribute("PositionPoint {UUID}")]
-    public class PositionPoint : Element, IPositionPoint, IModelElement
+    public partial class PositionPoint : Element, IPositionPoint, IModelElement
     {
         
         /// <summary>
@@ -59,25 +59,37 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Common
         /// </summary>
         private int _sequenceNumber;
         
+        private static Lazy<ITypedElement> _sequenceNumberAttribute = new Lazy<ITypedElement>(RetrieveSequenceNumberAttribute);
+        
         /// <summary>
         /// The backing field for the XPosition property
         /// </summary>
         private string _xPosition;
+        
+        private static Lazy<ITypedElement> _xPositionAttribute = new Lazy<ITypedElement>(RetrieveXPositionAttribute);
         
         /// <summary>
         /// The backing field for the YPosition property
         /// </summary>
         private string _yPosition;
         
+        private static Lazy<ITypedElement> _yPositionAttribute = new Lazy<ITypedElement>(RetrieveYPositionAttribute);
+        
         /// <summary>
         /// The backing field for the ZPosition property
         /// </summary>
         private string _zPosition;
         
+        private static Lazy<ITypedElement> _zPositionAttribute = new Lazy<ITypedElement>(RetrieveZPositionAttribute);
+        
+        private static Lazy<ITypedElement> _coordinateSystemReference = new Lazy<ITypedElement>(RetrieveCoordinateSystemReference);
+        
         /// <summary>
         /// The backing field for the CoordinateSystem property
         /// </summary>
         private ICoordinateSystem _coordinateSystem;
+        
+        private static Lazy<ITypedElement> _locationReference = new Lazy<ITypedElement>(RetrieveLocationReference);
         
         /// <summary>
         /// The backing field for the Location property
@@ -104,10 +116,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Common
                     int old = this._sequenceNumber;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnSequenceNumberChanging(e);
-                    this.OnPropertyChanging("SequenceNumber", e);
+                    this.OnPropertyChanging("SequenceNumber", e, _sequenceNumberAttribute);
                     this._sequenceNumber = value;
                     this.OnSequenceNumberChanged(e);
-                    this.OnPropertyChanged("SequenceNumber", e);
+                    this.OnPropertyChanged("SequenceNumber", e, _sequenceNumberAttribute);
                 }
             }
         }
@@ -130,10 +142,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Common
                     string old = this._xPosition;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnXPositionChanging(e);
-                    this.OnPropertyChanging("XPosition", e);
+                    this.OnPropertyChanging("XPosition", e, _xPositionAttribute);
                     this._xPosition = value;
                     this.OnXPositionChanged(e);
-                    this.OnPropertyChanged("XPosition", e);
+                    this.OnPropertyChanged("XPosition", e, _xPositionAttribute);
                 }
             }
         }
@@ -156,10 +168,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Common
                     string old = this._yPosition;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnYPositionChanging(e);
-                    this.OnPropertyChanging("YPosition", e);
+                    this.OnPropertyChanging("YPosition", e, _yPositionAttribute);
                     this._yPosition = value;
                     this.OnYPositionChanged(e);
-                    this.OnPropertyChanged("YPosition", e);
+                    this.OnPropertyChanged("YPosition", e, _yPositionAttribute);
                 }
             }
         }
@@ -182,10 +194,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Common
                     string old = this._zPosition;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnZPositionChanging(e);
-                    this.OnPropertyChanging("ZPosition", e);
+                    this.OnPropertyChanging("ZPosition", e, _zPositionAttribute);
                     this._zPosition = value;
                     this.OnZPositionChanged(e);
-                    this.OnPropertyChanged("ZPosition", e);
+                    this.OnPropertyChanged("ZPosition", e, _zPositionAttribute);
                 }
             }
         }
@@ -208,7 +220,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Common
                     ICoordinateSystem old = this._coordinateSystem;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnCoordinateSystemChanging(e);
-                    this.OnPropertyChanging("CoordinateSystem", e);
+                    this.OnPropertyChanging("CoordinateSystem", e, _coordinateSystemReference);
                     this._coordinateSystem = value;
                     if ((old != null))
                     {
@@ -221,7 +233,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Common
                         value.Deleted += this.OnResetCoordinateSystem;
                     }
                     this.OnCoordinateSystemChanged(e);
-                    this.OnPropertyChanged("CoordinateSystem", e);
+                    this.OnPropertyChanged("CoordinateSystem", e, _coordinateSystemReference);
                 }
             }
         }
@@ -243,7 +255,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Common
                     ILocation old = this._location;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnLocationChanging(e);
-                    this.OnPropertyChanging("Location", e);
+                    this.OnPropertyChanging("Location", e, _locationReference);
                     this._location = value;
                     if ((old != null))
                     {
@@ -254,7 +266,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Common
                         value.Deleted += this.OnResetLocation;
                     }
                     this.OnLocationChanged(e);
-                    this.OnPropertyChanged("Location", e);
+                    this.OnPropertyChanged("Location", e, _locationReference);
                 }
             }
         }
@@ -345,6 +357,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Common
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> LocationChanged;
         
+        private static ITypedElement RetrieveSequenceNumberAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(PositionPoint.ClassInstance)).Resolve("sequenceNumber")));
+        }
+        
         /// <summary>
         /// Raises the SequenceNumberChanging event
         /// </summary>
@@ -369,6 +386,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Common
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveXPositionAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(PositionPoint.ClassInstance)).Resolve("xPosition")));
         }
         
         /// <summary>
@@ -397,6 +419,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Common
             }
         }
         
+        private static ITypedElement RetrieveYPositionAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(PositionPoint.ClassInstance)).Resolve("yPosition")));
+        }
+        
         /// <summary>
         /// Raises the YPositionChanging event
         /// </summary>
@@ -423,6 +450,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Common
             }
         }
         
+        private static ITypedElement RetrieveZPositionAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(PositionPoint.ClassInstance)).Resolve("zPosition")));
+        }
+        
         /// <summary>
         /// Raises the ZPositionChanging event
         /// </summary>
@@ -447,6 +479,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Common
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveCoordinateSystemReference()
+        {
+            return ((ITypedElement)(((ModelElement)(PositionPoint.ClassInstance)).Resolve("CoordinateSystem")));
         }
         
         /// <summary>
@@ -483,6 +520,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Common
         private void OnResetCoordinateSystem(object sender, System.EventArgs eventArgs)
         {
             this.CoordinateSystem = null;
+        }
+        
+        private static ITypedElement RetrieveLocationReference()
+        {
+            return ((ITypedElement)(((ModelElement)(PositionPoint.ClassInstance)).Resolve("Location")));
         }
         
         /// <summary>
@@ -797,7 +839,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Common
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public SequenceNumberProxy(IPositionPoint modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "sequenceNumber")
             {
             }
             
@@ -815,24 +857,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Common
                     this.ModelElement.SequenceNumber = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.SequenceNumberChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.SequenceNumberChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -846,7 +870,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Common
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public XPositionProxy(IPositionPoint modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "xPosition")
             {
             }
             
@@ -864,24 +888,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Common
                     this.ModelElement.XPosition = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.XPositionChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.XPositionChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -895,7 +901,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Common
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public YPositionProxy(IPositionPoint modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "yPosition")
             {
             }
             
@@ -913,24 +919,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Common
                     this.ModelElement.YPosition = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.YPositionChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.YPositionChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -944,7 +932,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Common
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public ZPositionProxy(IPositionPoint modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "zPosition")
             {
             }
             
@@ -962,24 +950,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Common
                     this.ModelElement.ZPosition = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ZPositionChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ZPositionChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -993,7 +963,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Common
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public CoordinateSystemProxy(IPositionPoint modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "CoordinateSystem")
             {
             }
             
@@ -1011,24 +981,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Common
                     this.ModelElement.CoordinateSystem = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.CoordinateSystemChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.CoordinateSystemChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1042,7 +994,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Common
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public LocationProxy(IPositionPoint modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "Location")
             {
             }
             
@@ -1059,24 +1011,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Common
                 {
                     this.ModelElement.Location = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.LocationChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.LocationChanged -= handler;
             }
         }
     }

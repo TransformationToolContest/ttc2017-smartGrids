@@ -44,13 +44,17 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.WiresExt
     [XmlNamespacePrefixAttribute("cimWiresExt")]
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61968/WiresExt/TransformerBank")]
     [DebuggerDisplayAttribute("TransformerBank {UUID}")]
-    public class TransformerBank : Equipment, ITransformerBank, IModelElement
+    public partial class TransformerBank : Equipment, ITransformerBank, IModelElement
     {
         
         /// <summary>
         /// The backing field for the VectorGroup property
         /// </summary>
         private string _vectorGroup;
+        
+        private static Lazy<ITypedElement> _vectorGroupAttribute = new Lazy<ITypedElement>(RetrieveVectorGroupAttribute);
+        
+        private static Lazy<ITypedElement> _transformersReference = new Lazy<ITypedElement>(RetrieveTransformersReference);
         
         /// <summary>
         /// The backing field for the Transformers property
@@ -84,10 +88,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.WiresExt
                     string old = this._vectorGroup;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnVectorGroupChanging(e);
-                    this.OnPropertyChanging("VectorGroup", e);
+                    this.OnPropertyChanging("VectorGroup", e, _vectorGroupAttribute);
                     this._vectorGroup = value;
                     this.OnVectorGroupChanged(e);
-                    this.OnPropertyChanged("VectorGroup", e);
+                    this.OnPropertyChanged("VectorGroup", e, _vectorGroupAttribute);
                 }
             }
         }
@@ -143,6 +147,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.WiresExt
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> VectorGroupChanged;
         
+        private static ITypedElement RetrieveVectorGroupAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(TransformerBank.ClassInstance)).Resolve("vectorGroup")));
+        }
+        
         /// <summary>
         /// Raises the VectorGroupChanging event
         /// </summary>
@@ -169,6 +178,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.WiresExt
             }
         }
         
+        private static ITypedElement RetrieveTransformersReference()
+        {
+            return ((ITypedElement)(((ModelElement)(TransformerBank.ClassInstance)).Resolve("Transformers")));
+        }
+        
         /// <summary>
         /// Forwards CollectionChanging notifications for the Transformers property to the parent model element
         /// </summary>
@@ -176,7 +190,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.WiresExt
         /// <param name="e">The original event data</param>
         private void TransformersCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("Transformers", e);
+            this.OnCollectionChanging("Transformers", e, _transformersReference);
         }
         
         /// <summary>
@@ -186,7 +200,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.WiresExt
         /// <param name="e">The original event data</param>
         private void TransformersCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("Transformers", e);
+            this.OnCollectionChanged("Transformers", e, _transformersReference);
         }
         
         /// <summary>
@@ -380,7 +394,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.WiresExt
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public VectorGroupProxy(ITransformerBank modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "vectorGroup")
             {
             }
             
@@ -397,24 +411,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.WiresExt
                 {
                     this.ModelElement.VectorGroup = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.VectorGroupChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.VectorGroupChanged -= handler;
             }
         }
     }

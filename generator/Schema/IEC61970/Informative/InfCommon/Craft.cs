@@ -46,7 +46,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfCommon
     [XmlNamespacePrefixAttribute("cimInfCommon")]
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61970/Informative/InfCommon/Craft")]
     [DebuggerDisplayAttribute("Craft {UUID}")]
-    public class Craft : IdentifiedObject, ICraft, IModelElement
+    public partial class Craft : IdentifiedObject, ICraft, IModelElement
     {
         
         /// <summary>
@@ -54,20 +54,30 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfCommon
         /// </summary>
         private string _category;
         
+        private static Lazy<ITypedElement> _categoryAttribute = new Lazy<ITypedElement>(RetrieveCategoryAttribute);
+        
+        private static Lazy<ITypedElement> _statusReference = new Lazy<ITypedElement>(RetrieveStatusReference);
+        
         /// <summary>
         /// The backing field for the Status property
         /// </summary>
         private IStatus _status;
+        
+        private static Lazy<ITypedElement> _erpPersonsReference = new Lazy<ITypedElement>(RetrieveErpPersonsReference);
         
         /// <summary>
         /// The backing field for the ErpPersons property
         /// </summary>
         private CraftErpPersonsCollection _erpPersons;
         
+        private static Lazy<ITypedElement> _skillsReference = new Lazy<ITypedElement>(RetrieveSkillsReference);
+        
         /// <summary>
         /// The backing field for the Skills property
         /// </summary>
         private CraftSkillsCollection _skills;
+        
+        private static Lazy<ITypedElement> _capabilitiesReference = new Lazy<ITypedElement>(RetrieveCapabilitiesReference);
         
         /// <summary>
         /// The backing field for the Capabilities property
@@ -107,10 +117,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfCommon
                     string old = this._category;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnCategoryChanging(e);
-                    this.OnPropertyChanging("Category", e);
+                    this.OnPropertyChanging("Category", e, _categoryAttribute);
                     this._category = value;
                     this.OnCategoryChanged(e);
-                    this.OnPropertyChanged("Category", e);
+                    this.OnPropertyChanged("Category", e, _categoryAttribute);
                 }
             }
         }
@@ -133,7 +143,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfCommon
                     IStatus old = this._status;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnStatusChanging(e);
-                    this.OnPropertyChanging("Status", e);
+                    this.OnPropertyChanging("Status", e, _statusReference);
                     this._status = value;
                     if ((old != null))
                     {
@@ -144,7 +154,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfCommon
                         value.Deleted += this.OnResetStatus;
                     }
                     this.OnStatusChanged(e);
-                    this.OnPropertyChanged("Status", e);
+                    this.OnPropertyChanged("Status", e, _statusReference);
                 }
             }
         }
@@ -240,6 +250,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfCommon
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> StatusChanged;
         
+        private static ITypedElement RetrieveCategoryAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(Craft.ClassInstance)).Resolve("category")));
+        }
+        
         /// <summary>
         /// Raises the CategoryChanging event
         /// </summary>
@@ -264,6 +279,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfCommon
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveStatusReference()
+        {
+            return ((ITypedElement)(((ModelElement)(Craft.ClassInstance)).Resolve("status")));
         }
         
         /// <summary>
@@ -302,6 +322,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfCommon
             this.Status = null;
         }
         
+        private static ITypedElement RetrieveErpPersonsReference()
+        {
+            return ((ITypedElement)(((ModelElement)(Craft.ClassInstance)).Resolve("ErpPersons")));
+        }
+        
         /// <summary>
         /// Forwards CollectionChanging notifications for the ErpPersons property to the parent model element
         /// </summary>
@@ -309,7 +334,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfCommon
         /// <param name="e">The original event data</param>
         private void ErpPersonsCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("ErpPersons", e);
+            this.OnCollectionChanging("ErpPersons", e, _erpPersonsReference);
         }
         
         /// <summary>
@@ -319,7 +344,12 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfCommon
         /// <param name="e">The original event data</param>
         private void ErpPersonsCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("ErpPersons", e);
+            this.OnCollectionChanged("ErpPersons", e, _erpPersonsReference);
+        }
+        
+        private static ITypedElement RetrieveSkillsReference()
+        {
+            return ((ITypedElement)(((ModelElement)(Craft.ClassInstance)).Resolve("Skills")));
         }
         
         /// <summary>
@@ -329,7 +359,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfCommon
         /// <param name="e">The original event data</param>
         private void SkillsCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("Skills", e);
+            this.OnCollectionChanging("Skills", e, _skillsReference);
         }
         
         /// <summary>
@@ -339,7 +369,12 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfCommon
         /// <param name="e">The original event data</param>
         private void SkillsCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("Skills", e);
+            this.OnCollectionChanged("Skills", e, _skillsReference);
+        }
+        
+        private static ITypedElement RetrieveCapabilitiesReference()
+        {
+            return ((ITypedElement)(((ModelElement)(Craft.ClassInstance)).Resolve("Capabilities")));
         }
         
         /// <summary>
@@ -349,7 +384,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfCommon
         /// <param name="e">The original event data</param>
         private void CapabilitiesCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("Capabilities", e);
+            this.OnCollectionChanging("Capabilities", e, _capabilitiesReference);
         }
         
         /// <summary>
@@ -359,7 +394,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfCommon
         /// <param name="e">The original event data</param>
         private void CapabilitiesCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("Capabilities", e);
+            this.OnCollectionChanged("Capabilities", e, _capabilitiesReference);
         }
         
         /// <summary>
@@ -692,7 +727,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfCommon
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public CategoryProxy(ICraft modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "category")
             {
             }
             
@@ -710,24 +745,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfCommon
                     this.ModelElement.Category = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.CategoryChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.CategoryChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -741,7 +758,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfCommon
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public StatusProxy(ICraft modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "status")
             {
             }
             
@@ -758,24 +775,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfCommon
                 {
                     this.ModelElement.Status = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.StatusChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.StatusChanged -= handler;
             }
         }
     }

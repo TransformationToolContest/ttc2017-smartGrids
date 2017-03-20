@@ -40,7 +40,7 @@ namespace TTC2017.SmartGrids.COSEM.InterfaceClasses
     [XmlNamespacePrefixAttribute("inter")]
     [ModelRepresentationClassAttribute("http://www.transformation-tool-contest.eu/2017/smartGrids/cosem#//InterfaceClasse" +
         "s/S_FSKActiveinitiator")]
-    public class S_FSKActiveinitiator : Base, IS_FSKActiveinitiator, IModelElement
+    public partial class S_FSKActiveinitiator : Base, IS_FSKActiveinitiator, IModelElement
     {
         
         private static IClass _classInstance;

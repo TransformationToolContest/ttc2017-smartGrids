@@ -46,7 +46,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61970/Generation/Production/HydroGe" +
         "neratingUnit")]
     [DebuggerDisplayAttribute("HydroGeneratingUnit {UUID}")]
-    public class HydroGeneratingUnit : GeneratingUnit, IHydroGeneratingUnit, IModelElement
+    public partial class HydroGeneratingUnit : GeneratingUnit, IHydroGeneratingUnit, IModelElement
     {
         
         /// <summary>
@@ -54,25 +54,37 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
         /// </summary>
         private Nullable<HydroEnergyConversionKind> _energyConversionCapability;
         
+        private static Lazy<ITypedElement> _energyConversionCapabilityAttribute = new Lazy<ITypedElement>(RetrieveEnergyConversionCapabilityAttribute);
+        
         /// <summary>
         /// The backing field for the HydroUnitWaterCost property
         /// </summary>
         private float _hydroUnitWaterCost;
+        
+        private static Lazy<ITypedElement> _hydroUnitWaterCostAttribute = new Lazy<ITypedElement>(RetrieveHydroUnitWaterCostAttribute);
+        
+        private static Lazy<ITypedElement> _tailbayLossCurveReference = new Lazy<ITypedElement>(RetrieveTailbayLossCurveReference);
         
         /// <summary>
         /// The backing field for the TailbayLossCurve property
         /// </summary>
         private HydroGeneratingUnitTailbayLossCurveCollection _tailbayLossCurve;
         
+        private static Lazy<ITypedElement> _hydroPowerPlantReference = new Lazy<ITypedElement>(RetrieveHydroPowerPlantReference);
+        
         /// <summary>
         /// The backing field for the HydroPowerPlant property
         /// </summary>
         private IHydroPowerPlant _hydroPowerPlant;
         
+        private static Lazy<ITypedElement> _hydroGeneratingEfficiencyCurvesReference = new Lazy<ITypedElement>(RetrieveHydroGeneratingEfficiencyCurvesReference);
+        
         /// <summary>
         /// The backing field for the HydroGeneratingEfficiencyCurves property
         /// </summary>
         private HydroGeneratingUnitHydroGeneratingEfficiencyCurvesCollection _hydroGeneratingEfficiencyCurves;
+        
+        private static Lazy<ITypedElement> _penstockLossCurveReference = new Lazy<ITypedElement>(RetrievePenstockLossCurveReference);
         
         /// <summary>
         /// The backing field for the PenstockLossCurve property
@@ -109,10 +121,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
                     Nullable<HydroEnergyConversionKind> old = this._energyConversionCapability;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnEnergyConversionCapabilityChanging(e);
-                    this.OnPropertyChanging("EnergyConversionCapability", e);
+                    this.OnPropertyChanging("EnergyConversionCapability", e, _energyConversionCapabilityAttribute);
                     this._energyConversionCapability = value;
                     this.OnEnergyConversionCapabilityChanged(e);
-                    this.OnPropertyChanged("EnergyConversionCapability", e);
+                    this.OnPropertyChanged("EnergyConversionCapability", e, _energyConversionCapabilityAttribute);
                 }
             }
         }
@@ -135,10 +147,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
                     float old = this._hydroUnitWaterCost;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnHydroUnitWaterCostChanging(e);
-                    this.OnPropertyChanging("HydroUnitWaterCost", e);
+                    this.OnPropertyChanging("HydroUnitWaterCost", e, _hydroUnitWaterCostAttribute);
                     this._hydroUnitWaterCost = value;
                     this.OnHydroUnitWaterCostChanged(e);
-                    this.OnPropertyChanged("HydroUnitWaterCost", e);
+                    this.OnPropertyChanged("HydroUnitWaterCost", e, _hydroUnitWaterCostAttribute);
                 }
             }
         }
@@ -176,7 +188,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
                     IHydroPowerPlant old = this._hydroPowerPlant;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnHydroPowerPlantChanging(e);
-                    this.OnPropertyChanging("HydroPowerPlant", e);
+                    this.OnPropertyChanging("HydroPowerPlant", e, _hydroPowerPlantReference);
                     this._hydroPowerPlant = value;
                     if ((old != null))
                     {
@@ -189,7 +201,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
                         value.Deleted += this.OnResetHydroPowerPlant;
                     }
                     this.OnHydroPowerPlantChanged(e);
-                    this.OnPropertyChanged("HydroPowerPlant", e);
+                    this.OnPropertyChanged("HydroPowerPlant", e, _hydroPowerPlantReference);
                 }
             }
         }
@@ -227,7 +239,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
                     IPenstockLossCurve old = this._penstockLossCurve;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnPenstockLossCurveChanging(e);
-                    this.OnPropertyChanging("PenstockLossCurve", e);
+                    this.OnPropertyChanging("PenstockLossCurve", e, _penstockLossCurveReference);
                     this._penstockLossCurve = value;
                     if ((old != null))
                     {
@@ -240,7 +252,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
                         value.Deleted += this.OnResetPenstockLossCurve;
                     }
                     this.OnPenstockLossCurveChanged(e);
-                    this.OnPropertyChanged("PenstockLossCurve", e);
+                    this.OnPropertyChanged("PenstockLossCurve", e, _penstockLossCurveReference);
                 }
             }
         }
@@ -312,6 +324,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> PenstockLossCurveChanged;
         
+        private static ITypedElement RetrieveEnergyConversionCapabilityAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(HydroGeneratingUnit.ClassInstance)).Resolve("energyConversionCapability")));
+        }
+        
         /// <summary>
         /// Raises the EnergyConversionCapabilityChanging event
         /// </summary>
@@ -336,6 +353,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveHydroUnitWaterCostAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(HydroGeneratingUnit.ClassInstance)).Resolve("hydroUnitWaterCost")));
         }
         
         /// <summary>
@@ -364,6 +386,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
             }
         }
         
+        private static ITypedElement RetrieveTailbayLossCurveReference()
+        {
+            return ((ITypedElement)(((ModelElement)(HydroGeneratingUnit.ClassInstance)).Resolve("TailbayLossCurve")));
+        }
+        
         /// <summary>
         /// Forwards CollectionChanging notifications for the TailbayLossCurve property to the parent model element
         /// </summary>
@@ -371,7 +398,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
         /// <param name="e">The original event data</param>
         private void TailbayLossCurveCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("TailbayLossCurve", e);
+            this.OnCollectionChanging("TailbayLossCurve", e, _tailbayLossCurveReference);
         }
         
         /// <summary>
@@ -381,7 +408,12 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
         /// <param name="e">The original event data</param>
         private void TailbayLossCurveCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("TailbayLossCurve", e);
+            this.OnCollectionChanged("TailbayLossCurve", e, _tailbayLossCurveReference);
+        }
+        
+        private static ITypedElement RetrieveHydroPowerPlantReference()
+        {
+            return ((ITypedElement)(((ModelElement)(HydroGeneratingUnit.ClassInstance)).Resolve("HydroPowerPlant")));
         }
         
         /// <summary>
@@ -420,6 +452,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
             this.HydroPowerPlant = null;
         }
         
+        private static ITypedElement RetrieveHydroGeneratingEfficiencyCurvesReference()
+        {
+            return ((ITypedElement)(((ModelElement)(HydroGeneratingUnit.ClassInstance)).Resolve("HydroGeneratingEfficiencyCurves")));
+        }
+        
         /// <summary>
         /// Forwards CollectionChanging notifications for the HydroGeneratingEfficiencyCurves property to the parent model element
         /// </summary>
@@ -427,7 +464,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
         /// <param name="e">The original event data</param>
         private void HydroGeneratingEfficiencyCurvesCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("HydroGeneratingEfficiencyCurves", e);
+            this.OnCollectionChanging("HydroGeneratingEfficiencyCurves", e, _hydroGeneratingEfficiencyCurvesReference);
         }
         
         /// <summary>
@@ -437,7 +474,12 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
         /// <param name="e">The original event data</param>
         private void HydroGeneratingEfficiencyCurvesCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("HydroGeneratingEfficiencyCurves", e);
+            this.OnCollectionChanged("HydroGeneratingEfficiencyCurves", e, _hydroGeneratingEfficiencyCurvesReference);
+        }
+        
+        private static ITypedElement RetrievePenstockLossCurveReference()
+        {
+            return ((ITypedElement)(((ModelElement)(HydroGeneratingUnit.ClassInstance)).Resolve("PenstockLossCurve")));
         }
         
         /// <summary>
@@ -821,7 +863,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public EnergyConversionCapabilityProxy(IHydroGeneratingUnit modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "energyConversionCapability")
             {
             }
             
@@ -839,24 +881,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
                     this.ModelElement.EnergyConversionCapability = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.EnergyConversionCapabilityChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.EnergyConversionCapabilityChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -870,7 +894,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public HydroUnitWaterCostProxy(IHydroGeneratingUnit modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "hydroUnitWaterCost")
             {
             }
             
@@ -888,24 +912,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
                     this.ModelElement.HydroUnitWaterCost = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.HydroUnitWaterCostChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.HydroUnitWaterCostChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -919,7 +925,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public HydroPowerPlantProxy(IHydroGeneratingUnit modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "HydroPowerPlant")
             {
             }
             
@@ -937,24 +943,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
                     this.ModelElement.HydroPowerPlant = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.HydroPowerPlantChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.HydroPowerPlantChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -968,7 +956,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public PenstockLossCurveProxy(IHydroGeneratingUnit modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "PenstockLossCurve")
             {
             }
             
@@ -985,24 +973,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
                 {
                     this.ModelElement.PenstockLossCurve = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.PenstockLossCurveChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.PenstockLossCurveChanged -= handler;
             }
         }
     }

@@ -39,8 +39,10 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
     [XmlNamespacePrefixAttribute("data")]
     [ModelRepresentationClassAttribute("http://www.transformation-tool-contest.eu/2017/smartGrids/substationStandard#//Da" +
         "taclasses/PointArray")]
-    public class PointArray : ModelElement, IPointArray, IModelElement
+    public partial class PointArray : ModelElement, IPointArray, IModelElement
     {
+        
+        private static Lazy<ITypedElement> _pointReference = new Lazy<ITypedElement>(RetrievePointReference);
         
         /// <summary>
         /// The backing field for the Point property
@@ -99,6 +101,11 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
             }
         }
         
+        private static ITypedElement RetrievePointReference()
+        {
+            return ((ITypedElement)(((ModelElement)(PointArray.ClassInstance)).Resolve("point")));
+        }
+        
         /// <summary>
         /// Forwards CollectionChanging notifications for the Point property to the parent model element
         /// </summary>
@@ -106,7 +113,7 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
         /// <param name="e">The original event data</param>
         private void PointCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("Point", e);
+            this.OnCollectionChanging("Point", e, _pointReference);
         }
         
         /// <summary>
@@ -116,7 +123,7 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
         /// <param name="e">The original event data</param>
         private void PointCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("Point", e);
+            this.OnCollectionChanged("Point", e, _pointReference);
         }
         
         /// <summary>

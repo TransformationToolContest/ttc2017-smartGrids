@@ -39,7 +39,7 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
     [XmlNamespacePrefixAttribute("objects")]
     [ModelRepresentationClassAttribute("http://www.transformation-tool-contest.eu/2017/smartGrids/cosem#//COSEMObjects/Sw" +
         "itchOpticalTestOutput")]
-    public class SwitchOpticalTestOutput : Scripttable, ISwitchOpticalTestOutput, IModelElement
+    public partial class SwitchOpticalTestOutput : Scripttable, ISwitchOpticalTestOutput, IModelElement
     {
         
         private static IClass _classInstance;

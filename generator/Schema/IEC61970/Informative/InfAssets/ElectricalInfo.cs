@@ -53,7 +53,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61970/Informative/InfAssets/Electri" +
         "calInfo")]
     [DebuggerDisplayAttribute("ElectricalInfo {UUID}")]
-    public class ElectricalInfo : AssetInfo, IElectricalInfo, IModelElement
+    public partial class ElectricalInfo : AssetInfo, IElectricalInfo, IModelElement
     {
         
         /// <summary>
@@ -61,95 +61,135 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
         /// </summary>
         private int _wireCount;
         
+        private static Lazy<ITypedElement> _wireCountAttribute = new Lazy<ITypedElement>(RetrieveWireCountAttribute);
+        
         /// <summary>
         /// The backing field for the IsConnected property
         /// </summary>
         private bool _isConnected;
+        
+        private static Lazy<ITypedElement> _isConnectedAttribute = new Lazy<ITypedElement>(RetrieveIsConnectedAttribute);
         
         /// <summary>
         /// The backing field for the Frequency property
         /// </summary>
         private float _frequency;
         
+        private static Lazy<ITypedElement> _frequencyAttribute = new Lazy<ITypedElement>(RetrieveFrequencyAttribute);
+        
         /// <summary>
         /// The backing field for the B0 property
         /// </summary>
         private float _b0;
+        
+        private static Lazy<ITypedElement> _b0Attribute = new Lazy<ITypedElement>(RetrieveB0Attribute);
         
         /// <summary>
         /// The backing field for the R0 property
         /// </summary>
         private float _r0;
         
+        private static Lazy<ITypedElement> _r0Attribute = new Lazy<ITypedElement>(RetrieveR0Attribute);
+        
         /// <summary>
         /// The backing field for the Bil property
         /// </summary>
         private float _bil;
+        
+        private static Lazy<ITypedElement> _bilAttribute = new Lazy<ITypedElement>(RetrieveBilAttribute);
         
         /// <summary>
         /// The backing field for the PhaseCount property
         /// </summary>
         private int _phaseCount;
         
+        private static Lazy<ITypedElement> _phaseCountAttribute = new Lazy<ITypedElement>(RetrievePhaseCountAttribute);
+        
         /// <summary>
         /// The backing field for the X0 property
         /// </summary>
         private float _x0;
+        
+        private static Lazy<ITypedElement> _x0Attribute = new Lazy<ITypedElement>(RetrieveX0Attribute);
         
         /// <summary>
         /// The backing field for the G0 property
         /// </summary>
         private float _g0;
         
+        private static Lazy<ITypedElement> _g0Attribute = new Lazy<ITypedElement>(RetrieveG0Attribute);
+        
         /// <summary>
         /// The backing field for the PhaseCode property
         /// </summary>
         private Nullable<PhaseCode> _phaseCode;
+        
+        private static Lazy<ITypedElement> _phaseCodeAttribute = new Lazy<ITypedElement>(RetrievePhaseCodeAttribute);
         
         /// <summary>
         /// The backing field for the RatedCurrent property
         /// </summary>
         private float _ratedCurrent;
         
+        private static Lazy<ITypedElement> _ratedCurrentAttribute = new Lazy<ITypedElement>(RetrieveRatedCurrentAttribute);
+        
         /// <summary>
         /// The backing field for the X property
         /// </summary>
         private float _x;
+        
+        private static Lazy<ITypedElement> _xAttribute = new Lazy<ITypedElement>(RetrieveXAttribute);
         
         /// <summary>
         /// The backing field for the R property
         /// </summary>
         private float _r;
         
+        private static Lazy<ITypedElement> _rAttribute = new Lazy<ITypedElement>(RetrieveRAttribute);
+        
         /// <summary>
         /// The backing field for the RatedApparentPower property
         /// </summary>
         private float _ratedApparentPower;
+        
+        private static Lazy<ITypedElement> _ratedApparentPowerAttribute = new Lazy<ITypedElement>(RetrieveRatedApparentPowerAttribute);
         
         /// <summary>
         /// The backing field for the G property
         /// </summary>
         private float _g;
         
+        private static Lazy<ITypedElement> _gAttribute = new Lazy<ITypedElement>(RetrieveGAttribute);
+        
         /// <summary>
         /// The backing field for the B property
         /// </summary>
         private float _b;
+        
+        private static Lazy<ITypedElement> _bAttribute = new Lazy<ITypedElement>(RetrieveBAttribute);
         
         /// <summary>
         /// The backing field for the RatedVoltage property
         /// </summary>
         private float _ratedVoltage;
         
+        private static Lazy<ITypedElement> _ratedVoltageAttribute = new Lazy<ITypedElement>(RetrieveRatedVoltageAttribute);
+        
+        private static Lazy<ITypedElement> _electricalAssetModelsReference = new Lazy<ITypedElement>(RetrieveElectricalAssetModelsReference);
+        
         /// <summary>
         /// The backing field for the ElectricalAssetModels property
         /// </summary>
         private ElectricalInfoElectricalAssetModelsCollection _electricalAssetModels;
         
+        private static Lazy<ITypedElement> _electricalAssetsReference = new Lazy<ITypedElement>(RetrieveElectricalAssetsReference);
+        
         /// <summary>
         /// The backing field for the ElectricalAssets property
         /// </summary>
         private ElectricalInfoElectricalAssetsCollection _electricalAssets;
+        
+        private static Lazy<ITypedElement> _electricalTypeAssetsReference = new Lazy<ITypedElement>(RetrieveElectricalTypeAssetsReference);
         
         /// <summary>
         /// The backing field for the ElectricalTypeAssets property
@@ -189,10 +229,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
                     int old = this._wireCount;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnWireCountChanging(e);
-                    this.OnPropertyChanging("WireCount", e);
+                    this.OnPropertyChanging("WireCount", e, _wireCountAttribute);
                     this._wireCount = value;
                     this.OnWireCountChanged(e);
-                    this.OnPropertyChanged("WireCount", e);
+                    this.OnPropertyChanged("WireCount", e, _wireCountAttribute);
                 }
             }
         }
@@ -215,10 +255,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
                     bool old = this._isConnected;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnIsConnectedChanging(e);
-                    this.OnPropertyChanging("IsConnected", e);
+                    this.OnPropertyChanging("IsConnected", e, _isConnectedAttribute);
                     this._isConnected = value;
                     this.OnIsConnectedChanged(e);
-                    this.OnPropertyChanged("IsConnected", e);
+                    this.OnPropertyChanged("IsConnected", e, _isConnectedAttribute);
                 }
             }
         }
@@ -241,10 +281,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
                     float old = this._frequency;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnFrequencyChanging(e);
-                    this.OnPropertyChanging("Frequency", e);
+                    this.OnPropertyChanging("Frequency", e, _frequencyAttribute);
                     this._frequency = value;
                     this.OnFrequencyChanged(e);
-                    this.OnPropertyChanged("Frequency", e);
+                    this.OnPropertyChanged("Frequency", e, _frequencyAttribute);
                 }
             }
         }
@@ -267,10 +307,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
                     float old = this._b0;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnB0Changing(e);
-                    this.OnPropertyChanging("B0", e);
+                    this.OnPropertyChanging("B0", e, _b0Attribute);
                     this._b0 = value;
                     this.OnB0Changed(e);
-                    this.OnPropertyChanged("B0", e);
+                    this.OnPropertyChanged("B0", e, _b0Attribute);
                 }
             }
         }
@@ -293,10 +333,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
                     float old = this._r0;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnR0Changing(e);
-                    this.OnPropertyChanging("R0", e);
+                    this.OnPropertyChanging("R0", e, _r0Attribute);
                     this._r0 = value;
                     this.OnR0Changed(e);
-                    this.OnPropertyChanged("R0", e);
+                    this.OnPropertyChanged("R0", e, _r0Attribute);
                 }
             }
         }
@@ -319,10 +359,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
                     float old = this._bil;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnBilChanging(e);
-                    this.OnPropertyChanging("Bil", e);
+                    this.OnPropertyChanging("Bil", e, _bilAttribute);
                     this._bil = value;
                     this.OnBilChanged(e);
-                    this.OnPropertyChanged("Bil", e);
+                    this.OnPropertyChanged("Bil", e, _bilAttribute);
                 }
             }
         }
@@ -345,10 +385,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
                     int old = this._phaseCount;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnPhaseCountChanging(e);
-                    this.OnPropertyChanging("PhaseCount", e);
+                    this.OnPropertyChanging("PhaseCount", e, _phaseCountAttribute);
                     this._phaseCount = value;
                     this.OnPhaseCountChanged(e);
-                    this.OnPropertyChanged("PhaseCount", e);
+                    this.OnPropertyChanged("PhaseCount", e, _phaseCountAttribute);
                 }
             }
         }
@@ -371,10 +411,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
                     float old = this._x0;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnX0Changing(e);
-                    this.OnPropertyChanging("X0", e);
+                    this.OnPropertyChanging("X0", e, _x0Attribute);
                     this._x0 = value;
                     this.OnX0Changed(e);
-                    this.OnPropertyChanged("X0", e);
+                    this.OnPropertyChanged("X0", e, _x0Attribute);
                 }
             }
         }
@@ -397,10 +437,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
                     float old = this._g0;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnG0Changing(e);
-                    this.OnPropertyChanging("G0", e);
+                    this.OnPropertyChanging("G0", e, _g0Attribute);
                     this._g0 = value;
                     this.OnG0Changed(e);
-                    this.OnPropertyChanged("G0", e);
+                    this.OnPropertyChanged("G0", e, _g0Attribute);
                 }
             }
         }
@@ -423,10 +463,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
                     Nullable<PhaseCode> old = this._phaseCode;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnPhaseCodeChanging(e);
-                    this.OnPropertyChanging("PhaseCode", e);
+                    this.OnPropertyChanging("PhaseCode", e, _phaseCodeAttribute);
                     this._phaseCode = value;
                     this.OnPhaseCodeChanged(e);
-                    this.OnPropertyChanged("PhaseCode", e);
+                    this.OnPropertyChanged("PhaseCode", e, _phaseCodeAttribute);
                 }
             }
         }
@@ -449,10 +489,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
                     float old = this._ratedCurrent;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnRatedCurrentChanging(e);
-                    this.OnPropertyChanging("RatedCurrent", e);
+                    this.OnPropertyChanging("RatedCurrent", e, _ratedCurrentAttribute);
                     this._ratedCurrent = value;
                     this.OnRatedCurrentChanged(e);
-                    this.OnPropertyChanged("RatedCurrent", e);
+                    this.OnPropertyChanged("RatedCurrent", e, _ratedCurrentAttribute);
                 }
             }
         }
@@ -475,10 +515,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
                     float old = this._x;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnXChanging(e);
-                    this.OnPropertyChanging("X", e);
+                    this.OnPropertyChanging("X", e, _xAttribute);
                     this._x = value;
                     this.OnXChanged(e);
-                    this.OnPropertyChanged("X", e);
+                    this.OnPropertyChanged("X", e, _xAttribute);
                 }
             }
         }
@@ -501,10 +541,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
                     float old = this._r;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnRChanging(e);
-                    this.OnPropertyChanging("R", e);
+                    this.OnPropertyChanging("R", e, _rAttribute);
                     this._r = value;
                     this.OnRChanged(e);
-                    this.OnPropertyChanged("R", e);
+                    this.OnPropertyChanged("R", e, _rAttribute);
                 }
             }
         }
@@ -527,10 +567,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
                     float old = this._ratedApparentPower;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnRatedApparentPowerChanging(e);
-                    this.OnPropertyChanging("RatedApparentPower", e);
+                    this.OnPropertyChanging("RatedApparentPower", e, _ratedApparentPowerAttribute);
                     this._ratedApparentPower = value;
                     this.OnRatedApparentPowerChanged(e);
-                    this.OnPropertyChanged("RatedApparentPower", e);
+                    this.OnPropertyChanged("RatedApparentPower", e, _ratedApparentPowerAttribute);
                 }
             }
         }
@@ -553,10 +593,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
                     float old = this._g;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnGChanging(e);
-                    this.OnPropertyChanging("G", e);
+                    this.OnPropertyChanging("G", e, _gAttribute);
                     this._g = value;
                     this.OnGChanged(e);
-                    this.OnPropertyChanged("G", e);
+                    this.OnPropertyChanged("G", e, _gAttribute);
                 }
             }
         }
@@ -579,10 +619,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
                     float old = this._b;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnBChanging(e);
-                    this.OnPropertyChanging("B", e);
+                    this.OnPropertyChanging("B", e, _bAttribute);
                     this._b = value;
                     this.OnBChanged(e);
-                    this.OnPropertyChanged("B", e);
+                    this.OnPropertyChanged("B", e, _bAttribute);
                 }
             }
         }
@@ -605,10 +645,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
                     float old = this._ratedVoltage;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnRatedVoltageChanging(e);
-                    this.OnPropertyChanging("RatedVoltage", e);
+                    this.OnPropertyChanging("RatedVoltage", e, _ratedVoltageAttribute);
                     this._ratedVoltage = value;
                     this.OnRatedVoltageChanged(e);
-                    this.OnPropertyChanged("RatedVoltage", e);
+                    this.OnPropertyChanged("RatedVoltage", e, _ratedVoltageAttribute);
                 }
             }
         }
@@ -855,6 +895,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> RatedVoltageChanged;
         
+        private static ITypedElement RetrieveWireCountAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(ElectricalInfo.ClassInstance)).Resolve("wireCount")));
+        }
+        
         /// <summary>
         /// Raises the WireCountChanging event
         /// </summary>
@@ -879,6 +924,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveIsConnectedAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(ElectricalInfo.ClassInstance)).Resolve("isConnected")));
         }
         
         /// <summary>
@@ -907,6 +957,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
             }
         }
         
+        private static ITypedElement RetrieveFrequencyAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(ElectricalInfo.ClassInstance)).Resolve("frequency")));
+        }
+        
         /// <summary>
         /// Raises the FrequencyChanging event
         /// </summary>
@@ -931,6 +986,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveB0Attribute()
+        {
+            return ((ITypedElement)(((ModelElement)(ElectricalInfo.ClassInstance)).Resolve("b0")));
         }
         
         /// <summary>
@@ -959,6 +1019,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
             }
         }
         
+        private static ITypedElement RetrieveR0Attribute()
+        {
+            return ((ITypedElement)(((ModelElement)(ElectricalInfo.ClassInstance)).Resolve("r0")));
+        }
+        
         /// <summary>
         /// Raises the R0Changing event
         /// </summary>
@@ -983,6 +1048,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveBilAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(ElectricalInfo.ClassInstance)).Resolve("bil")));
         }
         
         /// <summary>
@@ -1011,6 +1081,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
             }
         }
         
+        private static ITypedElement RetrievePhaseCountAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(ElectricalInfo.ClassInstance)).Resolve("phaseCount")));
+        }
+        
         /// <summary>
         /// Raises the PhaseCountChanging event
         /// </summary>
@@ -1035,6 +1110,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveX0Attribute()
+        {
+            return ((ITypedElement)(((ModelElement)(ElectricalInfo.ClassInstance)).Resolve("x0")));
         }
         
         /// <summary>
@@ -1063,6 +1143,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
             }
         }
         
+        private static ITypedElement RetrieveG0Attribute()
+        {
+            return ((ITypedElement)(((ModelElement)(ElectricalInfo.ClassInstance)).Resolve("g0")));
+        }
+        
         /// <summary>
         /// Raises the G0Changing event
         /// </summary>
@@ -1087,6 +1172,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrievePhaseCodeAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(ElectricalInfo.ClassInstance)).Resolve("phaseCode")));
         }
         
         /// <summary>
@@ -1115,6 +1205,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
             }
         }
         
+        private static ITypedElement RetrieveRatedCurrentAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(ElectricalInfo.ClassInstance)).Resolve("ratedCurrent")));
+        }
+        
         /// <summary>
         /// Raises the RatedCurrentChanging event
         /// </summary>
@@ -1139,6 +1234,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveXAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(ElectricalInfo.ClassInstance)).Resolve("x")));
         }
         
         /// <summary>
@@ -1167,6 +1267,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
             }
         }
         
+        private static ITypedElement RetrieveRAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(ElectricalInfo.ClassInstance)).Resolve("r")));
+        }
+        
         /// <summary>
         /// Raises the RChanging event
         /// </summary>
@@ -1191,6 +1296,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveRatedApparentPowerAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(ElectricalInfo.ClassInstance)).Resolve("ratedApparentPower")));
         }
         
         /// <summary>
@@ -1219,6 +1329,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
             }
         }
         
+        private static ITypedElement RetrieveGAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(ElectricalInfo.ClassInstance)).Resolve("g")));
+        }
+        
         /// <summary>
         /// Raises the GChanging event
         /// </summary>
@@ -1243,6 +1358,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveBAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(ElectricalInfo.ClassInstance)).Resolve("b")));
         }
         
         /// <summary>
@@ -1271,6 +1391,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
             }
         }
         
+        private static ITypedElement RetrieveRatedVoltageAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(ElectricalInfo.ClassInstance)).Resolve("ratedVoltage")));
+        }
+        
         /// <summary>
         /// Raises the RatedVoltageChanging event
         /// </summary>
@@ -1297,6 +1422,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
             }
         }
         
+        private static ITypedElement RetrieveElectricalAssetModelsReference()
+        {
+            return ((ITypedElement)(((ModelElement)(ElectricalInfo.ClassInstance)).Resolve("ElectricalAssetModels")));
+        }
+        
         /// <summary>
         /// Forwards CollectionChanging notifications for the ElectricalAssetModels property to the parent model element
         /// </summary>
@@ -1304,7 +1434,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
         /// <param name="e">The original event data</param>
         private void ElectricalAssetModelsCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("ElectricalAssetModels", e);
+            this.OnCollectionChanging("ElectricalAssetModels", e, _electricalAssetModelsReference);
         }
         
         /// <summary>
@@ -1314,7 +1444,12 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
         /// <param name="e">The original event data</param>
         private void ElectricalAssetModelsCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("ElectricalAssetModels", e);
+            this.OnCollectionChanged("ElectricalAssetModels", e, _electricalAssetModelsReference);
+        }
+        
+        private static ITypedElement RetrieveElectricalAssetsReference()
+        {
+            return ((ITypedElement)(((ModelElement)(ElectricalInfo.ClassInstance)).Resolve("ElectricalAssets")));
         }
         
         /// <summary>
@@ -1324,7 +1459,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
         /// <param name="e">The original event data</param>
         private void ElectricalAssetsCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("ElectricalAssets", e);
+            this.OnCollectionChanging("ElectricalAssets", e, _electricalAssetsReference);
         }
         
         /// <summary>
@@ -1334,7 +1469,12 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
         /// <param name="e">The original event data</param>
         private void ElectricalAssetsCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("ElectricalAssets", e);
+            this.OnCollectionChanged("ElectricalAssets", e, _electricalAssetsReference);
+        }
+        
+        private static ITypedElement RetrieveElectricalTypeAssetsReference()
+        {
+            return ((ITypedElement)(((ModelElement)(ElectricalInfo.ClassInstance)).Resolve("ElectricalTypeAssets")));
         }
         
         /// <summary>
@@ -1344,7 +1484,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
         /// <param name="e">The original event data</param>
         private void ElectricalTypeAssetsCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("ElectricalTypeAssets", e);
+            this.OnCollectionChanging("ElectricalTypeAssets", e, _electricalTypeAssetsReference);
         }
         
         /// <summary>
@@ -1354,7 +1494,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
         /// <param name="e">The original event data</param>
         private void ElectricalTypeAssetsCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("ElectricalTypeAssets", e);
+            this.OnCollectionChanged("ElectricalTypeAssets", e, _electricalTypeAssetsReference);
         }
         
         /// <summary>
@@ -1769,7 +1909,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public WireCountProxy(IElectricalInfo modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "wireCount")
             {
             }
             
@@ -1787,24 +1927,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
                     this.ModelElement.WireCount = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.WireCountChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.WireCountChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1818,7 +1940,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public IsConnectedProxy(IElectricalInfo modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "isConnected")
             {
             }
             
@@ -1836,24 +1958,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
                     this.ModelElement.IsConnected = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.IsConnectedChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.IsConnectedChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1867,7 +1971,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public FrequencyProxy(IElectricalInfo modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "frequency")
             {
             }
             
@@ -1885,24 +1989,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
                     this.ModelElement.Frequency = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.FrequencyChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.FrequencyChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1916,7 +2002,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public B0Proxy(IElectricalInfo modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "b0")
             {
             }
             
@@ -1934,24 +2020,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
                     this.ModelElement.B0 = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.B0Changed += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.B0Changed -= handler;
-            }
         }
         
         /// <summary>
@@ -1965,7 +2033,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public R0Proxy(IElectricalInfo modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "r0")
             {
             }
             
@@ -1983,24 +2051,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
                     this.ModelElement.R0 = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.R0Changed += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.R0Changed -= handler;
-            }
         }
         
         /// <summary>
@@ -2014,7 +2064,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public BilProxy(IElectricalInfo modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "bil")
             {
             }
             
@@ -2032,24 +2082,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
                     this.ModelElement.Bil = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.BilChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.BilChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -2063,7 +2095,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public PhaseCountProxy(IElectricalInfo modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "phaseCount")
             {
             }
             
@@ -2081,24 +2113,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
                     this.ModelElement.PhaseCount = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.PhaseCountChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.PhaseCountChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -2112,7 +2126,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public X0Proxy(IElectricalInfo modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "x0")
             {
             }
             
@@ -2130,24 +2144,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
                     this.ModelElement.X0 = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.X0Changed += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.X0Changed -= handler;
-            }
         }
         
         /// <summary>
@@ -2161,7 +2157,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public G0Proxy(IElectricalInfo modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "g0")
             {
             }
             
@@ -2179,24 +2175,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
                     this.ModelElement.G0 = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.G0Changed += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.G0Changed -= handler;
-            }
         }
         
         /// <summary>
@@ -2210,7 +2188,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public PhaseCodeProxy(IElectricalInfo modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "phaseCode")
             {
             }
             
@@ -2228,24 +2206,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
                     this.ModelElement.PhaseCode = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.PhaseCodeChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.PhaseCodeChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -2259,7 +2219,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public RatedCurrentProxy(IElectricalInfo modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "ratedCurrent")
             {
             }
             
@@ -2277,24 +2237,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
                     this.ModelElement.RatedCurrent = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.RatedCurrentChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.RatedCurrentChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -2308,7 +2250,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public XProxy(IElectricalInfo modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "x")
             {
             }
             
@@ -2326,24 +2268,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
                     this.ModelElement.X = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.XChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.XChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -2357,7 +2281,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public RProxy(IElectricalInfo modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "r")
             {
             }
             
@@ -2375,24 +2299,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
                     this.ModelElement.R = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.RChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.RChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -2406,7 +2312,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public RatedApparentPowerProxy(IElectricalInfo modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "ratedApparentPower")
             {
             }
             
@@ -2424,24 +2330,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
                     this.ModelElement.RatedApparentPower = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.RatedApparentPowerChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.RatedApparentPowerChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -2455,7 +2343,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public GProxy(IElectricalInfo modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "g")
             {
             }
             
@@ -2473,24 +2361,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
                     this.ModelElement.G = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.GChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.GChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -2504,7 +2374,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public BProxy(IElectricalInfo modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "b")
             {
             }
             
@@ -2522,24 +2392,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
                     this.ModelElement.B = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.BChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.BChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -2553,7 +2405,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public RatedVoltageProxy(IElectricalInfo modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "ratedVoltage")
             {
             }
             
@@ -2570,24 +2422,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
                 {
                     this.ModelElement.RatedVoltage = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.RatedVoltageChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.RatedVoltageChanged -= handler;
             }
         }
     }

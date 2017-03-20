@@ -41,7 +41,7 @@ namespace TTC2017.SmartGrids.SubstationStandard.LNNodes.LNGroupC
     [XmlNamespacePrefixAttribute("groupc")]
     [ModelRepresentationClassAttribute("http://www.transformation-tool-contest.eu/2017/smartGrids/substationStandard#//LN" +
         "Nodes/LNGroupC/GroupC")]
-    public class GroupC : DomainLN, IGroupC, IModelElement
+    public partial class GroupC : DomainLN, IGroupC, IModelElement
     {
         
         private static IClass _classInstance;

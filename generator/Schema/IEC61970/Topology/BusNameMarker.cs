@@ -40,13 +40,17 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Topology
     [XmlNamespacePrefixAttribute("cimTopology")]
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61970/Topology/BusNameMarker")]
     [DebuggerDisplayAttribute("BusNameMarker {UUID}")]
-    public class BusNameMarker : IdentifiedObject, IBusNameMarker, IModelElement
+    public partial class BusNameMarker : IdentifiedObject, IBusNameMarker, IModelElement
     {
+        
+        private static Lazy<ITypedElement> _reportingGroupReference = new Lazy<ITypedElement>(RetrieveReportingGroupReference);
         
         /// <summary>
         /// The backing field for the ReportingGroup property
         /// </summary>
         private IReportingGroup _reportingGroup;
+        
+        private static Lazy<ITypedElement> _connectivityNodeReference = new Lazy<ITypedElement>(RetrieveConnectivityNodeReference);
         
         /// <summary>
         /// The backing field for the ConnectivityNode property
@@ -80,7 +84,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Topology
                     IReportingGroup old = this._reportingGroup;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnReportingGroupChanging(e);
-                    this.OnPropertyChanging("ReportingGroup", e);
+                    this.OnPropertyChanging("ReportingGroup", e, _reportingGroupReference);
                     this._reportingGroup = value;
                     if ((old != null))
                     {
@@ -93,7 +97,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Topology
                         value.Deleted += this.OnResetReportingGroup;
                     }
                     this.OnReportingGroupChanged(e);
-                    this.OnPropertyChanged("ReportingGroup", e);
+                    this.OnPropertyChanged("ReportingGroup", e, _reportingGroupReference);
                 }
             }
         }
@@ -149,6 +153,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Topology
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> ReportingGroupChanged;
         
+        private static ITypedElement RetrieveReportingGroupReference()
+        {
+            return ((ITypedElement)(((ModelElement)(BusNameMarker.ClassInstance)).Resolve("ReportingGroup")));
+        }
+        
         /// <summary>
         /// Raises the ReportingGroupChanging event
         /// </summary>
@@ -185,6 +194,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Topology
             this.ReportingGroup = null;
         }
         
+        private static ITypedElement RetrieveConnectivityNodeReference()
+        {
+            return ((ITypedElement)(((ModelElement)(BusNameMarker.ClassInstance)).Resolve("ConnectivityNode")));
+        }
+        
         /// <summary>
         /// Forwards CollectionChanging notifications for the ConnectivityNode property to the parent model element
         /// </summary>
@@ -192,7 +206,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Topology
         /// <param name="e">The original event data</param>
         private void ConnectivityNodeCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("ConnectivityNode", e);
+            this.OnCollectionChanging("ConnectivityNode", e, _connectivityNodeReference);
         }
         
         /// <summary>
@@ -202,7 +216,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Topology
         /// <param name="e">The original event data</param>
         private void ConnectivityNodeCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("ConnectivityNode", e);
+            this.OnCollectionChanged("ConnectivityNode", e, _connectivityNodeReference);
         }
         
         /// <summary>
@@ -439,7 +453,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Topology
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public ReportingGroupProxy(IBusNameMarker modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "ReportingGroup")
             {
             }
             
@@ -456,24 +470,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Topology
                 {
                     this.ModelElement.ReportingGroup = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ReportingGroupChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ReportingGroupChanged -= handler;
             }
         }
     }

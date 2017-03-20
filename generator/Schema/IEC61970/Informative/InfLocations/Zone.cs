@@ -46,13 +46,15 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfLocations
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61970/Informative/InfLocations/Zone" +
         "")]
     [DebuggerDisplayAttribute("Zone {UUID}")]
-    public class Zone : Location, IZone, IModelElement
+    public partial class Zone : Location, IZone, IModelElement
     {
         
         /// <summary>
         /// The backing field for the Kind property
         /// </summary>
         private Nullable<ZoneKind> _kind;
+        
+        private static Lazy<ITypedElement> _kindAttribute = new Lazy<ITypedElement>(RetrieveKindAttribute);
         
         private static IClass _classInstance;
         
@@ -74,10 +76,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfLocations
                     Nullable<ZoneKind> old = this._kind;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnKindChanging(e);
-                    this.OnPropertyChanging("Kind", e);
+                    this.OnPropertyChanging("Kind", e, _kindAttribute);
                     this._kind = value;
                     this.OnKindChanged(e);
-                    this.OnPropertyChanged("Kind", e);
+                    this.OnPropertyChanged("Kind", e, _kindAttribute);
                 }
             }
         }
@@ -107,6 +109,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfLocations
         /// Gets fired when the Kind property changed its value
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> KindChanged;
+        
+        private static ITypedElement RetrieveKindAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(Zone.ClassInstance)).Resolve("kind")));
+        }
         
         /// <summary>
         /// Raises the KindChanging event
@@ -188,7 +195,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfLocations
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public KindProxy(IZone modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "kind")
             {
             }
             
@@ -205,24 +212,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfLocations
                 {
                     this.ModelElement.Kind = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.KindChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.KindChanged -= handler;
             }
         }
     }

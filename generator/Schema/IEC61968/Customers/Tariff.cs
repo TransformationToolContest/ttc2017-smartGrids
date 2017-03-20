@@ -47,7 +47,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Customers
     [XmlNamespacePrefixAttribute("cimCustomers")]
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61968/Customers/Tariff")]
     [DebuggerDisplayAttribute("Tariff {UUID}")]
-    public class Tariff : Document, ITariff, IModelElement
+    public partial class Tariff : Document, ITariff, IModelElement
     {
         
         /// <summary>
@@ -55,15 +55,23 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Customers
         /// </summary>
         private string _endDate;
         
+        private static Lazy<ITypedElement> _endDateAttribute = new Lazy<ITypedElement>(RetrieveEndDateAttribute);
+        
         /// <summary>
         /// The backing field for the StartDate property
         /// </summary>
         private string _startDate;
         
+        private static Lazy<ITypedElement> _startDateAttribute = new Lazy<ITypedElement>(RetrieveStartDateAttribute);
+        
+        private static Lazy<ITypedElement> _tariffProfilesReference = new Lazy<ITypedElement>(RetrieveTariffProfilesReference);
+        
         /// <summary>
         /// The backing field for the TariffProfiles property
         /// </summary>
         private TariffTariffProfilesCollection _tariffProfiles;
+        
+        private static Lazy<ITypedElement> _pricingStructuresReference = new Lazy<ITypedElement>(RetrievePricingStructuresReference);
         
         /// <summary>
         /// The backing field for the PricingStructures property
@@ -100,10 +108,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Customers
                     string old = this._endDate;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnEndDateChanging(e);
-                    this.OnPropertyChanging("EndDate", e);
+                    this.OnPropertyChanging("EndDate", e, _endDateAttribute);
                     this._endDate = value;
                     this.OnEndDateChanged(e);
-                    this.OnPropertyChanged("EndDate", e);
+                    this.OnPropertyChanged("EndDate", e, _endDateAttribute);
                 }
             }
         }
@@ -126,10 +134,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Customers
                     string old = this._startDate;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnStartDateChanging(e);
-                    this.OnPropertyChanging("StartDate", e);
+                    this.OnPropertyChanging("StartDate", e, _startDateAttribute);
                     this._startDate = value;
                     this.OnStartDateChanged(e);
-                    this.OnPropertyChanged("StartDate", e);
+                    this.OnPropertyChanged("StartDate", e, _startDateAttribute);
                 }
             }
         }
@@ -210,6 +218,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Customers
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> StartDateChanged;
         
+        private static ITypedElement RetrieveEndDateAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(Tariff.ClassInstance)).Resolve("endDate")));
+        }
+        
         /// <summary>
         /// Raises the EndDateChanging event
         /// </summary>
@@ -234,6 +247,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Customers
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveStartDateAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(Tariff.ClassInstance)).Resolve("startDate")));
         }
         
         /// <summary>
@@ -262,6 +280,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Customers
             }
         }
         
+        private static ITypedElement RetrieveTariffProfilesReference()
+        {
+            return ((ITypedElement)(((ModelElement)(Tariff.ClassInstance)).Resolve("TariffProfiles")));
+        }
+        
         /// <summary>
         /// Forwards CollectionChanging notifications for the TariffProfiles property to the parent model element
         /// </summary>
@@ -269,7 +292,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Customers
         /// <param name="e">The original event data</param>
         private void TariffProfilesCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("TariffProfiles", e);
+            this.OnCollectionChanging("TariffProfiles", e, _tariffProfilesReference);
         }
         
         /// <summary>
@@ -279,7 +302,12 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Customers
         /// <param name="e">The original event data</param>
         private void TariffProfilesCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("TariffProfiles", e);
+            this.OnCollectionChanged("TariffProfiles", e, _tariffProfilesReference);
+        }
+        
+        private static ITypedElement RetrievePricingStructuresReference()
+        {
+            return ((ITypedElement)(((ModelElement)(Tariff.ClassInstance)).Resolve("PricingStructures")));
         }
         
         /// <summary>
@@ -289,7 +317,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Customers
         /// <param name="e">The original event data</param>
         private void PricingStructuresCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("PricingStructures", e);
+            this.OnCollectionChanging("PricingStructures", e, _pricingStructuresReference);
         }
         
         /// <summary>
@@ -299,7 +327,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Customers
         /// <param name="e">The original event data</param>
         private void PricingStructuresCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("PricingStructures", e);
+            this.OnCollectionChanged("PricingStructures", e, _pricingStructuresReference);
         }
         
         /// <summary>
@@ -540,7 +568,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Customers
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public EndDateProxy(ITariff modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "endDate")
             {
             }
             
@@ -558,24 +586,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Customers
                     this.ModelElement.EndDate = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.EndDateChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.EndDateChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -589,7 +599,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Customers
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public StartDateProxy(ITariff modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "startDate")
             {
             }
             
@@ -606,24 +616,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Customers
                 {
                     this.ModelElement.StartDate = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.StartDateChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.StartDateChanged -= handler;
             }
         }
     }

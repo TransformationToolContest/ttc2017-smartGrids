@@ -53,7 +53,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
     [XmlNamespacePrefixAttribute("cimWires")]
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61970/Wires/StaticVarCompensator")]
     [DebuggerDisplayAttribute("StaticVarCompensator {UUID}")]
-    public class StaticVarCompensator : RegulatingCondEq, IStaticVarCompensator, IModelElement
+    public partial class StaticVarCompensator : RegulatingCondEq, IStaticVarCompensator, IModelElement
     {
         
         /// <summary>
@@ -61,25 +61,35 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
         /// </summary>
         private Nullable<SVCControlMode> _sVCControlMode;
         
+        private static Lazy<ITypedElement> _sVCControlModeAttribute = new Lazy<ITypedElement>(RetrieveSVCControlModeAttribute);
+        
         /// <summary>
         /// The backing field for the InductiveRating property
         /// </summary>
         private float _inductiveRating;
+        
+        private static Lazy<ITypedElement> _inductiveRatingAttribute = new Lazy<ITypedElement>(RetrieveInductiveRatingAttribute);
         
         /// <summary>
         /// The backing field for the CapacitiveRating property
         /// </summary>
         private float _capacitiveRating;
         
+        private static Lazy<ITypedElement> _capacitiveRatingAttribute = new Lazy<ITypedElement>(RetrieveCapacitiveRatingAttribute);
+        
         /// <summary>
         /// The backing field for the VoltageSetPoint property
         /// </summary>
         private float _voltageSetPoint;
         
+        private static Lazy<ITypedElement> _voltageSetPointAttribute = new Lazy<ITypedElement>(RetrieveVoltageSetPointAttribute);
+        
         /// <summary>
         /// The backing field for the Slope property
         /// </summary>
         private float _slope;
+        
+        private static Lazy<ITypedElement> _slopeAttribute = new Lazy<ITypedElement>(RetrieveSlopeAttribute);
         
         private static IClass _classInstance;
         
@@ -101,10 +111,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
                     Nullable<SVCControlMode> old = this._sVCControlMode;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnSVCControlModeChanging(e);
-                    this.OnPropertyChanging("SVCControlMode", e);
+                    this.OnPropertyChanging("SVCControlMode", e, _sVCControlModeAttribute);
                     this._sVCControlMode = value;
                     this.OnSVCControlModeChanged(e);
-                    this.OnPropertyChanged("SVCControlMode", e);
+                    this.OnPropertyChanged("SVCControlMode", e, _sVCControlModeAttribute);
                 }
             }
         }
@@ -127,10 +137,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
                     float old = this._inductiveRating;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnInductiveRatingChanging(e);
-                    this.OnPropertyChanging("InductiveRating", e);
+                    this.OnPropertyChanging("InductiveRating", e, _inductiveRatingAttribute);
                     this._inductiveRating = value;
                     this.OnInductiveRatingChanged(e);
-                    this.OnPropertyChanged("InductiveRating", e);
+                    this.OnPropertyChanged("InductiveRating", e, _inductiveRatingAttribute);
                 }
             }
         }
@@ -153,10 +163,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
                     float old = this._capacitiveRating;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnCapacitiveRatingChanging(e);
-                    this.OnPropertyChanging("CapacitiveRating", e);
+                    this.OnPropertyChanging("CapacitiveRating", e, _capacitiveRatingAttribute);
                     this._capacitiveRating = value;
                     this.OnCapacitiveRatingChanged(e);
-                    this.OnPropertyChanged("CapacitiveRating", e);
+                    this.OnPropertyChanged("CapacitiveRating", e, _capacitiveRatingAttribute);
                 }
             }
         }
@@ -179,10 +189,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
                     float old = this._voltageSetPoint;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnVoltageSetPointChanging(e);
-                    this.OnPropertyChanging("VoltageSetPoint", e);
+                    this.OnPropertyChanging("VoltageSetPoint", e, _voltageSetPointAttribute);
                     this._voltageSetPoint = value;
                     this.OnVoltageSetPointChanged(e);
-                    this.OnPropertyChanged("VoltageSetPoint", e);
+                    this.OnPropertyChanged("VoltageSetPoint", e, _voltageSetPointAttribute);
                 }
             }
         }
@@ -205,10 +215,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
                     float old = this._slope;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnSlopeChanging(e);
-                    this.OnPropertyChanging("Slope", e);
+                    this.OnPropertyChanging("Slope", e, _slopeAttribute);
                     this._slope = value;
                     this.OnSlopeChanged(e);
-                    this.OnPropertyChanged("Slope", e);
+                    this.OnPropertyChanged("Slope", e, _slopeAttribute);
                 }
             }
         }
@@ -278,6 +288,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> SlopeChanged;
         
+        private static ITypedElement RetrieveSVCControlModeAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(StaticVarCompensator.ClassInstance)).Resolve("sVCControlMode")));
+        }
+        
         /// <summary>
         /// Raises the SVCControlModeChanging event
         /// </summary>
@@ -302,6 +317,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveInductiveRatingAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(StaticVarCompensator.ClassInstance)).Resolve("inductiveRating")));
         }
         
         /// <summary>
@@ -330,6 +350,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
             }
         }
         
+        private static ITypedElement RetrieveCapacitiveRatingAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(StaticVarCompensator.ClassInstance)).Resolve("capacitiveRating")));
+        }
+        
         /// <summary>
         /// Raises the CapacitiveRatingChanging event
         /// </summary>
@@ -356,6 +381,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
             }
         }
         
+        private static ITypedElement RetrieveVoltageSetPointAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(StaticVarCompensator.ClassInstance)).Resolve("voltageSetPoint")));
+        }
+        
         /// <summary>
         /// Raises the VoltageSetPointChanging event
         /// </summary>
@@ -380,6 +410,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveSlopeAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(StaticVarCompensator.ClassInstance)).Resolve("slope")));
         }
         
         /// <summary>
@@ -497,7 +532,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public SVCControlModeProxy(IStaticVarCompensator modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "sVCControlMode")
             {
             }
             
@@ -515,24 +550,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
                     this.ModelElement.SVCControlMode = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.SVCControlModeChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.SVCControlModeChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -546,7 +563,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public InductiveRatingProxy(IStaticVarCompensator modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "inductiveRating")
             {
             }
             
@@ -564,24 +581,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
                     this.ModelElement.InductiveRating = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.InductiveRatingChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.InductiveRatingChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -595,7 +594,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public CapacitiveRatingProxy(IStaticVarCompensator modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "capacitiveRating")
             {
             }
             
@@ -613,24 +612,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
                     this.ModelElement.CapacitiveRating = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.CapacitiveRatingChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.CapacitiveRatingChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -644,7 +625,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public VoltageSetPointProxy(IStaticVarCompensator modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "voltageSetPoint")
             {
             }
             
@@ -662,24 +643,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
                     this.ModelElement.VoltageSetPoint = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.VoltageSetPointChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.VoltageSetPointChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -693,7 +656,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public SlopeProxy(IStaticVarCompensator modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "slope")
             {
             }
             
@@ -710,24 +673,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
                 {
                     this.ModelElement.Slope = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.SlopeChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.SlopeChanged -= handler;
             }
         }
     }

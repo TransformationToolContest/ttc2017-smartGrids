@@ -53,7 +53,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61970/Informative/InfAssets/Bushing" +
         "InsulationPF")]
     [DebuggerDisplayAttribute("BushingInsulationPF {UUID}")]
-    public class BushingInsulationPF : IdentifiedObject, IBushingInsulationPF, IModelElement
+    public partial class BushingInsulationPF : IdentifiedObject, IBushingInsulationPF, IModelElement
     {
         
         /// <summary>
@@ -61,15 +61,23 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
         /// </summary>
         private Nullable<BushingInsulationPfTestKind> _testKind;
         
+        private static Lazy<ITypedElement> _testKindAttribute = new Lazy<ITypedElement>(RetrieveTestKindAttribute);
+        
+        private static Lazy<ITypedElement> _bushingInfoReference = new Lazy<ITypedElement>(RetrieveBushingInfoReference);
+        
         /// <summary>
         /// The backing field for the BushingInfo property
         /// </summary>
         private IBushingInfo _bushingInfo;
         
+        private static Lazy<ITypedElement> _statusReference = new Lazy<ITypedElement>(RetrieveStatusReference);
+        
         /// <summary>
         /// The backing field for the Status property
         /// </summary>
         private IStatus _status;
+        
+        private static Lazy<ITypedElement> _transformerObservationReference = new Lazy<ITypedElement>(RetrieveTransformerObservationReference);
         
         /// <summary>
         /// The backing field for the TransformerObservation property
@@ -96,10 +104,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
                     Nullable<BushingInsulationPfTestKind> old = this._testKind;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnTestKindChanging(e);
-                    this.OnPropertyChanging("TestKind", e);
+                    this.OnPropertyChanging("TestKind", e, _testKindAttribute);
                     this._testKind = value;
                     this.OnTestKindChanged(e);
-                    this.OnPropertyChanged("TestKind", e);
+                    this.OnPropertyChanged("TestKind", e, _testKindAttribute);
                 }
             }
         }
@@ -122,7 +130,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
                     IBushingInfo old = this._bushingInfo;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnBushingInfoChanging(e);
-                    this.OnPropertyChanging("BushingInfo", e);
+                    this.OnPropertyChanging("BushingInfo", e, _bushingInfoReference);
                     this._bushingInfo = value;
                     if ((old != null))
                     {
@@ -135,7 +143,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
                         value.Deleted += this.OnResetBushingInfo;
                     }
                     this.OnBushingInfoChanged(e);
-                    this.OnPropertyChanged("BushingInfo", e);
+                    this.OnPropertyChanged("BushingInfo", e, _bushingInfoReference);
                 }
             }
         }
@@ -158,7 +166,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
                     IStatus old = this._status;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnStatusChanging(e);
-                    this.OnPropertyChanging("Status", e);
+                    this.OnPropertyChanging("Status", e, _statusReference);
                     this._status = value;
                     if ((old != null))
                     {
@@ -169,7 +177,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
                         value.Deleted += this.OnResetStatus;
                     }
                     this.OnStatusChanged(e);
-                    this.OnPropertyChanged("Status", e);
+                    this.OnPropertyChanged("Status", e, _statusReference);
                 }
             }
         }
@@ -192,7 +200,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
                     ITransformerObservation old = this._transformerObservation;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnTransformerObservationChanging(e);
-                    this.OnPropertyChanging("TransformerObservation", e);
+                    this.OnPropertyChanging("TransformerObservation", e, _transformerObservationReference);
                     this._transformerObservation = value;
                     if ((old != null))
                     {
@@ -205,7 +213,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
                         value.Deleted += this.OnResetTransformerObservation;
                     }
                     this.OnTransformerObservationChanged(e);
-                    this.OnPropertyChanged("TransformerObservation", e);
+                    this.OnPropertyChanged("TransformerObservation", e, _transformerObservationReference);
                 }
             }
         }
@@ -277,6 +285,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> TransformerObservationChanged;
         
+        private static ITypedElement RetrieveTestKindAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(BushingInsulationPF.ClassInstance)).Resolve("testKind")));
+        }
+        
         /// <summary>
         /// Raises the TestKindChanging event
         /// </summary>
@@ -301,6 +314,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveBushingInfoReference()
+        {
+            return ((ITypedElement)(((ModelElement)(BushingInsulationPF.ClassInstance)).Resolve("BushingInfo")));
         }
         
         /// <summary>
@@ -339,6 +357,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
             this.BushingInfo = null;
         }
         
+        private static ITypedElement RetrieveStatusReference()
+        {
+            return ((ITypedElement)(((ModelElement)(BushingInsulationPF.ClassInstance)).Resolve("status")));
+        }
+        
         /// <summary>
         /// Raises the StatusChanging event
         /// </summary>
@@ -373,6 +396,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
         private void OnResetStatus(object sender, System.EventArgs eventArgs)
         {
             this.Status = null;
+        }
+        
+        private static ITypedElement RetrieveTransformerObservationReference()
+        {
+            return ((ITypedElement)(((ModelElement)(BushingInsulationPF.ClassInstance)).Resolve("TransformerObservation")));
         }
         
         /// <summary>
@@ -704,7 +732,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public TestKindProxy(IBushingInsulationPF modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "testKind")
             {
             }
             
@@ -722,24 +750,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
                     this.ModelElement.TestKind = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.TestKindChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.TestKindChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -753,7 +763,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public BushingInfoProxy(IBushingInsulationPF modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "BushingInfo")
             {
             }
             
@@ -771,24 +781,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
                     this.ModelElement.BushingInfo = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.BushingInfoChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.BushingInfoChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -802,7 +794,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public StatusProxy(IBushingInsulationPF modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "status")
             {
             }
             
@@ -820,24 +812,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
                     this.ModelElement.Status = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.StatusChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.StatusChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -851,7 +825,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public TransformerObservationProxy(IBushingInsulationPF modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "TransformerObservation")
             {
             }
             
@@ -868,24 +842,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
                 {
                     this.ModelElement.TransformerObservation = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.TransformerObservationChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.TransformerObservationChanged -= handler;
             }
         }
     }

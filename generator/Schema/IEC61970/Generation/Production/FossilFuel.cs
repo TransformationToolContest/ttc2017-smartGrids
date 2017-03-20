@@ -46,7 +46,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61970/Generation/Production/FossilF" +
         "uel")]
     [DebuggerDisplayAttribute("FossilFuel {UUID}")]
-    public class FossilFuel : IdentifiedObject, IFossilFuel, IModelElement
+    public partial class FossilFuel : IdentifiedObject, IFossilFuel, IModelElement
     {
         
         /// <summary>
@@ -54,55 +54,79 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
         /// </summary>
         private float _fuelEffFactor;
         
+        private static Lazy<ITypedElement> _fuelEffFactorAttribute = new Lazy<ITypedElement>(RetrieveFuelEffFactorAttribute);
+        
         /// <summary>
         /// The backing field for the FossilFuelType property
         /// </summary>
         private Nullable<FuelType> _fossilFuelType;
+        
+        private static Lazy<ITypedElement> _fossilFuelTypeAttribute = new Lazy<ITypedElement>(RetrieveFossilFuelTypeAttribute);
         
         /// <summary>
         /// The backing field for the FuelMixture property
         /// </summary>
         private float _fuelMixture;
         
+        private static Lazy<ITypedElement> _fuelMixtureAttribute = new Lazy<ITypedElement>(RetrieveFuelMixtureAttribute);
+        
         /// <summary>
         /// The backing field for the FuelCost property
         /// </summary>
         private float _fuelCost;
+        
+        private static Lazy<ITypedElement> _fuelCostAttribute = new Lazy<ITypedElement>(RetrieveFuelCostAttribute);
         
         /// <summary>
         /// The backing field for the LowBreakpointP property
         /// </summary>
         private float _lowBreakpointP;
         
+        private static Lazy<ITypedElement> _lowBreakpointPAttribute = new Lazy<ITypedElement>(RetrieveLowBreakpointPAttribute);
+        
         /// <summary>
         /// The backing field for the FuelHandlingCost property
         /// </summary>
         private float _fuelHandlingCost;
+        
+        private static Lazy<ITypedElement> _fuelHandlingCostAttribute = new Lazy<ITypedElement>(RetrieveFuelHandlingCostAttribute);
         
         /// <summary>
         /// The backing field for the FuelSulfur property
         /// </summary>
         private float _fuelSulfur;
         
+        private static Lazy<ITypedElement> _fuelSulfurAttribute = new Lazy<ITypedElement>(RetrieveFuelSulfurAttribute);
+        
         /// <summary>
         /// The backing field for the FuelHeatContent property
         /// </summary>
         private float _fuelHeatContent;
+        
+        private static Lazy<ITypedElement> _fuelHeatContentAttribute = new Lazy<ITypedElement>(RetrieveFuelHeatContentAttribute);
         
         /// <summary>
         /// The backing field for the HighBreakpointP property
         /// </summary>
         private float _highBreakpointP;
         
+        private static Lazy<ITypedElement> _highBreakpointPAttribute = new Lazy<ITypedElement>(RetrieveHighBreakpointPAttribute);
+        
         /// <summary>
         /// The backing field for the FuelDispatchCost property
         /// </summary>
         private float _fuelDispatchCost;
         
+        private static Lazy<ITypedElement> _fuelDispatchCostAttribute = new Lazy<ITypedElement>(RetrieveFuelDispatchCostAttribute);
+        
+        private static Lazy<ITypedElement> _fuelAllocationSchedulesReference = new Lazy<ITypedElement>(RetrieveFuelAllocationSchedulesReference);
+        
         /// <summary>
         /// The backing field for the FuelAllocationSchedules property
         /// </summary>
         private FossilFuelFuelAllocationSchedulesCollection _fuelAllocationSchedules;
+        
+        private static Lazy<ITypedElement> _thermalGeneratingUnitReference = new Lazy<ITypedElement>(RetrieveThermalGeneratingUnitReference);
         
         /// <summary>
         /// The backing field for the ThermalGeneratingUnit property
@@ -136,10 +160,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
                     float old = this._fuelEffFactor;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnFuelEffFactorChanging(e);
-                    this.OnPropertyChanging("FuelEffFactor", e);
+                    this.OnPropertyChanging("FuelEffFactor", e, _fuelEffFactorAttribute);
                     this._fuelEffFactor = value;
                     this.OnFuelEffFactorChanged(e);
-                    this.OnPropertyChanged("FuelEffFactor", e);
+                    this.OnPropertyChanged("FuelEffFactor", e, _fuelEffFactorAttribute);
                 }
             }
         }
@@ -162,10 +186,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
                     Nullable<FuelType> old = this._fossilFuelType;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnFossilFuelTypeChanging(e);
-                    this.OnPropertyChanging("FossilFuelType", e);
+                    this.OnPropertyChanging("FossilFuelType", e, _fossilFuelTypeAttribute);
                     this._fossilFuelType = value;
                     this.OnFossilFuelTypeChanged(e);
-                    this.OnPropertyChanged("FossilFuelType", e);
+                    this.OnPropertyChanged("FossilFuelType", e, _fossilFuelTypeAttribute);
                 }
             }
         }
@@ -188,10 +212,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
                     float old = this._fuelMixture;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnFuelMixtureChanging(e);
-                    this.OnPropertyChanging("FuelMixture", e);
+                    this.OnPropertyChanging("FuelMixture", e, _fuelMixtureAttribute);
                     this._fuelMixture = value;
                     this.OnFuelMixtureChanged(e);
-                    this.OnPropertyChanged("FuelMixture", e);
+                    this.OnPropertyChanged("FuelMixture", e, _fuelMixtureAttribute);
                 }
             }
         }
@@ -214,10 +238,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
                     float old = this._fuelCost;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnFuelCostChanging(e);
-                    this.OnPropertyChanging("FuelCost", e);
+                    this.OnPropertyChanging("FuelCost", e, _fuelCostAttribute);
                     this._fuelCost = value;
                     this.OnFuelCostChanged(e);
-                    this.OnPropertyChanged("FuelCost", e);
+                    this.OnPropertyChanged("FuelCost", e, _fuelCostAttribute);
                 }
             }
         }
@@ -240,10 +264,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
                     float old = this._lowBreakpointP;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnLowBreakpointPChanging(e);
-                    this.OnPropertyChanging("LowBreakpointP", e);
+                    this.OnPropertyChanging("LowBreakpointP", e, _lowBreakpointPAttribute);
                     this._lowBreakpointP = value;
                     this.OnLowBreakpointPChanged(e);
-                    this.OnPropertyChanged("LowBreakpointP", e);
+                    this.OnPropertyChanged("LowBreakpointP", e, _lowBreakpointPAttribute);
                 }
             }
         }
@@ -266,10 +290,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
                     float old = this._fuelHandlingCost;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnFuelHandlingCostChanging(e);
-                    this.OnPropertyChanging("FuelHandlingCost", e);
+                    this.OnPropertyChanging("FuelHandlingCost", e, _fuelHandlingCostAttribute);
                     this._fuelHandlingCost = value;
                     this.OnFuelHandlingCostChanged(e);
-                    this.OnPropertyChanged("FuelHandlingCost", e);
+                    this.OnPropertyChanged("FuelHandlingCost", e, _fuelHandlingCostAttribute);
                 }
             }
         }
@@ -292,10 +316,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
                     float old = this._fuelSulfur;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnFuelSulfurChanging(e);
-                    this.OnPropertyChanging("FuelSulfur", e);
+                    this.OnPropertyChanging("FuelSulfur", e, _fuelSulfurAttribute);
                     this._fuelSulfur = value;
                     this.OnFuelSulfurChanged(e);
-                    this.OnPropertyChanged("FuelSulfur", e);
+                    this.OnPropertyChanged("FuelSulfur", e, _fuelSulfurAttribute);
                 }
             }
         }
@@ -318,10 +342,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
                     float old = this._fuelHeatContent;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnFuelHeatContentChanging(e);
-                    this.OnPropertyChanging("FuelHeatContent", e);
+                    this.OnPropertyChanging("FuelHeatContent", e, _fuelHeatContentAttribute);
                     this._fuelHeatContent = value;
                     this.OnFuelHeatContentChanged(e);
-                    this.OnPropertyChanged("FuelHeatContent", e);
+                    this.OnPropertyChanged("FuelHeatContent", e, _fuelHeatContentAttribute);
                 }
             }
         }
@@ -344,10 +368,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
                     float old = this._highBreakpointP;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnHighBreakpointPChanging(e);
-                    this.OnPropertyChanging("HighBreakpointP", e);
+                    this.OnPropertyChanging("HighBreakpointP", e, _highBreakpointPAttribute);
                     this._highBreakpointP = value;
                     this.OnHighBreakpointPChanged(e);
-                    this.OnPropertyChanged("HighBreakpointP", e);
+                    this.OnPropertyChanged("HighBreakpointP", e, _highBreakpointPAttribute);
                 }
             }
         }
@@ -370,10 +394,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
                     float old = this._fuelDispatchCost;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnFuelDispatchCostChanging(e);
-                    this.OnPropertyChanging("FuelDispatchCost", e);
+                    this.OnPropertyChanging("FuelDispatchCost", e, _fuelDispatchCostAttribute);
                     this._fuelDispatchCost = value;
                     this.OnFuelDispatchCostChanged(e);
-                    this.OnPropertyChanged("FuelDispatchCost", e);
+                    this.OnPropertyChanged("FuelDispatchCost", e, _fuelDispatchCostAttribute);
                 }
             }
         }
@@ -411,7 +435,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
                     IThermalGeneratingUnit old = this._thermalGeneratingUnit;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnThermalGeneratingUnitChanging(e);
-                    this.OnPropertyChanging("ThermalGeneratingUnit", e);
+                    this.OnPropertyChanging("ThermalGeneratingUnit", e, _thermalGeneratingUnitReference);
                     this._thermalGeneratingUnit = value;
                     if ((old != null))
                     {
@@ -424,7 +448,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
                         value.Deleted += this.OnResetThermalGeneratingUnit;
                     }
                     this.OnThermalGeneratingUnitChanged(e);
-                    this.OnPropertyChanged("ThermalGeneratingUnit", e);
+                    this.OnPropertyChanged("ThermalGeneratingUnit", e, _thermalGeneratingUnitReference);
                 }
             }
         }
@@ -566,6 +590,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> ThermalGeneratingUnitChanged;
         
+        private static ITypedElement RetrieveFuelEffFactorAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(FossilFuel.ClassInstance)).Resolve("fuelEffFactor")));
+        }
+        
         /// <summary>
         /// Raises the FuelEffFactorChanging event
         /// </summary>
@@ -590,6 +619,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveFossilFuelTypeAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(FossilFuel.ClassInstance)).Resolve("fossilFuelType")));
         }
         
         /// <summary>
@@ -618,6 +652,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
             }
         }
         
+        private static ITypedElement RetrieveFuelMixtureAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(FossilFuel.ClassInstance)).Resolve("fuelMixture")));
+        }
+        
         /// <summary>
         /// Raises the FuelMixtureChanging event
         /// </summary>
@@ -642,6 +681,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveFuelCostAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(FossilFuel.ClassInstance)).Resolve("fuelCost")));
         }
         
         /// <summary>
@@ -670,6 +714,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
             }
         }
         
+        private static ITypedElement RetrieveLowBreakpointPAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(FossilFuel.ClassInstance)).Resolve("lowBreakpointP")));
+        }
+        
         /// <summary>
         /// Raises the LowBreakpointPChanging event
         /// </summary>
@@ -694,6 +743,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveFuelHandlingCostAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(FossilFuel.ClassInstance)).Resolve("fuelHandlingCost")));
         }
         
         /// <summary>
@@ -722,6 +776,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
             }
         }
         
+        private static ITypedElement RetrieveFuelSulfurAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(FossilFuel.ClassInstance)).Resolve("fuelSulfur")));
+        }
+        
         /// <summary>
         /// Raises the FuelSulfurChanging event
         /// </summary>
@@ -746,6 +805,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveFuelHeatContentAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(FossilFuel.ClassInstance)).Resolve("fuelHeatContent")));
         }
         
         /// <summary>
@@ -774,6 +838,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
             }
         }
         
+        private static ITypedElement RetrieveHighBreakpointPAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(FossilFuel.ClassInstance)).Resolve("highBreakpointP")));
+        }
+        
         /// <summary>
         /// Raises the HighBreakpointPChanging event
         /// </summary>
@@ -798,6 +867,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveFuelDispatchCostAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(FossilFuel.ClassInstance)).Resolve("fuelDispatchCost")));
         }
         
         /// <summary>
@@ -826,6 +900,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
             }
         }
         
+        private static ITypedElement RetrieveFuelAllocationSchedulesReference()
+        {
+            return ((ITypedElement)(((ModelElement)(FossilFuel.ClassInstance)).Resolve("FuelAllocationSchedules")));
+        }
+        
         /// <summary>
         /// Forwards CollectionChanging notifications for the FuelAllocationSchedules property to the parent model element
         /// </summary>
@@ -833,7 +912,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
         /// <param name="e">The original event data</param>
         private void FuelAllocationSchedulesCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("FuelAllocationSchedules", e);
+            this.OnCollectionChanging("FuelAllocationSchedules", e, _fuelAllocationSchedulesReference);
         }
         
         /// <summary>
@@ -843,7 +922,12 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
         /// <param name="e">The original event data</param>
         private void FuelAllocationSchedulesCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("FuelAllocationSchedules", e);
+            this.OnCollectionChanged("FuelAllocationSchedules", e, _fuelAllocationSchedulesReference);
+        }
+        
+        private static ITypedElement RetrieveThermalGeneratingUnitReference()
+        {
+            return ((ITypedElement)(((ModelElement)(FossilFuel.ClassInstance)).Resolve("ThermalGeneratingUnit")));
         }
         
         /// <summary>
@@ -1218,7 +1302,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public FuelEffFactorProxy(IFossilFuel modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "fuelEffFactor")
             {
             }
             
@@ -1236,24 +1320,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
                     this.ModelElement.FuelEffFactor = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.FuelEffFactorChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.FuelEffFactorChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1267,7 +1333,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public FossilFuelTypeProxy(IFossilFuel modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "fossilFuelType")
             {
             }
             
@@ -1285,24 +1351,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
                     this.ModelElement.FossilFuelType = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.FossilFuelTypeChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.FossilFuelTypeChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1316,7 +1364,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public FuelMixtureProxy(IFossilFuel modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "fuelMixture")
             {
             }
             
@@ -1334,24 +1382,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
                     this.ModelElement.FuelMixture = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.FuelMixtureChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.FuelMixtureChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1365,7 +1395,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public FuelCostProxy(IFossilFuel modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "fuelCost")
             {
             }
             
@@ -1383,24 +1413,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
                     this.ModelElement.FuelCost = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.FuelCostChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.FuelCostChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1414,7 +1426,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public LowBreakpointPProxy(IFossilFuel modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "lowBreakpointP")
             {
             }
             
@@ -1432,24 +1444,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
                     this.ModelElement.LowBreakpointP = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.LowBreakpointPChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.LowBreakpointPChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1463,7 +1457,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public FuelHandlingCostProxy(IFossilFuel modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "fuelHandlingCost")
             {
             }
             
@@ -1481,24 +1475,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
                     this.ModelElement.FuelHandlingCost = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.FuelHandlingCostChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.FuelHandlingCostChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1512,7 +1488,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public FuelSulfurProxy(IFossilFuel modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "fuelSulfur")
             {
             }
             
@@ -1530,24 +1506,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
                     this.ModelElement.FuelSulfur = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.FuelSulfurChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.FuelSulfurChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1561,7 +1519,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public FuelHeatContentProxy(IFossilFuel modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "fuelHeatContent")
             {
             }
             
@@ -1579,24 +1537,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
                     this.ModelElement.FuelHeatContent = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.FuelHeatContentChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.FuelHeatContentChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1610,7 +1550,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public HighBreakpointPProxy(IFossilFuel modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "highBreakpointP")
             {
             }
             
@@ -1628,24 +1568,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
                     this.ModelElement.HighBreakpointP = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.HighBreakpointPChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.HighBreakpointPChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1659,7 +1581,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public FuelDispatchCostProxy(IFossilFuel modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "fuelDispatchCost")
             {
             }
             
@@ -1677,24 +1599,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
                     this.ModelElement.FuelDispatchCost = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.FuelDispatchCostChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.FuelDispatchCostChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1708,7 +1612,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public ThermalGeneratingUnitProxy(IFossilFuel modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "ThermalGeneratingUnit")
             {
             }
             
@@ -1725,24 +1629,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
                 {
                     this.ModelElement.ThermalGeneratingUnit = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ThermalGeneratingUnitChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ThermalGeneratingUnitChanged -= handler;
             }
         }
     }

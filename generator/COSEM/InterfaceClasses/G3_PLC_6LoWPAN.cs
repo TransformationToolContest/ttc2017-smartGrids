@@ -40,7 +40,7 @@ namespace TTC2017.SmartGrids.COSEM.InterfaceClasses
     [XmlNamespacePrefixAttribute("inter")]
     [ModelRepresentationClassAttribute("http://www.transformation-tool-contest.eu/2017/smartGrids/cosem#//InterfaceClasse" +
         "s/G3_PLC_6LoWPAN")]
-    public class G3_PLC_6LoWPAN : Base, IG3_PLC_6LoWPAN, IModelElement
+    public partial class G3_PLC_6LoWPAN : Base, IG3_PLC_6LoWPAN, IModelElement
     {
         
         private static IClass _classInstance;

@@ -53,7 +53,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
     [XmlNamespacePrefixAttribute("cimWires")]
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61970/Wires/Jumper")]
     [DebuggerDisplayAttribute("Jumper {UUID}")]
-    public class Jumper : Switch, IJumper, IModelElement
+    public partial class Jumper : Switch, IJumper, IModelElement
     {
         
         private static IClass _classInstance;

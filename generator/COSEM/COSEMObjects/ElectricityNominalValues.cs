@@ -39,7 +39,7 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
     [XmlNamespacePrefixAttribute("objects")]
     [ModelRepresentationClassAttribute("http://www.transformation-tool-contest.eu/2017/smartGrids/cosem#//COSEMObjects/El" +
         "ectricityNominalValues")]
-    public class ElectricityNominalValues : Data, IElectricityNominalValues, IModelElement
+    public partial class ElectricityNominalValues : Data, IElectricityNominalValues, IModelElement
     {
         
         /// <summary>
@@ -47,30 +47,42 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
         /// </summary>
         private Nullable<double> _voltage;
         
+        private static Lazy<ITypedElement> _voltageAttribute = new Lazy<ITypedElement>(RetrieveVoltageAttribute);
+        
         /// <summary>
         /// The backing field for the Nominalcurrent property
         /// </summary>
         private Nullable<double> _nominalcurrent;
+        
+        private static Lazy<ITypedElement> _nominalcurrentAttribute = new Lazy<ITypedElement>(RetrieveNominalcurrentAttribute);
         
         /// <summary>
         /// The backing field for the Frequency property
         /// </summary>
         private Nullable<double> _frequency;
         
+        private static Lazy<ITypedElement> _frequencyAttribute = new Lazy<ITypedElement>(RetrieveFrequencyAttribute);
+        
         /// <summary>
         /// The backing field for the Maximumcurrent property
         /// </summary>
         private Nullable<double> _maximumcurrent;
+        
+        private static Lazy<ITypedElement> _maximumcurrentAttribute = new Lazy<ITypedElement>(RetrieveMaximumcurrentAttribute);
         
         /// <summary>
         /// The backing field for the Reference_voltage_for_power_quality_measurement property
         /// </summary>
         private Nullable<double> _reference_voltage_for_power_quality_measurement;
         
+        private static Lazy<ITypedElement> _reference_voltage_for_power_quality_measurementAttribute = new Lazy<ITypedElement>(RetrieveReference_voltage_for_power_quality_measurementAttribute);
+        
         /// <summary>
         /// The backing field for the Reference_voltage_for_aux_power_supply property
         /// </summary>
         private Nullable<double> _reference_voltage_for_aux_power_supply;
+        
+        private static Lazy<ITypedElement> _reference_voltage_for_aux_power_supplyAttribute = new Lazy<ITypedElement>(RetrieveReference_voltage_for_aux_power_supplyAttribute);
         
         private static IClass _classInstance;
         
@@ -91,10 +103,10 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     Nullable<double> old = this._voltage;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnVoltageChanging(e);
-                    this.OnPropertyChanging("Voltage", e);
+                    this.OnPropertyChanging("Voltage", e, _voltageAttribute);
                     this._voltage = value;
                     this.OnVoltageChanged(e);
-                    this.OnPropertyChanged("Voltage", e);
+                    this.OnPropertyChanged("Voltage", e, _voltageAttribute);
                 }
             }
         }
@@ -116,10 +128,10 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     Nullable<double> old = this._nominalcurrent;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnNominalcurrentChanging(e);
-                    this.OnPropertyChanging("Nominalcurrent", e);
+                    this.OnPropertyChanging("Nominalcurrent", e, _nominalcurrentAttribute);
                     this._nominalcurrent = value;
                     this.OnNominalcurrentChanged(e);
-                    this.OnPropertyChanged("Nominalcurrent", e);
+                    this.OnPropertyChanged("Nominalcurrent", e, _nominalcurrentAttribute);
                 }
             }
         }
@@ -141,10 +153,10 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     Nullable<double> old = this._frequency;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnFrequencyChanging(e);
-                    this.OnPropertyChanging("Frequency", e);
+                    this.OnPropertyChanging("Frequency", e, _frequencyAttribute);
                     this._frequency = value;
                     this.OnFrequencyChanged(e);
-                    this.OnPropertyChanged("Frequency", e);
+                    this.OnPropertyChanged("Frequency", e, _frequencyAttribute);
                 }
             }
         }
@@ -166,10 +178,10 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     Nullable<double> old = this._maximumcurrent;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnMaximumcurrentChanging(e);
-                    this.OnPropertyChanging("Maximumcurrent", e);
+                    this.OnPropertyChanging("Maximumcurrent", e, _maximumcurrentAttribute);
                     this._maximumcurrent = value;
                     this.OnMaximumcurrentChanged(e);
-                    this.OnPropertyChanged("Maximumcurrent", e);
+                    this.OnPropertyChanged("Maximumcurrent", e, _maximumcurrentAttribute);
                 }
             }
         }
@@ -191,10 +203,10 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     Nullable<double> old = this._reference_voltage_for_power_quality_measurement;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnReference_voltage_for_power_quality_measurementChanging(e);
-                    this.OnPropertyChanging("Reference_voltage_for_power_quality_measurement", e);
+                    this.OnPropertyChanging("Reference_voltage_for_power_quality_measurement", e, _reference_voltage_for_power_quality_measurementAttribute);
                     this._reference_voltage_for_power_quality_measurement = value;
                     this.OnReference_voltage_for_power_quality_measurementChanged(e);
-                    this.OnPropertyChanged("Reference_voltage_for_power_quality_measurement", e);
+                    this.OnPropertyChanged("Reference_voltage_for_power_quality_measurement", e, _reference_voltage_for_power_quality_measurementAttribute);
                 }
             }
         }
@@ -216,10 +228,10 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     Nullable<double> old = this._reference_voltage_for_aux_power_supply;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnReference_voltage_for_aux_power_supplyChanging(e);
-                    this.OnPropertyChanging("Reference_voltage_for_aux_power_supply", e);
+                    this.OnPropertyChanging("Reference_voltage_for_aux_power_supply", e, _reference_voltage_for_aux_power_supplyAttribute);
                     this._reference_voltage_for_aux_power_supply = value;
                     this.OnReference_voltage_for_aux_power_supplyChanged(e);
-                    this.OnPropertyChanged("Reference_voltage_for_aux_power_supply", e);
+                    this.OnPropertyChanged("Reference_voltage_for_aux_power_supply", e, _reference_voltage_for_aux_power_supplyAttribute);
                 }
             }
         }
@@ -300,6 +312,11 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> Reference_voltage_for_aux_power_supplyChanged;
         
+        private static ITypedElement RetrieveVoltageAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(ElectricityNominalValues.ClassInstance)).Resolve("Voltage")));
+        }
+        
         /// <summary>
         /// Raises the VoltageChanging event
         /// </summary>
@@ -324,6 +341,11 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveNominalcurrentAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(ElectricityNominalValues.ClassInstance)).Resolve("Nominalcurrent")));
         }
         
         /// <summary>
@@ -352,6 +374,11 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             }
         }
         
+        private static ITypedElement RetrieveFrequencyAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(ElectricityNominalValues.ClassInstance)).Resolve("Frequency")));
+        }
+        
         /// <summary>
         /// Raises the FrequencyChanging event
         /// </summary>
@@ -376,6 +403,11 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveMaximumcurrentAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(ElectricityNominalValues.ClassInstance)).Resolve("Maximumcurrent")));
         }
         
         /// <summary>
@@ -404,6 +436,11 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             }
         }
         
+        private static ITypedElement RetrieveReference_voltage_for_power_quality_measurementAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(ElectricityNominalValues.ClassInstance)).Resolve("Reference_voltage_for_power_quality_measurement")));
+        }
+        
         /// <summary>
         /// Raises the Reference_voltage_for_power_quality_measurementChanging event
         /// </summary>
@@ -428,6 +465,11 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveReference_voltage_for_aux_power_supplyAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(ElectricityNominalValues.ClassInstance)).Resolve("Reference_voltage_for_aux_power_supply")));
         }
         
         /// <summary>
@@ -555,7 +597,7 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public VoltageProxy(IElectricityNominalValues modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "Voltage")
             {
             }
             
@@ -573,24 +615,6 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     this.ModelElement.Voltage = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.VoltageChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.VoltageChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -604,7 +628,7 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public NominalcurrentProxy(IElectricityNominalValues modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "Nominalcurrent")
             {
             }
             
@@ -622,24 +646,6 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     this.ModelElement.Nominalcurrent = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.NominalcurrentChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.NominalcurrentChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -653,7 +659,7 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public FrequencyProxy(IElectricityNominalValues modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "Frequency")
             {
             }
             
@@ -671,24 +677,6 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     this.ModelElement.Frequency = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.FrequencyChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.FrequencyChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -702,7 +690,7 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public MaximumcurrentProxy(IElectricityNominalValues modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "Maximumcurrent")
             {
             }
             
@@ -720,24 +708,6 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     this.ModelElement.Maximumcurrent = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.MaximumcurrentChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.MaximumcurrentChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -751,7 +721,7 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public Reference_voltage_for_power_quality_measurementProxy(IElectricityNominalValues modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "Reference_voltage_for_power_quality_measurement")
             {
             }
             
@@ -769,24 +739,6 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     this.ModelElement.Reference_voltage_for_power_quality_measurement = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.Reference_voltage_for_power_quality_measurementChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.Reference_voltage_for_power_quality_measurementChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -800,7 +752,7 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public Reference_voltage_for_aux_power_supplyProxy(IElectricityNominalValues modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "Reference_voltage_for_aux_power_supply")
             {
             }
             
@@ -817,24 +769,6 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                 {
                     this.ModelElement.Reference_voltage_for_aux_power_supply = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.Reference_voltage_for_aux_power_supplyChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.Reference_voltage_for_aux_power_supplyChanged -= handler;
             }
         }
     }

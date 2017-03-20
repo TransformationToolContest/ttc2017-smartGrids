@@ -50,18 +50,24 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61970/Informative/MarketOperations/" +
         "ReserveReq")]
     [DebuggerDisplayAttribute("ReserveReq {UUID}")]
-    public class ReserveReq : ResourceGroupReq, IReserveReq, IModelElement
+    public partial class ReserveReq : ResourceGroupReq, IReserveReq, IModelElement
     {
+        
+        private static Lazy<ITypedElement> _sensitivityPriceCurveReference = new Lazy<ITypedElement>(RetrieveSensitivityPriceCurveReference);
         
         /// <summary>
         /// The backing field for the SensitivityPriceCurve property
         /// </summary>
         private ISensitivityPriceCurve _sensitivityPriceCurve;
         
+        private static Lazy<ITypedElement> _reserveReqCurveReference = new Lazy<ITypedElement>(RetrieveReserveReqCurveReference);
+        
         /// <summary>
         /// The backing field for the ReserveReqCurve property
         /// </summary>
         private IReserveReqCurve _reserveReqCurve;
+        
+        private static Lazy<ITypedElement> _marketProductReference = new Lazy<ITypedElement>(RetrieveMarketProductReference);
         
         /// <summary>
         /// The backing field for the MarketProduct property
@@ -88,7 +94,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
                     ISensitivityPriceCurve old = this._sensitivityPriceCurve;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnSensitivityPriceCurveChanging(e);
-                    this.OnPropertyChanging("SensitivityPriceCurve", e);
+                    this.OnPropertyChanging("SensitivityPriceCurve", e, _sensitivityPriceCurveReference);
                     this._sensitivityPriceCurve = value;
                     if ((old != null))
                     {
@@ -101,7 +107,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
                         value.Deleted += this.OnResetSensitivityPriceCurve;
                     }
                     this.OnSensitivityPriceCurveChanged(e);
-                    this.OnPropertyChanged("SensitivityPriceCurve", e);
+                    this.OnPropertyChanged("SensitivityPriceCurve", e, _sensitivityPriceCurveReference);
                 }
             }
         }
@@ -124,7 +130,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
                     IReserveReqCurve old = this._reserveReqCurve;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnReserveReqCurveChanging(e);
-                    this.OnPropertyChanging("ReserveReqCurve", e);
+                    this.OnPropertyChanging("ReserveReqCurve", e, _reserveReqCurveReference);
                     this._reserveReqCurve = value;
                     if ((old != null))
                     {
@@ -137,7 +143,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
                         value.Deleted += this.OnResetReserveReqCurve;
                     }
                     this.OnReserveReqCurveChanged(e);
-                    this.OnPropertyChanged("ReserveReqCurve", e);
+                    this.OnPropertyChanged("ReserveReqCurve", e, _reserveReqCurveReference);
                 }
             }
         }
@@ -160,7 +166,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
                     IMarketProduct old = this._marketProduct;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnMarketProductChanging(e);
-                    this.OnPropertyChanging("MarketProduct", e);
+                    this.OnPropertyChanging("MarketProduct", e, _marketProductReference);
                     this._marketProduct = value;
                     if ((old != null))
                     {
@@ -173,7 +179,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
                         value.Deleted += this.OnResetMarketProduct;
                     }
                     this.OnMarketProductChanged(e);
-                    this.OnPropertyChanged("MarketProduct", e);
+                    this.OnPropertyChanged("MarketProduct", e, _marketProductReference);
                 }
             }
         }
@@ -235,6 +241,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> MarketProductChanged;
         
+        private static ITypedElement RetrieveSensitivityPriceCurveReference()
+        {
+            return ((ITypedElement)(((ModelElement)(ReserveReq.ClassInstance)).Resolve("SensitivityPriceCurve")));
+        }
+        
         /// <summary>
         /// Raises the SensitivityPriceCurveChanging event
         /// </summary>
@@ -271,6 +282,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
             this.SensitivityPriceCurve = null;
         }
         
+        private static ITypedElement RetrieveReserveReqCurveReference()
+        {
+            return ((ITypedElement)(((ModelElement)(ReserveReq.ClassInstance)).Resolve("ReserveReqCurve")));
+        }
+        
         /// <summary>
         /// Raises the ReserveReqCurveChanging event
         /// </summary>
@@ -305,6 +321,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
         private void OnResetReserveReqCurve(object sender, System.EventArgs eventArgs)
         {
             this.ReserveReqCurve = null;
+        }
+        
+        private static ITypedElement RetrieveMarketProductReference()
+        {
+            return ((ITypedElement)(((ModelElement)(ReserveReq.ClassInstance)).Resolve("MarketProduct")));
         }
         
         /// <summary>
@@ -616,7 +637,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public SensitivityPriceCurveProxy(IReserveReq modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "SensitivityPriceCurve")
             {
             }
             
@@ -634,24 +655,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
                     this.ModelElement.SensitivityPriceCurve = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.SensitivityPriceCurveChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.SensitivityPriceCurveChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -665,7 +668,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public ReserveReqCurveProxy(IReserveReq modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "ReserveReqCurve")
             {
             }
             
@@ -683,24 +686,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
                     this.ModelElement.ReserveReqCurve = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ReserveReqCurveChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ReserveReqCurveChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -714,7 +699,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public MarketProductProxy(IReserveReq modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "MarketProduct")
             {
             }
             
@@ -731,24 +716,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
                 {
                     this.ModelElement.MarketProduct = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.MarketProductChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.MarketProductChanged -= handler;
             }
         }
     }

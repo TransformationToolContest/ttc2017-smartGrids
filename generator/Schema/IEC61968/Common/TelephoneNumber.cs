@@ -51,7 +51,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Common
     [XmlNamespacePrefixAttribute("cimCommon")]
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61968/Common/TelephoneNumber")]
     [DebuggerDisplayAttribute("TelephoneNumber {UUID}")]
-    public class TelephoneNumber : Element, ITelephoneNumber, IModelElement
+    public partial class TelephoneNumber : Element, ITelephoneNumber, IModelElement
     {
         
         /// <summary>
@@ -59,25 +59,35 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Common
         /// </summary>
         private string _countryCode;
         
+        private static Lazy<ITypedElement> _countryCodeAttribute = new Lazy<ITypedElement>(RetrieveCountryCodeAttribute);
+        
         /// <summary>
         /// The backing field for the CityCode property
         /// </summary>
         private string _cityCode;
+        
+        private static Lazy<ITypedElement> _cityCodeAttribute = new Lazy<ITypedElement>(RetrieveCityCodeAttribute);
         
         /// <summary>
         /// The backing field for the LocalNumber property
         /// </summary>
         private string _localNumber;
         
+        private static Lazy<ITypedElement> _localNumberAttribute = new Lazy<ITypedElement>(RetrieveLocalNumberAttribute);
+        
         /// <summary>
         /// The backing field for the AreaCode property
         /// </summary>
         private string _areaCode;
         
+        private static Lazy<ITypedElement> _areaCodeAttribute = new Lazy<ITypedElement>(RetrieveAreaCodeAttribute);
+        
         /// <summary>
         /// The backing field for the Extension property
         /// </summary>
         private string _extension;
+        
+        private static Lazy<ITypedElement> _extensionAttribute = new Lazy<ITypedElement>(RetrieveExtensionAttribute);
         
         private static IClass _classInstance;
         
@@ -99,10 +109,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Common
                     string old = this._countryCode;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnCountryCodeChanging(e);
-                    this.OnPropertyChanging("CountryCode", e);
+                    this.OnPropertyChanging("CountryCode", e, _countryCodeAttribute);
                     this._countryCode = value;
                     this.OnCountryCodeChanged(e);
-                    this.OnPropertyChanged("CountryCode", e);
+                    this.OnPropertyChanged("CountryCode", e, _countryCodeAttribute);
                 }
             }
         }
@@ -125,10 +135,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Common
                     string old = this._cityCode;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnCityCodeChanging(e);
-                    this.OnPropertyChanging("CityCode", e);
+                    this.OnPropertyChanging("CityCode", e, _cityCodeAttribute);
                     this._cityCode = value;
                     this.OnCityCodeChanged(e);
-                    this.OnPropertyChanged("CityCode", e);
+                    this.OnPropertyChanged("CityCode", e, _cityCodeAttribute);
                 }
             }
         }
@@ -151,10 +161,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Common
                     string old = this._localNumber;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnLocalNumberChanging(e);
-                    this.OnPropertyChanging("LocalNumber", e);
+                    this.OnPropertyChanging("LocalNumber", e, _localNumberAttribute);
                     this._localNumber = value;
                     this.OnLocalNumberChanged(e);
-                    this.OnPropertyChanged("LocalNumber", e);
+                    this.OnPropertyChanged("LocalNumber", e, _localNumberAttribute);
                 }
             }
         }
@@ -177,10 +187,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Common
                     string old = this._areaCode;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnAreaCodeChanging(e);
-                    this.OnPropertyChanging("AreaCode", e);
+                    this.OnPropertyChanging("AreaCode", e, _areaCodeAttribute);
                     this._areaCode = value;
                     this.OnAreaCodeChanged(e);
-                    this.OnPropertyChanged("AreaCode", e);
+                    this.OnPropertyChanged("AreaCode", e, _areaCodeAttribute);
                 }
             }
         }
@@ -203,10 +213,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Common
                     string old = this._extension;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnExtensionChanging(e);
-                    this.OnPropertyChanging("Extension", e);
+                    this.OnPropertyChanging("Extension", e, _extensionAttribute);
                     this._extension = value;
                     this.OnExtensionChanged(e);
-                    this.OnPropertyChanged("Extension", e);
+                    this.OnPropertyChanged("Extension", e, _extensionAttribute);
                 }
             }
         }
@@ -276,6 +286,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Common
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> ExtensionChanged;
         
+        private static ITypedElement RetrieveCountryCodeAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(TelephoneNumber.ClassInstance)).Resolve("countryCode")));
+        }
+        
         /// <summary>
         /// Raises the CountryCodeChanging event
         /// </summary>
@@ -300,6 +315,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Common
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveCityCodeAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(TelephoneNumber.ClassInstance)).Resolve("cityCode")));
         }
         
         /// <summary>
@@ -328,6 +348,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Common
             }
         }
         
+        private static ITypedElement RetrieveLocalNumberAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(TelephoneNumber.ClassInstance)).Resolve("localNumber")));
+        }
+        
         /// <summary>
         /// Raises the LocalNumberChanging event
         /// </summary>
@@ -354,6 +379,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Common
             }
         }
         
+        private static ITypedElement RetrieveAreaCodeAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(TelephoneNumber.ClassInstance)).Resolve("areaCode")));
+        }
+        
         /// <summary>
         /// Raises the AreaCodeChanging event
         /// </summary>
@@ -378,6 +408,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Common
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveExtensionAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(TelephoneNumber.ClassInstance)).Resolve("extension")));
         }
         
         /// <summary>
@@ -495,7 +530,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Common
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public CountryCodeProxy(ITelephoneNumber modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "countryCode")
             {
             }
             
@@ -513,24 +548,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Common
                     this.ModelElement.CountryCode = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.CountryCodeChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.CountryCodeChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -544,7 +561,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Common
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public CityCodeProxy(ITelephoneNumber modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "cityCode")
             {
             }
             
@@ -562,24 +579,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Common
                     this.ModelElement.CityCode = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.CityCodeChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.CityCodeChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -593,7 +592,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Common
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public LocalNumberProxy(ITelephoneNumber modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "localNumber")
             {
             }
             
@@ -611,24 +610,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Common
                     this.ModelElement.LocalNumber = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.LocalNumberChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.LocalNumberChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -642,7 +623,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Common
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public AreaCodeProxy(ITelephoneNumber modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "areaCode")
             {
             }
             
@@ -660,24 +641,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Common
                     this.ModelElement.AreaCode = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.AreaCodeChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.AreaCodeChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -691,7 +654,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Common
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public ExtensionProxy(ITelephoneNumber modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "extension")
             {
             }
             
@@ -708,24 +671,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Common
                 {
                     this.ModelElement.Extension = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ExtensionChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ExtensionChanged -= handler;
             }
         }
     }

@@ -47,13 +47,17 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfCommon
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61970/Informative/InfCommon/DocDocR" +
         "ole")]
     [DebuggerDisplayAttribute("DocDocRole {UUID}")]
-    public class DocDocRole : Role, IDocDocRole, IModelElement
+    public partial class DocDocRole : Role, IDocDocRole, IModelElement
     {
+        
+        private static Lazy<ITypedElement> _fromDocumentReference = new Lazy<ITypedElement>(RetrieveFromDocumentReference);
         
         /// <summary>
         /// The backing field for the FromDocument property
         /// </summary>
         private IDocument _fromDocument;
+        
+        private static Lazy<ITypedElement> _toDocumentReference = new Lazy<ITypedElement>(RetrieveToDocumentReference);
         
         /// <summary>
         /// The backing field for the ToDocument property
@@ -80,7 +84,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfCommon
                     IDocument old = this._fromDocument;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnFromDocumentChanging(e);
-                    this.OnPropertyChanging("FromDocument", e);
+                    this.OnPropertyChanging("FromDocument", e, _fromDocumentReference);
                     this._fromDocument = value;
                     if ((old != null))
                     {
@@ -93,7 +97,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfCommon
                         value.Deleted += this.OnResetFromDocument;
                     }
                     this.OnFromDocumentChanged(e);
-                    this.OnPropertyChanged("FromDocument", e);
+                    this.OnPropertyChanged("FromDocument", e, _fromDocumentReference);
                 }
             }
         }
@@ -116,7 +120,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfCommon
                     IDocument old = this._toDocument;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnToDocumentChanging(e);
-                    this.OnPropertyChanging("ToDocument", e);
+                    this.OnPropertyChanging("ToDocument", e, _toDocumentReference);
                     this._toDocument = value;
                     if ((old != null))
                     {
@@ -129,7 +133,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfCommon
                         value.Deleted += this.OnResetToDocument;
                     }
                     this.OnToDocumentChanged(e);
-                    this.OnPropertyChanged("ToDocument", e);
+                    this.OnPropertyChanged("ToDocument", e, _toDocumentReference);
                 }
             }
         }
@@ -181,6 +185,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfCommon
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> ToDocumentChanged;
         
+        private static ITypedElement RetrieveFromDocumentReference()
+        {
+            return ((ITypedElement)(((ModelElement)(DocDocRole.ClassInstance)).Resolve("FromDocument")));
+        }
+        
         /// <summary>
         /// Raises the FromDocumentChanging event
         /// </summary>
@@ -215,6 +224,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfCommon
         private void OnResetFromDocument(object sender, System.EventArgs eventArgs)
         {
             this.FromDocument = null;
+        }
+        
+        private static ITypedElement RetrieveToDocumentReference()
+        {
+            return ((ITypedElement)(((ModelElement)(DocDocRole.ClassInstance)).Resolve("ToDocument")));
         }
         
         /// <summary>
@@ -483,7 +497,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfCommon
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public FromDocumentProxy(IDocDocRole modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "FromDocument")
             {
             }
             
@@ -501,24 +515,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfCommon
                     this.ModelElement.FromDocument = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.FromDocumentChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.FromDocumentChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -532,7 +528,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfCommon
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public ToDocumentProxy(IDocDocRole modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "ToDocument")
             {
             }
             
@@ -549,24 +545,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfCommon
                 {
                     this.ModelElement.ToDocument = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ToDocumentChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ToDocumentChanged -= handler;
             }
         }
     }

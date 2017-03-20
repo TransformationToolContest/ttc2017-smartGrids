@@ -50,7 +50,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfWork
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61970/Informative/InfWork/NonStanda" +
         "rdItem")]
     [DebuggerDisplayAttribute("NonStandardItem {UUID}")]
-    public class NonStandardItem : Document, INonStandardItem, IModelElement
+    public partial class NonStandardItem : Document, INonStandardItem, IModelElement
     {
         
         /// <summary>
@@ -58,10 +58,14 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfWork
         /// </summary>
         private string _code;
         
+        private static Lazy<ITypedElement> _codeAttribute = new Lazy<ITypedElement>(RetrieveCodeAttribute);
+        
         /// <summary>
         /// The backing field for the Amount property
         /// </summary>
         private float _amount;
+        
+        private static Lazy<ITypedElement> _amountAttribute = new Lazy<ITypedElement>(RetrieveAmountAttribute);
         
         private static IClass _classInstance;
         
@@ -83,10 +87,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfWork
                     string old = this._code;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnCodeChanging(e);
-                    this.OnPropertyChanging("Code", e);
+                    this.OnPropertyChanging("Code", e, _codeAttribute);
                     this._code = value;
                     this.OnCodeChanged(e);
-                    this.OnPropertyChanged("Code", e);
+                    this.OnPropertyChanged("Code", e, _codeAttribute);
                 }
             }
         }
@@ -109,10 +113,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfWork
                     float old = this._amount;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnAmountChanging(e);
-                    this.OnPropertyChanging("Amount", e);
+                    this.OnPropertyChanging("Amount", e, _amountAttribute);
                     this._amount = value;
                     this.OnAmountChanged(e);
-                    this.OnPropertyChanged("Amount", e);
+                    this.OnPropertyChanged("Amount", e, _amountAttribute);
                 }
             }
         }
@@ -153,6 +157,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfWork
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> AmountChanged;
         
+        private static ITypedElement RetrieveCodeAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(NonStandardItem.ClassInstance)).Resolve("code")));
+        }
+        
         /// <summary>
         /// Raises the CodeChanging event
         /// </summary>
@@ -177,6 +186,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfWork
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveAmountAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(NonStandardItem.ClassInstance)).Resolve("amount")));
         }
         
         /// <summary>
@@ -268,7 +282,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfWork
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public CodeProxy(INonStandardItem modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "code")
             {
             }
             
@@ -286,24 +300,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfWork
                     this.ModelElement.Code = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.CodeChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.CodeChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -317,7 +313,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfWork
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public AmountProxy(INonStandardItem modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "amount")
             {
             }
             
@@ -334,24 +330,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfWork
                 {
                     this.ModelElement.Amount = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.AmountChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.AmountChanged -= handler;
             }
         }
     }

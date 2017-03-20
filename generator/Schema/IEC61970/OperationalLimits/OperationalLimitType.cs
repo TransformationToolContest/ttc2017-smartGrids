@@ -41,7 +41,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.OperationalLimits
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61970/OperationalLimits/Operational" +
         "LimitType")]
     [DebuggerDisplayAttribute("OperationalLimitType {UUID}")]
-    public class OperationalLimitType : IdentifiedObject, IOperationalLimitType, IModelElement
+    public partial class OperationalLimitType : IdentifiedObject, IOperationalLimitType, IModelElement
     {
         
         /// <summary>
@@ -49,10 +49,16 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.OperationalLimits
         /// </summary>
         private float _acceptableDuration;
         
+        private static Lazy<ITypedElement> _acceptableDurationAttribute = new Lazy<ITypedElement>(RetrieveAcceptableDurationAttribute);
+        
         /// <summary>
         /// The backing field for the Direction property
         /// </summary>
         private Nullable<OperationalLimitDirectionKind> _direction;
+        
+        private static Lazy<ITypedElement> _directionAttribute = new Lazy<ITypedElement>(RetrieveDirectionAttribute);
+        
+        private static Lazy<ITypedElement> _operationalLimitReference = new Lazy<ITypedElement>(RetrieveOperationalLimitReference);
         
         /// <summary>
         /// The backing field for the OperationalLimit property
@@ -86,10 +92,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.OperationalLimits
                     float old = this._acceptableDuration;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnAcceptableDurationChanging(e);
-                    this.OnPropertyChanging("AcceptableDuration", e);
+                    this.OnPropertyChanging("AcceptableDuration", e, _acceptableDurationAttribute);
                     this._acceptableDuration = value;
                     this.OnAcceptableDurationChanged(e);
-                    this.OnPropertyChanged("AcceptableDuration", e);
+                    this.OnPropertyChanged("AcceptableDuration", e, _acceptableDurationAttribute);
                 }
             }
         }
@@ -112,10 +118,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.OperationalLimits
                     Nullable<OperationalLimitDirectionKind> old = this._direction;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnDirectionChanging(e);
-                    this.OnPropertyChanging("Direction", e);
+                    this.OnPropertyChanging("Direction", e, _directionAttribute);
                     this._direction = value;
                     this.OnDirectionChanged(e);
-                    this.OnPropertyChanged("Direction", e);
+                    this.OnPropertyChanged("Direction", e, _directionAttribute);
                 }
             }
         }
@@ -182,6 +188,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.OperationalLimits
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> DirectionChanged;
         
+        private static ITypedElement RetrieveAcceptableDurationAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(OperationalLimitType.ClassInstance)).Resolve("acceptableDuration")));
+        }
+        
         /// <summary>
         /// Raises the AcceptableDurationChanging event
         /// </summary>
@@ -206,6 +217,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.OperationalLimits
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveDirectionAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(OperationalLimitType.ClassInstance)).Resolve("direction")));
         }
         
         /// <summary>
@@ -234,6 +250,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.OperationalLimits
             }
         }
         
+        private static ITypedElement RetrieveOperationalLimitReference()
+        {
+            return ((ITypedElement)(((ModelElement)(OperationalLimitType.ClassInstance)).Resolve("OperationalLimit")));
+        }
+        
         /// <summary>
         /// Forwards CollectionChanging notifications for the OperationalLimit property to the parent model element
         /// </summary>
@@ -241,7 +262,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.OperationalLimits
         /// <param name="e">The original event data</param>
         private void OperationalLimitCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("OperationalLimit", e);
+            this.OnCollectionChanging("OperationalLimit", e, _operationalLimitReference);
         }
         
         /// <summary>
@@ -251,7 +272,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.OperationalLimits
         /// <param name="e">The original event data</param>
         private void OperationalLimitCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("OperationalLimit", e);
+            this.OnCollectionChanged("OperationalLimit", e, _operationalLimitReference);
         }
         
         /// <summary>
@@ -455,7 +476,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.OperationalLimits
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public AcceptableDurationProxy(IOperationalLimitType modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "acceptableDuration")
             {
             }
             
@@ -473,24 +494,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.OperationalLimits
                     this.ModelElement.AcceptableDuration = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.AcceptableDurationChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.AcceptableDurationChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -504,7 +507,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.OperationalLimits
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public DirectionProxy(IOperationalLimitType modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "direction")
             {
             }
             
@@ -521,24 +524,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.OperationalLimits
                 {
                     this.ModelElement.Direction = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.DirectionChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.DirectionChanged -= handler;
             }
         }
     }

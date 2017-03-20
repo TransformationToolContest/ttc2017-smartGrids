@@ -51,7 +51,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Meas
     [XmlNamespacePrefixAttribute("cimMeas")]
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61970/Meas/Command")]
     [DebuggerDisplayAttribute("Command {UUID}")]
-    public class Command : Control, ICommand, IModelElement
+    public partial class Command : Control, ICommand, IModelElement
     {
         
         /// <summary>
@@ -59,15 +59,23 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Meas
         /// </summary>
         private int _normalValue;
         
+        private static Lazy<ITypedElement> _normalValueAttribute = new Lazy<ITypedElement>(RetrieveNormalValueAttribute);
+        
         /// <summary>
         /// The backing field for the Value property
         /// </summary>
         private int _value;
         
+        private static Lazy<ITypedElement> _valueAttribute = new Lazy<ITypedElement>(RetrieveValueAttribute);
+        
+        private static Lazy<ITypedElement> _valueAliasSetReference = new Lazy<ITypedElement>(RetrieveValueAliasSetReference);
+        
         /// <summary>
         /// The backing field for the ValueAliasSet property
         /// </summary>
         private IValueAliasSet _valueAliasSet;
+        
+        private static Lazy<ITypedElement> _discreteReference = new Lazy<ITypedElement>(RetrieveDiscreteReference);
         
         /// <summary>
         /// The backing field for the Discrete property
@@ -94,10 +102,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Meas
                     int old = this._normalValue;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnNormalValueChanging(e);
-                    this.OnPropertyChanging("NormalValue", e);
+                    this.OnPropertyChanging("NormalValue", e, _normalValueAttribute);
                     this._normalValue = value;
                     this.OnNormalValueChanged(e);
-                    this.OnPropertyChanged("NormalValue", e);
+                    this.OnPropertyChanged("NormalValue", e, _normalValueAttribute);
                 }
             }
         }
@@ -120,10 +128,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Meas
                     int old = this._value;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnValueChanging(e);
-                    this.OnPropertyChanging("Value", e);
+                    this.OnPropertyChanging("Value", e, _valueAttribute);
                     this._value = value;
                     this.OnValueChanged(e);
-                    this.OnPropertyChanged("Value", e);
+                    this.OnPropertyChanged("Value", e, _valueAttribute);
                 }
             }
         }
@@ -146,7 +154,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Meas
                     IValueAliasSet old = this._valueAliasSet;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnValueAliasSetChanging(e);
-                    this.OnPropertyChanging("ValueAliasSet", e);
+                    this.OnPropertyChanging("ValueAliasSet", e, _valueAliasSetReference);
                     this._valueAliasSet = value;
                     if ((old != null))
                     {
@@ -159,7 +167,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Meas
                         value.Deleted += this.OnResetValueAliasSet;
                     }
                     this.OnValueAliasSetChanged(e);
-                    this.OnPropertyChanged("ValueAliasSet", e);
+                    this.OnPropertyChanged("ValueAliasSet", e, _valueAliasSetReference);
                 }
             }
         }
@@ -182,7 +190,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Meas
                     IDiscrete old = this._discrete;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnDiscreteChanging(e);
-                    this.OnPropertyChanging("Discrete", e);
+                    this.OnPropertyChanging("Discrete", e, _discreteReference);
                     this._discrete = value;
                     if ((old != null))
                     {
@@ -195,7 +203,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Meas
                         value.Deleted += this.OnResetDiscrete;
                     }
                     this.OnDiscreteChanged(e);
-                    this.OnPropertyChanged("Discrete", e);
+                    this.OnPropertyChanged("Discrete", e, _discreteReference);
                 }
             }
         }
@@ -266,6 +274,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Meas
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> DiscreteChanged;
         
+        private static ITypedElement RetrieveNormalValueAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(Command.ClassInstance)).Resolve("normalValue")));
+        }
+        
         /// <summary>
         /// Raises the NormalValueChanging event
         /// </summary>
@@ -292,6 +305,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Meas
             }
         }
         
+        private static ITypedElement RetrieveValueAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(Command.ClassInstance)).Resolve("value")));
+        }
+        
         /// <summary>
         /// Raises the ValueChanging event
         /// </summary>
@@ -316,6 +334,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Meas
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveValueAliasSetReference()
+        {
+            return ((ITypedElement)(((ModelElement)(Command.ClassInstance)).Resolve("ValueAliasSet")));
         }
         
         /// <summary>
@@ -352,6 +375,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Meas
         private void OnResetValueAliasSet(object sender, System.EventArgs eventArgs)
         {
             this.ValueAliasSet = null;
+        }
+        
+        private static ITypedElement RetrieveDiscreteReference()
+        {
+            return ((ITypedElement)(((ModelElement)(Command.ClassInstance)).Resolve("Discrete")));
         }
         
         /// <summary>
@@ -648,7 +676,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Meas
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public NormalValueProxy(ICommand modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "normalValue")
             {
             }
             
@@ -666,24 +694,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Meas
                     this.ModelElement.NormalValue = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.NormalValueChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.NormalValueChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -697,7 +707,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Meas
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public ValueProxy(ICommand modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "value")
             {
             }
             
@@ -715,24 +725,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Meas
                     this.ModelElement.Value = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ValueChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ValueChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -746,7 +738,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Meas
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public ValueAliasSetProxy(ICommand modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "ValueAliasSet")
             {
             }
             
@@ -764,24 +756,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Meas
                     this.ModelElement.ValueAliasSet = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ValueAliasSetChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ValueAliasSetChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -795,7 +769,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Meas
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public DiscreteProxy(ICommand modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "Discrete")
             {
             }
             
@@ -812,24 +786,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Meas
                 {
                     this.ModelElement.Discrete = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.DiscreteChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.DiscreteChanged -= handler;
             }
         }
     }

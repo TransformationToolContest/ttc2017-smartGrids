@@ -39,7 +39,7 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
     [XmlNamespacePrefixAttribute("objects")]
     [ModelRepresentationClassAttribute("http://www.transformation-tool-contest.eu/2017/smartGrids/cosem#//COSEMObjects/Me" +
         "terTemperEventRelatedObject")]
-    public class MeterTemperEventRelatedObject : Data, IMeterTemperEventRelatedObject, IModelElement
+    public partial class MeterTemperEventRelatedObject : Data, IMeterTemperEventRelatedObject, IModelElement
     {
         
         /// <summary>
@@ -47,145 +47,203 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
         /// </summary>
         private Nullable<int> _meter_open_event_counter;
         
+        private static Lazy<ITypedElement> _meter_open_event_counterAttribute = new Lazy<ITypedElement>(RetrieveMeter_open_event_counterAttribute);
+        
         /// <summary>
         /// The backing field for the Meter_open_event_timestamp property
         /// </summary>
         private string _meter_open_event_timestamp;
+        
+        private static Lazy<ITypedElement> _meter_open_event_timestampAttribute = new Lazy<ITypedElement>(RetrieveMeter_open_event_timestampAttribute);
         
         /// <summary>
         /// The backing field for the Meter_open_event_duration property
         /// </summary>
         private Nullable<int> _meter_open_event_duration;
         
+        private static Lazy<ITypedElement> _meter_open_event_durationAttribute = new Lazy<ITypedElement>(RetrieveMeter_open_event_durationAttribute);
+        
         /// <summary>
         /// The backing field for the Meter_open_event_cumulative_duration property
         /// </summary>
         private Nullable<int> _meter_open_event_cumulative_duration;
+        
+        private static Lazy<ITypedElement> _meter_open_event_cumulative_durationAttribute = new Lazy<ITypedElement>(RetrieveMeter_open_event_cumulative_durationAttribute);
         
         /// <summary>
         /// The backing field for the Terminal_cover_open_event_counter property
         /// </summary>
         private Nullable<int> _terminal_cover_open_event_counter;
         
+        private static Lazy<ITypedElement> _terminal_cover_open_event_counterAttribute = new Lazy<ITypedElement>(RetrieveTerminal_cover_open_event_counterAttribute);
+        
         /// <summary>
         /// The backing field for the Terminal_cover_open_event_time property
         /// </summary>
         private string _terminal_cover_open_event_time;
+        
+        private static Lazy<ITypedElement> _terminal_cover_open_event_timeAttribute = new Lazy<ITypedElement>(RetrieveTerminal_cover_open_event_timeAttribute);
         
         /// <summary>
         /// The backing field for the Terminal_cover_open_event_duration property
         /// </summary>
         private Nullable<int> _terminal_cover_open_event_duration;
         
+        private static Lazy<ITypedElement> _terminal_cover_open_event_durationAttribute = new Lazy<ITypedElement>(RetrieveTerminal_cover_open_event_durationAttribute);
+        
         /// <summary>
         /// The backing field for the Terminal_cover_open_event_cumulative_duration property
         /// </summary>
         private Nullable<int> _terminal_cover_open_event_cumulative_duration;
+        
+        private static Lazy<ITypedElement> _terminal_cover_open_event_cumulative_durationAttribute = new Lazy<ITypedElement>(RetrieveTerminal_cover_open_event_cumulative_durationAttribute);
         
         /// <summary>
         /// The backing field for the Tilt_event_counter property
         /// </summary>
         private Nullable<int> _tilt_event_counter;
         
+        private static Lazy<ITypedElement> _tilt_event_counterAttribute = new Lazy<ITypedElement>(RetrieveTilt_event_counterAttribute);
+        
         /// <summary>
         /// The backing field for the Tilt_event_time property
         /// </summary>
         private string _tilt_event_time;
+        
+        private static Lazy<ITypedElement> _tilt_event_timeAttribute = new Lazy<ITypedElement>(RetrieveTilt_event_timeAttribute);
         
         /// <summary>
         /// The backing field for the Tilt_event_duration property
         /// </summary>
         private Nullable<int> _tilt_event_duration;
         
+        private static Lazy<ITypedElement> _tilt_event_durationAttribute = new Lazy<ITypedElement>(RetrieveTilt_event_durationAttribute);
+        
         /// <summary>
         /// The backing field for the Tilt_event_cumulative_duration property
         /// </summary>
         private Nullable<int> _tilt_event_cumulative_duration;
+        
+        private static Lazy<ITypedElement> _tilt_event_cumulative_durationAttribute = new Lazy<ITypedElement>(RetrieveTilt_event_cumulative_durationAttribute);
         
         /// <summary>
         /// The backing field for the Strong_DC_magnetic_field_event_counter property
         /// </summary>
         private Nullable<int> _strong_DC_magnetic_field_event_counter;
         
+        private static Lazy<ITypedElement> _strong_DC_magnetic_field_event_counterAttribute = new Lazy<ITypedElement>(RetrieveStrong_DC_magnetic_field_event_counterAttribute);
+        
         /// <summary>
         /// The backing field for the Strong_DC_magnetic_field_event_time property
         /// </summary>
         private string _strong_DC_magnetic_field_event_time;
+        
+        private static Lazy<ITypedElement> _strong_DC_magnetic_field_event_timeAttribute = new Lazy<ITypedElement>(RetrieveStrong_DC_magnetic_field_event_timeAttribute);
         
         /// <summary>
         /// The backing field for the Strong_DC_magnetic_field_event_duration property
         /// </summary>
         private Nullable<int> _strong_DC_magnetic_field_event_duration;
         
+        private static Lazy<ITypedElement> _strong_DC_magnetic_field_event_durationAttribute = new Lazy<ITypedElement>(RetrieveStrong_DC_magnetic_field_event_durationAttribute);
+        
         /// <summary>
         /// The backing field for the Strong_DC_magnetic_field_event_cumulative_duration property
         /// </summary>
         private Nullable<int> _strong_DC_magnetic_field_event_cumulative_duration;
+        
+        private static Lazy<ITypedElement> _strong_DC_magnetic_field_event_cumulative_durationAttribute = new Lazy<ITypedElement>(RetrieveStrong_DC_magnetic_field_event_cumulative_durationAttribute);
         
         /// <summary>
         /// The backing field for the Supply_control_switch_event_counter property
         /// </summary>
         private Nullable<int> _supply_control_switch_event_counter;
         
+        private static Lazy<ITypedElement> _supply_control_switch_event_counterAttribute = new Lazy<ITypedElement>(RetrieveSupply_control_switch_event_counterAttribute);
+        
         /// <summary>
         /// The backing field for the Supply_control_switch_event_time property
         /// </summary>
         private string _supply_control_switch_event_time;
+        
+        private static Lazy<ITypedElement> _supply_control_switch_event_timeAttribute = new Lazy<ITypedElement>(RetrieveSupply_control_switch_event_timeAttribute);
         
         /// <summary>
         /// The backing field for the Supply_control_switch_event_duration property
         /// </summary>
         private Nullable<int> _supply_control_switch_event_duration;
         
+        private static Lazy<ITypedElement> _supply_control_switch_event_durationAttribute = new Lazy<ITypedElement>(RetrieveSupply_control_switch_event_durationAttribute);
+        
         /// <summary>
         /// The backing field for the Supply_control_switch_event_cumulative_duration property
         /// </summary>
         private Nullable<int> _supply_control_switch_event_cumulative_duration;
+        
+        private static Lazy<ITypedElement> _supply_control_switch_event_cumulative_durationAttribute = new Lazy<ITypedElement>(RetrieveSupply_control_switch_event_cumulative_durationAttribute);
         
         /// <summary>
         /// The backing field for the Metrology_tamper_event_counter property
         /// </summary>
         private Nullable<int> _metrology_tamper_event_counter;
         
+        private static Lazy<ITypedElement> _metrology_tamper_event_counterAttribute = new Lazy<ITypedElement>(RetrieveMetrology_tamper_event_counterAttribute);
+        
         /// <summary>
         /// The backing field for the Metrology_tamper_event_time property
         /// </summary>
         private string _metrology_tamper_event_time;
+        
+        private static Lazy<ITypedElement> _metrology_tamper_event_timeAttribute = new Lazy<ITypedElement>(RetrieveMetrology_tamper_event_timeAttribute);
         
         /// <summary>
         /// The backing field for the Metrology_tamper_event_duration property
         /// </summary>
         private Nullable<int> _metrology_tamper_event_duration;
         
+        private static Lazy<ITypedElement> _metrology_tamper_event_durationAttribute = new Lazy<ITypedElement>(RetrieveMetrology_tamper_event_durationAttribute);
+        
         /// <summary>
         /// The backing field for the Metrology_tamper_event_cumulative_duration property
         /// </summary>
         private Nullable<int> _metrology_tamper_event_cumulative_duration;
+        
+        private static Lazy<ITypedElement> _metrology_tamper_event_cumulative_durationAttribute = new Lazy<ITypedElement>(RetrieveMetrology_tamper_event_cumulative_durationAttribute);
         
         /// <summary>
         /// The backing field for the Communication_tamper_event_counter property
         /// </summary>
         private Nullable<int> _communication_tamper_event_counter;
         
+        private static Lazy<ITypedElement> _communication_tamper_event_counterAttribute = new Lazy<ITypedElement>(RetrieveCommunication_tamper_event_counterAttribute);
+        
         /// <summary>
         /// The backing field for the Communication_tamper_event_time property
         /// </summary>
         private string _communication_tamper_event_time;
+        
+        private static Lazy<ITypedElement> _communication_tamper_event_timeAttribute = new Lazy<ITypedElement>(RetrieveCommunication_tamper_event_timeAttribute);
         
         /// <summary>
         /// The backing field for the Communication_tamper_event_duration property
         /// </summary>
         private Nullable<int> _communication_tamper_event_duration;
         
+        private static Lazy<ITypedElement> _communication_tamper_event_durationAttribute = new Lazy<ITypedElement>(RetrieveCommunication_tamper_event_durationAttribute);
+        
         /// <summary>
         /// The backing field for the Communication_tamper_event_cumulative_duration property
         /// </summary>
         private Nullable<int> _communication_tamper_event_cumulative_duration;
         
+        private static Lazy<ITypedElement> _communication_tamper_event_cumulative_durationAttribute = new Lazy<ITypedElement>(RetrieveCommunication_tamper_event_cumulative_durationAttribute);
+        
         /// <summary>
         /// The backing field for the Manufacturer_specific property
         /// </summary>
         private string _manufacturer_specific;
+        
+        private static Lazy<ITypedElement> _manufacturer_specificAttribute = new Lazy<ITypedElement>(RetrieveManufacturer_specificAttribute);
         
         private static IClass _classInstance;
         
@@ -206,10 +264,10 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     Nullable<int> old = this._meter_open_event_counter;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnMeter_open_event_counterChanging(e);
-                    this.OnPropertyChanging("Meter_open_event_counter", e);
+                    this.OnPropertyChanging("Meter_open_event_counter", e, _meter_open_event_counterAttribute);
                     this._meter_open_event_counter = value;
                     this.OnMeter_open_event_counterChanged(e);
-                    this.OnPropertyChanged("Meter_open_event_counter", e);
+                    this.OnPropertyChanged("Meter_open_event_counter", e, _meter_open_event_counterAttribute);
                 }
             }
         }
@@ -231,10 +289,10 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     string old = this._meter_open_event_timestamp;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnMeter_open_event_timestampChanging(e);
-                    this.OnPropertyChanging("Meter_open_event_timestamp", e);
+                    this.OnPropertyChanging("Meter_open_event_timestamp", e, _meter_open_event_timestampAttribute);
                     this._meter_open_event_timestamp = value;
                     this.OnMeter_open_event_timestampChanged(e);
-                    this.OnPropertyChanged("Meter_open_event_timestamp", e);
+                    this.OnPropertyChanged("Meter_open_event_timestamp", e, _meter_open_event_timestampAttribute);
                 }
             }
         }
@@ -256,10 +314,10 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     Nullable<int> old = this._meter_open_event_duration;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnMeter_open_event_durationChanging(e);
-                    this.OnPropertyChanging("Meter_open_event_duration", e);
+                    this.OnPropertyChanging("Meter_open_event_duration", e, _meter_open_event_durationAttribute);
                     this._meter_open_event_duration = value;
                     this.OnMeter_open_event_durationChanged(e);
-                    this.OnPropertyChanged("Meter_open_event_duration", e);
+                    this.OnPropertyChanged("Meter_open_event_duration", e, _meter_open_event_durationAttribute);
                 }
             }
         }
@@ -281,10 +339,10 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     Nullable<int> old = this._meter_open_event_cumulative_duration;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnMeter_open_event_cumulative_durationChanging(e);
-                    this.OnPropertyChanging("Meter_open_event_cumulative_duration", e);
+                    this.OnPropertyChanging("Meter_open_event_cumulative_duration", e, _meter_open_event_cumulative_durationAttribute);
                     this._meter_open_event_cumulative_duration = value;
                     this.OnMeter_open_event_cumulative_durationChanged(e);
-                    this.OnPropertyChanged("Meter_open_event_cumulative_duration", e);
+                    this.OnPropertyChanged("Meter_open_event_cumulative_duration", e, _meter_open_event_cumulative_durationAttribute);
                 }
             }
         }
@@ -306,10 +364,10 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     Nullable<int> old = this._terminal_cover_open_event_counter;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnTerminal_cover_open_event_counterChanging(e);
-                    this.OnPropertyChanging("Terminal_cover_open_event_counter", e);
+                    this.OnPropertyChanging("Terminal_cover_open_event_counter", e, _terminal_cover_open_event_counterAttribute);
                     this._terminal_cover_open_event_counter = value;
                     this.OnTerminal_cover_open_event_counterChanged(e);
-                    this.OnPropertyChanged("Terminal_cover_open_event_counter", e);
+                    this.OnPropertyChanged("Terminal_cover_open_event_counter", e, _terminal_cover_open_event_counterAttribute);
                 }
             }
         }
@@ -331,10 +389,10 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     string old = this._terminal_cover_open_event_time;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnTerminal_cover_open_event_timeChanging(e);
-                    this.OnPropertyChanging("Terminal_cover_open_event_time", e);
+                    this.OnPropertyChanging("Terminal_cover_open_event_time", e, _terminal_cover_open_event_timeAttribute);
                     this._terminal_cover_open_event_time = value;
                     this.OnTerminal_cover_open_event_timeChanged(e);
-                    this.OnPropertyChanged("Terminal_cover_open_event_time", e);
+                    this.OnPropertyChanged("Terminal_cover_open_event_time", e, _terminal_cover_open_event_timeAttribute);
                 }
             }
         }
@@ -356,10 +414,10 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     Nullable<int> old = this._terminal_cover_open_event_duration;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnTerminal_cover_open_event_durationChanging(e);
-                    this.OnPropertyChanging("Terminal_cover_open_event_duration", e);
+                    this.OnPropertyChanging("Terminal_cover_open_event_duration", e, _terminal_cover_open_event_durationAttribute);
                     this._terminal_cover_open_event_duration = value;
                     this.OnTerminal_cover_open_event_durationChanged(e);
-                    this.OnPropertyChanged("Terminal_cover_open_event_duration", e);
+                    this.OnPropertyChanged("Terminal_cover_open_event_duration", e, _terminal_cover_open_event_durationAttribute);
                 }
             }
         }
@@ -381,10 +439,10 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     Nullable<int> old = this._terminal_cover_open_event_cumulative_duration;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnTerminal_cover_open_event_cumulative_durationChanging(e);
-                    this.OnPropertyChanging("Terminal_cover_open_event_cumulative_duration", e);
+                    this.OnPropertyChanging("Terminal_cover_open_event_cumulative_duration", e, _terminal_cover_open_event_cumulative_durationAttribute);
                     this._terminal_cover_open_event_cumulative_duration = value;
                     this.OnTerminal_cover_open_event_cumulative_durationChanged(e);
-                    this.OnPropertyChanged("Terminal_cover_open_event_cumulative_duration", e);
+                    this.OnPropertyChanged("Terminal_cover_open_event_cumulative_duration", e, _terminal_cover_open_event_cumulative_durationAttribute);
                 }
             }
         }
@@ -406,10 +464,10 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     Nullable<int> old = this._tilt_event_counter;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnTilt_event_counterChanging(e);
-                    this.OnPropertyChanging("Tilt_event_counter", e);
+                    this.OnPropertyChanging("Tilt_event_counter", e, _tilt_event_counterAttribute);
                     this._tilt_event_counter = value;
                     this.OnTilt_event_counterChanged(e);
-                    this.OnPropertyChanged("Tilt_event_counter", e);
+                    this.OnPropertyChanged("Tilt_event_counter", e, _tilt_event_counterAttribute);
                 }
             }
         }
@@ -431,10 +489,10 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     string old = this._tilt_event_time;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnTilt_event_timeChanging(e);
-                    this.OnPropertyChanging("Tilt_event_time", e);
+                    this.OnPropertyChanging("Tilt_event_time", e, _tilt_event_timeAttribute);
                     this._tilt_event_time = value;
                     this.OnTilt_event_timeChanged(e);
-                    this.OnPropertyChanged("Tilt_event_time", e);
+                    this.OnPropertyChanged("Tilt_event_time", e, _tilt_event_timeAttribute);
                 }
             }
         }
@@ -456,10 +514,10 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     Nullable<int> old = this._tilt_event_duration;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnTilt_event_durationChanging(e);
-                    this.OnPropertyChanging("Tilt_event_duration", e);
+                    this.OnPropertyChanging("Tilt_event_duration", e, _tilt_event_durationAttribute);
                     this._tilt_event_duration = value;
                     this.OnTilt_event_durationChanged(e);
-                    this.OnPropertyChanged("Tilt_event_duration", e);
+                    this.OnPropertyChanged("Tilt_event_duration", e, _tilt_event_durationAttribute);
                 }
             }
         }
@@ -481,10 +539,10 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     Nullable<int> old = this._tilt_event_cumulative_duration;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnTilt_event_cumulative_durationChanging(e);
-                    this.OnPropertyChanging("Tilt_event_cumulative_duration", e);
+                    this.OnPropertyChanging("Tilt_event_cumulative_duration", e, _tilt_event_cumulative_durationAttribute);
                     this._tilt_event_cumulative_duration = value;
                     this.OnTilt_event_cumulative_durationChanged(e);
-                    this.OnPropertyChanged("Tilt_event_cumulative_duration", e);
+                    this.OnPropertyChanged("Tilt_event_cumulative_duration", e, _tilt_event_cumulative_durationAttribute);
                 }
             }
         }
@@ -506,10 +564,10 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     Nullable<int> old = this._strong_DC_magnetic_field_event_counter;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnStrong_DC_magnetic_field_event_counterChanging(e);
-                    this.OnPropertyChanging("Strong_DC_magnetic_field_event_counter", e);
+                    this.OnPropertyChanging("Strong_DC_magnetic_field_event_counter", e, _strong_DC_magnetic_field_event_counterAttribute);
                     this._strong_DC_magnetic_field_event_counter = value;
                     this.OnStrong_DC_magnetic_field_event_counterChanged(e);
-                    this.OnPropertyChanged("Strong_DC_magnetic_field_event_counter", e);
+                    this.OnPropertyChanged("Strong_DC_magnetic_field_event_counter", e, _strong_DC_magnetic_field_event_counterAttribute);
                 }
             }
         }
@@ -531,10 +589,10 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     string old = this._strong_DC_magnetic_field_event_time;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnStrong_DC_magnetic_field_event_timeChanging(e);
-                    this.OnPropertyChanging("Strong_DC_magnetic_field_event_time", e);
+                    this.OnPropertyChanging("Strong_DC_magnetic_field_event_time", e, _strong_DC_magnetic_field_event_timeAttribute);
                     this._strong_DC_magnetic_field_event_time = value;
                     this.OnStrong_DC_magnetic_field_event_timeChanged(e);
-                    this.OnPropertyChanged("Strong_DC_magnetic_field_event_time", e);
+                    this.OnPropertyChanged("Strong_DC_magnetic_field_event_time", e, _strong_DC_magnetic_field_event_timeAttribute);
                 }
             }
         }
@@ -556,10 +614,10 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     Nullable<int> old = this._strong_DC_magnetic_field_event_duration;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnStrong_DC_magnetic_field_event_durationChanging(e);
-                    this.OnPropertyChanging("Strong_DC_magnetic_field_event_duration", e);
+                    this.OnPropertyChanging("Strong_DC_magnetic_field_event_duration", e, _strong_DC_magnetic_field_event_durationAttribute);
                     this._strong_DC_magnetic_field_event_duration = value;
                     this.OnStrong_DC_magnetic_field_event_durationChanged(e);
-                    this.OnPropertyChanged("Strong_DC_magnetic_field_event_duration", e);
+                    this.OnPropertyChanged("Strong_DC_magnetic_field_event_duration", e, _strong_DC_magnetic_field_event_durationAttribute);
                 }
             }
         }
@@ -581,10 +639,10 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     Nullable<int> old = this._strong_DC_magnetic_field_event_cumulative_duration;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnStrong_DC_magnetic_field_event_cumulative_durationChanging(e);
-                    this.OnPropertyChanging("Strong_DC_magnetic_field_event_cumulative_duration", e);
+                    this.OnPropertyChanging("Strong_DC_magnetic_field_event_cumulative_duration", e, _strong_DC_magnetic_field_event_cumulative_durationAttribute);
                     this._strong_DC_magnetic_field_event_cumulative_duration = value;
                     this.OnStrong_DC_magnetic_field_event_cumulative_durationChanged(e);
-                    this.OnPropertyChanged("Strong_DC_magnetic_field_event_cumulative_duration", e);
+                    this.OnPropertyChanged("Strong_DC_magnetic_field_event_cumulative_duration", e, _strong_DC_magnetic_field_event_cumulative_durationAttribute);
                 }
             }
         }
@@ -606,10 +664,10 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     Nullable<int> old = this._supply_control_switch_event_counter;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnSupply_control_switch_event_counterChanging(e);
-                    this.OnPropertyChanging("Supply_control_switch_event_counter", e);
+                    this.OnPropertyChanging("Supply_control_switch_event_counter", e, _supply_control_switch_event_counterAttribute);
                     this._supply_control_switch_event_counter = value;
                     this.OnSupply_control_switch_event_counterChanged(e);
-                    this.OnPropertyChanged("Supply_control_switch_event_counter", e);
+                    this.OnPropertyChanged("Supply_control_switch_event_counter", e, _supply_control_switch_event_counterAttribute);
                 }
             }
         }
@@ -631,10 +689,10 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     string old = this._supply_control_switch_event_time;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnSupply_control_switch_event_timeChanging(e);
-                    this.OnPropertyChanging("Supply_control_switch_event_time", e);
+                    this.OnPropertyChanging("Supply_control_switch_event_time", e, _supply_control_switch_event_timeAttribute);
                     this._supply_control_switch_event_time = value;
                     this.OnSupply_control_switch_event_timeChanged(e);
-                    this.OnPropertyChanged("Supply_control_switch_event_time", e);
+                    this.OnPropertyChanged("Supply_control_switch_event_time", e, _supply_control_switch_event_timeAttribute);
                 }
             }
         }
@@ -656,10 +714,10 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     Nullable<int> old = this._supply_control_switch_event_duration;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnSupply_control_switch_event_durationChanging(e);
-                    this.OnPropertyChanging("Supply_control_switch_event_duration", e);
+                    this.OnPropertyChanging("Supply_control_switch_event_duration", e, _supply_control_switch_event_durationAttribute);
                     this._supply_control_switch_event_duration = value;
                     this.OnSupply_control_switch_event_durationChanged(e);
-                    this.OnPropertyChanged("Supply_control_switch_event_duration", e);
+                    this.OnPropertyChanged("Supply_control_switch_event_duration", e, _supply_control_switch_event_durationAttribute);
                 }
             }
         }
@@ -681,10 +739,10 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     Nullable<int> old = this._supply_control_switch_event_cumulative_duration;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnSupply_control_switch_event_cumulative_durationChanging(e);
-                    this.OnPropertyChanging("Supply_control_switch_event_cumulative_duration", e);
+                    this.OnPropertyChanging("Supply_control_switch_event_cumulative_duration", e, _supply_control_switch_event_cumulative_durationAttribute);
                     this._supply_control_switch_event_cumulative_duration = value;
                     this.OnSupply_control_switch_event_cumulative_durationChanged(e);
-                    this.OnPropertyChanged("Supply_control_switch_event_cumulative_duration", e);
+                    this.OnPropertyChanged("Supply_control_switch_event_cumulative_duration", e, _supply_control_switch_event_cumulative_durationAttribute);
                 }
             }
         }
@@ -706,10 +764,10 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     Nullable<int> old = this._metrology_tamper_event_counter;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnMetrology_tamper_event_counterChanging(e);
-                    this.OnPropertyChanging("Metrology_tamper_event_counter", e);
+                    this.OnPropertyChanging("Metrology_tamper_event_counter", e, _metrology_tamper_event_counterAttribute);
                     this._metrology_tamper_event_counter = value;
                     this.OnMetrology_tamper_event_counterChanged(e);
-                    this.OnPropertyChanged("Metrology_tamper_event_counter", e);
+                    this.OnPropertyChanged("Metrology_tamper_event_counter", e, _metrology_tamper_event_counterAttribute);
                 }
             }
         }
@@ -731,10 +789,10 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     string old = this._metrology_tamper_event_time;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnMetrology_tamper_event_timeChanging(e);
-                    this.OnPropertyChanging("Metrology_tamper_event_time", e);
+                    this.OnPropertyChanging("Metrology_tamper_event_time", e, _metrology_tamper_event_timeAttribute);
                     this._metrology_tamper_event_time = value;
                     this.OnMetrology_tamper_event_timeChanged(e);
-                    this.OnPropertyChanged("Metrology_tamper_event_time", e);
+                    this.OnPropertyChanged("Metrology_tamper_event_time", e, _metrology_tamper_event_timeAttribute);
                 }
             }
         }
@@ -756,10 +814,10 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     Nullable<int> old = this._metrology_tamper_event_duration;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnMetrology_tamper_event_durationChanging(e);
-                    this.OnPropertyChanging("Metrology_tamper_event_duration", e);
+                    this.OnPropertyChanging("Metrology_tamper_event_duration", e, _metrology_tamper_event_durationAttribute);
                     this._metrology_tamper_event_duration = value;
                     this.OnMetrology_tamper_event_durationChanged(e);
-                    this.OnPropertyChanged("Metrology_tamper_event_duration", e);
+                    this.OnPropertyChanged("Metrology_tamper_event_duration", e, _metrology_tamper_event_durationAttribute);
                 }
             }
         }
@@ -781,10 +839,10 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     Nullable<int> old = this._metrology_tamper_event_cumulative_duration;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnMetrology_tamper_event_cumulative_durationChanging(e);
-                    this.OnPropertyChanging("Metrology_tamper_event_cumulative_duration", e);
+                    this.OnPropertyChanging("Metrology_tamper_event_cumulative_duration", e, _metrology_tamper_event_cumulative_durationAttribute);
                     this._metrology_tamper_event_cumulative_duration = value;
                     this.OnMetrology_tamper_event_cumulative_durationChanged(e);
-                    this.OnPropertyChanged("Metrology_tamper_event_cumulative_duration", e);
+                    this.OnPropertyChanged("Metrology_tamper_event_cumulative_duration", e, _metrology_tamper_event_cumulative_durationAttribute);
                 }
             }
         }
@@ -806,10 +864,10 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     Nullable<int> old = this._communication_tamper_event_counter;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnCommunication_tamper_event_counterChanging(e);
-                    this.OnPropertyChanging("Communication_tamper_event_counter", e);
+                    this.OnPropertyChanging("Communication_tamper_event_counter", e, _communication_tamper_event_counterAttribute);
                     this._communication_tamper_event_counter = value;
                     this.OnCommunication_tamper_event_counterChanged(e);
-                    this.OnPropertyChanged("Communication_tamper_event_counter", e);
+                    this.OnPropertyChanged("Communication_tamper_event_counter", e, _communication_tamper_event_counterAttribute);
                 }
             }
         }
@@ -831,10 +889,10 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     string old = this._communication_tamper_event_time;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnCommunication_tamper_event_timeChanging(e);
-                    this.OnPropertyChanging("Communication_tamper_event_time", e);
+                    this.OnPropertyChanging("Communication_tamper_event_time", e, _communication_tamper_event_timeAttribute);
                     this._communication_tamper_event_time = value;
                     this.OnCommunication_tamper_event_timeChanged(e);
-                    this.OnPropertyChanged("Communication_tamper_event_time", e);
+                    this.OnPropertyChanged("Communication_tamper_event_time", e, _communication_tamper_event_timeAttribute);
                 }
             }
         }
@@ -856,10 +914,10 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     Nullable<int> old = this._communication_tamper_event_duration;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnCommunication_tamper_event_durationChanging(e);
-                    this.OnPropertyChanging("Communication_tamper_event_duration", e);
+                    this.OnPropertyChanging("Communication_tamper_event_duration", e, _communication_tamper_event_durationAttribute);
                     this._communication_tamper_event_duration = value;
                     this.OnCommunication_tamper_event_durationChanged(e);
-                    this.OnPropertyChanged("Communication_tamper_event_duration", e);
+                    this.OnPropertyChanged("Communication_tamper_event_duration", e, _communication_tamper_event_durationAttribute);
                 }
             }
         }
@@ -881,10 +939,10 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     Nullable<int> old = this._communication_tamper_event_cumulative_duration;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnCommunication_tamper_event_cumulative_durationChanging(e);
-                    this.OnPropertyChanging("Communication_tamper_event_cumulative_duration", e);
+                    this.OnPropertyChanging("Communication_tamper_event_cumulative_duration", e, _communication_tamper_event_cumulative_durationAttribute);
                     this._communication_tamper_event_cumulative_duration = value;
                     this.OnCommunication_tamper_event_cumulative_durationChanged(e);
-                    this.OnPropertyChanged("Communication_tamper_event_cumulative_duration", e);
+                    this.OnPropertyChanged("Communication_tamper_event_cumulative_duration", e, _communication_tamper_event_cumulative_durationAttribute);
                 }
             }
         }
@@ -906,10 +964,10 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     string old = this._manufacturer_specific;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnManufacturer_specificChanging(e);
-                    this.OnPropertyChanging("Manufacturer_specific", e);
+                    this.OnPropertyChanging("Manufacturer_specific", e, _manufacturer_specificAttribute);
                     this._manufacturer_specific = value;
                     this.OnManufacturer_specificChanged(e);
-                    this.OnPropertyChanged("Manufacturer_specific", e);
+                    this.OnPropertyChanged("Manufacturer_specific", e, _manufacturer_specificAttribute);
                 }
             }
         }
@@ -1220,6 +1278,11 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> Manufacturer_specificChanged;
         
+        private static ITypedElement RetrieveMeter_open_event_counterAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(MeterTemperEventRelatedObject.ClassInstance)).Resolve("Meter_open_event_counter")));
+        }
+        
         /// <summary>
         /// Raises the Meter_open_event_counterChanging event
         /// </summary>
@@ -1244,6 +1307,11 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveMeter_open_event_timestampAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(MeterTemperEventRelatedObject.ClassInstance)).Resolve("Meter_open_event_timestamp")));
         }
         
         /// <summary>
@@ -1272,6 +1340,11 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             }
         }
         
+        private static ITypedElement RetrieveMeter_open_event_durationAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(MeterTemperEventRelatedObject.ClassInstance)).Resolve("Meter_open_event_duration")));
+        }
+        
         /// <summary>
         /// Raises the Meter_open_event_durationChanging event
         /// </summary>
@@ -1296,6 +1369,11 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveMeter_open_event_cumulative_durationAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(MeterTemperEventRelatedObject.ClassInstance)).Resolve("Meter_open_event_cumulative_duration")));
         }
         
         /// <summary>
@@ -1324,6 +1402,11 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             }
         }
         
+        private static ITypedElement RetrieveTerminal_cover_open_event_counterAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(MeterTemperEventRelatedObject.ClassInstance)).Resolve("Terminal_cover_open_event_counter")));
+        }
+        
         /// <summary>
         /// Raises the Terminal_cover_open_event_counterChanging event
         /// </summary>
@@ -1348,6 +1431,11 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveTerminal_cover_open_event_timeAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(MeterTemperEventRelatedObject.ClassInstance)).Resolve("Terminal_cover_open_event_time")));
         }
         
         /// <summary>
@@ -1376,6 +1464,11 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             }
         }
         
+        private static ITypedElement RetrieveTerminal_cover_open_event_durationAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(MeterTemperEventRelatedObject.ClassInstance)).Resolve("Terminal_cover_open_event_duration")));
+        }
+        
         /// <summary>
         /// Raises the Terminal_cover_open_event_durationChanging event
         /// </summary>
@@ -1400,6 +1493,11 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveTerminal_cover_open_event_cumulative_durationAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(MeterTemperEventRelatedObject.ClassInstance)).Resolve("Terminal_cover_open_event_cumulative_duration")));
         }
         
         /// <summary>
@@ -1428,6 +1526,11 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             }
         }
         
+        private static ITypedElement RetrieveTilt_event_counterAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(MeterTemperEventRelatedObject.ClassInstance)).Resolve("Tilt_event_counter")));
+        }
+        
         /// <summary>
         /// Raises the Tilt_event_counterChanging event
         /// </summary>
@@ -1452,6 +1555,11 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveTilt_event_timeAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(MeterTemperEventRelatedObject.ClassInstance)).Resolve("Tilt_event_time")));
         }
         
         /// <summary>
@@ -1480,6 +1588,11 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             }
         }
         
+        private static ITypedElement RetrieveTilt_event_durationAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(MeterTemperEventRelatedObject.ClassInstance)).Resolve("Tilt_event_duration")));
+        }
+        
         /// <summary>
         /// Raises the Tilt_event_durationChanging event
         /// </summary>
@@ -1504,6 +1617,11 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveTilt_event_cumulative_durationAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(MeterTemperEventRelatedObject.ClassInstance)).Resolve("Tilt_event_cumulative_duration")));
         }
         
         /// <summary>
@@ -1532,6 +1650,11 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             }
         }
         
+        private static ITypedElement RetrieveStrong_DC_magnetic_field_event_counterAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(MeterTemperEventRelatedObject.ClassInstance)).Resolve("Strong_DC_magnetic_field_event_counter")));
+        }
+        
         /// <summary>
         /// Raises the Strong_DC_magnetic_field_event_counterChanging event
         /// </summary>
@@ -1556,6 +1679,11 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveStrong_DC_magnetic_field_event_timeAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(MeterTemperEventRelatedObject.ClassInstance)).Resolve("Strong_DC_magnetic_field_event_time")));
         }
         
         /// <summary>
@@ -1584,6 +1712,11 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             }
         }
         
+        private static ITypedElement RetrieveStrong_DC_magnetic_field_event_durationAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(MeterTemperEventRelatedObject.ClassInstance)).Resolve("Strong_DC_magnetic_field_event_duration")));
+        }
+        
         /// <summary>
         /// Raises the Strong_DC_magnetic_field_event_durationChanging event
         /// </summary>
@@ -1608,6 +1741,11 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveStrong_DC_magnetic_field_event_cumulative_durationAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(MeterTemperEventRelatedObject.ClassInstance)).Resolve("Strong_DC_magnetic_field_event_cumulative_duration")));
         }
         
         /// <summary>
@@ -1636,6 +1774,11 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             }
         }
         
+        private static ITypedElement RetrieveSupply_control_switch_event_counterAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(MeterTemperEventRelatedObject.ClassInstance)).Resolve("Supply_control_switch_event_counter")));
+        }
+        
         /// <summary>
         /// Raises the Supply_control_switch_event_counterChanging event
         /// </summary>
@@ -1660,6 +1803,11 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveSupply_control_switch_event_timeAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(MeterTemperEventRelatedObject.ClassInstance)).Resolve("Supply_control_switch_event_time")));
         }
         
         /// <summary>
@@ -1688,6 +1836,11 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             }
         }
         
+        private static ITypedElement RetrieveSupply_control_switch_event_durationAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(MeterTemperEventRelatedObject.ClassInstance)).Resolve("Supply_control_switch_event_duration")));
+        }
+        
         /// <summary>
         /// Raises the Supply_control_switch_event_durationChanging event
         /// </summary>
@@ -1712,6 +1865,11 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveSupply_control_switch_event_cumulative_durationAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(MeterTemperEventRelatedObject.ClassInstance)).Resolve("Supply_control_switch_event_cumulative_duration")));
         }
         
         /// <summary>
@@ -1740,6 +1898,11 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             }
         }
         
+        private static ITypedElement RetrieveMetrology_tamper_event_counterAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(MeterTemperEventRelatedObject.ClassInstance)).Resolve("Metrology_tamper_event_counter")));
+        }
+        
         /// <summary>
         /// Raises the Metrology_tamper_event_counterChanging event
         /// </summary>
@@ -1764,6 +1927,11 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveMetrology_tamper_event_timeAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(MeterTemperEventRelatedObject.ClassInstance)).Resolve("Metrology_tamper_event_time")));
         }
         
         /// <summary>
@@ -1792,6 +1960,11 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             }
         }
         
+        private static ITypedElement RetrieveMetrology_tamper_event_durationAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(MeterTemperEventRelatedObject.ClassInstance)).Resolve("Metrology_tamper_event_duration")));
+        }
+        
         /// <summary>
         /// Raises the Metrology_tamper_event_durationChanging event
         /// </summary>
@@ -1816,6 +1989,11 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveMetrology_tamper_event_cumulative_durationAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(MeterTemperEventRelatedObject.ClassInstance)).Resolve("Metrology_tamper_event_cumulative_duration")));
         }
         
         /// <summary>
@@ -1844,6 +2022,11 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             }
         }
         
+        private static ITypedElement RetrieveCommunication_tamper_event_counterAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(MeterTemperEventRelatedObject.ClassInstance)).Resolve("Communication_tamper_event_counter")));
+        }
+        
         /// <summary>
         /// Raises the Communication_tamper_event_counterChanging event
         /// </summary>
@@ -1868,6 +2051,11 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveCommunication_tamper_event_timeAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(MeterTemperEventRelatedObject.ClassInstance)).Resolve("Communication_tamper_event_time")));
         }
         
         /// <summary>
@@ -1896,6 +2084,11 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             }
         }
         
+        private static ITypedElement RetrieveCommunication_tamper_event_durationAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(MeterTemperEventRelatedObject.ClassInstance)).Resolve("Communication_tamper_event_duration")));
+        }
+        
         /// <summary>
         /// Raises the Communication_tamper_event_durationChanging event
         /// </summary>
@@ -1922,6 +2115,11 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             }
         }
         
+        private static ITypedElement RetrieveCommunication_tamper_event_cumulative_durationAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(MeterTemperEventRelatedObject.ClassInstance)).Resolve("Communication_tamper_event_cumulative_duration")));
+        }
+        
         /// <summary>
         /// Raises the Communication_tamper_event_cumulative_durationChanging event
         /// </summary>
@@ -1946,6 +2144,11 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveManufacturer_specificAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(MeterTemperEventRelatedObject.ClassInstance)).Resolve("Manufacturer_specific")));
         }
         
         /// <summary>
@@ -2280,7 +2483,7 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public Meter_open_event_counterProxy(IMeterTemperEventRelatedObject modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "Meter_open_event_counter")
             {
             }
             
@@ -2298,24 +2501,6 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     this.ModelElement.Meter_open_event_counter = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.Meter_open_event_counterChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.Meter_open_event_counterChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -2329,7 +2514,7 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public Meter_open_event_timestampProxy(IMeterTemperEventRelatedObject modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "Meter_open_event_timestamp")
             {
             }
             
@@ -2347,24 +2532,6 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     this.ModelElement.Meter_open_event_timestamp = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.Meter_open_event_timestampChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.Meter_open_event_timestampChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -2378,7 +2545,7 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public Meter_open_event_durationProxy(IMeterTemperEventRelatedObject modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "Meter_open_event_duration")
             {
             }
             
@@ -2396,24 +2563,6 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     this.ModelElement.Meter_open_event_duration = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.Meter_open_event_durationChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.Meter_open_event_durationChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -2427,7 +2576,7 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public Meter_open_event_cumulative_durationProxy(IMeterTemperEventRelatedObject modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "Meter_open_event_cumulative_duration")
             {
             }
             
@@ -2445,24 +2594,6 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     this.ModelElement.Meter_open_event_cumulative_duration = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.Meter_open_event_cumulative_durationChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.Meter_open_event_cumulative_durationChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -2476,7 +2607,7 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public Terminal_cover_open_event_counterProxy(IMeterTemperEventRelatedObject modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "Terminal_cover_open_event_counter")
             {
             }
             
@@ -2494,24 +2625,6 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     this.ModelElement.Terminal_cover_open_event_counter = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.Terminal_cover_open_event_counterChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.Terminal_cover_open_event_counterChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -2525,7 +2638,7 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public Terminal_cover_open_event_timeProxy(IMeterTemperEventRelatedObject modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "Terminal_cover_open_event_time")
             {
             }
             
@@ -2543,24 +2656,6 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     this.ModelElement.Terminal_cover_open_event_time = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.Terminal_cover_open_event_timeChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.Terminal_cover_open_event_timeChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -2574,7 +2669,7 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public Terminal_cover_open_event_durationProxy(IMeterTemperEventRelatedObject modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "Terminal_cover_open_event_duration")
             {
             }
             
@@ -2592,24 +2687,6 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     this.ModelElement.Terminal_cover_open_event_duration = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.Terminal_cover_open_event_durationChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.Terminal_cover_open_event_durationChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -2623,7 +2700,7 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public Terminal_cover_open_event_cumulative_durationProxy(IMeterTemperEventRelatedObject modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "Terminal_cover_open_event_cumulative_duration")
             {
             }
             
@@ -2641,24 +2718,6 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     this.ModelElement.Terminal_cover_open_event_cumulative_duration = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.Terminal_cover_open_event_cumulative_durationChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.Terminal_cover_open_event_cumulative_durationChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -2672,7 +2731,7 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public Tilt_event_counterProxy(IMeterTemperEventRelatedObject modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "Tilt_event_counter")
             {
             }
             
@@ -2690,24 +2749,6 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     this.ModelElement.Tilt_event_counter = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.Tilt_event_counterChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.Tilt_event_counterChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -2721,7 +2762,7 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public Tilt_event_timeProxy(IMeterTemperEventRelatedObject modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "Tilt_event_time")
             {
             }
             
@@ -2739,24 +2780,6 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     this.ModelElement.Tilt_event_time = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.Tilt_event_timeChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.Tilt_event_timeChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -2770,7 +2793,7 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public Tilt_event_durationProxy(IMeterTemperEventRelatedObject modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "Tilt_event_duration")
             {
             }
             
@@ -2788,24 +2811,6 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     this.ModelElement.Tilt_event_duration = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.Tilt_event_durationChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.Tilt_event_durationChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -2819,7 +2824,7 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public Tilt_event_cumulative_durationProxy(IMeterTemperEventRelatedObject modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "Tilt_event_cumulative_duration")
             {
             }
             
@@ -2837,24 +2842,6 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     this.ModelElement.Tilt_event_cumulative_duration = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.Tilt_event_cumulative_durationChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.Tilt_event_cumulative_durationChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -2868,7 +2855,7 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public Strong_DC_magnetic_field_event_counterProxy(IMeterTemperEventRelatedObject modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "Strong_DC_magnetic_field_event_counter")
             {
             }
             
@@ -2886,24 +2873,6 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     this.ModelElement.Strong_DC_magnetic_field_event_counter = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.Strong_DC_magnetic_field_event_counterChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.Strong_DC_magnetic_field_event_counterChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -2917,7 +2886,7 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public Strong_DC_magnetic_field_event_timeProxy(IMeterTemperEventRelatedObject modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "Strong_DC_magnetic_field_event_time")
             {
             }
             
@@ -2935,24 +2904,6 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     this.ModelElement.Strong_DC_magnetic_field_event_time = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.Strong_DC_magnetic_field_event_timeChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.Strong_DC_magnetic_field_event_timeChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -2966,7 +2917,7 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public Strong_DC_magnetic_field_event_durationProxy(IMeterTemperEventRelatedObject modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "Strong_DC_magnetic_field_event_duration")
             {
             }
             
@@ -2984,24 +2935,6 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     this.ModelElement.Strong_DC_magnetic_field_event_duration = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.Strong_DC_magnetic_field_event_durationChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.Strong_DC_magnetic_field_event_durationChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -3015,7 +2948,7 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public Strong_DC_magnetic_field_event_cumulative_durationProxy(IMeterTemperEventRelatedObject modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "Strong_DC_magnetic_field_event_cumulative_duration")
             {
             }
             
@@ -3033,24 +2966,6 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     this.ModelElement.Strong_DC_magnetic_field_event_cumulative_duration = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.Strong_DC_magnetic_field_event_cumulative_durationChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.Strong_DC_magnetic_field_event_cumulative_durationChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -3064,7 +2979,7 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public Supply_control_switch_event_counterProxy(IMeterTemperEventRelatedObject modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "Supply_control_switch_event_counter")
             {
             }
             
@@ -3082,24 +2997,6 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     this.ModelElement.Supply_control_switch_event_counter = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.Supply_control_switch_event_counterChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.Supply_control_switch_event_counterChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -3113,7 +3010,7 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public Supply_control_switch_event_timeProxy(IMeterTemperEventRelatedObject modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "Supply_control_switch_event_time")
             {
             }
             
@@ -3131,24 +3028,6 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     this.ModelElement.Supply_control_switch_event_time = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.Supply_control_switch_event_timeChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.Supply_control_switch_event_timeChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -3162,7 +3041,7 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public Supply_control_switch_event_durationProxy(IMeterTemperEventRelatedObject modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "Supply_control_switch_event_duration")
             {
             }
             
@@ -3180,24 +3059,6 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     this.ModelElement.Supply_control_switch_event_duration = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.Supply_control_switch_event_durationChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.Supply_control_switch_event_durationChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -3211,7 +3072,7 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public Supply_control_switch_event_cumulative_durationProxy(IMeterTemperEventRelatedObject modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "Supply_control_switch_event_cumulative_duration")
             {
             }
             
@@ -3229,24 +3090,6 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     this.ModelElement.Supply_control_switch_event_cumulative_duration = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.Supply_control_switch_event_cumulative_durationChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.Supply_control_switch_event_cumulative_durationChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -3260,7 +3103,7 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public Metrology_tamper_event_counterProxy(IMeterTemperEventRelatedObject modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "Metrology_tamper_event_counter")
             {
             }
             
@@ -3278,24 +3121,6 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     this.ModelElement.Metrology_tamper_event_counter = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.Metrology_tamper_event_counterChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.Metrology_tamper_event_counterChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -3309,7 +3134,7 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public Metrology_tamper_event_timeProxy(IMeterTemperEventRelatedObject modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "Metrology_tamper_event_time")
             {
             }
             
@@ -3327,24 +3152,6 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     this.ModelElement.Metrology_tamper_event_time = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.Metrology_tamper_event_timeChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.Metrology_tamper_event_timeChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -3358,7 +3165,7 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public Metrology_tamper_event_durationProxy(IMeterTemperEventRelatedObject modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "Metrology_tamper_event_duration")
             {
             }
             
@@ -3376,24 +3183,6 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     this.ModelElement.Metrology_tamper_event_duration = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.Metrology_tamper_event_durationChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.Metrology_tamper_event_durationChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -3407,7 +3196,7 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public Metrology_tamper_event_cumulative_durationProxy(IMeterTemperEventRelatedObject modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "Metrology_tamper_event_cumulative_duration")
             {
             }
             
@@ -3425,24 +3214,6 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     this.ModelElement.Metrology_tamper_event_cumulative_duration = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.Metrology_tamper_event_cumulative_durationChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.Metrology_tamper_event_cumulative_durationChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -3456,7 +3227,7 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public Communication_tamper_event_counterProxy(IMeterTemperEventRelatedObject modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "Communication_tamper_event_counter")
             {
             }
             
@@ -3474,24 +3245,6 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     this.ModelElement.Communication_tamper_event_counter = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.Communication_tamper_event_counterChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.Communication_tamper_event_counterChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -3505,7 +3258,7 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public Communication_tamper_event_timeProxy(IMeterTemperEventRelatedObject modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "Communication_tamper_event_time")
             {
             }
             
@@ -3523,24 +3276,6 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     this.ModelElement.Communication_tamper_event_time = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.Communication_tamper_event_timeChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.Communication_tamper_event_timeChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -3554,7 +3289,7 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public Communication_tamper_event_durationProxy(IMeterTemperEventRelatedObject modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "Communication_tamper_event_duration")
             {
             }
             
@@ -3572,24 +3307,6 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     this.ModelElement.Communication_tamper_event_duration = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.Communication_tamper_event_durationChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.Communication_tamper_event_durationChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -3603,7 +3320,7 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public Communication_tamper_event_cumulative_durationProxy(IMeterTemperEventRelatedObject modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "Communication_tamper_event_cumulative_duration")
             {
             }
             
@@ -3621,24 +3338,6 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     this.ModelElement.Communication_tamper_event_cumulative_duration = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.Communication_tamper_event_cumulative_durationChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.Communication_tamper_event_cumulative_durationChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -3652,7 +3351,7 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public Manufacturer_specificProxy(IMeterTemperEventRelatedObject modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "Manufacturer_specific")
             {
             }
             
@@ -3669,24 +3368,6 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                 {
                     this.ModelElement.Manufacturer_specific = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.Manufacturer_specificChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.Manufacturer_specificChanged -= handler;
             }
         }
     }

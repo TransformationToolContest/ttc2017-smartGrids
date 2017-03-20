@@ -40,7 +40,7 @@ namespace TTC2017.SmartGrids.COSEM.InterfaceClasses
     [XmlNamespacePrefixAttribute("inter")]
     [ModelRepresentationClassAttribute("http://www.transformation-tool-contest.eu/2017/smartGrids/cosem#//InterfaceClasse" +
         "s/IEC61334_4_32LLCsetup")]
-    public class IEC61334_4_32LLCsetup : Base, IIEC61334_4_32LLCsetup, IModelElement
+    public partial class IEC61334_4_32LLCsetup : Base, IIEC61334_4_32LLCsetup, IModelElement
     {
         
         private static IClass _classInstance;

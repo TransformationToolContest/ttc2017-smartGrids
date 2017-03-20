@@ -57,7 +57,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Core
     [XmlNamespacePrefixAttribute("cimCore")]
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61970/Core/RegularIntervalSchedule")]
     [DebuggerDisplayAttribute("RegularIntervalSchedule {UUID}")]
-    public class RegularIntervalSchedule : BasicIntervalSchedule, IRegularIntervalSchedule, IModelElement
+    public partial class RegularIntervalSchedule : BasicIntervalSchedule, IRegularIntervalSchedule, IModelElement
     {
         
         /// <summary>
@@ -65,10 +65,16 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Core
         /// </summary>
         private string _endTime;
         
+        private static Lazy<ITypedElement> _endTimeAttribute = new Lazy<ITypedElement>(RetrieveEndTimeAttribute);
+        
         /// <summary>
         /// The backing field for the TimeStep property
         /// </summary>
         private float _timeStep;
+        
+        private static Lazy<ITypedElement> _timeStepAttribute = new Lazy<ITypedElement>(RetrieveTimeStepAttribute);
+        
+        private static Lazy<ITypedElement> _timePointsReference = new Lazy<ITypedElement>(RetrieveTimePointsReference);
         
         /// <summary>
         /// The backing field for the TimePoints property
@@ -102,10 +108,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Core
                     string old = this._endTime;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnEndTimeChanging(e);
-                    this.OnPropertyChanging("EndTime", e);
+                    this.OnPropertyChanging("EndTime", e, _endTimeAttribute);
                     this._endTime = value;
                     this.OnEndTimeChanged(e);
-                    this.OnPropertyChanged("EndTime", e);
+                    this.OnPropertyChanged("EndTime", e, _endTimeAttribute);
                 }
             }
         }
@@ -128,10 +134,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Core
                     float old = this._timeStep;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnTimeStepChanging(e);
-                    this.OnPropertyChanging("TimeStep", e);
+                    this.OnPropertyChanging("TimeStep", e, _timeStepAttribute);
                     this._timeStep = value;
                     this.OnTimeStepChanged(e);
-                    this.OnPropertyChanged("TimeStep", e);
+                    this.OnPropertyChanged("TimeStep", e, _timeStepAttribute);
                 }
             }
         }
@@ -197,6 +203,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Core
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> TimeStepChanged;
         
+        private static ITypedElement RetrieveEndTimeAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(RegularIntervalSchedule.ClassInstance)).Resolve("endTime")));
+        }
+        
         /// <summary>
         /// Raises the EndTimeChanging event
         /// </summary>
@@ -221,6 +232,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Core
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveTimeStepAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(RegularIntervalSchedule.ClassInstance)).Resolve("timeStep")));
         }
         
         /// <summary>
@@ -249,6 +265,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Core
             }
         }
         
+        private static ITypedElement RetrieveTimePointsReference()
+        {
+            return ((ITypedElement)(((ModelElement)(RegularIntervalSchedule.ClassInstance)).Resolve("TimePoints")));
+        }
+        
         /// <summary>
         /// Forwards CollectionChanging notifications for the TimePoints property to the parent model element
         /// </summary>
@@ -256,7 +277,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Core
         /// <param name="e">The original event data</param>
         private void TimePointsCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("TimePoints", e);
+            this.OnCollectionChanging("TimePoints", e, _timePointsReference);
         }
         
         /// <summary>
@@ -266,7 +287,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Core
         /// <param name="e">The original event data</param>
         private void TimePointsCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("TimePoints", e);
+            this.OnCollectionChanged("TimePoints", e, _timePointsReference);
         }
         
         /// <summary>
@@ -469,7 +490,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Core
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public EndTimeProxy(IRegularIntervalSchedule modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "endTime")
             {
             }
             
@@ -487,24 +508,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Core
                     this.ModelElement.EndTime = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.EndTimeChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.EndTimeChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -518,7 +521,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Core
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public TimeStepProxy(IRegularIntervalSchedule modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "timeStep")
             {
             }
             
@@ -535,24 +538,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Core
                 {
                     this.ModelElement.TimeStep = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.TimeStepChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.TimeStepChanged -= handler;
             }
         }
     }

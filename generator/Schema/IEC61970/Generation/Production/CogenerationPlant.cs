@@ -46,7 +46,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61970/Generation/Production/Cogener" +
         "ationPlant")]
     [DebuggerDisplayAttribute("CogenerationPlant {UUID}")]
-    public class CogenerationPlant : PowerSystemResource, ICogenerationPlant, IModelElement
+    public partial class CogenerationPlant : PowerSystemResource, ICogenerationPlant, IModelElement
     {
         
         /// <summary>
@@ -54,30 +54,44 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
         /// </summary>
         private float _cogenLPSteamRating;
         
+        private static Lazy<ITypedElement> _cogenLPSteamRatingAttribute = new Lazy<ITypedElement>(RetrieveCogenLPSteamRatingAttribute);
+        
         /// <summary>
         /// The backing field for the CogenHPSteamRating property
         /// </summary>
         private float _cogenHPSteamRating;
+        
+        private static Lazy<ITypedElement> _cogenHPSteamRatingAttribute = new Lazy<ITypedElement>(RetrieveCogenHPSteamRatingAttribute);
         
         /// <summary>
         /// The backing field for the CogenHPSendoutRating property
         /// </summary>
         private float _cogenHPSendoutRating;
         
+        private static Lazy<ITypedElement> _cogenHPSendoutRatingAttribute = new Lazy<ITypedElement>(RetrieveCogenHPSendoutRatingAttribute);
+        
         /// <summary>
         /// The backing field for the CogenLPSendoutRating property
         /// </summary>
         private float _cogenLPSendoutRating;
+        
+        private static Lazy<ITypedElement> _cogenLPSendoutRatingAttribute = new Lazy<ITypedElement>(RetrieveCogenLPSendoutRatingAttribute);
         
         /// <summary>
         /// The backing field for the RatedP property
         /// </summary>
         private float _ratedP;
         
+        private static Lazy<ITypedElement> _ratedPAttribute = new Lazy<ITypedElement>(RetrieveRatedPAttribute);
+        
+        private static Lazy<ITypedElement> _steamSendoutScheduleReference = new Lazy<ITypedElement>(RetrieveSteamSendoutScheduleReference);
+        
         /// <summary>
         /// The backing field for the SteamSendoutSchedule property
         /// </summary>
         private ISteamSendoutSchedule _steamSendoutSchedule;
+        
+        private static Lazy<ITypedElement> _thermalGeneratingUnitsReference = new Lazy<ITypedElement>(RetrieveThermalGeneratingUnitsReference);
         
         /// <summary>
         /// The backing field for the ThermalGeneratingUnits property
@@ -111,10 +125,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
                     float old = this._cogenLPSteamRating;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnCogenLPSteamRatingChanging(e);
-                    this.OnPropertyChanging("CogenLPSteamRating", e);
+                    this.OnPropertyChanging("CogenLPSteamRating", e, _cogenLPSteamRatingAttribute);
                     this._cogenLPSteamRating = value;
                     this.OnCogenLPSteamRatingChanged(e);
-                    this.OnPropertyChanged("CogenLPSteamRating", e);
+                    this.OnPropertyChanged("CogenLPSteamRating", e, _cogenLPSteamRatingAttribute);
                 }
             }
         }
@@ -137,10 +151,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
                     float old = this._cogenHPSteamRating;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnCogenHPSteamRatingChanging(e);
-                    this.OnPropertyChanging("CogenHPSteamRating", e);
+                    this.OnPropertyChanging("CogenHPSteamRating", e, _cogenHPSteamRatingAttribute);
                     this._cogenHPSteamRating = value;
                     this.OnCogenHPSteamRatingChanged(e);
-                    this.OnPropertyChanged("CogenHPSteamRating", e);
+                    this.OnPropertyChanged("CogenHPSteamRating", e, _cogenHPSteamRatingAttribute);
                 }
             }
         }
@@ -163,10 +177,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
                     float old = this._cogenHPSendoutRating;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnCogenHPSendoutRatingChanging(e);
-                    this.OnPropertyChanging("CogenHPSendoutRating", e);
+                    this.OnPropertyChanging("CogenHPSendoutRating", e, _cogenHPSendoutRatingAttribute);
                     this._cogenHPSendoutRating = value;
                     this.OnCogenHPSendoutRatingChanged(e);
-                    this.OnPropertyChanged("CogenHPSendoutRating", e);
+                    this.OnPropertyChanged("CogenHPSendoutRating", e, _cogenHPSendoutRatingAttribute);
                 }
             }
         }
@@ -189,10 +203,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
                     float old = this._cogenLPSendoutRating;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnCogenLPSendoutRatingChanging(e);
-                    this.OnPropertyChanging("CogenLPSendoutRating", e);
+                    this.OnPropertyChanging("CogenLPSendoutRating", e, _cogenLPSendoutRatingAttribute);
                     this._cogenLPSendoutRating = value;
                     this.OnCogenLPSendoutRatingChanged(e);
-                    this.OnPropertyChanged("CogenLPSendoutRating", e);
+                    this.OnPropertyChanged("CogenLPSendoutRating", e, _cogenLPSendoutRatingAttribute);
                 }
             }
         }
@@ -215,10 +229,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
                     float old = this._ratedP;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnRatedPChanging(e);
-                    this.OnPropertyChanging("RatedP", e);
+                    this.OnPropertyChanging("RatedP", e, _ratedPAttribute);
                     this._ratedP = value;
                     this.OnRatedPChanged(e);
-                    this.OnPropertyChanged("RatedP", e);
+                    this.OnPropertyChanged("RatedP", e, _ratedPAttribute);
                 }
             }
         }
@@ -241,7 +255,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
                     ISteamSendoutSchedule old = this._steamSendoutSchedule;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnSteamSendoutScheduleChanging(e);
-                    this.OnPropertyChanging("SteamSendoutSchedule", e);
+                    this.OnPropertyChanging("SteamSendoutSchedule", e, _steamSendoutScheduleReference);
                     this._steamSendoutSchedule = value;
                     if ((old != null))
                     {
@@ -254,7 +268,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
                         value.Deleted += this.OnResetSteamSendoutSchedule;
                     }
                     this.OnSteamSendoutScheduleChanged(e);
-                    this.OnPropertyChanged("SteamSendoutSchedule", e);
+                    this.OnPropertyChanged("SteamSendoutSchedule", e, _steamSendoutScheduleReference);
                 }
             }
         }
@@ -361,6 +375,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> SteamSendoutScheduleChanged;
         
+        private static ITypedElement RetrieveCogenLPSteamRatingAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(CogenerationPlant.ClassInstance)).Resolve("cogenLPSteamRating")));
+        }
+        
         /// <summary>
         /// Raises the CogenLPSteamRatingChanging event
         /// </summary>
@@ -385,6 +404,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveCogenHPSteamRatingAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(CogenerationPlant.ClassInstance)).Resolve("cogenHPSteamRating")));
         }
         
         /// <summary>
@@ -413,6 +437,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
             }
         }
         
+        private static ITypedElement RetrieveCogenHPSendoutRatingAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(CogenerationPlant.ClassInstance)).Resolve("cogenHPSendoutRating")));
+        }
+        
         /// <summary>
         /// Raises the CogenHPSendoutRatingChanging event
         /// </summary>
@@ -437,6 +466,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveCogenLPSendoutRatingAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(CogenerationPlant.ClassInstance)).Resolve("cogenLPSendoutRating")));
         }
         
         /// <summary>
@@ -465,6 +499,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
             }
         }
         
+        private static ITypedElement RetrieveRatedPAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(CogenerationPlant.ClassInstance)).Resolve("ratedP")));
+        }
+        
         /// <summary>
         /// Raises the RatedPChanging event
         /// </summary>
@@ -489,6 +528,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveSteamSendoutScheduleReference()
+        {
+            return ((ITypedElement)(((ModelElement)(CogenerationPlant.ClassInstance)).Resolve("SteamSendoutSchedule")));
         }
         
         /// <summary>
@@ -527,6 +571,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
             this.SteamSendoutSchedule = null;
         }
         
+        private static ITypedElement RetrieveThermalGeneratingUnitsReference()
+        {
+            return ((ITypedElement)(((ModelElement)(CogenerationPlant.ClassInstance)).Resolve("ThermalGeneratingUnits")));
+        }
+        
         /// <summary>
         /// Forwards CollectionChanging notifications for the ThermalGeneratingUnits property to the parent model element
         /// </summary>
@@ -534,7 +583,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
         /// <param name="e">The original event data</param>
         private void ThermalGeneratingUnitsCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("ThermalGeneratingUnits", e);
+            this.OnCollectionChanging("ThermalGeneratingUnits", e, _thermalGeneratingUnitsReference);
         }
         
         /// <summary>
@@ -544,7 +593,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
         /// <param name="e">The original event data</param>
         private void ThermalGeneratingUnitsCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("ThermalGeneratingUnits", e);
+            this.OnCollectionChanged("ThermalGeneratingUnits", e, _thermalGeneratingUnitsReference);
         }
         
         /// <summary>
@@ -838,7 +887,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public CogenLPSteamRatingProxy(ICogenerationPlant modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "cogenLPSteamRating")
             {
             }
             
@@ -856,24 +905,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
                     this.ModelElement.CogenLPSteamRating = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.CogenLPSteamRatingChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.CogenLPSteamRatingChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -887,7 +918,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public CogenHPSteamRatingProxy(ICogenerationPlant modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "cogenHPSteamRating")
             {
             }
             
@@ -905,24 +936,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
                     this.ModelElement.CogenHPSteamRating = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.CogenHPSteamRatingChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.CogenHPSteamRatingChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -936,7 +949,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public CogenHPSendoutRatingProxy(ICogenerationPlant modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "cogenHPSendoutRating")
             {
             }
             
@@ -954,24 +967,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
                     this.ModelElement.CogenHPSendoutRating = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.CogenHPSendoutRatingChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.CogenHPSendoutRatingChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -985,7 +980,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public CogenLPSendoutRatingProxy(ICogenerationPlant modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "cogenLPSendoutRating")
             {
             }
             
@@ -1003,24 +998,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
                     this.ModelElement.CogenLPSendoutRating = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.CogenLPSendoutRatingChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.CogenLPSendoutRatingChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1034,7 +1011,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public RatedPProxy(ICogenerationPlant modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "ratedP")
             {
             }
             
@@ -1052,24 +1029,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
                     this.ModelElement.RatedP = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.RatedPChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.RatedPChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1083,7 +1042,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public SteamSendoutScheduleProxy(ICogenerationPlant modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "SteamSendoutSchedule")
             {
             }
             
@@ -1100,24 +1059,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
                 {
                     this.ModelElement.SteamSendoutSchedule = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.SteamSendoutScheduleChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.SteamSendoutScheduleChanged -= handler;
             }
         }
     }

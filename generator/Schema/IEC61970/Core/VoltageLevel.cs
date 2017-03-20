@@ -57,7 +57,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Core
     [XmlNamespacePrefixAttribute("cimCore")]
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61970/Core/VoltageLevel")]
     [DebuggerDisplayAttribute("VoltageLevel {UUID}")]
-    public class VoltageLevel : EquipmentContainer, IVoltageLevel, IModelElement
+    public partial class VoltageLevel : EquipmentContainer, IVoltageLevel, IModelElement
     {
         
         /// <summary>
@@ -65,20 +65,30 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Core
         /// </summary>
         private float _lowVoltageLimit;
         
+        private static Lazy<ITypedElement> _lowVoltageLimitAttribute = new Lazy<ITypedElement>(RetrieveLowVoltageLimitAttribute);
+        
         /// <summary>
         /// The backing field for the HighVoltageLimit property
         /// </summary>
         private float _highVoltageLimit;
+        
+        private static Lazy<ITypedElement> _highVoltageLimitAttribute = new Lazy<ITypedElement>(RetrieveHighVoltageLimitAttribute);
+        
+        private static Lazy<ITypedElement> _baysReference = new Lazy<ITypedElement>(RetrieveBaysReference);
         
         /// <summary>
         /// The backing field for the Bays property
         /// </summary>
         private VoltageLevelBaysCollection _bays;
         
+        private static Lazy<ITypedElement> _baseVoltageReference = new Lazy<ITypedElement>(RetrieveBaseVoltageReference);
+        
         /// <summary>
         /// The backing field for the BaseVoltage property
         /// </summary>
         private IBaseVoltage _baseVoltage;
+        
+        private static Lazy<ITypedElement> _substationReference = new Lazy<ITypedElement>(RetrieveSubstationReference);
         
         /// <summary>
         /// The backing field for the Substation property
@@ -112,10 +122,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Core
                     float old = this._lowVoltageLimit;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnLowVoltageLimitChanging(e);
-                    this.OnPropertyChanging("LowVoltageLimit", e);
+                    this.OnPropertyChanging("LowVoltageLimit", e, _lowVoltageLimitAttribute);
                     this._lowVoltageLimit = value;
                     this.OnLowVoltageLimitChanged(e);
-                    this.OnPropertyChanged("LowVoltageLimit", e);
+                    this.OnPropertyChanged("LowVoltageLimit", e, _lowVoltageLimitAttribute);
                 }
             }
         }
@@ -138,10 +148,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Core
                     float old = this._highVoltageLimit;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnHighVoltageLimitChanging(e);
-                    this.OnPropertyChanging("HighVoltageLimit", e);
+                    this.OnPropertyChanging("HighVoltageLimit", e, _highVoltageLimitAttribute);
                     this._highVoltageLimit = value;
                     this.OnHighVoltageLimitChanged(e);
-                    this.OnPropertyChanged("HighVoltageLimit", e);
+                    this.OnPropertyChanged("HighVoltageLimit", e, _highVoltageLimitAttribute);
                 }
             }
         }
@@ -179,7 +189,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Core
                     IBaseVoltage old = this._baseVoltage;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnBaseVoltageChanging(e);
-                    this.OnPropertyChanging("BaseVoltage", e);
+                    this.OnPropertyChanging("BaseVoltage", e, _baseVoltageReference);
                     this._baseVoltage = value;
                     if ((old != null))
                     {
@@ -192,7 +202,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Core
                         value.Deleted += this.OnResetBaseVoltage;
                     }
                     this.OnBaseVoltageChanged(e);
-                    this.OnPropertyChanged("BaseVoltage", e);
+                    this.OnPropertyChanged("BaseVoltage", e, _baseVoltageReference);
                 }
             }
         }
@@ -215,7 +225,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Core
                     ISubstation old = this._substation;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnSubstationChanging(e);
-                    this.OnPropertyChanging("Substation", e);
+                    this.OnPropertyChanging("Substation", e, _substationReference);
                     this._substation = value;
                     if ((old != null))
                     {
@@ -228,7 +238,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Core
                         value.Deleted += this.OnResetSubstation;
                     }
                     this.OnSubstationChanged(e);
-                    this.OnPropertyChanged("Substation", e);
+                    this.OnPropertyChanged("Substation", e, _substationReference);
                 }
             }
         }
@@ -299,6 +309,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Core
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> SubstationChanged;
         
+        private static ITypedElement RetrieveLowVoltageLimitAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(VoltageLevel.ClassInstance)).Resolve("lowVoltageLimit")));
+        }
+        
         /// <summary>
         /// Raises the LowVoltageLimitChanging event
         /// </summary>
@@ -323,6 +338,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Core
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveHighVoltageLimitAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(VoltageLevel.ClassInstance)).Resolve("highVoltageLimit")));
         }
         
         /// <summary>
@@ -351,6 +371,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Core
             }
         }
         
+        private static ITypedElement RetrieveBaysReference()
+        {
+            return ((ITypedElement)(((ModelElement)(VoltageLevel.ClassInstance)).Resolve("Bays")));
+        }
+        
         /// <summary>
         /// Forwards CollectionChanging notifications for the Bays property to the parent model element
         /// </summary>
@@ -358,7 +383,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Core
         /// <param name="e">The original event data</param>
         private void BaysCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("Bays", e);
+            this.OnCollectionChanging("Bays", e, _baysReference);
         }
         
         /// <summary>
@@ -368,7 +393,12 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Core
         /// <param name="e">The original event data</param>
         private void BaysCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("Bays", e);
+            this.OnCollectionChanged("Bays", e, _baysReference);
+        }
+        
+        private static ITypedElement RetrieveBaseVoltageReference()
+        {
+            return ((ITypedElement)(((ModelElement)(VoltageLevel.ClassInstance)).Resolve("BaseVoltage")));
         }
         
         /// <summary>
@@ -405,6 +435,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Core
         private void OnResetBaseVoltage(object sender, System.EventArgs eventArgs)
         {
             this.BaseVoltage = null;
+        }
+        
+        private static ITypedElement RetrieveSubstationReference()
+        {
+            return ((ITypedElement)(((ModelElement)(VoltageLevel.ClassInstance)).Resolve("Substation")));
         }
         
         /// <summary>
@@ -749,7 +784,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Core
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public LowVoltageLimitProxy(IVoltageLevel modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "lowVoltageLimit")
             {
             }
             
@@ -767,24 +802,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Core
                     this.ModelElement.LowVoltageLimit = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.LowVoltageLimitChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.LowVoltageLimitChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -798,7 +815,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Core
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public HighVoltageLimitProxy(IVoltageLevel modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "highVoltageLimit")
             {
             }
             
@@ -816,24 +833,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Core
                     this.ModelElement.HighVoltageLimit = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.HighVoltageLimitChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.HighVoltageLimitChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -847,7 +846,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Core
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public BaseVoltageProxy(IVoltageLevel modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "BaseVoltage")
             {
             }
             
@@ -865,24 +864,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Core
                     this.ModelElement.BaseVoltage = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.BaseVoltageChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.BaseVoltageChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -896,7 +877,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Core
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public SubstationProxy(IVoltageLevel modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "Substation")
             {
             }
             
@@ -913,24 +894,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Core
                 {
                     this.ModelElement.Substation = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.SubstationChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.SubstationChanged -= handler;
             }
         }
     }

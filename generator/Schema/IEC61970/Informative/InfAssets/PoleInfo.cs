@@ -53,7 +53,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61970/Informative/InfAssets/PoleInf" +
         "o")]
     [DebuggerDisplayAttribute("PoleInfo {UUID}")]
-    public class PoleInfo : StructureInfo, IPoleInfo, IModelElement
+    public partial class PoleInfo : StructureInfo, IPoleInfo, IModelElement
     {
         
         /// <summary>
@@ -61,55 +61,79 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
         /// </summary>
         private DateTime _treatedDateTime;
         
+        private static Lazy<ITypedElement> _treatedDateTimeAttribute = new Lazy<ITypedElement>(RetrieveTreatedDateTimeAttribute);
+        
         /// <summary>
         /// The backing field for the BreastBlock property
         /// </summary>
         private bool _breastBlock;
+        
+        private static Lazy<ITypedElement> _breastBlockAttribute = new Lazy<ITypedElement>(RetrieveBreastBlockAttribute);
         
         /// <summary>
         /// The backing field for the Classification property
         /// </summary>
         private string _classification;
         
+        private static Lazy<ITypedElement> _classificationAttribute = new Lazy<ITypedElement>(RetrieveClassificationAttribute);
+        
         /// <summary>
         /// The backing field for the PreservativeKind property
         /// </summary>
         private Nullable<PolePreservativeKind> _preservativeKind;
+        
+        private static Lazy<ITypedElement> _preservativeKindAttribute = new Lazy<ITypedElement>(RetrievePreservativeKindAttribute);
         
         /// <summary>
         /// The backing field for the JpaReference property
         /// </summary>
         private string _jpaReference;
         
+        private static Lazy<ITypedElement> _jpaReferenceAttribute = new Lazy<ITypedElement>(RetrieveJpaReferenceAttribute);
+        
         /// <summary>
         /// The backing field for the BaseKind property
         /// </summary>
         private Nullable<PoleBaseKind> _baseKind;
+        
+        private static Lazy<ITypedElement> _baseKindAttribute = new Lazy<ITypedElement>(RetrieveBaseKindAttribute);
         
         /// <summary>
         /// The backing field for the Diameter property
         /// </summary>
         private float _diameter;
         
+        private static Lazy<ITypedElement> _diameterAttribute = new Lazy<ITypedElement>(RetrieveDiameterAttribute);
+        
         /// <summary>
         /// The backing field for the TreatmentKind property
         /// </summary>
         private Nullable<PoleTreatmentKind> _treatmentKind;
+        
+        private static Lazy<ITypedElement> _treatmentKindAttribute = new Lazy<ITypedElement>(RetrieveTreatmentKindAttribute);
         
         /// <summary>
         /// The backing field for the Construction property
         /// </summary>
         private string _construction;
         
+        private static Lazy<ITypedElement> _constructionAttribute = new Lazy<ITypedElement>(RetrieveConstructionAttribute);
+        
         /// <summary>
         /// The backing field for the Length property
         /// </summary>
         private float _length;
         
+        private static Lazy<ITypedElement> _lengthAttribute = new Lazy<ITypedElement>(RetrieveLengthAttribute);
+        
         /// <summary>
         /// The backing field for the SpeciesType property
         /// </summary>
         private string _speciesType;
+        
+        private static Lazy<ITypedElement> _speciesTypeAttribute = new Lazy<ITypedElement>(RetrieveSpeciesTypeAttribute);
+        
+        private static Lazy<ITypedElement> _streetlightsReference = new Lazy<ITypedElement>(RetrieveStreetlightsReference);
         
         /// <summary>
         /// The backing field for the Streetlights property
@@ -143,10 +167,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
                     DateTime old = this._treatedDateTime;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnTreatedDateTimeChanging(e);
-                    this.OnPropertyChanging("TreatedDateTime", e);
+                    this.OnPropertyChanging("TreatedDateTime", e, _treatedDateTimeAttribute);
                     this._treatedDateTime = value;
                     this.OnTreatedDateTimeChanged(e);
-                    this.OnPropertyChanged("TreatedDateTime", e);
+                    this.OnPropertyChanged("TreatedDateTime", e, _treatedDateTimeAttribute);
                 }
             }
         }
@@ -169,10 +193,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
                     bool old = this._breastBlock;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnBreastBlockChanging(e);
-                    this.OnPropertyChanging("BreastBlock", e);
+                    this.OnPropertyChanging("BreastBlock", e, _breastBlockAttribute);
                     this._breastBlock = value;
                     this.OnBreastBlockChanged(e);
-                    this.OnPropertyChanged("BreastBlock", e);
+                    this.OnPropertyChanged("BreastBlock", e, _breastBlockAttribute);
                 }
             }
         }
@@ -195,10 +219,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
                     string old = this._classification;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnClassificationChanging(e);
-                    this.OnPropertyChanging("Classification", e);
+                    this.OnPropertyChanging("Classification", e, _classificationAttribute);
                     this._classification = value;
                     this.OnClassificationChanged(e);
-                    this.OnPropertyChanged("Classification", e);
+                    this.OnPropertyChanged("Classification", e, _classificationAttribute);
                 }
             }
         }
@@ -221,10 +245,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
                     Nullable<PolePreservativeKind> old = this._preservativeKind;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnPreservativeKindChanging(e);
-                    this.OnPropertyChanging("PreservativeKind", e);
+                    this.OnPropertyChanging("PreservativeKind", e, _preservativeKindAttribute);
                     this._preservativeKind = value;
                     this.OnPreservativeKindChanged(e);
-                    this.OnPropertyChanged("PreservativeKind", e);
+                    this.OnPropertyChanged("PreservativeKind", e, _preservativeKindAttribute);
                 }
             }
         }
@@ -247,10 +271,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
                     string old = this._jpaReference;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnJpaReferenceChanging(e);
-                    this.OnPropertyChanging("JpaReference", e);
+                    this.OnPropertyChanging("JpaReference", e, _jpaReferenceAttribute);
                     this._jpaReference = value;
                     this.OnJpaReferenceChanged(e);
-                    this.OnPropertyChanged("JpaReference", e);
+                    this.OnPropertyChanged("JpaReference", e, _jpaReferenceAttribute);
                 }
             }
         }
@@ -273,10 +297,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
                     Nullable<PoleBaseKind> old = this._baseKind;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnBaseKindChanging(e);
-                    this.OnPropertyChanging("BaseKind", e);
+                    this.OnPropertyChanging("BaseKind", e, _baseKindAttribute);
                     this._baseKind = value;
                     this.OnBaseKindChanged(e);
-                    this.OnPropertyChanged("BaseKind", e);
+                    this.OnPropertyChanged("BaseKind", e, _baseKindAttribute);
                 }
             }
         }
@@ -299,10 +323,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
                     float old = this._diameter;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnDiameterChanging(e);
-                    this.OnPropertyChanging("Diameter", e);
+                    this.OnPropertyChanging("Diameter", e, _diameterAttribute);
                     this._diameter = value;
                     this.OnDiameterChanged(e);
-                    this.OnPropertyChanged("Diameter", e);
+                    this.OnPropertyChanged("Diameter", e, _diameterAttribute);
                 }
             }
         }
@@ -325,10 +349,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
                     Nullable<PoleTreatmentKind> old = this._treatmentKind;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnTreatmentKindChanging(e);
-                    this.OnPropertyChanging("TreatmentKind", e);
+                    this.OnPropertyChanging("TreatmentKind", e, _treatmentKindAttribute);
                     this._treatmentKind = value;
                     this.OnTreatmentKindChanged(e);
-                    this.OnPropertyChanged("TreatmentKind", e);
+                    this.OnPropertyChanged("TreatmentKind", e, _treatmentKindAttribute);
                 }
             }
         }
@@ -351,10 +375,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
                     string old = this._construction;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnConstructionChanging(e);
-                    this.OnPropertyChanging("Construction", e);
+                    this.OnPropertyChanging("Construction", e, _constructionAttribute);
                     this._construction = value;
                     this.OnConstructionChanged(e);
-                    this.OnPropertyChanged("Construction", e);
+                    this.OnPropertyChanged("Construction", e, _constructionAttribute);
                 }
             }
         }
@@ -377,10 +401,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
                     float old = this._length;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnLengthChanging(e);
-                    this.OnPropertyChanging("Length", e);
+                    this.OnPropertyChanging("Length", e, _lengthAttribute);
                     this._length = value;
                     this.OnLengthChanged(e);
-                    this.OnPropertyChanged("Length", e);
+                    this.OnPropertyChanged("Length", e, _lengthAttribute);
                 }
             }
         }
@@ -403,10 +427,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
                     string old = this._speciesType;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnSpeciesTypeChanging(e);
-                    this.OnPropertyChanging("SpeciesType", e);
+                    this.OnPropertyChanging("SpeciesType", e, _speciesTypeAttribute);
                     this._speciesType = value;
                     this.OnSpeciesTypeChanged(e);
-                    this.OnPropertyChanged("SpeciesType", e);
+                    this.OnPropertyChanged("SpeciesType", e, _speciesTypeAttribute);
                 }
             }
         }
@@ -563,6 +587,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> SpeciesTypeChanged;
         
+        private static ITypedElement RetrieveTreatedDateTimeAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(PoleInfo.ClassInstance)).Resolve("treatedDateTime")));
+        }
+        
         /// <summary>
         /// Raises the TreatedDateTimeChanging event
         /// </summary>
@@ -587,6 +616,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveBreastBlockAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(PoleInfo.ClassInstance)).Resolve("breastBlock")));
         }
         
         /// <summary>
@@ -615,6 +649,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
             }
         }
         
+        private static ITypedElement RetrieveClassificationAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(PoleInfo.ClassInstance)).Resolve("classification")));
+        }
+        
         /// <summary>
         /// Raises the ClassificationChanging event
         /// </summary>
@@ -639,6 +678,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrievePreservativeKindAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(PoleInfo.ClassInstance)).Resolve("preservativeKind")));
         }
         
         /// <summary>
@@ -667,6 +711,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
             }
         }
         
+        private static ITypedElement RetrieveJpaReferenceAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(PoleInfo.ClassInstance)).Resolve("jpaReference")));
+        }
+        
         /// <summary>
         /// Raises the JpaReferenceChanging event
         /// </summary>
@@ -691,6 +740,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveBaseKindAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(PoleInfo.ClassInstance)).Resolve("baseKind")));
         }
         
         /// <summary>
@@ -719,6 +773,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
             }
         }
         
+        private static ITypedElement RetrieveDiameterAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(PoleInfo.ClassInstance)).Resolve("diameter")));
+        }
+        
         /// <summary>
         /// Raises the DiameterChanging event
         /// </summary>
@@ -743,6 +802,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveTreatmentKindAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(PoleInfo.ClassInstance)).Resolve("treatmentKind")));
         }
         
         /// <summary>
@@ -771,6 +835,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
             }
         }
         
+        private static ITypedElement RetrieveConstructionAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(PoleInfo.ClassInstance)).Resolve("construction")));
+        }
+        
         /// <summary>
         /// Raises the ConstructionChanging event
         /// </summary>
@@ -795,6 +864,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveLengthAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(PoleInfo.ClassInstance)).Resolve("length")));
         }
         
         /// <summary>
@@ -823,6 +897,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
             }
         }
         
+        private static ITypedElement RetrieveSpeciesTypeAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(PoleInfo.ClassInstance)).Resolve("speciesType")));
+        }
+        
         /// <summary>
         /// Raises the SpeciesTypeChanging event
         /// </summary>
@@ -849,6 +928,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
             }
         }
         
+        private static ITypedElement RetrieveStreetlightsReference()
+        {
+            return ((ITypedElement)(((ModelElement)(PoleInfo.ClassInstance)).Resolve("Streetlights")));
+        }
+        
         /// <summary>
         /// Forwards CollectionChanging notifications for the Streetlights property to the parent model element
         /// </summary>
@@ -856,7 +940,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
         /// <param name="e">The original event data</param>
         private void StreetlightsCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("Streetlights", e);
+            this.OnCollectionChanging("Streetlights", e, _streetlightsReference);
         }
         
         /// <summary>
@@ -866,7 +950,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
         /// <param name="e">The original event data</param>
         private void StreetlightsCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("Streetlights", e);
+            this.OnCollectionChanged("Streetlights", e, _streetlightsReference);
         }
         
         /// <summary>
@@ -1151,7 +1235,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public TreatedDateTimeProxy(IPoleInfo modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "treatedDateTime")
             {
             }
             
@@ -1169,24 +1253,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
                     this.ModelElement.TreatedDateTime = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.TreatedDateTimeChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.TreatedDateTimeChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1200,7 +1266,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public BreastBlockProxy(IPoleInfo modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "breastBlock")
             {
             }
             
@@ -1218,24 +1284,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
                     this.ModelElement.BreastBlock = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.BreastBlockChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.BreastBlockChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1249,7 +1297,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public ClassificationProxy(IPoleInfo modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "classification")
             {
             }
             
@@ -1267,24 +1315,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
                     this.ModelElement.Classification = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ClassificationChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ClassificationChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1298,7 +1328,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public PreservativeKindProxy(IPoleInfo modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "preservativeKind")
             {
             }
             
@@ -1316,24 +1346,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
                     this.ModelElement.PreservativeKind = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.PreservativeKindChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.PreservativeKindChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1347,7 +1359,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public JpaReferenceProxy(IPoleInfo modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "jpaReference")
             {
             }
             
@@ -1365,24 +1377,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
                     this.ModelElement.JpaReference = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.JpaReferenceChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.JpaReferenceChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1396,7 +1390,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public BaseKindProxy(IPoleInfo modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "baseKind")
             {
             }
             
@@ -1414,24 +1408,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
                     this.ModelElement.BaseKind = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.BaseKindChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.BaseKindChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1445,7 +1421,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public DiameterProxy(IPoleInfo modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "diameter")
             {
             }
             
@@ -1463,24 +1439,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
                     this.ModelElement.Diameter = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.DiameterChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.DiameterChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1494,7 +1452,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public TreatmentKindProxy(IPoleInfo modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "treatmentKind")
             {
             }
             
@@ -1512,24 +1470,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
                     this.ModelElement.TreatmentKind = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.TreatmentKindChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.TreatmentKindChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1543,7 +1483,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public ConstructionProxy(IPoleInfo modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "construction")
             {
             }
             
@@ -1561,24 +1501,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
                     this.ModelElement.Construction = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ConstructionChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ConstructionChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1592,7 +1514,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public LengthProxy(IPoleInfo modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "length")
             {
             }
             
@@ -1610,24 +1532,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
                     this.ModelElement.Length = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.LengthChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.LengthChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1641,7 +1545,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public SpeciesTypeProxy(IPoleInfo modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "speciesType")
             {
             }
             
@@ -1658,24 +1562,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
                 {
                     this.ModelElement.SpeciesType = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.SpeciesTypeChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.SpeciesTypeChanged -= handler;
             }
         }
     }

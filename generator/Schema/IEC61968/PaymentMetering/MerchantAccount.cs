@@ -47,7 +47,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.PaymentMetering
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61968/PaymentMetering/MerchantAccou" +
         "nt")]
     [DebuggerDisplayAttribute("MerchantAccount {UUID}")]
-    public class MerchantAccount : Document, IMerchantAccount, IModelElement
+    public partial class MerchantAccount : Document, IMerchantAccount, IModelElement
     {
         
         /// <summary>
@@ -55,30 +55,44 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.PaymentMetering
         /// </summary>
         private float _provisionalBalance;
         
+        private static Lazy<ITypedElement> _provisionalBalanceAttribute = new Lazy<ITypedElement>(RetrieveProvisionalBalanceAttribute);
+        
         /// <summary>
         /// The backing field for the CurrentBalance property
         /// </summary>
         private float _currentBalance;
+        
+        private static Lazy<ITypedElement> _currentBalanceAttribute = new Lazy<ITypedElement>(RetrieveCurrentBalanceAttribute);
+        
+        private static Lazy<ITypedElement> _bankStatementsReference = new Lazy<ITypedElement>(RetrieveBankStatementsReference);
         
         /// <summary>
         /// The backing field for the BankStatements property
         /// </summary>
         private MerchantAccountBankStatementsCollection _bankStatements;
         
+        private static Lazy<ITypedElement> _merchantAgreementReference = new Lazy<ITypedElement>(RetrieveMerchantAgreementReference);
+        
         /// <summary>
         /// The backing field for the MerchantAgreement property
         /// </summary>
         private IMerchantAgreement _merchantAgreement;
+        
+        private static Lazy<ITypedElement> _transactorsReference = new Lazy<ITypedElement>(RetrieveTransactorsReference);
         
         /// <summary>
         /// The backing field for the Transactors property
         /// </summary>
         private MerchantAccountTransactorsCollection _transactors;
         
+        private static Lazy<ITypedElement> _vendorsReference = new Lazy<ITypedElement>(RetrieveVendorsReference);
+        
         /// <summary>
         /// The backing field for the Vendors property
         /// </summary>
         private MerchantAccountVendorsCollection _vendors;
+        
+        private static Lazy<ITypedElement> _vendorShiftsReference = new Lazy<ITypedElement>(RetrieveVendorShiftsReference);
         
         /// <summary>
         /// The backing field for the VendorShifts property
@@ -121,10 +135,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.PaymentMetering
                     float old = this._provisionalBalance;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnProvisionalBalanceChanging(e);
-                    this.OnPropertyChanging("ProvisionalBalance", e);
+                    this.OnPropertyChanging("ProvisionalBalance", e, _provisionalBalanceAttribute);
                     this._provisionalBalance = value;
                     this.OnProvisionalBalanceChanged(e);
-                    this.OnPropertyChanged("ProvisionalBalance", e);
+                    this.OnPropertyChanged("ProvisionalBalance", e, _provisionalBalanceAttribute);
                 }
             }
         }
@@ -147,10 +161,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.PaymentMetering
                     float old = this._currentBalance;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnCurrentBalanceChanging(e);
-                    this.OnPropertyChanging("CurrentBalance", e);
+                    this.OnPropertyChanging("CurrentBalance", e, _currentBalanceAttribute);
                     this._currentBalance = value;
                     this.OnCurrentBalanceChanged(e);
-                    this.OnPropertyChanged("CurrentBalance", e);
+                    this.OnPropertyChanged("CurrentBalance", e, _currentBalanceAttribute);
                 }
             }
         }
@@ -188,7 +202,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.PaymentMetering
                     IMerchantAgreement old = this._merchantAgreement;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnMerchantAgreementChanging(e);
-                    this.OnPropertyChanging("MerchantAgreement", e);
+                    this.OnPropertyChanging("MerchantAgreement", e, _merchantAgreementReference);
                     this._merchantAgreement = value;
                     if ((old != null))
                     {
@@ -201,7 +215,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.PaymentMetering
                         value.Deleted += this.OnResetMerchantAgreement;
                     }
                     this.OnMerchantAgreementChanged(e);
-                    this.OnPropertyChanged("MerchantAgreement", e);
+                    this.OnPropertyChanged("MerchantAgreement", e, _merchantAgreementReference);
                 }
             }
         }
@@ -308,6 +322,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.PaymentMetering
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> MerchantAgreementChanged;
         
+        private static ITypedElement RetrieveProvisionalBalanceAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(MerchantAccount.ClassInstance)).Resolve("provisionalBalance")));
+        }
+        
         /// <summary>
         /// Raises the ProvisionalBalanceChanging event
         /// </summary>
@@ -332,6 +351,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.PaymentMetering
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveCurrentBalanceAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(MerchantAccount.ClassInstance)).Resolve("currentBalance")));
         }
         
         /// <summary>
@@ -360,6 +384,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.PaymentMetering
             }
         }
         
+        private static ITypedElement RetrieveBankStatementsReference()
+        {
+            return ((ITypedElement)(((ModelElement)(MerchantAccount.ClassInstance)).Resolve("BankStatements")));
+        }
+        
         /// <summary>
         /// Forwards CollectionChanging notifications for the BankStatements property to the parent model element
         /// </summary>
@@ -367,7 +396,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.PaymentMetering
         /// <param name="e">The original event data</param>
         private void BankStatementsCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("BankStatements", e);
+            this.OnCollectionChanging("BankStatements", e, _bankStatementsReference);
         }
         
         /// <summary>
@@ -377,7 +406,12 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.PaymentMetering
         /// <param name="e">The original event data</param>
         private void BankStatementsCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("BankStatements", e);
+            this.OnCollectionChanged("BankStatements", e, _bankStatementsReference);
+        }
+        
+        private static ITypedElement RetrieveMerchantAgreementReference()
+        {
+            return ((ITypedElement)(((ModelElement)(MerchantAccount.ClassInstance)).Resolve("MerchantAgreement")));
         }
         
         /// <summary>
@@ -416,6 +450,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.PaymentMetering
             this.MerchantAgreement = null;
         }
         
+        private static ITypedElement RetrieveTransactorsReference()
+        {
+            return ((ITypedElement)(((ModelElement)(MerchantAccount.ClassInstance)).Resolve("Transactors")));
+        }
+        
         /// <summary>
         /// Forwards CollectionChanging notifications for the Transactors property to the parent model element
         /// </summary>
@@ -423,7 +462,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.PaymentMetering
         /// <param name="e">The original event data</param>
         private void TransactorsCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("Transactors", e);
+            this.OnCollectionChanging("Transactors", e, _transactorsReference);
         }
         
         /// <summary>
@@ -433,7 +472,12 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.PaymentMetering
         /// <param name="e">The original event data</param>
         private void TransactorsCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("Transactors", e);
+            this.OnCollectionChanged("Transactors", e, _transactorsReference);
+        }
+        
+        private static ITypedElement RetrieveVendorsReference()
+        {
+            return ((ITypedElement)(((ModelElement)(MerchantAccount.ClassInstance)).Resolve("Vendors")));
         }
         
         /// <summary>
@@ -443,7 +487,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.PaymentMetering
         /// <param name="e">The original event data</param>
         private void VendorsCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("Vendors", e);
+            this.OnCollectionChanging("Vendors", e, _vendorsReference);
         }
         
         /// <summary>
@@ -453,7 +497,12 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.PaymentMetering
         /// <param name="e">The original event data</param>
         private void VendorsCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("Vendors", e);
+            this.OnCollectionChanged("Vendors", e, _vendorsReference);
+        }
+        
+        private static ITypedElement RetrieveVendorShiftsReference()
+        {
+            return ((ITypedElement)(((ModelElement)(MerchantAccount.ClassInstance)).Resolve("VendorShifts")));
         }
         
         /// <summary>
@@ -463,7 +512,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.PaymentMetering
         /// <param name="e">The original event data</param>
         private void VendorShiftsCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("VendorShifts", e);
+            this.OnCollectionChanging("VendorShifts", e, _vendorShiftsReference);
         }
         
         /// <summary>
@@ -473,7 +522,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.PaymentMetering
         /// <param name="e">The original event data</param>
         private void VendorShiftsCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("VendorShifts", e);
+            this.OnCollectionChanged("VendorShifts", e, _vendorShiftsReference);
         }
         
         /// <summary>
@@ -854,7 +903,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.PaymentMetering
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public ProvisionalBalanceProxy(IMerchantAccount modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "provisionalBalance")
             {
             }
             
@@ -872,24 +921,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.PaymentMetering
                     this.ModelElement.ProvisionalBalance = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ProvisionalBalanceChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ProvisionalBalanceChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -903,7 +934,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.PaymentMetering
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public CurrentBalanceProxy(IMerchantAccount modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "currentBalance")
             {
             }
             
@@ -921,24 +952,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.PaymentMetering
                     this.ModelElement.CurrentBalance = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.CurrentBalanceChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.CurrentBalanceChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -952,7 +965,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.PaymentMetering
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public MerchantAgreementProxy(IMerchantAccount modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "MerchantAgreement")
             {
             }
             
@@ -969,24 +982,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.PaymentMetering
                 {
                     this.ModelElement.MerchantAgreement = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.MerchantAgreementChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.MerchantAgreementChanged -= handler;
             }
         }
     }

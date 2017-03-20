@@ -56,7 +56,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfERPSupport
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61970/Informative/InfERPSupport/Erp" +
         "ChartOfAccounts")]
     [DebuggerDisplayAttribute("ErpChartOfAccounts {UUID}")]
-    public class ErpChartOfAccounts : Document, IErpChartOfAccounts, IModelElement
+    public partial class ErpChartOfAccounts : Document, IErpChartOfAccounts, IModelElement
     {
         
         private static IClass _classInstance;

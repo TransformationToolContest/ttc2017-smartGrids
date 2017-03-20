@@ -40,7 +40,7 @@ namespace TTC2017.SmartGrids.COSEM.InterfaceClasses
     [XmlNamespacePrefixAttribute("inter")]
     [ModelRepresentationClassAttribute("http://www.transformation-tool-contest.eu/2017/smartGrids/cosem#//InterfaceClasse" +
         "s/Utilitytables")]
-    public class Utilitytables : Base, IUtilitytables, IModelElement
+    public partial class Utilitytables : Base, IUtilitytables, IModelElement
     {
         
         private static IClass _classInstance;

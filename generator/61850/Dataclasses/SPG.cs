@@ -39,7 +39,7 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
     [XmlNamespacePrefixAttribute("data")]
     [ModelRepresentationClassAttribute("http://www.transformation-tool-contest.eu/2017/smartGrids/substationStandard#//Da" +
         "taclasses/SPG")]
-    public class SPG : ModelElement, ISPG, IModelElement
+    public partial class SPG : ModelElement, ISPG, IModelElement
     {
         
         /// <summary>
@@ -47,15 +47,21 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
         /// </summary>
         private Nullable<bool> _setVal;
         
+        private static Lazy<ITypedElement> _setValAttribute = new Lazy<ITypedElement>(RetrieveSetValAttribute);
+        
         /// <summary>
         /// The backing field for the _SetVal property
         /// </summary>
         private Nullable<bool> @__setVal;
         
+        private static Lazy<ITypedElement> @__setValAttribute = new Lazy<ITypedElement>(Retrieve_SetValAttribute);
+        
         /// <summary>
         /// The backing field for the __SetVal property
         /// </summary>
         private Nullable<bool> ___setVal;
+        
+        private static Lazy<ITypedElement> ___setValAttribute = new Lazy<ITypedElement>(Retrieve__SetValAttribute);
         
         private static IClass _classInstance;
         
@@ -77,10 +83,10 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
                     Nullable<bool> old = this._setVal;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnSetValChanging(e);
-                    this.OnPropertyChanging("SetVal", e);
+                    this.OnPropertyChanging("SetVal", e, _setValAttribute);
                     this._setVal = value;
                     this.OnSetValChanged(e);
-                    this.OnPropertyChanged("SetVal", e);
+                    this.OnPropertyChanged("SetVal", e, _setValAttribute);
                 }
             }
         }
@@ -103,10 +109,10 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
                     Nullable<bool> old = this.@__setVal;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.On_SetValChanging(e);
-                    this.OnPropertyChanging("_SetVal", e);
+                    this.OnPropertyChanging("_SetVal", e, @__setValAttribute);
                     this.@__setVal = value;
                     this.On_SetValChanged(e);
-                    this.OnPropertyChanged("_SetVal", e);
+                    this.OnPropertyChanged("_SetVal", e, @__setValAttribute);
                 }
             }
         }
@@ -129,10 +135,10 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
                     Nullable<bool> old = this.___setVal;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.On__SetValChanging(e);
-                    this.OnPropertyChanging("__SetVal", e);
+                    this.OnPropertyChanging("__SetVal", e, ___setValAttribute);
                     this.___setVal = value;
                     this.On__SetValChanged(e);
-                    this.OnPropertyChanged("__SetVal", e);
+                    this.OnPropertyChanged("__SetVal", e, ___setValAttribute);
                 }
             }
         }
@@ -183,6 +189,11 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> @__SetValChanged;
         
+        private static ITypedElement RetrieveSetValAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(SPG.ClassInstance)).Resolve("setVal")));
+        }
+        
         /// <summary>
         /// Raises the SetValChanging event
         /// </summary>
@@ -209,6 +220,11 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
             }
         }
         
+        private static ITypedElement Retrieve_SetValAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(SPG.ClassInstance)).Resolve("_setVal")));
+        }
+        
         /// <summary>
         /// Raises the _SetValChanging event
         /// </summary>
@@ -233,6 +249,11 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement Retrieve__SetValAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(SPG.ClassInstance)).Resolve("__setVal")));
         }
         
         /// <summary>
@@ -333,7 +354,7 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public SetValProxy(ISPG modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "setVal")
             {
             }
             
@@ -351,24 +372,6 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
                     this.ModelElement.SetVal = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.SetValChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.SetValChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -382,7 +385,7 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public _SetValProxy(ISPG modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "_setVal")
             {
             }
             
@@ -400,24 +403,6 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
                     this.ModelElement._SetVal = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement._SetValChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement._SetValChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -431,7 +416,7 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public @__SetValProxy(ISPG modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "__setVal")
             {
             }
             
@@ -448,24 +433,6 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
                 {
                     this.ModelElement.@__SetVal = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.@__SetValChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.@__SetValChanged -= handler;
             }
         }
     }

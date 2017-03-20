@@ -51,7 +51,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Meas
     [XmlNamespacePrefixAttribute("cimMeas")]
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61970/Meas/Quality61850")]
     [DebuggerDisplayAttribute("Quality61850 {UUID}")]
-    public class Quality61850 : Element, IQuality61850, IModelElement
+    public partial class Quality61850 : Element, IQuality61850, IModelElement
     {
         
         /// <summary>
@@ -59,60 +59,84 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Meas
         /// </summary>
         private bool _suspect;
         
+        private static Lazy<ITypedElement> _suspectAttribute = new Lazy<ITypedElement>(RetrieveSuspectAttribute);
+        
         /// <summary>
         /// The backing field for the EstimatorReplaced property
         /// </summary>
         private bool _estimatorReplaced;
+        
+        private static Lazy<ITypedElement> _estimatorReplacedAttribute = new Lazy<ITypedElement>(RetrieveEstimatorReplacedAttribute);
         
         /// <summary>
         /// The backing field for the Validity property
         /// </summary>
         private Nullable<Validity> _validity;
         
+        private static Lazy<ITypedElement> _validityAttribute = new Lazy<ITypedElement>(RetrieveValidityAttribute);
+        
         /// <summary>
         /// The backing field for the BadReference property
         /// </summary>
         private bool _badReference;
+        
+        private static Lazy<ITypedElement> _badReferenceAttribute = new Lazy<ITypedElement>(RetrieveBadReferenceAttribute);
         
         /// <summary>
         /// The backing field for the OldData property
         /// </summary>
         private bool _oldData;
         
+        private static Lazy<ITypedElement> _oldDataAttribute = new Lazy<ITypedElement>(RetrieveOldDataAttribute);
+        
         /// <summary>
         /// The backing field for the Failure property
         /// </summary>
         private bool _failure;
+        
+        private static Lazy<ITypedElement> _failureAttribute = new Lazy<ITypedElement>(RetrieveFailureAttribute);
         
         /// <summary>
         /// The backing field for the OverFlow property
         /// </summary>
         private bool _overFlow;
         
+        private static Lazy<ITypedElement> _overFlowAttribute = new Lazy<ITypedElement>(RetrieveOverFlowAttribute);
+        
         /// <summary>
         /// The backing field for the Source property
         /// </summary>
         private Nullable<Source> _source;
+        
+        private static Lazy<ITypedElement> _sourceAttribute = new Lazy<ITypedElement>(RetrieveSourceAttribute);
         
         /// <summary>
         /// The backing field for the OperatorBlocked property
         /// </summary>
         private bool _operatorBlocked;
         
+        private static Lazy<ITypedElement> _operatorBlockedAttribute = new Lazy<ITypedElement>(RetrieveOperatorBlockedAttribute);
+        
         /// <summary>
         /// The backing field for the Test property
         /// </summary>
         private bool _test;
+        
+        private static Lazy<ITypedElement> _testAttribute = new Lazy<ITypedElement>(RetrieveTestAttribute);
         
         /// <summary>
         /// The backing field for the Oscillatory property
         /// </summary>
         private bool _oscillatory;
         
+        private static Lazy<ITypedElement> _oscillatoryAttribute = new Lazy<ITypedElement>(RetrieveOscillatoryAttribute);
+        
         /// <summary>
         /// The backing field for the OutOfRange property
         /// </summary>
         private bool _outOfRange;
+        
+        private static Lazy<ITypedElement> _outOfRangeAttribute = new Lazy<ITypedElement>(RetrieveOutOfRangeAttribute);
         
         private static IClass _classInstance;
         
@@ -134,10 +158,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Meas
                     bool old = this._suspect;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnSuspectChanging(e);
-                    this.OnPropertyChanging("Suspect", e);
+                    this.OnPropertyChanging("Suspect", e, _suspectAttribute);
                     this._suspect = value;
                     this.OnSuspectChanged(e);
-                    this.OnPropertyChanged("Suspect", e);
+                    this.OnPropertyChanged("Suspect", e, _suspectAttribute);
                 }
             }
         }
@@ -160,10 +184,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Meas
                     bool old = this._estimatorReplaced;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnEstimatorReplacedChanging(e);
-                    this.OnPropertyChanging("EstimatorReplaced", e);
+                    this.OnPropertyChanging("EstimatorReplaced", e, _estimatorReplacedAttribute);
                     this._estimatorReplaced = value;
                     this.OnEstimatorReplacedChanged(e);
-                    this.OnPropertyChanged("EstimatorReplaced", e);
+                    this.OnPropertyChanged("EstimatorReplaced", e, _estimatorReplacedAttribute);
                 }
             }
         }
@@ -186,10 +210,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Meas
                     Nullable<Validity> old = this._validity;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnValidityChanging(e);
-                    this.OnPropertyChanging("Validity", e);
+                    this.OnPropertyChanging("Validity", e, _validityAttribute);
                     this._validity = value;
                     this.OnValidityChanged(e);
-                    this.OnPropertyChanged("Validity", e);
+                    this.OnPropertyChanged("Validity", e, _validityAttribute);
                 }
             }
         }
@@ -212,10 +236,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Meas
                     bool old = this._badReference;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnBadReferenceChanging(e);
-                    this.OnPropertyChanging("BadReference", e);
+                    this.OnPropertyChanging("BadReference", e, _badReferenceAttribute);
                     this._badReference = value;
                     this.OnBadReferenceChanged(e);
-                    this.OnPropertyChanged("BadReference", e);
+                    this.OnPropertyChanged("BadReference", e, _badReferenceAttribute);
                 }
             }
         }
@@ -238,10 +262,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Meas
                     bool old = this._oldData;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnOldDataChanging(e);
-                    this.OnPropertyChanging("OldData", e);
+                    this.OnPropertyChanging("OldData", e, _oldDataAttribute);
                     this._oldData = value;
                     this.OnOldDataChanged(e);
-                    this.OnPropertyChanged("OldData", e);
+                    this.OnPropertyChanged("OldData", e, _oldDataAttribute);
                 }
             }
         }
@@ -264,10 +288,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Meas
                     bool old = this._failure;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnFailureChanging(e);
-                    this.OnPropertyChanging("Failure", e);
+                    this.OnPropertyChanging("Failure", e, _failureAttribute);
                     this._failure = value;
                     this.OnFailureChanged(e);
-                    this.OnPropertyChanged("Failure", e);
+                    this.OnPropertyChanged("Failure", e, _failureAttribute);
                 }
             }
         }
@@ -290,10 +314,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Meas
                     bool old = this._overFlow;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnOverFlowChanging(e);
-                    this.OnPropertyChanging("OverFlow", e);
+                    this.OnPropertyChanging("OverFlow", e, _overFlowAttribute);
                     this._overFlow = value;
                     this.OnOverFlowChanged(e);
-                    this.OnPropertyChanged("OverFlow", e);
+                    this.OnPropertyChanged("OverFlow", e, _overFlowAttribute);
                 }
             }
         }
@@ -316,10 +340,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Meas
                     Nullable<Source> old = this._source;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnSourceChanging(e);
-                    this.OnPropertyChanging("Source", e);
+                    this.OnPropertyChanging("Source", e, _sourceAttribute);
                     this._source = value;
                     this.OnSourceChanged(e);
-                    this.OnPropertyChanged("Source", e);
+                    this.OnPropertyChanged("Source", e, _sourceAttribute);
                 }
             }
         }
@@ -342,10 +366,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Meas
                     bool old = this._operatorBlocked;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnOperatorBlockedChanging(e);
-                    this.OnPropertyChanging("OperatorBlocked", e);
+                    this.OnPropertyChanging("OperatorBlocked", e, _operatorBlockedAttribute);
                     this._operatorBlocked = value;
                     this.OnOperatorBlockedChanged(e);
-                    this.OnPropertyChanged("OperatorBlocked", e);
+                    this.OnPropertyChanged("OperatorBlocked", e, _operatorBlockedAttribute);
                 }
             }
         }
@@ -368,10 +392,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Meas
                     bool old = this._test;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnTestChanging(e);
-                    this.OnPropertyChanging("Test", e);
+                    this.OnPropertyChanging("Test", e, _testAttribute);
                     this._test = value;
                     this.OnTestChanged(e);
-                    this.OnPropertyChanged("Test", e);
+                    this.OnPropertyChanged("Test", e, _testAttribute);
                 }
             }
         }
@@ -394,10 +418,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Meas
                     bool old = this._oscillatory;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnOscillatoryChanging(e);
-                    this.OnPropertyChanging("Oscillatory", e);
+                    this.OnPropertyChanging("Oscillatory", e, _oscillatoryAttribute);
                     this._oscillatory = value;
                     this.OnOscillatoryChanged(e);
-                    this.OnPropertyChanged("Oscillatory", e);
+                    this.OnPropertyChanged("Oscillatory", e, _oscillatoryAttribute);
                 }
             }
         }
@@ -420,10 +444,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Meas
                     bool old = this._outOfRange;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnOutOfRangeChanging(e);
-                    this.OnPropertyChanging("OutOfRange", e);
+                    this.OnPropertyChanging("OutOfRange", e, _outOfRangeAttribute);
                     this._outOfRange = value;
                     this.OnOutOfRangeChanged(e);
-                    this.OnPropertyChanged("OutOfRange", e);
+                    this.OnPropertyChanged("OutOfRange", e, _outOfRangeAttribute);
                 }
             }
         }
@@ -563,6 +587,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Meas
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> OutOfRangeChanged;
         
+        private static ITypedElement RetrieveSuspectAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(Quality61850.ClassInstance)).Resolve("suspect")));
+        }
+        
         /// <summary>
         /// Raises the SuspectChanging event
         /// </summary>
@@ -587,6 +616,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Meas
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveEstimatorReplacedAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(Quality61850.ClassInstance)).Resolve("estimatorReplaced")));
         }
         
         /// <summary>
@@ -615,6 +649,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Meas
             }
         }
         
+        private static ITypedElement RetrieveValidityAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(Quality61850.ClassInstance)).Resolve("validity")));
+        }
+        
         /// <summary>
         /// Raises the ValidityChanging event
         /// </summary>
@@ -639,6 +678,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Meas
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveBadReferenceAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(Quality61850.ClassInstance)).Resolve("badReference")));
         }
         
         /// <summary>
@@ -667,6 +711,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Meas
             }
         }
         
+        private static ITypedElement RetrieveOldDataAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(Quality61850.ClassInstance)).Resolve("oldData")));
+        }
+        
         /// <summary>
         /// Raises the OldDataChanging event
         /// </summary>
@@ -691,6 +740,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Meas
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveFailureAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(Quality61850.ClassInstance)).Resolve("failure")));
         }
         
         /// <summary>
@@ -719,6 +773,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Meas
             }
         }
         
+        private static ITypedElement RetrieveOverFlowAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(Quality61850.ClassInstance)).Resolve("overFlow")));
+        }
+        
         /// <summary>
         /// Raises the OverFlowChanging event
         /// </summary>
@@ -743,6 +802,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Meas
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveSourceAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(Quality61850.ClassInstance)).Resolve("source")));
         }
         
         /// <summary>
@@ -771,6 +835,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Meas
             }
         }
         
+        private static ITypedElement RetrieveOperatorBlockedAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(Quality61850.ClassInstance)).Resolve("operatorBlocked")));
+        }
+        
         /// <summary>
         /// Raises the OperatorBlockedChanging event
         /// </summary>
@@ -795,6 +864,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Meas
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveTestAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(Quality61850.ClassInstance)).Resolve("test")));
         }
         
         /// <summary>
@@ -823,6 +897,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Meas
             }
         }
         
+        private static ITypedElement RetrieveOscillatoryAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(Quality61850.ClassInstance)).Resolve("oscillatory")));
+        }
+        
         /// <summary>
         /// Raises the OscillatoryChanging event
         /// </summary>
@@ -847,6 +926,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Meas
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveOutOfRangeAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(Quality61850.ClassInstance)).Resolve("outOfRange")));
         }
         
         /// <summary>
@@ -1027,7 +1111,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Meas
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public SuspectProxy(IQuality61850 modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "suspect")
             {
             }
             
@@ -1045,24 +1129,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Meas
                     this.ModelElement.Suspect = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.SuspectChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.SuspectChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1076,7 +1142,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Meas
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public EstimatorReplacedProxy(IQuality61850 modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "estimatorReplaced")
             {
             }
             
@@ -1094,24 +1160,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Meas
                     this.ModelElement.EstimatorReplaced = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.EstimatorReplacedChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.EstimatorReplacedChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1125,7 +1173,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Meas
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public ValidityProxy(IQuality61850 modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "validity")
             {
             }
             
@@ -1143,24 +1191,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Meas
                     this.ModelElement.Validity = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ValidityChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ValidityChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1174,7 +1204,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Meas
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public BadReferenceProxy(IQuality61850 modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "badReference")
             {
             }
             
@@ -1192,24 +1222,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Meas
                     this.ModelElement.BadReference = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.BadReferenceChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.BadReferenceChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1223,7 +1235,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Meas
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public OldDataProxy(IQuality61850 modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "oldData")
             {
             }
             
@@ -1241,24 +1253,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Meas
                     this.ModelElement.OldData = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.OldDataChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.OldDataChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1272,7 +1266,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Meas
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public FailureProxy(IQuality61850 modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "failure")
             {
             }
             
@@ -1290,24 +1284,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Meas
                     this.ModelElement.Failure = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.FailureChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.FailureChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1321,7 +1297,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Meas
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public OverFlowProxy(IQuality61850 modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "overFlow")
             {
             }
             
@@ -1339,24 +1315,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Meas
                     this.ModelElement.OverFlow = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.OverFlowChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.OverFlowChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1370,7 +1328,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Meas
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public SourceProxy(IQuality61850 modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "source")
             {
             }
             
@@ -1388,24 +1346,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Meas
                     this.ModelElement.Source = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.SourceChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.SourceChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1419,7 +1359,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Meas
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public OperatorBlockedProxy(IQuality61850 modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "operatorBlocked")
             {
             }
             
@@ -1437,24 +1377,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Meas
                     this.ModelElement.OperatorBlocked = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.OperatorBlockedChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.OperatorBlockedChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1468,7 +1390,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Meas
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public TestProxy(IQuality61850 modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "test")
             {
             }
             
@@ -1486,24 +1408,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Meas
                     this.ModelElement.Test = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.TestChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.TestChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1517,7 +1421,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Meas
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public OscillatoryProxy(IQuality61850 modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "oscillatory")
             {
             }
             
@@ -1535,24 +1439,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Meas
                     this.ModelElement.Oscillatory = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.OscillatoryChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.OscillatoryChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1566,7 +1452,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Meas
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public OutOfRangeProxy(IQuality61850 modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "outOfRange")
             {
             }
             
@@ -1583,24 +1469,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Meas
                 {
                     this.ModelElement.OutOfRange = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.OutOfRangeChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.OutOfRangeChanged -= handler;
             }
         }
     }

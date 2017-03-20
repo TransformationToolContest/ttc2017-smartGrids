@@ -45,7 +45,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfGMLSupport
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61970/Informative/InfGMLSupport/Gml" +
         "Graphic")]
     [DebuggerDisplayAttribute("GmlGraphic {UUID}")]
-    public class GmlGraphic : IdentifiedObject, IGmlGraphic, IModelElement
+    public partial class GmlGraphic : IdentifiedObject, IGmlGraphic, IModelElement
     {
         
         /// <summary>
@@ -53,40 +53,58 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfGMLSupport
         /// </summary>
         private float _opacity;
         
+        private static Lazy<ITypedElement> _opacityAttribute = new Lazy<ITypedElement>(RetrieveOpacityAttribute);
+        
         /// <summary>
         /// The backing field for the MinSize property
         /// </summary>
         private int _minSize;
+        
+        private static Lazy<ITypedElement> _minSizeAttribute = new Lazy<ITypedElement>(RetrieveMinSizeAttribute);
         
         /// <summary>
         /// The backing field for the SymbolID property
         /// </summary>
         private string _symbolID;
         
+        private static Lazy<ITypedElement> _symbolIDAttribute = new Lazy<ITypedElement>(RetrieveSymbolIDAttribute);
+        
         /// <summary>
         /// The backing field for the XScale property
         /// </summary>
         private float _xScale;
+        
+        private static Lazy<ITypedElement> _xScaleAttribute = new Lazy<ITypedElement>(RetrieveXScaleAttribute);
         
         /// <summary>
         /// The backing field for the Size property
         /// </summary>
         private int _size;
         
+        private static Lazy<ITypedElement> _sizeAttribute = new Lazy<ITypedElement>(RetrieveSizeAttribute);
+        
         /// <summary>
         /// The backing field for the YScale property
         /// </summary>
         private float _yScale;
+        
+        private static Lazy<ITypedElement> _yScaleAttribute = new Lazy<ITypedElement>(RetrieveYScaleAttribute);
         
         /// <summary>
         /// The backing field for the Rotation property
         /// </summary>
         private float _rotation;
         
+        private static Lazy<ITypedElement> _rotationAttribute = new Lazy<ITypedElement>(RetrieveRotationAttribute);
+        
+        private static Lazy<ITypedElement> _gmlMarksReference = new Lazy<ITypedElement>(RetrieveGmlMarksReference);
+        
         /// <summary>
         /// The backing field for the GmlMarks property
         /// </summary>
         private GmlGraphicGmlMarksCollection _gmlMarks;
+        
+        private static Lazy<ITypedElement> _gmlPointSymbolsReference = new Lazy<ITypedElement>(RetrieveGmlPointSymbolsReference);
         
         /// <summary>
         /// The backing field for the GmlPointSymbols property
@@ -123,10 +141,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfGMLSupport
                     float old = this._opacity;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnOpacityChanging(e);
-                    this.OnPropertyChanging("Opacity", e);
+                    this.OnPropertyChanging("Opacity", e, _opacityAttribute);
                     this._opacity = value;
                     this.OnOpacityChanged(e);
-                    this.OnPropertyChanged("Opacity", e);
+                    this.OnPropertyChanged("Opacity", e, _opacityAttribute);
                 }
             }
         }
@@ -149,10 +167,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfGMLSupport
                     int old = this._minSize;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnMinSizeChanging(e);
-                    this.OnPropertyChanging("MinSize", e);
+                    this.OnPropertyChanging("MinSize", e, _minSizeAttribute);
                     this._minSize = value;
                     this.OnMinSizeChanged(e);
-                    this.OnPropertyChanged("MinSize", e);
+                    this.OnPropertyChanged("MinSize", e, _minSizeAttribute);
                 }
             }
         }
@@ -175,10 +193,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfGMLSupport
                     string old = this._symbolID;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnSymbolIDChanging(e);
-                    this.OnPropertyChanging("SymbolID", e);
+                    this.OnPropertyChanging("SymbolID", e, _symbolIDAttribute);
                     this._symbolID = value;
                     this.OnSymbolIDChanged(e);
-                    this.OnPropertyChanged("SymbolID", e);
+                    this.OnPropertyChanged("SymbolID", e, _symbolIDAttribute);
                 }
             }
         }
@@ -201,10 +219,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfGMLSupport
                     float old = this._xScale;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnXScaleChanging(e);
-                    this.OnPropertyChanging("XScale", e);
+                    this.OnPropertyChanging("XScale", e, _xScaleAttribute);
                     this._xScale = value;
                     this.OnXScaleChanged(e);
-                    this.OnPropertyChanged("XScale", e);
+                    this.OnPropertyChanged("XScale", e, _xScaleAttribute);
                 }
             }
         }
@@ -227,10 +245,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfGMLSupport
                     int old = this._size;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnSizeChanging(e);
-                    this.OnPropertyChanging("Size", e);
+                    this.OnPropertyChanging("Size", e, _sizeAttribute);
                     this._size = value;
                     this.OnSizeChanged(e);
-                    this.OnPropertyChanged("Size", e);
+                    this.OnPropertyChanged("Size", e, _sizeAttribute);
                 }
             }
         }
@@ -253,10 +271,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfGMLSupport
                     float old = this._yScale;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnYScaleChanging(e);
-                    this.OnPropertyChanging("YScale", e);
+                    this.OnPropertyChanging("YScale", e, _yScaleAttribute);
                     this._yScale = value;
                     this.OnYScaleChanged(e);
-                    this.OnPropertyChanged("YScale", e);
+                    this.OnPropertyChanged("YScale", e, _yScaleAttribute);
                 }
             }
         }
@@ -279,10 +297,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfGMLSupport
                     float old = this._rotation;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnRotationChanging(e);
-                    this.OnPropertyChanging("Rotation", e);
+                    this.OnPropertyChanging("Rotation", e, _rotationAttribute);
                     this._rotation = value;
                     this.OnRotationChanged(e);
-                    this.OnPropertyChanged("Rotation", e);
+                    this.OnPropertyChanged("Rotation", e, _rotationAttribute);
                 }
             }
         }
@@ -414,6 +432,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfGMLSupport
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> RotationChanged;
         
+        private static ITypedElement RetrieveOpacityAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(GmlGraphic.ClassInstance)).Resolve("opacity")));
+        }
+        
         /// <summary>
         /// Raises the OpacityChanging event
         /// </summary>
@@ -438,6 +461,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfGMLSupport
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveMinSizeAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(GmlGraphic.ClassInstance)).Resolve("minSize")));
         }
         
         /// <summary>
@@ -466,6 +494,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfGMLSupport
             }
         }
         
+        private static ITypedElement RetrieveSymbolIDAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(GmlGraphic.ClassInstance)).Resolve("symbolID")));
+        }
+        
         /// <summary>
         /// Raises the SymbolIDChanging event
         /// </summary>
@@ -490,6 +523,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfGMLSupport
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveXScaleAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(GmlGraphic.ClassInstance)).Resolve("xScale")));
         }
         
         /// <summary>
@@ -518,6 +556,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfGMLSupport
             }
         }
         
+        private static ITypedElement RetrieveSizeAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(GmlGraphic.ClassInstance)).Resolve("size")));
+        }
+        
         /// <summary>
         /// Raises the SizeChanging event
         /// </summary>
@@ -542,6 +585,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfGMLSupport
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveYScaleAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(GmlGraphic.ClassInstance)).Resolve("yScale")));
         }
         
         /// <summary>
@@ -570,6 +618,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfGMLSupport
             }
         }
         
+        private static ITypedElement RetrieveRotationAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(GmlGraphic.ClassInstance)).Resolve("rotation")));
+        }
+        
         /// <summary>
         /// Raises the RotationChanging event
         /// </summary>
@@ -596,6 +649,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfGMLSupport
             }
         }
         
+        private static ITypedElement RetrieveGmlMarksReference()
+        {
+            return ((ITypedElement)(((ModelElement)(GmlGraphic.ClassInstance)).Resolve("GmlMarks")));
+        }
+        
         /// <summary>
         /// Forwards CollectionChanging notifications for the GmlMarks property to the parent model element
         /// </summary>
@@ -603,7 +661,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfGMLSupport
         /// <param name="e">The original event data</param>
         private void GmlMarksCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("GmlMarks", e);
+            this.OnCollectionChanging("GmlMarks", e, _gmlMarksReference);
         }
         
         /// <summary>
@@ -613,7 +671,12 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfGMLSupport
         /// <param name="e">The original event data</param>
         private void GmlMarksCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("GmlMarks", e);
+            this.OnCollectionChanged("GmlMarks", e, _gmlMarksReference);
+        }
+        
+        private static ITypedElement RetrieveGmlPointSymbolsReference()
+        {
+            return ((ITypedElement)(((ModelElement)(GmlGraphic.ClassInstance)).Resolve("GmlPointSymbols")));
         }
         
         /// <summary>
@@ -623,7 +686,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfGMLSupport
         /// <param name="e">The original event data</param>
         private void GmlPointSymbolsCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("GmlPointSymbols", e);
+            this.OnCollectionChanging("GmlPointSymbols", e, _gmlPointSymbolsReference);
         }
         
         /// <summary>
@@ -633,7 +696,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfGMLSupport
         /// <param name="e">The original event data</param>
         private void GmlPointSymbolsCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("GmlPointSymbols", e);
+            this.OnCollectionChanged("GmlPointSymbols", e, _gmlPointSymbolsReference);
         }
         
         /// <summary>
@@ -920,7 +983,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfGMLSupport
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public OpacityProxy(IGmlGraphic modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "opacity")
             {
             }
             
@@ -938,24 +1001,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfGMLSupport
                     this.ModelElement.Opacity = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.OpacityChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.OpacityChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -969,7 +1014,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfGMLSupport
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public MinSizeProxy(IGmlGraphic modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "minSize")
             {
             }
             
@@ -987,24 +1032,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfGMLSupport
                     this.ModelElement.MinSize = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.MinSizeChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.MinSizeChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1018,7 +1045,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfGMLSupport
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public SymbolIDProxy(IGmlGraphic modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "symbolID")
             {
             }
             
@@ -1036,24 +1063,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfGMLSupport
                     this.ModelElement.SymbolID = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.SymbolIDChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.SymbolIDChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1067,7 +1076,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfGMLSupport
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public XScaleProxy(IGmlGraphic modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "xScale")
             {
             }
             
@@ -1085,24 +1094,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfGMLSupport
                     this.ModelElement.XScale = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.XScaleChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.XScaleChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1116,7 +1107,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfGMLSupport
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public SizeProxy(IGmlGraphic modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "size")
             {
             }
             
@@ -1134,24 +1125,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfGMLSupport
                     this.ModelElement.Size = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.SizeChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.SizeChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1165,7 +1138,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfGMLSupport
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public YScaleProxy(IGmlGraphic modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "yScale")
             {
             }
             
@@ -1183,24 +1156,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfGMLSupport
                     this.ModelElement.YScale = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.YScaleChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.YScaleChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1214,7 +1169,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfGMLSupport
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public RotationProxy(IGmlGraphic modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "rotation")
             {
             }
             
@@ -1231,24 +1186,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfGMLSupport
                 {
                     this.ModelElement.Rotation = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.RotationChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.RotationChanged -= handler;
             }
         }
     }

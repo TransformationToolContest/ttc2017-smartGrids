@@ -39,23 +39,31 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
     [XmlNamespacePrefixAttribute("data")]
     [ModelRepresentationClassAttribute("http://www.transformation-tool-contest.eu/2017/smartGrids/substationStandard#//Da" +
         "taclasses/DEL")]
-    public class DEL : ModelElement, IDEL, IModelElement
+    public partial class DEL : ModelElement, IDEL, IModelElement
     {
+        
+        private static Lazy<ITypedElement> _phsABReference = new Lazy<ITypedElement>(RetrievePhsABReference);
         
         /// <summary>
         /// The backing field for the PhsAB property
         /// </summary>
         private ICMV _phsAB;
         
+        private static Lazy<ITypedElement> _phsBCReference = new Lazy<ITypedElement>(RetrievePhsBCReference);
+        
         /// <summary>
         /// The backing field for the PhsBC property
         /// </summary>
         private ICMV _phsBC;
         
+        private static Lazy<ITypedElement> _phsCAReference = new Lazy<ITypedElement>(RetrievePhsCAReference);
+        
         /// <summary>
         /// The backing field for the PhsCA property
         /// </summary>
         private ICMV _phsCA;
+        
+        private static Lazy<ITypedElement> _angRefReference = new Lazy<ITypedElement>(RetrieveAngRefReference);
         
         /// <summary>
         /// The backing field for the AngRef property
@@ -82,7 +90,7 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
                     ICMV old = this._phsAB;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnPhsABChanging(e);
-                    this.OnPropertyChanging("PhsAB", e);
+                    this.OnPropertyChanging("PhsAB", e, _phsABReference);
                     this._phsAB = value;
                     if ((old != null))
                     {
@@ -93,7 +101,7 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
                         value.Deleted += this.OnResetPhsAB;
                     }
                     this.OnPhsABChanged(e);
-                    this.OnPropertyChanged("PhsAB", e);
+                    this.OnPropertyChanged("PhsAB", e, _phsABReference);
                 }
             }
         }
@@ -116,7 +124,7 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
                     ICMV old = this._phsBC;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnPhsBCChanging(e);
-                    this.OnPropertyChanging("PhsBC", e);
+                    this.OnPropertyChanging("PhsBC", e, _phsBCReference);
                     this._phsBC = value;
                     if ((old != null))
                     {
@@ -127,7 +135,7 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
                         value.Deleted += this.OnResetPhsBC;
                     }
                     this.OnPhsBCChanged(e);
-                    this.OnPropertyChanged("PhsBC", e);
+                    this.OnPropertyChanged("PhsBC", e, _phsBCReference);
                 }
             }
         }
@@ -150,7 +158,7 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
                     ICMV old = this._phsCA;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnPhsCAChanging(e);
-                    this.OnPropertyChanging("PhsCA", e);
+                    this.OnPropertyChanging("PhsCA", e, _phsCAReference);
                     this._phsCA = value;
                     if ((old != null))
                     {
@@ -161,7 +169,7 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
                         value.Deleted += this.OnResetPhsCA;
                     }
                     this.OnPhsCAChanged(e);
-                    this.OnPropertyChanged("PhsCA", e);
+                    this.OnPropertyChanged("PhsCA", e, _phsCAReference);
                 }
             }
         }
@@ -184,7 +192,7 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
                     IAngleReference old = this._angRef;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnAngRefChanging(e);
-                    this.OnPropertyChanging("AngRef", e);
+                    this.OnPropertyChanging("AngRef", e, _angRefReference);
                     this._angRef = value;
                     if ((old != null))
                     {
@@ -195,7 +203,7 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
                         value.Deleted += this.OnResetAngRef;
                     }
                     this.OnAngRefChanged(e);
-                    this.OnPropertyChanged("AngRef", e);
+                    this.OnPropertyChanged("AngRef", e, _angRefReference);
                 }
             }
         }
@@ -267,6 +275,11 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> AngRefChanged;
         
+        private static ITypedElement RetrievePhsABReference()
+        {
+            return ((ITypedElement)(((ModelElement)(DEL.ClassInstance)).Resolve("phsAB")));
+        }
+        
         /// <summary>
         /// Raises the PhsABChanging event
         /// </summary>
@@ -301,6 +314,11 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
         private void OnResetPhsAB(object sender, System.EventArgs eventArgs)
         {
             this.PhsAB = null;
+        }
+        
+        private static ITypedElement RetrievePhsBCReference()
+        {
+            return ((ITypedElement)(((ModelElement)(DEL.ClassInstance)).Resolve("phsBC")));
         }
         
         /// <summary>
@@ -339,6 +357,11 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
             this.PhsBC = null;
         }
         
+        private static ITypedElement RetrievePhsCAReference()
+        {
+            return ((ITypedElement)(((ModelElement)(DEL.ClassInstance)).Resolve("phsCA")));
+        }
+        
         /// <summary>
         /// Raises the PhsCAChanging event
         /// </summary>
@@ -373,6 +396,11 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
         private void OnResetPhsCA(object sender, System.EventArgs eventArgs)
         {
             this.PhsCA = null;
+        }
+        
+        private static ITypedElement RetrieveAngRefReference()
+        {
+            return ((ITypedElement)(((ModelElement)(DEL.ClassInstance)).Resolve("angRef")));
         }
         
         /// <summary>
@@ -727,7 +755,7 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public PhsABProxy(IDEL modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "phsAB")
             {
             }
             
@@ -745,24 +773,6 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
                     this.ModelElement.PhsAB = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.PhsABChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.PhsABChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -776,7 +786,7 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public PhsBCProxy(IDEL modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "phsBC")
             {
             }
             
@@ -794,24 +804,6 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
                     this.ModelElement.PhsBC = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.PhsBCChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.PhsBCChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -825,7 +817,7 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public PhsCAProxy(IDEL modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "phsCA")
             {
             }
             
@@ -843,24 +835,6 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
                     this.ModelElement.PhsCA = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.PhsCAChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.PhsCAChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -874,7 +848,7 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public AngRefProxy(IDEL modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "angRef")
             {
             }
             
@@ -891,24 +865,6 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
                 {
                     this.ModelElement.AngRef = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.AngRefChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.AngRefChanged -= handler;
             }
         }
     }

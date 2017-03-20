@@ -39,7 +39,7 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
     [XmlNamespacePrefixAttribute("objects")]
     [ModelRepresentationClassAttribute("http://www.transformation-tool-contest.eu/2017/smartGrids/cosem#//COSEMObjects/Po" +
         "werQualityMeasurementManagement")]
-    public class PowerQualityMeasurementManagement : Scripttable, IPowerQualityMeasurementManagement, IModelElement
+    public partial class PowerQualityMeasurementManagement : Scripttable, IPowerQualityMeasurementManagement, IModelElement
     {
         
         private static IClass _classInstance;

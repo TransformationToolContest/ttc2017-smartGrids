@@ -56,7 +56,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfERPSupport
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61970/Informative/InfERPSupport/Org" +
         "ErpPersonRole")]
     [DebuggerDisplayAttribute("OrgErpPersonRole {UUID}")]
-    public class OrgErpPersonRole : Role, IOrgErpPersonRole, IModelElement
+    public partial class OrgErpPersonRole : Role, IOrgErpPersonRole, IModelElement
     {
         
         /// <summary>
@@ -64,10 +64,16 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfERPSupport
         /// </summary>
         private string _clientID;
         
+        private static Lazy<ITypedElement> _clientIDAttribute = new Lazy<ITypedElement>(RetrieveClientIDAttribute);
+        
+        private static Lazy<ITypedElement> _erpOrganisationReference = new Lazy<ITypedElement>(RetrieveErpOrganisationReference);
+        
         /// <summary>
         /// The backing field for the ErpOrganisation property
         /// </summary>
         private IErpOrganisation _erpOrganisation;
+        
+        private static Lazy<ITypedElement> _erpPersonReference = new Lazy<ITypedElement>(RetrieveErpPersonReference);
         
         /// <summary>
         /// The backing field for the ErpPerson property
@@ -94,10 +100,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfERPSupport
                     string old = this._clientID;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnClientIDChanging(e);
-                    this.OnPropertyChanging("ClientID", e);
+                    this.OnPropertyChanging("ClientID", e, _clientIDAttribute);
                     this._clientID = value;
                     this.OnClientIDChanged(e);
-                    this.OnPropertyChanged("ClientID", e);
+                    this.OnPropertyChanged("ClientID", e, _clientIDAttribute);
                 }
             }
         }
@@ -120,7 +126,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfERPSupport
                     IErpOrganisation old = this._erpOrganisation;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnErpOrganisationChanging(e);
-                    this.OnPropertyChanging("ErpOrganisation", e);
+                    this.OnPropertyChanging("ErpOrganisation", e, _erpOrganisationReference);
                     this._erpOrganisation = value;
                     if ((old != null))
                     {
@@ -133,7 +139,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfERPSupport
                         value.Deleted += this.OnResetErpOrganisation;
                     }
                     this.OnErpOrganisationChanged(e);
-                    this.OnPropertyChanged("ErpOrganisation", e);
+                    this.OnPropertyChanged("ErpOrganisation", e, _erpOrganisationReference);
                 }
             }
         }
@@ -156,7 +162,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfERPSupport
                     IErpPerson old = this._erpPerson;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnErpPersonChanging(e);
-                    this.OnPropertyChanging("ErpPerson", e);
+                    this.OnPropertyChanging("ErpPerson", e, _erpPersonReference);
                     this._erpPerson = value;
                     if ((old != null))
                     {
@@ -169,7 +175,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfERPSupport
                         value.Deleted += this.OnResetErpPerson;
                     }
                     this.OnErpPersonChanged(e);
-                    this.OnPropertyChanged("ErpPerson", e);
+                    this.OnPropertyChanged("ErpPerson", e, _erpPersonReference);
                 }
             }
         }
@@ -231,6 +237,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfERPSupport
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> ErpPersonChanged;
         
+        private static ITypedElement RetrieveClientIDAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(OrgErpPersonRole.ClassInstance)).Resolve("clientID")));
+        }
+        
         /// <summary>
         /// Raises the ClientIDChanging event
         /// </summary>
@@ -255,6 +266,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfERPSupport
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveErpOrganisationReference()
+        {
+            return ((ITypedElement)(((ModelElement)(OrgErpPersonRole.ClassInstance)).Resolve("ErpOrganisation")));
         }
         
         /// <summary>
@@ -291,6 +307,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfERPSupport
         private void OnResetErpOrganisation(object sender, System.EventArgs eventArgs)
         {
             this.ErpOrganisation = null;
+        }
+        
+        private static ITypedElement RetrieveErpPersonReference()
+        {
+            return ((ITypedElement)(((ModelElement)(OrgErpPersonRole.ClassInstance)).Resolve("ErpPerson")));
         }
         
         /// <summary>
@@ -579,7 +600,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfERPSupport
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public ClientIDProxy(IOrgErpPersonRole modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "clientID")
             {
             }
             
@@ -597,24 +618,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfERPSupport
                     this.ModelElement.ClientID = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ClientIDChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ClientIDChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -628,7 +631,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfERPSupport
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public ErpOrganisationProxy(IOrgErpPersonRole modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "ErpOrganisation")
             {
             }
             
@@ -646,24 +649,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfERPSupport
                     this.ModelElement.ErpOrganisation = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ErpOrganisationChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ErpOrganisationChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -677,7 +662,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfERPSupport
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public ErpPersonProxy(IOrgErpPersonRole modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "ErpPerson")
             {
             }
             
@@ -694,24 +679,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfERPSupport
                 {
                     this.ModelElement.ErpPerson = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ErpPersonChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ErpPersonChanged -= handler;
             }
         }
     }

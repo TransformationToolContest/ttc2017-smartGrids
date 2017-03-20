@@ -46,13 +46,17 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfLocations
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61970/Informative/InfLocations/Righ" +
         "tOfWay")]
     [DebuggerDisplayAttribute("RightOfWay {UUID}")]
-    public class RightOfWay : Agreement, IRightOfWay, IModelElement
+    public partial class RightOfWay : Agreement, IRightOfWay, IModelElement
     {
         
         /// <summary>
         /// The backing field for the PropertyData property
         /// </summary>
         private string _propertyData;
+        
+        private static Lazy<ITypedElement> _propertyDataAttribute = new Lazy<ITypedElement>(RetrievePropertyDataAttribute);
+        
+        private static Lazy<ITypedElement> _landPropertiesReference = new Lazy<ITypedElement>(RetrieveLandPropertiesReference);
         
         /// <summary>
         /// The backing field for the LandProperties property
@@ -86,10 +90,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfLocations
                     string old = this._propertyData;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnPropertyDataChanging(e);
-                    this.OnPropertyChanging("PropertyData", e);
+                    this.OnPropertyChanging("PropertyData", e, _propertyDataAttribute);
                     this._propertyData = value;
                     this.OnPropertyDataChanged(e);
-                    this.OnPropertyChanged("PropertyData", e);
+                    this.OnPropertyChanged("PropertyData", e, _propertyDataAttribute);
                 }
             }
         }
@@ -146,6 +150,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfLocations
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> PropertyDataChanged;
         
+        private static ITypedElement RetrievePropertyDataAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(RightOfWay.ClassInstance)).Resolve("propertyData")));
+        }
+        
         /// <summary>
         /// Raises the PropertyDataChanging event
         /// </summary>
@@ -172,6 +181,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfLocations
             }
         }
         
+        private static ITypedElement RetrieveLandPropertiesReference()
+        {
+            return ((ITypedElement)(((ModelElement)(RightOfWay.ClassInstance)).Resolve("LandProperties")));
+        }
+        
         /// <summary>
         /// Forwards CollectionChanging notifications for the LandProperties property to the parent model element
         /// </summary>
@@ -179,7 +193,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfLocations
         /// <param name="e">The original event data</param>
         private void LandPropertiesCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("LandProperties", e);
+            this.OnCollectionChanging("LandProperties", e, _landPropertiesReference);
         }
         
         /// <summary>
@@ -189,7 +203,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfLocations
         /// <param name="e">The original event data</param>
         private void LandPropertiesCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("LandProperties", e);
+            this.OnCollectionChanged("LandProperties", e, _landPropertiesReference);
         }
         
         /// <summary>
@@ -384,7 +398,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfLocations
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public PropertyDataProxy(IRightOfWay modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "propertyData")
             {
             }
             
@@ -401,24 +415,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfLocations
                 {
                     this.ModelElement.PropertyData = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.PropertyDataChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.PropertyDataChanged -= handler;
             }
         }
     }

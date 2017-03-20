@@ -39,7 +39,7 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
     [XmlNamespacePrefixAttribute("objects")]
     [ModelRepresentationClassAttribute("http://www.transformation-tool-contest.eu/2017/smartGrids/cosem#//COSEMObjects/S_" +
         "FSKReportingSystemListObject")]
-    public class S_FSKReportingSystemListObject : S_FSKReportingsystemlist, IS_FSKReportingSystemListObject, IModelElement
+    public partial class S_FSKReportingSystemListObject : S_FSKReportingsystemlist, IS_FSKReportingSystemListObject, IModelElement
     {
         
         private static IClass _classInstance;

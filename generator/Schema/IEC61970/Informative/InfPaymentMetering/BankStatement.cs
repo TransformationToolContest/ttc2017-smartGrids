@@ -46,7 +46,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfPaymentMetering
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61970/Informative/InfPaymentMeterin" +
         "g/BankStatement")]
     [DebuggerDisplayAttribute("BankStatement {UUID}")]
-    public class BankStatement : Document, IBankStatement, IModelElement
+    public partial class BankStatement : Document, IBankStatement, IModelElement
     {
         
         /// <summary>
@@ -54,30 +54,44 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfPaymentMetering
         /// </summary>
         private float _merchantCreditAmount;
         
+        private static Lazy<ITypedElement> _merchantCreditAmountAttribute = new Lazy<ITypedElement>(RetrieveMerchantCreditAmountAttribute);
+        
         /// <summary>
         /// The backing field for the DepositAmount property
         /// </summary>
         private float _depositAmount;
+        
+        private static Lazy<ITypedElement> _depositAmountAttribute = new Lazy<ITypedElement>(RetrieveDepositAmountAttribute);
         
         /// <summary>
         /// The backing field for the DepositDateTime property
         /// </summary>
         private DateTime _depositDateTime;
         
+        private static Lazy<ITypedElement> _depositDateTimeAttribute = new Lazy<ITypedElement>(RetrieveDepositDateTimeAttribute);
+        
         /// <summary>
         /// The backing field for the Posted property
         /// </summary>
         private bool _posted;
+        
+        private static Lazy<ITypedElement> _postedAttribute = new Lazy<ITypedElement>(RetrievePostedAttribute);
+        
+        private static Lazy<ITypedElement> _bankAccountReference = new Lazy<ITypedElement>(RetrieveBankAccountReference);
         
         /// <summary>
         /// The backing field for the BankAccount property
         /// </summary>
         private IBankAccount _bankAccount;
         
+        private static Lazy<ITypedElement> _merchantAccountReference = new Lazy<ITypedElement>(RetrieveMerchantAccountReference);
+        
         /// <summary>
         /// The backing field for the MerchantAccount property
         /// </summary>
         private IMerchantAccount _merchantAccount;
+        
+        private static Lazy<ITypedElement> _vendorReference = new Lazy<ITypedElement>(RetrieveVendorReference);
         
         /// <summary>
         /// The backing field for the Vendor property
@@ -104,10 +118,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfPaymentMetering
                     float old = this._merchantCreditAmount;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnMerchantCreditAmountChanging(e);
-                    this.OnPropertyChanging("MerchantCreditAmount", e);
+                    this.OnPropertyChanging("MerchantCreditAmount", e, _merchantCreditAmountAttribute);
                     this._merchantCreditAmount = value;
                     this.OnMerchantCreditAmountChanged(e);
-                    this.OnPropertyChanged("MerchantCreditAmount", e);
+                    this.OnPropertyChanged("MerchantCreditAmount", e, _merchantCreditAmountAttribute);
                 }
             }
         }
@@ -130,10 +144,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfPaymentMetering
                     float old = this._depositAmount;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnDepositAmountChanging(e);
-                    this.OnPropertyChanging("DepositAmount", e);
+                    this.OnPropertyChanging("DepositAmount", e, _depositAmountAttribute);
                     this._depositAmount = value;
                     this.OnDepositAmountChanged(e);
-                    this.OnPropertyChanged("DepositAmount", e);
+                    this.OnPropertyChanged("DepositAmount", e, _depositAmountAttribute);
                 }
             }
         }
@@ -156,10 +170,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfPaymentMetering
                     DateTime old = this._depositDateTime;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnDepositDateTimeChanging(e);
-                    this.OnPropertyChanging("DepositDateTime", e);
+                    this.OnPropertyChanging("DepositDateTime", e, _depositDateTimeAttribute);
                     this._depositDateTime = value;
                     this.OnDepositDateTimeChanged(e);
-                    this.OnPropertyChanged("DepositDateTime", e);
+                    this.OnPropertyChanged("DepositDateTime", e, _depositDateTimeAttribute);
                 }
             }
         }
@@ -182,10 +196,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfPaymentMetering
                     bool old = this._posted;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnPostedChanging(e);
-                    this.OnPropertyChanging("Posted", e);
+                    this.OnPropertyChanging("Posted", e, _postedAttribute);
                     this._posted = value;
                     this.OnPostedChanged(e);
-                    this.OnPropertyChanged("Posted", e);
+                    this.OnPropertyChanged("Posted", e, _postedAttribute);
                 }
             }
         }
@@ -208,7 +222,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfPaymentMetering
                     IBankAccount old = this._bankAccount;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnBankAccountChanging(e);
-                    this.OnPropertyChanging("BankAccount", e);
+                    this.OnPropertyChanging("BankAccount", e, _bankAccountReference);
                     this._bankAccount = value;
                     if ((old != null))
                     {
@@ -221,7 +235,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfPaymentMetering
                         value.Deleted += this.OnResetBankAccount;
                     }
                     this.OnBankAccountChanged(e);
-                    this.OnPropertyChanged("BankAccount", e);
+                    this.OnPropertyChanged("BankAccount", e, _bankAccountReference);
                 }
             }
         }
@@ -244,7 +258,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfPaymentMetering
                     IMerchantAccount old = this._merchantAccount;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnMerchantAccountChanging(e);
-                    this.OnPropertyChanging("MerchantAccount", e);
+                    this.OnPropertyChanging("MerchantAccount", e, _merchantAccountReference);
                     this._merchantAccount = value;
                     if ((old != null))
                     {
@@ -257,7 +271,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfPaymentMetering
                         value.Deleted += this.OnResetMerchantAccount;
                     }
                     this.OnMerchantAccountChanged(e);
-                    this.OnPropertyChanged("MerchantAccount", e);
+                    this.OnPropertyChanged("MerchantAccount", e, _merchantAccountReference);
                 }
             }
         }
@@ -280,7 +294,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfPaymentMetering
                     IVendor old = this._vendor;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnVendorChanging(e);
-                    this.OnPropertyChanging("Vendor", e);
+                    this.OnPropertyChanging("Vendor", e, _vendorReference);
                     this._vendor = value;
                     if ((old != null))
                     {
@@ -293,7 +307,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfPaymentMetering
                         value.Deleted += this.OnResetVendor;
                     }
                     this.OnVendorChanged(e);
-                    this.OnPropertyChanged("Vendor", e);
+                    this.OnPropertyChanged("Vendor", e, _vendorReference);
                 }
             }
         }
@@ -395,6 +409,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfPaymentMetering
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> VendorChanged;
         
+        private static ITypedElement RetrieveMerchantCreditAmountAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(BankStatement.ClassInstance)).Resolve("merchantCreditAmount")));
+        }
+        
         /// <summary>
         /// Raises the MerchantCreditAmountChanging event
         /// </summary>
@@ -419,6 +438,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfPaymentMetering
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveDepositAmountAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(BankStatement.ClassInstance)).Resolve("depositAmount")));
         }
         
         /// <summary>
@@ -447,6 +471,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfPaymentMetering
             }
         }
         
+        private static ITypedElement RetrieveDepositDateTimeAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(BankStatement.ClassInstance)).Resolve("depositDateTime")));
+        }
+        
         /// <summary>
         /// Raises the DepositDateTimeChanging event
         /// </summary>
@@ -473,6 +502,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfPaymentMetering
             }
         }
         
+        private static ITypedElement RetrievePostedAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(BankStatement.ClassInstance)).Resolve("posted")));
+        }
+        
         /// <summary>
         /// Raises the PostedChanging event
         /// </summary>
@@ -497,6 +531,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfPaymentMetering
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveBankAccountReference()
+        {
+            return ((ITypedElement)(((ModelElement)(BankStatement.ClassInstance)).Resolve("BankAccount")));
         }
         
         /// <summary>
@@ -535,6 +574,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfPaymentMetering
             this.BankAccount = null;
         }
         
+        private static ITypedElement RetrieveMerchantAccountReference()
+        {
+            return ((ITypedElement)(((ModelElement)(BankStatement.ClassInstance)).Resolve("MerchantAccount")));
+        }
+        
         /// <summary>
         /// Raises the MerchantAccountChanging event
         /// </summary>
@@ -569,6 +613,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfPaymentMetering
         private void OnResetMerchantAccount(object sender, System.EventArgs eventArgs)
         {
             this.MerchantAccount = null;
+        }
+        
+        private static ITypedElement RetrieveVendorReference()
+        {
+            return ((ITypedElement)(((ModelElement)(BankStatement.ClassInstance)).Resolve("Vendor")));
         }
         
         /// <summary>
@@ -927,7 +976,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfPaymentMetering
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public MerchantCreditAmountProxy(IBankStatement modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "merchantCreditAmount")
             {
             }
             
@@ -945,24 +994,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfPaymentMetering
                     this.ModelElement.MerchantCreditAmount = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.MerchantCreditAmountChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.MerchantCreditAmountChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -976,7 +1007,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfPaymentMetering
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public DepositAmountProxy(IBankStatement modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "depositAmount")
             {
             }
             
@@ -994,24 +1025,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfPaymentMetering
                     this.ModelElement.DepositAmount = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.DepositAmountChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.DepositAmountChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1025,7 +1038,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfPaymentMetering
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public DepositDateTimeProxy(IBankStatement modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "depositDateTime")
             {
             }
             
@@ -1043,24 +1056,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfPaymentMetering
                     this.ModelElement.DepositDateTime = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.DepositDateTimeChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.DepositDateTimeChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1074,7 +1069,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfPaymentMetering
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public PostedProxy(IBankStatement modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "posted")
             {
             }
             
@@ -1092,24 +1087,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfPaymentMetering
                     this.ModelElement.Posted = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.PostedChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.PostedChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1123,7 +1100,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfPaymentMetering
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public BankAccountProxy(IBankStatement modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "BankAccount")
             {
             }
             
@@ -1141,24 +1118,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfPaymentMetering
                     this.ModelElement.BankAccount = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.BankAccountChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.BankAccountChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1172,7 +1131,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfPaymentMetering
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public MerchantAccountProxy(IBankStatement modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "MerchantAccount")
             {
             }
             
@@ -1190,24 +1149,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfPaymentMetering
                     this.ModelElement.MerchantAccount = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.MerchantAccountChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.MerchantAccountChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1221,7 +1162,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfPaymentMetering
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public VendorProxy(IBankStatement modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "Vendor")
             {
             }
             
@@ -1238,24 +1179,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfPaymentMetering
                 {
                     this.ModelElement.Vendor = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.VendorChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.VendorChanged -= handler;
             }
         }
     }

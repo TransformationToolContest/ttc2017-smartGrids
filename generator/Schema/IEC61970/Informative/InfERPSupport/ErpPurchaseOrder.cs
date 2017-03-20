@@ -56,8 +56,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfERPSupport
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61970/Informative/InfERPSupport/Erp" +
         "PurchaseOrder")]
     [DebuggerDisplayAttribute("ErpPurchaseOrder {UUID}")]
-    public class ErpPurchaseOrder : Document, IErpPurchaseOrder, IModelElement
+    public partial class ErpPurchaseOrder : Document, IErpPurchaseOrder, IModelElement
     {
+        
+        private static Lazy<ITypedElement> _erpPOLineItemsReference = new Lazy<ITypedElement>(RetrieveErpPOLineItemsReference);
         
         /// <summary>
         /// The backing field for the ErpPOLineItems property
@@ -115,6 +117,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfERPSupport
             }
         }
         
+        private static ITypedElement RetrieveErpPOLineItemsReference()
+        {
+            return ((ITypedElement)(((ModelElement)(ErpPurchaseOrder.ClassInstance)).Resolve("ErpPOLineItems")));
+        }
+        
         /// <summary>
         /// Forwards CollectionChanging notifications for the ErpPOLineItems property to the parent model element
         /// </summary>
@@ -122,7 +129,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfERPSupport
         /// <param name="e">The original event data</param>
         private void ErpPOLineItemsCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("ErpPOLineItems", e);
+            this.OnCollectionChanging("ErpPOLineItems", e, _erpPOLineItemsReference);
         }
         
         /// <summary>
@@ -132,7 +139,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfERPSupport
         /// <param name="e">The original event data</param>
         private void ErpPOLineItemsCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("ErpPOLineItems", e);
+            this.OnCollectionChanged("ErpPOLineItems", e, _erpPOLineItemsReference);
         }
         
         /// <summary>

@@ -50,7 +50,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61970/Informative/MarketOperations/" +
         "ResourceBid")]
     [DebuggerDisplayAttribute("ResourceBid {UUID}")]
-    public class ResourceBid : Bid, IResourceBid, IModelElement
+    public partial class ResourceBid : Bid, IResourceBid, IModelElement
     {
         
         /// <summary>
@@ -58,40 +58,56 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
         /// </summary>
         private int _startUpsMaxWeek;
         
+        private static Lazy<ITypedElement> _startUpsMaxWeekAttribute = new Lazy<ITypedElement>(RetrieveStartUpsMaxWeekAttribute);
+        
         /// <summary>
         /// The backing field for the CommodityType property
         /// </summary>
         private string _commodityType;
+        
+        private static Lazy<ITypedElement> _commodityTypeAttribute = new Lazy<ITypedElement>(RetrieveCommodityTypeAttribute);
         
         /// <summary>
         /// The backing field for the EnergyMaxDay property
         /// </summary>
         private float _energyMaxDay;
         
+        private static Lazy<ITypedElement> _energyMaxDayAttribute = new Lazy<ITypedElement>(RetrieveEnergyMaxDayAttribute);
+        
         /// <summary>
         /// The backing field for the EnergyMinDay property
         /// </summary>
         private float _energyMinDay;
+        
+        private static Lazy<ITypedElement> _energyMinDayAttribute = new Lazy<ITypedElement>(RetrieveEnergyMinDayAttribute);
         
         /// <summary>
         /// The backing field for the Virtual property
         /// </summary>
         private bool _virtual;
         
+        private static Lazy<ITypedElement> _virtualAttribute = new Lazy<ITypedElement>(RetrieveVirtualAttribute);
+        
         /// <summary>
         /// The backing field for the ShutDownsMaxWeek property
         /// </summary>
         private int _shutDownsMaxWeek;
+        
+        private static Lazy<ITypedElement> _shutDownsMaxWeekAttribute = new Lazy<ITypedElement>(RetrieveShutDownsMaxWeekAttribute);
         
         /// <summary>
         /// The backing field for the ShutDownsMaxDay property
         /// </summary>
         private int _shutDownsMaxDay;
         
+        private static Lazy<ITypedElement> _shutDownsMaxDayAttribute = new Lazy<ITypedElement>(RetrieveShutDownsMaxDayAttribute);
+        
         /// <summary>
         /// The backing field for the StartUpsMaxDay property
         /// </summary>
         private int _startUpsMaxDay;
+        
+        private static Lazy<ITypedElement> _startUpsMaxDayAttribute = new Lazy<ITypedElement>(RetrieveStartUpsMaxDayAttribute);
         
         private static IClass _classInstance;
         
@@ -113,10 +129,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
                     int old = this._startUpsMaxWeek;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnStartUpsMaxWeekChanging(e);
-                    this.OnPropertyChanging("StartUpsMaxWeek", e);
+                    this.OnPropertyChanging("StartUpsMaxWeek", e, _startUpsMaxWeekAttribute);
                     this._startUpsMaxWeek = value;
                     this.OnStartUpsMaxWeekChanged(e);
-                    this.OnPropertyChanged("StartUpsMaxWeek", e);
+                    this.OnPropertyChanged("StartUpsMaxWeek", e, _startUpsMaxWeekAttribute);
                 }
             }
         }
@@ -139,10 +155,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
                     string old = this._commodityType;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnCommodityTypeChanging(e);
-                    this.OnPropertyChanging("CommodityType", e);
+                    this.OnPropertyChanging("CommodityType", e, _commodityTypeAttribute);
                     this._commodityType = value;
                     this.OnCommodityTypeChanged(e);
-                    this.OnPropertyChanged("CommodityType", e);
+                    this.OnPropertyChanged("CommodityType", e, _commodityTypeAttribute);
                 }
             }
         }
@@ -165,10 +181,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
                     float old = this._energyMaxDay;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnEnergyMaxDayChanging(e);
-                    this.OnPropertyChanging("EnergyMaxDay", e);
+                    this.OnPropertyChanging("EnergyMaxDay", e, _energyMaxDayAttribute);
                     this._energyMaxDay = value;
                     this.OnEnergyMaxDayChanged(e);
-                    this.OnPropertyChanged("EnergyMaxDay", e);
+                    this.OnPropertyChanged("EnergyMaxDay", e, _energyMaxDayAttribute);
                 }
             }
         }
@@ -191,10 +207,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
                     float old = this._energyMinDay;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnEnergyMinDayChanging(e);
-                    this.OnPropertyChanging("EnergyMinDay", e);
+                    this.OnPropertyChanging("EnergyMinDay", e, _energyMinDayAttribute);
                     this._energyMinDay = value;
                     this.OnEnergyMinDayChanged(e);
-                    this.OnPropertyChanged("EnergyMinDay", e);
+                    this.OnPropertyChanged("EnergyMinDay", e, _energyMinDayAttribute);
                 }
             }
         }
@@ -217,10 +233,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
                     bool old = this._virtual;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnVirtualChanging(e);
-                    this.OnPropertyChanging("Virtual", e);
+                    this.OnPropertyChanging("Virtual", e, _virtualAttribute);
                     this._virtual = value;
                     this.OnVirtualChanged(e);
-                    this.OnPropertyChanged("Virtual", e);
+                    this.OnPropertyChanged("Virtual", e, _virtualAttribute);
                 }
             }
         }
@@ -243,10 +259,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
                     int old = this._shutDownsMaxWeek;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnShutDownsMaxWeekChanging(e);
-                    this.OnPropertyChanging("ShutDownsMaxWeek", e);
+                    this.OnPropertyChanging("ShutDownsMaxWeek", e, _shutDownsMaxWeekAttribute);
                     this._shutDownsMaxWeek = value;
                     this.OnShutDownsMaxWeekChanged(e);
-                    this.OnPropertyChanged("ShutDownsMaxWeek", e);
+                    this.OnPropertyChanged("ShutDownsMaxWeek", e, _shutDownsMaxWeekAttribute);
                 }
             }
         }
@@ -269,10 +285,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
                     int old = this._shutDownsMaxDay;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnShutDownsMaxDayChanging(e);
-                    this.OnPropertyChanging("ShutDownsMaxDay", e);
+                    this.OnPropertyChanging("ShutDownsMaxDay", e, _shutDownsMaxDayAttribute);
                     this._shutDownsMaxDay = value;
                     this.OnShutDownsMaxDayChanged(e);
-                    this.OnPropertyChanged("ShutDownsMaxDay", e);
+                    this.OnPropertyChanged("ShutDownsMaxDay", e, _shutDownsMaxDayAttribute);
                 }
             }
         }
@@ -295,10 +311,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
                     int old = this._startUpsMaxDay;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnStartUpsMaxDayChanging(e);
-                    this.OnPropertyChanging("StartUpsMaxDay", e);
+                    this.OnPropertyChanging("StartUpsMaxDay", e, _startUpsMaxDayAttribute);
                     this._startUpsMaxDay = value;
                     this.OnStartUpsMaxDayChanged(e);
-                    this.OnPropertyChanged("StartUpsMaxDay", e);
+                    this.OnPropertyChanged("StartUpsMaxDay", e, _startUpsMaxDayAttribute);
                 }
             }
         }
@@ -399,6 +415,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> StartUpsMaxDayChanged;
         
+        private static ITypedElement RetrieveStartUpsMaxWeekAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(ResourceBid.ClassInstance)).Resolve("startUpsMaxWeek")));
+        }
+        
         /// <summary>
         /// Raises the StartUpsMaxWeekChanging event
         /// </summary>
@@ -423,6 +444,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveCommodityTypeAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(ResourceBid.ClassInstance)).Resolve("commodityType")));
         }
         
         /// <summary>
@@ -451,6 +477,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
             }
         }
         
+        private static ITypedElement RetrieveEnergyMaxDayAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(ResourceBid.ClassInstance)).Resolve("energyMaxDay")));
+        }
+        
         /// <summary>
         /// Raises the EnergyMaxDayChanging event
         /// </summary>
@@ -475,6 +506,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveEnergyMinDayAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(ResourceBid.ClassInstance)).Resolve("energyMinDay")));
         }
         
         /// <summary>
@@ -503,6 +539,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
             }
         }
         
+        private static ITypedElement RetrieveVirtualAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(ResourceBid.ClassInstance)).Resolve("virtual")));
+        }
+        
         /// <summary>
         /// Raises the VirtualChanging event
         /// </summary>
@@ -527,6 +568,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveShutDownsMaxWeekAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(ResourceBid.ClassInstance)).Resolve("shutDownsMaxWeek")));
         }
         
         /// <summary>
@@ -555,6 +601,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
             }
         }
         
+        private static ITypedElement RetrieveShutDownsMaxDayAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(ResourceBid.ClassInstance)).Resolve("shutDownsMaxDay")));
+        }
+        
         /// <summary>
         /// Raises the ShutDownsMaxDayChanging event
         /// </summary>
@@ -579,6 +630,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveStartUpsMaxDayAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(ResourceBid.ClassInstance)).Resolve("startUpsMaxDay")));
         }
         
         /// <summary>
@@ -724,7 +780,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public StartUpsMaxWeekProxy(IResourceBid modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "startUpsMaxWeek")
             {
             }
             
@@ -742,24 +798,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
                     this.ModelElement.StartUpsMaxWeek = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.StartUpsMaxWeekChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.StartUpsMaxWeekChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -773,7 +811,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public CommodityTypeProxy(IResourceBid modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "commodityType")
             {
             }
             
@@ -791,24 +829,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
                     this.ModelElement.CommodityType = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.CommodityTypeChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.CommodityTypeChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -822,7 +842,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public EnergyMaxDayProxy(IResourceBid modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "energyMaxDay")
             {
             }
             
@@ -840,24 +860,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
                     this.ModelElement.EnergyMaxDay = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.EnergyMaxDayChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.EnergyMaxDayChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -871,7 +873,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public EnergyMinDayProxy(IResourceBid modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "energyMinDay")
             {
             }
             
@@ -889,24 +891,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
                     this.ModelElement.EnergyMinDay = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.EnergyMinDayChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.EnergyMinDayChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -920,7 +904,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public VirtualProxy(IResourceBid modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "virtual")
             {
             }
             
@@ -938,24 +922,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
                     this.ModelElement.Virtual = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.VirtualChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.VirtualChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -969,7 +935,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public ShutDownsMaxWeekProxy(IResourceBid modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "shutDownsMaxWeek")
             {
             }
             
@@ -987,24 +953,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
                     this.ModelElement.ShutDownsMaxWeek = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ShutDownsMaxWeekChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ShutDownsMaxWeekChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1018,7 +966,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public ShutDownsMaxDayProxy(IResourceBid modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "shutDownsMaxDay")
             {
             }
             
@@ -1036,24 +984,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
                     this.ModelElement.ShutDownsMaxDay = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ShutDownsMaxDayChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ShutDownsMaxDayChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1067,7 +997,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public StartUpsMaxDayProxy(IResourceBid modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "startUpsMaxDay")
             {
             }
             
@@ -1084,24 +1014,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
                 {
                     this.ModelElement.StartUpsMaxDay = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.StartUpsMaxDayChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.StartUpsMaxDayChanged -= handler;
             }
         }
     }

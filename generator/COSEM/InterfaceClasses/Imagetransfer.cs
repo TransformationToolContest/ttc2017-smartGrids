@@ -40,7 +40,7 @@ namespace TTC2017.SmartGrids.COSEM.InterfaceClasses
     [XmlNamespacePrefixAttribute("inter")]
     [ModelRepresentationClassAttribute("http://www.transformation-tool-contest.eu/2017/smartGrids/cosem#//InterfaceClasse" +
         "s/Imagetransfer")]
-    public class Imagetransfer : Base, IImagetransfer, IModelElement
+    public partial class Imagetransfer : Base, IImagetransfer, IModelElement
     {
         
         private static IClass _classInstance;

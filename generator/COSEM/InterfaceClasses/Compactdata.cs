@@ -40,7 +40,7 @@ namespace TTC2017.SmartGrids.COSEM.InterfaceClasses
     [XmlNamespacePrefixAttribute("inter")]
     [ModelRepresentationClassAttribute("http://www.transformation-tool-contest.eu/2017/smartGrids/cosem#//InterfaceClasse" +
         "s/Compactdata")]
-    public class Compactdata : Base, ICompactdata, IModelElement
+    public partial class Compactdata : Base, ICompactdata, IModelElement
     {
         
         /// <summary>
@@ -48,15 +48,21 @@ namespace TTC2017.SmartGrids.COSEM.InterfaceClasses
         /// </summary>
         private string _compact_buffer;
         
+        private static Lazy<ITypedElement> _compact_bufferAttribute = new Lazy<ITypedElement>(RetrieveCompact_bufferAttribute);
+        
         /// <summary>
         /// The backing field for the Template_id property
         /// </summary>
         private string _template_id;
         
+        private static Lazy<ITypedElement> _template_idAttribute = new Lazy<ITypedElement>(RetrieveTemplate_idAttribute);
+        
         /// <summary>
         /// The backing field for the Template_description property
         /// </summary>
         private string _template_description;
+        
+        private static Lazy<ITypedElement> _template_descriptionAttribute = new Lazy<ITypedElement>(RetrieveTemplate_descriptionAttribute);
         
         private static IClass _classInstance;
         
@@ -78,10 +84,10 @@ namespace TTC2017.SmartGrids.COSEM.InterfaceClasses
                     string old = this._compact_buffer;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnCompact_bufferChanging(e);
-                    this.OnPropertyChanging("Compact_buffer", e);
+                    this.OnPropertyChanging("Compact_buffer", e, _compact_bufferAttribute);
                     this._compact_buffer = value;
                     this.OnCompact_bufferChanged(e);
-                    this.OnPropertyChanged("Compact_buffer", e);
+                    this.OnPropertyChanged("Compact_buffer", e, _compact_bufferAttribute);
                 }
             }
         }
@@ -104,10 +110,10 @@ namespace TTC2017.SmartGrids.COSEM.InterfaceClasses
                     string old = this._template_id;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnTemplate_idChanging(e);
-                    this.OnPropertyChanging("Template_id", e);
+                    this.OnPropertyChanging("Template_id", e, _template_idAttribute);
                     this._template_id = value;
                     this.OnTemplate_idChanged(e);
-                    this.OnPropertyChanged("Template_id", e);
+                    this.OnPropertyChanged("Template_id", e, _template_idAttribute);
                 }
             }
         }
@@ -130,10 +136,10 @@ namespace TTC2017.SmartGrids.COSEM.InterfaceClasses
                     string old = this._template_description;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnTemplate_descriptionChanging(e);
-                    this.OnPropertyChanging("Template_description", e);
+                    this.OnPropertyChanging("Template_description", e, _template_descriptionAttribute);
                     this._template_description = value;
                     this.OnTemplate_descriptionChanged(e);
-                    this.OnPropertyChanged("Template_description", e);
+                    this.OnPropertyChanged("Template_description", e, _template_descriptionAttribute);
                 }
             }
         }
@@ -184,6 +190,11 @@ namespace TTC2017.SmartGrids.COSEM.InterfaceClasses
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> Template_descriptionChanged;
         
+        private static ITypedElement RetrieveCompact_bufferAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(Compactdata.ClassInstance)).Resolve("compact_buffer")));
+        }
+        
         /// <summary>
         /// Raises the Compact_bufferChanging event
         /// </summary>
@@ -210,6 +221,11 @@ namespace TTC2017.SmartGrids.COSEM.InterfaceClasses
             }
         }
         
+        private static ITypedElement RetrieveTemplate_idAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(Compactdata.ClassInstance)).Resolve("template_id")));
+        }
+        
         /// <summary>
         /// Raises the Template_idChanging event
         /// </summary>
@@ -234,6 +250,11 @@ namespace TTC2017.SmartGrids.COSEM.InterfaceClasses
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveTemplate_descriptionAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(Compactdata.ClassInstance)).Resolve("template_description")));
         }
         
         /// <summary>
@@ -334,7 +355,7 @@ namespace TTC2017.SmartGrids.COSEM.InterfaceClasses
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public Compact_bufferProxy(ICompactdata modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "compact_buffer")
             {
             }
             
@@ -352,24 +373,6 @@ namespace TTC2017.SmartGrids.COSEM.InterfaceClasses
                     this.ModelElement.Compact_buffer = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.Compact_bufferChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.Compact_bufferChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -383,7 +386,7 @@ namespace TTC2017.SmartGrids.COSEM.InterfaceClasses
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public Template_idProxy(ICompactdata modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "template_id")
             {
             }
             
@@ -401,24 +404,6 @@ namespace TTC2017.SmartGrids.COSEM.InterfaceClasses
                     this.ModelElement.Template_id = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.Template_idChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.Template_idChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -432,7 +417,7 @@ namespace TTC2017.SmartGrids.COSEM.InterfaceClasses
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public Template_descriptionProxy(ICompactdata modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "template_description")
             {
             }
             
@@ -449,24 +434,6 @@ namespace TTC2017.SmartGrids.COSEM.InterfaceClasses
                 {
                     this.ModelElement.Template_description = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.Template_descriptionChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.Template_descriptionChanged -= handler;
             }
         }
     }

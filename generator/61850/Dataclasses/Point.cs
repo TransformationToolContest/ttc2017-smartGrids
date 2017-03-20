@@ -39,7 +39,7 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
     [XmlNamespacePrefixAttribute("data")]
     [ModelRepresentationClassAttribute("http://www.transformation-tool-contest.eu/2017/smartGrids/substationStandard#//Da" +
         "taclasses/Point")]
-    public class Point : ModelElement, IPoint, IModelElement
+    public partial class Point : ModelElement, IPoint, IModelElement
     {
         
         /// <summary>
@@ -47,10 +47,14 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
         /// </summary>
         private Nullable<float> _xVal;
         
+        private static Lazy<ITypedElement> _xValAttribute = new Lazy<ITypedElement>(RetrieveXValAttribute);
+        
         /// <summary>
         /// The backing field for the YVal property
         /// </summary>
         private Nullable<float> _yVal;
+        
+        private static Lazy<ITypedElement> _yValAttribute = new Lazy<ITypedElement>(RetrieveYValAttribute);
         
         private static IClass _classInstance;
         
@@ -72,10 +76,10 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
                     Nullable<float> old = this._xVal;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnXValChanging(e);
-                    this.OnPropertyChanging("XVal", e);
+                    this.OnPropertyChanging("XVal", e, _xValAttribute);
                     this._xVal = value;
                     this.OnXValChanged(e);
-                    this.OnPropertyChanged("XVal", e);
+                    this.OnPropertyChanged("XVal", e, _xValAttribute);
                 }
             }
         }
@@ -98,10 +102,10 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
                     Nullable<float> old = this._yVal;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnYValChanging(e);
-                    this.OnPropertyChanging("YVal", e);
+                    this.OnPropertyChanging("YVal", e, _yValAttribute);
                     this._yVal = value;
                     this.OnYValChanged(e);
-                    this.OnPropertyChanged("YVal", e);
+                    this.OnPropertyChanged("YVal", e, _yValAttribute);
                 }
             }
         }
@@ -142,6 +146,11 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> YValChanged;
         
+        private static ITypedElement RetrieveXValAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(Point.ClassInstance)).Resolve("xVal")));
+        }
+        
         /// <summary>
         /// Raises the XValChanging event
         /// </summary>
@@ -166,6 +175,11 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveYValAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(Point.ClassInstance)).Resolve("yVal")));
         }
         
         /// <summary>
@@ -257,7 +271,7 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public XValProxy(IPoint modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "xVal")
             {
             }
             
@@ -275,24 +289,6 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
                     this.ModelElement.XVal = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.XValChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.XValChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -306,7 +302,7 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public YValProxy(IPoint modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "yVal")
             {
             }
             
@@ -323,24 +319,6 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
                 {
                     this.ModelElement.YVal = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.YValChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.YValChanged -= handler;
             }
         }
     }

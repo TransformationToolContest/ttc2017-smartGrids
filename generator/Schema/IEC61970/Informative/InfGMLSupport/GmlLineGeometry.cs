@@ -45,13 +45,15 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfGMLSupport
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61970/Informative/InfGMLSupport/Gml" +
         "LineGeometry")]
     [DebuggerDisplayAttribute("GmlLineGeometry {UUID}")]
-    public class GmlLineGeometry : GmlDiagramObject, IGmlLineGeometry, IModelElement
+    public partial class GmlLineGeometry : GmlDiagramObject, IGmlLineGeometry, IModelElement
     {
         
         /// <summary>
         /// The backing field for the SourceSide property
         /// </summary>
         private string _sourceSide;
+        
+        private static Lazy<ITypedElement> _sourceSideAttribute = new Lazy<ITypedElement>(RetrieveSourceSideAttribute);
         
         private static IClass _classInstance;
         
@@ -73,10 +75,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfGMLSupport
                     string old = this._sourceSide;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnSourceSideChanging(e);
-                    this.OnPropertyChanging("SourceSide", e);
+                    this.OnPropertyChanging("SourceSide", e, _sourceSideAttribute);
                     this._sourceSide = value;
                     this.OnSourceSideChanged(e);
-                    this.OnPropertyChanged("SourceSide", e);
+                    this.OnPropertyChanged("SourceSide", e, _sourceSideAttribute);
                 }
             }
         }
@@ -106,6 +108,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfGMLSupport
         /// Gets fired when the SourceSide property changed its value
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> SourceSideChanged;
+        
+        private static ITypedElement RetrieveSourceSideAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(GmlLineGeometry.ClassInstance)).Resolve("sourceSide")));
+        }
         
         /// <summary>
         /// Raises the SourceSideChanging event
@@ -187,7 +194,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfGMLSupport
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public SourceSideProxy(IGmlLineGeometry modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "sourceSide")
             {
             }
             
@@ -204,24 +211,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfGMLSupport
                 {
                     this.ModelElement.SourceSide = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.SourceSideChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.SourceSideChanged -= handler;
             }
         }
     }

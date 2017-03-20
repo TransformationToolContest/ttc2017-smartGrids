@@ -54,7 +54,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Metering
     [XmlNamespacePrefixAttribute("cimMetering")]
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61968/Metering/DynamicDemand")]
     [DebuggerDisplayAttribute("DynamicDemand {UUID}")]
-    public class DynamicDemand : Element, IDynamicDemand, IModelElement
+    public partial class DynamicDemand : Element, IDynamicDemand, IModelElement
     {
         
         /// <summary>
@@ -62,15 +62,21 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Metering
         /// </summary>
         private float _subInterval;
         
+        private static Lazy<ITypedElement> _subIntervalAttribute = new Lazy<ITypedElement>(RetrieveSubIntervalAttribute);
+        
         /// <summary>
         /// The backing field for the Interval property
         /// </summary>
         private float _interval;
         
+        private static Lazy<ITypedElement> _intervalAttribute = new Lazy<ITypedElement>(RetrieveIntervalAttribute);
+        
         /// <summary>
         /// The backing field for the Kind property
         /// </summary>
         private Nullable<DemandKind> _kind;
+        
+        private static Lazy<ITypedElement> _kindAttribute = new Lazy<ITypedElement>(RetrieveKindAttribute);
         
         private static IClass _classInstance;
         
@@ -92,10 +98,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Metering
                     float old = this._subInterval;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnSubIntervalChanging(e);
-                    this.OnPropertyChanging("SubInterval", e);
+                    this.OnPropertyChanging("SubInterval", e, _subIntervalAttribute);
                     this._subInterval = value;
                     this.OnSubIntervalChanged(e);
-                    this.OnPropertyChanged("SubInterval", e);
+                    this.OnPropertyChanged("SubInterval", e, _subIntervalAttribute);
                 }
             }
         }
@@ -118,10 +124,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Metering
                     float old = this._interval;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnIntervalChanging(e);
-                    this.OnPropertyChanging("Interval", e);
+                    this.OnPropertyChanging("Interval", e, _intervalAttribute);
                     this._interval = value;
                     this.OnIntervalChanged(e);
-                    this.OnPropertyChanged("Interval", e);
+                    this.OnPropertyChanged("Interval", e, _intervalAttribute);
                 }
             }
         }
@@ -144,10 +150,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Metering
                     Nullable<DemandKind> old = this._kind;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnKindChanging(e);
-                    this.OnPropertyChanging("Kind", e);
+                    this.OnPropertyChanging("Kind", e, _kindAttribute);
                     this._kind = value;
                     this.OnKindChanged(e);
-                    this.OnPropertyChanged("Kind", e);
+                    this.OnPropertyChanged("Kind", e, _kindAttribute);
                 }
             }
         }
@@ -197,6 +203,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Metering
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> KindChanged;
         
+        private static ITypedElement RetrieveSubIntervalAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(DynamicDemand.ClassInstance)).Resolve("subInterval")));
+        }
+        
         /// <summary>
         /// Raises the SubIntervalChanging event
         /// </summary>
@@ -223,6 +234,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Metering
             }
         }
         
+        private static ITypedElement RetrieveIntervalAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(DynamicDemand.ClassInstance)).Resolve("interval")));
+        }
+        
         /// <summary>
         /// Raises the IntervalChanging event
         /// </summary>
@@ -247,6 +263,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Metering
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveKindAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(DynamicDemand.ClassInstance)).Resolve("kind")));
         }
         
         /// <summary>
@@ -346,7 +367,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Metering
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public SubIntervalProxy(IDynamicDemand modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "subInterval")
             {
             }
             
@@ -364,24 +385,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Metering
                     this.ModelElement.SubInterval = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.SubIntervalChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.SubIntervalChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -395,7 +398,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Metering
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public IntervalProxy(IDynamicDemand modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "interval")
             {
             }
             
@@ -413,24 +416,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Metering
                     this.ModelElement.Interval = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.IntervalChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.IntervalChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -444,7 +429,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Metering
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public KindProxy(IDynamicDemand modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "kind")
             {
             }
             
@@ -461,24 +446,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Metering
                 {
                     this.ModelElement.Kind = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.KindChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.KindChanged -= handler;
             }
         }
     }

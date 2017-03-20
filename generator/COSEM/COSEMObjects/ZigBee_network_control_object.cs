@@ -39,7 +39,7 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
     [XmlNamespacePrefixAttribute("objects")]
     [ModelRepresentationClassAttribute("http://www.transformation-tool-contest.eu/2017/smartGrids/cosem#//COSEMObjects/Zi" +
         "gBee_network_control_object")]
-    public class ZigBee_network_control_object : ZigBeenetworkcontrol, IZigBee_network_control_object, IModelElement
+    public partial class ZigBee_network_control_object : ZigBeenetworkcontrol, IZigBee_network_control_object, IModelElement
     {
         
         private static IClass _classInstance;

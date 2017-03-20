@@ -45,7 +45,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfGMLSupport
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61970/Informative/InfGMLSupport/Gml" +
         "Stroke")]
     [DebuggerDisplayAttribute("GmlStroke {UUID}")]
-    public class GmlStroke : IdentifiedObject, IGmlStroke, IModelElement
+    public partial class GmlStroke : IdentifiedObject, IGmlStroke, IModelElement
     {
         
         /// <summary>
@@ -53,55 +53,79 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfGMLSupport
         /// </summary>
         private string _lineCap;
         
+        private static Lazy<ITypedElement> _lineCapAttribute = new Lazy<ITypedElement>(RetrieveLineCapAttribute);
+        
         /// <summary>
         /// The backing field for the Opacity property
         /// </summary>
         private float _opacity;
+        
+        private static Lazy<ITypedElement> _opacityAttribute = new Lazy<ITypedElement>(RetrieveOpacityAttribute);
         
         /// <summary>
         /// The backing field for the Width property
         /// </summary>
         private float _width;
         
+        private static Lazy<ITypedElement> _widthAttribute = new Lazy<ITypedElement>(RetrieveWidthAttribute);
+        
         /// <summary>
         /// The backing field for the DashArray property
         /// </summary>
         private string _dashArray;
+        
+        private static Lazy<ITypedElement> _dashArrayAttribute = new Lazy<ITypedElement>(RetrieveDashArrayAttribute);
         
         /// <summary>
         /// The backing field for the LineStyle property
         /// </summary>
         private string _lineStyle;
         
+        private static Lazy<ITypedElement> _lineStyleAttribute = new Lazy<ITypedElement>(RetrieveLineStyleAttribute);
+        
         /// <summary>
         /// The backing field for the DashOffset property
         /// </summary>
         private string _dashOffset;
+        
+        private static Lazy<ITypedElement> _dashOffsetAttribute = new Lazy<ITypedElement>(RetrieveDashOffsetAttribute);
         
         /// <summary>
         /// The backing field for the Linejoin property
         /// </summary>
         private string _linejoin;
         
+        private static Lazy<ITypedElement> _linejoinAttribute = new Lazy<ITypedElement>(RetrieveLinejoinAttribute);
+        
+        private static Lazy<ITypedElement> _gmlColourReference = new Lazy<ITypedElement>(RetrieveGmlColourReference);
+        
         /// <summary>
         /// The backing field for the GmlColour property
         /// </summary>
         private IGmlColour _gmlColour;
+        
+        private static Lazy<ITypedElement> _gmlSvgParametersReference = new Lazy<ITypedElement>(RetrieveGmlSvgParametersReference);
         
         /// <summary>
         /// The backing field for the GmlSvgParameters property
         /// </summary>
         private GmlStrokeGmlSvgParametersCollection _gmlSvgParameters;
         
+        private static Lazy<ITypedElement> _gmlPolygonSymbolsReference = new Lazy<ITypedElement>(RetrieveGmlPolygonSymbolsReference);
+        
         /// <summary>
         /// The backing field for the GmlPolygonSymbols property
         /// </summary>
         private GmlStrokeGmlPolygonSymbolsCollection _gmlPolygonSymbols;
         
+        private static Lazy<ITypedElement> _gmlLineSymbolsReference = new Lazy<ITypedElement>(RetrieveGmlLineSymbolsReference);
+        
         /// <summary>
         /// The backing field for the GmlLineSymbols property
         /// </summary>
         private GmlStrokeGmlLineSymbolsCollection _gmlLineSymbols;
+        
+        private static Lazy<ITypedElement> _gmlMarksReference = new Lazy<ITypedElement>(RetrieveGmlMarksReference);
         
         /// <summary>
         /// The backing field for the GmlMarks property
@@ -144,10 +168,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfGMLSupport
                     string old = this._lineCap;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnLineCapChanging(e);
-                    this.OnPropertyChanging("LineCap", e);
+                    this.OnPropertyChanging("LineCap", e, _lineCapAttribute);
                     this._lineCap = value;
                     this.OnLineCapChanged(e);
-                    this.OnPropertyChanged("LineCap", e);
+                    this.OnPropertyChanged("LineCap", e, _lineCapAttribute);
                 }
             }
         }
@@ -170,10 +194,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfGMLSupport
                     float old = this._opacity;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnOpacityChanging(e);
-                    this.OnPropertyChanging("Opacity", e);
+                    this.OnPropertyChanging("Opacity", e, _opacityAttribute);
                     this._opacity = value;
                     this.OnOpacityChanged(e);
-                    this.OnPropertyChanged("Opacity", e);
+                    this.OnPropertyChanged("Opacity", e, _opacityAttribute);
                 }
             }
         }
@@ -196,10 +220,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfGMLSupport
                     float old = this._width;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnWidthChanging(e);
-                    this.OnPropertyChanging("Width", e);
+                    this.OnPropertyChanging("Width", e, _widthAttribute);
                     this._width = value;
                     this.OnWidthChanged(e);
-                    this.OnPropertyChanged("Width", e);
+                    this.OnPropertyChanged("Width", e, _widthAttribute);
                 }
             }
         }
@@ -222,10 +246,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfGMLSupport
                     string old = this._dashArray;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnDashArrayChanging(e);
-                    this.OnPropertyChanging("DashArray", e);
+                    this.OnPropertyChanging("DashArray", e, _dashArrayAttribute);
                     this._dashArray = value;
                     this.OnDashArrayChanged(e);
-                    this.OnPropertyChanged("DashArray", e);
+                    this.OnPropertyChanged("DashArray", e, _dashArrayAttribute);
                 }
             }
         }
@@ -248,10 +272,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfGMLSupport
                     string old = this._lineStyle;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnLineStyleChanging(e);
-                    this.OnPropertyChanging("LineStyle", e);
+                    this.OnPropertyChanging("LineStyle", e, _lineStyleAttribute);
                     this._lineStyle = value;
                     this.OnLineStyleChanged(e);
-                    this.OnPropertyChanged("LineStyle", e);
+                    this.OnPropertyChanged("LineStyle", e, _lineStyleAttribute);
                 }
             }
         }
@@ -274,10 +298,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfGMLSupport
                     string old = this._dashOffset;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnDashOffsetChanging(e);
-                    this.OnPropertyChanging("DashOffset", e);
+                    this.OnPropertyChanging("DashOffset", e, _dashOffsetAttribute);
                     this._dashOffset = value;
                     this.OnDashOffsetChanged(e);
-                    this.OnPropertyChanged("DashOffset", e);
+                    this.OnPropertyChanged("DashOffset", e, _dashOffsetAttribute);
                 }
             }
         }
@@ -300,10 +324,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfGMLSupport
                     string old = this._linejoin;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnLinejoinChanging(e);
-                    this.OnPropertyChanging("Linejoin", e);
+                    this.OnPropertyChanging("Linejoin", e, _linejoinAttribute);
                     this._linejoin = value;
                     this.OnLinejoinChanged(e);
-                    this.OnPropertyChanged("Linejoin", e);
+                    this.OnPropertyChanged("Linejoin", e, _linejoinAttribute);
                 }
             }
         }
@@ -326,7 +350,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfGMLSupport
                     IGmlColour old = this._gmlColour;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnGmlColourChanging(e);
-                    this.OnPropertyChanging("GmlColour", e);
+                    this.OnPropertyChanging("GmlColour", e, _gmlColourReference);
                     this._gmlColour = value;
                     if ((old != null))
                     {
@@ -339,7 +363,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfGMLSupport
                         value.Deleted += this.OnResetGmlColour;
                     }
                     this.OnGmlColourChanged(e);
-                    this.OnPropertyChanged("GmlColour", e);
+                    this.OnPropertyChanged("GmlColour", e, _gmlColourReference);
                 }
             }
         }
@@ -511,6 +535,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfGMLSupport
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> GmlColourChanged;
         
+        private static ITypedElement RetrieveLineCapAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(GmlStroke.ClassInstance)).Resolve("lineCap")));
+        }
+        
         /// <summary>
         /// Raises the LineCapChanging event
         /// </summary>
@@ -535,6 +564,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfGMLSupport
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveOpacityAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(GmlStroke.ClassInstance)).Resolve("opacity")));
         }
         
         /// <summary>
@@ -563,6 +597,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfGMLSupport
             }
         }
         
+        private static ITypedElement RetrieveWidthAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(GmlStroke.ClassInstance)).Resolve("width")));
+        }
+        
         /// <summary>
         /// Raises the WidthChanging event
         /// </summary>
@@ -587,6 +626,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfGMLSupport
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveDashArrayAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(GmlStroke.ClassInstance)).Resolve("dashArray")));
         }
         
         /// <summary>
@@ -615,6 +659,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfGMLSupport
             }
         }
         
+        private static ITypedElement RetrieveLineStyleAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(GmlStroke.ClassInstance)).Resolve("lineStyle")));
+        }
+        
         /// <summary>
         /// Raises the LineStyleChanging event
         /// </summary>
@@ -639,6 +688,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfGMLSupport
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveDashOffsetAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(GmlStroke.ClassInstance)).Resolve("dashOffset")));
         }
         
         /// <summary>
@@ -667,6 +721,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfGMLSupport
             }
         }
         
+        private static ITypedElement RetrieveLinejoinAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(GmlStroke.ClassInstance)).Resolve("linejoin")));
+        }
+        
         /// <summary>
         /// Raises the LinejoinChanging event
         /// </summary>
@@ -691,6 +750,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfGMLSupport
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveGmlColourReference()
+        {
+            return ((ITypedElement)(((ModelElement)(GmlStroke.ClassInstance)).Resolve("GmlColour")));
         }
         
         /// <summary>
@@ -729,6 +793,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfGMLSupport
             this.GmlColour = null;
         }
         
+        private static ITypedElement RetrieveGmlSvgParametersReference()
+        {
+            return ((ITypedElement)(((ModelElement)(GmlStroke.ClassInstance)).Resolve("GmlSvgParameters")));
+        }
+        
         /// <summary>
         /// Forwards CollectionChanging notifications for the GmlSvgParameters property to the parent model element
         /// </summary>
@@ -736,7 +805,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfGMLSupport
         /// <param name="e">The original event data</param>
         private void GmlSvgParametersCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("GmlSvgParameters", e);
+            this.OnCollectionChanging("GmlSvgParameters", e, _gmlSvgParametersReference);
         }
         
         /// <summary>
@@ -746,7 +815,12 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfGMLSupport
         /// <param name="e">The original event data</param>
         private void GmlSvgParametersCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("GmlSvgParameters", e);
+            this.OnCollectionChanged("GmlSvgParameters", e, _gmlSvgParametersReference);
+        }
+        
+        private static ITypedElement RetrieveGmlPolygonSymbolsReference()
+        {
+            return ((ITypedElement)(((ModelElement)(GmlStroke.ClassInstance)).Resolve("GmlPolygonSymbols")));
         }
         
         /// <summary>
@@ -756,7 +830,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfGMLSupport
         /// <param name="e">The original event data</param>
         private void GmlPolygonSymbolsCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("GmlPolygonSymbols", e);
+            this.OnCollectionChanging("GmlPolygonSymbols", e, _gmlPolygonSymbolsReference);
         }
         
         /// <summary>
@@ -766,7 +840,12 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfGMLSupport
         /// <param name="e">The original event data</param>
         private void GmlPolygonSymbolsCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("GmlPolygonSymbols", e);
+            this.OnCollectionChanged("GmlPolygonSymbols", e, _gmlPolygonSymbolsReference);
+        }
+        
+        private static ITypedElement RetrieveGmlLineSymbolsReference()
+        {
+            return ((ITypedElement)(((ModelElement)(GmlStroke.ClassInstance)).Resolve("GmlLineSymbols")));
         }
         
         /// <summary>
@@ -776,7 +855,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfGMLSupport
         /// <param name="e">The original event data</param>
         private void GmlLineSymbolsCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("GmlLineSymbols", e);
+            this.OnCollectionChanging("GmlLineSymbols", e, _gmlLineSymbolsReference);
         }
         
         /// <summary>
@@ -786,7 +865,12 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfGMLSupport
         /// <param name="e">The original event data</param>
         private void GmlLineSymbolsCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("GmlLineSymbols", e);
+            this.OnCollectionChanged("GmlLineSymbols", e, _gmlLineSymbolsReference);
+        }
+        
+        private static ITypedElement RetrieveGmlMarksReference()
+        {
+            return ((ITypedElement)(((ModelElement)(GmlStroke.ClassInstance)).Resolve("GmlMarks")));
         }
         
         /// <summary>
@@ -796,7 +880,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfGMLSupport
         /// <param name="e">The original event data</param>
         private void GmlMarksCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("GmlMarks", e);
+            this.OnCollectionChanging("GmlMarks", e, _gmlMarksReference);
         }
         
         /// <summary>
@@ -806,7 +890,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfGMLSupport
         /// <param name="e">The original event data</param>
         private void GmlMarksCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("GmlMarks", e);
+            this.OnCollectionChanged("GmlMarks", e, _gmlMarksReference);
         }
         
         /// <summary>
@@ -1232,7 +1316,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfGMLSupport
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public LineCapProxy(IGmlStroke modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "lineCap")
             {
             }
             
@@ -1250,24 +1334,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfGMLSupport
                     this.ModelElement.LineCap = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.LineCapChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.LineCapChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1281,7 +1347,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfGMLSupport
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public OpacityProxy(IGmlStroke modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "opacity")
             {
             }
             
@@ -1299,24 +1365,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfGMLSupport
                     this.ModelElement.Opacity = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.OpacityChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.OpacityChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1330,7 +1378,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfGMLSupport
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public WidthProxy(IGmlStroke modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "width")
             {
             }
             
@@ -1348,24 +1396,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfGMLSupport
                     this.ModelElement.Width = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.WidthChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.WidthChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1379,7 +1409,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfGMLSupport
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public DashArrayProxy(IGmlStroke modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "dashArray")
             {
             }
             
@@ -1397,24 +1427,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfGMLSupport
                     this.ModelElement.DashArray = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.DashArrayChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.DashArrayChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1428,7 +1440,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfGMLSupport
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public LineStyleProxy(IGmlStroke modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "lineStyle")
             {
             }
             
@@ -1446,24 +1458,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfGMLSupport
                     this.ModelElement.LineStyle = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.LineStyleChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.LineStyleChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1477,7 +1471,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfGMLSupport
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public DashOffsetProxy(IGmlStroke modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "dashOffset")
             {
             }
             
@@ -1495,24 +1489,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfGMLSupport
                     this.ModelElement.DashOffset = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.DashOffsetChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.DashOffsetChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1526,7 +1502,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfGMLSupport
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public LinejoinProxy(IGmlStroke modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "linejoin")
             {
             }
             
@@ -1544,24 +1520,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfGMLSupport
                     this.ModelElement.Linejoin = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.LinejoinChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.LinejoinChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1575,7 +1533,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfGMLSupport
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public GmlColourProxy(IGmlStroke modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "GmlColour")
             {
             }
             
@@ -1592,24 +1550,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfGMLSupport
                 {
                     this.ModelElement.GmlColour = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.GmlColourChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.GmlColourChanged -= handler;
             }
         }
     }

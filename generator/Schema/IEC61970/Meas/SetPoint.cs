@@ -51,7 +51,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Meas
     [XmlNamespacePrefixAttribute("cimMeas")]
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61970/Meas/SetPoint")]
     [DebuggerDisplayAttribute("SetPoint {UUID}")]
-    public class SetPoint : Control, ISetPoint, IModelElement
+    public partial class SetPoint : Control, ISetPoint, IModelElement
     {
         
         /// <summary>
@@ -59,20 +59,30 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Meas
         /// </summary>
         private float _normalValue;
         
+        private static Lazy<ITypedElement> _normalValueAttribute = new Lazy<ITypedElement>(RetrieveNormalValueAttribute);
+        
         /// <summary>
         /// The backing field for the Value property
         /// </summary>
         private float _value;
+        
+        private static Lazy<ITypedElement> _valueAttribute = new Lazy<ITypedElement>(RetrieveValueAttribute);
         
         /// <summary>
         /// The backing field for the MaxValue property
         /// </summary>
         private float _maxValue;
         
+        private static Lazy<ITypedElement> _maxValueAttribute = new Lazy<ITypedElement>(RetrieveMaxValueAttribute);
+        
         /// <summary>
         /// The backing field for the MinValue property
         /// </summary>
         private float _minValue;
+        
+        private static Lazy<ITypedElement> _minValueAttribute = new Lazy<ITypedElement>(RetrieveMinValueAttribute);
+        
+        private static Lazy<ITypedElement> _analogReference = new Lazy<ITypedElement>(RetrieveAnalogReference);
         
         /// <summary>
         /// The backing field for the Analog property
@@ -99,10 +109,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Meas
                     float old = this._normalValue;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnNormalValueChanging(e);
-                    this.OnPropertyChanging("NormalValue", e);
+                    this.OnPropertyChanging("NormalValue", e, _normalValueAttribute);
                     this._normalValue = value;
                     this.OnNormalValueChanged(e);
-                    this.OnPropertyChanged("NormalValue", e);
+                    this.OnPropertyChanged("NormalValue", e, _normalValueAttribute);
                 }
             }
         }
@@ -125,10 +135,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Meas
                     float old = this._value;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnValueChanging(e);
-                    this.OnPropertyChanging("Value", e);
+                    this.OnPropertyChanging("Value", e, _valueAttribute);
                     this._value = value;
                     this.OnValueChanged(e);
-                    this.OnPropertyChanged("Value", e);
+                    this.OnPropertyChanged("Value", e, _valueAttribute);
                 }
             }
         }
@@ -151,10 +161,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Meas
                     float old = this._maxValue;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnMaxValueChanging(e);
-                    this.OnPropertyChanging("MaxValue", e);
+                    this.OnPropertyChanging("MaxValue", e, _maxValueAttribute);
                     this._maxValue = value;
                     this.OnMaxValueChanged(e);
-                    this.OnPropertyChanged("MaxValue", e);
+                    this.OnPropertyChanged("MaxValue", e, _maxValueAttribute);
                 }
             }
         }
@@ -177,10 +187,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Meas
                     float old = this._minValue;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnMinValueChanging(e);
-                    this.OnPropertyChanging("MinValue", e);
+                    this.OnPropertyChanging("MinValue", e, _minValueAttribute);
                     this._minValue = value;
                     this.OnMinValueChanged(e);
-                    this.OnPropertyChanged("MinValue", e);
+                    this.OnPropertyChanged("MinValue", e, _minValueAttribute);
                 }
             }
         }
@@ -203,7 +213,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Meas
                     IAnalog old = this._analog;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnAnalogChanging(e);
-                    this.OnPropertyChanging("Analog", e);
+                    this.OnPropertyChanging("Analog", e, _analogReference);
                     this._analog = value;
                     if ((old != null))
                     {
@@ -216,7 +226,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Meas
                         value.Deleted += this.OnResetAnalog;
                     }
                     this.OnAnalogChanged(e);
-                    this.OnPropertyChanged("Analog", e);
+                    this.OnPropertyChanged("Analog", e, _analogReference);
                 }
             }
         }
@@ -297,6 +307,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Meas
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> AnalogChanged;
         
+        private static ITypedElement RetrieveNormalValueAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(SetPoint.ClassInstance)).Resolve("normalValue")));
+        }
+        
         /// <summary>
         /// Raises the NormalValueChanging event
         /// </summary>
@@ -321,6 +336,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Meas
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveValueAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(SetPoint.ClassInstance)).Resolve("value")));
         }
         
         /// <summary>
@@ -349,6 +369,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Meas
             }
         }
         
+        private static ITypedElement RetrieveMaxValueAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(SetPoint.ClassInstance)).Resolve("maxValue")));
+        }
+        
         /// <summary>
         /// Raises the MaxValueChanging event
         /// </summary>
@@ -375,6 +400,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Meas
             }
         }
         
+        private static ITypedElement RetrieveMinValueAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(SetPoint.ClassInstance)).Resolve("minValue")));
+        }
+        
         /// <summary>
         /// Raises the MinValueChanging event
         /// </summary>
@@ -399,6 +429,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Meas
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveAnalogReference()
+        {
+            return ((ITypedElement)(((ModelElement)(SetPoint.ClassInstance)).Resolve("Analog")));
         }
         
         /// <summary>
@@ -670,7 +705,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Meas
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public NormalValueProxy(ISetPoint modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "normalValue")
             {
             }
             
@@ -688,24 +723,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Meas
                     this.ModelElement.NormalValue = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.NormalValueChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.NormalValueChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -719,7 +736,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Meas
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public ValueProxy(ISetPoint modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "value")
             {
             }
             
@@ -737,24 +754,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Meas
                     this.ModelElement.Value = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ValueChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ValueChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -768,7 +767,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Meas
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public MaxValueProxy(ISetPoint modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "maxValue")
             {
             }
             
@@ -786,24 +785,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Meas
                     this.ModelElement.MaxValue = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.MaxValueChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.MaxValueChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -817,7 +798,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Meas
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public MinValueProxy(ISetPoint modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "minValue")
             {
             }
             
@@ -835,24 +816,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Meas
                     this.ModelElement.MinValue = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.MinValueChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.MinValueChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -866,7 +829,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Meas
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public AnalogProxy(ISetPoint modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "Analog")
             {
             }
             
@@ -883,24 +846,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Meas
                 {
                     this.ModelElement.Analog = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.AnalogChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.AnalogChanged -= handler;
             }
         }
     }

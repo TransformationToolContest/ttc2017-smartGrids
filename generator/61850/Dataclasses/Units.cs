@@ -39,13 +39,17 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
     [XmlNamespacePrefixAttribute("data")]
     [ModelRepresentationClassAttribute("http://www.transformation-tool-contest.eu/2017/smartGrids/substationStandard#//Da" +
         "taclasses/Units")]
-    public class Units : ModelElement, IUnits, IModelElement
+    public partial class Units : ModelElement, IUnits, IModelElement
     {
+        
+        private static Lazy<ITypedElement> _slUnitsReference = new Lazy<ITypedElement>(RetrieveSlUnitsReference);
         
         /// <summary>
         /// The backing field for the SlUnits property
         /// </summary>
         private ISlUnits _slUnits;
+        
+        private static Lazy<ITypedElement> _multiplierReference = new Lazy<ITypedElement>(RetrieveMultiplierReference);
         
         /// <summary>
         /// The backing field for the Multiplier property
@@ -71,7 +75,7 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
                     ISlUnits old = this._slUnits;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnSlUnitsChanging(e);
-                    this.OnPropertyChanging("SlUnits", e);
+                    this.OnPropertyChanging("SlUnits", e, _slUnitsReference);
                     this._slUnits = value;
                     if ((old != null))
                     {
@@ -82,7 +86,7 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
                         value.Deleted += this.OnResetSlUnits;
                     }
                     this.OnSlUnitsChanged(e);
-                    this.OnPropertyChanged("SlUnits", e);
+                    this.OnPropertyChanged("SlUnits", e, _slUnitsReference);
                 }
             }
         }
@@ -105,7 +109,7 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
                     IMultiplier old = this._multiplier;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnMultiplierChanging(e);
-                    this.OnPropertyChanging("Multiplier", e);
+                    this.OnPropertyChanging("Multiplier", e, _multiplierReference);
                     this._multiplier = value;
                     if ((old != null))
                     {
@@ -116,7 +120,7 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
                         value.Deleted += this.OnResetMultiplier;
                     }
                     this.OnMultiplierChanged(e);
-                    this.OnPropertyChanged("Multiplier", e);
+                    this.OnPropertyChanged("Multiplier", e, _multiplierReference);
                 }
             }
         }
@@ -168,6 +172,11 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> MultiplierChanged;
         
+        private static ITypedElement RetrieveSlUnitsReference()
+        {
+            return ((ITypedElement)(((ModelElement)(Units.ClassInstance)).Resolve("SlUnits")));
+        }
+        
         /// <summary>
         /// Raises the SlUnitsChanging event
         /// </summary>
@@ -202,6 +211,11 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
         private void OnResetSlUnits(object sender, System.EventArgs eventArgs)
         {
             this.SlUnits = null;
+        }
+        
+        private static ITypedElement RetrieveMultiplierReference()
+        {
+            return ((ITypedElement)(((ModelElement)(Units.ClassInstance)).Resolve("multiplier")));
         }
         
         /// <summary>
@@ -470,7 +484,7 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public SlUnitsProxy(IUnits modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "SlUnits")
             {
             }
             
@@ -488,24 +502,6 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
                     this.ModelElement.SlUnits = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.SlUnitsChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.SlUnitsChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -519,7 +515,7 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public MultiplierProxy(IUnits modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "multiplier")
             {
             }
             
@@ -536,24 +532,6 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
                 {
                     this.ModelElement.Multiplier = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.MultiplierChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.MultiplierChanged -= handler;
             }
         }
     }

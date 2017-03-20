@@ -57,7 +57,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Core
     [XmlNamespacePrefixAttribute("cimCore")]
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61970/Core/RegularTimePoint")]
     [DebuggerDisplayAttribute("RegularTimePoint {UUID}")]
-    public class RegularTimePoint : Element, IRegularTimePoint, IModelElement
+    public partial class RegularTimePoint : Element, IRegularTimePoint, IModelElement
     {
         
         /// <summary>
@@ -65,15 +65,23 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Core
         /// </summary>
         private float _value1;
         
+        private static Lazy<ITypedElement> _value1Attribute = new Lazy<ITypedElement>(RetrieveValue1Attribute);
+        
         /// <summary>
         /// The backing field for the Value2 property
         /// </summary>
         private float _value2;
         
+        private static Lazy<ITypedElement> _value2Attribute = new Lazy<ITypedElement>(RetrieveValue2Attribute);
+        
         /// <summary>
         /// The backing field for the SequenceNumber property
         /// </summary>
         private int _sequenceNumber;
+        
+        private static Lazy<ITypedElement> _sequenceNumberAttribute = new Lazy<ITypedElement>(RetrieveSequenceNumberAttribute);
+        
+        private static Lazy<ITypedElement> _intervalScheduleReference = new Lazy<ITypedElement>(RetrieveIntervalScheduleReference);
         
         /// <summary>
         /// The backing field for the IntervalSchedule property
@@ -100,10 +108,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Core
                     float old = this._value1;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnValue1Changing(e);
-                    this.OnPropertyChanging("Value1", e);
+                    this.OnPropertyChanging("Value1", e, _value1Attribute);
                     this._value1 = value;
                     this.OnValue1Changed(e);
-                    this.OnPropertyChanged("Value1", e);
+                    this.OnPropertyChanged("Value1", e, _value1Attribute);
                 }
             }
         }
@@ -126,10 +134,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Core
                     float old = this._value2;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnValue2Changing(e);
-                    this.OnPropertyChanging("Value2", e);
+                    this.OnPropertyChanging("Value2", e, _value2Attribute);
                     this._value2 = value;
                     this.OnValue2Changed(e);
-                    this.OnPropertyChanged("Value2", e);
+                    this.OnPropertyChanged("Value2", e, _value2Attribute);
                 }
             }
         }
@@ -152,10 +160,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Core
                     int old = this._sequenceNumber;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnSequenceNumberChanging(e);
-                    this.OnPropertyChanging("SequenceNumber", e);
+                    this.OnPropertyChanging("SequenceNumber", e, _sequenceNumberAttribute);
                     this._sequenceNumber = value;
                     this.OnSequenceNumberChanged(e);
-                    this.OnPropertyChanged("SequenceNumber", e);
+                    this.OnPropertyChanged("SequenceNumber", e, _sequenceNumberAttribute);
                 }
             }
         }
@@ -178,7 +186,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Core
                     IRegularIntervalSchedule old = this._intervalSchedule;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnIntervalScheduleChanging(e);
-                    this.OnPropertyChanging("IntervalSchedule", e);
+                    this.OnPropertyChanging("IntervalSchedule", e, _intervalScheduleReference);
                     this._intervalSchedule = value;
                     if ((old != null))
                     {
@@ -191,7 +199,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Core
                         value.Deleted += this.OnResetIntervalSchedule;
                     }
                     this.OnIntervalScheduleChanged(e);
-                    this.OnPropertyChanged("IntervalSchedule", e);
+                    this.OnPropertyChanged("IntervalSchedule", e, _intervalScheduleReference);
                 }
             }
         }
@@ -262,6 +270,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Core
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> IntervalScheduleChanged;
         
+        private static ITypedElement RetrieveValue1Attribute()
+        {
+            return ((ITypedElement)(((ModelElement)(RegularTimePoint.ClassInstance)).Resolve("value1")));
+        }
+        
         /// <summary>
         /// Raises the Value1Changing event
         /// </summary>
@@ -286,6 +299,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Core
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveValue2Attribute()
+        {
+            return ((ITypedElement)(((ModelElement)(RegularTimePoint.ClassInstance)).Resolve("value2")));
         }
         
         /// <summary>
@@ -314,6 +332,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Core
             }
         }
         
+        private static ITypedElement RetrieveSequenceNumberAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(RegularTimePoint.ClassInstance)).Resolve("sequenceNumber")));
+        }
+        
         /// <summary>
         /// Raises the SequenceNumberChanging event
         /// </summary>
@@ -338,6 +361,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Core
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveIntervalScheduleReference()
+        {
+            return ((ITypedElement)(((ModelElement)(RegularTimePoint.ClassInstance)).Resolve("IntervalSchedule")));
         }
         
         /// <summary>
@@ -600,7 +628,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Core
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public Value1Proxy(IRegularTimePoint modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "value1")
             {
             }
             
@@ -618,24 +646,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Core
                     this.ModelElement.Value1 = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.Value1Changed += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.Value1Changed -= handler;
-            }
         }
         
         /// <summary>
@@ -649,7 +659,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Core
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public Value2Proxy(IRegularTimePoint modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "value2")
             {
             }
             
@@ -667,24 +677,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Core
                     this.ModelElement.Value2 = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.Value2Changed += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.Value2Changed -= handler;
-            }
         }
         
         /// <summary>
@@ -698,7 +690,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Core
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public SequenceNumberProxy(IRegularTimePoint modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "sequenceNumber")
             {
             }
             
@@ -716,24 +708,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Core
                     this.ModelElement.SequenceNumber = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.SequenceNumberChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.SequenceNumberChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -747,7 +721,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Core
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public IntervalScheduleProxy(IRegularTimePoint modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "IntervalSchedule")
             {
             }
             
@@ -764,24 +738,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Core
                 {
                     this.ModelElement.IntervalSchedule = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.IntervalScheduleChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.IntervalScheduleChanged -= handler;
             }
         }
     }

@@ -39,7 +39,7 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
     [XmlNamespacePrefixAttribute("objects")]
     [ModelRepresentationClassAttribute("http://www.transformation-tool-contest.eu/2017/smartGrids/cosem#//COSEMObjects/Me" +
         "asurementPeriod_recordingInterval_billingPeriodDuration")]
-    public class MeasurementPeriod_recordingInterval_billingPeriodDuration : Data, IMeasurementPeriod_recordingInterval_billingPeriodDuration, IModelElement
+    public partial class MeasurementPeriod_recordingInterval_billingPeriodDuration : Data, IMeasurementPeriod_recordingInterval_billingPeriodDuration, IModelElement
     {
         
         /// <summary>
@@ -47,35 +47,49 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
         /// </summary>
         private string _measurement_period_1_for_averaging_scheme_1;
         
+        private static Lazy<ITypedElement> _measurement_period_1_for_averaging_scheme_1Attribute = new Lazy<ITypedElement>(RetrieveMeasurement_period_1_for_averaging_scheme_1Attribute);
+        
         /// <summary>
         /// The backing field for the Measurement_period_2_for_averagingscheme_2 property
         /// </summary>
         private string _measurement_period_2_for_averagingscheme_2;
+        
+        private static Lazy<ITypedElement> _measurement_period_2_for_averagingscheme_2Attribute = new Lazy<ITypedElement>(RetrieveMeasurement_period_2_for_averagingscheme_2Attribute);
         
         /// <summary>
         /// The backing field for the Measurement_period_3_for_instantaneous_value property
         /// </summary>
         private string _measurement_period_3_for_instantaneous_value;
         
+        private static Lazy<ITypedElement> _measurement_period_3_for_instantaneous_valueAttribute = new Lazy<ITypedElement>(RetrieveMeasurement_period_3_for_instantaneous_valueAttribute);
+        
         /// <summary>
         /// The backing field for the Measurement_period_4_for_test_value property
         /// </summary>
         private string _measurement_period_4_for_test_value;
+        
+        private static Lazy<ITypedElement> _measurement_period_4_for_test_valueAttribute = new Lazy<ITypedElement>(RetrieveMeasurement_period_4_for_test_valueAttribute);
         
         /// <summary>
         /// The backing field for the Recording_interval_1_for_loadprofile property
         /// </summary>
         private string _recording_interval_1_for_loadprofile;
         
+        private static Lazy<ITypedElement> _recording_interval_1_for_loadprofileAttribute = new Lazy<ITypedElement>(RetrieveRecording_interval_1_for_loadprofileAttribute);
+        
         /// <summary>
         /// The backing field for the Recording_interval_2_for_loadprofile property
         /// </summary>
         private string _recording_interval_2_for_loadprofile;
         
+        private static Lazy<ITypedElement> _recording_interval_2_for_loadprofileAttribute = new Lazy<ITypedElement>(RetrieveRecording_interval_2_for_loadprofileAttribute);
+        
         /// <summary>
         /// The backing field for the Billingperiod property
         /// </summary>
         private string _billingperiod;
+        
+        private static Lazy<ITypedElement> _billingperiodAttribute = new Lazy<ITypedElement>(RetrieveBillingperiodAttribute);
         
         private static IClass _classInstance;
         
@@ -96,10 +110,10 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     string old = this._measurement_period_1_for_averaging_scheme_1;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnMeasurement_period_1_for_averaging_scheme_1Changing(e);
-                    this.OnPropertyChanging("Measurement_period_1_for_averaging_scheme_1", e);
+                    this.OnPropertyChanging("Measurement_period_1_for_averaging_scheme_1", e, _measurement_period_1_for_averaging_scheme_1Attribute);
                     this._measurement_period_1_for_averaging_scheme_1 = value;
                     this.OnMeasurement_period_1_for_averaging_scheme_1Changed(e);
-                    this.OnPropertyChanged("Measurement_period_1_for_averaging_scheme_1", e);
+                    this.OnPropertyChanged("Measurement_period_1_for_averaging_scheme_1", e, _measurement_period_1_for_averaging_scheme_1Attribute);
                 }
             }
         }
@@ -121,10 +135,10 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     string old = this._measurement_period_2_for_averagingscheme_2;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnMeasurement_period_2_for_averagingscheme_2Changing(e);
-                    this.OnPropertyChanging("Measurement_period_2_for_averagingscheme_2", e);
+                    this.OnPropertyChanging("Measurement_period_2_for_averagingscheme_2", e, _measurement_period_2_for_averagingscheme_2Attribute);
                     this._measurement_period_2_for_averagingscheme_2 = value;
                     this.OnMeasurement_period_2_for_averagingscheme_2Changed(e);
-                    this.OnPropertyChanged("Measurement_period_2_for_averagingscheme_2", e);
+                    this.OnPropertyChanged("Measurement_period_2_for_averagingscheme_2", e, _measurement_period_2_for_averagingscheme_2Attribute);
                 }
             }
         }
@@ -146,10 +160,10 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     string old = this._measurement_period_3_for_instantaneous_value;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnMeasurement_period_3_for_instantaneous_valueChanging(e);
-                    this.OnPropertyChanging("Measurement_period_3_for_instantaneous_value", e);
+                    this.OnPropertyChanging("Measurement_period_3_for_instantaneous_value", e, _measurement_period_3_for_instantaneous_valueAttribute);
                     this._measurement_period_3_for_instantaneous_value = value;
                     this.OnMeasurement_period_3_for_instantaneous_valueChanged(e);
-                    this.OnPropertyChanged("Measurement_period_3_for_instantaneous_value", e);
+                    this.OnPropertyChanged("Measurement_period_3_for_instantaneous_value", e, _measurement_period_3_for_instantaneous_valueAttribute);
                 }
             }
         }
@@ -171,10 +185,10 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     string old = this._measurement_period_4_for_test_value;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnMeasurement_period_4_for_test_valueChanging(e);
-                    this.OnPropertyChanging("Measurement_period_4_for_test_value", e);
+                    this.OnPropertyChanging("Measurement_period_4_for_test_value", e, _measurement_period_4_for_test_valueAttribute);
                     this._measurement_period_4_for_test_value = value;
                     this.OnMeasurement_period_4_for_test_valueChanged(e);
-                    this.OnPropertyChanged("Measurement_period_4_for_test_value", e);
+                    this.OnPropertyChanged("Measurement_period_4_for_test_value", e, _measurement_period_4_for_test_valueAttribute);
                 }
             }
         }
@@ -196,10 +210,10 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     string old = this._recording_interval_1_for_loadprofile;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnRecording_interval_1_for_loadprofileChanging(e);
-                    this.OnPropertyChanging("Recording_interval_1_for_loadprofile", e);
+                    this.OnPropertyChanging("Recording_interval_1_for_loadprofile", e, _recording_interval_1_for_loadprofileAttribute);
                     this._recording_interval_1_for_loadprofile = value;
                     this.OnRecording_interval_1_for_loadprofileChanged(e);
-                    this.OnPropertyChanged("Recording_interval_1_for_loadprofile", e);
+                    this.OnPropertyChanged("Recording_interval_1_for_loadprofile", e, _recording_interval_1_for_loadprofileAttribute);
                 }
             }
         }
@@ -221,10 +235,10 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     string old = this._recording_interval_2_for_loadprofile;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnRecording_interval_2_for_loadprofileChanging(e);
-                    this.OnPropertyChanging("Recording_interval_2_for_loadprofile", e);
+                    this.OnPropertyChanging("Recording_interval_2_for_loadprofile", e, _recording_interval_2_for_loadprofileAttribute);
                     this._recording_interval_2_for_loadprofile = value;
                     this.OnRecording_interval_2_for_loadprofileChanged(e);
-                    this.OnPropertyChanged("Recording_interval_2_for_loadprofile", e);
+                    this.OnPropertyChanged("Recording_interval_2_for_loadprofile", e, _recording_interval_2_for_loadprofileAttribute);
                 }
             }
         }
@@ -246,10 +260,10 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     string old = this._billingperiod;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnBillingperiodChanging(e);
-                    this.OnPropertyChanging("Billingperiod", e);
+                    this.OnPropertyChanging("Billingperiod", e, _billingperiodAttribute);
                     this._billingperiod = value;
                     this.OnBillingperiodChanged(e);
-                    this.OnPropertyChanged("Billingperiod", e);
+                    this.OnPropertyChanged("Billingperiod", e, _billingperiodAttribute);
                 }
             }
         }
@@ -340,6 +354,11 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> BillingperiodChanged;
         
+        private static ITypedElement RetrieveMeasurement_period_1_for_averaging_scheme_1Attribute()
+        {
+            return ((ITypedElement)(((ModelElement)(MeasurementPeriod_recordingInterval_billingPeriodDuration.ClassInstance)).Resolve("Measurement_period_1_for_averaging_scheme_1")));
+        }
+        
         /// <summary>
         /// Raises the Measurement_period_1_for_averaging_scheme_1Changing event
         /// </summary>
@@ -364,6 +383,11 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveMeasurement_period_2_for_averagingscheme_2Attribute()
+        {
+            return ((ITypedElement)(((ModelElement)(MeasurementPeriod_recordingInterval_billingPeriodDuration.ClassInstance)).Resolve("Measurement_period_2_for_averagingscheme_2")));
         }
         
         /// <summary>
@@ -392,6 +416,11 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             }
         }
         
+        private static ITypedElement RetrieveMeasurement_period_3_for_instantaneous_valueAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(MeasurementPeriod_recordingInterval_billingPeriodDuration.ClassInstance)).Resolve("Measurement_period_3_for_instantaneous_value")));
+        }
+        
         /// <summary>
         /// Raises the Measurement_period_3_for_instantaneous_valueChanging event
         /// </summary>
@@ -416,6 +445,11 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveMeasurement_period_4_for_test_valueAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(MeasurementPeriod_recordingInterval_billingPeriodDuration.ClassInstance)).Resolve("Measurement_period_4_for_test_value")));
         }
         
         /// <summary>
@@ -444,6 +478,11 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             }
         }
         
+        private static ITypedElement RetrieveRecording_interval_1_for_loadprofileAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(MeasurementPeriod_recordingInterval_billingPeriodDuration.ClassInstance)).Resolve("Recording_interval_1_for_loadprofile")));
+        }
+        
         /// <summary>
         /// Raises the Recording_interval_1_for_loadprofileChanging event
         /// </summary>
@@ -470,6 +509,11 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             }
         }
         
+        private static ITypedElement RetrieveRecording_interval_2_for_loadprofileAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(MeasurementPeriod_recordingInterval_billingPeriodDuration.ClassInstance)).Resolve("Recording_interval_2_for_loadprofile")));
+        }
+        
         /// <summary>
         /// Raises the Recording_interval_2_for_loadprofileChanging event
         /// </summary>
@@ -494,6 +538,11 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveBillingperiodAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(MeasurementPeriod_recordingInterval_billingPeriodDuration.ClassInstance)).Resolve("Billingperiod")));
         }
         
         /// <summary>
@@ -630,7 +679,7 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public Measurement_period_1_for_averaging_scheme_1Proxy(IMeasurementPeriod_recordingInterval_billingPeriodDuration modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "Measurement_period_1_for_averaging_scheme_1")
             {
             }
             
@@ -648,24 +697,6 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     this.ModelElement.Measurement_period_1_for_averaging_scheme_1 = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.Measurement_period_1_for_averaging_scheme_1Changed += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.Measurement_period_1_for_averaging_scheme_1Changed -= handler;
-            }
         }
         
         /// <summary>
@@ -679,7 +710,7 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public Measurement_period_2_for_averagingscheme_2Proxy(IMeasurementPeriod_recordingInterval_billingPeriodDuration modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "Measurement_period_2_for_averagingscheme_2")
             {
             }
             
@@ -697,24 +728,6 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     this.ModelElement.Measurement_period_2_for_averagingscheme_2 = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.Measurement_period_2_for_averagingscheme_2Changed += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.Measurement_period_2_for_averagingscheme_2Changed -= handler;
-            }
         }
         
         /// <summary>
@@ -728,7 +741,7 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public Measurement_period_3_for_instantaneous_valueProxy(IMeasurementPeriod_recordingInterval_billingPeriodDuration modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "Measurement_period_3_for_instantaneous_value")
             {
             }
             
@@ -746,24 +759,6 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     this.ModelElement.Measurement_period_3_for_instantaneous_value = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.Measurement_period_3_for_instantaneous_valueChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.Measurement_period_3_for_instantaneous_valueChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -777,7 +772,7 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public Measurement_period_4_for_test_valueProxy(IMeasurementPeriod_recordingInterval_billingPeriodDuration modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "Measurement_period_4_for_test_value")
             {
             }
             
@@ -795,24 +790,6 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     this.ModelElement.Measurement_period_4_for_test_value = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.Measurement_period_4_for_test_valueChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.Measurement_period_4_for_test_valueChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -826,7 +803,7 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public Recording_interval_1_for_loadprofileProxy(IMeasurementPeriod_recordingInterval_billingPeriodDuration modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "Recording_interval_1_for_loadprofile")
             {
             }
             
@@ -844,24 +821,6 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     this.ModelElement.Recording_interval_1_for_loadprofile = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.Recording_interval_1_for_loadprofileChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.Recording_interval_1_for_loadprofileChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -875,7 +834,7 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public Recording_interval_2_for_loadprofileProxy(IMeasurementPeriod_recordingInterval_billingPeriodDuration modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "Recording_interval_2_for_loadprofile")
             {
             }
             
@@ -893,24 +852,6 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     this.ModelElement.Recording_interval_2_for_loadprofile = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.Recording_interval_2_for_loadprofileChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.Recording_interval_2_for_loadprofileChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -924,7 +865,7 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public BillingperiodProxy(IMeasurementPeriod_recordingInterval_billingPeriodDuration modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "Billingperiod")
             {
             }
             
@@ -941,24 +882,6 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                 {
                     this.ModelElement.Billingperiod = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.BillingperiodChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.BillingperiodChanged -= handler;
             }
         }
     }

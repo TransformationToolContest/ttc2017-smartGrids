@@ -40,7 +40,7 @@ namespace TTC2017.SmartGrids.COSEM.InterfaceClasses
     [XmlNamespacePrefixAttribute("inter")]
     [ModelRepresentationClassAttribute("http://www.transformation-tool-contest.eu/2017/smartGrids/cosem#//InterfaceClasse" +
         "s/Profilegeneric")]
-    public class Profilegeneric : Base, IProfilegeneric, IModelElement
+    public partial class Profilegeneric : Base, IProfilegeneric, IModelElement
     {
         
         private static IClass _classInstance;

@@ -46,7 +46,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfCommon
     [XmlNamespacePrefixAttribute("cimInfCommon")]
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61970/Informative/InfCommon/Ratio")]
     [DebuggerDisplayAttribute("Ratio {UUID}")]
-    public class Ratio : Element, IRatio, IModelElement
+    public partial class Ratio : Element, IRatio, IModelElement
     {
         
         /// <summary>
@@ -54,10 +54,14 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfCommon
         /// </summary>
         private float _numerator;
         
+        private static Lazy<ITypedElement> _numeratorAttribute = new Lazy<ITypedElement>(RetrieveNumeratorAttribute);
+        
         /// <summary>
         /// The backing field for the Denominator property
         /// </summary>
         private float _denominator;
+        
+        private static Lazy<ITypedElement> _denominatorAttribute = new Lazy<ITypedElement>(RetrieveDenominatorAttribute);
         
         private static IClass _classInstance;
         
@@ -79,10 +83,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfCommon
                     float old = this._numerator;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnNumeratorChanging(e);
-                    this.OnPropertyChanging("Numerator", e);
+                    this.OnPropertyChanging("Numerator", e, _numeratorAttribute);
                     this._numerator = value;
                     this.OnNumeratorChanged(e);
-                    this.OnPropertyChanged("Numerator", e);
+                    this.OnPropertyChanged("Numerator", e, _numeratorAttribute);
                 }
             }
         }
@@ -105,10 +109,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfCommon
                     float old = this._denominator;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnDenominatorChanging(e);
-                    this.OnPropertyChanging("Denominator", e);
+                    this.OnPropertyChanging("Denominator", e, _denominatorAttribute);
                     this._denominator = value;
                     this.OnDenominatorChanged(e);
-                    this.OnPropertyChanged("Denominator", e);
+                    this.OnPropertyChanged("Denominator", e, _denominatorAttribute);
                 }
             }
         }
@@ -148,6 +152,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfCommon
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> DenominatorChanged;
         
+        private static ITypedElement RetrieveNumeratorAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(Ratio.ClassInstance)).Resolve("numerator")));
+        }
+        
         /// <summary>
         /// Raises the NumeratorChanging event
         /// </summary>
@@ -172,6 +181,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfCommon
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveDenominatorAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(Ratio.ClassInstance)).Resolve("denominator")));
         }
         
         /// <summary>
@@ -262,7 +276,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfCommon
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public NumeratorProxy(IRatio modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "numerator")
             {
             }
             
@@ -280,24 +294,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfCommon
                     this.ModelElement.Numerator = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.NumeratorChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.NumeratorChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -311,7 +307,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfCommon
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public DenominatorProxy(IRatio modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "denominator")
             {
             }
             
@@ -328,24 +324,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfCommon
                 {
                     this.ModelElement.Denominator = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.DenominatorChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.DenominatorChanged -= handler;
             }
         }
     }

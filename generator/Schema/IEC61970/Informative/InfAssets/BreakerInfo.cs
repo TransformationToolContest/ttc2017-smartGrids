@@ -53,13 +53,15 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61970/Informative/InfAssets/Breaker" +
         "Info")]
     [DebuggerDisplayAttribute("BreakerInfo {UUID}")]
-    public class BreakerInfo : SwitchInfo, IBreakerInfo, IModelElement
+    public partial class BreakerInfo : SwitchInfo, IBreakerInfo, IModelElement
     {
         
         /// <summary>
         /// The backing field for the PhaseTrip property
         /// </summary>
         private float _phaseTrip;
+        
+        private static Lazy<ITypedElement> _phaseTripAttribute = new Lazy<ITypedElement>(RetrievePhaseTripAttribute);
         
         private static IClass _classInstance;
         
@@ -81,10 +83,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
                     float old = this._phaseTrip;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnPhaseTripChanging(e);
-                    this.OnPropertyChanging("PhaseTrip", e);
+                    this.OnPropertyChanging("PhaseTrip", e, _phaseTripAttribute);
                     this._phaseTrip = value;
                     this.OnPhaseTripChanged(e);
-                    this.OnPropertyChanged("PhaseTrip", e);
+                    this.OnPropertyChanged("PhaseTrip", e, _phaseTripAttribute);
                 }
             }
         }
@@ -114,6 +116,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
         /// Gets fired when the PhaseTrip property changed its value
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> PhaseTripChanged;
+        
+        private static ITypedElement RetrievePhaseTripAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(BreakerInfo.ClassInstance)).Resolve("phaseTrip")));
+        }
         
         /// <summary>
         /// Raises the PhaseTripChanging event
@@ -195,7 +202,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public PhaseTripProxy(IBreakerInfo modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "phaseTrip")
             {
             }
             
@@ -212,24 +219,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
                 {
                     this.ModelElement.PhaseTrip = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.PhaseTripChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.PhaseTripChanged -= handler;
             }
         }
     }

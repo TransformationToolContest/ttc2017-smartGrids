@@ -40,7 +40,7 @@ namespace TTC2017.SmartGrids.COSEM.InterfaceClasses
     [XmlNamespacePrefixAttribute("inter")]
     [ModelRepresentationClassAttribute("http://www.transformation-tool-contest.eu/2017/smartGrids/cosem#//InterfaceClasse" +
         "s/IEC8802_2LLCType3")]
-    public class IEC8802_2LLCType3 : Base, IIEC8802_2LLCType3, IModelElement
+    public partial class IEC8802_2LLCType3 : Base, IIEC8802_2LLCType3, IModelElement
     {
         
         private static IClass _classInstance;

@@ -42,13 +42,17 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.GenerationDynamics
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61970/Generation/GenerationDynamics" +
         "/PrimeMover")]
     [DebuggerDisplayAttribute("PrimeMover {UUID}")]
-    public class PrimeMover : PowerSystemResource, IPrimeMover, IModelElement
+    public partial class PrimeMover : PowerSystemResource, IPrimeMover, IModelElement
     {
         
         /// <summary>
         /// The backing field for the PrimeMoverRating property
         /// </summary>
         private float _primeMoverRating;
+        
+        private static Lazy<ITypedElement> _primeMoverRatingAttribute = new Lazy<ITypedElement>(RetrievePrimeMoverRatingAttribute);
+        
+        private static Lazy<ITypedElement> _synchronousMachinesReference = new Lazy<ITypedElement>(RetrieveSynchronousMachinesReference);
         
         /// <summary>
         /// The backing field for the SynchronousMachines property
@@ -82,10 +86,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.GenerationDynamics
                     float old = this._primeMoverRating;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnPrimeMoverRatingChanging(e);
-                    this.OnPropertyChanging("PrimeMoverRating", e);
+                    this.OnPropertyChanging("PrimeMoverRating", e, _primeMoverRatingAttribute);
                     this._primeMoverRating = value;
                     this.OnPrimeMoverRatingChanged(e);
-                    this.OnPropertyChanged("PrimeMoverRating", e);
+                    this.OnPropertyChanged("PrimeMoverRating", e, _primeMoverRatingAttribute);
                 }
             }
         }
@@ -142,6 +146,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.GenerationDynamics
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> PrimeMoverRatingChanged;
         
+        private static ITypedElement RetrievePrimeMoverRatingAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(PrimeMover.ClassInstance)).Resolve("primeMoverRating")));
+        }
+        
         /// <summary>
         /// Raises the PrimeMoverRatingChanging event
         /// </summary>
@@ -168,6 +177,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.GenerationDynamics
             }
         }
         
+        private static ITypedElement RetrieveSynchronousMachinesReference()
+        {
+            return ((ITypedElement)(((ModelElement)(PrimeMover.ClassInstance)).Resolve("SynchronousMachines")));
+        }
+        
         /// <summary>
         /// Forwards CollectionChanging notifications for the SynchronousMachines property to the parent model element
         /// </summary>
@@ -175,7 +189,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.GenerationDynamics
         /// <param name="e">The original event data</param>
         private void SynchronousMachinesCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("SynchronousMachines", e);
+            this.OnCollectionChanging("SynchronousMachines", e, _synchronousMachinesReference);
         }
         
         /// <summary>
@@ -185,7 +199,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.GenerationDynamics
         /// <param name="e">The original event data</param>
         private void SynchronousMachinesCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("SynchronousMachines", e);
+            this.OnCollectionChanged("SynchronousMachines", e, _synchronousMachinesReference);
         }
         
         /// <summary>
@@ -380,7 +394,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.GenerationDynamics
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public PrimeMoverRatingProxy(IPrimeMover modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "primeMoverRating")
             {
             }
             
@@ -397,24 +411,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.GenerationDynamics
                 {
                     this.ModelElement.PrimeMoverRating = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.PrimeMoverRatingChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.PrimeMoverRatingChanged -= handler;
             }
         }
     }

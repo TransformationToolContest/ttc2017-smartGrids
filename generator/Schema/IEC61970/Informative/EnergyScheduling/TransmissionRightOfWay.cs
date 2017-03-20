@@ -49,13 +49,17 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.EnergyScheduling
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61970/Informative/EnergyScheduling/" +
         "TransmissionRightOfWay")]
     [DebuggerDisplayAttribute("TransmissionRightOfWay {UUID}")]
-    public class TransmissionRightOfWay : PowerSystemResource, ITransmissionRightOfWay, IModelElement
+    public partial class TransmissionRightOfWay : PowerSystemResource, ITransmissionRightOfWay, IModelElement
     {
+        
+        private static Lazy<ITypedElement> _transmissionCorridorReference = new Lazy<ITypedElement>(RetrieveTransmissionCorridorReference);
         
         /// <summary>
         /// The backing field for the TransmissionCorridor property
         /// </summary>
         private ITransmissionCorridor _transmissionCorridor;
+        
+        private static Lazy<ITypedElement> _linesReference = new Lazy<ITypedElement>(RetrieveLinesReference);
         
         /// <summary>
         /// The backing field for the Lines property
@@ -89,7 +93,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.EnergyScheduling
                     ITransmissionCorridor old = this._transmissionCorridor;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnTransmissionCorridorChanging(e);
-                    this.OnPropertyChanging("TransmissionCorridor", e);
+                    this.OnPropertyChanging("TransmissionCorridor", e, _transmissionCorridorReference);
                     this._transmissionCorridor = value;
                     if ((old != null))
                     {
@@ -102,7 +106,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.EnergyScheduling
                         value.Deleted += this.OnResetTransmissionCorridor;
                     }
                     this.OnTransmissionCorridorChanged(e);
-                    this.OnPropertyChanged("TransmissionCorridor", e);
+                    this.OnPropertyChanged("TransmissionCorridor", e, _transmissionCorridorReference);
                 }
             }
         }
@@ -159,6 +163,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.EnergyScheduling
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> TransmissionCorridorChanged;
         
+        private static ITypedElement RetrieveTransmissionCorridorReference()
+        {
+            return ((ITypedElement)(((ModelElement)(TransmissionRightOfWay.ClassInstance)).Resolve("TransmissionCorridor")));
+        }
+        
         /// <summary>
         /// Raises the TransmissionCorridorChanging event
         /// </summary>
@@ -195,6 +204,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.EnergyScheduling
             this.TransmissionCorridor = null;
         }
         
+        private static ITypedElement RetrieveLinesReference()
+        {
+            return ((ITypedElement)(((ModelElement)(TransmissionRightOfWay.ClassInstance)).Resolve("Lines")));
+        }
+        
         /// <summary>
         /// Forwards CollectionChanging notifications for the Lines property to the parent model element
         /// </summary>
@@ -202,7 +216,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.EnergyScheduling
         /// <param name="e">The original event data</param>
         private void LinesCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("Lines", e);
+            this.OnCollectionChanging("Lines", e, _linesReference);
         }
         
         /// <summary>
@@ -212,7 +226,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.EnergyScheduling
         /// <param name="e">The original event data</param>
         private void LinesCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("Lines", e);
+            this.OnCollectionChanged("Lines", e, _linesReference);
         }
         
         /// <summary>
@@ -450,7 +464,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.EnergyScheduling
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public TransmissionCorridorProxy(ITransmissionRightOfWay modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "TransmissionCorridor")
             {
             }
             
@@ -467,24 +481,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.EnergyScheduling
                 {
                     this.ModelElement.TransmissionCorridor = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.TransmissionCorridorChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.TransmissionCorridorChanged -= handler;
             }
         }
     }

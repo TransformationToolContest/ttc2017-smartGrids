@@ -39,7 +39,7 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
     [XmlNamespacePrefixAttribute("objects")]
     [ModelRepresentationClassAttribute("http://www.transformation-tool-contest.eu/2017/smartGrids/cosem#//COSEMObjects/IS" +
         "O_IEC8802_2LLCType2Setup")]
-    public class ISO_IEC8802_2LLCType2Setup : IEC_8802_2_LLC_G3_NB, IISO_IEC8802_2LLCType2Setup, IModelElement
+    public partial class ISO_IEC8802_2LLCType2Setup : IEC_8802_2_LLC_G3_NB, IISO_IEC8802_2LLCType2Setup, IModelElement
     {
         
         private static IClass _classInstance;

@@ -50,23 +50,31 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61970/Informative/MarketOperations/" +
         "ProductBid")]
     [DebuggerDisplayAttribute("ProductBid {UUID}")]
-    public class ProductBid : IdentifiedObject, IProductBid, IModelElement
+    public partial class ProductBid : IdentifiedObject, IProductBid, IModelElement
     {
+        
+        private static Lazy<ITypedElement> _bidReference = new Lazy<ITypedElement>(RetrieveBidReference);
         
         /// <summary>
         /// The backing field for the Bid property
         /// </summary>
         private IBid _bid;
         
+        private static Lazy<ITypedElement> _productBidClearingReference = new Lazy<ITypedElement>(RetrieveProductBidClearingReference);
+        
         /// <summary>
         /// The backing field for the ProductBidClearing property
         /// </summary>
         private IProductBidClearing _productBidClearing;
         
+        private static Lazy<ITypedElement> _bidPriceCurveReference = new Lazy<ITypedElement>(RetrieveBidPriceCurveReference);
+        
         /// <summary>
         /// The backing field for the BidPriceCurve property
         /// </summary>
         private IBidPriceCurve _bidPriceCurve;
+        
+        private static Lazy<ITypedElement> _marketProductReference = new Lazy<ITypedElement>(RetrieveMarketProductReference);
         
         /// <summary>
         /// The backing field for the MarketProduct property
@@ -93,7 +101,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
                     IBid old = this._bid;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnBidChanging(e);
-                    this.OnPropertyChanging("Bid", e);
+                    this.OnPropertyChanging("Bid", e, _bidReference);
                     this._bid = value;
                     if ((old != null))
                     {
@@ -106,7 +114,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
                         value.Deleted += this.OnResetBid;
                     }
                     this.OnBidChanged(e);
-                    this.OnPropertyChanged("Bid", e);
+                    this.OnPropertyChanged("Bid", e, _bidReference);
                 }
             }
         }
@@ -129,7 +137,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
                     IProductBidClearing old = this._productBidClearing;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnProductBidClearingChanging(e);
-                    this.OnPropertyChanging("ProductBidClearing", e);
+                    this.OnPropertyChanging("ProductBidClearing", e, _productBidClearingReference);
                     this._productBidClearing = value;
                     if ((old != null))
                     {
@@ -142,7 +150,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
                         value.Deleted += this.OnResetProductBidClearing;
                     }
                     this.OnProductBidClearingChanged(e);
-                    this.OnPropertyChanged("ProductBidClearing", e);
+                    this.OnPropertyChanged("ProductBidClearing", e, _productBidClearingReference);
                 }
             }
         }
@@ -165,7 +173,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
                     IBidPriceCurve old = this._bidPriceCurve;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnBidPriceCurveChanging(e);
-                    this.OnPropertyChanging("BidPriceCurve", e);
+                    this.OnPropertyChanging("BidPriceCurve", e, _bidPriceCurveReference);
                     this._bidPriceCurve = value;
                     if ((old != null))
                     {
@@ -178,7 +186,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
                         value.Deleted += this.OnResetBidPriceCurve;
                     }
                     this.OnBidPriceCurveChanged(e);
-                    this.OnPropertyChanged("BidPriceCurve", e);
+                    this.OnPropertyChanged("BidPriceCurve", e, _bidPriceCurveReference);
                 }
             }
         }
@@ -201,7 +209,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
                     IMarketProduct old = this._marketProduct;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnMarketProductChanging(e);
-                    this.OnPropertyChanging("MarketProduct", e);
+                    this.OnPropertyChanging("MarketProduct", e, _marketProductReference);
                     this._marketProduct = value;
                     if ((old != null))
                     {
@@ -214,7 +222,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
                         value.Deleted += this.OnResetMarketProduct;
                     }
                     this.OnMarketProductChanged(e);
-                    this.OnPropertyChanged("MarketProduct", e);
+                    this.OnPropertyChanged("MarketProduct", e, _marketProductReference);
                 }
             }
         }
@@ -286,6 +294,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> MarketProductChanged;
         
+        private static ITypedElement RetrieveBidReference()
+        {
+            return ((ITypedElement)(((ModelElement)(ProductBid.ClassInstance)).Resolve("Bid")));
+        }
+        
         /// <summary>
         /// Raises the BidChanging event
         /// </summary>
@@ -320,6 +333,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
         private void OnResetBid(object sender, System.EventArgs eventArgs)
         {
             this.Bid = null;
+        }
+        
+        private static ITypedElement RetrieveProductBidClearingReference()
+        {
+            return ((ITypedElement)(((ModelElement)(ProductBid.ClassInstance)).Resolve("ProductBidClearing")));
         }
         
         /// <summary>
@@ -358,6 +376,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
             this.ProductBidClearing = null;
         }
         
+        private static ITypedElement RetrieveBidPriceCurveReference()
+        {
+            return ((ITypedElement)(((ModelElement)(ProductBid.ClassInstance)).Resolve("BidPriceCurve")));
+        }
+        
         /// <summary>
         /// Raises the BidPriceCurveChanging event
         /// </summary>
@@ -392,6 +415,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
         private void OnResetBidPriceCurve(object sender, System.EventArgs eventArgs)
         {
             this.BidPriceCurve = null;
+        }
+        
+        private static ITypedElement RetrieveMarketProductReference()
+        {
+            return ((ITypedElement)(((ModelElement)(ProductBid.ClassInstance)).Resolve("MarketProduct")));
         }
         
         /// <summary>
@@ -746,7 +774,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public BidProxy(IProductBid modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "Bid")
             {
             }
             
@@ -764,24 +792,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
                     this.ModelElement.Bid = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.BidChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.BidChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -795,7 +805,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public ProductBidClearingProxy(IProductBid modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "ProductBidClearing")
             {
             }
             
@@ -813,24 +823,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
                     this.ModelElement.ProductBidClearing = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ProductBidClearingChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ProductBidClearingChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -844,7 +836,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public BidPriceCurveProxy(IProductBid modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "BidPriceCurve")
             {
             }
             
@@ -862,24 +854,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
                     this.ModelElement.BidPriceCurve = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.BidPriceCurveChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.BidPriceCurveChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -893,7 +867,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public MarketProductProxy(IProductBid modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "MarketProduct")
             {
             }
             
@@ -910,24 +884,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
                 {
                     this.ModelElement.MarketProduct = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.MarketProductChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.MarketProductChanged -= handler;
             }
         }
     }

@@ -56,7 +56,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfERPSupport
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61970/Informative/InfERPSupport/Erp" +
         "Payment")]
     [DebuggerDisplayAttribute("ErpPayment {UUID}")]
-    public class ErpPayment : Document, IErpPayment, IModelElement
+    public partial class ErpPayment : Document, IErpPayment, IModelElement
     {
         
         /// <summary>
@@ -64,15 +64,23 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfERPSupport
         /// </summary>
         private string _termsPayment;
         
+        private static Lazy<ITypedElement> _termsPaymentAttribute = new Lazy<ITypedElement>(RetrieveTermsPaymentAttribute);
+        
+        private static Lazy<ITypedElement> _erpPayableLineItemsReference = new Lazy<ITypedElement>(RetrieveErpPayableLineItemsReference);
+        
         /// <summary>
         /// The backing field for the ErpPayableLineItems property
         /// </summary>
         private ErpPaymentErpPayableLineItemsCollection _erpPayableLineItems;
         
+        private static Lazy<ITypedElement> _erpInvoiceLineItemsReference = new Lazy<ITypedElement>(RetrieveErpInvoiceLineItemsReference);
+        
         /// <summary>
         /// The backing field for the ErpInvoiceLineItems property
         /// </summary>
         private ErpPaymentErpInvoiceLineItemsCollection _erpInvoiceLineItems;
+        
+        private static Lazy<ITypedElement> _erpRecLineItemsReference = new Lazy<ITypedElement>(RetrieveErpRecLineItemsReference);
         
         /// <summary>
         /// The backing field for the ErpRecLineItems property
@@ -112,10 +120,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfERPSupport
                     string old = this._termsPayment;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnTermsPaymentChanging(e);
-                    this.OnPropertyChanging("TermsPayment", e);
+                    this.OnPropertyChanging("TermsPayment", e, _termsPaymentAttribute);
                     this._termsPayment = value;
                     this.OnTermsPaymentChanged(e);
-                    this.OnPropertyChanged("TermsPayment", e);
+                    this.OnPropertyChanged("TermsPayment", e, _termsPaymentAttribute);
                 }
             }
         }
@@ -202,6 +210,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfERPSupport
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> TermsPaymentChanged;
         
+        private static ITypedElement RetrieveTermsPaymentAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(ErpPayment.ClassInstance)).Resolve("termsPayment")));
+        }
+        
         /// <summary>
         /// Raises the TermsPaymentChanging event
         /// </summary>
@@ -228,6 +241,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfERPSupport
             }
         }
         
+        private static ITypedElement RetrieveErpPayableLineItemsReference()
+        {
+            return ((ITypedElement)(((ModelElement)(ErpPayment.ClassInstance)).Resolve("ErpPayableLineItems")));
+        }
+        
         /// <summary>
         /// Forwards CollectionChanging notifications for the ErpPayableLineItems property to the parent model element
         /// </summary>
@@ -235,7 +253,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfERPSupport
         /// <param name="e">The original event data</param>
         private void ErpPayableLineItemsCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("ErpPayableLineItems", e);
+            this.OnCollectionChanging("ErpPayableLineItems", e, _erpPayableLineItemsReference);
         }
         
         /// <summary>
@@ -245,7 +263,12 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfERPSupport
         /// <param name="e">The original event data</param>
         private void ErpPayableLineItemsCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("ErpPayableLineItems", e);
+            this.OnCollectionChanged("ErpPayableLineItems", e, _erpPayableLineItemsReference);
+        }
+        
+        private static ITypedElement RetrieveErpInvoiceLineItemsReference()
+        {
+            return ((ITypedElement)(((ModelElement)(ErpPayment.ClassInstance)).Resolve("ErpInvoiceLineItems")));
         }
         
         /// <summary>
@@ -255,7 +278,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfERPSupport
         /// <param name="e">The original event data</param>
         private void ErpInvoiceLineItemsCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("ErpInvoiceLineItems", e);
+            this.OnCollectionChanging("ErpInvoiceLineItems", e, _erpInvoiceLineItemsReference);
         }
         
         /// <summary>
@@ -265,7 +288,12 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfERPSupport
         /// <param name="e">The original event data</param>
         private void ErpInvoiceLineItemsCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("ErpInvoiceLineItems", e);
+            this.OnCollectionChanged("ErpInvoiceLineItems", e, _erpInvoiceLineItemsReference);
+        }
+        
+        private static ITypedElement RetrieveErpRecLineItemsReference()
+        {
+            return ((ITypedElement)(((ModelElement)(ErpPayment.ClassInstance)).Resolve("ErpRecLineItems")));
         }
         
         /// <summary>
@@ -275,7 +303,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfERPSupport
         /// <param name="e">The original event data</param>
         private void ErpRecLineItemsCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("ErpRecLineItems", e);
+            this.OnCollectionChanging("ErpRecLineItems", e, _erpRecLineItemsReference);
         }
         
         /// <summary>
@@ -285,7 +313,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfERPSupport
         /// <param name="e">The original event data</param>
         private void ErpRecLineItemsCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("ErpRecLineItems", e);
+            this.OnCollectionChanged("ErpRecLineItems", e, _erpRecLineItemsReference);
         }
         
         /// <summary>
@@ -556,7 +584,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfERPSupport
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public TermsPaymentProxy(IErpPayment modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "termsPayment")
             {
             }
             
@@ -573,24 +601,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfERPSupport
                 {
                     this.ModelElement.TermsPayment = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.TermsPaymentChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.TermsPaymentChanged -= handler;
             }
         }
     }

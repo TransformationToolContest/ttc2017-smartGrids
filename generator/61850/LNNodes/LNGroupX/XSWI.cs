@@ -43,7 +43,7 @@ namespace TTC2017.SmartGrids.SubstationStandard.LNNodes.LNGroupX
     [XmlNamespacePrefixAttribute("groupx")]
     [ModelRepresentationClassAttribute("http://www.transformation-tool-contest.eu/2017/smartGrids/substationStandard#//LN" +
         "Nodes/LNGroupX/XSWI")]
-    public class XSWI : TTC2017.SmartGrids.SubstationStandard.LNNodes.LNGroupX.GroupX, IXSWI, IModelElement
+    public partial class XSWI : TTC2017.SmartGrids.SubstationStandard.LNNodes.LNGroupX.GroupX, IXSWI, IModelElement
     {
         
         /// <summary>
@@ -51,15 +51,23 @@ namespace TTC2017.SmartGrids.SubstationStandard.LNNodes.LNGroupX
         /// </summary>
         private Nullable<SwitchingCapabilityKind> _swOpCap;
         
+        private static Lazy<ITypedElement> _swOpCapAttribute = new Lazy<ITypedElement>(RetrieveSwOpCapAttribute);
+        
         /// <summary>
         /// The backing field for the MaxOpCap property
         /// </summary>
         private Nullable<SwitchingCapabilityKind> _maxOpCap;
         
+        private static Lazy<ITypedElement> _maxOpCapAttribute = new Lazy<ITypedElement>(RetrieveMaxOpCapAttribute);
+        
         /// <summary>
         /// The backing field for the SwTyp property
         /// </summary>
         private Nullable<SwitchTypeKind> _swTyp;
+        
+        private static Lazy<ITypedElement> _swTypAttribute = new Lazy<ITypedElement>(RetrieveSwTypAttribute);
+        
+        private static Lazy<ITypedElement> _switchControlReference = new Lazy<ITypedElement>(RetrieveSwitchControlReference);
         
         /// <summary>
         /// The backing field for the SwitchControl property
@@ -85,10 +93,10 @@ namespace TTC2017.SmartGrids.SubstationStandard.LNNodes.LNGroupX
                     Nullable<SwitchingCapabilityKind> old = this._swOpCap;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnSwOpCapChanging(e);
-                    this.OnPropertyChanging("SwOpCap", e);
+                    this.OnPropertyChanging("SwOpCap", e, _swOpCapAttribute);
                     this._swOpCap = value;
                     this.OnSwOpCapChanged(e);
-                    this.OnPropertyChanged("SwOpCap", e);
+                    this.OnPropertyChanged("SwOpCap", e, _swOpCapAttribute);
                 }
             }
         }
@@ -110,10 +118,10 @@ namespace TTC2017.SmartGrids.SubstationStandard.LNNodes.LNGroupX
                     Nullable<SwitchingCapabilityKind> old = this._maxOpCap;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnMaxOpCapChanging(e);
-                    this.OnPropertyChanging("MaxOpCap", e);
+                    this.OnPropertyChanging("MaxOpCap", e, _maxOpCapAttribute);
                     this._maxOpCap = value;
                     this.OnMaxOpCapChanged(e);
-                    this.OnPropertyChanged("MaxOpCap", e);
+                    this.OnPropertyChanged("MaxOpCap", e, _maxOpCapAttribute);
                 }
             }
         }
@@ -135,10 +143,10 @@ namespace TTC2017.SmartGrids.SubstationStandard.LNNodes.LNGroupX
                     Nullable<SwitchTypeKind> old = this._swTyp;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnSwTypChanging(e);
-                    this.OnPropertyChanging("SwTyp", e);
+                    this.OnPropertyChanging("SwTyp", e, _swTypAttribute);
                     this._swTyp = value;
                     this.OnSwTypChanged(e);
-                    this.OnPropertyChanged("SwTyp", e);
+                    this.OnPropertyChanged("SwTyp", e, _swTypAttribute);
                 }
             }
         }
@@ -160,7 +168,7 @@ namespace TTC2017.SmartGrids.SubstationStandard.LNNodes.LNGroupX
                     ICSWI old = this._switchControl;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnSwitchControlChanging(e);
-                    this.OnPropertyChanging("SwitchControl", e);
+                    this.OnPropertyChanging("SwitchControl", e, _switchControlReference);
                     this._switchControl = value;
                     if ((old != null))
                     {
@@ -171,7 +179,7 @@ namespace TTC2017.SmartGrids.SubstationStandard.LNNodes.LNGroupX
                         value.Deleted += this.OnResetSwitchControl;
                     }
                     this.OnSwitchControlChanged(e);
-                    this.OnPropertyChanged("SwitchControl", e);
+                    this.OnPropertyChanged("SwitchControl", e, _switchControlReference);
                 }
             }
         }
@@ -243,6 +251,11 @@ namespace TTC2017.SmartGrids.SubstationStandard.LNNodes.LNGroupX
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> SwitchControlChanged;
         
+        private static ITypedElement RetrieveSwOpCapAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(XSWI.ClassInstance)).Resolve("SwOpCap")));
+        }
+        
         /// <summary>
         /// Raises the SwOpCapChanging event
         /// </summary>
@@ -267,6 +280,11 @@ namespace TTC2017.SmartGrids.SubstationStandard.LNNodes.LNGroupX
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveMaxOpCapAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(XSWI.ClassInstance)).Resolve("MaxOpCap")));
         }
         
         /// <summary>
@@ -295,6 +313,11 @@ namespace TTC2017.SmartGrids.SubstationStandard.LNNodes.LNGroupX
             }
         }
         
+        private static ITypedElement RetrieveSwTypAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(XSWI.ClassInstance)).Resolve("SwTyp")));
+        }
+        
         /// <summary>
         /// Raises the SwTypChanging event
         /// </summary>
@@ -319,6 +342,11 @@ namespace TTC2017.SmartGrids.SubstationStandard.LNNodes.LNGroupX
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveSwitchControlReference()
+        {
+            return ((ITypedElement)(((ModelElement)(XSWI.ClassInstance)).Resolve("SwitchControl")));
         }
         
         /// <summary>
@@ -582,7 +610,7 @@ namespace TTC2017.SmartGrids.SubstationStandard.LNNodes.LNGroupX
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public SwOpCapProxy(IXSWI modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "SwOpCap")
             {
             }
             
@@ -600,24 +628,6 @@ namespace TTC2017.SmartGrids.SubstationStandard.LNNodes.LNGroupX
                     this.ModelElement.SwOpCap = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.SwOpCapChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.SwOpCapChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -631,7 +641,7 @@ namespace TTC2017.SmartGrids.SubstationStandard.LNNodes.LNGroupX
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public MaxOpCapProxy(IXSWI modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "MaxOpCap")
             {
             }
             
@@ -649,24 +659,6 @@ namespace TTC2017.SmartGrids.SubstationStandard.LNNodes.LNGroupX
                     this.ModelElement.MaxOpCap = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.MaxOpCapChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.MaxOpCapChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -680,7 +672,7 @@ namespace TTC2017.SmartGrids.SubstationStandard.LNNodes.LNGroupX
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public SwTypProxy(IXSWI modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "SwTyp")
             {
             }
             
@@ -698,24 +690,6 @@ namespace TTC2017.SmartGrids.SubstationStandard.LNNodes.LNGroupX
                     this.ModelElement.SwTyp = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.SwTypChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.SwTypChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -729,7 +703,7 @@ namespace TTC2017.SmartGrids.SubstationStandard.LNNodes.LNGroupX
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public SwitchControlProxy(IXSWI modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "SwitchControl")
             {
             }
             
@@ -746,24 +720,6 @@ namespace TTC2017.SmartGrids.SubstationStandard.LNNodes.LNGroupX
                 {
                     this.ModelElement.SwitchControl = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.SwitchControlChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.SwitchControlChanged -= handler;
             }
         }
     }

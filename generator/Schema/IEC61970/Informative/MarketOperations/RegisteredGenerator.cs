@@ -50,7 +50,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61970/Informative/MarketOperations/" +
         "RegisteredGenerator")]
     [DebuggerDisplayAttribute("RegisteredGenerator {UUID}")]
-    public class RegisteredGenerator : RegisteredResource, IRegisteredGenerator, IModelElement
+    public partial class RegisteredGenerator : RegisteredResource, IRegisteredGenerator, IModelElement
     {
         
         /// <summary>
@@ -58,70 +58,100 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
         /// </summary>
         private float _lowControlLImit;
         
+        private static Lazy<ITypedElement> _lowControlLImitAttribute = new Lazy<ITypedElement>(RetrieveLowControlLImitAttribute);
+        
         /// <summary>
         /// The backing field for the LowerControlRate property
         /// </summary>
         private object _lowerControlRate;
+        
+        private static Lazy<ITypedElement> _lowerControlRateAttribute = new Lazy<ITypedElement>(RetrieveLowerControlRateAttribute);
         
         /// <summary>
         /// The backing field for the RaiseRampRate property
         /// </summary>
         private object _raiseRampRate;
         
+        private static Lazy<ITypedElement> _raiseRampRateAttribute = new Lazy<ITypedElement>(RetrieveRaiseRampRateAttribute);
+        
         /// <summary>
         /// The backing field for the RaiseControlRate property
         /// </summary>
         private object _raiseControlRate;
+        
+        private static Lazy<ITypedElement> _raiseControlRateAttribute = new Lazy<ITypedElement>(RetrieveRaiseControlRateAttribute);
         
         /// <summary>
         /// The backing field for the MaximumAllowableSpinningReserve property
         /// </summary>
         private float _maximumAllowableSpinningReserve;
         
+        private static Lazy<ITypedElement> _maximumAllowableSpinningReserveAttribute = new Lazy<ITypedElement>(RetrieveMaximumAllowableSpinningReserveAttribute);
+        
         /// <summary>
         /// The backing field for the MaximumOperatingMW property
         /// </summary>
         private float _maximumOperatingMW;
+        
+        private static Lazy<ITypedElement> _maximumOperatingMWAttribute = new Lazy<ITypedElement>(RetrieveMaximumOperatingMWAttribute);
         
         /// <summary>
         /// The backing field for the HighControlLimit property
         /// </summary>
         private float _highControlLimit;
         
+        private static Lazy<ITypedElement> _highControlLimitAttribute = new Lazy<ITypedElement>(RetrieveHighControlLimitAttribute);
+        
         /// <summary>
         /// The backing field for the MinimumOperatingMW property
         /// </summary>
         private float _minimumOperatingMW;
+        
+        private static Lazy<ITypedElement> _minimumOperatingMWAttribute = new Lazy<ITypedElement>(RetrieveMinimumOperatingMWAttribute);
         
         /// <summary>
         /// The backing field for the LowerRampRate property
         /// </summary>
         private object _lowerRampRate;
         
+        private static Lazy<ITypedElement> _lowerRampRateAttribute = new Lazy<ITypedElement>(RetrieveLowerRampRateAttribute);
+        
         /// <summary>
         /// The backing field for the SpinReserveRamp property
         /// </summary>
         private object _spinReserveRamp;
+        
+        private static Lazy<ITypedElement> _spinReserveRampAttribute = new Lazy<ITypedElement>(RetrieveSpinReserveRampAttribute);
+        
+        private static Lazy<ITypedElement> _rampRateCurvesReference = new Lazy<ITypedElement>(RetrieveRampRateCurvesReference);
         
         /// <summary>
         /// The backing field for the RampRateCurves property
         /// </summary>
         private RegisteredGeneratorRampRateCurvesCollection _rampRateCurves;
         
+        private static Lazy<ITypedElement> _unitInitialConditionsReference = new Lazy<ITypedElement>(RetrieveUnitInitialConditionsReference);
+        
         /// <summary>
         /// The backing field for the UnitInitialConditions property
         /// </summary>
         private RegisteredGeneratorUnitInitialConditionsCollection _unitInitialConditions;
+        
+        private static Lazy<ITypedElement> _startUpCostCurvesReference = new Lazy<ITypedElement>(RetrieveStartUpCostCurvesReference);
         
         /// <summary>
         /// The backing field for the StartUpCostCurves property
         /// </summary>
         private RegisteredGeneratorStartUpCostCurvesCollection _startUpCostCurves;
         
+        private static Lazy<ITypedElement> _generatingUnitReference = new Lazy<ITypedElement>(RetrieveGeneratingUnitReference);
+        
         /// <summary>
         /// The backing field for the GeneratingUnit property
         /// </summary>
         private IGeneratingUnit _generatingUnit;
+        
+        private static Lazy<ITypedElement> _generatingBidsReference = new Lazy<ITypedElement>(RetrieveGeneratingBidsReference);
         
         /// <summary>
         /// The backing field for the GeneratingBids property
@@ -164,10 +194,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
                     float old = this._lowControlLImit;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnLowControlLImitChanging(e);
-                    this.OnPropertyChanging("LowControlLImit", e);
+                    this.OnPropertyChanging("LowControlLImit", e, _lowControlLImitAttribute);
                     this._lowControlLImit = value;
                     this.OnLowControlLImitChanged(e);
-                    this.OnPropertyChanged("LowControlLImit", e);
+                    this.OnPropertyChanged("LowControlLImit", e, _lowControlLImitAttribute);
                 }
             }
         }
@@ -190,10 +220,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
                     object old = this._lowerControlRate;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnLowerControlRateChanging(e);
-                    this.OnPropertyChanging("LowerControlRate", e);
+                    this.OnPropertyChanging("LowerControlRate", e, _lowerControlRateAttribute);
                     this._lowerControlRate = value;
                     this.OnLowerControlRateChanged(e);
-                    this.OnPropertyChanged("LowerControlRate", e);
+                    this.OnPropertyChanged("LowerControlRate", e, _lowerControlRateAttribute);
                 }
             }
         }
@@ -216,10 +246,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
                     object old = this._raiseRampRate;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnRaiseRampRateChanging(e);
-                    this.OnPropertyChanging("RaiseRampRate", e);
+                    this.OnPropertyChanging("RaiseRampRate", e, _raiseRampRateAttribute);
                     this._raiseRampRate = value;
                     this.OnRaiseRampRateChanged(e);
-                    this.OnPropertyChanged("RaiseRampRate", e);
+                    this.OnPropertyChanged("RaiseRampRate", e, _raiseRampRateAttribute);
                 }
             }
         }
@@ -242,10 +272,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
                     object old = this._raiseControlRate;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnRaiseControlRateChanging(e);
-                    this.OnPropertyChanging("RaiseControlRate", e);
+                    this.OnPropertyChanging("RaiseControlRate", e, _raiseControlRateAttribute);
                     this._raiseControlRate = value;
                     this.OnRaiseControlRateChanged(e);
-                    this.OnPropertyChanged("RaiseControlRate", e);
+                    this.OnPropertyChanged("RaiseControlRate", e, _raiseControlRateAttribute);
                 }
             }
         }
@@ -268,10 +298,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
                     float old = this._maximumAllowableSpinningReserve;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnMaximumAllowableSpinningReserveChanging(e);
-                    this.OnPropertyChanging("MaximumAllowableSpinningReserve", e);
+                    this.OnPropertyChanging("MaximumAllowableSpinningReserve", e, _maximumAllowableSpinningReserveAttribute);
                     this._maximumAllowableSpinningReserve = value;
                     this.OnMaximumAllowableSpinningReserveChanged(e);
-                    this.OnPropertyChanged("MaximumAllowableSpinningReserve", e);
+                    this.OnPropertyChanged("MaximumAllowableSpinningReserve", e, _maximumAllowableSpinningReserveAttribute);
                 }
             }
         }
@@ -294,10 +324,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
                     float old = this._maximumOperatingMW;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnMaximumOperatingMWChanging(e);
-                    this.OnPropertyChanging("MaximumOperatingMW", e);
+                    this.OnPropertyChanging("MaximumOperatingMW", e, _maximumOperatingMWAttribute);
                     this._maximumOperatingMW = value;
                     this.OnMaximumOperatingMWChanged(e);
-                    this.OnPropertyChanged("MaximumOperatingMW", e);
+                    this.OnPropertyChanged("MaximumOperatingMW", e, _maximumOperatingMWAttribute);
                 }
             }
         }
@@ -320,10 +350,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
                     float old = this._highControlLimit;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnHighControlLimitChanging(e);
-                    this.OnPropertyChanging("HighControlLimit", e);
+                    this.OnPropertyChanging("HighControlLimit", e, _highControlLimitAttribute);
                     this._highControlLimit = value;
                     this.OnHighControlLimitChanged(e);
-                    this.OnPropertyChanged("HighControlLimit", e);
+                    this.OnPropertyChanged("HighControlLimit", e, _highControlLimitAttribute);
                 }
             }
         }
@@ -346,10 +376,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
                     float old = this._minimumOperatingMW;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnMinimumOperatingMWChanging(e);
-                    this.OnPropertyChanging("MinimumOperatingMW", e);
+                    this.OnPropertyChanging("MinimumOperatingMW", e, _minimumOperatingMWAttribute);
                     this._minimumOperatingMW = value;
                     this.OnMinimumOperatingMWChanged(e);
-                    this.OnPropertyChanged("MinimumOperatingMW", e);
+                    this.OnPropertyChanged("MinimumOperatingMW", e, _minimumOperatingMWAttribute);
                 }
             }
         }
@@ -372,10 +402,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
                     object old = this._lowerRampRate;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnLowerRampRateChanging(e);
-                    this.OnPropertyChanging("LowerRampRate", e);
+                    this.OnPropertyChanging("LowerRampRate", e, _lowerRampRateAttribute);
                     this._lowerRampRate = value;
                     this.OnLowerRampRateChanged(e);
-                    this.OnPropertyChanged("LowerRampRate", e);
+                    this.OnPropertyChanged("LowerRampRate", e, _lowerRampRateAttribute);
                 }
             }
         }
@@ -398,10 +428,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
                     object old = this._spinReserveRamp;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnSpinReserveRampChanging(e);
-                    this.OnPropertyChanging("SpinReserveRamp", e);
+                    this.OnPropertyChanging("SpinReserveRamp", e, _spinReserveRampAttribute);
                     this._spinReserveRamp = value;
                     this.OnSpinReserveRampChanged(e);
-                    this.OnPropertyChanged("SpinReserveRamp", e);
+                    this.OnPropertyChanged("SpinReserveRamp", e, _spinReserveRampAttribute);
                 }
             }
         }
@@ -469,7 +499,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
                     IGeneratingUnit old = this._generatingUnit;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnGeneratingUnitChanging(e);
-                    this.OnPropertyChanging("GeneratingUnit", e);
+                    this.OnPropertyChanging("GeneratingUnit", e, _generatingUnitReference);
                     this._generatingUnit = value;
                     if ((old != null))
                     {
@@ -482,7 +512,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
                         value.Deleted += this.OnResetGeneratingUnit;
                     }
                     this.OnGeneratingUnitChanged(e);
-                    this.OnPropertyChanged("GeneratingUnit", e);
+                    this.OnPropertyChanged("GeneratingUnit", e, _generatingUnitReference);
                 }
             }
         }
@@ -639,6 +669,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> GeneratingUnitChanged;
         
+        private static ITypedElement RetrieveLowControlLImitAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(RegisteredGenerator.ClassInstance)).Resolve("lowControlLImit")));
+        }
+        
         /// <summary>
         /// Raises the LowControlLImitChanging event
         /// </summary>
@@ -663,6 +698,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveLowerControlRateAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(RegisteredGenerator.ClassInstance)).Resolve("lowerControlRate")));
         }
         
         /// <summary>
@@ -691,6 +731,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
             }
         }
         
+        private static ITypedElement RetrieveRaiseRampRateAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(RegisteredGenerator.ClassInstance)).Resolve("raiseRampRate")));
+        }
+        
         /// <summary>
         /// Raises the RaiseRampRateChanging event
         /// </summary>
@@ -715,6 +760,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveRaiseControlRateAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(RegisteredGenerator.ClassInstance)).Resolve("raiseControlRate")));
         }
         
         /// <summary>
@@ -743,6 +793,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
             }
         }
         
+        private static ITypedElement RetrieveMaximumAllowableSpinningReserveAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(RegisteredGenerator.ClassInstance)).Resolve("maximumAllowableSpinningReserve")));
+        }
+        
         /// <summary>
         /// Raises the MaximumAllowableSpinningReserveChanging event
         /// </summary>
@@ -767,6 +822,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveMaximumOperatingMWAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(RegisteredGenerator.ClassInstance)).Resolve("maximumOperatingMW")));
         }
         
         /// <summary>
@@ -795,6 +855,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
             }
         }
         
+        private static ITypedElement RetrieveHighControlLimitAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(RegisteredGenerator.ClassInstance)).Resolve("highControlLimit")));
+        }
+        
         /// <summary>
         /// Raises the HighControlLimitChanging event
         /// </summary>
@@ -819,6 +884,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveMinimumOperatingMWAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(RegisteredGenerator.ClassInstance)).Resolve("minimumOperatingMW")));
         }
         
         /// <summary>
@@ -847,6 +917,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
             }
         }
         
+        private static ITypedElement RetrieveLowerRampRateAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(RegisteredGenerator.ClassInstance)).Resolve("lowerRampRate")));
+        }
+        
         /// <summary>
         /// Raises the LowerRampRateChanging event
         /// </summary>
@@ -871,6 +946,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveSpinReserveRampAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(RegisteredGenerator.ClassInstance)).Resolve("spinReserveRamp")));
         }
         
         /// <summary>
@@ -899,6 +979,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
             }
         }
         
+        private static ITypedElement RetrieveRampRateCurvesReference()
+        {
+            return ((ITypedElement)(((ModelElement)(RegisteredGenerator.ClassInstance)).Resolve("RampRateCurves")));
+        }
+        
         /// <summary>
         /// Forwards CollectionChanging notifications for the RampRateCurves property to the parent model element
         /// </summary>
@@ -906,7 +991,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
         /// <param name="e">The original event data</param>
         private void RampRateCurvesCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("RampRateCurves", e);
+            this.OnCollectionChanging("RampRateCurves", e, _rampRateCurvesReference);
         }
         
         /// <summary>
@@ -916,7 +1001,12 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
         /// <param name="e">The original event data</param>
         private void RampRateCurvesCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("RampRateCurves", e);
+            this.OnCollectionChanged("RampRateCurves", e, _rampRateCurvesReference);
+        }
+        
+        private static ITypedElement RetrieveUnitInitialConditionsReference()
+        {
+            return ((ITypedElement)(((ModelElement)(RegisteredGenerator.ClassInstance)).Resolve("UnitInitialConditions")));
         }
         
         /// <summary>
@@ -926,7 +1016,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
         /// <param name="e">The original event data</param>
         private void UnitInitialConditionsCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("UnitInitialConditions", e);
+            this.OnCollectionChanging("UnitInitialConditions", e, _unitInitialConditionsReference);
         }
         
         /// <summary>
@@ -936,7 +1026,12 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
         /// <param name="e">The original event data</param>
         private void UnitInitialConditionsCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("UnitInitialConditions", e);
+            this.OnCollectionChanged("UnitInitialConditions", e, _unitInitialConditionsReference);
+        }
+        
+        private static ITypedElement RetrieveStartUpCostCurvesReference()
+        {
+            return ((ITypedElement)(((ModelElement)(RegisteredGenerator.ClassInstance)).Resolve("StartUpCostCurves")));
         }
         
         /// <summary>
@@ -946,7 +1041,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
         /// <param name="e">The original event data</param>
         private void StartUpCostCurvesCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("StartUpCostCurves", e);
+            this.OnCollectionChanging("StartUpCostCurves", e, _startUpCostCurvesReference);
         }
         
         /// <summary>
@@ -956,7 +1051,12 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
         /// <param name="e">The original event data</param>
         private void StartUpCostCurvesCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("StartUpCostCurves", e);
+            this.OnCollectionChanged("StartUpCostCurves", e, _startUpCostCurvesReference);
+        }
+        
+        private static ITypedElement RetrieveGeneratingUnitReference()
+        {
+            return ((ITypedElement)(((ModelElement)(RegisteredGenerator.ClassInstance)).Resolve("GeneratingUnit")));
         }
         
         /// <summary>
@@ -995,6 +1095,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
             this.GeneratingUnit = null;
         }
         
+        private static ITypedElement RetrieveGeneratingBidsReference()
+        {
+            return ((ITypedElement)(((ModelElement)(RegisteredGenerator.ClassInstance)).Resolve("GeneratingBids")));
+        }
+        
         /// <summary>
         /// Forwards CollectionChanging notifications for the GeneratingBids property to the parent model element
         /// </summary>
@@ -1002,7 +1107,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
         /// <param name="e">The original event data</param>
         private void GeneratingBidsCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("GeneratingBids", e);
+            this.OnCollectionChanging("GeneratingBids", e, _generatingBidsReference);
         }
         
         /// <summary>
@@ -1012,7 +1117,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
         /// <param name="e">The original event data</param>
         private void GeneratingBidsCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("GeneratingBids", e);
+            this.OnCollectionChanged("GeneratingBids", e, _generatingBidsReference);
         }
         
         /// <summary>
@@ -1465,7 +1570,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public LowControlLImitProxy(IRegisteredGenerator modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "lowControlLImit")
             {
             }
             
@@ -1483,24 +1588,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
                     this.ModelElement.LowControlLImit = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.LowControlLImitChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.LowControlLImitChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1514,7 +1601,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public LowerControlRateProxy(IRegisteredGenerator modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "lowerControlRate")
             {
             }
             
@@ -1532,24 +1619,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
                     this.ModelElement.LowerControlRate = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.LowerControlRateChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.LowerControlRateChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1563,7 +1632,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public RaiseRampRateProxy(IRegisteredGenerator modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "raiseRampRate")
             {
             }
             
@@ -1581,24 +1650,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
                     this.ModelElement.RaiseRampRate = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.RaiseRampRateChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.RaiseRampRateChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1612,7 +1663,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public RaiseControlRateProxy(IRegisteredGenerator modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "raiseControlRate")
             {
             }
             
@@ -1630,24 +1681,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
                     this.ModelElement.RaiseControlRate = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.RaiseControlRateChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.RaiseControlRateChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1661,7 +1694,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public MaximumAllowableSpinningReserveProxy(IRegisteredGenerator modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "maximumAllowableSpinningReserve")
             {
             }
             
@@ -1679,24 +1712,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
                     this.ModelElement.MaximumAllowableSpinningReserve = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.MaximumAllowableSpinningReserveChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.MaximumAllowableSpinningReserveChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1710,7 +1725,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public MaximumOperatingMWProxy(IRegisteredGenerator modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "maximumOperatingMW")
             {
             }
             
@@ -1728,24 +1743,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
                     this.ModelElement.MaximumOperatingMW = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.MaximumOperatingMWChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.MaximumOperatingMWChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1759,7 +1756,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public HighControlLimitProxy(IRegisteredGenerator modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "highControlLimit")
             {
             }
             
@@ -1777,24 +1774,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
                     this.ModelElement.HighControlLimit = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.HighControlLimitChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.HighControlLimitChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1808,7 +1787,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public MinimumOperatingMWProxy(IRegisteredGenerator modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "minimumOperatingMW")
             {
             }
             
@@ -1826,24 +1805,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
                     this.ModelElement.MinimumOperatingMW = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.MinimumOperatingMWChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.MinimumOperatingMWChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1857,7 +1818,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public LowerRampRateProxy(IRegisteredGenerator modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "lowerRampRate")
             {
             }
             
@@ -1875,24 +1836,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
                     this.ModelElement.LowerRampRate = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.LowerRampRateChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.LowerRampRateChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1906,7 +1849,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public SpinReserveRampProxy(IRegisteredGenerator modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "spinReserveRamp")
             {
             }
             
@@ -1924,24 +1867,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
                     this.ModelElement.SpinReserveRamp = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.SpinReserveRampChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.SpinReserveRampChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1955,7 +1880,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public GeneratingUnitProxy(IRegisteredGenerator modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "GeneratingUnit")
             {
             }
             
@@ -1972,24 +1897,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
                 {
                     this.ModelElement.GeneratingUnit = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.GeneratingUnitChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.GeneratingUnitChanged -= handler;
             }
         }
     }

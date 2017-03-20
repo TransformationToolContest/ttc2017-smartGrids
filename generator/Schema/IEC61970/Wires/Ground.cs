@@ -53,8 +53,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
     [XmlNamespacePrefixAttribute("cimWires")]
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61970/Wires/Ground")]
     [DebuggerDisplayAttribute("Ground {UUID}")]
-    public class Ground : ConductingEquipment, IGround, IModelElement
+    public partial class Ground : ConductingEquipment, IGround, IModelElement
     {
+        
+        private static Lazy<ITypedElement> _windingInsulationsReference = new Lazy<ITypedElement>(RetrieveWindingInsulationsReference);
         
         /// <summary>
         /// The backing field for the WindingInsulations property
@@ -111,6 +113,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
             }
         }
         
+        private static ITypedElement RetrieveWindingInsulationsReference()
+        {
+            return ((ITypedElement)(((ModelElement)(Ground.ClassInstance)).Resolve("WindingInsulations")));
+        }
+        
         /// <summary>
         /// Forwards CollectionChanging notifications for the WindingInsulations property to the parent model element
         /// </summary>
@@ -118,7 +125,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
         /// <param name="e">The original event data</param>
         private void WindingInsulationsCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("WindingInsulations", e);
+            this.OnCollectionChanging("WindingInsulations", e, _windingInsulationsReference);
         }
         
         /// <summary>
@@ -128,7 +135,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
         /// <param name="e">The original event data</param>
         private void WindingInsulationsCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("WindingInsulations", e);
+            this.OnCollectionChanged("WindingInsulations", e, _windingInsulationsReference);
         }
         
         /// <summary>

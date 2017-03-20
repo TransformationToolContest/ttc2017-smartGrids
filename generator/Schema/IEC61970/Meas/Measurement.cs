@@ -51,7 +51,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Meas
     [XmlNamespacePrefixAttribute("cimMeas")]
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61970/Meas/Measurement")]
     [DebuggerDisplayAttribute("Measurement {UUID}")]
-    public class Measurement : IdentifiedObject, IMeasurement, IModelElement
+    public partial class Measurement : IdentifiedObject, IMeasurement, IModelElement
     {
         
         /// <summary>
@@ -59,55 +59,79 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Meas
         /// </summary>
         private string _measurementType;
         
+        private static Lazy<ITypedElement> _measurementTypeAttribute = new Lazy<ITypedElement>(RetrieveMeasurementTypeAttribute);
+        
+        private static Lazy<ITypedElement> _by_TiePointReference = new Lazy<ITypedElement>(RetrieveBy_TiePointReference);
+        
         /// <summary>
         /// The backing field for the By_TiePoint property
         /// </summary>
         private ITiePoint _by_TiePoint;
+        
+        private static Lazy<ITypedElement> _terminalReference = new Lazy<ITypedElement>(RetrieveTerminalReference);
         
         /// <summary>
         /// The backing field for the Terminal property
         /// </summary>
         private ITerminal _terminal;
         
+        private static Lazy<ITypedElement> _dynamicSchedulesReference = new Lazy<ITypedElement>(RetrieveDynamicSchedulesReference);
+        
         /// <summary>
         /// The backing field for the DynamicSchedules property
         /// </summary>
         private MeasurementDynamicSchedulesCollection _dynamicSchedules;
+        
+        private static Lazy<ITypedElement> _locationsReference = new Lazy<ITypedElement>(RetrieveLocationsReference);
         
         /// <summary>
         /// The backing field for the Locations property
         /// </summary>
         private MeasurementLocationsCollection _locations;
         
+        private static Lazy<ITypedElement> _assetReference = new Lazy<ITypedElement>(RetrieveAssetReference);
+        
         /// <summary>
         /// The backing field for the Asset property
         /// </summary>
         private IAsset _asset;
+        
+        private static Lazy<ITypedElement> _violationLimitsReference = new Lazy<ITypedElement>(RetrieveViolationLimitsReference);
         
         /// <summary>
         /// The backing field for the ViolationLimits property
         /// </summary>
         private MeasurementViolationLimitsCollection _violationLimits;
         
+        private static Lazy<ITypedElement> _documentsReference = new Lazy<ITypedElement>(RetrieveDocumentsReference);
+        
         /// <summary>
         /// The backing field for the Documents property
         /// </summary>
         private MeasurementDocumentsCollection _documents;
+        
+        private static Lazy<ITypedElement> _pnodeReference = new Lazy<ITypedElement>(RetrievePnodeReference);
         
         /// <summary>
         /// The backing field for the Pnode property
         /// </summary>
         private IPnode _pnode;
         
+        private static Lazy<ITypedElement> _powerSystemResourceReference = new Lazy<ITypedElement>(RetrievePowerSystemResourceReference);
+        
         /// <summary>
         /// The backing field for the PowerSystemResource property
         /// </summary>
         private IPowerSystemResource _powerSystemResource;
         
+        private static Lazy<ITypedElement> _unitReference = new Lazy<ITypedElement>(RetrieveUnitReference);
+        
         /// <summary>
         /// The backing field for the Unit property
         /// </summary>
         private IUnit _unit;
+        
+        private static Lazy<ITypedElement> _for_TiePointReference = new Lazy<ITypedElement>(RetrieveFor_TiePointReference);
         
         /// <summary>
         /// The backing field for the For_TiePoint property
@@ -150,10 +174,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Meas
                     string old = this._measurementType;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnMeasurementTypeChanging(e);
-                    this.OnPropertyChanging("MeasurementType", e);
+                    this.OnPropertyChanging("MeasurementType", e, _measurementTypeAttribute);
                     this._measurementType = value;
                     this.OnMeasurementTypeChanged(e);
-                    this.OnPropertyChanged("MeasurementType", e);
+                    this.OnPropertyChanged("MeasurementType", e, _measurementTypeAttribute);
                 }
             }
         }
@@ -176,7 +200,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Meas
                     ITiePoint old = this._by_TiePoint;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnBy_TiePointChanging(e);
-                    this.OnPropertyChanging("By_TiePoint", e);
+                    this.OnPropertyChanging("By_TiePoint", e, _by_TiePointReference);
                     this._by_TiePoint = value;
                     if ((old != null))
                     {
@@ -189,7 +213,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Meas
                         value.Deleted += this.OnResetBy_TiePoint;
                     }
                     this.OnBy_TiePointChanged(e);
-                    this.OnPropertyChanged("By_TiePoint", e);
+                    this.OnPropertyChanged("By_TiePoint", e, _by_TiePointReference);
                 }
             }
         }
@@ -212,7 +236,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Meas
                     ITerminal old = this._terminal;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnTerminalChanging(e);
-                    this.OnPropertyChanging("Terminal", e);
+                    this.OnPropertyChanging("Terminal", e, _terminalReference);
                     this._terminal = value;
                     if ((old != null))
                     {
@@ -225,7 +249,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Meas
                         value.Deleted += this.OnResetTerminal;
                     }
                     this.OnTerminalChanged(e);
-                    this.OnPropertyChanged("Terminal", e);
+                    this.OnPropertyChanged("Terminal", e, _terminalReference);
                 }
             }
         }
@@ -278,7 +302,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Meas
                     IAsset old = this._asset;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnAssetChanging(e);
-                    this.OnPropertyChanging("Asset", e);
+                    this.OnPropertyChanging("Asset", e, _assetReference);
                     this._asset = value;
                     if ((old != null))
                     {
@@ -291,7 +315,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Meas
                         value.Deleted += this.OnResetAsset;
                     }
                     this.OnAssetChanged(e);
-                    this.OnPropertyChanged("Asset", e);
+                    this.OnPropertyChanged("Asset", e, _assetReference);
                 }
             }
         }
@@ -344,7 +368,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Meas
                     IPnode old = this._pnode;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnPnodeChanging(e);
-                    this.OnPropertyChanging("Pnode", e);
+                    this.OnPropertyChanging("Pnode", e, _pnodeReference);
                     this._pnode = value;
                     if ((old != null))
                     {
@@ -357,7 +381,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Meas
                         value.Deleted += this.OnResetPnode;
                     }
                     this.OnPnodeChanged(e);
-                    this.OnPropertyChanged("Pnode", e);
+                    this.OnPropertyChanged("Pnode", e, _pnodeReference);
                 }
             }
         }
@@ -380,7 +404,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Meas
                     IPowerSystemResource old = this._powerSystemResource;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnPowerSystemResourceChanging(e);
-                    this.OnPropertyChanging("PowerSystemResource", e);
+                    this.OnPropertyChanging("PowerSystemResource", e, _powerSystemResourceReference);
                     this._powerSystemResource = value;
                     if ((old != null))
                     {
@@ -393,7 +417,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Meas
                         value.Deleted += this.OnResetPowerSystemResource;
                     }
                     this.OnPowerSystemResourceChanged(e);
-                    this.OnPropertyChanged("PowerSystemResource", e);
+                    this.OnPropertyChanged("PowerSystemResource", e, _powerSystemResourceReference);
                 }
             }
         }
@@ -416,7 +440,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Meas
                     IUnit old = this._unit;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnUnitChanging(e);
-                    this.OnPropertyChanging("Unit", e);
+                    this.OnPropertyChanging("Unit", e, _unitReference);
                     this._unit = value;
                     if ((old != null))
                     {
@@ -429,7 +453,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Meas
                         value.Deleted += this.OnResetUnit;
                     }
                     this.OnUnitChanged(e);
-                    this.OnPropertyChanged("Unit", e);
+                    this.OnPropertyChanged("Unit", e, _unitReference);
                 }
             }
         }
@@ -452,7 +476,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Meas
                     ITiePoint old = this._for_TiePoint;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnFor_TiePointChanging(e);
-                    this.OnPropertyChanging("For_TiePoint", e);
+                    this.OnPropertyChanging("For_TiePoint", e, _for_TiePointReference);
                     this._for_TiePoint = value;
                     if ((old != null))
                     {
@@ -465,7 +489,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Meas
                         value.Deleted += this.OnResetFor_TiePoint;
                     }
                     this.OnFor_TiePointChanged(e);
-                    this.OnPropertyChanged("For_TiePoint", e);
+                    this.OnPropertyChanged("For_TiePoint", e, _for_TiePointReference);
                 }
             }
         }
@@ -576,6 +600,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Meas
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> For_TiePointChanged;
         
+        private static ITypedElement RetrieveMeasurementTypeAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(Measurement.ClassInstance)).Resolve("measurementType")));
+        }
+        
         /// <summary>
         /// Raises the MeasurementTypeChanging event
         /// </summary>
@@ -600,6 +629,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Meas
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveBy_TiePointReference()
+        {
+            return ((ITypedElement)(((ModelElement)(Measurement.ClassInstance)).Resolve("By_TiePoint")));
         }
         
         /// <summary>
@@ -638,6 +672,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Meas
             this.By_TiePoint = null;
         }
         
+        private static ITypedElement RetrieveTerminalReference()
+        {
+            return ((ITypedElement)(((ModelElement)(Measurement.ClassInstance)).Resolve("Terminal")));
+        }
+        
         /// <summary>
         /// Raises the TerminalChanging event
         /// </summary>
@@ -674,6 +713,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Meas
             this.Terminal = null;
         }
         
+        private static ITypedElement RetrieveDynamicSchedulesReference()
+        {
+            return ((ITypedElement)(((ModelElement)(Measurement.ClassInstance)).Resolve("DynamicSchedules")));
+        }
+        
         /// <summary>
         /// Forwards CollectionChanging notifications for the DynamicSchedules property to the parent model element
         /// </summary>
@@ -681,7 +725,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Meas
         /// <param name="e">The original event data</param>
         private void DynamicSchedulesCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("DynamicSchedules", e);
+            this.OnCollectionChanging("DynamicSchedules", e, _dynamicSchedulesReference);
         }
         
         /// <summary>
@@ -691,7 +735,12 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Meas
         /// <param name="e">The original event data</param>
         private void DynamicSchedulesCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("DynamicSchedules", e);
+            this.OnCollectionChanged("DynamicSchedules", e, _dynamicSchedulesReference);
+        }
+        
+        private static ITypedElement RetrieveLocationsReference()
+        {
+            return ((ITypedElement)(((ModelElement)(Measurement.ClassInstance)).Resolve("Locations")));
         }
         
         /// <summary>
@@ -701,7 +750,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Meas
         /// <param name="e">The original event data</param>
         private void LocationsCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("Locations", e);
+            this.OnCollectionChanging("Locations", e, _locationsReference);
         }
         
         /// <summary>
@@ -711,7 +760,12 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Meas
         /// <param name="e">The original event data</param>
         private void LocationsCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("Locations", e);
+            this.OnCollectionChanged("Locations", e, _locationsReference);
+        }
+        
+        private static ITypedElement RetrieveAssetReference()
+        {
+            return ((ITypedElement)(((ModelElement)(Measurement.ClassInstance)).Resolve("Asset")));
         }
         
         /// <summary>
@@ -750,6 +804,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Meas
             this.Asset = null;
         }
         
+        private static ITypedElement RetrieveViolationLimitsReference()
+        {
+            return ((ITypedElement)(((ModelElement)(Measurement.ClassInstance)).Resolve("ViolationLimits")));
+        }
+        
         /// <summary>
         /// Forwards CollectionChanging notifications for the ViolationLimits property to the parent model element
         /// </summary>
@@ -757,7 +816,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Meas
         /// <param name="e">The original event data</param>
         private void ViolationLimitsCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("ViolationLimits", e);
+            this.OnCollectionChanging("ViolationLimits", e, _violationLimitsReference);
         }
         
         /// <summary>
@@ -767,7 +826,12 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Meas
         /// <param name="e">The original event data</param>
         private void ViolationLimitsCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("ViolationLimits", e);
+            this.OnCollectionChanged("ViolationLimits", e, _violationLimitsReference);
+        }
+        
+        private static ITypedElement RetrieveDocumentsReference()
+        {
+            return ((ITypedElement)(((ModelElement)(Measurement.ClassInstance)).Resolve("Documents")));
         }
         
         /// <summary>
@@ -777,7 +841,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Meas
         /// <param name="e">The original event data</param>
         private void DocumentsCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("Documents", e);
+            this.OnCollectionChanging("Documents", e, _documentsReference);
         }
         
         /// <summary>
@@ -787,7 +851,12 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Meas
         /// <param name="e">The original event data</param>
         private void DocumentsCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("Documents", e);
+            this.OnCollectionChanged("Documents", e, _documentsReference);
+        }
+        
+        private static ITypedElement RetrievePnodeReference()
+        {
+            return ((ITypedElement)(((ModelElement)(Measurement.ClassInstance)).Resolve("Pnode")));
         }
         
         /// <summary>
@@ -826,6 +895,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Meas
             this.Pnode = null;
         }
         
+        private static ITypedElement RetrievePowerSystemResourceReference()
+        {
+            return ((ITypedElement)(((ModelElement)(Measurement.ClassInstance)).Resolve("PowerSystemResource")));
+        }
+        
         /// <summary>
         /// Raises the PowerSystemResourceChanging event
         /// </summary>
@@ -862,6 +936,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Meas
             this.PowerSystemResource = null;
         }
         
+        private static ITypedElement RetrieveUnitReference()
+        {
+            return ((ITypedElement)(((ModelElement)(Measurement.ClassInstance)).Resolve("Unit")));
+        }
+        
         /// <summary>
         /// Raises the UnitChanging event
         /// </summary>
@@ -896,6 +975,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Meas
         private void OnResetUnit(object sender, System.EventArgs eventArgs)
         {
             this.Unit = null;
+        }
+        
+        private static ITypedElement RetrieveFor_TiePointReference()
+        {
+            return ((ITypedElement)(((ModelElement)(Measurement.ClassInstance)).Resolve("For_TiePoint")));
         }
         
         /// <summary>
@@ -1560,7 +1644,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Meas
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public MeasurementTypeProxy(IMeasurement modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "measurementType")
             {
             }
             
@@ -1578,24 +1662,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Meas
                     this.ModelElement.MeasurementType = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.MeasurementTypeChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.MeasurementTypeChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1609,7 +1675,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Meas
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public By_TiePointProxy(IMeasurement modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "By_TiePoint")
             {
             }
             
@@ -1627,24 +1693,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Meas
                     this.ModelElement.By_TiePoint = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.By_TiePointChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.By_TiePointChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1658,7 +1706,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Meas
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public TerminalProxy(IMeasurement modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "Terminal")
             {
             }
             
@@ -1676,24 +1724,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Meas
                     this.ModelElement.Terminal = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.TerminalChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.TerminalChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1707,7 +1737,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Meas
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public AssetProxy(IMeasurement modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "Asset")
             {
             }
             
@@ -1725,24 +1755,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Meas
                     this.ModelElement.Asset = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.AssetChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.AssetChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1756,7 +1768,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Meas
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public PnodeProxy(IMeasurement modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "Pnode")
             {
             }
             
@@ -1774,24 +1786,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Meas
                     this.ModelElement.Pnode = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.PnodeChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.PnodeChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1805,7 +1799,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Meas
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public PowerSystemResourceProxy(IMeasurement modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "PowerSystemResource")
             {
             }
             
@@ -1823,24 +1817,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Meas
                     this.ModelElement.PowerSystemResource = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.PowerSystemResourceChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.PowerSystemResourceChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1854,7 +1830,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Meas
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public UnitProxy(IMeasurement modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "Unit")
             {
             }
             
@@ -1872,24 +1848,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Meas
                     this.ModelElement.Unit = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.UnitChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.UnitChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1903,7 +1861,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Meas
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public For_TiePointProxy(IMeasurement modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "For_TiePoint")
             {
             }
             
@@ -1920,24 +1878,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Meas
                 {
                     this.ModelElement.For_TiePoint = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.For_TiePointChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.For_TiePointChanged -= handler;
             }
         }
     }

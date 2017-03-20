@@ -53,7 +53,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61970/Informative/InfAssets/Dimensi" +
         "onsInfo")]
     [DebuggerDisplayAttribute("DimensionsInfo {UUID}")]
-    public class DimensionsInfo : IdentifiedObject, IDimensionsInfo, IModelElement
+    public partial class DimensionsInfo : IdentifiedObject, IDimensionsInfo, IModelElement
     {
         
         /// <summary>
@@ -61,35 +61,51 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
         /// </summary>
         private string _orientation;
         
+        private static Lazy<ITypedElement> _orientationAttribute = new Lazy<ITypedElement>(RetrieveOrientationAttribute);
+        
         /// <summary>
         /// The backing field for the SizeWidth property
         /// </summary>
         private float _sizeWidth;
+        
+        private static Lazy<ITypedElement> _sizeWidthAttribute = new Lazy<ITypedElement>(RetrieveSizeWidthAttribute);
         
         /// <summary>
         /// The backing field for the SizeDepth property
         /// </summary>
         private float _sizeDepth;
         
+        private static Lazy<ITypedElement> _sizeDepthAttribute = new Lazy<ITypedElement>(RetrieveSizeDepthAttribute);
+        
         /// <summary>
         /// The backing field for the SizeDiameter property
         /// </summary>
         private float _sizeDiameter;
+        
+        private static Lazy<ITypedElement> _sizeDiameterAttribute = new Lazy<ITypedElement>(RetrieveSizeDiameterAttribute);
         
         /// <summary>
         /// The backing field for the SizeLength property
         /// </summary>
         private float _sizeLength;
         
+        private static Lazy<ITypedElement> _sizeLengthAttribute = new Lazy<ITypedElement>(RetrieveSizeLengthAttribute);
+        
+        private static Lazy<ITypedElement> _locationsReference = new Lazy<ITypedElement>(RetrieveLocationsReference);
+        
         /// <summary>
         /// The backing field for the Locations property
         /// </summary>
         private DimensionsInfoLocationsCollection _locations;
         
+        private static Lazy<ITypedElement> _specificationsReference = new Lazy<ITypedElement>(RetrieveSpecificationsReference);
+        
         /// <summary>
         /// The backing field for the Specifications property
         /// </summary>
         private DimensionsInfoSpecificationsCollection _specifications;
+        
+        private static Lazy<ITypedElement> _assetInfosReference = new Lazy<ITypedElement>(RetrieveAssetInfosReference);
         
         /// <summary>
         /// The backing field for the AssetInfos property
@@ -129,10 +145,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
                     string old = this._orientation;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnOrientationChanging(e);
-                    this.OnPropertyChanging("Orientation", e);
+                    this.OnPropertyChanging("Orientation", e, _orientationAttribute);
                     this._orientation = value;
                     this.OnOrientationChanged(e);
-                    this.OnPropertyChanged("Orientation", e);
+                    this.OnPropertyChanged("Orientation", e, _orientationAttribute);
                 }
             }
         }
@@ -155,10 +171,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
                     float old = this._sizeWidth;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnSizeWidthChanging(e);
-                    this.OnPropertyChanging("SizeWidth", e);
+                    this.OnPropertyChanging("SizeWidth", e, _sizeWidthAttribute);
                     this._sizeWidth = value;
                     this.OnSizeWidthChanged(e);
-                    this.OnPropertyChanged("SizeWidth", e);
+                    this.OnPropertyChanged("SizeWidth", e, _sizeWidthAttribute);
                 }
             }
         }
@@ -181,10 +197,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
                     float old = this._sizeDepth;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnSizeDepthChanging(e);
-                    this.OnPropertyChanging("SizeDepth", e);
+                    this.OnPropertyChanging("SizeDepth", e, _sizeDepthAttribute);
                     this._sizeDepth = value;
                     this.OnSizeDepthChanged(e);
-                    this.OnPropertyChanged("SizeDepth", e);
+                    this.OnPropertyChanged("SizeDepth", e, _sizeDepthAttribute);
                 }
             }
         }
@@ -207,10 +223,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
                     float old = this._sizeDiameter;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnSizeDiameterChanging(e);
-                    this.OnPropertyChanging("SizeDiameter", e);
+                    this.OnPropertyChanging("SizeDiameter", e, _sizeDiameterAttribute);
                     this._sizeDiameter = value;
                     this.OnSizeDiameterChanged(e);
-                    this.OnPropertyChanged("SizeDiameter", e);
+                    this.OnPropertyChanged("SizeDiameter", e, _sizeDiameterAttribute);
                 }
             }
         }
@@ -233,10 +249,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
                     float old = this._sizeLength;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnSizeLengthChanging(e);
-                    this.OnPropertyChanging("SizeLength", e);
+                    this.OnPropertyChanging("SizeLength", e, _sizeLengthAttribute);
                     this._sizeLength = value;
                     this.OnSizeLengthChanged(e);
-                    this.OnPropertyChanged("SizeLength", e);
+                    this.OnPropertyChanged("SizeLength", e, _sizeLengthAttribute);
                 }
             }
         }
@@ -363,6 +379,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> SizeLengthChanged;
         
+        private static ITypedElement RetrieveOrientationAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(DimensionsInfo.ClassInstance)).Resolve("orientation")));
+        }
+        
         /// <summary>
         /// Raises the OrientationChanging event
         /// </summary>
@@ -387,6 +408,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveSizeWidthAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(DimensionsInfo.ClassInstance)).Resolve("sizeWidth")));
         }
         
         /// <summary>
@@ -415,6 +441,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
             }
         }
         
+        private static ITypedElement RetrieveSizeDepthAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(DimensionsInfo.ClassInstance)).Resolve("sizeDepth")));
+        }
+        
         /// <summary>
         /// Raises the SizeDepthChanging event
         /// </summary>
@@ -439,6 +470,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveSizeDiameterAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(DimensionsInfo.ClassInstance)).Resolve("sizeDiameter")));
         }
         
         /// <summary>
@@ -467,6 +503,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
             }
         }
         
+        private static ITypedElement RetrieveSizeLengthAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(DimensionsInfo.ClassInstance)).Resolve("sizeLength")));
+        }
+        
         /// <summary>
         /// Raises the SizeLengthChanging event
         /// </summary>
@@ -493,6 +534,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
             }
         }
         
+        private static ITypedElement RetrieveLocationsReference()
+        {
+            return ((ITypedElement)(((ModelElement)(DimensionsInfo.ClassInstance)).Resolve("Locations")));
+        }
+        
         /// <summary>
         /// Forwards CollectionChanging notifications for the Locations property to the parent model element
         /// </summary>
@@ -500,7 +546,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
         /// <param name="e">The original event data</param>
         private void LocationsCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("Locations", e);
+            this.OnCollectionChanging("Locations", e, _locationsReference);
         }
         
         /// <summary>
@@ -510,7 +556,12 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
         /// <param name="e">The original event data</param>
         private void LocationsCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("Locations", e);
+            this.OnCollectionChanged("Locations", e, _locationsReference);
+        }
+        
+        private static ITypedElement RetrieveSpecificationsReference()
+        {
+            return ((ITypedElement)(((ModelElement)(DimensionsInfo.ClassInstance)).Resolve("Specifications")));
         }
         
         /// <summary>
@@ -520,7 +571,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
         /// <param name="e">The original event data</param>
         private void SpecificationsCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("Specifications", e);
+            this.OnCollectionChanging("Specifications", e, _specificationsReference);
         }
         
         /// <summary>
@@ -530,7 +581,12 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
         /// <param name="e">The original event data</param>
         private void SpecificationsCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("Specifications", e);
+            this.OnCollectionChanged("Specifications", e, _specificationsReference);
+        }
+        
+        private static ITypedElement RetrieveAssetInfosReference()
+        {
+            return ((ITypedElement)(((ModelElement)(DimensionsInfo.ClassInstance)).Resolve("AssetInfos")));
         }
         
         /// <summary>
@@ -540,7 +596,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
         /// <param name="e">The original event data</param>
         private void AssetInfosCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("AssetInfos", e);
+            this.OnCollectionChanging("AssetInfos", e, _assetInfosReference);
         }
         
         /// <summary>
@@ -550,7 +606,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
         /// <param name="e">The original event data</param>
         private void AssetInfosCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("AssetInfos", e);
+            this.OnCollectionChanged("AssetInfos", e, _assetInfosReference);
         }
         
         /// <summary>
@@ -857,7 +913,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public OrientationProxy(IDimensionsInfo modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "orientation")
             {
             }
             
@@ -875,24 +931,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
                     this.ModelElement.Orientation = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.OrientationChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.OrientationChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -906,7 +944,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public SizeWidthProxy(IDimensionsInfo modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "sizeWidth")
             {
             }
             
@@ -924,24 +962,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
                     this.ModelElement.SizeWidth = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.SizeWidthChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.SizeWidthChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -955,7 +975,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public SizeDepthProxy(IDimensionsInfo modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "sizeDepth")
             {
             }
             
@@ -973,24 +993,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
                     this.ModelElement.SizeDepth = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.SizeDepthChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.SizeDepthChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1004,7 +1006,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public SizeDiameterProxy(IDimensionsInfo modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "sizeDiameter")
             {
             }
             
@@ -1022,24 +1024,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
                     this.ModelElement.SizeDiameter = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.SizeDiameterChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.SizeDiameterChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1053,7 +1037,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public SizeLengthProxy(IDimensionsInfo modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "sizeLength")
             {
             }
             
@@ -1070,24 +1054,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
                 {
                     this.ModelElement.SizeLength = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.SizeLengthChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.SizeLengthChanged -= handler;
             }
         }
     }

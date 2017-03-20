@@ -46,7 +46,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61970/Generation/Production/Nuclear" +
         "GeneratingUnit")]
     [DebuggerDisplayAttribute("NuclearGeneratingUnit {UUID}")]
-    public class NuclearGeneratingUnit : GeneratingUnit, INuclearGeneratingUnit, IModelElement
+    public partial class NuclearGeneratingUnit : GeneratingUnit, INuclearGeneratingUnit, IModelElement
     {
         
         private static IClass _classInstance;

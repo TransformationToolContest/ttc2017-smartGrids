@@ -39,7 +39,7 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
     [XmlNamespacePrefixAttribute("objects")]
     [ModelRepresentationClassAttribute("http://www.transformation-tool-contest.eu/2017/smartGrids/cosem#//COSEMObjects/IE" +
         "CTwistedPairSetupObject")]
-    public class IECTwistedPairSetupObject : IEC_twisted_pair_setup, IIECTwistedPairSetupObject, IModelElement
+    public partial class IECTwistedPairSetupObject : IEC_twisted_pair_setup, IIECTwistedPairSetupObject, IModelElement
     {
         
         private static IClass _classInstance;

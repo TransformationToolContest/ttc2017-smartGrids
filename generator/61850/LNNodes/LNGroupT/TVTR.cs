@@ -42,18 +42,24 @@ namespace TTC2017.SmartGrids.SubstationStandard.LNNodes.LNGroupT
     [XmlNamespacePrefixAttribute("groupt")]
     [ModelRepresentationClassAttribute("http://www.transformation-tool-contest.eu/2017/smartGrids/substationStandard#//LN" +
         "Nodes/LNGroupT/TVTR")]
-    public class TVTR : TTC2017.SmartGrids.SubstationStandard.LNNodes.LNGroupT.GroupT, ITVTR, IModelElement
+    public partial class TVTR : TTC2017.SmartGrids.SubstationStandard.LNNodes.LNGroupT.GroupT, ITVTR, IModelElement
     {
+        
+        private static Lazy<ITypedElement> _volReference = new Lazy<ITypedElement>(RetrieveVolReference);
         
         /// <summary>
         /// The backing field for the Vol property
         /// </summary>
         private ISAV _vol;
         
+        private static Lazy<ITypedElement> _fuFailReference = new Lazy<ITypedElement>(RetrieveFuFailReference);
+        
         /// <summary>
         /// The backing field for the FuFail property
         /// </summary>
         private ISPS _fuFail;
+        
+        private static Lazy<ITypedElement> _vRtgReference = new Lazy<ITypedElement>(RetrieveVRtgReference);
         
         /// <summary>
         /// The backing field for the VRtg property
@@ -79,7 +85,7 @@ namespace TTC2017.SmartGrids.SubstationStandard.LNNodes.LNGroupT
                     ISAV old = this._vol;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnVolChanging(e);
-                    this.OnPropertyChanging("Vol", e);
+                    this.OnPropertyChanging("Vol", e, _volReference);
                     this._vol = value;
                     if ((old != null))
                     {
@@ -90,7 +96,7 @@ namespace TTC2017.SmartGrids.SubstationStandard.LNNodes.LNGroupT
                         value.Deleted += this.OnResetVol;
                     }
                     this.OnVolChanged(e);
-                    this.OnPropertyChanged("Vol", e);
+                    this.OnPropertyChanged("Vol", e, _volReference);
                 }
             }
         }
@@ -112,7 +118,7 @@ namespace TTC2017.SmartGrids.SubstationStandard.LNNodes.LNGroupT
                     ISPS old = this._fuFail;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnFuFailChanging(e);
-                    this.OnPropertyChanging("FuFail", e);
+                    this.OnPropertyChanging("FuFail", e, _fuFailReference);
                     this._fuFail = value;
                     if ((old != null))
                     {
@@ -123,7 +129,7 @@ namespace TTC2017.SmartGrids.SubstationStandard.LNNodes.LNGroupT
                         value.Deleted += this.OnResetFuFail;
                     }
                     this.OnFuFailChanged(e);
-                    this.OnPropertyChanged("FuFail", e);
+                    this.OnPropertyChanged("FuFail", e, _fuFailReference);
                 }
             }
         }
@@ -145,7 +151,7 @@ namespace TTC2017.SmartGrids.SubstationStandard.LNNodes.LNGroupT
                     IASG old = this._vRtg;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnVRtgChanging(e);
-                    this.OnPropertyChanging("VRtg", e);
+                    this.OnPropertyChanging("VRtg", e, _vRtgReference);
                     this._vRtg = value;
                     if ((old != null))
                     {
@@ -156,7 +162,7 @@ namespace TTC2017.SmartGrids.SubstationStandard.LNNodes.LNGroupT
                         value.Deleted += this.OnResetVRtg;
                     }
                     this.OnVRtgChanged(e);
-                    this.OnPropertyChanged("VRtg", e);
+                    this.OnPropertyChanged("VRtg", e, _vRtgReference);
                 }
             }
         }
@@ -218,6 +224,11 @@ namespace TTC2017.SmartGrids.SubstationStandard.LNNodes.LNGroupT
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> VRtgChanged;
         
+        private static ITypedElement RetrieveVolReference()
+        {
+            return ((ITypedElement)(((ModelElement)(TVTR.ClassInstance)).Resolve("Vol")));
+        }
+        
         /// <summary>
         /// Raises the VolChanging event
         /// </summary>
@@ -254,6 +265,11 @@ namespace TTC2017.SmartGrids.SubstationStandard.LNNodes.LNGroupT
             this.Vol = null;
         }
         
+        private static ITypedElement RetrieveFuFailReference()
+        {
+            return ((ITypedElement)(((ModelElement)(TVTR.ClassInstance)).Resolve("FuFail")));
+        }
+        
         /// <summary>
         /// Raises the FuFailChanging event
         /// </summary>
@@ -288,6 +304,11 @@ namespace TTC2017.SmartGrids.SubstationStandard.LNNodes.LNGroupT
         private void OnResetFuFail(object sender, System.EventArgs eventArgs)
         {
             this.FuFail = null;
+        }
+        
+        private static ITypedElement RetrieveVRtgReference()
+        {
+            return ((ITypedElement)(((ModelElement)(TVTR.ClassInstance)).Resolve("VRtg")));
         }
         
         /// <summary>
@@ -599,7 +620,7 @@ namespace TTC2017.SmartGrids.SubstationStandard.LNNodes.LNGroupT
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public VolProxy(ITVTR modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "Vol")
             {
             }
             
@@ -617,24 +638,6 @@ namespace TTC2017.SmartGrids.SubstationStandard.LNNodes.LNGroupT
                     this.ModelElement.Vol = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.VolChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.VolChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -648,7 +651,7 @@ namespace TTC2017.SmartGrids.SubstationStandard.LNNodes.LNGroupT
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public FuFailProxy(ITVTR modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "FuFail")
             {
             }
             
@@ -666,24 +669,6 @@ namespace TTC2017.SmartGrids.SubstationStandard.LNNodes.LNGroupT
                     this.ModelElement.FuFail = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.FuFailChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.FuFailChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -697,7 +682,7 @@ namespace TTC2017.SmartGrids.SubstationStandard.LNNodes.LNGroupT
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public VRtgProxy(ITVTR modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "VRtg")
             {
             }
             
@@ -714,24 +699,6 @@ namespace TTC2017.SmartGrids.SubstationStandard.LNNodes.LNGroupT
                 {
                     this.ModelElement.VRtg = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.VRtgChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.VRtgChanged -= handler;
             }
         }
     }

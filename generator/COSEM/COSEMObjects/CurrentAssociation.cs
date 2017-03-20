@@ -39,7 +39,7 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
     [XmlNamespacePrefixAttribute("objects")]
     [ModelRepresentationClassAttribute("http://www.transformation-tool-contest.eu/2017/smartGrids/cosem#//COSEMObjects/Cu" +
         "rrentAssociation")]
-    public class CurrentAssociation : AssociationLN, ICurrentAssociation, IModelElement
+    public partial class CurrentAssociation : AssociationLN, ICurrentAssociation, IModelElement
     {
         
         private static IClass _classInstance;

@@ -46,7 +46,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.PaymentMetering
     [XmlNamespacePrefixAttribute("cimPaymentMetering")]
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61968/PaymentMetering/CashierShift")]
     [DebuggerDisplayAttribute("CashierShift {UUID}")]
-    public class CashierShift : Shift, ICashierShift, IModelElement
+    public partial class CashierShift : Shift, ICashierShift, IModelElement
     {
         
         /// <summary>
@@ -54,20 +54,30 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.PaymentMetering
         /// </summary>
         private float _cashFloat;
         
+        private static Lazy<ITypedElement> _cashFloatAttribute = new Lazy<ITypedElement>(RetrieveCashFloatAttribute);
+        
+        private static Lazy<ITypedElement> _cashierReference = new Lazy<ITypedElement>(RetrieveCashierReference);
+        
         /// <summary>
         /// The backing field for the Cashier property
         /// </summary>
         private ICashier _cashier;
+        
+        private static Lazy<ITypedElement> _pointOfSaleReference = new Lazy<ITypedElement>(RetrievePointOfSaleReference);
         
         /// <summary>
         /// The backing field for the PointOfSale property
         /// </summary>
         private IPointOfSale _pointOfSale;
         
+        private static Lazy<ITypedElement> _receiptsReference = new Lazy<ITypedElement>(RetrieveReceiptsReference);
+        
         /// <summary>
         /// The backing field for the Receipts property
         /// </summary>
         private CashierShiftReceiptsCollection _receipts;
+        
+        private static Lazy<ITypedElement> _transactionsReference = new Lazy<ITypedElement>(RetrieveTransactionsReference);
         
         /// <summary>
         /// The backing field for the Transactions property
@@ -104,10 +114,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.PaymentMetering
                     float old = this._cashFloat;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnCashFloatChanging(e);
-                    this.OnPropertyChanging("CashFloat", e);
+                    this.OnPropertyChanging("CashFloat", e, _cashFloatAttribute);
                     this._cashFloat = value;
                     this.OnCashFloatChanged(e);
-                    this.OnPropertyChanged("CashFloat", e);
+                    this.OnPropertyChanged("CashFloat", e, _cashFloatAttribute);
                 }
             }
         }
@@ -130,7 +140,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.PaymentMetering
                     ICashier old = this._cashier;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnCashierChanging(e);
-                    this.OnPropertyChanging("Cashier", e);
+                    this.OnPropertyChanging("Cashier", e, _cashierReference);
                     this._cashier = value;
                     if ((old != null))
                     {
@@ -143,7 +153,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.PaymentMetering
                         value.Deleted += this.OnResetCashier;
                     }
                     this.OnCashierChanged(e);
-                    this.OnPropertyChanged("Cashier", e);
+                    this.OnPropertyChanged("Cashier", e, _cashierReference);
                 }
             }
         }
@@ -166,7 +176,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.PaymentMetering
                     IPointOfSale old = this._pointOfSale;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnPointOfSaleChanging(e);
-                    this.OnPropertyChanging("PointOfSale", e);
+                    this.OnPropertyChanging("PointOfSale", e, _pointOfSaleReference);
                     this._pointOfSale = value;
                     if ((old != null))
                     {
@@ -179,7 +189,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.PaymentMetering
                         value.Deleted += this.OnResetPointOfSale;
                     }
                     this.OnPointOfSaleChanged(e);
-                    this.OnPropertyChanged("PointOfSale", e);
+                    this.OnPropertyChanged("PointOfSale", e, _pointOfSaleReference);
                 }
             }
         }
@@ -270,6 +280,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.PaymentMetering
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> PointOfSaleChanged;
         
+        private static ITypedElement RetrieveCashFloatAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(CashierShift.ClassInstance)).Resolve("cashFloat")));
+        }
+        
         /// <summary>
         /// Raises the CashFloatChanging event
         /// </summary>
@@ -294,6 +309,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.PaymentMetering
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveCashierReference()
+        {
+            return ((ITypedElement)(((ModelElement)(CashierShift.ClassInstance)).Resolve("Cashier")));
         }
         
         /// <summary>
@@ -332,6 +352,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.PaymentMetering
             this.Cashier = null;
         }
         
+        private static ITypedElement RetrievePointOfSaleReference()
+        {
+            return ((ITypedElement)(((ModelElement)(CashierShift.ClassInstance)).Resolve("PointOfSale")));
+        }
+        
         /// <summary>
         /// Raises the PointOfSaleChanging event
         /// </summary>
@@ -368,6 +393,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.PaymentMetering
             this.PointOfSale = null;
         }
         
+        private static ITypedElement RetrieveReceiptsReference()
+        {
+            return ((ITypedElement)(((ModelElement)(CashierShift.ClassInstance)).Resolve("Receipts")));
+        }
+        
         /// <summary>
         /// Forwards CollectionChanging notifications for the Receipts property to the parent model element
         /// </summary>
@@ -375,7 +405,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.PaymentMetering
         /// <param name="e">The original event data</param>
         private void ReceiptsCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("Receipts", e);
+            this.OnCollectionChanging("Receipts", e, _receiptsReference);
         }
         
         /// <summary>
@@ -385,7 +415,12 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.PaymentMetering
         /// <param name="e">The original event data</param>
         private void ReceiptsCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("Receipts", e);
+            this.OnCollectionChanged("Receipts", e, _receiptsReference);
+        }
+        
+        private static ITypedElement RetrieveTransactionsReference()
+        {
+            return ((ITypedElement)(((ModelElement)(CashierShift.ClassInstance)).Resolve("Transactions")));
         }
         
         /// <summary>
@@ -395,7 +430,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.PaymentMetering
         /// <param name="e">The original event data</param>
         private void TransactionsCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("Transactions", e);
+            this.OnCollectionChanging("Transactions", e, _transactionsReference);
         }
         
         /// <summary>
@@ -405,7 +440,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.PaymentMetering
         /// <param name="e">The original event data</param>
         private void TransactionsCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("Transactions", e);
+            this.OnCollectionChanged("Transactions", e, _transactionsReference);
         }
         
         /// <summary>
@@ -743,7 +778,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.PaymentMetering
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public CashFloatProxy(ICashierShift modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "cashFloat")
             {
             }
             
@@ -761,24 +796,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.PaymentMetering
                     this.ModelElement.CashFloat = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.CashFloatChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.CashFloatChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -792,7 +809,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.PaymentMetering
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public CashierProxy(ICashierShift modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "Cashier")
             {
             }
             
@@ -810,24 +827,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.PaymentMetering
                     this.ModelElement.Cashier = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.CashierChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.CashierChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -841,7 +840,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.PaymentMetering
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public PointOfSaleProxy(ICashierShift modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "PointOfSale")
             {
             }
             
@@ -858,24 +857,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.PaymentMetering
                 {
                     this.ModelElement.PointOfSale = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.PointOfSaleChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.PointOfSaleChanged -= handler;
             }
         }
     }

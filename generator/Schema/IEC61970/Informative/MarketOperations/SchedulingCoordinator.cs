@@ -50,7 +50,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61970/Informative/MarketOperations/" +
         "SchedulingCoordinator")]
     [DebuggerDisplayAttribute("SchedulingCoordinator {UUID}")]
-    public class SchedulingCoordinator : ErpOrganisation, ISchedulingCoordinator, IModelElement
+    public partial class SchedulingCoordinator : ErpOrganisation, ISchedulingCoordinator, IModelElement
     {
         
         private static IClass _classInstance;

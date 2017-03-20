@@ -51,7 +51,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Meas
     [XmlNamespacePrefixAttribute("cimMeas")]
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61970/Meas/Analog")]
     [DebuggerDisplayAttribute("Analog {UUID}")]
-    public class Analog : Measurement, IAnalog, IModelElement
+    public partial class Analog : Measurement, IAnalog, IModelElement
     {
         
         /// <summary>
@@ -59,30 +59,44 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Meas
         /// </summary>
         private float _minValue;
         
+        private static Lazy<ITypedElement> _minValueAttribute = new Lazy<ITypedElement>(RetrieveMinValueAttribute);
+        
         /// <summary>
         /// The backing field for the NormalValue property
         /// </summary>
         private float _normalValue;
+        
+        private static Lazy<ITypedElement> _normalValueAttribute = new Lazy<ITypedElement>(RetrieveNormalValueAttribute);
         
         /// <summary>
         /// The backing field for the PositiveFlowIn property
         /// </summary>
         private bool _positiveFlowIn;
         
+        private static Lazy<ITypedElement> _positiveFlowInAttribute = new Lazy<ITypedElement>(RetrievePositiveFlowInAttribute);
+        
         /// <summary>
         /// The backing field for the MaxValue property
         /// </summary>
         private float _maxValue;
+        
+        private static Lazy<ITypedElement> _maxValueAttribute = new Lazy<ITypedElement>(RetrieveMaxValueAttribute);
+        
+        private static Lazy<ITypedElement> _limitSetsReference = new Lazy<ITypedElement>(RetrieveLimitSetsReference);
         
         /// <summary>
         /// The backing field for the LimitSets property
         /// </summary>
         private AnalogLimitSetsCollection _limitSets;
         
+        private static Lazy<ITypedElement> _setPointReference = new Lazy<ITypedElement>(RetrieveSetPointReference);
+        
         /// <summary>
         /// The backing field for the SetPoint property
         /// </summary>
         private ISetPoint _setPoint;
+        
+        private static Lazy<ITypedElement> _analogValuesReference = new Lazy<ITypedElement>(RetrieveAnalogValuesReference);
         
         /// <summary>
         /// The backing field for the AnalogValues property
@@ -119,10 +133,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Meas
                     float old = this._minValue;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnMinValueChanging(e);
-                    this.OnPropertyChanging("MinValue", e);
+                    this.OnPropertyChanging("MinValue", e, _minValueAttribute);
                     this._minValue = value;
                     this.OnMinValueChanged(e);
-                    this.OnPropertyChanged("MinValue", e);
+                    this.OnPropertyChanged("MinValue", e, _minValueAttribute);
                 }
             }
         }
@@ -145,10 +159,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Meas
                     float old = this._normalValue;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnNormalValueChanging(e);
-                    this.OnPropertyChanging("NormalValue", e);
+                    this.OnPropertyChanging("NormalValue", e, _normalValueAttribute);
                     this._normalValue = value;
                     this.OnNormalValueChanged(e);
-                    this.OnPropertyChanged("NormalValue", e);
+                    this.OnPropertyChanged("NormalValue", e, _normalValueAttribute);
                 }
             }
         }
@@ -171,10 +185,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Meas
                     bool old = this._positiveFlowIn;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnPositiveFlowInChanging(e);
-                    this.OnPropertyChanging("PositiveFlowIn", e);
+                    this.OnPropertyChanging("PositiveFlowIn", e, _positiveFlowInAttribute);
                     this._positiveFlowIn = value;
                     this.OnPositiveFlowInChanged(e);
-                    this.OnPropertyChanged("PositiveFlowIn", e);
+                    this.OnPropertyChanged("PositiveFlowIn", e, _positiveFlowInAttribute);
                 }
             }
         }
@@ -197,10 +211,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Meas
                     float old = this._maxValue;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnMaxValueChanging(e);
-                    this.OnPropertyChanging("MaxValue", e);
+                    this.OnPropertyChanging("MaxValue", e, _maxValueAttribute);
                     this._maxValue = value;
                     this.OnMaxValueChanged(e);
-                    this.OnPropertyChanged("MaxValue", e);
+                    this.OnPropertyChanged("MaxValue", e, _maxValueAttribute);
                 }
             }
         }
@@ -238,7 +252,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Meas
                     ISetPoint old = this._setPoint;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnSetPointChanging(e);
-                    this.OnPropertyChanging("SetPoint", e);
+                    this.OnPropertyChanging("SetPoint", e, _setPointReference);
                     this._setPoint = value;
                     if ((old != null))
                     {
@@ -251,7 +265,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Meas
                         value.Deleted += this.OnResetSetPoint;
                     }
                     this.OnSetPointChanged(e);
-                    this.OnPropertyChanged("SetPoint", e);
+                    this.OnPropertyChanged("SetPoint", e, _setPointReference);
                 }
             }
         }
@@ -347,6 +361,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Meas
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> SetPointChanged;
         
+        private static ITypedElement RetrieveMinValueAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(Analog.ClassInstance)).Resolve("minValue")));
+        }
+        
         /// <summary>
         /// Raises the MinValueChanging event
         /// </summary>
@@ -371,6 +390,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Meas
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveNormalValueAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(Analog.ClassInstance)).Resolve("normalValue")));
         }
         
         /// <summary>
@@ -399,6 +423,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Meas
             }
         }
         
+        private static ITypedElement RetrievePositiveFlowInAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(Analog.ClassInstance)).Resolve("positiveFlowIn")));
+        }
+        
         /// <summary>
         /// Raises the PositiveFlowInChanging event
         /// </summary>
@@ -423,6 +452,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Meas
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveMaxValueAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(Analog.ClassInstance)).Resolve("maxValue")));
         }
         
         /// <summary>
@@ -451,6 +485,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Meas
             }
         }
         
+        private static ITypedElement RetrieveLimitSetsReference()
+        {
+            return ((ITypedElement)(((ModelElement)(Analog.ClassInstance)).Resolve("LimitSets")));
+        }
+        
         /// <summary>
         /// Forwards CollectionChanging notifications for the LimitSets property to the parent model element
         /// </summary>
@@ -458,7 +497,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Meas
         /// <param name="e">The original event data</param>
         private void LimitSetsCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("LimitSets", e);
+            this.OnCollectionChanging("LimitSets", e, _limitSetsReference);
         }
         
         /// <summary>
@@ -468,7 +507,12 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Meas
         /// <param name="e">The original event data</param>
         private void LimitSetsCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("LimitSets", e);
+            this.OnCollectionChanged("LimitSets", e, _limitSetsReference);
+        }
+        
+        private static ITypedElement RetrieveSetPointReference()
+        {
+            return ((ITypedElement)(((ModelElement)(Analog.ClassInstance)).Resolve("SetPoint")));
         }
         
         /// <summary>
@@ -507,6 +551,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Meas
             this.SetPoint = null;
         }
         
+        private static ITypedElement RetrieveAnalogValuesReference()
+        {
+            return ((ITypedElement)(((ModelElement)(Analog.ClassInstance)).Resolve("AnalogValues")));
+        }
+        
         /// <summary>
         /// Forwards CollectionChanging notifications for the AnalogValues property to the parent model element
         /// </summary>
@@ -514,7 +563,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Meas
         /// <param name="e">The original event data</param>
         private void AnalogValuesCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("AnalogValues", e);
+            this.OnCollectionChanging("AnalogValues", e, _analogValuesReference);
         }
         
         /// <summary>
@@ -524,7 +573,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Meas
         /// <param name="e">The original event data</param>
         private void AnalogValuesCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("AnalogValues", e);
+            this.OnCollectionChanged("AnalogValues", e, _analogValuesReference);
         }
         
         /// <summary>
@@ -846,7 +895,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Meas
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public MinValueProxy(IAnalog modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "minValue")
             {
             }
             
@@ -864,24 +913,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Meas
                     this.ModelElement.MinValue = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.MinValueChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.MinValueChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -895,7 +926,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Meas
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public NormalValueProxy(IAnalog modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "normalValue")
             {
             }
             
@@ -913,24 +944,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Meas
                     this.ModelElement.NormalValue = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.NormalValueChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.NormalValueChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -944,7 +957,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Meas
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public PositiveFlowInProxy(IAnalog modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "positiveFlowIn")
             {
             }
             
@@ -962,24 +975,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Meas
                     this.ModelElement.PositiveFlowIn = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.PositiveFlowInChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.PositiveFlowInChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -993,7 +988,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Meas
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public MaxValueProxy(IAnalog modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "maxValue")
             {
             }
             
@@ -1011,24 +1006,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Meas
                     this.ModelElement.MaxValue = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.MaxValueChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.MaxValueChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1042,7 +1019,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Meas
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public SetPointProxy(IAnalog modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "SetPoint")
             {
             }
             
@@ -1059,24 +1036,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Meas
                 {
                     this.ModelElement.SetPoint = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.SetPointChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.SetPointChanged -= handler;
             }
         }
     }

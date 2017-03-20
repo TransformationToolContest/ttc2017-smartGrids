@@ -50,13 +50,17 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfWork
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61970/Informative/InfWork/Assignmen" +
         "t")]
     [DebuggerDisplayAttribute("Assignment {UUID}")]
-    public class Assignment : Document, IAssignment, IModelElement
+    public partial class Assignment : Document, IAssignment, IModelElement
     {
+        
+        private static Lazy<ITypedElement> _crewsReference = new Lazy<ITypedElement>(RetrieveCrewsReference);
         
         /// <summary>
         /// The backing field for the Crews property
         /// </summary>
         private AssignmentCrewsCollection _crews;
+        
+        private static Lazy<ITypedElement> _effectivePeriodReference = new Lazy<ITypedElement>(RetrieveEffectivePeriodReference);
         
         /// <summary>
         /// The backing field for the EffectivePeriod property
@@ -105,7 +109,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfWork
                     IDateTimeInterval old = this._effectivePeriod;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnEffectivePeriodChanging(e);
-                    this.OnPropertyChanging("EffectivePeriod", e);
+                    this.OnPropertyChanging("EffectivePeriod", e, _effectivePeriodReference);
                     this._effectivePeriod = value;
                     if ((old != null))
                     {
@@ -116,7 +120,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfWork
                         value.Deleted += this.OnResetEffectivePeriod;
                     }
                     this.OnEffectivePeriodChanged(e);
-                    this.OnPropertyChanged("EffectivePeriod", e);
+                    this.OnPropertyChanged("EffectivePeriod", e, _effectivePeriodReference);
                 }
             }
         }
@@ -158,6 +162,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfWork
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> EffectivePeriodChanged;
         
+        private static ITypedElement RetrieveCrewsReference()
+        {
+            return ((ITypedElement)(((ModelElement)(Assignment.ClassInstance)).Resolve("Crews")));
+        }
+        
         /// <summary>
         /// Forwards CollectionChanging notifications for the Crews property to the parent model element
         /// </summary>
@@ -165,7 +174,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfWork
         /// <param name="e">The original event data</param>
         private void CrewsCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("Crews", e);
+            this.OnCollectionChanging("Crews", e, _crewsReference);
         }
         
         /// <summary>
@@ -175,7 +184,12 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfWork
         /// <param name="e">The original event data</param>
         private void CrewsCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("Crews", e);
+            this.OnCollectionChanged("Crews", e, _crewsReference);
+        }
+        
+        private static ITypedElement RetrieveEffectivePeriodReference()
+        {
+            return ((ITypedElement)(((ModelElement)(Assignment.ClassInstance)).Resolve("effectivePeriod")));
         }
         
         /// <summary>
@@ -449,7 +463,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfWork
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public EffectivePeriodProxy(IAssignment modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "effectivePeriod")
             {
             }
             
@@ -466,24 +480,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfWork
                 {
                     this.ModelElement.EffectivePeriod = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.EffectivePeriodChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.EffectivePeriodChanged -= handler;
             }
         }
     }

@@ -53,7 +53,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61970/Informative/InfAssets/Structu" +
         "reSupportInfo")]
     [DebuggerDisplayAttribute("StructureSupportInfo {UUID}")]
-    public class StructureSupportInfo : AssetInfo, IStructureSupportInfo, IModelElement
+    public partial class StructureSupportInfo : AssetInfo, IStructureSupportInfo, IModelElement
     {
         
         /// <summary>
@@ -61,35 +61,51 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
         /// </summary>
         private Nullable<AnchorKind> _anchorKind;
         
+        private static Lazy<ITypedElement> _anchorKindAttribute = new Lazy<ITypedElement>(RetrieveAnchorKindAttribute);
+        
         /// <summary>
         /// The backing field for the Kind property
         /// </summary>
         private Nullable<StructureSupportKind> _kind;
+        
+        private static Lazy<ITypedElement> _kindAttribute = new Lazy<ITypedElement>(RetrieveKindAttribute);
         
         /// <summary>
         /// The backing field for the Size property
         /// </summary>
         private string _size;
         
+        private static Lazy<ITypedElement> _sizeAttribute = new Lazy<ITypedElement>(RetrieveSizeAttribute);
+        
         /// <summary>
         /// The backing field for the AnchorRodCount property
         /// </summary>
         private int _anchorRodCount;
+        
+        private static Lazy<ITypedElement> _anchorRodCountAttribute = new Lazy<ITypedElement>(RetrieveAnchorRodCountAttribute);
         
         /// <summary>
         /// The backing field for the Length property
         /// </summary>
         private float _length;
         
+        private static Lazy<ITypedElement> _lengthAttribute = new Lazy<ITypedElement>(RetrieveLengthAttribute);
+        
         /// <summary>
         /// The backing field for the AnchorRodLength property
         /// </summary>
         private float _anchorRodLength;
         
+        private static Lazy<ITypedElement> _anchorRodLengthAttribute = new Lazy<ITypedElement>(RetrieveAnchorRodLengthAttribute);
+        
         /// <summary>
         /// The backing field for the Direction property
         /// </summary>
         private float _direction;
+        
+        private static Lazy<ITypedElement> _directionAttribute = new Lazy<ITypedElement>(RetrieveDirectionAttribute);
+        
+        private static Lazy<ITypedElement> _securedStructureReference = new Lazy<ITypedElement>(RetrieveSecuredStructureReference);
         
         /// <summary>
         /// The backing field for the SecuredStructure property
@@ -116,10 +132,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
                     Nullable<AnchorKind> old = this._anchorKind;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnAnchorKindChanging(e);
-                    this.OnPropertyChanging("AnchorKind", e);
+                    this.OnPropertyChanging("AnchorKind", e, _anchorKindAttribute);
                     this._anchorKind = value;
                     this.OnAnchorKindChanged(e);
-                    this.OnPropertyChanged("AnchorKind", e);
+                    this.OnPropertyChanged("AnchorKind", e, _anchorKindAttribute);
                 }
             }
         }
@@ -142,10 +158,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
                     Nullable<StructureSupportKind> old = this._kind;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnKindChanging(e);
-                    this.OnPropertyChanging("Kind", e);
+                    this.OnPropertyChanging("Kind", e, _kindAttribute);
                     this._kind = value;
                     this.OnKindChanged(e);
-                    this.OnPropertyChanged("Kind", e);
+                    this.OnPropertyChanged("Kind", e, _kindAttribute);
                 }
             }
         }
@@ -168,10 +184,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
                     string old = this._size;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnSizeChanging(e);
-                    this.OnPropertyChanging("Size", e);
+                    this.OnPropertyChanging("Size", e, _sizeAttribute);
                     this._size = value;
                     this.OnSizeChanged(e);
-                    this.OnPropertyChanged("Size", e);
+                    this.OnPropertyChanged("Size", e, _sizeAttribute);
                 }
             }
         }
@@ -194,10 +210,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
                     int old = this._anchorRodCount;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnAnchorRodCountChanging(e);
-                    this.OnPropertyChanging("AnchorRodCount", e);
+                    this.OnPropertyChanging("AnchorRodCount", e, _anchorRodCountAttribute);
                     this._anchorRodCount = value;
                     this.OnAnchorRodCountChanged(e);
-                    this.OnPropertyChanged("AnchorRodCount", e);
+                    this.OnPropertyChanged("AnchorRodCount", e, _anchorRodCountAttribute);
                 }
             }
         }
@@ -220,10 +236,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
                     float old = this._length;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnLengthChanging(e);
-                    this.OnPropertyChanging("Length", e);
+                    this.OnPropertyChanging("Length", e, _lengthAttribute);
                     this._length = value;
                     this.OnLengthChanged(e);
-                    this.OnPropertyChanged("Length", e);
+                    this.OnPropertyChanged("Length", e, _lengthAttribute);
                 }
             }
         }
@@ -246,10 +262,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
                     float old = this._anchorRodLength;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnAnchorRodLengthChanging(e);
-                    this.OnPropertyChanging("AnchorRodLength", e);
+                    this.OnPropertyChanging("AnchorRodLength", e, _anchorRodLengthAttribute);
                     this._anchorRodLength = value;
                     this.OnAnchorRodLengthChanged(e);
-                    this.OnPropertyChanged("AnchorRodLength", e);
+                    this.OnPropertyChanged("AnchorRodLength", e, _anchorRodLengthAttribute);
                 }
             }
         }
@@ -272,10 +288,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
                     float old = this._direction;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnDirectionChanging(e);
-                    this.OnPropertyChanging("Direction", e);
+                    this.OnPropertyChanging("Direction", e, _directionAttribute);
                     this._direction = value;
                     this.OnDirectionChanged(e);
-                    this.OnPropertyChanged("Direction", e);
+                    this.OnPropertyChanged("Direction", e, _directionAttribute);
                 }
             }
         }
@@ -298,7 +314,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
                     IStructureInfo old = this._securedStructure;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnSecuredStructureChanging(e);
-                    this.OnPropertyChanging("SecuredStructure", e);
+                    this.OnPropertyChanging("SecuredStructure", e, _securedStructureReference);
                     this._securedStructure = value;
                     if ((old != null))
                     {
@@ -311,7 +327,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
                         value.Deleted += this.OnResetSecuredStructure;
                     }
                     this.OnSecuredStructureChanged(e);
-                    this.OnPropertyChanged("SecuredStructure", e);
+                    this.OnPropertyChanged("SecuredStructure", e, _securedStructureReference);
                 }
             }
         }
@@ -423,6 +439,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> SecuredStructureChanged;
         
+        private static ITypedElement RetrieveAnchorKindAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(StructureSupportInfo.ClassInstance)).Resolve("anchorKind")));
+        }
+        
         /// <summary>
         /// Raises the AnchorKindChanging event
         /// </summary>
@@ -447,6 +468,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveKindAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(StructureSupportInfo.ClassInstance)).Resolve("kind")));
         }
         
         /// <summary>
@@ -475,6 +501,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
             }
         }
         
+        private static ITypedElement RetrieveSizeAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(StructureSupportInfo.ClassInstance)).Resolve("size")));
+        }
+        
         /// <summary>
         /// Raises the SizeChanging event
         /// </summary>
@@ -499,6 +530,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveAnchorRodCountAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(StructureSupportInfo.ClassInstance)).Resolve("anchorRodCount")));
         }
         
         /// <summary>
@@ -527,6 +563,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
             }
         }
         
+        private static ITypedElement RetrieveLengthAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(StructureSupportInfo.ClassInstance)).Resolve("length")));
+        }
+        
         /// <summary>
         /// Raises the LengthChanging event
         /// </summary>
@@ -551,6 +592,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveAnchorRodLengthAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(StructureSupportInfo.ClassInstance)).Resolve("anchorRodLength")));
         }
         
         /// <summary>
@@ -579,6 +625,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
             }
         }
         
+        private static ITypedElement RetrieveDirectionAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(StructureSupportInfo.ClassInstance)).Resolve("direction")));
+        }
+        
         /// <summary>
         /// Raises the DirectionChanging event
         /// </summary>
@@ -603,6 +654,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveSecuredStructureReference()
+        {
+            return ((ITypedElement)(((ModelElement)(StructureSupportInfo.ClassInstance)).Resolve("SecuredStructure")));
         }
         
         /// <summary>
@@ -902,7 +958,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public AnchorKindProxy(IStructureSupportInfo modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "anchorKind")
             {
             }
             
@@ -920,24 +976,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
                     this.ModelElement.AnchorKind = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.AnchorKindChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.AnchorKindChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -951,7 +989,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public KindProxy(IStructureSupportInfo modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "kind")
             {
             }
             
@@ -969,24 +1007,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
                     this.ModelElement.Kind = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.KindChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.KindChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1000,7 +1020,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public SizeProxy(IStructureSupportInfo modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "size")
             {
             }
             
@@ -1018,24 +1038,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
                     this.ModelElement.Size = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.SizeChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.SizeChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1049,7 +1051,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public AnchorRodCountProxy(IStructureSupportInfo modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "anchorRodCount")
             {
             }
             
@@ -1067,24 +1069,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
                     this.ModelElement.AnchorRodCount = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.AnchorRodCountChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.AnchorRodCountChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1098,7 +1082,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public LengthProxy(IStructureSupportInfo modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "length")
             {
             }
             
@@ -1116,24 +1100,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
                     this.ModelElement.Length = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.LengthChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.LengthChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1147,7 +1113,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public AnchorRodLengthProxy(IStructureSupportInfo modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "anchorRodLength")
             {
             }
             
@@ -1165,24 +1131,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
                     this.ModelElement.AnchorRodLength = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.AnchorRodLengthChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.AnchorRodLengthChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1196,7 +1144,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public DirectionProxy(IStructureSupportInfo modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "direction")
             {
             }
             
@@ -1214,24 +1162,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
                     this.ModelElement.Direction = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.DirectionChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.DirectionChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1245,7 +1175,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public SecuredStructureProxy(IStructureSupportInfo modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "SecuredStructure")
             {
             }
             
@@ -1262,24 +1192,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
                 {
                     this.ModelElement.SecuredStructure = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.SecuredStructureChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.SecuredStructureChanged -= handler;
             }
         }
     }

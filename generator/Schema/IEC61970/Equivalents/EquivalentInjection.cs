@@ -40,7 +40,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Equivalents
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61970/Equivalents/EquivalentInjecti" +
         "on")]
     [DebuggerDisplayAttribute("EquivalentInjection {UUID}")]
-    public class EquivalentInjection : EquivalentEquipment, IEquivalentInjection, IModelElement
+    public partial class EquivalentInjection : EquivalentEquipment, IEquivalentInjection, IModelElement
     {
         
         /// <summary>
@@ -48,25 +48,35 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Equivalents
         /// </summary>
         private bool _regulationStatus;
         
+        private static Lazy<ITypedElement> _regulationStatusAttribute = new Lazy<ITypedElement>(RetrieveRegulationStatusAttribute);
+        
         /// <summary>
         /// The backing field for the RegulationCapability property
         /// </summary>
         private bool _regulationCapability;
+        
+        private static Lazy<ITypedElement> _regulationCapabilityAttribute = new Lazy<ITypedElement>(RetrieveRegulationCapabilityAttribute);
         
         /// <summary>
         /// The backing field for the MinP property
         /// </summary>
         private float _minP;
         
+        private static Lazy<ITypedElement> _minPAttribute = new Lazy<ITypedElement>(RetrieveMinPAttribute);
+        
         /// <summary>
         /// The backing field for the MaxP property
         /// </summary>
         private float _maxP;
         
+        private static Lazy<ITypedElement> _maxPAttribute = new Lazy<ITypedElement>(RetrieveMaxPAttribute);
+        
         /// <summary>
         /// The backing field for the RegulationTarget property
         /// </summary>
         private float _regulationTarget;
+        
+        private static Lazy<ITypedElement> _regulationTargetAttribute = new Lazy<ITypedElement>(RetrieveRegulationTargetAttribute);
         
         private static IClass _classInstance;
         
@@ -88,10 +98,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Equivalents
                     bool old = this._regulationStatus;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnRegulationStatusChanging(e);
-                    this.OnPropertyChanging("RegulationStatus", e);
+                    this.OnPropertyChanging("RegulationStatus", e, _regulationStatusAttribute);
                     this._regulationStatus = value;
                     this.OnRegulationStatusChanged(e);
-                    this.OnPropertyChanged("RegulationStatus", e);
+                    this.OnPropertyChanged("RegulationStatus", e, _regulationStatusAttribute);
                 }
             }
         }
@@ -114,10 +124,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Equivalents
                     bool old = this._regulationCapability;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnRegulationCapabilityChanging(e);
-                    this.OnPropertyChanging("RegulationCapability", e);
+                    this.OnPropertyChanging("RegulationCapability", e, _regulationCapabilityAttribute);
                     this._regulationCapability = value;
                     this.OnRegulationCapabilityChanged(e);
-                    this.OnPropertyChanged("RegulationCapability", e);
+                    this.OnPropertyChanged("RegulationCapability", e, _regulationCapabilityAttribute);
                 }
             }
         }
@@ -140,10 +150,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Equivalents
                     float old = this._minP;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnMinPChanging(e);
-                    this.OnPropertyChanging("MinP", e);
+                    this.OnPropertyChanging("MinP", e, _minPAttribute);
                     this._minP = value;
                     this.OnMinPChanged(e);
-                    this.OnPropertyChanged("MinP", e);
+                    this.OnPropertyChanged("MinP", e, _minPAttribute);
                 }
             }
         }
@@ -166,10 +176,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Equivalents
                     float old = this._maxP;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnMaxPChanging(e);
-                    this.OnPropertyChanging("MaxP", e);
+                    this.OnPropertyChanging("MaxP", e, _maxPAttribute);
                     this._maxP = value;
                     this.OnMaxPChanged(e);
-                    this.OnPropertyChanged("MaxP", e);
+                    this.OnPropertyChanged("MaxP", e, _maxPAttribute);
                 }
             }
         }
@@ -192,10 +202,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Equivalents
                     float old = this._regulationTarget;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnRegulationTargetChanging(e);
-                    this.OnPropertyChanging("RegulationTarget", e);
+                    this.OnPropertyChanging("RegulationTarget", e, _regulationTargetAttribute);
                     this._regulationTarget = value;
                     this.OnRegulationTargetChanged(e);
-                    this.OnPropertyChanged("RegulationTarget", e);
+                    this.OnPropertyChanged("RegulationTarget", e, _regulationTargetAttribute);
                 }
             }
         }
@@ -266,6 +276,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Equivalents
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> RegulationTargetChanged;
         
+        private static ITypedElement RetrieveRegulationStatusAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(EquivalentInjection.ClassInstance)).Resolve("regulationStatus")));
+        }
+        
         /// <summary>
         /// Raises the RegulationStatusChanging event
         /// </summary>
@@ -290,6 +305,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Equivalents
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveRegulationCapabilityAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(EquivalentInjection.ClassInstance)).Resolve("regulationCapability")));
         }
         
         /// <summary>
@@ -318,6 +338,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Equivalents
             }
         }
         
+        private static ITypedElement RetrieveMinPAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(EquivalentInjection.ClassInstance)).Resolve("minP")));
+        }
+        
         /// <summary>
         /// Raises the MinPChanging event
         /// </summary>
@@ -344,6 +369,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Equivalents
             }
         }
         
+        private static ITypedElement RetrieveMaxPAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(EquivalentInjection.ClassInstance)).Resolve("maxP")));
+        }
+        
         /// <summary>
         /// Raises the MaxPChanging event
         /// </summary>
@@ -368,6 +398,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Equivalents
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveRegulationTargetAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(EquivalentInjection.ClassInstance)).Resolve("regulationTarget")));
         }
         
         /// <summary>
@@ -486,7 +521,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Equivalents
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public RegulationStatusProxy(IEquivalentInjection modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "regulationStatus")
             {
             }
             
@@ -504,24 +539,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Equivalents
                     this.ModelElement.RegulationStatus = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.RegulationStatusChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.RegulationStatusChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -535,7 +552,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Equivalents
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public RegulationCapabilityProxy(IEquivalentInjection modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "regulationCapability")
             {
             }
             
@@ -553,24 +570,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Equivalents
                     this.ModelElement.RegulationCapability = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.RegulationCapabilityChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.RegulationCapabilityChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -584,7 +583,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Equivalents
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public MinPProxy(IEquivalentInjection modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "minP")
             {
             }
             
@@ -602,24 +601,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Equivalents
                     this.ModelElement.MinP = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.MinPChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.MinPChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -633,7 +614,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Equivalents
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public MaxPProxy(IEquivalentInjection modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "maxP")
             {
             }
             
@@ -651,24 +632,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Equivalents
                     this.ModelElement.MaxP = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.MaxPChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.MaxPChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -682,7 +645,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Equivalents
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public RegulationTargetProxy(IEquivalentInjection modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "regulationTarget")
             {
             }
             
@@ -699,24 +662,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Equivalents
                 {
                     this.ModelElement.RegulationTarget = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.RegulationTargetChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.RegulationTargetChanged -= handler;
             }
         }
     }

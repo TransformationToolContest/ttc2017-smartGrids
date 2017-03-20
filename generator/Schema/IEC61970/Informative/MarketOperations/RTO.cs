@@ -50,28 +50,38 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61970/Informative/MarketOperations/" +
         "RTO")]
     [DebuggerDisplayAttribute("RTO {UUID}")]
-    public class RTO : ErpOrganisation, IRTO, IModelElement
+    public partial class RTO : ErpOrganisation, IRTO, IModelElement
     {
+        
+        private static Lazy<ITypedElement> _marketsReference = new Lazy<ITypedElement>(RetrieveMarketsReference);
         
         /// <summary>
         /// The backing field for the Markets property
         /// </summary>
         private RTOMarketsCollection _markets;
         
+        private static Lazy<ITypedElement> _securityConstraintsReference = new Lazy<ITypedElement>(RetrieveSecurityConstraintsReference);
+        
         /// <summary>
         /// The backing field for the SecurityConstraints property
         /// </summary>
         private RTOSecurityConstraintsCollection _securityConstraints;
+        
+        private static Lazy<ITypedElement> _resourceGroupReqsReference = new Lazy<ITypedElement>(RetrieveResourceGroupReqsReference);
         
         /// <summary>
         /// The backing field for the ResourceGroupReqs property
         /// </summary>
         private RTOResourceGroupReqsCollection _resourceGroupReqs;
         
+        private static Lazy<ITypedElement> _securityConstraintsLinearReference = new Lazy<ITypedElement>(RetrieveSecurityConstraintsLinearReference);
+        
         /// <summary>
         /// The backing field for the SecurityConstraintsLinear property
         /// </summary>
         private RTOSecurityConstraintsLinearCollection _securityConstraintsLinear;
+        
+        private static Lazy<ITypedElement> _pnodesReference = new Lazy<ITypedElement>(RetrievePnodesReference);
         
         /// <summary>
         /// The backing field for the Pnodes property
@@ -201,6 +211,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
             }
         }
         
+        private static ITypedElement RetrieveMarketsReference()
+        {
+            return ((ITypedElement)(((ModelElement)(RTO.ClassInstance)).Resolve("Markets")));
+        }
+        
         /// <summary>
         /// Forwards CollectionChanging notifications for the Markets property to the parent model element
         /// </summary>
@@ -208,7 +223,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
         /// <param name="e">The original event data</param>
         private void MarketsCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("Markets", e);
+            this.OnCollectionChanging("Markets", e, _marketsReference);
         }
         
         /// <summary>
@@ -218,7 +233,12 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
         /// <param name="e">The original event data</param>
         private void MarketsCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("Markets", e);
+            this.OnCollectionChanged("Markets", e, _marketsReference);
+        }
+        
+        private static ITypedElement RetrieveSecurityConstraintsReference()
+        {
+            return ((ITypedElement)(((ModelElement)(RTO.ClassInstance)).Resolve("SecurityConstraints")));
         }
         
         /// <summary>
@@ -228,7 +248,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
         /// <param name="e">The original event data</param>
         private void SecurityConstraintsCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("SecurityConstraints", e);
+            this.OnCollectionChanging("SecurityConstraints", e, _securityConstraintsReference);
         }
         
         /// <summary>
@@ -238,7 +258,12 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
         /// <param name="e">The original event data</param>
         private void SecurityConstraintsCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("SecurityConstraints", e);
+            this.OnCollectionChanged("SecurityConstraints", e, _securityConstraintsReference);
+        }
+        
+        private static ITypedElement RetrieveResourceGroupReqsReference()
+        {
+            return ((ITypedElement)(((ModelElement)(RTO.ClassInstance)).Resolve("ResourceGroupReqs")));
         }
         
         /// <summary>
@@ -248,7 +273,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
         /// <param name="e">The original event data</param>
         private void ResourceGroupReqsCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("ResourceGroupReqs", e);
+            this.OnCollectionChanging("ResourceGroupReqs", e, _resourceGroupReqsReference);
         }
         
         /// <summary>
@@ -258,7 +283,12 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
         /// <param name="e">The original event data</param>
         private void ResourceGroupReqsCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("ResourceGroupReqs", e);
+            this.OnCollectionChanged("ResourceGroupReqs", e, _resourceGroupReqsReference);
+        }
+        
+        private static ITypedElement RetrieveSecurityConstraintsLinearReference()
+        {
+            return ((ITypedElement)(((ModelElement)(RTO.ClassInstance)).Resolve("SecurityConstraintsLinear")));
         }
         
         /// <summary>
@@ -268,7 +298,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
         /// <param name="e">The original event data</param>
         private void SecurityConstraintsLinearCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("SecurityConstraintsLinear", e);
+            this.OnCollectionChanging("SecurityConstraintsLinear", e, _securityConstraintsLinearReference);
         }
         
         /// <summary>
@@ -278,7 +308,12 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
         /// <param name="e">The original event data</param>
         private void SecurityConstraintsLinearCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("SecurityConstraintsLinear", e);
+            this.OnCollectionChanged("SecurityConstraintsLinear", e, _securityConstraintsLinearReference);
+        }
+        
+        private static ITypedElement RetrievePnodesReference()
+        {
+            return ((ITypedElement)(((ModelElement)(RTO.ClassInstance)).Resolve("Pnodes")));
         }
         
         /// <summary>
@@ -288,7 +323,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
         /// <param name="e">The original event data</param>
         private void PnodesCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("Pnodes", e);
+            this.OnCollectionChanging("Pnodes", e, _pnodesReference);
         }
         
         /// <summary>
@@ -298,7 +333,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
         /// <param name="e">The original event data</param>
         private void PnodesCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("Pnodes", e);
+            this.OnCollectionChanged("Pnodes", e, _pnodesReference);
         }
         
         /// <summary>

@@ -39,23 +39,31 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
     [XmlNamespacePrefixAttribute("data")]
     [ModelRepresentationClassAttribute("http://www.transformation-tool-contest.eu/2017/smartGrids/substationStandard#//Da" +
         "taclasses/DescriptionInfo")]
-    public class DescriptionInfo : ModelElement, IDescriptionInfo, IModelElement
+    public partial class DescriptionInfo : ModelElement, IDescriptionInfo, IModelElement
     {
+        
+        private static Lazy<ITypedElement> _dPLReference = new Lazy<ITypedElement>(RetrieveDPLReference);
         
         /// <summary>
         /// The backing field for the DPL property
         /// </summary>
         private ObservableAssociationOrderedSet<IDPL> _dPL;
         
+        private static Lazy<ITypedElement> _lPLReference = new Lazy<ITypedElement>(RetrieveLPLReference);
+        
         /// <summary>
         /// The backing field for the LPL property
         /// </summary>
         private ObservableAssociationOrderedSet<ILPL> _lPL;
         
+        private static Lazy<ITypedElement> _cSDReference = new Lazy<ITypedElement>(RetrieveCSDReference);
+        
         /// <summary>
         /// The backing field for the CSD property
         /// </summary>
         private ObservableAssociationOrderedSet<ICSD> _cSD;
+        
+        private static Lazy<ITypedElement> _c_PrimitiveCDCReference = new Lazy<ITypedElement>(RetrieveC_PrimitiveCDCReference);
         
         /// <summary>
         /// The backing field for the C_PrimitiveCDC property
@@ -167,6 +175,11 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
             }
         }
         
+        private static ITypedElement RetrieveDPLReference()
+        {
+            return ((ITypedElement)(((ModelElement)(DescriptionInfo.ClassInstance)).Resolve("DPL")));
+        }
+        
         /// <summary>
         /// Forwards CollectionChanging notifications for the DPL property to the parent model element
         /// </summary>
@@ -174,7 +187,7 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
         /// <param name="e">The original event data</param>
         private void DPLCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("DPL", e);
+            this.OnCollectionChanging("DPL", e, _dPLReference);
         }
         
         /// <summary>
@@ -184,7 +197,12 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
         /// <param name="e">The original event data</param>
         private void DPLCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("DPL", e);
+            this.OnCollectionChanged("DPL", e, _dPLReference);
+        }
+        
+        private static ITypedElement RetrieveLPLReference()
+        {
+            return ((ITypedElement)(((ModelElement)(DescriptionInfo.ClassInstance)).Resolve("LPL")));
         }
         
         /// <summary>
@@ -194,7 +212,7 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
         /// <param name="e">The original event data</param>
         private void LPLCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("LPL", e);
+            this.OnCollectionChanging("LPL", e, _lPLReference);
         }
         
         /// <summary>
@@ -204,7 +222,12 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
         /// <param name="e">The original event data</param>
         private void LPLCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("LPL", e);
+            this.OnCollectionChanged("LPL", e, _lPLReference);
+        }
+        
+        private static ITypedElement RetrieveCSDReference()
+        {
+            return ((ITypedElement)(((ModelElement)(DescriptionInfo.ClassInstance)).Resolve("CSD")));
         }
         
         /// <summary>
@@ -214,7 +237,7 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
         /// <param name="e">The original event data</param>
         private void CSDCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("CSD", e);
+            this.OnCollectionChanging("CSD", e, _cSDReference);
         }
         
         /// <summary>
@@ -224,7 +247,12 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
         /// <param name="e">The original event data</param>
         private void CSDCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("CSD", e);
+            this.OnCollectionChanged("CSD", e, _cSDReference);
+        }
+        
+        private static ITypedElement RetrieveC_PrimitiveCDCReference()
+        {
+            return ((ITypedElement)(((ModelElement)(DescriptionInfo.ClassInstance)).Resolve("C_PrimitiveCDC")));
         }
         
         /// <summary>
@@ -234,7 +262,7 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
         /// <param name="e">The original event data</param>
         private void C_PrimitiveCDCCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("C_PrimitiveCDC", e);
+            this.OnCollectionChanging("C_PrimitiveCDC", e, _c_PrimitiveCDCReference);
         }
         
         /// <summary>
@@ -244,7 +272,7 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
         /// <param name="e">The original event data</param>
         private void C_PrimitiveCDCCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("C_PrimitiveCDC", e);
+            this.OnCollectionChanged("C_PrimitiveCDC", e, _c_PrimitiveCDCReference);
         }
         
         /// <summary>

@@ -39,7 +39,7 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
     [XmlNamespacePrefixAttribute("data")]
     [ModelRepresentationClassAttribute("http://www.transformation-tool-contest.eu/2017/smartGrids/substationStandard#//Da" +
         "taclasses/DetailQual")]
-    public class DetailQual : ModelElement, IDetailQual, IModelElement
+    public partial class DetailQual : ModelElement, IDetailQual, IModelElement
     {
         
         /// <summary>
@@ -47,40 +47,56 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
         /// </summary>
         private Nullable<bool> _overflow;
         
+        private static Lazy<ITypedElement> _overflowAttribute = new Lazy<ITypedElement>(RetrieveOverflowAttribute);
+        
         /// <summary>
         /// The backing field for the OutOfRange property
         /// </summary>
         private Nullable<bool> _outOfRange;
+        
+        private static Lazy<ITypedElement> _outOfRangeAttribute = new Lazy<ITypedElement>(RetrieveOutOfRangeAttribute);
         
         /// <summary>
         /// The backing field for the BadReference property
         /// </summary>
         private Nullable<bool> _badReference;
         
+        private static Lazy<ITypedElement> _badReferenceAttribute = new Lazy<ITypedElement>(RetrieveBadReferenceAttribute);
+        
         /// <summary>
         /// The backing field for the Oscillatory property
         /// </summary>
         private Nullable<bool> _oscillatory;
+        
+        private static Lazy<ITypedElement> _oscillatoryAttribute = new Lazy<ITypedElement>(RetrieveOscillatoryAttribute);
         
         /// <summary>
         /// The backing field for the Failure property
         /// </summary>
         private Nullable<bool> _failure;
         
+        private static Lazy<ITypedElement> _failureAttribute = new Lazy<ITypedElement>(RetrieveFailureAttribute);
+        
         /// <summary>
         /// The backing field for the OldData property
         /// </summary>
         private Nullable<bool> _oldData;
+        
+        private static Lazy<ITypedElement> _oldDataAttribute = new Lazy<ITypedElement>(RetrieveOldDataAttribute);
         
         /// <summary>
         /// The backing field for the Inconsistent property
         /// </summary>
         private Nullable<bool> _inconsistent;
         
+        private static Lazy<ITypedElement> _inconsistentAttribute = new Lazy<ITypedElement>(RetrieveInconsistentAttribute);
+        
         /// <summary>
         /// The backing field for the Inaccurate property
         /// </summary>
         private Nullable<bool> _inaccurate;
+        
+        private static Lazy<ITypedElement> _inaccurateAttribute = new Lazy<ITypedElement>(RetrieveInaccurateAttribute);
         
         private static IClass _classInstance;
         
@@ -102,10 +118,10 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
                     Nullable<bool> old = this._overflow;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnOverflowChanging(e);
-                    this.OnPropertyChanging("Overflow", e);
+                    this.OnPropertyChanging("Overflow", e, _overflowAttribute);
                     this._overflow = value;
                     this.OnOverflowChanged(e);
-                    this.OnPropertyChanged("Overflow", e);
+                    this.OnPropertyChanged("Overflow", e, _overflowAttribute);
                 }
             }
         }
@@ -128,10 +144,10 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
                     Nullable<bool> old = this._outOfRange;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnOutOfRangeChanging(e);
-                    this.OnPropertyChanging("OutOfRange", e);
+                    this.OnPropertyChanging("OutOfRange", e, _outOfRangeAttribute);
                     this._outOfRange = value;
                     this.OnOutOfRangeChanged(e);
-                    this.OnPropertyChanged("OutOfRange", e);
+                    this.OnPropertyChanged("OutOfRange", e, _outOfRangeAttribute);
                 }
             }
         }
@@ -154,10 +170,10 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
                     Nullable<bool> old = this._badReference;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnBadReferenceChanging(e);
-                    this.OnPropertyChanging("BadReference", e);
+                    this.OnPropertyChanging("BadReference", e, _badReferenceAttribute);
                     this._badReference = value;
                     this.OnBadReferenceChanged(e);
-                    this.OnPropertyChanged("BadReference", e);
+                    this.OnPropertyChanged("BadReference", e, _badReferenceAttribute);
                 }
             }
         }
@@ -180,10 +196,10 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
                     Nullable<bool> old = this._oscillatory;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnOscillatoryChanging(e);
-                    this.OnPropertyChanging("Oscillatory", e);
+                    this.OnPropertyChanging("Oscillatory", e, _oscillatoryAttribute);
                     this._oscillatory = value;
                     this.OnOscillatoryChanged(e);
-                    this.OnPropertyChanged("Oscillatory", e);
+                    this.OnPropertyChanged("Oscillatory", e, _oscillatoryAttribute);
                 }
             }
         }
@@ -206,10 +222,10 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
                     Nullable<bool> old = this._failure;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnFailureChanging(e);
-                    this.OnPropertyChanging("Failure", e);
+                    this.OnPropertyChanging("Failure", e, _failureAttribute);
                     this._failure = value;
                     this.OnFailureChanged(e);
-                    this.OnPropertyChanged("Failure", e);
+                    this.OnPropertyChanged("Failure", e, _failureAttribute);
                 }
             }
         }
@@ -232,10 +248,10 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
                     Nullable<bool> old = this._oldData;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnOldDataChanging(e);
-                    this.OnPropertyChanging("OldData", e);
+                    this.OnPropertyChanging("OldData", e, _oldDataAttribute);
                     this._oldData = value;
                     this.OnOldDataChanged(e);
-                    this.OnPropertyChanged("OldData", e);
+                    this.OnPropertyChanged("OldData", e, _oldDataAttribute);
                 }
             }
         }
@@ -258,10 +274,10 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
                     Nullable<bool> old = this._inconsistent;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnInconsistentChanging(e);
-                    this.OnPropertyChanging("Inconsistent", e);
+                    this.OnPropertyChanging("Inconsistent", e, _inconsistentAttribute);
                     this._inconsistent = value;
                     this.OnInconsistentChanged(e);
-                    this.OnPropertyChanged("Inconsistent", e);
+                    this.OnPropertyChanged("Inconsistent", e, _inconsistentAttribute);
                 }
             }
         }
@@ -284,10 +300,10 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
                     Nullable<bool> old = this._inaccurate;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnInaccurateChanging(e);
-                    this.OnPropertyChanging("Inaccurate", e);
+                    this.OnPropertyChanging("Inaccurate", e, _inaccurateAttribute);
                     this._inaccurate = value;
                     this.OnInaccurateChanged(e);
-                    this.OnPropertyChanged("Inaccurate", e);
+                    this.OnPropertyChanged("Inaccurate", e, _inaccurateAttribute);
                 }
             }
         }
@@ -388,6 +404,11 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> InaccurateChanged;
         
+        private static ITypedElement RetrieveOverflowAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(DetailQual.ClassInstance)).Resolve("overflow")));
+        }
+        
         /// <summary>
         /// Raises the OverflowChanging event
         /// </summary>
@@ -412,6 +433,11 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveOutOfRangeAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(DetailQual.ClassInstance)).Resolve("outOfRange")));
         }
         
         /// <summary>
@@ -440,6 +466,11 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
             }
         }
         
+        private static ITypedElement RetrieveBadReferenceAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(DetailQual.ClassInstance)).Resolve("badReference")));
+        }
+        
         /// <summary>
         /// Raises the BadReferenceChanging event
         /// </summary>
@@ -464,6 +495,11 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveOscillatoryAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(DetailQual.ClassInstance)).Resolve("oscillatory")));
         }
         
         /// <summary>
@@ -492,6 +528,11 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
             }
         }
         
+        private static ITypedElement RetrieveFailureAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(DetailQual.ClassInstance)).Resolve("failure")));
+        }
+        
         /// <summary>
         /// Raises the FailureChanging event
         /// </summary>
@@ -516,6 +557,11 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveOldDataAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(DetailQual.ClassInstance)).Resolve("oldData")));
         }
         
         /// <summary>
@@ -544,6 +590,11 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
             }
         }
         
+        private static ITypedElement RetrieveInconsistentAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(DetailQual.ClassInstance)).Resolve("inconsistent")));
+        }
+        
         /// <summary>
         /// Raises the InconsistentChanging event
         /// </summary>
@@ -568,6 +619,11 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveInaccurateAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(DetailQual.ClassInstance)).Resolve("inaccurate")));
         }
         
         /// <summary>
@@ -713,7 +769,7 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public OverflowProxy(IDetailQual modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "overflow")
             {
             }
             
@@ -731,24 +787,6 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
                     this.ModelElement.Overflow = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.OverflowChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.OverflowChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -762,7 +800,7 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public OutOfRangeProxy(IDetailQual modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "outOfRange")
             {
             }
             
@@ -780,24 +818,6 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
                     this.ModelElement.OutOfRange = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.OutOfRangeChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.OutOfRangeChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -811,7 +831,7 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public BadReferenceProxy(IDetailQual modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "badReference")
             {
             }
             
@@ -829,24 +849,6 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
                     this.ModelElement.BadReference = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.BadReferenceChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.BadReferenceChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -860,7 +862,7 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public OscillatoryProxy(IDetailQual modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "oscillatory")
             {
             }
             
@@ -878,24 +880,6 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
                     this.ModelElement.Oscillatory = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.OscillatoryChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.OscillatoryChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -909,7 +893,7 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public FailureProxy(IDetailQual modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "failure")
             {
             }
             
@@ -927,24 +911,6 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
                     this.ModelElement.Failure = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.FailureChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.FailureChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -958,7 +924,7 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public OldDataProxy(IDetailQual modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "oldData")
             {
             }
             
@@ -976,24 +942,6 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
                     this.ModelElement.OldData = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.OldDataChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.OldDataChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1007,7 +955,7 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public InconsistentProxy(IDetailQual modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "inconsistent")
             {
             }
             
@@ -1025,24 +973,6 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
                     this.ModelElement.Inconsistent = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.InconsistentChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.InconsistentChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1056,7 +986,7 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public InaccurateProxy(IDetailQual modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "inaccurate")
             {
             }
             
@@ -1073,24 +1003,6 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
                 {
                     this.ModelElement.Inaccurate = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.InaccurateChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.InaccurateChanged -= handler;
             }
         }
     }

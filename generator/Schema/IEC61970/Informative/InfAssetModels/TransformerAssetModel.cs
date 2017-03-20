@@ -45,7 +45,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssetModels
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61970/Informative/InfAssetModels/Tr" +
         "ansformerAssetModel")]
     [DebuggerDisplayAttribute("TransformerAssetModel {UUID}")]
-    public class TransformerAssetModel : AssetModel, ITransformerAssetModel, IModelElement
+    public partial class TransformerAssetModel : AssetModel, ITransformerAssetModel, IModelElement
     {
         
         /// <summary>
@@ -53,75 +53,107 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssetModels
         /// </summary>
         private float _hourOverLoadRating;
         
+        private static Lazy<ITypedElement> _hourOverLoadRatingAttribute = new Lazy<ITypedElement>(RetrieveHourOverLoadRatingAttribute);
+        
         /// <summary>
         /// The backing field for the OilPreservationKind property
         /// </summary>
         private Nullable<OilPreservationKind> _oilPreservationKind;
+        
+        private static Lazy<ITypedElement> _oilPreservationKindAttribute = new Lazy<ITypedElement>(RetrieveOilPreservationKindAttribute);
         
         /// <summary>
         /// The backing field for the CoreCoilsWeight property
         /// </summary>
         private float _coreCoilsWeight;
         
+        private static Lazy<ITypedElement> _coreCoilsWeightAttribute = new Lazy<ITypedElement>(RetrieveCoreCoilsWeightAttribute);
+        
         /// <summary>
         /// The backing field for the WindingInsulationKind property
         /// </summary>
         private Nullable<WindingInsulationKind> _windingInsulationKind;
+        
+        private static Lazy<ITypedElement> _windingInsulationKindAttribute = new Lazy<ITypedElement>(RetrieveWindingInsulationKindAttribute);
         
         /// <summary>
         /// The backing field for the AltSecondaryNomVoltage property
         /// </summary>
         private float _altSecondaryNomVoltage;
         
+        private static Lazy<ITypedElement> _altSecondaryNomVoltageAttribute = new Lazy<ITypedElement>(RetrieveAltSecondaryNomVoltageAttribute);
+        
         /// <summary>
         /// The backing field for the SolidInsulationWeight property
         /// </summary>
         private float _solidInsulationWeight;
+        
+        private static Lazy<ITypedElement> _solidInsulationWeightAttribute = new Lazy<ITypedElement>(RetrieveSolidInsulationWeightAttribute);
         
         /// <summary>
         /// The backing field for the NeutralBIL property
         /// </summary>
         private float _neutralBIL;
         
+        private static Lazy<ITypedElement> _neutralBILAttribute = new Lazy<ITypedElement>(RetrieveNeutralBILAttribute);
+        
         /// <summary>
         /// The backing field for the CoreKind property
         /// </summary>
         private Nullable<TransformerCoreKind> _coreKind;
+        
+        private static Lazy<ITypedElement> _coreKindAttribute = new Lazy<ITypedElement>(RetrieveCoreKindAttribute);
         
         /// <summary>
         /// The backing field for the DayOverLoadRating property
         /// </summary>
         private float _dayOverLoadRating;
         
+        private static Lazy<ITypedElement> _dayOverLoadRatingAttribute = new Lazy<ITypedElement>(RetrieveDayOverLoadRatingAttribute);
+        
         /// <summary>
         /// The backing field for the Function property
         /// </summary>
         private Nullable<TransformerFunctionKind> _function;
+        
+        private static Lazy<ITypedElement> _functionAttribute = new Lazy<ITypedElement>(RetrieveFunctionAttribute);
         
         /// <summary>
         /// The backing field for the ConstructionKind property
         /// </summary>
         private Nullable<TransformerConstructionKind> _constructionKind;
         
+        private static Lazy<ITypedElement> _constructionKindAttribute = new Lazy<ITypedElement>(RetrieveConstructionKindAttribute);
+        
         /// <summary>
         /// The backing field for the AutoTransformer property
         /// </summary>
         private bool _autoTransformer;
+        
+        private static Lazy<ITypedElement> _autoTransformerAttribute = new Lazy<ITypedElement>(RetrieveAutoTransformerAttribute);
         
         /// <summary>
         /// The backing field for the AltPrimaryNomVoltage property
         /// </summary>
         private float _altPrimaryNomVoltage;
         
+        private static Lazy<ITypedElement> _altPrimaryNomVoltageAttribute = new Lazy<ITypedElement>(RetrieveAltPrimaryNomVoltageAttribute);
+        
         /// <summary>
         /// The backing field for the ReconfigWinding property
         /// </summary>
         private bool _reconfigWinding;
         
+        private static Lazy<ITypedElement> _reconfigWindingAttribute = new Lazy<ITypedElement>(RetrieveReconfigWindingAttribute);
+        
+        private static Lazy<ITypedElement> _transformerInfoReference = new Lazy<ITypedElement>(RetrieveTransformerInfoReference);
+        
         /// <summary>
         /// The backing field for the TransformerInfo property
         /// </summary>
         private ITransformerInfo _transformerInfo;
+        
+        private static Lazy<ITypedElement> _transformerAssetsReference = new Lazy<ITypedElement>(RetrieveTransformerAssetsReference);
         
         /// <summary>
         /// The backing field for the TransformerAssets property
@@ -155,10 +187,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssetModels
                     float old = this._hourOverLoadRating;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnHourOverLoadRatingChanging(e);
-                    this.OnPropertyChanging("HourOverLoadRating", e);
+                    this.OnPropertyChanging("HourOverLoadRating", e, _hourOverLoadRatingAttribute);
                     this._hourOverLoadRating = value;
                     this.OnHourOverLoadRatingChanged(e);
-                    this.OnPropertyChanged("HourOverLoadRating", e);
+                    this.OnPropertyChanged("HourOverLoadRating", e, _hourOverLoadRatingAttribute);
                 }
             }
         }
@@ -181,10 +213,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssetModels
                     Nullable<OilPreservationKind> old = this._oilPreservationKind;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnOilPreservationKindChanging(e);
-                    this.OnPropertyChanging("OilPreservationKind", e);
+                    this.OnPropertyChanging("OilPreservationKind", e, _oilPreservationKindAttribute);
                     this._oilPreservationKind = value;
                     this.OnOilPreservationKindChanged(e);
-                    this.OnPropertyChanged("OilPreservationKind", e);
+                    this.OnPropertyChanged("OilPreservationKind", e, _oilPreservationKindAttribute);
                 }
             }
         }
@@ -207,10 +239,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssetModels
                     float old = this._coreCoilsWeight;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnCoreCoilsWeightChanging(e);
-                    this.OnPropertyChanging("CoreCoilsWeight", e);
+                    this.OnPropertyChanging("CoreCoilsWeight", e, _coreCoilsWeightAttribute);
                     this._coreCoilsWeight = value;
                     this.OnCoreCoilsWeightChanged(e);
-                    this.OnPropertyChanged("CoreCoilsWeight", e);
+                    this.OnPropertyChanged("CoreCoilsWeight", e, _coreCoilsWeightAttribute);
                 }
             }
         }
@@ -233,10 +265,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssetModels
                     Nullable<WindingInsulationKind> old = this._windingInsulationKind;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnWindingInsulationKindChanging(e);
-                    this.OnPropertyChanging("WindingInsulationKind", e);
+                    this.OnPropertyChanging("WindingInsulationKind", e, _windingInsulationKindAttribute);
                     this._windingInsulationKind = value;
                     this.OnWindingInsulationKindChanged(e);
-                    this.OnPropertyChanged("WindingInsulationKind", e);
+                    this.OnPropertyChanged("WindingInsulationKind", e, _windingInsulationKindAttribute);
                 }
             }
         }
@@ -259,10 +291,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssetModels
                     float old = this._altSecondaryNomVoltage;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnAltSecondaryNomVoltageChanging(e);
-                    this.OnPropertyChanging("AltSecondaryNomVoltage", e);
+                    this.OnPropertyChanging("AltSecondaryNomVoltage", e, _altSecondaryNomVoltageAttribute);
                     this._altSecondaryNomVoltage = value;
                     this.OnAltSecondaryNomVoltageChanged(e);
-                    this.OnPropertyChanged("AltSecondaryNomVoltage", e);
+                    this.OnPropertyChanged("AltSecondaryNomVoltage", e, _altSecondaryNomVoltageAttribute);
                 }
             }
         }
@@ -285,10 +317,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssetModels
                     float old = this._solidInsulationWeight;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnSolidInsulationWeightChanging(e);
-                    this.OnPropertyChanging("SolidInsulationWeight", e);
+                    this.OnPropertyChanging("SolidInsulationWeight", e, _solidInsulationWeightAttribute);
                     this._solidInsulationWeight = value;
                     this.OnSolidInsulationWeightChanged(e);
-                    this.OnPropertyChanged("SolidInsulationWeight", e);
+                    this.OnPropertyChanged("SolidInsulationWeight", e, _solidInsulationWeightAttribute);
                 }
             }
         }
@@ -311,10 +343,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssetModels
                     float old = this._neutralBIL;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnNeutralBILChanging(e);
-                    this.OnPropertyChanging("NeutralBIL", e);
+                    this.OnPropertyChanging("NeutralBIL", e, _neutralBILAttribute);
                     this._neutralBIL = value;
                     this.OnNeutralBILChanged(e);
-                    this.OnPropertyChanged("NeutralBIL", e);
+                    this.OnPropertyChanged("NeutralBIL", e, _neutralBILAttribute);
                 }
             }
         }
@@ -337,10 +369,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssetModels
                     Nullable<TransformerCoreKind> old = this._coreKind;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnCoreKindChanging(e);
-                    this.OnPropertyChanging("CoreKind", e);
+                    this.OnPropertyChanging("CoreKind", e, _coreKindAttribute);
                     this._coreKind = value;
                     this.OnCoreKindChanged(e);
-                    this.OnPropertyChanged("CoreKind", e);
+                    this.OnPropertyChanged("CoreKind", e, _coreKindAttribute);
                 }
             }
         }
@@ -363,10 +395,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssetModels
                     float old = this._dayOverLoadRating;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnDayOverLoadRatingChanging(e);
-                    this.OnPropertyChanging("DayOverLoadRating", e);
+                    this.OnPropertyChanging("DayOverLoadRating", e, _dayOverLoadRatingAttribute);
                     this._dayOverLoadRating = value;
                     this.OnDayOverLoadRatingChanged(e);
-                    this.OnPropertyChanged("DayOverLoadRating", e);
+                    this.OnPropertyChanged("DayOverLoadRating", e, _dayOverLoadRatingAttribute);
                 }
             }
         }
@@ -389,10 +421,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssetModels
                     Nullable<TransformerFunctionKind> old = this._function;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnFunctionChanging(e);
-                    this.OnPropertyChanging("Function", e);
+                    this.OnPropertyChanging("Function", e, _functionAttribute);
                     this._function = value;
                     this.OnFunctionChanged(e);
-                    this.OnPropertyChanged("Function", e);
+                    this.OnPropertyChanged("Function", e, _functionAttribute);
                 }
             }
         }
@@ -415,10 +447,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssetModels
                     Nullable<TransformerConstructionKind> old = this._constructionKind;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnConstructionKindChanging(e);
-                    this.OnPropertyChanging("ConstructionKind", e);
+                    this.OnPropertyChanging("ConstructionKind", e, _constructionKindAttribute);
                     this._constructionKind = value;
                     this.OnConstructionKindChanged(e);
-                    this.OnPropertyChanged("ConstructionKind", e);
+                    this.OnPropertyChanged("ConstructionKind", e, _constructionKindAttribute);
                 }
             }
         }
@@ -441,10 +473,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssetModels
                     bool old = this._autoTransformer;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnAutoTransformerChanging(e);
-                    this.OnPropertyChanging("AutoTransformer", e);
+                    this.OnPropertyChanging("AutoTransformer", e, _autoTransformerAttribute);
                     this._autoTransformer = value;
                     this.OnAutoTransformerChanged(e);
-                    this.OnPropertyChanged("AutoTransformer", e);
+                    this.OnPropertyChanged("AutoTransformer", e, _autoTransformerAttribute);
                 }
             }
         }
@@ -467,10 +499,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssetModels
                     float old = this._altPrimaryNomVoltage;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnAltPrimaryNomVoltageChanging(e);
-                    this.OnPropertyChanging("AltPrimaryNomVoltage", e);
+                    this.OnPropertyChanging("AltPrimaryNomVoltage", e, _altPrimaryNomVoltageAttribute);
                     this._altPrimaryNomVoltage = value;
                     this.OnAltPrimaryNomVoltageChanged(e);
-                    this.OnPropertyChanged("AltPrimaryNomVoltage", e);
+                    this.OnPropertyChanged("AltPrimaryNomVoltage", e, _altPrimaryNomVoltageAttribute);
                 }
             }
         }
@@ -493,10 +525,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssetModels
                     bool old = this._reconfigWinding;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnReconfigWindingChanging(e);
-                    this.OnPropertyChanging("ReconfigWinding", e);
+                    this.OnPropertyChanging("ReconfigWinding", e, _reconfigWindingAttribute);
                     this._reconfigWinding = value;
                     this.OnReconfigWindingChanged(e);
-                    this.OnPropertyChanged("ReconfigWinding", e);
+                    this.OnPropertyChanged("ReconfigWinding", e, _reconfigWindingAttribute);
                 }
             }
         }
@@ -519,7 +551,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssetModels
                     ITransformerInfo old = this._transformerInfo;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnTransformerInfoChanging(e);
-                    this.OnPropertyChanging("TransformerInfo", e);
+                    this.OnPropertyChanging("TransformerInfo", e, _transformerInfoReference);
                     this._transformerInfo = value;
                     if ((old != null))
                     {
@@ -532,7 +564,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssetModels
                         value.Deleted += this.OnResetTransformerInfo;
                     }
                     this.OnTransformerInfoChanged(e);
-                    this.OnPropertyChanged("TransformerInfo", e);
+                    this.OnPropertyChanged("TransformerInfo", e, _transformerInfoReference);
                 }
             }
         }
@@ -729,6 +761,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssetModels
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> TransformerInfoChanged;
         
+        private static ITypedElement RetrieveHourOverLoadRatingAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(TransformerAssetModel.ClassInstance)).Resolve("hourOverLoadRating")));
+        }
+        
         /// <summary>
         /// Raises the HourOverLoadRatingChanging event
         /// </summary>
@@ -753,6 +790,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssetModels
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveOilPreservationKindAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(TransformerAssetModel.ClassInstance)).Resolve("oilPreservationKind")));
         }
         
         /// <summary>
@@ -781,6 +823,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssetModels
             }
         }
         
+        private static ITypedElement RetrieveCoreCoilsWeightAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(TransformerAssetModel.ClassInstance)).Resolve("coreCoilsWeight")));
+        }
+        
         /// <summary>
         /// Raises the CoreCoilsWeightChanging event
         /// </summary>
@@ -805,6 +852,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssetModels
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveWindingInsulationKindAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(TransformerAssetModel.ClassInstance)).Resolve("windingInsulationKind")));
         }
         
         /// <summary>
@@ -833,6 +885,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssetModels
             }
         }
         
+        private static ITypedElement RetrieveAltSecondaryNomVoltageAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(TransformerAssetModel.ClassInstance)).Resolve("altSecondaryNomVoltage")));
+        }
+        
         /// <summary>
         /// Raises the AltSecondaryNomVoltageChanging event
         /// </summary>
@@ -857,6 +914,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssetModels
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveSolidInsulationWeightAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(TransformerAssetModel.ClassInstance)).Resolve("solidInsulationWeight")));
         }
         
         /// <summary>
@@ -885,6 +947,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssetModels
             }
         }
         
+        private static ITypedElement RetrieveNeutralBILAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(TransformerAssetModel.ClassInstance)).Resolve("neutralBIL")));
+        }
+        
         /// <summary>
         /// Raises the NeutralBILChanging event
         /// </summary>
@@ -909,6 +976,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssetModels
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveCoreKindAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(TransformerAssetModel.ClassInstance)).Resolve("coreKind")));
         }
         
         /// <summary>
@@ -937,6 +1009,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssetModels
             }
         }
         
+        private static ITypedElement RetrieveDayOverLoadRatingAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(TransformerAssetModel.ClassInstance)).Resolve("dayOverLoadRating")));
+        }
+        
         /// <summary>
         /// Raises the DayOverLoadRatingChanging event
         /// </summary>
@@ -961,6 +1038,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssetModels
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveFunctionAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(TransformerAssetModel.ClassInstance)).Resolve("function")));
         }
         
         /// <summary>
@@ -989,6 +1071,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssetModels
             }
         }
         
+        private static ITypedElement RetrieveConstructionKindAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(TransformerAssetModel.ClassInstance)).Resolve("constructionKind")));
+        }
+        
         /// <summary>
         /// Raises the ConstructionKindChanging event
         /// </summary>
@@ -1013,6 +1100,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssetModels
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveAutoTransformerAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(TransformerAssetModel.ClassInstance)).Resolve("autoTransformer")));
         }
         
         /// <summary>
@@ -1041,6 +1133,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssetModels
             }
         }
         
+        private static ITypedElement RetrieveAltPrimaryNomVoltageAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(TransformerAssetModel.ClassInstance)).Resolve("altPrimaryNomVoltage")));
+        }
+        
         /// <summary>
         /// Raises the AltPrimaryNomVoltageChanging event
         /// </summary>
@@ -1067,6 +1164,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssetModels
             }
         }
         
+        private static ITypedElement RetrieveReconfigWindingAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(TransformerAssetModel.ClassInstance)).Resolve("reconfigWinding")));
+        }
+        
         /// <summary>
         /// Raises the ReconfigWindingChanging event
         /// </summary>
@@ -1091,6 +1193,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssetModels
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveTransformerInfoReference()
+        {
+            return ((ITypedElement)(((ModelElement)(TransformerAssetModel.ClassInstance)).Resolve("TransformerInfo")));
         }
         
         /// <summary>
@@ -1129,6 +1236,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssetModels
             this.TransformerInfo = null;
         }
         
+        private static ITypedElement RetrieveTransformerAssetsReference()
+        {
+            return ((ITypedElement)(((ModelElement)(TransformerAssetModel.ClassInstance)).Resolve("TransformerAssets")));
+        }
+        
         /// <summary>
         /// Forwards CollectionChanging notifications for the TransformerAssets property to the parent model element
         /// </summary>
@@ -1136,7 +1248,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssetModels
         /// <param name="e">The original event data</param>
         private void TransformerAssetsCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("TransformerAssets", e);
+            this.OnCollectionChanging("TransformerAssets", e, _transformerAssetsReference);
         }
         
         /// <summary>
@@ -1146,7 +1258,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssetModels
         /// <param name="e">The original event data</param>
         private void TransformerAssetsCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("TransformerAssets", e);
+            this.OnCollectionChanged("TransformerAssets", e, _transformerAssetsReference);
         }
         
         /// <summary>
@@ -1521,7 +1633,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssetModels
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public HourOverLoadRatingProxy(ITransformerAssetModel modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "hourOverLoadRating")
             {
             }
             
@@ -1539,24 +1651,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssetModels
                     this.ModelElement.HourOverLoadRating = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.HourOverLoadRatingChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.HourOverLoadRatingChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1570,7 +1664,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssetModels
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public OilPreservationKindProxy(ITransformerAssetModel modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "oilPreservationKind")
             {
             }
             
@@ -1588,24 +1682,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssetModels
                     this.ModelElement.OilPreservationKind = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.OilPreservationKindChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.OilPreservationKindChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1619,7 +1695,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssetModels
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public CoreCoilsWeightProxy(ITransformerAssetModel modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "coreCoilsWeight")
             {
             }
             
@@ -1637,24 +1713,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssetModels
                     this.ModelElement.CoreCoilsWeight = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.CoreCoilsWeightChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.CoreCoilsWeightChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1668,7 +1726,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssetModels
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public WindingInsulationKindProxy(ITransformerAssetModel modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "windingInsulationKind")
             {
             }
             
@@ -1686,24 +1744,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssetModels
                     this.ModelElement.WindingInsulationKind = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.WindingInsulationKindChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.WindingInsulationKindChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1717,7 +1757,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssetModels
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public AltSecondaryNomVoltageProxy(ITransformerAssetModel modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "altSecondaryNomVoltage")
             {
             }
             
@@ -1735,24 +1775,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssetModels
                     this.ModelElement.AltSecondaryNomVoltage = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.AltSecondaryNomVoltageChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.AltSecondaryNomVoltageChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1766,7 +1788,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssetModels
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public SolidInsulationWeightProxy(ITransformerAssetModel modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "solidInsulationWeight")
             {
             }
             
@@ -1784,24 +1806,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssetModels
                     this.ModelElement.SolidInsulationWeight = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.SolidInsulationWeightChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.SolidInsulationWeightChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1815,7 +1819,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssetModels
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public NeutralBILProxy(ITransformerAssetModel modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "neutralBIL")
             {
             }
             
@@ -1833,24 +1837,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssetModels
                     this.ModelElement.NeutralBIL = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.NeutralBILChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.NeutralBILChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1864,7 +1850,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssetModels
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public CoreKindProxy(ITransformerAssetModel modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "coreKind")
             {
             }
             
@@ -1882,24 +1868,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssetModels
                     this.ModelElement.CoreKind = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.CoreKindChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.CoreKindChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1913,7 +1881,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssetModels
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public DayOverLoadRatingProxy(ITransformerAssetModel modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "dayOverLoadRating")
             {
             }
             
@@ -1931,24 +1899,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssetModels
                     this.ModelElement.DayOverLoadRating = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.DayOverLoadRatingChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.DayOverLoadRatingChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1962,7 +1912,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssetModels
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public FunctionProxy(ITransformerAssetModel modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "function")
             {
             }
             
@@ -1980,24 +1930,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssetModels
                     this.ModelElement.Function = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.FunctionChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.FunctionChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -2011,7 +1943,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssetModels
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public ConstructionKindProxy(ITransformerAssetModel modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "constructionKind")
             {
             }
             
@@ -2029,24 +1961,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssetModels
                     this.ModelElement.ConstructionKind = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ConstructionKindChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ConstructionKindChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -2060,7 +1974,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssetModels
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public AutoTransformerProxy(ITransformerAssetModel modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "autoTransformer")
             {
             }
             
@@ -2078,24 +1992,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssetModels
                     this.ModelElement.AutoTransformer = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.AutoTransformerChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.AutoTransformerChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -2109,7 +2005,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssetModels
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public AltPrimaryNomVoltageProxy(ITransformerAssetModel modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "altPrimaryNomVoltage")
             {
             }
             
@@ -2127,24 +2023,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssetModels
                     this.ModelElement.AltPrimaryNomVoltage = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.AltPrimaryNomVoltageChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.AltPrimaryNomVoltageChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -2158,7 +2036,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssetModels
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public ReconfigWindingProxy(ITransformerAssetModel modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "reconfigWinding")
             {
             }
             
@@ -2176,24 +2054,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssetModels
                     this.ModelElement.ReconfigWinding = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ReconfigWindingChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ReconfigWindingChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -2207,7 +2067,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssetModels
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public TransformerInfoProxy(ITransformerAssetModel modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "TransformerInfo")
             {
             }
             
@@ -2224,24 +2084,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssetModels
                 {
                     this.ModelElement.TransformerInfo = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.TransformerInfoChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.TransformerInfoChanged -= handler;
             }
         }
     }

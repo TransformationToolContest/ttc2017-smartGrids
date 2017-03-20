@@ -41,18 +41,24 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Outage
     [XmlNamespacePrefixAttribute("cimOutage")]
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61970/Outage/OutageSchedule")]
     [DebuggerDisplayAttribute("OutageSchedule {UUID}")]
-    public class OutageSchedule : IrregularIntervalSchedule, IOutageSchedule, IModelElement
+    public partial class OutageSchedule : IrregularIntervalSchedule, IOutageSchedule, IModelElement
     {
+        
+        private static Lazy<ITypedElement> _plannedOutageReference = new Lazy<ITypedElement>(RetrievePlannedOutageReference);
         
         /// <summary>
         /// The backing field for the PlannedOutage property
         /// </summary>
         private IPlannedOutage _plannedOutage;
         
+        private static Lazy<ITypedElement> _powerSystemResourceReference = new Lazy<ITypedElement>(RetrievePowerSystemResourceReference);
+        
         /// <summary>
         /// The backing field for the PowerSystemResource property
         /// </summary>
         private IPowerSystemResource _powerSystemResource;
+        
+        private static Lazy<ITypedElement> _switchingOperationsReference = new Lazy<ITypedElement>(RetrieveSwitchingOperationsReference);
         
         /// <summary>
         /// The backing field for the SwitchingOperations property
@@ -86,7 +92,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Outage
                     IPlannedOutage old = this._plannedOutage;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnPlannedOutageChanging(e);
-                    this.OnPropertyChanging("PlannedOutage", e);
+                    this.OnPropertyChanging("PlannedOutage", e, _plannedOutageReference);
                     this._plannedOutage = value;
                     if ((old != null))
                     {
@@ -99,7 +105,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Outage
                         value.Deleted += this.OnResetPlannedOutage;
                     }
                     this.OnPlannedOutageChanged(e);
-                    this.OnPropertyChanged("PlannedOutage", e);
+                    this.OnPropertyChanged("PlannedOutage", e, _plannedOutageReference);
                 }
             }
         }
@@ -122,7 +128,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Outage
                     IPowerSystemResource old = this._powerSystemResource;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnPowerSystemResourceChanging(e);
-                    this.OnPropertyChanging("PowerSystemResource", e);
+                    this.OnPropertyChanging("PowerSystemResource", e, _powerSystemResourceReference);
                     this._powerSystemResource = value;
                     if ((old != null))
                     {
@@ -135,7 +141,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Outage
                         value.Deleted += this.OnResetPowerSystemResource;
                     }
                     this.OnPowerSystemResourceChanged(e);
-                    this.OnPropertyChanged("PowerSystemResource", e);
+                    this.OnPropertyChanged("PowerSystemResource", e, _powerSystemResourceReference);
                 }
             }
         }
@@ -201,6 +207,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Outage
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> PowerSystemResourceChanged;
         
+        private static ITypedElement RetrievePlannedOutageReference()
+        {
+            return ((ITypedElement)(((ModelElement)(OutageSchedule.ClassInstance)).Resolve("PlannedOutage")));
+        }
+        
         /// <summary>
         /// Raises the PlannedOutageChanging event
         /// </summary>
@@ -235,6 +246,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Outage
         private void OnResetPlannedOutage(object sender, System.EventArgs eventArgs)
         {
             this.PlannedOutage = null;
+        }
+        
+        private static ITypedElement RetrievePowerSystemResourceReference()
+        {
+            return ((ITypedElement)(((ModelElement)(OutageSchedule.ClassInstance)).Resolve("PowerSystemResource")));
         }
         
         /// <summary>
@@ -273,6 +289,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Outage
             this.PowerSystemResource = null;
         }
         
+        private static ITypedElement RetrieveSwitchingOperationsReference()
+        {
+            return ((ITypedElement)(((ModelElement)(OutageSchedule.ClassInstance)).Resolve("SwitchingOperations")));
+        }
+        
         /// <summary>
         /// Forwards CollectionChanging notifications for the SwitchingOperations property to the parent model element
         /// </summary>
@@ -280,7 +301,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Outage
         /// <param name="e">The original event data</param>
         private void SwitchingOperationsCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("SwitchingOperations", e);
+            this.OnCollectionChanging("SwitchingOperations", e, _switchingOperationsReference);
         }
         
         /// <summary>
@@ -290,7 +311,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Outage
         /// <param name="e">The original event data</param>
         private void SwitchingOperationsCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("SwitchingOperations", e);
+            this.OnCollectionChanged("SwitchingOperations", e, _switchingOperationsReference);
         }
         
         /// <summary>
@@ -570,7 +591,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Outage
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public PlannedOutageProxy(IOutageSchedule modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "PlannedOutage")
             {
             }
             
@@ -588,24 +609,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Outage
                     this.ModelElement.PlannedOutage = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.PlannedOutageChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.PlannedOutageChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -619,7 +622,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Outage
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public PowerSystemResourceProxy(IOutageSchedule modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "PowerSystemResource")
             {
             }
             
@@ -636,24 +639,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Outage
                 {
                     this.ModelElement.PowerSystemResource = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.PowerSystemResourceChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.PowerSystemResourceChanged -= handler;
             }
         }
     }

@@ -39,7 +39,7 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
     [XmlNamespacePrefixAttribute("objects")]
     [ModelRepresentationClassAttribute("http://www.transformation-tool-contest.eu/2017/smartGrids/cosem#//COSEMObjects/G3" +
         "_PLC_MAC_layer_counters_object")]
-    public class G3_PLC_MAC_layer_counters_object : G3_PLC_MAC_layer_counters, IG3_PLC_MAC_layer_counters_object, IModelElement
+    public partial class G3_PLC_MAC_layer_counters_object : G3_PLC_MAC_layer_counters, IG3_PLC_MAC_layer_counters_object, IModelElement
     {
         
         private static IClass _classInstance;

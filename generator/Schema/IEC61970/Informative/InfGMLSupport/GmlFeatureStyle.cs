@@ -45,7 +45,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfGMLSupport
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61970/Informative/InfGMLSupport/Gml" +
         "FeatureStyle")]
     [DebuggerDisplayAttribute("GmlFeatureStyle {UUID}")]
-    public class GmlFeatureStyle : IdentifiedObject, IGmlFeatureStyle, IModelElement
+    public partial class GmlFeatureStyle : IdentifiedObject, IGmlFeatureStyle, IModelElement
     {
         
         /// <summary>
@@ -53,55 +53,79 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfGMLSupport
         /// </summary>
         private string _featureConstraint;
         
+        private static Lazy<ITypedElement> _featureConstraintAttribute = new Lazy<ITypedElement>(RetrieveFeatureConstraintAttribute);
+        
         /// <summary>
         /// The backing field for the SemanticTypeIdentifier property
         /// </summary>
         private string _semanticTypeIdentifier;
+        
+        private static Lazy<ITypedElement> _semanticTypeIdentifierAttribute = new Lazy<ITypedElement>(RetrieveSemanticTypeIdentifierAttribute);
         
         /// <summary>
         /// The backing field for the Version property
         /// </summary>
         private string _version;
         
+        private static Lazy<ITypedElement> _versionAttribute = new Lazy<ITypedElement>(RetrieveVersionAttribute);
+        
         /// <summary>
         /// The backing field for the FeatureTypeName property
         /// </summary>
         private string _featureTypeName;
+        
+        private static Lazy<ITypedElement> _featureTypeNameAttribute = new Lazy<ITypedElement>(RetrieveFeatureTypeNameAttribute);
         
         /// <summary>
         /// The backing field for the QueryGrammar property
         /// </summary>
         private Nullable<QueryGrammarKind> _queryGrammar;
         
+        private static Lazy<ITypedElement> _queryGrammarAttribute = new Lazy<ITypedElement>(RetrieveQueryGrammarAttribute);
+        
         /// <summary>
         /// The backing field for the FeatureType property
         /// </summary>
         private string _featureType;
+        
+        private static Lazy<ITypedElement> _featureTypeAttribute = new Lazy<ITypedElement>(RetrieveFeatureTypeAttribute);
         
         /// <summary>
         /// The backing field for the BaseType property
         /// </summary>
         private string _baseType;
         
+        private static Lazy<ITypedElement> _baseTypeAttribute = new Lazy<ITypedElement>(RetrieveBaseTypeAttribute);
+        
+        private static Lazy<ITypedElement> _gmlSymbolsReference = new Lazy<ITypedElement>(RetrieveGmlSymbolsReference);
+        
         /// <summary>
         /// The backing field for the GmlSymbols property
         /// </summary>
         private GmlFeatureStyleGmlSymbolsCollection _gmlSymbols;
+        
+        private static Lazy<ITypedElement> _gmlLabelStylesReference = new Lazy<ITypedElement>(RetrieveGmlLabelStylesReference);
         
         /// <summary>
         /// The backing field for the GmlLabelStyles property
         /// </summary>
         private GmlFeatureStyleGmlLabelStylesCollection _gmlLabelStyles;
         
+        private static Lazy<ITypedElement> _gmlGeometryStylesReference = new Lazy<ITypedElement>(RetrieveGmlGeometryStylesReference);
+        
         /// <summary>
         /// The backing field for the GmlGeometryStyles property
         /// </summary>
         private GmlFeatureStyleGmlGeometryStylesCollection _gmlGeometryStyles;
         
+        private static Lazy<ITypedElement> _gmlFeatureTypesReference = new Lazy<ITypedElement>(RetrieveGmlFeatureTypesReference);
+        
         /// <summary>
         /// The backing field for the GmlFeatureTypes property
         /// </summary>
         private GmlFeatureStyleGmlFeatureTypesCollection _gmlFeatureTypes;
+        
+        private static Lazy<ITypedElement> _gmlTobologyStylesReference = new Lazy<ITypedElement>(RetrieveGmlTobologyStylesReference);
         
         /// <summary>
         /// The backing field for the GmlTobologyStyles property
@@ -147,10 +171,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfGMLSupport
                     string old = this._featureConstraint;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnFeatureConstraintChanging(e);
-                    this.OnPropertyChanging("FeatureConstraint", e);
+                    this.OnPropertyChanging("FeatureConstraint", e, _featureConstraintAttribute);
                     this._featureConstraint = value;
                     this.OnFeatureConstraintChanged(e);
-                    this.OnPropertyChanged("FeatureConstraint", e);
+                    this.OnPropertyChanged("FeatureConstraint", e, _featureConstraintAttribute);
                 }
             }
         }
@@ -173,10 +197,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfGMLSupport
                     string old = this._semanticTypeIdentifier;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnSemanticTypeIdentifierChanging(e);
-                    this.OnPropertyChanging("SemanticTypeIdentifier", e);
+                    this.OnPropertyChanging("SemanticTypeIdentifier", e, _semanticTypeIdentifierAttribute);
                     this._semanticTypeIdentifier = value;
                     this.OnSemanticTypeIdentifierChanged(e);
-                    this.OnPropertyChanged("SemanticTypeIdentifier", e);
+                    this.OnPropertyChanged("SemanticTypeIdentifier", e, _semanticTypeIdentifierAttribute);
                 }
             }
         }
@@ -199,10 +223,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfGMLSupport
                     string old = this._version;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnVersionChanging(e);
-                    this.OnPropertyChanging("Version", e);
+                    this.OnPropertyChanging("Version", e, _versionAttribute);
                     this._version = value;
                     this.OnVersionChanged(e);
-                    this.OnPropertyChanged("Version", e);
+                    this.OnPropertyChanged("Version", e, _versionAttribute);
                 }
             }
         }
@@ -225,10 +249,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfGMLSupport
                     string old = this._featureTypeName;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnFeatureTypeNameChanging(e);
-                    this.OnPropertyChanging("FeatureTypeName", e);
+                    this.OnPropertyChanging("FeatureTypeName", e, _featureTypeNameAttribute);
                     this._featureTypeName = value;
                     this.OnFeatureTypeNameChanged(e);
-                    this.OnPropertyChanged("FeatureTypeName", e);
+                    this.OnPropertyChanged("FeatureTypeName", e, _featureTypeNameAttribute);
                 }
             }
         }
@@ -251,10 +275,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfGMLSupport
                     Nullable<QueryGrammarKind> old = this._queryGrammar;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnQueryGrammarChanging(e);
-                    this.OnPropertyChanging("QueryGrammar", e);
+                    this.OnPropertyChanging("QueryGrammar", e, _queryGrammarAttribute);
                     this._queryGrammar = value;
                     this.OnQueryGrammarChanged(e);
-                    this.OnPropertyChanged("QueryGrammar", e);
+                    this.OnPropertyChanged("QueryGrammar", e, _queryGrammarAttribute);
                 }
             }
         }
@@ -277,10 +301,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfGMLSupport
                     string old = this._featureType;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnFeatureTypeChanging(e);
-                    this.OnPropertyChanging("FeatureType", e);
+                    this.OnPropertyChanging("FeatureType", e, _featureTypeAttribute);
                     this._featureType = value;
                     this.OnFeatureTypeChanged(e);
-                    this.OnPropertyChanged("FeatureType", e);
+                    this.OnPropertyChanged("FeatureType", e, _featureTypeAttribute);
                 }
             }
         }
@@ -303,10 +327,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfGMLSupport
                     string old = this._baseType;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnBaseTypeChanging(e);
-                    this.OnPropertyChanging("BaseType", e);
+                    this.OnPropertyChanging("BaseType", e, _baseTypeAttribute);
                     this._baseType = value;
                     this.OnBaseTypeChanged(e);
-                    this.OnPropertyChanged("BaseType", e);
+                    this.OnPropertyChanged("BaseType", e, _baseTypeAttribute);
                 }
             }
         }
@@ -483,6 +507,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfGMLSupport
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> BaseTypeChanged;
         
+        private static ITypedElement RetrieveFeatureConstraintAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(GmlFeatureStyle.ClassInstance)).Resolve("featureConstraint")));
+        }
+        
         /// <summary>
         /// Raises the FeatureConstraintChanging event
         /// </summary>
@@ -507,6 +536,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfGMLSupport
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveSemanticTypeIdentifierAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(GmlFeatureStyle.ClassInstance)).Resolve("semanticTypeIdentifier")));
         }
         
         /// <summary>
@@ -535,6 +569,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfGMLSupport
             }
         }
         
+        private static ITypedElement RetrieveVersionAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(GmlFeatureStyle.ClassInstance)).Resolve("version")));
+        }
+        
         /// <summary>
         /// Raises the VersionChanging event
         /// </summary>
@@ -559,6 +598,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfGMLSupport
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveFeatureTypeNameAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(GmlFeatureStyle.ClassInstance)).Resolve("featureTypeName")));
         }
         
         /// <summary>
@@ -587,6 +631,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfGMLSupport
             }
         }
         
+        private static ITypedElement RetrieveQueryGrammarAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(GmlFeatureStyle.ClassInstance)).Resolve("queryGrammar")));
+        }
+        
         /// <summary>
         /// Raises the QueryGrammarChanging event
         /// </summary>
@@ -611,6 +660,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfGMLSupport
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveFeatureTypeAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(GmlFeatureStyle.ClassInstance)).Resolve("featureType")));
         }
         
         /// <summary>
@@ -639,6 +693,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfGMLSupport
             }
         }
         
+        private static ITypedElement RetrieveBaseTypeAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(GmlFeatureStyle.ClassInstance)).Resolve("baseType")));
+        }
+        
         /// <summary>
         /// Raises the BaseTypeChanging event
         /// </summary>
@@ -665,6 +724,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfGMLSupport
             }
         }
         
+        private static ITypedElement RetrieveGmlSymbolsReference()
+        {
+            return ((ITypedElement)(((ModelElement)(GmlFeatureStyle.ClassInstance)).Resolve("GmlSymbols")));
+        }
+        
         /// <summary>
         /// Forwards CollectionChanging notifications for the GmlSymbols property to the parent model element
         /// </summary>
@@ -672,7 +736,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfGMLSupport
         /// <param name="e">The original event data</param>
         private void GmlSymbolsCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("GmlSymbols", e);
+            this.OnCollectionChanging("GmlSymbols", e, _gmlSymbolsReference);
         }
         
         /// <summary>
@@ -682,7 +746,12 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfGMLSupport
         /// <param name="e">The original event data</param>
         private void GmlSymbolsCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("GmlSymbols", e);
+            this.OnCollectionChanged("GmlSymbols", e, _gmlSymbolsReference);
+        }
+        
+        private static ITypedElement RetrieveGmlLabelStylesReference()
+        {
+            return ((ITypedElement)(((ModelElement)(GmlFeatureStyle.ClassInstance)).Resolve("GmlLabelStyles")));
         }
         
         /// <summary>
@@ -692,7 +761,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfGMLSupport
         /// <param name="e">The original event data</param>
         private void GmlLabelStylesCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("GmlLabelStyles", e);
+            this.OnCollectionChanging("GmlLabelStyles", e, _gmlLabelStylesReference);
         }
         
         /// <summary>
@@ -702,7 +771,12 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfGMLSupport
         /// <param name="e">The original event data</param>
         private void GmlLabelStylesCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("GmlLabelStyles", e);
+            this.OnCollectionChanged("GmlLabelStyles", e, _gmlLabelStylesReference);
+        }
+        
+        private static ITypedElement RetrieveGmlGeometryStylesReference()
+        {
+            return ((ITypedElement)(((ModelElement)(GmlFeatureStyle.ClassInstance)).Resolve("GmlGeometryStyles")));
         }
         
         /// <summary>
@@ -712,7 +786,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfGMLSupport
         /// <param name="e">The original event data</param>
         private void GmlGeometryStylesCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("GmlGeometryStyles", e);
+            this.OnCollectionChanging("GmlGeometryStyles", e, _gmlGeometryStylesReference);
         }
         
         /// <summary>
@@ -722,7 +796,12 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfGMLSupport
         /// <param name="e">The original event data</param>
         private void GmlGeometryStylesCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("GmlGeometryStyles", e);
+            this.OnCollectionChanged("GmlGeometryStyles", e, _gmlGeometryStylesReference);
+        }
+        
+        private static ITypedElement RetrieveGmlFeatureTypesReference()
+        {
+            return ((ITypedElement)(((ModelElement)(GmlFeatureStyle.ClassInstance)).Resolve("GmlFeatureTypes")));
         }
         
         /// <summary>
@@ -732,7 +811,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfGMLSupport
         /// <param name="e">The original event data</param>
         private void GmlFeatureTypesCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("GmlFeatureTypes", e);
+            this.OnCollectionChanging("GmlFeatureTypes", e, _gmlFeatureTypesReference);
         }
         
         /// <summary>
@@ -742,7 +821,12 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfGMLSupport
         /// <param name="e">The original event data</param>
         private void GmlFeatureTypesCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("GmlFeatureTypes", e);
+            this.OnCollectionChanged("GmlFeatureTypes", e, _gmlFeatureTypesReference);
+        }
+        
+        private static ITypedElement RetrieveGmlTobologyStylesReference()
+        {
+            return ((ITypedElement)(((ModelElement)(GmlFeatureStyle.ClassInstance)).Resolve("GmlTobologyStyles")));
         }
         
         /// <summary>
@@ -752,7 +836,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfGMLSupport
         /// <param name="e">The original event data</param>
         private void GmlTobologyStylesCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("GmlTobologyStyles", e);
+            this.OnCollectionChanging("GmlTobologyStyles", e, _gmlTobologyStylesReference);
         }
         
         /// <summary>
@@ -762,7 +846,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfGMLSupport
         /// <param name="e">The original event data</param>
         private void GmlTobologyStylesCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("GmlTobologyStyles", e);
+            this.OnCollectionChanged("GmlTobologyStyles", e, _gmlTobologyStylesReference);
         }
         
         /// <summary>
@@ -1163,7 +1247,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfGMLSupport
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public FeatureConstraintProxy(IGmlFeatureStyle modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "featureConstraint")
             {
             }
             
@@ -1181,24 +1265,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfGMLSupport
                     this.ModelElement.FeatureConstraint = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.FeatureConstraintChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.FeatureConstraintChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1212,7 +1278,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfGMLSupport
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public SemanticTypeIdentifierProxy(IGmlFeatureStyle modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "semanticTypeIdentifier")
             {
             }
             
@@ -1230,24 +1296,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfGMLSupport
                     this.ModelElement.SemanticTypeIdentifier = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.SemanticTypeIdentifierChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.SemanticTypeIdentifierChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1261,7 +1309,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfGMLSupport
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public VersionProxy(IGmlFeatureStyle modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "version")
             {
             }
             
@@ -1279,24 +1327,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfGMLSupport
                     this.ModelElement.Version = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.VersionChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.VersionChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1310,7 +1340,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfGMLSupport
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public FeatureTypeNameProxy(IGmlFeatureStyle modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "featureTypeName")
             {
             }
             
@@ -1328,24 +1358,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfGMLSupport
                     this.ModelElement.FeatureTypeName = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.FeatureTypeNameChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.FeatureTypeNameChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1359,7 +1371,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfGMLSupport
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public QueryGrammarProxy(IGmlFeatureStyle modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "queryGrammar")
             {
             }
             
@@ -1377,24 +1389,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfGMLSupport
                     this.ModelElement.QueryGrammar = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.QueryGrammarChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.QueryGrammarChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1408,7 +1402,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfGMLSupport
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public FeatureTypeProxy(IGmlFeatureStyle modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "featureType")
             {
             }
             
@@ -1426,24 +1420,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfGMLSupport
                     this.ModelElement.FeatureType = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.FeatureTypeChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.FeatureTypeChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1457,7 +1433,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfGMLSupport
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public BaseTypeProxy(IGmlFeatureStyle modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "baseType")
             {
             }
             
@@ -1474,24 +1450,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfGMLSupport
                 {
                     this.ModelElement.BaseType = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.BaseTypeChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.BaseTypeChanged -= handler;
             }
         }
     }

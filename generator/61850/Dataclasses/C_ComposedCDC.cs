@@ -39,7 +39,7 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
     [XmlNamespacePrefixAttribute("data")]
     [ModelRepresentationClassAttribute("http://www.transformation-tool-contest.eu/2017/smartGrids/substationStandard#//Da" +
         "taclasses/C_ComposedCDC")]
-    public class C_ComposedCDC : ModelElement, IC_ComposedCDC, IModelElement
+    public partial class C_ComposedCDC : ModelElement, IC_ComposedCDC, IModelElement
     {
         
         /// <summary>
@@ -47,15 +47,21 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
         /// </summary>
         private string _cdcNs;
         
+        private static Lazy<ITypedElement> _cdcNsAttribute = new Lazy<ITypedElement>(RetrieveCdcNsAttribute);
+        
         /// <summary>
         /// The backing field for the CdcName property
         /// </summary>
         private string _cdcName;
         
+        private static Lazy<ITypedElement> _cdcNameAttribute = new Lazy<ITypedElement>(RetrieveCdcNameAttribute);
+        
         /// <summary>
         /// The backing field for the DataNs property
         /// </summary>
         private string _dataNs;
+        
+        private static Lazy<ITypedElement> _dataNsAttribute = new Lazy<ITypedElement>(RetrieveDataNsAttribute);
         
         private static IClass _classInstance;
         
@@ -77,10 +83,10 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
                     string old = this._cdcNs;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnCdcNsChanging(e);
-                    this.OnPropertyChanging("CdcNs", e);
+                    this.OnPropertyChanging("CdcNs", e, _cdcNsAttribute);
                     this._cdcNs = value;
                     this.OnCdcNsChanged(e);
-                    this.OnPropertyChanged("CdcNs", e);
+                    this.OnPropertyChanged("CdcNs", e, _cdcNsAttribute);
                 }
             }
         }
@@ -103,10 +109,10 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
                     string old = this._cdcName;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnCdcNameChanging(e);
-                    this.OnPropertyChanging("CdcName", e);
+                    this.OnPropertyChanging("CdcName", e, _cdcNameAttribute);
                     this._cdcName = value;
                     this.OnCdcNameChanged(e);
-                    this.OnPropertyChanged("CdcName", e);
+                    this.OnPropertyChanged("CdcName", e, _cdcNameAttribute);
                 }
             }
         }
@@ -129,10 +135,10 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
                     string old = this._dataNs;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnDataNsChanging(e);
-                    this.OnPropertyChanging("DataNs", e);
+                    this.OnPropertyChanging("DataNs", e, _dataNsAttribute);
                     this._dataNs = value;
                     this.OnDataNsChanged(e);
-                    this.OnPropertyChanged("DataNs", e);
+                    this.OnPropertyChanged("DataNs", e, _dataNsAttribute);
                 }
             }
         }
@@ -183,6 +189,11 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> DataNsChanged;
         
+        private static ITypedElement RetrieveCdcNsAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(C_ComposedCDC.ClassInstance)).Resolve("cdcNs")));
+        }
+        
         /// <summary>
         /// Raises the CdcNsChanging event
         /// </summary>
@@ -209,6 +220,11 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
             }
         }
         
+        private static ITypedElement RetrieveCdcNameAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(C_ComposedCDC.ClassInstance)).Resolve("cdcName")));
+        }
+        
         /// <summary>
         /// Raises the CdcNameChanging event
         /// </summary>
@@ -233,6 +249,11 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveDataNsAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(C_ComposedCDC.ClassInstance)).Resolve("dataNs")));
         }
         
         /// <summary>
@@ -333,7 +354,7 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public CdcNsProxy(IC_ComposedCDC modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "cdcNs")
             {
             }
             
@@ -351,24 +372,6 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
                     this.ModelElement.CdcNs = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.CdcNsChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.CdcNsChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -382,7 +385,7 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public CdcNameProxy(IC_ComposedCDC modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "cdcName")
             {
             }
             
@@ -400,24 +403,6 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
                     this.ModelElement.CdcName = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.CdcNameChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.CdcNameChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -431,7 +416,7 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public DataNsProxy(IC_ComposedCDC modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "dataNs")
             {
             }
             
@@ -448,24 +433,6 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
                 {
                     this.ModelElement.DataNs = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.DataNsChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.DataNsChanged -= handler;
             }
         }
     }

@@ -50,7 +50,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfWork
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61970/Informative/InfWork/WorkLocat" +
         "ion")]
     [DebuggerDisplayAttribute("WorkLocation {UUID}")]
-    public class WorkLocation : Location, IWorkLocation, IModelElement
+    public partial class WorkLocation : Location, IWorkLocation, IModelElement
     {
         
         /// <summary>
@@ -58,25 +58,37 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfWork
         /// </summary>
         private string _subdivision;
         
+        private static Lazy<ITypedElement> _subdivisionAttribute = new Lazy<ITypedElement>(RetrieveSubdivisionAttribute);
+        
         /// <summary>
         /// The backing field for the Block property
         /// </summary>
         private string _block;
+        
+        private static Lazy<ITypedElement> _blockAttribute = new Lazy<ITypedElement>(RetrieveBlockAttribute);
         
         /// <summary>
         /// The backing field for the Lot property
         /// </summary>
         private string _lot;
         
+        private static Lazy<ITypedElement> _lotAttribute = new Lazy<ITypedElement>(RetrieveLotAttribute);
+        
         /// <summary>
         /// The backing field for the NearestIntersection property
         /// </summary>
         private string _nearestIntersection;
         
+        private static Lazy<ITypedElement> _nearestIntersectionAttribute = new Lazy<ITypedElement>(RetrieveNearestIntersectionAttribute);
+        
+        private static Lazy<ITypedElement> _designLocationsReference = new Lazy<ITypedElement>(RetrieveDesignLocationsReference);
+        
         /// <summary>
         /// The backing field for the DesignLocations property
         /// </summary>
         private WorkLocationDesignLocationsCollection _designLocations;
+        
+        private static Lazy<ITypedElement> _oneCallRequestReference = new Lazy<ITypedElement>(RetrieveOneCallRequestReference);
         
         /// <summary>
         /// The backing field for the OneCallRequest property
@@ -110,10 +122,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfWork
                     string old = this._subdivision;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnSubdivisionChanging(e);
-                    this.OnPropertyChanging("Subdivision", e);
+                    this.OnPropertyChanging("Subdivision", e, _subdivisionAttribute);
                     this._subdivision = value;
                     this.OnSubdivisionChanged(e);
-                    this.OnPropertyChanged("Subdivision", e);
+                    this.OnPropertyChanged("Subdivision", e, _subdivisionAttribute);
                 }
             }
         }
@@ -136,10 +148,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfWork
                     string old = this._block;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnBlockChanging(e);
-                    this.OnPropertyChanging("Block", e);
+                    this.OnPropertyChanging("Block", e, _blockAttribute);
                     this._block = value;
                     this.OnBlockChanged(e);
-                    this.OnPropertyChanged("Block", e);
+                    this.OnPropertyChanged("Block", e, _blockAttribute);
                 }
             }
         }
@@ -162,10 +174,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfWork
                     string old = this._lot;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnLotChanging(e);
-                    this.OnPropertyChanging("Lot", e);
+                    this.OnPropertyChanging("Lot", e, _lotAttribute);
                     this._lot = value;
                     this.OnLotChanged(e);
-                    this.OnPropertyChanged("Lot", e);
+                    this.OnPropertyChanged("Lot", e, _lotAttribute);
                 }
             }
         }
@@ -188,10 +200,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfWork
                     string old = this._nearestIntersection;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnNearestIntersectionChanging(e);
-                    this.OnPropertyChanging("NearestIntersection", e);
+                    this.OnPropertyChanging("NearestIntersection", e, _nearestIntersectionAttribute);
                     this._nearestIntersection = value;
                     this.OnNearestIntersectionChanged(e);
-                    this.OnPropertyChanged("NearestIntersection", e);
+                    this.OnPropertyChanged("NearestIntersection", e, _nearestIntersectionAttribute);
                 }
             }
         }
@@ -229,7 +241,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfWork
                     IOneCallRequest old = this._oneCallRequest;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnOneCallRequestChanging(e);
-                    this.OnPropertyChanging("OneCallRequest", e);
+                    this.OnPropertyChanging("OneCallRequest", e, _oneCallRequestReference);
                     this._oneCallRequest = value;
                     if ((old != null))
                     {
@@ -242,7 +254,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfWork
                         value.Deleted += this.OnResetOneCallRequest;
                     }
                     this.OnOneCallRequestChanged(e);
-                    this.OnPropertyChanged("OneCallRequest", e);
+                    this.OnPropertyChanged("OneCallRequest", e, _oneCallRequestReference);
                 }
             }
         }
@@ -324,6 +336,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfWork
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> OneCallRequestChanged;
         
+        private static ITypedElement RetrieveSubdivisionAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(WorkLocation.ClassInstance)).Resolve("subdivision")));
+        }
+        
         /// <summary>
         /// Raises the SubdivisionChanging event
         /// </summary>
@@ -348,6 +365,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfWork
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveBlockAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(WorkLocation.ClassInstance)).Resolve("block")));
         }
         
         /// <summary>
@@ -376,6 +398,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfWork
             }
         }
         
+        private static ITypedElement RetrieveLotAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(WorkLocation.ClassInstance)).Resolve("lot")));
+        }
+        
         /// <summary>
         /// Raises the LotChanging event
         /// </summary>
@@ -400,6 +427,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfWork
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveNearestIntersectionAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(WorkLocation.ClassInstance)).Resolve("nearestIntersection")));
         }
         
         /// <summary>
@@ -428,6 +460,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfWork
             }
         }
         
+        private static ITypedElement RetrieveDesignLocationsReference()
+        {
+            return ((ITypedElement)(((ModelElement)(WorkLocation.ClassInstance)).Resolve("DesignLocations")));
+        }
+        
         /// <summary>
         /// Forwards CollectionChanging notifications for the DesignLocations property to the parent model element
         /// </summary>
@@ -435,7 +472,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfWork
         /// <param name="e">The original event data</param>
         private void DesignLocationsCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("DesignLocations", e);
+            this.OnCollectionChanging("DesignLocations", e, _designLocationsReference);
         }
         
         /// <summary>
@@ -445,7 +482,12 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfWork
         /// <param name="e">The original event data</param>
         private void DesignLocationsCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("DesignLocations", e);
+            this.OnCollectionChanged("DesignLocations", e, _designLocationsReference);
+        }
+        
+        private static ITypedElement RetrieveOneCallRequestReference()
+        {
+            return ((ITypedElement)(((ModelElement)(WorkLocation.ClassInstance)).Resolve("OneCallRequest")));
         }
         
         /// <summary>
@@ -766,7 +808,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfWork
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public SubdivisionProxy(IWorkLocation modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "subdivision")
             {
             }
             
@@ -784,24 +826,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfWork
                     this.ModelElement.Subdivision = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.SubdivisionChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.SubdivisionChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -815,7 +839,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfWork
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public BlockProxy(IWorkLocation modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "block")
             {
             }
             
@@ -833,24 +857,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfWork
                     this.ModelElement.Block = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.BlockChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.BlockChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -864,7 +870,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfWork
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public LotProxy(IWorkLocation modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "lot")
             {
             }
             
@@ -882,24 +888,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfWork
                     this.ModelElement.Lot = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.LotChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.LotChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -913,7 +901,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfWork
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public NearestIntersectionProxy(IWorkLocation modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "nearestIntersection")
             {
             }
             
@@ -931,24 +919,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfWork
                     this.ModelElement.NearestIntersection = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.NearestIntersectionChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.NearestIntersectionChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -962,7 +932,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfWork
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public OneCallRequestProxy(IWorkLocation modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "OneCallRequest")
             {
             }
             
@@ -979,24 +949,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfWork
                 {
                     this.ModelElement.OneCallRequest = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.OneCallRequestChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.OneCallRequestChanged -= handler;
             }
         }
     }

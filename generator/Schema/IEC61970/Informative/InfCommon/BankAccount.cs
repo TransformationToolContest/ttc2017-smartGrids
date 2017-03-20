@@ -47,7 +47,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfCommon
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61970/Informative/InfCommon/BankAcc" +
         "ount")]
     [DebuggerDisplayAttribute("BankAccount {UUID}")]
-    public class BankAccount : Document, IBankAccount, IModelElement
+    public partial class BankAccount : Document, IBankAccount, IModelElement
     {
         
         /// <summary>
@@ -55,15 +55,23 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfCommon
         /// </summary>
         private string _accountNumber;
         
+        private static Lazy<ITypedElement> _accountNumberAttribute = new Lazy<ITypedElement>(RetrieveAccountNumberAttribute);
+        
+        private static Lazy<ITypedElement> _bankReference = new Lazy<ITypedElement>(RetrieveBankReference);
+        
         /// <summary>
         /// The backing field for the Bank property
         /// </summary>
         private IBank _bank;
         
+        private static Lazy<ITypedElement> _serviceSupplierReference = new Lazy<ITypedElement>(RetrieveServiceSupplierReference);
+        
         /// <summary>
         /// The backing field for the ServiceSupplier property
         /// </summary>
         private IServiceSupplier _serviceSupplier;
+        
+        private static Lazy<ITypedElement> _bankStatementsReference = new Lazy<ITypedElement>(RetrieveBankStatementsReference);
         
         /// <summary>
         /// The backing field for the BankStatements property
@@ -97,10 +105,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfCommon
                     string old = this._accountNumber;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnAccountNumberChanging(e);
-                    this.OnPropertyChanging("AccountNumber", e);
+                    this.OnPropertyChanging("AccountNumber", e, _accountNumberAttribute);
                     this._accountNumber = value;
                     this.OnAccountNumberChanged(e);
-                    this.OnPropertyChanged("AccountNumber", e);
+                    this.OnPropertyChanged("AccountNumber", e, _accountNumberAttribute);
                 }
             }
         }
@@ -123,7 +131,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfCommon
                     IBank old = this._bank;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnBankChanging(e);
-                    this.OnPropertyChanging("Bank", e);
+                    this.OnPropertyChanging("Bank", e, _bankReference);
                     this._bank = value;
                     if ((old != null))
                     {
@@ -136,7 +144,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfCommon
                         value.Deleted += this.OnResetBank;
                     }
                     this.OnBankChanged(e);
-                    this.OnPropertyChanged("Bank", e);
+                    this.OnPropertyChanged("Bank", e, _bankReference);
                 }
             }
         }
@@ -159,7 +167,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfCommon
                     IServiceSupplier old = this._serviceSupplier;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnServiceSupplierChanging(e);
-                    this.OnPropertyChanging("ServiceSupplier", e);
+                    this.OnPropertyChanging("ServiceSupplier", e, _serviceSupplierReference);
                     this._serviceSupplier = value;
                     if ((old != null))
                     {
@@ -172,7 +180,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfCommon
                         value.Deleted += this.OnResetServiceSupplier;
                     }
                     this.OnServiceSupplierChanged(e);
-                    this.OnPropertyChanged("ServiceSupplier", e);
+                    this.OnPropertyChanged("ServiceSupplier", e, _serviceSupplierReference);
                 }
             }
         }
@@ -249,6 +257,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfCommon
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> ServiceSupplierChanged;
         
+        private static ITypedElement RetrieveAccountNumberAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(BankAccount.ClassInstance)).Resolve("accountNumber")));
+        }
+        
         /// <summary>
         /// Raises the AccountNumberChanging event
         /// </summary>
@@ -273,6 +286,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfCommon
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveBankReference()
+        {
+            return ((ITypedElement)(((ModelElement)(BankAccount.ClassInstance)).Resolve("Bank")));
         }
         
         /// <summary>
@@ -311,6 +329,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfCommon
             this.Bank = null;
         }
         
+        private static ITypedElement RetrieveServiceSupplierReference()
+        {
+            return ((ITypedElement)(((ModelElement)(BankAccount.ClassInstance)).Resolve("ServiceSupplier")));
+        }
+        
         /// <summary>
         /// Raises the ServiceSupplierChanging event
         /// </summary>
@@ -347,6 +370,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfCommon
             this.ServiceSupplier = null;
         }
         
+        private static ITypedElement RetrieveBankStatementsReference()
+        {
+            return ((ITypedElement)(((ModelElement)(BankAccount.ClassInstance)).Resolve("BankStatements")));
+        }
+        
         /// <summary>
         /// Forwards CollectionChanging notifications for the BankStatements property to the parent model element
         /// </summary>
@@ -354,7 +382,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfCommon
         /// <param name="e">The original event data</param>
         private void BankStatementsCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("BankStatements", e);
+            this.OnCollectionChanging("BankStatements", e, _bankStatementsReference);
         }
         
         /// <summary>
@@ -364,7 +392,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfCommon
         /// <param name="e">The original event data</param>
         private void BankStatementsCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("BankStatements", e);
+            this.OnCollectionChanged("BankStatements", e, _bankStatementsReference);
         }
         
         /// <summary>
@@ -665,7 +693,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfCommon
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public AccountNumberProxy(IBankAccount modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "accountNumber")
             {
             }
             
@@ -683,24 +711,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfCommon
                     this.ModelElement.AccountNumber = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.AccountNumberChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.AccountNumberChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -714,7 +724,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfCommon
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public BankProxy(IBankAccount modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "Bank")
             {
             }
             
@@ -732,24 +742,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfCommon
                     this.ModelElement.Bank = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.BankChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.BankChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -763,7 +755,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfCommon
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public ServiceSupplierProxy(IBankAccount modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "ServiceSupplier")
             {
             }
             
@@ -780,24 +772,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfCommon
                 {
                     this.ModelElement.ServiceSupplier = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ServiceSupplierChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ServiceSupplierChanged -= handler;
             }
         }
     }

@@ -46,7 +46,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.AssetModels
     [XmlNamespacePrefixAttribute("cimAssetModels")]
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61968/AssetModels/WireArrangement")]
     [DebuggerDisplayAttribute("WireArrangement {UUID}")]
-    public class WireArrangement : IdentifiedObject, IWireArrangement, IModelElement
+    public partial class WireArrangement : IdentifiedObject, IWireArrangement, IModelElement
     {
         
         /// <summary>
@@ -54,20 +54,30 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.AssetModels
         /// </summary>
         private float _mountingPointX;
         
+        private static Lazy<ITypedElement> _mountingPointXAttribute = new Lazy<ITypedElement>(RetrieveMountingPointXAttribute);
+        
         /// <summary>
         /// The backing field for the MountingPointY property
         /// </summary>
         private float _mountingPointY;
+        
+        private static Lazy<ITypedElement> _mountingPointYAttribute = new Lazy<ITypedElement>(RetrieveMountingPointYAttribute);
         
         /// <summary>
         /// The backing field for the Position property
         /// </summary>
         private int _position;
         
+        private static Lazy<ITypedElement> _positionAttribute = new Lazy<ITypedElement>(RetrievePositionAttribute);
+        
+        private static Lazy<ITypedElement> _wireTypeReference = new Lazy<ITypedElement>(RetrieveWireTypeReference);
+        
         /// <summary>
         /// The backing field for the WireType property
         /// </summary>
         private IWireType _wireType;
+        
+        private static Lazy<ITypedElement> _conductorInfoReference = new Lazy<ITypedElement>(RetrieveConductorInfoReference);
         
         /// <summary>
         /// The backing field for the ConductorInfo property
@@ -94,10 +104,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.AssetModels
                     float old = this._mountingPointX;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnMountingPointXChanging(e);
-                    this.OnPropertyChanging("MountingPointX", e);
+                    this.OnPropertyChanging("MountingPointX", e, _mountingPointXAttribute);
                     this._mountingPointX = value;
                     this.OnMountingPointXChanged(e);
-                    this.OnPropertyChanged("MountingPointX", e);
+                    this.OnPropertyChanged("MountingPointX", e, _mountingPointXAttribute);
                 }
             }
         }
@@ -120,10 +130,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.AssetModels
                     float old = this._mountingPointY;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnMountingPointYChanging(e);
-                    this.OnPropertyChanging("MountingPointY", e);
+                    this.OnPropertyChanging("MountingPointY", e, _mountingPointYAttribute);
                     this._mountingPointY = value;
                     this.OnMountingPointYChanged(e);
-                    this.OnPropertyChanged("MountingPointY", e);
+                    this.OnPropertyChanged("MountingPointY", e, _mountingPointYAttribute);
                 }
             }
         }
@@ -146,10 +156,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.AssetModels
                     int old = this._position;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnPositionChanging(e);
-                    this.OnPropertyChanging("Position", e);
+                    this.OnPropertyChanging("Position", e, _positionAttribute);
                     this._position = value;
                     this.OnPositionChanged(e);
-                    this.OnPropertyChanged("Position", e);
+                    this.OnPropertyChanged("Position", e, _positionAttribute);
                 }
             }
         }
@@ -172,7 +182,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.AssetModels
                     IWireType old = this._wireType;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnWireTypeChanging(e);
-                    this.OnPropertyChanging("WireType", e);
+                    this.OnPropertyChanging("WireType", e, _wireTypeReference);
                     this._wireType = value;
                     if ((old != null))
                     {
@@ -185,7 +195,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.AssetModels
                         value.Deleted += this.OnResetWireType;
                     }
                     this.OnWireTypeChanged(e);
-                    this.OnPropertyChanged("WireType", e);
+                    this.OnPropertyChanged("WireType", e, _wireTypeReference);
                 }
             }
         }
@@ -208,7 +218,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.AssetModels
                     IConductorInfo old = this._conductorInfo;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnConductorInfoChanging(e);
-                    this.OnPropertyChanging("ConductorInfo", e);
+                    this.OnPropertyChanging("ConductorInfo", e, _conductorInfoReference);
                     this._conductorInfo = value;
                     if ((old != null))
                     {
@@ -221,7 +231,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.AssetModels
                         value.Deleted += this.OnResetConductorInfo;
                     }
                     this.OnConductorInfoChanged(e);
-                    this.OnPropertyChanged("ConductorInfo", e);
+                    this.OnPropertyChanged("ConductorInfo", e, _conductorInfoReference);
                 }
             }
         }
@@ -302,6 +312,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.AssetModels
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> ConductorInfoChanged;
         
+        private static ITypedElement RetrieveMountingPointXAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(WireArrangement.ClassInstance)).Resolve("mountingPointX")));
+        }
+        
         /// <summary>
         /// Raises the MountingPointXChanging event
         /// </summary>
@@ -326,6 +341,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.AssetModels
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveMountingPointYAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(WireArrangement.ClassInstance)).Resolve("mountingPointY")));
         }
         
         /// <summary>
@@ -354,6 +374,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.AssetModels
             }
         }
         
+        private static ITypedElement RetrievePositionAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(WireArrangement.ClassInstance)).Resolve("position")));
+        }
+        
         /// <summary>
         /// Raises the PositionChanging event
         /// </summary>
@@ -378,6 +403,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.AssetModels
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveWireTypeReference()
+        {
+            return ((ITypedElement)(((ModelElement)(WireArrangement.ClassInstance)).Resolve("WireType")));
         }
         
         /// <summary>
@@ -414,6 +444,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.AssetModels
         private void OnResetWireType(object sender, System.EventArgs eventArgs)
         {
             this.WireType = null;
+        }
+        
+        private static ITypedElement RetrieveConductorInfoReference()
+        {
+            return ((ITypedElement)(((ModelElement)(WireArrangement.ClassInstance)).Resolve("ConductorInfo")));
         }
         
         /// <summary>
@@ -719,7 +754,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.AssetModels
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public MountingPointXProxy(IWireArrangement modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "mountingPointX")
             {
             }
             
@@ -737,24 +772,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.AssetModels
                     this.ModelElement.MountingPointX = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.MountingPointXChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.MountingPointXChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -768,7 +785,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.AssetModels
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public MountingPointYProxy(IWireArrangement modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "mountingPointY")
             {
             }
             
@@ -786,24 +803,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.AssetModels
                     this.ModelElement.MountingPointY = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.MountingPointYChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.MountingPointYChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -817,7 +816,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.AssetModels
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public PositionProxy(IWireArrangement modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "position")
             {
             }
             
@@ -835,24 +834,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.AssetModels
                     this.ModelElement.Position = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.PositionChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.PositionChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -866,7 +847,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.AssetModels
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public WireTypeProxy(IWireArrangement modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "WireType")
             {
             }
             
@@ -884,24 +865,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.AssetModels
                     this.ModelElement.WireType = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.WireTypeChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.WireTypeChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -915,7 +878,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.AssetModels
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public ConductorInfoProxy(IWireArrangement modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "ConductorInfo")
             {
             }
             
@@ -932,24 +895,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.AssetModels
                 {
                     this.ModelElement.ConductorInfo = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ConductorInfoChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ConductorInfoChanged -= handler;
             }
         }
     }

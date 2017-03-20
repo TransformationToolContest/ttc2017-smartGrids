@@ -46,7 +46,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfCustomers
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61970/Informative/InfCustomers/Powe" +
         "rQualityPricing")]
     [DebuggerDisplayAttribute("PowerQualityPricing {UUID}")]
-    public class PowerQualityPricing : Document, IPowerQualityPricing, IModelElement
+    public partial class PowerQualityPricing : Document, IPowerQualityPricing, IModelElement
     {
         
         /// <summary>
@@ -54,50 +54,72 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfCustomers
         /// </summary>
         private float _valueUninterruptedServiceEnergy;
         
+        private static Lazy<ITypedElement> _valueUninterruptedServiceEnergyAttribute = new Lazy<ITypedElement>(RetrieveValueUninterruptedServiceEnergyAttribute);
+        
         /// <summary>
         /// The backing field for the VoltImbalanceViolCost property
         /// </summary>
         private float _voltImbalanceViolCost;
+        
+        private static Lazy<ITypedElement> _voltImbalanceViolCostAttribute = new Lazy<ITypedElement>(RetrieveVoltImbalanceViolCostAttribute);
         
         /// <summary>
         /// The backing field for the VoltLimitViolCost property
         /// </summary>
         private float _voltLimitViolCost;
         
+        private static Lazy<ITypedElement> _voltLimitViolCostAttribute = new Lazy<ITypedElement>(RetrieveVoltLimitViolCostAttribute);
+        
         /// <summary>
         /// The backing field for the EmergencyLowVoltLimit property
         /// </summary>
         private float _emergencyLowVoltLimit;
+        
+        private static Lazy<ITypedElement> _emergencyLowVoltLimitAttribute = new Lazy<ITypedElement>(RetrieveEmergencyLowVoltLimitAttribute);
         
         /// <summary>
         /// The backing field for the ValueUninterruptedServiceP property
         /// </summary>
         private float _valueUninterruptedServiceP;
         
+        private static Lazy<ITypedElement> _valueUninterruptedServicePAttribute = new Lazy<ITypedElement>(RetrieveValueUninterruptedServicePAttribute);
+        
         /// <summary>
         /// The backing field for the EmergencyHighVoltLimit property
         /// </summary>
         private float _emergencyHighVoltLimit;
+        
+        private static Lazy<ITypedElement> _emergencyHighVoltLimitAttribute = new Lazy<ITypedElement>(RetrieveEmergencyHighVoltLimitAttribute);
         
         /// <summary>
         /// The backing field for the PowerFactorMin property
         /// </summary>
         private float _powerFactorMin;
         
+        private static Lazy<ITypedElement> _powerFactorMinAttribute = new Lazy<ITypedElement>(RetrievePowerFactorMinAttribute);
+        
         /// <summary>
         /// The backing field for the NormalLowVoltLimit property
         /// </summary>
         private float _normalLowVoltLimit;
+        
+        private static Lazy<ITypedElement> _normalLowVoltLimitAttribute = new Lazy<ITypedElement>(RetrieveNormalLowVoltLimitAttribute);
         
         /// <summary>
         /// The backing field for the NormalHighVoltLimit property
         /// </summary>
         private float _normalHighVoltLimit;
         
+        private static Lazy<ITypedElement> _normalHighVoltLimitAttribute = new Lazy<ITypedElement>(RetrieveNormalHighVoltLimitAttribute);
+        
+        private static Lazy<ITypedElement> _pricingStructureReference = new Lazy<ITypedElement>(RetrievePricingStructureReference);
+        
         /// <summary>
         /// The backing field for the PricingStructure property
         /// </summary>
         private IPricingStructure _pricingStructure;
+        
+        private static Lazy<ITypedElement> _serviceDeliveryPointsReference = new Lazy<ITypedElement>(RetrieveServiceDeliveryPointsReference);
         
         /// <summary>
         /// The backing field for the ServiceDeliveryPoints property
@@ -131,10 +153,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfCustomers
                     float old = this._valueUninterruptedServiceEnergy;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnValueUninterruptedServiceEnergyChanging(e);
-                    this.OnPropertyChanging("ValueUninterruptedServiceEnergy", e);
+                    this.OnPropertyChanging("ValueUninterruptedServiceEnergy", e, _valueUninterruptedServiceEnergyAttribute);
                     this._valueUninterruptedServiceEnergy = value;
                     this.OnValueUninterruptedServiceEnergyChanged(e);
-                    this.OnPropertyChanged("ValueUninterruptedServiceEnergy", e);
+                    this.OnPropertyChanged("ValueUninterruptedServiceEnergy", e, _valueUninterruptedServiceEnergyAttribute);
                 }
             }
         }
@@ -157,10 +179,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfCustomers
                     float old = this._voltImbalanceViolCost;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnVoltImbalanceViolCostChanging(e);
-                    this.OnPropertyChanging("VoltImbalanceViolCost", e);
+                    this.OnPropertyChanging("VoltImbalanceViolCost", e, _voltImbalanceViolCostAttribute);
                     this._voltImbalanceViolCost = value;
                     this.OnVoltImbalanceViolCostChanged(e);
-                    this.OnPropertyChanged("VoltImbalanceViolCost", e);
+                    this.OnPropertyChanged("VoltImbalanceViolCost", e, _voltImbalanceViolCostAttribute);
                 }
             }
         }
@@ -183,10 +205,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfCustomers
                     float old = this._voltLimitViolCost;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnVoltLimitViolCostChanging(e);
-                    this.OnPropertyChanging("VoltLimitViolCost", e);
+                    this.OnPropertyChanging("VoltLimitViolCost", e, _voltLimitViolCostAttribute);
                     this._voltLimitViolCost = value;
                     this.OnVoltLimitViolCostChanged(e);
-                    this.OnPropertyChanged("VoltLimitViolCost", e);
+                    this.OnPropertyChanged("VoltLimitViolCost", e, _voltLimitViolCostAttribute);
                 }
             }
         }
@@ -209,10 +231,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfCustomers
                     float old = this._emergencyLowVoltLimit;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnEmergencyLowVoltLimitChanging(e);
-                    this.OnPropertyChanging("EmergencyLowVoltLimit", e);
+                    this.OnPropertyChanging("EmergencyLowVoltLimit", e, _emergencyLowVoltLimitAttribute);
                     this._emergencyLowVoltLimit = value;
                     this.OnEmergencyLowVoltLimitChanged(e);
-                    this.OnPropertyChanged("EmergencyLowVoltLimit", e);
+                    this.OnPropertyChanged("EmergencyLowVoltLimit", e, _emergencyLowVoltLimitAttribute);
                 }
             }
         }
@@ -235,10 +257,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfCustomers
                     float old = this._valueUninterruptedServiceP;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnValueUninterruptedServicePChanging(e);
-                    this.OnPropertyChanging("ValueUninterruptedServiceP", e);
+                    this.OnPropertyChanging("ValueUninterruptedServiceP", e, _valueUninterruptedServicePAttribute);
                     this._valueUninterruptedServiceP = value;
                     this.OnValueUninterruptedServicePChanged(e);
-                    this.OnPropertyChanged("ValueUninterruptedServiceP", e);
+                    this.OnPropertyChanged("ValueUninterruptedServiceP", e, _valueUninterruptedServicePAttribute);
                 }
             }
         }
@@ -261,10 +283,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfCustomers
                     float old = this._emergencyHighVoltLimit;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnEmergencyHighVoltLimitChanging(e);
-                    this.OnPropertyChanging("EmergencyHighVoltLimit", e);
+                    this.OnPropertyChanging("EmergencyHighVoltLimit", e, _emergencyHighVoltLimitAttribute);
                     this._emergencyHighVoltLimit = value;
                     this.OnEmergencyHighVoltLimitChanged(e);
-                    this.OnPropertyChanged("EmergencyHighVoltLimit", e);
+                    this.OnPropertyChanged("EmergencyHighVoltLimit", e, _emergencyHighVoltLimitAttribute);
                 }
             }
         }
@@ -287,10 +309,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfCustomers
                     float old = this._powerFactorMin;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnPowerFactorMinChanging(e);
-                    this.OnPropertyChanging("PowerFactorMin", e);
+                    this.OnPropertyChanging("PowerFactorMin", e, _powerFactorMinAttribute);
                     this._powerFactorMin = value;
                     this.OnPowerFactorMinChanged(e);
-                    this.OnPropertyChanged("PowerFactorMin", e);
+                    this.OnPropertyChanged("PowerFactorMin", e, _powerFactorMinAttribute);
                 }
             }
         }
@@ -313,10 +335,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfCustomers
                     float old = this._normalLowVoltLimit;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnNormalLowVoltLimitChanging(e);
-                    this.OnPropertyChanging("NormalLowVoltLimit", e);
+                    this.OnPropertyChanging("NormalLowVoltLimit", e, _normalLowVoltLimitAttribute);
                     this._normalLowVoltLimit = value;
                     this.OnNormalLowVoltLimitChanged(e);
-                    this.OnPropertyChanged("NormalLowVoltLimit", e);
+                    this.OnPropertyChanged("NormalLowVoltLimit", e, _normalLowVoltLimitAttribute);
                 }
             }
         }
@@ -339,10 +361,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfCustomers
                     float old = this._normalHighVoltLimit;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnNormalHighVoltLimitChanging(e);
-                    this.OnPropertyChanging("NormalHighVoltLimit", e);
+                    this.OnPropertyChanging("NormalHighVoltLimit", e, _normalHighVoltLimitAttribute);
                     this._normalHighVoltLimit = value;
                     this.OnNormalHighVoltLimitChanged(e);
-                    this.OnPropertyChanged("NormalHighVoltLimit", e);
+                    this.OnPropertyChanged("NormalHighVoltLimit", e, _normalHighVoltLimitAttribute);
                 }
             }
         }
@@ -365,7 +387,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfCustomers
                     IPricingStructure old = this._pricingStructure;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnPricingStructureChanging(e);
-                    this.OnPropertyChanging("PricingStructure", e);
+                    this.OnPropertyChanging("PricingStructure", e, _pricingStructureReference);
                     this._pricingStructure = value;
                     if ((old != null))
                     {
@@ -378,7 +400,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfCustomers
                         value.Deleted += this.OnResetPricingStructure;
                     }
                     this.OnPricingStructureChanged(e);
-                    this.OnPropertyChanged("PricingStructure", e);
+                    this.OnPropertyChanged("PricingStructure", e, _pricingStructureReference);
                 }
             }
         }
@@ -525,6 +547,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfCustomers
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> PricingStructureChanged;
         
+        private static ITypedElement RetrieveValueUninterruptedServiceEnergyAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(PowerQualityPricing.ClassInstance)).Resolve("valueUninterruptedServiceEnergy")));
+        }
+        
         /// <summary>
         /// Raises the ValueUninterruptedServiceEnergyChanging event
         /// </summary>
@@ -549,6 +576,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfCustomers
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveVoltImbalanceViolCostAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(PowerQualityPricing.ClassInstance)).Resolve("voltImbalanceViolCost")));
         }
         
         /// <summary>
@@ -577,6 +609,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfCustomers
             }
         }
         
+        private static ITypedElement RetrieveVoltLimitViolCostAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(PowerQualityPricing.ClassInstance)).Resolve("voltLimitViolCost")));
+        }
+        
         /// <summary>
         /// Raises the VoltLimitViolCostChanging event
         /// </summary>
@@ -601,6 +638,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfCustomers
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveEmergencyLowVoltLimitAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(PowerQualityPricing.ClassInstance)).Resolve("emergencyLowVoltLimit")));
         }
         
         /// <summary>
@@ -629,6 +671,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfCustomers
             }
         }
         
+        private static ITypedElement RetrieveValueUninterruptedServicePAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(PowerQualityPricing.ClassInstance)).Resolve("valueUninterruptedServiceP")));
+        }
+        
         /// <summary>
         /// Raises the ValueUninterruptedServicePChanging event
         /// </summary>
@@ -653,6 +700,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfCustomers
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveEmergencyHighVoltLimitAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(PowerQualityPricing.ClassInstance)).Resolve("emergencyHighVoltLimit")));
         }
         
         /// <summary>
@@ -681,6 +733,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfCustomers
             }
         }
         
+        private static ITypedElement RetrievePowerFactorMinAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(PowerQualityPricing.ClassInstance)).Resolve("powerFactorMin")));
+        }
+        
         /// <summary>
         /// Raises the PowerFactorMinChanging event
         /// </summary>
@@ -705,6 +762,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfCustomers
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveNormalLowVoltLimitAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(PowerQualityPricing.ClassInstance)).Resolve("normalLowVoltLimit")));
         }
         
         /// <summary>
@@ -733,6 +795,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfCustomers
             }
         }
         
+        private static ITypedElement RetrieveNormalHighVoltLimitAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(PowerQualityPricing.ClassInstance)).Resolve("normalHighVoltLimit")));
+        }
+        
         /// <summary>
         /// Raises the NormalHighVoltLimitChanging event
         /// </summary>
@@ -757,6 +824,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfCustomers
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrievePricingStructureReference()
+        {
+            return ((ITypedElement)(((ModelElement)(PowerQualityPricing.ClassInstance)).Resolve("PricingStructure")));
         }
         
         /// <summary>
@@ -795,6 +867,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfCustomers
             this.PricingStructure = null;
         }
         
+        private static ITypedElement RetrieveServiceDeliveryPointsReference()
+        {
+            return ((ITypedElement)(((ModelElement)(PowerQualityPricing.ClassInstance)).Resolve("ServiceDeliveryPoints")));
+        }
+        
         /// <summary>
         /// Forwards CollectionChanging notifications for the ServiceDeliveryPoints property to the parent model element
         /// </summary>
@@ -802,7 +879,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfCustomers
         /// <param name="e">The original event data</param>
         private void ServiceDeliveryPointsCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("ServiceDeliveryPoints", e);
+            this.OnCollectionChanging("ServiceDeliveryPoints", e, _serviceDeliveryPointsReference);
         }
         
         /// <summary>
@@ -812,7 +889,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfCustomers
         /// <param name="e">The original event data</param>
         private void ServiceDeliveryPointsCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("ServiceDeliveryPoints", e);
+            this.OnCollectionChanged("ServiceDeliveryPoints", e, _serviceDeliveryPointsReference);
         }
         
         /// <summary>
@@ -1142,7 +1219,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfCustomers
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public ValueUninterruptedServiceEnergyProxy(IPowerQualityPricing modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "valueUninterruptedServiceEnergy")
             {
             }
             
@@ -1160,24 +1237,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfCustomers
                     this.ModelElement.ValueUninterruptedServiceEnergy = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ValueUninterruptedServiceEnergyChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ValueUninterruptedServiceEnergyChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1191,7 +1250,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfCustomers
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public VoltImbalanceViolCostProxy(IPowerQualityPricing modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "voltImbalanceViolCost")
             {
             }
             
@@ -1209,24 +1268,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfCustomers
                     this.ModelElement.VoltImbalanceViolCost = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.VoltImbalanceViolCostChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.VoltImbalanceViolCostChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1240,7 +1281,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfCustomers
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public VoltLimitViolCostProxy(IPowerQualityPricing modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "voltLimitViolCost")
             {
             }
             
@@ -1258,24 +1299,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfCustomers
                     this.ModelElement.VoltLimitViolCost = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.VoltLimitViolCostChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.VoltLimitViolCostChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1289,7 +1312,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfCustomers
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public EmergencyLowVoltLimitProxy(IPowerQualityPricing modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "emergencyLowVoltLimit")
             {
             }
             
@@ -1307,24 +1330,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfCustomers
                     this.ModelElement.EmergencyLowVoltLimit = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.EmergencyLowVoltLimitChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.EmergencyLowVoltLimitChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1338,7 +1343,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfCustomers
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public ValueUninterruptedServicePProxy(IPowerQualityPricing modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "valueUninterruptedServiceP")
             {
             }
             
@@ -1356,24 +1361,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfCustomers
                     this.ModelElement.ValueUninterruptedServiceP = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ValueUninterruptedServicePChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ValueUninterruptedServicePChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1387,7 +1374,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfCustomers
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public EmergencyHighVoltLimitProxy(IPowerQualityPricing modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "emergencyHighVoltLimit")
             {
             }
             
@@ -1405,24 +1392,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfCustomers
                     this.ModelElement.EmergencyHighVoltLimit = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.EmergencyHighVoltLimitChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.EmergencyHighVoltLimitChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1436,7 +1405,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfCustomers
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public PowerFactorMinProxy(IPowerQualityPricing modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "powerFactorMin")
             {
             }
             
@@ -1454,24 +1423,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfCustomers
                     this.ModelElement.PowerFactorMin = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.PowerFactorMinChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.PowerFactorMinChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1485,7 +1436,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfCustomers
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public NormalLowVoltLimitProxy(IPowerQualityPricing modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "normalLowVoltLimit")
             {
             }
             
@@ -1503,24 +1454,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfCustomers
                     this.ModelElement.NormalLowVoltLimit = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.NormalLowVoltLimitChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.NormalLowVoltLimitChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1534,7 +1467,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfCustomers
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public NormalHighVoltLimitProxy(IPowerQualityPricing modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "normalHighVoltLimit")
             {
             }
             
@@ -1552,24 +1485,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfCustomers
                     this.ModelElement.NormalHighVoltLimit = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.NormalHighVoltLimitChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.NormalHighVoltLimitChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1583,7 +1498,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfCustomers
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public PricingStructureProxy(IPowerQualityPricing modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "PricingStructure")
             {
             }
             
@@ -1600,24 +1515,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfCustomers
                 {
                     this.ModelElement.PricingStructure = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.PricingStructureChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.PricingStructureChanged -= handler;
             }
         }
     }

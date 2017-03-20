@@ -39,28 +39,38 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
     [XmlNamespacePrefixAttribute("objects")]
     [ModelRepresentationClassAttribute("http://www.transformation-tool-contest.eu/2017/smartGrids/cosem#//COSEMObjects/Si" +
         "ngleActionScheduleObject")]
-    public class SingleActionScheduleObject : Singleactionschedule, ISingleActionScheduleObject, IModelElement
+    public partial class SingleActionScheduleObject : Singleactionschedule, ISingleActionScheduleObject, IModelElement
     {
+        
+        private static Lazy<ITypedElement> _disconnectReference = new Lazy<ITypedElement>(RetrieveDisconnectReference);
         
         /// <summary>
         /// The backing field for the Disconnect property
         /// </summary>
         private IDisconnectControlSchedule _disconnect;
         
+        private static Lazy<ITypedElement> _billingPeriodEndReference = new Lazy<ITypedElement>(RetrieveBillingPeriodEndReference);
+        
         /// <summary>
         /// The backing field for the BillingPeriodEnd property
         /// </summary>
         private IEndOfBillingPeriodSchedule _billingPeriodEnd;
+        
+        private static Lazy<ITypedElement> _imageReference = new Lazy<ITypedElement>(RetrieveImageReference);
         
         /// <summary>
         /// The backing field for the Image property
         /// </summary>
         private IImageActivationSchedule _image;
         
+        private static Lazy<ITypedElement> _outputReference = new Lazy<ITypedElement>(RetrieveOutputReference);
+        
         /// <summary>
         /// The backing field for the Output property
         /// </summary>
         private IOutputControlSchedule _output;
+        
+        private static Lazy<ITypedElement> _pushReference = new Lazy<ITypedElement>(RetrievePushReference);
         
         /// <summary>
         /// The backing field for the Push property
@@ -87,7 +97,7 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     IDisconnectControlSchedule old = this._disconnect;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnDisconnectChanging(e);
-                    this.OnPropertyChanging("Disconnect", e);
+                    this.OnPropertyChanging("Disconnect", e, _disconnectReference);
                     this._disconnect = value;
                     if ((old != null))
                     {
@@ -98,7 +108,7 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                         value.Deleted += this.OnResetDisconnect;
                     }
                     this.OnDisconnectChanged(e);
-                    this.OnPropertyChanged("Disconnect", e);
+                    this.OnPropertyChanged("Disconnect", e, _disconnectReference);
                 }
             }
         }
@@ -120,7 +130,7 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     IEndOfBillingPeriodSchedule old = this._billingPeriodEnd;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnBillingPeriodEndChanging(e);
-                    this.OnPropertyChanging("BillingPeriodEnd", e);
+                    this.OnPropertyChanging("BillingPeriodEnd", e, _billingPeriodEndReference);
                     this._billingPeriodEnd = value;
                     if ((old != null))
                     {
@@ -131,7 +141,7 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                         value.Deleted += this.OnResetBillingPeriodEnd;
                     }
                     this.OnBillingPeriodEndChanged(e);
-                    this.OnPropertyChanged("BillingPeriodEnd", e);
+                    this.OnPropertyChanged("BillingPeriodEnd", e, _billingPeriodEndReference);
                 }
             }
         }
@@ -153,7 +163,7 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     IImageActivationSchedule old = this._image;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnImageChanging(e);
-                    this.OnPropertyChanging("Image", e);
+                    this.OnPropertyChanging("Image", e, _imageReference);
                     this._image = value;
                     if ((old != null))
                     {
@@ -164,7 +174,7 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                         value.Deleted += this.OnResetImage;
                     }
                     this.OnImageChanged(e);
-                    this.OnPropertyChanged("Image", e);
+                    this.OnPropertyChanged("Image", e, _imageReference);
                 }
             }
         }
@@ -186,7 +196,7 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     IOutputControlSchedule old = this._output;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnOutputChanging(e);
-                    this.OnPropertyChanging("Output", e);
+                    this.OnPropertyChanging("Output", e, _outputReference);
                     this._output = value;
                     if ((old != null))
                     {
@@ -197,7 +207,7 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                         value.Deleted += this.OnResetOutput;
                     }
                     this.OnOutputChanged(e);
-                    this.OnPropertyChanged("Output", e);
+                    this.OnPropertyChanged("Output", e, _outputReference);
                 }
             }
         }
@@ -219,7 +229,7 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     IPushSchedule old = this._push;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnPushChanging(e);
-                    this.OnPropertyChanging("Push", e);
+                    this.OnPropertyChanging("Push", e, _pushReference);
                     this._push = value;
                     if ((old != null))
                     {
@@ -230,7 +240,7 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                         value.Deleted += this.OnResetPush;
                     }
                     this.OnPushChanged(e);
-                    this.OnPropertyChanged("Push", e);
+                    this.OnPropertyChanged("Push", e, _pushReference);
                 }
             }
         }
@@ -312,6 +322,11 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> PushChanged;
         
+        private static ITypedElement RetrieveDisconnectReference()
+        {
+            return ((ITypedElement)(((ModelElement)(SingleActionScheduleObject.ClassInstance)).Resolve("disconnect")));
+        }
+        
         /// <summary>
         /// Raises the DisconnectChanging event
         /// </summary>
@@ -346,6 +361,11 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
         private void OnResetDisconnect(object sender, System.EventArgs eventArgs)
         {
             this.Disconnect = null;
+        }
+        
+        private static ITypedElement RetrieveBillingPeriodEndReference()
+        {
+            return ((ITypedElement)(((ModelElement)(SingleActionScheduleObject.ClassInstance)).Resolve("BillingPeriodEnd")));
         }
         
         /// <summary>
@@ -384,6 +404,11 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             this.BillingPeriodEnd = null;
         }
         
+        private static ITypedElement RetrieveImageReference()
+        {
+            return ((ITypedElement)(((ModelElement)(SingleActionScheduleObject.ClassInstance)).Resolve("Image")));
+        }
+        
         /// <summary>
         /// Raises the ImageChanging event
         /// </summary>
@@ -420,6 +445,11 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             this.Image = null;
         }
         
+        private static ITypedElement RetrieveOutputReference()
+        {
+            return ((ITypedElement)(((ModelElement)(SingleActionScheduleObject.ClassInstance)).Resolve("Output")));
+        }
+        
         /// <summary>
         /// Raises the OutputChanging event
         /// </summary>
@@ -454,6 +484,11 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
         private void OnResetOutput(object sender, System.EventArgs eventArgs)
         {
             this.Output = null;
+        }
+        
+        private static ITypedElement RetrievePushReference()
+        {
+            return ((ITypedElement)(((ModelElement)(SingleActionScheduleObject.ClassInstance)).Resolve("Push")));
         }
         
         /// <summary>
@@ -851,7 +886,7 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public DisconnectProxy(ISingleActionScheduleObject modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "disconnect")
             {
             }
             
@@ -869,24 +904,6 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     this.ModelElement.Disconnect = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.DisconnectChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.DisconnectChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -900,7 +917,7 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public BillingPeriodEndProxy(ISingleActionScheduleObject modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "BillingPeriodEnd")
             {
             }
             
@@ -918,24 +935,6 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     this.ModelElement.BillingPeriodEnd = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.BillingPeriodEndChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.BillingPeriodEndChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -949,7 +948,7 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public ImageProxy(ISingleActionScheduleObject modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "Image")
             {
             }
             
@@ -967,24 +966,6 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     this.ModelElement.Image = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ImageChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ImageChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -998,7 +979,7 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public OutputProxy(ISingleActionScheduleObject modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "Output")
             {
             }
             
@@ -1016,24 +997,6 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     this.ModelElement.Output = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.OutputChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.OutputChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1047,7 +1010,7 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public PushProxy(ISingleActionScheduleObject modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "Push")
             {
             }
             
@@ -1064,24 +1027,6 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                 {
                     this.ModelElement.Push = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.PushChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.PushChanged -= handler;
             }
         }
     }

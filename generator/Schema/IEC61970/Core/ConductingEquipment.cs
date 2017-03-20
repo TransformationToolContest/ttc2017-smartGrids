@@ -57,7 +57,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Core
     [XmlNamespacePrefixAttribute("cimCore")]
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61970/Core/ConductingEquipment")]
     [DebuggerDisplayAttribute("ConductingEquipment {UUID}")]
-    public class ConductingEquipment : Equipment, IConductingEquipment, IModelElement
+    public partial class ConductingEquipment : Equipment, IConductingEquipment, IModelElement
     {
         
         /// <summary>
@@ -65,35 +65,51 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Core
         /// </summary>
         private Nullable<PhaseCode> _phases;
         
+        private static Lazy<ITypedElement> _phasesAttribute = new Lazy<ITypedElement>(RetrievePhasesAttribute);
+        
+        private static Lazy<ITypedElement> _protectionEquipmentsReference = new Lazy<ITypedElement>(RetrieveProtectionEquipmentsReference);
+        
         /// <summary>
         /// The backing field for the ProtectionEquipments property
         /// </summary>
         private ConductingEquipmentProtectionEquipmentsCollection _protectionEquipments;
+        
+        private static Lazy<ITypedElement> _outageStepRolesReference = new Lazy<ITypedElement>(RetrieveOutageStepRolesReference);
         
         /// <summary>
         /// The backing field for the OutageStepRoles property
         /// </summary>
         private ConductingEquipmentOutageStepRolesCollection _outageStepRoles;
         
+        private static Lazy<ITypedElement> _baseVoltageReference = new Lazy<ITypedElement>(RetrieveBaseVoltageReference);
+        
         /// <summary>
         /// The backing field for the BaseVoltage property
         /// </summary>
         private IBaseVoltage _baseVoltage;
+        
+        private static Lazy<ITypedElement> _clearanceTagsReference = new Lazy<ITypedElement>(RetrieveClearanceTagsReference);
         
         /// <summary>
         /// The backing field for the ClearanceTags property
         /// </summary>
         private ConductingEquipmentClearanceTagsCollection _clearanceTags;
         
+        private static Lazy<ITypedElement> _svStatusReference = new Lazy<ITypedElement>(RetrieveSvStatusReference);
+        
         /// <summary>
         /// The backing field for the SvStatus property
         /// </summary>
         private ISvStatus _svStatus;
         
+        private static Lazy<ITypedElement> _electricalAssetsReference = new Lazy<ITypedElement>(RetrieveElectricalAssetsReference);
+        
         /// <summary>
         /// The backing field for the ElectricalAssets property
         /// </summary>
         private ConductingEquipmentElectricalAssetsCollection _electricalAssets;
+        
+        private static Lazy<ITypedElement> _terminalsReference = new Lazy<ITypedElement>(RetrieveTerminalsReference);
         
         /// <summary>
         /// The backing field for the Terminals property
@@ -139,10 +155,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Core
                     Nullable<PhaseCode> old = this._phases;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnPhasesChanging(e);
-                    this.OnPropertyChanging("Phases", e);
+                    this.OnPropertyChanging("Phases", e, _phasesAttribute);
                     this._phases = value;
                     this.OnPhasesChanged(e);
-                    this.OnPropertyChanged("Phases", e);
+                    this.OnPropertyChanged("Phases", e, _phasesAttribute);
                 }
             }
         }
@@ -195,7 +211,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Core
                     IBaseVoltage old = this._baseVoltage;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnBaseVoltageChanging(e);
-                    this.OnPropertyChanging("BaseVoltage", e);
+                    this.OnPropertyChanging("BaseVoltage", e, _baseVoltageReference);
                     this._baseVoltage = value;
                     if ((old != null))
                     {
@@ -208,7 +224,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Core
                         value.Deleted += this.OnResetBaseVoltage;
                     }
                     this.OnBaseVoltageChanged(e);
-                    this.OnPropertyChanged("BaseVoltage", e);
+                    this.OnPropertyChanged("BaseVoltage", e, _baseVoltageReference);
                 }
             }
         }
@@ -246,7 +262,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Core
                     ISvStatus old = this._svStatus;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnSvStatusChanging(e);
-                    this.OnPropertyChanging("SvStatus", e);
+                    this.OnPropertyChanging("SvStatus", e, _svStatusReference);
                     this._svStatus = value;
                     if ((old != null))
                     {
@@ -259,7 +275,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Core
                         value.Deleted += this.OnResetSvStatus;
                     }
                     this.OnSvStatusChanged(e);
-                    this.OnPropertyChanged("SvStatus", e);
+                    this.OnPropertyChanged("SvStatus", e, _svStatusReference);
                 }
             }
         }
@@ -350,6 +366,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Core
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> SvStatusChanged;
         
+        private static ITypedElement RetrievePhasesAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(ConductingEquipment.ClassInstance)).Resolve("phases")));
+        }
+        
         /// <summary>
         /// Raises the PhasesChanging event
         /// </summary>
@@ -376,6 +397,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Core
             }
         }
         
+        private static ITypedElement RetrieveProtectionEquipmentsReference()
+        {
+            return ((ITypedElement)(((ModelElement)(ConductingEquipment.ClassInstance)).Resolve("ProtectionEquipments")));
+        }
+        
         /// <summary>
         /// Forwards CollectionChanging notifications for the ProtectionEquipments property to the parent model element
         /// </summary>
@@ -383,7 +409,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Core
         /// <param name="e">The original event data</param>
         private void ProtectionEquipmentsCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("ProtectionEquipments", e);
+            this.OnCollectionChanging("ProtectionEquipments", e, _protectionEquipmentsReference);
         }
         
         /// <summary>
@@ -393,7 +419,12 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Core
         /// <param name="e">The original event data</param>
         private void ProtectionEquipmentsCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("ProtectionEquipments", e);
+            this.OnCollectionChanged("ProtectionEquipments", e, _protectionEquipmentsReference);
+        }
+        
+        private static ITypedElement RetrieveOutageStepRolesReference()
+        {
+            return ((ITypedElement)(((ModelElement)(ConductingEquipment.ClassInstance)).Resolve("OutageStepRoles")));
         }
         
         /// <summary>
@@ -403,7 +434,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Core
         /// <param name="e">The original event data</param>
         private void OutageStepRolesCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("OutageStepRoles", e);
+            this.OnCollectionChanging("OutageStepRoles", e, _outageStepRolesReference);
         }
         
         /// <summary>
@@ -413,7 +444,12 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Core
         /// <param name="e">The original event data</param>
         private void OutageStepRolesCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("OutageStepRoles", e);
+            this.OnCollectionChanged("OutageStepRoles", e, _outageStepRolesReference);
+        }
+        
+        private static ITypedElement RetrieveBaseVoltageReference()
+        {
+            return ((ITypedElement)(((ModelElement)(ConductingEquipment.ClassInstance)).Resolve("BaseVoltage")));
         }
         
         /// <summary>
@@ -452,6 +488,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Core
             this.BaseVoltage = null;
         }
         
+        private static ITypedElement RetrieveClearanceTagsReference()
+        {
+            return ((ITypedElement)(((ModelElement)(ConductingEquipment.ClassInstance)).Resolve("ClearanceTags")));
+        }
+        
         /// <summary>
         /// Forwards CollectionChanging notifications for the ClearanceTags property to the parent model element
         /// </summary>
@@ -459,7 +500,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Core
         /// <param name="e">The original event data</param>
         private void ClearanceTagsCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("ClearanceTags", e);
+            this.OnCollectionChanging("ClearanceTags", e, _clearanceTagsReference);
         }
         
         /// <summary>
@@ -469,7 +510,12 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Core
         /// <param name="e">The original event data</param>
         private void ClearanceTagsCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("ClearanceTags", e);
+            this.OnCollectionChanged("ClearanceTags", e, _clearanceTagsReference);
+        }
+        
+        private static ITypedElement RetrieveSvStatusReference()
+        {
+            return ((ITypedElement)(((ModelElement)(ConductingEquipment.ClassInstance)).Resolve("SvStatus")));
         }
         
         /// <summary>
@@ -508,6 +554,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Core
             this.SvStatus = null;
         }
         
+        private static ITypedElement RetrieveElectricalAssetsReference()
+        {
+            return ((ITypedElement)(((ModelElement)(ConductingEquipment.ClassInstance)).Resolve("ElectricalAssets")));
+        }
+        
         /// <summary>
         /// Forwards CollectionChanging notifications for the ElectricalAssets property to the parent model element
         /// </summary>
@@ -515,7 +566,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Core
         /// <param name="e">The original event data</param>
         private void ElectricalAssetsCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("ElectricalAssets", e);
+            this.OnCollectionChanging("ElectricalAssets", e, _electricalAssetsReference);
         }
         
         /// <summary>
@@ -525,7 +576,12 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Core
         /// <param name="e">The original event data</param>
         private void ElectricalAssetsCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("ElectricalAssets", e);
+            this.OnCollectionChanged("ElectricalAssets", e, _electricalAssetsReference);
+        }
+        
+        private static ITypedElement RetrieveTerminalsReference()
+        {
+            return ((ITypedElement)(((ModelElement)(ConductingEquipment.ClassInstance)).Resolve("Terminals")));
         }
         
         /// <summary>
@@ -535,7 +591,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Core
         /// <param name="e">The original event data</param>
         private void TerminalsCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("Terminals", e);
+            this.OnCollectionChanging("Terminals", e, _terminalsReference);
         }
         
         /// <summary>
@@ -545,7 +601,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Core
         /// <param name="e">The original event data</param>
         private void TerminalsCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("Terminals", e);
+            this.OnCollectionChanged("Terminals", e, _terminalsReference);
         }
         
         /// <summary>
@@ -997,7 +1053,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Core
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public PhasesProxy(IConductingEquipment modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "phases")
             {
             }
             
@@ -1015,24 +1071,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Core
                     this.ModelElement.Phases = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.PhasesChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.PhasesChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1046,7 +1084,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Core
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public BaseVoltageProxy(IConductingEquipment modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "BaseVoltage")
             {
             }
             
@@ -1064,24 +1102,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Core
                     this.ModelElement.BaseVoltage = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.BaseVoltageChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.BaseVoltageChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1095,7 +1115,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Core
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public SvStatusProxy(IConductingEquipment modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "SvStatus")
             {
             }
             
@@ -1112,24 +1132,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Core
                 {
                     this.ModelElement.SvStatus = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.SvStatusChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.SvStatusChanged -= handler;
             }
         }
     }

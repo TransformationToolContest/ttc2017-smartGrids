@@ -45,7 +45,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfTypeAsset
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61970/Informative/InfTypeAsset/Type" +
         "Asset")]
     [DebuggerDisplayAttribute("TypeAsset {UUID}")]
-    public class TypeAsset : IdentifiedObject, ITypeAsset, IModelElement
+    public partial class TypeAsset : IdentifiedObject, ITypeAsset, IModelElement
     {
         
         /// <summary>
@@ -53,50 +53,72 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfTypeAsset
         /// </summary>
         private bool _stockItem;
         
+        private static Lazy<ITypedElement> _stockItemAttribute = new Lazy<ITypedElement>(RetrieveStockItemAttribute);
+        
         /// <summary>
         /// The backing field for the EstimatedUnitCost property
         /// </summary>
         private float _estimatedUnitCost;
+        
+        private static Lazy<ITypedElement> _estimatedUnitCostAttribute = new Lazy<ITypedElement>(RetrieveEstimatedUnitCostAttribute);
         
         /// <summary>
         /// The backing field for the Quantity property
         /// </summary>
         private string _quantity;
         
+        private static Lazy<ITypedElement> _quantityAttribute = new Lazy<ITypedElement>(RetrieveQuantityAttribute);
+        
+        private static Lazy<ITypedElement> _typeAssetCatalogueReference = new Lazy<ITypedElement>(RetrieveTypeAssetCatalogueReference);
+        
         /// <summary>
         /// The backing field for the TypeAssetCatalogue property
         /// </summary>
         private ITypeAssetCatalogue _typeAssetCatalogue;
+        
+        private static Lazy<ITypedElement> _erpBomItemDatasReference = new Lazy<ITypedElement>(RetrieveErpBomItemDatasReference);
         
         /// <summary>
         /// The backing field for the ErpBomItemDatas property
         /// </summary>
         private TypeAssetErpBomItemDatasCollection _erpBomItemDatas;
         
+        private static Lazy<ITypedElement> _assetInfoReference = new Lazy<ITypedElement>(RetrieveAssetInfoReference);
+        
         /// <summary>
         /// The backing field for the AssetInfo property
         /// </summary>
         private IAssetInfo _assetInfo;
+        
+        private static Lazy<ITypedElement> _erpReqLineItemsReference = new Lazy<ITypedElement>(RetrieveErpReqLineItemsReference);
         
         /// <summary>
         /// The backing field for the ErpReqLineItems property
         /// </summary>
         private TypeAssetErpReqLineItemsCollection _erpReqLineItems;
         
+        private static Lazy<ITypedElement> _erpInventoryIssuesReference = new Lazy<ITypedElement>(RetrieveErpInventoryIssuesReference);
+        
         /// <summary>
         /// The backing field for the ErpInventoryIssues property
         /// </summary>
         private TypeAssetErpInventoryIssuesCollection _erpInventoryIssues;
+        
+        private static Lazy<ITypedElement> _cUWorkEquipmentAssetReference = new Lazy<ITypedElement>(RetrieveCUWorkEquipmentAssetReference);
         
         /// <summary>
         /// The backing field for the CUWorkEquipmentAsset property
         /// </summary>
         private ICUWorkEquipmentItem _cUWorkEquipmentAsset;
         
+        private static Lazy<ITypedElement> _assetModelsReference = new Lazy<ITypedElement>(RetrieveAssetModelsReference);
+        
         /// <summary>
         /// The backing field for the AssetModels property
         /// </summary>
         private TypeAssetAssetModelsCollection _assetModels;
+        
+        private static Lazy<ITypedElement> _cUAssetReference = new Lazy<ITypedElement>(RetrieveCUAssetReference);
         
         /// <summary>
         /// The backing field for the CUAsset property
@@ -139,10 +161,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfTypeAsset
                     bool old = this._stockItem;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnStockItemChanging(e);
-                    this.OnPropertyChanging("StockItem", e);
+                    this.OnPropertyChanging("StockItem", e, _stockItemAttribute);
                     this._stockItem = value;
                     this.OnStockItemChanged(e);
-                    this.OnPropertyChanged("StockItem", e);
+                    this.OnPropertyChanged("StockItem", e, _stockItemAttribute);
                 }
             }
         }
@@ -165,10 +187,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfTypeAsset
                     float old = this._estimatedUnitCost;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnEstimatedUnitCostChanging(e);
-                    this.OnPropertyChanging("EstimatedUnitCost", e);
+                    this.OnPropertyChanging("EstimatedUnitCost", e, _estimatedUnitCostAttribute);
                     this._estimatedUnitCost = value;
                     this.OnEstimatedUnitCostChanged(e);
-                    this.OnPropertyChanged("EstimatedUnitCost", e);
+                    this.OnPropertyChanged("EstimatedUnitCost", e, _estimatedUnitCostAttribute);
                 }
             }
         }
@@ -191,10 +213,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfTypeAsset
                     string old = this._quantity;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnQuantityChanging(e);
-                    this.OnPropertyChanging("Quantity", e);
+                    this.OnPropertyChanging("Quantity", e, _quantityAttribute);
                     this._quantity = value;
                     this.OnQuantityChanged(e);
-                    this.OnPropertyChanged("Quantity", e);
+                    this.OnPropertyChanged("Quantity", e, _quantityAttribute);
                 }
             }
         }
@@ -217,7 +239,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfTypeAsset
                     ITypeAssetCatalogue old = this._typeAssetCatalogue;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnTypeAssetCatalogueChanging(e);
-                    this.OnPropertyChanging("TypeAssetCatalogue", e);
+                    this.OnPropertyChanging("TypeAssetCatalogue", e, _typeAssetCatalogueReference);
                     this._typeAssetCatalogue = value;
                     if ((old != null))
                     {
@@ -230,7 +252,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfTypeAsset
                         value.Deleted += this.OnResetTypeAssetCatalogue;
                     }
                     this.OnTypeAssetCatalogueChanged(e);
-                    this.OnPropertyChanged("TypeAssetCatalogue", e);
+                    this.OnPropertyChanged("TypeAssetCatalogue", e, _typeAssetCatalogueReference);
                 }
             }
         }
@@ -268,7 +290,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfTypeAsset
                     IAssetInfo old = this._assetInfo;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnAssetInfoChanging(e);
-                    this.OnPropertyChanging("AssetInfo", e);
+                    this.OnPropertyChanging("AssetInfo", e, _assetInfoReference);
                     this._assetInfo = value;
                     if ((old != null))
                     {
@@ -281,7 +303,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfTypeAsset
                         value.Deleted += this.OnResetAssetInfo;
                     }
                     this.OnAssetInfoChanged(e);
-                    this.OnPropertyChanged("AssetInfo", e);
+                    this.OnPropertyChanged("AssetInfo", e, _assetInfoReference);
                 }
             }
         }
@@ -334,7 +356,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfTypeAsset
                     ICUWorkEquipmentItem old = this._cUWorkEquipmentAsset;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnCUWorkEquipmentAssetChanging(e);
-                    this.OnPropertyChanging("CUWorkEquipmentAsset", e);
+                    this.OnPropertyChanging("CUWorkEquipmentAsset", e, _cUWorkEquipmentAssetReference);
                     this._cUWorkEquipmentAsset = value;
                     if ((old != null))
                     {
@@ -347,7 +369,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfTypeAsset
                         value.Deleted += this.OnResetCUWorkEquipmentAsset;
                     }
                     this.OnCUWorkEquipmentAssetChanged(e);
-                    this.OnPropertyChanged("CUWorkEquipmentAsset", e);
+                    this.OnPropertyChanged("CUWorkEquipmentAsset", e, _cUWorkEquipmentAssetReference);
                 }
             }
         }
@@ -385,7 +407,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfTypeAsset
                     ICUAsset old = this._cUAsset;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnCUAssetChanging(e);
-                    this.OnPropertyChanging("CUAsset", e);
+                    this.OnPropertyChanging("CUAsset", e, _cUAssetReference);
                     this._cUAsset = value;
                     if ((old != null))
                     {
@@ -398,7 +420,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfTypeAsset
                         value.Deleted += this.OnResetCUAsset;
                     }
                     this.OnCUAssetChanged(e);
-                    this.OnPropertyChanged("CUAsset", e);
+                    this.OnPropertyChanged("CUAsset", e, _cUAssetReference);
                 }
             }
         }
@@ -500,6 +522,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfTypeAsset
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> CUAssetChanged;
         
+        private static ITypedElement RetrieveStockItemAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(TypeAsset.ClassInstance)).Resolve("stockItem")));
+        }
+        
         /// <summary>
         /// Raises the StockItemChanging event
         /// </summary>
@@ -524,6 +551,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfTypeAsset
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveEstimatedUnitCostAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(TypeAsset.ClassInstance)).Resolve("estimatedUnitCost")));
         }
         
         /// <summary>
@@ -552,6 +584,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfTypeAsset
             }
         }
         
+        private static ITypedElement RetrieveQuantityAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(TypeAsset.ClassInstance)).Resolve("quantity")));
+        }
+        
         /// <summary>
         /// Raises the QuantityChanging event
         /// </summary>
@@ -576,6 +613,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfTypeAsset
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveTypeAssetCatalogueReference()
+        {
+            return ((ITypedElement)(((ModelElement)(TypeAsset.ClassInstance)).Resolve("TypeAssetCatalogue")));
         }
         
         /// <summary>
@@ -614,6 +656,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfTypeAsset
             this.TypeAssetCatalogue = null;
         }
         
+        private static ITypedElement RetrieveErpBomItemDatasReference()
+        {
+            return ((ITypedElement)(((ModelElement)(TypeAsset.ClassInstance)).Resolve("ErpBomItemDatas")));
+        }
+        
         /// <summary>
         /// Forwards CollectionChanging notifications for the ErpBomItemDatas property to the parent model element
         /// </summary>
@@ -621,7 +668,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfTypeAsset
         /// <param name="e">The original event data</param>
         private void ErpBomItemDatasCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("ErpBomItemDatas", e);
+            this.OnCollectionChanging("ErpBomItemDatas", e, _erpBomItemDatasReference);
         }
         
         /// <summary>
@@ -631,7 +678,12 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfTypeAsset
         /// <param name="e">The original event data</param>
         private void ErpBomItemDatasCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("ErpBomItemDatas", e);
+            this.OnCollectionChanged("ErpBomItemDatas", e, _erpBomItemDatasReference);
+        }
+        
+        private static ITypedElement RetrieveAssetInfoReference()
+        {
+            return ((ITypedElement)(((ModelElement)(TypeAsset.ClassInstance)).Resolve("AssetInfo")));
         }
         
         /// <summary>
@@ -670,6 +722,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfTypeAsset
             this.AssetInfo = null;
         }
         
+        private static ITypedElement RetrieveErpReqLineItemsReference()
+        {
+            return ((ITypedElement)(((ModelElement)(TypeAsset.ClassInstance)).Resolve("ErpReqLineItems")));
+        }
+        
         /// <summary>
         /// Forwards CollectionChanging notifications for the ErpReqLineItems property to the parent model element
         /// </summary>
@@ -677,7 +734,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfTypeAsset
         /// <param name="e">The original event data</param>
         private void ErpReqLineItemsCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("ErpReqLineItems", e);
+            this.OnCollectionChanging("ErpReqLineItems", e, _erpReqLineItemsReference);
         }
         
         /// <summary>
@@ -687,7 +744,12 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfTypeAsset
         /// <param name="e">The original event data</param>
         private void ErpReqLineItemsCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("ErpReqLineItems", e);
+            this.OnCollectionChanged("ErpReqLineItems", e, _erpReqLineItemsReference);
+        }
+        
+        private static ITypedElement RetrieveErpInventoryIssuesReference()
+        {
+            return ((ITypedElement)(((ModelElement)(TypeAsset.ClassInstance)).Resolve("ErpInventoryIssues")));
         }
         
         /// <summary>
@@ -697,7 +759,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfTypeAsset
         /// <param name="e">The original event data</param>
         private void ErpInventoryIssuesCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("ErpInventoryIssues", e);
+            this.OnCollectionChanging("ErpInventoryIssues", e, _erpInventoryIssuesReference);
         }
         
         /// <summary>
@@ -707,7 +769,12 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfTypeAsset
         /// <param name="e">The original event data</param>
         private void ErpInventoryIssuesCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("ErpInventoryIssues", e);
+            this.OnCollectionChanged("ErpInventoryIssues", e, _erpInventoryIssuesReference);
+        }
+        
+        private static ITypedElement RetrieveCUWorkEquipmentAssetReference()
+        {
+            return ((ITypedElement)(((ModelElement)(TypeAsset.ClassInstance)).Resolve("CUWorkEquipmentAsset")));
         }
         
         /// <summary>
@@ -746,6 +813,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfTypeAsset
             this.CUWorkEquipmentAsset = null;
         }
         
+        private static ITypedElement RetrieveAssetModelsReference()
+        {
+            return ((ITypedElement)(((ModelElement)(TypeAsset.ClassInstance)).Resolve("AssetModels")));
+        }
+        
         /// <summary>
         /// Forwards CollectionChanging notifications for the AssetModels property to the parent model element
         /// </summary>
@@ -753,7 +825,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfTypeAsset
         /// <param name="e">The original event data</param>
         private void AssetModelsCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("AssetModels", e);
+            this.OnCollectionChanging("AssetModels", e, _assetModelsReference);
         }
         
         /// <summary>
@@ -763,7 +835,12 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfTypeAsset
         /// <param name="e">The original event data</param>
         private void AssetModelsCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("AssetModels", e);
+            this.OnCollectionChanged("AssetModels", e, _assetModelsReference);
+        }
+        
+        private static ITypedElement RetrieveCUAssetReference()
+        {
+            return ((ITypedElement)(((ModelElement)(TypeAsset.ClassInstance)).Resolve("CUAsset")));
         }
         
         /// <summary>
@@ -1318,7 +1395,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfTypeAsset
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public StockItemProxy(ITypeAsset modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "stockItem")
             {
             }
             
@@ -1336,24 +1413,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfTypeAsset
                     this.ModelElement.StockItem = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.StockItemChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.StockItemChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1367,7 +1426,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfTypeAsset
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public EstimatedUnitCostProxy(ITypeAsset modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "estimatedUnitCost")
             {
             }
             
@@ -1385,24 +1444,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfTypeAsset
                     this.ModelElement.EstimatedUnitCost = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.EstimatedUnitCostChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.EstimatedUnitCostChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1416,7 +1457,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfTypeAsset
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public QuantityProxy(ITypeAsset modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "quantity")
             {
             }
             
@@ -1434,24 +1475,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfTypeAsset
                     this.ModelElement.Quantity = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.QuantityChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.QuantityChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1465,7 +1488,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfTypeAsset
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public TypeAssetCatalogueProxy(ITypeAsset modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "TypeAssetCatalogue")
             {
             }
             
@@ -1483,24 +1506,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfTypeAsset
                     this.ModelElement.TypeAssetCatalogue = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.TypeAssetCatalogueChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.TypeAssetCatalogueChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1514,7 +1519,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfTypeAsset
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public AssetInfoProxy(ITypeAsset modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "AssetInfo")
             {
             }
             
@@ -1532,24 +1537,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfTypeAsset
                     this.ModelElement.AssetInfo = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.AssetInfoChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.AssetInfoChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1563,7 +1550,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfTypeAsset
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public CUWorkEquipmentAssetProxy(ITypeAsset modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "CUWorkEquipmentAsset")
             {
             }
             
@@ -1581,24 +1568,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfTypeAsset
                     this.ModelElement.CUWorkEquipmentAsset = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.CUWorkEquipmentAssetChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.CUWorkEquipmentAssetChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1612,7 +1581,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfTypeAsset
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public CUAssetProxy(ITypeAsset modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "CUAsset")
             {
             }
             
@@ -1629,24 +1598,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfTypeAsset
                 {
                     this.ModelElement.CUAsset = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.CUAssetChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.CUAssetChanged -= handler;
             }
         }
     }

@@ -51,13 +51,15 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Meas
     [XmlNamespacePrefixAttribute("cimMeas")]
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61970/Meas/LimitSet")]
     [DebuggerDisplayAttribute("LimitSet {UUID}")]
-    public class LimitSet : IdentifiedObject, ILimitSet, IModelElement
+    public partial class LimitSet : IdentifiedObject, ILimitSet, IModelElement
     {
         
         /// <summary>
         /// The backing field for the IsPercentageLimits property
         /// </summary>
         private bool _isPercentageLimits;
+        
+        private static Lazy<ITypedElement> _isPercentageLimitsAttribute = new Lazy<ITypedElement>(RetrieveIsPercentageLimitsAttribute);
         
         private static IClass _classInstance;
         
@@ -79,10 +81,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Meas
                     bool old = this._isPercentageLimits;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnIsPercentageLimitsChanging(e);
-                    this.OnPropertyChanging("IsPercentageLimits", e);
+                    this.OnPropertyChanging("IsPercentageLimits", e, _isPercentageLimitsAttribute);
                     this._isPercentageLimits = value;
                     this.OnIsPercentageLimitsChanged(e);
-                    this.OnPropertyChanged("IsPercentageLimits", e);
+                    this.OnPropertyChanged("IsPercentageLimits", e, _isPercentageLimitsAttribute);
                 }
             }
         }
@@ -111,6 +113,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Meas
         /// Gets fired when the IsPercentageLimits property changed its value
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> IsPercentageLimitsChanged;
+        
+        private static ITypedElement RetrieveIsPercentageLimitsAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(LimitSet.ClassInstance)).Resolve("isPercentageLimits")));
+        }
         
         /// <summary>
         /// Raises the IsPercentageLimitsChanging event
@@ -191,7 +198,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Meas
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public IsPercentageLimitsProxy(ILimitSet modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "isPercentageLimits")
             {
             }
             
@@ -208,24 +215,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Meas
                 {
                     this.ModelElement.IsPercentageLimits = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.IsPercentageLimitsChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.IsPercentageLimitsChanged -= handler;
             }
         }
     }

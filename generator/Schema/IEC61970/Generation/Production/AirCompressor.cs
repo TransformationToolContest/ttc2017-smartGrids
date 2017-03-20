@@ -46,7 +46,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61970/Generation/Production/AirComp" +
         "ressor")]
     [DebuggerDisplayAttribute("AirCompressor {UUID}")]
-    public class AirCompressor : PowerSystemResource, IAirCompressor, IModelElement
+    public partial class AirCompressor : PowerSystemResource, IAirCompressor, IModelElement
     {
         
         /// <summary>
@@ -54,10 +54,16 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
         /// </summary>
         private float _airCompressorRating;
         
+        private static Lazy<ITypedElement> _airCompressorRatingAttribute = new Lazy<ITypedElement>(RetrieveAirCompressorRatingAttribute);
+        
+        private static Lazy<ITypedElement> _combustionTurbineReference = new Lazy<ITypedElement>(RetrieveCombustionTurbineReference);
+        
         /// <summary>
         /// The backing field for the CombustionTurbine property
         /// </summary>
         private ICombustionTurbine _combustionTurbine;
+        
+        private static Lazy<ITypedElement> _cAESPlantReference = new Lazy<ITypedElement>(RetrieveCAESPlantReference);
         
         /// <summary>
         /// The backing field for the CAESPlant property
@@ -84,10 +90,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
                     float old = this._airCompressorRating;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnAirCompressorRatingChanging(e);
-                    this.OnPropertyChanging("AirCompressorRating", e);
+                    this.OnPropertyChanging("AirCompressorRating", e, _airCompressorRatingAttribute);
                     this._airCompressorRating = value;
                     this.OnAirCompressorRatingChanged(e);
-                    this.OnPropertyChanged("AirCompressorRating", e);
+                    this.OnPropertyChanged("AirCompressorRating", e, _airCompressorRatingAttribute);
                 }
             }
         }
@@ -110,7 +116,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
                     ICombustionTurbine old = this._combustionTurbine;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnCombustionTurbineChanging(e);
-                    this.OnPropertyChanging("CombustionTurbine", e);
+                    this.OnPropertyChanging("CombustionTurbine", e, _combustionTurbineReference);
                     this._combustionTurbine = value;
                     if ((old != null))
                     {
@@ -123,7 +129,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
                         value.Deleted += this.OnResetCombustionTurbine;
                     }
                     this.OnCombustionTurbineChanged(e);
-                    this.OnPropertyChanged("CombustionTurbine", e);
+                    this.OnPropertyChanged("CombustionTurbine", e, _combustionTurbineReference);
                 }
             }
         }
@@ -146,7 +152,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
                     ICAESPlant old = this._cAESPlant;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnCAESPlantChanging(e);
-                    this.OnPropertyChanging("CAESPlant", e);
+                    this.OnPropertyChanging("CAESPlant", e, _cAESPlantReference);
                     this._cAESPlant = value;
                     if ((old != null))
                     {
@@ -159,7 +165,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
                         value.Deleted += this.OnResetCAESPlant;
                     }
                     this.OnCAESPlantChanged(e);
-                    this.OnPropertyChanged("CAESPlant", e);
+                    this.OnPropertyChanged("CAESPlant", e, _cAESPlantReference);
                 }
             }
         }
@@ -221,6 +227,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> CAESPlantChanged;
         
+        private static ITypedElement RetrieveAirCompressorRatingAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(AirCompressor.ClassInstance)).Resolve("airCompressorRating")));
+        }
+        
         /// <summary>
         /// Raises the AirCompressorRatingChanging event
         /// </summary>
@@ -245,6 +256,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveCombustionTurbineReference()
+        {
+            return ((ITypedElement)(((ModelElement)(AirCompressor.ClassInstance)).Resolve("CombustionTurbine")));
         }
         
         /// <summary>
@@ -281,6 +297,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
         private void OnResetCombustionTurbine(object sender, System.EventArgs eventArgs)
         {
             this.CombustionTurbine = null;
+        }
+        
+        private static ITypedElement RetrieveCAESPlantReference()
+        {
+            return ((ITypedElement)(((ModelElement)(AirCompressor.ClassInstance)).Resolve("CAESPlant")));
         }
         
         /// <summary>
@@ -569,7 +590,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public AirCompressorRatingProxy(IAirCompressor modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "airCompressorRating")
             {
             }
             
@@ -587,24 +608,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
                     this.ModelElement.AirCompressorRating = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.AirCompressorRatingChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.AirCompressorRatingChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -618,7 +621,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public CombustionTurbineProxy(IAirCompressor modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "CombustionTurbine")
             {
             }
             
@@ -636,24 +639,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
                     this.ModelElement.CombustionTurbine = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.CombustionTurbineChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.CombustionTurbineChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -667,7 +652,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public CAESPlantProxy(IAirCompressor modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "CAESPlant")
             {
             }
             
@@ -684,24 +669,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
                 {
                     this.ModelElement.CAESPlant = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.CAESPlantChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.CAESPlantChanged -= handler;
             }
         }
     }

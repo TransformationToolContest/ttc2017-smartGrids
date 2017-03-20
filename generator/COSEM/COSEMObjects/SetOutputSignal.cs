@@ -39,7 +39,7 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
     [XmlNamespacePrefixAttribute("objects")]
     [ModelRepresentationClassAttribute("http://www.transformation-tool-contest.eu/2017/smartGrids/cosem#//COSEMObjects/Se" +
         "tOutputSignal")]
-    public class SetOutputSignal : Scripttable, ISetOutputSignal, IModelElement
+    public partial class SetOutputSignal : Scripttable, ISetOutputSignal, IModelElement
     {
         
         private static IClass _classInstance;

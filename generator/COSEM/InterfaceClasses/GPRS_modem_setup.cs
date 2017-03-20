@@ -40,7 +40,7 @@ namespace TTC2017.SmartGrids.COSEM.InterfaceClasses
     [XmlNamespacePrefixAttribute("inter")]
     [ModelRepresentationClassAttribute("http://www.transformation-tool-contest.eu/2017/smartGrids/cosem#//InterfaceClasse" +
         "s/GPRS_modem_setup")]
-    public class GPRS_modem_setup : Base, IGPRS_modem_setup, IModelElement
+    public partial class GPRS_modem_setup : Base, IGPRS_modem_setup, IModelElement
     {
         
         private static IClass _classInstance;

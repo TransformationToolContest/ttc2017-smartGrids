@@ -39,13 +39,15 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
     [XmlNamespacePrefixAttribute("objects")]
     [ModelRepresentationClassAttribute("http://www.transformation-tool-contest.eu/2017/smartGrids/cosem#//COSEMObjects/Cl" +
         "ockObject")]
-    public class ClockObject : Clock, IClockObject, IModelElement
+    public partial class ClockObject : Clock, IClockObject, IModelElement
     {
         
         /// <summary>
         /// The backing field for the Time property
         /// </summary>
         private string _time;
+        
+        private static Lazy<ITypedElement> _timeAttribute = new Lazy<ITypedElement>(RetrieveTimeAttribute);
         
         private static IClass _classInstance;
         
@@ -66,10 +68,10 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     string old = this._time;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnTimeChanging(e);
-                    this.OnPropertyChanging("Time", e);
+                    this.OnPropertyChanging("Time", e, _timeAttribute);
                     this._time = value;
                     this.OnTimeChanged(e);
-                    this.OnPropertyChanged("Time", e);
+                    this.OnPropertyChanged("Time", e, _timeAttribute);
                 }
             }
         }
@@ -99,6 +101,11 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
         /// Gets fired when the Time property changed its value
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> TimeChanged;
+        
+        private static ITypedElement RetrieveTimeAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(ClockObject.ClassInstance)).Resolve("Time")));
+        }
         
         /// <summary>
         /// Raises the TimeChanging event
@@ -180,7 +187,7 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public TimeProxy(IClockObject modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "Time")
             {
             }
             
@@ -197,24 +204,6 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                 {
                     this.ModelElement.Time = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.TimeChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.TimeChanged -= handler;
             }
         }
     }

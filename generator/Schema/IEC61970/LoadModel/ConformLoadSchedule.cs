@@ -44,8 +44,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.LoadModel
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61970/LoadModel/ConformLoadSchedule" +
         "")]
     [DebuggerDisplayAttribute("ConformLoadSchedule {UUID}")]
-    public class ConformLoadSchedule : SeasonDayTypeSchedule, IConformLoadSchedule, IModelElement
+    public partial class ConformLoadSchedule : SeasonDayTypeSchedule, IConformLoadSchedule, IModelElement
     {
+        
+        private static Lazy<ITypedElement> _conformLoadGroupReference = new Lazy<ITypedElement>(RetrieveConformLoadGroupReference);
         
         /// <summary>
         /// The backing field for the ConformLoadGroup property
@@ -72,7 +74,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.LoadModel
                     IConformLoadGroup old = this._conformLoadGroup;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnConformLoadGroupChanging(e);
-                    this.OnPropertyChanging("ConformLoadGroup", e);
+                    this.OnPropertyChanging("ConformLoadGroup", e, _conformLoadGroupReference);
                     this._conformLoadGroup = value;
                     if ((old != null))
                     {
@@ -85,7 +87,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.LoadModel
                         value.Deleted += this.OnResetConformLoadGroup;
                     }
                     this.OnConformLoadGroupChanged(e);
-                    this.OnPropertyChanged("ConformLoadGroup", e);
+                    this.OnPropertyChanged("ConformLoadGroup", e, _conformLoadGroupReference);
                 }
             }
         }
@@ -126,6 +128,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.LoadModel
         /// Gets fired when the ConformLoadGroup property changed its value
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> ConformLoadGroupChanged;
+        
+        private static ITypedElement RetrieveConformLoadGroupReference()
+        {
+            return ((ITypedElement)(((ModelElement)(ConformLoadSchedule.ClassInstance)).Resolve("ConformLoadGroup")));
+        }
         
         /// <summary>
         /// Raises the ConformLoadGroupChanging event
@@ -350,7 +357,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.LoadModel
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public ConformLoadGroupProxy(IConformLoadSchedule modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "ConformLoadGroup")
             {
             }
             
@@ -367,24 +374,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.LoadModel
                 {
                     this.ModelElement.ConformLoadGroup = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ConformLoadGroupChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ConformLoadGroupChanged -= handler;
             }
         }
     }

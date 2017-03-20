@@ -50,7 +50,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61970/Informative/MarketOperations/" +
         "BilateralTransaction")]
     [DebuggerDisplayAttribute("BilateralTransaction {UUID}")]
-    public class BilateralTransaction : Element, IBilateralTransaction, IModelElement
+    public partial class BilateralTransaction : Element, IBilateralTransaction, IModelElement
     {
         
         /// <summary>
@@ -58,40 +58,56 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
         /// </summary>
         private int _purchaseTimeMax;
         
+        private static Lazy<ITypedElement> _purchaseTimeMaxAttribute = new Lazy<ITypedElement>(RetrievePurchaseTimeMaxAttribute);
+        
         /// <summary>
         /// The backing field for the PurchaseTimeMin property
         /// </summary>
         private int _purchaseTimeMin;
+        
+        private static Lazy<ITypedElement> _purchaseTimeMinAttribute = new Lazy<ITypedElement>(RetrievePurchaseTimeMinAttribute);
         
         /// <summary>
         /// The backing field for the CurtailTimeMax property
         /// </summary>
         private int _curtailTimeMax;
         
+        private static Lazy<ITypedElement> _curtailTimeMaxAttribute = new Lazy<ITypedElement>(RetrieveCurtailTimeMaxAttribute);
+        
         /// <summary>
         /// The backing field for the CurtailTimeMin property
         /// </summary>
         private int _curtailTimeMin;
+        
+        private static Lazy<ITypedElement> _curtailTimeMinAttribute = new Lazy<ITypedElement>(RetrieveCurtailTimeMinAttribute);
         
         /// <summary>
         /// The backing field for the TotalTranChargeMax property
         /// </summary>
         private float _totalTranChargeMax;
         
+        private static Lazy<ITypedElement> _totalTranChargeMaxAttribute = new Lazy<ITypedElement>(RetrieveTotalTranChargeMaxAttribute);
+        
         /// <summary>
         /// The backing field for the TransactionType property
         /// </summary>
         private string _transactionType;
+        
+        private static Lazy<ITypedElement> _transactionTypeAttribute = new Lazy<ITypedElement>(RetrieveTransactionTypeAttribute);
         
         /// <summary>
         /// The backing field for the MarketType property
         /// </summary>
         private string _marketType;
         
+        private static Lazy<ITypedElement> _marketTypeAttribute = new Lazy<ITypedElement>(RetrieveMarketTypeAttribute);
+        
         /// <summary>
         /// The backing field for the Scope property
         /// </summary>
         private string _scope;
+        
+        private static Lazy<ITypedElement> _scopeAttribute = new Lazy<ITypedElement>(RetrieveScopeAttribute);
         
         private static IClass _classInstance;
         
@@ -113,10 +129,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
                     int old = this._purchaseTimeMax;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnPurchaseTimeMaxChanging(e);
-                    this.OnPropertyChanging("PurchaseTimeMax", e);
+                    this.OnPropertyChanging("PurchaseTimeMax", e, _purchaseTimeMaxAttribute);
                     this._purchaseTimeMax = value;
                     this.OnPurchaseTimeMaxChanged(e);
-                    this.OnPropertyChanged("PurchaseTimeMax", e);
+                    this.OnPropertyChanged("PurchaseTimeMax", e, _purchaseTimeMaxAttribute);
                 }
             }
         }
@@ -139,10 +155,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
                     int old = this._purchaseTimeMin;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnPurchaseTimeMinChanging(e);
-                    this.OnPropertyChanging("PurchaseTimeMin", e);
+                    this.OnPropertyChanging("PurchaseTimeMin", e, _purchaseTimeMinAttribute);
                     this._purchaseTimeMin = value;
                     this.OnPurchaseTimeMinChanged(e);
-                    this.OnPropertyChanged("PurchaseTimeMin", e);
+                    this.OnPropertyChanged("PurchaseTimeMin", e, _purchaseTimeMinAttribute);
                 }
             }
         }
@@ -165,10 +181,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
                     int old = this._curtailTimeMax;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnCurtailTimeMaxChanging(e);
-                    this.OnPropertyChanging("CurtailTimeMax", e);
+                    this.OnPropertyChanging("CurtailTimeMax", e, _curtailTimeMaxAttribute);
                     this._curtailTimeMax = value;
                     this.OnCurtailTimeMaxChanged(e);
-                    this.OnPropertyChanged("CurtailTimeMax", e);
+                    this.OnPropertyChanged("CurtailTimeMax", e, _curtailTimeMaxAttribute);
                 }
             }
         }
@@ -191,10 +207,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
                     int old = this._curtailTimeMin;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnCurtailTimeMinChanging(e);
-                    this.OnPropertyChanging("CurtailTimeMin", e);
+                    this.OnPropertyChanging("CurtailTimeMin", e, _curtailTimeMinAttribute);
                     this._curtailTimeMin = value;
                     this.OnCurtailTimeMinChanged(e);
-                    this.OnPropertyChanged("CurtailTimeMin", e);
+                    this.OnPropertyChanged("CurtailTimeMin", e, _curtailTimeMinAttribute);
                 }
             }
         }
@@ -217,10 +233,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
                     float old = this._totalTranChargeMax;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnTotalTranChargeMaxChanging(e);
-                    this.OnPropertyChanging("TotalTranChargeMax", e);
+                    this.OnPropertyChanging("TotalTranChargeMax", e, _totalTranChargeMaxAttribute);
                     this._totalTranChargeMax = value;
                     this.OnTotalTranChargeMaxChanged(e);
-                    this.OnPropertyChanged("TotalTranChargeMax", e);
+                    this.OnPropertyChanged("TotalTranChargeMax", e, _totalTranChargeMaxAttribute);
                 }
             }
         }
@@ -243,10 +259,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
                     string old = this._transactionType;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnTransactionTypeChanging(e);
-                    this.OnPropertyChanging("TransactionType", e);
+                    this.OnPropertyChanging("TransactionType", e, _transactionTypeAttribute);
                     this._transactionType = value;
                     this.OnTransactionTypeChanged(e);
-                    this.OnPropertyChanged("TransactionType", e);
+                    this.OnPropertyChanged("TransactionType", e, _transactionTypeAttribute);
                 }
             }
         }
@@ -269,10 +285,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
                     string old = this._marketType;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnMarketTypeChanging(e);
-                    this.OnPropertyChanging("MarketType", e);
+                    this.OnPropertyChanging("MarketType", e, _marketTypeAttribute);
                     this._marketType = value;
                     this.OnMarketTypeChanged(e);
-                    this.OnPropertyChanged("MarketType", e);
+                    this.OnPropertyChanged("MarketType", e, _marketTypeAttribute);
                 }
             }
         }
@@ -295,10 +311,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
                     string old = this._scope;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnScopeChanging(e);
-                    this.OnPropertyChanging("Scope", e);
+                    this.OnPropertyChanging("Scope", e, _scopeAttribute);
                     this._scope = value;
                     this.OnScopeChanged(e);
-                    this.OnPropertyChanged("Scope", e);
+                    this.OnPropertyChanged("Scope", e, _scopeAttribute);
                 }
             }
         }
@@ -399,6 +415,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> ScopeChanged;
         
+        private static ITypedElement RetrievePurchaseTimeMaxAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(BilateralTransaction.ClassInstance)).Resolve("purchaseTimeMax")));
+        }
+        
         /// <summary>
         /// Raises the PurchaseTimeMaxChanging event
         /// </summary>
@@ -423,6 +444,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrievePurchaseTimeMinAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(BilateralTransaction.ClassInstance)).Resolve("purchaseTimeMin")));
         }
         
         /// <summary>
@@ -451,6 +477,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
             }
         }
         
+        private static ITypedElement RetrieveCurtailTimeMaxAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(BilateralTransaction.ClassInstance)).Resolve("curtailTimeMax")));
+        }
+        
         /// <summary>
         /// Raises the CurtailTimeMaxChanging event
         /// </summary>
@@ -475,6 +506,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveCurtailTimeMinAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(BilateralTransaction.ClassInstance)).Resolve("curtailTimeMin")));
         }
         
         /// <summary>
@@ -503,6 +539,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
             }
         }
         
+        private static ITypedElement RetrieveTotalTranChargeMaxAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(BilateralTransaction.ClassInstance)).Resolve("totalTranChargeMax")));
+        }
+        
         /// <summary>
         /// Raises the TotalTranChargeMaxChanging event
         /// </summary>
@@ -527,6 +568,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveTransactionTypeAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(BilateralTransaction.ClassInstance)).Resolve("transactionType")));
         }
         
         /// <summary>
@@ -555,6 +601,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
             }
         }
         
+        private static ITypedElement RetrieveMarketTypeAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(BilateralTransaction.ClassInstance)).Resolve("marketType")));
+        }
+        
         /// <summary>
         /// Raises the MarketTypeChanging event
         /// </summary>
@@ -579,6 +630,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveScopeAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(BilateralTransaction.ClassInstance)).Resolve("scope")));
         }
         
         /// <summary>
@@ -724,7 +780,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public PurchaseTimeMaxProxy(IBilateralTransaction modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "purchaseTimeMax")
             {
             }
             
@@ -742,24 +798,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
                     this.ModelElement.PurchaseTimeMax = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.PurchaseTimeMaxChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.PurchaseTimeMaxChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -773,7 +811,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public PurchaseTimeMinProxy(IBilateralTransaction modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "purchaseTimeMin")
             {
             }
             
@@ -791,24 +829,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
                     this.ModelElement.PurchaseTimeMin = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.PurchaseTimeMinChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.PurchaseTimeMinChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -822,7 +842,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public CurtailTimeMaxProxy(IBilateralTransaction modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "curtailTimeMax")
             {
             }
             
@@ -840,24 +860,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
                     this.ModelElement.CurtailTimeMax = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.CurtailTimeMaxChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.CurtailTimeMaxChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -871,7 +873,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public CurtailTimeMinProxy(IBilateralTransaction modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "curtailTimeMin")
             {
             }
             
@@ -889,24 +891,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
                     this.ModelElement.CurtailTimeMin = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.CurtailTimeMinChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.CurtailTimeMinChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -920,7 +904,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public TotalTranChargeMaxProxy(IBilateralTransaction modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "totalTranChargeMax")
             {
             }
             
@@ -938,24 +922,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
                     this.ModelElement.TotalTranChargeMax = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.TotalTranChargeMaxChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.TotalTranChargeMaxChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -969,7 +935,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public TransactionTypeProxy(IBilateralTransaction modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "transactionType")
             {
             }
             
@@ -987,24 +953,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
                     this.ModelElement.TransactionType = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.TransactionTypeChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.TransactionTypeChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1018,7 +966,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public MarketTypeProxy(IBilateralTransaction modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "marketType")
             {
             }
             
@@ -1036,24 +984,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
                     this.ModelElement.MarketType = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.MarketTypeChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.MarketTypeChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1067,7 +997,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public ScopeProxy(IBilateralTransaction modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "scope")
             {
             }
             
@@ -1084,24 +1014,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
                 {
                     this.ModelElement.Scope = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ScopeChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ScopeChanged -= handler;
             }
         }
     }

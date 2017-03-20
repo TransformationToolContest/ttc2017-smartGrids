@@ -54,7 +54,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Metering
     [XmlNamespacePrefixAttribute("cimMetering")]
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61968/Metering/ComFunction")]
     [DebuggerDisplayAttribute("ComFunction {UUID}")]
-    public class ComFunction : DeviceFunction, IComFunction, IModelElement
+    public partial class ComFunction : DeviceFunction, IComFunction, IModelElement
     {
         
         /// <summary>
@@ -62,15 +62,21 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Metering
         /// </summary>
         private bool _twoWay;
         
+        private static Lazy<ITypedElement> _twoWayAttribute = new Lazy<ITypedElement>(RetrieveTwoWayAttribute);
+        
         /// <summary>
         /// The backing field for the AmrAddress property
         /// </summary>
         private string _amrAddress;
         
+        private static Lazy<ITypedElement> _amrAddressAttribute = new Lazy<ITypedElement>(RetrieveAmrAddressAttribute);
+        
         /// <summary>
         /// The backing field for the AmrRouter property
         /// </summary>
         private string _amrRouter;
+        
+        private static Lazy<ITypedElement> _amrRouterAttribute = new Lazy<ITypedElement>(RetrieveAmrRouterAttribute);
         
         private static IClass _classInstance;
         
@@ -92,10 +98,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Metering
                     bool old = this._twoWay;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnTwoWayChanging(e);
-                    this.OnPropertyChanging("TwoWay", e);
+                    this.OnPropertyChanging("TwoWay", e, _twoWayAttribute);
                     this._twoWay = value;
                     this.OnTwoWayChanged(e);
-                    this.OnPropertyChanged("TwoWay", e);
+                    this.OnPropertyChanged("TwoWay", e, _twoWayAttribute);
                 }
             }
         }
@@ -118,10 +124,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Metering
                     string old = this._amrAddress;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnAmrAddressChanging(e);
-                    this.OnPropertyChanging("AmrAddress", e);
+                    this.OnPropertyChanging("AmrAddress", e, _amrAddressAttribute);
                     this._amrAddress = value;
                     this.OnAmrAddressChanged(e);
-                    this.OnPropertyChanged("AmrAddress", e);
+                    this.OnPropertyChanged("AmrAddress", e, _amrAddressAttribute);
                 }
             }
         }
@@ -144,10 +150,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Metering
                     string old = this._amrRouter;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnAmrRouterChanging(e);
-                    this.OnPropertyChanging("AmrRouter", e);
+                    this.OnPropertyChanging("AmrRouter", e, _amrRouterAttribute);
                     this._amrRouter = value;
                     this.OnAmrRouterChanged(e);
-                    this.OnPropertyChanged("AmrRouter", e);
+                    this.OnPropertyChanged("AmrRouter", e, _amrRouterAttribute);
                 }
             }
         }
@@ -197,6 +203,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Metering
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> AmrRouterChanged;
         
+        private static ITypedElement RetrieveTwoWayAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(ComFunction.ClassInstance)).Resolve("twoWay")));
+        }
+        
         /// <summary>
         /// Raises the TwoWayChanging event
         /// </summary>
@@ -223,6 +234,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Metering
             }
         }
         
+        private static ITypedElement RetrieveAmrAddressAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(ComFunction.ClassInstance)).Resolve("amrAddress")));
+        }
+        
         /// <summary>
         /// Raises the AmrAddressChanging event
         /// </summary>
@@ -247,6 +263,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Metering
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveAmrRouterAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(ComFunction.ClassInstance)).Resolve("amrRouter")));
         }
         
         /// <summary>
@@ -346,7 +367,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Metering
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public TwoWayProxy(IComFunction modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "twoWay")
             {
             }
             
@@ -364,24 +385,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Metering
                     this.ModelElement.TwoWay = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.TwoWayChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.TwoWayChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -395,7 +398,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Metering
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public AmrAddressProxy(IComFunction modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "amrAddress")
             {
             }
             
@@ -413,24 +416,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Metering
                     this.ModelElement.AmrAddress = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.AmrAddressChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.AmrAddressChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -444,7 +429,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Metering
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public AmrRouterProxy(IComFunction modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "amrRouter")
             {
             }
             
@@ -461,24 +446,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Metering
                 {
                     this.ModelElement.AmrRouter = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.AmrRouterChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.AmrRouterChanged -= handler;
             }
         }
     }

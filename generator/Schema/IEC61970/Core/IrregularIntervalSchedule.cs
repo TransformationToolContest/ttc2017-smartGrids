@@ -58,8 +58,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Core
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61970/Core/IrregularIntervalSchedul" +
         "e")]
     [DebuggerDisplayAttribute("IrregularIntervalSchedule {UUID}")]
-    public class IrregularIntervalSchedule : BasicIntervalSchedule, IIrregularIntervalSchedule, IModelElement
+    public partial class IrregularIntervalSchedule : BasicIntervalSchedule, IIrregularIntervalSchedule, IModelElement
     {
+        
+        private static Lazy<ITypedElement> _timePointsReference = new Lazy<ITypedElement>(RetrieveTimePointsReference);
         
         /// <summary>
         /// The backing field for the TimePoints property
@@ -117,6 +119,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Core
             }
         }
         
+        private static ITypedElement RetrieveTimePointsReference()
+        {
+            return ((ITypedElement)(((ModelElement)(IrregularIntervalSchedule.ClassInstance)).Resolve("TimePoints")));
+        }
+        
         /// <summary>
         /// Forwards CollectionChanging notifications for the TimePoints property to the parent model element
         /// </summary>
@@ -124,7 +131,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Core
         /// <param name="e">The original event data</param>
         private void TimePointsCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("TimePoints", e);
+            this.OnCollectionChanging("TimePoints", e, _timePointsReference);
         }
         
         /// <summary>
@@ -134,7 +141,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Core
         /// <param name="e">The original event data</param>
         private void TimePointsCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("TimePoints", e);
+            this.OnCollectionChanged("TimePoints", e, _timePointsReference);
         }
         
         /// <summary>

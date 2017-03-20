@@ -51,13 +51,17 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Common
     [XmlNamespacePrefixAttribute("cimCommon")]
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61968/Common/Agreement")]
     [DebuggerDisplayAttribute("Agreement {UUID}")]
-    public class Agreement : Document, IAgreement, IModelElement
+    public partial class Agreement : Document, IAgreement, IModelElement
     {
         
         /// <summary>
         /// The backing field for the SignDate property
         /// </summary>
         private string _signDate;
+        
+        private static Lazy<ITypedElement> _signDateAttribute = new Lazy<ITypedElement>(RetrieveSignDateAttribute);
+        
+        private static Lazy<ITypedElement> _validityIntervalReference = new Lazy<ITypedElement>(RetrieveValidityIntervalReference);
         
         /// <summary>
         /// The backing field for the ValidityInterval property
@@ -84,10 +88,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Common
                     string old = this._signDate;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnSignDateChanging(e);
-                    this.OnPropertyChanging("SignDate", e);
+                    this.OnPropertyChanging("SignDate", e, _signDateAttribute);
                     this._signDate = value;
                     this.OnSignDateChanged(e);
-                    this.OnPropertyChanged("SignDate", e);
+                    this.OnPropertyChanged("SignDate", e, _signDateAttribute);
                 }
             }
         }
@@ -110,7 +114,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Common
                     IDateTimeInterval old = this._validityInterval;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnValidityIntervalChanging(e);
-                    this.OnPropertyChanging("ValidityInterval", e);
+                    this.OnPropertyChanging("ValidityInterval", e, _validityIntervalReference);
                     this._validityInterval = value;
                     if ((old != null))
                     {
@@ -121,7 +125,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Common
                         value.Deleted += this.OnResetValidityInterval;
                     }
                     this.OnValidityIntervalChanged(e);
-                    this.OnPropertyChanged("ValidityInterval", e);
+                    this.OnPropertyChanged("ValidityInterval", e, _validityIntervalReference);
                 }
             }
         }
@@ -172,6 +176,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Common
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> ValidityIntervalChanged;
         
+        private static ITypedElement RetrieveSignDateAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(Agreement.ClassInstance)).Resolve("signDate")));
+        }
+        
         /// <summary>
         /// Raises the SignDateChanging event
         /// </summary>
@@ -196,6 +205,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Common
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveValidityIntervalReference()
+        {
+            return ((ITypedElement)(((ModelElement)(Agreement.ClassInstance)).Resolve("validityInterval")));
         }
         
         /// <summary>
@@ -440,7 +454,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Common
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public SignDateProxy(IAgreement modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "signDate")
             {
             }
             
@@ -458,24 +472,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Common
                     this.ModelElement.SignDate = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.SignDateChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.SignDateChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -489,7 +485,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Common
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public ValidityIntervalProxy(IAgreement modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "validityInterval")
             {
             }
             
@@ -506,24 +502,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Common
                 {
                     this.ModelElement.ValidityInterval = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ValidityIntervalChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ValidityIntervalChanged -= handler;
             }
         }
     }

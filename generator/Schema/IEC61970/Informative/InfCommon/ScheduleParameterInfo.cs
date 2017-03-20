@@ -47,33 +47,45 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfCommon
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61970/Informative/InfCommon/Schedul" +
         "eParameterInfo")]
     [DebuggerDisplayAttribute("ScheduleParameterInfo {UUID}")]
-    public class ScheduleParameterInfo : IdentifiedObject, IScheduleParameterInfo, IModelElement
+    public partial class ScheduleParameterInfo : IdentifiedObject, IScheduleParameterInfo, IModelElement
     {
+        
+        private static Lazy<ITypedElement> _scheduledEventsReference = new Lazy<ITypedElement>(RetrieveScheduledEventsReference);
         
         /// <summary>
         /// The backing field for the ScheduledEvents property
         /// </summary>
         private ScheduleParameterInfoScheduledEventsCollection _scheduledEvents;
         
+        private static Lazy<ITypedElement> _requestedWindowReference = new Lazy<ITypedElement>(RetrieveRequestedWindowReference);
+        
         /// <summary>
         /// The backing field for the RequestedWindow property
         /// </summary>
         private IDateTimeInterval _requestedWindow;
+        
+        private static Lazy<ITypedElement> _forInspectionDataSetReference = new Lazy<ITypedElement>(RetrieveForInspectionDataSetReference);
         
         /// <summary>
         /// The backing field for the ForInspectionDataSet property
         /// </summary>
         private IInspectionDataSet _forInspectionDataSet;
         
+        private static Lazy<ITypedElement> _estimatedWindowReference = new Lazy<ITypedElement>(RetrieveEstimatedWindowReference);
+        
         /// <summary>
         /// The backing field for the EstimatedWindow property
         /// </summary>
         private IDateTimeInterval _estimatedWindow;
         
+        private static Lazy<ITypedElement> _documentsReference = new Lazy<ITypedElement>(RetrieveDocumentsReference);
+        
         /// <summary>
         /// The backing field for the Documents property
         /// </summary>
         private ScheduleParameterInfoDocumentsCollection _documents;
+        
+        private static Lazy<ITypedElement> _statusReference = new Lazy<ITypedElement>(RetrieveStatusReference);
         
         /// <summary>
         /// The backing field for the Status property
@@ -125,7 +137,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfCommon
                     IDateTimeInterval old = this._requestedWindow;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnRequestedWindowChanging(e);
-                    this.OnPropertyChanging("RequestedWindow", e);
+                    this.OnPropertyChanging("RequestedWindow", e, _requestedWindowReference);
                     this._requestedWindow = value;
                     if ((old != null))
                     {
@@ -136,7 +148,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfCommon
                         value.Deleted += this.OnResetRequestedWindow;
                     }
                     this.OnRequestedWindowChanged(e);
-                    this.OnPropertyChanged("RequestedWindow", e);
+                    this.OnPropertyChanged("RequestedWindow", e, _requestedWindowReference);
                 }
             }
         }
@@ -159,7 +171,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfCommon
                     IInspectionDataSet old = this._forInspectionDataSet;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnForInspectionDataSetChanging(e);
-                    this.OnPropertyChanging("ForInspectionDataSet", e);
+                    this.OnPropertyChanging("ForInspectionDataSet", e, _forInspectionDataSetReference);
                     this._forInspectionDataSet = value;
                     if ((old != null))
                     {
@@ -172,7 +184,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfCommon
                         value.Deleted += this.OnResetForInspectionDataSet;
                     }
                     this.OnForInspectionDataSetChanged(e);
-                    this.OnPropertyChanged("ForInspectionDataSet", e);
+                    this.OnPropertyChanged("ForInspectionDataSet", e, _forInspectionDataSetReference);
                 }
             }
         }
@@ -195,7 +207,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfCommon
                     IDateTimeInterval old = this._estimatedWindow;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnEstimatedWindowChanging(e);
-                    this.OnPropertyChanging("EstimatedWindow", e);
+                    this.OnPropertyChanging("EstimatedWindow", e, _estimatedWindowReference);
                     this._estimatedWindow = value;
                     if ((old != null))
                     {
@@ -206,7 +218,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfCommon
                         value.Deleted += this.OnResetEstimatedWindow;
                     }
                     this.OnEstimatedWindowChanged(e);
-                    this.OnPropertyChanged("EstimatedWindow", e);
+                    this.OnPropertyChanged("EstimatedWindow", e, _estimatedWindowReference);
                 }
             }
         }
@@ -244,7 +256,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfCommon
                     IStatus old = this._status;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnStatusChanging(e);
-                    this.OnPropertyChanging("Status", e);
+                    this.OnPropertyChanging("Status", e, _statusReference);
                     this._status = value;
                     if ((old != null))
                     {
@@ -255,7 +267,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfCommon
                         value.Deleted += this.OnResetStatus;
                     }
                     this.OnStatusChanged(e);
-                    this.OnPropertyChanged("Status", e);
+                    this.OnPropertyChanged("Status", e, _statusReference);
                 }
             }
         }
@@ -327,6 +339,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfCommon
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> StatusChanged;
         
+        private static ITypedElement RetrieveScheduledEventsReference()
+        {
+            return ((ITypedElement)(((ModelElement)(ScheduleParameterInfo.ClassInstance)).Resolve("ScheduledEvents")));
+        }
+        
         /// <summary>
         /// Forwards CollectionChanging notifications for the ScheduledEvents property to the parent model element
         /// </summary>
@@ -334,7 +351,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfCommon
         /// <param name="e">The original event data</param>
         private void ScheduledEventsCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("ScheduledEvents", e);
+            this.OnCollectionChanging("ScheduledEvents", e, _scheduledEventsReference);
         }
         
         /// <summary>
@@ -344,7 +361,12 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfCommon
         /// <param name="e">The original event data</param>
         private void ScheduledEventsCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("ScheduledEvents", e);
+            this.OnCollectionChanged("ScheduledEvents", e, _scheduledEventsReference);
+        }
+        
+        private static ITypedElement RetrieveRequestedWindowReference()
+        {
+            return ((ITypedElement)(((ModelElement)(ScheduleParameterInfo.ClassInstance)).Resolve("requestedWindow")));
         }
         
         /// <summary>
@@ -383,6 +405,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfCommon
             this.RequestedWindow = null;
         }
         
+        private static ITypedElement RetrieveForInspectionDataSetReference()
+        {
+            return ((ITypedElement)(((ModelElement)(ScheduleParameterInfo.ClassInstance)).Resolve("ForInspectionDataSet")));
+        }
+        
         /// <summary>
         /// Raises the ForInspectionDataSetChanging event
         /// </summary>
@@ -417,6 +444,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfCommon
         private void OnResetForInspectionDataSet(object sender, System.EventArgs eventArgs)
         {
             this.ForInspectionDataSet = null;
+        }
+        
+        private static ITypedElement RetrieveEstimatedWindowReference()
+        {
+            return ((ITypedElement)(((ModelElement)(ScheduleParameterInfo.ClassInstance)).Resolve("estimatedWindow")));
         }
         
         /// <summary>
@@ -455,6 +487,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfCommon
             this.EstimatedWindow = null;
         }
         
+        private static ITypedElement RetrieveDocumentsReference()
+        {
+            return ((ITypedElement)(((ModelElement)(ScheduleParameterInfo.ClassInstance)).Resolve("Documents")));
+        }
+        
         /// <summary>
         /// Forwards CollectionChanging notifications for the Documents property to the parent model element
         /// </summary>
@@ -462,7 +499,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfCommon
         /// <param name="e">The original event data</param>
         private void DocumentsCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("Documents", e);
+            this.OnCollectionChanging("Documents", e, _documentsReference);
         }
         
         /// <summary>
@@ -472,7 +509,12 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfCommon
         /// <param name="e">The original event data</param>
         private void DocumentsCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("Documents", e);
+            this.OnCollectionChanged("Documents", e, _documentsReference);
+        }
+        
+        private static ITypedElement RetrieveStatusReference()
+        {
+            return ((ITypedElement)(((ModelElement)(ScheduleParameterInfo.ClassInstance)).Resolve("status")));
         }
         
         /// <summary>
@@ -913,7 +955,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfCommon
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public RequestedWindowProxy(IScheduleParameterInfo modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "requestedWindow")
             {
             }
             
@@ -931,24 +973,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfCommon
                     this.ModelElement.RequestedWindow = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.RequestedWindowChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.RequestedWindowChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -962,7 +986,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfCommon
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public ForInspectionDataSetProxy(IScheduleParameterInfo modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "ForInspectionDataSet")
             {
             }
             
@@ -980,24 +1004,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfCommon
                     this.ModelElement.ForInspectionDataSet = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ForInspectionDataSetChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ForInspectionDataSetChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1011,7 +1017,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfCommon
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public EstimatedWindowProxy(IScheduleParameterInfo modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "estimatedWindow")
             {
             }
             
@@ -1029,24 +1035,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfCommon
                     this.ModelElement.EstimatedWindow = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.EstimatedWindowChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.EstimatedWindowChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1060,7 +1048,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfCommon
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public StatusProxy(IScheduleParameterInfo modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "status")
             {
             }
             
@@ -1077,24 +1065,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfCommon
                 {
                     this.ModelElement.Status = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.StatusChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.StatusChanged -= handler;
             }
         }
     }

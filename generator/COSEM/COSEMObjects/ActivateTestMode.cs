@@ -39,7 +39,7 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
     [XmlNamespacePrefixAttribute("objects")]
     [ModelRepresentationClassAttribute("http://www.transformation-tool-contest.eu/2017/smartGrids/cosem#//COSEMObjects/Ac" +
         "tivateTestMode")]
-    public class ActivateTestMode : Scripttable, IActivateTestMode, IModelElement
+    public partial class ActivateTestMode : Scripttable, IActivateTestMode, IModelElement
     {
         
         private static IClass _classInstance;

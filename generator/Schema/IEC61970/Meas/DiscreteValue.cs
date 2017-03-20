@@ -51,13 +51,17 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Meas
     [XmlNamespacePrefixAttribute("cimMeas")]
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61970/Meas/DiscreteValue")]
     [DebuggerDisplayAttribute("DiscreteValue {UUID}")]
-    public class DiscreteValue : MeasurementValue, IDiscreteValue, IModelElement
+    public partial class DiscreteValue : MeasurementValue, IDiscreteValue, IModelElement
     {
         
         /// <summary>
         /// The backing field for the Value property
         /// </summary>
         private int _value;
+        
+        private static Lazy<ITypedElement> _valueAttribute = new Lazy<ITypedElement>(RetrieveValueAttribute);
+        
+        private static Lazy<ITypedElement> _discreteReference = new Lazy<ITypedElement>(RetrieveDiscreteReference);
         
         /// <summary>
         /// The backing field for the Discrete property
@@ -84,10 +88,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Meas
                     int old = this._value;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnValueChanging(e);
-                    this.OnPropertyChanging("Value", e);
+                    this.OnPropertyChanging("Value", e, _valueAttribute);
                     this._value = value;
                     this.OnValueChanged(e);
-                    this.OnPropertyChanged("Value", e);
+                    this.OnPropertyChanged("Value", e, _valueAttribute);
                 }
             }
         }
@@ -110,7 +114,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Meas
                     IDiscrete old = this._discrete;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnDiscreteChanging(e);
-                    this.OnPropertyChanging("Discrete", e);
+                    this.OnPropertyChanging("Discrete", e, _discreteReference);
                     this._discrete = value;
                     if ((old != null))
                     {
@@ -123,7 +127,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Meas
                         value.Deleted += this.OnResetDiscrete;
                     }
                     this.OnDiscreteChanged(e);
-                    this.OnPropertyChanged("Discrete", e);
+                    this.OnPropertyChanged("Discrete", e, _discreteReference);
                 }
             }
         }
@@ -174,6 +178,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Meas
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> DiscreteChanged;
         
+        private static ITypedElement RetrieveValueAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(DiscreteValue.ClassInstance)).Resolve("value")));
+        }
+        
         /// <summary>
         /// Raises the ValueChanging event
         /// </summary>
@@ -198,6 +207,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Meas
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveDiscreteReference()
+        {
+            return ((ITypedElement)(((ModelElement)(DiscreteValue.ClassInstance)).Resolve("Discrete")));
         }
         
         /// <summary>
@@ -442,7 +456,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Meas
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public ValueProxy(IDiscreteValue modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "value")
             {
             }
             
@@ -460,24 +474,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Meas
                     this.ModelElement.Value = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ValueChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ValueChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -491,7 +487,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Meas
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public DiscreteProxy(IDiscreteValue modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "Discrete")
             {
             }
             
@@ -508,24 +504,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Meas
                 {
                     this.ModelElement.Discrete = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.DiscreteChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.DiscreteChanged -= handler;
             }
         }
     }

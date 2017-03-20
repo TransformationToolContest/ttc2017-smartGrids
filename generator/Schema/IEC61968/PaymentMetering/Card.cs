@@ -46,7 +46,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.PaymentMetering
     [XmlNamespacePrefixAttribute("cimPaymentMetering")]
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61968/PaymentMetering/Card")]
     [DebuggerDisplayAttribute("Card {UUID}")]
-    public class Card : Element, ICard, IModelElement
+    public partial class Card : Element, ICard, IModelElement
     {
         
         /// <summary>
@@ -54,20 +54,30 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.PaymentMetering
         /// </summary>
         private string _cvNumber;
         
+        private static Lazy<ITypedElement> _cvNumberAttribute = new Lazy<ITypedElement>(RetrieveCvNumberAttribute);
+        
         /// <summary>
         /// The backing field for the ExpiryDate property
         /// </summary>
         private string _expiryDate;
+        
+        private static Lazy<ITypedElement> _expiryDateAttribute = new Lazy<ITypedElement>(RetrieveExpiryDateAttribute);
         
         /// <summary>
         /// The backing field for the Pan property
         /// </summary>
         private string _pan;
         
+        private static Lazy<ITypedElement> _panAttribute = new Lazy<ITypedElement>(RetrievePanAttribute);
+        
         /// <summary>
         /// The backing field for the AccountHolderName property
         /// </summary>
         private string _accountHolderName;
+        
+        private static Lazy<ITypedElement> _accountHolderNameAttribute = new Lazy<ITypedElement>(RetrieveAccountHolderNameAttribute);
+        
+        private static Lazy<ITypedElement> _tenderReference = new Lazy<ITypedElement>(RetrieveTenderReference);
         
         /// <summary>
         /// The backing field for the Tender property
@@ -94,10 +104,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.PaymentMetering
                     string old = this._cvNumber;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnCvNumberChanging(e);
-                    this.OnPropertyChanging("CvNumber", e);
+                    this.OnPropertyChanging("CvNumber", e, _cvNumberAttribute);
                     this._cvNumber = value;
                     this.OnCvNumberChanged(e);
-                    this.OnPropertyChanged("CvNumber", e);
+                    this.OnPropertyChanged("CvNumber", e, _cvNumberAttribute);
                 }
             }
         }
@@ -120,10 +130,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.PaymentMetering
                     string old = this._expiryDate;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnExpiryDateChanging(e);
-                    this.OnPropertyChanging("ExpiryDate", e);
+                    this.OnPropertyChanging("ExpiryDate", e, _expiryDateAttribute);
                     this._expiryDate = value;
                     this.OnExpiryDateChanged(e);
-                    this.OnPropertyChanged("ExpiryDate", e);
+                    this.OnPropertyChanged("ExpiryDate", e, _expiryDateAttribute);
                 }
             }
         }
@@ -146,10 +156,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.PaymentMetering
                     string old = this._pan;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnPanChanging(e);
-                    this.OnPropertyChanging("Pan", e);
+                    this.OnPropertyChanging("Pan", e, _panAttribute);
                     this._pan = value;
                     this.OnPanChanged(e);
-                    this.OnPropertyChanged("Pan", e);
+                    this.OnPropertyChanged("Pan", e, _panAttribute);
                 }
             }
         }
@@ -172,10 +182,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.PaymentMetering
                     string old = this._accountHolderName;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnAccountHolderNameChanging(e);
-                    this.OnPropertyChanging("AccountHolderName", e);
+                    this.OnPropertyChanging("AccountHolderName", e, _accountHolderNameAttribute);
                     this._accountHolderName = value;
                     this.OnAccountHolderNameChanged(e);
-                    this.OnPropertyChanged("AccountHolderName", e);
+                    this.OnPropertyChanged("AccountHolderName", e, _accountHolderNameAttribute);
                 }
             }
         }
@@ -198,7 +208,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.PaymentMetering
                     ITender old = this._tender;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnTenderChanging(e);
-                    this.OnPropertyChanging("Tender", e);
+                    this.OnPropertyChanging("Tender", e, _tenderReference);
                     this._tender = value;
                     if ((old != null))
                     {
@@ -211,7 +221,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.PaymentMetering
                         value.Deleted += this.OnResetTender;
                     }
                     this.OnTenderChanged(e);
-                    this.OnPropertyChanged("Tender", e);
+                    this.OnPropertyChanged("Tender", e, _tenderReference);
                 }
             }
         }
@@ -292,6 +302,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.PaymentMetering
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> TenderChanged;
         
+        private static ITypedElement RetrieveCvNumberAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(Card.ClassInstance)).Resolve("cvNumber")));
+        }
+        
         /// <summary>
         /// Raises the CvNumberChanging event
         /// </summary>
@@ -316,6 +331,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.PaymentMetering
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveExpiryDateAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(Card.ClassInstance)).Resolve("expiryDate")));
         }
         
         /// <summary>
@@ -344,6 +364,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.PaymentMetering
             }
         }
         
+        private static ITypedElement RetrievePanAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(Card.ClassInstance)).Resolve("pan")));
+        }
+        
         /// <summary>
         /// Raises the PanChanging event
         /// </summary>
@@ -370,6 +395,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.PaymentMetering
             }
         }
         
+        private static ITypedElement RetrieveAccountHolderNameAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(Card.ClassInstance)).Resolve("accountHolderName")));
+        }
+        
         /// <summary>
         /// Raises the AccountHolderNameChanging event
         /// </summary>
@@ -394,6 +424,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.PaymentMetering
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveTenderReference()
+        {
+            return ((ITypedElement)(((ModelElement)(Card.ClassInstance)).Resolve("Tender")));
         }
         
         /// <summary>
@@ -665,7 +700,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.PaymentMetering
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public CvNumberProxy(ICard modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "cvNumber")
             {
             }
             
@@ -683,24 +718,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.PaymentMetering
                     this.ModelElement.CvNumber = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.CvNumberChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.CvNumberChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -714,7 +731,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.PaymentMetering
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public ExpiryDateProxy(ICard modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "expiryDate")
             {
             }
             
@@ -732,24 +749,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.PaymentMetering
                     this.ModelElement.ExpiryDate = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ExpiryDateChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ExpiryDateChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -763,7 +762,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.PaymentMetering
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public PanProxy(ICard modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "pan")
             {
             }
             
@@ -781,24 +780,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.PaymentMetering
                     this.ModelElement.Pan = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.PanChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.PanChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -812,7 +793,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.PaymentMetering
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public AccountHolderNameProxy(ICard modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "accountHolderName")
             {
             }
             
@@ -830,24 +811,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.PaymentMetering
                     this.ModelElement.AccountHolderName = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.AccountHolderNameChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.AccountHolderNameChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -861,7 +824,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.PaymentMetering
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public TenderProxy(ICard modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "Tender")
             {
             }
             
@@ -878,24 +841,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.PaymentMetering
                 {
                     this.ModelElement.Tender = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.TenderChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.TenderChanged -= handler;
             }
         }
     }

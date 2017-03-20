@@ -39,7 +39,7 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
     [XmlNamespacePrefixAttribute("objects")]
     [ModelRepresentationClassAttribute("http://www.transformation-tool-contest.eu/2017/smartGrids/cosem#//COSEMObjects/I_" +
         "O_control_signal_objects_global")]
-    public class I_O_control_signal_objects_global : Profilegeneric, II_O_control_signal_objects_global, IModelElement
+    public partial class I_O_control_signal_objects_global : Profilegeneric, II_O_control_signal_objects_global, IModelElement
     {
         
         private static IClass _classInstance;

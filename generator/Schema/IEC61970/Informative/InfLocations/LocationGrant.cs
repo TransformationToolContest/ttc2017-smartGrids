@@ -46,13 +46,17 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfLocations
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61970/Informative/InfLocations/Loca" +
         "tionGrant")]
     [DebuggerDisplayAttribute("LocationGrant {UUID}")]
-    public class LocationGrant : Agreement, ILocationGrant, IModelElement
+    public partial class LocationGrant : Agreement, ILocationGrant, IModelElement
     {
         
         /// <summary>
         /// The backing field for the PropertyData property
         /// </summary>
         private string _propertyData;
+        
+        private static Lazy<ITypedElement> _propertyDataAttribute = new Lazy<ITypedElement>(RetrievePropertyDataAttribute);
+        
+        private static Lazy<ITypedElement> _landPropertyReference = new Lazy<ITypedElement>(RetrieveLandPropertyReference);
         
         /// <summary>
         /// The backing field for the LandProperty property
@@ -79,10 +83,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfLocations
                     string old = this._propertyData;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnPropertyDataChanging(e);
-                    this.OnPropertyChanging("PropertyData", e);
+                    this.OnPropertyChanging("PropertyData", e, _propertyDataAttribute);
                     this._propertyData = value;
                     this.OnPropertyDataChanged(e);
-                    this.OnPropertyChanged("PropertyData", e);
+                    this.OnPropertyChanged("PropertyData", e, _propertyDataAttribute);
                 }
             }
         }
@@ -105,7 +109,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfLocations
                     ILandProperty old = this._landProperty;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnLandPropertyChanging(e);
-                    this.OnPropertyChanging("LandProperty", e);
+                    this.OnPropertyChanging("LandProperty", e, _landPropertyReference);
                     this._landProperty = value;
                     if ((old != null))
                     {
@@ -118,7 +122,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfLocations
                         value.Deleted += this.OnResetLandProperty;
                     }
                     this.OnLandPropertyChanged(e);
-                    this.OnPropertyChanged("LandProperty", e);
+                    this.OnPropertyChanged("LandProperty", e, _landPropertyReference);
                 }
             }
         }
@@ -170,6 +174,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfLocations
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> LandPropertyChanged;
         
+        private static ITypedElement RetrievePropertyDataAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(LocationGrant.ClassInstance)).Resolve("propertyData")));
+        }
+        
         /// <summary>
         /// Raises the PropertyDataChanging event
         /// </summary>
@@ -194,6 +203,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfLocations
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveLandPropertyReference()
+        {
+            return ((ITypedElement)(((ModelElement)(LocationGrant.ClassInstance)).Resolve("LandProperty")));
         }
         
         /// <summary>
@@ -439,7 +453,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfLocations
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public PropertyDataProxy(ILocationGrant modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "propertyData")
             {
             }
             
@@ -457,24 +471,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfLocations
                     this.ModelElement.PropertyData = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.PropertyDataChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.PropertyDataChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -488,7 +484,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfLocations
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public LandPropertyProxy(ILocationGrant modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "LandProperty")
             {
             }
             
@@ -505,24 +501,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfLocations
                 {
                     this.ModelElement.LandProperty = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.LandPropertyChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.LandPropertyChanged -= handler;
             }
         }
     }

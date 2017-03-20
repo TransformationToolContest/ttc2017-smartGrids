@@ -53,13 +53,17 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61970/Informative/InfAssets/ShuntCo" +
         "mpensatorInfo")]
     [DebuggerDisplayAttribute("ShuntCompensatorInfo {UUID}")]
-    public class ShuntCompensatorInfo : ElectricalInfo, IShuntCompensatorInfo, IModelElement
+    public partial class ShuntCompensatorInfo : ElectricalInfo, IShuntCompensatorInfo, IModelElement
     {
         
         /// <summary>
         /// The backing field for the MaxPowerLoss property
         /// </summary>
         private float _maxPowerLoss;
+        
+        private static Lazy<ITypedElement> _maxPowerLossAttribute = new Lazy<ITypedElement>(RetrieveMaxPowerLossAttribute);
+        
+        private static Lazy<ITypedElement> _shuntImpedanceInfoReference = new Lazy<ITypedElement>(RetrieveShuntImpedanceInfoReference);
         
         /// <summary>
         /// The backing field for the ShuntImpedanceInfo property
@@ -86,10 +90,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
                     float old = this._maxPowerLoss;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnMaxPowerLossChanging(e);
-                    this.OnPropertyChanging("MaxPowerLoss", e);
+                    this.OnPropertyChanging("MaxPowerLoss", e, _maxPowerLossAttribute);
                     this._maxPowerLoss = value;
                     this.OnMaxPowerLossChanged(e);
-                    this.OnPropertyChanged("MaxPowerLoss", e);
+                    this.OnPropertyChanged("MaxPowerLoss", e, _maxPowerLossAttribute);
                 }
             }
         }
@@ -112,7 +116,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
                     IShuntImpedanceInfo old = this._shuntImpedanceInfo;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnShuntImpedanceInfoChanging(e);
-                    this.OnPropertyChanging("ShuntImpedanceInfo", e);
+                    this.OnPropertyChanging("ShuntImpedanceInfo", e, _shuntImpedanceInfoReference);
                     this._shuntImpedanceInfo = value;
                     if ((old != null))
                     {
@@ -125,7 +129,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
                         value.Deleted += this.OnResetShuntImpedanceInfo;
                     }
                     this.OnShuntImpedanceInfoChanged(e);
-                    this.OnPropertyChanged("ShuntImpedanceInfo", e);
+                    this.OnPropertyChanged("ShuntImpedanceInfo", e, _shuntImpedanceInfoReference);
                 }
             }
         }
@@ -177,6 +181,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> ShuntImpedanceInfoChanged;
         
+        private static ITypedElement RetrieveMaxPowerLossAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(ShuntCompensatorInfo.ClassInstance)).Resolve("maxPowerLoss")));
+        }
+        
         /// <summary>
         /// Raises the MaxPowerLossChanging event
         /// </summary>
@@ -201,6 +210,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveShuntImpedanceInfoReference()
+        {
+            return ((ITypedElement)(((ModelElement)(ShuntCompensatorInfo.ClassInstance)).Resolve("ShuntImpedanceInfo")));
         }
         
         /// <summary>
@@ -446,7 +460,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public MaxPowerLossProxy(IShuntCompensatorInfo modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "maxPowerLoss")
             {
             }
             
@@ -464,24 +478,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
                     this.ModelElement.MaxPowerLoss = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.MaxPowerLossChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.MaxPowerLossChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -495,7 +491,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public ShuntImpedanceInfoProxy(IShuntCompensatorInfo modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "ShuntImpedanceInfo")
             {
             }
             
@@ -512,24 +508,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
                 {
                     this.ModelElement.ShuntImpedanceInfo = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ShuntImpedanceInfoChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ShuntImpedanceInfoChanged -= handler;
             }
         }
     }

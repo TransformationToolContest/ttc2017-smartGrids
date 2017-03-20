@@ -39,7 +39,7 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
     [XmlNamespacePrefixAttribute("objects")]
     [ModelRepresentationClassAttribute("http://www.transformation-tool-contest.eu/2017/smartGrids/cosem#//COSEMObjects/En" +
         "dOfBillingPeriodSchedule")]
-    public class EndOfBillingPeriodSchedule : Singleactionschedule, IEndOfBillingPeriodSchedule, IModelElement
+    public partial class EndOfBillingPeriodSchedule : Singleactionschedule, IEndOfBillingPeriodSchedule, IModelElement
     {
         
         private static IClass _classInstance;

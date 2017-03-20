@@ -39,13 +39,15 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
     [XmlNamespacePrefixAttribute("objects")]
     [ModelRepresentationClassAttribute("http://www.transformation-tool-contest.eu/2017/smartGrids/cosem#//COSEMObjects/Op" +
         "eratingTime")]
-    public class OperatingTime : Data, IOperatingTime, IModelElement
+    public partial class OperatingTime : Data, IOperatingTime, IModelElement
     {
         
         /// <summary>
         /// The backing field for the Timeofoperation property
         /// </summary>
         private string _timeofoperation;
+        
+        private static Lazy<ITypedElement> _timeofoperationAttribute = new Lazy<ITypedElement>(RetrieveTimeofoperationAttribute);
         
         private static IClass _classInstance;
         
@@ -66,10 +68,10 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     string old = this._timeofoperation;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnTimeofoperationChanging(e);
-                    this.OnPropertyChanging("Timeofoperation", e);
+                    this.OnPropertyChanging("Timeofoperation", e, _timeofoperationAttribute);
                     this._timeofoperation = value;
                     this.OnTimeofoperationChanged(e);
-                    this.OnPropertyChanged("Timeofoperation", e);
+                    this.OnPropertyChanged("Timeofoperation", e, _timeofoperationAttribute);
                 }
             }
         }
@@ -99,6 +101,11 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
         /// Gets fired when the Timeofoperation property changed its value
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> TimeofoperationChanged;
+        
+        private static ITypedElement RetrieveTimeofoperationAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(OperatingTime.ClassInstance)).Resolve("Timeofoperation")));
+        }
         
         /// <summary>
         /// Raises the TimeofoperationChanging event
@@ -180,7 +187,7 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public TimeofoperationProxy(IOperatingTime modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "Timeofoperation")
             {
             }
             
@@ -197,24 +204,6 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                 {
                     this.ModelElement.Timeofoperation = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.TimeofoperationChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.TimeofoperationChanged -= handler;
             }
         }
     }

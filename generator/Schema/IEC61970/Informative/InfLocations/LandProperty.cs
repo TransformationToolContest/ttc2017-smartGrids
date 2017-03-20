@@ -46,7 +46,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfLocations
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61970/Informative/InfLocations/Land" +
         "Property")]
     [DebuggerDisplayAttribute("LandProperty {UUID}")]
-    public class LandProperty : IdentifiedObject, ILandProperty, IModelElement
+    public partial class LandProperty : IdentifiedObject, ILandProperty, IModelElement
     {
         
         /// <summary>
@@ -54,50 +54,72 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfLocations
         /// </summary>
         private Nullable<DemographicKind> _demographicKind;
         
+        private static Lazy<ITypedElement> _demographicKindAttribute = new Lazy<ITypedElement>(RetrieveDemographicKindAttribute);
+        
         /// <summary>
         /// The backing field for the ExternalRecordReference property
         /// </summary>
         private string _externalRecordReference;
+        
+        private static Lazy<ITypedElement> _externalRecordReferenceAttribute = new Lazy<ITypedElement>(RetrieveExternalRecordReferenceAttribute);
         
         /// <summary>
         /// The backing field for the Kind property
         /// </summary>
         private Nullable<LandPropertyKind> _kind;
         
+        private static Lazy<ITypedElement> _kindAttribute = new Lazy<ITypedElement>(RetrieveKindAttribute);
+        
+        private static Lazy<ITypedElement> _erpSiteLevelDatasReference = new Lazy<ITypedElement>(RetrieveErpSiteLevelDatasReference);
+        
         /// <summary>
         /// The backing field for the ErpSiteLevelDatas property
         /// </summary>
         private LandPropertyErpSiteLevelDatasCollection _erpSiteLevelDatas;
+        
+        private static Lazy<ITypedElement> _statusReference = new Lazy<ITypedElement>(RetrieveStatusReference);
         
         /// <summary>
         /// The backing field for the Status property
         /// </summary>
         private IStatus _status;
         
+        private static Lazy<ITypedElement> _erpOrganisationRolesReference = new Lazy<ITypedElement>(RetrieveErpOrganisationRolesReference);
+        
         /// <summary>
         /// The backing field for the ErpOrganisationRoles property
         /// </summary>
         private LandPropertyErpOrganisationRolesCollection _erpOrganisationRoles;
+        
+        private static Lazy<ITypedElement> _locationsReference = new Lazy<ITypedElement>(RetrieveLocationsReference);
         
         /// <summary>
         /// The backing field for the Locations property
         /// </summary>
         private LandPropertyLocationsCollection _locations;
         
+        private static Lazy<ITypedElement> _locationGrantsReference = new Lazy<ITypedElement>(RetrieveLocationGrantsReference);
+        
         /// <summary>
         /// The backing field for the LocationGrants property
         /// </summary>
         private LandPropertyLocationGrantsCollection _locationGrants;
+        
+        private static Lazy<ITypedElement> _erpPersonRolesReference = new Lazy<ITypedElement>(RetrieveErpPersonRolesReference);
         
         /// <summary>
         /// The backing field for the ErpPersonRoles property
         /// </summary>
         private LandPropertyErpPersonRolesCollection _erpPersonRoles;
         
+        private static Lazy<ITypedElement> _rightOfWaysReference = new Lazy<ITypedElement>(RetrieveRightOfWaysReference);
+        
         /// <summary>
         /// The backing field for the RightOfWays property
         /// </summary>
         private LandPropertyRightOfWaysCollection _rightOfWays;
+        
+        private static Lazy<ITypedElement> _assetContainersReference = new Lazy<ITypedElement>(RetrieveAssetContainersReference);
         
         /// <summary>
         /// The backing field for the AssetContainers property
@@ -149,10 +171,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfLocations
                     Nullable<DemographicKind> old = this._demographicKind;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnDemographicKindChanging(e);
-                    this.OnPropertyChanging("DemographicKind", e);
+                    this.OnPropertyChanging("DemographicKind", e, _demographicKindAttribute);
                     this._demographicKind = value;
                     this.OnDemographicKindChanged(e);
-                    this.OnPropertyChanged("DemographicKind", e);
+                    this.OnPropertyChanged("DemographicKind", e, _demographicKindAttribute);
                 }
             }
         }
@@ -175,10 +197,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfLocations
                     string old = this._externalRecordReference;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnExternalRecordReferenceChanging(e);
-                    this.OnPropertyChanging("ExternalRecordReference", e);
+                    this.OnPropertyChanging("ExternalRecordReference", e, _externalRecordReferenceAttribute);
                     this._externalRecordReference = value;
                     this.OnExternalRecordReferenceChanged(e);
-                    this.OnPropertyChanged("ExternalRecordReference", e);
+                    this.OnPropertyChanged("ExternalRecordReference", e, _externalRecordReferenceAttribute);
                 }
             }
         }
@@ -201,10 +223,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfLocations
                     Nullable<LandPropertyKind> old = this._kind;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnKindChanging(e);
-                    this.OnPropertyChanging("Kind", e);
+                    this.OnPropertyChanging("Kind", e, _kindAttribute);
                     this._kind = value;
                     this.OnKindChanged(e);
-                    this.OnPropertyChanged("Kind", e);
+                    this.OnPropertyChanged("Kind", e, _kindAttribute);
                 }
             }
         }
@@ -242,7 +264,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfLocations
                     IStatus old = this._status;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnStatusChanging(e);
-                    this.OnPropertyChanging("Status", e);
+                    this.OnPropertyChanging("Status", e, _statusReference);
                     this._status = value;
                     if ((old != null))
                     {
@@ -253,7 +275,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfLocations
                         value.Deleted += this.OnResetStatus;
                     }
                     this.OnStatusChanged(e);
-                    this.OnPropertyChanged("Status", e);
+                    this.OnPropertyChanged("Status", e, _statusReference);
                 }
             }
         }
@@ -415,6 +437,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfLocations
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> StatusChanged;
         
+        private static ITypedElement RetrieveDemographicKindAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(LandProperty.ClassInstance)).Resolve("demographicKind")));
+        }
+        
         /// <summary>
         /// Raises the DemographicKindChanging event
         /// </summary>
@@ -439,6 +466,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfLocations
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveExternalRecordReferenceAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(LandProperty.ClassInstance)).Resolve("externalRecordReference")));
         }
         
         /// <summary>
@@ -467,6 +499,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfLocations
             }
         }
         
+        private static ITypedElement RetrieveKindAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(LandProperty.ClassInstance)).Resolve("kind")));
+        }
+        
         /// <summary>
         /// Raises the KindChanging event
         /// </summary>
@@ -493,6 +530,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfLocations
             }
         }
         
+        private static ITypedElement RetrieveErpSiteLevelDatasReference()
+        {
+            return ((ITypedElement)(((ModelElement)(LandProperty.ClassInstance)).Resolve("ErpSiteLevelDatas")));
+        }
+        
         /// <summary>
         /// Forwards CollectionChanging notifications for the ErpSiteLevelDatas property to the parent model element
         /// </summary>
@@ -500,7 +542,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfLocations
         /// <param name="e">The original event data</param>
         private void ErpSiteLevelDatasCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("ErpSiteLevelDatas", e);
+            this.OnCollectionChanging("ErpSiteLevelDatas", e, _erpSiteLevelDatasReference);
         }
         
         /// <summary>
@@ -510,7 +552,12 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfLocations
         /// <param name="e">The original event data</param>
         private void ErpSiteLevelDatasCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("ErpSiteLevelDatas", e);
+            this.OnCollectionChanged("ErpSiteLevelDatas", e, _erpSiteLevelDatasReference);
+        }
+        
+        private static ITypedElement RetrieveStatusReference()
+        {
+            return ((ITypedElement)(((ModelElement)(LandProperty.ClassInstance)).Resolve("status")));
         }
         
         /// <summary>
@@ -549,6 +596,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfLocations
             this.Status = null;
         }
         
+        private static ITypedElement RetrieveErpOrganisationRolesReference()
+        {
+            return ((ITypedElement)(((ModelElement)(LandProperty.ClassInstance)).Resolve("ErpOrganisationRoles")));
+        }
+        
         /// <summary>
         /// Forwards CollectionChanging notifications for the ErpOrganisationRoles property to the parent model element
         /// </summary>
@@ -556,7 +608,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfLocations
         /// <param name="e">The original event data</param>
         private void ErpOrganisationRolesCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("ErpOrganisationRoles", e);
+            this.OnCollectionChanging("ErpOrganisationRoles", e, _erpOrganisationRolesReference);
         }
         
         /// <summary>
@@ -566,7 +618,12 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfLocations
         /// <param name="e">The original event data</param>
         private void ErpOrganisationRolesCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("ErpOrganisationRoles", e);
+            this.OnCollectionChanged("ErpOrganisationRoles", e, _erpOrganisationRolesReference);
+        }
+        
+        private static ITypedElement RetrieveLocationsReference()
+        {
+            return ((ITypedElement)(((ModelElement)(LandProperty.ClassInstance)).Resolve("Locations")));
         }
         
         /// <summary>
@@ -576,7 +633,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfLocations
         /// <param name="e">The original event data</param>
         private void LocationsCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("Locations", e);
+            this.OnCollectionChanging("Locations", e, _locationsReference);
         }
         
         /// <summary>
@@ -586,7 +643,12 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfLocations
         /// <param name="e">The original event data</param>
         private void LocationsCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("Locations", e);
+            this.OnCollectionChanged("Locations", e, _locationsReference);
+        }
+        
+        private static ITypedElement RetrieveLocationGrantsReference()
+        {
+            return ((ITypedElement)(((ModelElement)(LandProperty.ClassInstance)).Resolve("LocationGrants")));
         }
         
         /// <summary>
@@ -596,7 +658,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfLocations
         /// <param name="e">The original event data</param>
         private void LocationGrantsCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("LocationGrants", e);
+            this.OnCollectionChanging("LocationGrants", e, _locationGrantsReference);
         }
         
         /// <summary>
@@ -606,7 +668,12 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfLocations
         /// <param name="e">The original event data</param>
         private void LocationGrantsCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("LocationGrants", e);
+            this.OnCollectionChanged("LocationGrants", e, _locationGrantsReference);
+        }
+        
+        private static ITypedElement RetrieveErpPersonRolesReference()
+        {
+            return ((ITypedElement)(((ModelElement)(LandProperty.ClassInstance)).Resolve("ErpPersonRoles")));
         }
         
         /// <summary>
@@ -616,7 +683,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfLocations
         /// <param name="e">The original event data</param>
         private void ErpPersonRolesCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("ErpPersonRoles", e);
+            this.OnCollectionChanging("ErpPersonRoles", e, _erpPersonRolesReference);
         }
         
         /// <summary>
@@ -626,7 +693,12 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfLocations
         /// <param name="e">The original event data</param>
         private void ErpPersonRolesCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("ErpPersonRoles", e);
+            this.OnCollectionChanged("ErpPersonRoles", e, _erpPersonRolesReference);
+        }
+        
+        private static ITypedElement RetrieveRightOfWaysReference()
+        {
+            return ((ITypedElement)(((ModelElement)(LandProperty.ClassInstance)).Resolve("RightOfWays")));
         }
         
         /// <summary>
@@ -636,7 +708,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfLocations
         /// <param name="e">The original event data</param>
         private void RightOfWaysCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("RightOfWays", e);
+            this.OnCollectionChanging("RightOfWays", e, _rightOfWaysReference);
         }
         
         /// <summary>
@@ -646,7 +718,12 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfLocations
         /// <param name="e">The original event data</param>
         private void RightOfWaysCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("RightOfWays", e);
+            this.OnCollectionChanged("RightOfWays", e, _rightOfWaysReference);
+        }
+        
+        private static ITypedElement RetrieveAssetContainersReference()
+        {
+            return ((ITypedElement)(((ModelElement)(LandProperty.ClassInstance)).Resolve("AssetContainers")));
         }
         
         /// <summary>
@@ -656,7 +733,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfLocations
         /// <param name="e">The original event data</param>
         private void AssetContainersCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("AssetContainers", e);
+            this.OnCollectionChanging("AssetContainers", e, _assetContainersReference);
         }
         
         /// <summary>
@@ -666,7 +743,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfLocations
         /// <param name="e">The original event data</param>
         private void AssetContainersCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("AssetContainers", e);
+            this.OnCollectionChanged("AssetContainers", e, _assetContainersReference);
         }
         
         /// <summary>
@@ -1170,7 +1247,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfLocations
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public DemographicKindProxy(ILandProperty modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "demographicKind")
             {
             }
             
@@ -1188,24 +1265,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfLocations
                     this.ModelElement.DemographicKind = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.DemographicKindChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.DemographicKindChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1219,7 +1278,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfLocations
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public ExternalRecordReferenceProxy(ILandProperty modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "externalRecordReference")
             {
             }
             
@@ -1237,24 +1296,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfLocations
                     this.ModelElement.ExternalRecordReference = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ExternalRecordReferenceChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ExternalRecordReferenceChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1268,7 +1309,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfLocations
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public KindProxy(ILandProperty modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "kind")
             {
             }
             
@@ -1286,24 +1327,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfLocations
                     this.ModelElement.Kind = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.KindChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.KindChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1317,7 +1340,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfLocations
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public StatusProxy(ILandProperty modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "status")
             {
             }
             
@@ -1334,24 +1357,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfLocations
                 {
                     this.ModelElement.Status = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.StatusChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.StatusChanged -= handler;
             }
         }
     }

@@ -55,7 +55,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Metering
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61968/Metering/DemandResponseProgra" +
         "m")]
     [DebuggerDisplayAttribute("DemandResponseProgram {UUID}")]
-    public class DemandResponseProgram : IdentifiedObject, IDemandResponseProgram, IModelElement
+    public partial class DemandResponseProgram : IdentifiedObject, IDemandResponseProgram, IModelElement
     {
         
         /// <summary>
@@ -63,20 +63,30 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Metering
         /// </summary>
         private string _type;
         
+        private static Lazy<ITypedElement> _typeAttribute = new Lazy<ITypedElement>(RetrieveTypeAttribute);
+        
+        private static Lazy<ITypedElement> _customerAgreementsReference = new Lazy<ITypedElement>(RetrieveCustomerAgreementsReference);
+        
         /// <summary>
         /// The backing field for the CustomerAgreements property
         /// </summary>
         private DemandResponseProgramCustomerAgreementsCollection _customerAgreements;
+        
+        private static Lazy<ITypedElement> _validityIntervalReference = new Lazy<ITypedElement>(RetrieveValidityIntervalReference);
         
         /// <summary>
         /// The backing field for the ValidityInterval property
         /// </summary>
         private IDateTimeInterval _validityInterval;
         
+        private static Lazy<ITypedElement> _endDeviceGroupsReference = new Lazy<ITypedElement>(RetrieveEndDeviceGroupsReference);
+        
         /// <summary>
         /// The backing field for the EndDeviceGroups property
         /// </summary>
         private DemandResponseProgramEndDeviceGroupsCollection _endDeviceGroups;
+        
+        private static Lazy<ITypedElement> _endDeviceControlsReference = new Lazy<ITypedElement>(RetrieveEndDeviceControlsReference);
         
         /// <summary>
         /// The backing field for the EndDeviceControls property
@@ -116,10 +126,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Metering
                     string old = this._type;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnTypeChanging(e);
-                    this.OnPropertyChanging("Type", e);
+                    this.OnPropertyChanging("Type", e, _typeAttribute);
                     this._type = value;
                     this.OnTypeChanged(e);
-                    this.OnPropertyChanged("Type", e);
+                    this.OnPropertyChanged("Type", e, _typeAttribute);
                 }
             }
         }
@@ -157,7 +167,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Metering
                     IDateTimeInterval old = this._validityInterval;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnValidityIntervalChanging(e);
-                    this.OnPropertyChanging("ValidityInterval", e);
+                    this.OnPropertyChanging("ValidityInterval", e, _validityIntervalReference);
                     this._validityInterval = value;
                     if ((old != null))
                     {
@@ -168,7 +178,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Metering
                         value.Deleted += this.OnResetValidityInterval;
                     }
                     this.OnValidityIntervalChanged(e);
-                    this.OnPropertyChanged("ValidityInterval", e);
+                    this.OnPropertyChanged("ValidityInterval", e, _validityIntervalReference);
                 }
             }
         }
@@ -250,6 +260,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Metering
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> ValidityIntervalChanged;
         
+        private static ITypedElement RetrieveTypeAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(DemandResponseProgram.ClassInstance)).Resolve("type")));
+        }
+        
         /// <summary>
         /// Raises the TypeChanging event
         /// </summary>
@@ -276,6 +291,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Metering
             }
         }
         
+        private static ITypedElement RetrieveCustomerAgreementsReference()
+        {
+            return ((ITypedElement)(((ModelElement)(DemandResponseProgram.ClassInstance)).Resolve("CustomerAgreements")));
+        }
+        
         /// <summary>
         /// Forwards CollectionChanging notifications for the CustomerAgreements property to the parent model element
         /// </summary>
@@ -283,7 +303,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Metering
         /// <param name="e">The original event data</param>
         private void CustomerAgreementsCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("CustomerAgreements", e);
+            this.OnCollectionChanging("CustomerAgreements", e, _customerAgreementsReference);
         }
         
         /// <summary>
@@ -293,7 +313,12 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Metering
         /// <param name="e">The original event data</param>
         private void CustomerAgreementsCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("CustomerAgreements", e);
+            this.OnCollectionChanged("CustomerAgreements", e, _customerAgreementsReference);
+        }
+        
+        private static ITypedElement RetrieveValidityIntervalReference()
+        {
+            return ((ITypedElement)(((ModelElement)(DemandResponseProgram.ClassInstance)).Resolve("validityInterval")));
         }
         
         /// <summary>
@@ -332,6 +357,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Metering
             this.ValidityInterval = null;
         }
         
+        private static ITypedElement RetrieveEndDeviceGroupsReference()
+        {
+            return ((ITypedElement)(((ModelElement)(DemandResponseProgram.ClassInstance)).Resolve("EndDeviceGroups")));
+        }
+        
         /// <summary>
         /// Forwards CollectionChanging notifications for the EndDeviceGroups property to the parent model element
         /// </summary>
@@ -339,7 +369,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Metering
         /// <param name="e">The original event data</param>
         private void EndDeviceGroupsCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("EndDeviceGroups", e);
+            this.OnCollectionChanging("EndDeviceGroups", e, _endDeviceGroupsReference);
         }
         
         /// <summary>
@@ -349,7 +379,12 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Metering
         /// <param name="e">The original event data</param>
         private void EndDeviceGroupsCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("EndDeviceGroups", e);
+            this.OnCollectionChanged("EndDeviceGroups", e, _endDeviceGroupsReference);
+        }
+        
+        private static ITypedElement RetrieveEndDeviceControlsReference()
+        {
+            return ((ITypedElement)(((ModelElement)(DemandResponseProgram.ClassInstance)).Resolve("EndDeviceControls")));
         }
         
         /// <summary>
@@ -359,7 +394,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Metering
         /// <param name="e">The original event data</param>
         private void EndDeviceControlsCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("EndDeviceControls", e);
+            this.OnCollectionChanging("EndDeviceControls", e, _endDeviceControlsReference);
         }
         
         /// <summary>
@@ -369,7 +404,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Metering
         /// <param name="e">The original event data</param>
         private void EndDeviceControlsCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("EndDeviceControls", e);
+            this.OnCollectionChanged("EndDeviceControls", e, _endDeviceControlsReference);
         }
         
         /// <summary>
@@ -703,7 +738,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Metering
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public TypeProxy(IDemandResponseProgram modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "type")
             {
             }
             
@@ -721,24 +756,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Metering
                     this.ModelElement.Type = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.TypeChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.TypeChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -752,7 +769,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Metering
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public ValidityIntervalProxy(IDemandResponseProgram modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "validityInterval")
             {
             }
             
@@ -769,24 +786,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Metering
                 {
                     this.ModelElement.ValidityInterval = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ValidityIntervalChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ValidityIntervalChanged -= handler;
             }
         }
     }

@@ -43,13 +43,17 @@ namespace TTC2017.SmartGrids.SubstationStandard.LNNodes.LNGroupY
     [XmlNamespacePrefixAttribute("groupy")]
     [ModelRepresentationClassAttribute("http://www.transformation-tool-contest.eu/2017/smartGrids/substationStandard#//LN" +
         "Nodes/LNGroupY/GroupY")]
-    public class GroupY : DomainLN, IGroupY, IModelElement
+    public partial class GroupY : DomainLN, IGroupY, IModelElement
     {
         
         /// <summary>
         /// The backing field for the EEHealth property
         /// </summary>
         private Nullable<HealthStateKind> _eEHealth;
+        
+        private static Lazy<ITypedElement> _eEHealthAttribute = new Lazy<ITypedElement>(RetrieveEEHealthAttribute);
+        
+        private static Lazy<ITypedElement> _eENameReference = new Lazy<ITypedElement>(RetrieveEENameReference);
         
         /// <summary>
         /// The backing field for the EEName property
@@ -75,10 +79,10 @@ namespace TTC2017.SmartGrids.SubstationStandard.LNNodes.LNGroupY
                     Nullable<HealthStateKind> old = this._eEHealth;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnEEHealthChanging(e);
-                    this.OnPropertyChanging("EEHealth", e);
+                    this.OnPropertyChanging("EEHealth", e, _eEHealthAttribute);
                     this._eEHealth = value;
                     this.OnEEHealthChanged(e);
-                    this.OnPropertyChanged("EEHealth", e);
+                    this.OnPropertyChanged("EEHealth", e, _eEHealthAttribute);
                 }
             }
         }
@@ -100,7 +104,7 @@ namespace TTC2017.SmartGrids.SubstationStandard.LNNodes.LNGroupY
                     IDPL old = this._eEName;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnEENameChanging(e);
-                    this.OnPropertyChanging("EEName", e);
+                    this.OnPropertyChanging("EEName", e, _eENameReference);
                     this._eEName = value;
                     if ((old != null))
                     {
@@ -111,7 +115,7 @@ namespace TTC2017.SmartGrids.SubstationStandard.LNNodes.LNGroupY
                         value.Deleted += this.OnResetEEName;
                     }
                     this.OnEENameChanged(e);
-                    this.OnPropertyChanged("EEName", e);
+                    this.OnPropertyChanged("EEName", e, _eENameReference);
                 }
             }
         }
@@ -163,6 +167,11 @@ namespace TTC2017.SmartGrids.SubstationStandard.LNNodes.LNGroupY
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> EENameChanged;
         
+        private static ITypedElement RetrieveEEHealthAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(GroupY.ClassInstance)).Resolve("EEHealth")));
+        }
+        
         /// <summary>
         /// Raises the EEHealthChanging event
         /// </summary>
@@ -187,6 +196,11 @@ namespace TTC2017.SmartGrids.SubstationStandard.LNNodes.LNGroupY
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveEENameReference()
+        {
+            return ((ITypedElement)(((ModelElement)(GroupY.ClassInstance)).Resolve("EEName")));
         }
         
         /// <summary>
@@ -432,7 +446,7 @@ namespace TTC2017.SmartGrids.SubstationStandard.LNNodes.LNGroupY
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public EEHealthProxy(IGroupY modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "EEHealth")
             {
             }
             
@@ -450,24 +464,6 @@ namespace TTC2017.SmartGrids.SubstationStandard.LNNodes.LNGroupY
                     this.ModelElement.EEHealth = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.EEHealthChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.EEHealthChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -481,7 +477,7 @@ namespace TTC2017.SmartGrids.SubstationStandard.LNNodes.LNGroupY
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public EENameProxy(IGroupY modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "EEName")
             {
             }
             
@@ -498,24 +494,6 @@ namespace TTC2017.SmartGrids.SubstationStandard.LNNodes.LNGroupY
                 {
                     this.ModelElement.EEName = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.EENameChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.EENameChanged -= handler;
             }
         }
     }

@@ -50,7 +50,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfWork
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61970/Informative/InfWork/BusinessC" +
         "ase")]
     [DebuggerDisplayAttribute("BusinessCase {UUID}")]
-    public class BusinessCase : Document, IBusinessCase, IModelElement
+    public partial class BusinessCase : Document, IBusinessCase, IModelElement
     {
         
         /// <summary>
@@ -58,10 +58,16 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfWork
         /// </summary>
         private string _corporateCode;
         
+        private static Lazy<ITypedElement> _corporateCodeAttribute = new Lazy<ITypedElement>(RetrieveCorporateCodeAttribute);
+        
+        private static Lazy<ITypedElement> _worksReference = new Lazy<ITypedElement>(RetrieveWorksReference);
+        
         /// <summary>
         /// The backing field for the Works property
         /// </summary>
         private BusinessCaseWorksCollection _works;
+        
+        private static Lazy<ITypedElement> _projectsReference = new Lazy<ITypedElement>(RetrieveProjectsReference);
         
         /// <summary>
         /// The backing field for the Projects property
@@ -98,10 +104,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfWork
                     string old = this._corporateCode;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnCorporateCodeChanging(e);
-                    this.OnPropertyChanging("CorporateCode", e);
+                    this.OnPropertyChanging("CorporateCode", e, _corporateCodeAttribute);
                     this._corporateCode = value;
                     this.OnCorporateCodeChanged(e);
-                    this.OnPropertyChanged("CorporateCode", e);
+                    this.OnPropertyChanged("CorporateCode", e, _corporateCodeAttribute);
                 }
             }
         }
@@ -173,6 +179,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfWork
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> CorporateCodeChanged;
         
+        private static ITypedElement RetrieveCorporateCodeAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(BusinessCase.ClassInstance)).Resolve("corporateCode")));
+        }
+        
         /// <summary>
         /// Raises the CorporateCodeChanging event
         /// </summary>
@@ -199,6 +210,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfWork
             }
         }
         
+        private static ITypedElement RetrieveWorksReference()
+        {
+            return ((ITypedElement)(((ModelElement)(BusinessCase.ClassInstance)).Resolve("Works")));
+        }
+        
         /// <summary>
         /// Forwards CollectionChanging notifications for the Works property to the parent model element
         /// </summary>
@@ -206,7 +222,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfWork
         /// <param name="e">The original event data</param>
         private void WorksCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("Works", e);
+            this.OnCollectionChanging("Works", e, _worksReference);
         }
         
         /// <summary>
@@ -216,7 +232,12 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfWork
         /// <param name="e">The original event data</param>
         private void WorksCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("Works", e);
+            this.OnCollectionChanged("Works", e, _worksReference);
+        }
+        
+        private static ITypedElement RetrieveProjectsReference()
+        {
+            return ((ITypedElement)(((ModelElement)(BusinessCase.ClassInstance)).Resolve("Projects")));
         }
         
         /// <summary>
@@ -226,7 +247,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfWork
         /// <param name="e">The original event data</param>
         private void ProjectsCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("Projects", e);
+            this.OnCollectionChanging("Projects", e, _projectsReference);
         }
         
         /// <summary>
@@ -236,7 +257,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfWork
         /// <param name="e">The original event data</param>
         private void ProjectsCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("Projects", e);
+            this.OnCollectionChanged("Projects", e, _projectsReference);
         }
         
         /// <summary>
@@ -469,7 +490,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfWork
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public CorporateCodeProxy(IBusinessCase modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "corporateCode")
             {
             }
             
@@ -486,24 +507,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfWork
                 {
                     this.ModelElement.CorporateCode = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.CorporateCodeChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.CorporateCodeChanged -= handler;
             }
         }
     }

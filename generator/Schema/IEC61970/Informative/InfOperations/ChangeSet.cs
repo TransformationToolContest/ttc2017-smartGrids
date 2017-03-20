@@ -50,28 +50,38 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfOperations
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61970/Informative/InfOperations/Cha" +
         "ngeSet")]
     [DebuggerDisplayAttribute("ChangeSet {UUID}")]
-    public class ChangeSet : IdentifiedObject, IChangeSet, IModelElement
+    public partial class ChangeSet : IdentifiedObject, IChangeSet, IModelElement
     {
+        
+        private static Lazy<ITypedElement> _changeItemsReference = new Lazy<ITypedElement>(RetrieveChangeItemsReference);
         
         /// <summary>
         /// The backing field for the ChangeItems property
         /// </summary>
         private ChangeSetChangeItemsCollection _changeItems;
         
+        private static Lazy<ITypedElement> _statusReference = new Lazy<ITypedElement>(RetrieveStatusReference);
+        
         /// <summary>
         /// The backing field for the Status property
         /// </summary>
         private IStatus _status;
+        
+        private static Lazy<ITypedElement> _landBasesReference = new Lazy<ITypedElement>(RetrieveLandBasesReference);
         
         /// <summary>
         /// The backing field for the LandBases property
         /// </summary>
         private ObservableAssociationOrderedSet<ILandBase> _landBases;
         
+        private static Lazy<ITypedElement> _networkDataSetsReference = new Lazy<ITypedElement>(RetrieveNetworkDataSetsReference);
+        
         /// <summary>
         /// The backing field for the NetworkDataSets property
         /// </summary>
         private ChangeSetNetworkDataSetsCollection _networkDataSets;
+        
+        private static Lazy<ITypedElement> _documentsReference = new Lazy<ITypedElement>(RetrieveDocumentsReference);
         
         /// <summary>
         /// The backing field for the Documents property
@@ -129,7 +139,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfOperations
                     IStatus old = this._status;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnStatusChanging(e);
-                    this.OnPropertyChanging("Status", e);
+                    this.OnPropertyChanging("Status", e, _statusReference);
                     this._status = value;
                     if ((old != null))
                     {
@@ -140,7 +150,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfOperations
                         value.Deleted += this.OnResetStatus;
                     }
                     this.OnStatusChanged(e);
-                    this.OnPropertyChanged("Status", e);
+                    this.OnPropertyChanged("Status", e, _statusReference);
                 }
             }
         }
@@ -226,6 +236,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfOperations
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> StatusChanged;
         
+        private static ITypedElement RetrieveChangeItemsReference()
+        {
+            return ((ITypedElement)(((ModelElement)(ChangeSet.ClassInstance)).Resolve("ChangeItems")));
+        }
+        
         /// <summary>
         /// Forwards CollectionChanging notifications for the ChangeItems property to the parent model element
         /// </summary>
@@ -233,7 +248,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfOperations
         /// <param name="e">The original event data</param>
         private void ChangeItemsCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("ChangeItems", e);
+            this.OnCollectionChanging("ChangeItems", e, _changeItemsReference);
         }
         
         /// <summary>
@@ -243,7 +258,12 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfOperations
         /// <param name="e">The original event data</param>
         private void ChangeItemsCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("ChangeItems", e);
+            this.OnCollectionChanged("ChangeItems", e, _changeItemsReference);
+        }
+        
+        private static ITypedElement RetrieveStatusReference()
+        {
+            return ((ITypedElement)(((ModelElement)(ChangeSet.ClassInstance)).Resolve("status")));
         }
         
         /// <summary>
@@ -282,6 +302,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfOperations
             this.Status = null;
         }
         
+        private static ITypedElement RetrieveLandBasesReference()
+        {
+            return ((ITypedElement)(((ModelElement)(ChangeSet.ClassInstance)).Resolve("LandBases")));
+        }
+        
         /// <summary>
         /// Forwards CollectionChanging notifications for the LandBases property to the parent model element
         /// </summary>
@@ -289,7 +314,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfOperations
         /// <param name="e">The original event data</param>
         private void LandBasesCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("LandBases", e);
+            this.OnCollectionChanging("LandBases", e, _landBasesReference);
         }
         
         /// <summary>
@@ -299,7 +324,12 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfOperations
         /// <param name="e">The original event data</param>
         private void LandBasesCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("LandBases", e);
+            this.OnCollectionChanged("LandBases", e, _landBasesReference);
+        }
+        
+        private static ITypedElement RetrieveNetworkDataSetsReference()
+        {
+            return ((ITypedElement)(((ModelElement)(ChangeSet.ClassInstance)).Resolve("NetworkDataSets")));
         }
         
         /// <summary>
@@ -309,7 +339,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfOperations
         /// <param name="e">The original event data</param>
         private void NetworkDataSetsCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("NetworkDataSets", e);
+            this.OnCollectionChanging("NetworkDataSets", e, _networkDataSetsReference);
         }
         
         /// <summary>
@@ -319,7 +349,12 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfOperations
         /// <param name="e">The original event data</param>
         private void NetworkDataSetsCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("NetworkDataSets", e);
+            this.OnCollectionChanged("NetworkDataSets", e, _networkDataSetsReference);
+        }
+        
+        private static ITypedElement RetrieveDocumentsReference()
+        {
+            return ((ITypedElement)(((ModelElement)(ChangeSet.ClassInstance)).Resolve("Documents")));
         }
         
         /// <summary>
@@ -329,7 +364,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfOperations
         /// <param name="e">The original event data</param>
         private void DocumentsCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("Documents", e);
+            this.OnCollectionChanging("Documents", e, _documentsReference);
         }
         
         /// <summary>
@@ -339,7 +374,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfOperations
         /// <param name="e">The original event data</param>
         private void DocumentsCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("Documents", e);
+            this.OnCollectionChanged("Documents", e, _documentsReference);
         }
         
         /// <summary>
@@ -691,7 +726,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfOperations
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public StatusProxy(IChangeSet modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "status")
             {
             }
             
@@ -708,24 +743,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfOperations
                 {
                     this.ModelElement.Status = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.StatusChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.StatusChanged -= handler;
             }
         }
     }

@@ -39,7 +39,7 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
     [XmlNamespacePrefixAttribute("objects")]
     [ModelRepresentationClassAttribute("http://www.transformation-tool-contest.eu/2017/smartGrids/cosem#//COSEMObjects/Me" +
         "asurementValues")]
-    public class MeasurementValues : Data, IMeasurementValues, IModelElement
+    public partial class MeasurementValues : Data, IMeasurementValues, IModelElement
     {
         
         /// <summary>
@@ -47,140 +47,198 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
         /// </summary>
         private Nullable<double> _billing_period_average;
         
+        private static Lazy<ITypedElement> _billing_period_averageAttribute = new Lazy<ITypedElement>(RetrieveBilling_period_averageAttribute);
+        
         /// <summary>
         /// The backing field for the Cumulative_minimum property
         /// </summary>
         private Nullable<double> _cumulative_minimum;
+        
+        private static Lazy<ITypedElement> _cumulative_minimumAttribute = new Lazy<ITypedElement>(RetrieveCumulative_minimumAttribute);
         
         /// <summary>
         /// The backing field for the Cumulative_maximum property
         /// </summary>
         private Nullable<double> _cumulative_maximum;
         
+        private static Lazy<ITypedElement> _cumulative_maximumAttribute = new Lazy<ITypedElement>(RetrieveCumulative_maximumAttribute);
+        
         /// <summary>
         /// The backing field for the Minimum property
         /// </summary>
         private Nullable<double> _minimum;
+        
+        private static Lazy<ITypedElement> _minimumAttribute = new Lazy<ITypedElement>(RetrieveMinimumAttribute);
         
         /// <summary>
         /// The backing field for the Current_average property
         /// </summary>
         private Nullable<double> _current_average;
         
+        private static Lazy<ITypedElement> _current_averageAttribute = new Lazy<ITypedElement>(RetrieveCurrent_averageAttribute);
+        
         /// <summary>
         /// The backing field for the Last_average property
         /// </summary>
         private Nullable<double> _last_average;
+        
+        private static Lazy<ITypedElement> _last_averageAttribute = new Lazy<ITypedElement>(RetrieveLast_averageAttribute);
         
         /// <summary>
         /// The backing field for the Maximum property
         /// </summary>
         private Nullable<double> _maximum;
         
+        private static Lazy<ITypedElement> _maximumAttribute = new Lazy<ITypedElement>(RetrieveMaximumAttribute);
+        
         /// <summary>
         /// The backing field for the Instantaneous_value property
         /// </summary>
         private Nullable<double> _instantaneous_value;
+        
+        private static Lazy<ITypedElement> _instantaneous_valueAttribute = new Lazy<ITypedElement>(RetrieveInstantaneous_valueAttribute);
         
         /// <summary>
         /// The backing field for the Time_integral property
         /// </summary>
         private Nullable<double> _time_integral;
         
+        private static Lazy<ITypedElement> _time_integralAttribute = new Lazy<ITypedElement>(RetrieveTime_integralAttribute);
+        
         /// <summary>
         /// The backing field for the Under_limit_threshold property
         /// </summary>
         private Nullable<double> _under_limit_threshold;
+        
+        private static Lazy<ITypedElement> _under_limit_thresholdAttribute = new Lazy<ITypedElement>(RetrieveUnder_limit_thresholdAttribute);
         
         /// <summary>
         /// The backing field for the Under_limit_occurrence_counter property
         /// </summary>
         private Nullable<double> _under_limit_occurrence_counter;
         
+        private static Lazy<ITypedElement> _under_limit_occurrence_counterAttribute = new Lazy<ITypedElement>(RetrieveUnder_limit_occurrence_counterAttribute);
+        
         /// <summary>
         /// The backing field for the Under_limit_duration property
         /// </summary>
         private Nullable<double> _under_limit_duration;
+        
+        private static Lazy<ITypedElement> _under_limit_durationAttribute = new Lazy<ITypedElement>(RetrieveUnder_limit_durationAttribute);
         
         /// <summary>
         /// The backing field for the Under_limit_magnitude property
         /// </summary>
         private Nullable<double> _under_limit_magnitude;
         
+        private static Lazy<ITypedElement> _under_limit_magnitudeAttribute = new Lazy<ITypedElement>(RetrieveUnder_limit_magnitudeAttribute);
+        
         /// <summary>
         /// The backing field for the Over_limit_threshold property
         /// </summary>
         private Nullable<double> _over_limit_threshold;
+        
+        private static Lazy<ITypedElement> _over_limit_thresholdAttribute = new Lazy<ITypedElement>(RetrieveOver_limit_thresholdAttribute);
         
         /// <summary>
         /// The backing field for the Over_limit_occurrence_counter property
         /// </summary>
         private Nullable<double> _over_limit_occurrence_counter;
         
+        private static Lazy<ITypedElement> _over_limit_occurrence_counterAttribute = new Lazy<ITypedElement>(RetrieveOver_limit_occurrence_counterAttribute);
+        
         /// <summary>
         /// The backing field for the Over_limit_duration property
         /// </summary>
         private Nullable<double> _over_limit_duration;
+        
+        private static Lazy<ITypedElement> _over_limit_durationAttribute = new Lazy<ITypedElement>(RetrieveOver_limit_durationAttribute);
         
         /// <summary>
         /// The backing field for the Over_limit_magnitude property
         /// </summary>
         private Nullable<double> _over_limit_magnitude;
         
+        private static Lazy<ITypedElement> _over_limit_magnitudeAttribute = new Lazy<ITypedElement>(RetrieveOver_limit_magnitudeAttribute);
+        
         /// <summary>
         /// The backing field for the Missing_threshold property
         /// </summary>
         private Nullable<bool> _missing_threshold;
+        
+        private static Lazy<ITypedElement> _missing_thresholdAttribute = new Lazy<ITypedElement>(RetrieveMissing_thresholdAttribute);
         
         /// <summary>
         /// The backing field for the Missing_occurrence_counter property
         /// </summary>
         private Nullable<bool> _missing_occurrence_counter;
         
+        private static Lazy<ITypedElement> _missing_occurrence_counterAttribute = new Lazy<ITypedElement>(RetrieveMissing_occurrence_counterAttribute);
+        
         /// <summary>
         /// The backing field for the Missing_duration property
         /// </summary>
         private Nullable<bool> _missing_duration;
+        
+        private static Lazy<ITypedElement> _missing_durationAttribute = new Lazy<ITypedElement>(RetrieveMissing_durationAttribute);
         
         /// <summary>
         /// The backing field for the Missing_magnitude property
         /// </summary>
         private Nullable<bool> _missing_magnitude;
         
+        private static Lazy<ITypedElement> _missing_magnitudeAttribute = new Lazy<ITypedElement>(RetrieveMissing_magnitudeAttribute);
+        
         /// <summary>
         /// The backing field for the Time_threshold_for_under_limit property
         /// </summary>
         private string _time_threshold_for_under_limit;
+        
+        private static Lazy<ITypedElement> _time_threshold_for_under_limitAttribute = new Lazy<ITypedElement>(RetrieveTime_threshold_for_under_limitAttribute);
         
         /// <summary>
         /// The backing field for the Time_threshold_for_over_limit property
         /// </summary>
         private string _time_threshold_for_over_limit;
         
+        private static Lazy<ITypedElement> _time_threshold_for_over_limitAttribute = new Lazy<ITypedElement>(RetrieveTime_threshold_for_over_limitAttribute);
+        
         /// <summary>
         /// The backing field for the Time_threshold_for_missing_magnitude property
         /// </summary>
         private string _time_threshold_for_missing_magnitude;
+        
+        private static Lazy<ITypedElement> _time_threshold_for_missing_magnitudeAttribute = new Lazy<ITypedElement>(RetrieveTime_threshold_for_missing_magnitudeAttribute);
         
         /// <summary>
         /// The backing field for the Contracted_value property
         /// </summary>
         private Nullable<double> _contracted_value;
         
+        private static Lazy<ITypedElement> _contracted_valueAttribute = new Lazy<ITypedElement>(RetrieveContracted_valueAttribute);
+        
         /// <summary>
         /// The backing field for the Minimum_for_recording_interval property
         /// </summary>
         private Nullable<double> _minimum_for_recording_interval;
+        
+        private static Lazy<ITypedElement> _minimum_for_recording_intervalAttribute = new Lazy<ITypedElement>(RetrieveMinimum_for_recording_intervalAttribute);
         
         /// <summary>
         /// The backing field for the Maximum_for_recording_interval property
         /// </summary>
         private Nullable<double> _maximum_for_recording_interval;
         
+        private static Lazy<ITypedElement> _maximum_for_recording_intervalAttribute = new Lazy<ITypedElement>(RetrieveMaximum_for_recording_intervalAttribute);
+        
         /// <summary>
         /// The backing field for the Test_average property
         /// </summary>
         private Nullable<double> _test_average;
+        
+        private static Lazy<ITypedElement> _test_averageAttribute = new Lazy<ITypedElement>(RetrieveTest_averageAttribute);
+        
+        private static Lazy<ITypedElement> _calculationsReference = new Lazy<ITypedElement>(RetrieveCalculationsReference);
         
         /// <summary>
         /// The backing field for the Calculations property
@@ -206,10 +264,10 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     Nullable<double> old = this._billing_period_average;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnBilling_period_averageChanging(e);
-                    this.OnPropertyChanging("Billing_period_average", e);
+                    this.OnPropertyChanging("Billing_period_average", e, _billing_period_averageAttribute);
                     this._billing_period_average = value;
                     this.OnBilling_period_averageChanged(e);
-                    this.OnPropertyChanged("Billing_period_average", e);
+                    this.OnPropertyChanged("Billing_period_average", e, _billing_period_averageAttribute);
                 }
             }
         }
@@ -231,10 +289,10 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     Nullable<double> old = this._cumulative_minimum;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnCumulative_minimumChanging(e);
-                    this.OnPropertyChanging("Cumulative_minimum", e);
+                    this.OnPropertyChanging("Cumulative_minimum", e, _cumulative_minimumAttribute);
                     this._cumulative_minimum = value;
                     this.OnCumulative_minimumChanged(e);
-                    this.OnPropertyChanged("Cumulative_minimum", e);
+                    this.OnPropertyChanged("Cumulative_minimum", e, _cumulative_minimumAttribute);
                 }
             }
         }
@@ -256,10 +314,10 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     Nullable<double> old = this._cumulative_maximum;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnCumulative_maximumChanging(e);
-                    this.OnPropertyChanging("Cumulative_maximum", e);
+                    this.OnPropertyChanging("Cumulative_maximum", e, _cumulative_maximumAttribute);
                     this._cumulative_maximum = value;
                     this.OnCumulative_maximumChanged(e);
-                    this.OnPropertyChanged("Cumulative_maximum", e);
+                    this.OnPropertyChanged("Cumulative_maximum", e, _cumulative_maximumAttribute);
                 }
             }
         }
@@ -281,10 +339,10 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     Nullable<double> old = this._minimum;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnMinimumChanging(e);
-                    this.OnPropertyChanging("Minimum", e);
+                    this.OnPropertyChanging("Minimum", e, _minimumAttribute);
                     this._minimum = value;
                     this.OnMinimumChanged(e);
-                    this.OnPropertyChanged("Minimum", e);
+                    this.OnPropertyChanged("Minimum", e, _minimumAttribute);
                 }
             }
         }
@@ -306,10 +364,10 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     Nullable<double> old = this._current_average;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnCurrent_averageChanging(e);
-                    this.OnPropertyChanging("Current_average", e);
+                    this.OnPropertyChanging("Current_average", e, _current_averageAttribute);
                     this._current_average = value;
                     this.OnCurrent_averageChanged(e);
-                    this.OnPropertyChanged("Current_average", e);
+                    this.OnPropertyChanged("Current_average", e, _current_averageAttribute);
                 }
             }
         }
@@ -331,10 +389,10 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     Nullable<double> old = this._last_average;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnLast_averageChanging(e);
-                    this.OnPropertyChanging("Last_average", e);
+                    this.OnPropertyChanging("Last_average", e, _last_averageAttribute);
                     this._last_average = value;
                     this.OnLast_averageChanged(e);
-                    this.OnPropertyChanged("Last_average", e);
+                    this.OnPropertyChanged("Last_average", e, _last_averageAttribute);
                 }
             }
         }
@@ -356,10 +414,10 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     Nullable<double> old = this._maximum;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnMaximumChanging(e);
-                    this.OnPropertyChanging("Maximum", e);
+                    this.OnPropertyChanging("Maximum", e, _maximumAttribute);
                     this._maximum = value;
                     this.OnMaximumChanged(e);
-                    this.OnPropertyChanged("Maximum", e);
+                    this.OnPropertyChanged("Maximum", e, _maximumAttribute);
                 }
             }
         }
@@ -381,10 +439,10 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     Nullable<double> old = this._instantaneous_value;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnInstantaneous_valueChanging(e);
-                    this.OnPropertyChanging("Instantaneous_value", e);
+                    this.OnPropertyChanging("Instantaneous_value", e, _instantaneous_valueAttribute);
                     this._instantaneous_value = value;
                     this.OnInstantaneous_valueChanged(e);
-                    this.OnPropertyChanged("Instantaneous_value", e);
+                    this.OnPropertyChanged("Instantaneous_value", e, _instantaneous_valueAttribute);
                 }
             }
         }
@@ -406,10 +464,10 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     Nullable<double> old = this._time_integral;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnTime_integralChanging(e);
-                    this.OnPropertyChanging("Time_integral", e);
+                    this.OnPropertyChanging("Time_integral", e, _time_integralAttribute);
                     this._time_integral = value;
                     this.OnTime_integralChanged(e);
-                    this.OnPropertyChanged("Time_integral", e);
+                    this.OnPropertyChanged("Time_integral", e, _time_integralAttribute);
                 }
             }
         }
@@ -431,10 +489,10 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     Nullable<double> old = this._under_limit_threshold;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnUnder_limit_thresholdChanging(e);
-                    this.OnPropertyChanging("Under_limit_threshold", e);
+                    this.OnPropertyChanging("Under_limit_threshold", e, _under_limit_thresholdAttribute);
                     this._under_limit_threshold = value;
                     this.OnUnder_limit_thresholdChanged(e);
-                    this.OnPropertyChanged("Under_limit_threshold", e);
+                    this.OnPropertyChanged("Under_limit_threshold", e, _under_limit_thresholdAttribute);
                 }
             }
         }
@@ -456,10 +514,10 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     Nullable<double> old = this._under_limit_occurrence_counter;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnUnder_limit_occurrence_counterChanging(e);
-                    this.OnPropertyChanging("Under_limit_occurrence_counter", e);
+                    this.OnPropertyChanging("Under_limit_occurrence_counter", e, _under_limit_occurrence_counterAttribute);
                     this._under_limit_occurrence_counter = value;
                     this.OnUnder_limit_occurrence_counterChanged(e);
-                    this.OnPropertyChanged("Under_limit_occurrence_counter", e);
+                    this.OnPropertyChanged("Under_limit_occurrence_counter", e, _under_limit_occurrence_counterAttribute);
                 }
             }
         }
@@ -481,10 +539,10 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     Nullable<double> old = this._under_limit_duration;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnUnder_limit_durationChanging(e);
-                    this.OnPropertyChanging("Under_limit_duration", e);
+                    this.OnPropertyChanging("Under_limit_duration", e, _under_limit_durationAttribute);
                     this._under_limit_duration = value;
                     this.OnUnder_limit_durationChanged(e);
-                    this.OnPropertyChanged("Under_limit_duration", e);
+                    this.OnPropertyChanged("Under_limit_duration", e, _under_limit_durationAttribute);
                 }
             }
         }
@@ -506,10 +564,10 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     Nullable<double> old = this._under_limit_magnitude;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnUnder_limit_magnitudeChanging(e);
-                    this.OnPropertyChanging("Under_limit_magnitude", e);
+                    this.OnPropertyChanging("Under_limit_magnitude", e, _under_limit_magnitudeAttribute);
                     this._under_limit_magnitude = value;
                     this.OnUnder_limit_magnitudeChanged(e);
-                    this.OnPropertyChanged("Under_limit_magnitude", e);
+                    this.OnPropertyChanged("Under_limit_magnitude", e, _under_limit_magnitudeAttribute);
                 }
             }
         }
@@ -531,10 +589,10 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     Nullable<double> old = this._over_limit_threshold;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnOver_limit_thresholdChanging(e);
-                    this.OnPropertyChanging("Over_limit_threshold", e);
+                    this.OnPropertyChanging("Over_limit_threshold", e, _over_limit_thresholdAttribute);
                     this._over_limit_threshold = value;
                     this.OnOver_limit_thresholdChanged(e);
-                    this.OnPropertyChanged("Over_limit_threshold", e);
+                    this.OnPropertyChanged("Over_limit_threshold", e, _over_limit_thresholdAttribute);
                 }
             }
         }
@@ -556,10 +614,10 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     Nullable<double> old = this._over_limit_occurrence_counter;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnOver_limit_occurrence_counterChanging(e);
-                    this.OnPropertyChanging("Over_limit_occurrence_counter", e);
+                    this.OnPropertyChanging("Over_limit_occurrence_counter", e, _over_limit_occurrence_counterAttribute);
                     this._over_limit_occurrence_counter = value;
                     this.OnOver_limit_occurrence_counterChanged(e);
-                    this.OnPropertyChanged("Over_limit_occurrence_counter", e);
+                    this.OnPropertyChanged("Over_limit_occurrence_counter", e, _over_limit_occurrence_counterAttribute);
                 }
             }
         }
@@ -581,10 +639,10 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     Nullable<double> old = this._over_limit_duration;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnOver_limit_durationChanging(e);
-                    this.OnPropertyChanging("Over_limit_duration", e);
+                    this.OnPropertyChanging("Over_limit_duration", e, _over_limit_durationAttribute);
                     this._over_limit_duration = value;
                     this.OnOver_limit_durationChanged(e);
-                    this.OnPropertyChanged("Over_limit_duration", e);
+                    this.OnPropertyChanged("Over_limit_duration", e, _over_limit_durationAttribute);
                 }
             }
         }
@@ -606,10 +664,10 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     Nullable<double> old = this._over_limit_magnitude;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnOver_limit_magnitudeChanging(e);
-                    this.OnPropertyChanging("Over_limit_magnitude", e);
+                    this.OnPropertyChanging("Over_limit_magnitude", e, _over_limit_magnitudeAttribute);
                     this._over_limit_magnitude = value;
                     this.OnOver_limit_magnitudeChanged(e);
-                    this.OnPropertyChanged("Over_limit_magnitude", e);
+                    this.OnPropertyChanged("Over_limit_magnitude", e, _over_limit_magnitudeAttribute);
                 }
             }
         }
@@ -631,10 +689,10 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     Nullable<bool> old = this._missing_threshold;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnMissing_thresholdChanging(e);
-                    this.OnPropertyChanging("Missing_threshold", e);
+                    this.OnPropertyChanging("Missing_threshold", e, _missing_thresholdAttribute);
                     this._missing_threshold = value;
                     this.OnMissing_thresholdChanged(e);
-                    this.OnPropertyChanged("Missing_threshold", e);
+                    this.OnPropertyChanged("Missing_threshold", e, _missing_thresholdAttribute);
                 }
             }
         }
@@ -656,10 +714,10 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     Nullable<bool> old = this._missing_occurrence_counter;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnMissing_occurrence_counterChanging(e);
-                    this.OnPropertyChanging("Missing_occurrence_counter", e);
+                    this.OnPropertyChanging("Missing_occurrence_counter", e, _missing_occurrence_counterAttribute);
                     this._missing_occurrence_counter = value;
                     this.OnMissing_occurrence_counterChanged(e);
-                    this.OnPropertyChanged("Missing_occurrence_counter", e);
+                    this.OnPropertyChanged("Missing_occurrence_counter", e, _missing_occurrence_counterAttribute);
                 }
             }
         }
@@ -681,10 +739,10 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     Nullable<bool> old = this._missing_duration;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnMissing_durationChanging(e);
-                    this.OnPropertyChanging("Missing_duration", e);
+                    this.OnPropertyChanging("Missing_duration", e, _missing_durationAttribute);
                     this._missing_duration = value;
                     this.OnMissing_durationChanged(e);
-                    this.OnPropertyChanged("Missing_duration", e);
+                    this.OnPropertyChanged("Missing_duration", e, _missing_durationAttribute);
                 }
             }
         }
@@ -706,10 +764,10 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     Nullable<bool> old = this._missing_magnitude;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnMissing_magnitudeChanging(e);
-                    this.OnPropertyChanging("Missing_magnitude", e);
+                    this.OnPropertyChanging("Missing_magnitude", e, _missing_magnitudeAttribute);
                     this._missing_magnitude = value;
                     this.OnMissing_magnitudeChanged(e);
-                    this.OnPropertyChanged("Missing_magnitude", e);
+                    this.OnPropertyChanged("Missing_magnitude", e, _missing_magnitudeAttribute);
                 }
             }
         }
@@ -731,10 +789,10 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     string old = this._time_threshold_for_under_limit;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnTime_threshold_for_under_limitChanging(e);
-                    this.OnPropertyChanging("Time_threshold_for_under_limit", e);
+                    this.OnPropertyChanging("Time_threshold_for_under_limit", e, _time_threshold_for_under_limitAttribute);
                     this._time_threshold_for_under_limit = value;
                     this.OnTime_threshold_for_under_limitChanged(e);
-                    this.OnPropertyChanged("Time_threshold_for_under_limit", e);
+                    this.OnPropertyChanged("Time_threshold_for_under_limit", e, _time_threshold_for_under_limitAttribute);
                 }
             }
         }
@@ -756,10 +814,10 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     string old = this._time_threshold_for_over_limit;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnTime_threshold_for_over_limitChanging(e);
-                    this.OnPropertyChanging("Time_threshold_for_over_limit", e);
+                    this.OnPropertyChanging("Time_threshold_for_over_limit", e, _time_threshold_for_over_limitAttribute);
                     this._time_threshold_for_over_limit = value;
                     this.OnTime_threshold_for_over_limitChanged(e);
-                    this.OnPropertyChanged("Time_threshold_for_over_limit", e);
+                    this.OnPropertyChanged("Time_threshold_for_over_limit", e, _time_threshold_for_over_limitAttribute);
                 }
             }
         }
@@ -781,10 +839,10 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     string old = this._time_threshold_for_missing_magnitude;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnTime_threshold_for_missing_magnitudeChanging(e);
-                    this.OnPropertyChanging("Time_threshold_for_missing_magnitude", e);
+                    this.OnPropertyChanging("Time_threshold_for_missing_magnitude", e, _time_threshold_for_missing_magnitudeAttribute);
                     this._time_threshold_for_missing_magnitude = value;
                     this.OnTime_threshold_for_missing_magnitudeChanged(e);
-                    this.OnPropertyChanged("Time_threshold_for_missing_magnitude", e);
+                    this.OnPropertyChanged("Time_threshold_for_missing_magnitude", e, _time_threshold_for_missing_magnitudeAttribute);
                 }
             }
         }
@@ -806,10 +864,10 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     Nullable<double> old = this._contracted_value;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnContracted_valueChanging(e);
-                    this.OnPropertyChanging("Contracted_value", e);
+                    this.OnPropertyChanging("Contracted_value", e, _contracted_valueAttribute);
                     this._contracted_value = value;
                     this.OnContracted_valueChanged(e);
-                    this.OnPropertyChanged("Contracted_value", e);
+                    this.OnPropertyChanged("Contracted_value", e, _contracted_valueAttribute);
                 }
             }
         }
@@ -831,10 +889,10 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     Nullable<double> old = this._minimum_for_recording_interval;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnMinimum_for_recording_intervalChanging(e);
-                    this.OnPropertyChanging("Minimum_for_recording_interval", e);
+                    this.OnPropertyChanging("Minimum_for_recording_interval", e, _minimum_for_recording_intervalAttribute);
                     this._minimum_for_recording_interval = value;
                     this.OnMinimum_for_recording_intervalChanged(e);
-                    this.OnPropertyChanged("Minimum_for_recording_interval", e);
+                    this.OnPropertyChanged("Minimum_for_recording_interval", e, _minimum_for_recording_intervalAttribute);
                 }
             }
         }
@@ -856,10 +914,10 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     Nullable<double> old = this._maximum_for_recording_interval;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnMaximum_for_recording_intervalChanging(e);
-                    this.OnPropertyChanging("Maximum_for_recording_interval", e);
+                    this.OnPropertyChanging("Maximum_for_recording_interval", e, _maximum_for_recording_intervalAttribute);
                     this._maximum_for_recording_interval = value;
                     this.OnMaximum_for_recording_intervalChanged(e);
-                    this.OnPropertyChanged("Maximum_for_recording_interval", e);
+                    this.OnPropertyChanged("Maximum_for_recording_interval", e, _maximum_for_recording_intervalAttribute);
                 }
             }
         }
@@ -881,10 +939,10 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     Nullable<double> old = this._test_average;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnTest_averageChanging(e);
-                    this.OnPropertyChanging("Test_average", e);
+                    this.OnPropertyChanging("Test_average", e, _test_averageAttribute);
                     this._test_average = value;
                     this.OnTest_averageChanged(e);
-                    this.OnPropertyChanged("Test_average", e);
+                    this.OnPropertyChanged("Test_average", e, _test_averageAttribute);
                 }
             }
         }
@@ -907,7 +965,7 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     IElectricityValues old = this._calculations;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnCalculationsChanging(e);
-                    this.OnPropertyChanging("Calculations", e);
+                    this.OnPropertyChanging("Calculations", e, _calculationsReference);
                     this._calculations = value;
                     if ((old != null))
                     {
@@ -918,7 +976,7 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                         value.Deleted += this.OnResetCalculations;
                     }
                     this.OnCalculationsChanged(e);
-                    this.OnPropertyChanged("Calculations", e);
+                    this.OnPropertyChanged("Calculations", e, _calculationsReference);
                 }
             }
         }
@@ -1240,6 +1298,11 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> CalculationsChanged;
         
+        private static ITypedElement RetrieveBilling_period_averageAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(MeasurementValues.ClassInstance)).Resolve("Billing_period_average")));
+        }
+        
         /// <summary>
         /// Raises the Billing_period_averageChanging event
         /// </summary>
@@ -1264,6 +1327,11 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveCumulative_minimumAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(MeasurementValues.ClassInstance)).Resolve("Cumulative_minimum")));
         }
         
         /// <summary>
@@ -1292,6 +1360,11 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             }
         }
         
+        private static ITypedElement RetrieveCumulative_maximumAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(MeasurementValues.ClassInstance)).Resolve("Cumulative_maximum")));
+        }
+        
         /// <summary>
         /// Raises the Cumulative_maximumChanging event
         /// </summary>
@@ -1316,6 +1389,11 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveMinimumAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(MeasurementValues.ClassInstance)).Resolve("Minimum")));
         }
         
         /// <summary>
@@ -1344,6 +1422,11 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             }
         }
         
+        private static ITypedElement RetrieveCurrent_averageAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(MeasurementValues.ClassInstance)).Resolve("Current_average")));
+        }
+        
         /// <summary>
         /// Raises the Current_averageChanging event
         /// </summary>
@@ -1368,6 +1451,11 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveLast_averageAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(MeasurementValues.ClassInstance)).Resolve("Last_average")));
         }
         
         /// <summary>
@@ -1396,6 +1484,11 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             }
         }
         
+        private static ITypedElement RetrieveMaximumAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(MeasurementValues.ClassInstance)).Resolve("Maximum")));
+        }
+        
         /// <summary>
         /// Raises the MaximumChanging event
         /// </summary>
@@ -1420,6 +1513,11 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveInstantaneous_valueAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(MeasurementValues.ClassInstance)).Resolve("Instantaneous_value")));
         }
         
         /// <summary>
@@ -1448,6 +1546,11 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             }
         }
         
+        private static ITypedElement RetrieveTime_integralAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(MeasurementValues.ClassInstance)).Resolve("Time_integral")));
+        }
+        
         /// <summary>
         /// Raises the Time_integralChanging event
         /// </summary>
@@ -1472,6 +1575,11 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveUnder_limit_thresholdAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(MeasurementValues.ClassInstance)).Resolve("Under_limit_threshold")));
         }
         
         /// <summary>
@@ -1500,6 +1608,11 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             }
         }
         
+        private static ITypedElement RetrieveUnder_limit_occurrence_counterAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(MeasurementValues.ClassInstance)).Resolve("Under_limit_occurrence_counter")));
+        }
+        
         /// <summary>
         /// Raises the Under_limit_occurrence_counterChanging event
         /// </summary>
@@ -1524,6 +1637,11 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveUnder_limit_durationAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(MeasurementValues.ClassInstance)).Resolve("Under_limit_duration")));
         }
         
         /// <summary>
@@ -1552,6 +1670,11 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             }
         }
         
+        private static ITypedElement RetrieveUnder_limit_magnitudeAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(MeasurementValues.ClassInstance)).Resolve("Under_limit_magnitude")));
+        }
+        
         /// <summary>
         /// Raises the Under_limit_magnitudeChanging event
         /// </summary>
@@ -1576,6 +1699,11 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveOver_limit_thresholdAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(MeasurementValues.ClassInstance)).Resolve("Over_limit_threshold")));
         }
         
         /// <summary>
@@ -1604,6 +1732,11 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             }
         }
         
+        private static ITypedElement RetrieveOver_limit_occurrence_counterAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(MeasurementValues.ClassInstance)).Resolve("Over_limit_occurrence_counter")));
+        }
+        
         /// <summary>
         /// Raises the Over_limit_occurrence_counterChanging event
         /// </summary>
@@ -1628,6 +1761,11 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveOver_limit_durationAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(MeasurementValues.ClassInstance)).Resolve("Over_limit_duration")));
         }
         
         /// <summary>
@@ -1656,6 +1794,11 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             }
         }
         
+        private static ITypedElement RetrieveOver_limit_magnitudeAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(MeasurementValues.ClassInstance)).Resolve("Over_limit_magnitude")));
+        }
+        
         /// <summary>
         /// Raises the Over_limit_magnitudeChanging event
         /// </summary>
@@ -1680,6 +1823,11 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveMissing_thresholdAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(MeasurementValues.ClassInstance)).Resolve("Missing_threshold")));
         }
         
         /// <summary>
@@ -1708,6 +1856,11 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             }
         }
         
+        private static ITypedElement RetrieveMissing_occurrence_counterAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(MeasurementValues.ClassInstance)).Resolve("Missing_occurrence_counter")));
+        }
+        
         /// <summary>
         /// Raises the Missing_occurrence_counterChanging event
         /// </summary>
@@ -1732,6 +1885,11 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveMissing_durationAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(MeasurementValues.ClassInstance)).Resolve("Missing_duration")));
         }
         
         /// <summary>
@@ -1760,6 +1918,11 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             }
         }
         
+        private static ITypedElement RetrieveMissing_magnitudeAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(MeasurementValues.ClassInstance)).Resolve("Missing_magnitude")));
+        }
+        
         /// <summary>
         /// Raises the Missing_magnitudeChanging event
         /// </summary>
@@ -1784,6 +1947,11 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveTime_threshold_for_under_limitAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(MeasurementValues.ClassInstance)).Resolve("Time_threshold_for_under_limit")));
         }
         
         /// <summary>
@@ -1812,6 +1980,11 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             }
         }
         
+        private static ITypedElement RetrieveTime_threshold_for_over_limitAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(MeasurementValues.ClassInstance)).Resolve("Time_threshold_for_over_limit")));
+        }
+        
         /// <summary>
         /// Raises the Time_threshold_for_over_limitChanging event
         /// </summary>
@@ -1836,6 +2009,11 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveTime_threshold_for_missing_magnitudeAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(MeasurementValues.ClassInstance)).Resolve("Time_threshold_for_missing_magnitude")));
         }
         
         /// <summary>
@@ -1864,6 +2042,11 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             }
         }
         
+        private static ITypedElement RetrieveContracted_valueAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(MeasurementValues.ClassInstance)).Resolve("Contracted_value")));
+        }
+        
         /// <summary>
         /// Raises the Contracted_valueChanging event
         /// </summary>
@@ -1888,6 +2071,11 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveMinimum_for_recording_intervalAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(MeasurementValues.ClassInstance)).Resolve("Minimum_for_recording_interval")));
         }
         
         /// <summary>
@@ -1916,6 +2104,11 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             }
         }
         
+        private static ITypedElement RetrieveMaximum_for_recording_intervalAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(MeasurementValues.ClassInstance)).Resolve("Maximum_for_recording_interval")));
+        }
+        
         /// <summary>
         /// Raises the Maximum_for_recording_intervalChanging event
         /// </summary>
@@ -1942,6 +2135,11 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             }
         }
         
+        private static ITypedElement RetrieveTest_averageAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(MeasurementValues.ClassInstance)).Resolve("Test_average")));
+        }
+        
         /// <summary>
         /// Raises the Test_averageChanging event
         /// </summary>
@@ -1966,6 +2164,11 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveCalculationsReference()
+        {
+            return ((ITypedElement)(((ModelElement)(MeasurementValues.ClassInstance)).Resolve("calculations")));
         }
         
         /// <summary>
@@ -2454,7 +2657,7 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public Billing_period_averageProxy(IMeasurementValues modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "Billing_period_average")
             {
             }
             
@@ -2472,24 +2675,6 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     this.ModelElement.Billing_period_average = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.Billing_period_averageChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.Billing_period_averageChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -2503,7 +2688,7 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public Cumulative_minimumProxy(IMeasurementValues modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "Cumulative_minimum")
             {
             }
             
@@ -2521,24 +2706,6 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     this.ModelElement.Cumulative_minimum = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.Cumulative_minimumChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.Cumulative_minimumChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -2552,7 +2719,7 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public Cumulative_maximumProxy(IMeasurementValues modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "Cumulative_maximum")
             {
             }
             
@@ -2570,24 +2737,6 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     this.ModelElement.Cumulative_maximum = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.Cumulative_maximumChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.Cumulative_maximumChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -2601,7 +2750,7 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public MinimumProxy(IMeasurementValues modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "Minimum")
             {
             }
             
@@ -2619,24 +2768,6 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     this.ModelElement.Minimum = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.MinimumChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.MinimumChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -2650,7 +2781,7 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public Current_averageProxy(IMeasurementValues modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "Current_average")
             {
             }
             
@@ -2668,24 +2799,6 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     this.ModelElement.Current_average = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.Current_averageChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.Current_averageChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -2699,7 +2812,7 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public Last_averageProxy(IMeasurementValues modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "Last_average")
             {
             }
             
@@ -2717,24 +2830,6 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     this.ModelElement.Last_average = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.Last_averageChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.Last_averageChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -2748,7 +2843,7 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public MaximumProxy(IMeasurementValues modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "Maximum")
             {
             }
             
@@ -2766,24 +2861,6 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     this.ModelElement.Maximum = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.MaximumChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.MaximumChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -2797,7 +2874,7 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public Instantaneous_valueProxy(IMeasurementValues modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "Instantaneous_value")
             {
             }
             
@@ -2815,24 +2892,6 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     this.ModelElement.Instantaneous_value = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.Instantaneous_valueChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.Instantaneous_valueChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -2846,7 +2905,7 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public Time_integralProxy(IMeasurementValues modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "Time_integral")
             {
             }
             
@@ -2864,24 +2923,6 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     this.ModelElement.Time_integral = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.Time_integralChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.Time_integralChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -2895,7 +2936,7 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public Under_limit_thresholdProxy(IMeasurementValues modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "Under_limit_threshold")
             {
             }
             
@@ -2913,24 +2954,6 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     this.ModelElement.Under_limit_threshold = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.Under_limit_thresholdChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.Under_limit_thresholdChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -2944,7 +2967,7 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public Under_limit_occurrence_counterProxy(IMeasurementValues modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "Under_limit_occurrence_counter")
             {
             }
             
@@ -2962,24 +2985,6 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     this.ModelElement.Under_limit_occurrence_counter = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.Under_limit_occurrence_counterChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.Under_limit_occurrence_counterChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -2993,7 +2998,7 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public Under_limit_durationProxy(IMeasurementValues modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "Under_limit_duration")
             {
             }
             
@@ -3011,24 +3016,6 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     this.ModelElement.Under_limit_duration = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.Under_limit_durationChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.Under_limit_durationChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -3042,7 +3029,7 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public Under_limit_magnitudeProxy(IMeasurementValues modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "Under_limit_magnitude")
             {
             }
             
@@ -3060,24 +3047,6 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     this.ModelElement.Under_limit_magnitude = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.Under_limit_magnitudeChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.Under_limit_magnitudeChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -3091,7 +3060,7 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public Over_limit_thresholdProxy(IMeasurementValues modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "Over_limit_threshold")
             {
             }
             
@@ -3109,24 +3078,6 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     this.ModelElement.Over_limit_threshold = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.Over_limit_thresholdChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.Over_limit_thresholdChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -3140,7 +3091,7 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public Over_limit_occurrence_counterProxy(IMeasurementValues modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "Over_limit_occurrence_counter")
             {
             }
             
@@ -3158,24 +3109,6 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     this.ModelElement.Over_limit_occurrence_counter = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.Over_limit_occurrence_counterChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.Over_limit_occurrence_counterChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -3189,7 +3122,7 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public Over_limit_durationProxy(IMeasurementValues modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "Over_limit_duration")
             {
             }
             
@@ -3207,24 +3140,6 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     this.ModelElement.Over_limit_duration = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.Over_limit_durationChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.Over_limit_durationChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -3238,7 +3153,7 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public Over_limit_magnitudeProxy(IMeasurementValues modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "Over_limit_magnitude")
             {
             }
             
@@ -3256,24 +3171,6 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     this.ModelElement.Over_limit_magnitude = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.Over_limit_magnitudeChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.Over_limit_magnitudeChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -3287,7 +3184,7 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public Missing_thresholdProxy(IMeasurementValues modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "Missing_threshold")
             {
             }
             
@@ -3305,24 +3202,6 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     this.ModelElement.Missing_threshold = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.Missing_thresholdChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.Missing_thresholdChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -3336,7 +3215,7 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public Missing_occurrence_counterProxy(IMeasurementValues modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "Missing_occurrence_counter")
             {
             }
             
@@ -3354,24 +3233,6 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     this.ModelElement.Missing_occurrence_counter = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.Missing_occurrence_counterChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.Missing_occurrence_counterChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -3385,7 +3246,7 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public Missing_durationProxy(IMeasurementValues modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "Missing_duration")
             {
             }
             
@@ -3403,24 +3264,6 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     this.ModelElement.Missing_duration = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.Missing_durationChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.Missing_durationChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -3434,7 +3277,7 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public Missing_magnitudeProxy(IMeasurementValues modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "Missing_magnitude")
             {
             }
             
@@ -3452,24 +3295,6 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     this.ModelElement.Missing_magnitude = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.Missing_magnitudeChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.Missing_magnitudeChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -3483,7 +3308,7 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public Time_threshold_for_under_limitProxy(IMeasurementValues modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "Time_threshold_for_under_limit")
             {
             }
             
@@ -3501,24 +3326,6 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     this.ModelElement.Time_threshold_for_under_limit = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.Time_threshold_for_under_limitChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.Time_threshold_for_under_limitChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -3532,7 +3339,7 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public Time_threshold_for_over_limitProxy(IMeasurementValues modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "Time_threshold_for_over_limit")
             {
             }
             
@@ -3550,24 +3357,6 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     this.ModelElement.Time_threshold_for_over_limit = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.Time_threshold_for_over_limitChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.Time_threshold_for_over_limitChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -3581,7 +3370,7 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public Time_threshold_for_missing_magnitudeProxy(IMeasurementValues modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "Time_threshold_for_missing_magnitude")
             {
             }
             
@@ -3599,24 +3388,6 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     this.ModelElement.Time_threshold_for_missing_magnitude = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.Time_threshold_for_missing_magnitudeChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.Time_threshold_for_missing_magnitudeChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -3630,7 +3401,7 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public Contracted_valueProxy(IMeasurementValues modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "Contracted_value")
             {
             }
             
@@ -3648,24 +3419,6 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     this.ModelElement.Contracted_value = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.Contracted_valueChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.Contracted_valueChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -3679,7 +3432,7 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public Minimum_for_recording_intervalProxy(IMeasurementValues modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "Minimum_for_recording_interval")
             {
             }
             
@@ -3697,24 +3450,6 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     this.ModelElement.Minimum_for_recording_interval = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.Minimum_for_recording_intervalChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.Minimum_for_recording_intervalChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -3728,7 +3463,7 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public Maximum_for_recording_intervalProxy(IMeasurementValues modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "Maximum_for_recording_interval")
             {
             }
             
@@ -3746,24 +3481,6 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     this.ModelElement.Maximum_for_recording_interval = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.Maximum_for_recording_intervalChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.Maximum_for_recording_intervalChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -3777,7 +3494,7 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public Test_averageProxy(IMeasurementValues modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "Test_average")
             {
             }
             
@@ -3795,24 +3512,6 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     this.ModelElement.Test_average = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.Test_averageChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.Test_averageChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -3826,7 +3525,7 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public CalculationsProxy(IMeasurementValues modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "calculations")
             {
             }
             
@@ -3843,24 +3542,6 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                 {
                     this.ModelElement.Calculations = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.CalculationsChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.CalculationsChanged -= handler;
             }
         }
     }

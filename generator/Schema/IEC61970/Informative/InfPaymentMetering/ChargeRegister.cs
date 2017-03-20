@@ -46,7 +46,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfPaymentMetering
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61970/Informative/InfPaymentMeterin" +
         "g/ChargeRegister")]
     [DebuggerDisplayAttribute("ChargeRegister {UUID}")]
-    public class ChargeRegister : IdentifiedObject, IChargeRegister, IModelElement
+    public partial class ChargeRegister : IdentifiedObject, IChargeRegister, IModelElement
     {
         
         /// <summary>
@@ -54,10 +54,16 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfPaymentMetering
         /// </summary>
         private Nullable<ChargeKind> _chargeKind;
         
+        private static Lazy<ITypedElement> _chargeKindAttribute = new Lazy<ITypedElement>(RetrieveChargeKindAttribute);
+        
+        private static Lazy<ITypedElement> _sPAccountingFunctionReference = new Lazy<ITypedElement>(RetrieveSPAccountingFunctionReference);
+        
         /// <summary>
         /// The backing field for the SPAccountingFunction property
         /// </summary>
         private ISDPAccountingFunction _sPAccountingFunction;
+        
+        private static Lazy<ITypedElement> _chargeAmountReference = new Lazy<ITypedElement>(RetrieveChargeAmountReference);
         
         /// <summary>
         /// The backing field for the ChargeAmount property
@@ -84,10 +90,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfPaymentMetering
                     Nullable<ChargeKind> old = this._chargeKind;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnChargeKindChanging(e);
-                    this.OnPropertyChanging("ChargeKind", e);
+                    this.OnPropertyChanging("ChargeKind", e, _chargeKindAttribute);
                     this._chargeKind = value;
                     this.OnChargeKindChanged(e);
-                    this.OnPropertyChanged("ChargeKind", e);
+                    this.OnPropertyChanged("ChargeKind", e, _chargeKindAttribute);
                 }
             }
         }
@@ -110,7 +116,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfPaymentMetering
                     ISDPAccountingFunction old = this._sPAccountingFunction;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnSPAccountingFunctionChanging(e);
-                    this.OnPropertyChanging("SPAccountingFunction", e);
+                    this.OnPropertyChanging("SPAccountingFunction", e, _sPAccountingFunctionReference);
                     this._sPAccountingFunction = value;
                     if ((old != null))
                     {
@@ -123,7 +129,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfPaymentMetering
                         value.Deleted += this.OnResetSPAccountingFunction;
                     }
                     this.OnSPAccountingFunctionChanged(e);
-                    this.OnPropertyChanged("SPAccountingFunction", e);
+                    this.OnPropertyChanged("SPAccountingFunction", e, _sPAccountingFunctionReference);
                 }
             }
         }
@@ -146,7 +152,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfPaymentMetering
                     IAccountingUnit old = this._chargeAmount;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnChargeAmountChanging(e);
-                    this.OnPropertyChanging("ChargeAmount", e);
+                    this.OnPropertyChanging("ChargeAmount", e, _chargeAmountReference);
                     this._chargeAmount = value;
                     if ((old != null))
                     {
@@ -157,7 +163,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfPaymentMetering
                         value.Deleted += this.OnResetChargeAmount;
                     }
                     this.OnChargeAmountChanged(e);
-                    this.OnPropertyChanged("ChargeAmount", e);
+                    this.OnPropertyChanged("ChargeAmount", e, _chargeAmountReference);
                 }
             }
         }
@@ -219,6 +225,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfPaymentMetering
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> ChargeAmountChanged;
         
+        private static ITypedElement RetrieveChargeKindAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(ChargeRegister.ClassInstance)).Resolve("chargeKind")));
+        }
+        
         /// <summary>
         /// Raises the ChargeKindChanging event
         /// </summary>
@@ -243,6 +254,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfPaymentMetering
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveSPAccountingFunctionReference()
+        {
+            return ((ITypedElement)(((ModelElement)(ChargeRegister.ClassInstance)).Resolve("SPAccountingFunction")));
         }
         
         /// <summary>
@@ -279,6 +295,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfPaymentMetering
         private void OnResetSPAccountingFunction(object sender, System.EventArgs eventArgs)
         {
             this.SPAccountingFunction = null;
+        }
+        
+        private static ITypedElement RetrieveChargeAmountReference()
+        {
+            return ((ITypedElement)(((ModelElement)(ChargeRegister.ClassInstance)).Resolve("chargeAmount")));
         }
         
         /// <summary>
@@ -567,7 +588,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfPaymentMetering
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public ChargeKindProxy(IChargeRegister modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "chargeKind")
             {
             }
             
@@ -585,24 +606,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfPaymentMetering
                     this.ModelElement.ChargeKind = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ChargeKindChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ChargeKindChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -616,7 +619,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfPaymentMetering
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public SPAccountingFunctionProxy(IChargeRegister modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "SPAccountingFunction")
             {
             }
             
@@ -634,24 +637,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfPaymentMetering
                     this.ModelElement.SPAccountingFunction = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.SPAccountingFunctionChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.SPAccountingFunctionChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -665,7 +650,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfPaymentMetering
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public ChargeAmountProxy(IChargeRegister modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "chargeAmount")
             {
             }
             
@@ -682,24 +667,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfPaymentMetering
                 {
                     this.ModelElement.ChargeAmount = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ChargeAmountChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ChargeAmountChanged -= handler;
             }
         }
     }

@@ -58,13 +58,17 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Core
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61970/Core/ConnectivityNodeContaine" +
         "r")]
     [DebuggerDisplayAttribute("ConnectivityNodeContainer {UUID}")]
-    public class ConnectivityNodeContainer : PowerSystemResource, IConnectivityNodeContainer, IModelElement
+    public partial class ConnectivityNodeContainer : PowerSystemResource, IConnectivityNodeContainer, IModelElement
     {
+        
+        private static Lazy<ITypedElement> _connectivityNodesReference = new Lazy<ITypedElement>(RetrieveConnectivityNodesReference);
         
         /// <summary>
         /// The backing field for the ConnectivityNodes property
         /// </summary>
         private ConnectivityNodeContainerConnectivityNodesCollection _connectivityNodes;
+        
+        private static Lazy<ITypedElement> _topologicalNodeReference = new Lazy<ITypedElement>(RetrieveTopologicalNodeReference);
         
         /// <summary>
         /// The backing field for the TopologicalNode property
@@ -140,6 +144,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Core
             }
         }
         
+        private static ITypedElement RetrieveConnectivityNodesReference()
+        {
+            return ((ITypedElement)(((ModelElement)(ConnectivityNodeContainer.ClassInstance)).Resolve("ConnectivityNodes")));
+        }
+        
         /// <summary>
         /// Forwards CollectionChanging notifications for the ConnectivityNodes property to the parent model element
         /// </summary>
@@ -147,7 +156,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Core
         /// <param name="e">The original event data</param>
         private void ConnectivityNodesCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("ConnectivityNodes", e);
+            this.OnCollectionChanging("ConnectivityNodes", e, _connectivityNodesReference);
         }
         
         /// <summary>
@@ -157,7 +166,12 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Core
         /// <param name="e">The original event data</param>
         private void ConnectivityNodesCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("ConnectivityNodes", e);
+            this.OnCollectionChanged("ConnectivityNodes", e, _connectivityNodesReference);
+        }
+        
+        private static ITypedElement RetrieveTopologicalNodeReference()
+        {
+            return ((ITypedElement)(((ModelElement)(ConnectivityNodeContainer.ClassInstance)).Resolve("TopologicalNode")));
         }
         
         /// <summary>
@@ -167,7 +181,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Core
         /// <param name="e">The original event data</param>
         private void TopologicalNodeCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("TopologicalNode", e);
+            this.OnCollectionChanging("TopologicalNode", e, _topologicalNodeReference);
         }
         
         /// <summary>
@@ -177,7 +191,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Core
         /// <param name="e">The original event data</param>
         private void TopologicalNodeCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("TopologicalNode", e);
+            this.OnCollectionChanged("TopologicalNode", e, _topologicalNodeReference);
         }
         
         /// <summary>

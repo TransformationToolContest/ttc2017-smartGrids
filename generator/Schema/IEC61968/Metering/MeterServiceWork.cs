@@ -54,13 +54,17 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Metering
     [XmlNamespacePrefixAttribute("cimMetering")]
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61968/Metering/MeterServiceWork")]
     [DebuggerDisplayAttribute("MeterServiceWork {UUID}")]
-    public class MeterServiceWork : TTC2017.SmartGrids.CIM.IEC61968.Work.Work, IMeterServiceWork, IModelElement
+    public partial class MeterServiceWork : TTC2017.SmartGrids.CIM.IEC61968.Work.Work, IMeterServiceWork, IModelElement
     {
+        
+        private static Lazy<ITypedElement> _oldMeterAssetReference = new Lazy<ITypedElement>(RetrieveOldMeterAssetReference);
         
         /// <summary>
         /// The backing field for the OldMeterAsset property
         /// </summary>
         private IMeterAsset _oldMeterAsset;
+        
+        private static Lazy<ITypedElement> _meterAssetReference = new Lazy<ITypedElement>(RetrieveMeterAssetReference);
         
         /// <summary>
         /// The backing field for the MeterAsset property
@@ -87,7 +91,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Metering
                     IMeterAsset old = this._oldMeterAsset;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnOldMeterAssetChanging(e);
-                    this.OnPropertyChanging("OldMeterAsset", e);
+                    this.OnPropertyChanging("OldMeterAsset", e, _oldMeterAssetReference);
                     this._oldMeterAsset = value;
                     if ((old != null))
                     {
@@ -100,7 +104,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Metering
                         value.Deleted += this.OnResetOldMeterAsset;
                     }
                     this.OnOldMeterAssetChanged(e);
-                    this.OnPropertyChanged("OldMeterAsset", e);
+                    this.OnPropertyChanged("OldMeterAsset", e, _oldMeterAssetReference);
                 }
             }
         }
@@ -123,7 +127,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Metering
                     IMeterAsset old = this._meterAsset;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnMeterAssetChanging(e);
-                    this.OnPropertyChanging("MeterAsset", e);
+                    this.OnPropertyChanging("MeterAsset", e, _meterAssetReference);
                     this._meterAsset = value;
                     if ((old != null))
                     {
@@ -136,7 +140,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Metering
                         value.Deleted += this.OnResetMeterAsset;
                     }
                     this.OnMeterAssetChanged(e);
-                    this.OnPropertyChanged("MeterAsset", e);
+                    this.OnPropertyChanged("MeterAsset", e, _meterAssetReference);
                 }
             }
         }
@@ -187,6 +191,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Metering
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> MeterAssetChanged;
         
+        private static ITypedElement RetrieveOldMeterAssetReference()
+        {
+            return ((ITypedElement)(((ModelElement)(MeterServiceWork.ClassInstance)).Resolve("OldMeterAsset")));
+        }
+        
         /// <summary>
         /// Raises the OldMeterAssetChanging event
         /// </summary>
@@ -221,6 +230,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Metering
         private void OnResetOldMeterAsset(object sender, System.EventArgs eventArgs)
         {
             this.OldMeterAsset = null;
+        }
+        
+        private static ITypedElement RetrieveMeterAssetReference()
+        {
+            return ((ITypedElement)(((ModelElement)(MeterServiceWork.ClassInstance)).Resolve("MeterAsset")));
         }
         
         /// <summary>
@@ -488,7 +502,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Metering
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public OldMeterAssetProxy(IMeterServiceWork modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "OldMeterAsset")
             {
             }
             
@@ -506,24 +520,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Metering
                     this.ModelElement.OldMeterAsset = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.OldMeterAssetChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.OldMeterAssetChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -537,7 +533,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Metering
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public MeterAssetProxy(IMeterServiceWork modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "MeterAsset")
             {
             }
             
@@ -554,24 +550,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Metering
                 {
                     this.ModelElement.MeterAsset = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.MeterAssetChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.MeterAssetChanged -= handler;
             }
         }
     }

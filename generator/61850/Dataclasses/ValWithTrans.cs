@@ -39,7 +39,7 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
     [XmlNamespacePrefixAttribute("data")]
     [ModelRepresentationClassAttribute("http://www.transformation-tool-contest.eu/2017/smartGrids/substationStandard#//Da" +
         "taclasses/ValWithTrans")]
-    public class ValWithTrans : ModelElement, IValWithTrans, IModelElement
+    public partial class ValWithTrans : ModelElement, IValWithTrans, IModelElement
     {
         
         /// <summary>
@@ -47,10 +47,14 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
         /// </summary>
         private Nullable<int> _posVal;
         
+        private static Lazy<ITypedElement> _posValAttribute = new Lazy<ITypedElement>(RetrievePosValAttribute);
+        
         /// <summary>
         /// The backing field for the TransInd property
         /// </summary>
         private Nullable<bool> _transInd;
+        
+        private static Lazy<ITypedElement> _transIndAttribute = new Lazy<ITypedElement>(RetrieveTransIndAttribute);
         
         private static IClass _classInstance;
         
@@ -72,10 +76,10 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
                     Nullable<int> old = this._posVal;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnPosValChanging(e);
-                    this.OnPropertyChanging("PosVal", e);
+                    this.OnPropertyChanging("PosVal", e, _posValAttribute);
                     this._posVal = value;
                     this.OnPosValChanged(e);
-                    this.OnPropertyChanged("PosVal", e);
+                    this.OnPropertyChanged("PosVal", e, _posValAttribute);
                 }
             }
         }
@@ -98,10 +102,10 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
                     Nullable<bool> old = this._transInd;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnTransIndChanging(e);
-                    this.OnPropertyChanging("TransInd", e);
+                    this.OnPropertyChanging("TransInd", e, _transIndAttribute);
                     this._transInd = value;
                     this.OnTransIndChanged(e);
-                    this.OnPropertyChanged("TransInd", e);
+                    this.OnPropertyChanged("TransInd", e, _transIndAttribute);
                 }
             }
         }
@@ -142,6 +146,11 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> TransIndChanged;
         
+        private static ITypedElement RetrievePosValAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(ValWithTrans.ClassInstance)).Resolve("posVal")));
+        }
+        
         /// <summary>
         /// Raises the PosValChanging event
         /// </summary>
@@ -166,6 +175,11 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveTransIndAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(ValWithTrans.ClassInstance)).Resolve("transInd")));
         }
         
         /// <summary>
@@ -257,7 +271,7 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public PosValProxy(IValWithTrans modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "posVal")
             {
             }
             
@@ -275,24 +289,6 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
                     this.ModelElement.PosVal = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.PosValChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.PosValChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -306,7 +302,7 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public TransIndProxy(IValWithTrans modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "transInd")
             {
             }
             
@@ -323,24 +319,6 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
                 {
                     this.ModelElement.TransInd = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.TransIndChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.TransIndChanged -= handler;
             }
         }
     }

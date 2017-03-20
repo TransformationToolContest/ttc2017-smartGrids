@@ -50,8 +50,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61970/Informative/MarketOperations/" +
         "BidPriceCurve")]
     [DebuggerDisplayAttribute("BidPriceCurve {UUID}")]
-    public class BidPriceCurve : Curve, IBidPriceCurve, IModelElement
+    public partial class BidPriceCurve : Curve, IBidPriceCurve, IModelElement
     {
+        
+        private static Lazy<ITypedElement> _productBidsReference = new Lazy<ITypedElement>(RetrieveProductBidsReference);
         
         /// <summary>
         /// The backing field for the ProductBids property
@@ -109,6 +111,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
             }
         }
         
+        private static ITypedElement RetrieveProductBidsReference()
+        {
+            return ((ITypedElement)(((ModelElement)(BidPriceCurve.ClassInstance)).Resolve("ProductBids")));
+        }
+        
         /// <summary>
         /// Forwards CollectionChanging notifications for the ProductBids property to the parent model element
         /// </summary>
@@ -116,7 +123,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
         /// <param name="e">The original event data</param>
         private void ProductBidsCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("ProductBids", e);
+            this.OnCollectionChanging("ProductBids", e, _productBidsReference);
         }
         
         /// <summary>
@@ -126,7 +133,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
         /// <param name="e">The original event data</param>
         private void ProductBidsCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("ProductBids", e);
+            this.OnCollectionChanged("ProductBids", e, _productBidsReference);
         }
         
         /// <summary>

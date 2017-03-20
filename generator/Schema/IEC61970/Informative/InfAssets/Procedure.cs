@@ -53,7 +53,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61970/Informative/InfAssets/Procedu" +
         "re")]
     [DebuggerDisplayAttribute("Procedure {UUID}")]
-    public class Procedure : Document, IProcedure, IModelElement
+    public partial class Procedure : Document, IProcedure, IModelElement
     {
         
         /// <summary>
@@ -61,35 +61,51 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
         /// </summary>
         private Nullable<ProcedureKind> _kind;
         
+        private static Lazy<ITypedElement> _kindAttribute = new Lazy<ITypedElement>(RetrieveKindAttribute);
+        
         /// <summary>
         /// The backing field for the SequenceNumber property
         /// </summary>
         private string _sequenceNumber;
+        
+        private static Lazy<ITypedElement> _sequenceNumberAttribute = new Lazy<ITypedElement>(RetrieveSequenceNumberAttribute);
         
         /// <summary>
         /// The backing field for the CorporateCode property
         /// </summary>
         private string _corporateCode;
         
+        private static Lazy<ITypedElement> _corporateCodeAttribute = new Lazy<ITypedElement>(RetrieveCorporateCodeAttribute);
+        
         /// <summary>
         /// The backing field for the Instruction property
         /// </summary>
         private string _instruction;
+        
+        private static Lazy<ITypedElement> _instructionAttribute = new Lazy<ITypedElement>(RetrieveInstructionAttribute);
+        
+        private static Lazy<ITypedElement> _limitsReference = new Lazy<ITypedElement>(RetrieveLimitsReference);
         
         /// <summary>
         /// The backing field for the Limits property
         /// </summary>
         private ProcedureLimitsCollection _limits;
         
+        private static Lazy<ITypedElement> _compatibleUnitsReference = new Lazy<ITypedElement>(RetrieveCompatibleUnitsReference);
+        
         /// <summary>
         /// The backing field for the CompatibleUnits property
         /// </summary>
         private ProcedureCompatibleUnitsCollection _compatibleUnits;
         
+        private static Lazy<ITypedElement> _procedureDataSetsReference = new Lazy<ITypedElement>(RetrieveProcedureDataSetsReference);
+        
         /// <summary>
         /// The backing field for the ProcedureDataSets property
         /// </summary>
         private ProcedureProcedureDataSetsCollection _procedureDataSets;
+        
+        private static Lazy<ITypedElement> _procedureValuesReference = new Lazy<ITypedElement>(RetrieveProcedureValuesReference);
         
         /// <summary>
         /// The backing field for the ProcedureValues property
@@ -132,10 +148,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
                     Nullable<ProcedureKind> old = this._kind;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnKindChanging(e);
-                    this.OnPropertyChanging("Kind", e);
+                    this.OnPropertyChanging("Kind", e, _kindAttribute);
                     this._kind = value;
                     this.OnKindChanged(e);
-                    this.OnPropertyChanged("Kind", e);
+                    this.OnPropertyChanged("Kind", e, _kindAttribute);
                 }
             }
         }
@@ -158,10 +174,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
                     string old = this._sequenceNumber;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnSequenceNumberChanging(e);
-                    this.OnPropertyChanging("SequenceNumber", e);
+                    this.OnPropertyChanging("SequenceNumber", e, _sequenceNumberAttribute);
                     this._sequenceNumber = value;
                     this.OnSequenceNumberChanged(e);
-                    this.OnPropertyChanged("SequenceNumber", e);
+                    this.OnPropertyChanged("SequenceNumber", e, _sequenceNumberAttribute);
                 }
             }
         }
@@ -184,10 +200,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
                     string old = this._corporateCode;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnCorporateCodeChanging(e);
-                    this.OnPropertyChanging("CorporateCode", e);
+                    this.OnPropertyChanging("CorporateCode", e, _corporateCodeAttribute);
                     this._corporateCode = value;
                     this.OnCorporateCodeChanged(e);
-                    this.OnPropertyChanged("CorporateCode", e);
+                    this.OnPropertyChanged("CorporateCode", e, _corporateCodeAttribute);
                 }
             }
         }
@@ -210,10 +226,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
                     string old = this._instruction;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnInstructionChanging(e);
-                    this.OnPropertyChanging("Instruction", e);
+                    this.OnPropertyChanging("Instruction", e, _instructionAttribute);
                     this._instruction = value;
                     this.OnInstructionChanged(e);
-                    this.OnPropertyChanged("Instruction", e);
+                    this.OnPropertyChanged("Instruction", e, _instructionAttribute);
                 }
             }
         }
@@ -345,6 +361,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> InstructionChanged;
         
+        private static ITypedElement RetrieveKindAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(Procedure.ClassInstance)).Resolve("kind")));
+        }
+        
         /// <summary>
         /// Raises the KindChanging event
         /// </summary>
@@ -369,6 +390,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveSequenceNumberAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(Procedure.ClassInstance)).Resolve("sequenceNumber")));
         }
         
         /// <summary>
@@ -397,6 +423,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
             }
         }
         
+        private static ITypedElement RetrieveCorporateCodeAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(Procedure.ClassInstance)).Resolve("corporateCode")));
+        }
+        
         /// <summary>
         /// Raises the CorporateCodeChanging event
         /// </summary>
@@ -421,6 +452,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveInstructionAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(Procedure.ClassInstance)).Resolve("instruction")));
         }
         
         /// <summary>
@@ -449,6 +485,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
             }
         }
         
+        private static ITypedElement RetrieveLimitsReference()
+        {
+            return ((ITypedElement)(((ModelElement)(Procedure.ClassInstance)).Resolve("Limits")));
+        }
+        
         /// <summary>
         /// Forwards CollectionChanging notifications for the Limits property to the parent model element
         /// </summary>
@@ -456,7 +497,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
         /// <param name="e">The original event data</param>
         private void LimitsCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("Limits", e);
+            this.OnCollectionChanging("Limits", e, _limitsReference);
         }
         
         /// <summary>
@@ -466,7 +507,12 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
         /// <param name="e">The original event data</param>
         private void LimitsCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("Limits", e);
+            this.OnCollectionChanged("Limits", e, _limitsReference);
+        }
+        
+        private static ITypedElement RetrieveCompatibleUnitsReference()
+        {
+            return ((ITypedElement)(((ModelElement)(Procedure.ClassInstance)).Resolve("CompatibleUnits")));
         }
         
         /// <summary>
@@ -476,7 +522,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
         /// <param name="e">The original event data</param>
         private void CompatibleUnitsCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("CompatibleUnits", e);
+            this.OnCollectionChanging("CompatibleUnits", e, _compatibleUnitsReference);
         }
         
         /// <summary>
@@ -486,7 +532,12 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
         /// <param name="e">The original event data</param>
         private void CompatibleUnitsCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("CompatibleUnits", e);
+            this.OnCollectionChanged("CompatibleUnits", e, _compatibleUnitsReference);
+        }
+        
+        private static ITypedElement RetrieveProcedureDataSetsReference()
+        {
+            return ((ITypedElement)(((ModelElement)(Procedure.ClassInstance)).Resolve("ProcedureDataSets")));
         }
         
         /// <summary>
@@ -496,7 +547,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
         /// <param name="e">The original event data</param>
         private void ProcedureDataSetsCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("ProcedureDataSets", e);
+            this.OnCollectionChanging("ProcedureDataSets", e, _procedureDataSetsReference);
         }
         
         /// <summary>
@@ -506,7 +557,12 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
         /// <param name="e">The original event data</param>
         private void ProcedureDataSetsCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("ProcedureDataSets", e);
+            this.OnCollectionChanged("ProcedureDataSets", e, _procedureDataSetsReference);
+        }
+        
+        private static ITypedElement RetrieveProcedureValuesReference()
+        {
+            return ((ITypedElement)(((ModelElement)(Procedure.ClassInstance)).Resolve("ProcedureValues")));
         }
         
         /// <summary>
@@ -516,7 +572,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
         /// <param name="e">The original event data</param>
         private void ProcedureValuesCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("ProcedureValues", e);
+            this.OnCollectionChanging("ProcedureValues", e, _procedureValuesReference);
         }
         
         /// <summary>
@@ -526,7 +582,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
         /// <param name="e">The original event data</param>
         private void ProcedureValuesCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("ProcedureValues", e);
+            this.OnCollectionChanged("ProcedureValues", e, _procedureValuesReference);
         }
         
         /// <summary>
@@ -862,7 +918,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public KindProxy(IProcedure modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "kind")
             {
             }
             
@@ -880,24 +936,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
                     this.ModelElement.Kind = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.KindChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.KindChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -911,7 +949,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public SequenceNumberProxy(IProcedure modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "sequenceNumber")
             {
             }
             
@@ -929,24 +967,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
                     this.ModelElement.SequenceNumber = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.SequenceNumberChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.SequenceNumberChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -960,7 +980,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public CorporateCodeProxy(IProcedure modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "corporateCode")
             {
             }
             
@@ -978,24 +998,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
                     this.ModelElement.CorporateCode = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.CorporateCodeChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.CorporateCodeChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1009,7 +1011,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public InstructionProxy(IProcedure modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "instruction")
             {
             }
             
@@ -1026,24 +1028,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
                 {
                     this.ModelElement.Instruction = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.InstructionChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.InstructionChanged -= handler;
             }
         }
     }

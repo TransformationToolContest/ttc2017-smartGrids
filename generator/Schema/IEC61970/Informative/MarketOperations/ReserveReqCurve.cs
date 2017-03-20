@@ -50,8 +50,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61970/Informative/MarketOperations/" +
         "ReserveReqCurve")]
     [DebuggerDisplayAttribute("ReserveReqCurve {UUID}")]
-    public class ReserveReqCurve : RegularIntervalSchedule, IReserveReqCurve, IModelElement
+    public partial class ReserveReqCurve : RegularIntervalSchedule, IReserveReqCurve, IModelElement
     {
+        
+        private static Lazy<ITypedElement> _reserveReqReference = new Lazy<ITypedElement>(RetrieveReserveReqReference);
         
         /// <summary>
         /// The backing field for the ReserveReq property
@@ -78,7 +80,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
                     IReserveReq old = this._reserveReq;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnReserveReqChanging(e);
-                    this.OnPropertyChanging("ReserveReq", e);
+                    this.OnPropertyChanging("ReserveReq", e, _reserveReqReference);
                     this._reserveReq = value;
                     if ((old != null))
                     {
@@ -91,7 +93,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
                         value.Deleted += this.OnResetReserveReq;
                     }
                     this.OnReserveReqChanged(e);
-                    this.OnPropertyChanged("ReserveReq", e);
+                    this.OnPropertyChanged("ReserveReq", e, _reserveReqReference);
                 }
             }
         }
@@ -132,6 +134,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
         /// Gets fired when the ReserveReq property changed its value
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> ReserveReqChanged;
+        
+        private static ITypedElement RetrieveReserveReqReference()
+        {
+            return ((ITypedElement)(((ModelElement)(ReserveReqCurve.ClassInstance)).Resolve("ReserveReq")));
+        }
         
         /// <summary>
         /// Raises the ReserveReqChanging event
@@ -356,7 +363,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public ReserveReqProxy(IReserveReqCurve modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "ReserveReq")
             {
             }
             
@@ -373,24 +380,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
                 {
                     this.ModelElement.ReserveReq = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ReserveReqChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ReserveReqChanged -= handler;
             }
         }
     }

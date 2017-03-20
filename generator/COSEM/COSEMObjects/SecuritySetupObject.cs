@@ -39,7 +39,7 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
     [XmlNamespacePrefixAttribute("objects")]
     [ModelRepresentationClassAttribute("http://www.transformation-tool-contest.eu/2017/smartGrids/cosem#//COSEMObjects/Se" +
         "curitySetupObject")]
-    public class SecuritySetupObject : Securitysetup, ISecuritySetupObject, IModelElement
+    public partial class SecuritySetupObject : Securitysetup, ISecuritySetupObject, IModelElement
     {
         
         private static IClass _classInstance;

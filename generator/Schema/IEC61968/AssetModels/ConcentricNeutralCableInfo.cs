@@ -47,7 +47,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.AssetModels
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61968/AssetModels/ConcentricNeutral" +
         "CableInfo")]
     [DebuggerDisplayAttribute("ConcentricNeutralCableInfo {UUID}")]
-    public class ConcentricNeutralCableInfo : CableInfo, IConcentricNeutralCableInfo, IModelElement
+    public partial class ConcentricNeutralCableInfo : CableInfo, IConcentricNeutralCableInfo, IModelElement
     {
         
         /// <summary>
@@ -55,10 +55,16 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.AssetModels
         /// </summary>
         private float _diameterOverNeutral;
         
+        private static Lazy<ITypedElement> _diameterOverNeutralAttribute = new Lazy<ITypedElement>(RetrieveDiameterOverNeutralAttribute);
+        
         /// <summary>
         /// The backing field for the NeutralStrandCount property
         /// </summary>
         private int _neutralStrandCount;
+        
+        private static Lazy<ITypedElement> _neutralStrandCountAttribute = new Lazy<ITypedElement>(RetrieveNeutralStrandCountAttribute);
+        
+        private static Lazy<ITypedElement> _wireTypeReference = new Lazy<ITypedElement>(RetrieveWireTypeReference);
         
         /// <summary>
         /// The backing field for the WireType property
@@ -85,10 +91,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.AssetModels
                     float old = this._diameterOverNeutral;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnDiameterOverNeutralChanging(e);
-                    this.OnPropertyChanging("DiameterOverNeutral", e);
+                    this.OnPropertyChanging("DiameterOverNeutral", e, _diameterOverNeutralAttribute);
                     this._diameterOverNeutral = value;
                     this.OnDiameterOverNeutralChanged(e);
-                    this.OnPropertyChanged("DiameterOverNeutral", e);
+                    this.OnPropertyChanged("DiameterOverNeutral", e, _diameterOverNeutralAttribute);
                 }
             }
         }
@@ -111,10 +117,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.AssetModels
                     int old = this._neutralStrandCount;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnNeutralStrandCountChanging(e);
-                    this.OnPropertyChanging("NeutralStrandCount", e);
+                    this.OnPropertyChanging("NeutralStrandCount", e, _neutralStrandCountAttribute);
                     this._neutralStrandCount = value;
                     this.OnNeutralStrandCountChanged(e);
-                    this.OnPropertyChanged("NeutralStrandCount", e);
+                    this.OnPropertyChanged("NeutralStrandCount", e, _neutralStrandCountAttribute);
                 }
             }
         }
@@ -137,7 +143,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.AssetModels
                     IWireType old = this._wireType;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnWireTypeChanging(e);
-                    this.OnPropertyChanging("WireType", e);
+                    this.OnPropertyChanging("WireType", e, _wireTypeReference);
                     this._wireType = value;
                     if ((old != null))
                     {
@@ -150,7 +156,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.AssetModels
                         value.Deleted += this.OnResetWireType;
                     }
                     this.OnWireTypeChanged(e);
-                    this.OnPropertyChanged("WireType", e);
+                    this.OnPropertyChanged("WireType", e, _wireTypeReference);
                 }
             }
         }
@@ -212,6 +218,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.AssetModels
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> WireTypeChanged;
         
+        private static ITypedElement RetrieveDiameterOverNeutralAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(ConcentricNeutralCableInfo.ClassInstance)).Resolve("diameterOverNeutral")));
+        }
+        
         /// <summary>
         /// Raises the DiameterOverNeutralChanging event
         /// </summary>
@@ -238,6 +249,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.AssetModels
             }
         }
         
+        private static ITypedElement RetrieveNeutralStrandCountAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(ConcentricNeutralCableInfo.ClassInstance)).Resolve("neutralStrandCount")));
+        }
+        
         /// <summary>
         /// Raises the NeutralStrandCountChanging event
         /// </summary>
@@ -262,6 +278,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.AssetModels
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveWireTypeReference()
+        {
+            return ((ITypedElement)(((ModelElement)(ConcentricNeutralCableInfo.ClassInstance)).Resolve("WireType")));
         }
         
         /// <summary>
@@ -516,7 +537,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.AssetModels
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public DiameterOverNeutralProxy(IConcentricNeutralCableInfo modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "diameterOverNeutral")
             {
             }
             
@@ -534,24 +555,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.AssetModels
                     this.ModelElement.DiameterOverNeutral = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.DiameterOverNeutralChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.DiameterOverNeutralChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -565,7 +568,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.AssetModels
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public NeutralStrandCountProxy(IConcentricNeutralCableInfo modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "neutralStrandCount")
             {
             }
             
@@ -583,24 +586,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.AssetModels
                     this.ModelElement.NeutralStrandCount = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.NeutralStrandCountChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.NeutralStrandCountChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -614,7 +599,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.AssetModels
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public WireTypeProxy(IConcentricNeutralCableInfo modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "WireType")
             {
             }
             
@@ -631,24 +616,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.AssetModels
                 {
                     this.ModelElement.WireType = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.WireTypeChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.WireTypeChanged -= handler;
             }
         }
     }

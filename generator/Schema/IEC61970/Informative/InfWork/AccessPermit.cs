@@ -50,7 +50,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfWork
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61970/Informative/InfWork/AccessPer" +
         "mit")]
     [DebuggerDisplayAttribute("AccessPermit {UUID}")]
-    public class AccessPermit : Document, IAccessPermit, IModelElement
+    public partial class AccessPermit : Document, IAccessPermit, IModelElement
     {
         
         /// <summary>
@@ -58,25 +58,35 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfWork
         /// </summary>
         private string _expirationDate;
         
+        private static Lazy<ITypedElement> _expirationDateAttribute = new Lazy<ITypedElement>(RetrieveExpirationDateAttribute);
+        
         /// <summary>
         /// The backing field for the ApplicationNumber property
         /// </summary>
         private string _applicationNumber;
+        
+        private static Lazy<ITypedElement> _applicationNumberAttribute = new Lazy<ITypedElement>(RetrieveApplicationNumberAttribute);
         
         /// <summary>
         /// The backing field for the EffectiveDate property
         /// </summary>
         private string _effectiveDate;
         
+        private static Lazy<ITypedElement> _effectiveDateAttribute = new Lazy<ITypedElement>(RetrieveEffectiveDateAttribute);
+        
         /// <summary>
         /// The backing field for the PermitID property
         /// </summary>
         private string _permitID;
         
+        private static Lazy<ITypedElement> _permitIDAttribute = new Lazy<ITypedElement>(RetrievePermitIDAttribute);
+        
         /// <summary>
         /// The backing field for the Payment property
         /// </summary>
         private float _payment;
+        
+        private static Lazy<ITypedElement> _paymentAttribute = new Lazy<ITypedElement>(RetrievePaymentAttribute);
         
         private static IClass _classInstance;
         
@@ -98,10 +108,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfWork
                     string old = this._expirationDate;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnExpirationDateChanging(e);
-                    this.OnPropertyChanging("ExpirationDate", e);
+                    this.OnPropertyChanging("ExpirationDate", e, _expirationDateAttribute);
                     this._expirationDate = value;
                     this.OnExpirationDateChanged(e);
-                    this.OnPropertyChanged("ExpirationDate", e);
+                    this.OnPropertyChanged("ExpirationDate", e, _expirationDateAttribute);
                 }
             }
         }
@@ -124,10 +134,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfWork
                     string old = this._applicationNumber;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnApplicationNumberChanging(e);
-                    this.OnPropertyChanging("ApplicationNumber", e);
+                    this.OnPropertyChanging("ApplicationNumber", e, _applicationNumberAttribute);
                     this._applicationNumber = value;
                     this.OnApplicationNumberChanged(e);
-                    this.OnPropertyChanged("ApplicationNumber", e);
+                    this.OnPropertyChanged("ApplicationNumber", e, _applicationNumberAttribute);
                 }
             }
         }
@@ -150,10 +160,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfWork
                     string old = this._effectiveDate;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnEffectiveDateChanging(e);
-                    this.OnPropertyChanging("EffectiveDate", e);
+                    this.OnPropertyChanging("EffectiveDate", e, _effectiveDateAttribute);
                     this._effectiveDate = value;
                     this.OnEffectiveDateChanged(e);
-                    this.OnPropertyChanged("EffectiveDate", e);
+                    this.OnPropertyChanged("EffectiveDate", e, _effectiveDateAttribute);
                 }
             }
         }
@@ -176,10 +186,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfWork
                     string old = this._permitID;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnPermitIDChanging(e);
-                    this.OnPropertyChanging("PermitID", e);
+                    this.OnPropertyChanging("PermitID", e, _permitIDAttribute);
                     this._permitID = value;
                     this.OnPermitIDChanged(e);
-                    this.OnPropertyChanged("PermitID", e);
+                    this.OnPropertyChanged("PermitID", e, _permitIDAttribute);
                 }
             }
         }
@@ -202,10 +212,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfWork
                     float old = this._payment;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnPaymentChanging(e);
-                    this.OnPropertyChanging("Payment", e);
+                    this.OnPropertyChanging("Payment", e, _paymentAttribute);
                     this._payment = value;
                     this.OnPaymentChanged(e);
-                    this.OnPropertyChanged("Payment", e);
+                    this.OnPropertyChanged("Payment", e, _paymentAttribute);
                 }
             }
         }
@@ -276,6 +286,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfWork
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> PaymentChanged;
         
+        private static ITypedElement RetrieveExpirationDateAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(AccessPermit.ClassInstance)).Resolve("expirationDate")));
+        }
+        
         /// <summary>
         /// Raises the ExpirationDateChanging event
         /// </summary>
@@ -300,6 +315,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfWork
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveApplicationNumberAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(AccessPermit.ClassInstance)).Resolve("applicationNumber")));
         }
         
         /// <summary>
@@ -328,6 +348,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfWork
             }
         }
         
+        private static ITypedElement RetrieveEffectiveDateAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(AccessPermit.ClassInstance)).Resolve("effectiveDate")));
+        }
+        
         /// <summary>
         /// Raises the EffectiveDateChanging event
         /// </summary>
@@ -354,6 +379,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfWork
             }
         }
         
+        private static ITypedElement RetrievePermitIDAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(AccessPermit.ClassInstance)).Resolve("permitID")));
+        }
+        
         /// <summary>
         /// Raises the PermitIDChanging event
         /// </summary>
@@ -378,6 +408,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfWork
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrievePaymentAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(AccessPermit.ClassInstance)).Resolve("payment")));
         }
         
         /// <summary>
@@ -496,7 +531,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfWork
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public ExpirationDateProxy(IAccessPermit modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "expirationDate")
             {
             }
             
@@ -514,24 +549,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfWork
                     this.ModelElement.ExpirationDate = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ExpirationDateChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ExpirationDateChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -545,7 +562,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfWork
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public ApplicationNumberProxy(IAccessPermit modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "applicationNumber")
             {
             }
             
@@ -563,24 +580,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfWork
                     this.ModelElement.ApplicationNumber = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ApplicationNumberChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ApplicationNumberChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -594,7 +593,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfWork
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public EffectiveDateProxy(IAccessPermit modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "effectiveDate")
             {
             }
             
@@ -612,24 +611,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfWork
                     this.ModelElement.EffectiveDate = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.EffectiveDateChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.EffectiveDateChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -643,7 +624,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfWork
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public PermitIDProxy(IAccessPermit modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "permitID")
             {
             }
             
@@ -661,24 +642,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfWork
                     this.ModelElement.PermitID = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.PermitIDChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.PermitIDChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -692,7 +655,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfWork
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public PaymentProxy(IAccessPermit modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "payment")
             {
             }
             
@@ -709,24 +672,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfWork
                 {
                     this.ModelElement.Payment = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.PaymentChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.PaymentChanged -= handler;
             }
         }
     }

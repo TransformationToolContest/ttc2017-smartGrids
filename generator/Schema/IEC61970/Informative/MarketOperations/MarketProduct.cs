@@ -50,23 +50,31 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61970/Informative/MarketOperations/" +
         "MarketProduct")]
     [DebuggerDisplayAttribute("MarketProduct {UUID}")]
-    public class MarketProduct : IdentifiedObject, IMarketProduct, IModelElement
+    public partial class MarketProduct : IdentifiedObject, IMarketProduct, IModelElement
     {
+        
+        private static Lazy<ITypedElement> _productBidsReference = new Lazy<ITypedElement>(RetrieveProductBidsReference);
         
         /// <summary>
         /// The backing field for the ProductBids property
         /// </summary>
         private MarketProductProductBidsCollection _productBids;
         
+        private static Lazy<ITypedElement> _marketReference = new Lazy<ITypedElement>(RetrieveMarketReference);
+        
         /// <summary>
         /// The backing field for the Market property
         /// </summary>
         private IMarket _market;
         
+        private static Lazy<ITypedElement> _reserveReqsReference = new Lazy<ITypedElement>(RetrieveReserveReqsReference);
+        
         /// <summary>
         /// The backing field for the ReserveReqs property
         /// </summary>
         private MarketProductReserveReqsCollection _reserveReqs;
+        
+        private static Lazy<ITypedElement> _registeredResourcesReference = new Lazy<ITypedElement>(RetrieveRegisteredResourcesReference);
         
         /// <summary>
         /// The backing field for the RegisteredResources property
@@ -121,7 +129,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
                     IMarket old = this._market;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnMarketChanging(e);
-                    this.OnPropertyChanging("Market", e);
+                    this.OnPropertyChanging("Market", e, _marketReference);
                     this._market = value;
                     if ((old != null))
                     {
@@ -134,7 +142,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
                         value.Deleted += this.OnResetMarket;
                     }
                     this.OnMarketChanged(e);
-                    this.OnPropertyChanged("Market", e);
+                    this.OnPropertyChanged("Market", e, _marketReference);
                 }
             }
         }
@@ -206,6 +214,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> MarketChanged;
         
+        private static ITypedElement RetrieveProductBidsReference()
+        {
+            return ((ITypedElement)(((ModelElement)(MarketProduct.ClassInstance)).Resolve("ProductBids")));
+        }
+        
         /// <summary>
         /// Forwards CollectionChanging notifications for the ProductBids property to the parent model element
         /// </summary>
@@ -213,7 +226,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
         /// <param name="e">The original event data</param>
         private void ProductBidsCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("ProductBids", e);
+            this.OnCollectionChanging("ProductBids", e, _productBidsReference);
         }
         
         /// <summary>
@@ -223,7 +236,12 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
         /// <param name="e">The original event data</param>
         private void ProductBidsCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("ProductBids", e);
+            this.OnCollectionChanged("ProductBids", e, _productBidsReference);
+        }
+        
+        private static ITypedElement RetrieveMarketReference()
+        {
+            return ((ITypedElement)(((ModelElement)(MarketProduct.ClassInstance)).Resolve("Market")));
         }
         
         /// <summary>
@@ -262,6 +280,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
             this.Market = null;
         }
         
+        private static ITypedElement RetrieveReserveReqsReference()
+        {
+            return ((ITypedElement)(((ModelElement)(MarketProduct.ClassInstance)).Resolve("ReserveReqs")));
+        }
+        
         /// <summary>
         /// Forwards CollectionChanging notifications for the ReserveReqs property to the parent model element
         /// </summary>
@@ -269,7 +292,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
         /// <param name="e">The original event data</param>
         private void ReserveReqsCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("ReserveReqs", e);
+            this.OnCollectionChanging("ReserveReqs", e, _reserveReqsReference);
         }
         
         /// <summary>
@@ -279,7 +302,12 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
         /// <param name="e">The original event data</param>
         private void ReserveReqsCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("ReserveReqs", e);
+            this.OnCollectionChanged("ReserveReqs", e, _reserveReqsReference);
+        }
+        
+        private static ITypedElement RetrieveRegisteredResourcesReference()
+        {
+            return ((ITypedElement)(((ModelElement)(MarketProduct.ClassInstance)).Resolve("RegisteredResources")));
         }
         
         /// <summary>
@@ -289,7 +317,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
         /// <param name="e">The original event data</param>
         private void RegisteredResourcesCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("RegisteredResources", e);
+            this.OnCollectionChanging("RegisteredResources", e, _registeredResourcesReference);
         }
         
         /// <summary>
@@ -299,7 +327,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
         /// <param name="e">The original event data</param>
         private void RegisteredResourcesCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("RegisteredResources", e);
+            this.OnCollectionChanged("RegisteredResources", e, _registeredResourcesReference);
         }
         
         /// <summary>
@@ -613,7 +641,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public MarketProxy(IMarketProduct modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "Market")
             {
             }
             
@@ -630,24 +658,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
                 {
                     this.ModelElement.Market = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.MarketChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.MarketChanged -= handler;
             }
         }
     }

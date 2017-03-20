@@ -50,13 +50,17 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61970/Informative/MarketOperations/" +
         "LossPenaltyFactor")]
     [DebuggerDisplayAttribute("LossPenaltyFactor {UUID}")]
-    public class LossPenaltyFactor : MarketFactors, ILossPenaltyFactor, IModelElement
+    public partial class LossPenaltyFactor : MarketFactors, ILossPenaltyFactor, IModelElement
     {
         
         /// <summary>
         /// The backing field for the LossFactor property
         /// </summary>
         private object _lossFactor;
+        
+        private static Lazy<ITypedElement> _lossFactorAttribute = new Lazy<ITypedElement>(RetrieveLossFactorAttribute);
+        
+        private static Lazy<ITypedElement> _connectivityNodesReference = new Lazy<ITypedElement>(RetrieveConnectivityNodesReference);
         
         /// <summary>
         /// The backing field for the ConnectivityNodes property
@@ -90,10 +94,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
                     object old = this._lossFactor;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnLossFactorChanging(e);
-                    this.OnPropertyChanging("LossFactor", e);
+                    this.OnPropertyChanging("LossFactor", e, _lossFactorAttribute);
                     this._lossFactor = value;
                     this.OnLossFactorChanged(e);
-                    this.OnPropertyChanged("LossFactor", e);
+                    this.OnPropertyChanged("LossFactor", e, _lossFactorAttribute);
                 }
             }
         }
@@ -150,6 +154,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> LossFactorChanged;
         
+        private static ITypedElement RetrieveLossFactorAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(LossPenaltyFactor.ClassInstance)).Resolve("lossFactor")));
+        }
+        
         /// <summary>
         /// Raises the LossFactorChanging event
         /// </summary>
@@ -176,6 +185,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
             }
         }
         
+        private static ITypedElement RetrieveConnectivityNodesReference()
+        {
+            return ((ITypedElement)(((ModelElement)(LossPenaltyFactor.ClassInstance)).Resolve("ConnectivityNodes")));
+        }
+        
         /// <summary>
         /// Forwards CollectionChanging notifications for the ConnectivityNodes property to the parent model element
         /// </summary>
@@ -183,7 +197,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
         /// <param name="e">The original event data</param>
         private void ConnectivityNodesCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("ConnectivityNodes", e);
+            this.OnCollectionChanging("ConnectivityNodes", e, _connectivityNodesReference);
         }
         
         /// <summary>
@@ -193,7 +207,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
         /// <param name="e">The original event data</param>
         private void ConnectivityNodesCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("ConnectivityNodes", e);
+            this.OnCollectionChanged("ConnectivityNodes", e, _connectivityNodesReference);
         }
         
         /// <summary>
@@ -388,7 +402,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public LossFactorProxy(ILossPenaltyFactor modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "lossFactor")
             {
             }
             
@@ -405,24 +419,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
                 {
                     this.ModelElement.LossFactor = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.LossFactorChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.LossFactorChanged -= handler;
             }
         }
     }

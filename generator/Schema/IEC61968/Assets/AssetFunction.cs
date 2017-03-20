@@ -48,7 +48,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Assets
     [XmlNamespacePrefixAttribute("cimAssets")]
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61968/Assets/AssetFunction")]
     [DebuggerDisplayAttribute("AssetFunction {UUID}")]
-    public class AssetFunction : IdentifiedObject, IAssetFunction, IModelElement
+    public partial class AssetFunction : IdentifiedObject, IAssetFunction, IModelElement
     {
         
         /// <summary>
@@ -56,25 +56,37 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Assets
         /// </summary>
         private string _hardwareID;
         
+        private static Lazy<ITypedElement> _hardwareIDAttribute = new Lazy<ITypedElement>(RetrieveHardwareIDAttribute);
+        
         /// <summary>
         /// The backing field for the ProgramID property
         /// </summary>
         private string _programID;
+        
+        private static Lazy<ITypedElement> _programIDAttribute = new Lazy<ITypedElement>(RetrieveProgramIDAttribute);
         
         /// <summary>
         /// The backing field for the FirmwareID property
         /// </summary>
         private string _firmwareID;
         
+        private static Lazy<ITypedElement> _firmwareIDAttribute = new Lazy<ITypedElement>(RetrieveFirmwareIDAttribute);
+        
         /// <summary>
         /// The backing field for the Password property
         /// </summary>
         private string _password;
         
+        private static Lazy<ITypedElement> _passwordAttribute = new Lazy<ITypedElement>(RetrievePasswordAttribute);
+        
         /// <summary>
         /// The backing field for the ConfigID property
         /// </summary>
         private string _configID;
+        
+        private static Lazy<ITypedElement> _configIDAttribute = new Lazy<ITypedElement>(RetrieveConfigIDAttribute);
+        
+        private static Lazy<ITypedElement> _assetReference = new Lazy<ITypedElement>(RetrieveAssetReference);
         
         /// <summary>
         /// The backing field for the Asset property
@@ -101,10 +113,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Assets
                     string old = this._hardwareID;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnHardwareIDChanging(e);
-                    this.OnPropertyChanging("HardwareID", e);
+                    this.OnPropertyChanging("HardwareID", e, _hardwareIDAttribute);
                     this._hardwareID = value;
                     this.OnHardwareIDChanged(e);
-                    this.OnPropertyChanged("HardwareID", e);
+                    this.OnPropertyChanged("HardwareID", e, _hardwareIDAttribute);
                 }
             }
         }
@@ -127,10 +139,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Assets
                     string old = this._programID;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnProgramIDChanging(e);
-                    this.OnPropertyChanging("ProgramID", e);
+                    this.OnPropertyChanging("ProgramID", e, _programIDAttribute);
                     this._programID = value;
                     this.OnProgramIDChanged(e);
-                    this.OnPropertyChanged("ProgramID", e);
+                    this.OnPropertyChanged("ProgramID", e, _programIDAttribute);
                 }
             }
         }
@@ -153,10 +165,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Assets
                     string old = this._firmwareID;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnFirmwareIDChanging(e);
-                    this.OnPropertyChanging("FirmwareID", e);
+                    this.OnPropertyChanging("FirmwareID", e, _firmwareIDAttribute);
                     this._firmwareID = value;
                     this.OnFirmwareIDChanged(e);
-                    this.OnPropertyChanged("FirmwareID", e);
+                    this.OnPropertyChanged("FirmwareID", e, _firmwareIDAttribute);
                 }
             }
         }
@@ -179,10 +191,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Assets
                     string old = this._password;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnPasswordChanging(e);
-                    this.OnPropertyChanging("Password", e);
+                    this.OnPropertyChanging("Password", e, _passwordAttribute);
                     this._password = value;
                     this.OnPasswordChanged(e);
-                    this.OnPropertyChanged("Password", e);
+                    this.OnPropertyChanged("Password", e, _passwordAttribute);
                 }
             }
         }
@@ -205,10 +217,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Assets
                     string old = this._configID;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnConfigIDChanging(e);
-                    this.OnPropertyChanging("ConfigID", e);
+                    this.OnPropertyChanging("ConfigID", e, _configIDAttribute);
                     this._configID = value;
                     this.OnConfigIDChanged(e);
-                    this.OnPropertyChanged("ConfigID", e);
+                    this.OnPropertyChanged("ConfigID", e, _configIDAttribute);
                 }
             }
         }
@@ -231,7 +243,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Assets
                     IAsset old = this._asset;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnAssetChanging(e);
-                    this.OnPropertyChanging("Asset", e);
+                    this.OnPropertyChanging("Asset", e, _assetReference);
                     this._asset = value;
                     if ((old != null))
                     {
@@ -244,7 +256,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Assets
                         value.Deleted += this.OnResetAsset;
                     }
                     this.OnAssetChanged(e);
-                    this.OnPropertyChanged("Asset", e);
+                    this.OnPropertyChanged("Asset", e, _assetReference);
                 }
             }
         }
@@ -335,6 +347,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Assets
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> AssetChanged;
         
+        private static ITypedElement RetrieveHardwareIDAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(AssetFunction.ClassInstance)).Resolve("hardwareID")));
+        }
+        
         /// <summary>
         /// Raises the HardwareIDChanging event
         /// </summary>
@@ -359,6 +376,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Assets
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveProgramIDAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(AssetFunction.ClassInstance)).Resolve("programID")));
         }
         
         /// <summary>
@@ -387,6 +409,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Assets
             }
         }
         
+        private static ITypedElement RetrieveFirmwareIDAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(AssetFunction.ClassInstance)).Resolve("firmwareID")));
+        }
+        
         /// <summary>
         /// Raises the FirmwareIDChanging event
         /// </summary>
@@ -411,6 +438,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Assets
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrievePasswordAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(AssetFunction.ClassInstance)).Resolve("password")));
         }
         
         /// <summary>
@@ -439,6 +471,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Assets
             }
         }
         
+        private static ITypedElement RetrieveConfigIDAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(AssetFunction.ClassInstance)).Resolve("configID")));
+        }
+        
         /// <summary>
         /// Raises the ConfigIDChanging event
         /// </summary>
@@ -463,6 +500,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Assets
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveAssetReference()
+        {
+            return ((ITypedElement)(((ModelElement)(AssetFunction.ClassInstance)).Resolve("Asset")));
         }
         
         /// <summary>
@@ -743,7 +785,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Assets
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public HardwareIDProxy(IAssetFunction modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "hardwareID")
             {
             }
             
@@ -761,24 +803,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Assets
                     this.ModelElement.HardwareID = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.HardwareIDChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.HardwareIDChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -792,7 +816,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Assets
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public ProgramIDProxy(IAssetFunction modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "programID")
             {
             }
             
@@ -810,24 +834,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Assets
                     this.ModelElement.ProgramID = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ProgramIDChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ProgramIDChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -841,7 +847,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Assets
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public FirmwareIDProxy(IAssetFunction modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "firmwareID")
             {
             }
             
@@ -859,24 +865,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Assets
                     this.ModelElement.FirmwareID = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.FirmwareIDChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.FirmwareIDChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -890,7 +878,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Assets
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public PasswordProxy(IAssetFunction modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "password")
             {
             }
             
@@ -908,24 +896,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Assets
                     this.ModelElement.Password = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.PasswordChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.PasswordChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -939,7 +909,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Assets
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public ConfigIDProxy(IAssetFunction modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "configID")
             {
             }
             
@@ -957,24 +927,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Assets
                     this.ModelElement.ConfigID = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ConfigIDChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ConfigIDChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -988,7 +940,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Assets
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public AssetProxy(IAssetFunction modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "Asset")
             {
             }
             
@@ -1005,24 +957,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Assets
                 {
                     this.ModelElement.Asset = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.AssetChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.AssetChanged -= handler;
             }
         }
     }

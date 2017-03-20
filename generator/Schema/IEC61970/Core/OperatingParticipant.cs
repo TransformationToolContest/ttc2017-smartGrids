@@ -57,8 +57,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Core
     [XmlNamespacePrefixAttribute("cimCore")]
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61970/Core/OperatingParticipant")]
     [DebuggerDisplayAttribute("OperatingParticipant {UUID}")]
-    public class OperatingParticipant : IdentifiedObject, IOperatingParticipant, IModelElement
+    public partial class OperatingParticipant : IdentifiedObject, IOperatingParticipant, IModelElement
     {
+        
+        private static Lazy<ITypedElement> _operatingShareReference = new Lazy<ITypedElement>(RetrieveOperatingShareReference);
         
         /// <summary>
         /// The backing field for the OperatingShare property
@@ -115,6 +117,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Core
             }
         }
         
+        private static ITypedElement RetrieveOperatingShareReference()
+        {
+            return ((ITypedElement)(((ModelElement)(OperatingParticipant.ClassInstance)).Resolve("OperatingShare")));
+        }
+        
         /// <summary>
         /// Forwards CollectionChanging notifications for the OperatingShare property to the parent model element
         /// </summary>
@@ -122,7 +129,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Core
         /// <param name="e">The original event data</param>
         private void OperatingShareCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("OperatingShare", e);
+            this.OnCollectionChanging("OperatingShare", e, _operatingShareReference);
         }
         
         /// <summary>
@@ -132,7 +139,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Core
         /// <param name="e">The original event data</param>
         private void OperatingShareCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("OperatingShare", e);
+            this.OnCollectionChanged("OperatingShare", e, _operatingShareReference);
         }
         
         /// <summary>

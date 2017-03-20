@@ -45,7 +45,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfGMLSupport
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61970/Informative/InfGMLSupport/Map" +
         "")]
     [DebuggerDisplayAttribute("Map {UUID}")]
-    public class Map : Diagram, IMap, IModelElement
+    public partial class Map : Diagram, IMap, IModelElement
     {
         
         /// <summary>
@@ -53,10 +53,14 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfGMLSupport
         /// </summary>
         private string _mapLocGrid;
         
+        private static Lazy<ITypedElement> _mapLocGridAttribute = new Lazy<ITypedElement>(RetrieveMapLocGridAttribute);
+        
         /// <summary>
         /// The backing field for the PageNumber property
         /// </summary>
         private int _pageNumber;
+        
+        private static Lazy<ITypedElement> _pageNumberAttribute = new Lazy<ITypedElement>(RetrievePageNumberAttribute);
         
         private static IClass _classInstance;
         
@@ -78,10 +82,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfGMLSupport
                     string old = this._mapLocGrid;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnMapLocGridChanging(e);
-                    this.OnPropertyChanging("MapLocGrid", e);
+                    this.OnPropertyChanging("MapLocGrid", e, _mapLocGridAttribute);
                     this._mapLocGrid = value;
                     this.OnMapLocGridChanged(e);
-                    this.OnPropertyChanged("MapLocGrid", e);
+                    this.OnPropertyChanged("MapLocGrid", e, _mapLocGridAttribute);
                 }
             }
         }
@@ -104,10 +108,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfGMLSupport
                     int old = this._pageNumber;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnPageNumberChanging(e);
-                    this.OnPropertyChanging("PageNumber", e);
+                    this.OnPropertyChanging("PageNumber", e, _pageNumberAttribute);
                     this._pageNumber = value;
                     this.OnPageNumberChanged(e);
-                    this.OnPropertyChanged("PageNumber", e);
+                    this.OnPropertyChanged("PageNumber", e, _pageNumberAttribute);
                 }
             }
         }
@@ -148,6 +152,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfGMLSupport
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> PageNumberChanged;
         
+        private static ITypedElement RetrieveMapLocGridAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(Map.ClassInstance)).Resolve("mapLocGrid")));
+        }
+        
         /// <summary>
         /// Raises the MapLocGridChanging event
         /// </summary>
@@ -172,6 +181,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfGMLSupport
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrievePageNumberAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(Map.ClassInstance)).Resolve("pageNumber")));
         }
         
         /// <summary>
@@ -263,7 +277,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfGMLSupport
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public MapLocGridProxy(IMap modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "mapLocGrid")
             {
             }
             
@@ -281,24 +295,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfGMLSupport
                     this.ModelElement.MapLocGrid = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.MapLocGridChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.MapLocGridChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -312,7 +308,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfGMLSupport
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public PageNumberProxy(IMap modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "pageNumber")
             {
             }
             
@@ -329,24 +325,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfGMLSupport
                 {
                     this.ModelElement.PageNumber = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.PageNumberChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.PageNumberChanged -= handler;
             }
         }
     }

@@ -50,8 +50,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61970/Informative/MarketOperations/" +
         "MWLimitSchedule")]
     [DebuggerDisplayAttribute("MWLimitSchedule {UUID}")]
-    public class MWLimitSchedule : Curve, IMWLimitSchedule, IModelElement
+    public partial class MWLimitSchedule : Curve, IMWLimitSchedule, IModelElement
     {
+        
+        private static Lazy<ITypedElement> _securityConstraintLimitReference = new Lazy<ITypedElement>(RetrieveSecurityConstraintLimitReference);
         
         /// <summary>
         /// The backing field for the SecurityConstraintLimit property
@@ -78,7 +80,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
                     IContingencyConstraintLimit old = this._securityConstraintLimit;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnSecurityConstraintLimitChanging(e);
-                    this.OnPropertyChanging("SecurityConstraintLimit", e);
+                    this.OnPropertyChanging("SecurityConstraintLimit", e, _securityConstraintLimitReference);
                     this._securityConstraintLimit = value;
                     if ((old != null))
                     {
@@ -91,7 +93,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
                         value.Deleted += this.OnResetSecurityConstraintLimit;
                     }
                     this.OnSecurityConstraintLimitChanged(e);
-                    this.OnPropertyChanged("SecurityConstraintLimit", e);
+                    this.OnPropertyChanged("SecurityConstraintLimit", e, _securityConstraintLimitReference);
                 }
             }
         }
@@ -132,6 +134,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
         /// Gets fired when the SecurityConstraintLimit property changed its value
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> SecurityConstraintLimitChanged;
+        
+        private static ITypedElement RetrieveSecurityConstraintLimitReference()
+        {
+            return ((ITypedElement)(((ModelElement)(MWLimitSchedule.ClassInstance)).Resolve("SecurityConstraintLimit")));
+        }
         
         /// <summary>
         /// Raises the SecurityConstraintLimitChanging event
@@ -356,7 +363,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public SecurityConstraintLimitProxy(IMWLimitSchedule modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "SecurityConstraintLimit")
             {
             }
             
@@ -373,24 +380,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
                 {
                     this.ModelElement.SecurityConstraintLimit = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.SecurityConstraintLimitChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.SecurityConstraintLimitChanged -= handler;
             }
         }
     }

@@ -39,7 +39,7 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
     [XmlNamespacePrefixAttribute("objects")]
     [ModelRepresentationClassAttribute("http://www.transformation-tool-contest.eu/2017/smartGrids/cosem#//COSEMObjects/Pu" +
         "sh")]
-    public class Push : Scripttable, IPush, IModelElement
+    public partial class Push : Scripttable, IPush, IModelElement
     {
         
         private static IClass _classInstance;

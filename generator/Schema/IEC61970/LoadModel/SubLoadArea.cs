@@ -43,13 +43,17 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.LoadModel
     [XmlNamespacePrefixAttribute("cimLoadModel")]
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61970/LoadModel/SubLoadArea")]
     [DebuggerDisplayAttribute("SubLoadArea {UUID}")]
-    public class SubLoadArea : EnergyArea, ISubLoadArea, IModelElement
+    public partial class SubLoadArea : EnergyArea, ISubLoadArea, IModelElement
     {
+        
+        private static Lazy<ITypedElement> _loadAreaReference = new Lazy<ITypedElement>(RetrieveLoadAreaReference);
         
         /// <summary>
         /// The backing field for the LoadArea property
         /// </summary>
         private ILoadArea _loadArea;
+        
+        private static Lazy<ITypedElement> _loadGroupsReference = new Lazy<ITypedElement>(RetrieveLoadGroupsReference);
         
         /// <summary>
         /// The backing field for the LoadGroups property
@@ -83,7 +87,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.LoadModel
                     ILoadArea old = this._loadArea;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnLoadAreaChanging(e);
-                    this.OnPropertyChanging("LoadArea", e);
+                    this.OnPropertyChanging("LoadArea", e, _loadAreaReference);
                     this._loadArea = value;
                     if ((old != null))
                     {
@@ -96,7 +100,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.LoadModel
                         value.Deleted += this.OnResetLoadArea;
                     }
                     this.OnLoadAreaChanged(e);
-                    this.OnPropertyChanged("LoadArea", e);
+                    this.OnPropertyChanged("LoadArea", e, _loadAreaReference);
                 }
             }
         }
@@ -152,6 +156,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.LoadModel
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> LoadAreaChanged;
         
+        private static ITypedElement RetrieveLoadAreaReference()
+        {
+            return ((ITypedElement)(((ModelElement)(SubLoadArea.ClassInstance)).Resolve("LoadArea")));
+        }
+        
         /// <summary>
         /// Raises the LoadAreaChanging event
         /// </summary>
@@ -188,6 +197,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.LoadModel
             this.LoadArea = null;
         }
         
+        private static ITypedElement RetrieveLoadGroupsReference()
+        {
+            return ((ITypedElement)(((ModelElement)(SubLoadArea.ClassInstance)).Resolve("LoadGroups")));
+        }
+        
         /// <summary>
         /// Forwards CollectionChanging notifications for the LoadGroups property to the parent model element
         /// </summary>
@@ -195,7 +209,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.LoadModel
         /// <param name="e">The original event data</param>
         private void LoadGroupsCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("LoadGroups", e);
+            this.OnCollectionChanging("LoadGroups", e, _loadGroupsReference);
         }
         
         /// <summary>
@@ -205,7 +219,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.LoadModel
         /// <param name="e">The original event data</param>
         private void LoadGroupsCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("LoadGroups", e);
+            this.OnCollectionChanged("LoadGroups", e, _loadGroupsReference);
         }
         
         /// <summary>
@@ -442,7 +456,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.LoadModel
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public LoadAreaProxy(ISubLoadArea modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "LoadArea")
             {
             }
             
@@ -459,24 +473,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.LoadModel
                 {
                     this.ModelElement.LoadArea = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.LoadAreaChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.LoadAreaChanged -= handler;
             }
         }
     }

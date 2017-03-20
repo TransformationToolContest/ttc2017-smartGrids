@@ -53,7 +53,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61970/Informative/InfAssets/Reclose" +
         "rInfo")]
     [DebuggerDisplayAttribute("RecloserInfo {UUID}")]
-    public class RecloserInfo : SwitchInfo, IRecloserInfo, IModelElement
+    public partial class RecloserInfo : SwitchInfo, IRecloserInfo, IModelElement
     {
         
         /// <summary>
@@ -61,25 +61,35 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
         /// </summary>
         private float _phaseTripRating;
         
+        private static Lazy<ITypedElement> _phaseTripRatingAttribute = new Lazy<ITypedElement>(RetrievePhaseTripRatingAttribute);
+        
         /// <summary>
         /// The backing field for the GroundTripNormalEnabled property
         /// </summary>
         private bool _groundTripNormalEnabled;
+        
+        private static Lazy<ITypedElement> _groundTripNormalEnabledAttribute = new Lazy<ITypedElement>(RetrieveGroundTripNormalEnabledAttribute);
         
         /// <summary>
         /// The backing field for the GroundTripRating property
         /// </summary>
         private float _groundTripRating;
         
+        private static Lazy<ITypedElement> _groundTripRatingAttribute = new Lazy<ITypedElement>(RetrieveGroundTripRatingAttribute);
+        
         /// <summary>
         /// The backing field for the RecloseLockoutCount property
         /// </summary>
         private int _recloseLockoutCount;
         
+        private static Lazy<ITypedElement> _recloseLockoutCountAttribute = new Lazy<ITypedElement>(RetrieveRecloseLockoutCountAttribute);
+        
         /// <summary>
         /// The backing field for the GroundTripCapable property
         /// </summary>
         private bool _groundTripCapable;
+        
+        private static Lazy<ITypedElement> _groundTripCapableAttribute = new Lazy<ITypedElement>(RetrieveGroundTripCapableAttribute);
         
         private static IClass _classInstance;
         
@@ -101,10 +111,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
                     float old = this._phaseTripRating;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnPhaseTripRatingChanging(e);
-                    this.OnPropertyChanging("PhaseTripRating", e);
+                    this.OnPropertyChanging("PhaseTripRating", e, _phaseTripRatingAttribute);
                     this._phaseTripRating = value;
                     this.OnPhaseTripRatingChanged(e);
-                    this.OnPropertyChanged("PhaseTripRating", e);
+                    this.OnPropertyChanged("PhaseTripRating", e, _phaseTripRatingAttribute);
                 }
             }
         }
@@ -127,10 +137,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
                     bool old = this._groundTripNormalEnabled;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnGroundTripNormalEnabledChanging(e);
-                    this.OnPropertyChanging("GroundTripNormalEnabled", e);
+                    this.OnPropertyChanging("GroundTripNormalEnabled", e, _groundTripNormalEnabledAttribute);
                     this._groundTripNormalEnabled = value;
                     this.OnGroundTripNormalEnabledChanged(e);
-                    this.OnPropertyChanged("GroundTripNormalEnabled", e);
+                    this.OnPropertyChanged("GroundTripNormalEnabled", e, _groundTripNormalEnabledAttribute);
                 }
             }
         }
@@ -153,10 +163,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
                     float old = this._groundTripRating;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnGroundTripRatingChanging(e);
-                    this.OnPropertyChanging("GroundTripRating", e);
+                    this.OnPropertyChanging("GroundTripRating", e, _groundTripRatingAttribute);
                     this._groundTripRating = value;
                     this.OnGroundTripRatingChanged(e);
-                    this.OnPropertyChanged("GroundTripRating", e);
+                    this.OnPropertyChanged("GroundTripRating", e, _groundTripRatingAttribute);
                 }
             }
         }
@@ -179,10 +189,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
                     int old = this._recloseLockoutCount;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnRecloseLockoutCountChanging(e);
-                    this.OnPropertyChanging("RecloseLockoutCount", e);
+                    this.OnPropertyChanging("RecloseLockoutCount", e, _recloseLockoutCountAttribute);
                     this._recloseLockoutCount = value;
                     this.OnRecloseLockoutCountChanged(e);
-                    this.OnPropertyChanged("RecloseLockoutCount", e);
+                    this.OnPropertyChanged("RecloseLockoutCount", e, _recloseLockoutCountAttribute);
                 }
             }
         }
@@ -205,10 +215,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
                     bool old = this._groundTripCapable;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnGroundTripCapableChanging(e);
-                    this.OnPropertyChanging("GroundTripCapable", e);
+                    this.OnPropertyChanging("GroundTripCapable", e, _groundTripCapableAttribute);
                     this._groundTripCapable = value;
                     this.OnGroundTripCapableChanged(e);
-                    this.OnPropertyChanged("GroundTripCapable", e);
+                    this.OnPropertyChanged("GroundTripCapable", e, _groundTripCapableAttribute);
                 }
             }
         }
@@ -279,6 +289,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> GroundTripCapableChanged;
         
+        private static ITypedElement RetrievePhaseTripRatingAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(RecloserInfo.ClassInstance)).Resolve("phaseTripRating")));
+        }
+        
         /// <summary>
         /// Raises the PhaseTripRatingChanging event
         /// </summary>
@@ -303,6 +318,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveGroundTripNormalEnabledAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(RecloserInfo.ClassInstance)).Resolve("groundTripNormalEnabled")));
         }
         
         /// <summary>
@@ -331,6 +351,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
             }
         }
         
+        private static ITypedElement RetrieveGroundTripRatingAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(RecloserInfo.ClassInstance)).Resolve("groundTripRating")));
+        }
+        
         /// <summary>
         /// Raises the GroundTripRatingChanging event
         /// </summary>
@@ -357,6 +382,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
             }
         }
         
+        private static ITypedElement RetrieveRecloseLockoutCountAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(RecloserInfo.ClassInstance)).Resolve("recloseLockoutCount")));
+        }
+        
         /// <summary>
         /// Raises the RecloseLockoutCountChanging event
         /// </summary>
@@ -381,6 +411,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveGroundTripCapableAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(RecloserInfo.ClassInstance)).Resolve("groundTripCapable")));
         }
         
         /// <summary>
@@ -499,7 +534,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public PhaseTripRatingProxy(IRecloserInfo modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "phaseTripRating")
             {
             }
             
@@ -517,24 +552,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
                     this.ModelElement.PhaseTripRating = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.PhaseTripRatingChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.PhaseTripRatingChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -548,7 +565,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public GroundTripNormalEnabledProxy(IRecloserInfo modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "groundTripNormalEnabled")
             {
             }
             
@@ -566,24 +583,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
                     this.ModelElement.GroundTripNormalEnabled = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.GroundTripNormalEnabledChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.GroundTripNormalEnabledChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -597,7 +596,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public GroundTripRatingProxy(IRecloserInfo modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "groundTripRating")
             {
             }
             
@@ -615,24 +614,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
                     this.ModelElement.GroundTripRating = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.GroundTripRatingChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.GroundTripRatingChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -646,7 +627,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public RecloseLockoutCountProxy(IRecloserInfo modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "recloseLockoutCount")
             {
             }
             
@@ -664,24 +645,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
                     this.ModelElement.RecloseLockoutCount = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.RecloseLockoutCountChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.RecloseLockoutCountChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -695,7 +658,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public GroundTripCapableProxy(IRecloserInfo modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "groundTripCapable")
             {
             }
             
@@ -712,24 +675,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
                 {
                     this.ModelElement.GroundTripCapable = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.GroundTripCapableChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.GroundTripCapableChanged -= handler;
             }
         }
     }

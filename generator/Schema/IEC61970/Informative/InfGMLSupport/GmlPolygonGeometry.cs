@@ -45,7 +45,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfGMLSupport
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61970/Informative/InfGMLSupport/Gml" +
         "PolygonGeometry")]
     [DebuggerDisplayAttribute("GmlPolygonGeometry {UUID}")]
-    public class GmlPolygonGeometry : GmlDiagramObject, IGmlPolygonGeometry, IModelElement
+    public partial class GmlPolygonGeometry : GmlDiagramObject, IGmlPolygonGeometry, IModelElement
     {
         
         private static IClass _classInstance;

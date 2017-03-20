@@ -46,7 +46,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.PaymentMetering
     [XmlNamespacePrefixAttribute("cimPaymentMetering")]
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61968/PaymentMetering/Charge")]
     [DebuggerDisplayAttribute("Charge {UUID}")]
-    public class Charge : IdentifiedObject, ICharge, IModelElement
+    public partial class Charge : IdentifiedObject, ICharge, IModelElement
     {
         
         /// <summary>
@@ -54,35 +54,51 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.PaymentMetering
         /// </summary>
         private Nullable<ChargeKind> _kind;
         
+        private static Lazy<ITypedElement> _kindAttribute = new Lazy<ITypedElement>(RetrieveKindAttribute);
+        
         /// <summary>
         /// The backing field for the VariablePortion property
         /// </summary>
         private float _variablePortion;
+        
+        private static Lazy<ITypedElement> _variablePortionAttribute = new Lazy<ITypedElement>(RetrieveVariablePortionAttribute);
+        
+        private static Lazy<ITypedElement> _auxiliaryAccountsReference = new Lazy<ITypedElement>(RetrieveAuxiliaryAccountsReference);
         
         /// <summary>
         /// The backing field for the AuxiliaryAccounts property
         /// </summary>
         private ChargeAuxiliaryAccountsCollection _auxiliaryAccounts;
         
+        private static Lazy<ITypedElement> _parentChargeReference = new Lazy<ITypedElement>(RetrieveParentChargeReference);
+        
         /// <summary>
         /// The backing field for the ParentCharge property
         /// </summary>
         private ICharge _parentCharge;
+        
+        private static Lazy<ITypedElement> _consumptionTariffIntervalsReference = new Lazy<ITypedElement>(RetrieveConsumptionTariffIntervalsReference);
         
         /// <summary>
         /// The backing field for the ConsumptionTariffIntervals property
         /// </summary>
         private ChargeConsumptionTariffIntervalsCollection _consumptionTariffIntervals;
         
+        private static Lazy<ITypedElement> _childChargesReference = new Lazy<ITypedElement>(RetrieveChildChargesReference);
+        
         /// <summary>
         /// The backing field for the ChildCharges property
         /// </summary>
         private ChargeChildChargesCollection _childCharges;
         
+        private static Lazy<ITypedElement> _timeTariffIntervalsReference = new Lazy<ITypedElement>(RetrieveTimeTariffIntervalsReference);
+        
         /// <summary>
         /// The backing field for the TimeTariffIntervals property
         /// </summary>
         private ChargeTimeTariffIntervalsCollection _timeTariffIntervals;
+        
+        private static Lazy<ITypedElement> _fixedPortionReference = new Lazy<ITypedElement>(RetrieveFixedPortionReference);
         
         /// <summary>
         /// The backing field for the FixedPortion property
@@ -125,10 +141,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.PaymentMetering
                     Nullable<ChargeKind> old = this._kind;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnKindChanging(e);
-                    this.OnPropertyChanging("Kind", e);
+                    this.OnPropertyChanging("Kind", e, _kindAttribute);
                     this._kind = value;
                     this.OnKindChanged(e);
-                    this.OnPropertyChanged("Kind", e);
+                    this.OnPropertyChanged("Kind", e, _kindAttribute);
                 }
             }
         }
@@ -151,10 +167,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.PaymentMetering
                     float old = this._variablePortion;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnVariablePortionChanging(e);
-                    this.OnPropertyChanging("VariablePortion", e);
+                    this.OnPropertyChanging("VariablePortion", e, _variablePortionAttribute);
                     this._variablePortion = value;
                     this.OnVariablePortionChanged(e);
-                    this.OnPropertyChanged("VariablePortion", e);
+                    this.OnPropertyChanged("VariablePortion", e, _variablePortionAttribute);
                 }
             }
         }
@@ -192,7 +208,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.PaymentMetering
                     ICharge old = this._parentCharge;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnParentChargeChanging(e);
-                    this.OnPropertyChanging("ParentCharge", e);
+                    this.OnPropertyChanging("ParentCharge", e, _parentChargeReference);
                     this._parentCharge = value;
                     if ((old != null))
                     {
@@ -205,7 +221,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.PaymentMetering
                         value.Deleted += this.OnResetParentCharge;
                     }
                     this.OnParentChargeChanged(e);
-                    this.OnPropertyChanged("ParentCharge", e);
+                    this.OnPropertyChanged("ParentCharge", e, _parentChargeReference);
                 }
             }
         }
@@ -273,7 +289,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.PaymentMetering
                     IAccountingUnit old = this._fixedPortion;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnFixedPortionChanging(e);
-                    this.OnPropertyChanging("FixedPortion", e);
+                    this.OnPropertyChanging("FixedPortion", e, _fixedPortionReference);
                     this._fixedPortion = value;
                     if ((old != null))
                     {
@@ -284,7 +300,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.PaymentMetering
                         value.Deleted += this.OnResetFixedPortion;
                     }
                     this.OnFixedPortionChanged(e);
-                    this.OnPropertyChanged("FixedPortion", e);
+                    this.OnPropertyChanged("FixedPortion", e, _fixedPortionReference);
                 }
             }
         }
@@ -355,6 +371,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.PaymentMetering
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> FixedPortionChanged;
         
+        private static ITypedElement RetrieveKindAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(Charge.ClassInstance)).Resolve("kind")));
+        }
+        
         /// <summary>
         /// Raises the KindChanging event
         /// </summary>
@@ -379,6 +400,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.PaymentMetering
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveVariablePortionAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(Charge.ClassInstance)).Resolve("variablePortion")));
         }
         
         /// <summary>
@@ -407,6 +433,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.PaymentMetering
             }
         }
         
+        private static ITypedElement RetrieveAuxiliaryAccountsReference()
+        {
+            return ((ITypedElement)(((ModelElement)(Charge.ClassInstance)).Resolve("AuxiliaryAccounts")));
+        }
+        
         /// <summary>
         /// Forwards CollectionChanging notifications for the AuxiliaryAccounts property to the parent model element
         /// </summary>
@@ -414,7 +445,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.PaymentMetering
         /// <param name="e">The original event data</param>
         private void AuxiliaryAccountsCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("AuxiliaryAccounts", e);
+            this.OnCollectionChanging("AuxiliaryAccounts", e, _auxiliaryAccountsReference);
         }
         
         /// <summary>
@@ -424,7 +455,12 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.PaymentMetering
         /// <param name="e">The original event data</param>
         private void AuxiliaryAccountsCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("AuxiliaryAccounts", e);
+            this.OnCollectionChanged("AuxiliaryAccounts", e, _auxiliaryAccountsReference);
+        }
+        
+        private static ITypedElement RetrieveParentChargeReference()
+        {
+            return ((ITypedElement)(((ModelElement)(Charge.ClassInstance)).Resolve("ParentCharge")));
         }
         
         /// <summary>
@@ -463,6 +499,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.PaymentMetering
             this.ParentCharge = null;
         }
         
+        private static ITypedElement RetrieveConsumptionTariffIntervalsReference()
+        {
+            return ((ITypedElement)(((ModelElement)(Charge.ClassInstance)).Resolve("ConsumptionTariffIntervals")));
+        }
+        
         /// <summary>
         /// Forwards CollectionChanging notifications for the ConsumptionTariffIntervals property to the parent model element
         /// </summary>
@@ -470,7 +511,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.PaymentMetering
         /// <param name="e">The original event data</param>
         private void ConsumptionTariffIntervalsCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("ConsumptionTariffIntervals", e);
+            this.OnCollectionChanging("ConsumptionTariffIntervals", e, _consumptionTariffIntervalsReference);
         }
         
         /// <summary>
@@ -480,7 +521,12 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.PaymentMetering
         /// <param name="e">The original event data</param>
         private void ConsumptionTariffIntervalsCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("ConsumptionTariffIntervals", e);
+            this.OnCollectionChanged("ConsumptionTariffIntervals", e, _consumptionTariffIntervalsReference);
+        }
+        
+        private static ITypedElement RetrieveChildChargesReference()
+        {
+            return ((ITypedElement)(((ModelElement)(Charge.ClassInstance)).Resolve("ChildCharges")));
         }
         
         /// <summary>
@@ -490,7 +536,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.PaymentMetering
         /// <param name="e">The original event data</param>
         private void ChildChargesCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("ChildCharges", e);
+            this.OnCollectionChanging("ChildCharges", e, _childChargesReference);
         }
         
         /// <summary>
@@ -500,7 +546,12 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.PaymentMetering
         /// <param name="e">The original event data</param>
         private void ChildChargesCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("ChildCharges", e);
+            this.OnCollectionChanged("ChildCharges", e, _childChargesReference);
+        }
+        
+        private static ITypedElement RetrieveTimeTariffIntervalsReference()
+        {
+            return ((ITypedElement)(((ModelElement)(Charge.ClassInstance)).Resolve("TimeTariffIntervals")));
         }
         
         /// <summary>
@@ -510,7 +561,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.PaymentMetering
         /// <param name="e">The original event data</param>
         private void TimeTariffIntervalsCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("TimeTariffIntervals", e);
+            this.OnCollectionChanging("TimeTariffIntervals", e, _timeTariffIntervalsReference);
         }
         
         /// <summary>
@@ -520,7 +571,12 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.PaymentMetering
         /// <param name="e">The original event data</param>
         private void TimeTariffIntervalsCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("TimeTariffIntervals", e);
+            this.OnCollectionChanged("TimeTariffIntervals", e, _timeTariffIntervalsReference);
+        }
+        
+        private static ITypedElement RetrieveFixedPortionReference()
+        {
+            return ((ITypedElement)(((ModelElement)(Charge.ClassInstance)).Resolve("fixedPortion")));
         }
         
         /// <summary>
@@ -979,7 +1035,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.PaymentMetering
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public KindProxy(ICharge modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "kind")
             {
             }
             
@@ -997,24 +1053,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.PaymentMetering
                     this.ModelElement.Kind = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.KindChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.KindChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1028,7 +1066,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.PaymentMetering
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public VariablePortionProxy(ICharge modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "variablePortion")
             {
             }
             
@@ -1046,24 +1084,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.PaymentMetering
                     this.ModelElement.VariablePortion = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.VariablePortionChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.VariablePortionChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1077,7 +1097,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.PaymentMetering
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public ParentChargeProxy(ICharge modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "ParentCharge")
             {
             }
             
@@ -1095,24 +1115,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.PaymentMetering
                     this.ModelElement.ParentCharge = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ParentChargeChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ParentChargeChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1126,7 +1128,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.PaymentMetering
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public FixedPortionProxy(ICharge modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "fixedPortion")
             {
             }
             
@@ -1143,24 +1145,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.PaymentMetering
                 {
                     this.ModelElement.FixedPortion = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.FixedPortionChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.FixedPortionChanged -= handler;
             }
         }
     }

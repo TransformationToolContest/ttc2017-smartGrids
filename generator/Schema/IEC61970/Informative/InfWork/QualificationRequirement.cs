@@ -50,7 +50,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfWork
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61970/Informative/InfWork/Qualifica" +
         "tionRequirement")]
     [DebuggerDisplayAttribute("QualificationRequirement {UUID}")]
-    public class QualificationRequirement : IdentifiedObject, IQualificationRequirement, IModelElement
+    public partial class QualificationRequirement : IdentifiedObject, IQualificationRequirement, IModelElement
     {
         
         /// <summary>
@@ -58,20 +58,30 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfWork
         /// </summary>
         private string _qualificationID;
         
+        private static Lazy<ITypedElement> _qualificationIDAttribute = new Lazy<ITypedElement>(RetrieveQualificationIDAttribute);
+        
+        private static Lazy<ITypedElement> _specificationsReference = new Lazy<ITypedElement>(RetrieveSpecificationsReference);
+        
         /// <summary>
         /// The backing field for the Specifications property
         /// </summary>
         private QualificationRequirementSpecificationsCollection _specifications;
+        
+        private static Lazy<ITypedElement> _workTasksReference = new Lazy<ITypedElement>(RetrieveWorkTasksReference);
         
         /// <summary>
         /// The backing field for the WorkTasks property
         /// </summary>
         private QualificationRequirementWorkTasksCollection _workTasks;
         
+        private static Lazy<ITypedElement> _cULaborItemsReference = new Lazy<ITypedElement>(RetrieveCULaborItemsReference);
+        
         /// <summary>
         /// The backing field for the CULaborItems property
         /// </summary>
         private QualificationRequirementCULaborItemsCollection _cULaborItems;
+        
+        private static Lazy<ITypedElement> _skillsReference = new Lazy<ITypedElement>(RetrieveSkillsReference);
         
         /// <summary>
         /// The backing field for the Skills property
@@ -114,10 +124,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfWork
                     string old = this._qualificationID;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnQualificationIDChanging(e);
-                    this.OnPropertyChanging("QualificationID", e);
+                    this.OnPropertyChanging("QualificationID", e, _qualificationIDAttribute);
                     this._qualificationID = value;
                     this.OnQualificationIDChanged(e);
-                    this.OnPropertyChanged("QualificationID", e);
+                    this.OnPropertyChanged("QualificationID", e, _qualificationIDAttribute);
                 }
             }
         }
@@ -219,6 +229,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfWork
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> QualificationIDChanged;
         
+        private static ITypedElement RetrieveQualificationIDAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(QualificationRequirement.ClassInstance)).Resolve("qualificationID")));
+        }
+        
         /// <summary>
         /// Raises the QualificationIDChanging event
         /// </summary>
@@ -245,6 +260,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfWork
             }
         }
         
+        private static ITypedElement RetrieveSpecificationsReference()
+        {
+            return ((ITypedElement)(((ModelElement)(QualificationRequirement.ClassInstance)).Resolve("Specifications")));
+        }
+        
         /// <summary>
         /// Forwards CollectionChanging notifications for the Specifications property to the parent model element
         /// </summary>
@@ -252,7 +272,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfWork
         /// <param name="e">The original event data</param>
         private void SpecificationsCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("Specifications", e);
+            this.OnCollectionChanging("Specifications", e, _specificationsReference);
         }
         
         /// <summary>
@@ -262,7 +282,12 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfWork
         /// <param name="e">The original event data</param>
         private void SpecificationsCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("Specifications", e);
+            this.OnCollectionChanged("Specifications", e, _specificationsReference);
+        }
+        
+        private static ITypedElement RetrieveWorkTasksReference()
+        {
+            return ((ITypedElement)(((ModelElement)(QualificationRequirement.ClassInstance)).Resolve("WorkTasks")));
         }
         
         /// <summary>
@@ -272,7 +297,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfWork
         /// <param name="e">The original event data</param>
         private void WorkTasksCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("WorkTasks", e);
+            this.OnCollectionChanging("WorkTasks", e, _workTasksReference);
         }
         
         /// <summary>
@@ -282,7 +307,12 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfWork
         /// <param name="e">The original event data</param>
         private void WorkTasksCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("WorkTasks", e);
+            this.OnCollectionChanged("WorkTasks", e, _workTasksReference);
+        }
+        
+        private static ITypedElement RetrieveCULaborItemsReference()
+        {
+            return ((ITypedElement)(((ModelElement)(QualificationRequirement.ClassInstance)).Resolve("CULaborItems")));
         }
         
         /// <summary>
@@ -292,7 +322,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfWork
         /// <param name="e">The original event data</param>
         private void CULaborItemsCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("CULaborItems", e);
+            this.OnCollectionChanging("CULaborItems", e, _cULaborItemsReference);
         }
         
         /// <summary>
@@ -302,7 +332,12 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfWork
         /// <param name="e">The original event data</param>
         private void CULaborItemsCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("CULaborItems", e);
+            this.OnCollectionChanged("CULaborItems", e, _cULaborItemsReference);
+        }
+        
+        private static ITypedElement RetrieveSkillsReference()
+        {
+            return ((ITypedElement)(((ModelElement)(QualificationRequirement.ClassInstance)).Resolve("Skills")));
         }
         
         /// <summary>
@@ -312,7 +347,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfWork
         /// <param name="e">The original event data</param>
         private void SkillsCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("Skills", e);
+            this.OnCollectionChanging("Skills", e, _skillsReference);
         }
         
         /// <summary>
@@ -322,7 +357,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfWork
         /// <param name="e">The original event data</param>
         private void SkillsCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("Skills", e);
+            this.OnCollectionChanged("Skills", e, _skillsReference);
         }
         
         /// <summary>
@@ -631,7 +666,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfWork
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public QualificationIDProxy(IQualificationRequirement modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "qualificationID")
             {
             }
             
@@ -648,24 +683,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfWork
                 {
                     this.ModelElement.QualificationID = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.QualificationIDChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.QualificationIDChanged -= handler;
             }
         }
     }

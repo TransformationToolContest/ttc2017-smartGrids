@@ -43,53 +43,73 @@ namespace TTC2017.SmartGrids.SubstationStandard.LNNodes.LNGroupZ
     [XmlNamespacePrefixAttribute("groupz")]
     [ModelRepresentationClassAttribute("http://www.transformation-tool-contest.eu/2017/smartGrids/substationStandard#//LN" +
         "Nodes/LNGroupZ/ZBAT")]
-    public class ZBAT : TTC2017.SmartGrids.SubstationStandard.LNNodes.LNGroupZ.GroupZ, IZBAT, IModelElement
+    public partial class ZBAT : TTC2017.SmartGrids.SubstationStandard.LNNodes.LNGroupZ.GroupZ, IZBAT, IModelElement
     {
+        
+        private static Lazy<ITypedElement> _opTmhReference = new Lazy<ITypedElement>(RetrieveOpTmhReference);
         
         /// <summary>
         /// The backing field for the OpTmh property
         /// </summary>
         private IMV _opTmh;
         
+        private static Lazy<ITypedElement> _volReference = new Lazy<ITypedElement>(RetrieveVolReference);
+        
         /// <summary>
         /// The backing field for the Vol property
         /// </summary>
         private IMV _vol;
+        
+        private static Lazy<ITypedElement> _volChgRteReference = new Lazy<ITypedElement>(RetrieveVolChgRteReference);
         
         /// <summary>
         /// The backing field for the VolChgRte property
         /// </summary>
         private IMV _volChgRte;
         
+        private static Lazy<ITypedElement> _ampReference = new Lazy<ITypedElement>(RetrieveAmpReference);
+        
         /// <summary>
         /// The backing field for the Amp property
         /// </summary>
         private IMV _amp;
+        
+        private static Lazy<ITypedElement> _batTestReference = new Lazy<ITypedElement>(RetrieveBatTestReference);
         
         /// <summary>
         /// The backing field for the BatTest property
         /// </summary>
         private ISPC _batTest;
         
+        private static Lazy<ITypedElement> _testRslReference = new Lazy<ITypedElement>(RetrieveTestRslReference);
+        
         /// <summary>
         /// The backing field for the TestRsl property
         /// </summary>
         private ISPC _testRsl;
+        
+        private static Lazy<ITypedElement> _batHiReference = new Lazy<ITypedElement>(RetrieveBatHiReference);
         
         /// <summary>
         /// The backing field for the BatHi property
         /// </summary>
         private ISPC _batHi;
         
+        private static Lazy<ITypedElement> _batLoReference = new Lazy<ITypedElement>(RetrieveBatLoReference);
+        
         /// <summary>
         /// The backing field for the BatLo property
         /// </summary>
         private ISPC _batLo;
         
+        private static Lazy<ITypedElement> _loBatValReference = new Lazy<ITypedElement>(RetrieveLoBatValReference);
+        
         /// <summary>
         /// The backing field for the LoBatVal property
         /// </summary>
         private IASG _loBatVal;
+        
+        private static Lazy<ITypedElement> _hiBatValReference = new Lazy<ITypedElement>(RetrieveHiBatValReference);
         
         /// <summary>
         /// The backing field for the HiBatVal property
@@ -115,7 +135,7 @@ namespace TTC2017.SmartGrids.SubstationStandard.LNNodes.LNGroupZ
                     IMV old = this._opTmh;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnOpTmhChanging(e);
-                    this.OnPropertyChanging("OpTmh", e);
+                    this.OnPropertyChanging("OpTmh", e, _opTmhReference);
                     this._opTmh = value;
                     if ((old != null))
                     {
@@ -126,7 +146,7 @@ namespace TTC2017.SmartGrids.SubstationStandard.LNNodes.LNGroupZ
                         value.Deleted += this.OnResetOpTmh;
                     }
                     this.OnOpTmhChanged(e);
-                    this.OnPropertyChanged("OpTmh", e);
+                    this.OnPropertyChanged("OpTmh", e, _opTmhReference);
                 }
             }
         }
@@ -148,7 +168,7 @@ namespace TTC2017.SmartGrids.SubstationStandard.LNNodes.LNGroupZ
                     IMV old = this._vol;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnVolChanging(e);
-                    this.OnPropertyChanging("Vol", e);
+                    this.OnPropertyChanging("Vol", e, _volReference);
                     this._vol = value;
                     if ((old != null))
                     {
@@ -159,7 +179,7 @@ namespace TTC2017.SmartGrids.SubstationStandard.LNNodes.LNGroupZ
                         value.Deleted += this.OnResetVol;
                     }
                     this.OnVolChanged(e);
-                    this.OnPropertyChanged("Vol", e);
+                    this.OnPropertyChanged("Vol", e, _volReference);
                 }
             }
         }
@@ -181,7 +201,7 @@ namespace TTC2017.SmartGrids.SubstationStandard.LNNodes.LNGroupZ
                     IMV old = this._volChgRte;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnVolChgRteChanging(e);
-                    this.OnPropertyChanging("VolChgRte", e);
+                    this.OnPropertyChanging("VolChgRte", e, _volChgRteReference);
                     this._volChgRte = value;
                     if ((old != null))
                     {
@@ -192,7 +212,7 @@ namespace TTC2017.SmartGrids.SubstationStandard.LNNodes.LNGroupZ
                         value.Deleted += this.OnResetVolChgRte;
                     }
                     this.OnVolChgRteChanged(e);
-                    this.OnPropertyChanged("VolChgRte", e);
+                    this.OnPropertyChanged("VolChgRte", e, _volChgRteReference);
                 }
             }
         }
@@ -214,7 +234,7 @@ namespace TTC2017.SmartGrids.SubstationStandard.LNNodes.LNGroupZ
                     IMV old = this._amp;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnAmpChanging(e);
-                    this.OnPropertyChanging("Amp", e);
+                    this.OnPropertyChanging("Amp", e, _ampReference);
                     this._amp = value;
                     if ((old != null))
                     {
@@ -225,7 +245,7 @@ namespace TTC2017.SmartGrids.SubstationStandard.LNNodes.LNGroupZ
                         value.Deleted += this.OnResetAmp;
                     }
                     this.OnAmpChanged(e);
-                    this.OnPropertyChanged("Amp", e);
+                    this.OnPropertyChanged("Amp", e, _ampReference);
                 }
             }
         }
@@ -247,7 +267,7 @@ namespace TTC2017.SmartGrids.SubstationStandard.LNNodes.LNGroupZ
                     ISPC old = this._batTest;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnBatTestChanging(e);
-                    this.OnPropertyChanging("BatTest", e);
+                    this.OnPropertyChanging("BatTest", e, _batTestReference);
                     this._batTest = value;
                     if ((old != null))
                     {
@@ -258,7 +278,7 @@ namespace TTC2017.SmartGrids.SubstationStandard.LNNodes.LNGroupZ
                         value.Deleted += this.OnResetBatTest;
                     }
                     this.OnBatTestChanged(e);
-                    this.OnPropertyChanged("BatTest", e);
+                    this.OnPropertyChanged("BatTest", e, _batTestReference);
                 }
             }
         }
@@ -280,7 +300,7 @@ namespace TTC2017.SmartGrids.SubstationStandard.LNNodes.LNGroupZ
                     ISPC old = this._testRsl;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnTestRslChanging(e);
-                    this.OnPropertyChanging("TestRsl", e);
+                    this.OnPropertyChanging("TestRsl", e, _testRslReference);
                     this._testRsl = value;
                     if ((old != null))
                     {
@@ -291,7 +311,7 @@ namespace TTC2017.SmartGrids.SubstationStandard.LNNodes.LNGroupZ
                         value.Deleted += this.OnResetTestRsl;
                     }
                     this.OnTestRslChanged(e);
-                    this.OnPropertyChanged("TestRsl", e);
+                    this.OnPropertyChanged("TestRsl", e, _testRslReference);
                 }
             }
         }
@@ -313,7 +333,7 @@ namespace TTC2017.SmartGrids.SubstationStandard.LNNodes.LNGroupZ
                     ISPC old = this._batHi;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnBatHiChanging(e);
-                    this.OnPropertyChanging("BatHi", e);
+                    this.OnPropertyChanging("BatHi", e, _batHiReference);
                     this._batHi = value;
                     if ((old != null))
                     {
@@ -324,7 +344,7 @@ namespace TTC2017.SmartGrids.SubstationStandard.LNNodes.LNGroupZ
                         value.Deleted += this.OnResetBatHi;
                     }
                     this.OnBatHiChanged(e);
-                    this.OnPropertyChanged("BatHi", e);
+                    this.OnPropertyChanged("BatHi", e, _batHiReference);
                 }
             }
         }
@@ -346,7 +366,7 @@ namespace TTC2017.SmartGrids.SubstationStandard.LNNodes.LNGroupZ
                     ISPC old = this._batLo;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnBatLoChanging(e);
-                    this.OnPropertyChanging("BatLo", e);
+                    this.OnPropertyChanging("BatLo", e, _batLoReference);
                     this._batLo = value;
                     if ((old != null))
                     {
@@ -357,7 +377,7 @@ namespace TTC2017.SmartGrids.SubstationStandard.LNNodes.LNGroupZ
                         value.Deleted += this.OnResetBatLo;
                     }
                     this.OnBatLoChanged(e);
-                    this.OnPropertyChanged("BatLo", e);
+                    this.OnPropertyChanged("BatLo", e, _batLoReference);
                 }
             }
         }
@@ -379,7 +399,7 @@ namespace TTC2017.SmartGrids.SubstationStandard.LNNodes.LNGroupZ
                     IASG old = this._loBatVal;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnLoBatValChanging(e);
-                    this.OnPropertyChanging("LoBatVal", e);
+                    this.OnPropertyChanging("LoBatVal", e, _loBatValReference);
                     this._loBatVal = value;
                     if ((old != null))
                     {
@@ -390,7 +410,7 @@ namespace TTC2017.SmartGrids.SubstationStandard.LNNodes.LNGroupZ
                         value.Deleted += this.OnResetLoBatVal;
                     }
                     this.OnLoBatValChanged(e);
-                    this.OnPropertyChanged("LoBatVal", e);
+                    this.OnPropertyChanged("LoBatVal", e, _loBatValReference);
                 }
             }
         }
@@ -412,7 +432,7 @@ namespace TTC2017.SmartGrids.SubstationStandard.LNNodes.LNGroupZ
                     IASG old = this._hiBatVal;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnHiBatValChanging(e);
-                    this.OnPropertyChanging("HiBatVal", e);
+                    this.OnPropertyChanging("HiBatVal", e, _hiBatValReference);
                     this._hiBatVal = value;
                     if ((old != null))
                     {
@@ -423,7 +443,7 @@ namespace TTC2017.SmartGrids.SubstationStandard.LNNodes.LNGroupZ
                         value.Deleted += this.OnResetHiBatVal;
                     }
                     this.OnHiBatValChanged(e);
-                    this.OnPropertyChanged("HiBatVal", e);
+                    this.OnPropertyChanged("HiBatVal", e, _hiBatValReference);
                 }
             }
         }
@@ -555,6 +575,11 @@ namespace TTC2017.SmartGrids.SubstationStandard.LNNodes.LNGroupZ
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> HiBatValChanged;
         
+        private static ITypedElement RetrieveOpTmhReference()
+        {
+            return ((ITypedElement)(((ModelElement)(ZBAT.ClassInstance)).Resolve("OpTmh")));
+        }
+        
         /// <summary>
         /// Raises the OpTmhChanging event
         /// </summary>
@@ -589,6 +614,11 @@ namespace TTC2017.SmartGrids.SubstationStandard.LNNodes.LNGroupZ
         private void OnResetOpTmh(object sender, System.EventArgs eventArgs)
         {
             this.OpTmh = null;
+        }
+        
+        private static ITypedElement RetrieveVolReference()
+        {
+            return ((ITypedElement)(((ModelElement)(ZBAT.ClassInstance)).Resolve("Vol")));
         }
         
         /// <summary>
@@ -627,6 +657,11 @@ namespace TTC2017.SmartGrids.SubstationStandard.LNNodes.LNGroupZ
             this.Vol = null;
         }
         
+        private static ITypedElement RetrieveVolChgRteReference()
+        {
+            return ((ITypedElement)(((ModelElement)(ZBAT.ClassInstance)).Resolve("VolChgRte")));
+        }
+        
         /// <summary>
         /// Raises the VolChgRteChanging event
         /// </summary>
@@ -661,6 +696,11 @@ namespace TTC2017.SmartGrids.SubstationStandard.LNNodes.LNGroupZ
         private void OnResetVolChgRte(object sender, System.EventArgs eventArgs)
         {
             this.VolChgRte = null;
+        }
+        
+        private static ITypedElement RetrieveAmpReference()
+        {
+            return ((ITypedElement)(((ModelElement)(ZBAT.ClassInstance)).Resolve("Amp")));
         }
         
         /// <summary>
@@ -699,6 +739,11 @@ namespace TTC2017.SmartGrids.SubstationStandard.LNNodes.LNGroupZ
             this.Amp = null;
         }
         
+        private static ITypedElement RetrieveBatTestReference()
+        {
+            return ((ITypedElement)(((ModelElement)(ZBAT.ClassInstance)).Resolve("BatTest")));
+        }
+        
         /// <summary>
         /// Raises the BatTestChanging event
         /// </summary>
@@ -733,6 +778,11 @@ namespace TTC2017.SmartGrids.SubstationStandard.LNNodes.LNGroupZ
         private void OnResetBatTest(object sender, System.EventArgs eventArgs)
         {
             this.BatTest = null;
+        }
+        
+        private static ITypedElement RetrieveTestRslReference()
+        {
+            return ((ITypedElement)(((ModelElement)(ZBAT.ClassInstance)).Resolve("TestRsl")));
         }
         
         /// <summary>
@@ -771,6 +821,11 @@ namespace TTC2017.SmartGrids.SubstationStandard.LNNodes.LNGroupZ
             this.TestRsl = null;
         }
         
+        private static ITypedElement RetrieveBatHiReference()
+        {
+            return ((ITypedElement)(((ModelElement)(ZBAT.ClassInstance)).Resolve("BatHi")));
+        }
+        
         /// <summary>
         /// Raises the BatHiChanging event
         /// </summary>
@@ -805,6 +860,11 @@ namespace TTC2017.SmartGrids.SubstationStandard.LNNodes.LNGroupZ
         private void OnResetBatHi(object sender, System.EventArgs eventArgs)
         {
             this.BatHi = null;
+        }
+        
+        private static ITypedElement RetrieveBatLoReference()
+        {
+            return ((ITypedElement)(((ModelElement)(ZBAT.ClassInstance)).Resolve("BatLo")));
         }
         
         /// <summary>
@@ -843,6 +903,11 @@ namespace TTC2017.SmartGrids.SubstationStandard.LNNodes.LNGroupZ
             this.BatLo = null;
         }
         
+        private static ITypedElement RetrieveLoBatValReference()
+        {
+            return ((ITypedElement)(((ModelElement)(ZBAT.ClassInstance)).Resolve("LoBatVal")));
+        }
+        
         /// <summary>
         /// Raises the LoBatValChanging event
         /// </summary>
@@ -877,6 +942,11 @@ namespace TTC2017.SmartGrids.SubstationStandard.LNNodes.LNGroupZ
         private void OnResetLoBatVal(object sender, System.EventArgs eventArgs)
         {
             this.LoBatVal = null;
+        }
+        
+        private static ITypedElement RetrieveHiBatValReference()
+        {
+            return ((ITypedElement)(((ModelElement)(ZBAT.ClassInstance)).Resolve("HiBatVal")));
         }
         
         /// <summary>
@@ -1489,7 +1559,7 @@ namespace TTC2017.SmartGrids.SubstationStandard.LNNodes.LNGroupZ
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public OpTmhProxy(IZBAT modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "OpTmh")
             {
             }
             
@@ -1507,24 +1577,6 @@ namespace TTC2017.SmartGrids.SubstationStandard.LNNodes.LNGroupZ
                     this.ModelElement.OpTmh = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.OpTmhChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.OpTmhChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1538,7 +1590,7 @@ namespace TTC2017.SmartGrids.SubstationStandard.LNNodes.LNGroupZ
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public VolProxy(IZBAT modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "Vol")
             {
             }
             
@@ -1556,24 +1608,6 @@ namespace TTC2017.SmartGrids.SubstationStandard.LNNodes.LNGroupZ
                     this.ModelElement.Vol = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.VolChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.VolChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1587,7 +1621,7 @@ namespace TTC2017.SmartGrids.SubstationStandard.LNNodes.LNGroupZ
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public VolChgRteProxy(IZBAT modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "VolChgRte")
             {
             }
             
@@ -1605,24 +1639,6 @@ namespace TTC2017.SmartGrids.SubstationStandard.LNNodes.LNGroupZ
                     this.ModelElement.VolChgRte = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.VolChgRteChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.VolChgRteChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1636,7 +1652,7 @@ namespace TTC2017.SmartGrids.SubstationStandard.LNNodes.LNGroupZ
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public AmpProxy(IZBAT modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "Amp")
             {
             }
             
@@ -1654,24 +1670,6 @@ namespace TTC2017.SmartGrids.SubstationStandard.LNNodes.LNGroupZ
                     this.ModelElement.Amp = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.AmpChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.AmpChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1685,7 +1683,7 @@ namespace TTC2017.SmartGrids.SubstationStandard.LNNodes.LNGroupZ
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public BatTestProxy(IZBAT modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "BatTest")
             {
             }
             
@@ -1703,24 +1701,6 @@ namespace TTC2017.SmartGrids.SubstationStandard.LNNodes.LNGroupZ
                     this.ModelElement.BatTest = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.BatTestChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.BatTestChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1734,7 +1714,7 @@ namespace TTC2017.SmartGrids.SubstationStandard.LNNodes.LNGroupZ
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public TestRslProxy(IZBAT modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "TestRsl")
             {
             }
             
@@ -1752,24 +1732,6 @@ namespace TTC2017.SmartGrids.SubstationStandard.LNNodes.LNGroupZ
                     this.ModelElement.TestRsl = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.TestRslChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.TestRslChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1783,7 +1745,7 @@ namespace TTC2017.SmartGrids.SubstationStandard.LNNodes.LNGroupZ
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public BatHiProxy(IZBAT modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "BatHi")
             {
             }
             
@@ -1801,24 +1763,6 @@ namespace TTC2017.SmartGrids.SubstationStandard.LNNodes.LNGroupZ
                     this.ModelElement.BatHi = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.BatHiChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.BatHiChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1832,7 +1776,7 @@ namespace TTC2017.SmartGrids.SubstationStandard.LNNodes.LNGroupZ
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public BatLoProxy(IZBAT modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "BatLo")
             {
             }
             
@@ -1850,24 +1794,6 @@ namespace TTC2017.SmartGrids.SubstationStandard.LNNodes.LNGroupZ
                     this.ModelElement.BatLo = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.BatLoChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.BatLoChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1881,7 +1807,7 @@ namespace TTC2017.SmartGrids.SubstationStandard.LNNodes.LNGroupZ
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public LoBatValProxy(IZBAT modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "LoBatVal")
             {
             }
             
@@ -1899,24 +1825,6 @@ namespace TTC2017.SmartGrids.SubstationStandard.LNNodes.LNGroupZ
                     this.ModelElement.LoBatVal = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.LoBatValChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.LoBatValChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1930,7 +1838,7 @@ namespace TTC2017.SmartGrids.SubstationStandard.LNNodes.LNGroupZ
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public HiBatValProxy(IZBAT modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "HiBatVal")
             {
             }
             
@@ -1947,24 +1855,6 @@ namespace TTC2017.SmartGrids.SubstationStandard.LNNodes.LNGroupZ
                 {
                     this.ModelElement.HiBatVal = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.HiBatValChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.HiBatValChanged -= handler;
             }
         }
     }

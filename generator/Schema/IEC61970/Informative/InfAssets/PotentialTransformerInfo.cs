@@ -53,7 +53,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61970/Informative/InfAssets/Potenti" +
         "alTransformerInfo")]
     [DebuggerDisplayAttribute("PotentialTransformerInfo {UUID}")]
-    public class PotentialTransformerInfo : ElectricalInfo, IPotentialTransformerInfo, IModelElement
+    public partial class PotentialTransformerInfo : ElectricalInfo, IPotentialTransformerInfo, IModelElement
     {
         
         /// <summary>
@@ -61,25 +61,37 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
         /// </summary>
         private string _accuracyClass;
         
+        private static Lazy<ITypedElement> _accuracyClassAttribute = new Lazy<ITypedElement>(RetrieveAccuracyClassAttribute);
+        
         /// <summary>
         /// The backing field for the PtClass property
         /// </summary>
         private string _ptClass;
+        
+        private static Lazy<ITypedElement> _ptClassAttribute = new Lazy<ITypedElement>(RetrievePtClassAttribute);
+        
+        private static Lazy<ITypedElement> _secondaryRatioReference = new Lazy<ITypedElement>(RetrieveSecondaryRatioReference);
         
         /// <summary>
         /// The backing field for the SecondaryRatio property
         /// </summary>
         private IRatio _secondaryRatio;
         
+        private static Lazy<ITypedElement> _nominalRatioReference = new Lazy<ITypedElement>(RetrieveNominalRatioReference);
+        
         /// <summary>
         /// The backing field for the NominalRatio property
         /// </summary>
         private IRatio _nominalRatio;
         
+        private static Lazy<ITypedElement> _primaryRatioReference = new Lazy<ITypedElement>(RetrievePrimaryRatioReference);
+        
         /// <summary>
         /// The backing field for the PrimaryRatio property
         /// </summary>
         private IRatio _primaryRatio;
+        
+        private static Lazy<ITypedElement> _tertiaryRatioReference = new Lazy<ITypedElement>(RetrieveTertiaryRatioReference);
         
         /// <summary>
         /// The backing field for the TertiaryRatio property
@@ -106,10 +118,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
                     string old = this._accuracyClass;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnAccuracyClassChanging(e);
-                    this.OnPropertyChanging("AccuracyClass", e);
+                    this.OnPropertyChanging("AccuracyClass", e, _accuracyClassAttribute);
                     this._accuracyClass = value;
                     this.OnAccuracyClassChanged(e);
-                    this.OnPropertyChanged("AccuracyClass", e);
+                    this.OnPropertyChanged("AccuracyClass", e, _accuracyClassAttribute);
                 }
             }
         }
@@ -132,10 +144,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
                     string old = this._ptClass;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnPtClassChanging(e);
-                    this.OnPropertyChanging("PtClass", e);
+                    this.OnPropertyChanging("PtClass", e, _ptClassAttribute);
                     this._ptClass = value;
                     this.OnPtClassChanged(e);
-                    this.OnPropertyChanged("PtClass", e);
+                    this.OnPropertyChanged("PtClass", e, _ptClassAttribute);
                 }
             }
         }
@@ -158,7 +170,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
                     IRatio old = this._secondaryRatio;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnSecondaryRatioChanging(e);
-                    this.OnPropertyChanging("SecondaryRatio", e);
+                    this.OnPropertyChanging("SecondaryRatio", e, _secondaryRatioReference);
                     this._secondaryRatio = value;
                     if ((old != null))
                     {
@@ -169,7 +181,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
                         value.Deleted += this.OnResetSecondaryRatio;
                     }
                     this.OnSecondaryRatioChanged(e);
-                    this.OnPropertyChanged("SecondaryRatio", e);
+                    this.OnPropertyChanged("SecondaryRatio", e, _secondaryRatioReference);
                 }
             }
         }
@@ -192,7 +204,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
                     IRatio old = this._nominalRatio;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnNominalRatioChanging(e);
-                    this.OnPropertyChanging("NominalRatio", e);
+                    this.OnPropertyChanging("NominalRatio", e, _nominalRatioReference);
                     this._nominalRatio = value;
                     if ((old != null))
                     {
@@ -203,7 +215,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
                         value.Deleted += this.OnResetNominalRatio;
                     }
                     this.OnNominalRatioChanged(e);
-                    this.OnPropertyChanged("NominalRatio", e);
+                    this.OnPropertyChanged("NominalRatio", e, _nominalRatioReference);
                 }
             }
         }
@@ -226,7 +238,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
                     IRatio old = this._primaryRatio;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnPrimaryRatioChanging(e);
-                    this.OnPropertyChanging("PrimaryRatio", e);
+                    this.OnPropertyChanging("PrimaryRatio", e, _primaryRatioReference);
                     this._primaryRatio = value;
                     if ((old != null))
                     {
@@ -237,7 +249,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
                         value.Deleted += this.OnResetPrimaryRatio;
                     }
                     this.OnPrimaryRatioChanged(e);
-                    this.OnPropertyChanged("PrimaryRatio", e);
+                    this.OnPropertyChanged("PrimaryRatio", e, _primaryRatioReference);
                 }
             }
         }
@@ -260,7 +272,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
                     IRatio old = this._tertiaryRatio;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnTertiaryRatioChanging(e);
-                    this.OnPropertyChanging("TertiaryRatio", e);
+                    this.OnPropertyChanging("TertiaryRatio", e, _tertiaryRatioReference);
                     this._tertiaryRatio = value;
                     if ((old != null))
                     {
@@ -271,7 +283,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
                         value.Deleted += this.OnResetTertiaryRatio;
                     }
                     this.OnTertiaryRatioChanged(e);
-                    this.OnPropertyChanged("TertiaryRatio", e);
+                    this.OnPropertyChanged("TertiaryRatio", e, _tertiaryRatioReference);
                 }
             }
         }
@@ -363,6 +375,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> TertiaryRatioChanged;
         
+        private static ITypedElement RetrieveAccuracyClassAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(PotentialTransformerInfo.ClassInstance)).Resolve("accuracyClass")));
+        }
+        
         /// <summary>
         /// Raises the AccuracyClassChanging event
         /// </summary>
@@ -389,6 +406,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
             }
         }
         
+        private static ITypedElement RetrievePtClassAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(PotentialTransformerInfo.ClassInstance)).Resolve("ptClass")));
+        }
+        
         /// <summary>
         /// Raises the PtClassChanging event
         /// </summary>
@@ -413,6 +435,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveSecondaryRatioReference()
+        {
+            return ((ITypedElement)(((ModelElement)(PotentialTransformerInfo.ClassInstance)).Resolve("secondaryRatio")));
         }
         
         /// <summary>
@@ -451,6 +478,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
             this.SecondaryRatio = null;
         }
         
+        private static ITypedElement RetrieveNominalRatioReference()
+        {
+            return ((ITypedElement)(((ModelElement)(PotentialTransformerInfo.ClassInstance)).Resolve("nominalRatio")));
+        }
+        
         /// <summary>
         /// Raises the NominalRatioChanging event
         /// </summary>
@@ -487,6 +519,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
             this.NominalRatio = null;
         }
         
+        private static ITypedElement RetrievePrimaryRatioReference()
+        {
+            return ((ITypedElement)(((ModelElement)(PotentialTransformerInfo.ClassInstance)).Resolve("primaryRatio")));
+        }
+        
         /// <summary>
         /// Raises the PrimaryRatioChanging event
         /// </summary>
@@ -521,6 +558,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
         private void OnResetPrimaryRatio(object sender, System.EventArgs eventArgs)
         {
             this.PrimaryRatio = null;
+        }
+        
+        private static ITypedElement RetrieveTertiaryRatioReference()
+        {
+            return ((ITypedElement)(((ModelElement)(PotentialTransformerInfo.ClassInstance)).Resolve("tertiaryRatio")));
         }
         
         /// <summary>
@@ -904,7 +946,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public AccuracyClassProxy(IPotentialTransformerInfo modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "accuracyClass")
             {
             }
             
@@ -922,24 +964,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
                     this.ModelElement.AccuracyClass = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.AccuracyClassChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.AccuracyClassChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -953,7 +977,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public PtClassProxy(IPotentialTransformerInfo modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "ptClass")
             {
             }
             
@@ -971,24 +995,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
                     this.ModelElement.PtClass = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.PtClassChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.PtClassChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1002,7 +1008,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public SecondaryRatioProxy(IPotentialTransformerInfo modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "secondaryRatio")
             {
             }
             
@@ -1020,24 +1026,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
                     this.ModelElement.SecondaryRatio = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.SecondaryRatioChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.SecondaryRatioChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1051,7 +1039,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public NominalRatioProxy(IPotentialTransformerInfo modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "nominalRatio")
             {
             }
             
@@ -1069,24 +1057,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
                     this.ModelElement.NominalRatio = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.NominalRatioChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.NominalRatioChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1100,7 +1070,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public PrimaryRatioProxy(IPotentialTransformerInfo modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "primaryRatio")
             {
             }
             
@@ -1118,24 +1088,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
                     this.ModelElement.PrimaryRatio = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.PrimaryRatioChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.PrimaryRatioChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1149,7 +1101,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public TertiaryRatioProxy(IPotentialTransformerInfo modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "tertiaryRatio")
             {
             }
             
@@ -1166,24 +1118,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
                 {
                     this.ModelElement.TertiaryRatio = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.TertiaryRatioChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.TertiaryRatioChanged -= handler;
             }
         }
     }

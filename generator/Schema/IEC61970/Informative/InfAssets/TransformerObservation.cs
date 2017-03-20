@@ -53,7 +53,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61970/Informative/InfAssets/Transfo" +
         "rmerObservation")]
     [DebuggerDisplayAttribute("TransformerObservation {UUID}")]
-    public class TransformerObservation : IdentifiedObject, ITransformerObservation, IModelElement
+    public partial class TransformerObservation : IdentifiedObject, ITransformerObservation, IModelElement
     {
         
         /// <summary>
@@ -61,90 +61,128 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
         /// </summary>
         private string _oilIFT;
         
+        private static Lazy<ITypedElement> _oilIFTAttribute = new Lazy<ITypedElement>(RetrieveOilIFTAttribute);
+        
         /// <summary>
         /// The backing field for the HotSpotTemp property
         /// </summary>
         private float _hotSpotTemp;
+        
+        private static Lazy<ITypedElement> _hotSpotTempAttribute = new Lazy<ITypedElement>(RetrieveHotSpotTempAttribute);
         
         /// <summary>
         /// The backing field for the OilDielectricStrength property
         /// </summary>
         private float _oilDielectricStrength;
         
+        private static Lazy<ITypedElement> _oilDielectricStrengthAttribute = new Lazy<ITypedElement>(RetrieveOilDielectricStrengthAttribute);
+        
         /// <summary>
         /// The backing field for the TopOilTemp property
         /// </summary>
         private float _topOilTemp;
+        
+        private static Lazy<ITypedElement> _topOilTempAttribute = new Lazy<ITypedElement>(RetrieveTopOilTempAttribute);
         
         /// <summary>
         /// The backing field for the PumpVibration property
         /// </summary>
         private string _pumpVibration;
         
+        private static Lazy<ITypedElement> _pumpVibrationAttribute = new Lazy<ITypedElement>(RetrievePumpVibrationAttribute);
+        
         /// <summary>
         /// The backing field for the BushingTemp property
         /// </summary>
         private float _bushingTemp;
+        
+        private static Lazy<ITypedElement> _bushingTempAttribute = new Lazy<ITypedElement>(RetrieveBushingTempAttribute);
         
         /// <summary>
         /// The backing field for the WaterContent property
         /// </summary>
         private string _waterContent;
         
+        private static Lazy<ITypedElement> _waterContentAttribute = new Lazy<ITypedElement>(RetrieveWaterContentAttribute);
+        
         /// <summary>
         /// The backing field for the FreqResp property
         /// </summary>
         private string _freqResp;
+        
+        private static Lazy<ITypedElement> _freqRespAttribute = new Lazy<ITypedElement>(RetrieveFreqRespAttribute);
         
         /// <summary>
         /// The backing field for the FurfuralDP property
         /// </summary>
         private string _furfuralDP;
         
+        private static Lazy<ITypedElement> _furfuralDPAttribute = new Lazy<ITypedElement>(RetrieveFurfuralDPAttribute);
+        
         /// <summary>
         /// The backing field for the OilLevel property
         /// </summary>
         private string _oilLevel;
+        
+        private static Lazy<ITypedElement> _oilLevelAttribute = new Lazy<ITypedElement>(RetrieveOilLevelAttribute);
         
         /// <summary>
         /// The backing field for the OilColor property
         /// </summary>
         private string _oilColor;
         
+        private static Lazy<ITypedElement> _oilColorAttribute = new Lazy<ITypedElement>(RetrieveOilColorAttribute);
+        
         /// <summary>
         /// The backing field for the Dga property
         /// </summary>
         private string _dga;
+        
+        private static Lazy<ITypedElement> _dgaAttribute = new Lazy<ITypedElement>(RetrieveDgaAttribute);
         
         /// <summary>
         /// The backing field for the OilNeutralizationNumber property
         /// </summary>
         private string _oilNeutralizationNumber;
         
+        private static Lazy<ITypedElement> _oilNeutralizationNumberAttribute = new Lazy<ITypedElement>(RetrieveOilNeutralizationNumberAttribute);
+        
+        private static Lazy<ITypedElement> _transformerAssetReference = new Lazy<ITypedElement>(RetrieveTransformerAssetReference);
+        
         /// <summary>
         /// The backing field for the TransformerAsset property
         /// </summary>
         private ITransformerAsset _transformerAsset;
+        
+        private static Lazy<ITypedElement> _transformerReference = new Lazy<ITypedElement>(RetrieveTransformerReference);
         
         /// <summary>
         /// The backing field for the Transformer property
         /// </summary>
         private IDistributionTransformer _transformer;
         
+        private static Lazy<ITypedElement> _procedureDataSetsReference = new Lazy<ITypedElement>(RetrieveProcedureDataSetsReference);
+        
         /// <summary>
         /// The backing field for the ProcedureDataSets property
         /// </summary>
         private TransformerObservationProcedureDataSetsCollection _procedureDataSets;
+        
+        private static Lazy<ITypedElement> _bushingInsultationPFsReference = new Lazy<ITypedElement>(RetrieveBushingInsultationPFsReference);
         
         /// <summary>
         /// The backing field for the BushingInsultationPFs property
         /// </summary>
         private TransformerObservationBushingInsultationPFsCollection _bushingInsultationPFs;
         
+        private static Lazy<ITypedElement> _windingInsulationPFsReference = new Lazy<ITypedElement>(RetrieveWindingInsulationPFsReference);
+        
         /// <summary>
         /// The backing field for the WindingInsulationPFs property
         /// </summary>
         private TransformerObservationWindingInsulationPFsCollection _windingInsulationPFs;
+        
+        private static Lazy<ITypedElement> _statusReference = new Lazy<ITypedElement>(RetrieveStatusReference);
         
         /// <summary>
         /// The backing field for the Status property
@@ -184,10 +222,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
                     string old = this._oilIFT;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnOilIFTChanging(e);
-                    this.OnPropertyChanging("OilIFT", e);
+                    this.OnPropertyChanging("OilIFT", e, _oilIFTAttribute);
                     this._oilIFT = value;
                     this.OnOilIFTChanged(e);
-                    this.OnPropertyChanged("OilIFT", e);
+                    this.OnPropertyChanged("OilIFT", e, _oilIFTAttribute);
                 }
             }
         }
@@ -210,10 +248,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
                     float old = this._hotSpotTemp;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnHotSpotTempChanging(e);
-                    this.OnPropertyChanging("HotSpotTemp", e);
+                    this.OnPropertyChanging("HotSpotTemp", e, _hotSpotTempAttribute);
                     this._hotSpotTemp = value;
                     this.OnHotSpotTempChanged(e);
-                    this.OnPropertyChanged("HotSpotTemp", e);
+                    this.OnPropertyChanged("HotSpotTemp", e, _hotSpotTempAttribute);
                 }
             }
         }
@@ -236,10 +274,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
                     float old = this._oilDielectricStrength;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnOilDielectricStrengthChanging(e);
-                    this.OnPropertyChanging("OilDielectricStrength", e);
+                    this.OnPropertyChanging("OilDielectricStrength", e, _oilDielectricStrengthAttribute);
                     this._oilDielectricStrength = value;
                     this.OnOilDielectricStrengthChanged(e);
-                    this.OnPropertyChanged("OilDielectricStrength", e);
+                    this.OnPropertyChanged("OilDielectricStrength", e, _oilDielectricStrengthAttribute);
                 }
             }
         }
@@ -262,10 +300,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
                     float old = this._topOilTemp;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnTopOilTempChanging(e);
-                    this.OnPropertyChanging("TopOilTemp", e);
+                    this.OnPropertyChanging("TopOilTemp", e, _topOilTempAttribute);
                     this._topOilTemp = value;
                     this.OnTopOilTempChanged(e);
-                    this.OnPropertyChanged("TopOilTemp", e);
+                    this.OnPropertyChanged("TopOilTemp", e, _topOilTempAttribute);
                 }
             }
         }
@@ -288,10 +326,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
                     string old = this._pumpVibration;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnPumpVibrationChanging(e);
-                    this.OnPropertyChanging("PumpVibration", e);
+                    this.OnPropertyChanging("PumpVibration", e, _pumpVibrationAttribute);
                     this._pumpVibration = value;
                     this.OnPumpVibrationChanged(e);
-                    this.OnPropertyChanged("PumpVibration", e);
+                    this.OnPropertyChanged("PumpVibration", e, _pumpVibrationAttribute);
                 }
             }
         }
@@ -314,10 +352,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
                     float old = this._bushingTemp;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnBushingTempChanging(e);
-                    this.OnPropertyChanging("BushingTemp", e);
+                    this.OnPropertyChanging("BushingTemp", e, _bushingTempAttribute);
                     this._bushingTemp = value;
                     this.OnBushingTempChanged(e);
-                    this.OnPropertyChanged("BushingTemp", e);
+                    this.OnPropertyChanged("BushingTemp", e, _bushingTempAttribute);
                 }
             }
         }
@@ -340,10 +378,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
                     string old = this._waterContent;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnWaterContentChanging(e);
-                    this.OnPropertyChanging("WaterContent", e);
+                    this.OnPropertyChanging("WaterContent", e, _waterContentAttribute);
                     this._waterContent = value;
                     this.OnWaterContentChanged(e);
-                    this.OnPropertyChanged("WaterContent", e);
+                    this.OnPropertyChanged("WaterContent", e, _waterContentAttribute);
                 }
             }
         }
@@ -366,10 +404,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
                     string old = this._freqResp;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnFreqRespChanging(e);
-                    this.OnPropertyChanging("FreqResp", e);
+                    this.OnPropertyChanging("FreqResp", e, _freqRespAttribute);
                     this._freqResp = value;
                     this.OnFreqRespChanged(e);
-                    this.OnPropertyChanged("FreqResp", e);
+                    this.OnPropertyChanged("FreqResp", e, _freqRespAttribute);
                 }
             }
         }
@@ -392,10 +430,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
                     string old = this._furfuralDP;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnFurfuralDPChanging(e);
-                    this.OnPropertyChanging("FurfuralDP", e);
+                    this.OnPropertyChanging("FurfuralDP", e, _furfuralDPAttribute);
                     this._furfuralDP = value;
                     this.OnFurfuralDPChanged(e);
-                    this.OnPropertyChanged("FurfuralDP", e);
+                    this.OnPropertyChanged("FurfuralDP", e, _furfuralDPAttribute);
                 }
             }
         }
@@ -418,10 +456,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
                     string old = this._oilLevel;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnOilLevelChanging(e);
-                    this.OnPropertyChanging("OilLevel", e);
+                    this.OnPropertyChanging("OilLevel", e, _oilLevelAttribute);
                     this._oilLevel = value;
                     this.OnOilLevelChanged(e);
-                    this.OnPropertyChanged("OilLevel", e);
+                    this.OnPropertyChanged("OilLevel", e, _oilLevelAttribute);
                 }
             }
         }
@@ -444,10 +482,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
                     string old = this._oilColor;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnOilColorChanging(e);
-                    this.OnPropertyChanging("OilColor", e);
+                    this.OnPropertyChanging("OilColor", e, _oilColorAttribute);
                     this._oilColor = value;
                     this.OnOilColorChanged(e);
-                    this.OnPropertyChanged("OilColor", e);
+                    this.OnPropertyChanged("OilColor", e, _oilColorAttribute);
                 }
             }
         }
@@ -470,10 +508,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
                     string old = this._dga;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnDgaChanging(e);
-                    this.OnPropertyChanging("Dga", e);
+                    this.OnPropertyChanging("Dga", e, _dgaAttribute);
                     this._dga = value;
                     this.OnDgaChanged(e);
-                    this.OnPropertyChanged("Dga", e);
+                    this.OnPropertyChanged("Dga", e, _dgaAttribute);
                 }
             }
         }
@@ -496,10 +534,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
                     string old = this._oilNeutralizationNumber;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnOilNeutralizationNumberChanging(e);
-                    this.OnPropertyChanging("OilNeutralizationNumber", e);
+                    this.OnPropertyChanging("OilNeutralizationNumber", e, _oilNeutralizationNumberAttribute);
                     this._oilNeutralizationNumber = value;
                     this.OnOilNeutralizationNumberChanged(e);
-                    this.OnPropertyChanged("OilNeutralizationNumber", e);
+                    this.OnPropertyChanged("OilNeutralizationNumber", e, _oilNeutralizationNumberAttribute);
                 }
             }
         }
@@ -522,7 +560,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
                     ITransformerAsset old = this._transformerAsset;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnTransformerAssetChanging(e);
-                    this.OnPropertyChanging("TransformerAsset", e);
+                    this.OnPropertyChanging("TransformerAsset", e, _transformerAssetReference);
                     this._transformerAsset = value;
                     if ((old != null))
                     {
@@ -535,7 +573,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
                         value.Deleted += this.OnResetTransformerAsset;
                     }
                     this.OnTransformerAssetChanged(e);
-                    this.OnPropertyChanged("TransformerAsset", e);
+                    this.OnPropertyChanged("TransformerAsset", e, _transformerAssetReference);
                 }
             }
         }
@@ -558,7 +596,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
                     IDistributionTransformer old = this._transformer;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnTransformerChanging(e);
-                    this.OnPropertyChanging("Transformer", e);
+                    this.OnPropertyChanging("Transformer", e, _transformerReference);
                     this._transformer = value;
                     if ((old != null))
                     {
@@ -571,7 +609,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
                         value.Deleted += this.OnResetTransformer;
                     }
                     this.OnTransformerChanged(e);
-                    this.OnPropertyChanged("Transformer", e);
+                    this.OnPropertyChanged("Transformer", e, _transformerReference);
                 }
             }
         }
@@ -639,7 +677,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
                     IStatus old = this._status;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnStatusChanging(e);
-                    this.OnPropertyChanging("Status", e);
+                    this.OnPropertyChanging("Status", e, _statusReference);
                     this._status = value;
                     if ((old != null))
                     {
@@ -650,7 +688,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
                         value.Deleted += this.OnResetStatus;
                     }
                     this.OnStatusChanged(e);
-                    this.OnPropertyChanged("Status", e);
+                    this.OnPropertyChanged("Status", e, _statusReference);
                 }
             }
         }
@@ -842,6 +880,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> StatusChanged;
         
+        private static ITypedElement RetrieveOilIFTAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(TransformerObservation.ClassInstance)).Resolve("oilIFT")));
+        }
+        
         /// <summary>
         /// Raises the OilIFTChanging event
         /// </summary>
@@ -866,6 +909,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveHotSpotTempAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(TransformerObservation.ClassInstance)).Resolve("hotSpotTemp")));
         }
         
         /// <summary>
@@ -894,6 +942,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
             }
         }
         
+        private static ITypedElement RetrieveOilDielectricStrengthAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(TransformerObservation.ClassInstance)).Resolve("oilDielectricStrength")));
+        }
+        
         /// <summary>
         /// Raises the OilDielectricStrengthChanging event
         /// </summary>
@@ -918,6 +971,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveTopOilTempAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(TransformerObservation.ClassInstance)).Resolve("topOilTemp")));
         }
         
         /// <summary>
@@ -946,6 +1004,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
             }
         }
         
+        private static ITypedElement RetrievePumpVibrationAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(TransformerObservation.ClassInstance)).Resolve("pumpVibration")));
+        }
+        
         /// <summary>
         /// Raises the PumpVibrationChanging event
         /// </summary>
@@ -970,6 +1033,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveBushingTempAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(TransformerObservation.ClassInstance)).Resolve("bushingTemp")));
         }
         
         /// <summary>
@@ -998,6 +1066,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
             }
         }
         
+        private static ITypedElement RetrieveWaterContentAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(TransformerObservation.ClassInstance)).Resolve("waterContent")));
+        }
+        
         /// <summary>
         /// Raises the WaterContentChanging event
         /// </summary>
@@ -1022,6 +1095,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveFreqRespAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(TransformerObservation.ClassInstance)).Resolve("freqResp")));
         }
         
         /// <summary>
@@ -1050,6 +1128,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
             }
         }
         
+        private static ITypedElement RetrieveFurfuralDPAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(TransformerObservation.ClassInstance)).Resolve("furfuralDP")));
+        }
+        
         /// <summary>
         /// Raises the FurfuralDPChanging event
         /// </summary>
@@ -1074,6 +1157,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveOilLevelAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(TransformerObservation.ClassInstance)).Resolve("oilLevel")));
         }
         
         /// <summary>
@@ -1102,6 +1190,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
             }
         }
         
+        private static ITypedElement RetrieveOilColorAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(TransformerObservation.ClassInstance)).Resolve("oilColor")));
+        }
+        
         /// <summary>
         /// Raises the OilColorChanging event
         /// </summary>
@@ -1126,6 +1219,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveDgaAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(TransformerObservation.ClassInstance)).Resolve("dga")));
         }
         
         /// <summary>
@@ -1154,6 +1252,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
             }
         }
         
+        private static ITypedElement RetrieveOilNeutralizationNumberAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(TransformerObservation.ClassInstance)).Resolve("oilNeutralizationNumber")));
+        }
+        
         /// <summary>
         /// Raises the OilNeutralizationNumberChanging event
         /// </summary>
@@ -1178,6 +1281,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveTransformerAssetReference()
+        {
+            return ((ITypedElement)(((ModelElement)(TransformerObservation.ClassInstance)).Resolve("TransformerAsset")));
         }
         
         /// <summary>
@@ -1216,6 +1324,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
             this.TransformerAsset = null;
         }
         
+        private static ITypedElement RetrieveTransformerReference()
+        {
+            return ((ITypedElement)(((ModelElement)(TransformerObservation.ClassInstance)).Resolve("Transformer")));
+        }
+        
         /// <summary>
         /// Raises the TransformerChanging event
         /// </summary>
@@ -1252,6 +1365,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
             this.Transformer = null;
         }
         
+        private static ITypedElement RetrieveProcedureDataSetsReference()
+        {
+            return ((ITypedElement)(((ModelElement)(TransformerObservation.ClassInstance)).Resolve("ProcedureDataSets")));
+        }
+        
         /// <summary>
         /// Forwards CollectionChanging notifications for the ProcedureDataSets property to the parent model element
         /// </summary>
@@ -1259,7 +1377,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
         /// <param name="e">The original event data</param>
         private void ProcedureDataSetsCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("ProcedureDataSets", e);
+            this.OnCollectionChanging("ProcedureDataSets", e, _procedureDataSetsReference);
         }
         
         /// <summary>
@@ -1269,7 +1387,12 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
         /// <param name="e">The original event data</param>
         private void ProcedureDataSetsCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("ProcedureDataSets", e);
+            this.OnCollectionChanged("ProcedureDataSets", e, _procedureDataSetsReference);
+        }
+        
+        private static ITypedElement RetrieveBushingInsultationPFsReference()
+        {
+            return ((ITypedElement)(((ModelElement)(TransformerObservation.ClassInstance)).Resolve("BushingInsultationPFs")));
         }
         
         /// <summary>
@@ -1279,7 +1402,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
         /// <param name="e">The original event data</param>
         private void BushingInsultationPFsCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("BushingInsultationPFs", e);
+            this.OnCollectionChanging("BushingInsultationPFs", e, _bushingInsultationPFsReference);
         }
         
         /// <summary>
@@ -1289,7 +1412,12 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
         /// <param name="e">The original event data</param>
         private void BushingInsultationPFsCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("BushingInsultationPFs", e);
+            this.OnCollectionChanged("BushingInsultationPFs", e, _bushingInsultationPFsReference);
+        }
+        
+        private static ITypedElement RetrieveWindingInsulationPFsReference()
+        {
+            return ((ITypedElement)(((ModelElement)(TransformerObservation.ClassInstance)).Resolve("WindingInsulationPFs")));
         }
         
         /// <summary>
@@ -1299,7 +1427,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
         /// <param name="e">The original event data</param>
         private void WindingInsulationPFsCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("WindingInsulationPFs", e);
+            this.OnCollectionChanging("WindingInsulationPFs", e, _windingInsulationPFsReference);
         }
         
         /// <summary>
@@ -1309,7 +1437,12 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
         /// <param name="e">The original event data</param>
         private void WindingInsulationPFsCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("WindingInsulationPFs", e);
+            this.OnCollectionChanged("WindingInsulationPFs", e, _windingInsulationPFsReference);
+        }
+        
+        private static ITypedElement RetrieveStatusReference()
+        {
+            return ((ITypedElement)(((ModelElement)(TransformerObservation.ClassInstance)).Resolve("status")));
         }
         
         /// <summary>
@@ -1873,7 +2006,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public OilIFTProxy(ITransformerObservation modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "oilIFT")
             {
             }
             
@@ -1891,24 +2024,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
                     this.ModelElement.OilIFT = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.OilIFTChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.OilIFTChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1922,7 +2037,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public HotSpotTempProxy(ITransformerObservation modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "hotSpotTemp")
             {
             }
             
@@ -1940,24 +2055,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
                     this.ModelElement.HotSpotTemp = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.HotSpotTempChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.HotSpotTempChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1971,7 +2068,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public OilDielectricStrengthProxy(ITransformerObservation modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "oilDielectricStrength")
             {
             }
             
@@ -1989,24 +2086,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
                     this.ModelElement.OilDielectricStrength = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.OilDielectricStrengthChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.OilDielectricStrengthChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -2020,7 +2099,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public TopOilTempProxy(ITransformerObservation modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "topOilTemp")
             {
             }
             
@@ -2038,24 +2117,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
                     this.ModelElement.TopOilTemp = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.TopOilTempChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.TopOilTempChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -2069,7 +2130,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public PumpVibrationProxy(ITransformerObservation modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "pumpVibration")
             {
             }
             
@@ -2087,24 +2148,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
                     this.ModelElement.PumpVibration = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.PumpVibrationChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.PumpVibrationChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -2118,7 +2161,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public BushingTempProxy(ITransformerObservation modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "bushingTemp")
             {
             }
             
@@ -2136,24 +2179,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
                     this.ModelElement.BushingTemp = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.BushingTempChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.BushingTempChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -2167,7 +2192,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public WaterContentProxy(ITransformerObservation modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "waterContent")
             {
             }
             
@@ -2185,24 +2210,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
                     this.ModelElement.WaterContent = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.WaterContentChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.WaterContentChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -2216,7 +2223,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public FreqRespProxy(ITransformerObservation modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "freqResp")
             {
             }
             
@@ -2234,24 +2241,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
                     this.ModelElement.FreqResp = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.FreqRespChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.FreqRespChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -2265,7 +2254,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public FurfuralDPProxy(ITransformerObservation modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "furfuralDP")
             {
             }
             
@@ -2283,24 +2272,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
                     this.ModelElement.FurfuralDP = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.FurfuralDPChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.FurfuralDPChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -2314,7 +2285,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public OilLevelProxy(ITransformerObservation modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "oilLevel")
             {
             }
             
@@ -2332,24 +2303,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
                     this.ModelElement.OilLevel = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.OilLevelChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.OilLevelChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -2363,7 +2316,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public OilColorProxy(ITransformerObservation modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "oilColor")
             {
             }
             
@@ -2381,24 +2334,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
                     this.ModelElement.OilColor = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.OilColorChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.OilColorChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -2412,7 +2347,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public DgaProxy(ITransformerObservation modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "dga")
             {
             }
             
@@ -2430,24 +2365,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
                     this.ModelElement.Dga = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.DgaChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.DgaChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -2461,7 +2378,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public OilNeutralizationNumberProxy(ITransformerObservation modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "oilNeutralizationNumber")
             {
             }
             
@@ -2479,24 +2396,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
                     this.ModelElement.OilNeutralizationNumber = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.OilNeutralizationNumberChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.OilNeutralizationNumberChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -2510,7 +2409,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public TransformerAssetProxy(ITransformerObservation modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "TransformerAsset")
             {
             }
             
@@ -2528,24 +2427,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
                     this.ModelElement.TransformerAsset = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.TransformerAssetChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.TransformerAssetChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -2559,7 +2440,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public TransformerProxy(ITransformerObservation modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "Transformer")
             {
             }
             
@@ -2577,24 +2458,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
                     this.ModelElement.Transformer = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.TransformerChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.TransformerChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -2608,7 +2471,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public StatusProxy(ITransformerObservation modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "status")
             {
             }
             
@@ -2625,24 +2488,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
                 {
                     this.ModelElement.Status = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.StatusChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.StatusChanged -= handler;
             }
         }
     }

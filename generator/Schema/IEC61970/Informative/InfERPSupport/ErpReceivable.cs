@@ -56,8 +56,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfERPSupport
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61970/Informative/InfERPSupport/Erp" +
         "Receivable")]
     [DebuggerDisplayAttribute("ErpReceivable {UUID}")]
-    public class ErpReceivable : Document, IErpReceivable, IModelElement
+    public partial class ErpReceivable : Document, IErpReceivable, IModelElement
     {
+        
+        private static Lazy<ITypedElement> _erpRecLineItemsReference = new Lazy<ITypedElement>(RetrieveErpRecLineItemsReference);
         
         /// <summary>
         /// The backing field for the ErpRecLineItems property
@@ -115,6 +117,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfERPSupport
             }
         }
         
+        private static ITypedElement RetrieveErpRecLineItemsReference()
+        {
+            return ((ITypedElement)(((ModelElement)(ErpReceivable.ClassInstance)).Resolve("ErpRecLineItems")));
+        }
+        
         /// <summary>
         /// Forwards CollectionChanging notifications for the ErpRecLineItems property to the parent model element
         /// </summary>
@@ -122,7 +129,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfERPSupport
         /// <param name="e">The original event data</param>
         private void ErpRecLineItemsCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("ErpRecLineItems", e);
+            this.OnCollectionChanging("ErpRecLineItems", e, _erpRecLineItemsReference);
         }
         
         /// <summary>
@@ -132,7 +139,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfERPSupport
         /// <param name="e">The original event data</param>
         private void ErpRecLineItemsCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("ErpRecLineItems", e);
+            this.OnCollectionChanged("ErpRecLineItems", e, _erpRecLineItemsReference);
         }
         
         /// <summary>

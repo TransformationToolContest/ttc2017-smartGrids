@@ -46,13 +46,17 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61970/Generation/Production/StartMa" +
         "inFuelCurve")]
     [DebuggerDisplayAttribute("StartMainFuelCurve {UUID}")]
-    public class StartMainFuelCurve : Curve, IStartMainFuelCurve, IModelElement
+    public partial class StartMainFuelCurve : Curve, IStartMainFuelCurve, IModelElement
     {
         
         /// <summary>
         /// The backing field for the MainFuelType property
         /// </summary>
         private Nullable<FuelType> _mainFuelType;
+        
+        private static Lazy<ITypedElement> _mainFuelTypeAttribute = new Lazy<ITypedElement>(RetrieveMainFuelTypeAttribute);
+        
+        private static Lazy<ITypedElement> _startupModelReference = new Lazy<ITypedElement>(RetrieveStartupModelReference);
         
         /// <summary>
         /// The backing field for the StartupModel property
@@ -79,10 +83,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
                     Nullable<FuelType> old = this._mainFuelType;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnMainFuelTypeChanging(e);
-                    this.OnPropertyChanging("MainFuelType", e);
+                    this.OnPropertyChanging("MainFuelType", e, _mainFuelTypeAttribute);
                     this._mainFuelType = value;
                     this.OnMainFuelTypeChanged(e);
-                    this.OnPropertyChanged("MainFuelType", e);
+                    this.OnPropertyChanged("MainFuelType", e, _mainFuelTypeAttribute);
                 }
             }
         }
@@ -105,7 +109,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
                     IStartupModel old = this._startupModel;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnStartupModelChanging(e);
-                    this.OnPropertyChanging("StartupModel", e);
+                    this.OnPropertyChanging("StartupModel", e, _startupModelReference);
                     this._startupModel = value;
                     if ((old != null))
                     {
@@ -118,7 +122,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
                         value.Deleted += this.OnResetStartupModel;
                     }
                     this.OnStartupModelChanged(e);
-                    this.OnPropertyChanged("StartupModel", e);
+                    this.OnPropertyChanged("StartupModel", e, _startupModelReference);
                 }
             }
         }
@@ -170,6 +174,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> StartupModelChanged;
         
+        private static ITypedElement RetrieveMainFuelTypeAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(StartMainFuelCurve.ClassInstance)).Resolve("mainFuelType")));
+        }
+        
         /// <summary>
         /// Raises the MainFuelTypeChanging event
         /// </summary>
@@ -194,6 +203,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveStartupModelReference()
+        {
+            return ((ITypedElement)(((ModelElement)(StartMainFuelCurve.ClassInstance)).Resolve("StartupModel")));
         }
         
         /// <summary>
@@ -439,7 +453,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public MainFuelTypeProxy(IStartMainFuelCurve modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "mainFuelType")
             {
             }
             
@@ -457,24 +471,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
                     this.ModelElement.MainFuelType = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.MainFuelTypeChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.MainFuelTypeChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -488,7 +484,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public StartupModelProxy(IStartMainFuelCurve modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "StartupModel")
             {
             }
             
@@ -505,24 +501,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
                 {
                     this.ModelElement.StartupModel = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.StartupModelChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.StartupModelChanged -= handler;
             }
         }
     }

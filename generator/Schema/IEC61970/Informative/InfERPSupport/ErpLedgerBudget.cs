@@ -56,8 +56,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfERPSupport
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61970/Informative/InfERPSupport/Erp" +
         "LedgerBudget")]
     [DebuggerDisplayAttribute("ErpLedgerBudget {UUID}")]
-    public class ErpLedgerBudget : Document, IErpLedgerBudget, IModelElement
+    public partial class ErpLedgerBudget : Document, IErpLedgerBudget, IModelElement
     {
+        
+        private static Lazy<ITypedElement> _erpLedBudLineItemsReference = new Lazy<ITypedElement>(RetrieveErpLedBudLineItemsReference);
         
         /// <summary>
         /// The backing field for the ErpLedBudLineItems property
@@ -115,6 +117,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfERPSupport
             }
         }
         
+        private static ITypedElement RetrieveErpLedBudLineItemsReference()
+        {
+            return ((ITypedElement)(((ModelElement)(ErpLedgerBudget.ClassInstance)).Resolve("ErpLedBudLineItems")));
+        }
+        
         /// <summary>
         /// Forwards CollectionChanging notifications for the ErpLedBudLineItems property to the parent model element
         /// </summary>
@@ -122,7 +129,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfERPSupport
         /// <param name="e">The original event data</param>
         private void ErpLedBudLineItemsCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("ErpLedBudLineItems", e);
+            this.OnCollectionChanging("ErpLedBudLineItems", e, _erpLedBudLineItemsReference);
         }
         
         /// <summary>
@@ -132,7 +139,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfERPSupport
         /// <param name="e">The original event data</param>
         private void ErpLedBudLineItemsCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("ErpLedBudLineItems", e);
+            this.OnCollectionChanged("ErpLedBudLineItems", e, _erpLedBudLineItemsReference);
         }
         
         /// <summary>

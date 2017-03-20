@@ -39,8 +39,10 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
     [XmlNamespacePrefixAttribute("data")]
     [ModelRepresentationClassAttribute("http://www.transformation-tool-contest.eu/2017/smartGrids/substationStandard#//Da" +
         "taclasses/VectorArray")]
-    public class VectorArray : ModelElement, IVectorArray, IModelElement
+    public partial class VectorArray : ModelElement, IVectorArray, IModelElement
     {
+        
+        private static Lazy<ITypedElement> _vectorReference = new Lazy<ITypedElement>(RetrieveVectorReference);
         
         /// <summary>
         /// The backing field for the Vector property
@@ -98,6 +100,11 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
             }
         }
         
+        private static ITypedElement RetrieveVectorReference()
+        {
+            return ((ITypedElement)(((ModelElement)(VectorArray.ClassInstance)).Resolve("Vector")));
+        }
+        
         /// <summary>
         /// Forwards CollectionChanging notifications for the Vector property to the parent model element
         /// </summary>
@@ -105,7 +112,7 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
         /// <param name="e">The original event data</param>
         private void VectorCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("Vector", e);
+            this.OnCollectionChanging("Vector", e, _vectorReference);
         }
         
         /// <summary>
@@ -115,7 +122,7 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
         /// <param name="e">The original event data</param>
         private void VectorCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("Vector", e);
+            this.OnCollectionChanged("Vector", e, _vectorReference);
         }
         
         /// <summary>

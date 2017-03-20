@@ -40,8 +40,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Equivalents
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61970/Equivalents/EquivalentNetwork" +
         "")]
     [DebuggerDisplayAttribute("EquivalentNetwork {UUID}")]
-    public class EquivalentNetwork : ConnectivityNodeContainer, IEquivalentNetwork, IModelElement
+    public partial class EquivalentNetwork : ConnectivityNodeContainer, IEquivalentNetwork, IModelElement
     {
+        
+        private static Lazy<ITypedElement> _equivalentEquipmentsReference = new Lazy<ITypedElement>(RetrieveEquivalentEquipmentsReference);
         
         /// <summary>
         /// The backing field for the EquivalentEquipments property
@@ -99,6 +101,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Equivalents
             }
         }
         
+        private static ITypedElement RetrieveEquivalentEquipmentsReference()
+        {
+            return ((ITypedElement)(((ModelElement)(EquivalentNetwork.ClassInstance)).Resolve("EquivalentEquipments")));
+        }
+        
         /// <summary>
         /// Forwards CollectionChanging notifications for the EquivalentEquipments property to the parent model element
         /// </summary>
@@ -106,7 +113,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Equivalents
         /// <param name="e">The original event data</param>
         private void EquivalentEquipmentsCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("EquivalentEquipments", e);
+            this.OnCollectionChanging("EquivalentEquipments", e, _equivalentEquipmentsReference);
         }
         
         /// <summary>
@@ -116,7 +123,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Equivalents
         /// <param name="e">The original event data</param>
         private void EquivalentEquipmentsCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("EquivalentEquipments", e);
+            this.OnCollectionChanged("EquivalentEquipments", e, _equivalentEquipmentsReference);
         }
         
         /// <summary>

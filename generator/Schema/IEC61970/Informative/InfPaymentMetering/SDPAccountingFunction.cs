@@ -46,33 +46,45 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfPaymentMetering
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61970/Informative/InfPaymentMeterin" +
         "g/SDPAccountingFunction")]
     [DebuggerDisplayAttribute("SDPAccountingFunction {UUID}")]
-    public class SDPAccountingFunction : DeviceFunction, ISDPAccountingFunction, IModelElement
+    public partial class SDPAccountingFunction : DeviceFunction, ISDPAccountingFunction, IModelElement
     {
+        
+        private static Lazy<ITypedElement> _availableCreditReference = new Lazy<ITypedElement>(RetrieveAvailableCreditReference);
         
         /// <summary>
         /// The backing field for the AvailableCredit property
         /// </summary>
         private IAccountingUnit _availableCredit;
         
+        private static Lazy<ITypedElement> _creditRegistersReference = new Lazy<ITypedElement>(RetrieveCreditRegistersReference);
+        
         /// <summary>
         /// The backing field for the CreditRegisters property
         /// </summary>
         private SDPAccountingFunctionCreditRegistersCollection _creditRegisters;
+        
+        private static Lazy<ITypedElement> _chargeRegistersReference = new Lazy<ITypedElement>(RetrieveChargeRegistersReference);
         
         /// <summary>
         /// The backing field for the ChargeRegisters property
         /// </summary>
         private SDPAccountingFunctionChargeRegistersCollection _chargeRegisters;
         
+        private static Lazy<ITypedElement> _lowCreditWarningLevelReference = new Lazy<ITypedElement>(RetrieveLowCreditWarningLevelReference);
+        
         /// <summary>
         /// The backing field for the LowCreditWarningLevel property
         /// </summary>
         private IAccountingUnit _lowCreditWarningLevel;
         
+        private static Lazy<ITypedElement> _creditExpiryLevelReference = new Lazy<ITypedElement>(RetrieveCreditExpiryLevelReference);
+        
         /// <summary>
         /// The backing field for the CreditExpiryLevel property
         /// </summary>
         private IAccountingUnit _creditExpiryLevel;
+        
+        private static Lazy<ITypedElement> _serviceKindReference = new Lazy<ITypedElement>(RetrieveServiceKindReference);
         
         /// <summary>
         /// The backing field for the ServiceKind property
@@ -109,7 +121,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfPaymentMetering
                     IAccountingUnit old = this._availableCredit;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnAvailableCreditChanging(e);
-                    this.OnPropertyChanging("AvailableCredit", e);
+                    this.OnPropertyChanging("AvailableCredit", e, _availableCreditReference);
                     this._availableCredit = value;
                     if ((old != null))
                     {
@@ -120,7 +132,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfPaymentMetering
                         value.Deleted += this.OnResetAvailableCredit;
                     }
                     this.OnAvailableCreditChanged(e);
-                    this.OnPropertyChanged("AvailableCredit", e);
+                    this.OnPropertyChanged("AvailableCredit", e, _availableCreditReference);
                 }
             }
         }
@@ -173,7 +185,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfPaymentMetering
                     IAccountingUnit old = this._lowCreditWarningLevel;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnLowCreditWarningLevelChanging(e);
-                    this.OnPropertyChanging("LowCreditWarningLevel", e);
+                    this.OnPropertyChanging("LowCreditWarningLevel", e, _lowCreditWarningLevelReference);
                     this._lowCreditWarningLevel = value;
                     if ((old != null))
                     {
@@ -184,7 +196,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfPaymentMetering
                         value.Deleted += this.OnResetLowCreditWarningLevel;
                     }
                     this.OnLowCreditWarningLevelChanged(e);
-                    this.OnPropertyChanged("LowCreditWarningLevel", e);
+                    this.OnPropertyChanged("LowCreditWarningLevel", e, _lowCreditWarningLevelReference);
                 }
             }
         }
@@ -207,7 +219,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfPaymentMetering
                     IAccountingUnit old = this._creditExpiryLevel;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnCreditExpiryLevelChanging(e);
-                    this.OnPropertyChanging("CreditExpiryLevel", e);
+                    this.OnPropertyChanging("CreditExpiryLevel", e, _creditExpiryLevelReference);
                     this._creditExpiryLevel = value;
                     if ((old != null))
                     {
@@ -218,7 +230,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfPaymentMetering
                         value.Deleted += this.OnResetCreditExpiryLevel;
                     }
                     this.OnCreditExpiryLevelChanged(e);
-                    this.OnPropertyChanged("CreditExpiryLevel", e);
+                    this.OnPropertyChanged("CreditExpiryLevel", e, _creditExpiryLevelReference);
                 }
             }
         }
@@ -241,7 +253,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfPaymentMetering
                     IServiceCategory old = this._serviceKind;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnServiceKindChanging(e);
-                    this.OnPropertyChanging("ServiceKind", e);
+                    this.OnPropertyChanging("ServiceKind", e, _serviceKindReference);
                     this._serviceKind = value;
                     if ((old != null))
                     {
@@ -254,7 +266,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfPaymentMetering
                         value.Deleted += this.OnResetServiceKind;
                     }
                     this.OnServiceKindChanged(e);
-                    this.OnPropertyChanged("ServiceKind", e);
+                    this.OnPropertyChanged("ServiceKind", e, _serviceKindReference);
                 }
             }
         }
@@ -326,6 +338,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfPaymentMetering
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> ServiceKindChanged;
         
+        private static ITypedElement RetrieveAvailableCreditReference()
+        {
+            return ((ITypedElement)(((ModelElement)(SDPAccountingFunction.ClassInstance)).Resolve("availableCredit")));
+        }
+        
         /// <summary>
         /// Raises the AvailableCreditChanging event
         /// </summary>
@@ -362,6 +379,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfPaymentMetering
             this.AvailableCredit = null;
         }
         
+        private static ITypedElement RetrieveCreditRegistersReference()
+        {
+            return ((ITypedElement)(((ModelElement)(SDPAccountingFunction.ClassInstance)).Resolve("CreditRegisters")));
+        }
+        
         /// <summary>
         /// Forwards CollectionChanging notifications for the CreditRegisters property to the parent model element
         /// </summary>
@@ -369,7 +391,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfPaymentMetering
         /// <param name="e">The original event data</param>
         private void CreditRegistersCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("CreditRegisters", e);
+            this.OnCollectionChanging("CreditRegisters", e, _creditRegistersReference);
         }
         
         /// <summary>
@@ -379,7 +401,12 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfPaymentMetering
         /// <param name="e">The original event data</param>
         private void CreditRegistersCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("CreditRegisters", e);
+            this.OnCollectionChanged("CreditRegisters", e, _creditRegistersReference);
+        }
+        
+        private static ITypedElement RetrieveChargeRegistersReference()
+        {
+            return ((ITypedElement)(((ModelElement)(SDPAccountingFunction.ClassInstance)).Resolve("ChargeRegisters")));
         }
         
         /// <summary>
@@ -389,7 +416,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfPaymentMetering
         /// <param name="e">The original event data</param>
         private void ChargeRegistersCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("ChargeRegisters", e);
+            this.OnCollectionChanging("ChargeRegisters", e, _chargeRegistersReference);
         }
         
         /// <summary>
@@ -399,7 +426,12 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfPaymentMetering
         /// <param name="e">The original event data</param>
         private void ChargeRegistersCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("ChargeRegisters", e);
+            this.OnCollectionChanged("ChargeRegisters", e, _chargeRegistersReference);
+        }
+        
+        private static ITypedElement RetrieveLowCreditWarningLevelReference()
+        {
+            return ((ITypedElement)(((ModelElement)(SDPAccountingFunction.ClassInstance)).Resolve("lowCreditWarningLevel")));
         }
         
         /// <summary>
@@ -438,6 +470,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfPaymentMetering
             this.LowCreditWarningLevel = null;
         }
         
+        private static ITypedElement RetrieveCreditExpiryLevelReference()
+        {
+            return ((ITypedElement)(((ModelElement)(SDPAccountingFunction.ClassInstance)).Resolve("creditExpiryLevel")));
+        }
+        
         /// <summary>
         /// Raises the CreditExpiryLevelChanging event
         /// </summary>
@@ -472,6 +509,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfPaymentMetering
         private void OnResetCreditExpiryLevel(object sender, System.EventArgs eventArgs)
         {
             this.CreditExpiryLevel = null;
+        }
+        
+        private static ITypedElement RetrieveServiceKindReference()
+        {
+            return ((ITypedElement)(((ModelElement)(SDPAccountingFunction.ClassInstance)).Resolve("ServiceKind")));
         }
         
         /// <summary>
@@ -912,7 +954,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfPaymentMetering
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public AvailableCreditProxy(ISDPAccountingFunction modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "availableCredit")
             {
             }
             
@@ -930,24 +972,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfPaymentMetering
                     this.ModelElement.AvailableCredit = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.AvailableCreditChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.AvailableCreditChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -961,7 +985,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfPaymentMetering
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public LowCreditWarningLevelProxy(ISDPAccountingFunction modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "lowCreditWarningLevel")
             {
             }
             
@@ -979,24 +1003,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfPaymentMetering
                     this.ModelElement.LowCreditWarningLevel = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.LowCreditWarningLevelChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.LowCreditWarningLevelChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1010,7 +1016,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfPaymentMetering
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public CreditExpiryLevelProxy(ISDPAccountingFunction modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "creditExpiryLevel")
             {
             }
             
@@ -1028,24 +1034,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfPaymentMetering
                     this.ModelElement.CreditExpiryLevel = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.CreditExpiryLevelChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.CreditExpiryLevelChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1059,7 +1047,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfPaymentMetering
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public ServiceKindProxy(ISDPAccountingFunction modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "ServiceKind")
             {
             }
             
@@ -1076,24 +1064,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfPaymentMetering
                 {
                     this.ModelElement.ServiceKind = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ServiceKindChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ServiceKindChanged -= handler;
             }
         }
     }

@@ -46,8 +46,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfCustomers
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61970/Informative/InfCustomers/Outa" +
         "geHistory")]
     [DebuggerDisplayAttribute("OutageHistory {UUID}")]
-    public class OutageHistory : Document, IOutageHistory, IModelElement
+    public partial class OutageHistory : Document, IOutageHistory, IModelElement
     {
+        
+        private static Lazy<ITypedElement> _outageReportsReference = new Lazy<ITypedElement>(RetrieveOutageReportsReference);
         
         /// <summary>
         /// The backing field for the OutageReports property
@@ -105,6 +107,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfCustomers
             }
         }
         
+        private static ITypedElement RetrieveOutageReportsReference()
+        {
+            return ((ITypedElement)(((ModelElement)(OutageHistory.ClassInstance)).Resolve("OutageReports")));
+        }
+        
         /// <summary>
         /// Forwards CollectionChanging notifications for the OutageReports property to the parent model element
         /// </summary>
@@ -112,7 +119,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfCustomers
         /// <param name="e">The original event data</param>
         private void OutageReportsCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("OutageReports", e);
+            this.OnCollectionChanging("OutageReports", e, _outageReportsReference);
         }
         
         /// <summary>
@@ -122,7 +129,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfCustomers
         /// <param name="e">The original event data</param>
         private void OutageReportsCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("OutageReports", e);
+            this.OnCollectionChanged("OutageReports", e, _outageReportsReference);
         }
         
         /// <summary>

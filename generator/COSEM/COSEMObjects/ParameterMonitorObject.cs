@@ -39,7 +39,7 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
     [XmlNamespacePrefixAttribute("objects")]
     [ModelRepresentationClassAttribute("http://www.transformation-tool-contest.eu/2017/smartGrids/cosem#//COSEMObjects/Pa" +
         "rameterMonitorObject")]
-    public class ParameterMonitorObject : Parametermonitor, IParameterMonitorObject, IModelElement
+    public partial class ParameterMonitorObject : Parametermonitor, IParameterMonitorObject, IModelElement
     {
         
         private static IClass _classInstance;

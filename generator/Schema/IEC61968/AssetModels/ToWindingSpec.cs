@@ -46,7 +46,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.AssetModels
     [XmlNamespacePrefixAttribute("cimAssetModels")]
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61968/AssetModels/ToWindingSpec")]
     [DebuggerDisplayAttribute("ToWindingSpec {UUID}")]
-    public class ToWindingSpec : IdentifiedObject, IToWindingSpec, IModelElement
+    public partial class ToWindingSpec : IdentifiedObject, IToWindingSpec, IModelElement
     {
         
         /// <summary>
@@ -54,25 +54,37 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.AssetModels
         /// </summary>
         private float _voltage;
         
+        private static Lazy<ITypedElement> _voltageAttribute = new Lazy<ITypedElement>(RetrieveVoltageAttribute);
+        
         /// <summary>
         /// The backing field for the ToTapStep property
         /// </summary>
         private int _toTapStep;
+        
+        private static Lazy<ITypedElement> _toTapStepAttribute = new Lazy<ITypedElement>(RetrieveToTapStepAttribute);
         
         /// <summary>
         /// The backing field for the PhaseShift property
         /// </summary>
         private float _phaseShift;
         
+        private static Lazy<ITypedElement> _phaseShiftAttribute = new Lazy<ITypedElement>(RetrievePhaseShiftAttribute);
+        
+        private static Lazy<ITypedElement> _openCircuitTestsReference = new Lazy<ITypedElement>(RetrieveOpenCircuitTestsReference);
+        
         /// <summary>
         /// The backing field for the OpenCircuitTests property
         /// </summary>
         private ToWindingSpecOpenCircuitTestsCollection _openCircuitTests;
         
+        private static Lazy<ITypedElement> _toWindingReference = new Lazy<ITypedElement>(RetrieveToWindingReference);
+        
         /// <summary>
         /// The backing field for the ToWinding property
         /// </summary>
         private IWindingInfo _toWinding;
+        
+        private static Lazy<ITypedElement> _shortCircuitTestsReference = new Lazy<ITypedElement>(RetrieveShortCircuitTestsReference);
         
         /// <summary>
         /// The backing field for the ShortCircuitTests property
@@ -109,10 +121,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.AssetModels
                     float old = this._voltage;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnVoltageChanging(e);
-                    this.OnPropertyChanging("Voltage", e);
+                    this.OnPropertyChanging("Voltage", e, _voltageAttribute);
                     this._voltage = value;
                     this.OnVoltageChanged(e);
-                    this.OnPropertyChanged("Voltage", e);
+                    this.OnPropertyChanged("Voltage", e, _voltageAttribute);
                 }
             }
         }
@@ -135,10 +147,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.AssetModels
                     int old = this._toTapStep;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnToTapStepChanging(e);
-                    this.OnPropertyChanging("ToTapStep", e);
+                    this.OnPropertyChanging("ToTapStep", e, _toTapStepAttribute);
                     this._toTapStep = value;
                     this.OnToTapStepChanged(e);
-                    this.OnPropertyChanged("ToTapStep", e);
+                    this.OnPropertyChanged("ToTapStep", e, _toTapStepAttribute);
                 }
             }
         }
@@ -161,10 +173,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.AssetModels
                     float old = this._phaseShift;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnPhaseShiftChanging(e);
-                    this.OnPropertyChanging("PhaseShift", e);
+                    this.OnPropertyChanging("PhaseShift", e, _phaseShiftAttribute);
                     this._phaseShift = value;
                     this.OnPhaseShiftChanged(e);
-                    this.OnPropertyChanged("PhaseShift", e);
+                    this.OnPropertyChanged("PhaseShift", e, _phaseShiftAttribute);
                 }
             }
         }
@@ -202,7 +214,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.AssetModels
                     IWindingInfo old = this._toWinding;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnToWindingChanging(e);
-                    this.OnPropertyChanging("ToWinding", e);
+                    this.OnPropertyChanging("ToWinding", e, _toWindingReference);
                     this._toWinding = value;
                     if ((old != null))
                     {
@@ -215,7 +227,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.AssetModels
                         value.Deleted += this.OnResetToWinding;
                     }
                     this.OnToWindingChanged(e);
-                    this.OnPropertyChanged("ToWinding", e);
+                    this.OnPropertyChanged("ToWinding", e, _toWindingReference);
                 }
             }
         }
@@ -301,6 +313,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.AssetModels
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> ToWindingChanged;
         
+        private static ITypedElement RetrieveVoltageAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(ToWindingSpec.ClassInstance)).Resolve("voltage")));
+        }
+        
         /// <summary>
         /// Raises the VoltageChanging event
         /// </summary>
@@ -325,6 +342,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.AssetModels
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveToTapStepAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(ToWindingSpec.ClassInstance)).Resolve("toTapStep")));
         }
         
         /// <summary>
@@ -353,6 +375,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.AssetModels
             }
         }
         
+        private static ITypedElement RetrievePhaseShiftAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(ToWindingSpec.ClassInstance)).Resolve("phaseShift")));
+        }
+        
         /// <summary>
         /// Raises the PhaseShiftChanging event
         /// </summary>
@@ -379,6 +406,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.AssetModels
             }
         }
         
+        private static ITypedElement RetrieveOpenCircuitTestsReference()
+        {
+            return ((ITypedElement)(((ModelElement)(ToWindingSpec.ClassInstance)).Resolve("OpenCircuitTests")));
+        }
+        
         /// <summary>
         /// Forwards CollectionChanging notifications for the OpenCircuitTests property to the parent model element
         /// </summary>
@@ -386,7 +418,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.AssetModels
         /// <param name="e">The original event data</param>
         private void OpenCircuitTestsCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("OpenCircuitTests", e);
+            this.OnCollectionChanging("OpenCircuitTests", e, _openCircuitTestsReference);
         }
         
         /// <summary>
@@ -396,7 +428,12 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.AssetModels
         /// <param name="e">The original event data</param>
         private void OpenCircuitTestsCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("OpenCircuitTests", e);
+            this.OnCollectionChanged("OpenCircuitTests", e, _openCircuitTestsReference);
+        }
+        
+        private static ITypedElement RetrieveToWindingReference()
+        {
+            return ((ITypedElement)(((ModelElement)(ToWindingSpec.ClassInstance)).Resolve("ToWinding")));
         }
         
         /// <summary>
@@ -435,6 +472,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.AssetModels
             this.ToWinding = null;
         }
         
+        private static ITypedElement RetrieveShortCircuitTestsReference()
+        {
+            return ((ITypedElement)(((ModelElement)(ToWindingSpec.ClassInstance)).Resolve("ShortCircuitTests")));
+        }
+        
         /// <summary>
         /// Forwards CollectionChanging notifications for the ShortCircuitTests property to the parent model element
         /// </summary>
@@ -442,7 +484,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.AssetModels
         /// <param name="e">The original event data</param>
         private void ShortCircuitTestsCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("ShortCircuitTests", e);
+            this.OnCollectionChanging("ShortCircuitTests", e, _shortCircuitTestsReference);
         }
         
         /// <summary>
@@ -452,7 +494,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.AssetModels
         /// <param name="e">The original event data</param>
         private void ShortCircuitTestsCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("ShortCircuitTests", e);
+            this.OnCollectionChanged("ShortCircuitTests", e, _shortCircuitTestsReference);
         }
         
         /// <summary>
@@ -765,7 +807,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.AssetModels
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public VoltageProxy(IToWindingSpec modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "voltage")
             {
             }
             
@@ -783,24 +825,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.AssetModels
                     this.ModelElement.Voltage = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.VoltageChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.VoltageChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -814,7 +838,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.AssetModels
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public ToTapStepProxy(IToWindingSpec modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "toTapStep")
             {
             }
             
@@ -832,24 +856,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.AssetModels
                     this.ModelElement.ToTapStep = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ToTapStepChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ToTapStepChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -863,7 +869,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.AssetModels
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public PhaseShiftProxy(IToWindingSpec modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "phaseShift")
             {
             }
             
@@ -881,24 +887,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.AssetModels
                     this.ModelElement.PhaseShift = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.PhaseShiftChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.PhaseShiftChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -912,7 +900,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.AssetModels
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public ToWindingProxy(IToWindingSpec modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "ToWinding")
             {
             }
             
@@ -929,24 +917,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.AssetModels
                 {
                     this.ModelElement.ToWinding = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ToWindingChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ToWindingChanged -= handler;
             }
         }
     }

@@ -39,7 +39,7 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
     [XmlNamespacePrefixAttribute("objects")]
     [ModelRepresentationClassAttribute("http://www.transformation-tool-contest.eu/2017/smartGrids/cosem#//COSEMObjects/Ti" +
         "meEntries")]
-    public class TimeEntries : Data, ITimeEntries, IModelElement
+    public partial class TimeEntries : Data, ITimeEntries, IModelElement
     {
         
         /// <summary>
@@ -47,10 +47,14 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
         /// </summary>
         private string _localTime;
         
+        private static Lazy<ITypedElement> _localTimeAttribute = new Lazy<ITypedElement>(RetrieveLocalTimeAttribute);
+        
         /// <summary>
         /// The backing field for the LocalDate property
         /// </summary>
         private string _localDate;
+        
+        private static Lazy<ITypedElement> _localDateAttribute = new Lazy<ITypedElement>(RetrieveLocalDateAttribute);
         
         private static IClass _classInstance;
         
@@ -71,10 +75,10 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     string old = this._localTime;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnLocalTimeChanging(e);
-                    this.OnPropertyChanging("LocalTime", e);
+                    this.OnPropertyChanging("LocalTime", e, _localTimeAttribute);
                     this._localTime = value;
                     this.OnLocalTimeChanged(e);
-                    this.OnPropertyChanged("LocalTime", e);
+                    this.OnPropertyChanged("LocalTime", e, _localTimeAttribute);
                 }
             }
         }
@@ -96,10 +100,10 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     string old = this._localDate;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnLocalDateChanging(e);
-                    this.OnPropertyChanging("LocalDate", e);
+                    this.OnPropertyChanging("LocalDate", e, _localDateAttribute);
                     this._localDate = value;
                     this.OnLocalDateChanged(e);
-                    this.OnPropertyChanged("LocalDate", e);
+                    this.OnPropertyChanged("LocalDate", e, _localDateAttribute);
                 }
             }
         }
@@ -140,6 +144,11 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> LocalDateChanged;
         
+        private static ITypedElement RetrieveLocalTimeAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(TimeEntries.ClassInstance)).Resolve("LocalTime")));
+        }
+        
         /// <summary>
         /// Raises the LocalTimeChanging event
         /// </summary>
@@ -164,6 +173,11 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveLocalDateAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(TimeEntries.ClassInstance)).Resolve("LocalDate")));
         }
         
         /// <summary>
@@ -255,7 +269,7 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public LocalTimeProxy(ITimeEntries modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "LocalTime")
             {
             }
             
@@ -273,24 +287,6 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     this.ModelElement.LocalTime = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.LocalTimeChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.LocalTimeChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -304,7 +300,7 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public LocalDateProxy(ITimeEntries modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "LocalDate")
             {
             }
             
@@ -321,24 +317,6 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                 {
                     this.ModelElement.LocalDate = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.LocalDateChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.LocalDateChanged -= handler;
             }
         }
     }

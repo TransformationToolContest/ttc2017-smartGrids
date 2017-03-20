@@ -50,7 +50,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfWork
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61970/Informative/InfWork/InfoQuest" +
         "ion")]
     [DebuggerDisplayAttribute("InfoQuestion {UUID}")]
-    public class InfoQuestion : Document, IInfoQuestion, IModelElement
+    public partial class InfoQuestion : Document, IInfoQuestion, IModelElement
     {
         
         /// <summary>
@@ -58,35 +58,49 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfWork
         /// </summary>
         private string _answer;
         
+        private static Lazy<ITypedElement> _answerAttribute = new Lazy<ITypedElement>(RetrieveAnswerAttribute);
+        
         /// <summary>
         /// The backing field for the QuestionText property
         /// </summary>
         private string _questionText;
+        
+        private static Lazy<ITypedElement> _questionTextAttribute = new Lazy<ITypedElement>(RetrieveQuestionTextAttribute);
         
         /// <summary>
         /// The backing field for the AnswerDateTime property
         /// </summary>
         private DateTime _answerDateTime;
         
+        private static Lazy<ITypedElement> _answerDateTimeAttribute = new Lazy<ITypedElement>(RetrieveAnswerDateTimeAttribute);
+        
         /// <summary>
         /// The backing field for the QuestionCategory property
         /// </summary>
         private string _questionCategory;
+        
+        private static Lazy<ITypedElement> _questionCategoryAttribute = new Lazy<ITypedElement>(RetrieveQuestionCategoryAttribute);
         
         /// <summary>
         /// The backing field for the AnswerRemark property
         /// </summary>
         private string _answerRemark;
         
+        private static Lazy<ITypedElement> _answerRemarkAttribute = new Lazy<ITypedElement>(RetrieveAnswerRemarkAttribute);
+        
         /// <summary>
         /// The backing field for the QuestionRemark property
         /// </summary>
         private string _questionRemark;
         
+        private static Lazy<ITypedElement> _questionRemarkAttribute = new Lazy<ITypedElement>(RetrieveQuestionRemarkAttribute);
+        
         /// <summary>
         /// The backing field for the QuestionCode property
         /// </summary>
         private string _questionCode;
+        
+        private static Lazy<ITypedElement> _questionCodeAttribute = new Lazy<ITypedElement>(RetrieveQuestionCodeAttribute);
         
         private static IClass _classInstance;
         
@@ -108,10 +122,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfWork
                     string old = this._answer;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnAnswerChanging(e);
-                    this.OnPropertyChanging("Answer", e);
+                    this.OnPropertyChanging("Answer", e, _answerAttribute);
                     this._answer = value;
                     this.OnAnswerChanged(e);
-                    this.OnPropertyChanged("Answer", e);
+                    this.OnPropertyChanged("Answer", e, _answerAttribute);
                 }
             }
         }
@@ -134,10 +148,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfWork
                     string old = this._questionText;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnQuestionTextChanging(e);
-                    this.OnPropertyChanging("QuestionText", e);
+                    this.OnPropertyChanging("QuestionText", e, _questionTextAttribute);
                     this._questionText = value;
                     this.OnQuestionTextChanged(e);
-                    this.OnPropertyChanged("QuestionText", e);
+                    this.OnPropertyChanged("QuestionText", e, _questionTextAttribute);
                 }
             }
         }
@@ -160,10 +174,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfWork
                     DateTime old = this._answerDateTime;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnAnswerDateTimeChanging(e);
-                    this.OnPropertyChanging("AnswerDateTime", e);
+                    this.OnPropertyChanging("AnswerDateTime", e, _answerDateTimeAttribute);
                     this._answerDateTime = value;
                     this.OnAnswerDateTimeChanged(e);
-                    this.OnPropertyChanged("AnswerDateTime", e);
+                    this.OnPropertyChanged("AnswerDateTime", e, _answerDateTimeAttribute);
                 }
             }
         }
@@ -186,10 +200,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfWork
                     string old = this._questionCategory;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnQuestionCategoryChanging(e);
-                    this.OnPropertyChanging("QuestionCategory", e);
+                    this.OnPropertyChanging("QuestionCategory", e, _questionCategoryAttribute);
                     this._questionCategory = value;
                     this.OnQuestionCategoryChanged(e);
-                    this.OnPropertyChanged("QuestionCategory", e);
+                    this.OnPropertyChanged("QuestionCategory", e, _questionCategoryAttribute);
                 }
             }
         }
@@ -212,10 +226,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfWork
                     string old = this._answerRemark;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnAnswerRemarkChanging(e);
-                    this.OnPropertyChanging("AnswerRemark", e);
+                    this.OnPropertyChanging("AnswerRemark", e, _answerRemarkAttribute);
                     this._answerRemark = value;
                     this.OnAnswerRemarkChanged(e);
-                    this.OnPropertyChanged("AnswerRemark", e);
+                    this.OnPropertyChanged("AnswerRemark", e, _answerRemarkAttribute);
                 }
             }
         }
@@ -238,10 +252,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfWork
                     string old = this._questionRemark;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnQuestionRemarkChanging(e);
-                    this.OnPropertyChanging("QuestionRemark", e);
+                    this.OnPropertyChanging("QuestionRemark", e, _questionRemarkAttribute);
                     this._questionRemark = value;
                     this.OnQuestionRemarkChanged(e);
-                    this.OnPropertyChanged("QuestionRemark", e);
+                    this.OnPropertyChanged("QuestionRemark", e, _questionRemarkAttribute);
                 }
             }
         }
@@ -264,10 +278,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfWork
                     string old = this._questionCode;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnQuestionCodeChanging(e);
-                    this.OnPropertyChanging("QuestionCode", e);
+                    this.OnPropertyChanging("QuestionCode", e, _questionCodeAttribute);
                     this._questionCode = value;
                     this.OnQuestionCodeChanged(e);
-                    this.OnPropertyChanged("QuestionCode", e);
+                    this.OnPropertyChanged("QuestionCode", e, _questionCodeAttribute);
                 }
             }
         }
@@ -358,6 +372,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfWork
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> QuestionCodeChanged;
         
+        private static ITypedElement RetrieveAnswerAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(InfoQuestion.ClassInstance)).Resolve("answer")));
+        }
+        
         /// <summary>
         /// Raises the AnswerChanging event
         /// </summary>
@@ -382,6 +401,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfWork
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveQuestionTextAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(InfoQuestion.ClassInstance)).Resolve("questionText")));
         }
         
         /// <summary>
@@ -410,6 +434,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfWork
             }
         }
         
+        private static ITypedElement RetrieveAnswerDateTimeAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(InfoQuestion.ClassInstance)).Resolve("answerDateTime")));
+        }
+        
         /// <summary>
         /// Raises the AnswerDateTimeChanging event
         /// </summary>
@@ -434,6 +463,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfWork
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveQuestionCategoryAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(InfoQuestion.ClassInstance)).Resolve("questionCategory")));
         }
         
         /// <summary>
@@ -462,6 +496,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfWork
             }
         }
         
+        private static ITypedElement RetrieveAnswerRemarkAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(InfoQuestion.ClassInstance)).Resolve("answerRemark")));
+        }
+        
         /// <summary>
         /// Raises the AnswerRemarkChanging event
         /// </summary>
@@ -488,6 +527,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfWork
             }
         }
         
+        private static ITypedElement RetrieveQuestionRemarkAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(InfoQuestion.ClassInstance)).Resolve("questionRemark")));
+        }
+        
         /// <summary>
         /// Raises the QuestionRemarkChanging event
         /// </summary>
@@ -512,6 +556,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfWork
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveQuestionCodeAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(InfoQuestion.ClassInstance)).Resolve("questionCode")));
         }
         
         /// <summary>
@@ -648,7 +697,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfWork
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public AnswerProxy(IInfoQuestion modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "answer")
             {
             }
             
@@ -666,24 +715,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfWork
                     this.ModelElement.Answer = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.AnswerChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.AnswerChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -697,7 +728,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfWork
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public QuestionTextProxy(IInfoQuestion modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "questionText")
             {
             }
             
@@ -715,24 +746,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfWork
                     this.ModelElement.QuestionText = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.QuestionTextChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.QuestionTextChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -746,7 +759,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfWork
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public AnswerDateTimeProxy(IInfoQuestion modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "answerDateTime")
             {
             }
             
@@ -764,24 +777,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfWork
                     this.ModelElement.AnswerDateTime = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.AnswerDateTimeChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.AnswerDateTimeChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -795,7 +790,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfWork
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public QuestionCategoryProxy(IInfoQuestion modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "questionCategory")
             {
             }
             
@@ -813,24 +808,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfWork
                     this.ModelElement.QuestionCategory = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.QuestionCategoryChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.QuestionCategoryChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -844,7 +821,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfWork
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public AnswerRemarkProxy(IInfoQuestion modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "answerRemark")
             {
             }
             
@@ -862,24 +839,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfWork
                     this.ModelElement.AnswerRemark = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.AnswerRemarkChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.AnswerRemarkChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -893,7 +852,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfWork
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public QuestionRemarkProxy(IInfoQuestion modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "questionRemark")
             {
             }
             
@@ -911,24 +870,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfWork
                     this.ModelElement.QuestionRemark = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.QuestionRemarkChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.QuestionRemarkChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -942,7 +883,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfWork
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public QuestionCodeProxy(IInfoQuestion modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "questionCode")
             {
             }
             
@@ -959,24 +900,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfWork
                 {
                     this.ModelElement.QuestionCode = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.QuestionCodeChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.QuestionCodeChanged -= handler;
             }
         }
     }

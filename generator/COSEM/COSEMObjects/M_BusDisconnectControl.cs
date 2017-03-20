@@ -39,7 +39,7 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
     [XmlNamespacePrefixAttribute("objects")]
     [ModelRepresentationClassAttribute("http://www.transformation-tool-contest.eu/2017/smartGrids/cosem#//COSEMObjects/M_" +
         "BusDisconnectControl")]
-    public class M_BusDisconnectControl : TTC2017.SmartGrids.COSEM.InterfaceClasses.DisconnectControl, IM_BusDisconnectControl, IModelElement
+    public partial class M_BusDisconnectControl : TTC2017.SmartGrids.COSEM.InterfaceClasses.DisconnectControl, IM_BusDisconnectControl, IModelElement
     {
         
         private static IClass _classInstance;

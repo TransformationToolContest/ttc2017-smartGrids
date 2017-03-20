@@ -45,7 +45,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfGMLSupport
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61970/Informative/InfGMLSupport/Gml" +
         "RasterSymbol")]
     [DebuggerDisplayAttribute("GmlRasterSymbol {UUID}")]
-    public class GmlRasterSymbol : GmlSymbol, IGmlRasterSymbol, IModelElement
+    public partial class GmlRasterSymbol : GmlSymbol, IGmlRasterSymbol, IModelElement
     {
         
         /// <summary>
@@ -53,40 +53,58 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfGMLSupport
         /// </summary>
         private string _graySourcename;
         
+        private static Lazy<ITypedElement> _graySourcenameAttribute = new Lazy<ITypedElement>(RetrieveGraySourcenameAttribute);
+        
         /// <summary>
         /// The backing field for the ReliefFactor property
         /// </summary>
         private string _reliefFactor;
+        
+        private static Lazy<ITypedElement> _reliefFactorAttribute = new Lazy<ITypedElement>(RetrieveReliefFactorAttribute);
         
         /// <summary>
         /// The backing field for the Overlapbehaviour property
         /// </summary>
         private string _overlapbehaviour;
         
+        private static Lazy<ITypedElement> _overlapbehaviourAttribute = new Lazy<ITypedElement>(RetrieveOverlapbehaviourAttribute);
+        
         /// <summary>
         /// The backing field for the Opacity property
         /// </summary>
         private float _opacity;
+        
+        private static Lazy<ITypedElement> _opacityAttribute = new Lazy<ITypedElement>(RetrieveOpacityAttribute);
         
         /// <summary>
         /// The backing field for the GreenSourceName property
         /// </summary>
         private string _greenSourceName;
         
+        private static Lazy<ITypedElement> _greenSourceNameAttribute = new Lazy<ITypedElement>(RetrieveGreenSourceNameAttribute);
+        
         /// <summary>
         /// The backing field for the BrighnessOnly property
         /// </summary>
         private bool _brighnessOnly;
+        
+        private static Lazy<ITypedElement> _brighnessOnlyAttribute = new Lazy<ITypedElement>(RetrieveBrighnessOnlyAttribute);
         
         /// <summary>
         /// The backing field for the BlueSourcename property
         /// </summary>
         private string _blueSourcename;
         
+        private static Lazy<ITypedElement> _blueSourcenameAttribute = new Lazy<ITypedElement>(RetrieveBlueSourcenameAttribute);
+        
         /// <summary>
         /// The backing field for the RedSourcename property
         /// </summary>
         private string _redSourcename;
+        
+        private static Lazy<ITypedElement> _redSourcenameAttribute = new Lazy<ITypedElement>(RetrieveRedSourcenameAttribute);
+        
+        private static Lazy<ITypedElement> _gmlDiagramObjectReference = new Lazy<ITypedElement>(RetrieveGmlDiagramObjectReference);
         
         /// <summary>
         /// The backing field for the GmlDiagramObject property
@@ -113,10 +131,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfGMLSupport
                     string old = this._graySourcename;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnGraySourcenameChanging(e);
-                    this.OnPropertyChanging("GraySourcename", e);
+                    this.OnPropertyChanging("GraySourcename", e, _graySourcenameAttribute);
                     this._graySourcename = value;
                     this.OnGraySourcenameChanged(e);
-                    this.OnPropertyChanged("GraySourcename", e);
+                    this.OnPropertyChanged("GraySourcename", e, _graySourcenameAttribute);
                 }
             }
         }
@@ -139,10 +157,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfGMLSupport
                     string old = this._reliefFactor;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnReliefFactorChanging(e);
-                    this.OnPropertyChanging("ReliefFactor", e);
+                    this.OnPropertyChanging("ReliefFactor", e, _reliefFactorAttribute);
                     this._reliefFactor = value;
                     this.OnReliefFactorChanged(e);
-                    this.OnPropertyChanged("ReliefFactor", e);
+                    this.OnPropertyChanged("ReliefFactor", e, _reliefFactorAttribute);
                 }
             }
         }
@@ -165,10 +183,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfGMLSupport
                     string old = this._overlapbehaviour;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnOverlapbehaviourChanging(e);
-                    this.OnPropertyChanging("Overlapbehaviour", e);
+                    this.OnPropertyChanging("Overlapbehaviour", e, _overlapbehaviourAttribute);
                     this._overlapbehaviour = value;
                     this.OnOverlapbehaviourChanged(e);
-                    this.OnPropertyChanged("Overlapbehaviour", e);
+                    this.OnPropertyChanged("Overlapbehaviour", e, _overlapbehaviourAttribute);
                 }
             }
         }
@@ -191,10 +209,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfGMLSupport
                     float old = this._opacity;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnOpacityChanging(e);
-                    this.OnPropertyChanging("Opacity", e);
+                    this.OnPropertyChanging("Opacity", e, _opacityAttribute);
                     this._opacity = value;
                     this.OnOpacityChanged(e);
-                    this.OnPropertyChanged("Opacity", e);
+                    this.OnPropertyChanged("Opacity", e, _opacityAttribute);
                 }
             }
         }
@@ -217,10 +235,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfGMLSupport
                     string old = this._greenSourceName;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnGreenSourceNameChanging(e);
-                    this.OnPropertyChanging("GreenSourceName", e);
+                    this.OnPropertyChanging("GreenSourceName", e, _greenSourceNameAttribute);
                     this._greenSourceName = value;
                     this.OnGreenSourceNameChanged(e);
-                    this.OnPropertyChanged("GreenSourceName", e);
+                    this.OnPropertyChanged("GreenSourceName", e, _greenSourceNameAttribute);
                 }
             }
         }
@@ -243,10 +261,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfGMLSupport
                     bool old = this._brighnessOnly;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnBrighnessOnlyChanging(e);
-                    this.OnPropertyChanging("BrighnessOnly", e);
+                    this.OnPropertyChanging("BrighnessOnly", e, _brighnessOnlyAttribute);
                     this._brighnessOnly = value;
                     this.OnBrighnessOnlyChanged(e);
-                    this.OnPropertyChanged("BrighnessOnly", e);
+                    this.OnPropertyChanged("BrighnessOnly", e, _brighnessOnlyAttribute);
                 }
             }
         }
@@ -269,10 +287,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfGMLSupport
                     string old = this._blueSourcename;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnBlueSourcenameChanging(e);
-                    this.OnPropertyChanging("BlueSourcename", e);
+                    this.OnPropertyChanging("BlueSourcename", e, _blueSourcenameAttribute);
                     this._blueSourcename = value;
                     this.OnBlueSourcenameChanged(e);
-                    this.OnPropertyChanged("BlueSourcename", e);
+                    this.OnPropertyChanged("BlueSourcename", e, _blueSourcenameAttribute);
                 }
             }
         }
@@ -295,10 +313,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfGMLSupport
                     string old = this._redSourcename;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnRedSourcenameChanging(e);
-                    this.OnPropertyChanging("RedSourcename", e);
+                    this.OnPropertyChanging("RedSourcename", e, _redSourcenameAttribute);
                     this._redSourcename = value;
                     this.OnRedSourcenameChanged(e);
-                    this.OnPropertyChanged("RedSourcename", e);
+                    this.OnPropertyChanged("RedSourcename", e, _redSourcenameAttribute);
                 }
             }
         }
@@ -321,7 +339,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfGMLSupport
                     IGmlDiagramObject old = this._gmlDiagramObject;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnGmlDiagramObjectChanging(e);
-                    this.OnPropertyChanging("GmlDiagramObject", e);
+                    this.OnPropertyChanging("GmlDiagramObject", e, _gmlDiagramObjectReference);
                     this._gmlDiagramObject = value;
                     if ((old != null))
                     {
@@ -334,7 +352,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfGMLSupport
                         value.Deleted += this.OnResetGmlDiagramObject;
                     }
                     this.OnGmlDiagramObjectChanged(e);
-                    this.OnPropertyChanged("GmlDiagramObject", e);
+                    this.OnPropertyChanged("GmlDiagramObject", e, _gmlDiagramObjectReference);
                 }
             }
         }
@@ -456,6 +474,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfGMLSupport
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> GmlDiagramObjectChanged;
         
+        private static ITypedElement RetrieveGraySourcenameAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(GmlRasterSymbol.ClassInstance)).Resolve("graySourcename")));
+        }
+        
         /// <summary>
         /// Raises the GraySourcenameChanging event
         /// </summary>
@@ -480,6 +503,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfGMLSupport
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveReliefFactorAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(GmlRasterSymbol.ClassInstance)).Resolve("reliefFactor")));
         }
         
         /// <summary>
@@ -508,6 +536,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfGMLSupport
             }
         }
         
+        private static ITypedElement RetrieveOverlapbehaviourAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(GmlRasterSymbol.ClassInstance)).Resolve("overlapbehaviour")));
+        }
+        
         /// <summary>
         /// Raises the OverlapbehaviourChanging event
         /// </summary>
@@ -532,6 +565,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfGMLSupport
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveOpacityAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(GmlRasterSymbol.ClassInstance)).Resolve("opacity")));
         }
         
         /// <summary>
@@ -560,6 +598,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfGMLSupport
             }
         }
         
+        private static ITypedElement RetrieveGreenSourceNameAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(GmlRasterSymbol.ClassInstance)).Resolve("greenSourceName")));
+        }
+        
         /// <summary>
         /// Raises the GreenSourceNameChanging event
         /// </summary>
@@ -584,6 +627,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfGMLSupport
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveBrighnessOnlyAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(GmlRasterSymbol.ClassInstance)).Resolve("brighnessOnly")));
         }
         
         /// <summary>
@@ -612,6 +660,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfGMLSupport
             }
         }
         
+        private static ITypedElement RetrieveBlueSourcenameAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(GmlRasterSymbol.ClassInstance)).Resolve("blueSourcename")));
+        }
+        
         /// <summary>
         /// Raises the BlueSourcenameChanging event
         /// </summary>
@@ -638,6 +691,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfGMLSupport
             }
         }
         
+        private static ITypedElement RetrieveRedSourcenameAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(GmlRasterSymbol.ClassInstance)).Resolve("redSourcename")));
+        }
+        
         /// <summary>
         /// Raises the RedSourcenameChanging event
         /// </summary>
@@ -662,6 +720,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfGMLSupport
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveGmlDiagramObjectReference()
+        {
+            return ((ITypedElement)(((ModelElement)(GmlRasterSymbol.ClassInstance)).Resolve("GmlDiagramObject")));
         }
         
         /// <summary>
@@ -970,7 +1033,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfGMLSupport
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public GraySourcenameProxy(IGmlRasterSymbol modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "graySourcename")
             {
             }
             
@@ -988,24 +1051,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfGMLSupport
                     this.ModelElement.GraySourcename = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.GraySourcenameChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.GraySourcenameChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1019,7 +1064,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfGMLSupport
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public ReliefFactorProxy(IGmlRasterSymbol modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "reliefFactor")
             {
             }
             
@@ -1037,24 +1082,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfGMLSupport
                     this.ModelElement.ReliefFactor = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ReliefFactorChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ReliefFactorChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1068,7 +1095,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfGMLSupport
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public OverlapbehaviourProxy(IGmlRasterSymbol modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "overlapbehaviour")
             {
             }
             
@@ -1086,24 +1113,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfGMLSupport
                     this.ModelElement.Overlapbehaviour = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.OverlapbehaviourChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.OverlapbehaviourChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1117,7 +1126,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfGMLSupport
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public OpacityProxy(IGmlRasterSymbol modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "opacity")
             {
             }
             
@@ -1135,24 +1144,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfGMLSupport
                     this.ModelElement.Opacity = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.OpacityChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.OpacityChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1166,7 +1157,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfGMLSupport
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public GreenSourceNameProxy(IGmlRasterSymbol modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "greenSourceName")
             {
             }
             
@@ -1184,24 +1175,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfGMLSupport
                     this.ModelElement.GreenSourceName = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.GreenSourceNameChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.GreenSourceNameChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1215,7 +1188,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfGMLSupport
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public BrighnessOnlyProxy(IGmlRasterSymbol modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "brighnessOnly")
             {
             }
             
@@ -1233,24 +1206,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfGMLSupport
                     this.ModelElement.BrighnessOnly = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.BrighnessOnlyChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.BrighnessOnlyChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1264,7 +1219,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfGMLSupport
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public BlueSourcenameProxy(IGmlRasterSymbol modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "blueSourcename")
             {
             }
             
@@ -1282,24 +1237,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfGMLSupport
                     this.ModelElement.BlueSourcename = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.BlueSourcenameChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.BlueSourcenameChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1313,7 +1250,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfGMLSupport
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public RedSourcenameProxy(IGmlRasterSymbol modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "redSourcename")
             {
             }
             
@@ -1331,24 +1268,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfGMLSupport
                     this.ModelElement.RedSourcename = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.RedSourcenameChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.RedSourcenameChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1362,7 +1281,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfGMLSupport
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public GmlDiagramObjectProxy(IGmlRasterSymbol modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "GmlDiagramObject")
             {
             }
             
@@ -1379,24 +1298,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfGMLSupport
                 {
                     this.ModelElement.GmlDiagramObject = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.GmlDiagramObjectChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.GmlDiagramObjectChanged -= handler;
             }
         }
     }

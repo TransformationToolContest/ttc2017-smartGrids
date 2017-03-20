@@ -54,7 +54,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Metering
     [XmlNamespacePrefixAttribute("cimMetering")]
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61968/Metering/IntervalReading")]
     [DebuggerDisplayAttribute("IntervalReading {UUID}")]
-    public class IntervalReading : MeasurementValue, IIntervalReading, IModelElement
+    public partial class IntervalReading : MeasurementValue, IIntervalReading, IModelElement
     {
         
         /// <summary>
@@ -62,10 +62,16 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Metering
         /// </summary>
         private float _value;
         
+        private static Lazy<ITypedElement> _valueAttribute = new Lazy<ITypedElement>(RetrieveValueAttribute);
+        
+        private static Lazy<ITypedElement> _readingQualitiesReference = new Lazy<ITypedElement>(RetrieveReadingQualitiesReference);
+        
         /// <summary>
         /// The backing field for the ReadingQualities property
         /// </summary>
         private IntervalReadingReadingQualitiesCollection _readingQualities;
+        
+        private static Lazy<ITypedElement> _intervalBlocksReference = new Lazy<ITypedElement>(RetrieveIntervalBlocksReference);
         
         /// <summary>
         /// The backing field for the IntervalBlocks property
@@ -102,10 +108,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Metering
                     float old = this._value;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnValueChanging(e);
-                    this.OnPropertyChanging("Value", e);
+                    this.OnPropertyChanging("Value", e, _valueAttribute);
                     this._value = value;
                     this.OnValueChanged(e);
-                    this.OnPropertyChanged("Value", e);
+                    this.OnPropertyChanged("Value", e, _valueAttribute);
                 }
             }
         }
@@ -176,6 +182,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Metering
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> ValueChanged;
         
+        private static ITypedElement RetrieveValueAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(IntervalReading.ClassInstance)).Resolve("value")));
+        }
+        
         /// <summary>
         /// Raises the ValueChanging event
         /// </summary>
@@ -202,6 +213,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Metering
             }
         }
         
+        private static ITypedElement RetrieveReadingQualitiesReference()
+        {
+            return ((ITypedElement)(((ModelElement)(IntervalReading.ClassInstance)).Resolve("ReadingQualities")));
+        }
+        
         /// <summary>
         /// Forwards CollectionChanging notifications for the ReadingQualities property to the parent model element
         /// </summary>
@@ -209,7 +225,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Metering
         /// <param name="e">The original event data</param>
         private void ReadingQualitiesCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("ReadingQualities", e);
+            this.OnCollectionChanging("ReadingQualities", e, _readingQualitiesReference);
         }
         
         /// <summary>
@@ -219,7 +235,12 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Metering
         /// <param name="e">The original event data</param>
         private void ReadingQualitiesCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("ReadingQualities", e);
+            this.OnCollectionChanged("ReadingQualities", e, _readingQualitiesReference);
+        }
+        
+        private static ITypedElement RetrieveIntervalBlocksReference()
+        {
+            return ((ITypedElement)(((ModelElement)(IntervalReading.ClassInstance)).Resolve("IntervalBlocks")));
         }
         
         /// <summary>
@@ -229,7 +250,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Metering
         /// <param name="e">The original event data</param>
         private void IntervalBlocksCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("IntervalBlocks", e);
+            this.OnCollectionChanging("IntervalBlocks", e, _intervalBlocksReference);
         }
         
         /// <summary>
@@ -239,7 +260,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Metering
         /// <param name="e">The original event data</param>
         private void IntervalBlocksCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("IntervalBlocks", e);
+            this.OnCollectionChanged("IntervalBlocks", e, _intervalBlocksReference);
         }
         
         /// <summary>
@@ -471,7 +492,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Metering
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public ValueProxy(IIntervalReading modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "value")
             {
             }
             
@@ -488,24 +509,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Metering
                 {
                     this.ModelElement.Value = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ValueChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ValueChanged -= handler;
             }
         }
     }

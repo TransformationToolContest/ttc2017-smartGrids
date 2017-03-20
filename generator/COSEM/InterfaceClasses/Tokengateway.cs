@@ -40,7 +40,7 @@ namespace TTC2017.SmartGrids.COSEM.InterfaceClasses
     [XmlNamespacePrefixAttribute("inter")]
     [ModelRepresentationClassAttribute("http://www.transformation-tool-contest.eu/2017/smartGrids/cosem#//InterfaceClasse" +
         "s/Tokengateway")]
-    public class Tokengateway : Base, ITokengateway, IModelElement
+    public partial class Tokengateway : Base, ITokengateway, IModelElement
     {
         
         private static IClass _classInstance;

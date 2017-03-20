@@ -53,7 +53,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61970/Informative/InfAssets/Financi" +
         "alInfo")]
     [DebuggerDisplayAttribute("FinancialInfo {UUID}")]
-    public class FinancialInfo : IdentifiedObject, IFinancialInfo, IModelElement
+    public partial class FinancialInfo : IdentifiedObject, IFinancialInfo, IModelElement
     {
         
         /// <summary>
@@ -61,55 +61,79 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
         /// </summary>
         private string _costType;
         
+        private static Lazy<ITypedElement> _costTypeAttribute = new Lazy<ITypedElement>(RetrieveCostTypeAttribute);
+        
         /// <summary>
         /// The backing field for the CostDescription property
         /// </summary>
         private string _costDescription;
+        
+        private static Lazy<ITypedElement> _costDescriptionAttribute = new Lazy<ITypedElement>(RetrieveCostDescriptionAttribute);
         
         /// <summary>
         /// The backing field for the Account property
         /// </summary>
         private string _account;
         
+        private static Lazy<ITypedElement> _accountAttribute = new Lazy<ITypedElement>(RetrieveAccountAttribute);
+        
         /// <summary>
         /// The backing field for the PlantTransferDateTime property
         /// </summary>
         private DateTime _plantTransferDateTime;
+        
+        private static Lazy<ITypedElement> _plantTransferDateTimeAttribute = new Lazy<ITypedElement>(RetrievePlantTransferDateTimeAttribute);
         
         /// <summary>
         /// The backing field for the WarrantyEndDateTime property
         /// </summary>
         private DateTime _warrantyEndDateTime;
         
+        private static Lazy<ITypedElement> _warrantyEndDateTimeAttribute = new Lazy<ITypedElement>(RetrieveWarrantyEndDateTimeAttribute);
+        
         /// <summary>
         /// The backing field for the ActualPurchaseCost property
         /// </summary>
         private float _actualPurchaseCost;
+        
+        private static Lazy<ITypedElement> _actualPurchaseCostAttribute = new Lazy<ITypedElement>(RetrieveActualPurchaseCostAttribute);
         
         /// <summary>
         /// The backing field for the PurchaseDateTime property
         /// </summary>
         private DateTime _purchaseDateTime;
         
+        private static Lazy<ITypedElement> _purchaseDateTimeAttribute = new Lazy<ITypedElement>(RetrievePurchaseDateTimeAttribute);
+        
         /// <summary>
         /// The backing field for the PurchaseOrderNumber property
         /// </summary>
         private string _purchaseOrderNumber;
+        
+        private static Lazy<ITypedElement> _purchaseOrderNumberAttribute = new Lazy<ITypedElement>(RetrievePurchaseOrderNumberAttribute);
         
         /// <summary>
         /// The backing field for the FinancialValue property
         /// </summary>
         private float _financialValue;
         
+        private static Lazy<ITypedElement> _financialValueAttribute = new Lazy<ITypedElement>(RetrieveFinancialValueAttribute);
+        
         /// <summary>
         /// The backing field for the Quantity property
         /// </summary>
         private object _quantity;
         
+        private static Lazy<ITypedElement> _quantityAttribute = new Lazy<ITypedElement>(RetrieveQuantityAttribute);
+        
         /// <summary>
         /// The backing field for the ValueDateTime property
         /// </summary>
         private DateTime _valueDateTime;
+        
+        private static Lazy<ITypedElement> _valueDateTimeAttribute = new Lazy<ITypedElement>(RetrieveValueDateTimeAttribute);
+        
+        private static Lazy<ITypedElement> _assetReference = new Lazy<ITypedElement>(RetrieveAssetReference);
         
         /// <summary>
         /// The backing field for the Asset property
@@ -136,10 +160,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
                     string old = this._costType;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnCostTypeChanging(e);
-                    this.OnPropertyChanging("CostType", e);
+                    this.OnPropertyChanging("CostType", e, _costTypeAttribute);
                     this._costType = value;
                     this.OnCostTypeChanged(e);
-                    this.OnPropertyChanged("CostType", e);
+                    this.OnPropertyChanged("CostType", e, _costTypeAttribute);
                 }
             }
         }
@@ -162,10 +186,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
                     string old = this._costDescription;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnCostDescriptionChanging(e);
-                    this.OnPropertyChanging("CostDescription", e);
+                    this.OnPropertyChanging("CostDescription", e, _costDescriptionAttribute);
                     this._costDescription = value;
                     this.OnCostDescriptionChanged(e);
-                    this.OnPropertyChanged("CostDescription", e);
+                    this.OnPropertyChanged("CostDescription", e, _costDescriptionAttribute);
                 }
             }
         }
@@ -188,10 +212,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
                     string old = this._account;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnAccountChanging(e);
-                    this.OnPropertyChanging("Account", e);
+                    this.OnPropertyChanging("Account", e, _accountAttribute);
                     this._account = value;
                     this.OnAccountChanged(e);
-                    this.OnPropertyChanged("Account", e);
+                    this.OnPropertyChanged("Account", e, _accountAttribute);
                 }
             }
         }
@@ -214,10 +238,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
                     DateTime old = this._plantTransferDateTime;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnPlantTransferDateTimeChanging(e);
-                    this.OnPropertyChanging("PlantTransferDateTime", e);
+                    this.OnPropertyChanging("PlantTransferDateTime", e, _plantTransferDateTimeAttribute);
                     this._plantTransferDateTime = value;
                     this.OnPlantTransferDateTimeChanged(e);
-                    this.OnPropertyChanged("PlantTransferDateTime", e);
+                    this.OnPropertyChanged("PlantTransferDateTime", e, _plantTransferDateTimeAttribute);
                 }
             }
         }
@@ -240,10 +264,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
                     DateTime old = this._warrantyEndDateTime;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnWarrantyEndDateTimeChanging(e);
-                    this.OnPropertyChanging("WarrantyEndDateTime", e);
+                    this.OnPropertyChanging("WarrantyEndDateTime", e, _warrantyEndDateTimeAttribute);
                     this._warrantyEndDateTime = value;
                     this.OnWarrantyEndDateTimeChanged(e);
-                    this.OnPropertyChanged("WarrantyEndDateTime", e);
+                    this.OnPropertyChanged("WarrantyEndDateTime", e, _warrantyEndDateTimeAttribute);
                 }
             }
         }
@@ -266,10 +290,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
                     float old = this._actualPurchaseCost;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnActualPurchaseCostChanging(e);
-                    this.OnPropertyChanging("ActualPurchaseCost", e);
+                    this.OnPropertyChanging("ActualPurchaseCost", e, _actualPurchaseCostAttribute);
                     this._actualPurchaseCost = value;
                     this.OnActualPurchaseCostChanged(e);
-                    this.OnPropertyChanged("ActualPurchaseCost", e);
+                    this.OnPropertyChanged("ActualPurchaseCost", e, _actualPurchaseCostAttribute);
                 }
             }
         }
@@ -292,10 +316,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
                     DateTime old = this._purchaseDateTime;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnPurchaseDateTimeChanging(e);
-                    this.OnPropertyChanging("PurchaseDateTime", e);
+                    this.OnPropertyChanging("PurchaseDateTime", e, _purchaseDateTimeAttribute);
                     this._purchaseDateTime = value;
                     this.OnPurchaseDateTimeChanged(e);
-                    this.OnPropertyChanged("PurchaseDateTime", e);
+                    this.OnPropertyChanged("PurchaseDateTime", e, _purchaseDateTimeAttribute);
                 }
             }
         }
@@ -318,10 +342,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
                     string old = this._purchaseOrderNumber;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnPurchaseOrderNumberChanging(e);
-                    this.OnPropertyChanging("PurchaseOrderNumber", e);
+                    this.OnPropertyChanging("PurchaseOrderNumber", e, _purchaseOrderNumberAttribute);
                     this._purchaseOrderNumber = value;
                     this.OnPurchaseOrderNumberChanged(e);
-                    this.OnPropertyChanged("PurchaseOrderNumber", e);
+                    this.OnPropertyChanged("PurchaseOrderNumber", e, _purchaseOrderNumberAttribute);
                 }
             }
         }
@@ -344,10 +368,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
                     float old = this._financialValue;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnFinancialValueChanging(e);
-                    this.OnPropertyChanging("FinancialValue", e);
+                    this.OnPropertyChanging("FinancialValue", e, _financialValueAttribute);
                     this._financialValue = value;
                     this.OnFinancialValueChanged(e);
-                    this.OnPropertyChanged("FinancialValue", e);
+                    this.OnPropertyChanged("FinancialValue", e, _financialValueAttribute);
                 }
             }
         }
@@ -370,10 +394,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
                     object old = this._quantity;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnQuantityChanging(e);
-                    this.OnPropertyChanging("Quantity", e);
+                    this.OnPropertyChanging("Quantity", e, _quantityAttribute);
                     this._quantity = value;
                     this.OnQuantityChanged(e);
-                    this.OnPropertyChanged("Quantity", e);
+                    this.OnPropertyChanged("Quantity", e, _quantityAttribute);
                 }
             }
         }
@@ -396,10 +420,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
                     DateTime old = this._valueDateTime;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnValueDateTimeChanging(e);
-                    this.OnPropertyChanging("ValueDateTime", e);
+                    this.OnPropertyChanging("ValueDateTime", e, _valueDateTimeAttribute);
                     this._valueDateTime = value;
                     this.OnValueDateTimeChanged(e);
-                    this.OnPropertyChanged("ValueDateTime", e);
+                    this.OnPropertyChanged("ValueDateTime", e, _valueDateTimeAttribute);
                 }
             }
         }
@@ -422,7 +446,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
                     IAsset old = this._asset;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnAssetChanging(e);
-                    this.OnPropertyChanging("Asset", e);
+                    this.OnPropertyChanging("Asset", e, _assetReference);
                     this._asset = value;
                     if ((old != null))
                     {
@@ -435,7 +459,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
                         value.Deleted += this.OnResetAsset;
                     }
                     this.OnAssetChanged(e);
-                    this.OnPropertyChanged("Asset", e);
+                    this.OnPropertyChanged("Asset", e, _assetReference);
                 }
             }
         }
@@ -587,6 +611,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> AssetChanged;
         
+        private static ITypedElement RetrieveCostTypeAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(FinancialInfo.ClassInstance)).Resolve("costType")));
+        }
+        
         /// <summary>
         /// Raises the CostTypeChanging event
         /// </summary>
@@ -611,6 +640,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveCostDescriptionAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(FinancialInfo.ClassInstance)).Resolve("costDescription")));
         }
         
         /// <summary>
@@ -639,6 +673,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
             }
         }
         
+        private static ITypedElement RetrieveAccountAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(FinancialInfo.ClassInstance)).Resolve("account")));
+        }
+        
         /// <summary>
         /// Raises the AccountChanging event
         /// </summary>
@@ -663,6 +702,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrievePlantTransferDateTimeAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(FinancialInfo.ClassInstance)).Resolve("plantTransferDateTime")));
         }
         
         /// <summary>
@@ -691,6 +735,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
             }
         }
         
+        private static ITypedElement RetrieveWarrantyEndDateTimeAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(FinancialInfo.ClassInstance)).Resolve("warrantyEndDateTime")));
+        }
+        
         /// <summary>
         /// Raises the WarrantyEndDateTimeChanging event
         /// </summary>
@@ -715,6 +764,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveActualPurchaseCostAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(FinancialInfo.ClassInstance)).Resolve("actualPurchaseCost")));
         }
         
         /// <summary>
@@ -743,6 +797,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
             }
         }
         
+        private static ITypedElement RetrievePurchaseDateTimeAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(FinancialInfo.ClassInstance)).Resolve("purchaseDateTime")));
+        }
+        
         /// <summary>
         /// Raises the PurchaseDateTimeChanging event
         /// </summary>
@@ -767,6 +826,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrievePurchaseOrderNumberAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(FinancialInfo.ClassInstance)).Resolve("purchaseOrderNumber")));
         }
         
         /// <summary>
@@ -795,6 +859,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
             }
         }
         
+        private static ITypedElement RetrieveFinancialValueAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(FinancialInfo.ClassInstance)).Resolve("financialValue")));
+        }
+        
         /// <summary>
         /// Raises the FinancialValueChanging event
         /// </summary>
@@ -819,6 +888,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveQuantityAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(FinancialInfo.ClassInstance)).Resolve("quantity")));
         }
         
         /// <summary>
@@ -847,6 +921,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
             }
         }
         
+        private static ITypedElement RetrieveValueDateTimeAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(FinancialInfo.ClassInstance)).Resolve("valueDateTime")));
+        }
+        
         /// <summary>
         /// Raises the ValueDateTimeChanging event
         /// </summary>
@@ -871,6 +950,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveAssetReference()
+        {
+            return ((ITypedElement)(((ModelElement)(FinancialInfo.ClassInstance)).Resolve("Asset")));
         }
         
         /// <summary>
@@ -1206,7 +1290,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public CostTypeProxy(IFinancialInfo modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "costType")
             {
             }
             
@@ -1224,24 +1308,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
                     this.ModelElement.CostType = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.CostTypeChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.CostTypeChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1255,7 +1321,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public CostDescriptionProxy(IFinancialInfo modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "costDescription")
             {
             }
             
@@ -1273,24 +1339,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
                     this.ModelElement.CostDescription = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.CostDescriptionChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.CostDescriptionChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1304,7 +1352,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public AccountProxy(IFinancialInfo modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "account")
             {
             }
             
@@ -1322,24 +1370,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
                     this.ModelElement.Account = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.AccountChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.AccountChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1353,7 +1383,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public PlantTransferDateTimeProxy(IFinancialInfo modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "plantTransferDateTime")
             {
             }
             
@@ -1371,24 +1401,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
                     this.ModelElement.PlantTransferDateTime = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.PlantTransferDateTimeChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.PlantTransferDateTimeChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1402,7 +1414,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public WarrantyEndDateTimeProxy(IFinancialInfo modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "warrantyEndDateTime")
             {
             }
             
@@ -1420,24 +1432,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
                     this.ModelElement.WarrantyEndDateTime = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.WarrantyEndDateTimeChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.WarrantyEndDateTimeChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1451,7 +1445,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public ActualPurchaseCostProxy(IFinancialInfo modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "actualPurchaseCost")
             {
             }
             
@@ -1469,24 +1463,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
                     this.ModelElement.ActualPurchaseCost = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ActualPurchaseCostChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ActualPurchaseCostChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1500,7 +1476,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public PurchaseDateTimeProxy(IFinancialInfo modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "purchaseDateTime")
             {
             }
             
@@ -1518,24 +1494,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
                     this.ModelElement.PurchaseDateTime = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.PurchaseDateTimeChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.PurchaseDateTimeChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1549,7 +1507,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public PurchaseOrderNumberProxy(IFinancialInfo modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "purchaseOrderNumber")
             {
             }
             
@@ -1567,24 +1525,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
                     this.ModelElement.PurchaseOrderNumber = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.PurchaseOrderNumberChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.PurchaseOrderNumberChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1598,7 +1538,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public FinancialValueProxy(IFinancialInfo modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "financialValue")
             {
             }
             
@@ -1616,24 +1556,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
                     this.ModelElement.FinancialValue = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.FinancialValueChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.FinancialValueChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1647,7 +1569,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public QuantityProxy(IFinancialInfo modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "quantity")
             {
             }
             
@@ -1665,24 +1587,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
                     this.ModelElement.Quantity = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.QuantityChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.QuantityChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1696,7 +1600,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public ValueDateTimeProxy(IFinancialInfo modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "valueDateTime")
             {
             }
             
@@ -1714,24 +1618,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
                     this.ModelElement.ValueDateTime = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ValueDateTimeChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ValueDateTimeChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1745,7 +1631,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public AssetProxy(IFinancialInfo modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "Asset")
             {
             }
             
@@ -1762,24 +1648,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
                 {
                     this.ModelElement.Asset = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.AssetChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.AssetChanged -= handler;
             }
         }
     }

@@ -50,7 +50,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfOperations
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61970/Informative/InfOperations/Lan" +
         "dBase")]
     [DebuggerDisplayAttribute("LandBase {UUID}")]
-    public class LandBase : Document, ILandBase, IModelElement
+    public partial class LandBase : Document, ILandBase, IModelElement
     {
         
         private static IClass _classInstance;

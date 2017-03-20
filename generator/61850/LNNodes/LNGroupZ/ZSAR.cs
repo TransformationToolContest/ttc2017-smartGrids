@@ -43,13 +43,17 @@ namespace TTC2017.SmartGrids.SubstationStandard.LNNodes.LNGroupZ
     [XmlNamespacePrefixAttribute("groupz")]
     [ModelRepresentationClassAttribute("http://www.transformation-tool-contest.eu/2017/smartGrids/substationStandard#//LN" +
         "Nodes/LNGroupZ/ZSAR")]
-    public class ZSAR : TTC2017.SmartGrids.SubstationStandard.LNNodes.LNGroupZ.GroupZ, IZSAR, IModelElement
+    public partial class ZSAR : TTC2017.SmartGrids.SubstationStandard.LNNodes.LNGroupZ.GroupZ, IZSAR, IModelElement
     {
+        
+        private static Lazy<ITypedElement> _opCntReference = new Lazy<ITypedElement>(RetrieveOpCntReference);
         
         /// <summary>
         /// The backing field for the OpCnt property
         /// </summary>
         private IINS _opCnt;
+        
+        private static Lazy<ITypedElement> _oPSAReference = new Lazy<ITypedElement>(RetrieveOPSAReference);
         
         /// <summary>
         /// The backing field for the OPSA property
@@ -75,7 +79,7 @@ namespace TTC2017.SmartGrids.SubstationStandard.LNNodes.LNGroupZ
                     IINS old = this._opCnt;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnOpCntChanging(e);
-                    this.OnPropertyChanging("OpCnt", e);
+                    this.OnPropertyChanging("OpCnt", e, _opCntReference);
                     this._opCnt = value;
                     if ((old != null))
                     {
@@ -86,7 +90,7 @@ namespace TTC2017.SmartGrids.SubstationStandard.LNNodes.LNGroupZ
                         value.Deleted += this.OnResetOpCnt;
                     }
                     this.OnOpCntChanged(e);
-                    this.OnPropertyChanged("OpCnt", e);
+                    this.OnPropertyChanged("OpCnt", e, _opCntReference);
                 }
             }
         }
@@ -108,7 +112,7 @@ namespace TTC2017.SmartGrids.SubstationStandard.LNNodes.LNGroupZ
                     ISPS old = this._oPSA;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnOPSAChanging(e);
-                    this.OnPropertyChanging("OPSA", e);
+                    this.OnPropertyChanging("OPSA", e, _oPSAReference);
                     this._oPSA = value;
                     if ((old != null))
                     {
@@ -119,7 +123,7 @@ namespace TTC2017.SmartGrids.SubstationStandard.LNNodes.LNGroupZ
                         value.Deleted += this.OnResetOPSA;
                     }
                     this.OnOPSAChanged(e);
-                    this.OnPropertyChanged("OPSA", e);
+                    this.OnPropertyChanged("OPSA", e, _oPSAReference);
                 }
             }
         }
@@ -171,6 +175,11 @@ namespace TTC2017.SmartGrids.SubstationStandard.LNNodes.LNGroupZ
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> OPSAChanged;
         
+        private static ITypedElement RetrieveOpCntReference()
+        {
+            return ((ITypedElement)(((ModelElement)(ZSAR.ClassInstance)).Resolve("OpCnt")));
+        }
+        
         /// <summary>
         /// Raises the OpCntChanging event
         /// </summary>
@@ -205,6 +214,11 @@ namespace TTC2017.SmartGrids.SubstationStandard.LNNodes.LNGroupZ
         private void OnResetOpCnt(object sender, System.EventArgs eventArgs)
         {
             this.OpCnt = null;
+        }
+        
+        private static ITypedElement RetrieveOPSAReference()
+        {
+            return ((ITypedElement)(((ModelElement)(ZSAR.ClassInstance)).Resolve("OPSA")));
         }
         
         /// <summary>
@@ -473,7 +487,7 @@ namespace TTC2017.SmartGrids.SubstationStandard.LNNodes.LNGroupZ
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public OpCntProxy(IZSAR modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "OpCnt")
             {
             }
             
@@ -491,24 +505,6 @@ namespace TTC2017.SmartGrids.SubstationStandard.LNNodes.LNGroupZ
                     this.ModelElement.OpCnt = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.OpCntChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.OpCntChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -522,7 +518,7 @@ namespace TTC2017.SmartGrids.SubstationStandard.LNNodes.LNGroupZ
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public OPSAProxy(IZSAR modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "OPSA")
             {
             }
             
@@ -539,24 +535,6 @@ namespace TTC2017.SmartGrids.SubstationStandard.LNNodes.LNGroupZ
                 {
                     this.ModelElement.OPSA = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.OPSAChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.OPSAChanged -= handler;
             }
         }
     }

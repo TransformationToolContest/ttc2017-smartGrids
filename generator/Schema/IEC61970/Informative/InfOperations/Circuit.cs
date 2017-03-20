@@ -50,7 +50,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfOperations
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61970/Informative/InfOperations/Cir" +
         "cuit")]
     [DebuggerDisplayAttribute("Circuit {UUID}")]
-    public class Circuit : EquipmentContainer, ICircuit, IModelElement
+    public partial class Circuit : EquipmentContainer, ICircuit, IModelElement
     {
         
         private static IClass _classInstance;

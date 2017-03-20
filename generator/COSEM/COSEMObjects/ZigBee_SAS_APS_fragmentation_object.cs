@@ -39,7 +39,7 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
     [XmlNamespacePrefixAttribute("objects")]
     [ModelRepresentationClassAttribute("http://www.transformation-tool-contest.eu/2017/smartGrids/cosem#//COSEMObjects/Zi" +
         "gBee_SAS_APS_fragmentation_object")]
-    public class ZigBee_SAS_APS_fragmentation_object : ZigBee_SAS_APS_fragmentation, IZigBee_SAS_APS_fragmentation_object, IModelElement
+    public partial class ZigBee_SAS_APS_fragmentation_object : ZigBee_SAS_APS_fragmentation, IZigBee_SAS_APS_fragmentation_object, IModelElement
     {
         
         private static IClass _classInstance;

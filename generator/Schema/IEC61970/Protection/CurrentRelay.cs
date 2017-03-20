@@ -40,7 +40,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Protection
     [XmlNamespacePrefixAttribute("cimProtection")]
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61970/Protection/CurrentRelay")]
     [DebuggerDisplayAttribute("CurrentRelay {UUID}")]
-    public class CurrentRelay : ProtectionEquipment, ICurrentRelay, IModelElement
+    public partial class CurrentRelay : ProtectionEquipment, ICurrentRelay, IModelElement
     {
         
         /// <summary>
@@ -48,35 +48,49 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Protection
         /// </summary>
         private float _timeDelay1;
         
+        private static Lazy<ITypedElement> _timeDelay1Attribute = new Lazy<ITypedElement>(RetrieveTimeDelay1Attribute);
+        
         /// <summary>
         /// The backing field for the TimeDelay2 property
         /// </summary>
         private float _timeDelay2;
+        
+        private static Lazy<ITypedElement> _timeDelay2Attribute = new Lazy<ITypedElement>(RetrieveTimeDelay2Attribute);
         
         /// <summary>
         /// The backing field for the TimeDelay3 property
         /// </summary>
         private float _timeDelay3;
         
+        private static Lazy<ITypedElement> _timeDelay3Attribute = new Lazy<ITypedElement>(RetrieveTimeDelay3Attribute);
+        
         /// <summary>
         /// The backing field for the InverseTimeFlag property
         /// </summary>
         private bool _inverseTimeFlag;
+        
+        private static Lazy<ITypedElement> _inverseTimeFlagAttribute = new Lazy<ITypedElement>(RetrieveInverseTimeFlagAttribute);
         
         /// <summary>
         /// The backing field for the CurrentLimit3 property
         /// </summary>
         private float _currentLimit3;
         
+        private static Lazy<ITypedElement> _currentLimit3Attribute = new Lazy<ITypedElement>(RetrieveCurrentLimit3Attribute);
+        
         /// <summary>
         /// The backing field for the CurrentLimit2 property
         /// </summary>
         private float _currentLimit2;
         
+        private static Lazy<ITypedElement> _currentLimit2Attribute = new Lazy<ITypedElement>(RetrieveCurrentLimit2Attribute);
+        
         /// <summary>
         /// The backing field for the CurrentLimit1 property
         /// </summary>
         private float _currentLimit1;
+        
+        private static Lazy<ITypedElement> _currentLimit1Attribute = new Lazy<ITypedElement>(RetrieveCurrentLimit1Attribute);
         
         private static IClass _classInstance;
         
@@ -98,10 +112,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Protection
                     float old = this._timeDelay1;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnTimeDelay1Changing(e);
-                    this.OnPropertyChanging("TimeDelay1", e);
+                    this.OnPropertyChanging("TimeDelay1", e, _timeDelay1Attribute);
                     this._timeDelay1 = value;
                     this.OnTimeDelay1Changed(e);
-                    this.OnPropertyChanged("TimeDelay1", e);
+                    this.OnPropertyChanged("TimeDelay1", e, _timeDelay1Attribute);
                 }
             }
         }
@@ -124,10 +138,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Protection
                     float old = this._timeDelay2;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnTimeDelay2Changing(e);
-                    this.OnPropertyChanging("TimeDelay2", e);
+                    this.OnPropertyChanging("TimeDelay2", e, _timeDelay2Attribute);
                     this._timeDelay2 = value;
                     this.OnTimeDelay2Changed(e);
-                    this.OnPropertyChanged("TimeDelay2", e);
+                    this.OnPropertyChanged("TimeDelay2", e, _timeDelay2Attribute);
                 }
             }
         }
@@ -150,10 +164,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Protection
                     float old = this._timeDelay3;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnTimeDelay3Changing(e);
-                    this.OnPropertyChanging("TimeDelay3", e);
+                    this.OnPropertyChanging("TimeDelay3", e, _timeDelay3Attribute);
                     this._timeDelay3 = value;
                     this.OnTimeDelay3Changed(e);
-                    this.OnPropertyChanged("TimeDelay3", e);
+                    this.OnPropertyChanged("TimeDelay3", e, _timeDelay3Attribute);
                 }
             }
         }
@@ -176,10 +190,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Protection
                     bool old = this._inverseTimeFlag;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnInverseTimeFlagChanging(e);
-                    this.OnPropertyChanging("InverseTimeFlag", e);
+                    this.OnPropertyChanging("InverseTimeFlag", e, _inverseTimeFlagAttribute);
                     this._inverseTimeFlag = value;
                     this.OnInverseTimeFlagChanged(e);
-                    this.OnPropertyChanged("InverseTimeFlag", e);
+                    this.OnPropertyChanged("InverseTimeFlag", e, _inverseTimeFlagAttribute);
                 }
             }
         }
@@ -202,10 +216,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Protection
                     float old = this._currentLimit3;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnCurrentLimit3Changing(e);
-                    this.OnPropertyChanging("CurrentLimit3", e);
+                    this.OnPropertyChanging("CurrentLimit3", e, _currentLimit3Attribute);
                     this._currentLimit3 = value;
                     this.OnCurrentLimit3Changed(e);
-                    this.OnPropertyChanged("CurrentLimit3", e);
+                    this.OnPropertyChanged("CurrentLimit3", e, _currentLimit3Attribute);
                 }
             }
         }
@@ -228,10 +242,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Protection
                     float old = this._currentLimit2;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnCurrentLimit2Changing(e);
-                    this.OnPropertyChanging("CurrentLimit2", e);
+                    this.OnPropertyChanging("CurrentLimit2", e, _currentLimit2Attribute);
                     this._currentLimit2 = value;
                     this.OnCurrentLimit2Changed(e);
-                    this.OnPropertyChanged("CurrentLimit2", e);
+                    this.OnPropertyChanged("CurrentLimit2", e, _currentLimit2Attribute);
                 }
             }
         }
@@ -254,10 +268,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Protection
                     float old = this._currentLimit1;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnCurrentLimit1Changing(e);
-                    this.OnPropertyChanging("CurrentLimit1", e);
+                    this.OnPropertyChanging("CurrentLimit1", e, _currentLimit1Attribute);
                     this._currentLimit1 = value;
                     this.OnCurrentLimit1Changed(e);
-                    this.OnPropertyChanged("CurrentLimit1", e);
+                    this.OnPropertyChanged("CurrentLimit1", e, _currentLimit1Attribute);
                 }
             }
         }
@@ -347,6 +361,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Protection
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> CurrentLimit1Changed;
         
+        private static ITypedElement RetrieveTimeDelay1Attribute()
+        {
+            return ((ITypedElement)(((ModelElement)(CurrentRelay.ClassInstance)).Resolve("timeDelay1")));
+        }
+        
         /// <summary>
         /// Raises the TimeDelay1Changing event
         /// </summary>
@@ -371,6 +390,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Protection
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveTimeDelay2Attribute()
+        {
+            return ((ITypedElement)(((ModelElement)(CurrentRelay.ClassInstance)).Resolve("timeDelay2")));
         }
         
         /// <summary>
@@ -399,6 +423,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Protection
             }
         }
         
+        private static ITypedElement RetrieveTimeDelay3Attribute()
+        {
+            return ((ITypedElement)(((ModelElement)(CurrentRelay.ClassInstance)).Resolve("timeDelay3")));
+        }
+        
         /// <summary>
         /// Raises the TimeDelay3Changing event
         /// </summary>
@@ -423,6 +452,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Protection
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveInverseTimeFlagAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(CurrentRelay.ClassInstance)).Resolve("inverseTimeFlag")));
         }
         
         /// <summary>
@@ -451,6 +485,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Protection
             }
         }
         
+        private static ITypedElement RetrieveCurrentLimit3Attribute()
+        {
+            return ((ITypedElement)(((ModelElement)(CurrentRelay.ClassInstance)).Resolve("currentLimit3")));
+        }
+        
         /// <summary>
         /// Raises the CurrentLimit3Changing event
         /// </summary>
@@ -477,6 +516,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Protection
             }
         }
         
+        private static ITypedElement RetrieveCurrentLimit2Attribute()
+        {
+            return ((ITypedElement)(((ModelElement)(CurrentRelay.ClassInstance)).Resolve("currentLimit2")));
+        }
+        
         /// <summary>
         /// Raises the CurrentLimit2Changing event
         /// </summary>
@@ -501,6 +545,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Protection
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveCurrentLimit1Attribute()
+        {
+            return ((ITypedElement)(((ModelElement)(CurrentRelay.ClassInstance)).Resolve("currentLimit1")));
         }
         
         /// <summary>
@@ -636,7 +685,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Protection
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public TimeDelay1Proxy(ICurrentRelay modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "timeDelay1")
             {
             }
             
@@ -654,24 +703,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Protection
                     this.ModelElement.TimeDelay1 = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.TimeDelay1Changed += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.TimeDelay1Changed -= handler;
-            }
         }
         
         /// <summary>
@@ -685,7 +716,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Protection
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public TimeDelay2Proxy(ICurrentRelay modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "timeDelay2")
             {
             }
             
@@ -703,24 +734,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Protection
                     this.ModelElement.TimeDelay2 = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.TimeDelay2Changed += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.TimeDelay2Changed -= handler;
-            }
         }
         
         /// <summary>
@@ -734,7 +747,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Protection
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public TimeDelay3Proxy(ICurrentRelay modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "timeDelay3")
             {
             }
             
@@ -752,24 +765,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Protection
                     this.ModelElement.TimeDelay3 = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.TimeDelay3Changed += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.TimeDelay3Changed -= handler;
-            }
         }
         
         /// <summary>
@@ -783,7 +778,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Protection
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public InverseTimeFlagProxy(ICurrentRelay modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "inverseTimeFlag")
             {
             }
             
@@ -801,24 +796,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Protection
                     this.ModelElement.InverseTimeFlag = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.InverseTimeFlagChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.InverseTimeFlagChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -832,7 +809,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Protection
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public CurrentLimit3Proxy(ICurrentRelay modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "currentLimit3")
             {
             }
             
@@ -850,24 +827,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Protection
                     this.ModelElement.CurrentLimit3 = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.CurrentLimit3Changed += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.CurrentLimit3Changed -= handler;
-            }
         }
         
         /// <summary>
@@ -881,7 +840,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Protection
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public CurrentLimit2Proxy(ICurrentRelay modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "currentLimit2")
             {
             }
             
@@ -899,24 +858,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Protection
                     this.ModelElement.CurrentLimit2 = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.CurrentLimit2Changed += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.CurrentLimit2Changed -= handler;
-            }
         }
         
         /// <summary>
@@ -930,7 +871,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Protection
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public CurrentLimit1Proxy(ICurrentRelay modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "currentLimit1")
             {
             }
             
@@ -947,24 +888,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Protection
                 {
                     this.ModelElement.CurrentLimit1 = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.CurrentLimit1Changed += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.CurrentLimit1Changed -= handler;
             }
         }
     }

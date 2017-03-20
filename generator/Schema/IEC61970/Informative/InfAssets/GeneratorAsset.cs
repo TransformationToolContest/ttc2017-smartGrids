@@ -53,7 +53,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61970/Informative/InfAssets/Generat" +
         "orAsset")]
     [DebuggerDisplayAttribute("GeneratorAsset {UUID}")]
-    public class GeneratorAsset : ElectricalAsset, IGeneratorAsset, IModelElement
+    public partial class GeneratorAsset : ElectricalAsset, IGeneratorAsset, IModelElement
     {
         
         private static IClass _classInstance;

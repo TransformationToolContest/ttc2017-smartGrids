@@ -43,7 +43,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.LoadModel
     [XmlNamespacePrefixAttribute("cimLoadModel")]
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61970/LoadModel/Season")]
     [DebuggerDisplayAttribute("Season {UUID}")]
-    public class Season : Element, ISeason, IModelElement
+    public partial class Season : Element, ISeason, IModelElement
     {
         
         /// <summary>
@@ -51,25 +51,37 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.LoadModel
         /// </summary>
         private DateTime _startDate;
         
+        private static Lazy<ITypedElement> _startDateAttribute = new Lazy<ITypedElement>(RetrieveStartDateAttribute);
+        
         /// <summary>
         /// The backing field for the Name property
         /// </summary>
         private Nullable<SeasonName> _name;
+        
+        private static Lazy<ITypedElement> _nameAttribute = new Lazy<ITypedElement>(RetrieveNameAttribute);
         
         /// <summary>
         /// The backing field for the EndDate property
         /// </summary>
         private DateTime _endDate;
         
+        private static Lazy<ITypedElement> _endDateAttribute = new Lazy<ITypedElement>(RetrieveEndDateAttribute);
+        
+        private static Lazy<ITypedElement> _violationLimitsReference = new Lazy<ITypedElement>(RetrieveViolationLimitsReference);
+        
         /// <summary>
         /// The backing field for the ViolationLimits property
         /// </summary>
         private SeasonViolationLimitsCollection _violationLimits;
         
+        private static Lazy<ITypedElement> _seasonDayTypeSchedulesReference = new Lazy<ITypedElement>(RetrieveSeasonDayTypeSchedulesReference);
+        
         /// <summary>
         /// The backing field for the SeasonDayTypeSchedules property
         /// </summary>
         private SeasonSeasonDayTypeSchedulesCollection _seasonDayTypeSchedules;
+        
+        private static Lazy<ITypedElement> _capacityBenefitMarginReference = new Lazy<ITypedElement>(RetrieveCapacityBenefitMarginReference);
         
         /// <summary>
         /// The backing field for the CapacityBenefitMargin property
@@ -109,10 +121,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.LoadModel
                     DateTime old = this._startDate;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnStartDateChanging(e);
-                    this.OnPropertyChanging("StartDate", e);
+                    this.OnPropertyChanging("StartDate", e, _startDateAttribute);
                     this._startDate = value;
                     this.OnStartDateChanged(e);
-                    this.OnPropertyChanged("StartDate", e);
+                    this.OnPropertyChanged("StartDate", e, _startDateAttribute);
                 }
             }
         }
@@ -135,10 +147,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.LoadModel
                     Nullable<SeasonName> old = this._name;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnNameChanging(e);
-                    this.OnPropertyChanging("Name", e);
+                    this.OnPropertyChanging("Name", e, _nameAttribute);
                     this._name = value;
                     this.OnNameChanged(e);
-                    this.OnPropertyChanged("Name", e);
+                    this.OnPropertyChanged("Name", e, _nameAttribute);
                 }
             }
         }
@@ -161,10 +173,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.LoadModel
                     DateTime old = this._endDate;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnEndDateChanging(e);
-                    this.OnPropertyChanging("EndDate", e);
+                    this.OnPropertyChanging("EndDate", e, _endDateAttribute);
                     this._endDate = value;
                     this.OnEndDateChanged(e);
-                    this.OnPropertyChanged("EndDate", e);
+                    this.OnPropertyChanged("EndDate", e, _endDateAttribute);
                 }
             }
         }
@@ -270,6 +282,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.LoadModel
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> EndDateChanged;
         
+        private static ITypedElement RetrieveStartDateAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(Season.ClassInstance)).Resolve("startDate")));
+        }
+        
         /// <summary>
         /// Raises the StartDateChanging event
         /// </summary>
@@ -294,6 +311,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.LoadModel
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveNameAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(Season.ClassInstance)).Resolve("name")));
         }
         
         /// <summary>
@@ -322,6 +344,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.LoadModel
             }
         }
         
+        private static ITypedElement RetrieveEndDateAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(Season.ClassInstance)).Resolve("endDate")));
+        }
+        
         /// <summary>
         /// Raises the EndDateChanging event
         /// </summary>
@@ -348,6 +375,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.LoadModel
             }
         }
         
+        private static ITypedElement RetrieveViolationLimitsReference()
+        {
+            return ((ITypedElement)(((ModelElement)(Season.ClassInstance)).Resolve("ViolationLimits")));
+        }
+        
         /// <summary>
         /// Forwards CollectionChanging notifications for the ViolationLimits property to the parent model element
         /// </summary>
@@ -355,7 +387,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.LoadModel
         /// <param name="e">The original event data</param>
         private void ViolationLimitsCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("ViolationLimits", e);
+            this.OnCollectionChanging("ViolationLimits", e, _violationLimitsReference);
         }
         
         /// <summary>
@@ -365,7 +397,12 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.LoadModel
         /// <param name="e">The original event data</param>
         private void ViolationLimitsCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("ViolationLimits", e);
+            this.OnCollectionChanged("ViolationLimits", e, _violationLimitsReference);
+        }
+        
+        private static ITypedElement RetrieveSeasonDayTypeSchedulesReference()
+        {
+            return ((ITypedElement)(((ModelElement)(Season.ClassInstance)).Resolve("SeasonDayTypeSchedules")));
         }
         
         /// <summary>
@@ -375,7 +412,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.LoadModel
         /// <param name="e">The original event data</param>
         private void SeasonDayTypeSchedulesCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("SeasonDayTypeSchedules", e);
+            this.OnCollectionChanging("SeasonDayTypeSchedules", e, _seasonDayTypeSchedulesReference);
         }
         
         /// <summary>
@@ -385,7 +422,12 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.LoadModel
         /// <param name="e">The original event data</param>
         private void SeasonDayTypeSchedulesCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("SeasonDayTypeSchedules", e);
+            this.OnCollectionChanged("SeasonDayTypeSchedules", e, _seasonDayTypeSchedulesReference);
+        }
+        
+        private static ITypedElement RetrieveCapacityBenefitMarginReference()
+        {
+            return ((ITypedElement)(((ModelElement)(Season.ClassInstance)).Resolve("CapacityBenefitMargin")));
         }
         
         /// <summary>
@@ -395,7 +437,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.LoadModel
         /// <param name="e">The original event data</param>
         private void CapacityBenefitMarginCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("CapacityBenefitMargin", e);
+            this.OnCollectionChanging("CapacityBenefitMargin", e, _capacityBenefitMarginReference);
         }
         
         /// <summary>
@@ -405,7 +447,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.LoadModel
         /// <param name="e">The original event data</param>
         private void CapacityBenefitMarginCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("CapacityBenefitMargin", e);
+            this.OnCollectionChanged("CapacityBenefitMargin", e, _capacityBenefitMarginReference);
         }
         
         /// <summary>
@@ -693,7 +735,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.LoadModel
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public StartDateProxy(ISeason modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "startDate")
             {
             }
             
@@ -711,24 +753,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.LoadModel
                     this.ModelElement.StartDate = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.StartDateChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.StartDateChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -742,7 +766,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.LoadModel
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public NameProxy(ISeason modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "name")
             {
             }
             
@@ -760,24 +784,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.LoadModel
                     this.ModelElement.Name = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.NameChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.NameChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -791,7 +797,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.LoadModel
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public EndDateProxy(ISeason modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "endDate")
             {
             }
             
@@ -808,24 +814,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.LoadModel
                 {
                     this.ModelElement.EndDate = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.EndDateChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.EndDateChanged -= handler;
             }
         }
     }

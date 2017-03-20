@@ -50,7 +50,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfOperations
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61970/Informative/InfOperations/Swi" +
         "tchingSchedule")]
     [DebuggerDisplayAttribute("SwitchingSchedule {UUID}")]
-    public class SwitchingSchedule : Document, ISwitchingSchedule, IModelElement
+    public partial class SwitchingSchedule : Document, ISwitchingSchedule, IModelElement
     {
         
         /// <summary>
@@ -58,20 +58,30 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfOperations
         /// </summary>
         private string _reason;
         
+        private static Lazy<ITypedElement> _reasonAttribute = new Lazy<ITypedElement>(RetrieveReasonAttribute);
+        
+        private static Lazy<ITypedElement> _workTaskReference = new Lazy<ITypedElement>(RetrieveWorkTaskReference);
+        
         /// <summary>
         /// The backing field for the WorkTask property
         /// </summary>
         private IWorkTask _workTask;
+        
+        private static Lazy<ITypedElement> _scheduleStepsReference = new Lazy<ITypedElement>(RetrieveScheduleStepsReference);
         
         /// <summary>
         /// The backing field for the ScheduleSteps property
         /// </summary>
         private SwitchingScheduleScheduleStepsCollection _scheduleSteps;
         
+        private static Lazy<ITypedElement> _intervalReference = new Lazy<ITypedElement>(RetrieveIntervalReference);
+        
         /// <summary>
         /// The backing field for the Interval property
         /// </summary>
         private IDateTimeInterval _interval;
+        
+        private static Lazy<ITypedElement> _crewsReference = new Lazy<ITypedElement>(RetrieveCrewsReference);
         
         /// <summary>
         /// The backing field for the Crews property
@@ -108,10 +118,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfOperations
                     string old = this._reason;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnReasonChanging(e);
-                    this.OnPropertyChanging("Reason", e);
+                    this.OnPropertyChanging("Reason", e, _reasonAttribute);
                     this._reason = value;
                     this.OnReasonChanged(e);
-                    this.OnPropertyChanged("Reason", e);
+                    this.OnPropertyChanged("Reason", e, _reasonAttribute);
                 }
             }
         }
@@ -134,7 +144,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfOperations
                     IWorkTask old = this._workTask;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnWorkTaskChanging(e);
-                    this.OnPropertyChanging("WorkTask", e);
+                    this.OnPropertyChanging("WorkTask", e, _workTaskReference);
                     this._workTask = value;
                     if ((old != null))
                     {
@@ -147,7 +157,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfOperations
                         value.Deleted += this.OnResetWorkTask;
                     }
                     this.OnWorkTaskChanged(e);
-                    this.OnPropertyChanged("WorkTask", e);
+                    this.OnPropertyChanged("WorkTask", e, _workTaskReference);
                 }
             }
         }
@@ -185,7 +195,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfOperations
                     IDateTimeInterval old = this._interval;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnIntervalChanging(e);
-                    this.OnPropertyChanging("Interval", e);
+                    this.OnPropertyChanging("Interval", e, _intervalReference);
                     this._interval = value;
                     if ((old != null))
                     {
@@ -196,7 +206,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfOperations
                         value.Deleted += this.OnResetInterval;
                     }
                     this.OnIntervalChanged(e);
-                    this.OnPropertyChanged("Interval", e);
+                    this.OnPropertyChanged("Interval", e, _intervalReference);
                 }
             }
         }
@@ -273,6 +283,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfOperations
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> IntervalChanged;
         
+        private static ITypedElement RetrieveReasonAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(SwitchingSchedule.ClassInstance)).Resolve("reason")));
+        }
+        
         /// <summary>
         /// Raises the ReasonChanging event
         /// </summary>
@@ -297,6 +312,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfOperations
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveWorkTaskReference()
+        {
+            return ((ITypedElement)(((ModelElement)(SwitchingSchedule.ClassInstance)).Resolve("WorkTask")));
         }
         
         /// <summary>
@@ -335,6 +355,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfOperations
             this.WorkTask = null;
         }
         
+        private static ITypedElement RetrieveScheduleStepsReference()
+        {
+            return ((ITypedElement)(((ModelElement)(SwitchingSchedule.ClassInstance)).Resolve("ScheduleSteps")));
+        }
+        
         /// <summary>
         /// Forwards CollectionChanging notifications for the ScheduleSteps property to the parent model element
         /// </summary>
@@ -342,7 +367,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfOperations
         /// <param name="e">The original event data</param>
         private void ScheduleStepsCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("ScheduleSteps", e);
+            this.OnCollectionChanging("ScheduleSteps", e, _scheduleStepsReference);
         }
         
         /// <summary>
@@ -352,7 +377,12 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfOperations
         /// <param name="e">The original event data</param>
         private void ScheduleStepsCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("ScheduleSteps", e);
+            this.OnCollectionChanged("ScheduleSteps", e, _scheduleStepsReference);
+        }
+        
+        private static ITypedElement RetrieveIntervalReference()
+        {
+            return ((ITypedElement)(((ModelElement)(SwitchingSchedule.ClassInstance)).Resolve("interval")));
         }
         
         /// <summary>
@@ -391,6 +421,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfOperations
             this.Interval = null;
         }
         
+        private static ITypedElement RetrieveCrewsReference()
+        {
+            return ((ITypedElement)(((ModelElement)(SwitchingSchedule.ClassInstance)).Resolve("Crews")));
+        }
+        
         /// <summary>
         /// Forwards CollectionChanging notifications for the Crews property to the parent model element
         /// </summary>
@@ -398,7 +433,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfOperations
         /// <param name="e">The original event data</param>
         private void CrewsCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("Crews", e);
+            this.OnCollectionChanging("Crews", e, _crewsReference);
         }
         
         /// <summary>
@@ -408,7 +443,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfOperations
         /// <param name="e">The original event data</param>
         private void CrewsCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("Crews", e);
+            this.OnCollectionChanged("Crews", e, _crewsReference);
         }
         
         /// <summary>
@@ -747,7 +782,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfOperations
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public ReasonProxy(ISwitchingSchedule modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "reason")
             {
             }
             
@@ -765,24 +800,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfOperations
                     this.ModelElement.Reason = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ReasonChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ReasonChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -796,7 +813,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfOperations
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public WorkTaskProxy(ISwitchingSchedule modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "WorkTask")
             {
             }
             
@@ -814,24 +831,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfOperations
                     this.ModelElement.WorkTask = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.WorkTaskChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.WorkTaskChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -845,7 +844,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfOperations
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public IntervalProxy(ISwitchingSchedule modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "interval")
             {
             }
             
@@ -862,24 +861,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfOperations
                 {
                     this.ModelElement.Interval = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.IntervalChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.IntervalChanged -= handler;
             }
         }
     }

@@ -39,7 +39,7 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
     [XmlNamespacePrefixAttribute("objects")]
     [ModelRepresentationClassAttribute("http://www.transformation-tool-contest.eu/2017/smartGrids/cosem#//COSEMObjects/Ch" +
         "argeObject")]
-    public class ChargeObject : Charge, IChargeObject, IModelElement
+    public partial class ChargeObject : Charge, IChargeObject, IModelElement
     {
         
         private static IClass _classInstance;

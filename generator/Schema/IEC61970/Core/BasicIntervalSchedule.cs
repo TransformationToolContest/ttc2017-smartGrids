@@ -57,7 +57,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Core
     [XmlNamespacePrefixAttribute("cimCore")]
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61970/Core/BasicIntervalSchedule")]
     [DebuggerDisplayAttribute("BasicIntervalSchedule {UUID}")]
-    public class BasicIntervalSchedule : IdentifiedObject, IBasicIntervalSchedule, IModelElement
+    public partial class BasicIntervalSchedule : IdentifiedObject, IBasicIntervalSchedule, IModelElement
     {
         
         /// <summary>
@@ -65,25 +65,35 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Core
         /// </summary>
         private Nullable<UnitMultiplier> _value2Multiplier;
         
+        private static Lazy<ITypedElement> _value2MultiplierAttribute = new Lazy<ITypedElement>(RetrieveValue2MultiplierAttribute);
+        
         /// <summary>
         /// The backing field for the Value1Multiplier property
         /// </summary>
         private Nullable<UnitMultiplier> _value1Multiplier;
+        
+        private static Lazy<ITypedElement> _value1MultiplierAttribute = new Lazy<ITypedElement>(RetrieveValue1MultiplierAttribute);
         
         /// <summary>
         /// The backing field for the StartTime property
         /// </summary>
         private string _startTime;
         
+        private static Lazy<ITypedElement> _startTimeAttribute = new Lazy<ITypedElement>(RetrieveStartTimeAttribute);
+        
         /// <summary>
         /// The backing field for the Value2Unit property
         /// </summary>
         private Nullable<UnitSymbol> _value2Unit;
         
+        private static Lazy<ITypedElement> _value2UnitAttribute = new Lazy<ITypedElement>(RetrieveValue2UnitAttribute);
+        
         /// <summary>
         /// The backing field for the Value1Unit property
         /// </summary>
         private Nullable<UnitSymbol> _value1Unit;
+        
+        private static Lazy<ITypedElement> _value1UnitAttribute = new Lazy<ITypedElement>(RetrieveValue1UnitAttribute);
         
         private static IClass _classInstance;
         
@@ -105,10 +115,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Core
                     Nullable<UnitMultiplier> old = this._value2Multiplier;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnValue2MultiplierChanging(e);
-                    this.OnPropertyChanging("Value2Multiplier", e);
+                    this.OnPropertyChanging("Value2Multiplier", e, _value2MultiplierAttribute);
                     this._value2Multiplier = value;
                     this.OnValue2MultiplierChanged(e);
-                    this.OnPropertyChanged("Value2Multiplier", e);
+                    this.OnPropertyChanged("Value2Multiplier", e, _value2MultiplierAttribute);
                 }
             }
         }
@@ -131,10 +141,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Core
                     Nullable<UnitMultiplier> old = this._value1Multiplier;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnValue1MultiplierChanging(e);
-                    this.OnPropertyChanging("Value1Multiplier", e);
+                    this.OnPropertyChanging("Value1Multiplier", e, _value1MultiplierAttribute);
                     this._value1Multiplier = value;
                     this.OnValue1MultiplierChanged(e);
-                    this.OnPropertyChanged("Value1Multiplier", e);
+                    this.OnPropertyChanged("Value1Multiplier", e, _value1MultiplierAttribute);
                 }
             }
         }
@@ -157,10 +167,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Core
                     string old = this._startTime;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnStartTimeChanging(e);
-                    this.OnPropertyChanging("StartTime", e);
+                    this.OnPropertyChanging("StartTime", e, _startTimeAttribute);
                     this._startTime = value;
                     this.OnStartTimeChanged(e);
-                    this.OnPropertyChanged("StartTime", e);
+                    this.OnPropertyChanged("StartTime", e, _startTimeAttribute);
                 }
             }
         }
@@ -183,10 +193,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Core
                     Nullable<UnitSymbol> old = this._value2Unit;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnValue2UnitChanging(e);
-                    this.OnPropertyChanging("Value2Unit", e);
+                    this.OnPropertyChanging("Value2Unit", e, _value2UnitAttribute);
                     this._value2Unit = value;
                     this.OnValue2UnitChanged(e);
-                    this.OnPropertyChanged("Value2Unit", e);
+                    this.OnPropertyChanged("Value2Unit", e, _value2UnitAttribute);
                 }
             }
         }
@@ -209,10 +219,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Core
                     Nullable<UnitSymbol> old = this._value1Unit;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnValue1UnitChanging(e);
-                    this.OnPropertyChanging("Value1Unit", e);
+                    this.OnPropertyChanging("Value1Unit", e, _value1UnitAttribute);
                     this._value1Unit = value;
                     this.OnValue1UnitChanged(e);
-                    this.OnPropertyChanged("Value1Unit", e);
+                    this.OnPropertyChanged("Value1Unit", e, _value1UnitAttribute);
                 }
             }
         }
@@ -282,6 +292,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Core
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> Value1UnitChanged;
         
+        private static ITypedElement RetrieveValue2MultiplierAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(BasicIntervalSchedule.ClassInstance)).Resolve("value2Multiplier")));
+        }
+        
         /// <summary>
         /// Raises the Value2MultiplierChanging event
         /// </summary>
@@ -306,6 +321,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Core
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveValue1MultiplierAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(BasicIntervalSchedule.ClassInstance)).Resolve("value1Multiplier")));
         }
         
         /// <summary>
@@ -334,6 +354,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Core
             }
         }
         
+        private static ITypedElement RetrieveStartTimeAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(BasicIntervalSchedule.ClassInstance)).Resolve("startTime")));
+        }
+        
         /// <summary>
         /// Raises the StartTimeChanging event
         /// </summary>
@@ -360,6 +385,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Core
             }
         }
         
+        private static ITypedElement RetrieveValue2UnitAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(BasicIntervalSchedule.ClassInstance)).Resolve("value2Unit")));
+        }
+        
         /// <summary>
         /// Raises the Value2UnitChanging event
         /// </summary>
@@ -384,6 +414,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Core
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveValue1UnitAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(BasicIntervalSchedule.ClassInstance)).Resolve("value1Unit")));
         }
         
         /// <summary>
@@ -501,7 +536,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Core
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public Value2MultiplierProxy(IBasicIntervalSchedule modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "value2Multiplier")
             {
             }
             
@@ -519,24 +554,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Core
                     this.ModelElement.Value2Multiplier = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.Value2MultiplierChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.Value2MultiplierChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -550,7 +567,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Core
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public Value1MultiplierProxy(IBasicIntervalSchedule modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "value1Multiplier")
             {
             }
             
@@ -568,24 +585,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Core
                     this.ModelElement.Value1Multiplier = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.Value1MultiplierChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.Value1MultiplierChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -599,7 +598,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Core
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public StartTimeProxy(IBasicIntervalSchedule modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "startTime")
             {
             }
             
@@ -617,24 +616,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Core
                     this.ModelElement.StartTime = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.StartTimeChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.StartTimeChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -648,7 +629,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Core
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public Value2UnitProxy(IBasicIntervalSchedule modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "value2Unit")
             {
             }
             
@@ -666,24 +647,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Core
                     this.ModelElement.Value2Unit = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.Value2UnitChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.Value2UnitChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -697,7 +660,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Core
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public Value1UnitProxy(IBasicIntervalSchedule modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "value1Unit")
             {
             }
             
@@ -714,24 +677,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Core
                 {
                     this.ModelElement.Value1Unit = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.Value1UnitChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.Value1UnitChanged -= handler;
             }
         }
     }

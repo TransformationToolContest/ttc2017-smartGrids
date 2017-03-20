@@ -40,7 +40,7 @@ namespace TTC2017.SmartGrids.COSEM.InterfaceClasses
     [XmlNamespacePrefixAttribute("inter")]
     [ModelRepresentationClassAttribute("http://www.transformation-tool-contest.eu/2017/smartGrids/cosem#//InterfaceClasse" +
         "s/IPv4setup")]
-    public class IPv4setup : Base, IIPv4setup, IModelElement
+    public partial class IPv4setup : Base, IIPv4setup, IModelElement
     {
         
         private static IClass _classInstance;

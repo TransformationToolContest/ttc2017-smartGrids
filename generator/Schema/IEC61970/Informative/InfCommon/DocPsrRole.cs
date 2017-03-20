@@ -47,13 +47,17 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfCommon
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61970/Informative/InfCommon/DocPsrR" +
         "ole")]
     [DebuggerDisplayAttribute("DocPsrRole {UUID}")]
-    public class DocPsrRole : Role, IDocPsrRole, IModelElement
+    public partial class DocPsrRole : Role, IDocPsrRole, IModelElement
     {
+        
+        private static Lazy<ITypedElement> _documentReference = new Lazy<ITypedElement>(RetrieveDocumentReference);
         
         /// <summary>
         /// The backing field for the Document property
         /// </summary>
         private IDocument _document;
+        
+        private static Lazy<ITypedElement> _powerSystemResourceReference = new Lazy<ITypedElement>(RetrievePowerSystemResourceReference);
         
         /// <summary>
         /// The backing field for the PowerSystemResource property
@@ -80,7 +84,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfCommon
                     IDocument old = this._document;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnDocumentChanging(e);
-                    this.OnPropertyChanging("Document", e);
+                    this.OnPropertyChanging("Document", e, _documentReference);
                     this._document = value;
                     if ((old != null))
                     {
@@ -93,7 +97,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfCommon
                         value.Deleted += this.OnResetDocument;
                     }
                     this.OnDocumentChanged(e);
-                    this.OnPropertyChanged("Document", e);
+                    this.OnPropertyChanged("Document", e, _documentReference);
                 }
             }
         }
@@ -116,7 +120,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfCommon
                     IPowerSystemResource old = this._powerSystemResource;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnPowerSystemResourceChanging(e);
-                    this.OnPropertyChanging("PowerSystemResource", e);
+                    this.OnPropertyChanging("PowerSystemResource", e, _powerSystemResourceReference);
                     this._powerSystemResource = value;
                     if ((old != null))
                     {
@@ -129,7 +133,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfCommon
                         value.Deleted += this.OnResetPowerSystemResource;
                     }
                     this.OnPowerSystemResourceChanged(e);
-                    this.OnPropertyChanged("PowerSystemResource", e);
+                    this.OnPropertyChanged("PowerSystemResource", e, _powerSystemResourceReference);
                 }
             }
         }
@@ -181,6 +185,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfCommon
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> PowerSystemResourceChanged;
         
+        private static ITypedElement RetrieveDocumentReference()
+        {
+            return ((ITypedElement)(((ModelElement)(DocPsrRole.ClassInstance)).Resolve("Document")));
+        }
+        
         /// <summary>
         /// Raises the DocumentChanging event
         /// </summary>
@@ -215,6 +224,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfCommon
         private void OnResetDocument(object sender, System.EventArgs eventArgs)
         {
             this.Document = null;
+        }
+        
+        private static ITypedElement RetrievePowerSystemResourceReference()
+        {
+            return ((ITypedElement)(((ModelElement)(DocPsrRole.ClassInstance)).Resolve("PowerSystemResource")));
         }
         
         /// <summary>
@@ -483,7 +497,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfCommon
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public DocumentProxy(IDocPsrRole modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "Document")
             {
             }
             
@@ -501,24 +515,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfCommon
                     this.ModelElement.Document = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.DocumentChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.DocumentChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -532,7 +528,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfCommon
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public PowerSystemResourceProxy(IDocPsrRole modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "PowerSystemResource")
             {
             }
             
@@ -549,24 +545,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfCommon
                 {
                     this.ModelElement.PowerSystemResource = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.PowerSystemResourceChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.PowerSystemResourceChanged -= handler;
             }
         }
     }

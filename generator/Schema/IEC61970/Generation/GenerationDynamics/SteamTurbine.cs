@@ -42,7 +42,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.GenerationDynamics
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61970/Generation/GenerationDynamics" +
         "/SteamTurbine")]
     [DebuggerDisplayAttribute("SteamTurbine {UUID}")]
-    public class SteamTurbine : PrimeMover, ISteamTurbine, IModelElement
+    public partial class SteamTurbine : PrimeMover, ISteamTurbine, IModelElement
     {
         
         /// <summary>
@@ -50,60 +50,86 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.GenerationDynamics
         /// </summary>
         private float _shaft2PowerLP1;
         
+        private static Lazy<ITypedElement> _shaft2PowerLP1Attribute = new Lazy<ITypedElement>(RetrieveShaft2PowerLP1Attribute);
+        
         /// <summary>
         /// The backing field for the Shaft2PowerLP2 property
         /// </summary>
         private float _shaft2PowerLP2;
+        
+        private static Lazy<ITypedElement> _shaft2PowerLP2Attribute = new Lazy<ITypedElement>(RetrieveShaft2PowerLP2Attribute);
         
         /// <summary>
         /// The backing field for the Shaft2PowerHP property
         /// </summary>
         private float _shaft2PowerHP;
         
+        private static Lazy<ITypedElement> _shaft2PowerHPAttribute = new Lazy<ITypedElement>(RetrieveShaft2PowerHPAttribute);
+        
         /// <summary>
         /// The backing field for the Shaft1PowerIP property
         /// </summary>
         private float _shaft1PowerIP;
+        
+        private static Lazy<ITypedElement> _shaft1PowerIPAttribute = new Lazy<ITypedElement>(RetrieveShaft1PowerIPAttribute);
         
         /// <summary>
         /// The backing field for the Reheater1TC property
         /// </summary>
         private float _reheater1TC;
         
+        private static Lazy<ITypedElement> _reheater1TCAttribute = new Lazy<ITypedElement>(RetrieveReheater1TCAttribute);
+        
         /// <summary>
         /// The backing field for the Shaft1PowerLP2 property
         /// </summary>
         private float _shaft1PowerLP2;
+        
+        private static Lazy<ITypedElement> _shaft1PowerLP2Attribute = new Lazy<ITypedElement>(RetrieveShaft1PowerLP2Attribute);
         
         /// <summary>
         /// The backing field for the Shaft1PowerLP1 property
         /// </summary>
         private float _shaft1PowerLP1;
         
+        private static Lazy<ITypedElement> _shaft1PowerLP1Attribute = new Lazy<ITypedElement>(RetrieveShaft1PowerLP1Attribute);
+        
         /// <summary>
         /// The backing field for the CrossoverTC property
         /// </summary>
         private float _crossoverTC;
+        
+        private static Lazy<ITypedElement> _crossoverTCAttribute = new Lazy<ITypedElement>(RetrieveCrossoverTCAttribute);
         
         /// <summary>
         /// The backing field for the SteamChestTC property
         /// </summary>
         private float _steamChestTC;
         
+        private static Lazy<ITypedElement> _steamChestTCAttribute = new Lazy<ITypedElement>(RetrieveSteamChestTCAttribute);
+        
         /// <summary>
         /// The backing field for the Shaft1PowerHP property
         /// </summary>
         private float _shaft1PowerHP;
+        
+        private static Lazy<ITypedElement> _shaft1PowerHPAttribute = new Lazy<ITypedElement>(RetrieveShaft1PowerHPAttribute);
         
         /// <summary>
         /// The backing field for the Shaft2PowerIP property
         /// </summary>
         private float _shaft2PowerIP;
         
+        private static Lazy<ITypedElement> _shaft2PowerIPAttribute = new Lazy<ITypedElement>(RetrieveShaft2PowerIPAttribute);
+        
         /// <summary>
         /// The backing field for the Reheater2TC property
         /// </summary>
         private float _reheater2TC;
+        
+        private static Lazy<ITypedElement> _reheater2TCAttribute = new Lazy<ITypedElement>(RetrieveReheater2TCAttribute);
+        
+        private static Lazy<ITypedElement> _steamSupplysReference = new Lazy<ITypedElement>(RetrieveSteamSupplysReference);
         
         /// <summary>
         /// The backing field for the SteamSupplys property
@@ -137,10 +163,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.GenerationDynamics
                     float old = this._shaft2PowerLP1;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnShaft2PowerLP1Changing(e);
-                    this.OnPropertyChanging("Shaft2PowerLP1", e);
+                    this.OnPropertyChanging("Shaft2PowerLP1", e, _shaft2PowerLP1Attribute);
                     this._shaft2PowerLP1 = value;
                     this.OnShaft2PowerLP1Changed(e);
-                    this.OnPropertyChanged("Shaft2PowerLP1", e);
+                    this.OnPropertyChanged("Shaft2PowerLP1", e, _shaft2PowerLP1Attribute);
                 }
             }
         }
@@ -163,10 +189,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.GenerationDynamics
                     float old = this._shaft2PowerLP2;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnShaft2PowerLP2Changing(e);
-                    this.OnPropertyChanging("Shaft2PowerLP2", e);
+                    this.OnPropertyChanging("Shaft2PowerLP2", e, _shaft2PowerLP2Attribute);
                     this._shaft2PowerLP2 = value;
                     this.OnShaft2PowerLP2Changed(e);
-                    this.OnPropertyChanged("Shaft2PowerLP2", e);
+                    this.OnPropertyChanged("Shaft2PowerLP2", e, _shaft2PowerLP2Attribute);
                 }
             }
         }
@@ -189,10 +215,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.GenerationDynamics
                     float old = this._shaft2PowerHP;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnShaft2PowerHPChanging(e);
-                    this.OnPropertyChanging("Shaft2PowerHP", e);
+                    this.OnPropertyChanging("Shaft2PowerHP", e, _shaft2PowerHPAttribute);
                     this._shaft2PowerHP = value;
                     this.OnShaft2PowerHPChanged(e);
-                    this.OnPropertyChanged("Shaft2PowerHP", e);
+                    this.OnPropertyChanged("Shaft2PowerHP", e, _shaft2PowerHPAttribute);
                 }
             }
         }
@@ -215,10 +241,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.GenerationDynamics
                     float old = this._shaft1PowerIP;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnShaft1PowerIPChanging(e);
-                    this.OnPropertyChanging("Shaft1PowerIP", e);
+                    this.OnPropertyChanging("Shaft1PowerIP", e, _shaft1PowerIPAttribute);
                     this._shaft1PowerIP = value;
                     this.OnShaft1PowerIPChanged(e);
-                    this.OnPropertyChanged("Shaft1PowerIP", e);
+                    this.OnPropertyChanged("Shaft1PowerIP", e, _shaft1PowerIPAttribute);
                 }
             }
         }
@@ -241,10 +267,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.GenerationDynamics
                     float old = this._reheater1TC;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnReheater1TCChanging(e);
-                    this.OnPropertyChanging("Reheater1TC", e);
+                    this.OnPropertyChanging("Reheater1TC", e, _reheater1TCAttribute);
                     this._reheater1TC = value;
                     this.OnReheater1TCChanged(e);
-                    this.OnPropertyChanged("Reheater1TC", e);
+                    this.OnPropertyChanged("Reheater1TC", e, _reheater1TCAttribute);
                 }
             }
         }
@@ -267,10 +293,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.GenerationDynamics
                     float old = this._shaft1PowerLP2;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnShaft1PowerLP2Changing(e);
-                    this.OnPropertyChanging("Shaft1PowerLP2", e);
+                    this.OnPropertyChanging("Shaft1PowerLP2", e, _shaft1PowerLP2Attribute);
                     this._shaft1PowerLP2 = value;
                     this.OnShaft1PowerLP2Changed(e);
-                    this.OnPropertyChanged("Shaft1PowerLP2", e);
+                    this.OnPropertyChanged("Shaft1PowerLP2", e, _shaft1PowerLP2Attribute);
                 }
             }
         }
@@ -293,10 +319,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.GenerationDynamics
                     float old = this._shaft1PowerLP1;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnShaft1PowerLP1Changing(e);
-                    this.OnPropertyChanging("Shaft1PowerLP1", e);
+                    this.OnPropertyChanging("Shaft1PowerLP1", e, _shaft1PowerLP1Attribute);
                     this._shaft1PowerLP1 = value;
                     this.OnShaft1PowerLP1Changed(e);
-                    this.OnPropertyChanged("Shaft1PowerLP1", e);
+                    this.OnPropertyChanged("Shaft1PowerLP1", e, _shaft1PowerLP1Attribute);
                 }
             }
         }
@@ -319,10 +345,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.GenerationDynamics
                     float old = this._crossoverTC;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnCrossoverTCChanging(e);
-                    this.OnPropertyChanging("CrossoverTC", e);
+                    this.OnPropertyChanging("CrossoverTC", e, _crossoverTCAttribute);
                     this._crossoverTC = value;
                     this.OnCrossoverTCChanged(e);
-                    this.OnPropertyChanged("CrossoverTC", e);
+                    this.OnPropertyChanged("CrossoverTC", e, _crossoverTCAttribute);
                 }
             }
         }
@@ -345,10 +371,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.GenerationDynamics
                     float old = this._steamChestTC;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnSteamChestTCChanging(e);
-                    this.OnPropertyChanging("SteamChestTC", e);
+                    this.OnPropertyChanging("SteamChestTC", e, _steamChestTCAttribute);
                     this._steamChestTC = value;
                     this.OnSteamChestTCChanged(e);
-                    this.OnPropertyChanged("SteamChestTC", e);
+                    this.OnPropertyChanged("SteamChestTC", e, _steamChestTCAttribute);
                 }
             }
         }
@@ -371,10 +397,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.GenerationDynamics
                     float old = this._shaft1PowerHP;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnShaft1PowerHPChanging(e);
-                    this.OnPropertyChanging("Shaft1PowerHP", e);
+                    this.OnPropertyChanging("Shaft1PowerHP", e, _shaft1PowerHPAttribute);
                     this._shaft1PowerHP = value;
                     this.OnShaft1PowerHPChanged(e);
-                    this.OnPropertyChanged("Shaft1PowerHP", e);
+                    this.OnPropertyChanged("Shaft1PowerHP", e, _shaft1PowerHPAttribute);
                 }
             }
         }
@@ -397,10 +423,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.GenerationDynamics
                     float old = this._shaft2PowerIP;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnShaft2PowerIPChanging(e);
-                    this.OnPropertyChanging("Shaft2PowerIP", e);
+                    this.OnPropertyChanging("Shaft2PowerIP", e, _shaft2PowerIPAttribute);
                     this._shaft2PowerIP = value;
                     this.OnShaft2PowerIPChanged(e);
-                    this.OnPropertyChanged("Shaft2PowerIP", e);
+                    this.OnPropertyChanged("Shaft2PowerIP", e, _shaft2PowerIPAttribute);
                 }
             }
         }
@@ -423,10 +449,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.GenerationDynamics
                     float old = this._reheater2TC;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnReheater2TCChanging(e);
-                    this.OnPropertyChanging("Reheater2TC", e);
+                    this.OnPropertyChanging("Reheater2TC", e, _reheater2TCAttribute);
                     this._reheater2TC = value;
                     this.OnReheater2TCChanged(e);
-                    this.OnPropertyChanged("Reheater2TC", e);
+                    this.OnPropertyChanged("Reheater2TC", e, _reheater2TCAttribute);
                 }
             }
         }
@@ -593,6 +619,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.GenerationDynamics
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> Reheater2TCChanged;
         
+        private static ITypedElement RetrieveShaft2PowerLP1Attribute()
+        {
+            return ((ITypedElement)(((ModelElement)(SteamTurbine.ClassInstance)).Resolve("shaft2PowerLP1")));
+        }
+        
         /// <summary>
         /// Raises the Shaft2PowerLP1Changing event
         /// </summary>
@@ -617,6 +648,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.GenerationDynamics
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveShaft2PowerLP2Attribute()
+        {
+            return ((ITypedElement)(((ModelElement)(SteamTurbine.ClassInstance)).Resolve("shaft2PowerLP2")));
         }
         
         /// <summary>
@@ -645,6 +681,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.GenerationDynamics
             }
         }
         
+        private static ITypedElement RetrieveShaft2PowerHPAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(SteamTurbine.ClassInstance)).Resolve("shaft2PowerHP")));
+        }
+        
         /// <summary>
         /// Raises the Shaft2PowerHPChanging event
         /// </summary>
@@ -669,6 +710,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.GenerationDynamics
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveShaft1PowerIPAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(SteamTurbine.ClassInstance)).Resolve("shaft1PowerIP")));
         }
         
         /// <summary>
@@ -697,6 +743,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.GenerationDynamics
             }
         }
         
+        private static ITypedElement RetrieveReheater1TCAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(SteamTurbine.ClassInstance)).Resolve("reheater1TC")));
+        }
+        
         /// <summary>
         /// Raises the Reheater1TCChanging event
         /// </summary>
@@ -721,6 +772,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.GenerationDynamics
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveShaft1PowerLP2Attribute()
+        {
+            return ((ITypedElement)(((ModelElement)(SteamTurbine.ClassInstance)).Resolve("shaft1PowerLP2")));
         }
         
         /// <summary>
@@ -749,6 +805,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.GenerationDynamics
             }
         }
         
+        private static ITypedElement RetrieveShaft1PowerLP1Attribute()
+        {
+            return ((ITypedElement)(((ModelElement)(SteamTurbine.ClassInstance)).Resolve("shaft1PowerLP1")));
+        }
+        
         /// <summary>
         /// Raises the Shaft1PowerLP1Changing event
         /// </summary>
@@ -773,6 +834,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.GenerationDynamics
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveCrossoverTCAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(SteamTurbine.ClassInstance)).Resolve("crossoverTC")));
         }
         
         /// <summary>
@@ -801,6 +867,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.GenerationDynamics
             }
         }
         
+        private static ITypedElement RetrieveSteamChestTCAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(SteamTurbine.ClassInstance)).Resolve("steamChestTC")));
+        }
+        
         /// <summary>
         /// Raises the SteamChestTCChanging event
         /// </summary>
@@ -825,6 +896,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.GenerationDynamics
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveShaft1PowerHPAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(SteamTurbine.ClassInstance)).Resolve("shaft1PowerHP")));
         }
         
         /// <summary>
@@ -853,6 +929,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.GenerationDynamics
             }
         }
         
+        private static ITypedElement RetrieveShaft2PowerIPAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(SteamTurbine.ClassInstance)).Resolve("shaft2PowerIP")));
+        }
+        
         /// <summary>
         /// Raises the Shaft2PowerIPChanging event
         /// </summary>
@@ -877,6 +958,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.GenerationDynamics
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveReheater2TCAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(SteamTurbine.ClassInstance)).Resolve("reheater2TC")));
         }
         
         /// <summary>
@@ -905,6 +991,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.GenerationDynamics
             }
         }
         
+        private static ITypedElement RetrieveSteamSupplysReference()
+        {
+            return ((ITypedElement)(((ModelElement)(SteamTurbine.ClassInstance)).Resolve("SteamSupplys")));
+        }
+        
         /// <summary>
         /// Forwards CollectionChanging notifications for the SteamSupplys property to the parent model element
         /// </summary>
@@ -912,7 +1003,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.GenerationDynamics
         /// <param name="e">The original event data</param>
         private void SteamSupplysCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("SteamSupplys", e);
+            this.OnCollectionChanging("SteamSupplys", e, _steamSupplysReference);
         }
         
         /// <summary>
@@ -922,7 +1013,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.GenerationDynamics
         /// <param name="e">The original event data</param>
         private void SteamSupplysCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("SteamSupplys", e);
+            this.OnCollectionChanged("SteamSupplys", e, _steamSupplysReference);
         }
         
         /// <summary>
@@ -1216,7 +1307,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.GenerationDynamics
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public Shaft2PowerLP1Proxy(ISteamTurbine modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "shaft2PowerLP1")
             {
             }
             
@@ -1234,24 +1325,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.GenerationDynamics
                     this.ModelElement.Shaft2PowerLP1 = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.Shaft2PowerLP1Changed += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.Shaft2PowerLP1Changed -= handler;
-            }
         }
         
         /// <summary>
@@ -1265,7 +1338,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.GenerationDynamics
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public Shaft2PowerLP2Proxy(ISteamTurbine modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "shaft2PowerLP2")
             {
             }
             
@@ -1283,24 +1356,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.GenerationDynamics
                     this.ModelElement.Shaft2PowerLP2 = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.Shaft2PowerLP2Changed += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.Shaft2PowerLP2Changed -= handler;
-            }
         }
         
         /// <summary>
@@ -1314,7 +1369,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.GenerationDynamics
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public Shaft2PowerHPProxy(ISteamTurbine modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "shaft2PowerHP")
             {
             }
             
@@ -1332,24 +1387,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.GenerationDynamics
                     this.ModelElement.Shaft2PowerHP = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.Shaft2PowerHPChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.Shaft2PowerHPChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1363,7 +1400,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.GenerationDynamics
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public Shaft1PowerIPProxy(ISteamTurbine modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "shaft1PowerIP")
             {
             }
             
@@ -1381,24 +1418,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.GenerationDynamics
                     this.ModelElement.Shaft1PowerIP = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.Shaft1PowerIPChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.Shaft1PowerIPChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1412,7 +1431,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.GenerationDynamics
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public Reheater1TCProxy(ISteamTurbine modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "reheater1TC")
             {
             }
             
@@ -1430,24 +1449,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.GenerationDynamics
                     this.ModelElement.Reheater1TC = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.Reheater1TCChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.Reheater1TCChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1461,7 +1462,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.GenerationDynamics
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public Shaft1PowerLP2Proxy(ISteamTurbine modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "shaft1PowerLP2")
             {
             }
             
@@ -1479,24 +1480,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.GenerationDynamics
                     this.ModelElement.Shaft1PowerLP2 = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.Shaft1PowerLP2Changed += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.Shaft1PowerLP2Changed -= handler;
-            }
         }
         
         /// <summary>
@@ -1510,7 +1493,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.GenerationDynamics
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public Shaft1PowerLP1Proxy(ISteamTurbine modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "shaft1PowerLP1")
             {
             }
             
@@ -1528,24 +1511,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.GenerationDynamics
                     this.ModelElement.Shaft1PowerLP1 = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.Shaft1PowerLP1Changed += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.Shaft1PowerLP1Changed -= handler;
-            }
         }
         
         /// <summary>
@@ -1559,7 +1524,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.GenerationDynamics
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public CrossoverTCProxy(ISteamTurbine modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "crossoverTC")
             {
             }
             
@@ -1577,24 +1542,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.GenerationDynamics
                     this.ModelElement.CrossoverTC = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.CrossoverTCChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.CrossoverTCChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1608,7 +1555,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.GenerationDynamics
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public SteamChestTCProxy(ISteamTurbine modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "steamChestTC")
             {
             }
             
@@ -1626,24 +1573,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.GenerationDynamics
                     this.ModelElement.SteamChestTC = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.SteamChestTCChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.SteamChestTCChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1657,7 +1586,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.GenerationDynamics
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public Shaft1PowerHPProxy(ISteamTurbine modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "shaft1PowerHP")
             {
             }
             
@@ -1675,24 +1604,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.GenerationDynamics
                     this.ModelElement.Shaft1PowerHP = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.Shaft1PowerHPChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.Shaft1PowerHPChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1706,7 +1617,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.GenerationDynamics
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public Shaft2PowerIPProxy(ISteamTurbine modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "shaft2PowerIP")
             {
             }
             
@@ -1724,24 +1635,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.GenerationDynamics
                     this.ModelElement.Shaft2PowerIP = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.Shaft2PowerIPChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.Shaft2PowerIPChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1755,7 +1648,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.GenerationDynamics
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public Reheater2TCProxy(ISteamTurbine modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "reheater2TC")
             {
             }
             
@@ -1772,24 +1665,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.GenerationDynamics
                 {
                     this.ModelElement.Reheater2TC = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.Reheater2TCChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.Reheater2TCChanged -= handler;
             }
         }
     }

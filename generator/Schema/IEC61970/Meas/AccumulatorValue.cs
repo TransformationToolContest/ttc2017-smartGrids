@@ -51,13 +51,17 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Meas
     [XmlNamespacePrefixAttribute("cimMeas")]
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61970/Meas/AccumulatorValue")]
     [DebuggerDisplayAttribute("AccumulatorValue {UUID}")]
-    public class AccumulatorValue : MeasurementValue, IAccumulatorValue, IModelElement
+    public partial class AccumulatorValue : MeasurementValue, IAccumulatorValue, IModelElement
     {
         
         /// <summary>
         /// The backing field for the Value property
         /// </summary>
         private int _value;
+        
+        private static Lazy<ITypedElement> _valueAttribute = new Lazy<ITypedElement>(RetrieveValueAttribute);
+        
+        private static Lazy<ITypedElement> _accumulatorReference = new Lazy<ITypedElement>(RetrieveAccumulatorReference);
         
         /// <summary>
         /// The backing field for the Accumulator property
@@ -84,10 +88,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Meas
                     int old = this._value;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnValueChanging(e);
-                    this.OnPropertyChanging("Value", e);
+                    this.OnPropertyChanging("Value", e, _valueAttribute);
                     this._value = value;
                     this.OnValueChanged(e);
-                    this.OnPropertyChanged("Value", e);
+                    this.OnPropertyChanged("Value", e, _valueAttribute);
                 }
             }
         }
@@ -110,7 +114,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Meas
                     IAccumulator old = this._accumulator;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnAccumulatorChanging(e);
-                    this.OnPropertyChanging("Accumulator", e);
+                    this.OnPropertyChanging("Accumulator", e, _accumulatorReference);
                     this._accumulator = value;
                     if ((old != null))
                     {
@@ -123,7 +127,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Meas
                         value.Deleted += this.OnResetAccumulator;
                     }
                     this.OnAccumulatorChanged(e);
-                    this.OnPropertyChanged("Accumulator", e);
+                    this.OnPropertyChanged("Accumulator", e, _accumulatorReference);
                 }
             }
         }
@@ -174,6 +178,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Meas
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> AccumulatorChanged;
         
+        private static ITypedElement RetrieveValueAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(AccumulatorValue.ClassInstance)).Resolve("value")));
+        }
+        
         /// <summary>
         /// Raises the ValueChanging event
         /// </summary>
@@ -198,6 +207,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Meas
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveAccumulatorReference()
+        {
+            return ((ITypedElement)(((ModelElement)(AccumulatorValue.ClassInstance)).Resolve("Accumulator")));
         }
         
         /// <summary>
@@ -442,7 +456,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Meas
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public ValueProxy(IAccumulatorValue modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "value")
             {
             }
             
@@ -460,24 +474,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Meas
                     this.ModelElement.Value = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ValueChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ValueChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -491,7 +487,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Meas
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public AccumulatorProxy(IAccumulatorValue modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "Accumulator")
             {
             }
             
@@ -508,24 +504,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Meas
                 {
                     this.ModelElement.Accumulator = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.AccumulatorChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.AccumulatorChanged -= handler;
             }
         }
     }

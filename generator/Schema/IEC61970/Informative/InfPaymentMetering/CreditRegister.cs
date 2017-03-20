@@ -46,7 +46,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfPaymentMetering
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61970/Informative/InfPaymentMeterin" +
         "g/CreditRegister")]
     [DebuggerDisplayAttribute("CreditRegister {UUID}")]
-    public class CreditRegister : IdentifiedObject, ICreditRegister, IModelElement
+    public partial class CreditRegister : IdentifiedObject, ICreditRegister, IModelElement
     {
         
         /// <summary>
@@ -54,10 +54,16 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfPaymentMetering
         /// </summary>
         private Nullable<CreditKind> _creditKind;
         
+        private static Lazy<ITypedElement> _creditKindAttribute = new Lazy<ITypedElement>(RetrieveCreditKindAttribute);
+        
+        private static Lazy<ITypedElement> _creditAmountReference = new Lazy<ITypedElement>(RetrieveCreditAmountReference);
+        
         /// <summary>
         /// The backing field for the CreditAmount property
         /// </summary>
         private IAccountingUnit _creditAmount;
+        
+        private static Lazy<ITypedElement> _sDPAccountingFunctionReference = new Lazy<ITypedElement>(RetrieveSDPAccountingFunctionReference);
         
         /// <summary>
         /// The backing field for the SDPAccountingFunction property
@@ -84,10 +90,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfPaymentMetering
                     Nullable<CreditKind> old = this._creditKind;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnCreditKindChanging(e);
-                    this.OnPropertyChanging("CreditKind", e);
+                    this.OnPropertyChanging("CreditKind", e, _creditKindAttribute);
                     this._creditKind = value;
                     this.OnCreditKindChanged(e);
-                    this.OnPropertyChanged("CreditKind", e);
+                    this.OnPropertyChanged("CreditKind", e, _creditKindAttribute);
                 }
             }
         }
@@ -110,7 +116,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfPaymentMetering
                     IAccountingUnit old = this._creditAmount;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnCreditAmountChanging(e);
-                    this.OnPropertyChanging("CreditAmount", e);
+                    this.OnPropertyChanging("CreditAmount", e, _creditAmountReference);
                     this._creditAmount = value;
                     if ((old != null))
                     {
@@ -121,7 +127,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfPaymentMetering
                         value.Deleted += this.OnResetCreditAmount;
                     }
                     this.OnCreditAmountChanged(e);
-                    this.OnPropertyChanged("CreditAmount", e);
+                    this.OnPropertyChanged("CreditAmount", e, _creditAmountReference);
                 }
             }
         }
@@ -144,7 +150,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfPaymentMetering
                     ISDPAccountingFunction old = this._sDPAccountingFunction;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnSDPAccountingFunctionChanging(e);
-                    this.OnPropertyChanging("SDPAccountingFunction", e);
+                    this.OnPropertyChanging("SDPAccountingFunction", e, _sDPAccountingFunctionReference);
                     this._sDPAccountingFunction = value;
                     if ((old != null))
                     {
@@ -157,7 +163,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfPaymentMetering
                         value.Deleted += this.OnResetSDPAccountingFunction;
                     }
                     this.OnSDPAccountingFunctionChanged(e);
-                    this.OnPropertyChanged("SDPAccountingFunction", e);
+                    this.OnPropertyChanged("SDPAccountingFunction", e, _sDPAccountingFunctionReference);
                 }
             }
         }
@@ -219,6 +225,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfPaymentMetering
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> SDPAccountingFunctionChanged;
         
+        private static ITypedElement RetrieveCreditKindAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(CreditRegister.ClassInstance)).Resolve("creditKind")));
+        }
+        
         /// <summary>
         /// Raises the CreditKindChanging event
         /// </summary>
@@ -243,6 +254,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfPaymentMetering
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveCreditAmountReference()
+        {
+            return ((ITypedElement)(((ModelElement)(CreditRegister.ClassInstance)).Resolve("creditAmount")));
         }
         
         /// <summary>
@@ -279,6 +295,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfPaymentMetering
         private void OnResetCreditAmount(object sender, System.EventArgs eventArgs)
         {
             this.CreditAmount = null;
+        }
+        
+        private static ITypedElement RetrieveSDPAccountingFunctionReference()
+        {
+            return ((ITypedElement)(((ModelElement)(CreditRegister.ClassInstance)).Resolve("SDPAccountingFunction")));
         }
         
         /// <summary>
@@ -567,7 +588,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfPaymentMetering
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public CreditKindProxy(ICreditRegister modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "creditKind")
             {
             }
             
@@ -585,24 +606,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfPaymentMetering
                     this.ModelElement.CreditKind = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.CreditKindChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.CreditKindChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -616,7 +619,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfPaymentMetering
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public CreditAmountProxy(ICreditRegister modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "creditAmount")
             {
             }
             
@@ -634,24 +637,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfPaymentMetering
                     this.ModelElement.CreditAmount = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.CreditAmountChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.CreditAmountChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -665,7 +650,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfPaymentMetering
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public SDPAccountingFunctionProxy(ICreditRegister modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "SDPAccountingFunction")
             {
             }
             
@@ -682,24 +667,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfPaymentMetering
                 {
                     this.ModelElement.SDPAccountingFunction = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.SDPAccountingFunctionChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.SDPAccountingFunctionChanged -= handler;
             }
         }
     }

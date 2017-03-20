@@ -42,7 +42,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.GenerationDynamics
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61970/Generation/GenerationDynamics" +
         "/FossilSteamSupply")]
     [DebuggerDisplayAttribute("FossilSteamSupply {UUID}")]
-    public class FossilSteamSupply : SteamSupply, IFossilSteamSupply, IModelElement
+    public partial class FossilSteamSupply : SteamSupply, IFossilSteamSupply, IModelElement
     {
         
         /// <summary>
@@ -50,130 +50,182 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.GenerationDynamics
         /// </summary>
         private float _pressureCtrlPG;
         
+        private static Lazy<ITypedElement> _pressureCtrlPGAttribute = new Lazy<ITypedElement>(RetrievePressureCtrlPGAttribute);
+        
         /// <summary>
         /// The backing field for the SuperHeater1Capacity property
         /// </summary>
         private float _superHeater1Capacity;
+        
+        private static Lazy<ITypedElement> _superHeater1CapacityAttribute = new Lazy<ITypedElement>(RetrieveSuperHeater1CapacityAttribute);
         
         /// <summary>
         /// The backing field for the FeedWaterPG property
         /// </summary>
         private float _feedWaterPG;
         
+        private static Lazy<ITypedElement> _feedWaterPGAttribute = new Lazy<ITypedElement>(RetrieveFeedWaterPGAttribute);
+        
         /// <summary>
         /// The backing field for the ControlTC property
         /// </summary>
         private float _controlTC;
+        
+        private static Lazy<ITypedElement> _controlTCAttribute = new Lazy<ITypedElement>(RetrieveControlTCAttribute);
         
         /// <summary>
         /// The backing field for the MechPowerSensorLag property
         /// </summary>
         private float _mechPowerSensorLag;
         
+        private static Lazy<ITypedElement> _mechPowerSensorLagAttribute = new Lazy<ITypedElement>(RetrieveMechPowerSensorLagAttribute);
+        
         /// <summary>
         /// The backing field for the ThrottlePressureSP property
         /// </summary>
         private float _throttlePressureSP;
+        
+        private static Lazy<ITypedElement> _throttlePressureSPAttribute = new Lazy<ITypedElement>(RetrieveThrottlePressureSPAttribute);
         
         /// <summary>
         /// The backing field for the MaxErrorRateP property
         /// </summary>
         private float _maxErrorRateP;
         
+        private static Lazy<ITypedElement> _maxErrorRatePAttribute = new Lazy<ITypedElement>(RetrieveMaxErrorRatePAttribute);
+        
         /// <summary>
         /// The backing field for the ControlIC property
         /// </summary>
         private float _controlIC;
+        
+        private static Lazy<ITypedElement> _controlICAttribute = new Lazy<ITypedElement>(RetrieveControlICAttribute);
         
         /// <summary>
         /// The backing field for the MinErrorRateP property
         /// </summary>
         private float _minErrorRateP;
         
+        private static Lazy<ITypedElement> _minErrorRatePAttribute = new Lazy<ITypedElement>(RetrieveMinErrorRatePAttribute);
+        
         /// <summary>
         /// The backing field for the FuelDemandLimit property
         /// </summary>
         private float _fuelDemandLimit;
+        
+        private static Lazy<ITypedElement> _fuelDemandLimitAttribute = new Lazy<ITypedElement>(RetrieveFuelDemandLimitAttribute);
         
         /// <summary>
         /// The backing field for the SuperHeaterPipePD property
         /// </summary>
         private float _superHeaterPipePD;
         
+        private static Lazy<ITypedElement> _superHeaterPipePDAttribute = new Lazy<ITypedElement>(RetrieveSuperHeaterPipePDAttribute);
+        
         /// <summary>
         /// The backing field for the PressureCtrlDG property
         /// </summary>
         private float _pressureCtrlDG;
+        
+        private static Lazy<ITypedElement> _pressureCtrlDGAttribute = new Lazy<ITypedElement>(RetrievePressureCtrlDGAttribute);
         
         /// <summary>
         /// The backing field for the AuxPowerVersusVoltage property
         /// </summary>
         private float _auxPowerVersusVoltage;
         
+        private static Lazy<ITypedElement> _auxPowerVersusVoltageAttribute = new Lazy<ITypedElement>(RetrieveAuxPowerVersusVoltageAttribute);
+        
         /// <summary>
         /// The backing field for the ControlPC property
         /// </summary>
         private float _controlPC;
+        
+        private static Lazy<ITypedElement> _controlPCAttribute = new Lazy<ITypedElement>(RetrieveControlPCAttribute);
         
         /// <summary>
         /// The backing field for the FeedWaterTC property
         /// </summary>
         private float _feedWaterTC;
         
+        private static Lazy<ITypedElement> _feedWaterTCAttribute = new Lazy<ITypedElement>(RetrieveFeedWaterTCAttribute);
+        
         /// <summary>
         /// The backing field for the ControlErrorBiasP property
         /// </summary>
         private float _controlErrorBiasP;
+        
+        private static Lazy<ITypedElement> _controlErrorBiasPAttribute = new Lazy<ITypedElement>(RetrieveControlErrorBiasPAttribute);
         
         /// <summary>
         /// The backing field for the FeedWaterIG property
         /// </summary>
         private float _feedWaterIG;
         
+        private static Lazy<ITypedElement> _feedWaterIGAttribute = new Lazy<ITypedElement>(RetrieveFeedWaterIGAttribute);
+        
         /// <summary>
         /// The backing field for the PressureCtrlIG property
         /// </summary>
         private float _pressureCtrlIG;
+        
+        private static Lazy<ITypedElement> _pressureCtrlIGAttribute = new Lazy<ITypedElement>(RetrievePressureCtrlIGAttribute);
         
         /// <summary>
         /// The backing field for the FuelSupplyTC property
         /// </summary>
         private float _fuelSupplyTC;
         
+        private static Lazy<ITypedElement> _fuelSupplyTCAttribute = new Lazy<ITypedElement>(RetrieveFuelSupplyTCAttribute);
+        
         /// <summary>
         /// The backing field for the AuxPowerVersusFrequency property
         /// </summary>
         private float _auxPowerVersusFrequency;
+        
+        private static Lazy<ITypedElement> _auxPowerVersusFrequencyAttribute = new Lazy<ITypedElement>(RetrieveAuxPowerVersusFrequencyAttribute);
         
         /// <summary>
         /// The backing field for the PressureFeedback property
         /// </summary>
         private int _pressureFeedback;
         
+        private static Lazy<ITypedElement> _pressureFeedbackAttribute = new Lazy<ITypedElement>(RetrievePressureFeedbackAttribute);
+        
         /// <summary>
         /// The backing field for the FuelSupplyDelay property
         /// </summary>
         private float _fuelSupplyDelay;
+        
+        private static Lazy<ITypedElement> _fuelSupplyDelayAttribute = new Lazy<ITypedElement>(RetrieveFuelSupplyDelayAttribute);
         
         /// <summary>
         /// The backing field for the BoilerControlMode property
         /// </summary>
         private Nullable<BoilerControlMode> _boilerControlMode;
         
+        private static Lazy<ITypedElement> _boilerControlModeAttribute = new Lazy<ITypedElement>(RetrieveBoilerControlModeAttribute);
+        
         /// <summary>
         /// The backing field for the SuperHeater2Capacity property
         /// </summary>
         private float _superHeater2Capacity;
+        
+        private static Lazy<ITypedElement> _superHeater2CapacityAttribute = new Lazy<ITypedElement>(RetrieveSuperHeater2CapacityAttribute);
         
         /// <summary>
         /// The backing field for the ControlPEB property
         /// </summary>
         private float _controlPEB;
         
+        private static Lazy<ITypedElement> _controlPEBAttribute = new Lazy<ITypedElement>(RetrieveControlPEBAttribute);
+        
         /// <summary>
         /// The backing field for the ControlPED property
         /// </summary>
         private float _controlPED;
+        
+        private static Lazy<ITypedElement> _controlPEDAttribute = new Lazy<ITypedElement>(RetrieveControlPEDAttribute);
         
         private static IClass _classInstance;
         
@@ -195,10 +247,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.GenerationDynamics
                     float old = this._pressureCtrlPG;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnPressureCtrlPGChanging(e);
-                    this.OnPropertyChanging("PressureCtrlPG", e);
+                    this.OnPropertyChanging("PressureCtrlPG", e, _pressureCtrlPGAttribute);
                     this._pressureCtrlPG = value;
                     this.OnPressureCtrlPGChanged(e);
-                    this.OnPropertyChanged("PressureCtrlPG", e);
+                    this.OnPropertyChanged("PressureCtrlPG", e, _pressureCtrlPGAttribute);
                 }
             }
         }
@@ -221,10 +273,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.GenerationDynamics
                     float old = this._superHeater1Capacity;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnSuperHeater1CapacityChanging(e);
-                    this.OnPropertyChanging("SuperHeater1Capacity", e);
+                    this.OnPropertyChanging("SuperHeater1Capacity", e, _superHeater1CapacityAttribute);
                     this._superHeater1Capacity = value;
                     this.OnSuperHeater1CapacityChanged(e);
-                    this.OnPropertyChanged("SuperHeater1Capacity", e);
+                    this.OnPropertyChanged("SuperHeater1Capacity", e, _superHeater1CapacityAttribute);
                 }
             }
         }
@@ -247,10 +299,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.GenerationDynamics
                     float old = this._feedWaterPG;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnFeedWaterPGChanging(e);
-                    this.OnPropertyChanging("FeedWaterPG", e);
+                    this.OnPropertyChanging("FeedWaterPG", e, _feedWaterPGAttribute);
                     this._feedWaterPG = value;
                     this.OnFeedWaterPGChanged(e);
-                    this.OnPropertyChanged("FeedWaterPG", e);
+                    this.OnPropertyChanged("FeedWaterPG", e, _feedWaterPGAttribute);
                 }
             }
         }
@@ -273,10 +325,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.GenerationDynamics
                     float old = this._controlTC;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnControlTCChanging(e);
-                    this.OnPropertyChanging("ControlTC", e);
+                    this.OnPropertyChanging("ControlTC", e, _controlTCAttribute);
                     this._controlTC = value;
                     this.OnControlTCChanged(e);
-                    this.OnPropertyChanged("ControlTC", e);
+                    this.OnPropertyChanged("ControlTC", e, _controlTCAttribute);
                 }
             }
         }
@@ -299,10 +351,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.GenerationDynamics
                     float old = this._mechPowerSensorLag;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnMechPowerSensorLagChanging(e);
-                    this.OnPropertyChanging("MechPowerSensorLag", e);
+                    this.OnPropertyChanging("MechPowerSensorLag", e, _mechPowerSensorLagAttribute);
                     this._mechPowerSensorLag = value;
                     this.OnMechPowerSensorLagChanged(e);
-                    this.OnPropertyChanged("MechPowerSensorLag", e);
+                    this.OnPropertyChanged("MechPowerSensorLag", e, _mechPowerSensorLagAttribute);
                 }
             }
         }
@@ -325,10 +377,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.GenerationDynamics
                     float old = this._throttlePressureSP;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnThrottlePressureSPChanging(e);
-                    this.OnPropertyChanging("ThrottlePressureSP", e);
+                    this.OnPropertyChanging("ThrottlePressureSP", e, _throttlePressureSPAttribute);
                     this._throttlePressureSP = value;
                     this.OnThrottlePressureSPChanged(e);
-                    this.OnPropertyChanged("ThrottlePressureSP", e);
+                    this.OnPropertyChanged("ThrottlePressureSP", e, _throttlePressureSPAttribute);
                 }
             }
         }
@@ -351,10 +403,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.GenerationDynamics
                     float old = this._maxErrorRateP;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnMaxErrorRatePChanging(e);
-                    this.OnPropertyChanging("MaxErrorRateP", e);
+                    this.OnPropertyChanging("MaxErrorRateP", e, _maxErrorRatePAttribute);
                     this._maxErrorRateP = value;
                     this.OnMaxErrorRatePChanged(e);
-                    this.OnPropertyChanged("MaxErrorRateP", e);
+                    this.OnPropertyChanged("MaxErrorRateP", e, _maxErrorRatePAttribute);
                 }
             }
         }
@@ -377,10 +429,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.GenerationDynamics
                     float old = this._controlIC;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnControlICChanging(e);
-                    this.OnPropertyChanging("ControlIC", e);
+                    this.OnPropertyChanging("ControlIC", e, _controlICAttribute);
                     this._controlIC = value;
                     this.OnControlICChanged(e);
-                    this.OnPropertyChanged("ControlIC", e);
+                    this.OnPropertyChanged("ControlIC", e, _controlICAttribute);
                 }
             }
         }
@@ -403,10 +455,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.GenerationDynamics
                     float old = this._minErrorRateP;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnMinErrorRatePChanging(e);
-                    this.OnPropertyChanging("MinErrorRateP", e);
+                    this.OnPropertyChanging("MinErrorRateP", e, _minErrorRatePAttribute);
                     this._minErrorRateP = value;
                     this.OnMinErrorRatePChanged(e);
-                    this.OnPropertyChanged("MinErrorRateP", e);
+                    this.OnPropertyChanged("MinErrorRateP", e, _minErrorRatePAttribute);
                 }
             }
         }
@@ -429,10 +481,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.GenerationDynamics
                     float old = this._fuelDemandLimit;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnFuelDemandLimitChanging(e);
-                    this.OnPropertyChanging("FuelDemandLimit", e);
+                    this.OnPropertyChanging("FuelDemandLimit", e, _fuelDemandLimitAttribute);
                     this._fuelDemandLimit = value;
                     this.OnFuelDemandLimitChanged(e);
-                    this.OnPropertyChanged("FuelDemandLimit", e);
+                    this.OnPropertyChanged("FuelDemandLimit", e, _fuelDemandLimitAttribute);
                 }
             }
         }
@@ -455,10 +507,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.GenerationDynamics
                     float old = this._superHeaterPipePD;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnSuperHeaterPipePDChanging(e);
-                    this.OnPropertyChanging("SuperHeaterPipePD", e);
+                    this.OnPropertyChanging("SuperHeaterPipePD", e, _superHeaterPipePDAttribute);
                     this._superHeaterPipePD = value;
                     this.OnSuperHeaterPipePDChanged(e);
-                    this.OnPropertyChanged("SuperHeaterPipePD", e);
+                    this.OnPropertyChanged("SuperHeaterPipePD", e, _superHeaterPipePDAttribute);
                 }
             }
         }
@@ -481,10 +533,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.GenerationDynamics
                     float old = this._pressureCtrlDG;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnPressureCtrlDGChanging(e);
-                    this.OnPropertyChanging("PressureCtrlDG", e);
+                    this.OnPropertyChanging("PressureCtrlDG", e, _pressureCtrlDGAttribute);
                     this._pressureCtrlDG = value;
                     this.OnPressureCtrlDGChanged(e);
-                    this.OnPropertyChanged("PressureCtrlDG", e);
+                    this.OnPropertyChanged("PressureCtrlDG", e, _pressureCtrlDGAttribute);
                 }
             }
         }
@@ -507,10 +559,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.GenerationDynamics
                     float old = this._auxPowerVersusVoltage;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnAuxPowerVersusVoltageChanging(e);
-                    this.OnPropertyChanging("AuxPowerVersusVoltage", e);
+                    this.OnPropertyChanging("AuxPowerVersusVoltage", e, _auxPowerVersusVoltageAttribute);
                     this._auxPowerVersusVoltage = value;
                     this.OnAuxPowerVersusVoltageChanged(e);
-                    this.OnPropertyChanged("AuxPowerVersusVoltage", e);
+                    this.OnPropertyChanged("AuxPowerVersusVoltage", e, _auxPowerVersusVoltageAttribute);
                 }
             }
         }
@@ -533,10 +585,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.GenerationDynamics
                     float old = this._controlPC;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnControlPCChanging(e);
-                    this.OnPropertyChanging("ControlPC", e);
+                    this.OnPropertyChanging("ControlPC", e, _controlPCAttribute);
                     this._controlPC = value;
                     this.OnControlPCChanged(e);
-                    this.OnPropertyChanged("ControlPC", e);
+                    this.OnPropertyChanged("ControlPC", e, _controlPCAttribute);
                 }
             }
         }
@@ -559,10 +611,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.GenerationDynamics
                     float old = this._feedWaterTC;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnFeedWaterTCChanging(e);
-                    this.OnPropertyChanging("FeedWaterTC", e);
+                    this.OnPropertyChanging("FeedWaterTC", e, _feedWaterTCAttribute);
                     this._feedWaterTC = value;
                     this.OnFeedWaterTCChanged(e);
-                    this.OnPropertyChanged("FeedWaterTC", e);
+                    this.OnPropertyChanged("FeedWaterTC", e, _feedWaterTCAttribute);
                 }
             }
         }
@@ -585,10 +637,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.GenerationDynamics
                     float old = this._controlErrorBiasP;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnControlErrorBiasPChanging(e);
-                    this.OnPropertyChanging("ControlErrorBiasP", e);
+                    this.OnPropertyChanging("ControlErrorBiasP", e, _controlErrorBiasPAttribute);
                     this._controlErrorBiasP = value;
                     this.OnControlErrorBiasPChanged(e);
-                    this.OnPropertyChanged("ControlErrorBiasP", e);
+                    this.OnPropertyChanged("ControlErrorBiasP", e, _controlErrorBiasPAttribute);
                 }
             }
         }
@@ -611,10 +663,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.GenerationDynamics
                     float old = this._feedWaterIG;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnFeedWaterIGChanging(e);
-                    this.OnPropertyChanging("FeedWaterIG", e);
+                    this.OnPropertyChanging("FeedWaterIG", e, _feedWaterIGAttribute);
                     this._feedWaterIG = value;
                     this.OnFeedWaterIGChanged(e);
-                    this.OnPropertyChanged("FeedWaterIG", e);
+                    this.OnPropertyChanged("FeedWaterIG", e, _feedWaterIGAttribute);
                 }
             }
         }
@@ -637,10 +689,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.GenerationDynamics
                     float old = this._pressureCtrlIG;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnPressureCtrlIGChanging(e);
-                    this.OnPropertyChanging("PressureCtrlIG", e);
+                    this.OnPropertyChanging("PressureCtrlIG", e, _pressureCtrlIGAttribute);
                     this._pressureCtrlIG = value;
                     this.OnPressureCtrlIGChanged(e);
-                    this.OnPropertyChanged("PressureCtrlIG", e);
+                    this.OnPropertyChanged("PressureCtrlIG", e, _pressureCtrlIGAttribute);
                 }
             }
         }
@@ -663,10 +715,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.GenerationDynamics
                     float old = this._fuelSupplyTC;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnFuelSupplyTCChanging(e);
-                    this.OnPropertyChanging("FuelSupplyTC", e);
+                    this.OnPropertyChanging("FuelSupplyTC", e, _fuelSupplyTCAttribute);
                     this._fuelSupplyTC = value;
                     this.OnFuelSupplyTCChanged(e);
-                    this.OnPropertyChanged("FuelSupplyTC", e);
+                    this.OnPropertyChanged("FuelSupplyTC", e, _fuelSupplyTCAttribute);
                 }
             }
         }
@@ -689,10 +741,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.GenerationDynamics
                     float old = this._auxPowerVersusFrequency;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnAuxPowerVersusFrequencyChanging(e);
-                    this.OnPropertyChanging("AuxPowerVersusFrequency", e);
+                    this.OnPropertyChanging("AuxPowerVersusFrequency", e, _auxPowerVersusFrequencyAttribute);
                     this._auxPowerVersusFrequency = value;
                     this.OnAuxPowerVersusFrequencyChanged(e);
-                    this.OnPropertyChanged("AuxPowerVersusFrequency", e);
+                    this.OnPropertyChanged("AuxPowerVersusFrequency", e, _auxPowerVersusFrequencyAttribute);
                 }
             }
         }
@@ -715,10 +767,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.GenerationDynamics
                     int old = this._pressureFeedback;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnPressureFeedbackChanging(e);
-                    this.OnPropertyChanging("PressureFeedback", e);
+                    this.OnPropertyChanging("PressureFeedback", e, _pressureFeedbackAttribute);
                     this._pressureFeedback = value;
                     this.OnPressureFeedbackChanged(e);
-                    this.OnPropertyChanged("PressureFeedback", e);
+                    this.OnPropertyChanged("PressureFeedback", e, _pressureFeedbackAttribute);
                 }
             }
         }
@@ -741,10 +793,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.GenerationDynamics
                     float old = this._fuelSupplyDelay;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnFuelSupplyDelayChanging(e);
-                    this.OnPropertyChanging("FuelSupplyDelay", e);
+                    this.OnPropertyChanging("FuelSupplyDelay", e, _fuelSupplyDelayAttribute);
                     this._fuelSupplyDelay = value;
                     this.OnFuelSupplyDelayChanged(e);
-                    this.OnPropertyChanged("FuelSupplyDelay", e);
+                    this.OnPropertyChanged("FuelSupplyDelay", e, _fuelSupplyDelayAttribute);
                 }
             }
         }
@@ -767,10 +819,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.GenerationDynamics
                     Nullable<BoilerControlMode> old = this._boilerControlMode;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnBoilerControlModeChanging(e);
-                    this.OnPropertyChanging("BoilerControlMode", e);
+                    this.OnPropertyChanging("BoilerControlMode", e, _boilerControlModeAttribute);
                     this._boilerControlMode = value;
                     this.OnBoilerControlModeChanged(e);
-                    this.OnPropertyChanged("BoilerControlMode", e);
+                    this.OnPropertyChanged("BoilerControlMode", e, _boilerControlModeAttribute);
                 }
             }
         }
@@ -793,10 +845,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.GenerationDynamics
                     float old = this._superHeater2Capacity;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnSuperHeater2CapacityChanging(e);
-                    this.OnPropertyChanging("SuperHeater2Capacity", e);
+                    this.OnPropertyChanging("SuperHeater2Capacity", e, _superHeater2CapacityAttribute);
                     this._superHeater2Capacity = value;
                     this.OnSuperHeater2CapacityChanged(e);
-                    this.OnPropertyChanged("SuperHeater2Capacity", e);
+                    this.OnPropertyChanged("SuperHeater2Capacity", e, _superHeater2CapacityAttribute);
                 }
             }
         }
@@ -819,10 +871,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.GenerationDynamics
                     float old = this._controlPEB;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnControlPEBChanging(e);
-                    this.OnPropertyChanging("ControlPEB", e);
+                    this.OnPropertyChanging("ControlPEB", e, _controlPEBAttribute);
                     this._controlPEB = value;
                     this.OnControlPEBChanged(e);
-                    this.OnPropertyChanged("ControlPEB", e);
+                    this.OnPropertyChanged("ControlPEB", e, _controlPEBAttribute);
                 }
             }
         }
@@ -845,10 +897,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.GenerationDynamics
                     float old = this._controlPED;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnControlPEDChanging(e);
-                    this.OnPropertyChanging("ControlPED", e);
+                    this.OnPropertyChanging("ControlPED", e, _controlPEDAttribute);
                     this._controlPED = value;
                     this.OnControlPEDChanged(e);
-                    this.OnPropertyChanged("ControlPED", e);
+                    this.OnPropertyChanged("ControlPED", e, _controlPEDAttribute);
                 }
             }
         }
@@ -1129,6 +1181,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.GenerationDynamics
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> ControlPEDChanged;
         
+        private static ITypedElement RetrievePressureCtrlPGAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(FossilSteamSupply.ClassInstance)).Resolve("pressureCtrlPG")));
+        }
+        
         /// <summary>
         /// Raises the PressureCtrlPGChanging event
         /// </summary>
@@ -1153,6 +1210,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.GenerationDynamics
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveSuperHeater1CapacityAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(FossilSteamSupply.ClassInstance)).Resolve("superHeater1Capacity")));
         }
         
         /// <summary>
@@ -1181,6 +1243,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.GenerationDynamics
             }
         }
         
+        private static ITypedElement RetrieveFeedWaterPGAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(FossilSteamSupply.ClassInstance)).Resolve("feedWaterPG")));
+        }
+        
         /// <summary>
         /// Raises the FeedWaterPGChanging event
         /// </summary>
@@ -1205,6 +1272,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.GenerationDynamics
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveControlTCAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(FossilSteamSupply.ClassInstance)).Resolve("controlTC")));
         }
         
         /// <summary>
@@ -1233,6 +1305,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.GenerationDynamics
             }
         }
         
+        private static ITypedElement RetrieveMechPowerSensorLagAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(FossilSteamSupply.ClassInstance)).Resolve("mechPowerSensorLag")));
+        }
+        
         /// <summary>
         /// Raises the MechPowerSensorLagChanging event
         /// </summary>
@@ -1257,6 +1334,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.GenerationDynamics
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveThrottlePressureSPAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(FossilSteamSupply.ClassInstance)).Resolve("throttlePressureSP")));
         }
         
         /// <summary>
@@ -1285,6 +1367,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.GenerationDynamics
             }
         }
         
+        private static ITypedElement RetrieveMaxErrorRatePAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(FossilSteamSupply.ClassInstance)).Resolve("maxErrorRateP")));
+        }
+        
         /// <summary>
         /// Raises the MaxErrorRatePChanging event
         /// </summary>
@@ -1309,6 +1396,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.GenerationDynamics
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveControlICAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(FossilSteamSupply.ClassInstance)).Resolve("controlIC")));
         }
         
         /// <summary>
@@ -1337,6 +1429,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.GenerationDynamics
             }
         }
         
+        private static ITypedElement RetrieveMinErrorRatePAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(FossilSteamSupply.ClassInstance)).Resolve("minErrorRateP")));
+        }
+        
         /// <summary>
         /// Raises the MinErrorRatePChanging event
         /// </summary>
@@ -1361,6 +1458,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.GenerationDynamics
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveFuelDemandLimitAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(FossilSteamSupply.ClassInstance)).Resolve("fuelDemandLimit")));
         }
         
         /// <summary>
@@ -1389,6 +1491,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.GenerationDynamics
             }
         }
         
+        private static ITypedElement RetrieveSuperHeaterPipePDAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(FossilSteamSupply.ClassInstance)).Resolve("superHeaterPipePD")));
+        }
+        
         /// <summary>
         /// Raises the SuperHeaterPipePDChanging event
         /// </summary>
@@ -1413,6 +1520,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.GenerationDynamics
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrievePressureCtrlDGAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(FossilSteamSupply.ClassInstance)).Resolve("pressureCtrlDG")));
         }
         
         /// <summary>
@@ -1441,6 +1553,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.GenerationDynamics
             }
         }
         
+        private static ITypedElement RetrieveAuxPowerVersusVoltageAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(FossilSteamSupply.ClassInstance)).Resolve("auxPowerVersusVoltage")));
+        }
+        
         /// <summary>
         /// Raises the AuxPowerVersusVoltageChanging event
         /// </summary>
@@ -1465,6 +1582,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.GenerationDynamics
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveControlPCAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(FossilSteamSupply.ClassInstance)).Resolve("controlPC")));
         }
         
         /// <summary>
@@ -1493,6 +1615,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.GenerationDynamics
             }
         }
         
+        private static ITypedElement RetrieveFeedWaterTCAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(FossilSteamSupply.ClassInstance)).Resolve("feedWaterTC")));
+        }
+        
         /// <summary>
         /// Raises the FeedWaterTCChanging event
         /// </summary>
@@ -1517,6 +1644,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.GenerationDynamics
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveControlErrorBiasPAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(FossilSteamSupply.ClassInstance)).Resolve("controlErrorBiasP")));
         }
         
         /// <summary>
@@ -1545,6 +1677,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.GenerationDynamics
             }
         }
         
+        private static ITypedElement RetrieveFeedWaterIGAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(FossilSteamSupply.ClassInstance)).Resolve("feedWaterIG")));
+        }
+        
         /// <summary>
         /// Raises the FeedWaterIGChanging event
         /// </summary>
@@ -1569,6 +1706,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.GenerationDynamics
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrievePressureCtrlIGAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(FossilSteamSupply.ClassInstance)).Resolve("pressureCtrlIG")));
         }
         
         /// <summary>
@@ -1597,6 +1739,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.GenerationDynamics
             }
         }
         
+        private static ITypedElement RetrieveFuelSupplyTCAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(FossilSteamSupply.ClassInstance)).Resolve("fuelSupplyTC")));
+        }
+        
         /// <summary>
         /// Raises the FuelSupplyTCChanging event
         /// </summary>
@@ -1621,6 +1768,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.GenerationDynamics
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveAuxPowerVersusFrequencyAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(FossilSteamSupply.ClassInstance)).Resolve("auxPowerVersusFrequency")));
         }
         
         /// <summary>
@@ -1649,6 +1801,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.GenerationDynamics
             }
         }
         
+        private static ITypedElement RetrievePressureFeedbackAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(FossilSteamSupply.ClassInstance)).Resolve("pressureFeedback")));
+        }
+        
         /// <summary>
         /// Raises the PressureFeedbackChanging event
         /// </summary>
@@ -1673,6 +1830,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.GenerationDynamics
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveFuelSupplyDelayAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(FossilSteamSupply.ClassInstance)).Resolve("fuelSupplyDelay")));
         }
         
         /// <summary>
@@ -1701,6 +1863,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.GenerationDynamics
             }
         }
         
+        private static ITypedElement RetrieveBoilerControlModeAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(FossilSteamSupply.ClassInstance)).Resolve("boilerControlMode")));
+        }
+        
         /// <summary>
         /// Raises the BoilerControlModeChanging event
         /// </summary>
@@ -1725,6 +1892,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.GenerationDynamics
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveSuperHeater2CapacityAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(FossilSteamSupply.ClassInstance)).Resolve("superHeater2Capacity")));
         }
         
         /// <summary>
@@ -1753,6 +1925,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.GenerationDynamics
             }
         }
         
+        private static ITypedElement RetrieveControlPEBAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(FossilSteamSupply.ClassInstance)).Resolve("controlPEB")));
+        }
+        
         /// <summary>
         /// Raises the ControlPEBChanging event
         /// </summary>
@@ -1777,6 +1954,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.GenerationDynamics
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveControlPEDAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(FossilSteamSupply.ClassInstance)).Resolve("controlPED")));
         }
         
         /// <summary>
@@ -2084,7 +2266,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.GenerationDynamics
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public PressureCtrlPGProxy(IFossilSteamSupply modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "pressureCtrlPG")
             {
             }
             
@@ -2102,24 +2284,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.GenerationDynamics
                     this.ModelElement.PressureCtrlPG = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.PressureCtrlPGChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.PressureCtrlPGChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -2133,7 +2297,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.GenerationDynamics
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public SuperHeater1CapacityProxy(IFossilSteamSupply modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "superHeater1Capacity")
             {
             }
             
@@ -2151,24 +2315,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.GenerationDynamics
                     this.ModelElement.SuperHeater1Capacity = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.SuperHeater1CapacityChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.SuperHeater1CapacityChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -2182,7 +2328,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.GenerationDynamics
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public FeedWaterPGProxy(IFossilSteamSupply modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "feedWaterPG")
             {
             }
             
@@ -2200,24 +2346,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.GenerationDynamics
                     this.ModelElement.FeedWaterPG = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.FeedWaterPGChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.FeedWaterPGChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -2231,7 +2359,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.GenerationDynamics
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public ControlTCProxy(IFossilSteamSupply modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "controlTC")
             {
             }
             
@@ -2249,24 +2377,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.GenerationDynamics
                     this.ModelElement.ControlTC = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ControlTCChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ControlTCChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -2280,7 +2390,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.GenerationDynamics
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public MechPowerSensorLagProxy(IFossilSteamSupply modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "mechPowerSensorLag")
             {
             }
             
@@ -2298,24 +2408,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.GenerationDynamics
                     this.ModelElement.MechPowerSensorLag = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.MechPowerSensorLagChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.MechPowerSensorLagChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -2329,7 +2421,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.GenerationDynamics
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public ThrottlePressureSPProxy(IFossilSteamSupply modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "throttlePressureSP")
             {
             }
             
@@ -2347,24 +2439,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.GenerationDynamics
                     this.ModelElement.ThrottlePressureSP = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ThrottlePressureSPChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ThrottlePressureSPChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -2378,7 +2452,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.GenerationDynamics
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public MaxErrorRatePProxy(IFossilSteamSupply modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "maxErrorRateP")
             {
             }
             
@@ -2396,24 +2470,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.GenerationDynamics
                     this.ModelElement.MaxErrorRateP = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.MaxErrorRatePChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.MaxErrorRatePChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -2427,7 +2483,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.GenerationDynamics
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public ControlICProxy(IFossilSteamSupply modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "controlIC")
             {
             }
             
@@ -2445,24 +2501,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.GenerationDynamics
                     this.ModelElement.ControlIC = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ControlICChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ControlICChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -2476,7 +2514,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.GenerationDynamics
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public MinErrorRatePProxy(IFossilSteamSupply modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "minErrorRateP")
             {
             }
             
@@ -2494,24 +2532,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.GenerationDynamics
                     this.ModelElement.MinErrorRateP = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.MinErrorRatePChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.MinErrorRatePChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -2525,7 +2545,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.GenerationDynamics
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public FuelDemandLimitProxy(IFossilSteamSupply modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "fuelDemandLimit")
             {
             }
             
@@ -2543,24 +2563,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.GenerationDynamics
                     this.ModelElement.FuelDemandLimit = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.FuelDemandLimitChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.FuelDemandLimitChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -2574,7 +2576,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.GenerationDynamics
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public SuperHeaterPipePDProxy(IFossilSteamSupply modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "superHeaterPipePD")
             {
             }
             
@@ -2592,24 +2594,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.GenerationDynamics
                     this.ModelElement.SuperHeaterPipePD = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.SuperHeaterPipePDChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.SuperHeaterPipePDChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -2623,7 +2607,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.GenerationDynamics
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public PressureCtrlDGProxy(IFossilSteamSupply modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "pressureCtrlDG")
             {
             }
             
@@ -2641,24 +2625,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.GenerationDynamics
                     this.ModelElement.PressureCtrlDG = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.PressureCtrlDGChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.PressureCtrlDGChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -2672,7 +2638,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.GenerationDynamics
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public AuxPowerVersusVoltageProxy(IFossilSteamSupply modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "auxPowerVersusVoltage")
             {
             }
             
@@ -2690,24 +2656,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.GenerationDynamics
                     this.ModelElement.AuxPowerVersusVoltage = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.AuxPowerVersusVoltageChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.AuxPowerVersusVoltageChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -2721,7 +2669,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.GenerationDynamics
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public ControlPCProxy(IFossilSteamSupply modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "controlPC")
             {
             }
             
@@ -2739,24 +2687,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.GenerationDynamics
                     this.ModelElement.ControlPC = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ControlPCChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ControlPCChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -2770,7 +2700,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.GenerationDynamics
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public FeedWaterTCProxy(IFossilSteamSupply modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "feedWaterTC")
             {
             }
             
@@ -2788,24 +2718,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.GenerationDynamics
                     this.ModelElement.FeedWaterTC = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.FeedWaterTCChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.FeedWaterTCChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -2819,7 +2731,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.GenerationDynamics
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public ControlErrorBiasPProxy(IFossilSteamSupply modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "controlErrorBiasP")
             {
             }
             
@@ -2837,24 +2749,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.GenerationDynamics
                     this.ModelElement.ControlErrorBiasP = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ControlErrorBiasPChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ControlErrorBiasPChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -2868,7 +2762,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.GenerationDynamics
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public FeedWaterIGProxy(IFossilSteamSupply modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "feedWaterIG")
             {
             }
             
@@ -2886,24 +2780,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.GenerationDynamics
                     this.ModelElement.FeedWaterIG = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.FeedWaterIGChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.FeedWaterIGChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -2917,7 +2793,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.GenerationDynamics
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public PressureCtrlIGProxy(IFossilSteamSupply modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "pressureCtrlIG")
             {
             }
             
@@ -2935,24 +2811,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.GenerationDynamics
                     this.ModelElement.PressureCtrlIG = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.PressureCtrlIGChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.PressureCtrlIGChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -2966,7 +2824,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.GenerationDynamics
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public FuelSupplyTCProxy(IFossilSteamSupply modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "fuelSupplyTC")
             {
             }
             
@@ -2984,24 +2842,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.GenerationDynamics
                     this.ModelElement.FuelSupplyTC = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.FuelSupplyTCChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.FuelSupplyTCChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -3015,7 +2855,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.GenerationDynamics
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public AuxPowerVersusFrequencyProxy(IFossilSteamSupply modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "auxPowerVersusFrequency")
             {
             }
             
@@ -3033,24 +2873,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.GenerationDynamics
                     this.ModelElement.AuxPowerVersusFrequency = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.AuxPowerVersusFrequencyChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.AuxPowerVersusFrequencyChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -3064,7 +2886,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.GenerationDynamics
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public PressureFeedbackProxy(IFossilSteamSupply modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "pressureFeedback")
             {
             }
             
@@ -3082,24 +2904,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.GenerationDynamics
                     this.ModelElement.PressureFeedback = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.PressureFeedbackChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.PressureFeedbackChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -3113,7 +2917,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.GenerationDynamics
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public FuelSupplyDelayProxy(IFossilSteamSupply modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "fuelSupplyDelay")
             {
             }
             
@@ -3131,24 +2935,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.GenerationDynamics
                     this.ModelElement.FuelSupplyDelay = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.FuelSupplyDelayChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.FuelSupplyDelayChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -3162,7 +2948,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.GenerationDynamics
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public BoilerControlModeProxy(IFossilSteamSupply modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "boilerControlMode")
             {
             }
             
@@ -3180,24 +2966,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.GenerationDynamics
                     this.ModelElement.BoilerControlMode = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.BoilerControlModeChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.BoilerControlModeChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -3211,7 +2979,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.GenerationDynamics
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public SuperHeater2CapacityProxy(IFossilSteamSupply modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "superHeater2Capacity")
             {
             }
             
@@ -3229,24 +2997,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.GenerationDynamics
                     this.ModelElement.SuperHeater2Capacity = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.SuperHeater2CapacityChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.SuperHeater2CapacityChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -3260,7 +3010,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.GenerationDynamics
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public ControlPEBProxy(IFossilSteamSupply modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "controlPEB")
             {
             }
             
@@ -3278,24 +3028,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.GenerationDynamics
                     this.ModelElement.ControlPEB = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ControlPEBChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ControlPEBChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -3309,7 +3041,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.GenerationDynamics
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public ControlPEDProxy(IFossilSteamSupply modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "controlPED")
             {
             }
             
@@ -3326,24 +3058,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.GenerationDynamics
                 {
                     this.ModelElement.ControlPED = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ControlPEDChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ControlPEDChanged -= handler;
             }
         }
     }

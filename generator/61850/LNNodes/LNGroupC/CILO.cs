@@ -41,13 +41,17 @@ namespace TTC2017.SmartGrids.SubstationStandard.LNNodes.LNGroupC
     [XmlNamespacePrefixAttribute("groupc")]
     [ModelRepresentationClassAttribute("http://www.transformation-tool-contest.eu/2017/smartGrids/substationStandard#//LN" +
         "Nodes/LNGroupC/CILO")]
-    public class CILO : TTC2017.SmartGrids.SubstationStandard.LNNodes.LNGroupC.GroupC, ICILO, IModelElement
+    public partial class CILO : TTC2017.SmartGrids.SubstationStandard.LNNodes.LNGroupC.GroupC, ICILO, IModelElement
     {
+        
+        private static Lazy<ITypedElement> _enaOpnReference = new Lazy<ITypedElement>(RetrieveEnaOpnReference);
         
         /// <summary>
         /// The backing field for the EnaOpn property
         /// </summary>
         private ISPS _enaOpn;
+        
+        private static Lazy<ITypedElement> _enaClsReference = new Lazy<ITypedElement>(RetrieveEnaClsReference);
         
         /// <summary>
         /// The backing field for the EnaCls property
@@ -73,7 +77,7 @@ namespace TTC2017.SmartGrids.SubstationStandard.LNNodes.LNGroupC
                     ISPS old = this._enaOpn;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnEnaOpnChanging(e);
-                    this.OnPropertyChanging("EnaOpn", e);
+                    this.OnPropertyChanging("EnaOpn", e, _enaOpnReference);
                     this._enaOpn = value;
                     if ((old != null))
                     {
@@ -84,7 +88,7 @@ namespace TTC2017.SmartGrids.SubstationStandard.LNNodes.LNGroupC
                         value.Deleted += this.OnResetEnaOpn;
                     }
                     this.OnEnaOpnChanged(e);
-                    this.OnPropertyChanged("EnaOpn", e);
+                    this.OnPropertyChanged("EnaOpn", e, _enaOpnReference);
                 }
             }
         }
@@ -106,7 +110,7 @@ namespace TTC2017.SmartGrids.SubstationStandard.LNNodes.LNGroupC
                     ISPS old = this._enaCls;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnEnaClsChanging(e);
-                    this.OnPropertyChanging("EnaCls", e);
+                    this.OnPropertyChanging("EnaCls", e, _enaClsReference);
                     this._enaCls = value;
                     if ((old != null))
                     {
@@ -117,7 +121,7 @@ namespace TTC2017.SmartGrids.SubstationStandard.LNNodes.LNGroupC
                         value.Deleted += this.OnResetEnaCls;
                     }
                     this.OnEnaClsChanged(e);
-                    this.OnPropertyChanged("EnaCls", e);
+                    this.OnPropertyChanged("EnaCls", e, _enaClsReference);
                 }
             }
         }
@@ -169,6 +173,11 @@ namespace TTC2017.SmartGrids.SubstationStandard.LNNodes.LNGroupC
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> EnaClsChanged;
         
+        private static ITypedElement RetrieveEnaOpnReference()
+        {
+            return ((ITypedElement)(((ModelElement)(CILO.ClassInstance)).Resolve("EnaOpn")));
+        }
+        
         /// <summary>
         /// Raises the EnaOpnChanging event
         /// </summary>
@@ -203,6 +212,11 @@ namespace TTC2017.SmartGrids.SubstationStandard.LNNodes.LNGroupC
         private void OnResetEnaOpn(object sender, System.EventArgs eventArgs)
         {
             this.EnaOpn = null;
+        }
+        
+        private static ITypedElement RetrieveEnaClsReference()
+        {
+            return ((ITypedElement)(((ModelElement)(CILO.ClassInstance)).Resolve("EnaCls")));
         }
         
         /// <summary>
@@ -471,7 +485,7 @@ namespace TTC2017.SmartGrids.SubstationStandard.LNNodes.LNGroupC
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public EnaOpnProxy(ICILO modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "EnaOpn")
             {
             }
             
@@ -489,24 +503,6 @@ namespace TTC2017.SmartGrids.SubstationStandard.LNNodes.LNGroupC
                     this.ModelElement.EnaOpn = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.EnaOpnChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.EnaOpnChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -520,7 +516,7 @@ namespace TTC2017.SmartGrids.SubstationStandard.LNNodes.LNGroupC
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public EnaClsProxy(ICILO modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "EnaCls")
             {
             }
             
@@ -537,24 +533,6 @@ namespace TTC2017.SmartGrids.SubstationStandard.LNNodes.LNGroupC
                 {
                     this.ModelElement.EnaCls = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.EnaClsChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.EnaClsChanged -= handler;
             }
         }
     }

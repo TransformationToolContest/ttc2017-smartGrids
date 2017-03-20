@@ -53,7 +53,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
     [XmlNamespacePrefixAttribute("cimWires")]
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61970/Wires/SeriesCompensator")]
     [DebuggerDisplayAttribute("SeriesCompensator {UUID}")]
-    public class SeriesCompensator : ConductingEquipment, ISeriesCompensator, IModelElement
+    public partial class SeriesCompensator : ConductingEquipment, ISeriesCompensator, IModelElement
     {
         
         /// <summary>
@@ -61,10 +61,14 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
         /// </summary>
         private float _r;
         
+        private static Lazy<ITypedElement> _rAttribute = new Lazy<ITypedElement>(RetrieveRAttribute);
+        
         /// <summary>
         /// The backing field for the X property
         /// </summary>
         private float _x;
+        
+        private static Lazy<ITypedElement> _xAttribute = new Lazy<ITypedElement>(RetrieveXAttribute);
         
         private static IClass _classInstance;
         
@@ -86,10 +90,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
                     float old = this._r;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnRChanging(e);
-                    this.OnPropertyChanging("R", e);
+                    this.OnPropertyChanging("R", e, _rAttribute);
                     this._r = value;
                     this.OnRChanged(e);
-                    this.OnPropertyChanged("R", e);
+                    this.OnPropertyChanged("R", e, _rAttribute);
                 }
             }
         }
@@ -112,10 +116,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
                     float old = this._x;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnXChanging(e);
-                    this.OnPropertyChanging("X", e);
+                    this.OnPropertyChanging("X", e, _xAttribute);
                     this._x = value;
                     this.OnXChanged(e);
-                    this.OnPropertyChanged("X", e);
+                    this.OnPropertyChanged("X", e, _xAttribute);
                 }
             }
         }
@@ -155,6 +159,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> XChanged;
         
+        private static ITypedElement RetrieveRAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(SeriesCompensator.ClassInstance)).Resolve("r")));
+        }
+        
         /// <summary>
         /// Raises the RChanging event
         /// </summary>
@@ -179,6 +188,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveXAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(SeriesCompensator.ClassInstance)).Resolve("x")));
         }
         
         /// <summary>
@@ -269,7 +283,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public RProxy(ISeriesCompensator modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "r")
             {
             }
             
@@ -287,24 +301,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
                     this.ModelElement.R = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.RChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.RChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -318,7 +314,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public XProxy(ISeriesCompensator modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "x")
             {
             }
             
@@ -335,24 +331,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
                 {
                     this.ModelElement.X = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.XChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.XChanged -= handler;
             }
         }
     }

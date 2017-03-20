@@ -53,7 +53,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61970/Informative/InfAssets/Reliabi" +
         "lityInfo")]
     [DebuggerDisplayAttribute("ReliabilityInfo {UUID}")]
-    public class ReliabilityInfo : IdentifiedObject, IReliabilityInfo, IModelElement
+    public partial class ReliabilityInfo : IdentifiedObject, IReliabilityInfo, IModelElement
     {
         
         /// <summary>
@@ -61,15 +61,23 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
         /// </summary>
         private float _momFailureRate;
         
+        private static Lazy<ITypedElement> _momFailureRateAttribute = new Lazy<ITypedElement>(RetrieveMomFailureRateAttribute);
+        
         /// <summary>
         /// The backing field for the MTTR property
         /// </summary>
         private float _mTTR;
         
+        private static Lazy<ITypedElement> _mTTRAttribute = new Lazy<ITypedElement>(RetrieveMTTRAttribute);
+        
+        private static Lazy<ITypedElement> _assetsReference = new Lazy<ITypedElement>(RetrieveAssetsReference);
+        
         /// <summary>
         /// The backing field for the Assets property
         /// </summary>
         private ReliabilityInfoAssetsCollection _assets;
+        
+        private static Lazy<ITypedElement> _specificationReference = new Lazy<ITypedElement>(RetrieveSpecificationReference);
         
         /// <summary>
         /// The backing field for the Specification property
@@ -103,10 +111,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
                     float old = this._momFailureRate;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnMomFailureRateChanging(e);
-                    this.OnPropertyChanging("MomFailureRate", e);
+                    this.OnPropertyChanging("MomFailureRate", e, _momFailureRateAttribute);
                     this._momFailureRate = value;
                     this.OnMomFailureRateChanged(e);
-                    this.OnPropertyChanged("MomFailureRate", e);
+                    this.OnPropertyChanged("MomFailureRate", e, _momFailureRateAttribute);
                 }
             }
         }
@@ -129,10 +137,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
                     float old = this._mTTR;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnMTTRChanging(e);
-                    this.OnPropertyChanging("MTTR", e);
+                    this.OnPropertyChanging("MTTR", e, _mTTRAttribute);
                     this._mTTR = value;
                     this.OnMTTRChanged(e);
-                    this.OnPropertyChanged("MTTR", e);
+                    this.OnPropertyChanged("MTTR", e, _mTTRAttribute);
                 }
             }
         }
@@ -170,7 +178,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
                     ISpecification old = this._specification;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnSpecificationChanging(e);
-                    this.OnPropertyChanging("Specification", e);
+                    this.OnPropertyChanging("Specification", e, _specificationReference);
                     this._specification = value;
                     if ((old != null))
                     {
@@ -183,7 +191,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
                         value.Deleted += this.OnResetSpecification;
                     }
                     this.OnSpecificationChanged(e);
-                    this.OnPropertyChanged("Specification", e);
+                    this.OnPropertyChanged("Specification", e, _specificationReference);
                 }
             }
         }
@@ -245,6 +253,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> SpecificationChanged;
         
+        private static ITypedElement RetrieveMomFailureRateAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(ReliabilityInfo.ClassInstance)).Resolve("momFailureRate")));
+        }
+        
         /// <summary>
         /// Raises the MomFailureRateChanging event
         /// </summary>
@@ -269,6 +282,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveMTTRAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(ReliabilityInfo.ClassInstance)).Resolve("mTTR")));
         }
         
         /// <summary>
@@ -297,6 +315,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
             }
         }
         
+        private static ITypedElement RetrieveAssetsReference()
+        {
+            return ((ITypedElement)(((ModelElement)(ReliabilityInfo.ClassInstance)).Resolve("Assets")));
+        }
+        
         /// <summary>
         /// Forwards CollectionChanging notifications for the Assets property to the parent model element
         /// </summary>
@@ -304,7 +327,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
         /// <param name="e">The original event data</param>
         private void AssetsCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("Assets", e);
+            this.OnCollectionChanging("Assets", e, _assetsReference);
         }
         
         /// <summary>
@@ -314,7 +337,12 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
         /// <param name="e">The original event data</param>
         private void AssetsCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("Assets", e);
+            this.OnCollectionChanged("Assets", e, _assetsReference);
+        }
+        
+        private static ITypedElement RetrieveSpecificationReference()
+        {
+            return ((ITypedElement)(((ModelElement)(ReliabilityInfo.ClassInstance)).Resolve("Specification")));
         }
         
         /// <summary>
@@ -617,7 +645,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public MomFailureRateProxy(IReliabilityInfo modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "momFailureRate")
             {
             }
             
@@ -635,24 +663,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
                     this.ModelElement.MomFailureRate = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.MomFailureRateChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.MomFailureRateChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -666,7 +676,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public MTTRProxy(IReliabilityInfo modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "mTTR")
             {
             }
             
@@ -684,24 +694,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
                     this.ModelElement.MTTR = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.MTTRChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.MTTRChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -715,7 +707,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public SpecificationProxy(IReliabilityInfo modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "Specification")
             {
             }
             
@@ -732,24 +724,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
                 {
                     this.ModelElement.Specification = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.SpecificationChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.SpecificationChanged -= handler;
             }
         }
     }

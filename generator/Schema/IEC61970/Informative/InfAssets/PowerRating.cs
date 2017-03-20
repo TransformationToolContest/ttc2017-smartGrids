@@ -53,7 +53,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61970/Informative/InfAssets/PowerRa" +
         "ting")]
     [DebuggerDisplayAttribute("PowerRating {UUID}")]
-    public class PowerRating : IdentifiedObject, IPowerRating, IModelElement
+    public partial class PowerRating : IdentifiedObject, IPowerRating, IModelElement
     {
         
         /// <summary>
@@ -61,15 +61,23 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
         /// </summary>
         private Nullable<CoolingKind> _coolingKind;
         
+        private static Lazy<ITypedElement> _coolingKindAttribute = new Lazy<ITypedElement>(RetrieveCoolingKindAttribute);
+        
         /// <summary>
         /// The backing field for the PowerRating_ property
         /// </summary>
         private float _powerRating_;
         
+        private static Lazy<ITypedElement> _powerRatingAttribute = new Lazy<ITypedElement>(RetrievePowerRatingAttribute);
+        
         /// <summary>
         /// The backing field for the Stage property
         /// </summary>
         private int _stage;
+        
+        private static Lazy<ITypedElement> _stageAttribute = new Lazy<ITypedElement>(RetrieveStageAttribute);
+        
+        private static Lazy<ITypedElement> _transformerAssetsReference = new Lazy<ITypedElement>(RetrieveTransformerAssetsReference);
         
         /// <summary>
         /// The backing field for the TransformerAssets property
@@ -103,10 +111,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
                     Nullable<CoolingKind> old = this._coolingKind;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnCoolingKindChanging(e);
-                    this.OnPropertyChanging("CoolingKind", e);
+                    this.OnPropertyChanging("CoolingKind", e, _coolingKindAttribute);
                     this._coolingKind = value;
                     this.OnCoolingKindChanged(e);
-                    this.OnPropertyChanged("CoolingKind", e);
+                    this.OnPropertyChanged("CoolingKind", e, _coolingKindAttribute);
                 }
             }
         }
@@ -129,10 +137,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
                     float old = this._powerRating_;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnPowerRating_Changing(e);
-                    this.OnPropertyChanging("PowerRating_", e);
+                    this.OnPropertyChanging("PowerRating_", e, _powerRatingAttribute);
                     this._powerRating_ = value;
                     this.OnPowerRating_Changed(e);
-                    this.OnPropertyChanged("PowerRating_", e);
+                    this.OnPropertyChanged("PowerRating_", e, _powerRatingAttribute);
                 }
             }
         }
@@ -155,10 +163,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
                     int old = this._stage;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnStageChanging(e);
-                    this.OnPropertyChanging("Stage", e);
+                    this.OnPropertyChanging("Stage", e, _stageAttribute);
                     this._stage = value;
                     this.OnStageChanged(e);
-                    this.OnPropertyChanged("Stage", e);
+                    this.OnPropertyChanged("Stage", e, _stageAttribute);
                 }
             }
         }
@@ -235,6 +243,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> StageChanged;
         
+        private static ITypedElement RetrieveCoolingKindAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(PowerRating.ClassInstance)).Resolve("coolingKind")));
+        }
+        
         /// <summary>
         /// Raises the CoolingKindChanging event
         /// </summary>
@@ -259,6 +272,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrievePowerRatingAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(PowerRating.ClassInstance)).Resolve("powerRating")));
         }
         
         /// <summary>
@@ -287,6 +305,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
             }
         }
         
+        private static ITypedElement RetrieveStageAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(PowerRating.ClassInstance)).Resolve("stage")));
+        }
+        
         /// <summary>
         /// Raises the StageChanging event
         /// </summary>
@@ -313,6 +336,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
             }
         }
         
+        private static ITypedElement RetrieveTransformerAssetsReference()
+        {
+            return ((ITypedElement)(((ModelElement)(PowerRating.ClassInstance)).Resolve("TransformerAssets")));
+        }
+        
         /// <summary>
         /// Forwards CollectionChanging notifications for the TransformerAssets property to the parent model element
         /// </summary>
@@ -320,7 +348,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
         /// <param name="e">The original event data</param>
         private void TransformerAssetsCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("TransformerAssets", e);
+            this.OnCollectionChanging("TransformerAssets", e, _transformerAssetsReference);
         }
         
         /// <summary>
@@ -330,7 +358,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
         /// <param name="e">The original event data</param>
         private void TransformerAssetsCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("TransformerAssets", e);
+            this.OnCollectionChanged("TransformerAssets", e, _transformerAssetsReference);
         }
         
         /// <summary>
@@ -543,7 +571,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public CoolingKindProxy(IPowerRating modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "coolingKind")
             {
             }
             
@@ -561,24 +589,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
                     this.ModelElement.CoolingKind = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.CoolingKindChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.CoolingKindChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -592,7 +602,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public PowerRatingProxy(IPowerRating modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "powerRating")
             {
             }
             
@@ -610,24 +620,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
                     this.ModelElement.PowerRating_ = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.PowerRating_Changed += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.PowerRating_Changed -= handler;
-            }
         }
         
         /// <summary>
@@ -641,7 +633,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public StageProxy(IPowerRating modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "stage")
             {
             }
             
@@ -658,24 +650,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
                 {
                     this.ModelElement.Stage = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.StageChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.StageChanged -= handler;
             }
         }
     }

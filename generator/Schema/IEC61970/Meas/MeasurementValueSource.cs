@@ -51,8 +51,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Meas
     [XmlNamespacePrefixAttribute("cimMeas")]
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61970/Meas/MeasurementValueSource")]
     [DebuggerDisplayAttribute("MeasurementValueSource {UUID}")]
-    public class MeasurementValueSource : IdentifiedObject, IMeasurementValueSource, IModelElement
+    public partial class MeasurementValueSource : IdentifiedObject, IMeasurementValueSource, IModelElement
     {
+        
+        private static Lazy<ITypedElement> _measurementValuesReference = new Lazy<ITypedElement>(RetrieveMeasurementValuesReference);
         
         /// <summary>
         /// The backing field for the MeasurementValues property
@@ -109,6 +111,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Meas
             }
         }
         
+        private static ITypedElement RetrieveMeasurementValuesReference()
+        {
+            return ((ITypedElement)(((ModelElement)(MeasurementValueSource.ClassInstance)).Resolve("MeasurementValues")));
+        }
+        
         /// <summary>
         /// Forwards CollectionChanging notifications for the MeasurementValues property to the parent model element
         /// </summary>
@@ -116,7 +123,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Meas
         /// <param name="e">The original event data</param>
         private void MeasurementValuesCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("MeasurementValues", e);
+            this.OnCollectionChanging("MeasurementValues", e, _measurementValuesReference);
         }
         
         /// <summary>
@@ -126,7 +133,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Meas
         /// <param name="e">The original event data</param>
         private void MeasurementValuesCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("MeasurementValues", e);
+            this.OnCollectionChanged("MeasurementValues", e, _measurementValuesReference);
         }
         
         /// <summary>

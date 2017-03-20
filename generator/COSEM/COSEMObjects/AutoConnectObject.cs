@@ -39,13 +39,15 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
     [XmlNamespacePrefixAttribute("objects")]
     [ModelRepresentationClassAttribute("http://www.transformation-tool-contest.eu/2017/smartGrids/cosem#//COSEMObjects/Au" +
         "toConnectObject")]
-    public class AutoConnectObject : Auto_connect, IAutoConnectObject, IModelElement
+    public partial class AutoConnectObject : Auto_connect, IAutoConnectObject, IModelElement
     {
         
         /// <summary>
         /// The backing field for the Connection property
         /// </summary>
         private Nullable<bool> _connection;
+        
+        private static Lazy<ITypedElement> _connectionAttribute = new Lazy<ITypedElement>(RetrieveConnectionAttribute);
         
         private static IClass _classInstance;
         
@@ -66,10 +68,10 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     Nullable<bool> old = this._connection;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnConnectionChanging(e);
-                    this.OnPropertyChanging("Connection", e);
+                    this.OnPropertyChanging("Connection", e, _connectionAttribute);
                     this._connection = value;
                     this.OnConnectionChanged(e);
-                    this.OnPropertyChanged("Connection", e);
+                    this.OnPropertyChanged("Connection", e, _connectionAttribute);
                 }
             }
         }
@@ -99,6 +101,11 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
         /// Gets fired when the Connection property changed its value
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> ConnectionChanged;
+        
+        private static ITypedElement RetrieveConnectionAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(AutoConnectObject.ClassInstance)).Resolve("Connection")));
+        }
         
         /// <summary>
         /// Raises the ConnectionChanging event
@@ -180,7 +187,7 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public ConnectionProxy(IAutoConnectObject modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "Connection")
             {
             }
             
@@ -197,24 +204,6 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                 {
                     this.ModelElement.Connection = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ConnectionChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ConnectionChanged -= handler;
             }
         }
     }

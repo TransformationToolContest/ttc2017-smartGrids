@@ -46,7 +46,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfCommon
     [XmlNamespacePrefixAttribute("cimInfCommon")]
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61970/Informative/InfCommon/Skill")]
     [DebuggerDisplayAttribute("Skill {UUID}")]
-    public class Skill : Document, ISkill, IModelElement
+    public partial class Skill : Document, ISkill, IModelElement
     {
         
         /// <summary>
@@ -54,25 +54,37 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfCommon
         /// </summary>
         private Nullable<SkillLevelKind> _level;
         
+        private static Lazy<ITypedElement> _levelAttribute = new Lazy<ITypedElement>(RetrieveLevelAttribute);
+        
         /// <summary>
         /// The backing field for the EffectiveDateTime property
         /// </summary>
         private DateTime _effectiveDateTime;
+        
+        private static Lazy<ITypedElement> _effectiveDateTimeAttribute = new Lazy<ITypedElement>(RetrieveEffectiveDateTimeAttribute);
+        
+        private static Lazy<ITypedElement> _certificationPeriodReference = new Lazy<ITypedElement>(RetrieveCertificationPeriodReference);
         
         /// <summary>
         /// The backing field for the CertificationPeriod property
         /// </summary>
         private IDateTimeInterval _certificationPeriod;
         
+        private static Lazy<ITypedElement> _erpPersonReference = new Lazy<ITypedElement>(RetrieveErpPersonReference);
+        
         /// <summary>
         /// The backing field for the ErpPerson property
         /// </summary>
         private IErpPerson _erpPerson;
         
+        private static Lazy<ITypedElement> _craftsReference = new Lazy<ITypedElement>(RetrieveCraftsReference);
+        
         /// <summary>
         /// The backing field for the Crafts property
         /// </summary>
         private SkillCraftsCollection _crafts;
+        
+        private static Lazy<ITypedElement> _qualificationRequirementsReference = new Lazy<ITypedElement>(RetrieveQualificationRequirementsReference);
         
         /// <summary>
         /// The backing field for the QualificationRequirements property
@@ -109,10 +121,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfCommon
                     Nullable<SkillLevelKind> old = this._level;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnLevelChanging(e);
-                    this.OnPropertyChanging("Level", e);
+                    this.OnPropertyChanging("Level", e, _levelAttribute);
                     this._level = value;
                     this.OnLevelChanged(e);
-                    this.OnPropertyChanged("Level", e);
+                    this.OnPropertyChanged("Level", e, _levelAttribute);
                 }
             }
         }
@@ -135,10 +147,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfCommon
                     DateTime old = this._effectiveDateTime;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnEffectiveDateTimeChanging(e);
-                    this.OnPropertyChanging("EffectiveDateTime", e);
+                    this.OnPropertyChanging("EffectiveDateTime", e, _effectiveDateTimeAttribute);
                     this._effectiveDateTime = value;
                     this.OnEffectiveDateTimeChanged(e);
-                    this.OnPropertyChanged("EffectiveDateTime", e);
+                    this.OnPropertyChanged("EffectiveDateTime", e, _effectiveDateTimeAttribute);
                 }
             }
         }
@@ -161,7 +173,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfCommon
                     IDateTimeInterval old = this._certificationPeriod;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnCertificationPeriodChanging(e);
-                    this.OnPropertyChanging("CertificationPeriod", e);
+                    this.OnPropertyChanging("CertificationPeriod", e, _certificationPeriodReference);
                     this._certificationPeriod = value;
                     if ((old != null))
                     {
@@ -172,7 +184,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfCommon
                         value.Deleted += this.OnResetCertificationPeriod;
                     }
                     this.OnCertificationPeriodChanged(e);
-                    this.OnPropertyChanged("CertificationPeriod", e);
+                    this.OnPropertyChanged("CertificationPeriod", e, _certificationPeriodReference);
                 }
             }
         }
@@ -195,7 +207,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfCommon
                     IErpPerson old = this._erpPerson;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnErpPersonChanging(e);
-                    this.OnPropertyChanging("ErpPerson", e);
+                    this.OnPropertyChanging("ErpPerson", e, _erpPersonReference);
                     this._erpPerson = value;
                     if ((old != null))
                     {
@@ -208,7 +220,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfCommon
                         value.Deleted += this.OnResetErpPerson;
                     }
                     this.OnErpPersonChanged(e);
-                    this.OnPropertyChanged("ErpPerson", e);
+                    this.OnPropertyChanged("ErpPerson", e, _erpPersonReference);
                 }
             }
         }
@@ -309,6 +321,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfCommon
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> ErpPersonChanged;
         
+        private static ITypedElement RetrieveLevelAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(Skill.ClassInstance)).Resolve("level")));
+        }
+        
         /// <summary>
         /// Raises the LevelChanging event
         /// </summary>
@@ -335,6 +352,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfCommon
             }
         }
         
+        private static ITypedElement RetrieveEffectiveDateTimeAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(Skill.ClassInstance)).Resolve("effectiveDateTime")));
+        }
+        
         /// <summary>
         /// Raises the EffectiveDateTimeChanging event
         /// </summary>
@@ -359,6 +381,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfCommon
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveCertificationPeriodReference()
+        {
+            return ((ITypedElement)(((ModelElement)(Skill.ClassInstance)).Resolve("certificationPeriod")));
         }
         
         /// <summary>
@@ -397,6 +424,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfCommon
             this.CertificationPeriod = null;
         }
         
+        private static ITypedElement RetrieveErpPersonReference()
+        {
+            return ((ITypedElement)(((ModelElement)(Skill.ClassInstance)).Resolve("ErpPerson")));
+        }
+        
         /// <summary>
         /// Raises the ErpPersonChanging event
         /// </summary>
@@ -433,6 +465,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfCommon
             this.ErpPerson = null;
         }
         
+        private static ITypedElement RetrieveCraftsReference()
+        {
+            return ((ITypedElement)(((ModelElement)(Skill.ClassInstance)).Resolve("Crafts")));
+        }
+        
         /// <summary>
         /// Forwards CollectionChanging notifications for the Crafts property to the parent model element
         /// </summary>
@@ -440,7 +477,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfCommon
         /// <param name="e">The original event data</param>
         private void CraftsCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("Crafts", e);
+            this.OnCollectionChanging("Crafts", e, _craftsReference);
         }
         
         /// <summary>
@@ -450,7 +487,12 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfCommon
         /// <param name="e">The original event data</param>
         private void CraftsCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("Crafts", e);
+            this.OnCollectionChanged("Crafts", e, _craftsReference);
+        }
+        
+        private static ITypedElement RetrieveQualificationRequirementsReference()
+        {
+            return ((ITypedElement)(((ModelElement)(Skill.ClassInstance)).Resolve("QualificationRequirements")));
         }
         
         /// <summary>
@@ -460,7 +502,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfCommon
         /// <param name="e">The original event data</param>
         private void QualificationRequirementsCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("QualificationRequirements", e);
+            this.OnCollectionChanging("QualificationRequirements", e, _qualificationRequirementsReference);
         }
         
         /// <summary>
@@ -470,7 +512,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfCommon
         /// <param name="e">The original event data</param>
         private void QualificationRequirementsCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("QualificationRequirements", e);
+            this.OnCollectionChanged("QualificationRequirements", e, _qualificationRequirementsReference);
         }
         
         /// <summary>
@@ -817,7 +859,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfCommon
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public LevelProxy(ISkill modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "level")
             {
             }
             
@@ -835,24 +877,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfCommon
                     this.ModelElement.Level = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.LevelChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.LevelChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -866,7 +890,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfCommon
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public EffectiveDateTimeProxy(ISkill modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "effectiveDateTime")
             {
             }
             
@@ -884,24 +908,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfCommon
                     this.ModelElement.EffectiveDateTime = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.EffectiveDateTimeChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.EffectiveDateTimeChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -915,7 +921,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfCommon
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public CertificationPeriodProxy(ISkill modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "certificationPeriod")
             {
             }
             
@@ -933,24 +939,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfCommon
                     this.ModelElement.CertificationPeriod = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.CertificationPeriodChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.CertificationPeriodChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -964,7 +952,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfCommon
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public ErpPersonProxy(ISkill modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "ErpPerson")
             {
             }
             
@@ -981,24 +969,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfCommon
                 {
                     this.ModelElement.ErpPerson = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ErpPersonChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ErpPersonChanged -= handler;
             }
         }
     }

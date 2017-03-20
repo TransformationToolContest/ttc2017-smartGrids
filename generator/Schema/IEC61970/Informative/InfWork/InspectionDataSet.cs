@@ -50,13 +50,17 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfWork
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61970/Informative/InfWork/Inspectio" +
         "nDataSet")]
     [DebuggerDisplayAttribute("InspectionDataSet {UUID}")]
-    public class InspectionDataSet : ProcedureDataSet, IInspectionDataSet, IModelElement
+    public partial class InspectionDataSet : ProcedureDataSet, IInspectionDataSet, IModelElement
     {
         
         /// <summary>
         /// The backing field for the LocationCondition property
         /// </summary>
         private string _locationCondition;
+        
+        private static Lazy<ITypedElement> _locationConditionAttribute = new Lazy<ITypedElement>(RetrieveLocationConditionAttribute);
+        
+        private static Lazy<ITypedElement> _accordingToSchedulesReference = new Lazy<ITypedElement>(RetrieveAccordingToSchedulesReference);
         
         /// <summary>
         /// The backing field for the AccordingToSchedules property
@@ -90,10 +94,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfWork
                     string old = this._locationCondition;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnLocationConditionChanging(e);
-                    this.OnPropertyChanging("LocationCondition", e);
+                    this.OnPropertyChanging("LocationCondition", e, _locationConditionAttribute);
                     this._locationCondition = value;
                     this.OnLocationConditionChanged(e);
-                    this.OnPropertyChanged("LocationCondition", e);
+                    this.OnPropertyChanged("LocationCondition", e, _locationConditionAttribute);
                 }
             }
         }
@@ -150,6 +154,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfWork
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> LocationConditionChanged;
         
+        private static ITypedElement RetrieveLocationConditionAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(InspectionDataSet.ClassInstance)).Resolve("locationCondition")));
+        }
+        
         /// <summary>
         /// Raises the LocationConditionChanging event
         /// </summary>
@@ -176,6 +185,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfWork
             }
         }
         
+        private static ITypedElement RetrieveAccordingToSchedulesReference()
+        {
+            return ((ITypedElement)(((ModelElement)(InspectionDataSet.ClassInstance)).Resolve("AccordingToSchedules")));
+        }
+        
         /// <summary>
         /// Forwards CollectionChanging notifications for the AccordingToSchedules property to the parent model element
         /// </summary>
@@ -183,7 +197,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfWork
         /// <param name="e">The original event data</param>
         private void AccordingToSchedulesCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("AccordingToSchedules", e);
+            this.OnCollectionChanging("AccordingToSchedules", e, _accordingToSchedulesReference);
         }
         
         /// <summary>
@@ -193,7 +207,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfWork
         /// <param name="e">The original event data</param>
         private void AccordingToSchedulesCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("AccordingToSchedules", e);
+            this.OnCollectionChanged("AccordingToSchedules", e, _accordingToSchedulesReference);
         }
         
         /// <summary>
@@ -388,7 +402,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfWork
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public LocationConditionProxy(IInspectionDataSet modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "locationCondition")
             {
             }
             
@@ -405,24 +419,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfWork
                 {
                     this.ModelElement.LocationCondition = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.LocationConditionChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.LocationConditionChanged -= handler;
             }
         }
     }

@@ -50,13 +50,17 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61970/Informative/MarketOperations/" +
         "EnergyPriceCurve")]
     [DebuggerDisplayAttribute("EnergyPriceCurve {UUID}")]
-    public class EnergyPriceCurve : Curve, IEnergyPriceCurve, IModelElement
+    public partial class EnergyPriceCurve : Curve, IEnergyPriceCurve, IModelElement
     {
+        
+        private static Lazy<ITypedElement> _fTRsReference = new Lazy<ITypedElement>(RetrieveFTRsReference);
         
         /// <summary>
         /// The backing field for the FTRs property
         /// </summary>
         private EnergyPriceCurveFTRsCollection _fTRs;
+        
+        private static Lazy<ITypedElement> _energyTransactionsReference = new Lazy<ITypedElement>(RetrieveEnergyTransactionsReference);
         
         /// <summary>
         /// The backing field for the EnergyTransactions property
@@ -132,6 +136,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
             }
         }
         
+        private static ITypedElement RetrieveFTRsReference()
+        {
+            return ((ITypedElement)(((ModelElement)(EnergyPriceCurve.ClassInstance)).Resolve("FTRs")));
+        }
+        
         /// <summary>
         /// Forwards CollectionChanging notifications for the FTRs property to the parent model element
         /// </summary>
@@ -139,7 +148,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
         /// <param name="e">The original event data</param>
         private void FTRsCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("FTRs", e);
+            this.OnCollectionChanging("FTRs", e, _fTRsReference);
         }
         
         /// <summary>
@@ -149,7 +158,12 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
         /// <param name="e">The original event data</param>
         private void FTRsCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("FTRs", e);
+            this.OnCollectionChanged("FTRs", e, _fTRsReference);
+        }
+        
+        private static ITypedElement RetrieveEnergyTransactionsReference()
+        {
+            return ((ITypedElement)(((ModelElement)(EnergyPriceCurve.ClassInstance)).Resolve("EnergyTransactions")));
         }
         
         /// <summary>
@@ -159,7 +173,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
         /// <param name="e">The original event data</param>
         private void EnergyTransactionsCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("EnergyTransactions", e);
+            this.OnCollectionChanging("EnergyTransactions", e, _energyTransactionsReference);
         }
         
         /// <summary>
@@ -169,7 +183,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
         /// <param name="e">The original event data</param>
         private void EnergyTransactionsCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("EnergyTransactions", e);
+            this.OnCollectionChanged("EnergyTransactions", e, _energyTransactionsReference);
         }
         
         /// <summary>

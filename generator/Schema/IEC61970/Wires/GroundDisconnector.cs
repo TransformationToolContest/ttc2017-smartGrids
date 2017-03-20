@@ -53,7 +53,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
     [XmlNamespacePrefixAttribute("cimWires")]
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61970/Wires/GroundDisconnector")]
     [DebuggerDisplayAttribute("GroundDisconnector {UUID}")]
-    public class GroundDisconnector : Switch, IGroundDisconnector, IModelElement
+    public partial class GroundDisconnector : Switch, IGroundDisconnector, IModelElement
     {
         
         private static IClass _classInstance;

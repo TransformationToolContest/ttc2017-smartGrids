@@ -47,8 +47,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.PaymentMetering
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61968/PaymentMetering/MerchantAgree" +
         "ment")]
     [DebuggerDisplayAttribute("MerchantAgreement {UUID}")]
-    public class MerchantAgreement : Agreement, IMerchantAgreement, IModelElement
+    public partial class MerchantAgreement : Agreement, IMerchantAgreement, IModelElement
     {
+        
+        private static Lazy<ITypedElement> _merchantAccountsReference = new Lazy<ITypedElement>(RetrieveMerchantAccountsReference);
         
         /// <summary>
         /// The backing field for the MerchantAccounts property
@@ -106,6 +108,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.PaymentMetering
             }
         }
         
+        private static ITypedElement RetrieveMerchantAccountsReference()
+        {
+            return ((ITypedElement)(((ModelElement)(MerchantAgreement.ClassInstance)).Resolve("MerchantAccounts")));
+        }
+        
         /// <summary>
         /// Forwards CollectionChanging notifications for the MerchantAccounts property to the parent model element
         /// </summary>
@@ -113,7 +120,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.PaymentMetering
         /// <param name="e">The original event data</param>
         private void MerchantAccountsCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("MerchantAccounts", e);
+            this.OnCollectionChanging("MerchantAccounts", e, _merchantAccountsReference);
         }
         
         /// <summary>
@@ -123,7 +130,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.PaymentMetering
         /// <param name="e">The original event data</param>
         private void MerchantAccountsCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("MerchantAccounts", e);
+            this.OnCollectionChanged("MerchantAccounts", e, _merchantAccountsReference);
         }
         
         /// <summary>

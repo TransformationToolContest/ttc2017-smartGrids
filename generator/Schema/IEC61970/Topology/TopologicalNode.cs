@@ -40,53 +40,73 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Topology
     [XmlNamespacePrefixAttribute("cimTopology")]
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61970/Topology/TopologicalNode")]
     [DebuggerDisplayAttribute("TopologicalNode {UUID}")]
-    public class TopologicalNode : IdentifiedObject, ITopologicalNode, IModelElement
+    public partial class TopologicalNode : IdentifiedObject, ITopologicalNode, IModelElement
     {
+        
+        private static Lazy<ITypedElement> _reportingGroupReference = new Lazy<ITypedElement>(RetrieveReportingGroupReference);
         
         /// <summary>
         /// The backing field for the ReportingGroup property
         /// </summary>
         private IReportingGroup _reportingGroup;
         
+        private static Lazy<ITypedElement> _topologicalIslandReference = new Lazy<ITypedElement>(RetrieveTopologicalIslandReference);
+        
         /// <summary>
         /// The backing field for the TopologicalIsland property
         /// </summary>
         private ITopologicalIsland _topologicalIsland;
+        
+        private static Lazy<ITypedElement> _svInjectionReference = new Lazy<ITypedElement>(RetrieveSvInjectionReference);
         
         /// <summary>
         /// The backing field for the SvInjection property
         /// </summary>
         private ISvInjection _svInjection;
         
+        private static Lazy<ITypedElement> _terminalReference = new Lazy<ITypedElement>(RetrieveTerminalReference);
+        
         /// <summary>
         /// The backing field for the Terminal property
         /// </summary>
         private TopologicalNodeTerminalCollection _terminal;
+        
+        private static Lazy<ITypedElement> _connectivityNodeContainerReference = new Lazy<ITypedElement>(RetrieveConnectivityNodeContainerReference);
         
         /// <summary>
         /// The backing field for the ConnectivityNodeContainer property
         /// </summary>
         private IConnectivityNodeContainer _connectivityNodeContainer;
         
+        private static Lazy<ITypedElement> _connectivityNodesReference = new Lazy<ITypedElement>(RetrieveConnectivityNodesReference);
+        
         /// <summary>
         /// The backing field for the ConnectivityNodes property
         /// </summary>
         private TopologicalNodeConnectivityNodesCollection _connectivityNodes;
+        
+        private static Lazy<ITypedElement> _baseVoltageReference = new Lazy<ITypedElement>(RetrieveBaseVoltageReference);
         
         /// <summary>
         /// The backing field for the BaseVoltage property
         /// </summary>
         private IBaseVoltage _baseVoltage;
         
+        private static Lazy<ITypedElement> _svVoltageReference = new Lazy<ITypedElement>(RetrieveSvVoltageReference);
+        
         /// <summary>
         /// The backing field for the SvVoltage property
         /// </summary>
         private ISvVoltage _svVoltage;
         
+        private static Lazy<ITypedElement> _svShortCircuitReference = new Lazy<ITypedElement>(RetrieveSvShortCircuitReference);
+        
         /// <summary>
         /// The backing field for the SvShortCircuit property
         /// </summary>
         private ISvShortCircuit _svShortCircuit;
+        
+        private static Lazy<ITypedElement> _angleRef_TopologicalIslandReference = new Lazy<ITypedElement>(RetrieveAngleRef_TopologicalIslandReference);
         
         /// <summary>
         /// The backing field for the AngleRef_TopologicalIsland property
@@ -123,7 +143,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Topology
                     IReportingGroup old = this._reportingGroup;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnReportingGroupChanging(e);
-                    this.OnPropertyChanging("ReportingGroup", e);
+                    this.OnPropertyChanging("ReportingGroup", e, _reportingGroupReference);
                     this._reportingGroup = value;
                     if ((old != null))
                     {
@@ -136,7 +156,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Topology
                         value.Deleted += this.OnResetReportingGroup;
                     }
                     this.OnReportingGroupChanged(e);
-                    this.OnPropertyChanged("ReportingGroup", e);
+                    this.OnPropertyChanged("ReportingGroup", e, _reportingGroupReference);
                 }
             }
         }
@@ -159,7 +179,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Topology
                     ITopologicalIsland old = this._topologicalIsland;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnTopologicalIslandChanging(e);
-                    this.OnPropertyChanging("TopologicalIsland", e);
+                    this.OnPropertyChanging("TopologicalIsland", e, _topologicalIslandReference);
                     this._topologicalIsland = value;
                     if ((old != null))
                     {
@@ -172,7 +192,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Topology
                         value.Deleted += this.OnResetTopologicalIsland;
                     }
                     this.OnTopologicalIslandChanged(e);
-                    this.OnPropertyChanged("TopologicalIsland", e);
+                    this.OnPropertyChanged("TopologicalIsland", e, _topologicalIslandReference);
                 }
             }
         }
@@ -195,7 +215,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Topology
                     ISvInjection old = this._svInjection;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnSvInjectionChanging(e);
-                    this.OnPropertyChanging("SvInjection", e);
+                    this.OnPropertyChanging("SvInjection", e, _svInjectionReference);
                     this._svInjection = value;
                     if ((old != null))
                     {
@@ -208,7 +228,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Topology
                         value.Deleted += this.OnResetSvInjection;
                     }
                     this.OnSvInjectionChanged(e);
-                    this.OnPropertyChanged("SvInjection", e);
+                    this.OnPropertyChanged("SvInjection", e, _svInjectionReference);
                 }
             }
         }
@@ -246,7 +266,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Topology
                     IConnectivityNodeContainer old = this._connectivityNodeContainer;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnConnectivityNodeContainerChanging(e);
-                    this.OnPropertyChanging("ConnectivityNodeContainer", e);
+                    this.OnPropertyChanging("ConnectivityNodeContainer", e, _connectivityNodeContainerReference);
                     this._connectivityNodeContainer = value;
                     if ((old != null))
                     {
@@ -259,7 +279,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Topology
                         value.Deleted += this.OnResetConnectivityNodeContainer;
                     }
                     this.OnConnectivityNodeContainerChanged(e);
-                    this.OnPropertyChanged("ConnectivityNodeContainer", e);
+                    this.OnPropertyChanged("ConnectivityNodeContainer", e, _connectivityNodeContainerReference);
                 }
             }
         }
@@ -297,7 +317,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Topology
                     IBaseVoltage old = this._baseVoltage;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnBaseVoltageChanging(e);
-                    this.OnPropertyChanging("BaseVoltage", e);
+                    this.OnPropertyChanging("BaseVoltage", e, _baseVoltageReference);
                     this._baseVoltage = value;
                     if ((old != null))
                     {
@@ -310,7 +330,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Topology
                         value.Deleted += this.OnResetBaseVoltage;
                     }
                     this.OnBaseVoltageChanged(e);
-                    this.OnPropertyChanged("BaseVoltage", e);
+                    this.OnPropertyChanged("BaseVoltage", e, _baseVoltageReference);
                 }
             }
         }
@@ -333,7 +353,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Topology
                     ISvVoltage old = this._svVoltage;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnSvVoltageChanging(e);
-                    this.OnPropertyChanging("SvVoltage", e);
+                    this.OnPropertyChanging("SvVoltage", e, _svVoltageReference);
                     this._svVoltage = value;
                     if ((old != null))
                     {
@@ -346,7 +366,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Topology
                         value.Deleted += this.OnResetSvVoltage;
                     }
                     this.OnSvVoltageChanged(e);
-                    this.OnPropertyChanged("SvVoltage", e);
+                    this.OnPropertyChanged("SvVoltage", e, _svVoltageReference);
                 }
             }
         }
@@ -369,7 +389,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Topology
                     ISvShortCircuit old = this._svShortCircuit;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnSvShortCircuitChanging(e);
-                    this.OnPropertyChanging("SvShortCircuit", e);
+                    this.OnPropertyChanging("SvShortCircuit", e, _svShortCircuitReference);
                     this._svShortCircuit = value;
                     if ((old != null))
                     {
@@ -382,7 +402,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Topology
                         value.Deleted += this.OnResetSvShortCircuit;
                     }
                     this.OnSvShortCircuitChanged(e);
-                    this.OnPropertyChanged("SvShortCircuit", e);
+                    this.OnPropertyChanged("SvShortCircuit", e, _svShortCircuitReference);
                 }
             }
         }
@@ -405,7 +425,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Topology
                     ITopologicalIsland old = this._angleRef_TopologicalIsland;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnAngleRef_TopologicalIslandChanging(e);
-                    this.OnPropertyChanging("AngleRef_TopologicalIsland", e);
+                    this.OnPropertyChanging("AngleRef_TopologicalIsland", e, _angleRef_TopologicalIslandReference);
                     this._angleRef_TopologicalIsland = value;
                     if ((old != null))
                     {
@@ -418,7 +438,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Topology
                         value.Deleted += this.OnResetAngleRef_TopologicalIsland;
                     }
                     this.OnAngleRef_TopologicalIslandChanged(e);
-                    this.OnPropertyChanged("AngleRef_TopologicalIsland", e);
+                    this.OnPropertyChanged("AngleRef_TopologicalIsland", e, _angleRef_TopologicalIslandReference);
                 }
             }
         }
@@ -529,6 +549,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Topology
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> AngleRef_TopologicalIslandChanged;
         
+        private static ITypedElement RetrieveReportingGroupReference()
+        {
+            return ((ITypedElement)(((ModelElement)(TopologicalNode.ClassInstance)).Resolve("ReportingGroup")));
+        }
+        
         /// <summary>
         /// Raises the ReportingGroupChanging event
         /// </summary>
@@ -563,6 +588,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Topology
         private void OnResetReportingGroup(object sender, System.EventArgs eventArgs)
         {
             this.ReportingGroup = null;
+        }
+        
+        private static ITypedElement RetrieveTopologicalIslandReference()
+        {
+            return ((ITypedElement)(((ModelElement)(TopologicalNode.ClassInstance)).Resolve("TopologicalIsland")));
         }
         
         /// <summary>
@@ -601,6 +631,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Topology
             this.TopologicalIsland = null;
         }
         
+        private static ITypedElement RetrieveSvInjectionReference()
+        {
+            return ((ITypedElement)(((ModelElement)(TopologicalNode.ClassInstance)).Resolve("SvInjection")));
+        }
+        
         /// <summary>
         /// Raises the SvInjectionChanging event
         /// </summary>
@@ -637,6 +672,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Topology
             this.SvInjection = null;
         }
         
+        private static ITypedElement RetrieveTerminalReference()
+        {
+            return ((ITypedElement)(((ModelElement)(TopologicalNode.ClassInstance)).Resolve("Terminal")));
+        }
+        
         /// <summary>
         /// Forwards CollectionChanging notifications for the Terminal property to the parent model element
         /// </summary>
@@ -644,7 +684,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Topology
         /// <param name="e">The original event data</param>
         private void TerminalCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("Terminal", e);
+            this.OnCollectionChanging("Terminal", e, _terminalReference);
         }
         
         /// <summary>
@@ -654,7 +694,12 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Topology
         /// <param name="e">The original event data</param>
         private void TerminalCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("Terminal", e);
+            this.OnCollectionChanged("Terminal", e, _terminalReference);
+        }
+        
+        private static ITypedElement RetrieveConnectivityNodeContainerReference()
+        {
+            return ((ITypedElement)(((ModelElement)(TopologicalNode.ClassInstance)).Resolve("ConnectivityNodeContainer")));
         }
         
         /// <summary>
@@ -693,6 +738,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Topology
             this.ConnectivityNodeContainer = null;
         }
         
+        private static ITypedElement RetrieveConnectivityNodesReference()
+        {
+            return ((ITypedElement)(((ModelElement)(TopologicalNode.ClassInstance)).Resolve("ConnectivityNodes")));
+        }
+        
         /// <summary>
         /// Forwards CollectionChanging notifications for the ConnectivityNodes property to the parent model element
         /// </summary>
@@ -700,7 +750,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Topology
         /// <param name="e">The original event data</param>
         private void ConnectivityNodesCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("ConnectivityNodes", e);
+            this.OnCollectionChanging("ConnectivityNodes", e, _connectivityNodesReference);
         }
         
         /// <summary>
@@ -710,7 +760,12 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Topology
         /// <param name="e">The original event data</param>
         private void ConnectivityNodesCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("ConnectivityNodes", e);
+            this.OnCollectionChanged("ConnectivityNodes", e, _connectivityNodesReference);
+        }
+        
+        private static ITypedElement RetrieveBaseVoltageReference()
+        {
+            return ((ITypedElement)(((ModelElement)(TopologicalNode.ClassInstance)).Resolve("BaseVoltage")));
         }
         
         /// <summary>
@@ -749,6 +804,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Topology
             this.BaseVoltage = null;
         }
         
+        private static ITypedElement RetrieveSvVoltageReference()
+        {
+            return ((ITypedElement)(((ModelElement)(TopologicalNode.ClassInstance)).Resolve("SvVoltage")));
+        }
+        
         /// <summary>
         /// Raises the SvVoltageChanging event
         /// </summary>
@@ -785,6 +845,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Topology
             this.SvVoltage = null;
         }
         
+        private static ITypedElement RetrieveSvShortCircuitReference()
+        {
+            return ((ITypedElement)(((ModelElement)(TopologicalNode.ClassInstance)).Resolve("SvShortCircuit")));
+        }
+        
         /// <summary>
         /// Raises the SvShortCircuitChanging event
         /// </summary>
@@ -819,6 +884,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Topology
         private void OnResetSvShortCircuit(object sender, System.EventArgs eventArgs)
         {
             this.SvShortCircuit = null;
+        }
+        
+        private static ITypedElement RetrieveAngleRef_TopologicalIslandReference()
+        {
+            return ((ITypedElement)(((ModelElement)(TopologicalNode.ClassInstance)).Resolve("AngleRef_TopologicalIsland")));
         }
         
         /// <summary>
@@ -1430,7 +1500,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Topology
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public ReportingGroupProxy(ITopologicalNode modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "ReportingGroup")
             {
             }
             
@@ -1448,24 +1518,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Topology
                     this.ModelElement.ReportingGroup = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ReportingGroupChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ReportingGroupChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1479,7 +1531,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Topology
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public TopologicalIslandProxy(ITopologicalNode modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "TopologicalIsland")
             {
             }
             
@@ -1497,24 +1549,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Topology
                     this.ModelElement.TopologicalIsland = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.TopologicalIslandChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.TopologicalIslandChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1528,7 +1562,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Topology
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public SvInjectionProxy(ITopologicalNode modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "SvInjection")
             {
             }
             
@@ -1546,24 +1580,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Topology
                     this.ModelElement.SvInjection = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.SvInjectionChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.SvInjectionChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1577,7 +1593,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Topology
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public ConnectivityNodeContainerProxy(ITopologicalNode modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "ConnectivityNodeContainer")
             {
             }
             
@@ -1595,24 +1611,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Topology
                     this.ModelElement.ConnectivityNodeContainer = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ConnectivityNodeContainerChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ConnectivityNodeContainerChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1626,7 +1624,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Topology
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public BaseVoltageProxy(ITopologicalNode modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "BaseVoltage")
             {
             }
             
@@ -1644,24 +1642,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Topology
                     this.ModelElement.BaseVoltage = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.BaseVoltageChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.BaseVoltageChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1675,7 +1655,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Topology
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public SvVoltageProxy(ITopologicalNode modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "SvVoltage")
             {
             }
             
@@ -1693,24 +1673,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Topology
                     this.ModelElement.SvVoltage = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.SvVoltageChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.SvVoltageChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1724,7 +1686,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Topology
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public SvShortCircuitProxy(ITopologicalNode modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "SvShortCircuit")
             {
             }
             
@@ -1742,24 +1704,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Topology
                     this.ModelElement.SvShortCircuit = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.SvShortCircuitChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.SvShortCircuitChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1773,7 +1717,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Topology
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public AngleRef_TopologicalIslandProxy(ITopologicalNode modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "AngleRef_TopologicalIsland")
             {
             }
             
@@ -1790,24 +1734,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Topology
                 {
                     this.ModelElement.AngleRef_TopologicalIsland = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.AngleRef_TopologicalIslandChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.AngleRef_TopologicalIslandChanged -= handler;
             }
         }
     }

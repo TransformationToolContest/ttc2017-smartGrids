@@ -49,8 +49,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.EnergyScheduling
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61970/Informative/EnergyScheduling/" +
         "InadvertentAccount")]
     [DebuggerDisplayAttribute("InadvertentAccount {UUID}")]
-    public class InadvertentAccount : Curve, IInadvertentAccount, IModelElement
+    public partial class InadvertentAccount : Curve, IInadvertentAccount, IModelElement
     {
+        
+        private static Lazy<ITypedElement> _hostControlAreaReference = new Lazy<ITypedElement>(RetrieveHostControlAreaReference);
         
         /// <summary>
         /// The backing field for the HostControlArea property
@@ -77,7 +79,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.EnergyScheduling
                     IHostControlArea old = this._hostControlArea;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnHostControlAreaChanging(e);
-                    this.OnPropertyChanging("HostControlArea", e);
+                    this.OnPropertyChanging("HostControlArea", e, _hostControlAreaReference);
                     this._hostControlArea = value;
                     if ((old != null))
                     {
@@ -90,7 +92,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.EnergyScheduling
                         value.Deleted += this.OnResetHostControlArea;
                     }
                     this.OnHostControlAreaChanged(e);
-                    this.OnPropertyChanged("HostControlArea", e);
+                    this.OnPropertyChanged("HostControlArea", e, _hostControlAreaReference);
                 }
             }
         }
@@ -131,6 +133,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.EnergyScheduling
         /// Gets fired when the HostControlArea property changed its value
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> HostControlAreaChanged;
+        
+        private static ITypedElement RetrieveHostControlAreaReference()
+        {
+            return ((ITypedElement)(((ModelElement)(InadvertentAccount.ClassInstance)).Resolve("HostControlArea")));
+        }
         
         /// <summary>
         /// Raises the HostControlAreaChanging event
@@ -355,7 +362,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.EnergyScheduling
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public HostControlAreaProxy(IInadvertentAccount modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "HostControlArea")
             {
             }
             
@@ -372,24 +379,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.EnergyScheduling
                 {
                     this.ModelElement.HostControlArea = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.HostControlAreaChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.HostControlAreaChanged -= handler;
             }
         }
     }

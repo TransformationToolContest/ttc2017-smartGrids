@@ -39,7 +39,7 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
     [XmlNamespacePrefixAttribute("objects")]
     [ModelRepresentationClassAttribute("http://www.transformation-tool-contest.eu/2017/smartGrids/cosem#//COSEMObjects/Ba" +
         "tteryEntries")]
-    public class BatteryEntries : Data, IBatteryEntries, IModelElement
+    public partial class BatteryEntries : Data, IBatteryEntries, IModelElement
     {
         
         /// <summary>
@@ -47,45 +47,63 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
         /// </summary>
         private Nullable<int> _battery_use_time_counter;
         
+        private static Lazy<ITypedElement> _battery_use_time_counterAttribute = new Lazy<ITypedElement>(RetrieveBattery_use_time_counterAttribute);
+        
         /// <summary>
         /// The backing field for the Battery_charge_display property
         /// </summary>
         private string _battery_charge_display;
+        
+        private static Lazy<ITypedElement> _battery_charge_displayAttribute = new Lazy<ITypedElement>(RetrieveBattery_charge_displayAttribute);
         
         /// <summary>
         /// The backing field for the Date_of_next_battery_change property
         /// </summary>
         private string _date_of_next_battery_change;
         
+        private static Lazy<ITypedElement> _date_of_next_battery_changeAttribute = new Lazy<ITypedElement>(RetrieveDate_of_next_battery_changeAttribute);
+        
         /// <summary>
         /// The backing field for the Battery_voltage property
         /// </summary>
         private Nullable<double> _battery_voltage;
+        
+        private static Lazy<ITypedElement> _battery_voltageAttribute = new Lazy<ITypedElement>(RetrieveBattery_voltageAttribute);
         
         /// <summary>
         /// The backing field for the Battery_initial_capacity property
         /// </summary>
         private Nullable<double> _battery_initial_capacity;
         
+        private static Lazy<ITypedElement> _battery_initial_capacityAttribute = new Lazy<ITypedElement>(RetrieveBattery_initial_capacityAttribute);
+        
         /// <summary>
         /// The backing field for the Battery_installation_date_and_time property
         /// </summary>
         private string _battery_installation_date_and_time;
+        
+        private static Lazy<ITypedElement> _battery_installation_date_and_timeAttribute = new Lazy<ITypedElement>(RetrieveBattery_installation_date_and_timeAttribute);
         
         /// <summary>
         /// The backing field for the Battery_estimated_remaining_use_time property
         /// </summary>
         private string _battery_estimated_remaining_use_time;
         
+        private static Lazy<ITypedElement> _battery_estimated_remaining_use_timeAttribute = new Lazy<ITypedElement>(RetrieveBattery_estimated_remaining_use_timeAttribute);
+        
         /// <summary>
         /// The backing field for the Aux_supply_use_time_counter property
         /// </summary>
         private Nullable<int> _aux_supply_use_time_counter;
         
+        private static Lazy<ITypedElement> _aux_supply_use_time_counterAttribute = new Lazy<ITypedElement>(RetrieveAux_supply_use_time_counterAttribute);
+        
         /// <summary>
         /// The backing field for the Aux_voltage property
         /// </summary>
         private Nullable<double> _aux_voltage;
+        
+        private static Lazy<ITypedElement> _aux_voltageAttribute = new Lazy<ITypedElement>(RetrieveAux_voltageAttribute);
         
         private static IClass _classInstance;
         
@@ -106,10 +124,10 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     Nullable<int> old = this._battery_use_time_counter;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnBattery_use_time_counterChanging(e);
-                    this.OnPropertyChanging("Battery_use_time_counter", e);
+                    this.OnPropertyChanging("Battery_use_time_counter", e, _battery_use_time_counterAttribute);
                     this._battery_use_time_counter = value;
                     this.OnBattery_use_time_counterChanged(e);
-                    this.OnPropertyChanged("Battery_use_time_counter", e);
+                    this.OnPropertyChanged("Battery_use_time_counter", e, _battery_use_time_counterAttribute);
                 }
             }
         }
@@ -131,10 +149,10 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     string old = this._battery_charge_display;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnBattery_charge_displayChanging(e);
-                    this.OnPropertyChanging("Battery_charge_display", e);
+                    this.OnPropertyChanging("Battery_charge_display", e, _battery_charge_displayAttribute);
                     this._battery_charge_display = value;
                     this.OnBattery_charge_displayChanged(e);
-                    this.OnPropertyChanged("Battery_charge_display", e);
+                    this.OnPropertyChanged("Battery_charge_display", e, _battery_charge_displayAttribute);
                 }
             }
         }
@@ -156,10 +174,10 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     string old = this._date_of_next_battery_change;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnDate_of_next_battery_changeChanging(e);
-                    this.OnPropertyChanging("Date_of_next_battery_change", e);
+                    this.OnPropertyChanging("Date_of_next_battery_change", e, _date_of_next_battery_changeAttribute);
                     this._date_of_next_battery_change = value;
                     this.OnDate_of_next_battery_changeChanged(e);
-                    this.OnPropertyChanged("Date_of_next_battery_change", e);
+                    this.OnPropertyChanged("Date_of_next_battery_change", e, _date_of_next_battery_changeAttribute);
                 }
             }
         }
@@ -181,10 +199,10 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     Nullable<double> old = this._battery_voltage;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnBattery_voltageChanging(e);
-                    this.OnPropertyChanging("Battery_voltage", e);
+                    this.OnPropertyChanging("Battery_voltage", e, _battery_voltageAttribute);
                     this._battery_voltage = value;
                     this.OnBattery_voltageChanged(e);
-                    this.OnPropertyChanged("Battery_voltage", e);
+                    this.OnPropertyChanged("Battery_voltage", e, _battery_voltageAttribute);
                 }
             }
         }
@@ -206,10 +224,10 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     Nullable<double> old = this._battery_initial_capacity;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnBattery_initial_capacityChanging(e);
-                    this.OnPropertyChanging("Battery_initial_capacity", e);
+                    this.OnPropertyChanging("Battery_initial_capacity", e, _battery_initial_capacityAttribute);
                     this._battery_initial_capacity = value;
                     this.OnBattery_initial_capacityChanged(e);
-                    this.OnPropertyChanged("Battery_initial_capacity", e);
+                    this.OnPropertyChanged("Battery_initial_capacity", e, _battery_initial_capacityAttribute);
                 }
             }
         }
@@ -231,10 +249,10 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     string old = this._battery_installation_date_and_time;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnBattery_installation_date_and_timeChanging(e);
-                    this.OnPropertyChanging("Battery_installation_date_and_time", e);
+                    this.OnPropertyChanging("Battery_installation_date_and_time", e, _battery_installation_date_and_timeAttribute);
                     this._battery_installation_date_and_time = value;
                     this.OnBattery_installation_date_and_timeChanged(e);
-                    this.OnPropertyChanged("Battery_installation_date_and_time", e);
+                    this.OnPropertyChanged("Battery_installation_date_and_time", e, _battery_installation_date_and_timeAttribute);
                 }
             }
         }
@@ -256,10 +274,10 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     string old = this._battery_estimated_remaining_use_time;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnBattery_estimated_remaining_use_timeChanging(e);
-                    this.OnPropertyChanging("Battery_estimated_remaining_use_time", e);
+                    this.OnPropertyChanging("Battery_estimated_remaining_use_time", e, _battery_estimated_remaining_use_timeAttribute);
                     this._battery_estimated_remaining_use_time = value;
                     this.OnBattery_estimated_remaining_use_timeChanged(e);
-                    this.OnPropertyChanged("Battery_estimated_remaining_use_time", e);
+                    this.OnPropertyChanged("Battery_estimated_remaining_use_time", e, _battery_estimated_remaining_use_timeAttribute);
                 }
             }
         }
@@ -281,10 +299,10 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     Nullable<int> old = this._aux_supply_use_time_counter;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnAux_supply_use_time_counterChanging(e);
-                    this.OnPropertyChanging("Aux_supply_use_time_counter", e);
+                    this.OnPropertyChanging("Aux_supply_use_time_counter", e, _aux_supply_use_time_counterAttribute);
                     this._aux_supply_use_time_counter = value;
                     this.OnAux_supply_use_time_counterChanged(e);
-                    this.OnPropertyChanged("Aux_supply_use_time_counter", e);
+                    this.OnPropertyChanged("Aux_supply_use_time_counter", e, _aux_supply_use_time_counterAttribute);
                 }
             }
         }
@@ -306,10 +324,10 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     Nullable<double> old = this._aux_voltage;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnAux_voltageChanging(e);
-                    this.OnPropertyChanging("Aux_voltage", e);
+                    this.OnPropertyChanging("Aux_voltage", e, _aux_voltageAttribute);
                     this._aux_voltage = value;
                     this.OnAux_voltageChanged(e);
-                    this.OnPropertyChanged("Aux_voltage", e);
+                    this.OnPropertyChanged("Aux_voltage", e, _aux_voltageAttribute);
                 }
             }
         }
@@ -420,6 +438,11 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> Aux_voltageChanged;
         
+        private static ITypedElement RetrieveBattery_use_time_counterAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(BatteryEntries.ClassInstance)).Resolve("Battery_use_time_counter")));
+        }
+        
         /// <summary>
         /// Raises the Battery_use_time_counterChanging event
         /// </summary>
@@ -444,6 +467,11 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveBattery_charge_displayAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(BatteryEntries.ClassInstance)).Resolve("Battery_charge_display")));
         }
         
         /// <summary>
@@ -472,6 +500,11 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             }
         }
         
+        private static ITypedElement RetrieveDate_of_next_battery_changeAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(BatteryEntries.ClassInstance)).Resolve("Date_of_next_battery_change")));
+        }
+        
         /// <summary>
         /// Raises the Date_of_next_battery_changeChanging event
         /// </summary>
@@ -496,6 +529,11 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveBattery_voltageAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(BatteryEntries.ClassInstance)).Resolve("Battery_voltage")));
         }
         
         /// <summary>
@@ -524,6 +562,11 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             }
         }
         
+        private static ITypedElement RetrieveBattery_initial_capacityAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(BatteryEntries.ClassInstance)).Resolve("Battery_initial_capacity")));
+        }
+        
         /// <summary>
         /// Raises the Battery_initial_capacityChanging event
         /// </summary>
@@ -548,6 +591,11 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveBattery_installation_date_and_timeAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(BatteryEntries.ClassInstance)).Resolve("Battery_installation_date_and_time")));
         }
         
         /// <summary>
@@ -576,6 +624,11 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             }
         }
         
+        private static ITypedElement RetrieveBattery_estimated_remaining_use_timeAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(BatteryEntries.ClassInstance)).Resolve("Battery_estimated_remaining_use_time")));
+        }
+        
         /// <summary>
         /// Raises the Battery_estimated_remaining_use_timeChanging event
         /// </summary>
@@ -602,6 +655,11 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             }
         }
         
+        private static ITypedElement RetrieveAux_supply_use_time_counterAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(BatteryEntries.ClassInstance)).Resolve("Aux_supply_use_time_counter")));
+        }
+        
         /// <summary>
         /// Raises the Aux_supply_use_time_counterChanging event
         /// </summary>
@@ -626,6 +684,11 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveAux_voltageAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(BatteryEntries.ClassInstance)).Resolve("Aux_voltage")));
         }
         
         /// <summary>
@@ -780,7 +843,7 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public Battery_use_time_counterProxy(IBatteryEntries modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "Battery_use_time_counter")
             {
             }
             
@@ -798,24 +861,6 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     this.ModelElement.Battery_use_time_counter = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.Battery_use_time_counterChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.Battery_use_time_counterChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -829,7 +874,7 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public Battery_charge_displayProxy(IBatteryEntries modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "Battery_charge_display")
             {
             }
             
@@ -847,24 +892,6 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     this.ModelElement.Battery_charge_display = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.Battery_charge_displayChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.Battery_charge_displayChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -878,7 +905,7 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public Date_of_next_battery_changeProxy(IBatteryEntries modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "Date_of_next_battery_change")
             {
             }
             
@@ -896,24 +923,6 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     this.ModelElement.Date_of_next_battery_change = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.Date_of_next_battery_changeChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.Date_of_next_battery_changeChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -927,7 +936,7 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public Battery_voltageProxy(IBatteryEntries modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "Battery_voltage")
             {
             }
             
@@ -945,24 +954,6 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     this.ModelElement.Battery_voltage = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.Battery_voltageChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.Battery_voltageChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -976,7 +967,7 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public Battery_initial_capacityProxy(IBatteryEntries modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "Battery_initial_capacity")
             {
             }
             
@@ -994,24 +985,6 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     this.ModelElement.Battery_initial_capacity = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.Battery_initial_capacityChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.Battery_initial_capacityChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1025,7 +998,7 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public Battery_installation_date_and_timeProxy(IBatteryEntries modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "Battery_installation_date_and_time")
             {
             }
             
@@ -1043,24 +1016,6 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     this.ModelElement.Battery_installation_date_and_time = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.Battery_installation_date_and_timeChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.Battery_installation_date_and_timeChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1074,7 +1029,7 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public Battery_estimated_remaining_use_timeProxy(IBatteryEntries modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "Battery_estimated_remaining_use_time")
             {
             }
             
@@ -1092,24 +1047,6 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     this.ModelElement.Battery_estimated_remaining_use_time = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.Battery_estimated_remaining_use_timeChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.Battery_estimated_remaining_use_timeChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1123,7 +1060,7 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public Aux_supply_use_time_counterProxy(IBatteryEntries modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "Aux_supply_use_time_counter")
             {
             }
             
@@ -1141,24 +1078,6 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     this.ModelElement.Aux_supply_use_time_counter = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.Aux_supply_use_time_counterChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.Aux_supply_use_time_counterChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1172,7 +1091,7 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public Aux_voltageProxy(IBatteryEntries modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "Aux_voltage")
             {
             }
             
@@ -1189,24 +1108,6 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                 {
                     this.ModelElement.Aux_voltage = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.Aux_voltageChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.Aux_voltageChanged -= handler;
             }
         }
     }

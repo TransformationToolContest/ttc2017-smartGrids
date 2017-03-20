@@ -40,7 +40,7 @@ namespace TTC2017.SmartGrids.COSEM.InterfaceClasses
     [XmlNamespacePrefixAttribute("inter")]
     [ModelRepresentationClassAttribute("http://www.transformation-tool-contest.eu/2017/smartGrids/cosem#//InterfaceClasse" +
         "s/DisconnectControl")]
-    public class DisconnectControl : Base, TTC2017.SmartGrids.COSEM.InterfaceClasses.IDisconnectControl, IModelElement
+    public partial class DisconnectControl : Base, TTC2017.SmartGrids.COSEM.InterfaceClasses.IDisconnectControl, IModelElement
     {
         
         /// <summary>
@@ -48,10 +48,14 @@ namespace TTC2017.SmartGrids.COSEM.InterfaceClasses
         /// </summary>
         private Nullable<DisconnectControlState> _state;
         
+        private static Lazy<ITypedElement> _stateAttribute = new Lazy<ITypedElement>(RetrieveStateAttribute);
+        
         /// <summary>
         /// The backing field for the Transition property
         /// </summary>
         private Nullable<DisconnectControlTransition> _transition;
+        
+        private static Lazy<ITypedElement> _transitionAttribute = new Lazy<ITypedElement>(RetrieveTransitionAttribute);
         
         private static IClass _classInstance;
         
@@ -73,10 +77,10 @@ namespace TTC2017.SmartGrids.COSEM.InterfaceClasses
                     Nullable<DisconnectControlState> old = this._state;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnStateChanging(e);
-                    this.OnPropertyChanging("State", e);
+                    this.OnPropertyChanging("State", e, _stateAttribute);
                     this._state = value;
                     this.OnStateChanged(e);
-                    this.OnPropertyChanged("State", e);
+                    this.OnPropertyChanged("State", e, _stateAttribute);
                 }
             }
         }
@@ -99,10 +103,10 @@ namespace TTC2017.SmartGrids.COSEM.InterfaceClasses
                     Nullable<DisconnectControlTransition> old = this._transition;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnTransitionChanging(e);
-                    this.OnPropertyChanging("Transition", e);
+                    this.OnPropertyChanging("Transition", e, _transitionAttribute);
                     this._transition = value;
                     this.OnTransitionChanged(e);
-                    this.OnPropertyChanged("Transition", e);
+                    this.OnPropertyChanged("Transition", e, _transitionAttribute);
                 }
             }
         }
@@ -143,6 +147,11 @@ namespace TTC2017.SmartGrids.COSEM.InterfaceClasses
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> TransitionChanged;
         
+        private static ITypedElement RetrieveStateAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(DisconnectControl.ClassInstance)).Resolve("state")));
+        }
+        
         /// <summary>
         /// Raises the StateChanging event
         /// </summary>
@@ -167,6 +176,11 @@ namespace TTC2017.SmartGrids.COSEM.InterfaceClasses
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveTransitionAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(DisconnectControl.ClassInstance)).Resolve("transition")));
         }
         
         /// <summary>
@@ -258,7 +272,7 @@ namespace TTC2017.SmartGrids.COSEM.InterfaceClasses
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public StateProxy(TTC2017.SmartGrids.COSEM.InterfaceClasses.IDisconnectControl modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "state")
             {
             }
             
@@ -276,24 +290,6 @@ namespace TTC2017.SmartGrids.COSEM.InterfaceClasses
                     this.ModelElement.State = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.StateChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.StateChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -307,7 +303,7 @@ namespace TTC2017.SmartGrids.COSEM.InterfaceClasses
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public TransitionProxy(TTC2017.SmartGrids.COSEM.InterfaceClasses.IDisconnectControl modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "transition")
             {
             }
             
@@ -324,24 +320,6 @@ namespace TTC2017.SmartGrids.COSEM.InterfaceClasses
                 {
                     this.ModelElement.Transition = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.TransitionChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.TransitionChanged -= handler;
             }
         }
     }

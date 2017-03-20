@@ -39,7 +39,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Equivalents
     [XmlNamespacePrefixAttribute("cimEquivalents")]
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61970/Equivalents/EquivalentShunt")]
     [DebuggerDisplayAttribute("EquivalentShunt {UUID}")]
-    public class EquivalentShunt : EquivalentEquipment, IEquivalentShunt, IModelElement
+    public partial class EquivalentShunt : EquivalentEquipment, IEquivalentShunt, IModelElement
     {
         
         /// <summary>
@@ -47,10 +47,14 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Equivalents
         /// </summary>
         private float _b;
         
+        private static Lazy<ITypedElement> _bAttribute = new Lazy<ITypedElement>(RetrieveBAttribute);
+        
         /// <summary>
         /// The backing field for the G property
         /// </summary>
         private float _g;
+        
+        private static Lazy<ITypedElement> _gAttribute = new Lazy<ITypedElement>(RetrieveGAttribute);
         
         private static IClass _classInstance;
         
@@ -72,10 +76,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Equivalents
                     float old = this._b;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnBChanging(e);
-                    this.OnPropertyChanging("B", e);
+                    this.OnPropertyChanging("B", e, _bAttribute);
                     this._b = value;
                     this.OnBChanged(e);
-                    this.OnPropertyChanged("B", e);
+                    this.OnPropertyChanged("B", e, _bAttribute);
                 }
             }
         }
@@ -98,10 +102,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Equivalents
                     float old = this._g;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnGChanging(e);
-                    this.OnPropertyChanging("G", e);
+                    this.OnPropertyChanging("G", e, _gAttribute);
                     this._g = value;
                     this.OnGChanged(e);
-                    this.OnPropertyChanged("G", e);
+                    this.OnPropertyChanged("G", e, _gAttribute);
                 }
             }
         }
@@ -141,6 +145,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Equivalents
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> GChanged;
         
+        private static ITypedElement RetrieveBAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(EquivalentShunt.ClassInstance)).Resolve("b")));
+        }
+        
         /// <summary>
         /// Raises the BChanging event
         /// </summary>
@@ -165,6 +174,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Equivalents
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveGAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(EquivalentShunt.ClassInstance)).Resolve("g")));
         }
         
         /// <summary>
@@ -255,7 +269,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Equivalents
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public BProxy(IEquivalentShunt modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "b")
             {
             }
             
@@ -273,24 +287,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Equivalents
                     this.ModelElement.B = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.BChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.BChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -304,7 +300,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Equivalents
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public GProxy(IEquivalentShunt modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "g")
             {
             }
             
@@ -321,24 +317,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Equivalents
                 {
                     this.ModelElement.G = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.GChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.GChanged -= handler;
             }
         }
     }

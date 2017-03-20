@@ -42,13 +42,15 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.GenerationDynamics
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61970/Generation/GenerationDynamics" +
         "/DrumBoiler")]
     [DebuggerDisplayAttribute("DrumBoiler {UUID}")]
-    public class DrumBoiler : FossilSteamSupply, IDrumBoiler, IModelElement
+    public partial class DrumBoiler : FossilSteamSupply, IDrumBoiler, IModelElement
     {
         
         /// <summary>
         /// The backing field for the DrumBoilerRating property
         /// </summary>
         private float _drumBoilerRating;
+        
+        private static Lazy<ITypedElement> _drumBoilerRatingAttribute = new Lazy<ITypedElement>(RetrieveDrumBoilerRatingAttribute);
         
         private static IClass _classInstance;
         
@@ -70,10 +72,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.GenerationDynamics
                     float old = this._drumBoilerRating;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnDrumBoilerRatingChanging(e);
-                    this.OnPropertyChanging("DrumBoilerRating", e);
+                    this.OnPropertyChanging("DrumBoilerRating", e, _drumBoilerRatingAttribute);
                     this._drumBoilerRating = value;
                     this.OnDrumBoilerRatingChanged(e);
-                    this.OnPropertyChanged("DrumBoilerRating", e);
+                    this.OnPropertyChanged("DrumBoilerRating", e, _drumBoilerRatingAttribute);
                 }
             }
         }
@@ -103,6 +105,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.GenerationDynamics
         /// Gets fired when the DrumBoilerRating property changed its value
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> DrumBoilerRatingChanged;
+        
+        private static ITypedElement RetrieveDrumBoilerRatingAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(DrumBoiler.ClassInstance)).Resolve("drumBoilerRating")));
+        }
         
         /// <summary>
         /// Raises the DrumBoilerRatingChanging event
@@ -184,7 +191,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.GenerationDynamics
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public DrumBoilerRatingProxy(IDrumBoiler modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "drumBoilerRating")
             {
             }
             
@@ -201,24 +208,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.GenerationDynamics
                 {
                     this.ModelElement.DrumBoilerRating = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.DrumBoilerRatingChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.DrumBoilerRatingChanged -= handler;
             }
         }
     }

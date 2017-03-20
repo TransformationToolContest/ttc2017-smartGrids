@@ -41,7 +41,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Protection
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61970/Protection/ProtectionEquipmen" +
         "t")]
     [DebuggerDisplayAttribute("ProtectionEquipment {UUID}")]
-    public class ProtectionEquipment : Equipment, IProtectionEquipment, IModelElement
+    public partial class ProtectionEquipment : Equipment, IProtectionEquipment, IModelElement
     {
         
         /// <summary>
@@ -49,30 +49,44 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Protection
         /// </summary>
         private float _highLimit;
         
+        private static Lazy<ITypedElement> _highLimitAttribute = new Lazy<ITypedElement>(RetrieveHighLimitAttribute);
+        
         /// <summary>
         /// The backing field for the RelayDelayTime property
         /// </summary>
         private float _relayDelayTime;
+        
+        private static Lazy<ITypedElement> _relayDelayTimeAttribute = new Lazy<ITypedElement>(RetrieveRelayDelayTimeAttribute);
         
         /// <summary>
         /// The backing field for the PowerDirectionFlag property
         /// </summary>
         private bool _powerDirectionFlag;
         
+        private static Lazy<ITypedElement> _powerDirectionFlagAttribute = new Lazy<ITypedElement>(RetrievePowerDirectionFlagAttribute);
+        
         /// <summary>
         /// The backing field for the LowLimit property
         /// </summary>
         private float _lowLimit;
+        
+        private static Lazy<ITypedElement> _lowLimitAttribute = new Lazy<ITypedElement>(RetrieveLowLimitAttribute);
+        
+        private static Lazy<ITypedElement> _conductingEquipmentsReference = new Lazy<ITypedElement>(RetrieveConductingEquipmentsReference);
         
         /// <summary>
         /// The backing field for the ConductingEquipments property
         /// </summary>
         private ProtectionEquipmentConductingEquipmentsCollection _conductingEquipments;
         
+        private static Lazy<ITypedElement> _unitReference = new Lazy<ITypedElement>(RetrieveUnitReference);
+        
         /// <summary>
         /// The backing field for the Unit property
         /// </summary>
         private IUnit _unit;
+        
+        private static Lazy<ITypedElement> _protectedSwitchesReference = new Lazy<ITypedElement>(RetrieveProtectedSwitchesReference);
         
         /// <summary>
         /// The backing field for the ProtectedSwitches property
@@ -109,10 +123,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Protection
                     float old = this._highLimit;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnHighLimitChanging(e);
-                    this.OnPropertyChanging("HighLimit", e);
+                    this.OnPropertyChanging("HighLimit", e, _highLimitAttribute);
                     this._highLimit = value;
                     this.OnHighLimitChanged(e);
-                    this.OnPropertyChanged("HighLimit", e);
+                    this.OnPropertyChanged("HighLimit", e, _highLimitAttribute);
                 }
             }
         }
@@ -135,10 +149,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Protection
                     float old = this._relayDelayTime;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnRelayDelayTimeChanging(e);
-                    this.OnPropertyChanging("RelayDelayTime", e);
+                    this.OnPropertyChanging("RelayDelayTime", e, _relayDelayTimeAttribute);
                     this._relayDelayTime = value;
                     this.OnRelayDelayTimeChanged(e);
-                    this.OnPropertyChanged("RelayDelayTime", e);
+                    this.OnPropertyChanged("RelayDelayTime", e, _relayDelayTimeAttribute);
                 }
             }
         }
@@ -161,10 +175,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Protection
                     bool old = this._powerDirectionFlag;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnPowerDirectionFlagChanging(e);
-                    this.OnPropertyChanging("PowerDirectionFlag", e);
+                    this.OnPropertyChanging("PowerDirectionFlag", e, _powerDirectionFlagAttribute);
                     this._powerDirectionFlag = value;
                     this.OnPowerDirectionFlagChanged(e);
-                    this.OnPropertyChanged("PowerDirectionFlag", e);
+                    this.OnPropertyChanged("PowerDirectionFlag", e, _powerDirectionFlagAttribute);
                 }
             }
         }
@@ -187,10 +201,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Protection
                     float old = this._lowLimit;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnLowLimitChanging(e);
-                    this.OnPropertyChanging("LowLimit", e);
+                    this.OnPropertyChanging("LowLimit", e, _lowLimitAttribute);
                     this._lowLimit = value;
                     this.OnLowLimitChanged(e);
-                    this.OnPropertyChanged("LowLimit", e);
+                    this.OnPropertyChanged("LowLimit", e, _lowLimitAttribute);
                 }
             }
         }
@@ -228,7 +242,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Protection
                     IUnit old = this._unit;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnUnitChanging(e);
-                    this.OnPropertyChanging("Unit", e);
+                    this.OnPropertyChanging("Unit", e, _unitReference);
                     this._unit = value;
                     if ((old != null))
                     {
@@ -241,7 +255,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Protection
                         value.Deleted += this.OnResetUnit;
                     }
                     this.OnUnitChanged(e);
-                    this.OnPropertyChanged("Unit", e);
+                    this.OnPropertyChanged("Unit", e, _unitReference);
                 }
             }
         }
@@ -337,6 +351,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Protection
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> UnitChanged;
         
+        private static ITypedElement RetrieveHighLimitAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(ProtectionEquipment.ClassInstance)).Resolve("highLimit")));
+        }
+        
         /// <summary>
         /// Raises the HighLimitChanging event
         /// </summary>
@@ -361,6 +380,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Protection
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveRelayDelayTimeAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(ProtectionEquipment.ClassInstance)).Resolve("relayDelayTime")));
         }
         
         /// <summary>
@@ -389,6 +413,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Protection
             }
         }
         
+        private static ITypedElement RetrievePowerDirectionFlagAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(ProtectionEquipment.ClassInstance)).Resolve("powerDirectionFlag")));
+        }
+        
         /// <summary>
         /// Raises the PowerDirectionFlagChanging event
         /// </summary>
@@ -413,6 +442,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Protection
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveLowLimitAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(ProtectionEquipment.ClassInstance)).Resolve("lowLimit")));
         }
         
         /// <summary>
@@ -441,6 +475,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Protection
             }
         }
         
+        private static ITypedElement RetrieveConductingEquipmentsReference()
+        {
+            return ((ITypedElement)(((ModelElement)(ProtectionEquipment.ClassInstance)).Resolve("ConductingEquipments")));
+        }
+        
         /// <summary>
         /// Forwards CollectionChanging notifications for the ConductingEquipments property to the parent model element
         /// </summary>
@@ -448,7 +487,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Protection
         /// <param name="e">The original event data</param>
         private void ConductingEquipmentsCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("ConductingEquipments", e);
+            this.OnCollectionChanging("ConductingEquipments", e, _conductingEquipmentsReference);
         }
         
         /// <summary>
@@ -458,7 +497,12 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Protection
         /// <param name="e">The original event data</param>
         private void ConductingEquipmentsCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("ConductingEquipments", e);
+            this.OnCollectionChanged("ConductingEquipments", e, _conductingEquipmentsReference);
+        }
+        
+        private static ITypedElement RetrieveUnitReference()
+        {
+            return ((ITypedElement)(((ModelElement)(ProtectionEquipment.ClassInstance)).Resolve("Unit")));
         }
         
         /// <summary>
@@ -497,6 +541,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Protection
             this.Unit = null;
         }
         
+        private static ITypedElement RetrieveProtectedSwitchesReference()
+        {
+            return ((ITypedElement)(((ModelElement)(ProtectionEquipment.ClassInstance)).Resolve("ProtectedSwitches")));
+        }
+        
         /// <summary>
         /// Forwards CollectionChanging notifications for the ProtectedSwitches property to the parent model element
         /// </summary>
@@ -504,7 +553,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Protection
         /// <param name="e">The original event data</param>
         private void ProtectedSwitchesCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("ProtectedSwitches", e);
+            this.OnCollectionChanging("ProtectedSwitches", e, _protectedSwitchesReference);
         }
         
         /// <summary>
@@ -514,7 +563,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Protection
         /// <param name="e">The original event data</param>
         private void ProtectedSwitchesCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("ProtectedSwitches", e);
+            this.OnCollectionChanged("ProtectedSwitches", e, _protectedSwitchesReference);
         }
         
         /// <summary>
@@ -837,7 +886,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Protection
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public HighLimitProxy(IProtectionEquipment modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "highLimit")
             {
             }
             
@@ -855,24 +904,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Protection
                     this.ModelElement.HighLimit = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.HighLimitChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.HighLimitChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -886,7 +917,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Protection
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public RelayDelayTimeProxy(IProtectionEquipment modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "relayDelayTime")
             {
             }
             
@@ -904,24 +935,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Protection
                     this.ModelElement.RelayDelayTime = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.RelayDelayTimeChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.RelayDelayTimeChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -935,7 +948,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Protection
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public PowerDirectionFlagProxy(IProtectionEquipment modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "powerDirectionFlag")
             {
             }
             
@@ -953,24 +966,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Protection
                     this.ModelElement.PowerDirectionFlag = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.PowerDirectionFlagChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.PowerDirectionFlagChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -984,7 +979,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Protection
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public LowLimitProxy(IProtectionEquipment modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "lowLimit")
             {
             }
             
@@ -1002,24 +997,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Protection
                     this.ModelElement.LowLimit = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.LowLimitChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.LowLimitChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1033,7 +1010,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Protection
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public UnitProxy(IProtectionEquipment modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "Unit")
             {
             }
             
@@ -1050,24 +1027,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Protection
                 {
                     this.ModelElement.Unit = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.UnitChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.UnitChanged -= handler;
             }
         }
     }

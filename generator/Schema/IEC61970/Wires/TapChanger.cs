@@ -53,7 +53,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
     [XmlNamespacePrefixAttribute("cimWires")]
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61970/Wires/TapChanger")]
     [DebuggerDisplayAttribute("TapChanger {UUID}")]
-    public class TapChanger : PowerSystemResource, ITapChanger, IModelElement
+    public partial class TapChanger : PowerSystemResource, ITapChanger, IModelElement
     {
         
         /// <summary>
@@ -61,65 +61,93 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
         /// </summary>
         private float _initialDelay;
         
+        private static Lazy<ITypedElement> _initialDelayAttribute = new Lazy<ITypedElement>(RetrieveInitialDelayAttribute);
+        
         /// <summary>
         /// The backing field for the SubsequentDelay property
         /// </summary>
         private float _subsequentDelay;
+        
+        private static Lazy<ITypedElement> _subsequentDelayAttribute = new Lazy<ITypedElement>(RetrieveSubsequentDelayAttribute);
         
         /// <summary>
         /// The backing field for the LtcFlag property
         /// </summary>
         private bool _ltcFlag;
         
+        private static Lazy<ITypedElement> _ltcFlagAttribute = new Lazy<ITypedElement>(RetrieveLtcFlagAttribute);
+        
         /// <summary>
         /// The backing field for the RegulationStatus property
         /// </summary>
         private bool _regulationStatus;
+        
+        private static Lazy<ITypedElement> _regulationStatusAttribute = new Lazy<ITypedElement>(RetrieveRegulationStatusAttribute);
         
         /// <summary>
         /// The backing field for the NeutralStep property
         /// </summary>
         private int _neutralStep;
         
+        private static Lazy<ITypedElement> _neutralStepAttribute = new Lazy<ITypedElement>(RetrieveNeutralStepAttribute);
+        
         /// <summary>
         /// The backing field for the NeutralU property
         /// </summary>
         private float _neutralU;
+        
+        private static Lazy<ITypedElement> _neutralUAttribute = new Lazy<ITypedElement>(RetrieveNeutralUAttribute);
         
         /// <summary>
         /// The backing field for the LowStep property
         /// </summary>
         private int _lowStep;
         
+        private static Lazy<ITypedElement> _lowStepAttribute = new Lazy<ITypedElement>(RetrieveLowStepAttribute);
+        
         /// <summary>
         /// The backing field for the HighStep property
         /// </summary>
         private int _highStep;
+        
+        private static Lazy<ITypedElement> _highStepAttribute = new Lazy<ITypedElement>(RetrieveHighStepAttribute);
         
         /// <summary>
         /// The backing field for the StepVoltageIncrement property
         /// </summary>
         private float _stepVoltageIncrement;
         
+        private static Lazy<ITypedElement> _stepVoltageIncrementAttribute = new Lazy<ITypedElement>(RetrieveStepVoltageIncrementAttribute);
+        
         /// <summary>
         /// The backing field for the NormalStep property
         /// </summary>
         private int _normalStep;
+        
+        private static Lazy<ITypedElement> _normalStepAttribute = new Lazy<ITypedElement>(RetrieveNormalStepAttribute);
+        
+        private static Lazy<ITypedElement> _tapSchedulesReference = new Lazy<ITypedElement>(RetrieveTapSchedulesReference);
         
         /// <summary>
         /// The backing field for the TapSchedules property
         /// </summary>
         private TapChangerTapSchedulesCollection _tapSchedules;
         
+        private static Lazy<ITypedElement> _regulatingControlReference = new Lazy<ITypedElement>(RetrieveRegulatingControlReference);
+        
         /// <summary>
         /// The backing field for the RegulatingControl property
         /// </summary>
         private IRegulatingControl _regulatingControl;
         
+        private static Lazy<ITypedElement> _impedanceVariationCurveReference = new Lazy<ITypedElement>(RetrieveImpedanceVariationCurveReference);
+        
         /// <summary>
         /// The backing field for the ImpedanceVariationCurve property
         /// </summary>
         private IImpedanceVariationCurve _impedanceVariationCurve;
+        
+        private static Lazy<ITypedElement> _svTapStepReference = new Lazy<ITypedElement>(RetrieveSvTapStepReference);
         
         /// <summary>
         /// The backing field for the SvTapStep property
@@ -153,10 +181,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
                     float old = this._initialDelay;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnInitialDelayChanging(e);
-                    this.OnPropertyChanging("InitialDelay", e);
+                    this.OnPropertyChanging("InitialDelay", e, _initialDelayAttribute);
                     this._initialDelay = value;
                     this.OnInitialDelayChanged(e);
-                    this.OnPropertyChanged("InitialDelay", e);
+                    this.OnPropertyChanged("InitialDelay", e, _initialDelayAttribute);
                 }
             }
         }
@@ -179,10 +207,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
                     float old = this._subsequentDelay;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnSubsequentDelayChanging(e);
-                    this.OnPropertyChanging("SubsequentDelay", e);
+                    this.OnPropertyChanging("SubsequentDelay", e, _subsequentDelayAttribute);
                     this._subsequentDelay = value;
                     this.OnSubsequentDelayChanged(e);
-                    this.OnPropertyChanged("SubsequentDelay", e);
+                    this.OnPropertyChanged("SubsequentDelay", e, _subsequentDelayAttribute);
                 }
             }
         }
@@ -205,10 +233,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
                     bool old = this._ltcFlag;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnLtcFlagChanging(e);
-                    this.OnPropertyChanging("LtcFlag", e);
+                    this.OnPropertyChanging("LtcFlag", e, _ltcFlagAttribute);
                     this._ltcFlag = value;
                     this.OnLtcFlagChanged(e);
-                    this.OnPropertyChanged("LtcFlag", e);
+                    this.OnPropertyChanged("LtcFlag", e, _ltcFlagAttribute);
                 }
             }
         }
@@ -231,10 +259,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
                     bool old = this._regulationStatus;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnRegulationStatusChanging(e);
-                    this.OnPropertyChanging("RegulationStatus", e);
+                    this.OnPropertyChanging("RegulationStatus", e, _regulationStatusAttribute);
                     this._regulationStatus = value;
                     this.OnRegulationStatusChanged(e);
-                    this.OnPropertyChanged("RegulationStatus", e);
+                    this.OnPropertyChanged("RegulationStatus", e, _regulationStatusAttribute);
                 }
             }
         }
@@ -257,10 +285,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
                     int old = this._neutralStep;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnNeutralStepChanging(e);
-                    this.OnPropertyChanging("NeutralStep", e);
+                    this.OnPropertyChanging("NeutralStep", e, _neutralStepAttribute);
                     this._neutralStep = value;
                     this.OnNeutralStepChanged(e);
-                    this.OnPropertyChanged("NeutralStep", e);
+                    this.OnPropertyChanged("NeutralStep", e, _neutralStepAttribute);
                 }
             }
         }
@@ -283,10 +311,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
                     float old = this._neutralU;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnNeutralUChanging(e);
-                    this.OnPropertyChanging("NeutralU", e);
+                    this.OnPropertyChanging("NeutralU", e, _neutralUAttribute);
                     this._neutralU = value;
                     this.OnNeutralUChanged(e);
-                    this.OnPropertyChanged("NeutralU", e);
+                    this.OnPropertyChanged("NeutralU", e, _neutralUAttribute);
                 }
             }
         }
@@ -309,10 +337,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
                     int old = this._lowStep;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnLowStepChanging(e);
-                    this.OnPropertyChanging("LowStep", e);
+                    this.OnPropertyChanging("LowStep", e, _lowStepAttribute);
                     this._lowStep = value;
                     this.OnLowStepChanged(e);
-                    this.OnPropertyChanged("LowStep", e);
+                    this.OnPropertyChanged("LowStep", e, _lowStepAttribute);
                 }
             }
         }
@@ -335,10 +363,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
                     int old = this._highStep;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnHighStepChanging(e);
-                    this.OnPropertyChanging("HighStep", e);
+                    this.OnPropertyChanging("HighStep", e, _highStepAttribute);
                     this._highStep = value;
                     this.OnHighStepChanged(e);
-                    this.OnPropertyChanged("HighStep", e);
+                    this.OnPropertyChanged("HighStep", e, _highStepAttribute);
                 }
             }
         }
@@ -361,10 +389,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
                     float old = this._stepVoltageIncrement;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnStepVoltageIncrementChanging(e);
-                    this.OnPropertyChanging("StepVoltageIncrement", e);
+                    this.OnPropertyChanging("StepVoltageIncrement", e, _stepVoltageIncrementAttribute);
                     this._stepVoltageIncrement = value;
                     this.OnStepVoltageIncrementChanged(e);
-                    this.OnPropertyChanged("StepVoltageIncrement", e);
+                    this.OnPropertyChanged("StepVoltageIncrement", e, _stepVoltageIncrementAttribute);
                 }
             }
         }
@@ -387,10 +415,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
                     int old = this._normalStep;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnNormalStepChanging(e);
-                    this.OnPropertyChanging("NormalStep", e);
+                    this.OnPropertyChanging("NormalStep", e, _normalStepAttribute);
                     this._normalStep = value;
                     this.OnNormalStepChanged(e);
-                    this.OnPropertyChanged("NormalStep", e);
+                    this.OnPropertyChanged("NormalStep", e, _normalStepAttribute);
                 }
             }
         }
@@ -428,7 +456,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
                     IRegulatingControl old = this._regulatingControl;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnRegulatingControlChanging(e);
-                    this.OnPropertyChanging("RegulatingControl", e);
+                    this.OnPropertyChanging("RegulatingControl", e, _regulatingControlReference);
                     this._regulatingControl = value;
                     if ((old != null))
                     {
@@ -441,7 +469,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
                         value.Deleted += this.OnResetRegulatingControl;
                     }
                     this.OnRegulatingControlChanged(e);
-                    this.OnPropertyChanged("RegulatingControl", e);
+                    this.OnPropertyChanged("RegulatingControl", e, _regulatingControlReference);
                 }
             }
         }
@@ -464,7 +492,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
                     IImpedanceVariationCurve old = this._impedanceVariationCurve;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnImpedanceVariationCurveChanging(e);
-                    this.OnPropertyChanging("ImpedanceVariationCurve", e);
+                    this.OnPropertyChanging("ImpedanceVariationCurve", e, _impedanceVariationCurveReference);
                     this._impedanceVariationCurve = value;
                     if ((old != null))
                     {
@@ -477,7 +505,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
                         value.Deleted += this.OnResetImpedanceVariationCurve;
                     }
                     this.OnImpedanceVariationCurveChanged(e);
-                    this.OnPropertyChanged("ImpedanceVariationCurve", e);
+                    this.OnPropertyChanged("ImpedanceVariationCurve", e, _impedanceVariationCurveReference);
                 }
             }
         }
@@ -500,7 +528,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
                     ISvTapStep old = this._svTapStep;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnSvTapStepChanging(e);
-                    this.OnPropertyChanging("SvTapStep", e);
+                    this.OnPropertyChanging("SvTapStep", e, _svTapStepReference);
                     this._svTapStep = value;
                     if ((old != null))
                     {
@@ -513,7 +541,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
                         value.Deleted += this.OnResetSvTapStep;
                     }
                     this.OnSvTapStepChanged(e);
-                    this.OnPropertyChanged("SvTapStep", e);
+                    this.OnPropertyChanged("SvTapStep", e, _svTapStepReference);
                 }
             }
         }
@@ -674,6 +702,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> SvTapStepChanged;
         
+        private static ITypedElement RetrieveInitialDelayAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(TapChanger.ClassInstance)).Resolve("initialDelay")));
+        }
+        
         /// <summary>
         /// Raises the InitialDelayChanging event
         /// </summary>
@@ -698,6 +731,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveSubsequentDelayAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(TapChanger.ClassInstance)).Resolve("subsequentDelay")));
         }
         
         /// <summary>
@@ -726,6 +764,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
             }
         }
         
+        private static ITypedElement RetrieveLtcFlagAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(TapChanger.ClassInstance)).Resolve("ltcFlag")));
+        }
+        
         /// <summary>
         /// Raises the LtcFlagChanging event
         /// </summary>
@@ -750,6 +793,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveRegulationStatusAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(TapChanger.ClassInstance)).Resolve("regulationStatus")));
         }
         
         /// <summary>
@@ -778,6 +826,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
             }
         }
         
+        private static ITypedElement RetrieveNeutralStepAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(TapChanger.ClassInstance)).Resolve("neutralStep")));
+        }
+        
         /// <summary>
         /// Raises the NeutralStepChanging event
         /// </summary>
@@ -802,6 +855,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveNeutralUAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(TapChanger.ClassInstance)).Resolve("neutralU")));
         }
         
         /// <summary>
@@ -830,6 +888,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
             }
         }
         
+        private static ITypedElement RetrieveLowStepAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(TapChanger.ClassInstance)).Resolve("lowStep")));
+        }
+        
         /// <summary>
         /// Raises the LowStepChanging event
         /// </summary>
@@ -854,6 +917,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveHighStepAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(TapChanger.ClassInstance)).Resolve("highStep")));
         }
         
         /// <summary>
@@ -882,6 +950,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
             }
         }
         
+        private static ITypedElement RetrieveStepVoltageIncrementAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(TapChanger.ClassInstance)).Resolve("stepVoltageIncrement")));
+        }
+        
         /// <summary>
         /// Raises the StepVoltageIncrementChanging event
         /// </summary>
@@ -906,6 +979,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveNormalStepAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(TapChanger.ClassInstance)).Resolve("normalStep")));
         }
         
         /// <summary>
@@ -934,6 +1012,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
             }
         }
         
+        private static ITypedElement RetrieveTapSchedulesReference()
+        {
+            return ((ITypedElement)(((ModelElement)(TapChanger.ClassInstance)).Resolve("TapSchedules")));
+        }
+        
         /// <summary>
         /// Forwards CollectionChanging notifications for the TapSchedules property to the parent model element
         /// </summary>
@@ -941,7 +1024,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
         /// <param name="e">The original event data</param>
         private void TapSchedulesCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("TapSchedules", e);
+            this.OnCollectionChanging("TapSchedules", e, _tapSchedulesReference);
         }
         
         /// <summary>
@@ -951,7 +1034,12 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
         /// <param name="e">The original event data</param>
         private void TapSchedulesCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("TapSchedules", e);
+            this.OnCollectionChanged("TapSchedules", e, _tapSchedulesReference);
+        }
+        
+        private static ITypedElement RetrieveRegulatingControlReference()
+        {
+            return ((ITypedElement)(((ModelElement)(TapChanger.ClassInstance)).Resolve("RegulatingControl")));
         }
         
         /// <summary>
@@ -990,6 +1078,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
             this.RegulatingControl = null;
         }
         
+        private static ITypedElement RetrieveImpedanceVariationCurveReference()
+        {
+            return ((ITypedElement)(((ModelElement)(TapChanger.ClassInstance)).Resolve("ImpedanceVariationCurve")));
+        }
+        
         /// <summary>
         /// Raises the ImpedanceVariationCurveChanging event
         /// </summary>
@@ -1024,6 +1117,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
         private void OnResetImpedanceVariationCurve(object sender, System.EventArgs eventArgs)
         {
             this.ImpedanceVariationCurve = null;
+        }
+        
+        private static ITypedElement RetrieveSvTapStepReference()
+        {
+            return ((ITypedElement)(((ModelElement)(TapChanger.ClassInstance)).Resolve("SvTapStep")));
         }
         
         /// <summary>
@@ -1483,7 +1581,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public InitialDelayProxy(ITapChanger modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "initialDelay")
             {
             }
             
@@ -1501,24 +1599,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
                     this.ModelElement.InitialDelay = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.InitialDelayChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.InitialDelayChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1532,7 +1612,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public SubsequentDelayProxy(ITapChanger modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "subsequentDelay")
             {
             }
             
@@ -1550,24 +1630,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
                     this.ModelElement.SubsequentDelay = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.SubsequentDelayChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.SubsequentDelayChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1581,7 +1643,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public LtcFlagProxy(ITapChanger modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "ltcFlag")
             {
             }
             
@@ -1599,24 +1661,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
                     this.ModelElement.LtcFlag = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.LtcFlagChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.LtcFlagChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1630,7 +1674,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public RegulationStatusProxy(ITapChanger modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "regulationStatus")
             {
             }
             
@@ -1648,24 +1692,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
                     this.ModelElement.RegulationStatus = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.RegulationStatusChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.RegulationStatusChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1679,7 +1705,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public NeutralStepProxy(ITapChanger modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "neutralStep")
             {
             }
             
@@ -1697,24 +1723,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
                     this.ModelElement.NeutralStep = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.NeutralStepChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.NeutralStepChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1728,7 +1736,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public NeutralUProxy(ITapChanger modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "neutralU")
             {
             }
             
@@ -1746,24 +1754,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
                     this.ModelElement.NeutralU = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.NeutralUChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.NeutralUChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1777,7 +1767,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public LowStepProxy(ITapChanger modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "lowStep")
             {
             }
             
@@ -1795,24 +1785,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
                     this.ModelElement.LowStep = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.LowStepChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.LowStepChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1826,7 +1798,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public HighStepProxy(ITapChanger modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "highStep")
             {
             }
             
@@ -1844,24 +1816,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
                     this.ModelElement.HighStep = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.HighStepChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.HighStepChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1875,7 +1829,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public StepVoltageIncrementProxy(ITapChanger modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "stepVoltageIncrement")
             {
             }
             
@@ -1893,24 +1847,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
                     this.ModelElement.StepVoltageIncrement = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.StepVoltageIncrementChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.StepVoltageIncrementChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1924,7 +1860,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public NormalStepProxy(ITapChanger modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "normalStep")
             {
             }
             
@@ -1942,24 +1878,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
                     this.ModelElement.NormalStep = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.NormalStepChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.NormalStepChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1973,7 +1891,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public RegulatingControlProxy(ITapChanger modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "RegulatingControl")
             {
             }
             
@@ -1991,24 +1909,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
                     this.ModelElement.RegulatingControl = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.RegulatingControlChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.RegulatingControlChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -2022,7 +1922,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public ImpedanceVariationCurveProxy(ITapChanger modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "ImpedanceVariationCurve")
             {
             }
             
@@ -2040,24 +1940,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
                     this.ModelElement.ImpedanceVariationCurve = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ImpedanceVariationCurveChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ImpedanceVariationCurveChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -2071,7 +1953,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public SvTapStepProxy(ITapChanger modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "SvTapStep")
             {
             }
             
@@ -2088,24 +1970,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
                 {
                     this.ModelElement.SvTapStep = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.SvTapStepChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.SvTapStepChanged -= handler;
             }
         }
     }

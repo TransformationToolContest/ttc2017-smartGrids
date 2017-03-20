@@ -40,7 +40,7 @@ namespace TTC2017.SmartGrids.COSEM.InterfaceClasses
     [XmlNamespacePrefixAttribute("inter")]
     [ModelRepresentationClassAttribute("http://www.transformation-tool-contest.eu/2017/smartGrids/cosem#//InterfaceClasse" +
         "s/PPPsetup")]
-    public class PPPsetup : Base, IPPPsetup, IModelElement
+    public partial class PPPsetup : Base, IPPPsetup, IModelElement
     {
         
         private static IClass _classInstance;

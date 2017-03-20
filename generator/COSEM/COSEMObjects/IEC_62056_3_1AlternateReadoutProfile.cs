@@ -39,7 +39,7 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
     [XmlNamespacePrefixAttribute("objects")]
     [ModelRepresentationClassAttribute("http://www.transformation-tool-contest.eu/2017/smartGrids/cosem#//COSEMObjects/IE" +
         "C_62056_3_1AlternateReadoutProfile")]
-    public class IEC_62056_3_1AlternateReadoutProfile : Profilegeneric, IIEC_62056_3_1AlternateReadoutProfile, IModelElement
+    public partial class IEC_62056_3_1AlternateReadoutProfile : Profilegeneric, IIEC_62056_3_1AlternateReadoutProfile, IModelElement
     {
         
         private static IClass _classInstance;

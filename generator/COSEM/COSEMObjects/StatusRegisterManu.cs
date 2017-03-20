@@ -39,7 +39,7 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
     [XmlNamespacePrefixAttribute("objects")]
     [ModelRepresentationClassAttribute("http://www.transformation-tool-contest.eu/2017/smartGrids/cosem#//COSEMObjects/St" +
         "atusRegisterManu")]
-    public class StatusRegisterManu : Data, IStatusRegisterManu, IModelElement
+    public partial class StatusRegisterManu : Data, IStatusRegisterManu, IModelElement
     {
         
         private static IClass _classInstance;

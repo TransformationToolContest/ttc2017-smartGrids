@@ -46,13 +46,17 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61970/Generation/Production/Increme" +
         "ntalHeatRateCurve")]
     [DebuggerDisplayAttribute("IncrementalHeatRateCurve {UUID}")]
-    public class IncrementalHeatRateCurve : Curve, IIncrementalHeatRateCurve, IModelElement
+    public partial class IncrementalHeatRateCurve : Curve, IIncrementalHeatRateCurve, IModelElement
     {
         
         /// <summary>
         /// The backing field for the IsNetGrossP property
         /// </summary>
         private bool _isNetGrossP;
+        
+        private static Lazy<ITypedElement> _isNetGrossPAttribute = new Lazy<ITypedElement>(RetrieveIsNetGrossPAttribute);
+        
+        private static Lazy<ITypedElement> _thermalGeneratingUnitReference = new Lazy<ITypedElement>(RetrieveThermalGeneratingUnitReference);
         
         /// <summary>
         /// The backing field for the ThermalGeneratingUnit property
@@ -79,10 +83,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
                     bool old = this._isNetGrossP;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnIsNetGrossPChanging(e);
-                    this.OnPropertyChanging("IsNetGrossP", e);
+                    this.OnPropertyChanging("IsNetGrossP", e, _isNetGrossPAttribute);
                     this._isNetGrossP = value;
                     this.OnIsNetGrossPChanged(e);
-                    this.OnPropertyChanged("IsNetGrossP", e);
+                    this.OnPropertyChanged("IsNetGrossP", e, _isNetGrossPAttribute);
                 }
             }
         }
@@ -105,7 +109,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
                     IThermalGeneratingUnit old = this._thermalGeneratingUnit;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnThermalGeneratingUnitChanging(e);
-                    this.OnPropertyChanging("ThermalGeneratingUnit", e);
+                    this.OnPropertyChanging("ThermalGeneratingUnit", e, _thermalGeneratingUnitReference);
                     this._thermalGeneratingUnit = value;
                     if ((old != null))
                     {
@@ -118,7 +122,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
                         value.Deleted += this.OnResetThermalGeneratingUnit;
                     }
                     this.OnThermalGeneratingUnitChanged(e);
-                    this.OnPropertyChanged("ThermalGeneratingUnit", e);
+                    this.OnPropertyChanged("ThermalGeneratingUnit", e, _thermalGeneratingUnitReference);
                 }
             }
         }
@@ -170,6 +174,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> ThermalGeneratingUnitChanged;
         
+        private static ITypedElement RetrieveIsNetGrossPAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(IncrementalHeatRateCurve.ClassInstance)).Resolve("isNetGrossP")));
+        }
+        
         /// <summary>
         /// Raises the IsNetGrossPChanging event
         /// </summary>
@@ -194,6 +203,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveThermalGeneratingUnitReference()
+        {
+            return ((ITypedElement)(((ModelElement)(IncrementalHeatRateCurve.ClassInstance)).Resolve("ThermalGeneratingUnit")));
         }
         
         /// <summary>
@@ -439,7 +453,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public IsNetGrossPProxy(IIncrementalHeatRateCurve modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "isNetGrossP")
             {
             }
             
@@ -457,24 +471,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
                     this.ModelElement.IsNetGrossP = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.IsNetGrossPChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.IsNetGrossPChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -488,7 +484,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public ThermalGeneratingUnitProxy(IIncrementalHeatRateCurve modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "ThermalGeneratingUnit")
             {
             }
             
@@ -505,24 +501,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
                 {
                     this.ModelElement.ThermalGeneratingUnit = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ThermalGeneratingUnitChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ThermalGeneratingUnitChanged -= handler;
             }
         }
     }

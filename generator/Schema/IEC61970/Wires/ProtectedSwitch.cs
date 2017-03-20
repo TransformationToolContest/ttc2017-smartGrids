@@ -53,8 +53,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
     [XmlNamespacePrefixAttribute("cimWires")]
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61970/Wires/ProtectedSwitch")]
     [DebuggerDisplayAttribute("ProtectedSwitch {UUID}")]
-    public class ProtectedSwitch : Switch, IProtectedSwitch, IModelElement
+    public partial class ProtectedSwitch : Switch, IProtectedSwitch, IModelElement
     {
+        
+        private static Lazy<ITypedElement> _recloseSequencesReference = new Lazy<ITypedElement>(RetrieveRecloseSequencesReference);
         
         /// <summary>
         /// The backing field for the RecloseSequences property
@@ -111,6 +113,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
             }
         }
         
+        private static ITypedElement RetrieveRecloseSequencesReference()
+        {
+            return ((ITypedElement)(((ModelElement)(ProtectedSwitch.ClassInstance)).Resolve("RecloseSequences")));
+        }
+        
         /// <summary>
         /// Forwards CollectionChanging notifications for the RecloseSequences property to the parent model element
         /// </summary>
@@ -118,7 +125,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
         /// <param name="e">The original event data</param>
         private void RecloseSequencesCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("RecloseSequences", e);
+            this.OnCollectionChanging("RecloseSequences", e, _recloseSequencesReference);
         }
         
         /// <summary>
@@ -128,7 +135,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
         /// <param name="e">The original event data</param>
         private void RecloseSequencesCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("RecloseSequences", e);
+            this.OnCollectionChanged("RecloseSequences", e, _recloseSequencesReference);
         }
         
         /// <summary>

@@ -53,7 +53,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61970/Informative/InfAssets/Current" +
         "TransformerInfo")]
     [DebuggerDisplayAttribute("CurrentTransformerInfo {UUID}")]
-    public class CurrentTransformerInfo : ElectricalInfo, ICurrentTransformerInfo, IModelElement
+    public partial class CurrentTransformerInfo : ElectricalInfo, ICurrentTransformerInfo, IModelElement
     {
         
         /// <summary>
@@ -61,75 +61,107 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
         /// </summary>
         private string _accuracyClass;
         
+        private static Lazy<ITypedElement> _accuracyClassAttribute = new Lazy<ITypedElement>(RetrieveAccuracyClassAttribute);
+        
         /// <summary>
         /// The backing field for the CtClass property
         /// </summary>
         private string _ctClass;
+        
+        private static Lazy<ITypedElement> _ctClassAttribute = new Lazy<ITypedElement>(RetrieveCtClassAttribute);
         
         /// <summary>
         /// The backing field for the CoreBurden property
         /// </summary>
         private float _coreBurden;
         
+        private static Lazy<ITypedElement> _coreBurdenAttribute = new Lazy<ITypedElement>(RetrieveCoreBurdenAttribute);
+        
         /// <summary>
         /// The backing field for the PrimaryFlsRating property
         /// </summary>
         private float _primaryFlsRating;
+        
+        private static Lazy<ITypedElement> _primaryFlsRatingAttribute = new Lazy<ITypedElement>(RetrievePrimaryFlsRatingAttribute);
         
         /// <summary>
         /// The backing field for the AccuracyLimit property
         /// </summary>
         private float _accuracyLimit;
         
+        private static Lazy<ITypedElement> _accuracyLimitAttribute = new Lazy<ITypedElement>(RetrieveAccuracyLimitAttribute);
+        
         /// <summary>
         /// The backing field for the KneePointCurrent property
         /// </summary>
         private float _kneePointCurrent;
+        
+        private static Lazy<ITypedElement> _kneePointCurrentAttribute = new Lazy<ITypedElement>(RetrieveKneePointCurrentAttribute);
         
         /// <summary>
         /// The backing field for the Usage property
         /// </summary>
         private string _usage;
         
+        private static Lazy<ITypedElement> _usageAttribute = new Lazy<ITypedElement>(RetrieveUsageAttribute);
+        
         /// <summary>
         /// The backing field for the SecondaryFlsRating property
         /// </summary>
         private float _secondaryFlsRating;
+        
+        private static Lazy<ITypedElement> _secondaryFlsRatingAttribute = new Lazy<ITypedElement>(RetrieveSecondaryFlsRatingAttribute);
         
         /// <summary>
         /// The backing field for the TertiaryFlsRating property
         /// </summary>
         private float _tertiaryFlsRating;
         
+        private static Lazy<ITypedElement> _tertiaryFlsRatingAttribute = new Lazy<ITypedElement>(RetrieveTertiaryFlsRatingAttribute);
+        
         /// <summary>
         /// The backing field for the CoreCount property
         /// </summary>
         private int _coreCount;
+        
+        private static Lazy<ITypedElement> _coreCountAttribute = new Lazy<ITypedElement>(RetrieveCoreCountAttribute);
         
         /// <summary>
         /// The backing field for the KneePointVoltage property
         /// </summary>
         private float _kneePointVoltage;
         
+        private static Lazy<ITypedElement> _kneePointVoltageAttribute = new Lazy<ITypedElement>(RetrieveKneePointVoltageAttribute);
+        
+        private static Lazy<ITypedElement> _maxRatioReference = new Lazy<ITypedElement>(RetrieveMaxRatioReference);
+        
         /// <summary>
         /// The backing field for the MaxRatio property
         /// </summary>
         private IRatio _maxRatio;
+        
+        private static Lazy<ITypedElement> _primaryRatioReference = new Lazy<ITypedElement>(RetrievePrimaryRatioReference);
         
         /// <summary>
         /// The backing field for the PrimaryRatio property
         /// </summary>
         private IRatio _primaryRatio;
         
+        private static Lazy<ITypedElement> _tertiaryRatioReference = new Lazy<ITypedElement>(RetrieveTertiaryRatioReference);
+        
         /// <summary>
         /// The backing field for the TertiaryRatio property
         /// </summary>
         private IRatio _tertiaryRatio;
         
+        private static Lazy<ITypedElement> _nominalRatioReference = new Lazy<ITypedElement>(RetrieveNominalRatioReference);
+        
         /// <summary>
         /// The backing field for the NominalRatio property
         /// </summary>
         private IRatio _nominalRatio;
+        
+        private static Lazy<ITypedElement> _secondaryRatioReference = new Lazy<ITypedElement>(RetrieveSecondaryRatioReference);
         
         /// <summary>
         /// The backing field for the SecondaryRatio property
@@ -156,10 +188,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
                     string old = this._accuracyClass;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnAccuracyClassChanging(e);
-                    this.OnPropertyChanging("AccuracyClass", e);
+                    this.OnPropertyChanging("AccuracyClass", e, _accuracyClassAttribute);
                     this._accuracyClass = value;
                     this.OnAccuracyClassChanged(e);
-                    this.OnPropertyChanged("AccuracyClass", e);
+                    this.OnPropertyChanged("AccuracyClass", e, _accuracyClassAttribute);
                 }
             }
         }
@@ -182,10 +214,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
                     string old = this._ctClass;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnCtClassChanging(e);
-                    this.OnPropertyChanging("CtClass", e);
+                    this.OnPropertyChanging("CtClass", e, _ctClassAttribute);
                     this._ctClass = value;
                     this.OnCtClassChanged(e);
-                    this.OnPropertyChanged("CtClass", e);
+                    this.OnPropertyChanged("CtClass", e, _ctClassAttribute);
                 }
             }
         }
@@ -208,10 +240,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
                     float old = this._coreBurden;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnCoreBurdenChanging(e);
-                    this.OnPropertyChanging("CoreBurden", e);
+                    this.OnPropertyChanging("CoreBurden", e, _coreBurdenAttribute);
                     this._coreBurden = value;
                     this.OnCoreBurdenChanged(e);
-                    this.OnPropertyChanged("CoreBurden", e);
+                    this.OnPropertyChanged("CoreBurden", e, _coreBurdenAttribute);
                 }
             }
         }
@@ -234,10 +266,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
                     float old = this._primaryFlsRating;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnPrimaryFlsRatingChanging(e);
-                    this.OnPropertyChanging("PrimaryFlsRating", e);
+                    this.OnPropertyChanging("PrimaryFlsRating", e, _primaryFlsRatingAttribute);
                     this._primaryFlsRating = value;
                     this.OnPrimaryFlsRatingChanged(e);
-                    this.OnPropertyChanged("PrimaryFlsRating", e);
+                    this.OnPropertyChanged("PrimaryFlsRating", e, _primaryFlsRatingAttribute);
                 }
             }
         }
@@ -260,10 +292,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
                     float old = this._accuracyLimit;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnAccuracyLimitChanging(e);
-                    this.OnPropertyChanging("AccuracyLimit", e);
+                    this.OnPropertyChanging("AccuracyLimit", e, _accuracyLimitAttribute);
                     this._accuracyLimit = value;
                     this.OnAccuracyLimitChanged(e);
-                    this.OnPropertyChanged("AccuracyLimit", e);
+                    this.OnPropertyChanged("AccuracyLimit", e, _accuracyLimitAttribute);
                 }
             }
         }
@@ -286,10 +318,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
                     float old = this._kneePointCurrent;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnKneePointCurrentChanging(e);
-                    this.OnPropertyChanging("KneePointCurrent", e);
+                    this.OnPropertyChanging("KneePointCurrent", e, _kneePointCurrentAttribute);
                     this._kneePointCurrent = value;
                     this.OnKneePointCurrentChanged(e);
-                    this.OnPropertyChanged("KneePointCurrent", e);
+                    this.OnPropertyChanged("KneePointCurrent", e, _kneePointCurrentAttribute);
                 }
             }
         }
@@ -312,10 +344,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
                     string old = this._usage;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnUsageChanging(e);
-                    this.OnPropertyChanging("Usage", e);
+                    this.OnPropertyChanging("Usage", e, _usageAttribute);
                     this._usage = value;
                     this.OnUsageChanged(e);
-                    this.OnPropertyChanged("Usage", e);
+                    this.OnPropertyChanged("Usage", e, _usageAttribute);
                 }
             }
         }
@@ -338,10 +370,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
                     float old = this._secondaryFlsRating;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnSecondaryFlsRatingChanging(e);
-                    this.OnPropertyChanging("SecondaryFlsRating", e);
+                    this.OnPropertyChanging("SecondaryFlsRating", e, _secondaryFlsRatingAttribute);
                     this._secondaryFlsRating = value;
                     this.OnSecondaryFlsRatingChanged(e);
-                    this.OnPropertyChanged("SecondaryFlsRating", e);
+                    this.OnPropertyChanged("SecondaryFlsRating", e, _secondaryFlsRatingAttribute);
                 }
             }
         }
@@ -364,10 +396,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
                     float old = this._tertiaryFlsRating;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnTertiaryFlsRatingChanging(e);
-                    this.OnPropertyChanging("TertiaryFlsRating", e);
+                    this.OnPropertyChanging("TertiaryFlsRating", e, _tertiaryFlsRatingAttribute);
                     this._tertiaryFlsRating = value;
                     this.OnTertiaryFlsRatingChanged(e);
-                    this.OnPropertyChanged("TertiaryFlsRating", e);
+                    this.OnPropertyChanged("TertiaryFlsRating", e, _tertiaryFlsRatingAttribute);
                 }
             }
         }
@@ -390,10 +422,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
                     int old = this._coreCount;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnCoreCountChanging(e);
-                    this.OnPropertyChanging("CoreCount", e);
+                    this.OnPropertyChanging("CoreCount", e, _coreCountAttribute);
                     this._coreCount = value;
                     this.OnCoreCountChanged(e);
-                    this.OnPropertyChanged("CoreCount", e);
+                    this.OnPropertyChanged("CoreCount", e, _coreCountAttribute);
                 }
             }
         }
@@ -416,10 +448,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
                     float old = this._kneePointVoltage;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnKneePointVoltageChanging(e);
-                    this.OnPropertyChanging("KneePointVoltage", e);
+                    this.OnPropertyChanging("KneePointVoltage", e, _kneePointVoltageAttribute);
                     this._kneePointVoltage = value;
                     this.OnKneePointVoltageChanged(e);
-                    this.OnPropertyChanged("KneePointVoltage", e);
+                    this.OnPropertyChanged("KneePointVoltage", e, _kneePointVoltageAttribute);
                 }
             }
         }
@@ -442,7 +474,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
                     IRatio old = this._maxRatio;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnMaxRatioChanging(e);
-                    this.OnPropertyChanging("MaxRatio", e);
+                    this.OnPropertyChanging("MaxRatio", e, _maxRatioReference);
                     this._maxRatio = value;
                     if ((old != null))
                     {
@@ -453,7 +485,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
                         value.Deleted += this.OnResetMaxRatio;
                     }
                     this.OnMaxRatioChanged(e);
-                    this.OnPropertyChanged("MaxRatio", e);
+                    this.OnPropertyChanged("MaxRatio", e, _maxRatioReference);
                 }
             }
         }
@@ -476,7 +508,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
                     IRatio old = this._primaryRatio;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnPrimaryRatioChanging(e);
-                    this.OnPropertyChanging("PrimaryRatio", e);
+                    this.OnPropertyChanging("PrimaryRatio", e, _primaryRatioReference);
                     this._primaryRatio = value;
                     if ((old != null))
                     {
@@ -487,7 +519,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
                         value.Deleted += this.OnResetPrimaryRatio;
                     }
                     this.OnPrimaryRatioChanged(e);
-                    this.OnPropertyChanged("PrimaryRatio", e);
+                    this.OnPropertyChanged("PrimaryRatio", e, _primaryRatioReference);
                 }
             }
         }
@@ -510,7 +542,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
                     IRatio old = this._tertiaryRatio;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnTertiaryRatioChanging(e);
-                    this.OnPropertyChanging("TertiaryRatio", e);
+                    this.OnPropertyChanging("TertiaryRatio", e, _tertiaryRatioReference);
                     this._tertiaryRatio = value;
                     if ((old != null))
                     {
@@ -521,7 +553,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
                         value.Deleted += this.OnResetTertiaryRatio;
                     }
                     this.OnTertiaryRatioChanged(e);
-                    this.OnPropertyChanged("TertiaryRatio", e);
+                    this.OnPropertyChanged("TertiaryRatio", e, _tertiaryRatioReference);
                 }
             }
         }
@@ -544,7 +576,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
                     IRatio old = this._nominalRatio;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnNominalRatioChanging(e);
-                    this.OnPropertyChanging("NominalRatio", e);
+                    this.OnPropertyChanging("NominalRatio", e, _nominalRatioReference);
                     this._nominalRatio = value;
                     if ((old != null))
                     {
@@ -555,7 +587,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
                         value.Deleted += this.OnResetNominalRatio;
                     }
                     this.OnNominalRatioChanged(e);
-                    this.OnPropertyChanged("NominalRatio", e);
+                    this.OnPropertyChanged("NominalRatio", e, _nominalRatioReference);
                 }
             }
         }
@@ -578,7 +610,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
                     IRatio old = this._secondaryRatio;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnSecondaryRatioChanging(e);
-                    this.OnPropertyChanging("SecondaryRatio", e);
+                    this.OnPropertyChanging("SecondaryRatio", e, _secondaryRatioReference);
                     this._secondaryRatio = value;
                     if ((old != null))
                     {
@@ -589,7 +621,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
                         value.Deleted += this.OnResetSecondaryRatio;
                     }
                     this.OnSecondaryRatioChanged(e);
-                    this.OnPropertyChanged("SecondaryRatio", e);
+                    this.OnPropertyChanged("SecondaryRatio", e, _secondaryRatioReference);
                 }
             }
         }
@@ -781,6 +813,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> SecondaryRatioChanged;
         
+        private static ITypedElement RetrieveAccuracyClassAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(CurrentTransformerInfo.ClassInstance)).Resolve("accuracyClass")));
+        }
+        
         /// <summary>
         /// Raises the AccuracyClassChanging event
         /// </summary>
@@ -805,6 +842,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveCtClassAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(CurrentTransformerInfo.ClassInstance)).Resolve("ctClass")));
         }
         
         /// <summary>
@@ -833,6 +875,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
             }
         }
         
+        private static ITypedElement RetrieveCoreBurdenAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(CurrentTransformerInfo.ClassInstance)).Resolve("coreBurden")));
+        }
+        
         /// <summary>
         /// Raises the CoreBurdenChanging event
         /// </summary>
@@ -857,6 +904,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrievePrimaryFlsRatingAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(CurrentTransformerInfo.ClassInstance)).Resolve("primaryFlsRating")));
         }
         
         /// <summary>
@@ -885,6 +937,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
             }
         }
         
+        private static ITypedElement RetrieveAccuracyLimitAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(CurrentTransformerInfo.ClassInstance)).Resolve("accuracyLimit")));
+        }
+        
         /// <summary>
         /// Raises the AccuracyLimitChanging event
         /// </summary>
@@ -909,6 +966,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveKneePointCurrentAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(CurrentTransformerInfo.ClassInstance)).Resolve("kneePointCurrent")));
         }
         
         /// <summary>
@@ -937,6 +999,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
             }
         }
         
+        private static ITypedElement RetrieveUsageAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(CurrentTransformerInfo.ClassInstance)).Resolve("usage")));
+        }
+        
         /// <summary>
         /// Raises the UsageChanging event
         /// </summary>
@@ -961,6 +1028,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveSecondaryFlsRatingAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(CurrentTransformerInfo.ClassInstance)).Resolve("secondaryFlsRating")));
         }
         
         /// <summary>
@@ -989,6 +1061,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
             }
         }
         
+        private static ITypedElement RetrieveTertiaryFlsRatingAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(CurrentTransformerInfo.ClassInstance)).Resolve("tertiaryFlsRating")));
+        }
+        
         /// <summary>
         /// Raises the TertiaryFlsRatingChanging event
         /// </summary>
@@ -1013,6 +1090,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveCoreCountAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(CurrentTransformerInfo.ClassInstance)).Resolve("coreCount")));
         }
         
         /// <summary>
@@ -1041,6 +1123,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
             }
         }
         
+        private static ITypedElement RetrieveKneePointVoltageAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(CurrentTransformerInfo.ClassInstance)).Resolve("kneePointVoltage")));
+        }
+        
         /// <summary>
         /// Raises the KneePointVoltageChanging event
         /// </summary>
@@ -1065,6 +1152,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveMaxRatioReference()
+        {
+            return ((ITypedElement)(((ModelElement)(CurrentTransformerInfo.ClassInstance)).Resolve("maxRatio")));
         }
         
         /// <summary>
@@ -1103,6 +1195,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
             this.MaxRatio = null;
         }
         
+        private static ITypedElement RetrievePrimaryRatioReference()
+        {
+            return ((ITypedElement)(((ModelElement)(CurrentTransformerInfo.ClassInstance)).Resolve("primaryRatio")));
+        }
+        
         /// <summary>
         /// Raises the PrimaryRatioChanging event
         /// </summary>
@@ -1137,6 +1234,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
         private void OnResetPrimaryRatio(object sender, System.EventArgs eventArgs)
         {
             this.PrimaryRatio = null;
+        }
+        
+        private static ITypedElement RetrieveTertiaryRatioReference()
+        {
+            return ((ITypedElement)(((ModelElement)(CurrentTransformerInfo.ClassInstance)).Resolve("tertiaryRatio")));
         }
         
         /// <summary>
@@ -1175,6 +1277,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
             this.TertiaryRatio = null;
         }
         
+        private static ITypedElement RetrieveNominalRatioReference()
+        {
+            return ((ITypedElement)(((ModelElement)(CurrentTransformerInfo.ClassInstance)).Resolve("nominalRatio")));
+        }
+        
         /// <summary>
         /// Raises the NominalRatioChanging event
         /// </summary>
@@ -1209,6 +1316,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
         private void OnResetNominalRatio(object sender, System.EventArgs eventArgs)
         {
             this.NominalRatio = null;
+        }
+        
+        private static ITypedElement RetrieveSecondaryRatioReference()
+        {
+            return ((ITypedElement)(((ModelElement)(CurrentTransformerInfo.ClassInstance)).Resolve("secondaryRatio")));
         }
         
         /// <summary>
@@ -1716,7 +1828,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public AccuracyClassProxy(ICurrentTransformerInfo modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "accuracyClass")
             {
             }
             
@@ -1734,24 +1846,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
                     this.ModelElement.AccuracyClass = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.AccuracyClassChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.AccuracyClassChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1765,7 +1859,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public CtClassProxy(ICurrentTransformerInfo modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "ctClass")
             {
             }
             
@@ -1783,24 +1877,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
                     this.ModelElement.CtClass = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.CtClassChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.CtClassChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1814,7 +1890,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public CoreBurdenProxy(ICurrentTransformerInfo modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "coreBurden")
             {
             }
             
@@ -1832,24 +1908,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
                     this.ModelElement.CoreBurden = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.CoreBurdenChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.CoreBurdenChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1863,7 +1921,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public PrimaryFlsRatingProxy(ICurrentTransformerInfo modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "primaryFlsRating")
             {
             }
             
@@ -1881,24 +1939,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
                     this.ModelElement.PrimaryFlsRating = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.PrimaryFlsRatingChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.PrimaryFlsRatingChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1912,7 +1952,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public AccuracyLimitProxy(ICurrentTransformerInfo modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "accuracyLimit")
             {
             }
             
@@ -1930,24 +1970,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
                     this.ModelElement.AccuracyLimit = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.AccuracyLimitChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.AccuracyLimitChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1961,7 +1983,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public KneePointCurrentProxy(ICurrentTransformerInfo modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "kneePointCurrent")
             {
             }
             
@@ -1979,24 +2001,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
                     this.ModelElement.KneePointCurrent = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.KneePointCurrentChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.KneePointCurrentChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -2010,7 +2014,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public UsageProxy(ICurrentTransformerInfo modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "usage")
             {
             }
             
@@ -2028,24 +2032,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
                     this.ModelElement.Usage = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.UsageChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.UsageChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -2059,7 +2045,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public SecondaryFlsRatingProxy(ICurrentTransformerInfo modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "secondaryFlsRating")
             {
             }
             
@@ -2077,24 +2063,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
                     this.ModelElement.SecondaryFlsRating = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.SecondaryFlsRatingChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.SecondaryFlsRatingChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -2108,7 +2076,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public TertiaryFlsRatingProxy(ICurrentTransformerInfo modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "tertiaryFlsRating")
             {
             }
             
@@ -2126,24 +2094,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
                     this.ModelElement.TertiaryFlsRating = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.TertiaryFlsRatingChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.TertiaryFlsRatingChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -2157,7 +2107,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public CoreCountProxy(ICurrentTransformerInfo modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "coreCount")
             {
             }
             
@@ -2175,24 +2125,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
                     this.ModelElement.CoreCount = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.CoreCountChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.CoreCountChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -2206,7 +2138,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public KneePointVoltageProxy(ICurrentTransformerInfo modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "kneePointVoltage")
             {
             }
             
@@ -2224,24 +2156,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
                     this.ModelElement.KneePointVoltage = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.KneePointVoltageChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.KneePointVoltageChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -2255,7 +2169,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public MaxRatioProxy(ICurrentTransformerInfo modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "maxRatio")
             {
             }
             
@@ -2273,24 +2187,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
                     this.ModelElement.MaxRatio = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.MaxRatioChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.MaxRatioChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -2304,7 +2200,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public PrimaryRatioProxy(ICurrentTransformerInfo modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "primaryRatio")
             {
             }
             
@@ -2322,24 +2218,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
                     this.ModelElement.PrimaryRatio = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.PrimaryRatioChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.PrimaryRatioChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -2353,7 +2231,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public TertiaryRatioProxy(ICurrentTransformerInfo modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "tertiaryRatio")
             {
             }
             
@@ -2371,24 +2249,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
                     this.ModelElement.TertiaryRatio = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.TertiaryRatioChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.TertiaryRatioChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -2402,7 +2262,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public NominalRatioProxy(ICurrentTransformerInfo modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "nominalRatio")
             {
             }
             
@@ -2420,24 +2280,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
                     this.ModelElement.NominalRatio = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.NominalRatioChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.NominalRatioChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -2451,7 +2293,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public SecondaryRatioProxy(ICurrentTransformerInfo modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "secondaryRatio")
             {
             }
             
@@ -2468,24 +2310,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
                 {
                     this.ModelElement.SecondaryRatio = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.SecondaryRatioChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.SecondaryRatioChanged -= handler;
             }
         }
     }

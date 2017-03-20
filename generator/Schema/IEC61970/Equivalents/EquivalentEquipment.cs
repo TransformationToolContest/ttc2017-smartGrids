@@ -40,8 +40,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Equivalents
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61970/Equivalents/EquivalentEquipme" +
         "nt")]
     [DebuggerDisplayAttribute("EquivalentEquipment {UUID}")]
-    public class EquivalentEquipment : ConductingEquipment, IEquivalentEquipment, IModelElement
+    public partial class EquivalentEquipment : ConductingEquipment, IEquivalentEquipment, IModelElement
     {
+        
+        private static Lazy<ITypedElement> _equivalentNetworkReference = new Lazy<ITypedElement>(RetrieveEquivalentNetworkReference);
         
         /// <summary>
         /// The backing field for the EquivalentNetwork property
@@ -68,7 +70,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Equivalents
                     IEquivalentNetwork old = this._equivalentNetwork;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnEquivalentNetworkChanging(e);
-                    this.OnPropertyChanging("EquivalentNetwork", e);
+                    this.OnPropertyChanging("EquivalentNetwork", e, _equivalentNetworkReference);
                     this._equivalentNetwork = value;
                     if ((old != null))
                     {
@@ -81,7 +83,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Equivalents
                         value.Deleted += this.OnResetEquivalentNetwork;
                     }
                     this.OnEquivalentNetworkChanged(e);
-                    this.OnPropertyChanged("EquivalentNetwork", e);
+                    this.OnPropertyChanged("EquivalentNetwork", e, _equivalentNetworkReference);
                 }
             }
         }
@@ -122,6 +124,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Equivalents
         /// Gets fired when the EquivalentNetwork property changed its value
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> EquivalentNetworkChanged;
+        
+        private static ITypedElement RetrieveEquivalentNetworkReference()
+        {
+            return ((ITypedElement)(((ModelElement)(EquivalentEquipment.ClassInstance)).Resolve("EquivalentNetwork")));
+        }
         
         /// <summary>
         /// Raises the EquivalentNetworkChanging event
@@ -346,7 +353,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Equivalents
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public EquivalentNetworkProxy(IEquivalentEquipment modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "EquivalentNetwork")
             {
             }
             
@@ -363,24 +370,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Equivalents
                 {
                     this.ModelElement.EquivalentNetwork = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.EquivalentNetworkChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.EquivalentNetworkChanged -= handler;
             }
         }
     }

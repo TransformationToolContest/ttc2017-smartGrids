@@ -39,7 +39,7 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
     [XmlNamespacePrefixAttribute("objects")]
     [ModelRepresentationClassAttribute("http://www.transformation-tool-contest.eu/2017/smartGrids/cosem#//COSEMObjects/Er" +
         "rorProfileObject")]
-    public class ErrorProfileObject : Profilegeneric, IErrorProfileObject, IModelElement
+    public partial class ErrorProfileObject : Profilegeneric, IErrorProfileObject, IModelElement
     {
         
         private static IClass _classInstance;

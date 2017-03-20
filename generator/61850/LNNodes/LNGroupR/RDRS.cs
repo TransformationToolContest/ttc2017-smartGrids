@@ -41,13 +41,17 @@ namespace TTC2017.SmartGrids.SubstationStandard.LNNodes.LNGroupR
     [XmlNamespacePrefixAttribute("groupr")]
     [ModelRepresentationClassAttribute("http://www.transformation-tool-contest.eu/2017/smartGrids/substationStandard#//LN" +
         "Nodes/LNGroupR/RDRS")]
-    public class RDRS : TTC2017.SmartGrids.SubstationStandard.LNNodes.LNGroupR.GroupR, IRDRS, IModelElement
+    public partial class RDRS : TTC2017.SmartGrids.SubstationStandard.LNNodes.LNGroupR.GroupR, IRDRS, IModelElement
     {
+        
+        private static Lazy<ITypedElement> _autoUpLodReference = new Lazy<ITypedElement>(RetrieveAutoUpLodReference);
         
         /// <summary>
         /// The backing field for the AutoUpLod property
         /// </summary>
         private ISPC _autoUpLod;
+        
+        private static Lazy<ITypedElement> _dltRcdReference = new Lazy<ITypedElement>(RetrieveDltRcdReference);
         
         /// <summary>
         /// The backing field for the DltRcd property
@@ -73,7 +77,7 @@ namespace TTC2017.SmartGrids.SubstationStandard.LNNodes.LNGroupR
                     ISPC old = this._autoUpLod;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnAutoUpLodChanging(e);
-                    this.OnPropertyChanging("AutoUpLod", e);
+                    this.OnPropertyChanging("AutoUpLod", e, _autoUpLodReference);
                     this._autoUpLod = value;
                     if ((old != null))
                     {
@@ -84,7 +88,7 @@ namespace TTC2017.SmartGrids.SubstationStandard.LNNodes.LNGroupR
                         value.Deleted += this.OnResetAutoUpLod;
                     }
                     this.OnAutoUpLodChanged(e);
-                    this.OnPropertyChanged("AutoUpLod", e);
+                    this.OnPropertyChanged("AutoUpLod", e, _autoUpLodReference);
                 }
             }
         }
@@ -106,7 +110,7 @@ namespace TTC2017.SmartGrids.SubstationStandard.LNNodes.LNGroupR
                     ISPC old = this._dltRcd;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnDltRcdChanging(e);
-                    this.OnPropertyChanging("DltRcd", e);
+                    this.OnPropertyChanging("DltRcd", e, _dltRcdReference);
                     this._dltRcd = value;
                     if ((old != null))
                     {
@@ -117,7 +121,7 @@ namespace TTC2017.SmartGrids.SubstationStandard.LNNodes.LNGroupR
                         value.Deleted += this.OnResetDltRcd;
                     }
                     this.OnDltRcdChanged(e);
-                    this.OnPropertyChanged("DltRcd", e);
+                    this.OnPropertyChanged("DltRcd", e, _dltRcdReference);
                 }
             }
         }
@@ -169,6 +173,11 @@ namespace TTC2017.SmartGrids.SubstationStandard.LNNodes.LNGroupR
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> DltRcdChanged;
         
+        private static ITypedElement RetrieveAutoUpLodReference()
+        {
+            return ((ITypedElement)(((ModelElement)(RDRS.ClassInstance)).Resolve("AutoUpLod")));
+        }
+        
         /// <summary>
         /// Raises the AutoUpLodChanging event
         /// </summary>
@@ -203,6 +212,11 @@ namespace TTC2017.SmartGrids.SubstationStandard.LNNodes.LNGroupR
         private void OnResetAutoUpLod(object sender, System.EventArgs eventArgs)
         {
             this.AutoUpLod = null;
+        }
+        
+        private static ITypedElement RetrieveDltRcdReference()
+        {
+            return ((ITypedElement)(((ModelElement)(RDRS.ClassInstance)).Resolve("DltRcd")));
         }
         
         /// <summary>
@@ -471,7 +485,7 @@ namespace TTC2017.SmartGrids.SubstationStandard.LNNodes.LNGroupR
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public AutoUpLodProxy(IRDRS modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "AutoUpLod")
             {
             }
             
@@ -489,24 +503,6 @@ namespace TTC2017.SmartGrids.SubstationStandard.LNNodes.LNGroupR
                     this.ModelElement.AutoUpLod = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.AutoUpLodChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.AutoUpLodChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -520,7 +516,7 @@ namespace TTC2017.SmartGrids.SubstationStandard.LNNodes.LNGroupR
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public DltRcdProxy(IRDRS modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "DltRcd")
             {
             }
             
@@ -537,24 +533,6 @@ namespace TTC2017.SmartGrids.SubstationStandard.LNNodes.LNGroupR
                 {
                     this.ModelElement.DltRcd = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.DltRcdChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.DltRcdChanged -= handler;
             }
         }
     }

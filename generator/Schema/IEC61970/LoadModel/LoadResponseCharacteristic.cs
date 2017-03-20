@@ -44,7 +44,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.LoadModel
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61970/LoadModel/LoadResponseCharact" +
         "eristic")]
     [DebuggerDisplayAttribute("LoadResponseCharacteristic {UUID}")]
-    public class LoadResponseCharacteristic : IdentifiedObject, ILoadResponseCharacteristic, IModelElement
+    public partial class LoadResponseCharacteristic : IdentifiedObject, ILoadResponseCharacteristic, IModelElement
     {
         
         /// <summary>
@@ -52,55 +52,79 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.LoadModel
         /// </summary>
         private bool _exponentModel;
         
+        private static Lazy<ITypedElement> _exponentModelAttribute = new Lazy<ITypedElement>(RetrieveExponentModelAttribute);
+        
         /// <summary>
         /// The backing field for the PConstantCurrent property
         /// </summary>
         private float _pConstantCurrent;
+        
+        private static Lazy<ITypedElement> _pConstantCurrentAttribute = new Lazy<ITypedElement>(RetrievePConstantCurrentAttribute);
         
         /// <summary>
         /// The backing field for the QConstantImpedance property
         /// </summary>
         private float _qConstantImpedance;
         
+        private static Lazy<ITypedElement> _qConstantImpedanceAttribute = new Lazy<ITypedElement>(RetrieveQConstantImpedanceAttribute);
+        
         /// <summary>
         /// The backing field for the QFrequencyExponent property
         /// </summary>
         private float _qFrequencyExponent;
+        
+        private static Lazy<ITypedElement> _qFrequencyExponentAttribute = new Lazy<ITypedElement>(RetrieveQFrequencyExponentAttribute);
         
         /// <summary>
         /// The backing field for the PFrequencyExponent property
         /// </summary>
         private float _pFrequencyExponent;
         
+        private static Lazy<ITypedElement> _pFrequencyExponentAttribute = new Lazy<ITypedElement>(RetrievePFrequencyExponentAttribute);
+        
         /// <summary>
         /// The backing field for the PConstantImpedance property
         /// </summary>
         private float _pConstantImpedance;
+        
+        private static Lazy<ITypedElement> _pConstantImpedanceAttribute = new Lazy<ITypedElement>(RetrievePConstantImpedanceAttribute);
         
         /// <summary>
         /// The backing field for the QVoltageExponent property
         /// </summary>
         private float _qVoltageExponent;
         
+        private static Lazy<ITypedElement> _qVoltageExponentAttribute = new Lazy<ITypedElement>(RetrieveQVoltageExponentAttribute);
+        
         /// <summary>
         /// The backing field for the PVoltageExponent property
         /// </summary>
         private float _pVoltageExponent;
+        
+        private static Lazy<ITypedElement> _pVoltageExponentAttribute = new Lazy<ITypedElement>(RetrievePVoltageExponentAttribute);
         
         /// <summary>
         /// The backing field for the QConstantCurrent property
         /// </summary>
         private float _qConstantCurrent;
         
+        private static Lazy<ITypedElement> _qConstantCurrentAttribute = new Lazy<ITypedElement>(RetrieveQConstantCurrentAttribute);
+        
         /// <summary>
         /// The backing field for the PConstantPower property
         /// </summary>
         private float _pConstantPower;
         
+        private static Lazy<ITypedElement> _pConstantPowerAttribute = new Lazy<ITypedElement>(RetrievePConstantPowerAttribute);
+        
         /// <summary>
         /// The backing field for the QConstantPower property
         /// </summary>
         private float _qConstantPower;
+        
+        private static Lazy<ITypedElement> _qConstantPowerAttribute = new Lazy<ITypedElement>(RetrieveQConstantPowerAttribute);
+        
+        private static Lazy<ITypedElement> _energyConsumerReference = new Lazy<ITypedElement>(RetrieveEnergyConsumerReference);
         
         /// <summary>
         /// The backing field for the EnergyConsumer property
@@ -134,10 +158,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.LoadModel
                     bool old = this._exponentModel;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnExponentModelChanging(e);
-                    this.OnPropertyChanging("ExponentModel", e);
+                    this.OnPropertyChanging("ExponentModel", e, _exponentModelAttribute);
                     this._exponentModel = value;
                     this.OnExponentModelChanged(e);
-                    this.OnPropertyChanged("ExponentModel", e);
+                    this.OnPropertyChanged("ExponentModel", e, _exponentModelAttribute);
                 }
             }
         }
@@ -160,10 +184,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.LoadModel
                     float old = this._pConstantCurrent;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnPConstantCurrentChanging(e);
-                    this.OnPropertyChanging("PConstantCurrent", e);
+                    this.OnPropertyChanging("PConstantCurrent", e, _pConstantCurrentAttribute);
                     this._pConstantCurrent = value;
                     this.OnPConstantCurrentChanged(e);
-                    this.OnPropertyChanged("PConstantCurrent", e);
+                    this.OnPropertyChanged("PConstantCurrent", e, _pConstantCurrentAttribute);
                 }
             }
         }
@@ -186,10 +210,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.LoadModel
                     float old = this._qConstantImpedance;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnQConstantImpedanceChanging(e);
-                    this.OnPropertyChanging("QConstantImpedance", e);
+                    this.OnPropertyChanging("QConstantImpedance", e, _qConstantImpedanceAttribute);
                     this._qConstantImpedance = value;
                     this.OnQConstantImpedanceChanged(e);
-                    this.OnPropertyChanged("QConstantImpedance", e);
+                    this.OnPropertyChanged("QConstantImpedance", e, _qConstantImpedanceAttribute);
                 }
             }
         }
@@ -212,10 +236,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.LoadModel
                     float old = this._qFrequencyExponent;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnQFrequencyExponentChanging(e);
-                    this.OnPropertyChanging("QFrequencyExponent", e);
+                    this.OnPropertyChanging("QFrequencyExponent", e, _qFrequencyExponentAttribute);
                     this._qFrequencyExponent = value;
                     this.OnQFrequencyExponentChanged(e);
-                    this.OnPropertyChanged("QFrequencyExponent", e);
+                    this.OnPropertyChanged("QFrequencyExponent", e, _qFrequencyExponentAttribute);
                 }
             }
         }
@@ -238,10 +262,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.LoadModel
                     float old = this._pFrequencyExponent;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnPFrequencyExponentChanging(e);
-                    this.OnPropertyChanging("PFrequencyExponent", e);
+                    this.OnPropertyChanging("PFrequencyExponent", e, _pFrequencyExponentAttribute);
                     this._pFrequencyExponent = value;
                     this.OnPFrequencyExponentChanged(e);
-                    this.OnPropertyChanged("PFrequencyExponent", e);
+                    this.OnPropertyChanged("PFrequencyExponent", e, _pFrequencyExponentAttribute);
                 }
             }
         }
@@ -264,10 +288,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.LoadModel
                     float old = this._pConstantImpedance;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnPConstantImpedanceChanging(e);
-                    this.OnPropertyChanging("PConstantImpedance", e);
+                    this.OnPropertyChanging("PConstantImpedance", e, _pConstantImpedanceAttribute);
                     this._pConstantImpedance = value;
                     this.OnPConstantImpedanceChanged(e);
-                    this.OnPropertyChanged("PConstantImpedance", e);
+                    this.OnPropertyChanged("PConstantImpedance", e, _pConstantImpedanceAttribute);
                 }
             }
         }
@@ -290,10 +314,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.LoadModel
                     float old = this._qVoltageExponent;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnQVoltageExponentChanging(e);
-                    this.OnPropertyChanging("QVoltageExponent", e);
+                    this.OnPropertyChanging("QVoltageExponent", e, _qVoltageExponentAttribute);
                     this._qVoltageExponent = value;
                     this.OnQVoltageExponentChanged(e);
-                    this.OnPropertyChanged("QVoltageExponent", e);
+                    this.OnPropertyChanged("QVoltageExponent", e, _qVoltageExponentAttribute);
                 }
             }
         }
@@ -316,10 +340,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.LoadModel
                     float old = this._pVoltageExponent;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnPVoltageExponentChanging(e);
-                    this.OnPropertyChanging("PVoltageExponent", e);
+                    this.OnPropertyChanging("PVoltageExponent", e, _pVoltageExponentAttribute);
                     this._pVoltageExponent = value;
                     this.OnPVoltageExponentChanged(e);
-                    this.OnPropertyChanged("PVoltageExponent", e);
+                    this.OnPropertyChanged("PVoltageExponent", e, _pVoltageExponentAttribute);
                 }
             }
         }
@@ -342,10 +366,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.LoadModel
                     float old = this._qConstantCurrent;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnQConstantCurrentChanging(e);
-                    this.OnPropertyChanging("QConstantCurrent", e);
+                    this.OnPropertyChanging("QConstantCurrent", e, _qConstantCurrentAttribute);
                     this._qConstantCurrent = value;
                     this.OnQConstantCurrentChanged(e);
-                    this.OnPropertyChanged("QConstantCurrent", e);
+                    this.OnPropertyChanged("QConstantCurrent", e, _qConstantCurrentAttribute);
                 }
             }
         }
@@ -368,10 +392,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.LoadModel
                     float old = this._pConstantPower;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnPConstantPowerChanging(e);
-                    this.OnPropertyChanging("PConstantPower", e);
+                    this.OnPropertyChanging("PConstantPower", e, _pConstantPowerAttribute);
                     this._pConstantPower = value;
                     this.OnPConstantPowerChanged(e);
-                    this.OnPropertyChanged("PConstantPower", e);
+                    this.OnPropertyChanged("PConstantPower", e, _pConstantPowerAttribute);
                 }
             }
         }
@@ -394,10 +418,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.LoadModel
                     float old = this._qConstantPower;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnQConstantPowerChanging(e);
-                    this.OnPropertyChanging("QConstantPower", e);
+                    this.OnPropertyChanging("QConstantPower", e, _qConstantPowerAttribute);
                     this._qConstantPower = value;
                     this.OnQConstantPowerChanged(e);
-                    this.OnPropertyChanged("QConstantPower", e);
+                    this.OnPropertyChanged("QConstantPower", e, _qConstantPowerAttribute);
                 }
             }
         }
@@ -554,6 +578,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.LoadModel
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> QConstantPowerChanged;
         
+        private static ITypedElement RetrieveExponentModelAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(LoadResponseCharacteristic.ClassInstance)).Resolve("exponentModel")));
+        }
+        
         /// <summary>
         /// Raises the ExponentModelChanging event
         /// </summary>
@@ -578,6 +607,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.LoadModel
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrievePConstantCurrentAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(LoadResponseCharacteristic.ClassInstance)).Resolve("pConstantCurrent")));
         }
         
         /// <summary>
@@ -606,6 +640,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.LoadModel
             }
         }
         
+        private static ITypedElement RetrieveQConstantImpedanceAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(LoadResponseCharacteristic.ClassInstance)).Resolve("qConstantImpedance")));
+        }
+        
         /// <summary>
         /// Raises the QConstantImpedanceChanging event
         /// </summary>
@@ -630,6 +669,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.LoadModel
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveQFrequencyExponentAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(LoadResponseCharacteristic.ClassInstance)).Resolve("qFrequencyExponent")));
         }
         
         /// <summary>
@@ -658,6 +702,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.LoadModel
             }
         }
         
+        private static ITypedElement RetrievePFrequencyExponentAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(LoadResponseCharacteristic.ClassInstance)).Resolve("pFrequencyExponent")));
+        }
+        
         /// <summary>
         /// Raises the PFrequencyExponentChanging event
         /// </summary>
@@ -682,6 +731,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.LoadModel
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrievePConstantImpedanceAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(LoadResponseCharacteristic.ClassInstance)).Resolve("pConstantImpedance")));
         }
         
         /// <summary>
@@ -710,6 +764,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.LoadModel
             }
         }
         
+        private static ITypedElement RetrieveQVoltageExponentAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(LoadResponseCharacteristic.ClassInstance)).Resolve("qVoltageExponent")));
+        }
+        
         /// <summary>
         /// Raises the QVoltageExponentChanging event
         /// </summary>
@@ -734,6 +793,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.LoadModel
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrievePVoltageExponentAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(LoadResponseCharacteristic.ClassInstance)).Resolve("pVoltageExponent")));
         }
         
         /// <summary>
@@ -762,6 +826,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.LoadModel
             }
         }
         
+        private static ITypedElement RetrieveQConstantCurrentAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(LoadResponseCharacteristic.ClassInstance)).Resolve("qConstantCurrent")));
+        }
+        
         /// <summary>
         /// Raises the QConstantCurrentChanging event
         /// </summary>
@@ -786,6 +855,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.LoadModel
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrievePConstantPowerAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(LoadResponseCharacteristic.ClassInstance)).Resolve("pConstantPower")));
         }
         
         /// <summary>
@@ -814,6 +888,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.LoadModel
             }
         }
         
+        private static ITypedElement RetrieveQConstantPowerAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(LoadResponseCharacteristic.ClassInstance)).Resolve("qConstantPower")));
+        }
+        
         /// <summary>
         /// Raises the QConstantPowerChanging event
         /// </summary>
@@ -840,6 +919,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.LoadModel
             }
         }
         
+        private static ITypedElement RetrieveEnergyConsumerReference()
+        {
+            return ((ITypedElement)(((ModelElement)(LoadResponseCharacteristic.ClassInstance)).Resolve("EnergyConsumer")));
+        }
+        
         /// <summary>
         /// Forwards CollectionChanging notifications for the EnergyConsumer property to the parent model element
         /// </summary>
@@ -847,7 +931,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.LoadModel
         /// <param name="e">The original event data</param>
         private void EnergyConsumerCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("EnergyConsumer", e);
+            this.OnCollectionChanging("EnergyConsumer", e, _energyConsumerReference);
         }
         
         /// <summary>
@@ -857,7 +941,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.LoadModel
         /// <param name="e">The original event data</param>
         private void EnergyConsumerCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("EnergyConsumer", e);
+            this.OnCollectionChanged("EnergyConsumer", e, _energyConsumerReference);
         }
         
         /// <summary>
@@ -1142,7 +1226,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.LoadModel
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public ExponentModelProxy(ILoadResponseCharacteristic modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "exponentModel")
             {
             }
             
@@ -1160,24 +1244,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.LoadModel
                     this.ModelElement.ExponentModel = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ExponentModelChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ExponentModelChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1191,7 +1257,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.LoadModel
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public PConstantCurrentProxy(ILoadResponseCharacteristic modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "pConstantCurrent")
             {
             }
             
@@ -1209,24 +1275,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.LoadModel
                     this.ModelElement.PConstantCurrent = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.PConstantCurrentChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.PConstantCurrentChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1240,7 +1288,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.LoadModel
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public QConstantImpedanceProxy(ILoadResponseCharacteristic modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "qConstantImpedance")
             {
             }
             
@@ -1258,24 +1306,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.LoadModel
                     this.ModelElement.QConstantImpedance = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.QConstantImpedanceChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.QConstantImpedanceChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1289,7 +1319,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.LoadModel
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public QFrequencyExponentProxy(ILoadResponseCharacteristic modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "qFrequencyExponent")
             {
             }
             
@@ -1307,24 +1337,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.LoadModel
                     this.ModelElement.QFrequencyExponent = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.QFrequencyExponentChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.QFrequencyExponentChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1338,7 +1350,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.LoadModel
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public PFrequencyExponentProxy(ILoadResponseCharacteristic modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "pFrequencyExponent")
             {
             }
             
@@ -1356,24 +1368,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.LoadModel
                     this.ModelElement.PFrequencyExponent = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.PFrequencyExponentChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.PFrequencyExponentChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1387,7 +1381,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.LoadModel
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public PConstantImpedanceProxy(ILoadResponseCharacteristic modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "pConstantImpedance")
             {
             }
             
@@ -1405,24 +1399,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.LoadModel
                     this.ModelElement.PConstantImpedance = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.PConstantImpedanceChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.PConstantImpedanceChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1436,7 +1412,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.LoadModel
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public QVoltageExponentProxy(ILoadResponseCharacteristic modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "qVoltageExponent")
             {
             }
             
@@ -1454,24 +1430,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.LoadModel
                     this.ModelElement.QVoltageExponent = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.QVoltageExponentChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.QVoltageExponentChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1485,7 +1443,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.LoadModel
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public PVoltageExponentProxy(ILoadResponseCharacteristic modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "pVoltageExponent")
             {
             }
             
@@ -1503,24 +1461,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.LoadModel
                     this.ModelElement.PVoltageExponent = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.PVoltageExponentChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.PVoltageExponentChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1534,7 +1474,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.LoadModel
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public QConstantCurrentProxy(ILoadResponseCharacteristic modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "qConstantCurrent")
             {
             }
             
@@ -1552,24 +1492,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.LoadModel
                     this.ModelElement.QConstantCurrent = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.QConstantCurrentChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.QConstantCurrentChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1583,7 +1505,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.LoadModel
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public PConstantPowerProxy(ILoadResponseCharacteristic modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "pConstantPower")
             {
             }
             
@@ -1601,24 +1523,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.LoadModel
                     this.ModelElement.PConstantPower = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.PConstantPowerChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.PConstantPowerChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1632,7 +1536,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.LoadModel
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public QConstantPowerProxy(ILoadResponseCharacteristic modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "qConstantPower")
             {
             }
             
@@ -1649,24 +1553,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.LoadModel
                 {
                     this.ModelElement.QConstantPower = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.QConstantPowerChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.QConstantPowerChanged -= handler;
             }
         }
     }

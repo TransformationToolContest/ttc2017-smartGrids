@@ -53,7 +53,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
     [XmlNamespacePrefixAttribute("cimWires")]
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61970/Wires/RegulationSchedule")]
     [DebuggerDisplayAttribute("RegulationSchedule {UUID}")]
-    public class RegulationSchedule : SeasonDayTypeSchedule, IRegulationSchedule, IModelElement
+    public partial class RegulationSchedule : SeasonDayTypeSchedule, IRegulationSchedule, IModelElement
     {
         
         /// <summary>
@@ -61,20 +61,30 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
         /// </summary>
         private float _lineDropR;
         
+        private static Lazy<ITypedElement> _lineDropRAttribute = new Lazy<ITypedElement>(RetrieveLineDropRAttribute);
+        
         /// <summary>
         /// The backing field for the LineDropX property
         /// </summary>
         private float _lineDropX;
+        
+        private static Lazy<ITypedElement> _lineDropXAttribute = new Lazy<ITypedElement>(RetrieveLineDropXAttribute);
         
         /// <summary>
         /// The backing field for the LineDropCompensation property
         /// </summary>
         private bool _lineDropCompensation;
         
+        private static Lazy<ITypedElement> _lineDropCompensationAttribute = new Lazy<ITypedElement>(RetrieveLineDropCompensationAttribute);
+        
+        private static Lazy<ITypedElement> _regulatingControlReference = new Lazy<ITypedElement>(RetrieveRegulatingControlReference);
+        
         /// <summary>
         /// The backing field for the RegulatingControl property
         /// </summary>
         private IRegulatingControl _regulatingControl;
+        
+        private static Lazy<ITypedElement> _voltageControlZonesReference = new Lazy<ITypedElement>(RetrieveVoltageControlZonesReference);
         
         /// <summary>
         /// The backing field for the VoltageControlZones property
@@ -108,10 +118,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
                     float old = this._lineDropR;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnLineDropRChanging(e);
-                    this.OnPropertyChanging("LineDropR", e);
+                    this.OnPropertyChanging("LineDropR", e, _lineDropRAttribute);
                     this._lineDropR = value;
                     this.OnLineDropRChanged(e);
-                    this.OnPropertyChanged("LineDropR", e);
+                    this.OnPropertyChanged("LineDropR", e, _lineDropRAttribute);
                 }
             }
         }
@@ -134,10 +144,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
                     float old = this._lineDropX;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnLineDropXChanging(e);
-                    this.OnPropertyChanging("LineDropX", e);
+                    this.OnPropertyChanging("LineDropX", e, _lineDropXAttribute);
                     this._lineDropX = value;
                     this.OnLineDropXChanged(e);
-                    this.OnPropertyChanged("LineDropX", e);
+                    this.OnPropertyChanged("LineDropX", e, _lineDropXAttribute);
                 }
             }
         }
@@ -160,10 +170,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
                     bool old = this._lineDropCompensation;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnLineDropCompensationChanging(e);
-                    this.OnPropertyChanging("LineDropCompensation", e);
+                    this.OnPropertyChanging("LineDropCompensation", e, _lineDropCompensationAttribute);
                     this._lineDropCompensation = value;
                     this.OnLineDropCompensationChanged(e);
-                    this.OnPropertyChanged("LineDropCompensation", e);
+                    this.OnPropertyChanged("LineDropCompensation", e, _lineDropCompensationAttribute);
                 }
             }
         }
@@ -186,7 +196,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
                     IRegulatingControl old = this._regulatingControl;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnRegulatingControlChanging(e);
-                    this.OnPropertyChanging("RegulatingControl", e);
+                    this.OnPropertyChanging("RegulatingControl", e, _regulatingControlReference);
                     this._regulatingControl = value;
                     if ((old != null))
                     {
@@ -199,7 +209,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
                         value.Deleted += this.OnResetRegulatingControl;
                     }
                     this.OnRegulatingControlChanged(e);
-                    this.OnPropertyChanged("RegulatingControl", e);
+                    this.OnPropertyChanged("RegulatingControl", e, _regulatingControlReference);
                 }
             }
         }
@@ -285,6 +295,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> RegulatingControlChanged;
         
+        private static ITypedElement RetrieveLineDropRAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(RegulationSchedule.ClassInstance)).Resolve("lineDropR")));
+        }
+        
         /// <summary>
         /// Raises the LineDropRChanging event
         /// </summary>
@@ -309,6 +324,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveLineDropXAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(RegulationSchedule.ClassInstance)).Resolve("lineDropX")));
         }
         
         /// <summary>
@@ -337,6 +357,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
             }
         }
         
+        private static ITypedElement RetrieveLineDropCompensationAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(RegulationSchedule.ClassInstance)).Resolve("lineDropCompensation")));
+        }
+        
         /// <summary>
         /// Raises the LineDropCompensationChanging event
         /// </summary>
@@ -361,6 +386,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveRegulatingControlReference()
+        {
+            return ((ITypedElement)(((ModelElement)(RegulationSchedule.ClassInstance)).Resolve("RegulatingControl")));
         }
         
         /// <summary>
@@ -399,6 +429,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
             this.RegulatingControl = null;
         }
         
+        private static ITypedElement RetrieveVoltageControlZonesReference()
+        {
+            return ((ITypedElement)(((ModelElement)(RegulationSchedule.ClassInstance)).Resolve("VoltageControlZones")));
+        }
+        
         /// <summary>
         /// Forwards CollectionChanging notifications for the VoltageControlZones property to the parent model element
         /// </summary>
@@ -406,7 +441,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
         /// <param name="e">The original event data</param>
         private void VoltageControlZonesCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("VoltageControlZones", e);
+            this.OnCollectionChanging("VoltageControlZones", e, _voltageControlZonesReference);
         }
         
         /// <summary>
@@ -416,7 +451,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
         /// <param name="e">The original event data</param>
         private void VoltageControlZonesCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("VoltageControlZones", e);
+            this.OnCollectionChanged("VoltageControlZones", e, _voltageControlZonesReference);
         }
         
         /// <summary>
@@ -691,7 +726,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public LineDropRProxy(IRegulationSchedule modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "lineDropR")
             {
             }
             
@@ -709,24 +744,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
                     this.ModelElement.LineDropR = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.LineDropRChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.LineDropRChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -740,7 +757,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public LineDropXProxy(IRegulationSchedule modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "lineDropX")
             {
             }
             
@@ -758,24 +775,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
                     this.ModelElement.LineDropX = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.LineDropXChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.LineDropXChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -789,7 +788,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public LineDropCompensationProxy(IRegulationSchedule modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "lineDropCompensation")
             {
             }
             
@@ -807,24 +806,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
                     this.ModelElement.LineDropCompensation = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.LineDropCompensationChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.LineDropCompensationChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -838,7 +819,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public RegulatingControlProxy(IRegulationSchedule modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "RegulatingControl")
             {
             }
             
@@ -855,24 +836,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
                 {
                     this.ModelElement.RegulatingControl = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.RegulatingControlChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.RegulatingControlChanged -= handler;
             }
         }
     }

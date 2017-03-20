@@ -46,7 +46,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.PaymentMetering
     [XmlNamespacePrefixAttribute("cimPaymentMetering")]
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61968/PaymentMetering/LineDetail")]
     [DebuggerDisplayAttribute("LineDetail {UUID}")]
-    public class LineDetail : Element, ILineDetail, IModelElement
+    public partial class LineDetail : Element, ILineDetail, IModelElement
     {
         
         /// <summary>
@@ -54,20 +54,28 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.PaymentMetering
         /// </summary>
         private float _rounding;
         
+        private static Lazy<ITypedElement> _roundingAttribute = new Lazy<ITypedElement>(RetrieveRoundingAttribute);
+        
         /// <summary>
         /// The backing field for the Amount property
         /// </summary>
         private float _amount;
+        
+        private static Lazy<ITypedElement> _amountAttribute = new Lazy<ITypedElement>(RetrieveAmountAttribute);
         
         /// <summary>
         /// The backing field for the DateTime property
         /// </summary>
         private DateTime _dateTime;
         
+        private static Lazy<ITypedElement> _dateTimeAttribute = new Lazy<ITypedElement>(RetrieveDateTimeAttribute);
+        
         /// <summary>
         /// The backing field for the Note property
         /// </summary>
         private string _note;
+        
+        private static Lazy<ITypedElement> _noteAttribute = new Lazy<ITypedElement>(RetrieveNoteAttribute);
         
         private static IClass _classInstance;
         
@@ -89,10 +97,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.PaymentMetering
                     float old = this._rounding;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnRoundingChanging(e);
-                    this.OnPropertyChanging("Rounding", e);
+                    this.OnPropertyChanging("Rounding", e, _roundingAttribute);
                     this._rounding = value;
                     this.OnRoundingChanged(e);
-                    this.OnPropertyChanged("Rounding", e);
+                    this.OnPropertyChanged("Rounding", e, _roundingAttribute);
                 }
             }
         }
@@ -115,10 +123,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.PaymentMetering
                     float old = this._amount;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnAmountChanging(e);
-                    this.OnPropertyChanging("Amount", e);
+                    this.OnPropertyChanging("Amount", e, _amountAttribute);
                     this._amount = value;
                     this.OnAmountChanged(e);
-                    this.OnPropertyChanged("Amount", e);
+                    this.OnPropertyChanged("Amount", e, _amountAttribute);
                 }
             }
         }
@@ -141,10 +149,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.PaymentMetering
                     DateTime old = this._dateTime;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnDateTimeChanging(e);
-                    this.OnPropertyChanging("DateTime", e);
+                    this.OnPropertyChanging("DateTime", e, _dateTimeAttribute);
                     this._dateTime = value;
                     this.OnDateTimeChanged(e);
-                    this.OnPropertyChanged("DateTime", e);
+                    this.OnPropertyChanged("DateTime", e, _dateTimeAttribute);
                 }
             }
         }
@@ -167,10 +175,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.PaymentMetering
                     string old = this._note;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnNoteChanging(e);
-                    this.OnPropertyChanging("Note", e);
+                    this.OnPropertyChanging("Note", e, _noteAttribute);
                     this._note = value;
                     this.OnNoteChanged(e);
-                    this.OnPropertyChanged("Note", e);
+                    this.OnPropertyChanged("Note", e, _noteAttribute);
                 }
             }
         }
@@ -230,6 +238,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.PaymentMetering
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> NoteChanged;
         
+        private static ITypedElement RetrieveRoundingAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(LineDetail.ClassInstance)).Resolve("rounding")));
+        }
+        
         /// <summary>
         /// Raises the RoundingChanging event
         /// </summary>
@@ -254,6 +267,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.PaymentMetering
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveAmountAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(LineDetail.ClassInstance)).Resolve("amount")));
         }
         
         /// <summary>
@@ -282,6 +300,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.PaymentMetering
             }
         }
         
+        private static ITypedElement RetrieveDateTimeAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(LineDetail.ClassInstance)).Resolve("dateTime")));
+        }
+        
         /// <summary>
         /// Raises the DateTimeChanging event
         /// </summary>
@@ -306,6 +329,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.PaymentMetering
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveNoteAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(LineDetail.ClassInstance)).Resolve("note")));
         }
         
         /// <summary>
@@ -414,7 +442,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.PaymentMetering
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public RoundingProxy(ILineDetail modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "rounding")
             {
             }
             
@@ -432,24 +460,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.PaymentMetering
                     this.ModelElement.Rounding = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.RoundingChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.RoundingChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -463,7 +473,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.PaymentMetering
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public AmountProxy(ILineDetail modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "amount")
             {
             }
             
@@ -481,24 +491,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.PaymentMetering
                     this.ModelElement.Amount = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.AmountChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.AmountChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -512,7 +504,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.PaymentMetering
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public DateTimeProxy(ILineDetail modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "dateTime")
             {
             }
             
@@ -530,24 +522,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.PaymentMetering
                     this.ModelElement.DateTime = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.DateTimeChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.DateTimeChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -561,7 +535,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.PaymentMetering
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public NoteProxy(ILineDetail modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "note")
             {
             }
             
@@ -578,24 +552,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.PaymentMetering
                 {
                     this.ModelElement.Note = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.NoteChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.NoteChanged -= handler;
             }
         }
     }

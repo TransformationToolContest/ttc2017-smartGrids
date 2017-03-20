@@ -42,13 +42,17 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.StateVariables
     [XmlNamespacePrefixAttribute("cimStateVariables")]
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61970/StateVariables/SvStatus")]
     [DebuggerDisplayAttribute("SvStatus {UUID}")]
-    public class SvStatus : StateVariable, ISvStatus, IModelElement
+    public partial class SvStatus : StateVariable, ISvStatus, IModelElement
     {
         
         /// <summary>
         /// The backing field for the InService property
         /// </summary>
         private bool _inService;
+        
+        private static Lazy<ITypedElement> _inServiceAttribute = new Lazy<ITypedElement>(RetrieveInServiceAttribute);
+        
+        private static Lazy<ITypedElement> _conductingEquipmentReference = new Lazy<ITypedElement>(RetrieveConductingEquipmentReference);
         
         /// <summary>
         /// The backing field for the ConductingEquipment property
@@ -75,10 +79,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.StateVariables
                     bool old = this._inService;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnInServiceChanging(e);
-                    this.OnPropertyChanging("InService", e);
+                    this.OnPropertyChanging("InService", e, _inServiceAttribute);
                     this._inService = value;
                     this.OnInServiceChanged(e);
-                    this.OnPropertyChanged("InService", e);
+                    this.OnPropertyChanged("InService", e, _inServiceAttribute);
                 }
             }
         }
@@ -101,7 +105,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.StateVariables
                     IConductingEquipment old = this._conductingEquipment;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnConductingEquipmentChanging(e);
-                    this.OnPropertyChanging("ConductingEquipment", e);
+                    this.OnPropertyChanging("ConductingEquipment", e, _conductingEquipmentReference);
                     this._conductingEquipment = value;
                     if ((old != null))
                     {
@@ -114,7 +118,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.StateVariables
                         value.Deleted += this.OnResetConductingEquipment;
                     }
                     this.OnConductingEquipmentChanged(e);
-                    this.OnPropertyChanged("ConductingEquipment", e);
+                    this.OnPropertyChanged("ConductingEquipment", e, _conductingEquipmentReference);
                 }
             }
         }
@@ -165,6 +169,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.StateVariables
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> ConductingEquipmentChanged;
         
+        private static ITypedElement RetrieveInServiceAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(SvStatus.ClassInstance)).Resolve("inService")));
+        }
+        
         /// <summary>
         /// Raises the InServiceChanging event
         /// </summary>
@@ -189,6 +198,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.StateVariables
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveConductingEquipmentReference()
+        {
+            return ((ITypedElement)(((ModelElement)(SvStatus.ClassInstance)).Resolve("ConductingEquipment")));
         }
         
         /// <summary>
@@ -433,7 +447,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.StateVariables
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public InServiceProxy(ISvStatus modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "inService")
             {
             }
             
@@ -451,24 +465,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.StateVariables
                     this.ModelElement.InService = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.InServiceChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.InServiceChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -482,7 +478,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.StateVariables
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public ConductingEquipmentProxy(ISvStatus modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "ConductingEquipment")
             {
             }
             
@@ -499,24 +495,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.StateVariables
                 {
                     this.ModelElement.ConductingEquipment = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ConductingEquipmentChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ConductingEquipmentChanged -= handler;
             }
         }
     }

@@ -40,7 +40,7 @@ namespace TTC2017.SmartGrids.COSEM.InterfaceClasses
     [XmlNamespacePrefixAttribute("inter")]
     [ModelRepresentationClassAttribute("http://www.transformation-tool-contest.eu/2017/smartGrids/cosem#//InterfaceClasse" +
         "s/Base")]
-    public class Base : ModelElement, IBase, IModelElement
+    public partial class Base : ModelElement, IBase, IModelElement
     {
         
         /// <summary>
@@ -48,10 +48,14 @@ namespace TTC2017.SmartGrids.COSEM.InterfaceClasses
         /// </summary>
         private string _logical_name;
         
+        private static Lazy<ITypedElement> _logical_nameAttribute = new Lazy<ITypedElement>(RetrieveLogical_nameAttribute);
+        
         /// <summary>
         /// The backing field for the OBIScode property
         /// </summary>
         private string _oBIScode;
+        
+        private static Lazy<ITypedElement> _oBIScodeAttribute = new Lazy<ITypedElement>(RetrieveOBIScodeAttribute);
         
         private static IClass _classInstance;
         
@@ -73,10 +77,10 @@ namespace TTC2017.SmartGrids.COSEM.InterfaceClasses
                     string old = this._logical_name;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnLogical_nameChanging(e);
-                    this.OnPropertyChanging("Logical_name", e);
+                    this.OnPropertyChanging("Logical_name", e, _logical_nameAttribute);
                     this._logical_name = value;
                     this.OnLogical_nameChanged(e);
-                    this.OnPropertyChanged("Logical_name", e);
+                    this.OnPropertyChanged("Logical_name", e, _logical_nameAttribute);
                 }
             }
         }
@@ -98,10 +102,10 @@ namespace TTC2017.SmartGrids.COSEM.InterfaceClasses
                     string old = this._oBIScode;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnOBIScodeChanging(e);
-                    this.OnPropertyChanging("OBIScode", e);
+                    this.OnPropertyChanging("OBIScode", e, _oBIScodeAttribute);
                     this._oBIScode = value;
                     this.OnOBIScodeChanged(e);
-                    this.OnPropertyChanged("OBIScode", e);
+                    this.OnPropertyChanged("OBIScode", e, _oBIScodeAttribute);
                 }
             }
         }
@@ -142,6 +146,11 @@ namespace TTC2017.SmartGrids.COSEM.InterfaceClasses
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> OBIScodeChanged;
         
+        private static ITypedElement RetrieveLogical_nameAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(Base.ClassInstance)).Resolve("logical_name")));
+        }
+        
         /// <summary>
         /// Raises the Logical_nameChanging event
         /// </summary>
@@ -166,6 +175,11 @@ namespace TTC2017.SmartGrids.COSEM.InterfaceClasses
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveOBIScodeAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(Base.ClassInstance)).Resolve("OBIScode")));
         }
         
         /// <summary>
@@ -257,7 +271,7 @@ namespace TTC2017.SmartGrids.COSEM.InterfaceClasses
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public Logical_nameProxy(IBase modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "logical_name")
             {
             }
             
@@ -275,24 +289,6 @@ namespace TTC2017.SmartGrids.COSEM.InterfaceClasses
                     this.ModelElement.Logical_name = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.Logical_nameChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.Logical_nameChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -306,7 +302,7 @@ namespace TTC2017.SmartGrids.COSEM.InterfaceClasses
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public OBIScodeProxy(IBase modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "OBIScode")
             {
             }
             
@@ -323,24 +319,6 @@ namespace TTC2017.SmartGrids.COSEM.InterfaceClasses
                 {
                     this.ModelElement.OBIScode = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.OBIScodeChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.OBIScodeChanged -= handler;
             }
         }
     }

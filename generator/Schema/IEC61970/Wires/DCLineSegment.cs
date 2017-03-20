@@ -53,7 +53,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
     [XmlNamespacePrefixAttribute("cimWires")]
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61970/Wires/DCLineSegment")]
     [DebuggerDisplayAttribute("DCLineSegment {UUID}")]
-    public class DCLineSegment : Conductor, IDCLineSegment, IModelElement
+    public partial class DCLineSegment : Conductor, IDCLineSegment, IModelElement
     {
         
         /// <summary>
@@ -61,10 +61,14 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
         /// </summary>
         private float _dcSegmentResistance;
         
+        private static Lazy<ITypedElement> _dcSegmentResistanceAttribute = new Lazy<ITypedElement>(RetrieveDcSegmentResistanceAttribute);
+        
         /// <summary>
         /// The backing field for the DcSegmentInductance property
         /// </summary>
         private float _dcSegmentInductance;
+        
+        private static Lazy<ITypedElement> _dcSegmentInductanceAttribute = new Lazy<ITypedElement>(RetrieveDcSegmentInductanceAttribute);
         
         private static IClass _classInstance;
         
@@ -86,10 +90,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
                     float old = this._dcSegmentResistance;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnDcSegmentResistanceChanging(e);
-                    this.OnPropertyChanging("DcSegmentResistance", e);
+                    this.OnPropertyChanging("DcSegmentResistance", e, _dcSegmentResistanceAttribute);
                     this._dcSegmentResistance = value;
                     this.OnDcSegmentResistanceChanged(e);
-                    this.OnPropertyChanged("DcSegmentResistance", e);
+                    this.OnPropertyChanged("DcSegmentResistance", e, _dcSegmentResistanceAttribute);
                 }
             }
         }
@@ -112,10 +116,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
                     float old = this._dcSegmentInductance;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnDcSegmentInductanceChanging(e);
-                    this.OnPropertyChanging("DcSegmentInductance", e);
+                    this.OnPropertyChanging("DcSegmentInductance", e, _dcSegmentInductanceAttribute);
                     this._dcSegmentInductance = value;
                     this.OnDcSegmentInductanceChanged(e);
-                    this.OnPropertyChanged("DcSegmentInductance", e);
+                    this.OnPropertyChanged("DcSegmentInductance", e, _dcSegmentInductanceAttribute);
                 }
             }
         }
@@ -155,6 +159,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> DcSegmentInductanceChanged;
         
+        private static ITypedElement RetrieveDcSegmentResistanceAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(DCLineSegment.ClassInstance)).Resolve("dcSegmentResistance")));
+        }
+        
         /// <summary>
         /// Raises the DcSegmentResistanceChanging event
         /// </summary>
@@ -179,6 +188,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveDcSegmentInductanceAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(DCLineSegment.ClassInstance)).Resolve("dcSegmentInductance")));
         }
         
         /// <summary>
@@ -269,7 +283,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public DcSegmentResistanceProxy(IDCLineSegment modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "dcSegmentResistance")
             {
             }
             
@@ -287,24 +301,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
                     this.ModelElement.DcSegmentResistance = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.DcSegmentResistanceChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.DcSegmentResistanceChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -318,7 +314,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public DcSegmentInductanceProxy(IDCLineSegment modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "dcSegmentInductance")
             {
             }
             
@@ -335,24 +331,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
                 {
                     this.ModelElement.DcSegmentInductance = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.DcSegmentInductanceChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.DcSegmentInductanceChanged -= handler;
             }
         }
     }

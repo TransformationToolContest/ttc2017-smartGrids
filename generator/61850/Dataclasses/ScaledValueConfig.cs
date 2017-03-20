@@ -39,7 +39,7 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
     [XmlNamespacePrefixAttribute("data")]
     [ModelRepresentationClassAttribute("http://www.transformation-tool-contest.eu/2017/smartGrids/substationStandard#//Da" +
         "taclasses/ScaledValueConfig")]
-    public class ScaledValueConfig : ModelElement, IScaledValueConfig, IModelElement
+    public partial class ScaledValueConfig : ModelElement, IScaledValueConfig, IModelElement
     {
         
         /// <summary>
@@ -47,10 +47,14 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
         /// </summary>
         private Nullable<float> _scaleFactor;
         
+        private static Lazy<ITypedElement> _scaleFactorAttribute = new Lazy<ITypedElement>(RetrieveScaleFactorAttribute);
+        
         /// <summary>
         /// The backing field for the Offset property
         /// </summary>
         private Nullable<float> _offset;
+        
+        private static Lazy<ITypedElement> _offsetAttribute = new Lazy<ITypedElement>(RetrieveOffsetAttribute);
         
         private static IClass _classInstance;
         
@@ -72,10 +76,10 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
                     Nullable<float> old = this._scaleFactor;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnScaleFactorChanging(e);
-                    this.OnPropertyChanging("ScaleFactor", e);
+                    this.OnPropertyChanging("ScaleFactor", e, _scaleFactorAttribute);
                     this._scaleFactor = value;
                     this.OnScaleFactorChanged(e);
-                    this.OnPropertyChanged("ScaleFactor", e);
+                    this.OnPropertyChanged("ScaleFactor", e, _scaleFactorAttribute);
                 }
             }
         }
@@ -98,10 +102,10 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
                     Nullable<float> old = this._offset;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnOffsetChanging(e);
-                    this.OnPropertyChanging("Offset", e);
+                    this.OnPropertyChanging("Offset", e, _offsetAttribute);
                     this._offset = value;
                     this.OnOffsetChanged(e);
-                    this.OnPropertyChanged("Offset", e);
+                    this.OnPropertyChanged("Offset", e, _offsetAttribute);
                 }
             }
         }
@@ -142,6 +146,11 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> OffsetChanged;
         
+        private static ITypedElement RetrieveScaleFactorAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(ScaledValueConfig.ClassInstance)).Resolve("scaleFactor")));
+        }
+        
         /// <summary>
         /// Raises the ScaleFactorChanging event
         /// </summary>
@@ -166,6 +175,11 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveOffsetAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(ScaledValueConfig.ClassInstance)).Resolve("offset")));
         }
         
         /// <summary>
@@ -257,7 +271,7 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public ScaleFactorProxy(IScaledValueConfig modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "scaleFactor")
             {
             }
             
@@ -275,24 +289,6 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
                     this.ModelElement.ScaleFactor = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ScaleFactorChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ScaleFactorChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -306,7 +302,7 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public OffsetProxy(IScaledValueConfig modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "offset")
             {
             }
             
@@ -323,24 +319,6 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
                 {
                     this.ModelElement.Offset = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.OffsetChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.OffsetChanged -= handler;
             }
         }
     }

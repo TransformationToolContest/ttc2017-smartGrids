@@ -50,8 +50,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfWork
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61970/Informative/InfWork/WorkCostS" +
         "ummary")]
     [DebuggerDisplayAttribute("WorkCostSummary {UUID}")]
-    public class WorkCostSummary : Document, IWorkCostSummary, IModelElement
+    public partial class WorkCostSummary : Document, IWorkCostSummary, IModelElement
     {
+        
+        private static Lazy<ITypedElement> _workCostDetailReference = new Lazy<ITypedElement>(RetrieveWorkCostDetailReference);
         
         /// <summary>
         /// The backing field for the WorkCostDetail property
@@ -78,7 +80,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfWork
                     IWorkCostDetail old = this._workCostDetail;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnWorkCostDetailChanging(e);
-                    this.OnPropertyChanging("WorkCostDetail", e);
+                    this.OnPropertyChanging("WorkCostDetail", e, _workCostDetailReference);
                     this._workCostDetail = value;
                     if ((old != null))
                     {
@@ -91,7 +93,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfWork
                         value.Deleted += this.OnResetWorkCostDetail;
                     }
                     this.OnWorkCostDetailChanged(e);
-                    this.OnPropertyChanged("WorkCostDetail", e);
+                    this.OnPropertyChanged("WorkCostDetail", e, _workCostDetailReference);
                 }
             }
         }
@@ -132,6 +134,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfWork
         /// Gets fired when the WorkCostDetail property changed its value
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> WorkCostDetailChanged;
+        
+        private static ITypedElement RetrieveWorkCostDetailReference()
+        {
+            return ((ITypedElement)(((ModelElement)(WorkCostSummary.ClassInstance)).Resolve("WorkCostDetail")));
+        }
         
         /// <summary>
         /// Raises the WorkCostDetailChanging event
@@ -356,7 +363,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfWork
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public WorkCostDetailProxy(IWorkCostSummary modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "WorkCostDetail")
             {
             }
             
@@ -373,24 +380,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfWork
                 {
                     this.ModelElement.WorkCostDetail = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.WorkCostDetailChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.WorkCostDetailChanged -= handler;
             }
         }
     }

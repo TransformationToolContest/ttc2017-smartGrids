@@ -45,7 +45,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfGMLSupport
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61970/Informative/InfGMLSupport/Gml" +
         "Fill")]
     [DebuggerDisplayAttribute("GmlFill {UUID}")]
-    public class GmlFill : IdentifiedObject, IGmlFill, IModelElement
+    public partial class GmlFill : IdentifiedObject, IGmlFill, IModelElement
     {
         
         /// <summary>
@@ -53,25 +53,37 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfGMLSupport
         /// </summary>
         private float _opacity;
         
+        private static Lazy<ITypedElement> _opacityAttribute = new Lazy<ITypedElement>(RetrieveOpacityAttribute);
+        
+        private static Lazy<ITypedElement> _gmlPolygonSymbolsReference = new Lazy<ITypedElement>(RetrieveGmlPolygonSymbolsReference);
+        
         /// <summary>
         /// The backing field for the GmlPolygonSymbols property
         /// </summary>
         private GmlFillGmlPolygonSymbolsCollection _gmlPolygonSymbols;
+        
+        private static Lazy<ITypedElement> _gmlSvgParametersReference = new Lazy<ITypedElement>(RetrieveGmlSvgParametersReference);
         
         /// <summary>
         /// The backing field for the GmlSvgParameters property
         /// </summary>
         private GmlFillGmlSvgParametersCollection _gmlSvgParameters;
         
+        private static Lazy<ITypedElement> _gmlTextSymbolsReference = new Lazy<ITypedElement>(RetrieveGmlTextSymbolsReference);
+        
         /// <summary>
         /// The backing field for the GmlTextSymbols property
         /// </summary>
         private GmlFillGmlTextSymbolsCollection _gmlTextSymbols;
         
+        private static Lazy<ITypedElement> _gmlMarksReference = new Lazy<ITypedElement>(RetrieveGmlMarksReference);
+        
         /// <summary>
         /// The backing field for the GmlMarks property
         /// </summary>
         private GmlFillGmlMarksCollection _gmlMarks;
+        
+        private static Lazy<ITypedElement> _gmlColourReference = new Lazy<ITypedElement>(RetrieveGmlColourReference);
         
         /// <summary>
         /// The backing field for the GmlColour property
@@ -114,10 +126,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfGMLSupport
                     float old = this._opacity;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnOpacityChanging(e);
-                    this.OnPropertyChanging("Opacity", e);
+                    this.OnPropertyChanging("Opacity", e, _opacityAttribute);
                     this._opacity = value;
                     this.OnOpacityChanged(e);
-                    this.OnPropertyChanged("Opacity", e);
+                    this.OnPropertyChanged("Opacity", e, _opacityAttribute);
                 }
             }
         }
@@ -200,7 +212,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfGMLSupport
                     IGmlColour old = this._gmlColour;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnGmlColourChanging(e);
-                    this.OnPropertyChanging("GmlColour", e);
+                    this.OnPropertyChanging("GmlColour", e, _gmlColourReference);
                     this._gmlColour = value;
                     if ((old != null))
                     {
@@ -213,7 +225,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfGMLSupport
                         value.Deleted += this.OnResetGmlColour;
                     }
                     this.OnGmlColourChanged(e);
-                    this.OnPropertyChanged("GmlColour", e);
+                    this.OnPropertyChanged("GmlColour", e, _gmlColourReference);
                 }
             }
         }
@@ -265,6 +277,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfGMLSupport
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> GmlColourChanged;
         
+        private static ITypedElement RetrieveOpacityAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(GmlFill.ClassInstance)).Resolve("opacity")));
+        }
+        
         /// <summary>
         /// Raises the OpacityChanging event
         /// </summary>
@@ -291,6 +308,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfGMLSupport
             }
         }
         
+        private static ITypedElement RetrieveGmlPolygonSymbolsReference()
+        {
+            return ((ITypedElement)(((ModelElement)(GmlFill.ClassInstance)).Resolve("GmlPolygonSymbols")));
+        }
+        
         /// <summary>
         /// Forwards CollectionChanging notifications for the GmlPolygonSymbols property to the parent model element
         /// </summary>
@@ -298,7 +320,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfGMLSupport
         /// <param name="e">The original event data</param>
         private void GmlPolygonSymbolsCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("GmlPolygonSymbols", e);
+            this.OnCollectionChanging("GmlPolygonSymbols", e, _gmlPolygonSymbolsReference);
         }
         
         /// <summary>
@@ -308,7 +330,12 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfGMLSupport
         /// <param name="e">The original event data</param>
         private void GmlPolygonSymbolsCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("GmlPolygonSymbols", e);
+            this.OnCollectionChanged("GmlPolygonSymbols", e, _gmlPolygonSymbolsReference);
+        }
+        
+        private static ITypedElement RetrieveGmlSvgParametersReference()
+        {
+            return ((ITypedElement)(((ModelElement)(GmlFill.ClassInstance)).Resolve("GmlSvgParameters")));
         }
         
         /// <summary>
@@ -318,7 +345,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfGMLSupport
         /// <param name="e">The original event data</param>
         private void GmlSvgParametersCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("GmlSvgParameters", e);
+            this.OnCollectionChanging("GmlSvgParameters", e, _gmlSvgParametersReference);
         }
         
         /// <summary>
@@ -328,7 +355,12 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfGMLSupport
         /// <param name="e">The original event data</param>
         private void GmlSvgParametersCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("GmlSvgParameters", e);
+            this.OnCollectionChanged("GmlSvgParameters", e, _gmlSvgParametersReference);
+        }
+        
+        private static ITypedElement RetrieveGmlTextSymbolsReference()
+        {
+            return ((ITypedElement)(((ModelElement)(GmlFill.ClassInstance)).Resolve("GmlTextSymbols")));
         }
         
         /// <summary>
@@ -338,7 +370,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfGMLSupport
         /// <param name="e">The original event data</param>
         private void GmlTextSymbolsCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("GmlTextSymbols", e);
+            this.OnCollectionChanging("GmlTextSymbols", e, _gmlTextSymbolsReference);
         }
         
         /// <summary>
@@ -348,7 +380,12 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfGMLSupport
         /// <param name="e">The original event data</param>
         private void GmlTextSymbolsCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("GmlTextSymbols", e);
+            this.OnCollectionChanged("GmlTextSymbols", e, _gmlTextSymbolsReference);
+        }
+        
+        private static ITypedElement RetrieveGmlMarksReference()
+        {
+            return ((ITypedElement)(((ModelElement)(GmlFill.ClassInstance)).Resolve("GmlMarks")));
         }
         
         /// <summary>
@@ -358,7 +395,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfGMLSupport
         /// <param name="e">The original event data</param>
         private void GmlMarksCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("GmlMarks", e);
+            this.OnCollectionChanging("GmlMarks", e, _gmlMarksReference);
         }
         
         /// <summary>
@@ -368,7 +405,12 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfGMLSupport
         /// <param name="e">The original event data</param>
         private void GmlMarksCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("GmlMarks", e);
+            this.OnCollectionChanged("GmlMarks", e, _gmlMarksReference);
+        }
+        
+        private static ITypedElement RetrieveGmlColourReference()
+        {
+            return ((ITypedElement)(((ModelElement)(GmlFill.ClassInstance)).Resolve("GmlColour")));
         }
         
         /// <summary>
@@ -776,7 +818,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfGMLSupport
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public OpacityProxy(IGmlFill modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "opacity")
             {
             }
             
@@ -794,24 +836,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfGMLSupport
                     this.ModelElement.Opacity = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.OpacityChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.OpacityChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -825,7 +849,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfGMLSupport
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public GmlColourProxy(IGmlFill modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "GmlColour")
             {
             }
             
@@ -842,24 +866,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfGMLSupport
                 {
                     this.ModelElement.GmlColour = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.GmlColourChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.GmlColourChanged -= handler;
             }
         }
     }

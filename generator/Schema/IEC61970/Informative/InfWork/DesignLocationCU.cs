@@ -50,7 +50,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfWork
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61970/Informative/InfWork/DesignLoc" +
         "ationCU")]
     [DebuggerDisplayAttribute("DesignLocationCU {UUID}")]
-    public class DesignLocationCU : IdentifiedObject, IDesignLocationCU, IModelElement
+    public partial class DesignLocationCU : IdentifiedObject, IDesignLocationCU, IModelElement
     {
         
         /// <summary>
@@ -58,60 +58,86 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfWork
         /// </summary>
         private string _removalDate;
         
+        private static Lazy<ITypedElement> _removalDateAttribute = new Lazy<ITypedElement>(RetrieveRemovalDateAttribute);
+        
         /// <summary>
         /// The backing field for the CuQuantity property
         /// </summary>
         private object _cuQuantity;
+        
+        private static Lazy<ITypedElement> _cuQuantityAttribute = new Lazy<ITypedElement>(RetrieveCuQuantityAttribute);
         
         /// <summary>
         /// The backing field for the CuAccount property
         /// </summary>
         private string _cuAccount;
         
+        private static Lazy<ITypedElement> _cuAccountAttribute = new Lazy<ITypedElement>(RetrieveCuAccountAttribute);
+        
         /// <summary>
         /// The backing field for the CuAction property
         /// </summary>
         private Nullable<WorkActionKind> _cuAction;
+        
+        private static Lazy<ITypedElement> _cuActionAttribute = new Lazy<ITypedElement>(RetrieveCuActionAttribute);
         
         /// <summary>
         /// The backing field for the EnergizationFlag property
         /// </summary>
         private bool _energizationFlag;
         
+        private static Lazy<ITypedElement> _energizationFlagAttribute = new Lazy<ITypedElement>(RetrieveEnergizationFlagAttribute);
+        
         /// <summary>
         /// The backing field for the CuUsage property
         /// </summary>
         private string _cuUsage;
+        
+        private static Lazy<ITypedElement> _cuUsageAttribute = new Lazy<ITypedElement>(RetrieveCuUsageAttribute);
+        
+        private static Lazy<ITypedElement> _designsReference = new Lazy<ITypedElement>(RetrieveDesignsReference);
         
         /// <summary>
         /// The backing field for the Designs property
         /// </summary>
         private DesignLocationCUDesignsCollection _designs;
         
+        private static Lazy<ITypedElement> _conditionFactorsReference = new Lazy<ITypedElement>(RetrieveConditionFactorsReference);
+        
         /// <summary>
         /// The backing field for the ConditionFactors property
         /// </summary>
         private DesignLocationCUConditionFactorsCollection _conditionFactors;
+        
+        private static Lazy<ITypedElement> _compatibleUnitsReference = new Lazy<ITypedElement>(RetrieveCompatibleUnitsReference);
         
         /// <summary>
         /// The backing field for the CompatibleUnits property
         /// </summary>
         private DesignLocationCUCompatibleUnitsCollection _compatibleUnits;
         
+        private static Lazy<ITypedElement> _workTasksReference = new Lazy<ITypedElement>(RetrieveWorkTasksReference);
+        
         /// <summary>
         /// The backing field for the WorkTasks property
         /// </summary>
         private DesignLocationCUWorkTasksCollection _workTasks;
+        
+        private static Lazy<ITypedElement> _designLocationReference = new Lazy<ITypedElement>(RetrieveDesignLocationReference);
         
         /// <summary>
         /// The backing field for the DesignLocation property
         /// </summary>
         private IDesignLocation _designLocation;
         
+        private static Lazy<ITypedElement> _statusReference = new Lazy<ITypedElement>(RetrieveStatusReference);
+        
         /// <summary>
         /// The backing field for the Status property
         /// </summary>
         private IStatus _status;
+        
+        private static Lazy<ITypedElement> _cUGroupsReference = new Lazy<ITypedElement>(RetrieveCUGroupsReference);
         
         /// <summary>
         /// The backing field for the CUGroups property
@@ -157,10 +183,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfWork
                     string old = this._removalDate;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnRemovalDateChanging(e);
-                    this.OnPropertyChanging("RemovalDate", e);
+                    this.OnPropertyChanging("RemovalDate", e, _removalDateAttribute);
                     this._removalDate = value;
                     this.OnRemovalDateChanged(e);
-                    this.OnPropertyChanged("RemovalDate", e);
+                    this.OnPropertyChanged("RemovalDate", e, _removalDateAttribute);
                 }
             }
         }
@@ -183,10 +209,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfWork
                     object old = this._cuQuantity;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnCuQuantityChanging(e);
-                    this.OnPropertyChanging("CuQuantity", e);
+                    this.OnPropertyChanging("CuQuantity", e, _cuQuantityAttribute);
                     this._cuQuantity = value;
                     this.OnCuQuantityChanged(e);
-                    this.OnPropertyChanged("CuQuantity", e);
+                    this.OnPropertyChanged("CuQuantity", e, _cuQuantityAttribute);
                 }
             }
         }
@@ -209,10 +235,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfWork
                     string old = this._cuAccount;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnCuAccountChanging(e);
-                    this.OnPropertyChanging("CuAccount", e);
+                    this.OnPropertyChanging("CuAccount", e, _cuAccountAttribute);
                     this._cuAccount = value;
                     this.OnCuAccountChanged(e);
-                    this.OnPropertyChanged("CuAccount", e);
+                    this.OnPropertyChanged("CuAccount", e, _cuAccountAttribute);
                 }
             }
         }
@@ -235,10 +261,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfWork
                     Nullable<WorkActionKind> old = this._cuAction;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnCuActionChanging(e);
-                    this.OnPropertyChanging("CuAction", e);
+                    this.OnPropertyChanging("CuAction", e, _cuActionAttribute);
                     this._cuAction = value;
                     this.OnCuActionChanged(e);
-                    this.OnPropertyChanged("CuAction", e);
+                    this.OnPropertyChanged("CuAction", e, _cuActionAttribute);
                 }
             }
         }
@@ -261,10 +287,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfWork
                     bool old = this._energizationFlag;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnEnergizationFlagChanging(e);
-                    this.OnPropertyChanging("EnergizationFlag", e);
+                    this.OnPropertyChanging("EnergizationFlag", e, _energizationFlagAttribute);
                     this._energizationFlag = value;
                     this.OnEnergizationFlagChanged(e);
-                    this.OnPropertyChanged("EnergizationFlag", e);
+                    this.OnPropertyChanged("EnergizationFlag", e, _energizationFlagAttribute);
                 }
             }
         }
@@ -287,10 +313,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfWork
                     string old = this._cuUsage;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnCuUsageChanging(e);
-                    this.OnPropertyChanging("CuUsage", e);
+                    this.OnPropertyChanging("CuUsage", e, _cuUsageAttribute);
                     this._cuUsage = value;
                     this.OnCuUsageChanged(e);
-                    this.OnPropertyChanged("CuUsage", e);
+                    this.OnPropertyChanged("CuUsage", e, _cuUsageAttribute);
                 }
             }
         }
@@ -373,7 +399,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfWork
                     IDesignLocation old = this._designLocation;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnDesignLocationChanging(e);
-                    this.OnPropertyChanging("DesignLocation", e);
+                    this.OnPropertyChanging("DesignLocation", e, _designLocationReference);
                     this._designLocation = value;
                     if ((old != null))
                     {
@@ -386,7 +412,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfWork
                         value.Deleted += this.OnResetDesignLocation;
                     }
                     this.OnDesignLocationChanged(e);
-                    this.OnPropertyChanged("DesignLocation", e);
+                    this.OnPropertyChanged("DesignLocation", e, _designLocationReference);
                 }
             }
         }
@@ -409,7 +435,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfWork
                     IStatus old = this._status;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnStatusChanging(e);
-                    this.OnPropertyChanging("Status", e);
+                    this.OnPropertyChanging("Status", e, _statusReference);
                     this._status = value;
                     if ((old != null))
                     {
@@ -420,7 +446,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfWork
                         value.Deleted += this.OnResetStatus;
                     }
                     this.OnStatusChanged(e);
-                    this.OnPropertyChanged("Status", e);
+                    this.OnPropertyChanged("Status", e, _statusReference);
                 }
             }
         }
@@ -547,6 +573,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfWork
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> StatusChanged;
         
+        private static ITypedElement RetrieveRemovalDateAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(DesignLocationCU.ClassInstance)).Resolve("removalDate")));
+        }
+        
         /// <summary>
         /// Raises the RemovalDateChanging event
         /// </summary>
@@ -571,6 +602,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfWork
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveCuQuantityAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(DesignLocationCU.ClassInstance)).Resolve("cuQuantity")));
         }
         
         /// <summary>
@@ -599,6 +635,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfWork
             }
         }
         
+        private static ITypedElement RetrieveCuAccountAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(DesignLocationCU.ClassInstance)).Resolve("cuAccount")));
+        }
+        
         /// <summary>
         /// Raises the CuAccountChanging event
         /// </summary>
@@ -623,6 +664,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfWork
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveCuActionAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(DesignLocationCU.ClassInstance)).Resolve("cuAction")));
         }
         
         /// <summary>
@@ -651,6 +697,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfWork
             }
         }
         
+        private static ITypedElement RetrieveEnergizationFlagAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(DesignLocationCU.ClassInstance)).Resolve("energizationFlag")));
+        }
+        
         /// <summary>
         /// Raises the EnergizationFlagChanging event
         /// </summary>
@@ -675,6 +726,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfWork
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveCuUsageAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(DesignLocationCU.ClassInstance)).Resolve("cuUsage")));
         }
         
         /// <summary>
@@ -703,6 +759,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfWork
             }
         }
         
+        private static ITypedElement RetrieveDesignsReference()
+        {
+            return ((ITypedElement)(((ModelElement)(DesignLocationCU.ClassInstance)).Resolve("Designs")));
+        }
+        
         /// <summary>
         /// Forwards CollectionChanging notifications for the Designs property to the parent model element
         /// </summary>
@@ -710,7 +771,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfWork
         /// <param name="e">The original event data</param>
         private void DesignsCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("Designs", e);
+            this.OnCollectionChanging("Designs", e, _designsReference);
         }
         
         /// <summary>
@@ -720,7 +781,12 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfWork
         /// <param name="e">The original event data</param>
         private void DesignsCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("Designs", e);
+            this.OnCollectionChanged("Designs", e, _designsReference);
+        }
+        
+        private static ITypedElement RetrieveConditionFactorsReference()
+        {
+            return ((ITypedElement)(((ModelElement)(DesignLocationCU.ClassInstance)).Resolve("ConditionFactors")));
         }
         
         /// <summary>
@@ -730,7 +796,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfWork
         /// <param name="e">The original event data</param>
         private void ConditionFactorsCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("ConditionFactors", e);
+            this.OnCollectionChanging("ConditionFactors", e, _conditionFactorsReference);
         }
         
         /// <summary>
@@ -740,7 +806,12 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfWork
         /// <param name="e">The original event data</param>
         private void ConditionFactorsCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("ConditionFactors", e);
+            this.OnCollectionChanged("ConditionFactors", e, _conditionFactorsReference);
+        }
+        
+        private static ITypedElement RetrieveCompatibleUnitsReference()
+        {
+            return ((ITypedElement)(((ModelElement)(DesignLocationCU.ClassInstance)).Resolve("CompatibleUnits")));
         }
         
         /// <summary>
@@ -750,7 +821,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfWork
         /// <param name="e">The original event data</param>
         private void CompatibleUnitsCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("CompatibleUnits", e);
+            this.OnCollectionChanging("CompatibleUnits", e, _compatibleUnitsReference);
         }
         
         /// <summary>
@@ -760,7 +831,12 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfWork
         /// <param name="e">The original event data</param>
         private void CompatibleUnitsCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("CompatibleUnits", e);
+            this.OnCollectionChanged("CompatibleUnits", e, _compatibleUnitsReference);
+        }
+        
+        private static ITypedElement RetrieveWorkTasksReference()
+        {
+            return ((ITypedElement)(((ModelElement)(DesignLocationCU.ClassInstance)).Resolve("WorkTasks")));
         }
         
         /// <summary>
@@ -770,7 +846,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfWork
         /// <param name="e">The original event data</param>
         private void WorkTasksCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("WorkTasks", e);
+            this.OnCollectionChanging("WorkTasks", e, _workTasksReference);
         }
         
         /// <summary>
@@ -780,7 +856,12 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfWork
         /// <param name="e">The original event data</param>
         private void WorkTasksCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("WorkTasks", e);
+            this.OnCollectionChanged("WorkTasks", e, _workTasksReference);
+        }
+        
+        private static ITypedElement RetrieveDesignLocationReference()
+        {
+            return ((ITypedElement)(((ModelElement)(DesignLocationCU.ClassInstance)).Resolve("DesignLocation")));
         }
         
         /// <summary>
@@ -819,6 +900,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfWork
             this.DesignLocation = null;
         }
         
+        private static ITypedElement RetrieveStatusReference()
+        {
+            return ((ITypedElement)(((ModelElement)(DesignLocationCU.ClassInstance)).Resolve("status")));
+        }
+        
         /// <summary>
         /// Raises the StatusChanging event
         /// </summary>
@@ -855,6 +941,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfWork
             this.Status = null;
         }
         
+        private static ITypedElement RetrieveCUGroupsReference()
+        {
+            return ((ITypedElement)(((ModelElement)(DesignLocationCU.ClassInstance)).Resolve("CUGroups")));
+        }
+        
         /// <summary>
         /// Forwards CollectionChanging notifications for the CUGroups property to the parent model element
         /// </summary>
@@ -862,7 +953,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfWork
         /// <param name="e">The original event data</param>
         private void CUGroupsCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("CUGroups", e);
+            this.OnCollectionChanging("CUGroups", e, _cUGroupsReference);
         }
         
         /// <summary>
@@ -872,7 +963,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfWork
         /// <param name="e">The original event data</param>
         private void CUGroupsCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("CUGroups", e);
+            this.OnCollectionChanged("CUGroups", e, _cUGroupsReference);
         }
         
         /// <summary>
@@ -1370,7 +1461,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfWork
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public RemovalDateProxy(IDesignLocationCU modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "removalDate")
             {
             }
             
@@ -1388,24 +1479,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfWork
                     this.ModelElement.RemovalDate = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.RemovalDateChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.RemovalDateChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1419,7 +1492,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfWork
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public CuQuantityProxy(IDesignLocationCU modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "cuQuantity")
             {
             }
             
@@ -1437,24 +1510,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfWork
                     this.ModelElement.CuQuantity = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.CuQuantityChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.CuQuantityChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1468,7 +1523,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfWork
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public CuAccountProxy(IDesignLocationCU modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "cuAccount")
             {
             }
             
@@ -1486,24 +1541,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfWork
                     this.ModelElement.CuAccount = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.CuAccountChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.CuAccountChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1517,7 +1554,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfWork
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public CuActionProxy(IDesignLocationCU modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "cuAction")
             {
             }
             
@@ -1535,24 +1572,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfWork
                     this.ModelElement.CuAction = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.CuActionChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.CuActionChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1566,7 +1585,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfWork
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public EnergizationFlagProxy(IDesignLocationCU modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "energizationFlag")
             {
             }
             
@@ -1584,24 +1603,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfWork
                     this.ModelElement.EnergizationFlag = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.EnergizationFlagChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.EnergizationFlagChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1615,7 +1616,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfWork
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public CuUsageProxy(IDesignLocationCU modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "cuUsage")
             {
             }
             
@@ -1633,24 +1634,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfWork
                     this.ModelElement.CuUsage = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.CuUsageChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.CuUsageChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1664,7 +1647,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfWork
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public DesignLocationProxy(IDesignLocationCU modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "DesignLocation")
             {
             }
             
@@ -1682,24 +1665,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfWork
                     this.ModelElement.DesignLocation = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.DesignLocationChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.DesignLocationChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1713,7 +1678,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfWork
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public StatusProxy(IDesignLocationCU modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "status")
             {
             }
             
@@ -1730,24 +1695,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfWork
                 {
                     this.ModelElement.Status = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.StatusChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.StatusChanged -= handler;
             }
         }
     }

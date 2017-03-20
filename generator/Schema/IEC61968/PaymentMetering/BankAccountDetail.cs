@@ -47,7 +47,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.PaymentMetering
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61968/PaymentMetering/BankAccountDe" +
         "tail")]
     [DebuggerDisplayAttribute("BankAccountDetail {UUID}")]
-    public class BankAccountDetail : Element, IBankAccountDetail, IModelElement
+    public partial class BankAccountDetail : Element, IBankAccountDetail, IModelElement
     {
         
         /// <summary>
@@ -55,25 +55,35 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.PaymentMetering
         /// </summary>
         private string _bankName;
         
+        private static Lazy<ITypedElement> _bankNameAttribute = new Lazy<ITypedElement>(RetrieveBankNameAttribute);
+        
         /// <summary>
         /// The backing field for the AccountNumber property
         /// </summary>
         private string _accountNumber;
+        
+        private static Lazy<ITypedElement> _accountNumberAttribute = new Lazy<ITypedElement>(RetrieveAccountNumberAttribute);
         
         /// <summary>
         /// The backing field for the HolderID property
         /// </summary>
         private string _holderID;
         
+        private static Lazy<ITypedElement> _holderIDAttribute = new Lazy<ITypedElement>(RetrieveHolderIDAttribute);
+        
         /// <summary>
         /// The backing field for the BranchCode property
         /// </summary>
         private string _branchCode;
         
+        private static Lazy<ITypedElement> _branchCodeAttribute = new Lazy<ITypedElement>(RetrieveBranchCodeAttribute);
+        
         /// <summary>
         /// The backing field for the HolderName property
         /// </summary>
         private string _holderName;
+        
+        private static Lazy<ITypedElement> _holderNameAttribute = new Lazy<ITypedElement>(RetrieveHolderNameAttribute);
         
         private static IClass _classInstance;
         
@@ -95,10 +105,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.PaymentMetering
                     string old = this._bankName;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnBankNameChanging(e);
-                    this.OnPropertyChanging("BankName", e);
+                    this.OnPropertyChanging("BankName", e, _bankNameAttribute);
                     this._bankName = value;
                     this.OnBankNameChanged(e);
-                    this.OnPropertyChanged("BankName", e);
+                    this.OnPropertyChanged("BankName", e, _bankNameAttribute);
                 }
             }
         }
@@ -121,10 +131,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.PaymentMetering
                     string old = this._accountNumber;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnAccountNumberChanging(e);
-                    this.OnPropertyChanging("AccountNumber", e);
+                    this.OnPropertyChanging("AccountNumber", e, _accountNumberAttribute);
                     this._accountNumber = value;
                     this.OnAccountNumberChanged(e);
-                    this.OnPropertyChanged("AccountNumber", e);
+                    this.OnPropertyChanged("AccountNumber", e, _accountNumberAttribute);
                 }
             }
         }
@@ -147,10 +157,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.PaymentMetering
                     string old = this._holderID;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnHolderIDChanging(e);
-                    this.OnPropertyChanging("HolderID", e);
+                    this.OnPropertyChanging("HolderID", e, _holderIDAttribute);
                     this._holderID = value;
                     this.OnHolderIDChanged(e);
-                    this.OnPropertyChanged("HolderID", e);
+                    this.OnPropertyChanged("HolderID", e, _holderIDAttribute);
                 }
             }
         }
@@ -173,10 +183,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.PaymentMetering
                     string old = this._branchCode;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnBranchCodeChanging(e);
-                    this.OnPropertyChanging("BranchCode", e);
+                    this.OnPropertyChanging("BranchCode", e, _branchCodeAttribute);
                     this._branchCode = value;
                     this.OnBranchCodeChanged(e);
-                    this.OnPropertyChanged("BranchCode", e);
+                    this.OnPropertyChanged("BranchCode", e, _branchCodeAttribute);
                 }
             }
         }
@@ -199,10 +209,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.PaymentMetering
                     string old = this._holderName;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnHolderNameChanging(e);
-                    this.OnPropertyChanging("HolderName", e);
+                    this.OnPropertyChanging("HolderName", e, _holderNameAttribute);
                     this._holderName = value;
                     this.OnHolderNameChanged(e);
-                    this.OnPropertyChanged("HolderName", e);
+                    this.OnPropertyChanged("HolderName", e, _holderNameAttribute);
                 }
             }
         }
@@ -273,6 +283,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.PaymentMetering
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> HolderNameChanged;
         
+        private static ITypedElement RetrieveBankNameAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(BankAccountDetail.ClassInstance)).Resolve("bankName")));
+        }
+        
         /// <summary>
         /// Raises the BankNameChanging event
         /// </summary>
@@ -297,6 +312,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.PaymentMetering
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveAccountNumberAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(BankAccountDetail.ClassInstance)).Resolve("accountNumber")));
         }
         
         /// <summary>
@@ -325,6 +345,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.PaymentMetering
             }
         }
         
+        private static ITypedElement RetrieveHolderIDAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(BankAccountDetail.ClassInstance)).Resolve("holderID")));
+        }
+        
         /// <summary>
         /// Raises the HolderIDChanging event
         /// </summary>
@@ -351,6 +376,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.PaymentMetering
             }
         }
         
+        private static ITypedElement RetrieveBranchCodeAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(BankAccountDetail.ClassInstance)).Resolve("branchCode")));
+        }
+        
         /// <summary>
         /// Raises the BranchCodeChanging event
         /// </summary>
@@ -375,6 +405,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.PaymentMetering
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveHolderNameAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(BankAccountDetail.ClassInstance)).Resolve("holderName")));
         }
         
         /// <summary>
@@ -493,7 +528,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.PaymentMetering
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public BankNameProxy(IBankAccountDetail modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "bankName")
             {
             }
             
@@ -511,24 +546,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.PaymentMetering
                     this.ModelElement.BankName = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.BankNameChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.BankNameChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -542,7 +559,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.PaymentMetering
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public AccountNumberProxy(IBankAccountDetail modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "accountNumber")
             {
             }
             
@@ -560,24 +577,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.PaymentMetering
                     this.ModelElement.AccountNumber = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.AccountNumberChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.AccountNumberChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -591,7 +590,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.PaymentMetering
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public HolderIDProxy(IBankAccountDetail modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "holderID")
             {
             }
             
@@ -609,24 +608,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.PaymentMetering
                     this.ModelElement.HolderID = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.HolderIDChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.HolderIDChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -640,7 +621,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.PaymentMetering
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public BranchCodeProxy(IBankAccountDetail modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "branchCode")
             {
             }
             
@@ -658,24 +639,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.PaymentMetering
                     this.ModelElement.BranchCode = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.BranchCodeChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.BranchCodeChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -689,7 +652,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.PaymentMetering
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public HolderNameProxy(IBankAccountDetail modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "holderName")
             {
             }
             
@@ -706,24 +669,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.PaymentMetering
                 {
                     this.ModelElement.HolderName = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.HolderNameChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.HolderNameChanged -= handler;
             }
         }
     }

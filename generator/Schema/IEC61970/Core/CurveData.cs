@@ -57,7 +57,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Core
     [XmlNamespacePrefixAttribute("cimCore")]
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61970/Core/CurveData")]
     [DebuggerDisplayAttribute("CurveData {UUID}")]
-    public class CurveData : Element, ICurveData, IModelElement
+    public partial class CurveData : Element, ICurveData, IModelElement
     {
         
         /// <summary>
@@ -65,20 +65,30 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Core
         /// </summary>
         private float _xvalue;
         
+        private static Lazy<ITypedElement> _xvalueAttribute = new Lazy<ITypedElement>(RetrieveXvalueAttribute);
+        
         /// <summary>
         /// The backing field for the Y2value property
         /// </summary>
         private float _y2value;
+        
+        private static Lazy<ITypedElement> _y2valueAttribute = new Lazy<ITypedElement>(RetrieveY2valueAttribute);
         
         /// <summary>
         /// The backing field for the Y3value property
         /// </summary>
         private float _y3value;
         
+        private static Lazy<ITypedElement> _y3valueAttribute = new Lazy<ITypedElement>(RetrieveY3valueAttribute);
+        
         /// <summary>
         /// The backing field for the Y1value property
         /// </summary>
         private float _y1value;
+        
+        private static Lazy<ITypedElement> _y1valueAttribute = new Lazy<ITypedElement>(RetrieveY1valueAttribute);
+        
+        private static Lazy<ITypedElement> _curveReference = new Lazy<ITypedElement>(RetrieveCurveReference);
         
         /// <summary>
         /// The backing field for the Curve property
@@ -105,10 +115,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Core
                     float old = this._xvalue;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnXvalueChanging(e);
-                    this.OnPropertyChanging("Xvalue", e);
+                    this.OnPropertyChanging("Xvalue", e, _xvalueAttribute);
                     this._xvalue = value;
                     this.OnXvalueChanged(e);
-                    this.OnPropertyChanged("Xvalue", e);
+                    this.OnPropertyChanged("Xvalue", e, _xvalueAttribute);
                 }
             }
         }
@@ -131,10 +141,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Core
                     float old = this._y2value;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnY2valueChanging(e);
-                    this.OnPropertyChanging("Y2value", e);
+                    this.OnPropertyChanging("Y2value", e, _y2valueAttribute);
                     this._y2value = value;
                     this.OnY2valueChanged(e);
-                    this.OnPropertyChanged("Y2value", e);
+                    this.OnPropertyChanged("Y2value", e, _y2valueAttribute);
                 }
             }
         }
@@ -157,10 +167,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Core
                     float old = this._y3value;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnY3valueChanging(e);
-                    this.OnPropertyChanging("Y3value", e);
+                    this.OnPropertyChanging("Y3value", e, _y3valueAttribute);
                     this._y3value = value;
                     this.OnY3valueChanged(e);
-                    this.OnPropertyChanged("Y3value", e);
+                    this.OnPropertyChanged("Y3value", e, _y3valueAttribute);
                 }
             }
         }
@@ -183,10 +193,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Core
                     float old = this._y1value;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnY1valueChanging(e);
-                    this.OnPropertyChanging("Y1value", e);
+                    this.OnPropertyChanging("Y1value", e, _y1valueAttribute);
                     this._y1value = value;
                     this.OnY1valueChanged(e);
-                    this.OnPropertyChanged("Y1value", e);
+                    this.OnPropertyChanged("Y1value", e, _y1valueAttribute);
                 }
             }
         }
@@ -209,7 +219,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Core
                     ICurve old = this._curve;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnCurveChanging(e);
-                    this.OnPropertyChanging("Curve", e);
+                    this.OnPropertyChanging("Curve", e, _curveReference);
                     this._curve = value;
                     if ((old != null))
                     {
@@ -222,7 +232,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Core
                         value.Deleted += this.OnResetCurve;
                     }
                     this.OnCurveChanged(e);
-                    this.OnPropertyChanged("Curve", e);
+                    this.OnPropertyChanged("Curve", e, _curveReference);
                 }
             }
         }
@@ -303,6 +313,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Core
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> CurveChanged;
         
+        private static ITypedElement RetrieveXvalueAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(CurveData.ClassInstance)).Resolve("xvalue")));
+        }
+        
         /// <summary>
         /// Raises the XvalueChanging event
         /// </summary>
@@ -327,6 +342,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Core
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveY2valueAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(CurveData.ClassInstance)).Resolve("y2value")));
         }
         
         /// <summary>
@@ -355,6 +375,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Core
             }
         }
         
+        private static ITypedElement RetrieveY3valueAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(CurveData.ClassInstance)).Resolve("y3value")));
+        }
+        
         /// <summary>
         /// Raises the Y3valueChanging event
         /// </summary>
@@ -381,6 +406,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Core
             }
         }
         
+        private static ITypedElement RetrieveY1valueAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(CurveData.ClassInstance)).Resolve("y1value")));
+        }
+        
         /// <summary>
         /// Raises the Y1valueChanging event
         /// </summary>
@@ -405,6 +435,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Core
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveCurveReference()
+        {
+            return ((ITypedElement)(((ModelElement)(CurveData.ClassInstance)).Resolve("Curve")));
         }
         
         /// <summary>
@@ -676,7 +711,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Core
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public XvalueProxy(ICurveData modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "xvalue")
             {
             }
             
@@ -694,24 +729,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Core
                     this.ModelElement.Xvalue = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.XvalueChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.XvalueChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -725,7 +742,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Core
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public Y2valueProxy(ICurveData modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "y2value")
             {
             }
             
@@ -743,24 +760,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Core
                     this.ModelElement.Y2value = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.Y2valueChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.Y2valueChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -774,7 +773,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Core
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public Y3valueProxy(ICurveData modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "y3value")
             {
             }
             
@@ -792,24 +791,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Core
                     this.ModelElement.Y3value = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.Y3valueChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.Y3valueChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -823,7 +804,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Core
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public Y1valueProxy(ICurveData modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "y1value")
             {
             }
             
@@ -841,24 +822,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Core
                     this.ModelElement.Y1value = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.Y1valueChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.Y1valueChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -872,7 +835,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Core
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public CurveProxy(ICurveData modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "Curve")
             {
             }
             
@@ -889,24 +852,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Core
                 {
                     this.ModelElement.Curve = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.CurveChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.CurveChanged -= handler;
             }
         }
     }

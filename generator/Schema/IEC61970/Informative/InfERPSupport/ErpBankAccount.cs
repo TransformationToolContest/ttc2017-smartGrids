@@ -56,13 +56,15 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfERPSupport
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61970/Informative/InfERPSupport/Erp" +
         "BankAccount")]
     [DebuggerDisplayAttribute("ErpBankAccount {UUID}")]
-    public class ErpBankAccount : BankAccount, IErpBankAccount, IModelElement
+    public partial class ErpBankAccount : BankAccount, IErpBankAccount, IModelElement
     {
         
         /// <summary>
         /// The backing field for the BankABA property
         /// </summary>
         private string _bankABA;
+        
+        private static Lazy<ITypedElement> _bankABAAttribute = new Lazy<ITypedElement>(RetrieveBankABAAttribute);
         
         private static IClass _classInstance;
         
@@ -84,10 +86,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfERPSupport
                     string old = this._bankABA;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnBankABAChanging(e);
-                    this.OnPropertyChanging("BankABA", e);
+                    this.OnPropertyChanging("BankABA", e, _bankABAAttribute);
                     this._bankABA = value;
                     this.OnBankABAChanged(e);
-                    this.OnPropertyChanged("BankABA", e);
+                    this.OnPropertyChanged("BankABA", e, _bankABAAttribute);
                 }
             }
         }
@@ -117,6 +119,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfERPSupport
         /// Gets fired when the BankABA property changed its value
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> BankABAChanged;
+        
+        private static ITypedElement RetrieveBankABAAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(ErpBankAccount.ClassInstance)).Resolve("bankABA")));
+        }
         
         /// <summary>
         /// Raises the BankABAChanging event
@@ -198,7 +205,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfERPSupport
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public BankABAProxy(IErpBankAccount modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "bankABA")
             {
             }
             
@@ -215,24 +222,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfERPSupport
                 {
                     this.ModelElement.BankABA = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.BankABAChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.BankABAChanged -= handler;
             }
         }
     }

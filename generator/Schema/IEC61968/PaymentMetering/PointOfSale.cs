@@ -46,7 +46,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.PaymentMetering
     [XmlNamespacePrefixAttribute("cimPaymentMetering")]
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61968/PaymentMetering/PointOfSale")]
     [DebuggerDisplayAttribute("PointOfSale {UUID}")]
-    public class PointOfSale : IdentifiedObject, IPointOfSale, IModelElement
+    public partial class PointOfSale : IdentifiedObject, IPointOfSale, IModelElement
     {
         
         /// <summary>
@@ -54,15 +54,23 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.PaymentMetering
         /// </summary>
         private string _location;
         
+        private static Lazy<ITypedElement> _locationAttribute = new Lazy<ITypedElement>(RetrieveLocationAttribute);
+        
+        private static Lazy<ITypedElement> _tokensReference = new Lazy<ITypedElement>(RetrieveTokensReference);
+        
         /// <summary>
         /// The backing field for the Tokens property
         /// </summary>
         private PointOfSaleTokensCollection _tokens;
         
+        private static Lazy<ITypedElement> _cashierShiftsReference = new Lazy<ITypedElement>(RetrieveCashierShiftsReference);
+        
         /// <summary>
         /// The backing field for the CashierShifts property
         /// </summary>
         private PointOfSaleCashierShiftsCollection _cashierShifts;
+        
+        private static Lazy<ITypedElement> _vendorReference = new Lazy<ITypedElement>(RetrieveVendorReference);
         
         /// <summary>
         /// The backing field for the Vendor property
@@ -99,10 +107,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.PaymentMetering
                     string old = this._location;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnLocationChanging(e);
-                    this.OnPropertyChanging("Location", e);
+                    this.OnPropertyChanging("Location", e, _locationAttribute);
                     this._location = value;
                     this.OnLocationChanged(e);
-                    this.OnPropertyChanged("Location", e);
+                    this.OnPropertyChanged("Location", e, _locationAttribute);
                 }
             }
         }
@@ -155,7 +163,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.PaymentMetering
                     IVendor old = this._vendor;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnVendorChanging(e);
-                    this.OnPropertyChanging("Vendor", e);
+                    this.OnPropertyChanging("Vendor", e, _vendorReference);
                     this._vendor = value;
                     if ((old != null))
                     {
@@ -168,7 +176,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.PaymentMetering
                         value.Deleted += this.OnResetVendor;
                     }
                     this.OnVendorChanged(e);
-                    this.OnPropertyChanged("Vendor", e);
+                    this.OnPropertyChanged("Vendor", e, _vendorReference);
                 }
             }
         }
@@ -219,6 +227,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.PaymentMetering
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> VendorChanged;
         
+        private static ITypedElement RetrieveLocationAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(PointOfSale.ClassInstance)).Resolve("location")));
+        }
+        
         /// <summary>
         /// Raises the LocationChanging event
         /// </summary>
@@ -245,6 +258,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.PaymentMetering
             }
         }
         
+        private static ITypedElement RetrieveTokensReference()
+        {
+            return ((ITypedElement)(((ModelElement)(PointOfSale.ClassInstance)).Resolve("Tokens")));
+        }
+        
         /// <summary>
         /// Forwards CollectionChanging notifications for the Tokens property to the parent model element
         /// </summary>
@@ -252,7 +270,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.PaymentMetering
         /// <param name="e">The original event data</param>
         private void TokensCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("Tokens", e);
+            this.OnCollectionChanging("Tokens", e, _tokensReference);
         }
         
         /// <summary>
@@ -262,7 +280,12 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.PaymentMetering
         /// <param name="e">The original event data</param>
         private void TokensCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("Tokens", e);
+            this.OnCollectionChanged("Tokens", e, _tokensReference);
+        }
+        
+        private static ITypedElement RetrieveCashierShiftsReference()
+        {
+            return ((ITypedElement)(((ModelElement)(PointOfSale.ClassInstance)).Resolve("CashierShifts")));
         }
         
         /// <summary>
@@ -272,7 +295,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.PaymentMetering
         /// <param name="e">The original event data</param>
         private void CashierShiftsCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("CashierShifts", e);
+            this.OnCollectionChanging("CashierShifts", e, _cashierShiftsReference);
         }
         
         /// <summary>
@@ -282,7 +305,12 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.PaymentMetering
         /// <param name="e">The original event data</param>
         private void CashierShiftsCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("CashierShifts", e);
+            this.OnCollectionChanged("CashierShifts", e, _cashierShiftsReference);
+        }
+        
+        private static ITypedElement RetrieveVendorReference()
+        {
+            return ((ITypedElement)(((ModelElement)(PointOfSale.ClassInstance)).Resolve("Vendor")));
         }
         
         /// <summary>
@@ -613,7 +641,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.PaymentMetering
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public LocationProxy(IPointOfSale modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "location")
             {
             }
             
@@ -631,24 +659,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.PaymentMetering
                     this.ModelElement.Location = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.LocationChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.LocationChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -662,7 +672,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.PaymentMetering
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public VendorProxy(IPointOfSale modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "Vendor")
             {
             }
             
@@ -679,24 +689,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.PaymentMetering
                 {
                     this.ModelElement.Vendor = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.VendorChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.VendorChanged -= handler;
             }
         }
     }

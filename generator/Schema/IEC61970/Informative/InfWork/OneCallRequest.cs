@@ -50,7 +50,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfWork
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61970/Informative/InfWork/OneCallRe" +
         "quest")]
     [DebuggerDisplayAttribute("OneCallRequest {UUID}")]
-    public class OneCallRequest : Document, IOneCallRequest, IModelElement
+    public partial class OneCallRequest : Document, IOneCallRequest, IModelElement
     {
         
         /// <summary>
@@ -58,15 +58,23 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfWork
         /// </summary>
         private string _markingInstruction;
         
+        private static Lazy<ITypedElement> _markingInstructionAttribute = new Lazy<ITypedElement>(RetrieveMarkingInstructionAttribute);
+        
         /// <summary>
         /// The backing field for the ExplosivesUsed property
         /// </summary>
         private bool _explosivesUsed;
         
+        private static Lazy<ITypedElement> _explosivesUsedAttribute = new Lazy<ITypedElement>(RetrieveExplosivesUsedAttribute);
+        
         /// <summary>
         /// The backing field for the MarkedIndicator property
         /// </summary>
         private bool _markedIndicator;
+        
+        private static Lazy<ITypedElement> _markedIndicatorAttribute = new Lazy<ITypedElement>(RetrieveMarkedIndicatorAttribute);
+        
+        private static Lazy<ITypedElement> _workLocationsReference = new Lazy<ITypedElement>(RetrieveWorkLocationsReference);
         
         /// <summary>
         /// The backing field for the WorkLocations property
@@ -100,10 +108,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfWork
                     string old = this._markingInstruction;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnMarkingInstructionChanging(e);
-                    this.OnPropertyChanging("MarkingInstruction", e);
+                    this.OnPropertyChanging("MarkingInstruction", e, _markingInstructionAttribute);
                     this._markingInstruction = value;
                     this.OnMarkingInstructionChanged(e);
-                    this.OnPropertyChanged("MarkingInstruction", e);
+                    this.OnPropertyChanged("MarkingInstruction", e, _markingInstructionAttribute);
                 }
             }
         }
@@ -126,10 +134,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfWork
                     bool old = this._explosivesUsed;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnExplosivesUsedChanging(e);
-                    this.OnPropertyChanging("ExplosivesUsed", e);
+                    this.OnPropertyChanging("ExplosivesUsed", e, _explosivesUsedAttribute);
                     this._explosivesUsed = value;
                     this.OnExplosivesUsedChanged(e);
-                    this.OnPropertyChanged("ExplosivesUsed", e);
+                    this.OnPropertyChanged("ExplosivesUsed", e, _explosivesUsedAttribute);
                 }
             }
         }
@@ -152,10 +160,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfWork
                     bool old = this._markedIndicator;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnMarkedIndicatorChanging(e);
-                    this.OnPropertyChanging("MarkedIndicator", e);
+                    this.OnPropertyChanging("MarkedIndicator", e, _markedIndicatorAttribute);
                     this._markedIndicator = value;
                     this.OnMarkedIndicatorChanged(e);
-                    this.OnPropertyChanged("MarkedIndicator", e);
+                    this.OnPropertyChanged("MarkedIndicator", e, _markedIndicatorAttribute);
                 }
             }
         }
@@ -232,6 +240,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfWork
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> MarkedIndicatorChanged;
         
+        private static ITypedElement RetrieveMarkingInstructionAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(OneCallRequest.ClassInstance)).Resolve("markingInstruction")));
+        }
+        
         /// <summary>
         /// Raises the MarkingInstructionChanging event
         /// </summary>
@@ -256,6 +269,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfWork
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveExplosivesUsedAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(OneCallRequest.ClassInstance)).Resolve("explosivesUsed")));
         }
         
         /// <summary>
@@ -284,6 +302,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfWork
             }
         }
         
+        private static ITypedElement RetrieveMarkedIndicatorAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(OneCallRequest.ClassInstance)).Resolve("markedIndicator")));
+        }
+        
         /// <summary>
         /// Raises the MarkedIndicatorChanging event
         /// </summary>
@@ -310,6 +333,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfWork
             }
         }
         
+        private static ITypedElement RetrieveWorkLocationsReference()
+        {
+            return ((ITypedElement)(((ModelElement)(OneCallRequest.ClassInstance)).Resolve("WorkLocations")));
+        }
+        
         /// <summary>
         /// Forwards CollectionChanging notifications for the WorkLocations property to the parent model element
         /// </summary>
@@ -317,7 +345,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfWork
         /// <param name="e">The original event data</param>
         private void WorkLocationsCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("WorkLocations", e);
+            this.OnCollectionChanging("WorkLocations", e, _workLocationsReference);
         }
         
         /// <summary>
@@ -327,7 +355,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfWork
         /// <param name="e">The original event data</param>
         private void WorkLocationsCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("WorkLocations", e);
+            this.OnCollectionChanged("WorkLocations", e, _workLocationsReference);
         }
         
         /// <summary>
@@ -540,7 +568,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfWork
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public MarkingInstructionProxy(IOneCallRequest modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "markingInstruction")
             {
             }
             
@@ -558,24 +586,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfWork
                     this.ModelElement.MarkingInstruction = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.MarkingInstructionChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.MarkingInstructionChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -589,7 +599,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfWork
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public ExplosivesUsedProxy(IOneCallRequest modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "explosivesUsed")
             {
             }
             
@@ -607,24 +617,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfWork
                     this.ModelElement.ExplosivesUsed = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ExplosivesUsedChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ExplosivesUsedChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -638,7 +630,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfWork
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public MarkedIndicatorProxy(IOneCallRequest modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "markedIndicator")
             {
             }
             
@@ -655,24 +647,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfWork
                 {
                     this.ModelElement.MarkedIndicator = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.MarkedIndicatorChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.MarkedIndicatorChanged -= handler;
             }
         }
     }

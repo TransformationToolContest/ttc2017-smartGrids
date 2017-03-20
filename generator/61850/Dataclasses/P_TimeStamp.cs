@@ -39,7 +39,7 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
     [XmlNamespacePrefixAttribute("data")]
     [ModelRepresentationClassAttribute("http://www.transformation-tool-contest.eu/2017/smartGrids/substationStandard#//Da" +
         "taclasses/P_TimeStamp")]
-    public class P_TimeStamp : ModelElement, IP_TimeStamp, IModelElement
+    public partial class P_TimeStamp : ModelElement, IP_TimeStamp, IModelElement
     {
         
         /// <summary>
@@ -47,10 +47,16 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
         /// </summary>
         private Nullable<int> _secondSinceEpoch;
         
+        private static Lazy<ITypedElement> _secondSinceEpochAttribute = new Lazy<ITypedElement>(RetrieveSecondSinceEpochAttribute);
+        
         /// <summary>
         /// The backing field for the FractionOfSecond property
         /// </summary>
         private Nullable<int> _fractionOfSecond;
+        
+        private static Lazy<ITypedElement> _fractionOfSecondAttribute = new Lazy<ITypedElement>(RetrieveFractionOfSecondAttribute);
+        
+        private static Lazy<ITypedElement> _timeQualityReference = new Lazy<ITypedElement>(RetrieveTimeQualityReference);
         
         /// <summary>
         /// The backing field for the TimeQuality property
@@ -77,10 +83,10 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
                     Nullable<int> old = this._secondSinceEpoch;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnSecondSinceEpochChanging(e);
-                    this.OnPropertyChanging("SecondSinceEpoch", e);
+                    this.OnPropertyChanging("SecondSinceEpoch", e, _secondSinceEpochAttribute);
                     this._secondSinceEpoch = value;
                     this.OnSecondSinceEpochChanged(e);
-                    this.OnPropertyChanged("SecondSinceEpoch", e);
+                    this.OnPropertyChanged("SecondSinceEpoch", e, _secondSinceEpochAttribute);
                 }
             }
         }
@@ -103,10 +109,10 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
                     Nullable<int> old = this._fractionOfSecond;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnFractionOfSecondChanging(e);
-                    this.OnPropertyChanging("FractionOfSecond", e);
+                    this.OnPropertyChanging("FractionOfSecond", e, _fractionOfSecondAttribute);
                     this._fractionOfSecond = value;
                     this.OnFractionOfSecondChanged(e);
-                    this.OnPropertyChanged("FractionOfSecond", e);
+                    this.OnPropertyChanged("FractionOfSecond", e, _fractionOfSecondAttribute);
                 }
             }
         }
@@ -129,7 +135,7 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
                     ITimeQuality old = this._timeQuality;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnTimeQualityChanging(e);
-                    this.OnPropertyChanging("TimeQuality", e);
+                    this.OnPropertyChanging("TimeQuality", e, _timeQualityReference);
                     this._timeQuality = value;
                     if ((old != null))
                     {
@@ -140,7 +146,7 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
                         value.Deleted += this.OnResetTimeQuality;
                     }
                     this.OnTimeQualityChanged(e);
-                    this.OnPropertyChanged("TimeQuality", e);
+                    this.OnPropertyChanged("TimeQuality", e, _timeQualityReference);
                 }
             }
         }
@@ -202,6 +208,11 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> TimeQualityChanged;
         
+        private static ITypedElement RetrieveSecondSinceEpochAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(P_TimeStamp.ClassInstance)).Resolve("secondSinceEpoch")));
+        }
+        
         /// <summary>
         /// Raises the SecondSinceEpochChanging event
         /// </summary>
@@ -228,6 +239,11 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
             }
         }
         
+        private static ITypedElement RetrieveFractionOfSecondAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(P_TimeStamp.ClassInstance)).Resolve("fractionOfSecond")));
+        }
+        
         /// <summary>
         /// Raises the FractionOfSecondChanging event
         /// </summary>
@@ -252,6 +268,11 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveTimeQualityReference()
+        {
+            return ((ITypedElement)(((ModelElement)(P_TimeStamp.ClassInstance)).Resolve("timeQuality")));
         }
         
         /// <summary>
@@ -506,7 +527,7 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public SecondSinceEpochProxy(IP_TimeStamp modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "secondSinceEpoch")
             {
             }
             
@@ -524,24 +545,6 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
                     this.ModelElement.SecondSinceEpoch = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.SecondSinceEpochChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.SecondSinceEpochChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -555,7 +558,7 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public FractionOfSecondProxy(IP_TimeStamp modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "fractionOfSecond")
             {
             }
             
@@ -573,24 +576,6 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
                     this.ModelElement.FractionOfSecond = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.FractionOfSecondChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.FractionOfSecondChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -604,7 +589,7 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public TimeQualityProxy(IP_TimeStamp modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "timeQuality")
             {
             }
             
@@ -621,24 +606,6 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
                 {
                     this.ModelElement.TimeQuality = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.TimeQualityChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.TimeQualityChanged -= handler;
             }
         }
     }

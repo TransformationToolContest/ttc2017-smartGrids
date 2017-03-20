@@ -40,7 +40,7 @@ namespace TTC2017.SmartGrids.COSEM.InterfaceClasses
     [XmlNamespacePrefixAttribute("inter")]
     [ModelRepresentationClassAttribute("http://www.transformation-tool-contest.eu/2017/smartGrids/cosem#//InterfaceClasse" +
         "s/MACaddresssetup")]
-    public class MACaddresssetup : Base, IMACaddresssetup, IModelElement
+    public partial class MACaddresssetup : Base, IMACaddresssetup, IModelElement
     {
         
         private static IClass _classInstance;

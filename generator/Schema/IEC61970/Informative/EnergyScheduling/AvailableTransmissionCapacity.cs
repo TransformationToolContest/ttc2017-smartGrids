@@ -49,8 +49,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.EnergyScheduling
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61970/Informative/EnergyScheduling/" +
         "AvailableTransmissionCapacity")]
     [DebuggerDisplayAttribute("AvailableTransmissionCapacity {UUID}")]
-    public class AvailableTransmissionCapacity : Curve, IAvailableTransmissionCapacity, IModelElement
+    public partial class AvailableTransmissionCapacity : Curve, IAvailableTransmissionCapacity, IModelElement
     {
+        
+        private static Lazy<ITypedElement> _scheduleForReference = new Lazy<ITypedElement>(RetrieveScheduleForReference);
         
         /// <summary>
         /// The backing field for the ScheduleFor property
@@ -108,6 +110,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.EnergyScheduling
             }
         }
         
+        private static ITypedElement RetrieveScheduleForReference()
+        {
+            return ((ITypedElement)(((ModelElement)(AvailableTransmissionCapacity.ClassInstance)).Resolve("ScheduleFor")));
+        }
+        
         /// <summary>
         /// Forwards CollectionChanging notifications for the ScheduleFor property to the parent model element
         /// </summary>
@@ -115,7 +122,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.EnergyScheduling
         /// <param name="e">The original event data</param>
         private void ScheduleForCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("ScheduleFor", e);
+            this.OnCollectionChanging("ScheduleFor", e, _scheduleForReference);
         }
         
         /// <summary>
@@ -125,7 +132,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.EnergyScheduling
         /// <param name="e">The original event data</param>
         private void ScheduleForCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("ScheduleFor", e);
+            this.OnCollectionChanged("ScheduleFor", e, _scheduleForReference);
         }
         
         /// <summary>

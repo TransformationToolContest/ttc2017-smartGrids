@@ -45,7 +45,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfGMLSupport
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61970/Informative/InfGMLSupport/Gml" +
         "Value")]
     [DebuggerDisplayAttribute("GmlValue {UUID}")]
-    public class GmlValue : IdentifiedObject, IGmlValue, IModelElement
+    public partial class GmlValue : IdentifiedObject, IGmlValue, IModelElement
     {
         
         /// <summary>
@@ -53,20 +53,30 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfGMLSupport
         /// </summary>
         private DateTime _dateTime;
         
+        private static Lazy<ITypedElement> _dateTimeAttribute = new Lazy<ITypedElement>(RetrieveDateTimeAttribute);
+        
         /// <summary>
         /// The backing field for the Value property
         /// </summary>
         private float _value;
+        
+        private static Lazy<ITypedElement> _valueAttribute = new Lazy<ITypedElement>(RetrieveValueAttribute);
         
         /// <summary>
         /// The backing field for the TimePeriod property
         /// </summary>
         private string _timePeriod;
         
+        private static Lazy<ITypedElement> _timePeriodAttribute = new Lazy<ITypedElement>(RetrieveTimePeriodAttribute);
+        
+        private static Lazy<ITypedElement> _gmlObservationReference = new Lazy<ITypedElement>(RetrieveGmlObservationReference);
+        
         /// <summary>
         /// The backing field for the GmlObservation property
         /// </summary>
         private IGmlObservation _gmlObservation;
+        
+        private static Lazy<ITypedElement> _measurementValueReference = new Lazy<ITypedElement>(RetrieveMeasurementValueReference);
         
         /// <summary>
         /// The backing field for the MeasurementValue property
@@ -93,10 +103,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfGMLSupport
                     DateTime old = this._dateTime;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnDateTimeChanging(e);
-                    this.OnPropertyChanging("DateTime", e);
+                    this.OnPropertyChanging("DateTime", e, _dateTimeAttribute);
                     this._dateTime = value;
                     this.OnDateTimeChanged(e);
-                    this.OnPropertyChanged("DateTime", e);
+                    this.OnPropertyChanged("DateTime", e, _dateTimeAttribute);
                 }
             }
         }
@@ -119,10 +129,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfGMLSupport
                     float old = this._value;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnValueChanging(e);
-                    this.OnPropertyChanging("Value", e);
+                    this.OnPropertyChanging("Value", e, _valueAttribute);
                     this._value = value;
                     this.OnValueChanged(e);
-                    this.OnPropertyChanged("Value", e);
+                    this.OnPropertyChanged("Value", e, _valueAttribute);
                 }
             }
         }
@@ -145,10 +155,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfGMLSupport
                     string old = this._timePeriod;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnTimePeriodChanging(e);
-                    this.OnPropertyChanging("TimePeriod", e);
+                    this.OnPropertyChanging("TimePeriod", e, _timePeriodAttribute);
                     this._timePeriod = value;
                     this.OnTimePeriodChanged(e);
-                    this.OnPropertyChanged("TimePeriod", e);
+                    this.OnPropertyChanged("TimePeriod", e, _timePeriodAttribute);
                 }
             }
         }
@@ -171,7 +181,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfGMLSupport
                     IGmlObservation old = this._gmlObservation;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnGmlObservationChanging(e);
-                    this.OnPropertyChanging("GmlObservation", e);
+                    this.OnPropertyChanging("GmlObservation", e, _gmlObservationReference);
                     this._gmlObservation = value;
                     if ((old != null))
                     {
@@ -184,7 +194,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfGMLSupport
                         value.Deleted += this.OnResetGmlObservation;
                     }
                     this.OnGmlObservationChanged(e);
-                    this.OnPropertyChanged("GmlObservation", e);
+                    this.OnPropertyChanged("GmlObservation", e, _gmlObservationReference);
                 }
             }
         }
@@ -207,7 +217,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfGMLSupport
                     IMeasurementValue old = this._measurementValue;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnMeasurementValueChanging(e);
-                    this.OnPropertyChanging("MeasurementValue", e);
+                    this.OnPropertyChanging("MeasurementValue", e, _measurementValueReference);
                     this._measurementValue = value;
                     if ((old != null))
                     {
@@ -220,7 +230,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfGMLSupport
                         value.Deleted += this.OnResetMeasurementValue;
                     }
                     this.OnMeasurementValueChanged(e);
-                    this.OnPropertyChanged("MeasurementValue", e);
+                    this.OnPropertyChanged("MeasurementValue", e, _measurementValueReference);
                 }
             }
         }
@@ -302,6 +312,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfGMLSupport
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> MeasurementValueChanged;
         
+        private static ITypedElement RetrieveDateTimeAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(GmlValue.ClassInstance)).Resolve("dateTime")));
+        }
+        
         /// <summary>
         /// Raises the DateTimeChanging event
         /// </summary>
@@ -326,6 +341,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfGMLSupport
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveValueAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(GmlValue.ClassInstance)).Resolve("value")));
         }
         
         /// <summary>
@@ -354,6 +374,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfGMLSupport
             }
         }
         
+        private static ITypedElement RetrieveTimePeriodAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(GmlValue.ClassInstance)).Resolve("timePeriod")));
+        }
+        
         /// <summary>
         /// Raises the TimePeriodChanging event
         /// </summary>
@@ -378,6 +403,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfGMLSupport
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveGmlObservationReference()
+        {
+            return ((ITypedElement)(((ModelElement)(GmlValue.ClassInstance)).Resolve("GmlObservation")));
         }
         
         /// <summary>
@@ -414,6 +444,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfGMLSupport
         private void OnResetGmlObservation(object sender, System.EventArgs eventArgs)
         {
             this.GmlObservation = null;
+        }
+        
+        private static ITypedElement RetrieveMeasurementValueReference()
+        {
+            return ((ITypedElement)(((ModelElement)(GmlValue.ClassInstance)).Resolve("MeasurementValue")));
         }
         
         /// <summary>
@@ -720,7 +755,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfGMLSupport
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public DateTimeProxy(IGmlValue modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "dateTime")
             {
             }
             
@@ -738,24 +773,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfGMLSupport
                     this.ModelElement.DateTime = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.DateTimeChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.DateTimeChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -769,7 +786,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfGMLSupport
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public ValueProxy(IGmlValue modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "value")
             {
             }
             
@@ -787,24 +804,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfGMLSupport
                     this.ModelElement.Value = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ValueChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ValueChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -818,7 +817,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfGMLSupport
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public TimePeriodProxy(IGmlValue modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "timePeriod")
             {
             }
             
@@ -836,24 +835,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfGMLSupport
                     this.ModelElement.TimePeriod = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.TimePeriodChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.TimePeriodChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -867,7 +848,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfGMLSupport
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public GmlObservationProxy(IGmlValue modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "GmlObservation")
             {
             }
             
@@ -885,24 +866,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfGMLSupport
                     this.ModelElement.GmlObservation = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.GmlObservationChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.GmlObservationChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -916,7 +879,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfGMLSupport
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public MeasurementValueProxy(IGmlValue modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "MeasurementValue")
             {
             }
             
@@ -933,24 +896,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfGMLSupport
                 {
                     this.ModelElement.MeasurementValue = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.MeasurementValueChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.MeasurementValueChanged -= handler;
             }
         }
     }

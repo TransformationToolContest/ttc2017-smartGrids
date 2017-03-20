@@ -53,7 +53,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61970/Informative/InfAssets/SVCInfo" +
         "")]
     [DebuggerDisplayAttribute("SVCInfo {UUID}")]
-    public class SVCInfo : FACTSDeviceInfo, ISVCInfo, IModelElement
+    public partial class SVCInfo : FACTSDeviceInfo, ISVCInfo, IModelElement
     {
         
         /// <summary>
@@ -61,10 +61,14 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
         /// </summary>
         private float _capacitiveRating;
         
+        private static Lazy<ITypedElement> _capacitiveRatingAttribute = new Lazy<ITypedElement>(RetrieveCapacitiveRatingAttribute);
+        
         /// <summary>
         /// The backing field for the InductiveRating property
         /// </summary>
         private float _inductiveRating;
+        
+        private static Lazy<ITypedElement> _inductiveRatingAttribute = new Lazy<ITypedElement>(RetrieveInductiveRatingAttribute);
         
         private static IClass _classInstance;
         
@@ -86,10 +90,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
                     float old = this._capacitiveRating;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnCapacitiveRatingChanging(e);
-                    this.OnPropertyChanging("CapacitiveRating", e);
+                    this.OnPropertyChanging("CapacitiveRating", e, _capacitiveRatingAttribute);
                     this._capacitiveRating = value;
                     this.OnCapacitiveRatingChanged(e);
-                    this.OnPropertyChanged("CapacitiveRating", e);
+                    this.OnPropertyChanged("CapacitiveRating", e, _capacitiveRatingAttribute);
                 }
             }
         }
@@ -112,10 +116,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
                     float old = this._inductiveRating;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnInductiveRatingChanging(e);
-                    this.OnPropertyChanging("InductiveRating", e);
+                    this.OnPropertyChanging("InductiveRating", e, _inductiveRatingAttribute);
                     this._inductiveRating = value;
                     this.OnInductiveRatingChanged(e);
-                    this.OnPropertyChanged("InductiveRating", e);
+                    this.OnPropertyChanged("InductiveRating", e, _inductiveRatingAttribute);
                 }
             }
         }
@@ -156,6 +160,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> InductiveRatingChanged;
         
+        private static ITypedElement RetrieveCapacitiveRatingAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(SVCInfo.ClassInstance)).Resolve("capacitiveRating")));
+        }
+        
         /// <summary>
         /// Raises the CapacitiveRatingChanging event
         /// </summary>
@@ -180,6 +189,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveInductiveRatingAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(SVCInfo.ClassInstance)).Resolve("inductiveRating")));
         }
         
         /// <summary>
@@ -271,7 +285,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public CapacitiveRatingProxy(ISVCInfo modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "capacitiveRating")
             {
             }
             
@@ -289,24 +303,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
                     this.ModelElement.CapacitiveRating = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.CapacitiveRatingChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.CapacitiveRatingChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -320,7 +316,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public InductiveRatingProxy(ISVCInfo modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "inductiveRating")
             {
             }
             
@@ -337,24 +333,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
                 {
                     this.ModelElement.InductiveRating = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.InductiveRatingChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.InductiveRatingChanged -= handler;
             }
         }
     }

@@ -53,7 +53,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
     [XmlNamespacePrefixAttribute("cimWires")]
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61970/Wires/PowerTransformer")]
     [DebuggerDisplayAttribute("PowerTransformer {UUID}")]
-    public class PowerTransformer : Equipment, IPowerTransformer, IModelElement
+    public partial class PowerTransformer : Equipment, IPowerTransformer, IModelElement
     {
         
         /// <summary>
@@ -61,25 +61,37 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
         /// </summary>
         private float _magBaseU;
         
+        private static Lazy<ITypedElement> _magBaseUAttribute = new Lazy<ITypedElement>(RetrieveMagBaseUAttribute);
+        
         /// <summary>
         /// The backing field for the MagSatFlux property
         /// </summary>
         private float _magSatFlux;
+        
+        private static Lazy<ITypedElement> _magSatFluxAttribute = new Lazy<ITypedElement>(RetrieveMagSatFluxAttribute);
         
         /// <summary>
         /// The backing field for the BmagSat property
         /// </summary>
         private float _bmagSat;
         
+        private static Lazy<ITypedElement> _bmagSatAttribute = new Lazy<ITypedElement>(RetrieveBmagSatAttribute);
+        
+        private static Lazy<ITypedElement> _flowgatesReference = new Lazy<ITypedElement>(RetrieveFlowgatesReference);
+        
         /// <summary>
         /// The backing field for the Flowgates property
         /// </summary>
         private PowerTransformerFlowgatesCollection _flowgates;
         
+        private static Lazy<ITypedElement> _heatExchangerReference = new Lazy<ITypedElement>(RetrieveHeatExchangerReference);
+        
         /// <summary>
         /// The backing field for the HeatExchanger property
         /// </summary>
         private IHeatExchanger _heatExchanger;
+        
+        private static Lazy<ITypedElement> _transformerWindingsReference = new Lazy<ITypedElement>(RetrieveTransformerWindingsReference);
         
         /// <summary>
         /// The backing field for the TransformerWindings property
@@ -116,10 +128,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
                     float old = this._magBaseU;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnMagBaseUChanging(e);
-                    this.OnPropertyChanging("MagBaseU", e);
+                    this.OnPropertyChanging("MagBaseU", e, _magBaseUAttribute);
                     this._magBaseU = value;
                     this.OnMagBaseUChanged(e);
-                    this.OnPropertyChanged("MagBaseU", e);
+                    this.OnPropertyChanged("MagBaseU", e, _magBaseUAttribute);
                 }
             }
         }
@@ -142,10 +154,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
                     float old = this._magSatFlux;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnMagSatFluxChanging(e);
-                    this.OnPropertyChanging("MagSatFlux", e);
+                    this.OnPropertyChanging("MagSatFlux", e, _magSatFluxAttribute);
                     this._magSatFlux = value;
                     this.OnMagSatFluxChanged(e);
-                    this.OnPropertyChanged("MagSatFlux", e);
+                    this.OnPropertyChanged("MagSatFlux", e, _magSatFluxAttribute);
                 }
             }
         }
@@ -168,10 +180,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
                     float old = this._bmagSat;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnBmagSatChanging(e);
-                    this.OnPropertyChanging("BmagSat", e);
+                    this.OnPropertyChanging("BmagSat", e, _bmagSatAttribute);
                     this._bmagSat = value;
                     this.OnBmagSatChanged(e);
-                    this.OnPropertyChanged("BmagSat", e);
+                    this.OnPropertyChanged("BmagSat", e, _bmagSatAttribute);
                 }
             }
         }
@@ -209,7 +221,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
                     IHeatExchanger old = this._heatExchanger;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnHeatExchangerChanging(e);
-                    this.OnPropertyChanging("HeatExchanger", e);
+                    this.OnPropertyChanging("HeatExchanger", e, _heatExchangerReference);
                     this._heatExchanger = value;
                     if ((old != null))
                     {
@@ -222,7 +234,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
                         value.Deleted += this.OnResetHeatExchanger;
                     }
                     this.OnHeatExchangerChanged(e);
-                    this.OnPropertyChanged("HeatExchanger", e);
+                    this.OnPropertyChanged("HeatExchanger", e, _heatExchangerReference);
                 }
             }
         }
@@ -308,6 +320,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> HeatExchangerChanged;
         
+        private static ITypedElement RetrieveMagBaseUAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(PowerTransformer.ClassInstance)).Resolve("magBaseU")));
+        }
+        
         /// <summary>
         /// Raises the MagBaseUChanging event
         /// </summary>
@@ -332,6 +349,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveMagSatFluxAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(PowerTransformer.ClassInstance)).Resolve("magSatFlux")));
         }
         
         /// <summary>
@@ -360,6 +382,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
             }
         }
         
+        private static ITypedElement RetrieveBmagSatAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(PowerTransformer.ClassInstance)).Resolve("bmagSat")));
+        }
+        
         /// <summary>
         /// Raises the BmagSatChanging event
         /// </summary>
@@ -386,6 +413,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
             }
         }
         
+        private static ITypedElement RetrieveFlowgatesReference()
+        {
+            return ((ITypedElement)(((ModelElement)(PowerTransformer.ClassInstance)).Resolve("Flowgates")));
+        }
+        
         /// <summary>
         /// Forwards CollectionChanging notifications for the Flowgates property to the parent model element
         /// </summary>
@@ -393,7 +425,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
         /// <param name="e">The original event data</param>
         private void FlowgatesCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("Flowgates", e);
+            this.OnCollectionChanging("Flowgates", e, _flowgatesReference);
         }
         
         /// <summary>
@@ -403,7 +435,12 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
         /// <param name="e">The original event data</param>
         private void FlowgatesCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("Flowgates", e);
+            this.OnCollectionChanged("Flowgates", e, _flowgatesReference);
+        }
+        
+        private static ITypedElement RetrieveHeatExchangerReference()
+        {
+            return ((ITypedElement)(((ModelElement)(PowerTransformer.ClassInstance)).Resolve("HeatExchanger")));
         }
         
         /// <summary>
@@ -442,6 +479,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
             this.HeatExchanger = null;
         }
         
+        private static ITypedElement RetrieveTransformerWindingsReference()
+        {
+            return ((ITypedElement)(((ModelElement)(PowerTransformer.ClassInstance)).Resolve("TransformerWindings")));
+        }
+        
         /// <summary>
         /// Forwards CollectionChanging notifications for the TransformerWindings property to the parent model element
         /// </summary>
@@ -449,7 +491,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
         /// <param name="e">The original event data</param>
         private void TransformerWindingsCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("TransformerWindings", e);
+            this.OnCollectionChanging("TransformerWindings", e, _transformerWindingsReference);
         }
         
         /// <summary>
@@ -459,7 +501,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
         /// <param name="e">The original event data</param>
         private void TransformerWindingsCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("TransformerWindings", e);
+            this.OnCollectionChanged("TransformerWindings", e, _transformerWindingsReference);
         }
         
         /// <summary>
@@ -772,7 +814,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public MagBaseUProxy(IPowerTransformer modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "magBaseU")
             {
             }
             
@@ -790,24 +832,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
                     this.ModelElement.MagBaseU = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.MagBaseUChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.MagBaseUChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -821,7 +845,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public MagSatFluxProxy(IPowerTransformer modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "magSatFlux")
             {
             }
             
@@ -839,24 +863,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
                     this.ModelElement.MagSatFlux = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.MagSatFluxChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.MagSatFluxChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -870,7 +876,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public BmagSatProxy(IPowerTransformer modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "bmagSat")
             {
             }
             
@@ -888,24 +894,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
                     this.ModelElement.BmagSat = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.BmagSatChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.BmagSatChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -919,7 +907,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public HeatExchangerProxy(IPowerTransformer modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "HeatExchanger")
             {
             }
             
@@ -936,24 +924,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
                 {
                     this.ModelElement.HeatExchanger = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.HeatExchangerChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.HeatExchangerChanged -= handler;
             }
         }
     }

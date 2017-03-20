@@ -39,7 +39,7 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
     [XmlNamespacePrefixAttribute("objects")]
     [ModelRepresentationClassAttribute("http://www.transformation-tool-contest.eu/2017/smartGrids/cosem#//COSEMObjects/El" +
         "ectricityHarmonics")]
-    public class ElectricityHarmonics : Data, IElectricityHarmonics, IModelElement
+    public partial class ElectricityHarmonics : Data, IElectricityHarmonics, IModelElement
     {
         
         /// <summary>
@@ -47,35 +47,49 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
         /// </summary>
         private Nullable<double> _total;
         
+        private static Lazy<ITypedElement> _totalAttribute = new Lazy<ITypedElement>(RetrieveTotalAttribute);
+        
         /// <summary>
         /// The backing field for the Fundamental_harmonic property
         /// </summary>
         private Nullable<double> _fundamental_harmonic;
+        
+        private static Lazy<ITypedElement> _fundamental_harmonicAttribute = new Lazy<ITypedElement>(RetrieveFundamental_harmonicAttribute);
         
         /// <summary>
         /// The backing field for the Harmonic property
         /// </summary>
         private Nullable<double> _harmonic;
         
+        private static Lazy<ITypedElement> _harmonicAttribute = new Lazy<ITypedElement>(RetrieveHarmonicAttribute);
+        
         /// <summary>
         /// The backing field for the Total_Harmoni_Distortion property
         /// </summary>
         private Nullable<double> _total_Harmoni_Distortion;
+        
+        private static Lazy<ITypedElement> _total_Harmoni_DistortionAttribute = new Lazy<ITypedElement>(RetrieveTotal_Harmoni_DistortionAttribute);
         
         /// <summary>
         /// The backing field for the Total_Demand_Distortion property
         /// </summary>
         private Nullable<double> _total_Demand_Distortion;
         
+        private static Lazy<ITypedElement> _total_Demand_DistortionAttribute = new Lazy<ITypedElement>(RetrieveTotal_Demand_DistortionAttribute);
+        
         /// <summary>
         /// The backing field for the All_harmonics property
         /// </summary>
         private Nullable<double> _all_harmonics;
         
+        private static Lazy<ITypedElement> _all_harmonicsAttribute = new Lazy<ITypedElement>(RetrieveAll_harmonicsAttribute);
+        
         /// <summary>
         /// The backing field for the All_harmonics_to_nominal_value_ratio property
         /// </summary>
         private Nullable<double> _all_harmonics_to_nominal_value_ratio;
+        
+        private static Lazy<ITypedElement> _all_harmonics_to_nominal_value_ratioAttribute = new Lazy<ITypedElement>(RetrieveAll_harmonics_to_nominal_value_ratioAttribute);
         
         private static IClass _classInstance;
         
@@ -97,10 +111,10 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     Nullable<double> old = this._total;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnTotalChanging(e);
-                    this.OnPropertyChanging("Total", e);
+                    this.OnPropertyChanging("Total", e, _totalAttribute);
                     this._total = value;
                     this.OnTotalChanged(e);
-                    this.OnPropertyChanged("Total", e);
+                    this.OnPropertyChanged("Total", e, _totalAttribute);
                 }
             }
         }
@@ -123,10 +137,10 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     Nullable<double> old = this._fundamental_harmonic;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnFundamental_harmonicChanging(e);
-                    this.OnPropertyChanging("Fundamental_harmonic", e);
+                    this.OnPropertyChanging("Fundamental_harmonic", e, _fundamental_harmonicAttribute);
                     this._fundamental_harmonic = value;
                     this.OnFundamental_harmonicChanged(e);
-                    this.OnPropertyChanged("Fundamental_harmonic", e);
+                    this.OnPropertyChanged("Fundamental_harmonic", e, _fundamental_harmonicAttribute);
                 }
             }
         }
@@ -149,10 +163,10 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     Nullable<double> old = this._harmonic;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnHarmonicChanging(e);
-                    this.OnPropertyChanging("Harmonic", e);
+                    this.OnPropertyChanging("Harmonic", e, _harmonicAttribute);
                     this._harmonic = value;
                     this.OnHarmonicChanged(e);
-                    this.OnPropertyChanged("Harmonic", e);
+                    this.OnPropertyChanged("Harmonic", e, _harmonicAttribute);
                 }
             }
         }
@@ -174,10 +188,10 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     Nullable<double> old = this._total_Harmoni_Distortion;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnTotal_Harmoni_DistortionChanging(e);
-                    this.OnPropertyChanging("Total_Harmoni_Distortion", e);
+                    this.OnPropertyChanging("Total_Harmoni_Distortion", e, _total_Harmoni_DistortionAttribute);
                     this._total_Harmoni_Distortion = value;
                     this.OnTotal_Harmoni_DistortionChanged(e);
-                    this.OnPropertyChanged("Total_Harmoni_Distortion", e);
+                    this.OnPropertyChanged("Total_Harmoni_Distortion", e, _total_Harmoni_DistortionAttribute);
                 }
             }
         }
@@ -199,10 +213,10 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     Nullable<double> old = this._total_Demand_Distortion;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnTotal_Demand_DistortionChanging(e);
-                    this.OnPropertyChanging("Total_Demand_Distortion", e);
+                    this.OnPropertyChanging("Total_Demand_Distortion", e, _total_Demand_DistortionAttribute);
                     this._total_Demand_Distortion = value;
                     this.OnTotal_Demand_DistortionChanged(e);
-                    this.OnPropertyChanged("Total_Demand_Distortion", e);
+                    this.OnPropertyChanged("Total_Demand_Distortion", e, _total_Demand_DistortionAttribute);
                 }
             }
         }
@@ -224,10 +238,10 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     Nullable<double> old = this._all_harmonics;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnAll_harmonicsChanging(e);
-                    this.OnPropertyChanging("All_harmonics", e);
+                    this.OnPropertyChanging("All_harmonics", e, _all_harmonicsAttribute);
                     this._all_harmonics = value;
                     this.OnAll_harmonicsChanged(e);
-                    this.OnPropertyChanged("All_harmonics", e);
+                    this.OnPropertyChanged("All_harmonics", e, _all_harmonicsAttribute);
                 }
             }
         }
@@ -249,10 +263,10 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     Nullable<double> old = this._all_harmonics_to_nominal_value_ratio;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnAll_harmonics_to_nominal_value_ratioChanging(e);
-                    this.OnPropertyChanging("All_harmonics_to_nominal_value_ratio", e);
+                    this.OnPropertyChanging("All_harmonics_to_nominal_value_ratio", e, _all_harmonics_to_nominal_value_ratioAttribute);
                     this._all_harmonics_to_nominal_value_ratio = value;
                     this.OnAll_harmonics_to_nominal_value_ratioChanged(e);
-                    this.OnPropertyChanged("All_harmonics_to_nominal_value_ratio", e);
+                    this.OnPropertyChanged("All_harmonics_to_nominal_value_ratio", e, _all_harmonics_to_nominal_value_ratioAttribute);
                 }
             }
         }
@@ -343,6 +357,11 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> All_harmonics_to_nominal_value_ratioChanged;
         
+        private static ITypedElement RetrieveTotalAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(ElectricityHarmonics.ClassInstance)).Resolve("total")));
+        }
+        
         /// <summary>
         /// Raises the TotalChanging event
         /// </summary>
@@ -367,6 +386,11 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveFundamental_harmonicAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(ElectricityHarmonics.ClassInstance)).Resolve("fundamental_harmonic")));
         }
         
         /// <summary>
@@ -395,6 +419,11 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             }
         }
         
+        private static ITypedElement RetrieveHarmonicAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(ElectricityHarmonics.ClassInstance)).Resolve("harmonic")));
+        }
+        
         /// <summary>
         /// Raises the HarmonicChanging event
         /// </summary>
@@ -419,6 +448,11 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveTotal_Harmoni_DistortionAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(ElectricityHarmonics.ClassInstance)).Resolve("Total_Harmoni_Distortion")));
         }
         
         /// <summary>
@@ -447,6 +481,11 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             }
         }
         
+        private static ITypedElement RetrieveTotal_Demand_DistortionAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(ElectricityHarmonics.ClassInstance)).Resolve("Total_Demand_Distortion")));
+        }
+        
         /// <summary>
         /// Raises the Total_Demand_DistortionChanging event
         /// </summary>
@@ -473,6 +512,11 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             }
         }
         
+        private static ITypedElement RetrieveAll_harmonicsAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(ElectricityHarmonics.ClassInstance)).Resolve("All_harmonics")));
+        }
+        
         /// <summary>
         /// Raises the All_harmonicsChanging event
         /// </summary>
@@ -497,6 +541,11 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveAll_harmonics_to_nominal_value_ratioAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(ElectricityHarmonics.ClassInstance)).Resolve("All_harmonics_to_nominal_value_ratio")));
         }
         
         /// <summary>
@@ -633,7 +682,7 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public TotalProxy(IElectricityHarmonics modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "total")
             {
             }
             
@@ -651,24 +700,6 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     this.ModelElement.Total = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.TotalChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.TotalChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -682,7 +713,7 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public Fundamental_harmonicProxy(IElectricityHarmonics modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "fundamental_harmonic")
             {
             }
             
@@ -700,24 +731,6 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     this.ModelElement.Fundamental_harmonic = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.Fundamental_harmonicChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.Fundamental_harmonicChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -731,7 +744,7 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public HarmonicProxy(IElectricityHarmonics modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "harmonic")
             {
             }
             
@@ -749,24 +762,6 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     this.ModelElement.Harmonic = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.HarmonicChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.HarmonicChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -780,7 +775,7 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public Total_Harmoni_DistortionProxy(IElectricityHarmonics modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "Total_Harmoni_Distortion")
             {
             }
             
@@ -798,24 +793,6 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     this.ModelElement.Total_Harmoni_Distortion = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.Total_Harmoni_DistortionChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.Total_Harmoni_DistortionChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -829,7 +806,7 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public Total_Demand_DistortionProxy(IElectricityHarmonics modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "Total_Demand_Distortion")
             {
             }
             
@@ -847,24 +824,6 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     this.ModelElement.Total_Demand_Distortion = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.Total_Demand_DistortionChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.Total_Demand_DistortionChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -878,7 +837,7 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public All_harmonicsProxy(IElectricityHarmonics modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "All_harmonics")
             {
             }
             
@@ -896,24 +855,6 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     this.ModelElement.All_harmonics = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.All_harmonicsChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.All_harmonicsChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -927,7 +868,7 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public All_harmonics_to_nominal_value_ratioProxy(IElectricityHarmonics modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "All_harmonics_to_nominal_value_ratio")
             {
             }
             
@@ -944,24 +885,6 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                 {
                     this.ModelElement.All_harmonics_to_nominal_value_ratio = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.All_harmonics_to_nominal_value_ratioChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.All_harmonics_to_nominal_value_ratioChanged -= handler;
             }
         }
     }

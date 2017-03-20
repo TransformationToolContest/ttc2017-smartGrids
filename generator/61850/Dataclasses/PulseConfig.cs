@@ -39,7 +39,7 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
     [XmlNamespacePrefixAttribute("data")]
     [ModelRepresentationClassAttribute("http://www.transformation-tool-contest.eu/2017/smartGrids/substationStandard#//Da" +
         "taclasses/PulseConfig")]
-    public class PulseConfig : ModelElement, IPulseConfig, IModelElement
+    public partial class PulseConfig : ModelElement, IPulseConfig, IModelElement
     {
         
         /// <summary>
@@ -47,15 +47,23 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
         /// </summary>
         private Nullable<int> _onDur;
         
+        private static Lazy<ITypedElement> _onDurAttribute = new Lazy<ITypedElement>(RetrieveOnDurAttribute);
+        
         /// <summary>
         /// The backing field for the OffDur property
         /// </summary>
         private Nullable<int> _offDur;
         
+        private static Lazy<ITypedElement> _offDurAttribute = new Lazy<ITypedElement>(RetrieveOffDurAttribute);
+        
         /// <summary>
         /// The backing field for the NumPls property
         /// </summary>
         private Nullable<int> _numPls;
+        
+        private static Lazy<ITypedElement> _numPlsAttribute = new Lazy<ITypedElement>(RetrieveNumPlsAttribute);
+        
+        private static Lazy<ITypedElement> _cmdQualReference = new Lazy<ITypedElement>(RetrieveCmdQualReference);
         
         /// <summary>
         /// The backing field for the CmdQual property
@@ -82,10 +90,10 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
                     Nullable<int> old = this._onDur;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnOnDurChanging(e);
-                    this.OnPropertyChanging("OnDur", e);
+                    this.OnPropertyChanging("OnDur", e, _onDurAttribute);
                     this._onDur = value;
                     this.OnOnDurChanged(e);
-                    this.OnPropertyChanged("OnDur", e);
+                    this.OnPropertyChanged("OnDur", e, _onDurAttribute);
                 }
             }
         }
@@ -108,10 +116,10 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
                     Nullable<int> old = this._offDur;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnOffDurChanging(e);
-                    this.OnPropertyChanging("OffDur", e);
+                    this.OnPropertyChanging("OffDur", e, _offDurAttribute);
                     this._offDur = value;
                     this.OnOffDurChanged(e);
-                    this.OnPropertyChanged("OffDur", e);
+                    this.OnPropertyChanged("OffDur", e, _offDurAttribute);
                 }
             }
         }
@@ -134,10 +142,10 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
                     Nullable<int> old = this._numPls;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnNumPlsChanging(e);
-                    this.OnPropertyChanging("NumPls", e);
+                    this.OnPropertyChanging("NumPls", e, _numPlsAttribute);
                     this._numPls = value;
                     this.OnNumPlsChanged(e);
-                    this.OnPropertyChanged("NumPls", e);
+                    this.OnPropertyChanged("NumPls", e, _numPlsAttribute);
                 }
             }
         }
@@ -160,7 +168,7 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
                     IControlOutput old = this._cmdQual;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnCmdQualChanging(e);
-                    this.OnPropertyChanging("CmdQual", e);
+                    this.OnPropertyChanging("CmdQual", e, _cmdQualReference);
                     this._cmdQual = value;
                     if ((old != null))
                     {
@@ -171,7 +179,7 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
                         value.Deleted += this.OnResetCmdQual;
                     }
                     this.OnCmdQualChanged(e);
-                    this.OnPropertyChanged("CmdQual", e);
+                    this.OnPropertyChanged("CmdQual", e, _cmdQualReference);
                 }
             }
         }
@@ -243,6 +251,11 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> CmdQualChanged;
         
+        private static ITypedElement RetrieveOnDurAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(PulseConfig.ClassInstance)).Resolve("onDur")));
+        }
+        
         /// <summary>
         /// Raises the OnDurChanging event
         /// </summary>
@@ -267,6 +280,11 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveOffDurAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(PulseConfig.ClassInstance)).Resolve("offDur")));
         }
         
         /// <summary>
@@ -295,6 +313,11 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
             }
         }
         
+        private static ITypedElement RetrieveNumPlsAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(PulseConfig.ClassInstance)).Resolve("numPls")));
+        }
+        
         /// <summary>
         /// Raises the NumPlsChanging event
         /// </summary>
@@ -319,6 +342,11 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveCmdQualReference()
+        {
+            return ((ITypedElement)(((ModelElement)(PulseConfig.ClassInstance)).Resolve("cmdQual")));
         }
         
         /// <summary>
@@ -582,7 +610,7 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public OnDurProxy(IPulseConfig modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "onDur")
             {
             }
             
@@ -600,24 +628,6 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
                     this.ModelElement.OnDur = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.OnDurChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.OnDurChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -631,7 +641,7 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public OffDurProxy(IPulseConfig modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "offDur")
             {
             }
             
@@ -649,24 +659,6 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
                     this.ModelElement.OffDur = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.OffDurChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.OffDurChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -680,7 +672,7 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public NumPlsProxy(IPulseConfig modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "numPls")
             {
             }
             
@@ -698,24 +690,6 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
                     this.ModelElement.NumPls = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.NumPlsChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.NumPlsChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -729,7 +703,7 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public CmdQualProxy(IPulseConfig modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "cmdQual")
             {
             }
             
@@ -746,24 +720,6 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
                 {
                     this.ModelElement.CmdQual = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.CmdQualChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.CmdQualChanged -= handler;
             }
         }
     }

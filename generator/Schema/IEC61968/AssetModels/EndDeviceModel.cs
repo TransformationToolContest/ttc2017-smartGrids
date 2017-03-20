@@ -46,8 +46,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.AssetModels
     [XmlNamespacePrefixAttribute("cimAssetModels")]
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61968/AssetModels/EndDeviceModel")]
     [DebuggerDisplayAttribute("EndDeviceModel {UUID}")]
-    public class EndDeviceModel : AssetModel, IEndDeviceModel, IModelElement
+    public partial class EndDeviceModel : AssetModel, IEndDeviceModel, IModelElement
     {
+        
+        private static Lazy<ITypedElement> _endDeviceAssetsReference = new Lazy<ITypedElement>(RetrieveEndDeviceAssetsReference);
         
         /// <summary>
         /// The backing field for the EndDeviceAssets property
@@ -104,6 +106,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.AssetModels
             }
         }
         
+        private static ITypedElement RetrieveEndDeviceAssetsReference()
+        {
+            return ((ITypedElement)(((ModelElement)(EndDeviceModel.ClassInstance)).Resolve("EndDeviceAssets")));
+        }
+        
         /// <summary>
         /// Forwards CollectionChanging notifications for the EndDeviceAssets property to the parent model element
         /// </summary>
@@ -111,7 +118,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.AssetModels
         /// <param name="e">The original event data</param>
         private void EndDeviceAssetsCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("EndDeviceAssets", e);
+            this.OnCollectionChanging("EndDeviceAssets", e, _endDeviceAssetsReference);
         }
         
         /// <summary>
@@ -121,7 +128,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.AssetModels
         /// <param name="e">The original event data</param>
         private void EndDeviceAssetsCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("EndDeviceAssets", e);
+            this.OnCollectionChanged("EndDeviceAssets", e, _endDeviceAssetsReference);
         }
         
         /// <summary>

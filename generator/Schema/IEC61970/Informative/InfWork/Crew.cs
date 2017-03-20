@@ -49,7 +49,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfWork
     [XmlNamespacePrefixAttribute("cimInfWork")]
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61970/Informative/InfWork/Crew")]
     [DebuggerDisplayAttribute("Crew {UUID}")]
-    public class Crew : IdentifiedObject, ICrew, IModelElement
+    public partial class Crew : IdentifiedObject, ICrew, IModelElement
     {
         
         /// <summary>
@@ -57,65 +57,93 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfWork
         /// </summary>
         private string _category;
         
+        private static Lazy<ITypedElement> _categoryAttribute = new Lazy<ITypedElement>(RetrieveCategoryAttribute);
+        
+        private static Lazy<ITypedElement> _workTasksReference = new Lazy<ITypedElement>(RetrieveWorkTasksReference);
+        
         /// <summary>
         /// The backing field for the WorkTasks property
         /// </summary>
         private CrewWorkTasksCollection _workTasks;
+        
+        private static Lazy<ITypedElement> _assignmentsReference = new Lazy<ITypedElement>(RetrieveAssignmentsReference);
         
         /// <summary>
         /// The backing field for the Assignments property
         /// </summary>
         private CrewAssignmentsCollection _assignments;
         
+        private static Lazy<ITypedElement> _shiftPatternsReference = new Lazy<ITypedElement>(RetrieveShiftPatternsReference);
+        
         /// <summary>
         /// The backing field for the ShiftPatterns property
         /// </summary>
         private CrewShiftPatternsCollection _shiftPatterns;
+        
+        private static Lazy<ITypedElement> _routeReference = new Lazy<ITypedElement>(RetrieveRouteReference);
         
         /// <summary>
         /// The backing field for the Route property
         /// </summary>
         private IRoute _route;
         
+        private static Lazy<ITypedElement> _toolsReference = new Lazy<ITypedElement>(RetrieveToolsReference);
+        
         /// <summary>
         /// The backing field for the Tools property
         /// </summary>
         private CrewToolsCollection _tools;
+        
+        private static Lazy<ITypedElement> _vehiclesReference = new Lazy<ITypedElement>(RetrieveVehiclesReference);
         
         /// <summary>
         /// The backing field for the Vehicles property
         /// </summary>
         private CrewVehiclesCollection _vehicles;
         
+        private static Lazy<ITypedElement> _crewMembersReference = new Lazy<ITypedElement>(RetrieveCrewMembersReference);
+        
         /// <summary>
         /// The backing field for the CrewMembers property
         /// </summary>
         private CrewCrewMembersCollection _crewMembers;
+        
+        private static Lazy<ITypedElement> _workEquipmentAssetsReference = new Lazy<ITypedElement>(RetrieveWorkEquipmentAssetsReference);
         
         /// <summary>
         /// The backing field for the WorkEquipmentAssets property
         /// </summary>
         private CrewWorkEquipmentAssetsCollection _workEquipmentAssets;
         
+        private static Lazy<ITypedElement> _locationsReference = new Lazy<ITypedElement>(RetrieveLocationsReference);
+        
         /// <summary>
         /// The backing field for the Locations property
         /// </summary>
         private CrewLocationsCollection _locations;
+        
+        private static Lazy<ITypedElement> _organisationsReference = new Lazy<ITypedElement>(RetrieveOrganisationsReference);
         
         /// <summary>
         /// The backing field for the Organisations property
         /// </summary>
         private CrewOrganisationsCollection _organisations;
         
+        private static Lazy<ITypedElement> _switchingSchedulesReference = new Lazy<ITypedElement>(RetrieveSwitchingSchedulesReference);
+        
         /// <summary>
         /// The backing field for the SwitchingSchedules property
         /// </summary>
         private CrewSwitchingSchedulesCollection _switchingSchedules;
         
+        private static Lazy<ITypedElement> _capabilitiesReference = new Lazy<ITypedElement>(RetrieveCapabilitiesReference);
+        
         /// <summary>
         /// The backing field for the Capabilities property
         /// </summary>
         private CrewCapabilitiesCollection _capabilities;
+        
+        private static Lazy<ITypedElement> _outageStepsReference = new Lazy<ITypedElement>(RetrieveOutageStepsReference);
         
         /// <summary>
         /// The backing field for the OutageSteps property
@@ -182,10 +210,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfWork
                     string old = this._category;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnCategoryChanging(e);
-                    this.OnPropertyChanging("Category", e);
+                    this.OnPropertyChanging("Category", e, _categoryAttribute);
                     this._category = value;
                     this.OnCategoryChanged(e);
-                    this.OnPropertyChanged("Category", e);
+                    this.OnPropertyChanged("Category", e, _categoryAttribute);
                 }
             }
         }
@@ -253,7 +281,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfWork
                     IRoute old = this._route;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnRouteChanging(e);
-                    this.OnPropertyChanging("Route", e);
+                    this.OnPropertyChanging("Route", e, _routeReference);
                     this._route = value;
                     if ((old != null))
                     {
@@ -266,7 +294,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfWork
                         value.Deleted += this.OnResetRoute;
                     }
                     this.OnRouteChanged(e);
-                    this.OnPropertyChanged("Route", e);
+                    this.OnPropertyChanged("Route", e, _routeReference);
                 }
             }
         }
@@ -452,6 +480,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfWork
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> RouteChanged;
         
+        private static ITypedElement RetrieveCategoryAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(Crew.ClassInstance)).Resolve("category")));
+        }
+        
         /// <summary>
         /// Raises the CategoryChanging event
         /// </summary>
@@ -478,6 +511,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfWork
             }
         }
         
+        private static ITypedElement RetrieveWorkTasksReference()
+        {
+            return ((ITypedElement)(((ModelElement)(Crew.ClassInstance)).Resolve("WorkTasks")));
+        }
+        
         /// <summary>
         /// Forwards CollectionChanging notifications for the WorkTasks property to the parent model element
         /// </summary>
@@ -485,7 +523,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfWork
         /// <param name="e">The original event data</param>
         private void WorkTasksCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("WorkTasks", e);
+            this.OnCollectionChanging("WorkTasks", e, _workTasksReference);
         }
         
         /// <summary>
@@ -495,7 +533,12 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfWork
         /// <param name="e">The original event data</param>
         private void WorkTasksCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("WorkTasks", e);
+            this.OnCollectionChanged("WorkTasks", e, _workTasksReference);
+        }
+        
+        private static ITypedElement RetrieveAssignmentsReference()
+        {
+            return ((ITypedElement)(((ModelElement)(Crew.ClassInstance)).Resolve("Assignments")));
         }
         
         /// <summary>
@@ -505,7 +548,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfWork
         /// <param name="e">The original event data</param>
         private void AssignmentsCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("Assignments", e);
+            this.OnCollectionChanging("Assignments", e, _assignmentsReference);
         }
         
         /// <summary>
@@ -515,7 +558,12 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfWork
         /// <param name="e">The original event data</param>
         private void AssignmentsCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("Assignments", e);
+            this.OnCollectionChanged("Assignments", e, _assignmentsReference);
+        }
+        
+        private static ITypedElement RetrieveShiftPatternsReference()
+        {
+            return ((ITypedElement)(((ModelElement)(Crew.ClassInstance)).Resolve("ShiftPatterns")));
         }
         
         /// <summary>
@@ -525,7 +573,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfWork
         /// <param name="e">The original event data</param>
         private void ShiftPatternsCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("ShiftPatterns", e);
+            this.OnCollectionChanging("ShiftPatterns", e, _shiftPatternsReference);
         }
         
         /// <summary>
@@ -535,7 +583,12 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfWork
         /// <param name="e">The original event data</param>
         private void ShiftPatternsCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("ShiftPatterns", e);
+            this.OnCollectionChanged("ShiftPatterns", e, _shiftPatternsReference);
+        }
+        
+        private static ITypedElement RetrieveRouteReference()
+        {
+            return ((ITypedElement)(((ModelElement)(Crew.ClassInstance)).Resolve("Route")));
         }
         
         /// <summary>
@@ -574,6 +627,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfWork
             this.Route = null;
         }
         
+        private static ITypedElement RetrieveToolsReference()
+        {
+            return ((ITypedElement)(((ModelElement)(Crew.ClassInstance)).Resolve("Tools")));
+        }
+        
         /// <summary>
         /// Forwards CollectionChanging notifications for the Tools property to the parent model element
         /// </summary>
@@ -581,7 +639,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfWork
         /// <param name="e">The original event data</param>
         private void ToolsCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("Tools", e);
+            this.OnCollectionChanging("Tools", e, _toolsReference);
         }
         
         /// <summary>
@@ -591,7 +649,12 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfWork
         /// <param name="e">The original event data</param>
         private void ToolsCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("Tools", e);
+            this.OnCollectionChanged("Tools", e, _toolsReference);
+        }
+        
+        private static ITypedElement RetrieveVehiclesReference()
+        {
+            return ((ITypedElement)(((ModelElement)(Crew.ClassInstance)).Resolve("Vehicles")));
         }
         
         /// <summary>
@@ -601,7 +664,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfWork
         /// <param name="e">The original event data</param>
         private void VehiclesCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("Vehicles", e);
+            this.OnCollectionChanging("Vehicles", e, _vehiclesReference);
         }
         
         /// <summary>
@@ -611,7 +674,12 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfWork
         /// <param name="e">The original event data</param>
         private void VehiclesCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("Vehicles", e);
+            this.OnCollectionChanged("Vehicles", e, _vehiclesReference);
+        }
+        
+        private static ITypedElement RetrieveCrewMembersReference()
+        {
+            return ((ITypedElement)(((ModelElement)(Crew.ClassInstance)).Resolve("CrewMembers")));
         }
         
         /// <summary>
@@ -621,7 +689,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfWork
         /// <param name="e">The original event data</param>
         private void CrewMembersCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("CrewMembers", e);
+            this.OnCollectionChanging("CrewMembers", e, _crewMembersReference);
         }
         
         /// <summary>
@@ -631,7 +699,12 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfWork
         /// <param name="e">The original event data</param>
         private void CrewMembersCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("CrewMembers", e);
+            this.OnCollectionChanged("CrewMembers", e, _crewMembersReference);
+        }
+        
+        private static ITypedElement RetrieveWorkEquipmentAssetsReference()
+        {
+            return ((ITypedElement)(((ModelElement)(Crew.ClassInstance)).Resolve("WorkEquipmentAssets")));
         }
         
         /// <summary>
@@ -641,7 +714,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfWork
         /// <param name="e">The original event data</param>
         private void WorkEquipmentAssetsCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("WorkEquipmentAssets", e);
+            this.OnCollectionChanging("WorkEquipmentAssets", e, _workEquipmentAssetsReference);
         }
         
         /// <summary>
@@ -651,7 +724,12 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfWork
         /// <param name="e">The original event data</param>
         private void WorkEquipmentAssetsCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("WorkEquipmentAssets", e);
+            this.OnCollectionChanged("WorkEquipmentAssets", e, _workEquipmentAssetsReference);
+        }
+        
+        private static ITypedElement RetrieveLocationsReference()
+        {
+            return ((ITypedElement)(((ModelElement)(Crew.ClassInstance)).Resolve("Locations")));
         }
         
         /// <summary>
@@ -661,7 +739,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfWork
         /// <param name="e">The original event data</param>
         private void LocationsCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("Locations", e);
+            this.OnCollectionChanging("Locations", e, _locationsReference);
         }
         
         /// <summary>
@@ -671,7 +749,12 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfWork
         /// <param name="e">The original event data</param>
         private void LocationsCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("Locations", e);
+            this.OnCollectionChanged("Locations", e, _locationsReference);
+        }
+        
+        private static ITypedElement RetrieveOrganisationsReference()
+        {
+            return ((ITypedElement)(((ModelElement)(Crew.ClassInstance)).Resolve("Organisations")));
         }
         
         /// <summary>
@@ -681,7 +764,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfWork
         /// <param name="e">The original event data</param>
         private void OrganisationsCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("Organisations", e);
+            this.OnCollectionChanging("Organisations", e, _organisationsReference);
         }
         
         /// <summary>
@@ -691,7 +774,12 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfWork
         /// <param name="e">The original event data</param>
         private void OrganisationsCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("Organisations", e);
+            this.OnCollectionChanged("Organisations", e, _organisationsReference);
+        }
+        
+        private static ITypedElement RetrieveSwitchingSchedulesReference()
+        {
+            return ((ITypedElement)(((ModelElement)(Crew.ClassInstance)).Resolve("SwitchingSchedules")));
         }
         
         /// <summary>
@@ -701,7 +789,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfWork
         /// <param name="e">The original event data</param>
         private void SwitchingSchedulesCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("SwitchingSchedules", e);
+            this.OnCollectionChanging("SwitchingSchedules", e, _switchingSchedulesReference);
         }
         
         /// <summary>
@@ -711,7 +799,12 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfWork
         /// <param name="e">The original event data</param>
         private void SwitchingSchedulesCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("SwitchingSchedules", e);
+            this.OnCollectionChanged("SwitchingSchedules", e, _switchingSchedulesReference);
+        }
+        
+        private static ITypedElement RetrieveCapabilitiesReference()
+        {
+            return ((ITypedElement)(((ModelElement)(Crew.ClassInstance)).Resolve("Capabilities")));
         }
         
         /// <summary>
@@ -721,7 +814,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfWork
         /// <param name="e">The original event data</param>
         private void CapabilitiesCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("Capabilities", e);
+            this.OnCollectionChanging("Capabilities", e, _capabilitiesReference);
         }
         
         /// <summary>
@@ -731,7 +824,12 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfWork
         /// <param name="e">The original event data</param>
         private void CapabilitiesCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("Capabilities", e);
+            this.OnCollectionChanged("Capabilities", e, _capabilitiesReference);
+        }
+        
+        private static ITypedElement RetrieveOutageStepsReference()
+        {
+            return ((ITypedElement)(((ModelElement)(Crew.ClassInstance)).Resolve("OutageSteps")));
         }
         
         /// <summary>
@@ -741,7 +839,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfWork
         /// <param name="e">The original event data</param>
         private void OutageStepsCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("OutageSteps", e);
+            this.OnCollectionChanging("OutageSteps", e, _outageStepsReference);
         }
         
         /// <summary>
@@ -751,7 +849,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfWork
         /// <param name="e">The original event data</param>
         private void OutageStepsCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("OutageSteps", e);
+            this.OnCollectionChanged("OutageSteps", e, _outageStepsReference);
         }
         
         /// <summary>
@@ -1426,7 +1524,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfWork
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public CategoryProxy(ICrew modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "category")
             {
             }
             
@@ -1444,24 +1542,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfWork
                     this.ModelElement.Category = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.CategoryChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.CategoryChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1475,7 +1555,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfWork
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public RouteProxy(ICrew modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "Route")
             {
             }
             
@@ -1492,24 +1572,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfWork
                 {
                     this.ModelElement.Route = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.RouteChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.RouteChanged -= handler;
             }
         }
     }

@@ -43,23 +43,31 @@ namespace TTC2017.SmartGrids.SubstationStandard.LNNodes.LNGroupZ
     [XmlNamespacePrefixAttribute("groupz")]
     [ModelRepresentationClassAttribute("http://www.transformation-tool-contest.eu/2017/smartGrids/substationStandard#//LN" +
         "Nodes/LNGroupZ/ZCAP")]
-    public class ZCAP : TTC2017.SmartGrids.SubstationStandard.LNNodes.LNGroupZ.GroupZ, IZCAP, IModelElement
+    public partial class ZCAP : TTC2017.SmartGrids.SubstationStandard.LNNodes.LNGroupZ.GroupZ, IZCAP, IModelElement
     {
+        
+        private static Lazy<ITypedElement> _opTmhReference = new Lazy<ITypedElement>(RetrieveOpTmhReference);
         
         /// <summary>
         /// The backing field for the OpTmh property
         /// </summary>
         private IINS _opTmh;
         
+        private static Lazy<ITypedElement> _capDSReference = new Lazy<ITypedElement>(RetrieveCapDSReference);
+        
         /// <summary>
         /// The backing field for the CapDS property
         /// </summary>
         private ISPC _capDS;
         
+        private static Lazy<ITypedElement> _dschBlkReference = new Lazy<ITypedElement>(RetrieveDschBlkReference);
+        
         /// <summary>
         /// The backing field for the DschBlk property
         /// </summary>
         private ISPS _dschBlk;
+        
+        private static Lazy<ITypedElement> _capControlReference = new Lazy<ITypedElement>(RetrieveCapControlReference);
         
         /// <summary>
         /// The backing field for the CapControl property
@@ -85,7 +93,7 @@ namespace TTC2017.SmartGrids.SubstationStandard.LNNodes.LNGroupZ
                     IINS old = this._opTmh;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnOpTmhChanging(e);
-                    this.OnPropertyChanging("OpTmh", e);
+                    this.OnPropertyChanging("OpTmh", e, _opTmhReference);
                     this._opTmh = value;
                     if ((old != null))
                     {
@@ -96,7 +104,7 @@ namespace TTC2017.SmartGrids.SubstationStandard.LNNodes.LNGroupZ
                         value.Deleted += this.OnResetOpTmh;
                     }
                     this.OnOpTmhChanged(e);
-                    this.OnPropertyChanged("OpTmh", e);
+                    this.OnPropertyChanged("OpTmh", e, _opTmhReference);
                 }
             }
         }
@@ -118,7 +126,7 @@ namespace TTC2017.SmartGrids.SubstationStandard.LNNodes.LNGroupZ
                     ISPC old = this._capDS;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnCapDSChanging(e);
-                    this.OnPropertyChanging("CapDS", e);
+                    this.OnPropertyChanging("CapDS", e, _capDSReference);
                     this._capDS = value;
                     if ((old != null))
                     {
@@ -129,7 +137,7 @@ namespace TTC2017.SmartGrids.SubstationStandard.LNNodes.LNGroupZ
                         value.Deleted += this.OnResetCapDS;
                     }
                     this.OnCapDSChanged(e);
-                    this.OnPropertyChanged("CapDS", e);
+                    this.OnPropertyChanged("CapDS", e, _capDSReference);
                 }
             }
         }
@@ -151,7 +159,7 @@ namespace TTC2017.SmartGrids.SubstationStandard.LNNodes.LNGroupZ
                     ISPS old = this._dschBlk;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnDschBlkChanging(e);
-                    this.OnPropertyChanging("DschBlk", e);
+                    this.OnPropertyChanging("DschBlk", e, _dschBlkReference);
                     this._dschBlk = value;
                     if ((old != null))
                     {
@@ -162,7 +170,7 @@ namespace TTC2017.SmartGrids.SubstationStandard.LNNodes.LNGroupZ
                         value.Deleted += this.OnResetDschBlk;
                     }
                     this.OnDschBlkChanged(e);
-                    this.OnPropertyChanged("DschBlk", e);
+                    this.OnPropertyChanged("DschBlk", e, _dschBlkReference);
                 }
             }
         }
@@ -184,7 +192,7 @@ namespace TTC2017.SmartGrids.SubstationStandard.LNNodes.LNGroupZ
                     IARCO old = this._capControl;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnCapControlChanging(e);
-                    this.OnPropertyChanging("CapControl", e);
+                    this.OnPropertyChanging("CapControl", e, _capControlReference);
                     this._capControl = value;
                     if ((old != null))
                     {
@@ -195,7 +203,7 @@ namespace TTC2017.SmartGrids.SubstationStandard.LNNodes.LNGroupZ
                         value.Deleted += this.OnResetCapControl;
                     }
                     this.OnCapControlChanged(e);
-                    this.OnPropertyChanged("CapControl", e);
+                    this.OnPropertyChanged("CapControl", e, _capControlReference);
                 }
             }
         }
@@ -267,6 +275,11 @@ namespace TTC2017.SmartGrids.SubstationStandard.LNNodes.LNGroupZ
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> CapControlChanged;
         
+        private static ITypedElement RetrieveOpTmhReference()
+        {
+            return ((ITypedElement)(((ModelElement)(ZCAP.ClassInstance)).Resolve("OpTmh")));
+        }
+        
         /// <summary>
         /// Raises the OpTmhChanging event
         /// </summary>
@@ -301,6 +314,11 @@ namespace TTC2017.SmartGrids.SubstationStandard.LNNodes.LNGroupZ
         private void OnResetOpTmh(object sender, System.EventArgs eventArgs)
         {
             this.OpTmh = null;
+        }
+        
+        private static ITypedElement RetrieveCapDSReference()
+        {
+            return ((ITypedElement)(((ModelElement)(ZCAP.ClassInstance)).Resolve("CapDS")));
         }
         
         /// <summary>
@@ -339,6 +357,11 @@ namespace TTC2017.SmartGrids.SubstationStandard.LNNodes.LNGroupZ
             this.CapDS = null;
         }
         
+        private static ITypedElement RetrieveDschBlkReference()
+        {
+            return ((ITypedElement)(((ModelElement)(ZCAP.ClassInstance)).Resolve("DschBlk")));
+        }
+        
         /// <summary>
         /// Raises the DschBlkChanging event
         /// </summary>
@@ -373,6 +396,11 @@ namespace TTC2017.SmartGrids.SubstationStandard.LNNodes.LNGroupZ
         private void OnResetDschBlk(object sender, System.EventArgs eventArgs)
         {
             this.DschBlk = null;
+        }
+        
+        private static ITypedElement RetrieveCapControlReference()
+        {
+            return ((ITypedElement)(((ModelElement)(ZCAP.ClassInstance)).Resolve("CapControl")));
         }
         
         /// <summary>
@@ -727,7 +755,7 @@ namespace TTC2017.SmartGrids.SubstationStandard.LNNodes.LNGroupZ
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public OpTmhProxy(IZCAP modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "OpTmh")
             {
             }
             
@@ -745,24 +773,6 @@ namespace TTC2017.SmartGrids.SubstationStandard.LNNodes.LNGroupZ
                     this.ModelElement.OpTmh = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.OpTmhChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.OpTmhChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -776,7 +786,7 @@ namespace TTC2017.SmartGrids.SubstationStandard.LNNodes.LNGroupZ
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public CapDSProxy(IZCAP modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "CapDS")
             {
             }
             
@@ -794,24 +804,6 @@ namespace TTC2017.SmartGrids.SubstationStandard.LNNodes.LNGroupZ
                     this.ModelElement.CapDS = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.CapDSChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.CapDSChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -825,7 +817,7 @@ namespace TTC2017.SmartGrids.SubstationStandard.LNNodes.LNGroupZ
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public DschBlkProxy(IZCAP modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "DschBlk")
             {
             }
             
@@ -843,24 +835,6 @@ namespace TTC2017.SmartGrids.SubstationStandard.LNNodes.LNGroupZ
                     this.ModelElement.DschBlk = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.DschBlkChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.DschBlkChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -874,7 +848,7 @@ namespace TTC2017.SmartGrids.SubstationStandard.LNNodes.LNGroupZ
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public CapControlProxy(IZCAP modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "CapControl")
             {
             }
             
@@ -891,24 +865,6 @@ namespace TTC2017.SmartGrids.SubstationStandard.LNNodes.LNGroupZ
                 {
                     this.ModelElement.CapControl = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.CapControlChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.CapControlChanged -= handler;
             }
         }
     }

@@ -51,7 +51,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Common
     [XmlNamespacePrefixAttribute("cimCommon")]
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61968/Common/Status")]
     [DebuggerDisplayAttribute("Status {UUID}")]
-    public class Status : Element, IStatus, IModelElement
+    public partial class Status : Element, IStatus, IModelElement
     {
         
         /// <summary>
@@ -59,20 +59,28 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Common
         /// </summary>
         private string _reason;
         
+        private static Lazy<ITypedElement> _reasonAttribute = new Lazy<ITypedElement>(RetrieveReasonAttribute);
+        
         /// <summary>
         /// The backing field for the Value property
         /// </summary>
         private string _value;
+        
+        private static Lazy<ITypedElement> _valueAttribute = new Lazy<ITypedElement>(RetrieveValueAttribute);
         
         /// <summary>
         /// The backing field for the Remark property
         /// </summary>
         private string _remark;
         
+        private static Lazy<ITypedElement> _remarkAttribute = new Lazy<ITypedElement>(RetrieveRemarkAttribute);
+        
         /// <summary>
         /// The backing field for the DateTime property
         /// </summary>
         private DateTime _dateTime;
+        
+        private static Lazy<ITypedElement> _dateTimeAttribute = new Lazy<ITypedElement>(RetrieveDateTimeAttribute);
         
         private static IClass _classInstance;
         
@@ -94,10 +102,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Common
                     string old = this._reason;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnReasonChanging(e);
-                    this.OnPropertyChanging("Reason", e);
+                    this.OnPropertyChanging("Reason", e, _reasonAttribute);
                     this._reason = value;
                     this.OnReasonChanged(e);
-                    this.OnPropertyChanged("Reason", e);
+                    this.OnPropertyChanged("Reason", e, _reasonAttribute);
                 }
             }
         }
@@ -120,10 +128,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Common
                     string old = this._value;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnValueChanging(e);
-                    this.OnPropertyChanging("Value", e);
+                    this.OnPropertyChanging("Value", e, _valueAttribute);
                     this._value = value;
                     this.OnValueChanged(e);
-                    this.OnPropertyChanged("Value", e);
+                    this.OnPropertyChanged("Value", e, _valueAttribute);
                 }
             }
         }
@@ -146,10 +154,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Common
                     string old = this._remark;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnRemarkChanging(e);
-                    this.OnPropertyChanging("Remark", e);
+                    this.OnPropertyChanging("Remark", e, _remarkAttribute);
                     this._remark = value;
                     this.OnRemarkChanged(e);
-                    this.OnPropertyChanged("Remark", e);
+                    this.OnPropertyChanged("Remark", e, _remarkAttribute);
                 }
             }
         }
@@ -172,10 +180,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Common
                     DateTime old = this._dateTime;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnDateTimeChanging(e);
-                    this.OnPropertyChanging("DateTime", e);
+                    this.OnPropertyChanging("DateTime", e, _dateTimeAttribute);
                     this._dateTime = value;
                     this.OnDateTimeChanged(e);
-                    this.OnPropertyChanged("DateTime", e);
+                    this.OnPropertyChanged("DateTime", e, _dateTimeAttribute);
                 }
             }
         }
@@ -235,6 +243,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Common
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> DateTimeChanged;
         
+        private static ITypedElement RetrieveReasonAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(Status.ClassInstance)).Resolve("reason")));
+        }
+        
         /// <summary>
         /// Raises the ReasonChanging event
         /// </summary>
@@ -259,6 +272,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Common
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveValueAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(Status.ClassInstance)).Resolve("value")));
         }
         
         /// <summary>
@@ -287,6 +305,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Common
             }
         }
         
+        private static ITypedElement RetrieveRemarkAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(Status.ClassInstance)).Resolve("remark")));
+        }
+        
         /// <summary>
         /// Raises the RemarkChanging event
         /// </summary>
@@ -311,6 +334,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Common
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveDateTimeAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(Status.ClassInstance)).Resolve("dateTime")));
         }
         
         /// <summary>
@@ -419,7 +447,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Common
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public ReasonProxy(IStatus modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "reason")
             {
             }
             
@@ -437,24 +465,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Common
                     this.ModelElement.Reason = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ReasonChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ReasonChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -468,7 +478,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Common
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public ValueProxy(IStatus modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "value")
             {
             }
             
@@ -486,24 +496,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Common
                     this.ModelElement.Value = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ValueChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ValueChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -517,7 +509,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Common
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public RemarkProxy(IStatus modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "remark")
             {
             }
             
@@ -535,24 +527,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Common
                     this.ModelElement.Remark = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.RemarkChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.RemarkChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -566,7 +540,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Common
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public DateTimeProxy(IStatus modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "dateTime")
             {
             }
             
@@ -583,24 +557,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Common
                 {
                     this.ModelElement.DateTime = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.DateTimeChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.DateTimeChanged -= handler;
             }
         }
     }

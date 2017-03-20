@@ -57,8 +57,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Core
     [XmlNamespacePrefixAttribute("cimCore")]
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61970/Core/PSRType")]
     [DebuggerDisplayAttribute("PSRType {UUID}")]
-    public class PSRType : IdentifiedObject, IPSRType, IModelElement
+    public partial class PSRType : IdentifiedObject, IPSRType, IModelElement
     {
+        
+        private static Lazy<ITypedElement> _powerSystemResourcesReference = new Lazy<ITypedElement>(RetrievePowerSystemResourcesReference);
         
         /// <summary>
         /// The backing field for the PowerSystemResources property
@@ -115,6 +117,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Core
             }
         }
         
+        private static ITypedElement RetrievePowerSystemResourcesReference()
+        {
+            return ((ITypedElement)(((ModelElement)(PSRType.ClassInstance)).Resolve("PowerSystemResources")));
+        }
+        
         /// <summary>
         /// Forwards CollectionChanging notifications for the PowerSystemResources property to the parent model element
         /// </summary>
@@ -122,7 +129,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Core
         /// <param name="e">The original event data</param>
         private void PowerSystemResourcesCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("PowerSystemResources", e);
+            this.OnCollectionChanging("PowerSystemResources", e, _powerSystemResourcesReference);
         }
         
         /// <summary>
@@ -132,7 +139,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Core
         /// <param name="e">The original event data</param>
         private void PowerSystemResourcesCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("PowerSystemResources", e);
+            this.OnCollectionChanged("PowerSystemResources", e, _powerSystemResourcesReference);
         }
         
         /// <summary>

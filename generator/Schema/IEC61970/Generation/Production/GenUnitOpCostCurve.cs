@@ -46,13 +46,17 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61970/Generation/Production/GenUnit" +
         "OpCostCurve")]
     [DebuggerDisplayAttribute("GenUnitOpCostCurve {UUID}")]
-    public class GenUnitOpCostCurve : Curve, IGenUnitOpCostCurve, IModelElement
+    public partial class GenUnitOpCostCurve : Curve, IGenUnitOpCostCurve, IModelElement
     {
         
         /// <summary>
         /// The backing field for the IsNetGrossP property
         /// </summary>
         private bool _isNetGrossP;
+        
+        private static Lazy<ITypedElement> _isNetGrossPAttribute = new Lazy<ITypedElement>(RetrieveIsNetGrossPAttribute);
+        
+        private static Lazy<ITypedElement> _generatingUnitReference = new Lazy<ITypedElement>(RetrieveGeneratingUnitReference);
         
         /// <summary>
         /// The backing field for the GeneratingUnit property
@@ -79,10 +83,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
                     bool old = this._isNetGrossP;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnIsNetGrossPChanging(e);
-                    this.OnPropertyChanging("IsNetGrossP", e);
+                    this.OnPropertyChanging("IsNetGrossP", e, _isNetGrossPAttribute);
                     this._isNetGrossP = value;
                     this.OnIsNetGrossPChanged(e);
-                    this.OnPropertyChanged("IsNetGrossP", e);
+                    this.OnPropertyChanged("IsNetGrossP", e, _isNetGrossPAttribute);
                 }
             }
         }
@@ -105,7 +109,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
                     IGeneratingUnit old = this._generatingUnit;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnGeneratingUnitChanging(e);
-                    this.OnPropertyChanging("GeneratingUnit", e);
+                    this.OnPropertyChanging("GeneratingUnit", e, _generatingUnitReference);
                     this._generatingUnit = value;
                     if ((old != null))
                     {
@@ -118,7 +122,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
                         value.Deleted += this.OnResetGeneratingUnit;
                     }
                     this.OnGeneratingUnitChanged(e);
-                    this.OnPropertyChanged("GeneratingUnit", e);
+                    this.OnPropertyChanged("GeneratingUnit", e, _generatingUnitReference);
                 }
             }
         }
@@ -170,6 +174,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> GeneratingUnitChanged;
         
+        private static ITypedElement RetrieveIsNetGrossPAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(GenUnitOpCostCurve.ClassInstance)).Resolve("isNetGrossP")));
+        }
+        
         /// <summary>
         /// Raises the IsNetGrossPChanging event
         /// </summary>
@@ -194,6 +203,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveGeneratingUnitReference()
+        {
+            return ((ITypedElement)(((ModelElement)(GenUnitOpCostCurve.ClassInstance)).Resolve("GeneratingUnit")));
         }
         
         /// <summary>
@@ -439,7 +453,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public IsNetGrossPProxy(IGenUnitOpCostCurve modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "isNetGrossP")
             {
             }
             
@@ -457,24 +471,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
                     this.ModelElement.IsNetGrossP = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.IsNetGrossPChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.IsNetGrossPChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -488,7 +484,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public GeneratingUnitProxy(IGenUnitOpCostCurve modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "GeneratingUnit")
             {
             }
             
@@ -505,24 +501,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
                 {
                     this.ModelElement.GeneratingUnit = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.GeneratingUnitChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.GeneratingUnitChanged -= handler;
             }
         }
     }

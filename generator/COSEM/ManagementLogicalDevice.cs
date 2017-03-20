@@ -39,7 +39,7 @@ namespace TTC2017.SmartGrids.COSEM
     [XmlNamespacePrefixAttribute("cosem")]
     [ModelRepresentationClassAttribute("http://www.transformation-tool-contest.eu/2017/smartGrids/cosem#//ManagementLogic" +
         "alDevice")]
-    public class ManagementLogicalDevice : LogicalDevice, IManagementLogicalDevice, IModelElement
+    public partial class ManagementLogicalDevice : LogicalDevice, IManagementLogicalDevice, IModelElement
     {
         
         private static IClass _classInstance;

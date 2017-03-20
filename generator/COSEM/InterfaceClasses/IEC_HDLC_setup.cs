@@ -40,7 +40,7 @@ namespace TTC2017.SmartGrids.COSEM.InterfaceClasses
     [XmlNamespacePrefixAttribute("inter")]
     [ModelRepresentationClassAttribute("http://www.transformation-tool-contest.eu/2017/smartGrids/cosem#//InterfaceClasse" +
         "s/IEC_HDLC_setup")]
-    public class IEC_HDLC_setup : Base, IIEC_HDLC_setup, IModelElement
+    public partial class IEC_HDLC_setup : Base, IIEC_HDLC_setup, IModelElement
     {
         
         private static IClass _classInstance;

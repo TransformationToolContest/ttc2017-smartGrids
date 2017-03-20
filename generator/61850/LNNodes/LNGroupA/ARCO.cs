@@ -41,23 +41,31 @@ namespace TTC2017.SmartGrids.SubstationStandard.LNNodes.LNGroupA
     [XmlNamespacePrefixAttribute("groupa")]
     [ModelRepresentationClassAttribute("http://www.transformation-tool-contest.eu/2017/smartGrids/substationStandard#//LN" +
         "Nodes/LNGroupA/ARCO")]
-    public class ARCO : TTC2017.SmartGrids.SubstationStandard.LNNodes.LNGroupA.GroupA, IARCO, IModelElement
+    public partial class ARCO : TTC2017.SmartGrids.SubstationStandard.LNNodes.LNGroupA.GroupA, IARCO, IModelElement
     {
+        
+        private static Lazy<ITypedElement> _tapChgReference = new Lazy<ITypedElement>(RetrieveTapChgReference);
         
         /// <summary>
         /// The backing field for the TapChg property
         /// </summary>
         private IBSC _tapChg;
         
+        private static Lazy<ITypedElement> _vOvStReference = new Lazy<ITypedElement>(RetrieveVOvStReference);
+        
         /// <summary>
         /// The backing field for the VOvSt property
         /// </summary>
         private ISPS _vOvSt;
         
+        private static Lazy<ITypedElement> _neutAlmReference = new Lazy<ITypedElement>(RetrieveNeutAlmReference);
+        
         /// <summary>
         /// The backing field for the NeutAlm property
         /// </summary>
         private ISPS _neutAlm;
+        
+        private static Lazy<ITypedElement> _dschBlkReference = new Lazy<ITypedElement>(RetrieveDschBlkReference);
         
         /// <summary>
         /// The backing field for the DschBlk property
@@ -83,7 +91,7 @@ namespace TTC2017.SmartGrids.SubstationStandard.LNNodes.LNGroupA
                     IBSC old = this._tapChg;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnTapChgChanging(e);
-                    this.OnPropertyChanging("TapChg", e);
+                    this.OnPropertyChanging("TapChg", e, _tapChgReference);
                     this._tapChg = value;
                     if ((old != null))
                     {
@@ -94,7 +102,7 @@ namespace TTC2017.SmartGrids.SubstationStandard.LNNodes.LNGroupA
                         value.Deleted += this.OnResetTapChg;
                     }
                     this.OnTapChgChanged(e);
-                    this.OnPropertyChanged("TapChg", e);
+                    this.OnPropertyChanged("TapChg", e, _tapChgReference);
                 }
             }
         }
@@ -116,7 +124,7 @@ namespace TTC2017.SmartGrids.SubstationStandard.LNNodes.LNGroupA
                     ISPS old = this._vOvSt;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnVOvStChanging(e);
-                    this.OnPropertyChanging("VOvSt", e);
+                    this.OnPropertyChanging("VOvSt", e, _vOvStReference);
                     this._vOvSt = value;
                     if ((old != null))
                     {
@@ -127,7 +135,7 @@ namespace TTC2017.SmartGrids.SubstationStandard.LNNodes.LNGroupA
                         value.Deleted += this.OnResetVOvSt;
                     }
                     this.OnVOvStChanged(e);
-                    this.OnPropertyChanged("VOvSt", e);
+                    this.OnPropertyChanged("VOvSt", e, _vOvStReference);
                 }
             }
         }
@@ -149,7 +157,7 @@ namespace TTC2017.SmartGrids.SubstationStandard.LNNodes.LNGroupA
                     ISPS old = this._neutAlm;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnNeutAlmChanging(e);
-                    this.OnPropertyChanging("NeutAlm", e);
+                    this.OnPropertyChanging("NeutAlm", e, _neutAlmReference);
                     this._neutAlm = value;
                     if ((old != null))
                     {
@@ -160,7 +168,7 @@ namespace TTC2017.SmartGrids.SubstationStandard.LNNodes.LNGroupA
                         value.Deleted += this.OnResetNeutAlm;
                     }
                     this.OnNeutAlmChanged(e);
-                    this.OnPropertyChanged("NeutAlm", e);
+                    this.OnPropertyChanged("NeutAlm", e, _neutAlmReference);
                 }
             }
         }
@@ -182,7 +190,7 @@ namespace TTC2017.SmartGrids.SubstationStandard.LNNodes.LNGroupA
                     ISPS old = this._dschBlk;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnDschBlkChanging(e);
-                    this.OnPropertyChanging("DschBlk", e);
+                    this.OnPropertyChanging("DschBlk", e, _dschBlkReference);
                     this._dschBlk = value;
                     if ((old != null))
                     {
@@ -193,7 +201,7 @@ namespace TTC2017.SmartGrids.SubstationStandard.LNNodes.LNGroupA
                         value.Deleted += this.OnResetDschBlk;
                     }
                     this.OnDschBlkChanged(e);
-                    this.OnPropertyChanged("DschBlk", e);
+                    this.OnPropertyChanged("DschBlk", e, _dschBlkReference);
                 }
             }
         }
@@ -265,6 +273,11 @@ namespace TTC2017.SmartGrids.SubstationStandard.LNNodes.LNGroupA
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> DschBlkChanged;
         
+        private static ITypedElement RetrieveTapChgReference()
+        {
+            return ((ITypedElement)(((ModelElement)(ARCO.ClassInstance)).Resolve("TapChg")));
+        }
+        
         /// <summary>
         /// Raises the TapChgChanging event
         /// </summary>
@@ -299,6 +312,11 @@ namespace TTC2017.SmartGrids.SubstationStandard.LNNodes.LNGroupA
         private void OnResetTapChg(object sender, System.EventArgs eventArgs)
         {
             this.TapChg = null;
+        }
+        
+        private static ITypedElement RetrieveVOvStReference()
+        {
+            return ((ITypedElement)(((ModelElement)(ARCO.ClassInstance)).Resolve("VOvSt")));
         }
         
         /// <summary>
@@ -337,6 +355,11 @@ namespace TTC2017.SmartGrids.SubstationStandard.LNNodes.LNGroupA
             this.VOvSt = null;
         }
         
+        private static ITypedElement RetrieveNeutAlmReference()
+        {
+            return ((ITypedElement)(((ModelElement)(ARCO.ClassInstance)).Resolve("NeutAlm")));
+        }
+        
         /// <summary>
         /// Raises the NeutAlmChanging event
         /// </summary>
@@ -371,6 +394,11 @@ namespace TTC2017.SmartGrids.SubstationStandard.LNNodes.LNGroupA
         private void OnResetNeutAlm(object sender, System.EventArgs eventArgs)
         {
             this.NeutAlm = null;
+        }
+        
+        private static ITypedElement RetrieveDschBlkReference()
+        {
+            return ((ITypedElement)(((ModelElement)(ARCO.ClassInstance)).Resolve("DschBlk")));
         }
         
         /// <summary>
@@ -725,7 +753,7 @@ namespace TTC2017.SmartGrids.SubstationStandard.LNNodes.LNGroupA
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public TapChgProxy(IARCO modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "TapChg")
             {
             }
             
@@ -743,24 +771,6 @@ namespace TTC2017.SmartGrids.SubstationStandard.LNNodes.LNGroupA
                     this.ModelElement.TapChg = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.TapChgChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.TapChgChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -774,7 +784,7 @@ namespace TTC2017.SmartGrids.SubstationStandard.LNNodes.LNGroupA
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public VOvStProxy(IARCO modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "VOvSt")
             {
             }
             
@@ -792,24 +802,6 @@ namespace TTC2017.SmartGrids.SubstationStandard.LNNodes.LNGroupA
                     this.ModelElement.VOvSt = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.VOvStChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.VOvStChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -823,7 +815,7 @@ namespace TTC2017.SmartGrids.SubstationStandard.LNNodes.LNGroupA
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public NeutAlmProxy(IARCO modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "NeutAlm")
             {
             }
             
@@ -841,24 +833,6 @@ namespace TTC2017.SmartGrids.SubstationStandard.LNNodes.LNGroupA
                     this.ModelElement.NeutAlm = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.NeutAlmChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.NeutAlmChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -872,7 +846,7 @@ namespace TTC2017.SmartGrids.SubstationStandard.LNNodes.LNGroupA
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public DschBlkProxy(IARCO modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "DschBlk")
             {
             }
             
@@ -889,24 +863,6 @@ namespace TTC2017.SmartGrids.SubstationStandard.LNNodes.LNGroupA
                 {
                     this.ModelElement.DschBlk = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.DschBlkChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.DschBlkChanged -= handler;
             }
         }
     }

@@ -39,7 +39,7 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
     [XmlNamespacePrefixAttribute("objects")]
     [ModelRepresentationClassAttribute("http://www.transformation-tool-contest.eu/2017/smartGrids/cosem#//COSEMObjects/IE" +
         "COpticalPortSetup")]
-    public class IECOpticalPortSetup : IEC_local_port_setup, IIECOpticalPortSetup, IModelElement
+    public partial class IECOpticalPortSetup : IEC_local_port_setup, IIECOpticalPortSetup, IModelElement
     {
         
         private static IClass _classInstance;

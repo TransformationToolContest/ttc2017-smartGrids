@@ -39,7 +39,7 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
     [XmlNamespacePrefixAttribute("objects")]
     [ModelRepresentationClassAttribute("http://www.transformation-tool-contest.eu/2017/smartGrids/cosem#//COSEMObjects/Ac" +
         "tivateNormalMode")]
-    public class ActivateNormalMode : Scripttable, IActivateNormalMode, IModelElement
+    public partial class ActivateNormalMode : Scripttable, IActivateNormalMode, IModelElement
     {
         
         private static IClass _classInstance;

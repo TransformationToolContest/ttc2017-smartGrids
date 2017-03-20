@@ -57,83 +57,115 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Core
     [XmlNamespacePrefixAttribute("cimCore")]
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61970/Core/PowerSystemResource")]
     [DebuggerDisplayAttribute("PowerSystemResource {UUID}")]
-    public class PowerSystemResource : IdentifiedObject, IPowerSystemResource, IModelElement
+    public partial class PowerSystemResource : IdentifiedObject, IPowerSystemResource, IModelElement
     {
+        
+        private static Lazy<ITypedElement> _reportingGroupReference = new Lazy<ITypedElement>(RetrieveReportingGroupReference);
         
         /// <summary>
         /// The backing field for the ReportingGroup property
         /// </summary>
         private PowerSystemResourceReportingGroupCollection _reportingGroup;
         
+        private static Lazy<ITypedElement> _networkDataSetsReference = new Lazy<ITypedElement>(RetrieveNetworkDataSetsReference);
+        
         /// <summary>
         /// The backing field for the NetworkDataSets property
         /// </summary>
         private PowerSystemResourceNetworkDataSetsCollection _networkDataSets;
+        
+        private static Lazy<ITypedElement> _locationReference = new Lazy<ITypedElement>(RetrieveLocationReference);
         
         /// <summary>
         /// The backing field for the Location property
         /// </summary>
         private ILocation _location;
         
+        private static Lazy<ITypedElement> _outageScheduleReference = new Lazy<ITypedElement>(RetrieveOutageScheduleReference);
+        
         /// <summary>
         /// The backing field for the OutageSchedule property
         /// </summary>
         private IOutageSchedule _outageSchedule;
+        
+        private static Lazy<ITypedElement> _pSREventReference = new Lazy<ITypedElement>(RetrievePSREventReference);
         
         /// <summary>
         /// The backing field for the PSREvent property
         /// </summary>
         private PowerSystemResourcePSREventCollection _pSREvent;
         
+        private static Lazy<ITypedElement> _safetyDocumentsReference = new Lazy<ITypedElement>(RetrieveSafetyDocumentsReference);
+        
         /// <summary>
         /// The backing field for the SafetyDocuments property
         /// </summary>
         private PowerSystemResourceSafetyDocumentsCollection _safetyDocuments;
+        
+        private static Lazy<ITypedElement> _erpOrganisationRolesReference = new Lazy<ITypedElement>(RetrieveErpOrganisationRolesReference);
         
         /// <summary>
         /// The backing field for the ErpOrganisationRoles property
         /// </summary>
         private PowerSystemResourceErpOrganisationRolesCollection _erpOrganisationRoles;
         
+        private static Lazy<ITypedElement> _circuitSectionsReference = new Lazy<ITypedElement>(RetrieveCircuitSectionsReference);
+        
         /// <summary>
         /// The backing field for the CircuitSections property
         /// </summary>
         private PowerSystemResourceCircuitSectionsCollection _circuitSections;
+        
+        private static Lazy<ITypedElement> _measurementsReference = new Lazy<ITypedElement>(RetrieveMeasurementsReference);
         
         /// <summary>
         /// The backing field for the Measurements property
         /// </summary>
         private PowerSystemResourceMeasurementsCollection _measurements;
         
+        private static Lazy<ITypedElement> _assetsReference = new Lazy<ITypedElement>(RetrieveAssetsReference);
+        
         /// <summary>
         /// The backing field for the Assets property
         /// </summary>
         private PowerSystemResourceAssetsCollection _assets;
+        
+        private static Lazy<ITypedElement> _scheduleStepsReference = new Lazy<ITypedElement>(RetrieveScheduleStepsReference);
         
         /// <summary>
         /// The backing field for the ScheduleSteps property
         /// </summary>
         private PowerSystemResourceScheduleStepsCollection _scheduleSteps;
         
+        private static Lazy<ITypedElement> _pSRTypeReference = new Lazy<ITypedElement>(RetrievePSRTypeReference);
+        
         /// <summary>
         /// The backing field for the PSRType property
         /// </summary>
         private IPSRType _pSRType;
+        
+        private static Lazy<ITypedElement> _psrListsReference = new Lazy<ITypedElement>(RetrievePsrListsReference);
         
         /// <summary>
         /// The backing field for the PsrLists property
         /// </summary>
         private PowerSystemResourcePsrListsCollection _psrLists;
         
+        private static Lazy<ITypedElement> _operatingShareReference = new Lazy<ITypedElement>(RetrieveOperatingShareReference);
+        
         /// <summary>
         /// The backing field for the OperatingShare property
         /// </summary>
         private PowerSystemResourceOperatingShareCollection _operatingShare;
         
+        private static Lazy<ITypedElement> _changeItemsReference = new Lazy<ITypedElement>(RetrieveChangeItemsReference);
+        
         /// <summary>
         /// The backing field for the ChangeItems property
         /// </summary>
         private PowerSystemResourceChangeItemsCollection _changeItems;
+        
+        private static Lazy<ITypedElement> _documentRolesReference = new Lazy<ITypedElement>(RetrieveDocumentRolesReference);
         
         /// <summary>
         /// The backing field for the DocumentRoles property
@@ -233,7 +265,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Core
                     ILocation old = this._location;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnLocationChanging(e);
-                    this.OnPropertyChanging("Location", e);
+                    this.OnPropertyChanging("Location", e, _locationReference);
                     this._location = value;
                     if ((old != null))
                     {
@@ -246,7 +278,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Core
                         value.Deleted += this.OnResetLocation;
                     }
                     this.OnLocationChanged(e);
-                    this.OnPropertyChanged("Location", e);
+                    this.OnPropertyChanged("Location", e, _locationReference);
                 }
             }
         }
@@ -269,7 +301,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Core
                     IOutageSchedule old = this._outageSchedule;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnOutageScheduleChanging(e);
-                    this.OnPropertyChanging("OutageSchedule", e);
+                    this.OnPropertyChanging("OutageSchedule", e, _outageScheduleReference);
                     this._outageSchedule = value;
                     if ((old != null))
                     {
@@ -282,7 +314,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Core
                         value.Deleted += this.OnResetOutageSchedule;
                     }
                     this.OnOutageScheduleChanged(e);
-                    this.OnPropertyChanged("OutageSchedule", e);
+                    this.OnPropertyChanged("OutageSchedule", e, _outageScheduleReference);
                 }
             }
         }
@@ -410,7 +442,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Core
                     IPSRType old = this._pSRType;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnPSRTypeChanging(e);
-                    this.OnPropertyChanging("PSRType", e);
+                    this.OnPropertyChanging("PSRType", e, _pSRTypeReference);
                     this._pSRType = value;
                     if ((old != null))
                     {
@@ -423,7 +455,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Core
                         value.Deleted += this.OnResetPSRType;
                     }
                     this.OnPSRTypeChanged(e);
-                    this.OnPropertyChanged("PSRType", e);
+                    this.OnPropertyChanged("PSRType", e, _pSRTypeReference);
                 }
             }
         }
@@ -544,6 +576,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Core
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> PSRTypeChanged;
         
+        private static ITypedElement RetrieveReportingGroupReference()
+        {
+            return ((ITypedElement)(((ModelElement)(PowerSystemResource.ClassInstance)).Resolve("ReportingGroup")));
+        }
+        
         /// <summary>
         /// Forwards CollectionChanging notifications for the ReportingGroup property to the parent model element
         /// </summary>
@@ -551,7 +588,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Core
         /// <param name="e">The original event data</param>
         private void ReportingGroupCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("ReportingGroup", e);
+            this.OnCollectionChanging("ReportingGroup", e, _reportingGroupReference);
         }
         
         /// <summary>
@@ -561,7 +598,12 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Core
         /// <param name="e">The original event data</param>
         private void ReportingGroupCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("ReportingGroup", e);
+            this.OnCollectionChanged("ReportingGroup", e, _reportingGroupReference);
+        }
+        
+        private static ITypedElement RetrieveNetworkDataSetsReference()
+        {
+            return ((ITypedElement)(((ModelElement)(PowerSystemResource.ClassInstance)).Resolve("NetworkDataSets")));
         }
         
         /// <summary>
@@ -571,7 +613,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Core
         /// <param name="e">The original event data</param>
         private void NetworkDataSetsCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("NetworkDataSets", e);
+            this.OnCollectionChanging("NetworkDataSets", e, _networkDataSetsReference);
         }
         
         /// <summary>
@@ -581,7 +623,12 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Core
         /// <param name="e">The original event data</param>
         private void NetworkDataSetsCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("NetworkDataSets", e);
+            this.OnCollectionChanged("NetworkDataSets", e, _networkDataSetsReference);
+        }
+        
+        private static ITypedElement RetrieveLocationReference()
+        {
+            return ((ITypedElement)(((ModelElement)(PowerSystemResource.ClassInstance)).Resolve("Location")));
         }
         
         /// <summary>
@@ -620,6 +667,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Core
             this.Location = null;
         }
         
+        private static ITypedElement RetrieveOutageScheduleReference()
+        {
+            return ((ITypedElement)(((ModelElement)(PowerSystemResource.ClassInstance)).Resolve("OutageSchedule")));
+        }
+        
         /// <summary>
         /// Raises the OutageScheduleChanging event
         /// </summary>
@@ -656,6 +708,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Core
             this.OutageSchedule = null;
         }
         
+        private static ITypedElement RetrievePSREventReference()
+        {
+            return ((ITypedElement)(((ModelElement)(PowerSystemResource.ClassInstance)).Resolve("PSREvent")));
+        }
+        
         /// <summary>
         /// Forwards CollectionChanging notifications for the PSREvent property to the parent model element
         /// </summary>
@@ -663,7 +720,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Core
         /// <param name="e">The original event data</param>
         private void PSREventCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("PSREvent", e);
+            this.OnCollectionChanging("PSREvent", e, _pSREventReference);
         }
         
         /// <summary>
@@ -673,7 +730,12 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Core
         /// <param name="e">The original event data</param>
         private void PSREventCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("PSREvent", e);
+            this.OnCollectionChanged("PSREvent", e, _pSREventReference);
+        }
+        
+        private static ITypedElement RetrieveSafetyDocumentsReference()
+        {
+            return ((ITypedElement)(((ModelElement)(PowerSystemResource.ClassInstance)).Resolve("SafetyDocuments")));
         }
         
         /// <summary>
@@ -683,7 +745,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Core
         /// <param name="e">The original event data</param>
         private void SafetyDocumentsCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("SafetyDocuments", e);
+            this.OnCollectionChanging("SafetyDocuments", e, _safetyDocumentsReference);
         }
         
         /// <summary>
@@ -693,7 +755,12 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Core
         /// <param name="e">The original event data</param>
         private void SafetyDocumentsCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("SafetyDocuments", e);
+            this.OnCollectionChanged("SafetyDocuments", e, _safetyDocumentsReference);
+        }
+        
+        private static ITypedElement RetrieveErpOrganisationRolesReference()
+        {
+            return ((ITypedElement)(((ModelElement)(PowerSystemResource.ClassInstance)).Resolve("ErpOrganisationRoles")));
         }
         
         /// <summary>
@@ -703,7 +770,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Core
         /// <param name="e">The original event data</param>
         private void ErpOrganisationRolesCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("ErpOrganisationRoles", e);
+            this.OnCollectionChanging("ErpOrganisationRoles", e, _erpOrganisationRolesReference);
         }
         
         /// <summary>
@@ -713,7 +780,12 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Core
         /// <param name="e">The original event data</param>
         private void ErpOrganisationRolesCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("ErpOrganisationRoles", e);
+            this.OnCollectionChanged("ErpOrganisationRoles", e, _erpOrganisationRolesReference);
+        }
+        
+        private static ITypedElement RetrieveCircuitSectionsReference()
+        {
+            return ((ITypedElement)(((ModelElement)(PowerSystemResource.ClassInstance)).Resolve("CircuitSections")));
         }
         
         /// <summary>
@@ -723,7 +795,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Core
         /// <param name="e">The original event data</param>
         private void CircuitSectionsCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("CircuitSections", e);
+            this.OnCollectionChanging("CircuitSections", e, _circuitSectionsReference);
         }
         
         /// <summary>
@@ -733,7 +805,12 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Core
         /// <param name="e">The original event data</param>
         private void CircuitSectionsCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("CircuitSections", e);
+            this.OnCollectionChanged("CircuitSections", e, _circuitSectionsReference);
+        }
+        
+        private static ITypedElement RetrieveMeasurementsReference()
+        {
+            return ((ITypedElement)(((ModelElement)(PowerSystemResource.ClassInstance)).Resolve("Measurements")));
         }
         
         /// <summary>
@@ -743,7 +820,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Core
         /// <param name="e">The original event data</param>
         private void MeasurementsCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("Measurements", e);
+            this.OnCollectionChanging("Measurements", e, _measurementsReference);
         }
         
         /// <summary>
@@ -753,7 +830,12 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Core
         /// <param name="e">The original event data</param>
         private void MeasurementsCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("Measurements", e);
+            this.OnCollectionChanged("Measurements", e, _measurementsReference);
+        }
+        
+        private static ITypedElement RetrieveAssetsReference()
+        {
+            return ((ITypedElement)(((ModelElement)(PowerSystemResource.ClassInstance)).Resolve("Assets")));
         }
         
         /// <summary>
@@ -763,7 +845,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Core
         /// <param name="e">The original event data</param>
         private void AssetsCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("Assets", e);
+            this.OnCollectionChanging("Assets", e, _assetsReference);
         }
         
         /// <summary>
@@ -773,7 +855,12 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Core
         /// <param name="e">The original event data</param>
         private void AssetsCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("Assets", e);
+            this.OnCollectionChanged("Assets", e, _assetsReference);
+        }
+        
+        private static ITypedElement RetrieveScheduleStepsReference()
+        {
+            return ((ITypedElement)(((ModelElement)(PowerSystemResource.ClassInstance)).Resolve("ScheduleSteps")));
         }
         
         /// <summary>
@@ -783,7 +870,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Core
         /// <param name="e">The original event data</param>
         private void ScheduleStepsCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("ScheduleSteps", e);
+            this.OnCollectionChanging("ScheduleSteps", e, _scheduleStepsReference);
         }
         
         /// <summary>
@@ -793,7 +880,12 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Core
         /// <param name="e">The original event data</param>
         private void ScheduleStepsCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("ScheduleSteps", e);
+            this.OnCollectionChanged("ScheduleSteps", e, _scheduleStepsReference);
+        }
+        
+        private static ITypedElement RetrievePSRTypeReference()
+        {
+            return ((ITypedElement)(((ModelElement)(PowerSystemResource.ClassInstance)).Resolve("PSRType")));
         }
         
         /// <summary>
@@ -832,6 +924,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Core
             this.PSRType = null;
         }
         
+        private static ITypedElement RetrievePsrListsReference()
+        {
+            return ((ITypedElement)(((ModelElement)(PowerSystemResource.ClassInstance)).Resolve("PsrLists")));
+        }
+        
         /// <summary>
         /// Forwards CollectionChanging notifications for the PsrLists property to the parent model element
         /// </summary>
@@ -839,7 +936,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Core
         /// <param name="e">The original event data</param>
         private void PsrListsCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("PsrLists", e);
+            this.OnCollectionChanging("PsrLists", e, _psrListsReference);
         }
         
         /// <summary>
@@ -849,7 +946,12 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Core
         /// <param name="e">The original event data</param>
         private void PsrListsCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("PsrLists", e);
+            this.OnCollectionChanged("PsrLists", e, _psrListsReference);
+        }
+        
+        private static ITypedElement RetrieveOperatingShareReference()
+        {
+            return ((ITypedElement)(((ModelElement)(PowerSystemResource.ClassInstance)).Resolve("OperatingShare")));
         }
         
         /// <summary>
@@ -859,7 +961,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Core
         /// <param name="e">The original event data</param>
         private void OperatingShareCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("OperatingShare", e);
+            this.OnCollectionChanging("OperatingShare", e, _operatingShareReference);
         }
         
         /// <summary>
@@ -869,7 +971,12 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Core
         /// <param name="e">The original event data</param>
         private void OperatingShareCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("OperatingShare", e);
+            this.OnCollectionChanged("OperatingShare", e, _operatingShareReference);
+        }
+        
+        private static ITypedElement RetrieveChangeItemsReference()
+        {
+            return ((ITypedElement)(((ModelElement)(PowerSystemResource.ClassInstance)).Resolve("ChangeItems")));
         }
         
         /// <summary>
@@ -879,7 +986,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Core
         /// <param name="e">The original event data</param>
         private void ChangeItemsCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("ChangeItems", e);
+            this.OnCollectionChanging("ChangeItems", e, _changeItemsReference);
         }
         
         /// <summary>
@@ -889,7 +996,12 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Core
         /// <param name="e">The original event data</param>
         private void ChangeItemsCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("ChangeItems", e);
+            this.OnCollectionChanged("ChangeItems", e, _changeItemsReference);
+        }
+        
+        private static ITypedElement RetrieveDocumentRolesReference()
+        {
+            return ((ITypedElement)(((ModelElement)(PowerSystemResource.ClassInstance)).Resolve("DocumentRoles")));
         }
         
         /// <summary>
@@ -899,7 +1011,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Core
         /// <param name="e">The original event data</param>
         private void DocumentRolesCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("DocumentRoles", e);
+            this.OnCollectionChanging("DocumentRoles", e, _documentRolesReference);
         }
         
         /// <summary>
@@ -909,7 +1021,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Core
         /// <param name="e">The original event data</param>
         private void DocumentRolesCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("DocumentRoles", e);
+            this.OnCollectionChanged("DocumentRoles", e, _documentRolesReference);
         }
         
         /// <summary>
@@ -1688,7 +1800,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Core
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public LocationProxy(IPowerSystemResource modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "Location")
             {
             }
             
@@ -1706,24 +1818,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Core
                     this.ModelElement.Location = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.LocationChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.LocationChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1737,7 +1831,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Core
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public OutageScheduleProxy(IPowerSystemResource modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "OutageSchedule")
             {
             }
             
@@ -1755,24 +1849,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Core
                     this.ModelElement.OutageSchedule = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.OutageScheduleChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.OutageScheduleChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1786,7 +1862,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Core
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public PSRTypeProxy(IPowerSystemResource modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "PSRType")
             {
             }
             
@@ -1803,24 +1879,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Core
                 {
                     this.ModelElement.PSRType = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.PSRTypeChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.PSRTypeChanged -= handler;
             }
         }
     }

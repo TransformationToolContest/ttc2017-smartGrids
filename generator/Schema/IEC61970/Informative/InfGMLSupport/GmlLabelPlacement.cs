@@ -45,7 +45,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfGMLSupport
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61970/Informative/InfGMLSupport/Gml" +
         "LabelPlacement")]
     [DebuggerDisplayAttribute("GmlLabelPlacement {UUID}")]
-    public class GmlLabelPlacement : IdentifiedObject, IGmlLabelPlacement, IModelElement
+    public partial class GmlLabelPlacement : IdentifiedObject, IGmlLabelPlacement, IModelElement
     {
         
         /// <summary>
@@ -53,35 +53,51 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfGMLSupport
         /// </summary>
         private string _type;
         
+        private static Lazy<ITypedElement> _typeAttribute = new Lazy<ITypedElement>(RetrieveTypeAttribute);
+        
         /// <summary>
         /// The backing field for the Offset property
         /// </summary>
         private string _offset;
+        
+        private static Lazy<ITypedElement> _offsetAttribute = new Lazy<ITypedElement>(RetrieveOffsetAttribute);
         
         /// <summary>
         /// The backing field for the AnchorY property
         /// </summary>
         private string _anchorY;
         
+        private static Lazy<ITypedElement> _anchorYAttribute = new Lazy<ITypedElement>(RetrieveAnchorYAttribute);
+        
         /// <summary>
         /// The backing field for the AnchorX property
         /// </summary>
         private string _anchorX;
+        
+        private static Lazy<ITypedElement> _anchorXAttribute = new Lazy<ITypedElement>(RetrieveAnchorXAttribute);
         
         /// <summary>
         /// The backing field for the Rotation property
         /// </summary>
         private string _rotation;
         
+        private static Lazy<ITypedElement> _rotationAttribute = new Lazy<ITypedElement>(RetrieveRotationAttribute);
+        
         /// <summary>
         /// The backing field for the DisplacementY property
         /// </summary>
         private string _displacementY;
         
+        private static Lazy<ITypedElement> _displacementYAttribute = new Lazy<ITypedElement>(RetrieveDisplacementYAttribute);
+        
         /// <summary>
         /// The backing field for the DisplacementX property
         /// </summary>
         private string _displacementX;
+        
+        private static Lazy<ITypedElement> _displacementXAttribute = new Lazy<ITypedElement>(RetrieveDisplacementXAttribute);
+        
+        private static Lazy<ITypedElement> _gmlTextSymbolsReference = new Lazy<ITypedElement>(RetrieveGmlTextSymbolsReference);
         
         /// <summary>
         /// The backing field for the GmlTextSymbols property
@@ -115,10 +131,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfGMLSupport
                     string old = this._type;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnTypeChanging(e);
-                    this.OnPropertyChanging("Type", e);
+                    this.OnPropertyChanging("Type", e, _typeAttribute);
                     this._type = value;
                     this.OnTypeChanged(e);
-                    this.OnPropertyChanged("Type", e);
+                    this.OnPropertyChanged("Type", e, _typeAttribute);
                 }
             }
         }
@@ -141,10 +157,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfGMLSupport
                     string old = this._offset;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnOffsetChanging(e);
-                    this.OnPropertyChanging("Offset", e);
+                    this.OnPropertyChanging("Offset", e, _offsetAttribute);
                     this._offset = value;
                     this.OnOffsetChanged(e);
-                    this.OnPropertyChanged("Offset", e);
+                    this.OnPropertyChanged("Offset", e, _offsetAttribute);
                 }
             }
         }
@@ -167,10 +183,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfGMLSupport
                     string old = this._anchorY;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnAnchorYChanging(e);
-                    this.OnPropertyChanging("AnchorY", e);
+                    this.OnPropertyChanging("AnchorY", e, _anchorYAttribute);
                     this._anchorY = value;
                     this.OnAnchorYChanged(e);
-                    this.OnPropertyChanged("AnchorY", e);
+                    this.OnPropertyChanged("AnchorY", e, _anchorYAttribute);
                 }
             }
         }
@@ -193,10 +209,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfGMLSupport
                     string old = this._anchorX;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnAnchorXChanging(e);
-                    this.OnPropertyChanging("AnchorX", e);
+                    this.OnPropertyChanging("AnchorX", e, _anchorXAttribute);
                     this._anchorX = value;
                     this.OnAnchorXChanged(e);
-                    this.OnPropertyChanged("AnchorX", e);
+                    this.OnPropertyChanged("AnchorX", e, _anchorXAttribute);
                 }
             }
         }
@@ -219,10 +235,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfGMLSupport
                     string old = this._rotation;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnRotationChanging(e);
-                    this.OnPropertyChanging("Rotation", e);
+                    this.OnPropertyChanging("Rotation", e, _rotationAttribute);
                     this._rotation = value;
                     this.OnRotationChanged(e);
-                    this.OnPropertyChanged("Rotation", e);
+                    this.OnPropertyChanged("Rotation", e, _rotationAttribute);
                 }
             }
         }
@@ -245,10 +261,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfGMLSupport
                     string old = this._displacementY;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnDisplacementYChanging(e);
-                    this.OnPropertyChanging("DisplacementY", e);
+                    this.OnPropertyChanging("DisplacementY", e, _displacementYAttribute);
                     this._displacementY = value;
                     this.OnDisplacementYChanged(e);
-                    this.OnPropertyChanged("DisplacementY", e);
+                    this.OnPropertyChanged("DisplacementY", e, _displacementYAttribute);
                 }
             }
         }
@@ -271,10 +287,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfGMLSupport
                     string old = this._displacementX;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnDisplacementXChanging(e);
-                    this.OnPropertyChanging("DisplacementX", e);
+                    this.OnPropertyChanging("DisplacementX", e, _displacementXAttribute);
                     this._displacementX = value;
                     this.OnDisplacementXChanged(e);
-                    this.OnPropertyChanged("DisplacementX", e);
+                    this.OnPropertyChanged("DisplacementX", e, _displacementXAttribute);
                 }
             }
         }
@@ -391,6 +407,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfGMLSupport
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> DisplacementXChanged;
         
+        private static ITypedElement RetrieveTypeAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(GmlLabelPlacement.ClassInstance)).Resolve("type")));
+        }
+        
         /// <summary>
         /// Raises the TypeChanging event
         /// </summary>
@@ -415,6 +436,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfGMLSupport
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveOffsetAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(GmlLabelPlacement.ClassInstance)).Resolve("offset")));
         }
         
         /// <summary>
@@ -443,6 +469,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfGMLSupport
             }
         }
         
+        private static ITypedElement RetrieveAnchorYAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(GmlLabelPlacement.ClassInstance)).Resolve("anchorY")));
+        }
+        
         /// <summary>
         /// Raises the AnchorYChanging event
         /// </summary>
@@ -467,6 +498,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfGMLSupport
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveAnchorXAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(GmlLabelPlacement.ClassInstance)).Resolve("anchorX")));
         }
         
         /// <summary>
@@ -495,6 +531,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfGMLSupport
             }
         }
         
+        private static ITypedElement RetrieveRotationAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(GmlLabelPlacement.ClassInstance)).Resolve("rotation")));
+        }
+        
         /// <summary>
         /// Raises the RotationChanging event
         /// </summary>
@@ -519,6 +560,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfGMLSupport
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveDisplacementYAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(GmlLabelPlacement.ClassInstance)).Resolve("displacementY")));
         }
         
         /// <summary>
@@ -547,6 +593,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfGMLSupport
             }
         }
         
+        private static ITypedElement RetrieveDisplacementXAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(GmlLabelPlacement.ClassInstance)).Resolve("displacementX")));
+        }
+        
         /// <summary>
         /// Raises the DisplacementXChanging event
         /// </summary>
@@ -573,6 +624,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfGMLSupport
             }
         }
         
+        private static ITypedElement RetrieveGmlTextSymbolsReference()
+        {
+            return ((ITypedElement)(((ModelElement)(GmlLabelPlacement.ClassInstance)).Resolve("GmlTextSymbols")));
+        }
+        
         /// <summary>
         /// Forwards CollectionChanging notifications for the GmlTextSymbols property to the parent model element
         /// </summary>
@@ -580,7 +636,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfGMLSupport
         /// <param name="e">The original event data</param>
         private void GmlTextSymbolsCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("GmlTextSymbols", e);
+            this.OnCollectionChanging("GmlTextSymbols", e, _gmlTextSymbolsReference);
         }
         
         /// <summary>
@@ -590,7 +646,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfGMLSupport
         /// <param name="e">The original event data</param>
         private void GmlTextSymbolsCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("GmlTextSymbols", e);
+            this.OnCollectionChanged("GmlTextSymbols", e, _gmlTextSymbolsReference);
         }
         
         /// <summary>
@@ -839,7 +895,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfGMLSupport
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public TypeProxy(IGmlLabelPlacement modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "type")
             {
             }
             
@@ -857,24 +913,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfGMLSupport
                     this.ModelElement.Type = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.TypeChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.TypeChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -888,7 +926,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfGMLSupport
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public OffsetProxy(IGmlLabelPlacement modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "offset")
             {
             }
             
@@ -906,24 +944,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfGMLSupport
                     this.ModelElement.Offset = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.OffsetChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.OffsetChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -937,7 +957,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfGMLSupport
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public AnchorYProxy(IGmlLabelPlacement modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "anchorY")
             {
             }
             
@@ -955,24 +975,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfGMLSupport
                     this.ModelElement.AnchorY = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.AnchorYChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.AnchorYChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -986,7 +988,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfGMLSupport
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public AnchorXProxy(IGmlLabelPlacement modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "anchorX")
             {
             }
             
@@ -1004,24 +1006,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfGMLSupport
                     this.ModelElement.AnchorX = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.AnchorXChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.AnchorXChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1035,7 +1019,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfGMLSupport
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public RotationProxy(IGmlLabelPlacement modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "rotation")
             {
             }
             
@@ -1053,24 +1037,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfGMLSupport
                     this.ModelElement.Rotation = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.RotationChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.RotationChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1084,7 +1050,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfGMLSupport
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public DisplacementYProxy(IGmlLabelPlacement modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "displacementY")
             {
             }
             
@@ -1102,24 +1068,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfGMLSupport
                     this.ModelElement.DisplacementY = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.DisplacementYChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.DisplacementYChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1133,7 +1081,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfGMLSupport
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public DisplacementXProxy(IGmlLabelPlacement modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "displacementX")
             {
             }
             
@@ -1150,24 +1098,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfGMLSupport
                 {
                     this.ModelElement.DisplacementX = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.DisplacementXChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.DisplacementXChanged -= handler;
             }
         }
     }

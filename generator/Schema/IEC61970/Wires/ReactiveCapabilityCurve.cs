@@ -54,7 +54,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61970/Wires/ReactiveCapabilityCurve" +
         "")]
     [DebuggerDisplayAttribute("ReactiveCapabilityCurve {UUID}")]
-    public class ReactiveCapabilityCurve : Curve, IReactiveCapabilityCurve, IModelElement
+    public partial class ReactiveCapabilityCurve : Curve, IReactiveCapabilityCurve, IModelElement
     {
         
         /// <summary>
@@ -62,15 +62,23 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
         /// </summary>
         private float _hydrogenPressure;
         
+        private static Lazy<ITypedElement> _hydrogenPressureAttribute = new Lazy<ITypedElement>(RetrieveHydrogenPressureAttribute);
+        
         /// <summary>
         /// The backing field for the CoolantTemperature property
         /// </summary>
         private float _coolantTemperature;
         
+        private static Lazy<ITypedElement> _coolantTemperatureAttribute = new Lazy<ITypedElement>(RetrieveCoolantTemperatureAttribute);
+        
+        private static Lazy<ITypedElement> _initiallyUsedBySynchronousMachinesReference = new Lazy<ITypedElement>(RetrieveInitiallyUsedBySynchronousMachinesReference);
+        
         /// <summary>
         /// The backing field for the InitiallyUsedBySynchronousMachines property
         /// </summary>
         private ReactiveCapabilityCurveInitiallyUsedBySynchronousMachinesCollection _initiallyUsedBySynchronousMachines;
+        
+        private static Lazy<ITypedElement> _synchronousMachinesReference = new Lazy<ITypedElement>(RetrieveSynchronousMachinesReference);
         
         /// <summary>
         /// The backing field for the SynchronousMachines property
@@ -107,10 +115,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
                     float old = this._hydrogenPressure;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnHydrogenPressureChanging(e);
-                    this.OnPropertyChanging("HydrogenPressure", e);
+                    this.OnPropertyChanging("HydrogenPressure", e, _hydrogenPressureAttribute);
                     this._hydrogenPressure = value;
                     this.OnHydrogenPressureChanged(e);
-                    this.OnPropertyChanged("HydrogenPressure", e);
+                    this.OnPropertyChanged("HydrogenPressure", e, _hydrogenPressureAttribute);
                 }
             }
         }
@@ -133,10 +141,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
                     float old = this._coolantTemperature;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnCoolantTemperatureChanging(e);
-                    this.OnPropertyChanging("CoolantTemperature", e);
+                    this.OnPropertyChanging("CoolantTemperature", e, _coolantTemperatureAttribute);
                     this._coolantTemperature = value;
                     this.OnCoolantTemperatureChanged(e);
-                    this.OnPropertyChanged("CoolantTemperature", e);
+                    this.OnPropertyChanged("CoolantTemperature", e, _coolantTemperatureAttribute);
                 }
             }
         }
@@ -218,6 +226,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> CoolantTemperatureChanged;
         
+        private static ITypedElement RetrieveHydrogenPressureAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(ReactiveCapabilityCurve.ClassInstance)).Resolve("hydrogenPressure")));
+        }
+        
         /// <summary>
         /// Raises the HydrogenPressureChanging event
         /// </summary>
@@ -242,6 +255,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveCoolantTemperatureAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(ReactiveCapabilityCurve.ClassInstance)).Resolve("coolantTemperature")));
         }
         
         /// <summary>
@@ -270,6 +288,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
             }
         }
         
+        private static ITypedElement RetrieveInitiallyUsedBySynchronousMachinesReference()
+        {
+            return ((ITypedElement)(((ModelElement)(ReactiveCapabilityCurve.ClassInstance)).Resolve("InitiallyUsedBySynchronousMachines")));
+        }
+        
         /// <summary>
         /// Forwards CollectionChanging notifications for the InitiallyUsedBySynchronousMachines property to the parent model element
         /// </summary>
@@ -277,7 +300,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
         /// <param name="e">The original event data</param>
         private void InitiallyUsedBySynchronousMachinesCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("InitiallyUsedBySynchronousMachines", e);
+            this.OnCollectionChanging("InitiallyUsedBySynchronousMachines", e, _initiallyUsedBySynchronousMachinesReference);
         }
         
         /// <summary>
@@ -287,7 +310,12 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
         /// <param name="e">The original event data</param>
         private void InitiallyUsedBySynchronousMachinesCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("InitiallyUsedBySynchronousMachines", e);
+            this.OnCollectionChanged("InitiallyUsedBySynchronousMachines", e, _initiallyUsedBySynchronousMachinesReference);
+        }
+        
+        private static ITypedElement RetrieveSynchronousMachinesReference()
+        {
+            return ((ITypedElement)(((ModelElement)(ReactiveCapabilityCurve.ClassInstance)).Resolve("SynchronousMachines")));
         }
         
         /// <summary>
@@ -297,7 +325,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
         /// <param name="e">The original event data</param>
         private void SynchronousMachinesCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("SynchronousMachines", e);
+            this.OnCollectionChanging("SynchronousMachines", e, _synchronousMachinesReference);
         }
         
         /// <summary>
@@ -307,7 +335,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
         /// <param name="e">The original event data</param>
         private void SynchronousMachinesCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("SynchronousMachines", e);
+            this.OnCollectionChanged("SynchronousMachines", e, _synchronousMachinesReference);
         }
         
         /// <summary>
@@ -548,7 +576,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public HydrogenPressureProxy(IReactiveCapabilityCurve modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "hydrogenPressure")
             {
             }
             
@@ -566,24 +594,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
                     this.ModelElement.HydrogenPressure = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.HydrogenPressureChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.HydrogenPressureChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -597,7 +607,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public CoolantTemperatureProxy(IReactiveCapabilityCurve modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "coolantTemperature")
             {
             }
             
@@ -614,24 +624,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
                 {
                     this.ModelElement.CoolantTemperature = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.CoolantTemperatureChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.CoolantTemperatureChanged -= handler;
             }
         }
     }

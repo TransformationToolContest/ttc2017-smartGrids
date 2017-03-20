@@ -45,7 +45,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfGMLSupport
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61970/Informative/InfGMLSupport/Gml" +
         "PointGeometry")]
     [DebuggerDisplayAttribute("GmlPointGeometry {UUID}")]
-    public class GmlPointGeometry : GmlDiagramObject, IGmlPointGeometry, IModelElement
+    public partial class GmlPointGeometry : GmlDiagramObject, IGmlPointGeometry, IModelElement
     {
         
         private static IClass _classInstance;

@@ -50,7 +50,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61970/Informative/MarketOperations/" +
         "ChargeProfileData")]
     [DebuggerDisplayAttribute("ChargeProfileData {UUID}")]
-    public class ChargeProfileData : Element, IChargeProfileData, IModelElement
+    public partial class ChargeProfileData : Element, IChargeProfileData, IModelElement
     {
         
         /// <summary>
@@ -58,20 +58,30 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
         /// </summary>
         private int _sequence;
         
+        private static Lazy<ITypedElement> _sequenceAttribute = new Lazy<ITypedElement>(RetrieveSequenceAttribute);
+        
         /// <summary>
         /// The backing field for the TimeStamp property
         /// </summary>
         private DateTime _timeStamp;
+        
+        private static Lazy<ITypedElement> _timeStampAttribute = new Lazy<ITypedElement>(RetrieveTimeStampAttribute);
         
         /// <summary>
         /// The backing field for the Value property
         /// </summary>
         private float _value;
         
+        private static Lazy<ITypedElement> _valueAttribute = new Lazy<ITypedElement>(RetrieveValueAttribute);
+        
+        private static Lazy<ITypedElement> _chargeProfileReference = new Lazy<ITypedElement>(RetrieveChargeProfileReference);
+        
         /// <summary>
         /// The backing field for the ChargeProfile property
         /// </summary>
         private IChargeProfile _chargeProfile;
+        
+        private static Lazy<ITypedElement> _billDeterminantReference = new Lazy<ITypedElement>(RetrieveBillDeterminantReference);
         
         /// <summary>
         /// The backing field for the BillDeterminant property
@@ -98,10 +108,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
                     int old = this._sequence;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnSequenceChanging(e);
-                    this.OnPropertyChanging("Sequence", e);
+                    this.OnPropertyChanging("Sequence", e, _sequenceAttribute);
                     this._sequence = value;
                     this.OnSequenceChanged(e);
-                    this.OnPropertyChanged("Sequence", e);
+                    this.OnPropertyChanged("Sequence", e, _sequenceAttribute);
                 }
             }
         }
@@ -124,10 +134,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
                     DateTime old = this._timeStamp;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnTimeStampChanging(e);
-                    this.OnPropertyChanging("TimeStamp", e);
+                    this.OnPropertyChanging("TimeStamp", e, _timeStampAttribute);
                     this._timeStamp = value;
                     this.OnTimeStampChanged(e);
-                    this.OnPropertyChanged("TimeStamp", e);
+                    this.OnPropertyChanged("TimeStamp", e, _timeStampAttribute);
                 }
             }
         }
@@ -150,10 +160,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
                     float old = this._value;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnValueChanging(e);
-                    this.OnPropertyChanging("Value", e);
+                    this.OnPropertyChanging("Value", e, _valueAttribute);
                     this._value = value;
                     this.OnValueChanged(e);
-                    this.OnPropertyChanged("Value", e);
+                    this.OnPropertyChanged("Value", e, _valueAttribute);
                 }
             }
         }
@@ -176,7 +186,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
                     IChargeProfile old = this._chargeProfile;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnChargeProfileChanging(e);
-                    this.OnPropertyChanging("ChargeProfile", e);
+                    this.OnPropertyChanging("ChargeProfile", e, _chargeProfileReference);
                     this._chargeProfile = value;
                     if ((old != null))
                     {
@@ -189,7 +199,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
                         value.Deleted += this.OnResetChargeProfile;
                     }
                     this.OnChargeProfileChanged(e);
-                    this.OnPropertyChanged("ChargeProfile", e);
+                    this.OnPropertyChanged("ChargeProfile", e, _chargeProfileReference);
                 }
             }
         }
@@ -212,7 +222,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
                     IBillDeterminant old = this._billDeterminant;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnBillDeterminantChanging(e);
-                    this.OnPropertyChanging("BillDeterminant", e);
+                    this.OnPropertyChanging("BillDeterminant", e, _billDeterminantReference);
                     this._billDeterminant = value;
                     if ((old != null))
                     {
@@ -225,7 +235,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
                         value.Deleted += this.OnResetBillDeterminant;
                     }
                     this.OnBillDeterminantChanged(e);
-                    this.OnPropertyChanged("BillDeterminant", e);
+                    this.OnPropertyChanged("BillDeterminant", e, _billDeterminantReference);
                 }
             }
         }
@@ -307,6 +317,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> BillDeterminantChanged;
         
+        private static ITypedElement RetrieveSequenceAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(ChargeProfileData.ClassInstance)).Resolve("sequence")));
+        }
+        
         /// <summary>
         /// Raises the SequenceChanging event
         /// </summary>
@@ -331,6 +346,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveTimeStampAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(ChargeProfileData.ClassInstance)).Resolve("timeStamp")));
         }
         
         /// <summary>
@@ -359,6 +379,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
             }
         }
         
+        private static ITypedElement RetrieveValueAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(ChargeProfileData.ClassInstance)).Resolve("value")));
+        }
+        
         /// <summary>
         /// Raises the ValueChanging event
         /// </summary>
@@ -383,6 +408,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveChargeProfileReference()
+        {
+            return ((ITypedElement)(((ModelElement)(ChargeProfileData.ClassInstance)).Resolve("ChargeProfile")));
         }
         
         /// <summary>
@@ -419,6 +449,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
         private void OnResetChargeProfile(object sender, System.EventArgs eventArgs)
         {
             this.ChargeProfile = null;
+        }
+        
+        private static ITypedElement RetrieveBillDeterminantReference()
+        {
+            return ((ITypedElement)(((ModelElement)(ChargeProfileData.ClassInstance)).Resolve("BillDeterminant")));
         }
         
         /// <summary>
@@ -725,7 +760,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public SequenceProxy(IChargeProfileData modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "sequence")
             {
             }
             
@@ -743,24 +778,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
                     this.ModelElement.Sequence = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.SequenceChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.SequenceChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -774,7 +791,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public TimeStampProxy(IChargeProfileData modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "timeStamp")
             {
             }
             
@@ -792,24 +809,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
                     this.ModelElement.TimeStamp = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.TimeStampChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.TimeStampChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -823,7 +822,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public ValueProxy(IChargeProfileData modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "value")
             {
             }
             
@@ -841,24 +840,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
                     this.ModelElement.Value = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ValueChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ValueChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -872,7 +853,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public ChargeProfileProxy(IChargeProfileData modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "ChargeProfile")
             {
             }
             
@@ -890,24 +871,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
                     this.ModelElement.ChargeProfile = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ChargeProfileChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ChargeProfileChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -921,7 +884,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public BillDeterminantProxy(IChargeProfileData modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "BillDeterminant")
             {
             }
             
@@ -938,24 +901,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
                 {
                     this.ModelElement.BillDeterminant = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.BillDeterminantChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.BillDeterminantChanged -= handler;
             }
         }
     }

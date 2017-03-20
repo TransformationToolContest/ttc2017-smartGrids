@@ -39,13 +39,15 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
     [XmlNamespacePrefixAttribute("data")]
     [ModelRepresentationClassAttribute("http://www.transformation-tool-contest.eu/2017/smartGrids/substationStandard#//Da" +
         "taclasses/CMVAngleReference")]
-    public class CMVAngleReference : ModelElement, ICMVAngleReference, IModelElement
+    public partial class CMVAngleReference : ModelElement, ICMVAngleReference, IModelElement
     {
         
         /// <summary>
         /// The backing field for the Val property
         /// </summary>
         private Nullable<CMVAngleReferenceKind> _val;
+        
+        private static Lazy<ITypedElement> _valAttribute = new Lazy<ITypedElement>(RetrieveValAttribute);
         
         private static IClass _classInstance;
         
@@ -67,10 +69,10 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
                     Nullable<CMVAngleReferenceKind> old = this._val;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnValChanging(e);
-                    this.OnPropertyChanging("Val", e);
+                    this.OnPropertyChanging("Val", e, _valAttribute);
                     this._val = value;
                     this.OnValChanged(e);
-                    this.OnPropertyChanged("Val", e);
+                    this.OnPropertyChanged("Val", e, _valAttribute);
                 }
             }
         }
@@ -100,6 +102,11 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
         /// Gets fired when the Val property changed its value
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> ValChanged;
+        
+        private static ITypedElement RetrieveValAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(CMVAngleReference.ClassInstance)).Resolve("val")));
+        }
         
         /// <summary>
         /// Raises the ValChanging event
@@ -181,7 +188,7 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public ValProxy(ICMVAngleReference modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "val")
             {
             }
             
@@ -198,24 +205,6 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
                 {
                     this.ModelElement.Val = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ValChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ValChanged -= handler;
             }
         }
     }

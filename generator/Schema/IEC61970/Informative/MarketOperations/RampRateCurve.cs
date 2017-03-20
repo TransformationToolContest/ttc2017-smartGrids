@@ -50,13 +50,17 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61970/Informative/MarketOperations/" +
         "RampRateCurve")]
     [DebuggerDisplayAttribute("RampRateCurve {UUID}")]
-    public class RampRateCurve : Curve, IRampRateCurve, IModelElement
+    public partial class RampRateCurve : Curve, IRampRateCurve, IModelElement
     {
         
         /// <summary>
         /// The backing field for the RampRateType property
         /// </summary>
         private string _rampRateType;
+        
+        private static Lazy<ITypedElement> _rampRateTypeAttribute = new Lazy<ITypedElement>(RetrieveRampRateTypeAttribute);
+        
+        private static Lazy<ITypedElement> _generatingUnitReference = new Lazy<ITypedElement>(RetrieveGeneratingUnitReference);
         
         /// <summary>
         /// The backing field for the GeneratingUnit property
@@ -90,10 +94,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
                     string old = this._rampRateType;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnRampRateTypeChanging(e);
-                    this.OnPropertyChanging("RampRateType", e);
+                    this.OnPropertyChanging("RampRateType", e, _rampRateTypeAttribute);
                     this._rampRateType = value;
                     this.OnRampRateTypeChanged(e);
-                    this.OnPropertyChanged("RampRateType", e);
+                    this.OnPropertyChanged("RampRateType", e, _rampRateTypeAttribute);
                 }
             }
         }
@@ -150,6 +154,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> RampRateTypeChanged;
         
+        private static ITypedElement RetrieveRampRateTypeAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(RampRateCurve.ClassInstance)).Resolve("rampRateType")));
+        }
+        
         /// <summary>
         /// Raises the RampRateTypeChanging event
         /// </summary>
@@ -176,6 +185,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
             }
         }
         
+        private static ITypedElement RetrieveGeneratingUnitReference()
+        {
+            return ((ITypedElement)(((ModelElement)(RampRateCurve.ClassInstance)).Resolve("GeneratingUnit")));
+        }
+        
         /// <summary>
         /// Forwards CollectionChanging notifications for the GeneratingUnit property to the parent model element
         /// </summary>
@@ -183,7 +197,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
         /// <param name="e">The original event data</param>
         private void GeneratingUnitCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("GeneratingUnit", e);
+            this.OnCollectionChanging("GeneratingUnit", e, _generatingUnitReference);
         }
         
         /// <summary>
@@ -193,7 +207,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
         /// <param name="e">The original event data</param>
         private void GeneratingUnitCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("GeneratingUnit", e);
+            this.OnCollectionChanged("GeneratingUnit", e, _generatingUnitReference);
         }
         
         /// <summary>
@@ -388,7 +402,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public RampRateTypeProxy(IRampRateCurve modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "rampRateType")
             {
             }
             
@@ -405,24 +419,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
                 {
                     this.ModelElement.RampRateType = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.RampRateTypeChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.RampRateTypeChanged -= handler;
             }
         }
     }

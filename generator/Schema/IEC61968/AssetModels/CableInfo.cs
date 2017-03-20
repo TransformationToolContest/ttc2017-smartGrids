@@ -46,7 +46,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.AssetModels
     [XmlNamespacePrefixAttribute("cimAssetModels")]
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61968/AssetModels/CableInfo")]
     [DebuggerDisplayAttribute("CableInfo {UUID}")]
-    public class CableInfo : ConductorInfo, ICableInfo, IModelElement
+    public partial class CableInfo : ConductorInfo, ICableInfo, IModelElement
     {
         
         /// <summary>
@@ -54,50 +54,72 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.AssetModels
         /// </summary>
         private bool _sheathAsNeutral;
         
+        private static Lazy<ITypedElement> _sheathAsNeutralAttribute = new Lazy<ITypedElement>(RetrieveSheathAsNeutralAttribute);
+        
         /// <summary>
         /// The backing field for the IsStrandFill property
         /// </summary>
         private bool _isStrandFill;
+        
+        private static Lazy<ITypedElement> _isStrandFillAttribute = new Lazy<ITypedElement>(RetrieveIsStrandFillAttribute);
         
         /// <summary>
         /// The backing field for the OuterJacketKind property
         /// </summary>
         private Nullable<CableOuterJacketKind> _outerJacketKind;
         
+        private static Lazy<ITypedElement> _outerJacketKindAttribute = new Lazy<ITypedElement>(RetrieveOuterJacketKindAttribute);
+        
         /// <summary>
         /// The backing field for the ConstructionKind property
         /// </summary>
         private Nullable<CableConstructionKind> _constructionKind;
+        
+        private static Lazy<ITypedElement> _constructionKindAttribute = new Lazy<ITypedElement>(RetrieveConstructionKindAttribute);
         
         /// <summary>
         /// The backing field for the DiameterOverScreen property
         /// </summary>
         private float _diameterOverScreen;
         
+        private static Lazy<ITypedElement> _diameterOverScreenAttribute = new Lazy<ITypedElement>(RetrieveDiameterOverScreenAttribute);
+        
         /// <summary>
         /// The backing field for the NominalTemperature property
         /// </summary>
         private float _nominalTemperature;
+        
+        private static Lazy<ITypedElement> _nominalTemperatureAttribute = new Lazy<ITypedElement>(RetrieveNominalTemperatureAttribute);
         
         /// <summary>
         /// The backing field for the DiameterOverJacket property
         /// </summary>
         private float _diameterOverJacket;
         
+        private static Lazy<ITypedElement> _diameterOverJacketAttribute = new Lazy<ITypedElement>(RetrieveDiameterOverJacketAttribute);
+        
         /// <summary>
         /// The backing field for the DiameterOverCore property
         /// </summary>
         private float _diameterOverCore;
+        
+        private static Lazy<ITypedElement> _diameterOverCoreAttribute = new Lazy<ITypedElement>(RetrieveDiameterOverCoreAttribute);
         
         /// <summary>
         /// The backing field for the DiameterOverInsulation property
         /// </summary>
         private float _diameterOverInsulation;
         
+        private static Lazy<ITypedElement> _diameterOverInsulationAttribute = new Lazy<ITypedElement>(RetrieveDiameterOverInsulationAttribute);
+        
         /// <summary>
         /// The backing field for the ShieldMaterial property
         /// </summary>
         private Nullable<CableShieldMaterialKind> _shieldMaterial;
+        
+        private static Lazy<ITypedElement> _shieldMaterialAttribute = new Lazy<ITypedElement>(RetrieveShieldMaterialAttribute);
+        
+        private static Lazy<ITypedElement> _ductBankInfoReference = new Lazy<ITypedElement>(RetrieveDuctBankInfoReference);
         
         /// <summary>
         /// The backing field for the DuctBankInfo property
@@ -124,10 +146,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.AssetModels
                     bool old = this._sheathAsNeutral;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnSheathAsNeutralChanging(e);
-                    this.OnPropertyChanging("SheathAsNeutral", e);
+                    this.OnPropertyChanging("SheathAsNeutral", e, _sheathAsNeutralAttribute);
                     this._sheathAsNeutral = value;
                     this.OnSheathAsNeutralChanged(e);
-                    this.OnPropertyChanged("SheathAsNeutral", e);
+                    this.OnPropertyChanged("SheathAsNeutral", e, _sheathAsNeutralAttribute);
                 }
             }
         }
@@ -150,10 +172,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.AssetModels
                     bool old = this._isStrandFill;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnIsStrandFillChanging(e);
-                    this.OnPropertyChanging("IsStrandFill", e);
+                    this.OnPropertyChanging("IsStrandFill", e, _isStrandFillAttribute);
                     this._isStrandFill = value;
                     this.OnIsStrandFillChanged(e);
-                    this.OnPropertyChanged("IsStrandFill", e);
+                    this.OnPropertyChanged("IsStrandFill", e, _isStrandFillAttribute);
                 }
             }
         }
@@ -176,10 +198,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.AssetModels
                     Nullable<CableOuterJacketKind> old = this._outerJacketKind;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnOuterJacketKindChanging(e);
-                    this.OnPropertyChanging("OuterJacketKind", e);
+                    this.OnPropertyChanging("OuterJacketKind", e, _outerJacketKindAttribute);
                     this._outerJacketKind = value;
                     this.OnOuterJacketKindChanged(e);
-                    this.OnPropertyChanged("OuterJacketKind", e);
+                    this.OnPropertyChanged("OuterJacketKind", e, _outerJacketKindAttribute);
                 }
             }
         }
@@ -202,10 +224,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.AssetModels
                     Nullable<CableConstructionKind> old = this._constructionKind;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnConstructionKindChanging(e);
-                    this.OnPropertyChanging("ConstructionKind", e);
+                    this.OnPropertyChanging("ConstructionKind", e, _constructionKindAttribute);
                     this._constructionKind = value;
                     this.OnConstructionKindChanged(e);
-                    this.OnPropertyChanged("ConstructionKind", e);
+                    this.OnPropertyChanged("ConstructionKind", e, _constructionKindAttribute);
                 }
             }
         }
@@ -228,10 +250,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.AssetModels
                     float old = this._diameterOverScreen;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnDiameterOverScreenChanging(e);
-                    this.OnPropertyChanging("DiameterOverScreen", e);
+                    this.OnPropertyChanging("DiameterOverScreen", e, _diameterOverScreenAttribute);
                     this._diameterOverScreen = value;
                     this.OnDiameterOverScreenChanged(e);
-                    this.OnPropertyChanged("DiameterOverScreen", e);
+                    this.OnPropertyChanged("DiameterOverScreen", e, _diameterOverScreenAttribute);
                 }
             }
         }
@@ -254,10 +276,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.AssetModels
                     float old = this._nominalTemperature;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnNominalTemperatureChanging(e);
-                    this.OnPropertyChanging("NominalTemperature", e);
+                    this.OnPropertyChanging("NominalTemperature", e, _nominalTemperatureAttribute);
                     this._nominalTemperature = value;
                     this.OnNominalTemperatureChanged(e);
-                    this.OnPropertyChanged("NominalTemperature", e);
+                    this.OnPropertyChanged("NominalTemperature", e, _nominalTemperatureAttribute);
                 }
             }
         }
@@ -280,10 +302,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.AssetModels
                     float old = this._diameterOverJacket;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnDiameterOverJacketChanging(e);
-                    this.OnPropertyChanging("DiameterOverJacket", e);
+                    this.OnPropertyChanging("DiameterOverJacket", e, _diameterOverJacketAttribute);
                     this._diameterOverJacket = value;
                     this.OnDiameterOverJacketChanged(e);
-                    this.OnPropertyChanged("DiameterOverJacket", e);
+                    this.OnPropertyChanged("DiameterOverJacket", e, _diameterOverJacketAttribute);
                 }
             }
         }
@@ -306,10 +328,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.AssetModels
                     float old = this._diameterOverCore;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnDiameterOverCoreChanging(e);
-                    this.OnPropertyChanging("DiameterOverCore", e);
+                    this.OnPropertyChanging("DiameterOverCore", e, _diameterOverCoreAttribute);
                     this._diameterOverCore = value;
                     this.OnDiameterOverCoreChanged(e);
-                    this.OnPropertyChanged("DiameterOverCore", e);
+                    this.OnPropertyChanged("DiameterOverCore", e, _diameterOverCoreAttribute);
                 }
             }
         }
@@ -332,10 +354,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.AssetModels
                     float old = this._diameterOverInsulation;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnDiameterOverInsulationChanging(e);
-                    this.OnPropertyChanging("DiameterOverInsulation", e);
+                    this.OnPropertyChanging("DiameterOverInsulation", e, _diameterOverInsulationAttribute);
                     this._diameterOverInsulation = value;
                     this.OnDiameterOverInsulationChanged(e);
-                    this.OnPropertyChanged("DiameterOverInsulation", e);
+                    this.OnPropertyChanged("DiameterOverInsulation", e, _diameterOverInsulationAttribute);
                 }
             }
         }
@@ -358,10 +380,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.AssetModels
                     Nullable<CableShieldMaterialKind> old = this._shieldMaterial;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnShieldMaterialChanging(e);
-                    this.OnPropertyChanging("ShieldMaterial", e);
+                    this.OnPropertyChanging("ShieldMaterial", e, _shieldMaterialAttribute);
                     this._shieldMaterial = value;
                     this.OnShieldMaterialChanged(e);
-                    this.OnPropertyChanged("ShieldMaterial", e);
+                    this.OnPropertyChanged("ShieldMaterial", e, _shieldMaterialAttribute);
                 }
             }
         }
@@ -384,7 +406,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.AssetModels
                     IDuctInfo old = this._ductBankInfo;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnDuctBankInfoChanging(e);
-                    this.OnPropertyChanging("DuctBankInfo", e);
+                    this.OnPropertyChanging("DuctBankInfo", e, _ductBankInfoReference);
                     this._ductBankInfo = value;
                     if ((old != null))
                     {
@@ -397,7 +419,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.AssetModels
                         value.Deleted += this.OnResetDuctBankInfo;
                     }
                     this.OnDuctBankInfoChanged(e);
-                    this.OnPropertyChanged("DuctBankInfo", e);
+                    this.OnPropertyChanged("DuctBankInfo", e, _ductBankInfoReference);
                 }
             }
         }
@@ -538,6 +560,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.AssetModels
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> DuctBankInfoChanged;
         
+        private static ITypedElement RetrieveSheathAsNeutralAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(CableInfo.ClassInstance)).Resolve("sheathAsNeutral")));
+        }
+        
         /// <summary>
         /// Raises the SheathAsNeutralChanging event
         /// </summary>
@@ -562,6 +589,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.AssetModels
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveIsStrandFillAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(CableInfo.ClassInstance)).Resolve("isStrandFill")));
         }
         
         /// <summary>
@@ -590,6 +622,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.AssetModels
             }
         }
         
+        private static ITypedElement RetrieveOuterJacketKindAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(CableInfo.ClassInstance)).Resolve("outerJacketKind")));
+        }
+        
         /// <summary>
         /// Raises the OuterJacketKindChanging event
         /// </summary>
@@ -614,6 +651,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.AssetModels
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveConstructionKindAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(CableInfo.ClassInstance)).Resolve("constructionKind")));
         }
         
         /// <summary>
@@ -642,6 +684,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.AssetModels
             }
         }
         
+        private static ITypedElement RetrieveDiameterOverScreenAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(CableInfo.ClassInstance)).Resolve("diameterOverScreen")));
+        }
+        
         /// <summary>
         /// Raises the DiameterOverScreenChanging event
         /// </summary>
@@ -666,6 +713,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.AssetModels
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveNominalTemperatureAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(CableInfo.ClassInstance)).Resolve("nominalTemperature")));
         }
         
         /// <summary>
@@ -694,6 +746,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.AssetModels
             }
         }
         
+        private static ITypedElement RetrieveDiameterOverJacketAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(CableInfo.ClassInstance)).Resolve("diameterOverJacket")));
+        }
+        
         /// <summary>
         /// Raises the DiameterOverJacketChanging event
         /// </summary>
@@ -718,6 +775,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.AssetModels
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveDiameterOverCoreAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(CableInfo.ClassInstance)).Resolve("diameterOverCore")));
         }
         
         /// <summary>
@@ -746,6 +808,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.AssetModels
             }
         }
         
+        private static ITypedElement RetrieveDiameterOverInsulationAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(CableInfo.ClassInstance)).Resolve("diameterOverInsulation")));
+        }
+        
         /// <summary>
         /// Raises the DiameterOverInsulationChanging event
         /// </summary>
@@ -772,6 +839,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.AssetModels
             }
         }
         
+        private static ITypedElement RetrieveShieldMaterialAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(CableInfo.ClassInstance)).Resolve("shieldMaterial")));
+        }
+        
         /// <summary>
         /// Raises the ShieldMaterialChanging event
         /// </summary>
@@ -796,6 +868,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.AssetModels
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveDuctBankInfoReference()
+        {
+            return ((ITypedElement)(((ModelElement)(CableInfo.ClassInstance)).Resolve("DuctBankInfo")));
         }
         
         /// <summary>
@@ -1121,7 +1198,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.AssetModels
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public SheathAsNeutralProxy(ICableInfo modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "sheathAsNeutral")
             {
             }
             
@@ -1139,24 +1216,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.AssetModels
                     this.ModelElement.SheathAsNeutral = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.SheathAsNeutralChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.SheathAsNeutralChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1170,7 +1229,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.AssetModels
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public IsStrandFillProxy(ICableInfo modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "isStrandFill")
             {
             }
             
@@ -1188,24 +1247,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.AssetModels
                     this.ModelElement.IsStrandFill = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.IsStrandFillChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.IsStrandFillChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1219,7 +1260,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.AssetModels
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public OuterJacketKindProxy(ICableInfo modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "outerJacketKind")
             {
             }
             
@@ -1237,24 +1278,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.AssetModels
                     this.ModelElement.OuterJacketKind = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.OuterJacketKindChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.OuterJacketKindChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1268,7 +1291,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.AssetModels
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public ConstructionKindProxy(ICableInfo modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "constructionKind")
             {
             }
             
@@ -1286,24 +1309,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.AssetModels
                     this.ModelElement.ConstructionKind = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ConstructionKindChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ConstructionKindChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1317,7 +1322,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.AssetModels
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public DiameterOverScreenProxy(ICableInfo modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "diameterOverScreen")
             {
             }
             
@@ -1335,24 +1340,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.AssetModels
                     this.ModelElement.DiameterOverScreen = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.DiameterOverScreenChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.DiameterOverScreenChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1366,7 +1353,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.AssetModels
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public NominalTemperatureProxy(ICableInfo modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "nominalTemperature")
             {
             }
             
@@ -1384,24 +1371,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.AssetModels
                     this.ModelElement.NominalTemperature = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.NominalTemperatureChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.NominalTemperatureChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1415,7 +1384,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.AssetModels
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public DiameterOverJacketProxy(ICableInfo modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "diameterOverJacket")
             {
             }
             
@@ -1433,24 +1402,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.AssetModels
                     this.ModelElement.DiameterOverJacket = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.DiameterOverJacketChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.DiameterOverJacketChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1464,7 +1415,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.AssetModels
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public DiameterOverCoreProxy(ICableInfo modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "diameterOverCore")
             {
             }
             
@@ -1482,24 +1433,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.AssetModels
                     this.ModelElement.DiameterOverCore = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.DiameterOverCoreChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.DiameterOverCoreChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1513,7 +1446,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.AssetModels
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public DiameterOverInsulationProxy(ICableInfo modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "diameterOverInsulation")
             {
             }
             
@@ -1531,24 +1464,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.AssetModels
                     this.ModelElement.DiameterOverInsulation = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.DiameterOverInsulationChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.DiameterOverInsulationChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1562,7 +1477,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.AssetModels
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public ShieldMaterialProxy(ICableInfo modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "shieldMaterial")
             {
             }
             
@@ -1580,24 +1495,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.AssetModels
                     this.ModelElement.ShieldMaterial = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ShieldMaterialChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ShieldMaterialChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1611,7 +1508,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.AssetModels
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public DuctBankInfoProxy(ICableInfo modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "DuctBankInfo")
             {
             }
             
@@ -1628,24 +1525,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.AssetModels
                 {
                     this.ModelElement.DuctBankInfo = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.DuctBankInfoChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.DuctBankInfoChanged -= handler;
             }
         }
     }

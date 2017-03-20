@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<changes:ModelChangeSet xmi:version="2.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xmi="http://www.omg.org/XMI" xmlns:changes="http://nmf.codeplex.com/changes">
+  <changes xsi:type="changes:AttributeChange" oldValue="300" newValue="303.1" feature="http://www.transformation-tool-contest.eu/2017/smartGrids/cosem#//COSEMObjects/ElectricityValues/ApparentPowermL1" affectedElement="..\..\models/COSEM.xmi#//@PhysicalDevice.55/@ElectricityValues" />
+  <changes xsi:type="changes:AttributeChange" newValue="0.1" feature="http://www.transformation-tool-contest.eu/2017/smartGrids/cosem#//COSEMObjects/ElectricityValues/ApparentPowermL2" affectedElement="..\..\models/COSEM.xmi#//@PhysicalDevice.55/@ElectricityValues" />
+  <changes xsi:type="changes:AttributeChange" newValue="0.1" feature="http://www.transformation-tool-contest.eu/2017/smartGrids/cosem#//COSEMObjects/ElectricityValues/ApparentPowermL3" affectedElement="..\..\models/COSEM.xmi#//@PhysicalDevice.55/@ElectricityValues" />
+  <changes xsi:type="changes:AttributeChange" oldValue="40" newValue="40.5" feature="http://www.transformation-tool-contest.eu/2017/smartGrids/cosem#//COSEMObjects/ElectricityValues/VoltageL1" affectedElement="..\..\models/COSEM.xmi#//@PhysicalDevice.55/@ElectricityValues" />
+  <changes xsi:type="changes:AttributeChange" newValue="0.1" feature="http://www.transformation-tool-contest.eu/2017/smartGrids/cosem#//COSEMObjects/ElectricityValues/VoltageL2" affectedElement="..\..\models/COSEM.xmi#//@PhysicalDevice.55/@ElectricityValues" />
+  <changes xsi:type="changes:AttributeChange" newValue="0.1" feature="http://www.transformation-tool-contest.eu/2017/smartGrids/cosem#//COSEMObjects/ElectricityValues/VoltageL3" affectedElement="..\..\models/COSEM.xmi#//@PhysicalDevice.55/@ElectricityValues" />
+</changes:ModelChangeSet>

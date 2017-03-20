@@ -40,7 +40,7 @@ namespace TTC2017.SmartGrids.COSEM.InterfaceClasses
     [XmlNamespacePrefixAttribute("inter")]
     [ModelRepresentationClassAttribute("http://www.transformation-tool-contest.eu/2017/smartGrids/cosem#//InterfaceClasse" +
         "s/Clock")]
-    public class Clock : Base, IClock, IModelElement
+    public partial class Clock : Base, IClock, IModelElement
     {
         
         /// <summary>
@@ -48,35 +48,49 @@ namespace TTC2017.SmartGrids.COSEM.InterfaceClasses
         /// </summary>
         private string _time;
         
+        private static Lazy<ITypedElement> _timeAttribute = new Lazy<ITypedElement>(RetrieveTimeAttribute);
+        
         /// <summary>
         /// The backing field for the Time_zone property
         /// </summary>
         private ObservableOrderedSet<long> _time_zone;
+        
+        private static Lazy<ITypedElement> _time_zoneAttribute = new Lazy<ITypedElement>(RetrieveTime_zoneAttribute);
         
         /// <summary>
         /// The backing field for the Status property
         /// </summary>
         private string _status;
         
+        private static Lazy<ITypedElement> _statusAttribute = new Lazy<ITypedElement>(RetrieveStatusAttribute);
+        
         /// <summary>
         /// The backing field for the Daylight_savings_begin property
         /// </summary>
         private string _daylight_savings_begin;
+        
+        private static Lazy<ITypedElement> _daylight_savings_beginAttribute = new Lazy<ITypedElement>(RetrieveDaylight_savings_beginAttribute);
         
         /// <summary>
         /// The backing field for the Daylight_savings_end property
         /// </summary>
         private string _daylight_savings_end;
         
+        private static Lazy<ITypedElement> _daylight_savings_endAttribute = new Lazy<ITypedElement>(RetrieveDaylight_savings_endAttribute);
+        
         /// <summary>
         /// The backing field for the Daylight_savings_deviation property
         /// </summary>
         private ObservableOrderedSet<int> _daylight_savings_deviation;
         
+        private static Lazy<ITypedElement> _daylight_savings_deviationAttribute = new Lazy<ITypedElement>(RetrieveDaylight_savings_deviationAttribute);
+        
         /// <summary>
         /// The backing field for the Daylight_savings_enabled property
         /// </summary>
         private Nullable<bool> _daylight_savings_enabled;
+        
+        private static Lazy<ITypedElement> _daylight_savings_enabledAttribute = new Lazy<ITypedElement>(RetrieveDaylight_savings_enabledAttribute);
         
         private static IClass _classInstance;
         
@@ -108,10 +122,10 @@ namespace TTC2017.SmartGrids.COSEM.InterfaceClasses
                     string old = this._time;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnTimeChanging(e);
-                    this.OnPropertyChanging("Time", e);
+                    this.OnPropertyChanging("Time", e, _timeAttribute);
                     this._time = value;
                     this.OnTimeChanged(e);
-                    this.OnPropertyChanged("Time", e);
+                    this.OnPropertyChanged("Time", e, _timeAttribute);
                 }
             }
         }
@@ -150,10 +164,10 @@ namespace TTC2017.SmartGrids.COSEM.InterfaceClasses
                     string old = this._status;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnStatusChanging(e);
-                    this.OnPropertyChanging("Status", e);
+                    this.OnPropertyChanging("Status", e, _statusAttribute);
                     this._status = value;
                     this.OnStatusChanged(e);
-                    this.OnPropertyChanged("Status", e);
+                    this.OnPropertyChanged("Status", e, _statusAttribute);
                 }
             }
         }
@@ -176,10 +190,10 @@ namespace TTC2017.SmartGrids.COSEM.InterfaceClasses
                     string old = this._daylight_savings_begin;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnDaylight_savings_beginChanging(e);
-                    this.OnPropertyChanging("Daylight_savings_begin", e);
+                    this.OnPropertyChanging("Daylight_savings_begin", e, _daylight_savings_beginAttribute);
                     this._daylight_savings_begin = value;
                     this.OnDaylight_savings_beginChanged(e);
-                    this.OnPropertyChanged("Daylight_savings_begin", e);
+                    this.OnPropertyChanged("Daylight_savings_begin", e, _daylight_savings_beginAttribute);
                 }
             }
         }
@@ -202,10 +216,10 @@ namespace TTC2017.SmartGrids.COSEM.InterfaceClasses
                     string old = this._daylight_savings_end;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnDaylight_savings_endChanging(e);
-                    this.OnPropertyChanging("Daylight_savings_end", e);
+                    this.OnPropertyChanging("Daylight_savings_end", e, _daylight_savings_endAttribute);
                     this._daylight_savings_end = value;
                     this.OnDaylight_savings_endChanged(e);
-                    this.OnPropertyChanged("Daylight_savings_end", e);
+                    this.OnPropertyChanged("Daylight_savings_end", e, _daylight_savings_endAttribute);
                 }
             }
         }
@@ -244,10 +258,10 @@ namespace TTC2017.SmartGrids.COSEM.InterfaceClasses
                     Nullable<bool> old = this._daylight_savings_enabled;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnDaylight_savings_enabledChanging(e);
-                    this.OnPropertyChanging("Daylight_savings_enabled", e);
+                    this.OnPropertyChanging("Daylight_savings_enabled", e, _daylight_savings_enabledAttribute);
                     this._daylight_savings_enabled = value;
                     this.OnDaylight_savings_enabledChanged(e);
-                    this.OnPropertyChanged("Daylight_savings_enabled", e);
+                    this.OnPropertyChanged("Daylight_savings_enabled", e, _daylight_savings_enabledAttribute);
                 }
             }
         }
@@ -318,6 +332,11 @@ namespace TTC2017.SmartGrids.COSEM.InterfaceClasses
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> Daylight_savings_enabledChanged;
         
+        private static ITypedElement RetrieveTimeAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(Clock.ClassInstance)).Resolve("time")));
+        }
+        
         /// <summary>
         /// Raises the TimeChanging event
         /// </summary>
@@ -344,6 +363,11 @@ namespace TTC2017.SmartGrids.COSEM.InterfaceClasses
             }
         }
         
+        private static ITypedElement RetrieveTime_zoneAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(Clock.ClassInstance)).Resolve("time_zone")));
+        }
+        
         /// <summary>
         /// Forwards CollectionChanging notifications for the Time_zone property to the parent model element
         /// </summary>
@@ -351,7 +375,7 @@ namespace TTC2017.SmartGrids.COSEM.InterfaceClasses
         /// <param name="e">The original event data</param>
         private void Time_zoneCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("Time_zone", e);
+            this.OnCollectionChanging("Time_zone", e, _time_zoneAttribute);
         }
         
         /// <summary>
@@ -361,7 +385,12 @@ namespace TTC2017.SmartGrids.COSEM.InterfaceClasses
         /// <param name="e">The original event data</param>
         private void Time_zoneCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("Time_zone", e);
+            this.OnCollectionChanged("Time_zone", e, _time_zoneAttribute);
+        }
+        
+        private static ITypedElement RetrieveStatusAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(Clock.ClassInstance)).Resolve("status")));
         }
         
         /// <summary>
@@ -390,6 +419,11 @@ namespace TTC2017.SmartGrids.COSEM.InterfaceClasses
             }
         }
         
+        private static ITypedElement RetrieveDaylight_savings_beginAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(Clock.ClassInstance)).Resolve("daylight_savings_begin")));
+        }
+        
         /// <summary>
         /// Raises the Daylight_savings_beginChanging event
         /// </summary>
@@ -414,6 +448,11 @@ namespace TTC2017.SmartGrids.COSEM.InterfaceClasses
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveDaylight_savings_endAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(Clock.ClassInstance)).Resolve("daylight_savings_end")));
         }
         
         /// <summary>
@@ -442,6 +481,11 @@ namespace TTC2017.SmartGrids.COSEM.InterfaceClasses
             }
         }
         
+        private static ITypedElement RetrieveDaylight_savings_deviationAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(Clock.ClassInstance)).Resolve("daylight_savings_deviation")));
+        }
+        
         /// <summary>
         /// Forwards CollectionChanging notifications for the Daylight_savings_deviation property to the parent model element
         /// </summary>
@@ -449,7 +493,7 @@ namespace TTC2017.SmartGrids.COSEM.InterfaceClasses
         /// <param name="e">The original event data</param>
         private void Daylight_savings_deviationCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("Daylight_savings_deviation", e);
+            this.OnCollectionChanging("Daylight_savings_deviation", e, _daylight_savings_deviationAttribute);
         }
         
         /// <summary>
@@ -459,7 +503,12 @@ namespace TTC2017.SmartGrids.COSEM.InterfaceClasses
         /// <param name="e">The original event data</param>
         private void Daylight_savings_deviationCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("Daylight_savings_deviation", e);
+            this.OnCollectionChanged("Daylight_savings_deviation", e, _daylight_savings_deviationAttribute);
+        }
+        
+        private static ITypedElement RetrieveDaylight_savings_enabledAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(Clock.ClassInstance)).Resolve("daylight_savings_enabled")));
         }
         
         /// <summary>
@@ -618,7 +667,7 @@ namespace TTC2017.SmartGrids.COSEM.InterfaceClasses
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public TimeProxy(IClock modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "time")
             {
             }
             
@@ -636,24 +685,6 @@ namespace TTC2017.SmartGrids.COSEM.InterfaceClasses
                     this.ModelElement.Time = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.TimeChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.TimeChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -667,7 +698,7 @@ namespace TTC2017.SmartGrids.COSEM.InterfaceClasses
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public StatusProxy(IClock modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "status")
             {
             }
             
@@ -685,24 +716,6 @@ namespace TTC2017.SmartGrids.COSEM.InterfaceClasses
                     this.ModelElement.Status = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.StatusChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.StatusChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -716,7 +729,7 @@ namespace TTC2017.SmartGrids.COSEM.InterfaceClasses
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public Daylight_savings_beginProxy(IClock modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "daylight_savings_begin")
             {
             }
             
@@ -734,24 +747,6 @@ namespace TTC2017.SmartGrids.COSEM.InterfaceClasses
                     this.ModelElement.Daylight_savings_begin = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.Daylight_savings_beginChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.Daylight_savings_beginChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -765,7 +760,7 @@ namespace TTC2017.SmartGrids.COSEM.InterfaceClasses
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public Daylight_savings_endProxy(IClock modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "daylight_savings_end")
             {
             }
             
@@ -783,24 +778,6 @@ namespace TTC2017.SmartGrids.COSEM.InterfaceClasses
                     this.ModelElement.Daylight_savings_end = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.Daylight_savings_endChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.Daylight_savings_endChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -814,7 +791,7 @@ namespace TTC2017.SmartGrids.COSEM.InterfaceClasses
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public Daylight_savings_enabledProxy(IClock modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "daylight_savings_enabled")
             {
             }
             
@@ -831,24 +808,6 @@ namespace TTC2017.SmartGrids.COSEM.InterfaceClasses
                 {
                     this.ModelElement.Daylight_savings_enabled = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.Daylight_savings_enabledChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.Daylight_savings_enabledChanged -= handler;
             }
         }
     }

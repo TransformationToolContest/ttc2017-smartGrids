@@ -49,38 +49,52 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.EnergyScheduling
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61970/Informative/EnergyScheduling/" +
         "TieLine")]
     [DebuggerDisplayAttribute("TieLine {UUID}")]
-    public class TieLine : Element, ITieLine, IModelElement
+    public partial class TieLine : Element, ITieLine, IModelElement
     {
+        
+        private static Lazy<ITypedElement> _dynamicEnergyTransactionReference = new Lazy<ITypedElement>(RetrieveDynamicEnergyTransactionReference);
         
         /// <summary>
         /// The backing field for the DynamicEnergyTransaction property
         /// </summary>
         private IDynamic _dynamicEnergyTransaction;
         
+        private static Lazy<ITypedElement> _customerConsumerReference = new Lazy<ITypedElement>(RetrieveCustomerConsumerReference);
+        
         /// <summary>
         /// The backing field for the CustomerConsumer property
         /// </summary>
         private ICustomerConsumer _customerConsumer;
+        
+        private static Lazy<ITypedElement> _sideA_SubControlAreaReference = new Lazy<ITypedElement>(RetrieveSideA_SubControlAreaReference);
         
         /// <summary>
         /// The backing field for the SideA_SubControlArea property
         /// </summary>
         private ISubControlArea _sideA_SubControlArea;
         
+        private static Lazy<ITypedElement> _sideB_HostControlAreaReference = new Lazy<ITypedElement>(RetrieveSideB_HostControlAreaReference);
+        
         /// <summary>
         /// The backing field for the SideB_HostControlArea property
         /// </summary>
         private IHostControlArea _sideB_HostControlArea;
+        
+        private static Lazy<ITypedElement> _sideB_SubControlAreaReference = new Lazy<ITypedElement>(RetrieveSideB_SubControlAreaReference);
         
         /// <summary>
         /// The backing field for the SideB_SubControlArea property
         /// </summary>
         private ISubControlArea _sideB_SubControlArea;
         
+        private static Lazy<ITypedElement> _sideA_HostControlAreaReference = new Lazy<ITypedElement>(RetrieveSideA_HostControlAreaReference);
+        
         /// <summary>
         /// The backing field for the SideA_HostControlArea property
         /// </summary>
         private IHostControlArea _sideA_HostControlArea;
+        
+        private static Lazy<ITypedElement> _controlAreaOperatorsReference = new Lazy<ITypedElement>(RetrieveControlAreaOperatorsReference);
         
         /// <summary>
         /// The backing field for the ControlAreaOperators property
@@ -114,7 +128,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.EnergyScheduling
                     IDynamic old = this._dynamicEnergyTransaction;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnDynamicEnergyTransactionChanging(e);
-                    this.OnPropertyChanging("DynamicEnergyTransaction", e);
+                    this.OnPropertyChanging("DynamicEnergyTransaction", e, _dynamicEnergyTransactionReference);
                     this._dynamicEnergyTransaction = value;
                     if ((old != null))
                     {
@@ -127,7 +141,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.EnergyScheduling
                         value.Deleted += this.OnResetDynamicEnergyTransaction;
                     }
                     this.OnDynamicEnergyTransactionChanged(e);
-                    this.OnPropertyChanged("DynamicEnergyTransaction", e);
+                    this.OnPropertyChanged("DynamicEnergyTransaction", e, _dynamicEnergyTransactionReference);
                 }
             }
         }
@@ -150,7 +164,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.EnergyScheduling
                     ICustomerConsumer old = this._customerConsumer;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnCustomerConsumerChanging(e);
-                    this.OnPropertyChanging("CustomerConsumer", e);
+                    this.OnPropertyChanging("CustomerConsumer", e, _customerConsumerReference);
                     this._customerConsumer = value;
                     if ((old != null))
                     {
@@ -163,7 +177,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.EnergyScheduling
                         value.Deleted += this.OnResetCustomerConsumer;
                     }
                     this.OnCustomerConsumerChanged(e);
-                    this.OnPropertyChanged("CustomerConsumer", e);
+                    this.OnPropertyChanged("CustomerConsumer", e, _customerConsumerReference);
                 }
             }
         }
@@ -186,7 +200,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.EnergyScheduling
                     ISubControlArea old = this._sideA_SubControlArea;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnSideA_SubControlAreaChanging(e);
-                    this.OnPropertyChanging("SideA_SubControlArea", e);
+                    this.OnPropertyChanging("SideA_SubControlArea", e, _sideA_SubControlAreaReference);
                     this._sideA_SubControlArea = value;
                     if ((old != null))
                     {
@@ -199,7 +213,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.EnergyScheduling
                         value.Deleted += this.OnResetSideA_SubControlArea;
                     }
                     this.OnSideA_SubControlAreaChanged(e);
-                    this.OnPropertyChanged("SideA_SubControlArea", e);
+                    this.OnPropertyChanged("SideA_SubControlArea", e, _sideA_SubControlAreaReference);
                 }
             }
         }
@@ -222,7 +236,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.EnergyScheduling
                     IHostControlArea old = this._sideB_HostControlArea;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnSideB_HostControlAreaChanging(e);
-                    this.OnPropertyChanging("SideB_HostControlArea", e);
+                    this.OnPropertyChanging("SideB_HostControlArea", e, _sideB_HostControlAreaReference);
                     this._sideB_HostControlArea = value;
                     if ((old != null))
                     {
@@ -235,7 +249,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.EnergyScheduling
                         value.Deleted += this.OnResetSideB_HostControlArea;
                     }
                     this.OnSideB_HostControlAreaChanged(e);
-                    this.OnPropertyChanged("SideB_HostControlArea", e);
+                    this.OnPropertyChanged("SideB_HostControlArea", e, _sideB_HostControlAreaReference);
                 }
             }
         }
@@ -258,7 +272,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.EnergyScheduling
                     ISubControlArea old = this._sideB_SubControlArea;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnSideB_SubControlAreaChanging(e);
-                    this.OnPropertyChanging("SideB_SubControlArea", e);
+                    this.OnPropertyChanging("SideB_SubControlArea", e, _sideB_SubControlAreaReference);
                     this._sideB_SubControlArea = value;
                     if ((old != null))
                     {
@@ -271,7 +285,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.EnergyScheduling
                         value.Deleted += this.OnResetSideB_SubControlArea;
                     }
                     this.OnSideB_SubControlAreaChanged(e);
-                    this.OnPropertyChanged("SideB_SubControlArea", e);
+                    this.OnPropertyChanged("SideB_SubControlArea", e, _sideB_SubControlAreaReference);
                 }
             }
         }
@@ -294,7 +308,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.EnergyScheduling
                     IHostControlArea old = this._sideA_HostControlArea;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnSideA_HostControlAreaChanging(e);
-                    this.OnPropertyChanging("SideA_HostControlArea", e);
+                    this.OnPropertyChanging("SideA_HostControlArea", e, _sideA_HostControlAreaReference);
                     this._sideA_HostControlArea = value;
                     if ((old != null))
                     {
@@ -307,7 +321,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.EnergyScheduling
                         value.Deleted += this.OnResetSideA_HostControlArea;
                     }
                     this.OnSideA_HostControlAreaChanged(e);
-                    this.OnPropertyChanged("SideA_HostControlArea", e);
+                    this.OnPropertyChanged("SideA_HostControlArea", e, _sideA_HostControlAreaReference);
                 }
             }
         }
@@ -414,6 +428,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.EnergyScheduling
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> SideA_HostControlAreaChanged;
         
+        private static ITypedElement RetrieveDynamicEnergyTransactionReference()
+        {
+            return ((ITypedElement)(((ModelElement)(TieLine.ClassInstance)).Resolve("DynamicEnergyTransaction")));
+        }
+        
         /// <summary>
         /// Raises the DynamicEnergyTransactionChanging event
         /// </summary>
@@ -448,6 +467,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.EnergyScheduling
         private void OnResetDynamicEnergyTransaction(object sender, System.EventArgs eventArgs)
         {
             this.DynamicEnergyTransaction = null;
+        }
+        
+        private static ITypedElement RetrieveCustomerConsumerReference()
+        {
+            return ((ITypedElement)(((ModelElement)(TieLine.ClassInstance)).Resolve("CustomerConsumer")));
         }
         
         /// <summary>
@@ -486,6 +510,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.EnergyScheduling
             this.CustomerConsumer = null;
         }
         
+        private static ITypedElement RetrieveSideA_SubControlAreaReference()
+        {
+            return ((ITypedElement)(((ModelElement)(TieLine.ClassInstance)).Resolve("SideA_SubControlArea")));
+        }
+        
         /// <summary>
         /// Raises the SideA_SubControlAreaChanging event
         /// </summary>
@@ -520,6 +549,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.EnergyScheduling
         private void OnResetSideA_SubControlArea(object sender, System.EventArgs eventArgs)
         {
             this.SideA_SubControlArea = null;
+        }
+        
+        private static ITypedElement RetrieveSideB_HostControlAreaReference()
+        {
+            return ((ITypedElement)(((ModelElement)(TieLine.ClassInstance)).Resolve("SideB_HostControlArea")));
         }
         
         /// <summary>
@@ -558,6 +592,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.EnergyScheduling
             this.SideB_HostControlArea = null;
         }
         
+        private static ITypedElement RetrieveSideB_SubControlAreaReference()
+        {
+            return ((ITypedElement)(((ModelElement)(TieLine.ClassInstance)).Resolve("SideB_SubControlArea")));
+        }
+        
         /// <summary>
         /// Raises the SideB_SubControlAreaChanging event
         /// </summary>
@@ -592,6 +631,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.EnergyScheduling
         private void OnResetSideB_SubControlArea(object sender, System.EventArgs eventArgs)
         {
             this.SideB_SubControlArea = null;
+        }
+        
+        private static ITypedElement RetrieveSideA_HostControlAreaReference()
+        {
+            return ((ITypedElement)(((ModelElement)(TieLine.ClassInstance)).Resolve("SideA_HostControlArea")));
         }
         
         /// <summary>
@@ -630,6 +674,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.EnergyScheduling
             this.SideA_HostControlArea = null;
         }
         
+        private static ITypedElement RetrieveControlAreaOperatorsReference()
+        {
+            return ((ITypedElement)(((ModelElement)(TieLine.ClassInstance)).Resolve("ControlAreaOperators")));
+        }
+        
         /// <summary>
         /// Forwards CollectionChanging notifications for the ControlAreaOperators property to the parent model element
         /// </summary>
@@ -637,7 +686,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.EnergyScheduling
         /// <param name="e">The original event data</param>
         private void ControlAreaOperatorsCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("ControlAreaOperators", e);
+            this.OnCollectionChanging("ControlAreaOperators", e, _controlAreaOperatorsReference);
         }
         
         /// <summary>
@@ -647,7 +696,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.EnergyScheduling
         /// <param name="e">The original event data</param>
         private void ControlAreaOperatorsCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("ControlAreaOperators", e);
+            this.OnCollectionChanged("ControlAreaOperators", e, _controlAreaOperatorsReference);
         }
         
         /// <summary>
@@ -1100,7 +1149,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.EnergyScheduling
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public DynamicEnergyTransactionProxy(ITieLine modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "DynamicEnergyTransaction")
             {
             }
             
@@ -1118,24 +1167,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.EnergyScheduling
                     this.ModelElement.DynamicEnergyTransaction = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.DynamicEnergyTransactionChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.DynamicEnergyTransactionChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1149,7 +1180,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.EnergyScheduling
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public CustomerConsumerProxy(ITieLine modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "CustomerConsumer")
             {
             }
             
@@ -1167,24 +1198,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.EnergyScheduling
                     this.ModelElement.CustomerConsumer = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.CustomerConsumerChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.CustomerConsumerChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1198,7 +1211,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.EnergyScheduling
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public SideA_SubControlAreaProxy(ITieLine modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "SideA_SubControlArea")
             {
             }
             
@@ -1216,24 +1229,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.EnergyScheduling
                     this.ModelElement.SideA_SubControlArea = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.SideA_SubControlAreaChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.SideA_SubControlAreaChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1247,7 +1242,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.EnergyScheduling
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public SideB_HostControlAreaProxy(ITieLine modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "SideB_HostControlArea")
             {
             }
             
@@ -1265,24 +1260,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.EnergyScheduling
                     this.ModelElement.SideB_HostControlArea = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.SideB_HostControlAreaChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.SideB_HostControlAreaChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1296,7 +1273,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.EnergyScheduling
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public SideB_SubControlAreaProxy(ITieLine modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "SideB_SubControlArea")
             {
             }
             
@@ -1314,24 +1291,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.EnergyScheduling
                     this.ModelElement.SideB_SubControlArea = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.SideB_SubControlAreaChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.SideB_SubControlAreaChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1345,7 +1304,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.EnergyScheduling
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public SideA_HostControlAreaProxy(ITieLine modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "SideA_HostControlArea")
             {
             }
             
@@ -1362,24 +1321,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.EnergyScheduling
                 {
                     this.ModelElement.SideA_HostControlArea = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.SideA_HostControlAreaChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.SideA_HostControlAreaChanged -= handler;
             }
         }
     }

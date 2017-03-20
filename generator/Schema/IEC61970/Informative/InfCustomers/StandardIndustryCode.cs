@@ -46,13 +46,17 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfCustomers
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61970/Informative/InfCustomers/Stan" +
         "dardIndustryCode")]
     [DebuggerDisplayAttribute("StandardIndustryCode {UUID}")]
-    public class StandardIndustryCode : Document, IStandardIndustryCode, IModelElement
+    public partial class StandardIndustryCode : Document, IStandardIndustryCode, IModelElement
     {
         
         /// <summary>
         /// The backing field for the Code property
         /// </summary>
         private string _code;
+        
+        private static Lazy<ITypedElement> _codeAttribute = new Lazy<ITypedElement>(RetrieveCodeAttribute);
+        
+        private static Lazy<ITypedElement> _customerAgreementsReference = new Lazy<ITypedElement>(RetrieveCustomerAgreementsReference);
         
         /// <summary>
         /// The backing field for the CustomerAgreements property
@@ -86,10 +90,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfCustomers
                     string old = this._code;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnCodeChanging(e);
-                    this.OnPropertyChanging("Code", e);
+                    this.OnPropertyChanging("Code", e, _codeAttribute);
                     this._code = value;
                     this.OnCodeChanged(e);
-                    this.OnPropertyChanged("Code", e);
+                    this.OnPropertyChanged("Code", e, _codeAttribute);
                 }
             }
         }
@@ -146,6 +150,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfCustomers
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> CodeChanged;
         
+        private static ITypedElement RetrieveCodeAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(StandardIndustryCode.ClassInstance)).Resolve("code")));
+        }
+        
         /// <summary>
         /// Raises the CodeChanging event
         /// </summary>
@@ -172,6 +181,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfCustomers
             }
         }
         
+        private static ITypedElement RetrieveCustomerAgreementsReference()
+        {
+            return ((ITypedElement)(((ModelElement)(StandardIndustryCode.ClassInstance)).Resolve("CustomerAgreements")));
+        }
+        
         /// <summary>
         /// Forwards CollectionChanging notifications for the CustomerAgreements property to the parent model element
         /// </summary>
@@ -179,7 +193,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfCustomers
         /// <param name="e">The original event data</param>
         private void CustomerAgreementsCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("CustomerAgreements", e);
+            this.OnCollectionChanging("CustomerAgreements", e, _customerAgreementsReference);
         }
         
         /// <summary>
@@ -189,7 +203,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfCustomers
         /// <param name="e">The original event data</param>
         private void CustomerAgreementsCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("CustomerAgreements", e);
+            this.OnCollectionChanged("CustomerAgreements", e, _customerAgreementsReference);
         }
         
         /// <summary>
@@ -384,7 +398,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfCustomers
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public CodeProxy(IStandardIndustryCode modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "code")
             {
             }
             
@@ -401,24 +415,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfCustomers
                 {
                     this.ModelElement.Code = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.CodeChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.CodeChanged -= handler;
             }
         }
     }

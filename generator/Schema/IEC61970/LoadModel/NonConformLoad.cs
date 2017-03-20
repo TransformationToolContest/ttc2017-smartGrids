@@ -43,8 +43,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.LoadModel
     [XmlNamespacePrefixAttribute("cimLoadModel")]
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61970/LoadModel/NonConformLoad")]
     [DebuggerDisplayAttribute("NonConformLoad {UUID}")]
-    public class NonConformLoad : EnergyConsumer, INonConformLoad, IModelElement
+    public partial class NonConformLoad : EnergyConsumer, INonConformLoad, IModelElement
     {
+        
+        private static Lazy<ITypedElement> _loadGroupReference = new Lazy<ITypedElement>(RetrieveLoadGroupReference);
         
         /// <summary>
         /// The backing field for the LoadGroup property
@@ -71,7 +73,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.LoadModel
                     INonConformLoadGroup old = this._loadGroup;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnLoadGroupChanging(e);
-                    this.OnPropertyChanging("LoadGroup", e);
+                    this.OnPropertyChanging("LoadGroup", e, _loadGroupReference);
                     this._loadGroup = value;
                     if ((old != null))
                     {
@@ -84,7 +86,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.LoadModel
                         value.Deleted += this.OnResetLoadGroup;
                     }
                     this.OnLoadGroupChanged(e);
-                    this.OnPropertyChanged("LoadGroup", e);
+                    this.OnPropertyChanged("LoadGroup", e, _loadGroupReference);
                 }
             }
         }
@@ -124,6 +126,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.LoadModel
         /// Gets fired when the LoadGroup property changed its value
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> LoadGroupChanged;
+        
+        private static ITypedElement RetrieveLoadGroupReference()
+        {
+            return ((ITypedElement)(((ModelElement)(NonConformLoad.ClassInstance)).Resolve("LoadGroup")));
+        }
         
         /// <summary>
         /// Raises the LoadGroupChanging event
@@ -347,7 +354,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.LoadModel
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public LoadGroupProxy(INonConformLoad modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "LoadGroup")
             {
             }
             
@@ -364,24 +371,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.LoadModel
                 {
                     this.ModelElement.LoadGroup = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.LoadGroupChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.LoadGroupChanged -= handler;
             }
         }
     }

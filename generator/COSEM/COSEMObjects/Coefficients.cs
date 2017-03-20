@@ -39,7 +39,7 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
     [XmlNamespacePrefixAttribute("objects")]
     [ModelRepresentationClassAttribute("http://www.transformation-tool-contest.eu/2017/smartGrids/cosem#//COSEMObjects/Co" +
         "efficients")]
-    public class Coefficients : Data, ICoefficients, IModelElement
+    public partial class Coefficients : Data, ICoefficients, IModelElement
     {
         
         /// <summary>
@@ -47,20 +47,28 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
         /// </summary>
         private Nullable<double> _transformer_magnetic_losses;
         
+        private static Lazy<ITypedElement> _transformer_magnetic_lossesAttribute = new Lazy<ITypedElement>(RetrieveTransformer_magnetic_lossesAttribute);
+        
         /// <summary>
         /// The backing field for the Transformer_iron_losses property
         /// </summary>
         private Nullable<double> _transformer_iron_losses;
+        
+        private static Lazy<ITypedElement> _transformer_iron_lossesAttribute = new Lazy<ITypedElement>(RetrieveTransformer_iron_lossesAttribute);
         
         /// <summary>
         /// The backing field for the Line_resistance_losses property
         /// </summary>
         private Nullable<double> _line_resistance_losses;
         
+        private static Lazy<ITypedElement> _line_resistance_lossesAttribute = new Lazy<ITypedElement>(RetrieveLine_resistance_lossesAttribute);
+        
         /// <summary>
         /// The backing field for the Line_reactance_losses property
         /// </summary>
         private Nullable<double> _line_reactance_losses;
+        
+        private static Lazy<ITypedElement> _line_reactance_lossesAttribute = new Lazy<ITypedElement>(RetrieveLine_reactance_lossesAttribute);
         
         private static IClass _classInstance;
         
@@ -81,10 +89,10 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     Nullable<double> old = this._transformer_magnetic_losses;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnTransformer_magnetic_lossesChanging(e);
-                    this.OnPropertyChanging("Transformer_magnetic_losses", e);
+                    this.OnPropertyChanging("Transformer_magnetic_losses", e, _transformer_magnetic_lossesAttribute);
                     this._transformer_magnetic_losses = value;
                     this.OnTransformer_magnetic_lossesChanged(e);
-                    this.OnPropertyChanged("Transformer_magnetic_losses", e);
+                    this.OnPropertyChanged("Transformer_magnetic_losses", e, _transformer_magnetic_lossesAttribute);
                 }
             }
         }
@@ -106,10 +114,10 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     Nullable<double> old = this._transformer_iron_losses;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnTransformer_iron_lossesChanging(e);
-                    this.OnPropertyChanging("Transformer_iron_losses", e);
+                    this.OnPropertyChanging("Transformer_iron_losses", e, _transformer_iron_lossesAttribute);
                     this._transformer_iron_losses = value;
                     this.OnTransformer_iron_lossesChanged(e);
-                    this.OnPropertyChanged("Transformer_iron_losses", e);
+                    this.OnPropertyChanged("Transformer_iron_losses", e, _transformer_iron_lossesAttribute);
                 }
             }
         }
@@ -131,10 +139,10 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     Nullable<double> old = this._line_resistance_losses;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnLine_resistance_lossesChanging(e);
-                    this.OnPropertyChanging("Line_resistance_losses", e);
+                    this.OnPropertyChanging("Line_resistance_losses", e, _line_resistance_lossesAttribute);
                     this._line_resistance_losses = value;
                     this.OnLine_resistance_lossesChanged(e);
-                    this.OnPropertyChanged("Line_resistance_losses", e);
+                    this.OnPropertyChanged("Line_resistance_losses", e, _line_resistance_lossesAttribute);
                 }
             }
         }
@@ -156,10 +164,10 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     Nullable<double> old = this._line_reactance_losses;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnLine_reactance_lossesChanging(e);
-                    this.OnPropertyChanging("Line_reactance_losses", e);
+                    this.OnPropertyChanging("Line_reactance_losses", e, _line_reactance_lossesAttribute);
                     this._line_reactance_losses = value;
                     this.OnLine_reactance_lossesChanged(e);
-                    this.OnPropertyChanged("Line_reactance_losses", e);
+                    this.OnPropertyChanged("Line_reactance_losses", e, _line_reactance_lossesAttribute);
                 }
             }
         }
@@ -220,6 +228,11 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> Line_reactance_lossesChanged;
         
+        private static ITypedElement RetrieveTransformer_magnetic_lossesAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(Coefficients.ClassInstance)).Resolve("Transformer_magnetic_losses")));
+        }
+        
         /// <summary>
         /// Raises the Transformer_magnetic_lossesChanging event
         /// </summary>
@@ -244,6 +257,11 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveTransformer_iron_lossesAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(Coefficients.ClassInstance)).Resolve("Transformer_iron_losses")));
         }
         
         /// <summary>
@@ -272,6 +290,11 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             }
         }
         
+        private static ITypedElement RetrieveLine_resistance_lossesAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(Coefficients.ClassInstance)).Resolve("Line_resistance_losses")));
+        }
+        
         /// <summary>
         /// Raises the Line_resistance_lossesChanging event
         /// </summary>
@@ -296,6 +319,11 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveLine_reactance_lossesAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(Coefficients.ClassInstance)).Resolve("Line_reactance_losses")));
         }
         
         /// <summary>
@@ -405,7 +433,7 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public Transformer_magnetic_lossesProxy(ICoefficients modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "Transformer_magnetic_losses")
             {
             }
             
@@ -423,24 +451,6 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     this.ModelElement.Transformer_magnetic_losses = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.Transformer_magnetic_lossesChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.Transformer_magnetic_lossesChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -454,7 +464,7 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public Transformer_iron_lossesProxy(ICoefficients modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "Transformer_iron_losses")
             {
             }
             
@@ -472,24 +482,6 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     this.ModelElement.Transformer_iron_losses = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.Transformer_iron_lossesChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.Transformer_iron_lossesChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -503,7 +495,7 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public Line_resistance_lossesProxy(ICoefficients modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "Line_resistance_losses")
             {
             }
             
@@ -521,24 +513,6 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     this.ModelElement.Line_resistance_losses = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.Line_resistance_lossesChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.Line_resistance_lossesChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -552,7 +526,7 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public Line_reactance_lossesProxy(ICoefficients modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "Line_reactance_losses")
             {
             }
             
@@ -569,24 +543,6 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                 {
                     this.ModelElement.Line_reactance_losses = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.Line_reactance_lossesChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.Line_reactance_lossesChanged -= handler;
             }
         }
     }

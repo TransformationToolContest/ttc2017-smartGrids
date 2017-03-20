@@ -45,7 +45,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfGMLSupport
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61970/Informative/InfGMLSupport/Gml" +
         "Mark")]
     [DebuggerDisplayAttribute("GmlMark {UUID}")]
-    public class GmlMark : IdentifiedObject, IGmlMark, IModelElement
+    public partial class GmlMark : IdentifiedObject, IGmlMark, IModelElement
     {
         
         /// <summary>
@@ -53,15 +53,23 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfGMLSupport
         /// </summary>
         private string _wellKnownName;
         
+        private static Lazy<ITypedElement> _wellKnownNameAttribute = new Lazy<ITypedElement>(RetrieveWellKnownNameAttribute);
+        
+        private static Lazy<ITypedElement> _gmlGraphicsReference = new Lazy<ITypedElement>(RetrieveGmlGraphicsReference);
+        
         /// <summary>
         /// The backing field for the GmlGraphics property
         /// </summary>
         private GmlMarkGmlGraphicsCollection _gmlGraphics;
         
+        private static Lazy<ITypedElement> _gmlFIllsReference = new Lazy<ITypedElement>(RetrieveGmlFIllsReference);
+        
         /// <summary>
         /// The backing field for the GmlFIlls property
         /// </summary>
         private GmlMarkGmlFIllsCollection _gmlFIlls;
+        
+        private static Lazy<ITypedElement> _gmlStrokesReference = new Lazy<ITypedElement>(RetrieveGmlStrokesReference);
         
         /// <summary>
         /// The backing field for the GmlStrokes property
@@ -101,10 +109,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfGMLSupport
                     string old = this._wellKnownName;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnWellKnownNameChanging(e);
-                    this.OnPropertyChanging("WellKnownName", e);
+                    this.OnPropertyChanging("WellKnownName", e, _wellKnownNameAttribute);
                     this._wellKnownName = value;
                     this.OnWellKnownNameChanged(e);
-                    this.OnPropertyChanged("WellKnownName", e);
+                    this.OnPropertyChanged("WellKnownName", e, _wellKnownNameAttribute);
                 }
             }
         }
@@ -191,6 +199,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfGMLSupport
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> WellKnownNameChanged;
         
+        private static ITypedElement RetrieveWellKnownNameAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(GmlMark.ClassInstance)).Resolve("wellKnownName")));
+        }
+        
         /// <summary>
         /// Raises the WellKnownNameChanging event
         /// </summary>
@@ -217,6 +230,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfGMLSupport
             }
         }
         
+        private static ITypedElement RetrieveGmlGraphicsReference()
+        {
+            return ((ITypedElement)(((ModelElement)(GmlMark.ClassInstance)).Resolve("GmlGraphics")));
+        }
+        
         /// <summary>
         /// Forwards CollectionChanging notifications for the GmlGraphics property to the parent model element
         /// </summary>
@@ -224,7 +242,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfGMLSupport
         /// <param name="e">The original event data</param>
         private void GmlGraphicsCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("GmlGraphics", e);
+            this.OnCollectionChanging("GmlGraphics", e, _gmlGraphicsReference);
         }
         
         /// <summary>
@@ -234,7 +252,12 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfGMLSupport
         /// <param name="e">The original event data</param>
         private void GmlGraphicsCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("GmlGraphics", e);
+            this.OnCollectionChanged("GmlGraphics", e, _gmlGraphicsReference);
+        }
+        
+        private static ITypedElement RetrieveGmlFIllsReference()
+        {
+            return ((ITypedElement)(((ModelElement)(GmlMark.ClassInstance)).Resolve("GmlFIlls")));
         }
         
         /// <summary>
@@ -244,7 +267,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfGMLSupport
         /// <param name="e">The original event data</param>
         private void GmlFIllsCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("GmlFIlls", e);
+            this.OnCollectionChanging("GmlFIlls", e, _gmlFIllsReference);
         }
         
         /// <summary>
@@ -254,7 +277,12 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfGMLSupport
         /// <param name="e">The original event data</param>
         private void GmlFIllsCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("GmlFIlls", e);
+            this.OnCollectionChanged("GmlFIlls", e, _gmlFIllsReference);
+        }
+        
+        private static ITypedElement RetrieveGmlStrokesReference()
+        {
+            return ((ITypedElement)(((ModelElement)(GmlMark.ClassInstance)).Resolve("GmlStrokes")));
         }
         
         /// <summary>
@@ -264,7 +292,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfGMLSupport
         /// <param name="e">The original event data</param>
         private void GmlStrokesCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("GmlStrokes", e);
+            this.OnCollectionChanging("GmlStrokes", e, _gmlStrokesReference);
         }
         
         /// <summary>
@@ -274,7 +302,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfGMLSupport
         /// <param name="e">The original event data</param>
         private void GmlStrokesCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("GmlStrokes", e);
+            this.OnCollectionChanged("GmlStrokes", e, _gmlStrokesReference);
         }
         
         /// <summary>
@@ -545,7 +573,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfGMLSupport
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public WellKnownNameProxy(IGmlMark modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "wellKnownName")
             {
             }
             
@@ -562,24 +590,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfGMLSupport
                 {
                     this.ModelElement.WellKnownName = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.WellKnownNameChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.WellKnownNameChanged -= handler;
             }
         }
     }

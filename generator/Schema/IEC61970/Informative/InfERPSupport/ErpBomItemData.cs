@@ -56,18 +56,24 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfERPSupport
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61970/Informative/InfERPSupport/Erp" +
         "BomItemData")]
     [DebuggerDisplayAttribute("ErpBomItemData {UUID}")]
-    public class ErpBomItemData : IdentifiedObject, IErpBomItemData, IModelElement
+    public partial class ErpBomItemData : IdentifiedObject, IErpBomItemData, IModelElement
     {
+        
+        private static Lazy<ITypedElement> _designLocationReference = new Lazy<ITypedElement>(RetrieveDesignLocationReference);
         
         /// <summary>
         /// The backing field for the DesignLocation property
         /// </summary>
         private IDesignLocation _designLocation;
         
+        private static Lazy<ITypedElement> _erpBOMReference = new Lazy<ITypedElement>(RetrieveErpBOMReference);
+        
         /// <summary>
         /// The backing field for the ErpBOM property
         /// </summary>
         private IErpBOM _erpBOM;
+        
+        private static Lazy<ITypedElement> _typeAssetReference = new Lazy<ITypedElement>(RetrieveTypeAssetReference);
         
         /// <summary>
         /// The backing field for the TypeAsset property
@@ -94,7 +100,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfERPSupport
                     IDesignLocation old = this._designLocation;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnDesignLocationChanging(e);
-                    this.OnPropertyChanging("DesignLocation", e);
+                    this.OnPropertyChanging("DesignLocation", e, _designLocationReference);
                     this._designLocation = value;
                     if ((old != null))
                     {
@@ -107,7 +113,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfERPSupport
                         value.Deleted += this.OnResetDesignLocation;
                     }
                     this.OnDesignLocationChanged(e);
-                    this.OnPropertyChanged("DesignLocation", e);
+                    this.OnPropertyChanged("DesignLocation", e, _designLocationReference);
                 }
             }
         }
@@ -130,7 +136,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfERPSupport
                     IErpBOM old = this._erpBOM;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnErpBOMChanging(e);
-                    this.OnPropertyChanging("ErpBOM", e);
+                    this.OnPropertyChanging("ErpBOM", e, _erpBOMReference);
                     this._erpBOM = value;
                     if ((old != null))
                     {
@@ -143,7 +149,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfERPSupport
                         value.Deleted += this.OnResetErpBOM;
                     }
                     this.OnErpBOMChanged(e);
-                    this.OnPropertyChanged("ErpBOM", e);
+                    this.OnPropertyChanged("ErpBOM", e, _erpBOMReference);
                 }
             }
         }
@@ -166,7 +172,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfERPSupport
                     ITypeAsset old = this._typeAsset;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnTypeAssetChanging(e);
-                    this.OnPropertyChanging("TypeAsset", e);
+                    this.OnPropertyChanging("TypeAsset", e, _typeAssetReference);
                     this._typeAsset = value;
                     if ((old != null))
                     {
@@ -179,7 +185,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfERPSupport
                         value.Deleted += this.OnResetTypeAsset;
                     }
                     this.OnTypeAssetChanged(e);
-                    this.OnPropertyChanged("TypeAsset", e);
+                    this.OnPropertyChanged("TypeAsset", e, _typeAssetReference);
                 }
             }
         }
@@ -241,6 +247,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfERPSupport
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> TypeAssetChanged;
         
+        private static ITypedElement RetrieveDesignLocationReference()
+        {
+            return ((ITypedElement)(((ModelElement)(ErpBomItemData.ClassInstance)).Resolve("DesignLocation")));
+        }
+        
         /// <summary>
         /// Raises the DesignLocationChanging event
         /// </summary>
@@ -277,6 +288,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfERPSupport
             this.DesignLocation = null;
         }
         
+        private static ITypedElement RetrieveErpBOMReference()
+        {
+            return ((ITypedElement)(((ModelElement)(ErpBomItemData.ClassInstance)).Resolve("ErpBOM")));
+        }
+        
         /// <summary>
         /// Raises the ErpBOMChanging event
         /// </summary>
@@ -311,6 +327,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfERPSupport
         private void OnResetErpBOM(object sender, System.EventArgs eventArgs)
         {
             this.ErpBOM = null;
+        }
+        
+        private static ITypedElement RetrieveTypeAssetReference()
+        {
+            return ((ITypedElement)(((ModelElement)(ErpBomItemData.ClassInstance)).Resolve("TypeAsset")));
         }
         
         /// <summary>
@@ -622,7 +643,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfERPSupport
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public DesignLocationProxy(IErpBomItemData modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "DesignLocation")
             {
             }
             
@@ -640,24 +661,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfERPSupport
                     this.ModelElement.DesignLocation = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.DesignLocationChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.DesignLocationChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -671,7 +674,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfERPSupport
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public ErpBOMProxy(IErpBomItemData modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "ErpBOM")
             {
             }
             
@@ -689,24 +692,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfERPSupport
                     this.ModelElement.ErpBOM = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ErpBOMChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ErpBOMChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -720,7 +705,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfERPSupport
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public TypeAssetProxy(IErpBomItemData modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "TypeAsset")
             {
             }
             
@@ -737,24 +722,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfERPSupport
                 {
                     this.ModelElement.TypeAsset = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.TypeAssetChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.TypeAssetChanged -= handler;
             }
         }
     }

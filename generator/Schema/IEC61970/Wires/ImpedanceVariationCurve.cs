@@ -54,8 +54,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61970/Wires/ImpedanceVariationCurve" +
         "")]
     [DebuggerDisplayAttribute("ImpedanceVariationCurve {UUID}")]
-    public class ImpedanceVariationCurve : Curve, IImpedanceVariationCurve, IModelElement
+    public partial class ImpedanceVariationCurve : Curve, IImpedanceVariationCurve, IModelElement
     {
+        
+        private static Lazy<ITypedElement> _tapChangerReference = new Lazy<ITypedElement>(RetrieveTapChangerReference);
         
         /// <summary>
         /// The backing field for the TapChanger property
@@ -82,7 +84,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
                     ITapChanger old = this._tapChanger;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnTapChangerChanging(e);
-                    this.OnPropertyChanging("TapChanger", e);
+                    this.OnPropertyChanging("TapChanger", e, _tapChangerReference);
                     this._tapChanger = value;
                     if ((old != null))
                     {
@@ -95,7 +97,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
                         value.Deleted += this.OnResetTapChanger;
                     }
                     this.OnTapChangerChanged(e);
-                    this.OnPropertyChanged("TapChanger", e);
+                    this.OnPropertyChanged("TapChanger", e, _tapChangerReference);
                 }
             }
         }
@@ -136,6 +138,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
         /// Gets fired when the TapChanger property changed its value
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> TapChangerChanged;
+        
+        private static ITypedElement RetrieveTapChangerReference()
+        {
+            return ((ITypedElement)(((ModelElement)(ImpedanceVariationCurve.ClassInstance)).Resolve("TapChanger")));
+        }
         
         /// <summary>
         /// Raises the TapChangerChanging event
@@ -360,7 +367,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public TapChangerProxy(IImpedanceVariationCurve modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "TapChanger")
             {
             }
             
@@ -377,24 +384,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
                 {
                     this.ModelElement.TapChanger = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.TapChangerChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.TapChangerChanged -= handler;
             }
         }
     }

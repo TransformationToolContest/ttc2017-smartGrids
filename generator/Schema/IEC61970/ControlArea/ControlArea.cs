@@ -43,7 +43,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.ControlArea
     [XmlNamespacePrefixAttribute("cimControlArea")]
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61970/ControlArea/ControlArea")]
     [DebuggerDisplayAttribute("ControlArea {UUID}")]
-    public class ControlArea : PowerSystemResource, IControlArea, IModelElement
+    public partial class ControlArea : PowerSystemResource, IControlArea, IModelElement
     {
         
         /// <summary>
@@ -51,25 +51,37 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.ControlArea
         /// </summary>
         private Nullable<ControlAreaTypeKind> _type;
         
+        private static Lazy<ITypedElement> _typeAttribute = new Lazy<ITypedElement>(RetrieveTypeAttribute);
+        
         /// <summary>
         /// The backing field for the PTolerance property
         /// </summary>
         private float _pTolerance;
+        
+        private static Lazy<ITypedElement> _pToleranceAttribute = new Lazy<ITypedElement>(RetrievePToleranceAttribute);
         
         /// <summary>
         /// The backing field for the NetInterchange property
         /// </summary>
         private float _netInterchange;
         
+        private static Lazy<ITypedElement> _netInterchangeAttribute = new Lazy<ITypedElement>(RetrieveNetInterchangeAttribute);
+        
+        private static Lazy<ITypedElement> _controlAreaGeneratingUnitReference = new Lazy<ITypedElement>(RetrieveControlAreaGeneratingUnitReference);
+        
         /// <summary>
         /// The backing field for the ControlAreaGeneratingUnit property
         /// </summary>
         private ControlAreaControlAreaGeneratingUnitCollection _controlAreaGeneratingUnit;
         
+        private static Lazy<ITypedElement> _energyAreaReference = new Lazy<ITypedElement>(RetrieveEnergyAreaReference);
+        
         /// <summary>
         /// The backing field for the EnergyArea property
         /// </summary>
         private IEnergyArea _energyArea;
+        
+        private static Lazy<ITypedElement> _tieFlowReference = new Lazy<ITypedElement>(RetrieveTieFlowReference);
         
         /// <summary>
         /// The backing field for the TieFlow property
@@ -106,10 +118,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.ControlArea
                     Nullable<ControlAreaTypeKind> old = this._type;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnTypeChanging(e);
-                    this.OnPropertyChanging("Type", e);
+                    this.OnPropertyChanging("Type", e, _typeAttribute);
                     this._type = value;
                     this.OnTypeChanged(e);
-                    this.OnPropertyChanged("Type", e);
+                    this.OnPropertyChanged("Type", e, _typeAttribute);
                 }
             }
         }
@@ -132,10 +144,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.ControlArea
                     float old = this._pTolerance;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnPToleranceChanging(e);
-                    this.OnPropertyChanging("PTolerance", e);
+                    this.OnPropertyChanging("PTolerance", e, _pToleranceAttribute);
                     this._pTolerance = value;
                     this.OnPToleranceChanged(e);
-                    this.OnPropertyChanged("PTolerance", e);
+                    this.OnPropertyChanged("PTolerance", e, _pToleranceAttribute);
                 }
             }
         }
@@ -158,10 +170,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.ControlArea
                     float old = this._netInterchange;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnNetInterchangeChanging(e);
-                    this.OnPropertyChanging("NetInterchange", e);
+                    this.OnPropertyChanging("NetInterchange", e, _netInterchangeAttribute);
                     this._netInterchange = value;
                     this.OnNetInterchangeChanged(e);
-                    this.OnPropertyChanged("NetInterchange", e);
+                    this.OnPropertyChanged("NetInterchange", e, _netInterchangeAttribute);
                 }
             }
         }
@@ -199,7 +211,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.ControlArea
                     IEnergyArea old = this._energyArea;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnEnergyAreaChanging(e);
-                    this.OnPropertyChanging("EnergyArea", e);
+                    this.OnPropertyChanging("EnergyArea", e, _energyAreaReference);
                     this._energyArea = value;
                     if ((old != null))
                     {
@@ -212,7 +224,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.ControlArea
                         value.Deleted += this.OnResetEnergyArea;
                     }
                     this.OnEnergyAreaChanged(e);
-                    this.OnPropertyChanged("EnergyArea", e);
+                    this.OnPropertyChanged("EnergyArea", e, _energyAreaReference);
                 }
             }
         }
@@ -298,6 +310,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.ControlArea
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> EnergyAreaChanged;
         
+        private static ITypedElement RetrieveTypeAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(ControlArea.ClassInstance)).Resolve("type")));
+        }
+        
         /// <summary>
         /// Raises the TypeChanging event
         /// </summary>
@@ -322,6 +339,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.ControlArea
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrievePToleranceAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(ControlArea.ClassInstance)).Resolve("pTolerance")));
         }
         
         /// <summary>
@@ -350,6 +372,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.ControlArea
             }
         }
         
+        private static ITypedElement RetrieveNetInterchangeAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(ControlArea.ClassInstance)).Resolve("netInterchange")));
+        }
+        
         /// <summary>
         /// Raises the NetInterchangeChanging event
         /// </summary>
@@ -376,6 +403,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.ControlArea
             }
         }
         
+        private static ITypedElement RetrieveControlAreaGeneratingUnitReference()
+        {
+            return ((ITypedElement)(((ModelElement)(ControlArea.ClassInstance)).Resolve("ControlAreaGeneratingUnit")));
+        }
+        
         /// <summary>
         /// Forwards CollectionChanging notifications for the ControlAreaGeneratingUnit property to the parent model element
         /// </summary>
@@ -383,7 +415,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.ControlArea
         /// <param name="e">The original event data</param>
         private void ControlAreaGeneratingUnitCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("ControlAreaGeneratingUnit", e);
+            this.OnCollectionChanging("ControlAreaGeneratingUnit", e, _controlAreaGeneratingUnitReference);
         }
         
         /// <summary>
@@ -393,7 +425,12 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.ControlArea
         /// <param name="e">The original event data</param>
         private void ControlAreaGeneratingUnitCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("ControlAreaGeneratingUnit", e);
+            this.OnCollectionChanged("ControlAreaGeneratingUnit", e, _controlAreaGeneratingUnitReference);
+        }
+        
+        private static ITypedElement RetrieveEnergyAreaReference()
+        {
+            return ((ITypedElement)(((ModelElement)(ControlArea.ClassInstance)).Resolve("EnergyArea")));
         }
         
         /// <summary>
@@ -432,6 +469,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.ControlArea
             this.EnergyArea = null;
         }
         
+        private static ITypedElement RetrieveTieFlowReference()
+        {
+            return ((ITypedElement)(((ModelElement)(ControlArea.ClassInstance)).Resolve("TieFlow")));
+        }
+        
         /// <summary>
         /// Forwards CollectionChanging notifications for the TieFlow property to the parent model element
         /// </summary>
@@ -439,7 +481,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.ControlArea
         /// <param name="e">The original event data</param>
         private void TieFlowCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("TieFlow", e);
+            this.OnCollectionChanging("TieFlow", e, _tieFlowReference);
         }
         
         /// <summary>
@@ -449,7 +491,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.ControlArea
         /// <param name="e">The original event data</param>
         private void TieFlowCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("TieFlow", e);
+            this.OnCollectionChanged("TieFlow", e, _tieFlowReference);
         }
         
         /// <summary>
@@ -762,7 +804,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.ControlArea
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public TypeProxy(IControlArea modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "type")
             {
             }
             
@@ -780,24 +822,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.ControlArea
                     this.ModelElement.Type = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.TypeChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.TypeChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -811,7 +835,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.ControlArea
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public PToleranceProxy(IControlArea modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "pTolerance")
             {
             }
             
@@ -829,24 +853,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.ControlArea
                     this.ModelElement.PTolerance = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.PToleranceChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.PToleranceChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -860,7 +866,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.ControlArea
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public NetInterchangeProxy(IControlArea modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "netInterchange")
             {
             }
             
@@ -878,24 +884,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.ControlArea
                     this.ModelElement.NetInterchange = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.NetInterchangeChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.NetInterchangeChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -909,7 +897,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.ControlArea
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public EnergyAreaProxy(IControlArea modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "EnergyArea")
             {
             }
             
@@ -926,24 +914,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.ControlArea
                 {
                     this.ModelElement.EnergyArea = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.EnergyAreaChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.EnergyAreaChanged -= handler;
             }
         }
     }

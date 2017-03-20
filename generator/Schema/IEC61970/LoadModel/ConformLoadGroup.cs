@@ -43,13 +43,17 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.LoadModel
     [XmlNamespacePrefixAttribute("cimLoadModel")]
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61970/LoadModel/ConformLoadGroup")]
     [DebuggerDisplayAttribute("ConformLoadGroup {UUID}")]
-    public class ConformLoadGroup : LoadGroup, IConformLoadGroup, IModelElement
+    public partial class ConformLoadGroup : LoadGroup, IConformLoadGroup, IModelElement
     {
+        
+        private static Lazy<ITypedElement> _energyConsumersReference = new Lazy<ITypedElement>(RetrieveEnergyConsumersReference);
         
         /// <summary>
         /// The backing field for the EnergyConsumers property
         /// </summary>
         private ConformLoadGroupEnergyConsumersCollection _energyConsumers;
+        
+        private static Lazy<ITypedElement> _conformLoadSchedulesReference = new Lazy<ITypedElement>(RetrieveConformLoadSchedulesReference);
         
         /// <summary>
         /// The backing field for the ConformLoadSchedules property
@@ -124,6 +128,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.LoadModel
             }
         }
         
+        private static ITypedElement RetrieveEnergyConsumersReference()
+        {
+            return ((ITypedElement)(((ModelElement)(ConformLoadGroup.ClassInstance)).Resolve("EnergyConsumers")));
+        }
+        
         /// <summary>
         /// Forwards CollectionChanging notifications for the EnergyConsumers property to the parent model element
         /// </summary>
@@ -131,7 +140,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.LoadModel
         /// <param name="e">The original event data</param>
         private void EnergyConsumersCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("EnergyConsumers", e);
+            this.OnCollectionChanging("EnergyConsumers", e, _energyConsumersReference);
         }
         
         /// <summary>
@@ -141,7 +150,12 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.LoadModel
         /// <param name="e">The original event data</param>
         private void EnergyConsumersCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("EnergyConsumers", e);
+            this.OnCollectionChanged("EnergyConsumers", e, _energyConsumersReference);
+        }
+        
+        private static ITypedElement RetrieveConformLoadSchedulesReference()
+        {
+            return ((ITypedElement)(((ModelElement)(ConformLoadGroup.ClassInstance)).Resolve("ConformLoadSchedules")));
         }
         
         /// <summary>
@@ -151,7 +165,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.LoadModel
         /// <param name="e">The original event data</param>
         private void ConformLoadSchedulesCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("ConformLoadSchedules", e);
+            this.OnCollectionChanging("ConformLoadSchedules", e, _conformLoadSchedulesReference);
         }
         
         /// <summary>
@@ -161,7 +175,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.LoadModel
         /// <param name="e">The original event data</param>
         private void ConformLoadSchedulesCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("ConformLoadSchedules", e);
+            this.OnCollectionChanged("ConformLoadSchedules", e, _conformLoadSchedulesReference);
         }
         
         /// <summary>

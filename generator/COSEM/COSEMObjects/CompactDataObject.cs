@@ -39,7 +39,7 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
     [XmlNamespacePrefixAttribute("objects")]
     [ModelRepresentationClassAttribute("http://www.transformation-tool-contest.eu/2017/smartGrids/cosem#//COSEMObjects/Co" +
         "mpactDataObject")]
-    public class CompactDataObject : Compactdata, ICompactDataObject, IModelElement
+    public partial class CompactDataObject : Compactdata, ICompactDataObject, IModelElement
     {
         
         private static IClass _classInstance;

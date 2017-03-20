@@ -51,8 +51,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Meas
     [XmlNamespacePrefixAttribute("cimMeas")]
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61970/Meas/ControlType")]
     [DebuggerDisplayAttribute("ControlType {UUID}")]
-    public class ControlType : IdentifiedObject, IControlType, IModelElement
+    public partial class ControlType : IdentifiedObject, IControlType, IModelElement
     {
+        
+        private static Lazy<ITypedElement> _controlsReference = new Lazy<ITypedElement>(RetrieveControlsReference);
         
         /// <summary>
         /// The backing field for the Controls property
@@ -109,6 +111,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Meas
             }
         }
         
+        private static ITypedElement RetrieveControlsReference()
+        {
+            return ((ITypedElement)(((ModelElement)(ControlType.ClassInstance)).Resolve("Controls")));
+        }
+        
         /// <summary>
         /// Forwards CollectionChanging notifications for the Controls property to the parent model element
         /// </summary>
@@ -116,7 +123,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Meas
         /// <param name="e">The original event data</param>
         private void ControlsCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("Controls", e);
+            this.OnCollectionChanging("Controls", e, _controlsReference);
         }
         
         /// <summary>
@@ -126,7 +133,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Meas
         /// <param name="e">The original event data</param>
         private void ControlsCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("Controls", e);
+            this.OnCollectionChanged("Controls", e, _controlsReference);
         }
         
         /// <summary>

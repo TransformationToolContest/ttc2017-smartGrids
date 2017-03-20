@@ -47,18 +47,24 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.Financial
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61970/Informative/Financial/Control" +
         "AreaOperator")]
     [DebuggerDisplayAttribute("ControlAreaOperator {UUID}")]
-    public class ControlAreaOperator : ErpOrganisation, IControlAreaOperator, IModelElement
+    public partial class ControlAreaOperator : ErpOrganisation, IControlAreaOperator, IModelElement
     {
+        
+        private static Lazy<ITypedElement> _ancillaryServiceReference = new Lazy<ITypedElement>(RetrieveAncillaryServiceReference);
         
         /// <summary>
         /// The backing field for the AncillaryService property
         /// </summary>
         private ControlAreaOperatorAncillaryServiceCollection _ancillaryService;
         
+        private static Lazy<ITypedElement> _tieLinesReference = new Lazy<ITypedElement>(RetrieveTieLinesReference);
+        
         /// <summary>
         /// The backing field for the TieLines property
         /// </summary>
         private ControlAreaOperatorTieLinesCollection _tieLines;
+        
+        private static Lazy<ITypedElement> _controlledByReference = new Lazy<ITypedElement>(RetrieveControlledByReference);
         
         /// <summary>
         /// The backing field for the ControlledBy property
@@ -125,7 +131,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.Financial
                     IHostControlArea old = this._controlledBy;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnControlledByChanging(e);
-                    this.OnPropertyChanging("ControlledBy", e);
+                    this.OnPropertyChanging("ControlledBy", e, _controlledByReference);
                     this._controlledBy = value;
                     if ((old != null))
                     {
@@ -138,7 +144,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.Financial
                         value.Deleted += this.OnResetControlledBy;
                     }
                     this.OnControlledByChanged(e);
-                    this.OnPropertyChanged("ControlledBy", e);
+                    this.OnPropertyChanged("ControlledBy", e, _controlledByReference);
                 }
             }
         }
@@ -180,6 +186,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.Financial
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> ControlledByChanged;
         
+        private static ITypedElement RetrieveAncillaryServiceReference()
+        {
+            return ((ITypedElement)(((ModelElement)(ControlAreaOperator.ClassInstance)).Resolve("AncillaryService")));
+        }
+        
         /// <summary>
         /// Forwards CollectionChanging notifications for the AncillaryService property to the parent model element
         /// </summary>
@@ -187,7 +198,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.Financial
         /// <param name="e">The original event data</param>
         private void AncillaryServiceCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("AncillaryService", e);
+            this.OnCollectionChanging("AncillaryService", e, _ancillaryServiceReference);
         }
         
         /// <summary>
@@ -197,7 +208,12 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.Financial
         /// <param name="e">The original event data</param>
         private void AncillaryServiceCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("AncillaryService", e);
+            this.OnCollectionChanged("AncillaryService", e, _ancillaryServiceReference);
+        }
+        
+        private static ITypedElement RetrieveTieLinesReference()
+        {
+            return ((ITypedElement)(((ModelElement)(ControlAreaOperator.ClassInstance)).Resolve("TieLines")));
         }
         
         /// <summary>
@@ -207,7 +223,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.Financial
         /// <param name="e">The original event data</param>
         private void TieLinesCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("TieLines", e);
+            this.OnCollectionChanging("TieLines", e, _tieLinesReference);
         }
         
         /// <summary>
@@ -217,7 +233,12 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.Financial
         /// <param name="e">The original event data</param>
         private void TieLinesCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("TieLines", e);
+            this.OnCollectionChanged("TieLines", e, _tieLinesReference);
+        }
+        
+        private static ITypedElement RetrieveControlledByReference()
+        {
+            return ((ITypedElement)(((ModelElement)(ControlAreaOperator.ClassInstance)).Resolve("ControlledBy")));
         }
         
         /// <summary>
@@ -529,7 +550,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.Financial
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public ControlledByProxy(IControlAreaOperator modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "ControlledBy")
             {
             }
             
@@ -546,24 +567,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.Financial
                 {
                     this.ModelElement.ControlledBy = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ControlledByChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ControlledByChanged -= handler;
             }
         }
     }

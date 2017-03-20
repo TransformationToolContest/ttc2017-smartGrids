@@ -49,7 +49,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.EnergyScheduling
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61970/Informative/EnergyScheduling/" +
         "ProfileData")]
     [DebuggerDisplayAttribute("ProfileData {UUID}")]
-    public class ProfileData : Element, IProfileData, IModelElement
+    public partial class ProfileData : Element, IProfileData, IModelElement
     {
         
         /// <summary>
@@ -57,25 +57,37 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.EnergyScheduling
         /// </summary>
         private float _capacityLevel;
         
+        private static Lazy<ITypedElement> _capacityLevelAttribute = new Lazy<ITypedElement>(RetrieveCapacityLevelAttribute);
+        
         /// <summary>
         /// The backing field for the StartDateTime property
         /// </summary>
         private DateTime _startDateTime;
+        
+        private static Lazy<ITypedElement> _startDateTimeAttribute = new Lazy<ITypedElement>(RetrieveStartDateTimeAttribute);
         
         /// <summary>
         /// The backing field for the SequenceNumber property
         /// </summary>
         private int _sequenceNumber;
         
+        private static Lazy<ITypedElement> _sequenceNumberAttribute = new Lazy<ITypedElement>(RetrieveSequenceNumberAttribute);
+        
         /// <summary>
         /// The backing field for the StopDateTime property
         /// </summary>
         private DateTime _stopDateTime;
         
+        private static Lazy<ITypedElement> _stopDateTimeAttribute = new Lazy<ITypedElement>(RetrieveStopDateTimeAttribute);
+        
         /// <summary>
         /// The backing field for the EnergyLevel property
         /// </summary>
         private float _energyLevel;
+        
+        private static Lazy<ITypedElement> _energyLevelAttribute = new Lazy<ITypedElement>(RetrieveEnergyLevelAttribute);
+        
+        private static Lazy<ITypedElement> _profileReference = new Lazy<ITypedElement>(RetrieveProfileReference);
         
         /// <summary>
         /// The backing field for the Profile property
@@ -109,10 +121,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.EnergyScheduling
                     float old = this._capacityLevel;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnCapacityLevelChanging(e);
-                    this.OnPropertyChanging("CapacityLevel", e);
+                    this.OnPropertyChanging("CapacityLevel", e, _capacityLevelAttribute);
                     this._capacityLevel = value;
                     this.OnCapacityLevelChanged(e);
-                    this.OnPropertyChanged("CapacityLevel", e);
+                    this.OnPropertyChanged("CapacityLevel", e, _capacityLevelAttribute);
                 }
             }
         }
@@ -135,10 +147,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.EnergyScheduling
                     DateTime old = this._startDateTime;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnStartDateTimeChanging(e);
-                    this.OnPropertyChanging("StartDateTime", e);
+                    this.OnPropertyChanging("StartDateTime", e, _startDateTimeAttribute);
                     this._startDateTime = value;
                     this.OnStartDateTimeChanged(e);
-                    this.OnPropertyChanged("StartDateTime", e);
+                    this.OnPropertyChanged("StartDateTime", e, _startDateTimeAttribute);
                 }
             }
         }
@@ -161,10 +173,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.EnergyScheduling
                     int old = this._sequenceNumber;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnSequenceNumberChanging(e);
-                    this.OnPropertyChanging("SequenceNumber", e);
+                    this.OnPropertyChanging("SequenceNumber", e, _sequenceNumberAttribute);
                     this._sequenceNumber = value;
                     this.OnSequenceNumberChanged(e);
-                    this.OnPropertyChanged("SequenceNumber", e);
+                    this.OnPropertyChanged("SequenceNumber", e, _sequenceNumberAttribute);
                 }
             }
         }
@@ -187,10 +199,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.EnergyScheduling
                     DateTime old = this._stopDateTime;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnStopDateTimeChanging(e);
-                    this.OnPropertyChanging("StopDateTime", e);
+                    this.OnPropertyChanging("StopDateTime", e, _stopDateTimeAttribute);
                     this._stopDateTime = value;
                     this.OnStopDateTimeChanged(e);
-                    this.OnPropertyChanged("StopDateTime", e);
+                    this.OnPropertyChanged("StopDateTime", e, _stopDateTimeAttribute);
                 }
             }
         }
@@ -213,10 +225,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.EnergyScheduling
                     float old = this._energyLevel;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnEnergyLevelChanging(e);
-                    this.OnPropertyChanging("EnergyLevel", e);
+                    this.OnPropertyChanging("EnergyLevel", e, _energyLevelAttribute);
                     this._energyLevel = value;
                     this.OnEnergyLevelChanged(e);
-                    this.OnPropertyChanged("EnergyLevel", e);
+                    this.OnPropertyChanged("EnergyLevel", e, _energyLevelAttribute);
                 }
             }
         }
@@ -313,6 +325,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.EnergyScheduling
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> EnergyLevelChanged;
         
+        private static ITypedElement RetrieveCapacityLevelAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(ProfileData.ClassInstance)).Resolve("capacityLevel")));
+        }
+        
         /// <summary>
         /// Raises the CapacityLevelChanging event
         /// </summary>
@@ -337,6 +354,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.EnergyScheduling
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveStartDateTimeAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(ProfileData.ClassInstance)).Resolve("startDateTime")));
         }
         
         /// <summary>
@@ -365,6 +387,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.EnergyScheduling
             }
         }
         
+        private static ITypedElement RetrieveSequenceNumberAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(ProfileData.ClassInstance)).Resolve("sequenceNumber")));
+        }
+        
         /// <summary>
         /// Raises the SequenceNumberChanging event
         /// </summary>
@@ -389,6 +416,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.EnergyScheduling
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveStopDateTimeAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(ProfileData.ClassInstance)).Resolve("stopDateTime")));
         }
         
         /// <summary>
@@ -417,6 +449,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.EnergyScheduling
             }
         }
         
+        private static ITypedElement RetrieveEnergyLevelAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(ProfileData.ClassInstance)).Resolve("energyLevel")));
+        }
+        
         /// <summary>
         /// Raises the EnergyLevelChanging event
         /// </summary>
@@ -443,6 +480,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.EnergyScheduling
             }
         }
         
+        private static ITypedElement RetrieveProfileReference()
+        {
+            return ((ITypedElement)(((ModelElement)(ProfileData.ClassInstance)).Resolve("Profile")));
+        }
+        
         /// <summary>
         /// Forwards CollectionChanging notifications for the Profile property to the parent model element
         /// </summary>
@@ -450,7 +492,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.EnergyScheduling
         /// <param name="e">The original event data</param>
         private void ProfileCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("Profile", e);
+            this.OnCollectionChanging("Profile", e, _profileReference);
         }
         
         /// <summary>
@@ -460,7 +502,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.EnergyScheduling
         /// <param name="e">The original event data</param>
         private void ProfileCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("Profile", e);
+            this.OnCollectionChanged("Profile", e, _profileReference);
         }
         
         /// <summary>
@@ -691,7 +733,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.EnergyScheduling
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public CapacityLevelProxy(IProfileData modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "capacityLevel")
             {
             }
             
@@ -709,24 +751,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.EnergyScheduling
                     this.ModelElement.CapacityLevel = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.CapacityLevelChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.CapacityLevelChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -740,7 +764,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.EnergyScheduling
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public StartDateTimeProxy(IProfileData modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "startDateTime")
             {
             }
             
@@ -758,24 +782,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.EnergyScheduling
                     this.ModelElement.StartDateTime = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.StartDateTimeChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.StartDateTimeChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -789,7 +795,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.EnergyScheduling
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public SequenceNumberProxy(IProfileData modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "sequenceNumber")
             {
             }
             
@@ -807,24 +813,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.EnergyScheduling
                     this.ModelElement.SequenceNumber = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.SequenceNumberChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.SequenceNumberChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -838,7 +826,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.EnergyScheduling
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public StopDateTimeProxy(IProfileData modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "stopDateTime")
             {
             }
             
@@ -856,24 +844,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.EnergyScheduling
                     this.ModelElement.StopDateTime = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.StopDateTimeChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.StopDateTimeChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -887,7 +857,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.EnergyScheduling
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public EnergyLevelProxy(IProfileData modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "energyLevel")
             {
             }
             
@@ -904,24 +874,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.EnergyScheduling
                 {
                     this.ModelElement.EnergyLevel = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.EnergyLevelChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.EnergyLevelChanged -= handler;
             }
         }
     }

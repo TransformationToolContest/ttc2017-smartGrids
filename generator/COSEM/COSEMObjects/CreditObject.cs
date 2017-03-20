@@ -39,7 +39,7 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
     [XmlNamespacePrefixAttribute("objects")]
     [ModelRepresentationClassAttribute("http://www.transformation-tool-contest.eu/2017/smartGrids/cosem#//COSEMObjects/Cr" +
         "editObject")]
-    public class CreditObject : Credit, ICreditObject, IModelElement
+    public partial class CreditObject : Credit, ICreditObject, IModelElement
     {
         
         private static IClass _classInstance;

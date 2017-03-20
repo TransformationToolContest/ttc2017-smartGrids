@@ -53,7 +53,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
     [XmlNamespacePrefixAttribute("cimWires")]
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61970/Wires/Switch")]
     [DebuggerDisplayAttribute("Switch {UUID}")]
-    public class Switch : ConductingEquipment, ISwitch, IModelElement
+    public partial class Switch : ConductingEquipment, ISwitch, IModelElement
     {
         
         /// <summary>
@@ -61,40 +61,58 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
         /// </summary>
         private bool _retained;
         
+        private static Lazy<ITypedElement> _retainedAttribute = new Lazy<ITypedElement>(RetrieveRetainedAttribute);
+        
         /// <summary>
         /// The backing field for the SwitchOnDate property
         /// </summary>
         private DateTime _switchOnDate;
+        
+        private static Lazy<ITypedElement> _switchOnDateAttribute = new Lazy<ITypedElement>(RetrieveSwitchOnDateAttribute);
         
         /// <summary>
         /// The backing field for the NormalOpen property
         /// </summary>
         private bool _normalOpen;
         
+        private static Lazy<ITypedElement> _normalOpenAttribute = new Lazy<ITypedElement>(RetrieveNormalOpenAttribute);
+        
         /// <summary>
         /// The backing field for the SwitchOnCount property
         /// </summary>
         private int _switchOnCount;
+        
+        private static Lazy<ITypedElement> _switchOnCountAttribute = new Lazy<ITypedElement>(RetrieveSwitchOnCountAttribute);
+        
+        private static Lazy<ITypedElement> _loadMgmtFunctionsReference = new Lazy<ITypedElement>(RetrieveLoadMgmtFunctionsReference);
         
         /// <summary>
         /// The backing field for the LoadMgmtFunctions property
         /// </summary>
         private SwitchLoadMgmtFunctionsCollection _loadMgmtFunctions;
         
+        private static Lazy<ITypedElement> _connectDisconnectFunctionsReference = new Lazy<ITypedElement>(RetrieveConnectDisconnectFunctionsReference);
+        
         /// <summary>
         /// The backing field for the ConnectDisconnectFunctions property
         /// </summary>
         private SwitchConnectDisconnectFunctionsCollection _connectDisconnectFunctions;
+        
+        private static Lazy<ITypedElement> _switchingOperationsReference = new Lazy<ITypedElement>(RetrieveSwitchingOperationsReference);
         
         /// <summary>
         /// The backing field for the SwitchingOperations property
         /// </summary>
         private SwitchSwitchingOperationsCollection _switchingOperations;
         
+        private static Lazy<ITypedElement> _switchSchedulesReference = new Lazy<ITypedElement>(RetrieveSwitchSchedulesReference);
+        
         /// <summary>
         /// The backing field for the SwitchSchedules property
         /// </summary>
         private SwitchSwitchSchedulesCollection _switchSchedules;
+        
+        private static Lazy<ITypedElement> _compositeSwitchReference = new Lazy<ITypedElement>(RetrieveCompositeSwitchReference);
         
         /// <summary>
         /// The backing field for the CompositeSwitch property
@@ -137,10 +155,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
                     bool old = this._retained;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnRetainedChanging(e);
-                    this.OnPropertyChanging("Retained", e);
+                    this.OnPropertyChanging("Retained", e, _retainedAttribute);
                     this._retained = value;
                     this.OnRetainedChanged(e);
-                    this.OnPropertyChanged("Retained", e);
+                    this.OnPropertyChanged("Retained", e, _retainedAttribute);
                 }
             }
         }
@@ -163,10 +181,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
                     DateTime old = this._switchOnDate;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnSwitchOnDateChanging(e);
-                    this.OnPropertyChanging("SwitchOnDate", e);
+                    this.OnPropertyChanging("SwitchOnDate", e, _switchOnDateAttribute);
                     this._switchOnDate = value;
                     this.OnSwitchOnDateChanged(e);
-                    this.OnPropertyChanged("SwitchOnDate", e);
+                    this.OnPropertyChanged("SwitchOnDate", e, _switchOnDateAttribute);
                 }
             }
         }
@@ -189,10 +207,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
                     bool old = this._normalOpen;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnNormalOpenChanging(e);
-                    this.OnPropertyChanging("NormalOpen", e);
+                    this.OnPropertyChanging("NormalOpen", e, _normalOpenAttribute);
                     this._normalOpen = value;
                     this.OnNormalOpenChanged(e);
-                    this.OnPropertyChanged("NormalOpen", e);
+                    this.OnPropertyChanged("NormalOpen", e, _normalOpenAttribute);
                 }
             }
         }
@@ -215,10 +233,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
                     int old = this._switchOnCount;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnSwitchOnCountChanging(e);
-                    this.OnPropertyChanging("SwitchOnCount", e);
+                    this.OnPropertyChanging("SwitchOnCount", e, _switchOnCountAttribute);
                     this._switchOnCount = value;
                     this.OnSwitchOnCountChanged(e);
-                    this.OnPropertyChanged("SwitchOnCount", e);
+                    this.OnPropertyChanged("SwitchOnCount", e, _switchOnCountAttribute);
                 }
             }
         }
@@ -301,7 +319,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
                     ICompositeSwitch old = this._compositeSwitch;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnCompositeSwitchChanging(e);
-                    this.OnPropertyChanging("CompositeSwitch", e);
+                    this.OnPropertyChanging("CompositeSwitch", e, _compositeSwitchReference);
                     this._compositeSwitch = value;
                     if ((old != null))
                     {
@@ -314,7 +332,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
                         value.Deleted += this.OnResetCompositeSwitch;
                     }
                     this.OnCompositeSwitchChanged(e);
-                    this.OnPropertyChanged("CompositeSwitch", e);
+                    this.OnPropertyChanged("CompositeSwitch", e, _compositeSwitchReference);
                 }
             }
         }
@@ -395,6 +413,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> CompositeSwitchChanged;
         
+        private static ITypedElement RetrieveRetainedAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(Switch.ClassInstance)).Resolve("retained")));
+        }
+        
         /// <summary>
         /// Raises the RetainedChanging event
         /// </summary>
@@ -419,6 +442,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveSwitchOnDateAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(Switch.ClassInstance)).Resolve("switchOnDate")));
         }
         
         /// <summary>
@@ -447,6 +475,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
             }
         }
         
+        private static ITypedElement RetrieveNormalOpenAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(Switch.ClassInstance)).Resolve("normalOpen")));
+        }
+        
         /// <summary>
         /// Raises the NormalOpenChanging event
         /// </summary>
@@ -471,6 +504,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveSwitchOnCountAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(Switch.ClassInstance)).Resolve("switchOnCount")));
         }
         
         /// <summary>
@@ -499,6 +537,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
             }
         }
         
+        private static ITypedElement RetrieveLoadMgmtFunctionsReference()
+        {
+            return ((ITypedElement)(((ModelElement)(Switch.ClassInstance)).Resolve("LoadMgmtFunctions")));
+        }
+        
         /// <summary>
         /// Forwards CollectionChanging notifications for the LoadMgmtFunctions property to the parent model element
         /// </summary>
@@ -506,7 +549,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
         /// <param name="e">The original event data</param>
         private void LoadMgmtFunctionsCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("LoadMgmtFunctions", e);
+            this.OnCollectionChanging("LoadMgmtFunctions", e, _loadMgmtFunctionsReference);
         }
         
         /// <summary>
@@ -516,7 +559,12 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
         /// <param name="e">The original event data</param>
         private void LoadMgmtFunctionsCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("LoadMgmtFunctions", e);
+            this.OnCollectionChanged("LoadMgmtFunctions", e, _loadMgmtFunctionsReference);
+        }
+        
+        private static ITypedElement RetrieveConnectDisconnectFunctionsReference()
+        {
+            return ((ITypedElement)(((ModelElement)(Switch.ClassInstance)).Resolve("ConnectDisconnectFunctions")));
         }
         
         /// <summary>
@@ -526,7 +574,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
         /// <param name="e">The original event data</param>
         private void ConnectDisconnectFunctionsCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("ConnectDisconnectFunctions", e);
+            this.OnCollectionChanging("ConnectDisconnectFunctions", e, _connectDisconnectFunctionsReference);
         }
         
         /// <summary>
@@ -536,7 +584,12 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
         /// <param name="e">The original event data</param>
         private void ConnectDisconnectFunctionsCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("ConnectDisconnectFunctions", e);
+            this.OnCollectionChanged("ConnectDisconnectFunctions", e, _connectDisconnectFunctionsReference);
+        }
+        
+        private static ITypedElement RetrieveSwitchingOperationsReference()
+        {
+            return ((ITypedElement)(((ModelElement)(Switch.ClassInstance)).Resolve("SwitchingOperations")));
         }
         
         /// <summary>
@@ -546,7 +599,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
         /// <param name="e">The original event data</param>
         private void SwitchingOperationsCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("SwitchingOperations", e);
+            this.OnCollectionChanging("SwitchingOperations", e, _switchingOperationsReference);
         }
         
         /// <summary>
@@ -556,7 +609,12 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
         /// <param name="e">The original event data</param>
         private void SwitchingOperationsCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("SwitchingOperations", e);
+            this.OnCollectionChanged("SwitchingOperations", e, _switchingOperationsReference);
+        }
+        
+        private static ITypedElement RetrieveSwitchSchedulesReference()
+        {
+            return ((ITypedElement)(((ModelElement)(Switch.ClassInstance)).Resolve("SwitchSchedules")));
         }
         
         /// <summary>
@@ -566,7 +624,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
         /// <param name="e">The original event data</param>
         private void SwitchSchedulesCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("SwitchSchedules", e);
+            this.OnCollectionChanging("SwitchSchedules", e, _switchSchedulesReference);
         }
         
         /// <summary>
@@ -576,7 +634,12 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
         /// <param name="e">The original event data</param>
         private void SwitchSchedulesCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("SwitchSchedules", e);
+            this.OnCollectionChanged("SwitchSchedules", e, _switchSchedulesReference);
+        }
+        
+        private static ITypedElement RetrieveCompositeSwitchReference()
+        {
+            return ((ITypedElement)(((ModelElement)(Switch.ClassInstance)).Resolve("CompositeSwitch")));
         }
         
         /// <summary>
@@ -1010,7 +1073,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public RetainedProxy(ISwitch modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "retained")
             {
             }
             
@@ -1028,24 +1091,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
                     this.ModelElement.Retained = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.RetainedChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.RetainedChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1059,7 +1104,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public SwitchOnDateProxy(ISwitch modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "switchOnDate")
             {
             }
             
@@ -1077,24 +1122,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
                     this.ModelElement.SwitchOnDate = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.SwitchOnDateChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.SwitchOnDateChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1108,7 +1135,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public NormalOpenProxy(ISwitch modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "normalOpen")
             {
             }
             
@@ -1126,24 +1153,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
                     this.ModelElement.NormalOpen = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.NormalOpenChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.NormalOpenChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1157,7 +1166,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public SwitchOnCountProxy(ISwitch modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "switchOnCount")
             {
             }
             
@@ -1175,24 +1184,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
                     this.ModelElement.SwitchOnCount = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.SwitchOnCountChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.SwitchOnCountChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1206,7 +1197,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public CompositeSwitchProxy(ISwitch modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "CompositeSwitch")
             {
             }
             
@@ -1223,24 +1214,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
                 {
                     this.ModelElement.CompositeSwitch = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.CompositeSwitchChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.CompositeSwitchChanged -= handler;
             }
         }
     }

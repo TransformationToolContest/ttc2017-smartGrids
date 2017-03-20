@@ -39,7 +39,7 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
     [XmlNamespacePrefixAttribute("data")]
     [ModelRepresentationClassAttribute("http://www.transformation-tool-contest.eu/2017/smartGrids/substationStandard#//Da" +
         "taclasses/CURVE")]
-    public class CURVE : ModelElement, ICURVE, IModelElement
+    public partial class CURVE : ModelElement, ICURVE, IModelElement
     {
         
         /// <summary>
@@ -47,100 +47,142 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
         /// </summary>
         private Nullable<float> _setParA;
         
+        private static Lazy<ITypedElement> _setParAAttribute = new Lazy<ITypedElement>(RetrieveSetParAAttribute);
+        
         /// <summary>
         /// The backing field for the SetParB property
         /// </summary>
         private Nullable<float> _setParB;
+        
+        private static Lazy<ITypedElement> _setParBAttribute = new Lazy<ITypedElement>(RetrieveSetParBAttribute);
         
         /// <summary>
         /// The backing field for the SetParC property
         /// </summary>
         private Nullable<float> _setParC;
         
+        private static Lazy<ITypedElement> _setParCAttribute = new Lazy<ITypedElement>(RetrieveSetParCAttribute);
+        
         /// <summary>
         /// The backing field for the SetParD property
         /// </summary>
         private Nullable<float> _setParD;
+        
+        private static Lazy<ITypedElement> _setParDAttribute = new Lazy<ITypedElement>(RetrieveSetParDAttribute);
         
         /// <summary>
         /// The backing field for the SetParE property
         /// </summary>
         private Nullable<float> _setParE;
         
+        private static Lazy<ITypedElement> _setParEAttribute = new Lazy<ITypedElement>(RetrieveSetParEAttribute);
+        
         /// <summary>
         /// The backing field for the SetParF property
         /// </summary>
         private Nullable<float> _setParF;
+        
+        private static Lazy<ITypedElement> _setParFAttribute = new Lazy<ITypedElement>(RetrieveSetParFAttribute);
         
         /// <summary>
         /// The backing field for the _SetParA property
         /// </summary>
         private Nullable<float> @__setParA;
         
+        private static Lazy<ITypedElement> @__setParAAttribute = new Lazy<ITypedElement>(Retrieve_SetParAAttribute);
+        
         /// <summary>
         /// The backing field for the _SetParB property
         /// </summary>
         private Nullable<float> @__setParB;
+        
+        private static Lazy<ITypedElement> @__setParBAttribute = new Lazy<ITypedElement>(Retrieve_SetParBAttribute);
         
         /// <summary>
         /// The backing field for the _SetParC property
         /// </summary>
         private Nullable<float> @__setParC;
         
+        private static Lazy<ITypedElement> @__setParCAttribute = new Lazy<ITypedElement>(Retrieve_SetParCAttribute);
+        
         /// <summary>
         /// The backing field for the _SetParD property
         /// </summary>
         private Nullable<float> @__setParD;
+        
+        private static Lazy<ITypedElement> @__setParDAttribute = new Lazy<ITypedElement>(Retrieve_SetParDAttribute);
         
         /// <summary>
         /// The backing field for the _SetParE property
         /// </summary>
         private Nullable<float> @__setParE;
         
+        private static Lazy<ITypedElement> @__setParEAttribute = new Lazy<ITypedElement>(Retrieve_SetParEAttribute);
+        
         /// <summary>
         /// The backing field for the _SetParF property
         /// </summary>
         private Nullable<float> @__setParF;
+        
+        private static Lazy<ITypedElement> @__setParFAttribute = new Lazy<ITypedElement>(Retrieve_SetParFAttribute);
         
         /// <summary>
         /// The backing field for the __SetParA property
         /// </summary>
         private Nullable<float> ___setParA;
         
+        private static Lazy<ITypedElement> ___setParAAttribute = new Lazy<ITypedElement>(Retrieve__SetParAAttribute);
+        
         /// <summary>
         /// The backing field for the __SetParB property
         /// </summary>
         private Nullable<float> ___setParB;
+        
+        private static Lazy<ITypedElement> ___setParBAttribute = new Lazy<ITypedElement>(Retrieve__SetParBAttribute);
         
         /// <summary>
         /// The backing field for the __SetParC property
         /// </summary>
         private Nullable<float> ___setParC;
         
+        private static Lazy<ITypedElement> ___setParCAttribute = new Lazy<ITypedElement>(Retrieve__SetParCAttribute);
+        
         /// <summary>
         /// The backing field for the __SetParD property
         /// </summary>
         private Nullable<float> ___setParD;
+        
+        private static Lazy<ITypedElement> ___setParDAttribute = new Lazy<ITypedElement>(Retrieve__SetParDAttribute);
         
         /// <summary>
         /// The backing field for the __SetParE property
         /// </summary>
         private Nullable<float> ___setParE;
         
+        private static Lazy<ITypedElement> ___setParEAttribute = new Lazy<ITypedElement>(Retrieve__SetParEAttribute);
+        
         /// <summary>
         /// The backing field for the __SetParF property
         /// </summary>
         private Nullable<float> ___setParF;
+        
+        private static Lazy<ITypedElement> ___setParFAttribute = new Lazy<ITypedElement>(Retrieve__SetParFAttribute);
+        
+        private static Lazy<ITypedElement> _setCharactReference = new Lazy<ITypedElement>(RetrieveSetCharactReference);
         
         /// <summary>
         /// The backing field for the SetCharact property
         /// </summary>
         private ICurveChar _setCharact;
         
+        private static Lazy<ITypedElement> @__setCharactReference = new Lazy<ITypedElement>(Retrieve_SetCharactReference);
+        
         /// <summary>
         /// The backing field for the _SetCharact property
         /// </summary>
         private ICurveChar @__setCharact;
+        
+        private static Lazy<ITypedElement> ___setCharactReference = new Lazy<ITypedElement>(Retrieve__SetCharactReference);
         
         /// <summary>
         /// The backing field for the __SetCharact property
@@ -167,10 +209,10 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
                     Nullable<float> old = this._setParA;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnSetParAChanging(e);
-                    this.OnPropertyChanging("SetParA", e);
+                    this.OnPropertyChanging("SetParA", e, _setParAAttribute);
                     this._setParA = value;
                     this.OnSetParAChanged(e);
-                    this.OnPropertyChanged("SetParA", e);
+                    this.OnPropertyChanged("SetParA", e, _setParAAttribute);
                 }
             }
         }
@@ -193,10 +235,10 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
                     Nullable<float> old = this._setParB;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnSetParBChanging(e);
-                    this.OnPropertyChanging("SetParB", e);
+                    this.OnPropertyChanging("SetParB", e, _setParBAttribute);
                     this._setParB = value;
                     this.OnSetParBChanged(e);
-                    this.OnPropertyChanged("SetParB", e);
+                    this.OnPropertyChanged("SetParB", e, _setParBAttribute);
                 }
             }
         }
@@ -219,10 +261,10 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
                     Nullable<float> old = this._setParC;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnSetParCChanging(e);
-                    this.OnPropertyChanging("SetParC", e);
+                    this.OnPropertyChanging("SetParC", e, _setParCAttribute);
                     this._setParC = value;
                     this.OnSetParCChanged(e);
-                    this.OnPropertyChanged("SetParC", e);
+                    this.OnPropertyChanged("SetParC", e, _setParCAttribute);
                 }
             }
         }
@@ -245,10 +287,10 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
                     Nullable<float> old = this._setParD;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnSetParDChanging(e);
-                    this.OnPropertyChanging("SetParD", e);
+                    this.OnPropertyChanging("SetParD", e, _setParDAttribute);
                     this._setParD = value;
                     this.OnSetParDChanged(e);
-                    this.OnPropertyChanged("SetParD", e);
+                    this.OnPropertyChanged("SetParD", e, _setParDAttribute);
                 }
             }
         }
@@ -271,10 +313,10 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
                     Nullable<float> old = this._setParE;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnSetParEChanging(e);
-                    this.OnPropertyChanging("SetParE", e);
+                    this.OnPropertyChanging("SetParE", e, _setParEAttribute);
                     this._setParE = value;
                     this.OnSetParEChanged(e);
-                    this.OnPropertyChanged("SetParE", e);
+                    this.OnPropertyChanged("SetParE", e, _setParEAttribute);
                 }
             }
         }
@@ -297,10 +339,10 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
                     Nullable<float> old = this._setParF;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnSetParFChanging(e);
-                    this.OnPropertyChanging("SetParF", e);
+                    this.OnPropertyChanging("SetParF", e, _setParFAttribute);
                     this._setParF = value;
                     this.OnSetParFChanged(e);
-                    this.OnPropertyChanged("SetParF", e);
+                    this.OnPropertyChanged("SetParF", e, _setParFAttribute);
                 }
             }
         }
@@ -323,10 +365,10 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
                     Nullable<float> old = this.@__setParA;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.On_SetParAChanging(e);
-                    this.OnPropertyChanging("_SetParA", e);
+                    this.OnPropertyChanging("_SetParA", e, @__setParAAttribute);
                     this.@__setParA = value;
                     this.On_SetParAChanged(e);
-                    this.OnPropertyChanged("_SetParA", e);
+                    this.OnPropertyChanged("_SetParA", e, @__setParAAttribute);
                 }
             }
         }
@@ -349,10 +391,10 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
                     Nullable<float> old = this.@__setParB;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.On_SetParBChanging(e);
-                    this.OnPropertyChanging("_SetParB", e);
+                    this.OnPropertyChanging("_SetParB", e, @__setParBAttribute);
                     this.@__setParB = value;
                     this.On_SetParBChanged(e);
-                    this.OnPropertyChanged("_SetParB", e);
+                    this.OnPropertyChanged("_SetParB", e, @__setParBAttribute);
                 }
             }
         }
@@ -375,10 +417,10 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
                     Nullable<float> old = this.@__setParC;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.On_SetParCChanging(e);
-                    this.OnPropertyChanging("_SetParC", e);
+                    this.OnPropertyChanging("_SetParC", e, @__setParCAttribute);
                     this.@__setParC = value;
                     this.On_SetParCChanged(e);
-                    this.OnPropertyChanged("_SetParC", e);
+                    this.OnPropertyChanged("_SetParC", e, @__setParCAttribute);
                 }
             }
         }
@@ -401,10 +443,10 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
                     Nullable<float> old = this.@__setParD;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.On_SetParDChanging(e);
-                    this.OnPropertyChanging("_SetParD", e);
+                    this.OnPropertyChanging("_SetParD", e, @__setParDAttribute);
                     this.@__setParD = value;
                     this.On_SetParDChanged(e);
-                    this.OnPropertyChanged("_SetParD", e);
+                    this.OnPropertyChanged("_SetParD", e, @__setParDAttribute);
                 }
             }
         }
@@ -427,10 +469,10 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
                     Nullable<float> old = this.@__setParE;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.On_SetParEChanging(e);
-                    this.OnPropertyChanging("_SetParE", e);
+                    this.OnPropertyChanging("_SetParE", e, @__setParEAttribute);
                     this.@__setParE = value;
                     this.On_SetParEChanged(e);
-                    this.OnPropertyChanged("_SetParE", e);
+                    this.OnPropertyChanged("_SetParE", e, @__setParEAttribute);
                 }
             }
         }
@@ -453,10 +495,10 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
                     Nullable<float> old = this.@__setParF;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.On_SetParFChanging(e);
-                    this.OnPropertyChanging("_SetParF", e);
+                    this.OnPropertyChanging("_SetParF", e, @__setParFAttribute);
                     this.@__setParF = value;
                     this.On_SetParFChanged(e);
-                    this.OnPropertyChanged("_SetParF", e);
+                    this.OnPropertyChanged("_SetParF", e, @__setParFAttribute);
                 }
             }
         }
@@ -479,10 +521,10 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
                     Nullable<float> old = this.___setParA;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.On__SetParAChanging(e);
-                    this.OnPropertyChanging("__SetParA", e);
+                    this.OnPropertyChanging("__SetParA", e, ___setParAAttribute);
                     this.___setParA = value;
                     this.On__SetParAChanged(e);
-                    this.OnPropertyChanged("__SetParA", e);
+                    this.OnPropertyChanged("__SetParA", e, ___setParAAttribute);
                 }
             }
         }
@@ -505,10 +547,10 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
                     Nullable<float> old = this.___setParB;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.On__SetParBChanging(e);
-                    this.OnPropertyChanging("__SetParB", e);
+                    this.OnPropertyChanging("__SetParB", e, ___setParBAttribute);
                     this.___setParB = value;
                     this.On__SetParBChanged(e);
-                    this.OnPropertyChanged("__SetParB", e);
+                    this.OnPropertyChanged("__SetParB", e, ___setParBAttribute);
                 }
             }
         }
@@ -531,10 +573,10 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
                     Nullable<float> old = this.___setParC;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.On__SetParCChanging(e);
-                    this.OnPropertyChanging("__SetParC", e);
+                    this.OnPropertyChanging("__SetParC", e, ___setParCAttribute);
                     this.___setParC = value;
                     this.On__SetParCChanged(e);
-                    this.OnPropertyChanged("__SetParC", e);
+                    this.OnPropertyChanged("__SetParC", e, ___setParCAttribute);
                 }
             }
         }
@@ -557,10 +599,10 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
                     Nullable<float> old = this.___setParD;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.On__SetParDChanging(e);
-                    this.OnPropertyChanging("__SetParD", e);
+                    this.OnPropertyChanging("__SetParD", e, ___setParDAttribute);
                     this.___setParD = value;
                     this.On__SetParDChanged(e);
-                    this.OnPropertyChanged("__SetParD", e);
+                    this.OnPropertyChanged("__SetParD", e, ___setParDAttribute);
                 }
             }
         }
@@ -583,10 +625,10 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
                     Nullable<float> old = this.___setParE;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.On__SetParEChanging(e);
-                    this.OnPropertyChanging("__SetParE", e);
+                    this.OnPropertyChanging("__SetParE", e, ___setParEAttribute);
                     this.___setParE = value;
                     this.On__SetParEChanged(e);
-                    this.OnPropertyChanged("__SetParE", e);
+                    this.OnPropertyChanged("__SetParE", e, ___setParEAttribute);
                 }
             }
         }
@@ -609,10 +651,10 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
                     Nullable<float> old = this.___setParF;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.On__SetParFChanging(e);
-                    this.OnPropertyChanging("__SetParF", e);
+                    this.OnPropertyChanging("__SetParF", e, ___setParFAttribute);
                     this.___setParF = value;
                     this.On__SetParFChanged(e);
-                    this.OnPropertyChanged("__SetParF", e);
+                    this.OnPropertyChanged("__SetParF", e, ___setParFAttribute);
                 }
             }
         }
@@ -635,7 +677,7 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
                     ICurveChar old = this._setCharact;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnSetCharactChanging(e);
-                    this.OnPropertyChanging("SetCharact", e);
+                    this.OnPropertyChanging("SetCharact", e, _setCharactReference);
                     this._setCharact = value;
                     if ((old != null))
                     {
@@ -646,7 +688,7 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
                         value.Deleted += this.OnResetSetCharact;
                     }
                     this.OnSetCharactChanged(e);
-                    this.OnPropertyChanged("SetCharact", e);
+                    this.OnPropertyChanged("SetCharact", e, _setCharactReference);
                 }
             }
         }
@@ -669,7 +711,7 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
                     ICurveChar old = this.@__setCharact;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.On_SetCharactChanging(e);
-                    this.OnPropertyChanging("_SetCharact", e);
+                    this.OnPropertyChanging("_SetCharact", e, @__setCharactReference);
                     this.@__setCharact = value;
                     if ((old != null))
                     {
@@ -680,7 +722,7 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
                         value.Deleted += this.OnReset_SetCharact;
                     }
                     this.On_SetCharactChanged(e);
-                    this.OnPropertyChanged("_SetCharact", e);
+                    this.OnPropertyChanged("_SetCharact", e, @__setCharactReference);
                 }
             }
         }
@@ -703,7 +745,7 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
                     ICurveChar old = this.___setCharact;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.On__SetCharactChanging(e);
-                    this.OnPropertyChanging("__SetCharact", e);
+                    this.OnPropertyChanging("__SetCharact", e, ___setCharactReference);
                     this.___setCharact = value;
                     if ((old != null))
                     {
@@ -714,7 +756,7 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
                         value.Deleted += this.OnReset__SetCharact;
                     }
                     this.On__SetCharactChanged(e);
-                    this.OnPropertyChanged("__SetCharact", e);
+                    this.OnPropertyChanged("__SetCharact", e, ___setCharactReference);
                 }
             }
         }
@@ -956,6 +998,11 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> @__SetCharactChanged;
         
+        private static ITypedElement RetrieveSetParAAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(CURVE.ClassInstance)).Resolve("setParA")));
+        }
+        
         /// <summary>
         /// Raises the SetParAChanging event
         /// </summary>
@@ -980,6 +1027,11 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveSetParBAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(CURVE.ClassInstance)).Resolve("setParB")));
         }
         
         /// <summary>
@@ -1008,6 +1060,11 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
             }
         }
         
+        private static ITypedElement RetrieveSetParCAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(CURVE.ClassInstance)).Resolve("setParC")));
+        }
+        
         /// <summary>
         /// Raises the SetParCChanging event
         /// </summary>
@@ -1032,6 +1089,11 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveSetParDAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(CURVE.ClassInstance)).Resolve("setParD")));
         }
         
         /// <summary>
@@ -1060,6 +1122,11 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
             }
         }
         
+        private static ITypedElement RetrieveSetParEAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(CURVE.ClassInstance)).Resolve("setParE")));
+        }
+        
         /// <summary>
         /// Raises the SetParEChanging event
         /// </summary>
@@ -1084,6 +1151,11 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveSetParFAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(CURVE.ClassInstance)).Resolve("setParF")));
         }
         
         /// <summary>
@@ -1112,6 +1184,11 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
             }
         }
         
+        private static ITypedElement Retrieve_SetParAAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(CURVE.ClassInstance)).Resolve("_setParA")));
+        }
+        
         /// <summary>
         /// Raises the _SetParAChanging event
         /// </summary>
@@ -1136,6 +1213,11 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement Retrieve_SetParBAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(CURVE.ClassInstance)).Resolve("_setParB")));
         }
         
         /// <summary>
@@ -1164,6 +1246,11 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
             }
         }
         
+        private static ITypedElement Retrieve_SetParCAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(CURVE.ClassInstance)).Resolve("_setParC")));
+        }
+        
         /// <summary>
         /// Raises the _SetParCChanging event
         /// </summary>
@@ -1188,6 +1275,11 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement Retrieve_SetParDAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(CURVE.ClassInstance)).Resolve("_setParD")));
         }
         
         /// <summary>
@@ -1216,6 +1308,11 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
             }
         }
         
+        private static ITypedElement Retrieve_SetParEAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(CURVE.ClassInstance)).Resolve("_setParE")));
+        }
+        
         /// <summary>
         /// Raises the _SetParEChanging event
         /// </summary>
@@ -1240,6 +1337,11 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement Retrieve_SetParFAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(CURVE.ClassInstance)).Resolve("_setParF")));
         }
         
         /// <summary>
@@ -1268,6 +1370,11 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
             }
         }
         
+        private static ITypedElement Retrieve__SetParAAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(CURVE.ClassInstance)).Resolve("__setParA")));
+        }
+        
         /// <summary>
         /// Raises the __SetParAChanging event
         /// </summary>
@@ -1292,6 +1399,11 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement Retrieve__SetParBAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(CURVE.ClassInstance)).Resolve("__setParB")));
         }
         
         /// <summary>
@@ -1320,6 +1432,11 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
             }
         }
         
+        private static ITypedElement Retrieve__SetParCAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(CURVE.ClassInstance)).Resolve("__setParC")));
+        }
+        
         /// <summary>
         /// Raises the __SetParCChanging event
         /// </summary>
@@ -1344,6 +1461,11 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement Retrieve__SetParDAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(CURVE.ClassInstance)).Resolve("__setParD")));
         }
         
         /// <summary>
@@ -1372,6 +1494,11 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
             }
         }
         
+        private static ITypedElement Retrieve__SetParEAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(CURVE.ClassInstance)).Resolve("__setParE")));
+        }
+        
         /// <summary>
         /// Raises the __SetParEChanging event
         /// </summary>
@@ -1398,6 +1525,11 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
             }
         }
         
+        private static ITypedElement Retrieve__SetParFAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(CURVE.ClassInstance)).Resolve("__setParF")));
+        }
+        
         /// <summary>
         /// Raises the __SetParFChanging event
         /// </summary>
@@ -1422,6 +1554,11 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveSetCharactReference()
+        {
+            return ((ITypedElement)(((ModelElement)(CURVE.ClassInstance)).Resolve("setCharact")));
         }
         
         /// <summary>
@@ -1460,6 +1597,11 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
             this.SetCharact = null;
         }
         
+        private static ITypedElement Retrieve_SetCharactReference()
+        {
+            return ((ITypedElement)(((ModelElement)(CURVE.ClassInstance)).Resolve("_setCharact")));
+        }
+        
         /// <summary>
         /// Raises the _SetCharactChanging event
         /// </summary>
@@ -1494,6 +1636,11 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
         private void OnReset_SetCharact(object sender, System.EventArgs eventArgs)
         {
             this._SetCharact = null;
+        }
+        
+        private static ITypedElement Retrieve__SetCharactReference()
+        {
+            return ((ITypedElement)(((ModelElement)(CURVE.ClassInstance)).Resolve("__setCharact")));
         }
         
         /// <summary>
@@ -1978,7 +2125,7 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public SetParAProxy(ICURVE modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "setParA")
             {
             }
             
@@ -1996,24 +2143,6 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
                     this.ModelElement.SetParA = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.SetParAChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.SetParAChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -2027,7 +2156,7 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public SetParBProxy(ICURVE modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "setParB")
             {
             }
             
@@ -2045,24 +2174,6 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
                     this.ModelElement.SetParB = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.SetParBChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.SetParBChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -2076,7 +2187,7 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public SetParCProxy(ICURVE modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "setParC")
             {
             }
             
@@ -2094,24 +2205,6 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
                     this.ModelElement.SetParC = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.SetParCChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.SetParCChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -2125,7 +2218,7 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public SetParDProxy(ICURVE modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "setParD")
             {
             }
             
@@ -2143,24 +2236,6 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
                     this.ModelElement.SetParD = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.SetParDChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.SetParDChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -2174,7 +2249,7 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public SetParEProxy(ICURVE modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "setParE")
             {
             }
             
@@ -2192,24 +2267,6 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
                     this.ModelElement.SetParE = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.SetParEChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.SetParEChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -2223,7 +2280,7 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public SetParFProxy(ICURVE modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "setParF")
             {
             }
             
@@ -2241,24 +2298,6 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
                     this.ModelElement.SetParF = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.SetParFChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.SetParFChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -2272,7 +2311,7 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public _SetParAProxy(ICURVE modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "_setParA")
             {
             }
             
@@ -2290,24 +2329,6 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
                     this.ModelElement._SetParA = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement._SetParAChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement._SetParAChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -2321,7 +2342,7 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public _SetParBProxy(ICURVE modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "_setParB")
             {
             }
             
@@ -2339,24 +2360,6 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
                     this.ModelElement._SetParB = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement._SetParBChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement._SetParBChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -2370,7 +2373,7 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public _SetParCProxy(ICURVE modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "_setParC")
             {
             }
             
@@ -2388,24 +2391,6 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
                     this.ModelElement._SetParC = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement._SetParCChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement._SetParCChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -2419,7 +2404,7 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public _SetParDProxy(ICURVE modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "_setParD")
             {
             }
             
@@ -2437,24 +2422,6 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
                     this.ModelElement._SetParD = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement._SetParDChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement._SetParDChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -2468,7 +2435,7 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public _SetParEProxy(ICURVE modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "_setParE")
             {
             }
             
@@ -2486,24 +2453,6 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
                     this.ModelElement._SetParE = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement._SetParEChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement._SetParEChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -2517,7 +2466,7 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public _SetParFProxy(ICURVE modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "_setParF")
             {
             }
             
@@ -2535,24 +2484,6 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
                     this.ModelElement._SetParF = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement._SetParFChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement._SetParFChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -2566,7 +2497,7 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public @__SetParAProxy(ICURVE modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "__setParA")
             {
             }
             
@@ -2584,24 +2515,6 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
                     this.ModelElement.@__SetParA = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.@__SetParAChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.@__SetParAChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -2615,7 +2528,7 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public @__SetParBProxy(ICURVE modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "__setParB")
             {
             }
             
@@ -2633,24 +2546,6 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
                     this.ModelElement.@__SetParB = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.@__SetParBChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.@__SetParBChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -2664,7 +2559,7 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public @__SetParCProxy(ICURVE modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "__setParC")
             {
             }
             
@@ -2682,24 +2577,6 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
                     this.ModelElement.@__SetParC = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.@__SetParCChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.@__SetParCChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -2713,7 +2590,7 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public @__SetParDProxy(ICURVE modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "__setParD")
             {
             }
             
@@ -2731,24 +2608,6 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
                     this.ModelElement.@__SetParD = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.@__SetParDChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.@__SetParDChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -2762,7 +2621,7 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public @__SetParEProxy(ICURVE modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "__setParE")
             {
             }
             
@@ -2780,24 +2639,6 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
                     this.ModelElement.@__SetParE = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.@__SetParEChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.@__SetParEChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -2811,7 +2652,7 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public @__SetParFProxy(ICURVE modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "__setParF")
             {
             }
             
@@ -2829,24 +2670,6 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
                     this.ModelElement.@__SetParF = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.@__SetParFChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.@__SetParFChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -2860,7 +2683,7 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public SetCharactProxy(ICURVE modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "setCharact")
             {
             }
             
@@ -2878,24 +2701,6 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
                     this.ModelElement.SetCharact = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.SetCharactChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.SetCharactChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -2909,7 +2714,7 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public _SetCharactProxy(ICURVE modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "_setCharact")
             {
             }
             
@@ -2927,24 +2732,6 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
                     this.ModelElement._SetCharact = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement._SetCharactChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement._SetCharactChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -2958,7 +2745,7 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public @__SetCharactProxy(ICURVE modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "__setCharact")
             {
             }
             
@@ -2975,24 +2762,6 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
                 {
                     this.ModelElement.@__SetCharact = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.@__SetCharactChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.@__SetCharactChanged -= handler;
             }
         }
     }

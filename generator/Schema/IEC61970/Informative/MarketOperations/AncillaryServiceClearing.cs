@@ -50,7 +50,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61970/Informative/MarketOperations/" +
         "AncillaryServiceClearing")]
     [DebuggerDisplayAttribute("AncillaryServiceClearing {UUID}")]
-    public class AncillaryServiceClearing : MarketFactors, IAncillaryServiceClearing, IModelElement
+    public partial class AncillaryServiceClearing : MarketFactors, IAncillaryServiceClearing, IModelElement
     {
         
         /// <summary>
@@ -58,15 +58,23 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
         /// </summary>
         private float _mcp;
         
+        private static Lazy<ITypedElement> _mcpAttribute = new Lazy<ITypedElement>(RetrieveMcpAttribute);
+        
         /// <summary>
         /// The backing field for the ClearedMW property
         /// </summary>
         private float _clearedMW;
         
+        private static Lazy<ITypedElement> _clearedMWAttribute = new Lazy<ITypedElement>(RetrieveClearedMWAttribute);
+        
         /// <summary>
         /// The backing field for the CommodityType property
         /// </summary>
         private string _commodityType;
+        
+        private static Lazy<ITypedElement> _commodityTypeAttribute = new Lazy<ITypedElement>(RetrieveCommodityTypeAttribute);
+        
+        private static Lazy<ITypedElement> _marketCaseClearingReference = new Lazy<ITypedElement>(RetrieveMarketCaseClearingReference);
         
         /// <summary>
         /// The backing field for the MarketCaseClearing property
@@ -93,10 +101,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
                     float old = this._mcp;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnMcpChanging(e);
-                    this.OnPropertyChanging("Mcp", e);
+                    this.OnPropertyChanging("Mcp", e, _mcpAttribute);
                     this._mcp = value;
                     this.OnMcpChanged(e);
-                    this.OnPropertyChanged("Mcp", e);
+                    this.OnPropertyChanged("Mcp", e, _mcpAttribute);
                 }
             }
         }
@@ -119,10 +127,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
                     float old = this._clearedMW;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnClearedMWChanging(e);
-                    this.OnPropertyChanging("ClearedMW", e);
+                    this.OnPropertyChanging("ClearedMW", e, _clearedMWAttribute);
                     this._clearedMW = value;
                     this.OnClearedMWChanged(e);
-                    this.OnPropertyChanged("ClearedMW", e);
+                    this.OnPropertyChanged("ClearedMW", e, _clearedMWAttribute);
                 }
             }
         }
@@ -145,10 +153,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
                     string old = this._commodityType;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnCommodityTypeChanging(e);
-                    this.OnPropertyChanging("CommodityType", e);
+                    this.OnPropertyChanging("CommodityType", e, _commodityTypeAttribute);
                     this._commodityType = value;
                     this.OnCommodityTypeChanged(e);
-                    this.OnPropertyChanged("CommodityType", e);
+                    this.OnPropertyChanged("CommodityType", e, _commodityTypeAttribute);
                 }
             }
         }
@@ -171,7 +179,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
                     IMarketCaseClearing old = this._marketCaseClearing;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnMarketCaseClearingChanging(e);
-                    this.OnPropertyChanging("MarketCaseClearing", e);
+                    this.OnPropertyChanging("MarketCaseClearing", e, _marketCaseClearingReference);
                     this._marketCaseClearing = value;
                     if ((old != null))
                     {
@@ -184,7 +192,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
                         value.Deleted += this.OnResetMarketCaseClearing;
                     }
                     this.OnMarketCaseClearingChanged(e);
-                    this.OnPropertyChanged("MarketCaseClearing", e);
+                    this.OnPropertyChanged("MarketCaseClearing", e, _marketCaseClearingReference);
                 }
             }
         }
@@ -256,6 +264,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> MarketCaseClearingChanged;
         
+        private static ITypedElement RetrieveMcpAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(AncillaryServiceClearing.ClassInstance)).Resolve("mcp")));
+        }
+        
         /// <summary>
         /// Raises the McpChanging event
         /// </summary>
@@ -280,6 +293,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveClearedMWAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(AncillaryServiceClearing.ClassInstance)).Resolve("clearedMW")));
         }
         
         /// <summary>
@@ -308,6 +326,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
             }
         }
         
+        private static ITypedElement RetrieveCommodityTypeAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(AncillaryServiceClearing.ClassInstance)).Resolve("commodityType")));
+        }
+        
         /// <summary>
         /// Raises the CommodityTypeChanging event
         /// </summary>
@@ -332,6 +355,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveMarketCaseClearingReference()
+        {
+            return ((ITypedElement)(((ModelElement)(AncillaryServiceClearing.ClassInstance)).Resolve("MarketCaseClearing")));
         }
         
         /// <summary>
@@ -595,7 +623,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public McpProxy(IAncillaryServiceClearing modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "mcp")
             {
             }
             
@@ -613,24 +641,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
                     this.ModelElement.Mcp = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.McpChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.McpChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -644,7 +654,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public ClearedMWProxy(IAncillaryServiceClearing modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "clearedMW")
             {
             }
             
@@ -662,24 +672,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
                     this.ModelElement.ClearedMW = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ClearedMWChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ClearedMWChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -693,7 +685,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public CommodityTypeProxy(IAncillaryServiceClearing modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "commodityType")
             {
             }
             
@@ -711,24 +703,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
                     this.ModelElement.CommodityType = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.CommodityTypeChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.CommodityTypeChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -742,7 +716,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public MarketCaseClearingProxy(IAncillaryServiceClearing modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "MarketCaseClearing")
             {
             }
             
@@ -759,24 +733,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
                 {
                     this.ModelElement.MarketCaseClearing = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.MarketCaseClearingChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.MarketCaseClearingChanged -= handler;
             }
         }
     }

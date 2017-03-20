@@ -39,38 +39,52 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
     [XmlNamespacePrefixAttribute("data")]
     [ModelRepresentationClassAttribute("http://www.transformation-tool-contest.eu/2017/smartGrids/substationStandard#//Da" +
         "taclasses/SAV")]
-    public class SAV : ModelElement, ISAV, IModelElement
+    public partial class SAV : ModelElement, ISAV, IModelElement
     {
+        
+        private static Lazy<ITypedElement> _instMagReference = new Lazy<ITypedElement>(RetrieveInstMagReference);
         
         /// <summary>
         /// The backing field for the InstMag property
         /// </summary>
         private IAnalogueValue _instMag;
         
+        private static Lazy<ITypedElement> _qReference = new Lazy<ITypedElement>(RetrieveQReference);
+        
         /// <summary>
         /// The backing field for the Q property
         /// </summary>
         private IQuality _q;
+        
+        private static Lazy<ITypedElement> _tReference = new Lazy<ITypedElement>(RetrieveTReference);
         
         /// <summary>
         /// The backing field for the T property
         /// </summary>
         private ITimeStamp _t;
         
+        private static Lazy<ITypedElement> _unitsReference = new Lazy<ITypedElement>(RetrieveUnitsReference);
+        
         /// <summary>
         /// The backing field for the Units property
         /// </summary>
         private IUnits _units;
+        
+        private static Lazy<ITypedElement> _sVCReference = new Lazy<ITypedElement>(RetrieveSVCReference);
         
         /// <summary>
         /// The backing field for the SVC property
         /// </summary>
         private IScaledValueConfig _sVC;
         
+        private static Lazy<ITypedElement> _minReference = new Lazy<ITypedElement>(RetrieveMinReference);
+        
         /// <summary>
         /// The backing field for the Min property
         /// </summary>
         private IAnalogueValue _min;
+        
+        private static Lazy<ITypedElement> _maxReference = new Lazy<ITypedElement>(RetrieveMaxReference);
         
         /// <summary>
         /// The backing field for the Max property
@@ -97,7 +111,7 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
                     IAnalogueValue old = this._instMag;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnInstMagChanging(e);
-                    this.OnPropertyChanging("InstMag", e);
+                    this.OnPropertyChanging("InstMag", e, _instMagReference);
                     this._instMag = value;
                     if ((old != null))
                     {
@@ -108,7 +122,7 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
                         value.Deleted += this.OnResetInstMag;
                     }
                     this.OnInstMagChanged(e);
-                    this.OnPropertyChanged("InstMag", e);
+                    this.OnPropertyChanged("InstMag", e, _instMagReference);
                 }
             }
         }
@@ -131,7 +145,7 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
                     IQuality old = this._q;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnQChanging(e);
-                    this.OnPropertyChanging("Q", e);
+                    this.OnPropertyChanging("Q", e, _qReference);
                     this._q = value;
                     if ((old != null))
                     {
@@ -142,7 +156,7 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
                         value.Deleted += this.OnResetQ;
                     }
                     this.OnQChanged(e);
-                    this.OnPropertyChanged("Q", e);
+                    this.OnPropertyChanged("Q", e, _qReference);
                 }
             }
         }
@@ -165,7 +179,7 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
                     ITimeStamp old = this._t;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnTChanging(e);
-                    this.OnPropertyChanging("T", e);
+                    this.OnPropertyChanging("T", e, _tReference);
                     this._t = value;
                     if ((old != null))
                     {
@@ -176,7 +190,7 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
                         value.Deleted += this.OnResetT;
                     }
                     this.OnTChanged(e);
-                    this.OnPropertyChanged("T", e);
+                    this.OnPropertyChanged("T", e, _tReference);
                 }
             }
         }
@@ -199,7 +213,7 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
                     IUnits old = this._units;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnUnitsChanging(e);
-                    this.OnPropertyChanging("Units", e);
+                    this.OnPropertyChanging("Units", e, _unitsReference);
                     this._units = value;
                     if ((old != null))
                     {
@@ -210,7 +224,7 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
                         value.Deleted += this.OnResetUnits;
                     }
                     this.OnUnitsChanged(e);
-                    this.OnPropertyChanged("Units", e);
+                    this.OnPropertyChanged("Units", e, _unitsReference);
                 }
             }
         }
@@ -233,7 +247,7 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
                     IScaledValueConfig old = this._sVC;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnSVCChanging(e);
-                    this.OnPropertyChanging("SVC", e);
+                    this.OnPropertyChanging("SVC", e, _sVCReference);
                     this._sVC = value;
                     if ((old != null))
                     {
@@ -244,7 +258,7 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
                         value.Deleted += this.OnResetSVC;
                     }
                     this.OnSVCChanged(e);
-                    this.OnPropertyChanged("SVC", e);
+                    this.OnPropertyChanged("SVC", e, _sVCReference);
                 }
             }
         }
@@ -267,7 +281,7 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
                     IAnalogueValue old = this._min;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnMinChanging(e);
-                    this.OnPropertyChanging("Min", e);
+                    this.OnPropertyChanging("Min", e, _minReference);
                     this._min = value;
                     if ((old != null))
                     {
@@ -278,7 +292,7 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
                         value.Deleted += this.OnResetMin;
                     }
                     this.OnMinChanged(e);
-                    this.OnPropertyChanged("Min", e);
+                    this.OnPropertyChanged("Min", e, _minReference);
                 }
             }
         }
@@ -301,7 +315,7 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
                     IAnalogueValue old = this._max;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnMaxChanging(e);
-                    this.OnPropertyChanging("Max", e);
+                    this.OnPropertyChanging("Max", e, _maxReference);
                     this._max = value;
                     if ((old != null))
                     {
@@ -312,7 +326,7 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
                         value.Deleted += this.OnResetMax;
                     }
                     this.OnMaxChanged(e);
-                    this.OnPropertyChanged("Max", e);
+                    this.OnPropertyChanged("Max", e, _maxReference);
                 }
             }
         }
@@ -414,6 +428,11 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> MaxChanged;
         
+        private static ITypedElement RetrieveInstMagReference()
+        {
+            return ((ITypedElement)(((ModelElement)(SAV.ClassInstance)).Resolve("instMag")));
+        }
+        
         /// <summary>
         /// Raises the InstMagChanging event
         /// </summary>
@@ -448,6 +467,11 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
         private void OnResetInstMag(object sender, System.EventArgs eventArgs)
         {
             this.InstMag = null;
+        }
+        
+        private static ITypedElement RetrieveQReference()
+        {
+            return ((ITypedElement)(((ModelElement)(SAV.ClassInstance)).Resolve("q")));
         }
         
         /// <summary>
@@ -486,6 +510,11 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
             this.Q = null;
         }
         
+        private static ITypedElement RetrieveTReference()
+        {
+            return ((ITypedElement)(((ModelElement)(SAV.ClassInstance)).Resolve("t")));
+        }
+        
         /// <summary>
         /// Raises the TChanging event
         /// </summary>
@@ -520,6 +549,11 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
         private void OnResetT(object sender, System.EventArgs eventArgs)
         {
             this.T = null;
+        }
+        
+        private static ITypedElement RetrieveUnitsReference()
+        {
+            return ((ITypedElement)(((ModelElement)(SAV.ClassInstance)).Resolve("units")));
         }
         
         /// <summary>
@@ -558,6 +592,11 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
             this.Units = null;
         }
         
+        private static ITypedElement RetrieveSVCReference()
+        {
+            return ((ITypedElement)(((ModelElement)(SAV.ClassInstance)).Resolve("sVC")));
+        }
+        
         /// <summary>
         /// Raises the SVCChanging event
         /// </summary>
@@ -594,6 +633,11 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
             this.SVC = null;
         }
         
+        private static ITypedElement RetrieveMinReference()
+        {
+            return ((ITypedElement)(((ModelElement)(SAV.ClassInstance)).Resolve("min")));
+        }
+        
         /// <summary>
         /// Raises the MinChanging event
         /// </summary>
@@ -628,6 +672,11 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
         private void OnResetMin(object sender, System.EventArgs eventArgs)
         {
             this.Min = null;
+        }
+        
+        private static ITypedElement RetrieveMaxReference()
+        {
+            return ((ITypedElement)(((ModelElement)(SAV.ClassInstance)).Resolve("max")));
         }
         
         /// <summary>
@@ -1111,7 +1160,7 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public InstMagProxy(ISAV modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "instMag")
             {
             }
             
@@ -1129,24 +1178,6 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
                     this.ModelElement.InstMag = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.InstMagChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.InstMagChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1160,7 +1191,7 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public QProxy(ISAV modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "q")
             {
             }
             
@@ -1178,24 +1209,6 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
                     this.ModelElement.Q = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.QChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.QChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1209,7 +1222,7 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public TProxy(ISAV modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "t")
             {
             }
             
@@ -1227,24 +1240,6 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
                     this.ModelElement.T = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.TChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.TChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1258,7 +1253,7 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public UnitsProxy(ISAV modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "units")
             {
             }
             
@@ -1276,24 +1271,6 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
                     this.ModelElement.Units = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.UnitsChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.UnitsChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1307,7 +1284,7 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public SVCProxy(ISAV modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "sVC")
             {
             }
             
@@ -1325,24 +1302,6 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
                     this.ModelElement.SVC = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.SVCChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.SVCChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1356,7 +1315,7 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public MinProxy(ISAV modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "min")
             {
             }
             
@@ -1374,24 +1333,6 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
                     this.ModelElement.Min = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.MinChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.MinChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1405,7 +1346,7 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public MaxProxy(ISAV modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "max")
             {
             }
             
@@ -1422,24 +1363,6 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
                 {
                     this.ModelElement.Max = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.MaxChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.MaxChanged -= handler;
             }
         }
     }

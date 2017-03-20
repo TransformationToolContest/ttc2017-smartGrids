@@ -39,13 +39,15 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
     [XmlNamespacePrefixAttribute("objects")]
     [ModelRepresentationClassAttribute("http://www.transformation-tool-contest.eu/2017/smartGrids/cosem#//COSEMObjects/Ev" +
         "entCode")]
-    public class EventCode : Data, IEventCode, IModelElement
+    public partial class EventCode : Data, IEventCode, IModelElement
     {
         
         /// <summary>
         /// The backing field for the Event_code_object property
         /// </summary>
         private string _event_code_object;
+        
+        private static Lazy<ITypedElement> _event_code_objectAttribute = new Lazy<ITypedElement>(RetrieveEvent_code_objectAttribute);
         
         private static IClass _classInstance;
         
@@ -67,10 +69,10 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     string old = this._event_code_object;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnEvent_code_objectChanging(e);
-                    this.OnPropertyChanging("Event_code_object", e);
+                    this.OnPropertyChanging("Event_code_object", e, _event_code_objectAttribute);
                     this._event_code_object = value;
                     this.OnEvent_code_objectChanged(e);
-                    this.OnPropertyChanged("Event_code_object", e);
+                    this.OnPropertyChanged("Event_code_object", e, _event_code_objectAttribute);
                 }
             }
         }
@@ -100,6 +102,11 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
         /// Gets fired when the Event_code_object property changed its value
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> Event_code_objectChanged;
+        
+        private static ITypedElement RetrieveEvent_code_objectAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(EventCode.ClassInstance)).Resolve("event_code_object")));
+        }
         
         /// <summary>
         /// Raises the Event_code_objectChanging event
@@ -181,7 +188,7 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public Event_code_objectProxy(IEventCode modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "event_code_object")
             {
             }
             
@@ -198,24 +205,6 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                 {
                     this.ModelElement.Event_code_object = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.Event_code_objectChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.Event_code_objectChanged -= handler;
             }
         }
     }

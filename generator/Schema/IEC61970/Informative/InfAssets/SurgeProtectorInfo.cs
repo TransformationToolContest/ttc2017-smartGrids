@@ -53,7 +53,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61970/Informative/InfAssets/SurgePr" +
         "otectorInfo")]
     [DebuggerDisplayAttribute("SurgeProtectorInfo {UUID}")]
-    public class SurgeProtectorInfo : ElectricalInfo, ISurgeProtectorInfo, IModelElement
+    public partial class SurgeProtectorInfo : ElectricalInfo, ISurgeProtectorInfo, IModelElement
     {
         
         /// <summary>
@@ -61,20 +61,28 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
         /// </summary>
         private float _nominalDesignVoltage;
         
+        private static Lazy<ITypedElement> _nominalDesignVoltageAttribute = new Lazy<ITypedElement>(RetrieveNominalDesignVoltageAttribute);
+        
         /// <summary>
         /// The backing field for the MaxCurrentRating property
         /// </summary>
         private float _maxCurrentRating;
+        
+        private static Lazy<ITypedElement> _maxCurrentRatingAttribute = new Lazy<ITypedElement>(RetrieveMaxCurrentRatingAttribute);
         
         /// <summary>
         /// The backing field for the MaxContinousOperatingVoltage property
         /// </summary>
         private float _maxContinousOperatingVoltage;
         
+        private static Lazy<ITypedElement> _maxContinousOperatingVoltageAttribute = new Lazy<ITypedElement>(RetrieveMaxContinousOperatingVoltageAttribute);
+        
         /// <summary>
         /// The backing field for the MaxEnergyAbsorption property
         /// </summary>
         private float _maxEnergyAbsorption;
+        
+        private static Lazy<ITypedElement> _maxEnergyAbsorptionAttribute = new Lazy<ITypedElement>(RetrieveMaxEnergyAbsorptionAttribute);
         
         private static IClass _classInstance;
         
@@ -96,10 +104,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
                     float old = this._nominalDesignVoltage;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnNominalDesignVoltageChanging(e);
-                    this.OnPropertyChanging("NominalDesignVoltage", e);
+                    this.OnPropertyChanging("NominalDesignVoltage", e, _nominalDesignVoltageAttribute);
                     this._nominalDesignVoltage = value;
                     this.OnNominalDesignVoltageChanged(e);
-                    this.OnPropertyChanged("NominalDesignVoltage", e);
+                    this.OnPropertyChanged("NominalDesignVoltage", e, _nominalDesignVoltageAttribute);
                 }
             }
         }
@@ -122,10 +130,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
                     float old = this._maxCurrentRating;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnMaxCurrentRatingChanging(e);
-                    this.OnPropertyChanging("MaxCurrentRating", e);
+                    this.OnPropertyChanging("MaxCurrentRating", e, _maxCurrentRatingAttribute);
                     this._maxCurrentRating = value;
                     this.OnMaxCurrentRatingChanged(e);
-                    this.OnPropertyChanged("MaxCurrentRating", e);
+                    this.OnPropertyChanged("MaxCurrentRating", e, _maxCurrentRatingAttribute);
                 }
             }
         }
@@ -148,10 +156,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
                     float old = this._maxContinousOperatingVoltage;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnMaxContinousOperatingVoltageChanging(e);
-                    this.OnPropertyChanging("MaxContinousOperatingVoltage", e);
+                    this.OnPropertyChanging("MaxContinousOperatingVoltage", e, _maxContinousOperatingVoltageAttribute);
                     this._maxContinousOperatingVoltage = value;
                     this.OnMaxContinousOperatingVoltageChanged(e);
-                    this.OnPropertyChanged("MaxContinousOperatingVoltage", e);
+                    this.OnPropertyChanged("MaxContinousOperatingVoltage", e, _maxContinousOperatingVoltageAttribute);
                 }
             }
         }
@@ -174,10 +182,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
                     float old = this._maxEnergyAbsorption;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnMaxEnergyAbsorptionChanging(e);
-                    this.OnPropertyChanging("MaxEnergyAbsorption", e);
+                    this.OnPropertyChanging("MaxEnergyAbsorption", e, _maxEnergyAbsorptionAttribute);
                     this._maxEnergyAbsorption = value;
                     this.OnMaxEnergyAbsorptionChanged(e);
-                    this.OnPropertyChanged("MaxEnergyAbsorption", e);
+                    this.OnPropertyChanged("MaxEnergyAbsorption", e, _maxEnergyAbsorptionAttribute);
                 }
             }
         }
@@ -238,6 +246,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> MaxEnergyAbsorptionChanged;
         
+        private static ITypedElement RetrieveNominalDesignVoltageAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(SurgeProtectorInfo.ClassInstance)).Resolve("nominalDesignVoltage")));
+        }
+        
         /// <summary>
         /// Raises the NominalDesignVoltageChanging event
         /// </summary>
@@ -262,6 +275,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveMaxCurrentRatingAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(SurgeProtectorInfo.ClassInstance)).Resolve("maxCurrentRating")));
         }
         
         /// <summary>
@@ -290,6 +308,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
             }
         }
         
+        private static ITypedElement RetrieveMaxContinousOperatingVoltageAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(SurgeProtectorInfo.ClassInstance)).Resolve("maxContinousOperatingVoltage")));
+        }
+        
         /// <summary>
         /// Raises the MaxContinousOperatingVoltageChanging event
         /// </summary>
@@ -314,6 +337,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveMaxEnergyAbsorptionAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(SurgeProtectorInfo.ClassInstance)).Resolve("maxEnergyAbsorption")));
         }
         
         /// <summary>
@@ -423,7 +451,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public NominalDesignVoltageProxy(ISurgeProtectorInfo modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "nominalDesignVoltage")
             {
             }
             
@@ -441,24 +469,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
                     this.ModelElement.NominalDesignVoltage = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.NominalDesignVoltageChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.NominalDesignVoltageChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -472,7 +482,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public MaxCurrentRatingProxy(ISurgeProtectorInfo modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "maxCurrentRating")
             {
             }
             
@@ -490,24 +500,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
                     this.ModelElement.MaxCurrentRating = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.MaxCurrentRatingChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.MaxCurrentRatingChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -521,7 +513,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public MaxContinousOperatingVoltageProxy(ISurgeProtectorInfo modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "maxContinousOperatingVoltage")
             {
             }
             
@@ -539,24 +531,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
                     this.ModelElement.MaxContinousOperatingVoltage = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.MaxContinousOperatingVoltageChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.MaxContinousOperatingVoltageChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -570,7 +544,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public MaxEnergyAbsorptionProxy(ISurgeProtectorInfo modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "maxEnergyAbsorption")
             {
             }
             
@@ -587,24 +561,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
                 {
                     this.ModelElement.MaxEnergyAbsorption = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.MaxEnergyAbsorptionChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.MaxEnergyAbsorptionChanged -= handler;
             }
         }
     }

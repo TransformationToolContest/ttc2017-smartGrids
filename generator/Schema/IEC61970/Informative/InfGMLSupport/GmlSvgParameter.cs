@@ -45,7 +45,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfGMLSupport
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61970/Informative/InfGMLSupport/Gml" +
         "SvgParameter")]
     [DebuggerDisplayAttribute("GmlSvgParameter {UUID}")]
-    public class GmlSvgParameter : IdentifiedObject, IGmlSvgParameter, IModelElement
+    public partial class GmlSvgParameter : IdentifiedObject, IGmlSvgParameter, IModelElement
     {
         
         /// <summary>
@@ -53,20 +53,30 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfGMLSupport
         /// </summary>
         private string _value;
         
+        private static Lazy<ITypedElement> _valueAttribute = new Lazy<ITypedElement>(RetrieveValueAttribute);
+        
         /// <summary>
         /// The backing field for the Attribute property
         /// </summary>
         private string _attribute;
+        
+        private static Lazy<ITypedElement> _attributeAttribute = new Lazy<ITypedElement>(RetrieveAttributeAttribute);
+        
+        private static Lazy<ITypedElement> _gmlStokesReference = new Lazy<ITypedElement>(RetrieveGmlStokesReference);
         
         /// <summary>
         /// The backing field for the GmlStokes property
         /// </summary>
         private GmlSvgParameterGmlStokesCollection _gmlStokes;
         
+        private static Lazy<ITypedElement> _gmlFillsReference = new Lazy<ITypedElement>(RetrieveGmlFillsReference);
+        
         /// <summary>
         /// The backing field for the GmlFills property
         /// </summary>
         private GmlSvgParameterGmlFillsCollection _gmlFills;
+        
+        private static Lazy<ITypedElement> _gmlFontsReference = new Lazy<ITypedElement>(RetrieveGmlFontsReference);
         
         /// <summary>
         /// The backing field for the GmlFonts property
@@ -106,10 +116,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfGMLSupport
                     string old = this._value;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnValueChanging(e);
-                    this.OnPropertyChanging("Value", e);
+                    this.OnPropertyChanging("Value", e, _valueAttribute);
                     this._value = value;
                     this.OnValueChanged(e);
-                    this.OnPropertyChanged("Value", e);
+                    this.OnPropertyChanged("Value", e, _valueAttribute);
                 }
             }
         }
@@ -132,10 +142,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfGMLSupport
                     string old = this._attribute;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnAttributeChanging(e);
-                    this.OnPropertyChanging("Attribute", e);
+                    this.OnPropertyChanging("Attribute", e, _attributeAttribute);
                     this._attribute = value;
                     this.OnAttributeChanged(e);
-                    this.OnPropertyChanged("Attribute", e);
+                    this.OnPropertyChanged("Attribute", e, _attributeAttribute);
                 }
             }
         }
@@ -232,6 +242,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfGMLSupport
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> AttributeChanged;
         
+        private static ITypedElement RetrieveValueAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(GmlSvgParameter.ClassInstance)).Resolve("value")));
+        }
+        
         /// <summary>
         /// Raises the ValueChanging event
         /// </summary>
@@ -256,6 +271,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfGMLSupport
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveAttributeAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(GmlSvgParameter.ClassInstance)).Resolve("attribute")));
         }
         
         /// <summary>
@@ -284,6 +304,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfGMLSupport
             }
         }
         
+        private static ITypedElement RetrieveGmlStokesReference()
+        {
+            return ((ITypedElement)(((ModelElement)(GmlSvgParameter.ClassInstance)).Resolve("GmlStokes")));
+        }
+        
         /// <summary>
         /// Forwards CollectionChanging notifications for the GmlStokes property to the parent model element
         /// </summary>
@@ -291,7 +316,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfGMLSupport
         /// <param name="e">The original event data</param>
         private void GmlStokesCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("GmlStokes", e);
+            this.OnCollectionChanging("GmlStokes", e, _gmlStokesReference);
         }
         
         /// <summary>
@@ -301,7 +326,12 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfGMLSupport
         /// <param name="e">The original event data</param>
         private void GmlStokesCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("GmlStokes", e);
+            this.OnCollectionChanged("GmlStokes", e, _gmlStokesReference);
+        }
+        
+        private static ITypedElement RetrieveGmlFillsReference()
+        {
+            return ((ITypedElement)(((ModelElement)(GmlSvgParameter.ClassInstance)).Resolve("GmlFills")));
         }
         
         /// <summary>
@@ -311,7 +341,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfGMLSupport
         /// <param name="e">The original event data</param>
         private void GmlFillsCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("GmlFills", e);
+            this.OnCollectionChanging("GmlFills", e, _gmlFillsReference);
         }
         
         /// <summary>
@@ -321,7 +351,12 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfGMLSupport
         /// <param name="e">The original event data</param>
         private void GmlFillsCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("GmlFills", e);
+            this.OnCollectionChanged("GmlFills", e, _gmlFillsReference);
+        }
+        
+        private static ITypedElement RetrieveGmlFontsReference()
+        {
+            return ((ITypedElement)(((ModelElement)(GmlSvgParameter.ClassInstance)).Resolve("GmlFonts")));
         }
         
         /// <summary>
@@ -331,7 +366,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfGMLSupport
         /// <param name="e">The original event data</param>
         private void GmlFontsCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("GmlFonts", e);
+            this.OnCollectionChanging("GmlFonts", e, _gmlFontsReference);
         }
         
         /// <summary>
@@ -341,7 +376,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfGMLSupport
         /// <param name="e">The original event data</param>
         private void GmlFontsCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("GmlFonts", e);
+            this.OnCollectionChanged("GmlFonts", e, _gmlFontsReference);
         }
         
         /// <summary>
@@ -621,7 +656,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfGMLSupport
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public ValueProxy(IGmlSvgParameter modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "value")
             {
             }
             
@@ -639,24 +674,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfGMLSupport
                     this.ModelElement.Value = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ValueChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ValueChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -670,7 +687,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfGMLSupport
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public AttributeProxy(IGmlSvgParameter modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "attribute")
             {
             }
             
@@ -687,24 +704,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfGMLSupport
                 {
                     this.ModelElement.Attribute = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.AttributeChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.AttributeChanged -= handler;
             }
         }
     }

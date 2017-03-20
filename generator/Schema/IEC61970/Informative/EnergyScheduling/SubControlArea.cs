@@ -49,43 +49,59 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.EnergyScheduling
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61970/Informative/EnergyScheduling/" +
         "SubControlArea")]
     [DebuggerDisplayAttribute("SubControlArea {UUID}")]
-    public class SubControlArea : TTC2017.SmartGrids.CIM.IEC61970.ControlArea.ControlArea, ISubControlArea, IModelElement
+    public partial class SubControlArea : TTC2017.SmartGrids.CIM.IEC61970.ControlArea.ControlArea, ISubControlArea, IModelElement
     {
+        
+        private static Lazy<ITypedElement> _sideA_TieLinesReference = new Lazy<ITypedElement>(RetrieveSideA_TieLinesReference);
         
         /// <summary>
         /// The backing field for the SideA_TieLines property
         /// </summary>
         private SubControlAreaSideA_TieLinesCollection _sideA_TieLines;
         
+        private static Lazy<ITypedElement> _generatingUnitsReference = new Lazy<ITypedElement>(RetrieveGeneratingUnitsReference);
+        
         /// <summary>
         /// The backing field for the GeneratingUnits property
         /// </summary>
         private SubControlAreaGeneratingUnitsCollection _generatingUnits;
+        
+        private static Lazy<ITypedElement> _export_EnergyTransactionsReference = new Lazy<ITypedElement>(RetrieveExport_EnergyTransactionsReference);
         
         /// <summary>
         /// The backing field for the Export_EnergyTransactions property
         /// </summary>
         private SubControlAreaExport_EnergyTransactionsCollection _export_EnergyTransactions;
         
+        private static Lazy<ITypedElement> _import_EnergyTransactionsReference = new Lazy<ITypedElement>(RetrieveImport_EnergyTransactionsReference);
+        
         /// <summary>
         /// The backing field for the Import_EnergyTransactions property
         /// </summary>
         private SubControlAreaImport_EnergyTransactionsCollection _import_EnergyTransactions;
+        
+        private static Lazy<ITypedElement> _hostControlAreaReference = new Lazy<ITypedElement>(RetrieveHostControlAreaReference);
         
         /// <summary>
         /// The backing field for the HostControlArea property
         /// </summary>
         private IHostControlArea _hostControlArea;
         
+        private static Lazy<ITypedElement> _partOfReference = new Lazy<ITypedElement>(RetrievePartOfReference);
+        
         /// <summary>
         /// The backing field for the PartOf property
         /// </summary>
         private SubControlAreaPartOfCollection _partOf;
         
+        private static Lazy<ITypedElement> _flowgateReference = new Lazy<ITypedElement>(RetrieveFlowgateReference);
+        
         /// <summary>
         /// The backing field for the Flowgate property
         /// </summary>
         private SubControlAreaFlowgateCollection _flowgate;
+        
+        private static Lazy<ITypedElement> _sideB_TieLinesReference = new Lazy<ITypedElement>(RetrieveSideB_TieLinesReference);
         
         /// <summary>
         /// The backing field for the SideB_TieLines property
@@ -197,7 +213,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.EnergyScheduling
                     IHostControlArea old = this._hostControlArea;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnHostControlAreaChanging(e);
-                    this.OnPropertyChanging("HostControlArea", e);
+                    this.OnPropertyChanging("HostControlArea", e, _hostControlAreaReference);
                     this._hostControlArea = value;
                     if ((old != null))
                     {
@@ -210,7 +226,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.EnergyScheduling
                         value.Deleted += this.OnResetHostControlArea;
                     }
                     this.OnHostControlAreaChanged(e);
-                    this.OnPropertyChanged("HostControlArea", e);
+                    this.OnPropertyChanged("HostControlArea", e, _hostControlAreaReference);
                 }
             }
         }
@@ -297,6 +313,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.EnergyScheduling
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> HostControlAreaChanged;
         
+        private static ITypedElement RetrieveSideA_TieLinesReference()
+        {
+            return ((ITypedElement)(((ModelElement)(SubControlArea.ClassInstance)).Resolve("SideA_TieLines")));
+        }
+        
         /// <summary>
         /// Forwards CollectionChanging notifications for the SideA_TieLines property to the parent model element
         /// </summary>
@@ -304,7 +325,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.EnergyScheduling
         /// <param name="e">The original event data</param>
         private void SideA_TieLinesCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("SideA_TieLines", e);
+            this.OnCollectionChanging("SideA_TieLines", e, _sideA_TieLinesReference);
         }
         
         /// <summary>
@@ -314,7 +335,12 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.EnergyScheduling
         /// <param name="e">The original event data</param>
         private void SideA_TieLinesCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("SideA_TieLines", e);
+            this.OnCollectionChanged("SideA_TieLines", e, _sideA_TieLinesReference);
+        }
+        
+        private static ITypedElement RetrieveGeneratingUnitsReference()
+        {
+            return ((ITypedElement)(((ModelElement)(SubControlArea.ClassInstance)).Resolve("GeneratingUnits")));
         }
         
         /// <summary>
@@ -324,7 +350,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.EnergyScheduling
         /// <param name="e">The original event data</param>
         private void GeneratingUnitsCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("GeneratingUnits", e);
+            this.OnCollectionChanging("GeneratingUnits", e, _generatingUnitsReference);
         }
         
         /// <summary>
@@ -334,7 +360,12 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.EnergyScheduling
         /// <param name="e">The original event data</param>
         private void GeneratingUnitsCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("GeneratingUnits", e);
+            this.OnCollectionChanged("GeneratingUnits", e, _generatingUnitsReference);
+        }
+        
+        private static ITypedElement RetrieveExport_EnergyTransactionsReference()
+        {
+            return ((ITypedElement)(((ModelElement)(SubControlArea.ClassInstance)).Resolve("Export_EnergyTransactions")));
         }
         
         /// <summary>
@@ -344,7 +375,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.EnergyScheduling
         /// <param name="e">The original event data</param>
         private void Export_EnergyTransactionsCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("Export_EnergyTransactions", e);
+            this.OnCollectionChanging("Export_EnergyTransactions", e, _export_EnergyTransactionsReference);
         }
         
         /// <summary>
@@ -354,7 +385,12 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.EnergyScheduling
         /// <param name="e">The original event data</param>
         private void Export_EnergyTransactionsCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("Export_EnergyTransactions", e);
+            this.OnCollectionChanged("Export_EnergyTransactions", e, _export_EnergyTransactionsReference);
+        }
+        
+        private static ITypedElement RetrieveImport_EnergyTransactionsReference()
+        {
+            return ((ITypedElement)(((ModelElement)(SubControlArea.ClassInstance)).Resolve("Import_EnergyTransactions")));
         }
         
         /// <summary>
@@ -364,7 +400,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.EnergyScheduling
         /// <param name="e">The original event data</param>
         private void Import_EnergyTransactionsCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("Import_EnergyTransactions", e);
+            this.OnCollectionChanging("Import_EnergyTransactions", e, _import_EnergyTransactionsReference);
         }
         
         /// <summary>
@@ -374,7 +410,12 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.EnergyScheduling
         /// <param name="e">The original event data</param>
         private void Import_EnergyTransactionsCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("Import_EnergyTransactions", e);
+            this.OnCollectionChanged("Import_EnergyTransactions", e, _import_EnergyTransactionsReference);
+        }
+        
+        private static ITypedElement RetrieveHostControlAreaReference()
+        {
+            return ((ITypedElement)(((ModelElement)(SubControlArea.ClassInstance)).Resolve("HostControlArea")));
         }
         
         /// <summary>
@@ -413,6 +454,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.EnergyScheduling
             this.HostControlArea = null;
         }
         
+        private static ITypedElement RetrievePartOfReference()
+        {
+            return ((ITypedElement)(((ModelElement)(SubControlArea.ClassInstance)).Resolve("PartOf")));
+        }
+        
         /// <summary>
         /// Forwards CollectionChanging notifications for the PartOf property to the parent model element
         /// </summary>
@@ -420,7 +466,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.EnergyScheduling
         /// <param name="e">The original event data</param>
         private void PartOfCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("PartOf", e);
+            this.OnCollectionChanging("PartOf", e, _partOfReference);
         }
         
         /// <summary>
@@ -430,7 +476,12 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.EnergyScheduling
         /// <param name="e">The original event data</param>
         private void PartOfCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("PartOf", e);
+            this.OnCollectionChanged("PartOf", e, _partOfReference);
+        }
+        
+        private static ITypedElement RetrieveFlowgateReference()
+        {
+            return ((ITypedElement)(((ModelElement)(SubControlArea.ClassInstance)).Resolve("Flowgate")));
         }
         
         /// <summary>
@@ -440,7 +491,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.EnergyScheduling
         /// <param name="e">The original event data</param>
         private void FlowgateCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("Flowgate", e);
+            this.OnCollectionChanging("Flowgate", e, _flowgateReference);
         }
         
         /// <summary>
@@ -450,7 +501,12 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.EnergyScheduling
         /// <param name="e">The original event data</param>
         private void FlowgateCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("Flowgate", e);
+            this.OnCollectionChanged("Flowgate", e, _flowgateReference);
+        }
+        
+        private static ITypedElement RetrieveSideB_TieLinesReference()
+        {
+            return ((ITypedElement)(((ModelElement)(SubControlArea.ClassInstance)).Resolve("SideB_TieLines")));
         }
         
         /// <summary>
@@ -460,7 +516,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.EnergyScheduling
         /// <param name="e">The original event data</param>
         private void SideB_TieLinesCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("SideB_TieLines", e);
+            this.OnCollectionChanging("SideB_TieLines", e, _sideB_TieLinesReference);
         }
         
         /// <summary>
@@ -470,7 +526,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.EnergyScheduling
         /// <param name="e">The original event data</param>
         private void SideB_TieLinesCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("SideB_TieLines", e);
+            this.OnCollectionChanged("SideB_TieLines", e, _sideB_TieLinesReference);
         }
         
         /// <summary>
@@ -934,7 +990,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.EnergyScheduling
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public HostControlAreaProxy(ISubControlArea modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "HostControlArea")
             {
             }
             
@@ -951,24 +1007,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.EnergyScheduling
                 {
                     this.ModelElement.HostControlArea = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.HostControlAreaChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.HostControlAreaChanged -= handler;
             }
         }
     }

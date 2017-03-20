@@ -40,98 +40,136 @@ namespace TTC2017.SmartGrids.SubstationStandard
     [XmlNamespacePrefixAttribute("sub")]
     [ModelRepresentationClassAttribute("http://www.transformation-tool-contest.eu/2017/smartGrids/substationStandard#//Su" +
         "bstandard")]
-    public class Substandard : ModelElement, ISubstandard, IModelElement
+    public partial class Substandard : ModelElement, ISubstandard, IModelElement
     {
+        
+        private static Lazy<ITypedElement> _lNReference = new Lazy<ITypedElement>(RetrieveLNReference);
         
         /// <summary>
         /// The backing field for the LN property
         /// </summary>
         private ObservableCompositionOrderedSet<IDomainLN> _lN;
         
+        private static Lazy<ITypedElement> _namePltReference = new Lazy<ITypedElement>(RetrieveNamePltReference);
+        
         /// <summary>
         /// The backing field for the NamePlt property
         /// </summary>
         private ObservableCompositionOrderedSet<ILPL> _namePlt;
+        
+        private static Lazy<ITypedElement> _lPLReference = new Lazy<ITypedElement>(RetrieveLPLReference);
         
         /// <summary>
         /// The backing field for the LPL property
         /// </summary>
         private ObservableCompositionOrderedSet<ILPL> _lPL;
         
+        private static Lazy<ITypedElement> _dPCReference = new Lazy<ITypedElement>(RetrieveDPCReference);
+        
         /// <summary>
         /// The backing field for the DPC property
         /// </summary>
         private ObservableCompositionOrderedSet<IDPC> _dPC;
+        
+        private static Lazy<ITypedElement> _aCTReference = new Lazy<ITypedElement>(RetrieveACTReference);
         
         /// <summary>
         /// The backing field for the ACT property
         /// </summary>
         private ObservableCompositionOrderedSet<IACT> _aCT;
         
+        private static Lazy<ITypedElement> _sPSReference = new Lazy<ITypedElement>(RetrieveSPSReference);
+        
         /// <summary>
         /// The backing field for the SPS property
         /// </summary>
         private ObservableCompositionOrderedSet<ISPS> _sPS;
+        
+        private static Lazy<ITypedElement> _bSCReference = new Lazy<ITypedElement>(RetrieveBSCReference);
         
         /// <summary>
         /// The backing field for the BSC property
         /// </summary>
         private ObservableCompositionOrderedSet<IBSC> _bSC;
         
+        private static Lazy<ITypedElement> _iSCReference = new Lazy<ITypedElement>(RetrieveISCReference);
+        
         /// <summary>
         /// The backing field for the ISC property
         /// </summary>
         private ObservableCompositionOrderedSet<IISC> _iSC;
+        
+        private static Lazy<ITypedElement> _sPCReference = new Lazy<ITypedElement>(RetrieveSPCReference);
         
         /// <summary>
         /// The backing field for the SPC property
         /// </summary>
         private ObservableCompositionOrderedSet<ISPC> _sPC;
         
+        private static Lazy<ITypedElement> _mVReference = new Lazy<ITypedElement>(RetrieveMVReference);
+        
         /// <summary>
         /// The backing field for the MV property
         /// </summary>
         private ObservableCompositionOrderedSet<IMV> _mV;
+        
+        private static Lazy<ITypedElement> _iNSReference = new Lazy<ITypedElement>(RetrieveINSReference);
         
         /// <summary>
         /// The backing field for the INS property
         /// </summary>
         private ObservableCompositionOrderedSet<IINS> _iNS;
         
+        private static Lazy<ITypedElement> _aSGReference = new Lazy<ITypedElement>(RetrieveASGReference);
+        
         /// <summary>
         /// The backing field for the ASG property
         /// </summary>
         private ObservableCompositionOrderedSet<IASG> _aSG;
+        
+        private static Lazy<ITypedElement> _wYEReference = new Lazy<ITypedElement>(RetrieveWYEReference);
         
         /// <summary>
         /// The backing field for the WYE property
         /// </summary>
         private ObservableCompositionOrderedSet<IWYE> _wYE;
         
+        private static Lazy<ITypedElement> _dPStatusReference = new Lazy<ITypedElement>(RetrieveDPStatusReference);
+        
         /// <summary>
         /// The backing field for the DPStatus property
         /// </summary>
         private ObservableCompositionOrderedSet<IDPStatus> _dPStatus;
+        
+        private static Lazy<ITypedElement> _analogueValueReference = new Lazy<ITypedElement>(RetrieveAnalogueValueReference);
         
         /// <summary>
         /// The backing field for the AnalogueValue property
         /// </summary>
         private ObservableCompositionOrderedSet<IAnalogueValue> _analogueValue;
         
+        private static Lazy<ITypedElement> _cMVReference = new Lazy<ITypedElement>(RetrieveCMVReference);
+        
         /// <summary>
         /// The backing field for the CMV property
         /// </summary>
         private ObservableCompositionOrderedSet<ICMV> _cMV;
+        
+        private static Lazy<ITypedElement> _valWithTransReference = new Lazy<ITypedElement>(RetrieveValWithTransReference);
         
         /// <summary>
         /// The backing field for the ValWithTrans property
         /// </summary>
         private ObservableCompositionOrderedSet<IValWithTrans> _valWithTrans;
         
+        private static Lazy<ITypedElement> _bSControlReference = new Lazy<ITypedElement>(RetrieveBSControlReference);
+        
         /// <summary>
         /// The backing field for the BSControl property
         /// </summary>
         private ObservableCompositionOrderedSet<IBSControl> _bSControl;
+        
+        private static Lazy<ITypedElement> _vectorReference = new Lazy<ITypedElement>(RetrieveVectorReference);
         
         /// <summary>
         /// The backing field for the Vector property
@@ -524,6 +562,11 @@ namespace TTC2017.SmartGrids.SubstationStandard
             }
         }
         
+        private static ITypedElement RetrieveLNReference()
+        {
+            return ((ITypedElement)(((ModelElement)(Substandard.ClassInstance)).Resolve("LN")));
+        }
+        
         /// <summary>
         /// Forwards CollectionChanging notifications for the LN property to the parent model element
         /// </summary>
@@ -531,7 +574,7 @@ namespace TTC2017.SmartGrids.SubstationStandard
         /// <param name="e">The original event data</param>
         private void LNCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("LN", e);
+            this.OnCollectionChanging("LN", e, _lNReference);
         }
         
         /// <summary>
@@ -541,7 +584,12 @@ namespace TTC2017.SmartGrids.SubstationStandard
         /// <param name="e">The original event data</param>
         private void LNCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("LN", e);
+            this.OnCollectionChanged("LN", e, _lNReference);
+        }
+        
+        private static ITypedElement RetrieveNamePltReference()
+        {
+            return ((ITypedElement)(((ModelElement)(Substandard.ClassInstance)).Resolve("NamePlt")));
         }
         
         /// <summary>
@@ -551,7 +599,7 @@ namespace TTC2017.SmartGrids.SubstationStandard
         /// <param name="e">The original event data</param>
         private void NamePltCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("NamePlt", e);
+            this.OnCollectionChanging("NamePlt", e, _namePltReference);
         }
         
         /// <summary>
@@ -561,7 +609,12 @@ namespace TTC2017.SmartGrids.SubstationStandard
         /// <param name="e">The original event data</param>
         private void NamePltCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("NamePlt", e);
+            this.OnCollectionChanged("NamePlt", e, _namePltReference);
+        }
+        
+        private static ITypedElement RetrieveLPLReference()
+        {
+            return ((ITypedElement)(((ModelElement)(Substandard.ClassInstance)).Resolve("LPL")));
         }
         
         /// <summary>
@@ -571,7 +624,7 @@ namespace TTC2017.SmartGrids.SubstationStandard
         /// <param name="e">The original event data</param>
         private void LPLCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("LPL", e);
+            this.OnCollectionChanging("LPL", e, _lPLReference);
         }
         
         /// <summary>
@@ -581,7 +634,12 @@ namespace TTC2017.SmartGrids.SubstationStandard
         /// <param name="e">The original event data</param>
         private void LPLCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("LPL", e);
+            this.OnCollectionChanged("LPL", e, _lPLReference);
+        }
+        
+        private static ITypedElement RetrieveDPCReference()
+        {
+            return ((ITypedElement)(((ModelElement)(Substandard.ClassInstance)).Resolve("DPC")));
         }
         
         /// <summary>
@@ -591,7 +649,7 @@ namespace TTC2017.SmartGrids.SubstationStandard
         /// <param name="e">The original event data</param>
         private void DPCCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("DPC", e);
+            this.OnCollectionChanging("DPC", e, _dPCReference);
         }
         
         /// <summary>
@@ -601,7 +659,12 @@ namespace TTC2017.SmartGrids.SubstationStandard
         /// <param name="e">The original event data</param>
         private void DPCCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("DPC", e);
+            this.OnCollectionChanged("DPC", e, _dPCReference);
+        }
+        
+        private static ITypedElement RetrieveACTReference()
+        {
+            return ((ITypedElement)(((ModelElement)(Substandard.ClassInstance)).Resolve("ACT")));
         }
         
         /// <summary>
@@ -611,7 +674,7 @@ namespace TTC2017.SmartGrids.SubstationStandard
         /// <param name="e">The original event data</param>
         private void ACTCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("ACT", e);
+            this.OnCollectionChanging("ACT", e, _aCTReference);
         }
         
         /// <summary>
@@ -621,7 +684,12 @@ namespace TTC2017.SmartGrids.SubstationStandard
         /// <param name="e">The original event data</param>
         private void ACTCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("ACT", e);
+            this.OnCollectionChanged("ACT", e, _aCTReference);
+        }
+        
+        private static ITypedElement RetrieveSPSReference()
+        {
+            return ((ITypedElement)(((ModelElement)(Substandard.ClassInstance)).Resolve("SPS")));
         }
         
         /// <summary>
@@ -631,7 +699,7 @@ namespace TTC2017.SmartGrids.SubstationStandard
         /// <param name="e">The original event data</param>
         private void SPSCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("SPS", e);
+            this.OnCollectionChanging("SPS", e, _sPSReference);
         }
         
         /// <summary>
@@ -641,7 +709,12 @@ namespace TTC2017.SmartGrids.SubstationStandard
         /// <param name="e">The original event data</param>
         private void SPSCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("SPS", e);
+            this.OnCollectionChanged("SPS", e, _sPSReference);
+        }
+        
+        private static ITypedElement RetrieveBSCReference()
+        {
+            return ((ITypedElement)(((ModelElement)(Substandard.ClassInstance)).Resolve("BSC")));
         }
         
         /// <summary>
@@ -651,7 +724,7 @@ namespace TTC2017.SmartGrids.SubstationStandard
         /// <param name="e">The original event data</param>
         private void BSCCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("BSC", e);
+            this.OnCollectionChanging("BSC", e, _bSCReference);
         }
         
         /// <summary>
@@ -661,7 +734,12 @@ namespace TTC2017.SmartGrids.SubstationStandard
         /// <param name="e">The original event data</param>
         private void BSCCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("BSC", e);
+            this.OnCollectionChanged("BSC", e, _bSCReference);
+        }
+        
+        private static ITypedElement RetrieveISCReference()
+        {
+            return ((ITypedElement)(((ModelElement)(Substandard.ClassInstance)).Resolve("ISC")));
         }
         
         /// <summary>
@@ -671,7 +749,7 @@ namespace TTC2017.SmartGrids.SubstationStandard
         /// <param name="e">The original event data</param>
         private void ISCCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("ISC", e);
+            this.OnCollectionChanging("ISC", e, _iSCReference);
         }
         
         /// <summary>
@@ -681,7 +759,12 @@ namespace TTC2017.SmartGrids.SubstationStandard
         /// <param name="e">The original event data</param>
         private void ISCCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("ISC", e);
+            this.OnCollectionChanged("ISC", e, _iSCReference);
+        }
+        
+        private static ITypedElement RetrieveSPCReference()
+        {
+            return ((ITypedElement)(((ModelElement)(Substandard.ClassInstance)).Resolve("SPC")));
         }
         
         /// <summary>
@@ -691,7 +774,7 @@ namespace TTC2017.SmartGrids.SubstationStandard
         /// <param name="e">The original event data</param>
         private void SPCCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("SPC", e);
+            this.OnCollectionChanging("SPC", e, _sPCReference);
         }
         
         /// <summary>
@@ -701,7 +784,12 @@ namespace TTC2017.SmartGrids.SubstationStandard
         /// <param name="e">The original event data</param>
         private void SPCCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("SPC", e);
+            this.OnCollectionChanged("SPC", e, _sPCReference);
+        }
+        
+        private static ITypedElement RetrieveMVReference()
+        {
+            return ((ITypedElement)(((ModelElement)(Substandard.ClassInstance)).Resolve("MV")));
         }
         
         /// <summary>
@@ -711,7 +799,7 @@ namespace TTC2017.SmartGrids.SubstationStandard
         /// <param name="e">The original event data</param>
         private void MVCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("MV", e);
+            this.OnCollectionChanging("MV", e, _mVReference);
         }
         
         /// <summary>
@@ -721,7 +809,12 @@ namespace TTC2017.SmartGrids.SubstationStandard
         /// <param name="e">The original event data</param>
         private void MVCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("MV", e);
+            this.OnCollectionChanged("MV", e, _mVReference);
+        }
+        
+        private static ITypedElement RetrieveINSReference()
+        {
+            return ((ITypedElement)(((ModelElement)(Substandard.ClassInstance)).Resolve("INS")));
         }
         
         /// <summary>
@@ -731,7 +824,7 @@ namespace TTC2017.SmartGrids.SubstationStandard
         /// <param name="e">The original event data</param>
         private void INSCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("INS", e);
+            this.OnCollectionChanging("INS", e, _iNSReference);
         }
         
         /// <summary>
@@ -741,7 +834,12 @@ namespace TTC2017.SmartGrids.SubstationStandard
         /// <param name="e">The original event data</param>
         private void INSCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("INS", e);
+            this.OnCollectionChanged("INS", e, _iNSReference);
+        }
+        
+        private static ITypedElement RetrieveASGReference()
+        {
+            return ((ITypedElement)(((ModelElement)(Substandard.ClassInstance)).Resolve("ASG")));
         }
         
         /// <summary>
@@ -751,7 +849,7 @@ namespace TTC2017.SmartGrids.SubstationStandard
         /// <param name="e">The original event data</param>
         private void ASGCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("ASG", e);
+            this.OnCollectionChanging("ASG", e, _aSGReference);
         }
         
         /// <summary>
@@ -761,7 +859,12 @@ namespace TTC2017.SmartGrids.SubstationStandard
         /// <param name="e">The original event data</param>
         private void ASGCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("ASG", e);
+            this.OnCollectionChanged("ASG", e, _aSGReference);
+        }
+        
+        private static ITypedElement RetrieveWYEReference()
+        {
+            return ((ITypedElement)(((ModelElement)(Substandard.ClassInstance)).Resolve("WYE")));
         }
         
         /// <summary>
@@ -771,7 +874,7 @@ namespace TTC2017.SmartGrids.SubstationStandard
         /// <param name="e">The original event data</param>
         private void WYECollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("WYE", e);
+            this.OnCollectionChanging("WYE", e, _wYEReference);
         }
         
         /// <summary>
@@ -781,7 +884,12 @@ namespace TTC2017.SmartGrids.SubstationStandard
         /// <param name="e">The original event data</param>
         private void WYECollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("WYE", e);
+            this.OnCollectionChanged("WYE", e, _wYEReference);
+        }
+        
+        private static ITypedElement RetrieveDPStatusReference()
+        {
+            return ((ITypedElement)(((ModelElement)(Substandard.ClassInstance)).Resolve("DPStatus")));
         }
         
         /// <summary>
@@ -791,7 +899,7 @@ namespace TTC2017.SmartGrids.SubstationStandard
         /// <param name="e">The original event data</param>
         private void DPStatusCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("DPStatus", e);
+            this.OnCollectionChanging("DPStatus", e, _dPStatusReference);
         }
         
         /// <summary>
@@ -801,7 +909,12 @@ namespace TTC2017.SmartGrids.SubstationStandard
         /// <param name="e">The original event data</param>
         private void DPStatusCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("DPStatus", e);
+            this.OnCollectionChanged("DPStatus", e, _dPStatusReference);
+        }
+        
+        private static ITypedElement RetrieveAnalogueValueReference()
+        {
+            return ((ITypedElement)(((ModelElement)(Substandard.ClassInstance)).Resolve("AnalogueValue")));
         }
         
         /// <summary>
@@ -811,7 +924,7 @@ namespace TTC2017.SmartGrids.SubstationStandard
         /// <param name="e">The original event data</param>
         private void AnalogueValueCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("AnalogueValue", e);
+            this.OnCollectionChanging("AnalogueValue", e, _analogueValueReference);
         }
         
         /// <summary>
@@ -821,7 +934,12 @@ namespace TTC2017.SmartGrids.SubstationStandard
         /// <param name="e">The original event data</param>
         private void AnalogueValueCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("AnalogueValue", e);
+            this.OnCollectionChanged("AnalogueValue", e, _analogueValueReference);
+        }
+        
+        private static ITypedElement RetrieveCMVReference()
+        {
+            return ((ITypedElement)(((ModelElement)(Substandard.ClassInstance)).Resolve("CMV")));
         }
         
         /// <summary>
@@ -831,7 +949,7 @@ namespace TTC2017.SmartGrids.SubstationStandard
         /// <param name="e">The original event data</param>
         private void CMVCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("CMV", e);
+            this.OnCollectionChanging("CMV", e, _cMVReference);
         }
         
         /// <summary>
@@ -841,7 +959,12 @@ namespace TTC2017.SmartGrids.SubstationStandard
         /// <param name="e">The original event data</param>
         private void CMVCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("CMV", e);
+            this.OnCollectionChanged("CMV", e, _cMVReference);
+        }
+        
+        private static ITypedElement RetrieveValWithTransReference()
+        {
+            return ((ITypedElement)(((ModelElement)(Substandard.ClassInstance)).Resolve("ValWithTrans")));
         }
         
         /// <summary>
@@ -851,7 +974,7 @@ namespace TTC2017.SmartGrids.SubstationStandard
         /// <param name="e">The original event data</param>
         private void ValWithTransCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("ValWithTrans", e);
+            this.OnCollectionChanging("ValWithTrans", e, _valWithTransReference);
         }
         
         /// <summary>
@@ -861,7 +984,12 @@ namespace TTC2017.SmartGrids.SubstationStandard
         /// <param name="e">The original event data</param>
         private void ValWithTransCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("ValWithTrans", e);
+            this.OnCollectionChanged("ValWithTrans", e, _valWithTransReference);
+        }
+        
+        private static ITypedElement RetrieveBSControlReference()
+        {
+            return ((ITypedElement)(((ModelElement)(Substandard.ClassInstance)).Resolve("BSControl")));
         }
         
         /// <summary>
@@ -871,7 +999,7 @@ namespace TTC2017.SmartGrids.SubstationStandard
         /// <param name="e">The original event data</param>
         private void BSControlCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("BSControl", e);
+            this.OnCollectionChanging("BSControl", e, _bSControlReference);
         }
         
         /// <summary>
@@ -881,7 +1009,12 @@ namespace TTC2017.SmartGrids.SubstationStandard
         /// <param name="e">The original event data</param>
         private void BSControlCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("BSControl", e);
+            this.OnCollectionChanged("BSControl", e, _bSControlReference);
+        }
+        
+        private static ITypedElement RetrieveVectorReference()
+        {
+            return ((ITypedElement)(((ModelElement)(Substandard.ClassInstance)).Resolve("Vector")));
         }
         
         /// <summary>
@@ -891,7 +1024,7 @@ namespace TTC2017.SmartGrids.SubstationStandard
         /// <param name="e">The original event data</param>
         private void VectorCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("Vector", e);
+            this.OnCollectionChanging("Vector", e, _vectorReference);
         }
         
         /// <summary>
@@ -901,7 +1034,7 @@ namespace TTC2017.SmartGrids.SubstationStandard
         /// <param name="e">The original event data</param>
         private void VectorCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("Vector", e);
+            this.OnCollectionChanged("Vector", e, _vectorReference);
         }
         
         /// <summary>
@@ -1313,6 +1446,92 @@ namespace TTC2017.SmartGrids.SubstationStandard
                 return this._vector;
             }
             return base.GetCollectionForFeature(feature);
+        }
+        
+        /// <summary>
+        /// Gets the property name for the given container
+        /// </summary>
+        /// <returns>The name of the respective container reference</returns>
+        /// <param name="container">The container object</param>
+        protected override string GetCompositionName(object container)
+        {
+            if ((container == this._lN))
+            {
+                return "LN";
+            }
+            if ((container == this._namePlt))
+            {
+                return "NamePlt";
+            }
+            if ((container == this._lPL))
+            {
+                return "LPL";
+            }
+            if ((container == this._dPC))
+            {
+                return "DPC";
+            }
+            if ((container == this._aCT))
+            {
+                return "ACT";
+            }
+            if ((container == this._sPS))
+            {
+                return "SPS";
+            }
+            if ((container == this._bSC))
+            {
+                return "BSC";
+            }
+            if ((container == this._iSC))
+            {
+                return "ISC";
+            }
+            if ((container == this._sPC))
+            {
+                return "SPC";
+            }
+            if ((container == this._mV))
+            {
+                return "MV";
+            }
+            if ((container == this._iNS))
+            {
+                return "INS";
+            }
+            if ((container == this._aSG))
+            {
+                return "ASG";
+            }
+            if ((container == this._wYE))
+            {
+                return "WYE";
+            }
+            if ((container == this._dPStatus))
+            {
+                return "DPStatus";
+            }
+            if ((container == this._analogueValue))
+            {
+                return "AnalogueValue";
+            }
+            if ((container == this._cMV))
+            {
+                return "CMV";
+            }
+            if ((container == this._valWithTrans))
+            {
+                return "ValWithTrans";
+            }
+            if ((container == this._bSControl))
+            {
+                return "BSControl";
+            }
+            if ((container == this._vector))
+            {
+                return "Vector";
+            }
+            return base.GetCompositionName(container);
         }
         
         /// <summary>

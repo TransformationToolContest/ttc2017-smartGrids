@@ -40,7 +40,7 @@ namespace TTC2017.SmartGrids.COSEM.InterfaceClasses
     [XmlNamespacePrefixAttribute("inter")]
     [ModelRepresentationClassAttribute("http://www.transformation-tool-contest.eu/2017/smartGrids/cosem#//InterfaceClasse" +
         "s/ZigBeetunnelsetup")]
-    public class ZigBeetunnelsetup : Base, IZigBeetunnelsetup, IModelElement
+    public partial class ZigBeetunnelsetup : Base, IZigBeetunnelsetup, IModelElement
     {
         
         private static IClass _classInstance;

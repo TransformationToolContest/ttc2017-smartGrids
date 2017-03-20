@@ -41,13 +41,15 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.OperationalLimits
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61970/OperationalLimits/VoltageLimi" +
         "t")]
     [DebuggerDisplayAttribute("VoltageLimit {UUID}")]
-    public class VoltageLimit : OperationalLimit, IVoltageLimit, IModelElement
+    public partial class VoltageLimit : OperationalLimit, IVoltageLimit, IModelElement
     {
         
         /// <summary>
         /// The backing field for the Value property
         /// </summary>
         private float _value;
+        
+        private static Lazy<ITypedElement> _valueAttribute = new Lazy<ITypedElement>(RetrieveValueAttribute);
         
         private static IClass _classInstance;
         
@@ -69,10 +71,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.OperationalLimits
                     float old = this._value;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnValueChanging(e);
-                    this.OnPropertyChanging("Value", e);
+                    this.OnPropertyChanging("Value", e, _valueAttribute);
                     this._value = value;
                     this.OnValueChanged(e);
-                    this.OnPropertyChanged("Value", e);
+                    this.OnPropertyChanged("Value", e, _valueAttribute);
                 }
             }
         }
@@ -102,6 +104,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.OperationalLimits
         /// Gets fired when the Value property changed its value
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> ValueChanged;
+        
+        private static ITypedElement RetrieveValueAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(VoltageLimit.ClassInstance)).Resolve("value")));
+        }
         
         /// <summary>
         /// Raises the ValueChanging event
@@ -183,7 +190,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.OperationalLimits
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public ValueProxy(IVoltageLimit modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "value")
             {
             }
             
@@ -200,24 +207,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.OperationalLimits
                 {
                     this.ModelElement.Value = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ValueChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ValueChanged -= handler;
             }
         }
     }

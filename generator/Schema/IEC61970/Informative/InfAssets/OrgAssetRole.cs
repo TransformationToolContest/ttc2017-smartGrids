@@ -53,7 +53,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61970/Informative/InfAssets/OrgAsse" +
         "tRole")]
     [DebuggerDisplayAttribute("OrgAssetRole {UUID}")]
-    public class OrgAssetRole : Role, IOrgAssetRole, IModelElement
+    public partial class OrgAssetRole : Role, IOrgAssetRole, IModelElement
     {
         
         /// <summary>
@@ -61,10 +61,16 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
         /// </summary>
         private float _percentOwnership;
         
+        private static Lazy<ITypedElement> _percentOwnershipAttribute = new Lazy<ITypedElement>(RetrievePercentOwnershipAttribute);
+        
+        private static Lazy<ITypedElement> _erpOrganisationReference = new Lazy<ITypedElement>(RetrieveErpOrganisationReference);
+        
         /// <summary>
         /// The backing field for the ErpOrganisation property
         /// </summary>
         private IErpOrganisation _erpOrganisation;
+        
+        private static Lazy<ITypedElement> _assetReference = new Lazy<ITypedElement>(RetrieveAssetReference);
         
         /// <summary>
         /// The backing field for the Asset property
@@ -91,10 +97,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
                     float old = this._percentOwnership;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnPercentOwnershipChanging(e);
-                    this.OnPropertyChanging("PercentOwnership", e);
+                    this.OnPropertyChanging("PercentOwnership", e, _percentOwnershipAttribute);
                     this._percentOwnership = value;
                     this.OnPercentOwnershipChanged(e);
-                    this.OnPropertyChanged("PercentOwnership", e);
+                    this.OnPropertyChanged("PercentOwnership", e, _percentOwnershipAttribute);
                 }
             }
         }
@@ -117,7 +123,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
                     IErpOrganisation old = this._erpOrganisation;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnErpOrganisationChanging(e);
-                    this.OnPropertyChanging("ErpOrganisation", e);
+                    this.OnPropertyChanging("ErpOrganisation", e, _erpOrganisationReference);
                     this._erpOrganisation = value;
                     if ((old != null))
                     {
@@ -130,7 +136,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
                         value.Deleted += this.OnResetErpOrganisation;
                     }
                     this.OnErpOrganisationChanged(e);
-                    this.OnPropertyChanged("ErpOrganisation", e);
+                    this.OnPropertyChanged("ErpOrganisation", e, _erpOrganisationReference);
                 }
             }
         }
@@ -153,7 +159,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
                     IAsset old = this._asset;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnAssetChanging(e);
-                    this.OnPropertyChanging("Asset", e);
+                    this.OnPropertyChanging("Asset", e, _assetReference);
                     this._asset = value;
                     if ((old != null))
                     {
@@ -166,7 +172,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
                         value.Deleted += this.OnResetAsset;
                     }
                     this.OnAssetChanged(e);
-                    this.OnPropertyChanged("Asset", e);
+                    this.OnPropertyChanged("Asset", e, _assetReference);
                 }
             }
         }
@@ -228,6 +234,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> AssetChanged;
         
+        private static ITypedElement RetrievePercentOwnershipAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(OrgAssetRole.ClassInstance)).Resolve("percentOwnership")));
+        }
+        
         /// <summary>
         /// Raises the PercentOwnershipChanging event
         /// </summary>
@@ -252,6 +263,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveErpOrganisationReference()
+        {
+            return ((ITypedElement)(((ModelElement)(OrgAssetRole.ClassInstance)).Resolve("ErpOrganisation")));
         }
         
         /// <summary>
@@ -288,6 +304,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
         private void OnResetErpOrganisation(object sender, System.EventArgs eventArgs)
         {
             this.ErpOrganisation = null;
+        }
+        
+        private static ITypedElement RetrieveAssetReference()
+        {
+            return ((ITypedElement)(((ModelElement)(OrgAssetRole.ClassInstance)).Resolve("Asset")));
         }
         
         /// <summary>
@@ -576,7 +597,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public PercentOwnershipProxy(IOrgAssetRole modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "percentOwnership")
             {
             }
             
@@ -594,24 +615,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
                     this.ModelElement.PercentOwnership = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.PercentOwnershipChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.PercentOwnershipChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -625,7 +628,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public ErpOrganisationProxy(IOrgAssetRole modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "ErpOrganisation")
             {
             }
             
@@ -643,24 +646,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
                     this.ModelElement.ErpOrganisation = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ErpOrganisationChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ErpOrganisationChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -674,7 +659,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public AssetProxy(IOrgAssetRole modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "Asset")
             {
             }
             
@@ -691,24 +676,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
                 {
                     this.ModelElement.Asset = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.AssetChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.AssetChanged -= handler;
             }
         }
     }

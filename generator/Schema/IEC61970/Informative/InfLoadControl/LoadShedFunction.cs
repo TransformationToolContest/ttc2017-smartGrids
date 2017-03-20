@@ -42,13 +42,15 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfLoadControl
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61970/Informative/InfLoadControl/Lo" +
         "adShedFunction")]
     [DebuggerDisplayAttribute("LoadShedFunction {UUID}")]
-    public class LoadShedFunction : LoadMgmtFunction, ILoadShedFunction, IModelElement
+    public partial class LoadShedFunction : LoadMgmtFunction, ILoadShedFunction, IModelElement
     {
         
         /// <summary>
         /// The backing field for the SwitchedLoad property
         /// </summary>
         private float _switchedLoad;
+        
+        private static Lazy<ITypedElement> _switchedLoadAttribute = new Lazy<ITypedElement>(RetrieveSwitchedLoadAttribute);
         
         private static IClass _classInstance;
         
@@ -70,10 +72,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfLoadControl
                     float old = this._switchedLoad;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnSwitchedLoadChanging(e);
-                    this.OnPropertyChanging("SwitchedLoad", e);
+                    this.OnPropertyChanging("SwitchedLoad", e, _switchedLoadAttribute);
                     this._switchedLoad = value;
                     this.OnSwitchedLoadChanged(e);
-                    this.OnPropertyChanged("SwitchedLoad", e);
+                    this.OnPropertyChanged("SwitchedLoad", e, _switchedLoadAttribute);
                 }
             }
         }
@@ -103,6 +105,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfLoadControl
         /// Gets fired when the SwitchedLoad property changed its value
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> SwitchedLoadChanged;
+        
+        private static ITypedElement RetrieveSwitchedLoadAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(LoadShedFunction.ClassInstance)).Resolve("switchedLoad")));
+        }
         
         /// <summary>
         /// Raises the SwitchedLoadChanging event
@@ -184,7 +191,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfLoadControl
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public SwitchedLoadProxy(ILoadShedFunction modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "switchedLoad")
             {
             }
             
@@ -201,24 +208,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfLoadControl
                 {
                     this.ModelElement.SwitchedLoad = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.SwitchedLoadChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.SwitchedLoadChanged -= handler;
             }
         }
     }

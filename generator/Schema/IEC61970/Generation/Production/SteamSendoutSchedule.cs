@@ -46,8 +46,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61970/Generation/Production/SteamSe" +
         "ndoutSchedule")]
     [DebuggerDisplayAttribute("SteamSendoutSchedule {UUID}")]
-    public class SteamSendoutSchedule : RegularIntervalSchedule, ISteamSendoutSchedule, IModelElement
+    public partial class SteamSendoutSchedule : RegularIntervalSchedule, ISteamSendoutSchedule, IModelElement
     {
+        
+        private static Lazy<ITypedElement> _cogenerationPlantReference = new Lazy<ITypedElement>(RetrieveCogenerationPlantReference);
         
         /// <summary>
         /// The backing field for the CogenerationPlant property
@@ -74,7 +76,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
                     ICogenerationPlant old = this._cogenerationPlant;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnCogenerationPlantChanging(e);
-                    this.OnPropertyChanging("CogenerationPlant", e);
+                    this.OnPropertyChanging("CogenerationPlant", e, _cogenerationPlantReference);
                     this._cogenerationPlant = value;
                     if ((old != null))
                     {
@@ -87,7 +89,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
                         value.Deleted += this.OnResetCogenerationPlant;
                     }
                     this.OnCogenerationPlantChanged(e);
-                    this.OnPropertyChanged("CogenerationPlant", e);
+                    this.OnPropertyChanged("CogenerationPlant", e, _cogenerationPlantReference);
                 }
             }
         }
@@ -128,6 +130,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
         /// Gets fired when the CogenerationPlant property changed its value
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> CogenerationPlantChanged;
+        
+        private static ITypedElement RetrieveCogenerationPlantReference()
+        {
+            return ((ITypedElement)(((ModelElement)(SteamSendoutSchedule.ClassInstance)).Resolve("CogenerationPlant")));
+        }
         
         /// <summary>
         /// Raises the CogenerationPlantChanging event
@@ -352,7 +359,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public CogenerationPlantProxy(ISteamSendoutSchedule modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "CogenerationPlant")
             {
             }
             
@@ -369,24 +376,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
                 {
                     this.ModelElement.CogenerationPlant = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.CogenerationPlantChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.CogenerationPlantChanged -= handler;
             }
         }
     }

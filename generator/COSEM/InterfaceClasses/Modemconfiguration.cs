@@ -40,7 +40,7 @@ namespace TTC2017.SmartGrids.COSEM.InterfaceClasses
     [XmlNamespacePrefixAttribute("inter")]
     [ModelRepresentationClassAttribute("http://www.transformation-tool-contest.eu/2017/smartGrids/cosem#//InterfaceClasse" +
         "s/Modemconfiguration")]
-    public class Modemconfiguration : Base, IModemconfiguration, IModelElement
+    public partial class Modemconfiguration : Base, IModemconfiguration, IModelElement
     {
         
         private static IClass _classInstance;

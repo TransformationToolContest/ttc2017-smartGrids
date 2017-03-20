@@ -54,7 +54,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Metering
     [XmlNamespacePrefixAttribute("cimMetering")]
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61968/Metering/SDPLocation")]
     [DebuggerDisplayAttribute("SDPLocation {UUID}")]
-    public class SDPLocation : Location, ISDPLocation, IModelElement
+    public partial class SDPLocation : Location, ISDPLocation, IModelElement
     {
         
         /// <summary>
@@ -62,20 +62,30 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Metering
         /// </summary>
         private string _accessMethod;
         
+        private static Lazy<ITypedElement> _accessMethodAttribute = new Lazy<ITypedElement>(RetrieveAccessMethodAttribute);
+        
         /// <summary>
         /// The backing field for the Remark property
         /// </summary>
         private string _remark;
+        
+        private static Lazy<ITypedElement> _remarkAttribute = new Lazy<ITypedElement>(RetrieveRemarkAttribute);
         
         /// <summary>
         /// The backing field for the SiteAccessProblem property
         /// </summary>
         private string _siteAccessProblem;
         
+        private static Lazy<ITypedElement> _siteAccessProblemAttribute = new Lazy<ITypedElement>(RetrieveSiteAccessProblemAttribute);
+        
         /// <summary>
         /// The backing field for the OccupancyDate property
         /// </summary>
         private string _occupancyDate;
+        
+        private static Lazy<ITypedElement> _occupancyDateAttribute = new Lazy<ITypedElement>(RetrieveOccupancyDateAttribute);
+        
+        private static Lazy<ITypedElement> _serviceDeliveryPointsReference = new Lazy<ITypedElement>(RetrieveServiceDeliveryPointsReference);
         
         /// <summary>
         /// The backing field for the ServiceDeliveryPoints property
@@ -109,10 +119,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Metering
                     string old = this._accessMethod;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnAccessMethodChanging(e);
-                    this.OnPropertyChanging("AccessMethod", e);
+                    this.OnPropertyChanging("AccessMethod", e, _accessMethodAttribute);
                     this._accessMethod = value;
                     this.OnAccessMethodChanged(e);
-                    this.OnPropertyChanged("AccessMethod", e);
+                    this.OnPropertyChanged("AccessMethod", e, _accessMethodAttribute);
                 }
             }
         }
@@ -135,10 +145,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Metering
                     string old = this._remark;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnRemarkChanging(e);
-                    this.OnPropertyChanging("Remark", e);
+                    this.OnPropertyChanging("Remark", e, _remarkAttribute);
                     this._remark = value;
                     this.OnRemarkChanged(e);
-                    this.OnPropertyChanged("Remark", e);
+                    this.OnPropertyChanged("Remark", e, _remarkAttribute);
                 }
             }
         }
@@ -161,10 +171,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Metering
                     string old = this._siteAccessProblem;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnSiteAccessProblemChanging(e);
-                    this.OnPropertyChanging("SiteAccessProblem", e);
+                    this.OnPropertyChanging("SiteAccessProblem", e, _siteAccessProblemAttribute);
                     this._siteAccessProblem = value;
                     this.OnSiteAccessProblemChanged(e);
-                    this.OnPropertyChanged("SiteAccessProblem", e);
+                    this.OnPropertyChanged("SiteAccessProblem", e, _siteAccessProblemAttribute);
                 }
             }
         }
@@ -187,10 +197,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Metering
                     string old = this._occupancyDate;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnOccupancyDateChanging(e);
-                    this.OnPropertyChanging("OccupancyDate", e);
+                    this.OnPropertyChanging("OccupancyDate", e, _occupancyDateAttribute);
                     this._occupancyDate = value;
                     this.OnOccupancyDateChanged(e);
-                    this.OnPropertyChanged("OccupancyDate", e);
+                    this.OnPropertyChanged("OccupancyDate", e, _occupancyDateAttribute);
                 }
             }
         }
@@ -276,6 +286,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Metering
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> OccupancyDateChanged;
         
+        private static ITypedElement RetrieveAccessMethodAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(SDPLocation.ClassInstance)).Resolve("accessMethod")));
+        }
+        
         /// <summary>
         /// Raises the AccessMethodChanging event
         /// </summary>
@@ -300,6 +315,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Metering
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveRemarkAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(SDPLocation.ClassInstance)).Resolve("remark")));
         }
         
         /// <summary>
@@ -328,6 +348,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Metering
             }
         }
         
+        private static ITypedElement RetrieveSiteAccessProblemAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(SDPLocation.ClassInstance)).Resolve("siteAccessProblem")));
+        }
+        
         /// <summary>
         /// Raises the SiteAccessProblemChanging event
         /// </summary>
@@ -352,6 +377,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Metering
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveOccupancyDateAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(SDPLocation.ClassInstance)).Resolve("occupancyDate")));
         }
         
         /// <summary>
@@ -380,6 +410,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Metering
             }
         }
         
+        private static ITypedElement RetrieveServiceDeliveryPointsReference()
+        {
+            return ((ITypedElement)(((ModelElement)(SDPLocation.ClassInstance)).Resolve("ServiceDeliveryPoints")));
+        }
+        
         /// <summary>
         /// Forwards CollectionChanging notifications for the ServiceDeliveryPoints property to the parent model element
         /// </summary>
@@ -387,7 +422,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Metering
         /// <param name="e">The original event data</param>
         private void ServiceDeliveryPointsCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("ServiceDeliveryPoints", e);
+            this.OnCollectionChanging("ServiceDeliveryPoints", e, _serviceDeliveryPointsReference);
         }
         
         /// <summary>
@@ -397,7 +432,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Metering
         /// <param name="e">The original event data</param>
         private void ServiceDeliveryPointsCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("ServiceDeliveryPoints", e);
+            this.OnCollectionChanged("ServiceDeliveryPoints", e, _serviceDeliveryPointsReference);
         }
         
         /// <summary>
@@ -618,7 +653,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Metering
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public AccessMethodProxy(ISDPLocation modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "accessMethod")
             {
             }
             
@@ -636,24 +671,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Metering
                     this.ModelElement.AccessMethod = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.AccessMethodChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.AccessMethodChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -667,7 +684,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Metering
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public RemarkProxy(ISDPLocation modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "remark")
             {
             }
             
@@ -685,24 +702,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Metering
                     this.ModelElement.Remark = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.RemarkChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.RemarkChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -716,7 +715,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Metering
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public SiteAccessProblemProxy(ISDPLocation modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "siteAccessProblem")
             {
             }
             
@@ -734,24 +733,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Metering
                     this.ModelElement.SiteAccessProblem = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.SiteAccessProblemChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.SiteAccessProblemChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -765,7 +746,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Metering
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public OccupancyDateProxy(ISDPLocation modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "occupancyDate")
             {
             }
             
@@ -782,24 +763,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Metering
                 {
                     this.ModelElement.OccupancyDate = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.OccupancyDateChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.OccupancyDateChanged -= handler;
             }
         }
     }

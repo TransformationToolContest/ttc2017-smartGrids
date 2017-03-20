@@ -50,8 +50,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61970/Informative/MarketOperations/" +
         "Meter")]
     [DebuggerDisplayAttribute("Meter {UUID}")]
-    public class Meter : IdentifiedObject, IMeter, IModelElement
+    public partial class Meter : IdentifiedObject, IMeter, IModelElement
     {
+        
+        private static Lazy<ITypedElement> _registeredResourceReference = new Lazy<ITypedElement>(RetrieveRegisteredResourceReference);
         
         /// <summary>
         /// The backing field for the RegisteredResource property
@@ -78,7 +80,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
                     IRegisteredResource old = this._registeredResource;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnRegisteredResourceChanging(e);
-                    this.OnPropertyChanging("RegisteredResource", e);
+                    this.OnPropertyChanging("RegisteredResource", e, _registeredResourceReference);
                     this._registeredResource = value;
                     if ((old != null))
                     {
@@ -91,7 +93,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
                         value.Deleted += this.OnResetRegisteredResource;
                     }
                     this.OnRegisteredResourceChanged(e);
-                    this.OnPropertyChanged("RegisteredResource", e);
+                    this.OnPropertyChanged("RegisteredResource", e, _registeredResourceReference);
                 }
             }
         }
@@ -132,6 +134,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
         /// Gets fired when the RegisteredResource property changed its value
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> RegisteredResourceChanged;
+        
+        private static ITypedElement RetrieveRegisteredResourceReference()
+        {
+            return ((ITypedElement)(((ModelElement)(Meter.ClassInstance)).Resolve("RegisteredResource")));
+        }
         
         /// <summary>
         /// Raises the RegisteredResourceChanging event
@@ -356,7 +363,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public RegisteredResourceProxy(IMeter modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "RegisteredResource")
             {
             }
             
@@ -373,24 +380,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
                 {
                     this.ModelElement.RegisteredResource = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.RegisteredResourceChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.RegisteredResourceChanged -= handler;
             }
         }
     }

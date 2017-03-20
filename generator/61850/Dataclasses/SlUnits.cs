@@ -39,13 +39,15 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
     [XmlNamespacePrefixAttribute("data")]
     [ModelRepresentationClassAttribute("http://www.transformation-tool-contest.eu/2017/smartGrids/substationStandard#//Da" +
         "taclasses/SlUnits")]
-    public class SlUnits : ModelElement, ISlUnits, IModelElement
+    public partial class SlUnits : ModelElement, ISlUnits, IModelElement
     {
         
         /// <summary>
         /// The backing field for the SlUnitsKind property
         /// </summary>
         private Nullable<SIUnitsKind> _slUnitsKind;
+        
+        private static Lazy<ITypedElement> _slUnitsKindAttribute = new Lazy<ITypedElement>(RetrieveSlUnitsKindAttribute);
         
         private static IClass _classInstance;
         
@@ -66,10 +68,10 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
                     Nullable<SIUnitsKind> old = this._slUnitsKind;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnSlUnitsKindChanging(e);
-                    this.OnPropertyChanging("SlUnitsKind", e);
+                    this.OnPropertyChanging("SlUnitsKind", e, _slUnitsKindAttribute);
                     this._slUnitsKind = value;
                     this.OnSlUnitsKindChanged(e);
-                    this.OnPropertyChanged("SlUnitsKind", e);
+                    this.OnPropertyChanged("SlUnitsKind", e, _slUnitsKindAttribute);
                 }
             }
         }
@@ -99,6 +101,11 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
         /// Gets fired when the SlUnitsKind property changed its value
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> SlUnitsKindChanged;
+        
+        private static ITypedElement RetrieveSlUnitsKindAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(SlUnits.ClassInstance)).Resolve("SlUnitsKind")));
+        }
         
         /// <summary>
         /// Raises the SlUnitsKindChanging event
@@ -180,7 +187,7 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public SlUnitsKindProxy(ISlUnits modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "SlUnitsKind")
             {
             }
             
@@ -197,24 +204,6 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
                 {
                     this.ModelElement.SlUnitsKind = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.SlUnitsKindChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.SlUnitsKindChanged -= handler;
             }
         }
     }

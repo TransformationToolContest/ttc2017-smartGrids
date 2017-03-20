@@ -57,13 +57,17 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Core
     [XmlNamespacePrefixAttribute("cimCore")]
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61970/Core/PsrList")]
     [DebuggerDisplayAttribute("PsrList {UUID}")]
-    public class PsrList : IdentifiedObject, IPsrList, IModelElement
+    public partial class PsrList : IdentifiedObject, IPsrList, IModelElement
     {
         
         /// <summary>
         /// The backing field for the TypePSRList property
         /// </summary>
         private string _typePSRList;
+        
+        private static Lazy<ITypedElement> _typePSRListAttribute = new Lazy<ITypedElement>(RetrieveTypePSRListAttribute);
+        
+        private static Lazy<ITypedElement> _powerSystemResourcesReference = new Lazy<ITypedElement>(RetrievePowerSystemResourcesReference);
         
         /// <summary>
         /// The backing field for the PowerSystemResources property
@@ -97,10 +101,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Core
                     string old = this._typePSRList;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnTypePSRListChanging(e);
-                    this.OnPropertyChanging("TypePSRList", e);
+                    this.OnPropertyChanging("TypePSRList", e, _typePSRListAttribute);
                     this._typePSRList = value;
                     this.OnTypePSRListChanged(e);
-                    this.OnPropertyChanged("TypePSRList", e);
+                    this.OnPropertyChanged("TypePSRList", e, _typePSRListAttribute);
                 }
             }
         }
@@ -156,6 +160,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Core
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> TypePSRListChanged;
         
+        private static ITypedElement RetrieveTypePSRListAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(PsrList.ClassInstance)).Resolve("typePSRList")));
+        }
+        
         /// <summary>
         /// Raises the TypePSRListChanging event
         /// </summary>
@@ -182,6 +191,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Core
             }
         }
         
+        private static ITypedElement RetrievePowerSystemResourcesReference()
+        {
+            return ((ITypedElement)(((ModelElement)(PsrList.ClassInstance)).Resolve("PowerSystemResources")));
+        }
+        
         /// <summary>
         /// Forwards CollectionChanging notifications for the PowerSystemResources property to the parent model element
         /// </summary>
@@ -189,7 +203,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Core
         /// <param name="e">The original event data</param>
         private void PowerSystemResourcesCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("PowerSystemResources", e);
+            this.OnCollectionChanging("PowerSystemResources", e, _powerSystemResourcesReference);
         }
         
         /// <summary>
@@ -199,7 +213,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Core
         /// <param name="e">The original event data</param>
         private void PowerSystemResourcesCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("PowerSystemResources", e);
+            this.OnCollectionChanged("PowerSystemResources", e, _powerSystemResourcesReference);
         }
         
         /// <summary>
@@ -393,7 +407,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Core
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public TypePSRListProxy(IPsrList modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "typePSRList")
             {
             }
             
@@ -410,24 +424,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Core
                 {
                     this.ModelElement.TypePSRList = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.TypePSRListChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.TypePSRListChanged -= handler;
             }
         }
     }

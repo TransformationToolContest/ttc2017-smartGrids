@@ -54,7 +54,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Metering
     [XmlNamespacePrefixAttribute("cimMetering")]
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61968/Metering/Pending")]
     [DebuggerDisplayAttribute("Pending {UUID}")]
-    public class Pending : Element, IPending, IModelElement
+    public partial class Pending : Element, IPending, IModelElement
     {
         
         /// <summary>
@@ -62,30 +62,44 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Metering
         /// </summary>
         private int _offset;
         
+        private static Lazy<ITypedElement> _offsetAttribute = new Lazy<ITypedElement>(RetrieveOffsetAttribute);
+        
         /// <summary>
         /// The backing field for the MultiplyBeforeAdd property
         /// </summary>
         private bool _multiplyBeforeAdd;
+        
+        private static Lazy<ITypedElement> _multiplyBeforeAddAttribute = new Lazy<ITypedElement>(RetrieveMultiplyBeforeAddAttribute);
         
         /// <summary>
         /// The backing field for the ScalarFloat property
         /// </summary>
         private float _scalarFloat;
         
+        private static Lazy<ITypedElement> _scalarFloatAttribute = new Lazy<ITypedElement>(RetrieveScalarFloatAttribute);
+        
         /// <summary>
         /// The backing field for the ScalarDenominator property
         /// </summary>
         private int _scalarDenominator;
+        
+        private static Lazy<ITypedElement> _scalarDenominatorAttribute = new Lazy<ITypedElement>(RetrieveScalarDenominatorAttribute);
         
         /// <summary>
         /// The backing field for the ScalarNumerator property
         /// </summary>
         private int _scalarNumerator;
         
+        private static Lazy<ITypedElement> _scalarNumeratorAttribute = new Lazy<ITypedElement>(RetrieveScalarNumeratorAttribute);
+        
+        private static Lazy<ITypedElement> _readingTypeReference = new Lazy<ITypedElement>(RetrieveReadingTypeReference);
+        
         /// <summary>
         /// The backing field for the ReadingType property
         /// </summary>
         private IReadingType _readingType;
+        
+        private static Lazy<ITypedElement> _intervalBlocksReference = new Lazy<ITypedElement>(RetrieveIntervalBlocksReference);
         
         /// <summary>
         /// The backing field for the IntervalBlocks property
@@ -119,10 +133,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Metering
                     int old = this._offset;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnOffsetChanging(e);
-                    this.OnPropertyChanging("Offset", e);
+                    this.OnPropertyChanging("Offset", e, _offsetAttribute);
                     this._offset = value;
                     this.OnOffsetChanged(e);
-                    this.OnPropertyChanged("Offset", e);
+                    this.OnPropertyChanged("Offset", e, _offsetAttribute);
                 }
             }
         }
@@ -145,10 +159,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Metering
                     bool old = this._multiplyBeforeAdd;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnMultiplyBeforeAddChanging(e);
-                    this.OnPropertyChanging("MultiplyBeforeAdd", e);
+                    this.OnPropertyChanging("MultiplyBeforeAdd", e, _multiplyBeforeAddAttribute);
                     this._multiplyBeforeAdd = value;
                     this.OnMultiplyBeforeAddChanged(e);
-                    this.OnPropertyChanged("MultiplyBeforeAdd", e);
+                    this.OnPropertyChanged("MultiplyBeforeAdd", e, _multiplyBeforeAddAttribute);
                 }
             }
         }
@@ -171,10 +185,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Metering
                     float old = this._scalarFloat;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnScalarFloatChanging(e);
-                    this.OnPropertyChanging("ScalarFloat", e);
+                    this.OnPropertyChanging("ScalarFloat", e, _scalarFloatAttribute);
                     this._scalarFloat = value;
                     this.OnScalarFloatChanged(e);
-                    this.OnPropertyChanged("ScalarFloat", e);
+                    this.OnPropertyChanged("ScalarFloat", e, _scalarFloatAttribute);
                 }
             }
         }
@@ -197,10 +211,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Metering
                     int old = this._scalarDenominator;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnScalarDenominatorChanging(e);
-                    this.OnPropertyChanging("ScalarDenominator", e);
+                    this.OnPropertyChanging("ScalarDenominator", e, _scalarDenominatorAttribute);
                     this._scalarDenominator = value;
                     this.OnScalarDenominatorChanged(e);
-                    this.OnPropertyChanged("ScalarDenominator", e);
+                    this.OnPropertyChanged("ScalarDenominator", e, _scalarDenominatorAttribute);
                 }
             }
         }
@@ -223,10 +237,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Metering
                     int old = this._scalarNumerator;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnScalarNumeratorChanging(e);
-                    this.OnPropertyChanging("ScalarNumerator", e);
+                    this.OnPropertyChanging("ScalarNumerator", e, _scalarNumeratorAttribute);
                     this._scalarNumerator = value;
                     this.OnScalarNumeratorChanged(e);
-                    this.OnPropertyChanged("ScalarNumerator", e);
+                    this.OnPropertyChanged("ScalarNumerator", e, _scalarNumeratorAttribute);
                 }
             }
         }
@@ -249,7 +263,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Metering
                     IReadingType old = this._readingType;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnReadingTypeChanging(e);
-                    this.OnPropertyChanging("ReadingType", e);
+                    this.OnPropertyChanging("ReadingType", e, _readingTypeReference);
                     this._readingType = value;
                     if ((old != null))
                     {
@@ -262,7 +276,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Metering
                         value.Deleted += this.OnResetReadingType;
                     }
                     this.OnReadingTypeChanged(e);
-                    this.OnPropertyChanged("ReadingType", e);
+                    this.OnPropertyChanged("ReadingType", e, _readingTypeReference);
                 }
             }
         }
@@ -368,6 +382,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Metering
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> ReadingTypeChanged;
         
+        private static ITypedElement RetrieveOffsetAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(Pending.ClassInstance)).Resolve("offset")));
+        }
+        
         /// <summary>
         /// Raises the OffsetChanging event
         /// </summary>
@@ -392,6 +411,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Metering
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveMultiplyBeforeAddAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(Pending.ClassInstance)).Resolve("multiplyBeforeAdd")));
         }
         
         /// <summary>
@@ -420,6 +444,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Metering
             }
         }
         
+        private static ITypedElement RetrieveScalarFloatAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(Pending.ClassInstance)).Resolve("scalarFloat")));
+        }
+        
         /// <summary>
         /// Raises the ScalarFloatChanging event
         /// </summary>
@@ -444,6 +473,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Metering
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveScalarDenominatorAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(Pending.ClassInstance)).Resolve("scalarDenominator")));
         }
         
         /// <summary>
@@ -472,6 +506,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Metering
             }
         }
         
+        private static ITypedElement RetrieveScalarNumeratorAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(Pending.ClassInstance)).Resolve("scalarNumerator")));
+        }
+        
         /// <summary>
         /// Raises the ScalarNumeratorChanging event
         /// </summary>
@@ -496,6 +535,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Metering
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveReadingTypeReference()
+        {
+            return ((ITypedElement)(((ModelElement)(Pending.ClassInstance)).Resolve("ReadingType")));
         }
         
         /// <summary>
@@ -534,6 +578,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Metering
             this.ReadingType = null;
         }
         
+        private static ITypedElement RetrieveIntervalBlocksReference()
+        {
+            return ((ITypedElement)(((ModelElement)(Pending.ClassInstance)).Resolve("IntervalBlocks")));
+        }
+        
         /// <summary>
         /// Forwards CollectionChanging notifications for the IntervalBlocks property to the parent model element
         /// </summary>
@@ -541,7 +590,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Metering
         /// <param name="e">The original event data</param>
         private void IntervalBlocksCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("IntervalBlocks", e);
+            this.OnCollectionChanging("IntervalBlocks", e, _intervalBlocksReference);
         }
         
         /// <summary>
@@ -551,7 +600,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Metering
         /// <param name="e">The original event data</param>
         private void IntervalBlocksCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("IntervalBlocks", e);
+            this.OnCollectionChanged("IntervalBlocks", e, _intervalBlocksReference);
         }
         
         /// <summary>
@@ -844,7 +893,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Metering
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public OffsetProxy(IPending modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "offset")
             {
             }
             
@@ -862,24 +911,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Metering
                     this.ModelElement.Offset = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.OffsetChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.OffsetChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -893,7 +924,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Metering
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public MultiplyBeforeAddProxy(IPending modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "multiplyBeforeAdd")
             {
             }
             
@@ -911,24 +942,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Metering
                     this.ModelElement.MultiplyBeforeAdd = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.MultiplyBeforeAddChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.MultiplyBeforeAddChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -942,7 +955,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Metering
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public ScalarFloatProxy(IPending modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "scalarFloat")
             {
             }
             
@@ -960,24 +973,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Metering
                     this.ModelElement.ScalarFloat = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ScalarFloatChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ScalarFloatChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -991,7 +986,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Metering
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public ScalarDenominatorProxy(IPending modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "scalarDenominator")
             {
             }
             
@@ -1009,24 +1004,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Metering
                     this.ModelElement.ScalarDenominator = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ScalarDenominatorChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ScalarDenominatorChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1040,7 +1017,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Metering
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public ScalarNumeratorProxy(IPending modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "scalarNumerator")
             {
             }
             
@@ -1058,24 +1035,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Metering
                     this.ModelElement.ScalarNumerator = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ScalarNumeratorChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ScalarNumeratorChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1089,7 +1048,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Metering
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public ReadingTypeProxy(IPending modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "ReadingType")
             {
             }
             
@@ -1106,24 +1065,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Metering
                 {
                     this.ModelElement.ReadingType = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ReadingTypeChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ReadingTypeChanged -= handler;
             }
         }
     }

@@ -41,8 +41,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Outage
     [XmlNamespacePrefixAttribute("cimOutage")]
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61970/Outage/ClearanceTagType")]
     [DebuggerDisplayAttribute("ClearanceTagType {UUID}")]
-    public class ClearanceTagType : IdentifiedObject, IClearanceTagType, IModelElement
+    public partial class ClearanceTagType : IdentifiedObject, IClearanceTagType, IModelElement
     {
+        
+        private static Lazy<ITypedElement> _clearanceTagsReference = new Lazy<ITypedElement>(RetrieveClearanceTagsReference);
         
         /// <summary>
         /// The backing field for the ClearanceTags property
@@ -99,6 +101,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Outage
             }
         }
         
+        private static ITypedElement RetrieveClearanceTagsReference()
+        {
+            return ((ITypedElement)(((ModelElement)(ClearanceTagType.ClassInstance)).Resolve("ClearanceTags")));
+        }
+        
         /// <summary>
         /// Forwards CollectionChanging notifications for the ClearanceTags property to the parent model element
         /// </summary>
@@ -106,7 +113,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Outage
         /// <param name="e">The original event data</param>
         private void ClearanceTagsCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("ClearanceTags", e);
+            this.OnCollectionChanging("ClearanceTags", e, _clearanceTagsReference);
         }
         
         /// <summary>
@@ -116,7 +123,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Outage
         /// <param name="e">The original event data</param>
         private void ClearanceTagsCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("ClearanceTags", e);
+            this.OnCollectionChanged("ClearanceTags", e, _clearanceTagsReference);
         }
         
         /// <summary>

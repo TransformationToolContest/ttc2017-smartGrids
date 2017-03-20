@@ -46,7 +46,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.AssetModels
     [XmlNamespacePrefixAttribute("cimAssetModels")]
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61968/AssetModels/ConductorInfo")]
     [DebuggerDisplayAttribute("ConductorInfo {UUID}")]
-    public class ConductorInfo : IdentifiedObject, IConductorInfo, IModelElement
+    public partial class ConductorInfo : IdentifiedObject, IConductorInfo, IModelElement
     {
         
         /// <summary>
@@ -54,30 +54,44 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.AssetModels
         /// </summary>
         private int _phaseCount;
         
+        private static Lazy<ITypedElement> _phaseCountAttribute = new Lazy<ITypedElement>(RetrievePhaseCountAttribute);
+        
         /// <summary>
         /// The backing field for the Insulated property
         /// </summary>
         private bool _insulated;
+        
+        private static Lazy<ITypedElement> _insulatedAttribute = new Lazy<ITypedElement>(RetrieveInsulatedAttribute);
         
         /// <summary>
         /// The backing field for the InsulationThickness property
         /// </summary>
         private float _insulationThickness;
         
+        private static Lazy<ITypedElement> _insulationThicknessAttribute = new Lazy<ITypedElement>(RetrieveInsulationThicknessAttribute);
+        
         /// <summary>
         /// The backing field for the Usage property
         /// </summary>
         private Nullable<ConductorUsageKind> _usage;
+        
+        private static Lazy<ITypedElement> _usageAttribute = new Lazy<ITypedElement>(RetrieveUsageAttribute);
         
         /// <summary>
         /// The backing field for the InsulationMaterial property
         /// </summary>
         private Nullable<ConductorInsulationKind> _insulationMaterial;
         
+        private static Lazy<ITypedElement> _insulationMaterialAttribute = new Lazy<ITypedElement>(RetrieveInsulationMaterialAttribute);
+        
+        private static Lazy<ITypedElement> _conductorSegmentsReference = new Lazy<ITypedElement>(RetrieveConductorSegmentsReference);
+        
         /// <summary>
         /// The backing field for the ConductorSegments property
         /// </summary>
         private ConductorInfoConductorSegmentsCollection _conductorSegments;
+        
+        private static Lazy<ITypedElement> _wireArrangementsReference = new Lazy<ITypedElement>(RetrieveWireArrangementsReference);
         
         /// <summary>
         /// The backing field for the WireArrangements property
@@ -114,10 +128,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.AssetModels
                     int old = this._phaseCount;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnPhaseCountChanging(e);
-                    this.OnPropertyChanging("PhaseCount", e);
+                    this.OnPropertyChanging("PhaseCount", e, _phaseCountAttribute);
                     this._phaseCount = value;
                     this.OnPhaseCountChanged(e);
-                    this.OnPropertyChanged("PhaseCount", e);
+                    this.OnPropertyChanged("PhaseCount", e, _phaseCountAttribute);
                 }
             }
         }
@@ -140,10 +154,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.AssetModels
                     bool old = this._insulated;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnInsulatedChanging(e);
-                    this.OnPropertyChanging("Insulated", e);
+                    this.OnPropertyChanging("Insulated", e, _insulatedAttribute);
                     this._insulated = value;
                     this.OnInsulatedChanged(e);
-                    this.OnPropertyChanged("Insulated", e);
+                    this.OnPropertyChanged("Insulated", e, _insulatedAttribute);
                 }
             }
         }
@@ -166,10 +180,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.AssetModels
                     float old = this._insulationThickness;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnInsulationThicknessChanging(e);
-                    this.OnPropertyChanging("InsulationThickness", e);
+                    this.OnPropertyChanging("InsulationThickness", e, _insulationThicknessAttribute);
                     this._insulationThickness = value;
                     this.OnInsulationThicknessChanged(e);
-                    this.OnPropertyChanged("InsulationThickness", e);
+                    this.OnPropertyChanged("InsulationThickness", e, _insulationThicknessAttribute);
                 }
             }
         }
@@ -192,10 +206,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.AssetModels
                     Nullable<ConductorUsageKind> old = this._usage;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnUsageChanging(e);
-                    this.OnPropertyChanging("Usage", e);
+                    this.OnPropertyChanging("Usage", e, _usageAttribute);
                     this._usage = value;
                     this.OnUsageChanged(e);
-                    this.OnPropertyChanged("Usage", e);
+                    this.OnPropertyChanged("Usage", e, _usageAttribute);
                 }
             }
         }
@@ -218,10 +232,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.AssetModels
                     Nullable<ConductorInsulationKind> old = this._insulationMaterial;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnInsulationMaterialChanging(e);
-                    this.OnPropertyChanging("InsulationMaterial", e);
+                    this.OnPropertyChanging("InsulationMaterial", e, _insulationMaterialAttribute);
                     this._insulationMaterial = value;
                     this.OnInsulationMaterialChanged(e);
-                    this.OnPropertyChanged("InsulationMaterial", e);
+                    this.OnPropertyChanged("InsulationMaterial", e, _insulationMaterialAttribute);
                 }
             }
         }
@@ -332,6 +346,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.AssetModels
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> InsulationMaterialChanged;
         
+        private static ITypedElement RetrievePhaseCountAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(ConductorInfo.ClassInstance)).Resolve("phaseCount")));
+        }
+        
         /// <summary>
         /// Raises the PhaseCountChanging event
         /// </summary>
@@ -356,6 +375,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.AssetModels
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveInsulatedAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(ConductorInfo.ClassInstance)).Resolve("insulated")));
         }
         
         /// <summary>
@@ -384,6 +408,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.AssetModels
             }
         }
         
+        private static ITypedElement RetrieveInsulationThicknessAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(ConductorInfo.ClassInstance)).Resolve("insulationThickness")));
+        }
+        
         /// <summary>
         /// Raises the InsulationThicknessChanging event
         /// </summary>
@@ -408,6 +437,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.AssetModels
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveUsageAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(ConductorInfo.ClassInstance)).Resolve("usage")));
         }
         
         /// <summary>
@@ -436,6 +470,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.AssetModels
             }
         }
         
+        private static ITypedElement RetrieveInsulationMaterialAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(ConductorInfo.ClassInstance)).Resolve("insulationMaterial")));
+        }
+        
         /// <summary>
         /// Raises the InsulationMaterialChanging event
         /// </summary>
@@ -462,6 +501,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.AssetModels
             }
         }
         
+        private static ITypedElement RetrieveConductorSegmentsReference()
+        {
+            return ((ITypedElement)(((ModelElement)(ConductorInfo.ClassInstance)).Resolve("ConductorSegments")));
+        }
+        
         /// <summary>
         /// Forwards CollectionChanging notifications for the ConductorSegments property to the parent model element
         /// </summary>
@@ -469,7 +513,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.AssetModels
         /// <param name="e">The original event data</param>
         private void ConductorSegmentsCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("ConductorSegments", e);
+            this.OnCollectionChanging("ConductorSegments", e, _conductorSegmentsReference);
         }
         
         /// <summary>
@@ -479,7 +523,12 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.AssetModels
         /// <param name="e">The original event data</param>
         private void ConductorSegmentsCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("ConductorSegments", e);
+            this.OnCollectionChanged("ConductorSegments", e, _conductorSegmentsReference);
+        }
+        
+        private static ITypedElement RetrieveWireArrangementsReference()
+        {
+            return ((ITypedElement)(((ModelElement)(ConductorInfo.ClassInstance)).Resolve("WireArrangements")));
         }
         
         /// <summary>
@@ -489,7 +538,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.AssetModels
         /// <param name="e">The original event data</param>
         private void WireArrangementsCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("WireArrangements", e);
+            this.OnCollectionChanging("WireArrangements", e, _wireArrangementsReference);
         }
         
         /// <summary>
@@ -499,7 +548,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.AssetModels
         /// <param name="e">The original event data</param>
         private void WireArrangementsCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("WireArrangements", e);
+            this.OnCollectionChanged("WireArrangements", e, _wireArrangementsReference);
         }
         
         /// <summary>
@@ -767,7 +816,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.AssetModels
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public PhaseCountProxy(IConductorInfo modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "phaseCount")
             {
             }
             
@@ -785,24 +834,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.AssetModels
                     this.ModelElement.PhaseCount = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.PhaseCountChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.PhaseCountChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -816,7 +847,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.AssetModels
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public InsulatedProxy(IConductorInfo modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "insulated")
             {
             }
             
@@ -834,24 +865,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.AssetModels
                     this.ModelElement.Insulated = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.InsulatedChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.InsulatedChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -865,7 +878,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.AssetModels
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public InsulationThicknessProxy(IConductorInfo modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "insulationThickness")
             {
             }
             
@@ -883,24 +896,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.AssetModels
                     this.ModelElement.InsulationThickness = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.InsulationThicknessChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.InsulationThicknessChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -914,7 +909,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.AssetModels
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public UsageProxy(IConductorInfo modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "usage")
             {
             }
             
@@ -932,24 +927,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.AssetModels
                     this.ModelElement.Usage = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.UsageChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.UsageChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -963,7 +940,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.AssetModels
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public InsulationMaterialProxy(IConductorInfo modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "insulationMaterial")
             {
             }
             
@@ -980,24 +957,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.AssetModels
                 {
                     this.ModelElement.InsulationMaterial = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.InsulationMaterialChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.InsulationMaterialChanged -= handler;
             }
         }
     }

@@ -43,7 +43,7 @@ namespace TTC2017.SmartGrids.SubstationStandard.LNNodes.LNGroupZ
     [XmlNamespacePrefixAttribute("groupz")]
     [ModelRepresentationClassAttribute("http://www.transformation-tool-contest.eu/2017/smartGrids/substationStandard#//LN" +
         "Nodes/LNGroupZ/GroupZ")]
-    public class GroupZ : DomainLN, IGroupZ, IModelElement
+    public partial class GroupZ : DomainLN, IGroupZ, IModelElement
     {
         
         private static IClass _classInstance;

@@ -43,13 +43,17 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.StateVariables
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61970/StateVariables/TopologicalIsl" +
         "and")]
     [DebuggerDisplayAttribute("TopologicalIsland {UUID}")]
-    public class TopologicalIsland : IdentifiedObject, ITopologicalIsland, IModelElement
+    public partial class TopologicalIsland : IdentifiedObject, ITopologicalIsland, IModelElement
     {
+        
+        private static Lazy<ITypedElement> _angleRef_TopologicalNodeReference = new Lazy<ITypedElement>(RetrieveAngleRef_TopologicalNodeReference);
         
         /// <summary>
         /// The backing field for the AngleRef_TopologicalNode property
         /// </summary>
         private ITopologicalNode _angleRef_TopologicalNode;
+        
+        private static Lazy<ITypedElement> _topologicalNodesReference = new Lazy<ITypedElement>(RetrieveTopologicalNodesReference);
         
         /// <summary>
         /// The backing field for the TopologicalNodes property
@@ -83,7 +87,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.StateVariables
                     ITopologicalNode old = this._angleRef_TopologicalNode;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnAngleRef_TopologicalNodeChanging(e);
-                    this.OnPropertyChanging("AngleRef_TopologicalNode", e);
+                    this.OnPropertyChanging("AngleRef_TopologicalNode", e, _angleRef_TopologicalNodeReference);
                     this._angleRef_TopologicalNode = value;
                     if ((old != null))
                     {
@@ -96,7 +100,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.StateVariables
                         value.Deleted += this.OnResetAngleRef_TopologicalNode;
                     }
                     this.OnAngleRef_TopologicalNodeChanged(e);
-                    this.OnPropertyChanged("AngleRef_TopologicalNode", e);
+                    this.OnPropertyChanged("AngleRef_TopologicalNode", e, _angleRef_TopologicalNodeReference);
                 }
             }
         }
@@ -153,6 +157,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.StateVariables
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> AngleRef_TopologicalNodeChanged;
         
+        private static ITypedElement RetrieveAngleRef_TopologicalNodeReference()
+        {
+            return ((ITypedElement)(((ModelElement)(TopologicalIsland.ClassInstance)).Resolve("AngleRef_TopologicalNode")));
+        }
+        
         /// <summary>
         /// Raises the AngleRef_TopologicalNodeChanging event
         /// </summary>
@@ -189,6 +198,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.StateVariables
             this.AngleRef_TopologicalNode = null;
         }
         
+        private static ITypedElement RetrieveTopologicalNodesReference()
+        {
+            return ((ITypedElement)(((ModelElement)(TopologicalIsland.ClassInstance)).Resolve("TopologicalNodes")));
+        }
+        
         /// <summary>
         /// Forwards CollectionChanging notifications for the TopologicalNodes property to the parent model element
         /// </summary>
@@ -196,7 +210,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.StateVariables
         /// <param name="e">The original event data</param>
         private void TopologicalNodesCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("TopologicalNodes", e);
+            this.OnCollectionChanging("TopologicalNodes", e, _topologicalNodesReference);
         }
         
         /// <summary>
@@ -206,7 +220,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.StateVariables
         /// <param name="e">The original event data</param>
         private void TopologicalNodesCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("TopologicalNodes", e);
+            this.OnCollectionChanged("TopologicalNodes", e, _topologicalNodesReference);
         }
         
         /// <summary>
@@ -444,7 +458,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.StateVariables
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public AngleRef_TopologicalNodeProxy(ITopologicalIsland modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "AngleRef_TopologicalNode")
             {
             }
             
@@ -461,24 +475,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.StateVariables
                 {
                     this.ModelElement.AngleRef_TopologicalNode = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.AngleRef_TopologicalNodeChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.AngleRef_TopologicalNodeChanged -= handler;
             }
         }
     }

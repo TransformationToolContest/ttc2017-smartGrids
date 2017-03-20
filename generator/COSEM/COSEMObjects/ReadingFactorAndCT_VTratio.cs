@@ -39,7 +39,7 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
     [XmlNamespacePrefixAttribute("objects")]
     [ModelRepresentationClassAttribute("http://www.transformation-tool-contest.eu/2017/smartGrids/cosem#//COSEMObjects/Re" +
         "adingFactorAndCT_VTratio")]
-    public class ReadingFactorAndCT_VTratio : Data, IReadingFactorAndCT_VTratio, IModelElement
+    public partial class ReadingFactorAndCT_VTratio : Data, IReadingFactorAndCT_VTratio, IModelElement
     {
         
         /// <summary>
@@ -47,40 +47,56 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
         /// </summary>
         private Nullable<double> _readingfactorforpower;
         
+        private static Lazy<ITypedElement> _readingfactorforpowerAttribute = new Lazy<ITypedElement>(RetrieveReadingfactorforpowerAttribute);
+        
         /// <summary>
         /// The backing field for the Readingfactorforenergy property
         /// </summary>
         private Nullable<double> _readingfactorforenergy;
+        
+        private static Lazy<ITypedElement> _readingfactorforenergyAttribute = new Lazy<ITypedElement>(RetrieveReadingfactorforenergyAttribute);
         
         /// <summary>
         /// The backing field for the Transformerratio_currentzähler property
         /// </summary>
         private Nullable<int> _transformerratio_currentzähler;
         
+        private static Lazy<ITypedElement> _transformerratio_currentzählerAttribute = new Lazy<ITypedElement>(RetrieveTransformerratio_currentzählerAttribute);
+        
         /// <summary>
         /// The backing field for the Transformerratio_voltagezähler property
         /// </summary>
         private Nullable<int> _transformerratio_voltagezähler;
+        
+        private static Lazy<ITypedElement> _transformerratio_voltagezählerAttribute = new Lazy<ITypedElement>(RetrieveTransformerratio_voltagezählerAttribute);
         
         /// <summary>
         /// The backing field for the Overalltransformerratiozähler property
         /// </summary>
         private Nullable<int> _overalltransformerratiozähler;
         
+        private static Lazy<ITypedElement> _overalltransformerratiozählerAttribute = new Lazy<ITypedElement>(RetrieveOveralltransformerratiozählerAttribute);
+        
         /// <summary>
         /// The backing field for the Transformerratio_currentnenner property
         /// </summary>
         private Nullable<int> _transformerratio_currentnenner;
+        
+        private static Lazy<ITypedElement> _transformerratio_currentnennerAttribute = new Lazy<ITypedElement>(RetrieveTransformerratio_currentnennerAttribute);
         
         /// <summary>
         /// The backing field for the Transformerratio_voltagenenner property
         /// </summary>
         private Nullable<int> _transformerratio_voltagenenner;
         
+        private static Lazy<ITypedElement> _transformerratio_voltagenennerAttribute = new Lazy<ITypedElement>(RetrieveTransformerratio_voltagenennerAttribute);
+        
         /// <summary>
         /// The backing field for the Overalltransformer_rationenner property
         /// </summary>
         private Nullable<int> _overalltransformer_rationenner;
+        
+        private static Lazy<ITypedElement> _overalltransformer_rationennerAttribute = new Lazy<ITypedElement>(RetrieveOveralltransformer_rationennerAttribute);
         
         private static IClass _classInstance;
         
@@ -101,10 +117,10 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     Nullable<double> old = this._readingfactorforpower;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnReadingfactorforpowerChanging(e);
-                    this.OnPropertyChanging("Readingfactorforpower", e);
+                    this.OnPropertyChanging("Readingfactorforpower", e, _readingfactorforpowerAttribute);
                     this._readingfactorforpower = value;
                     this.OnReadingfactorforpowerChanged(e);
-                    this.OnPropertyChanged("Readingfactorforpower", e);
+                    this.OnPropertyChanged("Readingfactorforpower", e, _readingfactorforpowerAttribute);
                 }
             }
         }
@@ -126,10 +142,10 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     Nullable<double> old = this._readingfactorforenergy;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnReadingfactorforenergyChanging(e);
-                    this.OnPropertyChanging("Readingfactorforenergy", e);
+                    this.OnPropertyChanging("Readingfactorforenergy", e, _readingfactorforenergyAttribute);
                     this._readingfactorforenergy = value;
                     this.OnReadingfactorforenergyChanged(e);
-                    this.OnPropertyChanged("Readingfactorforenergy", e);
+                    this.OnPropertyChanged("Readingfactorforenergy", e, _readingfactorforenergyAttribute);
                 }
             }
         }
@@ -151,10 +167,10 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     Nullable<int> old = this._transformerratio_currentzähler;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnTransformerratio_currentzählerChanging(e);
-                    this.OnPropertyChanging("Transformerratio_currentzähler", e);
+                    this.OnPropertyChanging("Transformerratio_currentzähler", e, _transformerratio_currentzählerAttribute);
                     this._transformerratio_currentzähler = value;
                     this.OnTransformerratio_currentzählerChanged(e);
-                    this.OnPropertyChanged("Transformerratio_currentzähler", e);
+                    this.OnPropertyChanged("Transformerratio_currentzähler", e, _transformerratio_currentzählerAttribute);
                 }
             }
         }
@@ -176,10 +192,10 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     Nullable<int> old = this._transformerratio_voltagezähler;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnTransformerratio_voltagezählerChanging(e);
-                    this.OnPropertyChanging("Transformerratio_voltagezähler", e);
+                    this.OnPropertyChanging("Transformerratio_voltagezähler", e, _transformerratio_voltagezählerAttribute);
                     this._transformerratio_voltagezähler = value;
                     this.OnTransformerratio_voltagezählerChanged(e);
-                    this.OnPropertyChanged("Transformerratio_voltagezähler", e);
+                    this.OnPropertyChanged("Transformerratio_voltagezähler", e, _transformerratio_voltagezählerAttribute);
                 }
             }
         }
@@ -201,10 +217,10 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     Nullable<int> old = this._overalltransformerratiozähler;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnOveralltransformerratiozählerChanging(e);
-                    this.OnPropertyChanging("Overalltransformerratiozähler", e);
+                    this.OnPropertyChanging("Overalltransformerratiozähler", e, _overalltransformerratiozählerAttribute);
                     this._overalltransformerratiozähler = value;
                     this.OnOveralltransformerratiozählerChanged(e);
-                    this.OnPropertyChanged("Overalltransformerratiozähler", e);
+                    this.OnPropertyChanged("Overalltransformerratiozähler", e, _overalltransformerratiozählerAttribute);
                 }
             }
         }
@@ -226,10 +242,10 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     Nullable<int> old = this._transformerratio_currentnenner;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnTransformerratio_currentnennerChanging(e);
-                    this.OnPropertyChanging("Transformerratio_currentnenner", e);
+                    this.OnPropertyChanging("Transformerratio_currentnenner", e, _transformerratio_currentnennerAttribute);
                     this._transformerratio_currentnenner = value;
                     this.OnTransformerratio_currentnennerChanged(e);
-                    this.OnPropertyChanged("Transformerratio_currentnenner", e);
+                    this.OnPropertyChanged("Transformerratio_currentnenner", e, _transformerratio_currentnennerAttribute);
                 }
             }
         }
@@ -251,10 +267,10 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     Nullable<int> old = this._transformerratio_voltagenenner;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnTransformerratio_voltagenennerChanging(e);
-                    this.OnPropertyChanging("Transformerratio_voltagenenner", e);
+                    this.OnPropertyChanging("Transformerratio_voltagenenner", e, _transformerratio_voltagenennerAttribute);
                     this._transformerratio_voltagenenner = value;
                     this.OnTransformerratio_voltagenennerChanged(e);
-                    this.OnPropertyChanged("Transformerratio_voltagenenner", e);
+                    this.OnPropertyChanged("Transformerratio_voltagenenner", e, _transformerratio_voltagenennerAttribute);
                 }
             }
         }
@@ -276,10 +292,10 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     Nullable<int> old = this._overalltransformer_rationenner;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnOveralltransformer_rationennerChanging(e);
-                    this.OnPropertyChanging("Overalltransformer_rationenner", e);
+                    this.OnPropertyChanging("Overalltransformer_rationenner", e, _overalltransformer_rationennerAttribute);
                     this._overalltransformer_rationenner = value;
                     this.OnOveralltransformer_rationennerChanged(e);
-                    this.OnPropertyChanged("Overalltransformer_rationenner", e);
+                    this.OnPropertyChanged("Overalltransformer_rationenner", e, _overalltransformer_rationennerAttribute);
                 }
             }
         }
@@ -380,6 +396,11 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> Overalltransformer_rationennerChanged;
         
+        private static ITypedElement RetrieveReadingfactorforpowerAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(ReadingFactorAndCT_VTratio.ClassInstance)).Resolve("Readingfactorforpower")));
+        }
+        
         /// <summary>
         /// Raises the ReadingfactorforpowerChanging event
         /// </summary>
@@ -404,6 +425,11 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveReadingfactorforenergyAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(ReadingFactorAndCT_VTratio.ClassInstance)).Resolve("Readingfactorforenergy")));
         }
         
         /// <summary>
@@ -432,6 +458,11 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             }
         }
         
+        private static ITypedElement RetrieveTransformerratio_currentzählerAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(ReadingFactorAndCT_VTratio.ClassInstance)).Resolve("Transformerratio_currentzähler")));
+        }
+        
         /// <summary>
         /// Raises the Transformerratio_currentzählerChanging event
         /// </summary>
@@ -456,6 +487,11 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveTransformerratio_voltagezählerAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(ReadingFactorAndCT_VTratio.ClassInstance)).Resolve("Transformerratio_voltagezähler")));
         }
         
         /// <summary>
@@ -484,6 +520,11 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             }
         }
         
+        private static ITypedElement RetrieveOveralltransformerratiozählerAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(ReadingFactorAndCT_VTratio.ClassInstance)).Resolve("Overalltransformerratiozähler")));
+        }
+        
         /// <summary>
         /// Raises the OveralltransformerratiozählerChanging event
         /// </summary>
@@ -508,6 +549,11 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveTransformerratio_currentnennerAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(ReadingFactorAndCT_VTratio.ClassInstance)).Resolve("Transformerratio_currentnenner")));
         }
         
         /// <summary>
@@ -536,6 +582,11 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             }
         }
         
+        private static ITypedElement RetrieveTransformerratio_voltagenennerAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(ReadingFactorAndCT_VTratio.ClassInstance)).Resolve("Transformerratio_voltagenenner")));
+        }
+        
         /// <summary>
         /// Raises the Transformerratio_voltagenennerChanging event
         /// </summary>
@@ -560,6 +611,11 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveOveralltransformer_rationennerAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(ReadingFactorAndCT_VTratio.ClassInstance)).Resolve("Overalltransformer_rationenner")));
         }
         
         /// <summary>
@@ -705,7 +761,7 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public ReadingfactorforpowerProxy(IReadingFactorAndCT_VTratio modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "Readingfactorforpower")
             {
             }
             
@@ -723,24 +779,6 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     this.ModelElement.Readingfactorforpower = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ReadingfactorforpowerChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ReadingfactorforpowerChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -754,7 +792,7 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public ReadingfactorforenergyProxy(IReadingFactorAndCT_VTratio modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "Readingfactorforenergy")
             {
             }
             
@@ -772,24 +810,6 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     this.ModelElement.Readingfactorforenergy = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ReadingfactorforenergyChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ReadingfactorforenergyChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -803,7 +823,7 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public Transformerratio_currentzählerProxy(IReadingFactorAndCT_VTratio modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "Transformerratio_currentzähler")
             {
             }
             
@@ -821,24 +841,6 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     this.ModelElement.Transformerratio_currentzähler = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.Transformerratio_currentzählerChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.Transformerratio_currentzählerChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -852,7 +854,7 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public Transformerratio_voltagezählerProxy(IReadingFactorAndCT_VTratio modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "Transformerratio_voltagezähler")
             {
             }
             
@@ -870,24 +872,6 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     this.ModelElement.Transformerratio_voltagezähler = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.Transformerratio_voltagezählerChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.Transformerratio_voltagezählerChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -901,7 +885,7 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public OveralltransformerratiozählerProxy(IReadingFactorAndCT_VTratio modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "Overalltransformerratiozähler")
             {
             }
             
@@ -919,24 +903,6 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     this.ModelElement.Overalltransformerratiozähler = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.OveralltransformerratiozählerChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.OveralltransformerratiozählerChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -950,7 +916,7 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public Transformerratio_currentnennerProxy(IReadingFactorAndCT_VTratio modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "Transformerratio_currentnenner")
             {
             }
             
@@ -968,24 +934,6 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     this.ModelElement.Transformerratio_currentnenner = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.Transformerratio_currentnennerChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.Transformerratio_currentnennerChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -999,7 +947,7 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public Transformerratio_voltagenennerProxy(IReadingFactorAndCT_VTratio modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "Transformerratio_voltagenenner")
             {
             }
             
@@ -1017,24 +965,6 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     this.ModelElement.Transformerratio_voltagenenner = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.Transformerratio_voltagenennerChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.Transformerratio_voltagenennerChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1048,7 +978,7 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public Overalltransformer_rationennerProxy(IReadingFactorAndCT_VTratio modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "Overalltransformer_rationenner")
             {
             }
             
@@ -1065,24 +995,6 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                 {
                     this.ModelElement.Overalltransformer_rationenner = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.Overalltransformer_rationennerChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.Overalltransformer_rationennerChanged -= handler;
             }
         }
     }

@@ -39,7 +39,7 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
     [XmlNamespacePrefixAttribute("objects")]
     [ModelRepresentationClassAttribute("http://www.transformation-tool-contest.eu/2017/smartGrids/cosem#//COSEMObjects/Co" +
         "mmunicationPortLogParameters")]
-    public class CommunicationPortLogParameters : Data, ICommunicationPortLogParameters, IModelElement
+    public partial class CommunicationPortLogParameters : Data, ICommunicationPortLogParameters, IModelElement
     {
         
         /// <summary>
@@ -47,25 +47,35 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
         /// </summary>
         private string _reserved;
         
+        private static Lazy<ITypedElement> _reservedAttribute = new Lazy<ITypedElement>(RetrieveReservedAttribute);
+        
         /// <summary>
         /// The backing field for the Number_connections property
         /// </summary>
         private string _number_connections;
+        
+        private static Lazy<ITypedElement> _number_connectionsAttribute = new Lazy<ITypedElement>(RetrieveNumber_connectionsAttribute);
         
         /// <summary>
         /// The backing field for the Communication_port_parameter property
         /// </summary>
         private string _communication_port_parameter;
         
+        private static Lazy<ITypedElement> _communication_port_parameterAttribute = new Lazy<ITypedElement>(RetrieveCommunication_port_parameterAttribute);
+        
         /// <summary>
         /// The backing field for the GSM_field_strength property
         /// </summary>
         private string _gSM_field_strength;
         
+        private static Lazy<ITypedElement> _gSM_field_strengthAttribute = new Lazy<ITypedElement>(RetrieveGSM_field_strengthAttribute);
+        
         /// <summary>
         /// The backing field for the Communicationaddress property
         /// </summary>
         private string _communicationaddress;
+        
+        private static Lazy<ITypedElement> _communicationaddressAttribute = new Lazy<ITypedElement>(RetrieveCommunicationaddressAttribute);
         
         private static IClass _classInstance;
         
@@ -86,10 +96,10 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     string old = this._reserved;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnReservedChanging(e);
-                    this.OnPropertyChanging("Reserved", e);
+                    this.OnPropertyChanging("Reserved", e, _reservedAttribute);
                     this._reserved = value;
                     this.OnReservedChanged(e);
-                    this.OnPropertyChanged("Reserved", e);
+                    this.OnPropertyChanged("Reserved", e, _reservedAttribute);
                 }
             }
         }
@@ -111,10 +121,10 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     string old = this._number_connections;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnNumber_connectionsChanging(e);
-                    this.OnPropertyChanging("Number_connections", e);
+                    this.OnPropertyChanging("Number_connections", e, _number_connectionsAttribute);
                     this._number_connections = value;
                     this.OnNumber_connectionsChanged(e);
-                    this.OnPropertyChanged("Number_connections", e);
+                    this.OnPropertyChanged("Number_connections", e, _number_connectionsAttribute);
                 }
             }
         }
@@ -136,10 +146,10 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     string old = this._communication_port_parameter;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnCommunication_port_parameterChanging(e);
-                    this.OnPropertyChanging("Communication_port_parameter", e);
+                    this.OnPropertyChanging("Communication_port_parameter", e, _communication_port_parameterAttribute);
                     this._communication_port_parameter = value;
                     this.OnCommunication_port_parameterChanged(e);
-                    this.OnPropertyChanged("Communication_port_parameter", e);
+                    this.OnPropertyChanged("Communication_port_parameter", e, _communication_port_parameterAttribute);
                 }
             }
         }
@@ -161,10 +171,10 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     string old = this._gSM_field_strength;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnGSM_field_strengthChanging(e);
-                    this.OnPropertyChanging("GSM_field_strength", e);
+                    this.OnPropertyChanging("GSM_field_strength", e, _gSM_field_strengthAttribute);
                     this._gSM_field_strength = value;
                     this.OnGSM_field_strengthChanged(e);
-                    this.OnPropertyChanged("GSM_field_strength", e);
+                    this.OnPropertyChanged("GSM_field_strength", e, _gSM_field_strengthAttribute);
                 }
             }
         }
@@ -186,10 +196,10 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     string old = this._communicationaddress;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnCommunicationaddressChanging(e);
-                    this.OnPropertyChanging("Communicationaddress", e);
+                    this.OnPropertyChanging("Communicationaddress", e, _communicationaddressAttribute);
                     this._communicationaddress = value;
                     this.OnCommunicationaddressChanged(e);
-                    this.OnPropertyChanged("Communicationaddress", e);
+                    this.OnPropertyChanged("Communicationaddress", e, _communicationaddressAttribute);
                 }
             }
         }
@@ -260,6 +270,11 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> CommunicationaddressChanged;
         
+        private static ITypedElement RetrieveReservedAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(CommunicationPortLogParameters.ClassInstance)).Resolve("Reserved")));
+        }
+        
         /// <summary>
         /// Raises the ReservedChanging event
         /// </summary>
@@ -284,6 +299,11 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveNumber_connectionsAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(CommunicationPortLogParameters.ClassInstance)).Resolve("Number_connections")));
         }
         
         /// <summary>
@@ -312,6 +332,11 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             }
         }
         
+        private static ITypedElement RetrieveCommunication_port_parameterAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(CommunicationPortLogParameters.ClassInstance)).Resolve("Communication_port_parameter")));
+        }
+        
         /// <summary>
         /// Raises the Communication_port_parameterChanging event
         /// </summary>
@@ -338,6 +363,11 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             }
         }
         
+        private static ITypedElement RetrieveGSM_field_strengthAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(CommunicationPortLogParameters.ClassInstance)).Resolve("GSM_field_strength")));
+        }
+        
         /// <summary>
         /// Raises the GSM_field_strengthChanging event
         /// </summary>
@@ -362,6 +392,11 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveCommunicationaddressAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(CommunicationPortLogParameters.ClassInstance)).Resolve("Communicationaddress")));
         }
         
         /// <summary>
@@ -480,7 +515,7 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public ReservedProxy(ICommunicationPortLogParameters modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "Reserved")
             {
             }
             
@@ -498,24 +533,6 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     this.ModelElement.Reserved = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ReservedChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ReservedChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -529,7 +546,7 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public Number_connectionsProxy(ICommunicationPortLogParameters modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "Number_connections")
             {
             }
             
@@ -547,24 +564,6 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     this.ModelElement.Number_connections = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.Number_connectionsChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.Number_connectionsChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -578,7 +577,7 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public Communication_port_parameterProxy(ICommunicationPortLogParameters modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "Communication_port_parameter")
             {
             }
             
@@ -596,24 +595,6 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     this.ModelElement.Communication_port_parameter = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.Communication_port_parameterChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.Communication_port_parameterChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -627,7 +608,7 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public GSM_field_strengthProxy(ICommunicationPortLogParameters modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "GSM_field_strength")
             {
             }
             
@@ -645,24 +626,6 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     this.ModelElement.GSM_field_strength = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.GSM_field_strengthChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.GSM_field_strengthChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -676,7 +639,7 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public CommunicationaddressProxy(ICommunicationPortLogParameters modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "Communicationaddress")
             {
             }
             
@@ -693,24 +656,6 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                 {
                     this.ModelElement.Communicationaddress = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.CommunicationaddressChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.CommunicationaddressChanged -= handler;
             }
         }
     }

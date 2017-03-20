@@ -50,8 +50,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfOperations
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61970/Informative/InfOperations/Ope" +
         "rationalRestriction")]
     [DebuggerDisplayAttribute("OperationalRestriction {UUID}")]
-    public class OperationalRestriction : Document, IOperationalRestriction, IModelElement
+    public partial class OperationalRestriction : Document, IOperationalRestriction, IModelElement
     {
+        
+        private static Lazy<ITypedElement> _activePeriodReference = new Lazy<ITypedElement>(RetrieveActivePeriodReference);
         
         /// <summary>
         /// The backing field for the ActivePeriod property
@@ -78,7 +80,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfOperations
                     IDateTimeInterval old = this._activePeriod;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnActivePeriodChanging(e);
-                    this.OnPropertyChanging("ActivePeriod", e);
+                    this.OnPropertyChanging("ActivePeriod", e, _activePeriodReference);
                     this._activePeriod = value;
                     if ((old != null))
                     {
@@ -89,7 +91,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfOperations
                         value.Deleted += this.OnResetActivePeriod;
                     }
                     this.OnActivePeriodChanged(e);
-                    this.OnPropertyChanged("ActivePeriod", e);
+                    this.OnPropertyChanged("ActivePeriod", e, _activePeriodReference);
                 }
             }
         }
@@ -130,6 +132,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfOperations
         /// Gets fired when the ActivePeriod property changed its value
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> ActivePeriodChanged;
+        
+        private static ITypedElement RetrieveActivePeriodReference()
+        {
+            return ((ITypedElement)(((ModelElement)(OperationalRestriction.ClassInstance)).Resolve("activePeriod")));
+        }
         
         /// <summary>
         /// Raises the ActivePeriodChanging event
@@ -354,7 +361,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfOperations
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public ActivePeriodProxy(IOperationalRestriction modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "activePeriod")
             {
             }
             
@@ -371,24 +378,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfOperations
                 {
                     this.ModelElement.ActivePeriod = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ActivePeriodChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ActivePeriodChanged -= handler;
             }
         }
     }

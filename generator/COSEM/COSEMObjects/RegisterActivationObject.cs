@@ -39,7 +39,7 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
     [XmlNamespacePrefixAttribute("objects")]
     [ModelRepresentationClassAttribute("http://www.transformation-tool-contest.eu/2017/smartGrids/cosem#//COSEMObjects/Re" +
         "gisterActivationObject")]
-    public class RegisterActivationObject : RegisterActivation, IRegisterActivationObject, IModelElement
+    public partial class RegisterActivationObject : RegisterActivation, IRegisterActivationObject, IModelElement
     {
         
         private static IClass _classInstance;

@@ -45,13 +45,17 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfGMLSupport
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61970/Informative/InfGMLSupport/Gml" +
         "Selector")]
     [DebuggerDisplayAttribute("GmlSelector {UUID}")]
-    public class GmlSelector : IdentifiedObject, IGmlSelector, IModelElement
+    public partial class GmlSelector : IdentifiedObject, IGmlSelector, IModelElement
     {
+        
+        private static Lazy<ITypedElement> _gmlDiagramObjectsReference = new Lazy<ITypedElement>(RetrieveGmlDiagramObjectsReference);
         
         /// <summary>
         /// The backing field for the GmlDiagramObjects property
         /// </summary>
         private GmlSelectorGmlDiagramObjectsCollection _gmlDiagramObjects;
+        
+        private static Lazy<ITypedElement> _changeItemsReference = new Lazy<ITypedElement>(RetrieveChangeItemsReference);
         
         /// <summary>
         /// The backing field for the ChangeItems property
@@ -127,6 +131,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfGMLSupport
             }
         }
         
+        private static ITypedElement RetrieveGmlDiagramObjectsReference()
+        {
+            return ((ITypedElement)(((ModelElement)(GmlSelector.ClassInstance)).Resolve("GmlDiagramObjects")));
+        }
+        
         /// <summary>
         /// Forwards CollectionChanging notifications for the GmlDiagramObjects property to the parent model element
         /// </summary>
@@ -134,7 +143,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfGMLSupport
         /// <param name="e">The original event data</param>
         private void GmlDiagramObjectsCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("GmlDiagramObjects", e);
+            this.OnCollectionChanging("GmlDiagramObjects", e, _gmlDiagramObjectsReference);
         }
         
         /// <summary>
@@ -144,7 +153,12 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfGMLSupport
         /// <param name="e">The original event data</param>
         private void GmlDiagramObjectsCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("GmlDiagramObjects", e);
+            this.OnCollectionChanged("GmlDiagramObjects", e, _gmlDiagramObjectsReference);
+        }
+        
+        private static ITypedElement RetrieveChangeItemsReference()
+        {
+            return ((ITypedElement)(((ModelElement)(GmlSelector.ClassInstance)).Resolve("ChangeItems")));
         }
         
         /// <summary>
@@ -154,7 +168,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfGMLSupport
         /// <param name="e">The original event data</param>
         private void ChangeItemsCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("ChangeItems", e);
+            this.OnCollectionChanging("ChangeItems", e, _changeItemsReference);
         }
         
         /// <summary>
@@ -164,7 +178,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfGMLSupport
         /// <param name="e">The original event data</param>
         private void ChangeItemsCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("ChangeItems", e);
+            this.OnCollectionChanged("ChangeItems", e, _changeItemsReference);
         }
         
         /// <summary>

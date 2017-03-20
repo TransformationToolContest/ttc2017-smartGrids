@@ -40,13 +40,17 @@ namespace TTC2017.SmartGrids.COSEM.InterfaceClasses
     [XmlNamespacePrefixAttribute("inter")]
     [ModelRepresentationClassAttribute("http://www.transformation-tool-contest.eu/2017/smartGrids/cosem#//InterfaceClasse" +
         "s/Register")]
-    public class Register : Data, IRegister, IModelElement
+    public partial class Register : Data, IRegister, IModelElement
     {
         
         /// <summary>
         /// The backing field for the Value property
         /// </summary>
         private Nullable<float> _value;
+        
+        private static Lazy<ITypedElement> _valueAttribute = new Lazy<ITypedElement>(RetrieveValueAttribute);
+        
+        private static Lazy<ITypedElement> _scaler_unitReference = new Lazy<ITypedElement>(RetrieveScaler_unitReference);
         
         /// <summary>
         /// The backing field for the Scaler_unit property
@@ -73,10 +77,10 @@ namespace TTC2017.SmartGrids.COSEM.InterfaceClasses
                     Nullable<float> old = this._value;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnValueChanging(e);
-                    this.OnPropertyChanging("Value", e);
+                    this.OnPropertyChanging("Value", e, _valueAttribute);
                     this._value = value;
                     this.OnValueChanged(e);
-                    this.OnPropertyChanged("Value", e);
+                    this.OnPropertyChanged("Value", e, _valueAttribute);
                 }
             }
         }
@@ -99,7 +103,7 @@ namespace TTC2017.SmartGrids.COSEM.InterfaceClasses
                     IScal_unit_type old = this._scaler_unit;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnScaler_unitChanging(e);
-                    this.OnPropertyChanging("Scaler_unit", e);
+                    this.OnPropertyChanging("Scaler_unit", e, _scaler_unitReference);
                     this._scaler_unit = value;
                     if ((old != null))
                     {
@@ -110,7 +114,7 @@ namespace TTC2017.SmartGrids.COSEM.InterfaceClasses
                         value.Deleted += this.OnResetScaler_unit;
                     }
                     this.OnScaler_unitChanged(e);
-                    this.OnPropertyChanged("Scaler_unit", e);
+                    this.OnPropertyChanged("Scaler_unit", e, _scaler_unitReference);
                 }
             }
         }
@@ -162,6 +166,11 @@ namespace TTC2017.SmartGrids.COSEM.InterfaceClasses
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> Scaler_unitChanged;
         
+        private static ITypedElement RetrieveValueAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(Register.ClassInstance)).Resolve("value")));
+        }
+        
         /// <summary>
         /// Raises the ValueChanging event
         /// </summary>
@@ -186,6 +195,11 @@ namespace TTC2017.SmartGrids.COSEM.InterfaceClasses
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveScaler_unitReference()
+        {
+            return ((ITypedElement)(((ModelElement)(Register.ClassInstance)).Resolve("scaler_unit")));
         }
         
         /// <summary>
@@ -431,7 +445,7 @@ namespace TTC2017.SmartGrids.COSEM.InterfaceClasses
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public ValueProxy(IRegister modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "value")
             {
             }
             
@@ -449,24 +463,6 @@ namespace TTC2017.SmartGrids.COSEM.InterfaceClasses
                     this.ModelElement.Value = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ValueChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ValueChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -480,7 +476,7 @@ namespace TTC2017.SmartGrids.COSEM.InterfaceClasses
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public Scaler_unitProxy(IRegister modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "scaler_unit")
             {
             }
             
@@ -497,24 +493,6 @@ namespace TTC2017.SmartGrids.COSEM.InterfaceClasses
                 {
                     this.ModelElement.Scaler_unit = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.Scaler_unitChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.Scaler_unitChanged -= handler;
             }
         }
     }

@@ -39,7 +39,7 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
     [XmlNamespacePrefixAttribute("objects")]
     [ModelRepresentationClassAttribute("http://www.transformation-tool-contest.eu/2017/smartGrids/cosem#//COSEMObjects/Mo" +
         "demConfigurationObject")]
-    public class ModemConfigurationObject : Modemconfiguration, IModemConfigurationObject, IModelElement
+    public partial class ModemConfigurationObject : Modemconfiguration, IModemConfigurationObject, IModelElement
     {
         
         private static IClass _classInstance;

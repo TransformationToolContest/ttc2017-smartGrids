@@ -49,8 +49,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.EnergyScheduling
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61970/Informative/EnergyScheduling/" +
         "Reserve")]
     [DebuggerDisplayAttribute("Reserve {UUID}")]
-    public class Reserve : EnergyTransaction, IReserve, IModelElement
+    public partial class Reserve : EnergyTransaction, IReserve, IModelElement
     {
+        
+        private static Lazy<ITypedElement> _areaReserveSpecReference = new Lazy<ITypedElement>(RetrieveAreaReserveSpecReference);
         
         /// <summary>
         /// The backing field for the AreaReserveSpec property
@@ -108,6 +110,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.EnergyScheduling
             }
         }
         
+        private static ITypedElement RetrieveAreaReserveSpecReference()
+        {
+            return ((ITypedElement)(((ModelElement)(Reserve.ClassInstance)).Resolve("AreaReserveSpec")));
+        }
+        
         /// <summary>
         /// Forwards CollectionChanging notifications for the AreaReserveSpec property to the parent model element
         /// </summary>
@@ -115,7 +122,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.EnergyScheduling
         /// <param name="e">The original event data</param>
         private void AreaReserveSpecCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("AreaReserveSpec", e);
+            this.OnCollectionChanging("AreaReserveSpec", e, _areaReserveSpecReference);
         }
         
         /// <summary>
@@ -125,7 +132,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.EnergyScheduling
         /// <param name="e">The original event data</param>
         private void AreaReserveSpecCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("AreaReserveSpec", e);
+            this.OnCollectionChanged("AreaReserveSpec", e, _areaReserveSpecReference);
         }
         
         /// <summary>

@@ -53,7 +53,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
     [XmlNamespacePrefixAttribute("cimWires")]
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61970/Wires/MutualCoupling")]
     [DebuggerDisplayAttribute("MutualCoupling {UUID}")]
-    public class MutualCoupling : IdentifiedObject, IMutualCoupling, IModelElement
+    public partial class MutualCoupling : IdentifiedObject, IMutualCoupling, IModelElement
     {
         
         /// <summary>
@@ -61,45 +61,65 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
         /// </summary>
         private float _distance11;
         
+        private static Lazy<ITypedElement> _distance11Attribute = new Lazy<ITypedElement>(RetrieveDistance11Attribute);
+        
         /// <summary>
         /// The backing field for the Distance12 property
         /// </summary>
         private float _distance12;
+        
+        private static Lazy<ITypedElement> _distance12Attribute = new Lazy<ITypedElement>(RetrieveDistance12Attribute);
         
         /// <summary>
         /// The backing field for the B0ch property
         /// </summary>
         private float _b0ch;
         
+        private static Lazy<ITypedElement> _b0chAttribute = new Lazy<ITypedElement>(RetrieveB0chAttribute);
+        
         /// <summary>
         /// The backing field for the G0ch property
         /// </summary>
         private float _g0ch;
+        
+        private static Lazy<ITypedElement> _g0chAttribute = new Lazy<ITypedElement>(RetrieveG0chAttribute);
         
         /// <summary>
         /// The backing field for the X0 property
         /// </summary>
         private float _x0;
         
+        private static Lazy<ITypedElement> _x0Attribute = new Lazy<ITypedElement>(RetrieveX0Attribute);
+        
         /// <summary>
         /// The backing field for the R0 property
         /// </summary>
         private float _r0;
+        
+        private static Lazy<ITypedElement> _r0Attribute = new Lazy<ITypedElement>(RetrieveR0Attribute);
         
         /// <summary>
         /// The backing field for the Distance22 property
         /// </summary>
         private float _distance22;
         
+        private static Lazy<ITypedElement> _distance22Attribute = new Lazy<ITypedElement>(RetrieveDistance22Attribute);
+        
         /// <summary>
         /// The backing field for the Distance21 property
         /// </summary>
         private float _distance21;
         
+        private static Lazy<ITypedElement> _distance21Attribute = new Lazy<ITypedElement>(RetrieveDistance21Attribute);
+        
+        private static Lazy<ITypedElement> _second_TerminalReference = new Lazy<ITypedElement>(RetrieveSecond_TerminalReference);
+        
         /// <summary>
         /// The backing field for the Second_Terminal property
         /// </summary>
         private ITerminal _second_Terminal;
+        
+        private static Lazy<ITypedElement> _first_TerminalReference = new Lazy<ITypedElement>(RetrieveFirst_TerminalReference);
         
         /// <summary>
         /// The backing field for the First_Terminal property
@@ -126,10 +146,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
                     float old = this._distance11;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnDistance11Changing(e);
-                    this.OnPropertyChanging("Distance11", e);
+                    this.OnPropertyChanging("Distance11", e, _distance11Attribute);
                     this._distance11 = value;
                     this.OnDistance11Changed(e);
-                    this.OnPropertyChanged("Distance11", e);
+                    this.OnPropertyChanged("Distance11", e, _distance11Attribute);
                 }
             }
         }
@@ -152,10 +172,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
                     float old = this._distance12;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnDistance12Changing(e);
-                    this.OnPropertyChanging("Distance12", e);
+                    this.OnPropertyChanging("Distance12", e, _distance12Attribute);
                     this._distance12 = value;
                     this.OnDistance12Changed(e);
-                    this.OnPropertyChanged("Distance12", e);
+                    this.OnPropertyChanged("Distance12", e, _distance12Attribute);
                 }
             }
         }
@@ -178,10 +198,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
                     float old = this._b0ch;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnB0chChanging(e);
-                    this.OnPropertyChanging("B0ch", e);
+                    this.OnPropertyChanging("B0ch", e, _b0chAttribute);
                     this._b0ch = value;
                     this.OnB0chChanged(e);
-                    this.OnPropertyChanged("B0ch", e);
+                    this.OnPropertyChanged("B0ch", e, _b0chAttribute);
                 }
             }
         }
@@ -204,10 +224,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
                     float old = this._g0ch;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnG0chChanging(e);
-                    this.OnPropertyChanging("G0ch", e);
+                    this.OnPropertyChanging("G0ch", e, _g0chAttribute);
                     this._g0ch = value;
                     this.OnG0chChanged(e);
-                    this.OnPropertyChanged("G0ch", e);
+                    this.OnPropertyChanged("G0ch", e, _g0chAttribute);
                 }
             }
         }
@@ -230,10 +250,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
                     float old = this._x0;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnX0Changing(e);
-                    this.OnPropertyChanging("X0", e);
+                    this.OnPropertyChanging("X0", e, _x0Attribute);
                     this._x0 = value;
                     this.OnX0Changed(e);
-                    this.OnPropertyChanged("X0", e);
+                    this.OnPropertyChanged("X0", e, _x0Attribute);
                 }
             }
         }
@@ -256,10 +276,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
                     float old = this._r0;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnR0Changing(e);
-                    this.OnPropertyChanging("R0", e);
+                    this.OnPropertyChanging("R0", e, _r0Attribute);
                     this._r0 = value;
                     this.OnR0Changed(e);
-                    this.OnPropertyChanged("R0", e);
+                    this.OnPropertyChanged("R0", e, _r0Attribute);
                 }
             }
         }
@@ -282,10 +302,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
                     float old = this._distance22;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnDistance22Changing(e);
-                    this.OnPropertyChanging("Distance22", e);
+                    this.OnPropertyChanging("Distance22", e, _distance22Attribute);
                     this._distance22 = value;
                     this.OnDistance22Changed(e);
-                    this.OnPropertyChanged("Distance22", e);
+                    this.OnPropertyChanged("Distance22", e, _distance22Attribute);
                 }
             }
         }
@@ -308,10 +328,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
                     float old = this._distance21;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnDistance21Changing(e);
-                    this.OnPropertyChanging("Distance21", e);
+                    this.OnPropertyChanging("Distance21", e, _distance21Attribute);
                     this._distance21 = value;
                     this.OnDistance21Changed(e);
-                    this.OnPropertyChanged("Distance21", e);
+                    this.OnPropertyChanged("Distance21", e, _distance21Attribute);
                 }
             }
         }
@@ -334,7 +354,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
                     ITerminal old = this._second_Terminal;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnSecond_TerminalChanging(e);
-                    this.OnPropertyChanging("Second_Terminal", e);
+                    this.OnPropertyChanging("Second_Terminal", e, _second_TerminalReference);
                     this._second_Terminal = value;
                     if ((old != null))
                     {
@@ -347,7 +367,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
                         value.Deleted += this.OnResetSecond_Terminal;
                     }
                     this.OnSecond_TerminalChanged(e);
-                    this.OnPropertyChanged("Second_Terminal", e);
+                    this.OnPropertyChanged("Second_Terminal", e, _second_TerminalReference);
                 }
             }
         }
@@ -370,7 +390,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
                     ITerminal old = this._first_Terminal;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnFirst_TerminalChanging(e);
-                    this.OnPropertyChanging("First_Terminal", e);
+                    this.OnPropertyChanging("First_Terminal", e, _first_TerminalReference);
                     this._first_Terminal = value;
                     if ((old != null))
                     {
@@ -383,7 +403,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
                         value.Deleted += this.OnResetFirst_Terminal;
                     }
                     this.OnFirst_TerminalChanged(e);
-                    this.OnPropertyChanged("First_Terminal", e);
+                    this.OnPropertyChanged("First_Terminal", e, _first_TerminalReference);
                 }
             }
         }
@@ -514,6 +534,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> First_TerminalChanged;
         
+        private static ITypedElement RetrieveDistance11Attribute()
+        {
+            return ((ITypedElement)(((ModelElement)(MutualCoupling.ClassInstance)).Resolve("distance11")));
+        }
+        
         /// <summary>
         /// Raises the Distance11Changing event
         /// </summary>
@@ -538,6 +563,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveDistance12Attribute()
+        {
+            return ((ITypedElement)(((ModelElement)(MutualCoupling.ClassInstance)).Resolve("distance12")));
         }
         
         /// <summary>
@@ -566,6 +596,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
             }
         }
         
+        private static ITypedElement RetrieveB0chAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(MutualCoupling.ClassInstance)).Resolve("b0ch")));
+        }
+        
         /// <summary>
         /// Raises the B0chChanging event
         /// </summary>
@@ -590,6 +625,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveG0chAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(MutualCoupling.ClassInstance)).Resolve("g0ch")));
         }
         
         /// <summary>
@@ -618,6 +658,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
             }
         }
         
+        private static ITypedElement RetrieveX0Attribute()
+        {
+            return ((ITypedElement)(((ModelElement)(MutualCoupling.ClassInstance)).Resolve("x0")));
+        }
+        
         /// <summary>
         /// Raises the X0Changing event
         /// </summary>
@@ -642,6 +687,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveR0Attribute()
+        {
+            return ((ITypedElement)(((ModelElement)(MutualCoupling.ClassInstance)).Resolve("r0")));
         }
         
         /// <summary>
@@ -670,6 +720,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
             }
         }
         
+        private static ITypedElement RetrieveDistance22Attribute()
+        {
+            return ((ITypedElement)(((ModelElement)(MutualCoupling.ClassInstance)).Resolve("distance22")));
+        }
+        
         /// <summary>
         /// Raises the Distance22Changing event
         /// </summary>
@@ -696,6 +751,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
             }
         }
         
+        private static ITypedElement RetrieveDistance21Attribute()
+        {
+            return ((ITypedElement)(((ModelElement)(MutualCoupling.ClassInstance)).Resolve("distance21")));
+        }
+        
         /// <summary>
         /// Raises the Distance21Changing event
         /// </summary>
@@ -720,6 +780,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveSecond_TerminalReference()
+        {
+            return ((ITypedElement)(((ModelElement)(MutualCoupling.ClassInstance)).Resolve("Second_Terminal")));
         }
         
         /// <summary>
@@ -756,6 +821,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
         private void OnResetSecond_Terminal(object sender, System.EventArgs eventArgs)
         {
             this.Second_Terminal = null;
+        }
+        
+        private static ITypedElement RetrieveFirst_TerminalReference()
+        {
+            return ((ITypedElement)(((ModelElement)(MutualCoupling.ClassInstance)).Resolve("First_Terminal")));
         }
         
         /// <summary>
@@ -1106,7 +1176,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public Distance11Proxy(IMutualCoupling modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "distance11")
             {
             }
             
@@ -1124,24 +1194,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
                     this.ModelElement.Distance11 = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.Distance11Changed += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.Distance11Changed -= handler;
-            }
         }
         
         /// <summary>
@@ -1155,7 +1207,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public Distance12Proxy(IMutualCoupling modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "distance12")
             {
             }
             
@@ -1173,24 +1225,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
                     this.ModelElement.Distance12 = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.Distance12Changed += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.Distance12Changed -= handler;
-            }
         }
         
         /// <summary>
@@ -1204,7 +1238,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public B0chProxy(IMutualCoupling modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "b0ch")
             {
             }
             
@@ -1222,24 +1256,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
                     this.ModelElement.B0ch = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.B0chChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.B0chChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1253,7 +1269,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public G0chProxy(IMutualCoupling modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "g0ch")
             {
             }
             
@@ -1271,24 +1287,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
                     this.ModelElement.G0ch = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.G0chChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.G0chChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1302,7 +1300,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public X0Proxy(IMutualCoupling modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "x0")
             {
             }
             
@@ -1320,24 +1318,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
                     this.ModelElement.X0 = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.X0Changed += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.X0Changed -= handler;
-            }
         }
         
         /// <summary>
@@ -1351,7 +1331,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public R0Proxy(IMutualCoupling modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "r0")
             {
             }
             
@@ -1369,24 +1349,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
                     this.ModelElement.R0 = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.R0Changed += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.R0Changed -= handler;
-            }
         }
         
         /// <summary>
@@ -1400,7 +1362,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public Distance22Proxy(IMutualCoupling modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "distance22")
             {
             }
             
@@ -1418,24 +1380,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
                     this.ModelElement.Distance22 = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.Distance22Changed += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.Distance22Changed -= handler;
-            }
         }
         
         /// <summary>
@@ -1449,7 +1393,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public Distance21Proxy(IMutualCoupling modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "distance21")
             {
             }
             
@@ -1467,24 +1411,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
                     this.ModelElement.Distance21 = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.Distance21Changed += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.Distance21Changed -= handler;
-            }
         }
         
         /// <summary>
@@ -1498,7 +1424,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public Second_TerminalProxy(IMutualCoupling modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "Second_Terminal")
             {
             }
             
@@ -1516,24 +1442,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
                     this.ModelElement.Second_Terminal = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.Second_TerminalChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.Second_TerminalChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1547,7 +1455,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public First_TerminalProxy(IMutualCoupling modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "First_Terminal")
             {
             }
             
@@ -1564,24 +1472,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
                 {
                     this.ModelElement.First_Terminal = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.First_TerminalChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.First_TerminalChanged -= handler;
             }
         }
     }

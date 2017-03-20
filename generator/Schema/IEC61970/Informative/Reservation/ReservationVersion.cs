@@ -44,7 +44,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.Reservation
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61970/Informative/Reservation/Reser" +
         "vationVersion")]
     [DebuggerDisplayAttribute("ReservationVersion {UUID}")]
-    public class ReservationVersion : Element, IReservationVersion, IModelElement
+    public partial class ReservationVersion : Element, IReservationVersion, IModelElement
     {
         
         /// <summary>
@@ -52,10 +52,14 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.Reservation
         /// </summary>
         private DateTime _date;
         
+        private static Lazy<ITypedElement> _dateAttribute = new Lazy<ITypedElement>(RetrieveDateAttribute);
+        
         /// <summary>
         /// The backing field for the Version property
         /// </summary>
         private string _version;
+        
+        private static Lazy<ITypedElement> _versionAttribute = new Lazy<ITypedElement>(RetrieveVersionAttribute);
         
         private static IClass _classInstance;
         
@@ -77,10 +81,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.Reservation
                     DateTime old = this._date;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnDateChanging(e);
-                    this.OnPropertyChanging("Date", e);
+                    this.OnPropertyChanging("Date", e, _dateAttribute);
                     this._date = value;
                     this.OnDateChanged(e);
-                    this.OnPropertyChanged("Date", e);
+                    this.OnPropertyChanged("Date", e, _dateAttribute);
                 }
             }
         }
@@ -103,10 +107,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.Reservation
                     string old = this._version;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnVersionChanging(e);
-                    this.OnPropertyChanging("Version", e);
+                    this.OnPropertyChanging("Version", e, _versionAttribute);
                     this._version = value;
                     this.OnVersionChanged(e);
-                    this.OnPropertyChanged("Version", e);
+                    this.OnPropertyChanged("Version", e, _versionAttribute);
                 }
             }
         }
@@ -147,6 +151,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.Reservation
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> VersionChanged;
         
+        private static ITypedElement RetrieveDateAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(ReservationVersion.ClassInstance)).Resolve("date")));
+        }
+        
         /// <summary>
         /// Raises the DateChanging event
         /// </summary>
@@ -171,6 +180,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.Reservation
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveVersionAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(ReservationVersion.ClassInstance)).Resolve("version")));
         }
         
         /// <summary>
@@ -262,7 +276,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.Reservation
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public DateProxy(IReservationVersion modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "date")
             {
             }
             
@@ -280,24 +294,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.Reservation
                     this.ModelElement.Date = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.DateChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.DateChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -311,7 +307,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.Reservation
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public VersionProxy(IReservationVersion modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "version")
             {
             }
             
@@ -328,24 +324,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.Reservation
                 {
                     this.ModelElement.Version = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.VersionChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.VersionChanged -= handler;
             }
         }
     }

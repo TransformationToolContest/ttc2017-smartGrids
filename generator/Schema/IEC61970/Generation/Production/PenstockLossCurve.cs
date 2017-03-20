@@ -46,8 +46,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61970/Generation/Production/Penstoc" +
         "kLossCurve")]
     [DebuggerDisplayAttribute("PenstockLossCurve {UUID}")]
-    public class PenstockLossCurve : Curve, IPenstockLossCurve, IModelElement
+    public partial class PenstockLossCurve : Curve, IPenstockLossCurve, IModelElement
     {
+        
+        private static Lazy<ITypedElement> _hydroGeneratingUnitReference = new Lazy<ITypedElement>(RetrieveHydroGeneratingUnitReference);
         
         /// <summary>
         /// The backing field for the HydroGeneratingUnit property
@@ -74,7 +76,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
                     IHydroGeneratingUnit old = this._hydroGeneratingUnit;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnHydroGeneratingUnitChanging(e);
-                    this.OnPropertyChanging("HydroGeneratingUnit", e);
+                    this.OnPropertyChanging("HydroGeneratingUnit", e, _hydroGeneratingUnitReference);
                     this._hydroGeneratingUnit = value;
                     if ((old != null))
                     {
@@ -87,7 +89,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
                         value.Deleted += this.OnResetHydroGeneratingUnit;
                     }
                     this.OnHydroGeneratingUnitChanged(e);
-                    this.OnPropertyChanged("HydroGeneratingUnit", e);
+                    this.OnPropertyChanged("HydroGeneratingUnit", e, _hydroGeneratingUnitReference);
                 }
             }
         }
@@ -128,6 +130,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
         /// Gets fired when the HydroGeneratingUnit property changed its value
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> HydroGeneratingUnitChanged;
+        
+        private static ITypedElement RetrieveHydroGeneratingUnitReference()
+        {
+            return ((ITypedElement)(((ModelElement)(PenstockLossCurve.ClassInstance)).Resolve("HydroGeneratingUnit")));
+        }
         
         /// <summary>
         /// Raises the HydroGeneratingUnitChanging event
@@ -352,7 +359,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public HydroGeneratingUnitProxy(IPenstockLossCurve modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "HydroGeneratingUnit")
             {
             }
             
@@ -369,24 +376,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
                 {
                     this.ModelElement.HydroGeneratingUnit = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.HydroGeneratingUnitChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.HydroGeneratingUnitChanged -= handler;
             }
         }
     }

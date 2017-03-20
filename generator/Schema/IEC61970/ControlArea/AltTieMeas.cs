@@ -43,7 +43,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.ControlArea
     [XmlNamespacePrefixAttribute("cimControlArea")]
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61970/ControlArea/AltTieMeas")]
     [DebuggerDisplayAttribute("AltTieMeas {UUID}")]
-    public class AltTieMeas : Element, IAltTieMeas, IModelElement
+    public partial class AltTieMeas : Element, IAltTieMeas, IModelElement
     {
         
         /// <summary>
@@ -51,10 +51,16 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.ControlArea
         /// </summary>
         private int _priority;
         
+        private static Lazy<ITypedElement> _priorityAttribute = new Lazy<ITypedElement>(RetrievePriorityAttribute);
+        
+        private static Lazy<ITypedElement> _analogValueReference = new Lazy<ITypedElement>(RetrieveAnalogValueReference);
+        
         /// <summary>
         /// The backing field for the AnalogValue property
         /// </summary>
         private IAnalogValue _analogValue;
+        
+        private static Lazy<ITypedElement> _tieFlowReference = new Lazy<ITypedElement>(RetrieveTieFlowReference);
         
         /// <summary>
         /// The backing field for the TieFlow property
@@ -81,10 +87,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.ControlArea
                     int old = this._priority;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnPriorityChanging(e);
-                    this.OnPropertyChanging("Priority", e);
+                    this.OnPropertyChanging("Priority", e, _priorityAttribute);
                     this._priority = value;
                     this.OnPriorityChanged(e);
-                    this.OnPropertyChanged("Priority", e);
+                    this.OnPropertyChanged("Priority", e, _priorityAttribute);
                 }
             }
         }
@@ -107,7 +113,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.ControlArea
                     IAnalogValue old = this._analogValue;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnAnalogValueChanging(e);
-                    this.OnPropertyChanging("AnalogValue", e);
+                    this.OnPropertyChanging("AnalogValue", e, _analogValueReference);
                     this._analogValue = value;
                     if ((old != null))
                     {
@@ -120,7 +126,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.ControlArea
                         value.Deleted += this.OnResetAnalogValue;
                     }
                     this.OnAnalogValueChanged(e);
-                    this.OnPropertyChanged("AnalogValue", e);
+                    this.OnPropertyChanged("AnalogValue", e, _analogValueReference);
                 }
             }
         }
@@ -143,7 +149,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.ControlArea
                     ITieFlow old = this._tieFlow;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnTieFlowChanging(e);
-                    this.OnPropertyChanging("TieFlow", e);
+                    this.OnPropertyChanging("TieFlow", e, _tieFlowReference);
                     this._tieFlow = value;
                     if ((old != null))
                     {
@@ -156,7 +162,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.ControlArea
                         value.Deleted += this.OnResetTieFlow;
                     }
                     this.OnTieFlowChanged(e);
-                    this.OnPropertyChanged("TieFlow", e);
+                    this.OnPropertyChanged("TieFlow", e, _tieFlowReference);
                 }
             }
         }
@@ -217,6 +223,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.ControlArea
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> TieFlowChanged;
         
+        private static ITypedElement RetrievePriorityAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(AltTieMeas.ClassInstance)).Resolve("priority")));
+        }
+        
         /// <summary>
         /// Raises the PriorityChanging event
         /// </summary>
@@ -241,6 +252,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.ControlArea
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveAnalogValueReference()
+        {
+            return ((ITypedElement)(((ModelElement)(AltTieMeas.ClassInstance)).Resolve("AnalogValue")));
         }
         
         /// <summary>
@@ -277,6 +293,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.ControlArea
         private void OnResetAnalogValue(object sender, System.EventArgs eventArgs)
         {
             this.AnalogValue = null;
+        }
+        
+        private static ITypedElement RetrieveTieFlowReference()
+        {
+            return ((ITypedElement)(((ModelElement)(AltTieMeas.ClassInstance)).Resolve("TieFlow")));
         }
         
         /// <summary>
@@ -564,7 +585,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.ControlArea
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public PriorityProxy(IAltTieMeas modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "priority")
             {
             }
             
@@ -582,24 +603,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.ControlArea
                     this.ModelElement.Priority = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.PriorityChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.PriorityChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -613,7 +616,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.ControlArea
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public AnalogValueProxy(IAltTieMeas modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "AnalogValue")
             {
             }
             
@@ -631,24 +634,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.ControlArea
                     this.ModelElement.AnalogValue = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.AnalogValueChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.AnalogValueChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -662,7 +647,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.ControlArea
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public TieFlowProxy(IAltTieMeas modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "TieFlow")
             {
             }
             
@@ -679,24 +664,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.ControlArea
                 {
                     this.ModelElement.TieFlow = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.TieFlowChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.TieFlowChanged -= handler;
             }
         }
     }

@@ -46,13 +46,17 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfLocations
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61970/Informative/InfLocations/Pers" +
         "onPropertyRole")]
     [DebuggerDisplayAttribute("PersonPropertyRole {UUID}")]
-    public class PersonPropertyRole : Role, IPersonPropertyRole, IModelElement
+    public partial class PersonPropertyRole : Role, IPersonPropertyRole, IModelElement
     {
+        
+        private static Lazy<ITypedElement> _landPropertyReference = new Lazy<ITypedElement>(RetrieveLandPropertyReference);
         
         /// <summary>
         /// The backing field for the LandProperty property
         /// </summary>
         private ILandProperty _landProperty;
+        
+        private static Lazy<ITypedElement> _erpPersonReference = new Lazy<ITypedElement>(RetrieveErpPersonReference);
         
         /// <summary>
         /// The backing field for the ErpPerson property
@@ -79,7 +83,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfLocations
                     ILandProperty old = this._landProperty;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnLandPropertyChanging(e);
-                    this.OnPropertyChanging("LandProperty", e);
+                    this.OnPropertyChanging("LandProperty", e, _landPropertyReference);
                     this._landProperty = value;
                     if ((old != null))
                     {
@@ -92,7 +96,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfLocations
                         value.Deleted += this.OnResetLandProperty;
                     }
                     this.OnLandPropertyChanged(e);
-                    this.OnPropertyChanged("LandProperty", e);
+                    this.OnPropertyChanged("LandProperty", e, _landPropertyReference);
                 }
             }
         }
@@ -115,7 +119,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfLocations
                     IErpPerson old = this._erpPerson;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnErpPersonChanging(e);
-                    this.OnPropertyChanging("ErpPerson", e);
+                    this.OnPropertyChanging("ErpPerson", e, _erpPersonReference);
                     this._erpPerson = value;
                     if ((old != null))
                     {
@@ -128,7 +132,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfLocations
                         value.Deleted += this.OnResetErpPerson;
                     }
                     this.OnErpPersonChanged(e);
-                    this.OnPropertyChanged("ErpPerson", e);
+                    this.OnPropertyChanged("ErpPerson", e, _erpPersonReference);
                 }
             }
         }
@@ -180,6 +184,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfLocations
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> ErpPersonChanged;
         
+        private static ITypedElement RetrieveLandPropertyReference()
+        {
+            return ((ITypedElement)(((ModelElement)(PersonPropertyRole.ClassInstance)).Resolve("LandProperty")));
+        }
+        
         /// <summary>
         /// Raises the LandPropertyChanging event
         /// </summary>
@@ -214,6 +223,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfLocations
         private void OnResetLandProperty(object sender, System.EventArgs eventArgs)
         {
             this.LandProperty = null;
+        }
+        
+        private static ITypedElement RetrieveErpPersonReference()
+        {
+            return ((ITypedElement)(((ModelElement)(PersonPropertyRole.ClassInstance)).Resolve("ErpPerson")));
         }
         
         /// <summary>
@@ -482,7 +496,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfLocations
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public LandPropertyProxy(IPersonPropertyRole modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "LandProperty")
             {
             }
             
@@ -500,24 +514,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfLocations
                     this.ModelElement.LandProperty = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.LandPropertyChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.LandPropertyChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -531,7 +527,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfLocations
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public ErpPersonProxy(IPersonPropertyRole modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "ErpPerson")
             {
             }
             
@@ -548,24 +544,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfLocations
                 {
                     this.ModelElement.ErpPerson = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ErpPersonChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ErpPersonChanged -= handler;
             }
         }
     }

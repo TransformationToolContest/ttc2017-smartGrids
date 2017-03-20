@@ -39,7 +39,7 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
     [XmlNamespacePrefixAttribute("objects")]
     [ModelRepresentationClassAttribute("http://www.transformation-tool-contest.eu/2017/smartGrids/cosem#//COSEMObjects/Al" +
         "armMonitor")]
-    public class AlarmMonitor : Registermonitor, IAlarmMonitor, IModelElement
+    public partial class AlarmMonitor : Registermonitor, IAlarmMonitor, IModelElement
     {
         
         private static IClass _classInstance;

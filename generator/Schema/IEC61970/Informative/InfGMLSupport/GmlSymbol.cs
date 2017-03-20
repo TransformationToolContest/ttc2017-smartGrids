@@ -45,7 +45,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfGMLSupport
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61970/Informative/InfGMLSupport/Gml" +
         "Symbol")]
     [DebuggerDisplayAttribute("GmlSymbol {UUID}")]
-    public class GmlSymbol : IdentifiedObject, IGmlSymbol, IModelElement
+    public partial class GmlSymbol : IdentifiedObject, IGmlSymbol, IModelElement
     {
         
         /// <summary>
@@ -53,20 +53,30 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfGMLSupport
         /// </summary>
         private string _level;
         
+        private static Lazy<ITypedElement> _levelAttribute = new Lazy<ITypedElement>(RetrieveLevelAttribute);
+        
         /// <summary>
         /// The backing field for the Type property
         /// </summary>
         private string _type;
+        
+        private static Lazy<ITypedElement> _typeAttribute = new Lazy<ITypedElement>(RetrieveTypeAttribute);
         
         /// <summary>
         /// The backing field for the Version property
         /// </summary>
         private string _version;
         
+        private static Lazy<ITypedElement> _versionAttribute = new Lazy<ITypedElement>(RetrieveVersionAttribute);
+        
+        private static Lazy<ITypedElement> _gmlFeatureStylesReference = new Lazy<ITypedElement>(RetrieveGmlFeatureStylesReference);
+        
         /// <summary>
         /// The backing field for the GmlFeatureStyles property
         /// </summary>
         private GmlSymbolGmlFeatureStylesCollection _gmlFeatureStyles;
+        
+        private static Lazy<ITypedElement> _gmlBaseSymbolReference = new Lazy<ITypedElement>(RetrieveGmlBaseSymbolReference);
         
         /// <summary>
         /// The backing field for the GmlBaseSymbol property
@@ -100,10 +110,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfGMLSupport
                     string old = this._level;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnLevelChanging(e);
-                    this.OnPropertyChanging("Level", e);
+                    this.OnPropertyChanging("Level", e, _levelAttribute);
                     this._level = value;
                     this.OnLevelChanged(e);
-                    this.OnPropertyChanged("Level", e);
+                    this.OnPropertyChanged("Level", e, _levelAttribute);
                 }
             }
         }
@@ -126,10 +136,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfGMLSupport
                     string old = this._type;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnTypeChanging(e);
-                    this.OnPropertyChanging("Type", e);
+                    this.OnPropertyChanging("Type", e, _typeAttribute);
                     this._type = value;
                     this.OnTypeChanged(e);
-                    this.OnPropertyChanged("Type", e);
+                    this.OnPropertyChanged("Type", e, _typeAttribute);
                 }
             }
         }
@@ -152,10 +162,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfGMLSupport
                     string old = this._version;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnVersionChanging(e);
-                    this.OnPropertyChanging("Version", e);
+                    this.OnPropertyChanging("Version", e, _versionAttribute);
                     this._version = value;
                     this.OnVersionChanged(e);
-                    this.OnPropertyChanged("Version", e);
+                    this.OnPropertyChanged("Version", e, _versionAttribute);
                 }
             }
         }
@@ -193,7 +203,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfGMLSupport
                     IGmlBaseSymbol old = this._gmlBaseSymbol;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnGmlBaseSymbolChanging(e);
-                    this.OnPropertyChanging("GmlBaseSymbol", e);
+                    this.OnPropertyChanging("GmlBaseSymbol", e, _gmlBaseSymbolReference);
                     this._gmlBaseSymbol = value;
                     if ((old != null))
                     {
@@ -206,7 +216,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfGMLSupport
                         value.Deleted += this.OnResetGmlBaseSymbol;
                     }
                     this.OnGmlBaseSymbolChanged(e);
-                    this.OnPropertyChanged("GmlBaseSymbol", e);
+                    this.OnPropertyChanged("GmlBaseSymbol", e, _gmlBaseSymbolReference);
                 }
             }
         }
@@ -278,6 +288,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfGMLSupport
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> GmlBaseSymbolChanged;
         
+        private static ITypedElement RetrieveLevelAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(GmlSymbol.ClassInstance)).Resolve("level")));
+        }
+        
         /// <summary>
         /// Raises the LevelChanging event
         /// </summary>
@@ -302,6 +317,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfGMLSupport
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveTypeAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(GmlSymbol.ClassInstance)).Resolve("type")));
         }
         
         /// <summary>
@@ -330,6 +350,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfGMLSupport
             }
         }
         
+        private static ITypedElement RetrieveVersionAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(GmlSymbol.ClassInstance)).Resolve("version")));
+        }
+        
         /// <summary>
         /// Raises the VersionChanging event
         /// </summary>
@@ -356,6 +381,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfGMLSupport
             }
         }
         
+        private static ITypedElement RetrieveGmlFeatureStylesReference()
+        {
+            return ((ITypedElement)(((ModelElement)(GmlSymbol.ClassInstance)).Resolve("GmlFeatureStyles")));
+        }
+        
         /// <summary>
         /// Forwards CollectionChanging notifications for the GmlFeatureStyles property to the parent model element
         /// </summary>
@@ -363,7 +393,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfGMLSupport
         /// <param name="e">The original event data</param>
         private void GmlFeatureStylesCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("GmlFeatureStyles", e);
+            this.OnCollectionChanging("GmlFeatureStyles", e, _gmlFeatureStylesReference);
         }
         
         /// <summary>
@@ -373,7 +403,12 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfGMLSupport
         /// <param name="e">The original event data</param>
         private void GmlFeatureStylesCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("GmlFeatureStyles", e);
+            this.OnCollectionChanged("GmlFeatureStyles", e, _gmlFeatureStylesReference);
+        }
+        
+        private static ITypedElement RetrieveGmlBaseSymbolReference()
+        {
+            return ((ITypedElement)(((ModelElement)(GmlSymbol.ClassInstance)).Resolve("GmlBaseSymbol")));
         }
         
         /// <summary>
@@ -685,7 +720,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfGMLSupport
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public LevelProxy(IGmlSymbol modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "level")
             {
             }
             
@@ -703,24 +738,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfGMLSupport
                     this.ModelElement.Level = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.LevelChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.LevelChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -734,7 +751,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfGMLSupport
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public TypeProxy(IGmlSymbol modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "type")
             {
             }
             
@@ -752,24 +769,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfGMLSupport
                     this.ModelElement.Type = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.TypeChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.TypeChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -783,7 +782,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfGMLSupport
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public VersionProxy(IGmlSymbol modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "version")
             {
             }
             
@@ -801,24 +800,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfGMLSupport
                     this.ModelElement.Version = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.VersionChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.VersionChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -832,7 +813,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfGMLSupport
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public GmlBaseSymbolProxy(IGmlSymbol modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "GmlBaseSymbol")
             {
             }
             
@@ -849,24 +830,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfGMLSupport
                 {
                     this.ModelElement.GmlBaseSymbol = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.GmlBaseSymbolChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.GmlBaseSymbolChanged -= handler;
             }
         }
     }

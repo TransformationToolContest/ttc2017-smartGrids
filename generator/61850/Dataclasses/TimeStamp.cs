@@ -39,8 +39,10 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
     [XmlNamespacePrefixAttribute("data")]
     [ModelRepresentationClassAttribute("http://www.transformation-tool-contest.eu/2017/smartGrids/substationStandard#//Da" +
         "taclasses/TimeStamp")]
-    public class TimeStamp : ModelElement, ITimeStamp, IModelElement
+    public partial class TimeStamp : ModelElement, ITimeStamp, IModelElement
     {
+        
+        private static Lazy<ITypedElement> _valReference = new Lazy<ITypedElement>(RetrieveValReference);
         
         /// <summary>
         /// The backing field for the Val property
@@ -67,7 +69,7 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
                     IP_TimeStamp old = this._val;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnValChanging(e);
-                    this.OnPropertyChanging("Val", e);
+                    this.OnPropertyChanging("Val", e, _valReference);
                     this._val = value;
                     if ((old != null))
                     {
@@ -78,7 +80,7 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
                         value.Deleted += this.OnResetVal;
                     }
                     this.OnValChanged(e);
-                    this.OnPropertyChanged("Val", e);
+                    this.OnPropertyChanged("Val", e, _valReference);
                 }
             }
         }
@@ -119,6 +121,11 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
         /// Gets fired when the Val property changed its value
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> ValChanged;
+        
+        private static ITypedElement RetrieveValReference()
+        {
+            return ((ITypedElement)(((ModelElement)(TimeStamp.ClassInstance)).Resolve("val")));
+        }
         
         /// <summary>
         /// Raises the ValChanging event
@@ -343,7 +350,7 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public ValProxy(ITimeStamp modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "val")
             {
             }
             
@@ -360,24 +367,6 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
                 {
                     this.ModelElement.Val = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ValChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ValChanged -= handler;
             }
         }
     }

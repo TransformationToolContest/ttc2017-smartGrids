@@ -40,7 +40,7 @@ namespace TTC2017.SmartGrids.COSEM.InterfaceClasses
     [XmlNamespacePrefixAttribute("inter")]
     [ModelRepresentationClassAttribute("http://www.transformation-tool-contest.eu/2017/smartGrids/cosem#//InterfaceClasse" +
         "s/S_FSKMACsynctimeouts")]
-    public class S_FSKMACsynctimeouts : Base, IS_FSKMACsynctimeouts, IModelElement
+    public partial class S_FSKMACsynctimeouts : Base, IS_FSKMACsynctimeouts, IModelElement
     {
         
         private static IClass _classInstance;

@@ -39,7 +39,7 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
     [XmlNamespacePrefixAttribute("objects")]
     [ModelRepresentationClassAttribute("http://www.transformation-tool-contest.eu/2017/smartGrids/cosem#//COSEMObjects/SA" +
         "PAssignmentCurrent")]
-    public class SAPAssignmentCurrent : SAPAssignment, ISAPAssignmentCurrent, IModelElement
+    public partial class SAPAssignmentCurrent : SAPAssignment, ISAPAssignmentCurrent, IModelElement
     {
         
         private static IClass _classInstance;

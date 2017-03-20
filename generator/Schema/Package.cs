@@ -38,7 +38,7 @@ namespace TTC2017.SmartGrids.CIM
     [XmlNamespacePrefixAttribute("cim")]
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//Package")]
     [DebuggerDisplayAttribute("Package {UUID}")]
-    public class Package : Element, IPackage, IModelElement
+    public partial class Package : Element, IPackage, IModelElement
     {
         
         private static IClass _classInstance;

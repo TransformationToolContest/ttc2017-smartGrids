@@ -54,7 +54,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Metering
     [XmlNamespacePrefixAttribute("cimMetering")]
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61968/Metering/EndDeviceEvent")]
     [DebuggerDisplayAttribute("EndDeviceEvent {UUID}")]
-    public class EndDeviceEvent : ActivityRecord, IEndDeviceEvent, IModelElement
+    public partial class EndDeviceEvent : ActivityRecord, IEndDeviceEvent, IModelElement
     {
         
         /// <summary>
@@ -62,10 +62,16 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Metering
         /// </summary>
         private string _userID;
         
+        private static Lazy<ITypedElement> _userIDAttribute = new Lazy<ITypedElement>(RetrieveUserIDAttribute);
+        
+        private static Lazy<ITypedElement> _meterReadingReference = new Lazy<ITypedElement>(RetrieveMeterReadingReference);
+        
         /// <summary>
         /// The backing field for the MeterReading property
         /// </summary>
         private IMeterReading _meterReading;
+        
+        private static Lazy<ITypedElement> _deviceFunctionReference = new Lazy<ITypedElement>(RetrieveDeviceFunctionReference);
         
         /// <summary>
         /// The backing field for the DeviceFunction property
@@ -92,10 +98,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Metering
                     string old = this._userID;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnUserIDChanging(e);
-                    this.OnPropertyChanging("UserID", e);
+                    this.OnPropertyChanging("UserID", e, _userIDAttribute);
                     this._userID = value;
                     this.OnUserIDChanged(e);
-                    this.OnPropertyChanged("UserID", e);
+                    this.OnPropertyChanged("UserID", e, _userIDAttribute);
                 }
             }
         }
@@ -118,7 +124,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Metering
                     IMeterReading old = this._meterReading;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnMeterReadingChanging(e);
-                    this.OnPropertyChanging("MeterReading", e);
+                    this.OnPropertyChanging("MeterReading", e, _meterReadingReference);
                     this._meterReading = value;
                     if ((old != null))
                     {
@@ -131,7 +137,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Metering
                         value.Deleted += this.OnResetMeterReading;
                     }
                     this.OnMeterReadingChanged(e);
-                    this.OnPropertyChanged("MeterReading", e);
+                    this.OnPropertyChanged("MeterReading", e, _meterReadingReference);
                 }
             }
         }
@@ -154,7 +160,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Metering
                     IDeviceFunction old = this._deviceFunction;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnDeviceFunctionChanging(e);
-                    this.OnPropertyChanging("DeviceFunction", e);
+                    this.OnPropertyChanging("DeviceFunction", e, _deviceFunctionReference);
                     this._deviceFunction = value;
                     if ((old != null))
                     {
@@ -167,7 +173,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Metering
                         value.Deleted += this.OnResetDeviceFunction;
                     }
                     this.OnDeviceFunctionChanged(e);
-                    this.OnPropertyChanged("DeviceFunction", e);
+                    this.OnPropertyChanged("DeviceFunction", e, _deviceFunctionReference);
                 }
             }
         }
@@ -228,6 +234,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Metering
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> DeviceFunctionChanged;
         
+        private static ITypedElement RetrieveUserIDAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(EndDeviceEvent.ClassInstance)).Resolve("userID")));
+        }
+        
         /// <summary>
         /// Raises the UserIDChanging event
         /// </summary>
@@ -252,6 +263,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Metering
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveMeterReadingReference()
+        {
+            return ((ITypedElement)(((ModelElement)(EndDeviceEvent.ClassInstance)).Resolve("MeterReading")));
         }
         
         /// <summary>
@@ -288,6 +304,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Metering
         private void OnResetMeterReading(object sender, System.EventArgs eventArgs)
         {
             this.MeterReading = null;
+        }
+        
+        private static ITypedElement RetrieveDeviceFunctionReference()
+        {
+            return ((ITypedElement)(((ModelElement)(EndDeviceEvent.ClassInstance)).Resolve("DeviceFunction")));
         }
         
         /// <summary>
@@ -575,7 +596,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Metering
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public UserIDProxy(IEndDeviceEvent modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "userID")
             {
             }
             
@@ -593,24 +614,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Metering
                     this.ModelElement.UserID = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.UserIDChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.UserIDChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -624,7 +627,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Metering
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public MeterReadingProxy(IEndDeviceEvent modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "MeterReading")
             {
             }
             
@@ -642,24 +645,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Metering
                     this.ModelElement.MeterReading = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.MeterReadingChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.MeterReadingChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -673,7 +658,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Metering
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public DeviceFunctionProxy(IEndDeviceEvent modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "DeviceFunction")
             {
             }
             
@@ -690,24 +675,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Metering
                 {
                     this.ModelElement.DeviceFunction = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.DeviceFunctionChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.DeviceFunctionChanged -= handler;
             }
         }
     }

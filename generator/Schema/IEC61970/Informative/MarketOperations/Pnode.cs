@@ -50,7 +50,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61970/Informative/MarketOperations/" +
         "Pnode")]
     [DebuggerDisplayAttribute("Pnode {UUID}")]
-    public class Pnode : IdentifiedObject, IPnode, IModelElement
+    public partial class Pnode : IdentifiedObject, IPnode, IModelElement
     {
         
         /// <summary>
@@ -58,60 +58,86 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
         /// </summary>
         private DateTime _beginPeriod;
         
+        private static Lazy<ITypedElement> _beginPeriodAttribute = new Lazy<ITypedElement>(RetrieveBeginPeriodAttribute);
+        
         /// <summary>
         /// The backing field for the Type property
         /// </summary>
         private string _type;
+        
+        private static Lazy<ITypedElement> _typeAttribute = new Lazy<ITypedElement>(RetrieveTypeAttribute);
         
         /// <summary>
         /// The backing field for the IsPublic property
         /// </summary>
         private bool _isPublic;
         
+        private static Lazy<ITypedElement> _isPublicAttribute = new Lazy<ITypedElement>(RetrieveIsPublicAttribute);
+        
         /// <summary>
         /// The backing field for the EndPeriod property
         /// </summary>
         private DateTime _endPeriod;
+        
+        private static Lazy<ITypedElement> _endPeriodAttribute = new Lazy<ITypedElement>(RetrieveEndPeriodAttribute);
         
         /// <summary>
         /// The backing field for the Usage property
         /// </summary>
         private string _usage;
         
+        private static Lazy<ITypedElement> _usageAttribute = new Lazy<ITypedElement>(RetrieveUsageAttribute);
+        
+        private static Lazy<ITypedElement> _receiptTransactionBidsReference = new Lazy<ITypedElement>(RetrieveReceiptTransactionBidsReference);
+        
         /// <summary>
         /// The backing field for the ReceiptTransactionBids property
         /// </summary>
         private PnodeReceiptTransactionBidsCollection _receiptTransactionBids;
+        
+        private static Lazy<ITypedElement> _rTOReference = new Lazy<ITypedElement>(RetrieveRTOReference);
         
         /// <summary>
         /// The backing field for the RTO property
         /// </summary>
         private IRTO _rTO;
         
+        private static Lazy<ITypedElement> _registeredResourcesReference = new Lazy<ITypedElement>(RetrieveRegisteredResourcesReference);
+        
         /// <summary>
         /// The backing field for the RegisteredResources property
         /// </summary>
         private PnodeRegisteredResourcesCollection _registeredResources;
+        
+        private static Lazy<ITypedElement> _pnodeClearingReference = new Lazy<ITypedElement>(RetrievePnodeClearingReference);
         
         /// <summary>
         /// The backing field for the PnodeClearing property
         /// </summary>
         private IPnodeClearing _pnodeClearing;
         
+        private static Lazy<ITypedElement> _deliveryTransactionBidsReference = new Lazy<ITypedElement>(RetrieveDeliveryTransactionBidsReference);
+        
         /// <summary>
         /// The backing field for the DeliveryTransactionBids property
         /// </summary>
         private PnodeDeliveryTransactionBidsCollection _deliveryTransactionBids;
+        
+        private static Lazy<ITypedElement> _connectivityNodeReference = new Lazy<ITypedElement>(RetrieveConnectivityNodeReference);
         
         /// <summary>
         /// The backing field for the ConnectivityNode property
         /// </summary>
         private IConnectivityNode _connectivityNode;
         
+        private static Lazy<ITypedElement> _fTRsReference = new Lazy<ITypedElement>(RetrieveFTRsReference);
+        
         /// <summary>
         /// The backing field for the FTRs property
         /// </summary>
         private PnodeFTRsCollection _fTRs;
+        
+        private static Lazy<ITypedElement> _measurementsReference = new Lazy<ITypedElement>(RetrieveMeasurementsReference);
         
         /// <summary>
         /// The backing field for the Measurements property
@@ -157,10 +183,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
                     DateTime old = this._beginPeriod;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnBeginPeriodChanging(e);
-                    this.OnPropertyChanging("BeginPeriod", e);
+                    this.OnPropertyChanging("BeginPeriod", e, _beginPeriodAttribute);
                     this._beginPeriod = value;
                     this.OnBeginPeriodChanged(e);
-                    this.OnPropertyChanged("BeginPeriod", e);
+                    this.OnPropertyChanged("BeginPeriod", e, _beginPeriodAttribute);
                 }
             }
         }
@@ -183,10 +209,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
                     string old = this._type;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnTypeChanging(e);
-                    this.OnPropertyChanging("Type", e);
+                    this.OnPropertyChanging("Type", e, _typeAttribute);
                     this._type = value;
                     this.OnTypeChanged(e);
-                    this.OnPropertyChanged("Type", e);
+                    this.OnPropertyChanged("Type", e, _typeAttribute);
                 }
             }
         }
@@ -209,10 +235,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
                     bool old = this._isPublic;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnIsPublicChanging(e);
-                    this.OnPropertyChanging("IsPublic", e);
+                    this.OnPropertyChanging("IsPublic", e, _isPublicAttribute);
                     this._isPublic = value;
                     this.OnIsPublicChanged(e);
-                    this.OnPropertyChanged("IsPublic", e);
+                    this.OnPropertyChanged("IsPublic", e, _isPublicAttribute);
                 }
             }
         }
@@ -235,10 +261,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
                     DateTime old = this._endPeriod;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnEndPeriodChanging(e);
-                    this.OnPropertyChanging("EndPeriod", e);
+                    this.OnPropertyChanging("EndPeriod", e, _endPeriodAttribute);
                     this._endPeriod = value;
                     this.OnEndPeriodChanged(e);
-                    this.OnPropertyChanged("EndPeriod", e);
+                    this.OnPropertyChanged("EndPeriod", e, _endPeriodAttribute);
                 }
             }
         }
@@ -261,10 +287,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
                     string old = this._usage;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnUsageChanging(e);
-                    this.OnPropertyChanging("Usage", e);
+                    this.OnPropertyChanging("Usage", e, _usageAttribute);
                     this._usage = value;
                     this.OnUsageChanged(e);
-                    this.OnPropertyChanged("Usage", e);
+                    this.OnPropertyChanged("Usage", e, _usageAttribute);
                 }
             }
         }
@@ -302,7 +328,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
                     IRTO old = this._rTO;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnRTOChanging(e);
-                    this.OnPropertyChanging("RTO", e);
+                    this.OnPropertyChanging("RTO", e, _rTOReference);
                     this._rTO = value;
                     if ((old != null))
                     {
@@ -315,7 +341,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
                         value.Deleted += this.OnResetRTO;
                     }
                     this.OnRTOChanged(e);
-                    this.OnPropertyChanged("RTO", e);
+                    this.OnPropertyChanged("RTO", e, _rTOReference);
                 }
             }
         }
@@ -353,7 +379,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
                     IPnodeClearing old = this._pnodeClearing;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnPnodeClearingChanging(e);
-                    this.OnPropertyChanging("PnodeClearing", e);
+                    this.OnPropertyChanging("PnodeClearing", e, _pnodeClearingReference);
                     this._pnodeClearing = value;
                     if ((old != null))
                     {
@@ -366,7 +392,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
                         value.Deleted += this.OnResetPnodeClearing;
                     }
                     this.OnPnodeClearingChanged(e);
-                    this.OnPropertyChanged("PnodeClearing", e);
+                    this.OnPropertyChanged("PnodeClearing", e, _pnodeClearingReference);
                 }
             }
         }
@@ -404,7 +430,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
                     IConnectivityNode old = this._connectivityNode;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnConnectivityNodeChanging(e);
-                    this.OnPropertyChanging("ConnectivityNode", e);
+                    this.OnPropertyChanging("ConnectivityNode", e, _connectivityNodeReference);
                     this._connectivityNode = value;
                     if ((old != null))
                     {
@@ -417,7 +443,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
                         value.Deleted += this.OnResetConnectivityNode;
                     }
                     this.OnConnectivityNodeChanged(e);
-                    this.OnPropertyChanged("ConnectivityNode", e);
+                    this.OnPropertyChanged("ConnectivityNode", e, _connectivityNodeReference);
                 }
             }
         }
@@ -559,6 +585,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> ConnectivityNodeChanged;
         
+        private static ITypedElement RetrieveBeginPeriodAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(Pnode.ClassInstance)).Resolve("beginPeriod")));
+        }
+        
         /// <summary>
         /// Raises the BeginPeriodChanging event
         /// </summary>
@@ -583,6 +614,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveTypeAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(Pnode.ClassInstance)).Resolve("type")));
         }
         
         /// <summary>
@@ -611,6 +647,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
             }
         }
         
+        private static ITypedElement RetrieveIsPublicAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(Pnode.ClassInstance)).Resolve("isPublic")));
+        }
+        
         /// <summary>
         /// Raises the IsPublicChanging event
         /// </summary>
@@ -635,6 +676,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveEndPeriodAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(Pnode.ClassInstance)).Resolve("endPeriod")));
         }
         
         /// <summary>
@@ -663,6 +709,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
             }
         }
         
+        private static ITypedElement RetrieveUsageAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(Pnode.ClassInstance)).Resolve("usage")));
+        }
+        
         /// <summary>
         /// Raises the UsageChanging event
         /// </summary>
@@ -689,6 +740,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
             }
         }
         
+        private static ITypedElement RetrieveReceiptTransactionBidsReference()
+        {
+            return ((ITypedElement)(((ModelElement)(Pnode.ClassInstance)).Resolve("ReceiptTransactionBids")));
+        }
+        
         /// <summary>
         /// Forwards CollectionChanging notifications for the ReceiptTransactionBids property to the parent model element
         /// </summary>
@@ -696,7 +752,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
         /// <param name="e">The original event data</param>
         private void ReceiptTransactionBidsCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("ReceiptTransactionBids", e);
+            this.OnCollectionChanging("ReceiptTransactionBids", e, _receiptTransactionBidsReference);
         }
         
         /// <summary>
@@ -706,7 +762,12 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
         /// <param name="e">The original event data</param>
         private void ReceiptTransactionBidsCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("ReceiptTransactionBids", e);
+            this.OnCollectionChanged("ReceiptTransactionBids", e, _receiptTransactionBidsReference);
+        }
+        
+        private static ITypedElement RetrieveRTOReference()
+        {
+            return ((ITypedElement)(((ModelElement)(Pnode.ClassInstance)).Resolve("RTO")));
         }
         
         /// <summary>
@@ -745,6 +806,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
             this.RTO = null;
         }
         
+        private static ITypedElement RetrieveRegisteredResourcesReference()
+        {
+            return ((ITypedElement)(((ModelElement)(Pnode.ClassInstance)).Resolve("RegisteredResources")));
+        }
+        
         /// <summary>
         /// Forwards CollectionChanging notifications for the RegisteredResources property to the parent model element
         /// </summary>
@@ -752,7 +818,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
         /// <param name="e">The original event data</param>
         private void RegisteredResourcesCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("RegisteredResources", e);
+            this.OnCollectionChanging("RegisteredResources", e, _registeredResourcesReference);
         }
         
         /// <summary>
@@ -762,7 +828,12 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
         /// <param name="e">The original event data</param>
         private void RegisteredResourcesCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("RegisteredResources", e);
+            this.OnCollectionChanged("RegisteredResources", e, _registeredResourcesReference);
+        }
+        
+        private static ITypedElement RetrievePnodeClearingReference()
+        {
+            return ((ITypedElement)(((ModelElement)(Pnode.ClassInstance)).Resolve("PnodeClearing")));
         }
         
         /// <summary>
@@ -801,6 +872,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
             this.PnodeClearing = null;
         }
         
+        private static ITypedElement RetrieveDeliveryTransactionBidsReference()
+        {
+            return ((ITypedElement)(((ModelElement)(Pnode.ClassInstance)).Resolve("DeliveryTransactionBids")));
+        }
+        
         /// <summary>
         /// Forwards CollectionChanging notifications for the DeliveryTransactionBids property to the parent model element
         /// </summary>
@@ -808,7 +884,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
         /// <param name="e">The original event data</param>
         private void DeliveryTransactionBidsCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("DeliveryTransactionBids", e);
+            this.OnCollectionChanging("DeliveryTransactionBids", e, _deliveryTransactionBidsReference);
         }
         
         /// <summary>
@@ -818,7 +894,12 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
         /// <param name="e">The original event data</param>
         private void DeliveryTransactionBidsCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("DeliveryTransactionBids", e);
+            this.OnCollectionChanged("DeliveryTransactionBids", e, _deliveryTransactionBidsReference);
+        }
+        
+        private static ITypedElement RetrieveConnectivityNodeReference()
+        {
+            return ((ITypedElement)(((ModelElement)(Pnode.ClassInstance)).Resolve("ConnectivityNode")));
         }
         
         /// <summary>
@@ -857,6 +938,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
             this.ConnectivityNode = null;
         }
         
+        private static ITypedElement RetrieveFTRsReference()
+        {
+            return ((ITypedElement)(((ModelElement)(Pnode.ClassInstance)).Resolve("FTRs")));
+        }
+        
         /// <summary>
         /// Forwards CollectionChanging notifications for the FTRs property to the parent model element
         /// </summary>
@@ -864,7 +950,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
         /// <param name="e">The original event data</param>
         private void FTRsCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("FTRs", e);
+            this.OnCollectionChanging("FTRs", e, _fTRsReference);
         }
         
         /// <summary>
@@ -874,7 +960,12 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
         /// <param name="e">The original event data</param>
         private void FTRsCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("FTRs", e);
+            this.OnCollectionChanged("FTRs", e, _fTRsReference);
+        }
+        
+        private static ITypedElement RetrieveMeasurementsReference()
+        {
+            return ((ITypedElement)(((ModelElement)(Pnode.ClassInstance)).Resolve("Measurements")));
         }
         
         /// <summary>
@@ -884,7 +975,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
         /// <param name="e">The original event data</param>
         private void MeasurementsCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("Measurements", e);
+            this.OnCollectionChanging("Measurements", e, _measurementsReference);
         }
         
         /// <summary>
@@ -894,7 +985,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
         /// <param name="e">The original event data</param>
         private void MeasurementsCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("Measurements", e);
+            this.OnCollectionChanged("Measurements", e, _measurementsReference);
         }
         
         /// <summary>
@@ -1425,7 +1516,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public BeginPeriodProxy(IPnode modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "beginPeriod")
             {
             }
             
@@ -1443,24 +1534,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
                     this.ModelElement.BeginPeriod = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.BeginPeriodChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.BeginPeriodChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1474,7 +1547,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public TypeProxy(IPnode modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "type")
             {
             }
             
@@ -1492,24 +1565,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
                     this.ModelElement.Type = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.TypeChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.TypeChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1523,7 +1578,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public IsPublicProxy(IPnode modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "isPublic")
             {
             }
             
@@ -1541,24 +1596,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
                     this.ModelElement.IsPublic = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.IsPublicChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.IsPublicChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1572,7 +1609,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public EndPeriodProxy(IPnode modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "endPeriod")
             {
             }
             
@@ -1590,24 +1627,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
                     this.ModelElement.EndPeriod = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.EndPeriodChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.EndPeriodChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1621,7 +1640,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public UsageProxy(IPnode modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "usage")
             {
             }
             
@@ -1639,24 +1658,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
                     this.ModelElement.Usage = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.UsageChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.UsageChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1670,7 +1671,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public RTOProxy(IPnode modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "RTO")
             {
             }
             
@@ -1688,24 +1689,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
                     this.ModelElement.RTO = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.RTOChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.RTOChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1719,7 +1702,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public PnodeClearingProxy(IPnode modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "PnodeClearing")
             {
             }
             
@@ -1737,24 +1720,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
                     this.ModelElement.PnodeClearing = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.PnodeClearingChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.PnodeClearingChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1768,7 +1733,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public ConnectivityNodeProxy(IPnode modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "ConnectivityNode")
             {
             }
             
@@ -1785,24 +1750,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
                 {
                     this.ModelElement.ConnectivityNode = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ConnectivityNodeChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ConnectivityNodeChanged -= handler;
             }
         }
     }

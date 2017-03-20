@@ -43,7 +43,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.StateVariables
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61970/StateVariables/SvShuntCompens" +
         "atorSections")]
     [DebuggerDisplayAttribute("SvShuntCompensatorSections {UUID}")]
-    public class SvShuntCompensatorSections : StateVariable, ISvShuntCompensatorSections, IModelElement
+    public partial class SvShuntCompensatorSections : StateVariable, ISvShuntCompensatorSections, IModelElement
     {
         
         /// <summary>
@@ -51,10 +51,16 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.StateVariables
         /// </summary>
         private float _continuousSections;
         
+        private static Lazy<ITypedElement> _continuousSectionsAttribute = new Lazy<ITypedElement>(RetrieveContinuousSectionsAttribute);
+        
         /// <summary>
         /// The backing field for the Sections property
         /// </summary>
         private int _sections;
+        
+        private static Lazy<ITypedElement> _sectionsAttribute = new Lazy<ITypedElement>(RetrieveSectionsAttribute);
+        
+        private static Lazy<ITypedElement> _shuntCompensatorReference = new Lazy<ITypedElement>(RetrieveShuntCompensatorReference);
         
         /// <summary>
         /// The backing field for the ShuntCompensator property
@@ -81,10 +87,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.StateVariables
                     float old = this._continuousSections;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnContinuousSectionsChanging(e);
-                    this.OnPropertyChanging("ContinuousSections", e);
+                    this.OnPropertyChanging("ContinuousSections", e, _continuousSectionsAttribute);
                     this._continuousSections = value;
                     this.OnContinuousSectionsChanged(e);
-                    this.OnPropertyChanged("ContinuousSections", e);
+                    this.OnPropertyChanged("ContinuousSections", e, _continuousSectionsAttribute);
                 }
             }
         }
@@ -107,10 +113,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.StateVariables
                     int old = this._sections;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnSectionsChanging(e);
-                    this.OnPropertyChanging("Sections", e);
+                    this.OnPropertyChanging("Sections", e, _sectionsAttribute);
                     this._sections = value;
                     this.OnSectionsChanged(e);
-                    this.OnPropertyChanged("Sections", e);
+                    this.OnPropertyChanged("Sections", e, _sectionsAttribute);
                 }
             }
         }
@@ -133,7 +139,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.StateVariables
                     IShuntCompensator old = this._shuntCompensator;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnShuntCompensatorChanging(e);
-                    this.OnPropertyChanging("ShuntCompensator", e);
+                    this.OnPropertyChanging("ShuntCompensator", e, _shuntCompensatorReference);
                     this._shuntCompensator = value;
                     if ((old != null))
                     {
@@ -146,7 +152,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.StateVariables
                         value.Deleted += this.OnResetShuntCompensator;
                     }
                     this.OnShuntCompensatorChanged(e);
-                    this.OnPropertyChanged("ShuntCompensator", e);
+                    this.OnPropertyChanged("ShuntCompensator", e, _shuntCompensatorReference);
                 }
             }
         }
@@ -208,6 +214,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.StateVariables
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> ShuntCompensatorChanged;
         
+        private static ITypedElement RetrieveContinuousSectionsAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(SvShuntCompensatorSections.ClassInstance)).Resolve("continuousSections")));
+        }
+        
         /// <summary>
         /// Raises the ContinuousSectionsChanging event
         /// </summary>
@@ -234,6 +245,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.StateVariables
             }
         }
         
+        private static ITypedElement RetrieveSectionsAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(SvShuntCompensatorSections.ClassInstance)).Resolve("sections")));
+        }
+        
         /// <summary>
         /// Raises the SectionsChanging event
         /// </summary>
@@ -258,6 +274,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.StateVariables
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveShuntCompensatorReference()
+        {
+            return ((ITypedElement)(((ModelElement)(SvShuntCompensatorSections.ClassInstance)).Resolve("ShuntCompensator")));
         }
         
         /// <summary>
@@ -512,7 +533,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.StateVariables
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public ContinuousSectionsProxy(ISvShuntCompensatorSections modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "continuousSections")
             {
             }
             
@@ -530,24 +551,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.StateVariables
                     this.ModelElement.ContinuousSections = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ContinuousSectionsChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ContinuousSectionsChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -561,7 +564,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.StateVariables
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public SectionsProxy(ISvShuntCompensatorSections modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "sections")
             {
             }
             
@@ -579,24 +582,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.StateVariables
                     this.ModelElement.Sections = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.SectionsChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.SectionsChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -610,7 +595,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.StateVariables
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public ShuntCompensatorProxy(ISvShuntCompensatorSections modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "ShuntCompensator")
             {
             }
             
@@ -627,24 +612,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.StateVariables
                 {
                     this.ModelElement.ShuntCompensator = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ShuntCompensatorChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ShuntCompensatorChanged -= handler;
             }
         }
     }

@@ -40,7 +40,7 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
     [XmlNamespacePrefixAttribute("objects")]
     [ModelRepresentationClassAttribute("http://www.transformation-tool-contest.eu/2017/smartGrids/cosem#//COSEMObjects/Ge" +
         "neralPurposeArbitrator")]
-    public class GeneralPurposeArbitrator : Arbitrator, IGeneralpurposeArbitrator, IModelElement
+    public partial class GeneralPurposeArbitrator : Arbitrator, IGeneralpurposeArbitrator, IModelElement
     {
         
         private static IClass _classInstance;

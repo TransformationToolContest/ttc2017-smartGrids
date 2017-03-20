@@ -47,7 +47,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.Financial
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61970/Informative/Financial/Transmi" +
         "ssionProduct")]
     [DebuggerDisplayAttribute("TransmissionProduct {UUID}")]
-    public class TransmissionProduct : IdentifiedObject, ITransmissionProduct, IModelElement
+    public partial class TransmissionProduct : IdentifiedObject, ITransmissionProduct, IModelElement
     {
         
         /// <summary>
@@ -55,15 +55,23 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.Financial
         /// </summary>
         private object _transmissionProductType;
         
+        private static Lazy<ITypedElement> _transmissionProductTypeAttribute = new Lazy<ITypedElement>(RetrieveTransmissionProductTypeAttribute);
+        
+        private static Lazy<ITypedElement> _locationForReference = new Lazy<ITypedElement>(RetrieveLocationForReference);
+        
         /// <summary>
         /// The backing field for the LocationFor property
         /// </summary>
         private TransmissionProductLocationForCollection _locationFor;
         
+        private static Lazy<ITypedElement> _transmissionProviderReference = new Lazy<ITypedElement>(RetrieveTransmissionProviderReference);
+        
         /// <summary>
         /// The backing field for the TransmissionProvider property
         /// </summary>
         private ITransmissionProvider _transmissionProvider;
+        
+        private static Lazy<ITypedElement> _offersReference = new Lazy<ITypedElement>(RetrieveOffersReference);
         
         /// <summary>
         /// The backing field for the Offers property
@@ -100,10 +108,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.Financial
                     object old = this._transmissionProductType;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnTransmissionProductTypeChanging(e);
-                    this.OnPropertyChanging("TransmissionProductType", e);
+                    this.OnPropertyChanging("TransmissionProductType", e, _transmissionProductTypeAttribute);
                     this._transmissionProductType = value;
                     this.OnTransmissionProductTypeChanged(e);
-                    this.OnPropertyChanged("TransmissionProductType", e);
+                    this.OnPropertyChanged("TransmissionProductType", e, _transmissionProductTypeAttribute);
                 }
             }
         }
@@ -141,7 +149,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.Financial
                     ITransmissionProvider old = this._transmissionProvider;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnTransmissionProviderChanging(e);
-                    this.OnPropertyChanging("TransmissionProvider", e);
+                    this.OnPropertyChanging("TransmissionProvider", e, _transmissionProviderReference);
                     this._transmissionProvider = value;
                     if ((old != null))
                     {
@@ -154,7 +162,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.Financial
                         value.Deleted += this.OnResetTransmissionProvider;
                     }
                     this.OnTransmissionProviderChanged(e);
-                    this.OnPropertyChanged("TransmissionProvider", e);
+                    this.OnPropertyChanged("TransmissionProvider", e, _transmissionProviderReference);
                 }
             }
         }
@@ -221,6 +229,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.Financial
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> TransmissionProviderChanged;
         
+        private static ITypedElement RetrieveTransmissionProductTypeAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(TransmissionProduct.ClassInstance)).Resolve("transmissionProductType")));
+        }
+        
         /// <summary>
         /// Raises the TransmissionProductTypeChanging event
         /// </summary>
@@ -247,6 +260,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.Financial
             }
         }
         
+        private static ITypedElement RetrieveLocationForReference()
+        {
+            return ((ITypedElement)(((ModelElement)(TransmissionProduct.ClassInstance)).Resolve("LocationFor")));
+        }
+        
         /// <summary>
         /// Forwards CollectionChanging notifications for the LocationFor property to the parent model element
         /// </summary>
@@ -254,7 +272,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.Financial
         /// <param name="e">The original event data</param>
         private void LocationForCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("LocationFor", e);
+            this.OnCollectionChanging("LocationFor", e, _locationForReference);
         }
         
         /// <summary>
@@ -264,7 +282,12 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.Financial
         /// <param name="e">The original event data</param>
         private void LocationForCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("LocationFor", e);
+            this.OnCollectionChanged("LocationFor", e, _locationForReference);
+        }
+        
+        private static ITypedElement RetrieveTransmissionProviderReference()
+        {
+            return ((ITypedElement)(((ModelElement)(TransmissionProduct.ClassInstance)).Resolve("TransmissionProvider")));
         }
         
         /// <summary>
@@ -303,6 +326,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.Financial
             this.TransmissionProvider = null;
         }
         
+        private static ITypedElement RetrieveOffersReference()
+        {
+            return ((ITypedElement)(((ModelElement)(TransmissionProduct.ClassInstance)).Resolve("Offers")));
+        }
+        
         /// <summary>
         /// Forwards CollectionChanging notifications for the Offers property to the parent model element
         /// </summary>
@@ -310,7 +338,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.Financial
         /// <param name="e">The original event data</param>
         private void OffersCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("Offers", e);
+            this.OnCollectionChanging("Offers", e, _offersReference);
         }
         
         /// <summary>
@@ -320,7 +348,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.Financial
         /// <param name="e">The original event data</param>
         private void OffersCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("Offers", e);
+            this.OnCollectionChanged("Offers", e, _offersReference);
         }
         
         /// <summary>
@@ -616,7 +644,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.Financial
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public TransmissionProductTypeProxy(ITransmissionProduct modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "transmissionProductType")
             {
             }
             
@@ -634,24 +662,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.Financial
                     this.ModelElement.TransmissionProductType = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.TransmissionProductTypeChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.TransmissionProductTypeChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -665,7 +675,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.Financial
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public TransmissionProviderProxy(ITransmissionProduct modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "TransmissionProvider")
             {
             }
             
@@ -682,24 +692,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.Financial
                 {
                     this.ModelElement.TransmissionProvider = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.TransmissionProviderChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.TransmissionProviderChanged -= handler;
             }
         }
     }

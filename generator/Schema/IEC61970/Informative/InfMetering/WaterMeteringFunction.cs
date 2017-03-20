@@ -41,7 +41,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfMetering
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61970/Informative/InfMetering/Water" +
         "MeteringFunction")]
     [DebuggerDisplayAttribute("WaterMeteringFunction {UUID}")]
-    public class WaterMeteringFunction : DeviceFunction, IWaterMeteringFunction, IModelElement
+    public partial class WaterMeteringFunction : DeviceFunction, IWaterMeteringFunction, IModelElement
     {
         
         private static IClass _classInstance;

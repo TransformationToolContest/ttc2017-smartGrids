@@ -41,18 +41,24 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.OperationalLimits
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61970/OperationalLimits/Operational" +
         "LimitSet")]
     [DebuggerDisplayAttribute("OperationalLimitSet {UUID}")]
-    public class OperationalLimitSet : IdentifiedObject, IOperationalLimitSet, IModelElement
+    public partial class OperationalLimitSet : IdentifiedObject, IOperationalLimitSet, IModelElement
     {
+        
+        private static Lazy<ITypedElement> _operationalLimitValueReference = new Lazy<ITypedElement>(RetrieveOperationalLimitValueReference);
         
         /// <summary>
         /// The backing field for the OperationalLimitValue property
         /// </summary>
         private OperationalLimitSetOperationalLimitValueCollection _operationalLimitValue;
         
+        private static Lazy<ITypedElement> _terminalReference = new Lazy<ITypedElement>(RetrieveTerminalReference);
+        
         /// <summary>
         /// The backing field for the Terminal property
         /// </summary>
         private ITerminal _terminal;
+        
+        private static Lazy<ITypedElement> _equipmentReference = new Lazy<ITypedElement>(RetrieveEquipmentReference);
         
         /// <summary>
         /// The backing field for the Equipment property
@@ -101,7 +107,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.OperationalLimits
                     ITerminal old = this._terminal;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnTerminalChanging(e);
-                    this.OnPropertyChanging("Terminal", e);
+                    this.OnPropertyChanging("Terminal", e, _terminalReference);
                     this._terminal = value;
                     if ((old != null))
                     {
@@ -114,7 +120,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.OperationalLimits
                         value.Deleted += this.OnResetTerminal;
                     }
                     this.OnTerminalChanged(e);
-                    this.OnPropertyChanged("Terminal", e);
+                    this.OnPropertyChanged("Terminal", e, _terminalReference);
                 }
             }
         }
@@ -137,7 +143,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.OperationalLimits
                     IEquipment old = this._equipment;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnEquipmentChanging(e);
-                    this.OnPropertyChanging("Equipment", e);
+                    this.OnPropertyChanging("Equipment", e, _equipmentReference);
                     this._equipment = value;
                     if ((old != null))
                     {
@@ -150,7 +156,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.OperationalLimits
                         value.Deleted += this.OnResetEquipment;
                     }
                     this.OnEquipmentChanged(e);
-                    this.OnPropertyChanged("Equipment", e);
+                    this.OnPropertyChanged("Equipment", e, _equipmentReference);
                 }
             }
         }
@@ -202,6 +208,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.OperationalLimits
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> EquipmentChanged;
         
+        private static ITypedElement RetrieveOperationalLimitValueReference()
+        {
+            return ((ITypedElement)(((ModelElement)(OperationalLimitSet.ClassInstance)).Resolve("OperationalLimitValue")));
+        }
+        
         /// <summary>
         /// Forwards CollectionChanging notifications for the OperationalLimitValue property to the parent model element
         /// </summary>
@@ -209,7 +220,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.OperationalLimits
         /// <param name="e">The original event data</param>
         private void OperationalLimitValueCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("OperationalLimitValue", e);
+            this.OnCollectionChanging("OperationalLimitValue", e, _operationalLimitValueReference);
         }
         
         /// <summary>
@@ -219,7 +230,12 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.OperationalLimits
         /// <param name="e">The original event data</param>
         private void OperationalLimitValueCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("OperationalLimitValue", e);
+            this.OnCollectionChanged("OperationalLimitValue", e, _operationalLimitValueReference);
+        }
+        
+        private static ITypedElement RetrieveTerminalReference()
+        {
+            return ((ITypedElement)(((ModelElement)(OperationalLimitSet.ClassInstance)).Resolve("Terminal")));
         }
         
         /// <summary>
@@ -256,6 +272,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.OperationalLimits
         private void OnResetTerminal(object sender, System.EventArgs eventArgs)
         {
             this.Terminal = null;
+        }
+        
+        private static ITypedElement RetrieveEquipmentReference()
+        {
+            return ((ITypedElement)(((ModelElement)(OperationalLimitSet.ClassInstance)).Resolve("Equipment")));
         }
         
         /// <summary>
@@ -572,7 +593,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.OperationalLimits
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public TerminalProxy(IOperationalLimitSet modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "Terminal")
             {
             }
             
@@ -590,24 +611,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.OperationalLimits
                     this.ModelElement.Terminal = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.TerminalChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.TerminalChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -621,7 +624,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.OperationalLimits
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public EquipmentProxy(IOperationalLimitSet modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "Equipment")
             {
             }
             
@@ -638,24 +641,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.OperationalLimits
                 {
                     this.ModelElement.Equipment = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.EquipmentChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.EquipmentChanged -= handler;
             }
         }
     }

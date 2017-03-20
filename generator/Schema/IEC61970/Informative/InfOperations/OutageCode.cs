@@ -50,7 +50,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfOperations
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61970/Informative/InfOperations/Out" +
         "ageCode")]
     [DebuggerDisplayAttribute("OutageCode {UUID}")]
-    public class OutageCode : IdentifiedObject, IOutageCode, IModelElement
+    public partial class OutageCode : IdentifiedObject, IOutageCode, IModelElement
     {
         
         /// <summary>
@@ -58,10 +58,16 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfOperations
         /// </summary>
         private string _subCode;
         
+        private static Lazy<ITypedElement> _subCodeAttribute = new Lazy<ITypedElement>(RetrieveSubCodeAttribute);
+        
+        private static Lazy<ITypedElement> _outageRecordsReference = new Lazy<ITypedElement>(RetrieveOutageRecordsReference);
+        
         /// <summary>
         /// The backing field for the OutageRecords property
         /// </summary>
         private OutageCodeOutageRecordsCollection _outageRecords;
+        
+        private static Lazy<ITypedElement> _outageStepsReference = new Lazy<ITypedElement>(RetrieveOutageStepsReference);
         
         /// <summary>
         /// The backing field for the OutageSteps property
@@ -98,10 +104,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfOperations
                     string old = this._subCode;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnSubCodeChanging(e);
-                    this.OnPropertyChanging("SubCode", e);
+                    this.OnPropertyChanging("SubCode", e, _subCodeAttribute);
                     this._subCode = value;
                     this.OnSubCodeChanged(e);
-                    this.OnPropertyChanged("SubCode", e);
+                    this.OnPropertyChanged("SubCode", e, _subCodeAttribute);
                 }
             }
         }
@@ -173,6 +179,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfOperations
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> SubCodeChanged;
         
+        private static ITypedElement RetrieveSubCodeAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(OutageCode.ClassInstance)).Resolve("subCode")));
+        }
+        
         /// <summary>
         /// Raises the SubCodeChanging event
         /// </summary>
@@ -199,6 +210,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfOperations
             }
         }
         
+        private static ITypedElement RetrieveOutageRecordsReference()
+        {
+            return ((ITypedElement)(((ModelElement)(OutageCode.ClassInstance)).Resolve("OutageRecords")));
+        }
+        
         /// <summary>
         /// Forwards CollectionChanging notifications for the OutageRecords property to the parent model element
         /// </summary>
@@ -206,7 +222,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfOperations
         /// <param name="e">The original event data</param>
         private void OutageRecordsCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("OutageRecords", e);
+            this.OnCollectionChanging("OutageRecords", e, _outageRecordsReference);
         }
         
         /// <summary>
@@ -216,7 +232,12 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfOperations
         /// <param name="e">The original event data</param>
         private void OutageRecordsCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("OutageRecords", e);
+            this.OnCollectionChanged("OutageRecords", e, _outageRecordsReference);
+        }
+        
+        private static ITypedElement RetrieveOutageStepsReference()
+        {
+            return ((ITypedElement)(((ModelElement)(OutageCode.ClassInstance)).Resolve("OutageSteps")));
         }
         
         /// <summary>
@@ -226,7 +247,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfOperations
         /// <param name="e">The original event data</param>
         private void OutageStepsCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("OutageSteps", e);
+            this.OnCollectionChanging("OutageSteps", e, _outageStepsReference);
         }
         
         /// <summary>
@@ -236,7 +257,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfOperations
         /// <param name="e">The original event data</param>
         private void OutageStepsCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("OutageSteps", e);
+            this.OnCollectionChanged("OutageSteps", e, _outageStepsReference);
         }
         
         /// <summary>
@@ -469,7 +490,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfOperations
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public SubCodeProxy(IOutageCode modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "subCode")
             {
             }
             
@@ -486,24 +507,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfOperations
                 {
                     this.ModelElement.SubCode = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.SubCodeChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.SubCodeChanged -= handler;
             }
         }
     }

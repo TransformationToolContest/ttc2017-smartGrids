@@ -50,7 +50,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61970/Informative/MarketOperations/" +
         "ViolationLimit")]
     [DebuggerDisplayAttribute("ViolationLimit {UUID}")]
-    public class ViolationLimit : Limit, IViolationLimit, IModelElement
+    public partial class ViolationLimit : Limit, IViolationLimit, IModelElement
     {
         
         /// <summary>
@@ -58,20 +58,30 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
         /// </summary>
         private bool _enforced;
         
+        private static Lazy<ITypedElement> _enforcedAttribute = new Lazy<ITypedElement>(RetrieveEnforcedAttribute);
+        
+        private static Lazy<ITypedElement> _seasonReference = new Lazy<ITypedElement>(RetrieveSeasonReference);
+        
         /// <summary>
         /// The backing field for the Season property
         /// </summary>
         private ISeason _season;
+        
+        private static Lazy<ITypedElement> _measurementReference = new Lazy<ITypedElement>(RetrieveMeasurementReference);
         
         /// <summary>
         /// The backing field for the Measurement property
         /// </summary>
         private IMeasurement _measurement;
         
+        private static Lazy<ITypedElement> _organisationsReference = new Lazy<ITypedElement>(RetrieveOrganisationsReference);
+        
         /// <summary>
         /// The backing field for the Organisations property
         /// </summary>
         private ViolationLimitOrganisationsCollection _organisations;
+        
+        private static Lazy<ITypedElement> _flowgateReference = new Lazy<ITypedElement>(RetrieveFlowgateReference);
         
         /// <summary>
         /// The backing field for the Flowgate property
@@ -105,10 +115,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
                     bool old = this._enforced;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnEnforcedChanging(e);
-                    this.OnPropertyChanging("Enforced", e);
+                    this.OnPropertyChanging("Enforced", e, _enforcedAttribute);
                     this._enforced = value;
                     this.OnEnforcedChanged(e);
-                    this.OnPropertyChanged("Enforced", e);
+                    this.OnPropertyChanged("Enforced", e, _enforcedAttribute);
                 }
             }
         }
@@ -131,7 +141,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
                     ISeason old = this._season;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnSeasonChanging(e);
-                    this.OnPropertyChanging("Season", e);
+                    this.OnPropertyChanging("Season", e, _seasonReference);
                     this._season = value;
                     if ((old != null))
                     {
@@ -144,7 +154,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
                         value.Deleted += this.OnResetSeason;
                     }
                     this.OnSeasonChanged(e);
-                    this.OnPropertyChanged("Season", e);
+                    this.OnPropertyChanged("Season", e, _seasonReference);
                 }
             }
         }
@@ -167,7 +177,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
                     IMeasurement old = this._measurement;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnMeasurementChanging(e);
-                    this.OnPropertyChanging("Measurement", e);
+                    this.OnPropertyChanging("Measurement", e, _measurementReference);
                     this._measurement = value;
                     if ((old != null))
                     {
@@ -180,7 +190,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
                         value.Deleted += this.OnResetMeasurement;
                     }
                     this.OnMeasurementChanged(e);
-                    this.OnPropertyChanged("Measurement", e);
+                    this.OnPropertyChanged("Measurement", e, _measurementReference);
                 }
             }
         }
@@ -218,7 +228,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
                     IFlowgate old = this._flowgate;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnFlowgateChanging(e);
-                    this.OnPropertyChanging("Flowgate", e);
+                    this.OnPropertyChanging("Flowgate", e, _flowgateReference);
                     this._flowgate = value;
                     if ((old != null))
                     {
@@ -231,7 +241,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
                         value.Deleted += this.OnResetFlowgate;
                     }
                     this.OnFlowgateChanged(e);
-                    this.OnPropertyChanged("Flowgate", e);
+                    this.OnPropertyChanged("Flowgate", e, _flowgateReference);
                 }
             }
         }
@@ -303,6 +313,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> FlowgateChanged;
         
+        private static ITypedElement RetrieveEnforcedAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(ViolationLimit.ClassInstance)).Resolve("enforced")));
+        }
+        
         /// <summary>
         /// Raises the EnforcedChanging event
         /// </summary>
@@ -327,6 +342,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveSeasonReference()
+        {
+            return ((ITypedElement)(((ModelElement)(ViolationLimit.ClassInstance)).Resolve("Season")));
         }
         
         /// <summary>
@@ -365,6 +385,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
             this.Season = null;
         }
         
+        private static ITypedElement RetrieveMeasurementReference()
+        {
+            return ((ITypedElement)(((ModelElement)(ViolationLimit.ClassInstance)).Resolve("Measurement")));
+        }
+        
         /// <summary>
         /// Raises the MeasurementChanging event
         /// </summary>
@@ -401,6 +426,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
             this.Measurement = null;
         }
         
+        private static ITypedElement RetrieveOrganisationsReference()
+        {
+            return ((ITypedElement)(((ModelElement)(ViolationLimit.ClassInstance)).Resolve("Organisations")));
+        }
+        
         /// <summary>
         /// Forwards CollectionChanging notifications for the Organisations property to the parent model element
         /// </summary>
@@ -408,7 +438,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
         /// <param name="e">The original event data</param>
         private void OrganisationsCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("Organisations", e);
+            this.OnCollectionChanging("Organisations", e, _organisationsReference);
         }
         
         /// <summary>
@@ -418,7 +448,12 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
         /// <param name="e">The original event data</param>
         private void OrganisationsCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("Organisations", e);
+            this.OnCollectionChanged("Organisations", e, _organisationsReference);
+        }
+        
+        private static ITypedElement RetrieveFlowgateReference()
+        {
+            return ((ITypedElement)(((ModelElement)(ViolationLimit.ClassInstance)).Resolve("Flowgate")));
         }
         
         /// <summary>
@@ -798,7 +833,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public EnforcedProxy(IViolationLimit modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "enforced")
             {
             }
             
@@ -816,24 +851,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
                     this.ModelElement.Enforced = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.EnforcedChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.EnforcedChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -847,7 +864,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public SeasonProxy(IViolationLimit modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "Season")
             {
             }
             
@@ -865,24 +882,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
                     this.ModelElement.Season = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.SeasonChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.SeasonChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -896,7 +895,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public MeasurementProxy(IViolationLimit modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "Measurement")
             {
             }
             
@@ -914,24 +913,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
                     this.ModelElement.Measurement = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.MeasurementChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.MeasurementChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -945,7 +926,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public FlowgateProxy(IViolationLimit modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "Flowgate")
             {
             }
             
@@ -962,24 +943,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
                 {
                     this.ModelElement.Flowgate = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.FlowgateChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.FlowgateChanged -= handler;
             }
         }
     }

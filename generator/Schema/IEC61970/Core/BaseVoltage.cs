@@ -57,7 +57,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Core
     [XmlNamespacePrefixAttribute("cimCore")]
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61970/Core/BaseVoltage")]
     [DebuggerDisplayAttribute("BaseVoltage {UUID}")]
-    public class BaseVoltage : IdentifiedObject, IBaseVoltage, IModelElement
+    public partial class BaseVoltage : IdentifiedObject, IBaseVoltage, IModelElement
     {
         
         /// <summary>
@@ -65,20 +65,30 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Core
         /// </summary>
         private float _nominalVoltage;
         
+        private static Lazy<ITypedElement> _nominalVoltageAttribute = new Lazy<ITypedElement>(RetrieveNominalVoltageAttribute);
+        
         /// <summary>
         /// The backing field for the IsDC property
         /// </summary>
         private bool _isDC;
+        
+        private static Lazy<ITypedElement> _isDCAttribute = new Lazy<ITypedElement>(RetrieveIsDCAttribute);
+        
+        private static Lazy<ITypedElement> _topologicalNodeReference = new Lazy<ITypedElement>(RetrieveTopologicalNodeReference);
         
         /// <summary>
         /// The backing field for the TopologicalNode property
         /// </summary>
         private BaseVoltageTopologicalNodeCollection _topologicalNode;
         
+        private static Lazy<ITypedElement> _voltageLevelReference = new Lazy<ITypedElement>(RetrieveVoltageLevelReference);
+        
         /// <summary>
         /// The backing field for the VoltageLevel property
         /// </summary>
         private BaseVoltageVoltageLevelCollection _voltageLevel;
+        
+        private static Lazy<ITypedElement> _conductingEquipmentReference = new Lazy<ITypedElement>(RetrieveConductingEquipmentReference);
         
         /// <summary>
         /// The backing field for the ConductingEquipment property
@@ -118,10 +128,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Core
                     float old = this._nominalVoltage;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnNominalVoltageChanging(e);
-                    this.OnPropertyChanging("NominalVoltage", e);
+                    this.OnPropertyChanging("NominalVoltage", e, _nominalVoltageAttribute);
                     this._nominalVoltage = value;
                     this.OnNominalVoltageChanged(e);
-                    this.OnPropertyChanged("NominalVoltage", e);
+                    this.OnPropertyChanged("NominalVoltage", e, _nominalVoltageAttribute);
                 }
             }
         }
@@ -144,10 +154,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Core
                     bool old = this._isDC;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnIsDCChanging(e);
-                    this.OnPropertyChanging("IsDC", e);
+                    this.OnPropertyChanging("IsDC", e, _isDCAttribute);
                     this._isDC = value;
                     this.OnIsDCChanged(e);
-                    this.OnPropertyChanged("IsDC", e);
+                    this.OnPropertyChanged("IsDC", e, _isDCAttribute);
                 }
             }
         }
@@ -243,6 +253,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Core
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> IsDCChanged;
         
+        private static ITypedElement RetrieveNominalVoltageAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(BaseVoltage.ClassInstance)).Resolve("nominalVoltage")));
+        }
+        
         /// <summary>
         /// Raises the NominalVoltageChanging event
         /// </summary>
@@ -267,6 +282,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Core
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveIsDCAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(BaseVoltage.ClassInstance)).Resolve("isDC")));
         }
         
         /// <summary>
@@ -295,6 +315,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Core
             }
         }
         
+        private static ITypedElement RetrieveTopologicalNodeReference()
+        {
+            return ((ITypedElement)(((ModelElement)(BaseVoltage.ClassInstance)).Resolve("TopologicalNode")));
+        }
+        
         /// <summary>
         /// Forwards CollectionChanging notifications for the TopologicalNode property to the parent model element
         /// </summary>
@@ -302,7 +327,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Core
         /// <param name="e">The original event data</param>
         private void TopologicalNodeCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("TopologicalNode", e);
+            this.OnCollectionChanging("TopologicalNode", e, _topologicalNodeReference);
         }
         
         /// <summary>
@@ -312,7 +337,12 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Core
         /// <param name="e">The original event data</param>
         private void TopologicalNodeCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("TopologicalNode", e);
+            this.OnCollectionChanged("TopologicalNode", e, _topologicalNodeReference);
+        }
+        
+        private static ITypedElement RetrieveVoltageLevelReference()
+        {
+            return ((ITypedElement)(((ModelElement)(BaseVoltage.ClassInstance)).Resolve("VoltageLevel")));
         }
         
         /// <summary>
@@ -322,7 +352,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Core
         /// <param name="e">The original event data</param>
         private void VoltageLevelCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("VoltageLevel", e);
+            this.OnCollectionChanging("VoltageLevel", e, _voltageLevelReference);
         }
         
         /// <summary>
@@ -332,7 +362,12 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Core
         /// <param name="e">The original event data</param>
         private void VoltageLevelCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("VoltageLevel", e);
+            this.OnCollectionChanged("VoltageLevel", e, _voltageLevelReference);
+        }
+        
+        private static ITypedElement RetrieveConductingEquipmentReference()
+        {
+            return ((ITypedElement)(((ModelElement)(BaseVoltage.ClassInstance)).Resolve("ConductingEquipment")));
         }
         
         /// <summary>
@@ -342,7 +377,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Core
         /// <param name="e">The original event data</param>
         private void ConductingEquipmentCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("ConductingEquipment", e);
+            this.OnCollectionChanging("ConductingEquipment", e, _conductingEquipmentReference);
         }
         
         /// <summary>
@@ -352,7 +387,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Core
         /// <param name="e">The original event data</param>
         private void ConductingEquipmentCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("ConductingEquipment", e);
+            this.OnCollectionChanged("ConductingEquipment", e, _conductingEquipmentReference);
         }
         
         /// <summary>
@@ -631,7 +666,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Core
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public NominalVoltageProxy(IBaseVoltage modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "nominalVoltage")
             {
             }
             
@@ -649,24 +684,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Core
                     this.ModelElement.NominalVoltage = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.NominalVoltageChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.NominalVoltageChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -680,7 +697,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Core
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public IsDCProxy(IBaseVoltage modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "isDC")
             {
             }
             
@@ -697,24 +714,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Core
                 {
                     this.ModelElement.IsDC = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.IsDCChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.IsDCChanged -= handler;
             }
         }
     }

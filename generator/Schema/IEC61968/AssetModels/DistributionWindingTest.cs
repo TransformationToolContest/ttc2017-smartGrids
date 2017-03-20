@@ -47,13 +47,17 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.AssetModels
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61968/AssetModels/DistributionWindi" +
         "ngTest")]
     [DebuggerDisplayAttribute("DistributionWindingTest {UUID}")]
-    public class DistributionWindingTest : IdentifiedObject, IDistributionWindingTest, IModelElement
+    public partial class DistributionWindingTest : IdentifiedObject, IDistributionWindingTest, IModelElement
     {
         
         /// <summary>
         /// The backing field for the FromTapStep property
         /// </summary>
         private int _fromTapStep;
+        
+        private static Lazy<ITypedElement> _fromTapStepAttribute = new Lazy<ITypedElement>(RetrieveFromTapStepAttribute);
+        
+        private static Lazy<ITypedElement> _fromWindingReference = new Lazy<ITypedElement>(RetrieveFromWindingReference);
         
         /// <summary>
         /// The backing field for the FromWinding property
@@ -80,10 +84,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.AssetModels
                     int old = this._fromTapStep;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnFromTapStepChanging(e);
-                    this.OnPropertyChanging("FromTapStep", e);
+                    this.OnPropertyChanging("FromTapStep", e, _fromTapStepAttribute);
                     this._fromTapStep = value;
                     this.OnFromTapStepChanged(e);
-                    this.OnPropertyChanged("FromTapStep", e);
+                    this.OnPropertyChanged("FromTapStep", e, _fromTapStepAttribute);
                 }
             }
         }
@@ -106,7 +110,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.AssetModels
                     IWindingInfo old = this._fromWinding;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnFromWindingChanging(e);
-                    this.OnPropertyChanging("FromWinding", e);
+                    this.OnPropertyChanging("FromWinding", e, _fromWindingReference);
                     this._fromWinding = value;
                     if ((old != null))
                     {
@@ -119,7 +123,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.AssetModels
                         value.Deleted += this.OnResetFromWinding;
                     }
                     this.OnFromWindingChanged(e);
-                    this.OnPropertyChanged("FromWinding", e);
+                    this.OnPropertyChanged("FromWinding", e, _fromWindingReference);
                 }
             }
         }
@@ -171,6 +175,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.AssetModels
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> FromWindingChanged;
         
+        private static ITypedElement RetrieveFromTapStepAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(DistributionWindingTest.ClassInstance)).Resolve("fromTapStep")));
+        }
+        
         /// <summary>
         /// Raises the FromTapStepChanging event
         /// </summary>
@@ -195,6 +204,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.AssetModels
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveFromWindingReference()
+        {
+            return ((ITypedElement)(((ModelElement)(DistributionWindingTest.ClassInstance)).Resolve("FromWinding")));
         }
         
         /// <summary>
@@ -440,7 +454,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.AssetModels
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public FromTapStepProxy(IDistributionWindingTest modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "fromTapStep")
             {
             }
             
@@ -458,24 +472,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.AssetModels
                     this.ModelElement.FromTapStep = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.FromTapStepChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.FromTapStepChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -489,7 +485,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.AssetModels
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public FromWindingProxy(IDistributionWindingTest modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "FromWinding")
             {
             }
             
@@ -506,24 +502,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.AssetModels
                 {
                     this.ModelElement.FromWinding = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.FromWindingChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.FromWindingChanged -= handler;
             }
         }
     }

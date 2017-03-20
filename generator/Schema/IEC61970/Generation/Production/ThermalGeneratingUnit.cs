@@ -46,7 +46,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61970/Generation/Production/Thermal" +
         "GeneratingUnit")]
     [DebuggerDisplayAttribute("ThermalGeneratingUnit {UUID}")]
-    public class ThermalGeneratingUnit : GeneratingUnit, IThermalGeneratingUnit, IModelElement
+    public partial class ThermalGeneratingUnit : GeneratingUnit, IThermalGeneratingUnit, IModelElement
     {
         
         /// <summary>
@@ -54,60 +54,86 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
         /// </summary>
         private float _oMCost;
         
+        private static Lazy<ITypedElement> _oMCostAttribute = new Lazy<ITypedElement>(RetrieveOMCostAttribute);
+        
+        private static Lazy<ITypedElement> _combinedCyclePlantReference = new Lazy<ITypedElement>(RetrieveCombinedCyclePlantReference);
+        
         /// <summary>
         /// The backing field for the CombinedCyclePlant property
         /// </summary>
         private ICombinedCyclePlant _combinedCyclePlant;
+        
+        private static Lazy<ITypedElement> _cAESPlantReference = new Lazy<ITypedElement>(RetrieveCAESPlantReference);
         
         /// <summary>
         /// The backing field for the CAESPlant property
         /// </summary>
         private ICAESPlant _cAESPlant;
         
+        private static Lazy<ITypedElement> _emissionCurvesReference = new Lazy<ITypedElement>(RetrieveEmissionCurvesReference);
+        
         /// <summary>
         /// The backing field for the EmissionCurves property
         /// </summary>
         private ThermalGeneratingUnitEmissionCurvesCollection _emissionCurves;
+        
+        private static Lazy<ITypedElement> _heatInputCurveReference = new Lazy<ITypedElement>(RetrieveHeatInputCurveReference);
         
         /// <summary>
         /// The backing field for the HeatInputCurve property
         /// </summary>
         private IHeatInputCurve _heatInputCurve;
         
+        private static Lazy<ITypedElement> _shutdownCurveReference = new Lazy<ITypedElement>(RetrieveShutdownCurveReference);
+        
         /// <summary>
         /// The backing field for the ShutdownCurve property
         /// </summary>
         private IShutdownCurve _shutdownCurve;
+        
+        private static Lazy<ITypedElement> _heatRateCurveReference = new Lazy<ITypedElement>(RetrieveHeatRateCurveReference);
         
         /// <summary>
         /// The backing field for the HeatRateCurve property
         /// </summary>
         private IHeatRateCurve _heatRateCurve;
         
+        private static Lazy<ITypedElement> _incrementalHeatRateCurveReference = new Lazy<ITypedElement>(RetrieveIncrementalHeatRateCurveReference);
+        
         /// <summary>
         /// The backing field for the IncrementalHeatRateCurve property
         /// </summary>
         private IIncrementalHeatRateCurve _incrementalHeatRateCurve;
+        
+        private static Lazy<ITypedElement> _cogenerationPlantReference = new Lazy<ITypedElement>(RetrieveCogenerationPlantReference);
         
         /// <summary>
         /// The backing field for the CogenerationPlant property
         /// </summary>
         private ICogenerationPlant _cogenerationPlant;
         
+        private static Lazy<ITypedElement> _fossilFuelsReference = new Lazy<ITypedElement>(RetrieveFossilFuelsReference);
+        
         /// <summary>
         /// The backing field for the FossilFuels property
         /// </summary>
         private ThermalGeneratingUnitFossilFuelsCollection _fossilFuels;
+        
+        private static Lazy<ITypedElement> _startupModelReference = new Lazy<ITypedElement>(RetrieveStartupModelReference);
         
         /// <summary>
         /// The backing field for the StartupModel property
         /// </summary>
         private IStartupModel _startupModel;
         
+        private static Lazy<ITypedElement> _fuelAllocationSchedulesReference = new Lazy<ITypedElement>(RetrieveFuelAllocationSchedulesReference);
+        
         /// <summary>
         /// The backing field for the FuelAllocationSchedules property
         /// </summary>
         private ThermalGeneratingUnitFuelAllocationSchedulesCollection _fuelAllocationSchedules;
+        
+        private static Lazy<ITypedElement> _emmissionAccountsReference = new Lazy<ITypedElement>(RetrieveEmmissionAccountsReference);
         
         /// <summary>
         /// The backing field for the EmmissionAccounts property
@@ -150,10 +176,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
                     float old = this._oMCost;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnOMCostChanging(e);
-                    this.OnPropertyChanging("OMCost", e);
+                    this.OnPropertyChanging("OMCost", e, _oMCostAttribute);
                     this._oMCost = value;
                     this.OnOMCostChanged(e);
-                    this.OnPropertyChanged("OMCost", e);
+                    this.OnPropertyChanged("OMCost", e, _oMCostAttribute);
                 }
             }
         }
@@ -176,7 +202,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
                     ICombinedCyclePlant old = this._combinedCyclePlant;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnCombinedCyclePlantChanging(e);
-                    this.OnPropertyChanging("CombinedCyclePlant", e);
+                    this.OnPropertyChanging("CombinedCyclePlant", e, _combinedCyclePlantReference);
                     this._combinedCyclePlant = value;
                     if ((old != null))
                     {
@@ -189,7 +215,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
                         value.Deleted += this.OnResetCombinedCyclePlant;
                     }
                     this.OnCombinedCyclePlantChanged(e);
-                    this.OnPropertyChanged("CombinedCyclePlant", e);
+                    this.OnPropertyChanged("CombinedCyclePlant", e, _combinedCyclePlantReference);
                 }
             }
         }
@@ -212,7 +238,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
                     ICAESPlant old = this._cAESPlant;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnCAESPlantChanging(e);
-                    this.OnPropertyChanging("CAESPlant", e);
+                    this.OnPropertyChanging("CAESPlant", e, _cAESPlantReference);
                     this._cAESPlant = value;
                     if ((old != null))
                     {
@@ -225,7 +251,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
                         value.Deleted += this.OnResetCAESPlant;
                     }
                     this.OnCAESPlantChanged(e);
-                    this.OnPropertyChanged("CAESPlant", e);
+                    this.OnPropertyChanged("CAESPlant", e, _cAESPlantReference);
                 }
             }
         }
@@ -263,7 +289,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
                     IHeatInputCurve old = this._heatInputCurve;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnHeatInputCurveChanging(e);
-                    this.OnPropertyChanging("HeatInputCurve", e);
+                    this.OnPropertyChanging("HeatInputCurve", e, _heatInputCurveReference);
                     this._heatInputCurve = value;
                     if ((old != null))
                     {
@@ -276,7 +302,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
                         value.Deleted += this.OnResetHeatInputCurve;
                     }
                     this.OnHeatInputCurveChanged(e);
-                    this.OnPropertyChanged("HeatInputCurve", e);
+                    this.OnPropertyChanged("HeatInputCurve", e, _heatInputCurveReference);
                 }
             }
         }
@@ -299,7 +325,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
                     IShutdownCurve old = this._shutdownCurve;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnShutdownCurveChanging(e);
-                    this.OnPropertyChanging("ShutdownCurve", e);
+                    this.OnPropertyChanging("ShutdownCurve", e, _shutdownCurveReference);
                     this._shutdownCurve = value;
                     if ((old != null))
                     {
@@ -312,7 +338,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
                         value.Deleted += this.OnResetShutdownCurve;
                     }
                     this.OnShutdownCurveChanged(e);
-                    this.OnPropertyChanged("ShutdownCurve", e);
+                    this.OnPropertyChanged("ShutdownCurve", e, _shutdownCurveReference);
                 }
             }
         }
@@ -335,7 +361,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
                     IHeatRateCurve old = this._heatRateCurve;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnHeatRateCurveChanging(e);
-                    this.OnPropertyChanging("HeatRateCurve", e);
+                    this.OnPropertyChanging("HeatRateCurve", e, _heatRateCurveReference);
                     this._heatRateCurve = value;
                     if ((old != null))
                     {
@@ -348,7 +374,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
                         value.Deleted += this.OnResetHeatRateCurve;
                     }
                     this.OnHeatRateCurveChanged(e);
-                    this.OnPropertyChanged("HeatRateCurve", e);
+                    this.OnPropertyChanged("HeatRateCurve", e, _heatRateCurveReference);
                 }
             }
         }
@@ -371,7 +397,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
                     IIncrementalHeatRateCurve old = this._incrementalHeatRateCurve;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnIncrementalHeatRateCurveChanging(e);
-                    this.OnPropertyChanging("IncrementalHeatRateCurve", e);
+                    this.OnPropertyChanging("IncrementalHeatRateCurve", e, _incrementalHeatRateCurveReference);
                     this._incrementalHeatRateCurve = value;
                     if ((old != null))
                     {
@@ -384,7 +410,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
                         value.Deleted += this.OnResetIncrementalHeatRateCurve;
                     }
                     this.OnIncrementalHeatRateCurveChanged(e);
-                    this.OnPropertyChanged("IncrementalHeatRateCurve", e);
+                    this.OnPropertyChanged("IncrementalHeatRateCurve", e, _incrementalHeatRateCurveReference);
                 }
             }
         }
@@ -407,7 +433,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
                     ICogenerationPlant old = this._cogenerationPlant;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnCogenerationPlantChanging(e);
-                    this.OnPropertyChanging("CogenerationPlant", e);
+                    this.OnPropertyChanging("CogenerationPlant", e, _cogenerationPlantReference);
                     this._cogenerationPlant = value;
                     if ((old != null))
                     {
@@ -420,7 +446,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
                         value.Deleted += this.OnResetCogenerationPlant;
                     }
                     this.OnCogenerationPlantChanged(e);
-                    this.OnPropertyChanged("CogenerationPlant", e);
+                    this.OnPropertyChanged("CogenerationPlant", e, _cogenerationPlantReference);
                 }
             }
         }
@@ -458,7 +484,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
                     IStartupModel old = this._startupModel;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnStartupModelChanging(e);
-                    this.OnPropertyChanging("StartupModel", e);
+                    this.OnPropertyChanging("StartupModel", e, _startupModelReference);
                     this._startupModel = value;
                     if ((old != null))
                     {
@@ -471,7 +497,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
                         value.Deleted += this.OnResetStartupModel;
                     }
                     this.OnStartupModelChanged(e);
-                    this.OnPropertyChanged("StartupModel", e);
+                    this.OnPropertyChanged("StartupModel", e, _startupModelReference);
                 }
             }
         }
@@ -623,6 +649,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> StartupModelChanged;
         
+        private static ITypedElement RetrieveOMCostAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(ThermalGeneratingUnit.ClassInstance)).Resolve("oMCost")));
+        }
+        
         /// <summary>
         /// Raises the OMCostChanging event
         /// </summary>
@@ -647,6 +678,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveCombinedCyclePlantReference()
+        {
+            return ((ITypedElement)(((ModelElement)(ThermalGeneratingUnit.ClassInstance)).Resolve("CombinedCyclePlant")));
         }
         
         /// <summary>
@@ -685,6 +721,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
             this.CombinedCyclePlant = null;
         }
         
+        private static ITypedElement RetrieveCAESPlantReference()
+        {
+            return ((ITypedElement)(((ModelElement)(ThermalGeneratingUnit.ClassInstance)).Resolve("CAESPlant")));
+        }
+        
         /// <summary>
         /// Raises the CAESPlantChanging event
         /// </summary>
@@ -721,6 +762,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
             this.CAESPlant = null;
         }
         
+        private static ITypedElement RetrieveEmissionCurvesReference()
+        {
+            return ((ITypedElement)(((ModelElement)(ThermalGeneratingUnit.ClassInstance)).Resolve("EmissionCurves")));
+        }
+        
         /// <summary>
         /// Forwards CollectionChanging notifications for the EmissionCurves property to the parent model element
         /// </summary>
@@ -728,7 +774,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
         /// <param name="e">The original event data</param>
         private void EmissionCurvesCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("EmissionCurves", e);
+            this.OnCollectionChanging("EmissionCurves", e, _emissionCurvesReference);
         }
         
         /// <summary>
@@ -738,7 +784,12 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
         /// <param name="e">The original event data</param>
         private void EmissionCurvesCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("EmissionCurves", e);
+            this.OnCollectionChanged("EmissionCurves", e, _emissionCurvesReference);
+        }
+        
+        private static ITypedElement RetrieveHeatInputCurveReference()
+        {
+            return ((ITypedElement)(((ModelElement)(ThermalGeneratingUnit.ClassInstance)).Resolve("HeatInputCurve")));
         }
         
         /// <summary>
@@ -777,6 +828,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
             this.HeatInputCurve = null;
         }
         
+        private static ITypedElement RetrieveShutdownCurveReference()
+        {
+            return ((ITypedElement)(((ModelElement)(ThermalGeneratingUnit.ClassInstance)).Resolve("ShutdownCurve")));
+        }
+        
         /// <summary>
         /// Raises the ShutdownCurveChanging event
         /// </summary>
@@ -811,6 +867,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
         private void OnResetShutdownCurve(object sender, System.EventArgs eventArgs)
         {
             this.ShutdownCurve = null;
+        }
+        
+        private static ITypedElement RetrieveHeatRateCurveReference()
+        {
+            return ((ITypedElement)(((ModelElement)(ThermalGeneratingUnit.ClassInstance)).Resolve("HeatRateCurve")));
         }
         
         /// <summary>
@@ -849,6 +910,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
             this.HeatRateCurve = null;
         }
         
+        private static ITypedElement RetrieveIncrementalHeatRateCurveReference()
+        {
+            return ((ITypedElement)(((ModelElement)(ThermalGeneratingUnit.ClassInstance)).Resolve("IncrementalHeatRateCurve")));
+        }
+        
         /// <summary>
         /// Raises the IncrementalHeatRateCurveChanging event
         /// </summary>
@@ -883,6 +949,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
         private void OnResetIncrementalHeatRateCurve(object sender, System.EventArgs eventArgs)
         {
             this.IncrementalHeatRateCurve = null;
+        }
+        
+        private static ITypedElement RetrieveCogenerationPlantReference()
+        {
+            return ((ITypedElement)(((ModelElement)(ThermalGeneratingUnit.ClassInstance)).Resolve("CogenerationPlant")));
         }
         
         /// <summary>
@@ -921,6 +992,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
             this.CogenerationPlant = null;
         }
         
+        private static ITypedElement RetrieveFossilFuelsReference()
+        {
+            return ((ITypedElement)(((ModelElement)(ThermalGeneratingUnit.ClassInstance)).Resolve("FossilFuels")));
+        }
+        
         /// <summary>
         /// Forwards CollectionChanging notifications for the FossilFuels property to the parent model element
         /// </summary>
@@ -928,7 +1004,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
         /// <param name="e">The original event data</param>
         private void FossilFuelsCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("FossilFuels", e);
+            this.OnCollectionChanging("FossilFuels", e, _fossilFuelsReference);
         }
         
         /// <summary>
@@ -938,7 +1014,12 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
         /// <param name="e">The original event data</param>
         private void FossilFuelsCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("FossilFuels", e);
+            this.OnCollectionChanged("FossilFuels", e, _fossilFuelsReference);
+        }
+        
+        private static ITypedElement RetrieveStartupModelReference()
+        {
+            return ((ITypedElement)(((ModelElement)(ThermalGeneratingUnit.ClassInstance)).Resolve("StartupModel")));
         }
         
         /// <summary>
@@ -977,6 +1058,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
             this.StartupModel = null;
         }
         
+        private static ITypedElement RetrieveFuelAllocationSchedulesReference()
+        {
+            return ((ITypedElement)(((ModelElement)(ThermalGeneratingUnit.ClassInstance)).Resolve("FuelAllocationSchedules")));
+        }
+        
         /// <summary>
         /// Forwards CollectionChanging notifications for the FuelAllocationSchedules property to the parent model element
         /// </summary>
@@ -984,7 +1070,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
         /// <param name="e">The original event data</param>
         private void FuelAllocationSchedulesCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("FuelAllocationSchedules", e);
+            this.OnCollectionChanging("FuelAllocationSchedules", e, _fuelAllocationSchedulesReference);
         }
         
         /// <summary>
@@ -994,7 +1080,12 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
         /// <param name="e">The original event data</param>
         private void FuelAllocationSchedulesCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("FuelAllocationSchedules", e);
+            this.OnCollectionChanged("FuelAllocationSchedules", e, _fuelAllocationSchedulesReference);
+        }
+        
+        private static ITypedElement RetrieveEmmissionAccountsReference()
+        {
+            return ((ITypedElement)(((ModelElement)(ThermalGeneratingUnit.ClassInstance)).Resolve("EmmissionAccounts")));
         }
         
         /// <summary>
@@ -1004,7 +1095,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
         /// <param name="e">The original event data</param>
         private void EmmissionAccountsCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("EmmissionAccounts", e);
+            this.OnCollectionChanging("EmmissionAccounts", e, _emmissionAccountsReference);
         }
         
         /// <summary>
@@ -1014,7 +1105,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
         /// <param name="e">The original event data</param>
         private void EmmissionAccountsCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("EmmissionAccounts", e);
+            this.OnCollectionChanged("EmmissionAccounts", e, _emmissionAccountsReference);
         }
         
         /// <summary>
@@ -1687,7 +1778,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public OMCostProxy(IThermalGeneratingUnit modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "oMCost")
             {
             }
             
@@ -1705,24 +1796,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
                     this.ModelElement.OMCost = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.OMCostChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.OMCostChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1736,7 +1809,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public CombinedCyclePlantProxy(IThermalGeneratingUnit modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "CombinedCyclePlant")
             {
             }
             
@@ -1754,24 +1827,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
                     this.ModelElement.CombinedCyclePlant = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.CombinedCyclePlantChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.CombinedCyclePlantChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1785,7 +1840,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public CAESPlantProxy(IThermalGeneratingUnit modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "CAESPlant")
             {
             }
             
@@ -1803,24 +1858,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
                     this.ModelElement.CAESPlant = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.CAESPlantChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.CAESPlantChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1834,7 +1871,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public HeatInputCurveProxy(IThermalGeneratingUnit modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "HeatInputCurve")
             {
             }
             
@@ -1852,24 +1889,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
                     this.ModelElement.HeatInputCurve = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.HeatInputCurveChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.HeatInputCurveChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1883,7 +1902,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public ShutdownCurveProxy(IThermalGeneratingUnit modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "ShutdownCurve")
             {
             }
             
@@ -1901,24 +1920,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
                     this.ModelElement.ShutdownCurve = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ShutdownCurveChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ShutdownCurveChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1932,7 +1933,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public HeatRateCurveProxy(IThermalGeneratingUnit modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "HeatRateCurve")
             {
             }
             
@@ -1950,24 +1951,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
                     this.ModelElement.HeatRateCurve = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.HeatRateCurveChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.HeatRateCurveChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1981,7 +1964,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public IncrementalHeatRateCurveProxy(IThermalGeneratingUnit modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "IncrementalHeatRateCurve")
             {
             }
             
@@ -1999,24 +1982,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
                     this.ModelElement.IncrementalHeatRateCurve = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.IncrementalHeatRateCurveChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.IncrementalHeatRateCurveChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -2030,7 +1995,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public CogenerationPlantProxy(IThermalGeneratingUnit modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "CogenerationPlant")
             {
             }
             
@@ -2048,24 +2013,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
                     this.ModelElement.CogenerationPlant = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.CogenerationPlantChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.CogenerationPlantChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -2079,7 +2026,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public StartupModelProxy(IThermalGeneratingUnit modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "StartupModel")
             {
             }
             
@@ -2096,24 +2043,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
                 {
                     this.ModelElement.StartupModel = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.StartupModelChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.StartupModelChanged -= handler;
             }
         }
     }

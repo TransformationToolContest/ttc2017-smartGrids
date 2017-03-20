@@ -50,13 +50,17 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfOperations
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61970/Informative/InfOperations/Erp" +
         "PersonScheduleStepRole")]
     [DebuggerDisplayAttribute("ErpPersonScheduleStepRole {UUID}")]
-    public class ErpPersonScheduleStepRole : Role, IErpPersonScheduleStepRole, IModelElement
+    public partial class ErpPersonScheduleStepRole : Role, IErpPersonScheduleStepRole, IModelElement
     {
+        
+        private static Lazy<ITypedElement> _switchingStepReference = new Lazy<ITypedElement>(RetrieveSwitchingStepReference);
         
         /// <summary>
         /// The backing field for the SwitchingStep property
         /// </summary>
         private ISwitchingStep _switchingStep;
+        
+        private static Lazy<ITypedElement> _erpPersonReference = new Lazy<ITypedElement>(RetrieveErpPersonReference);
         
         /// <summary>
         /// The backing field for the ErpPerson property
@@ -83,7 +87,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfOperations
                     ISwitchingStep old = this._switchingStep;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnSwitchingStepChanging(e);
-                    this.OnPropertyChanging("SwitchingStep", e);
+                    this.OnPropertyChanging("SwitchingStep", e, _switchingStepReference);
                     this._switchingStep = value;
                     if ((old != null))
                     {
@@ -96,7 +100,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfOperations
                         value.Deleted += this.OnResetSwitchingStep;
                     }
                     this.OnSwitchingStepChanged(e);
-                    this.OnPropertyChanged("SwitchingStep", e);
+                    this.OnPropertyChanged("SwitchingStep", e, _switchingStepReference);
                 }
             }
         }
@@ -119,7 +123,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfOperations
                     IErpPerson old = this._erpPerson;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnErpPersonChanging(e);
-                    this.OnPropertyChanging("ErpPerson", e);
+                    this.OnPropertyChanging("ErpPerson", e, _erpPersonReference);
                     this._erpPerson = value;
                     if ((old != null))
                     {
@@ -132,7 +136,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfOperations
                         value.Deleted += this.OnResetErpPerson;
                     }
                     this.OnErpPersonChanged(e);
-                    this.OnPropertyChanged("ErpPerson", e);
+                    this.OnPropertyChanged("ErpPerson", e, _erpPersonReference);
                 }
             }
         }
@@ -184,6 +188,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfOperations
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> ErpPersonChanged;
         
+        private static ITypedElement RetrieveSwitchingStepReference()
+        {
+            return ((ITypedElement)(((ModelElement)(ErpPersonScheduleStepRole.ClassInstance)).Resolve("SwitchingStep")));
+        }
+        
         /// <summary>
         /// Raises the SwitchingStepChanging event
         /// </summary>
@@ -218,6 +227,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfOperations
         private void OnResetSwitchingStep(object sender, System.EventArgs eventArgs)
         {
             this.SwitchingStep = null;
+        }
+        
+        private static ITypedElement RetrieveErpPersonReference()
+        {
+            return ((ITypedElement)(((ModelElement)(ErpPersonScheduleStepRole.ClassInstance)).Resolve("ErpPerson")));
         }
         
         /// <summary>
@@ -486,7 +500,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfOperations
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public SwitchingStepProxy(IErpPersonScheduleStepRole modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "SwitchingStep")
             {
             }
             
@@ -504,24 +518,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfOperations
                     this.ModelElement.SwitchingStep = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.SwitchingStepChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.SwitchingStepChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -535,7 +531,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfOperations
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public ErpPersonProxy(IErpPersonScheduleStepRole modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "ErpPerson")
             {
             }
             
@@ -552,24 +548,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfOperations
                 {
                     this.ModelElement.ErpPerson = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ErpPersonChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ErpPersonChanged -= handler;
             }
         }
     }

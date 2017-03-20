@@ -51,13 +51,17 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Meas
     [XmlNamespacePrefixAttribute("cimMeas")]
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61970/Meas/AccumulatorLimit")]
     [DebuggerDisplayAttribute("AccumulatorLimit {UUID}")]
-    public class AccumulatorLimit : Limit, IAccumulatorLimit, IModelElement
+    public partial class AccumulatorLimit : Limit, IAccumulatorLimit, IModelElement
     {
         
         /// <summary>
         /// The backing field for the Value property
         /// </summary>
         private int _value;
+        
+        private static Lazy<ITypedElement> _valueAttribute = new Lazy<ITypedElement>(RetrieveValueAttribute);
+        
+        private static Lazy<ITypedElement> _limitSetReference = new Lazy<ITypedElement>(RetrieveLimitSetReference);
         
         /// <summary>
         /// The backing field for the LimitSet property
@@ -84,10 +88,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Meas
                     int old = this._value;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnValueChanging(e);
-                    this.OnPropertyChanging("Value", e);
+                    this.OnPropertyChanging("Value", e, _valueAttribute);
                     this._value = value;
                     this.OnValueChanged(e);
-                    this.OnPropertyChanged("Value", e);
+                    this.OnPropertyChanged("Value", e, _valueAttribute);
                 }
             }
         }
@@ -110,7 +114,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Meas
                     IAccumulatorLimitSet old = this._limitSet;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnLimitSetChanging(e);
-                    this.OnPropertyChanging("LimitSet", e);
+                    this.OnPropertyChanging("LimitSet", e, _limitSetReference);
                     this._limitSet = value;
                     if ((old != null))
                     {
@@ -123,7 +127,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Meas
                         value.Deleted += this.OnResetLimitSet;
                     }
                     this.OnLimitSetChanged(e);
-                    this.OnPropertyChanged("LimitSet", e);
+                    this.OnPropertyChanged("LimitSet", e, _limitSetReference);
                 }
             }
         }
@@ -174,6 +178,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Meas
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> LimitSetChanged;
         
+        private static ITypedElement RetrieveValueAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(AccumulatorLimit.ClassInstance)).Resolve("value")));
+        }
+        
         /// <summary>
         /// Raises the ValueChanging event
         /// </summary>
@@ -198,6 +207,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Meas
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveLimitSetReference()
+        {
+            return ((ITypedElement)(((ModelElement)(AccumulatorLimit.ClassInstance)).Resolve("LimitSet")));
         }
         
         /// <summary>
@@ -442,7 +456,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Meas
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public ValueProxy(IAccumulatorLimit modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "value")
             {
             }
             
@@ -460,24 +474,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Meas
                     this.ModelElement.Value = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ValueChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ValueChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -491,7 +487,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Meas
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public LimitSetProxy(IAccumulatorLimit modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "LimitSet")
             {
             }
             
@@ -508,24 +504,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Meas
                 {
                     this.ModelElement.LimitSet = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.LimitSetChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.LimitSetChanged -= handler;
             }
         }
     }

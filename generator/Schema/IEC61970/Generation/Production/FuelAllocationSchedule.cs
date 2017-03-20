@@ -46,7 +46,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61970/Generation/Production/FuelAll" +
         "ocationSchedule")]
     [DebuggerDisplayAttribute("FuelAllocationSchedule {UUID}")]
-    public class FuelAllocationSchedule : Curve, IFuelAllocationSchedule, IModelElement
+    public partial class FuelAllocationSchedule : Curve, IFuelAllocationSchedule, IModelElement
     {
         
         /// <summary>
@@ -54,30 +54,44 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
         /// </summary>
         private Nullable<FuelType> _fuelType;
         
+        private static Lazy<ITypedElement> _fuelTypeAttribute = new Lazy<ITypedElement>(RetrieveFuelTypeAttribute);
+        
         /// <summary>
         /// The backing field for the MaxFuelAllocation property
         /// </summary>
         private float _maxFuelAllocation;
+        
+        private static Lazy<ITypedElement> _maxFuelAllocationAttribute = new Lazy<ITypedElement>(RetrieveMaxFuelAllocationAttribute);
         
         /// <summary>
         /// The backing field for the FuelAllocationStartDate property
         /// </summary>
         private DateTime _fuelAllocationStartDate;
         
+        private static Lazy<ITypedElement> _fuelAllocationStartDateAttribute = new Lazy<ITypedElement>(RetrieveFuelAllocationStartDateAttribute);
+        
         /// <summary>
         /// The backing field for the MinFuelAllocation property
         /// </summary>
         private float _minFuelAllocation;
+        
+        private static Lazy<ITypedElement> _minFuelAllocationAttribute = new Lazy<ITypedElement>(RetrieveMinFuelAllocationAttribute);
         
         /// <summary>
         /// The backing field for the FuelAllocationEndDate property
         /// </summary>
         private DateTime _fuelAllocationEndDate;
         
+        private static Lazy<ITypedElement> _fuelAllocationEndDateAttribute = new Lazy<ITypedElement>(RetrieveFuelAllocationEndDateAttribute);
+        
+        private static Lazy<ITypedElement> _fossilFuelReference = new Lazy<ITypedElement>(RetrieveFossilFuelReference);
+        
         /// <summary>
         /// The backing field for the FossilFuel property
         /// </summary>
         private IFossilFuel _fossilFuel;
+        
+        private static Lazy<ITypedElement> _thermalGeneratingUnitReference = new Lazy<ITypedElement>(RetrieveThermalGeneratingUnitReference);
         
         /// <summary>
         /// The backing field for the ThermalGeneratingUnit property
@@ -104,10 +118,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
                     Nullable<FuelType> old = this._fuelType;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnFuelTypeChanging(e);
-                    this.OnPropertyChanging("FuelType", e);
+                    this.OnPropertyChanging("FuelType", e, _fuelTypeAttribute);
                     this._fuelType = value;
                     this.OnFuelTypeChanged(e);
-                    this.OnPropertyChanged("FuelType", e);
+                    this.OnPropertyChanged("FuelType", e, _fuelTypeAttribute);
                 }
             }
         }
@@ -130,10 +144,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
                     float old = this._maxFuelAllocation;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnMaxFuelAllocationChanging(e);
-                    this.OnPropertyChanging("MaxFuelAllocation", e);
+                    this.OnPropertyChanging("MaxFuelAllocation", e, _maxFuelAllocationAttribute);
                     this._maxFuelAllocation = value;
                     this.OnMaxFuelAllocationChanged(e);
-                    this.OnPropertyChanged("MaxFuelAllocation", e);
+                    this.OnPropertyChanged("MaxFuelAllocation", e, _maxFuelAllocationAttribute);
                 }
             }
         }
@@ -156,10 +170,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
                     DateTime old = this._fuelAllocationStartDate;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnFuelAllocationStartDateChanging(e);
-                    this.OnPropertyChanging("FuelAllocationStartDate", e);
+                    this.OnPropertyChanging("FuelAllocationStartDate", e, _fuelAllocationStartDateAttribute);
                     this._fuelAllocationStartDate = value;
                     this.OnFuelAllocationStartDateChanged(e);
-                    this.OnPropertyChanged("FuelAllocationStartDate", e);
+                    this.OnPropertyChanged("FuelAllocationStartDate", e, _fuelAllocationStartDateAttribute);
                 }
             }
         }
@@ -182,10 +196,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
                     float old = this._minFuelAllocation;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnMinFuelAllocationChanging(e);
-                    this.OnPropertyChanging("MinFuelAllocation", e);
+                    this.OnPropertyChanging("MinFuelAllocation", e, _minFuelAllocationAttribute);
                     this._minFuelAllocation = value;
                     this.OnMinFuelAllocationChanged(e);
-                    this.OnPropertyChanged("MinFuelAllocation", e);
+                    this.OnPropertyChanged("MinFuelAllocation", e, _minFuelAllocationAttribute);
                 }
             }
         }
@@ -208,10 +222,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
                     DateTime old = this._fuelAllocationEndDate;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnFuelAllocationEndDateChanging(e);
-                    this.OnPropertyChanging("FuelAllocationEndDate", e);
+                    this.OnPropertyChanging("FuelAllocationEndDate", e, _fuelAllocationEndDateAttribute);
                     this._fuelAllocationEndDate = value;
                     this.OnFuelAllocationEndDateChanged(e);
-                    this.OnPropertyChanged("FuelAllocationEndDate", e);
+                    this.OnPropertyChanged("FuelAllocationEndDate", e, _fuelAllocationEndDateAttribute);
                 }
             }
         }
@@ -234,7 +248,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
                     IFossilFuel old = this._fossilFuel;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnFossilFuelChanging(e);
-                    this.OnPropertyChanging("FossilFuel", e);
+                    this.OnPropertyChanging("FossilFuel", e, _fossilFuelReference);
                     this._fossilFuel = value;
                     if ((old != null))
                     {
@@ -247,7 +261,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
                         value.Deleted += this.OnResetFossilFuel;
                     }
                     this.OnFossilFuelChanged(e);
-                    this.OnPropertyChanged("FossilFuel", e);
+                    this.OnPropertyChanged("FossilFuel", e, _fossilFuelReference);
                 }
             }
         }
@@ -270,7 +284,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
                     IThermalGeneratingUnit old = this._thermalGeneratingUnit;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnThermalGeneratingUnitChanging(e);
-                    this.OnPropertyChanging("ThermalGeneratingUnit", e);
+                    this.OnPropertyChanging("ThermalGeneratingUnit", e, _thermalGeneratingUnitReference);
                     this._thermalGeneratingUnit = value;
                     if ((old != null))
                     {
@@ -283,7 +297,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
                         value.Deleted += this.OnResetThermalGeneratingUnit;
                     }
                     this.OnThermalGeneratingUnitChanged(e);
-                    this.OnPropertyChanged("ThermalGeneratingUnit", e);
+                    this.OnPropertyChanged("ThermalGeneratingUnit", e, _thermalGeneratingUnitReference);
                 }
             }
         }
@@ -385,6 +399,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> ThermalGeneratingUnitChanged;
         
+        private static ITypedElement RetrieveFuelTypeAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(FuelAllocationSchedule.ClassInstance)).Resolve("fuelType")));
+        }
+        
         /// <summary>
         /// Raises the FuelTypeChanging event
         /// </summary>
@@ -409,6 +428,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveMaxFuelAllocationAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(FuelAllocationSchedule.ClassInstance)).Resolve("maxFuelAllocation")));
         }
         
         /// <summary>
@@ -437,6 +461,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
             }
         }
         
+        private static ITypedElement RetrieveFuelAllocationStartDateAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(FuelAllocationSchedule.ClassInstance)).Resolve("fuelAllocationStartDate")));
+        }
+        
         /// <summary>
         /// Raises the FuelAllocationStartDateChanging event
         /// </summary>
@@ -461,6 +490,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveMinFuelAllocationAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(FuelAllocationSchedule.ClassInstance)).Resolve("minFuelAllocation")));
         }
         
         /// <summary>
@@ -489,6 +523,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
             }
         }
         
+        private static ITypedElement RetrieveFuelAllocationEndDateAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(FuelAllocationSchedule.ClassInstance)).Resolve("fuelAllocationEndDate")));
+        }
+        
         /// <summary>
         /// Raises the FuelAllocationEndDateChanging event
         /// </summary>
@@ -513,6 +552,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveFossilFuelReference()
+        {
+            return ((ITypedElement)(((ModelElement)(FuelAllocationSchedule.ClassInstance)).Resolve("FossilFuel")));
         }
         
         /// <summary>
@@ -549,6 +593,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
         private void OnResetFossilFuel(object sender, System.EventArgs eventArgs)
         {
             this.FossilFuel = null;
+        }
+        
+        private static ITypedElement RetrieveThermalGeneratingUnitReference()
+        {
+            return ((ITypedElement)(((ModelElement)(FuelAllocationSchedule.ClassInstance)).Resolve("ThermalGeneratingUnit")));
         }
         
         /// <summary>
@@ -873,7 +922,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public FuelTypeProxy(IFuelAllocationSchedule modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "fuelType")
             {
             }
             
@@ -891,24 +940,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
                     this.ModelElement.FuelType = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.FuelTypeChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.FuelTypeChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -922,7 +953,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public MaxFuelAllocationProxy(IFuelAllocationSchedule modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "maxFuelAllocation")
             {
             }
             
@@ -940,24 +971,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
                     this.ModelElement.MaxFuelAllocation = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.MaxFuelAllocationChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.MaxFuelAllocationChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -971,7 +984,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public FuelAllocationStartDateProxy(IFuelAllocationSchedule modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "fuelAllocationStartDate")
             {
             }
             
@@ -989,24 +1002,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
                     this.ModelElement.FuelAllocationStartDate = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.FuelAllocationStartDateChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.FuelAllocationStartDateChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1020,7 +1015,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public MinFuelAllocationProxy(IFuelAllocationSchedule modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "minFuelAllocation")
             {
             }
             
@@ -1038,24 +1033,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
                     this.ModelElement.MinFuelAllocation = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.MinFuelAllocationChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.MinFuelAllocationChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1069,7 +1046,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public FuelAllocationEndDateProxy(IFuelAllocationSchedule modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "fuelAllocationEndDate")
             {
             }
             
@@ -1087,24 +1064,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
                     this.ModelElement.FuelAllocationEndDate = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.FuelAllocationEndDateChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.FuelAllocationEndDateChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1118,7 +1077,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public FossilFuelProxy(IFuelAllocationSchedule modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "FossilFuel")
             {
             }
             
@@ -1136,24 +1095,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
                     this.ModelElement.FossilFuel = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.FossilFuelChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.FossilFuelChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1167,7 +1108,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public ThermalGeneratingUnitProxy(IFuelAllocationSchedule modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "ThermalGeneratingUnit")
             {
             }
             
@@ -1184,24 +1125,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
                 {
                     this.ModelElement.ThermalGeneratingUnit = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ThermalGeneratingUnitChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ThermalGeneratingUnitChanged -= handler;
             }
         }
     }

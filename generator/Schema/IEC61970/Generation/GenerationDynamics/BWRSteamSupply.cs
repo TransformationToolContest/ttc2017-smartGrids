@@ -42,7 +42,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.GenerationDynamics
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61970/Generation/GenerationDynamics" +
         "/BWRSteamSupply")]
     [DebuggerDisplayAttribute("BWRSteamSupply {UUID}")]
-    public class BWRSteamSupply : SteamSupply, IBWRSteamSupply, IModelElement
+    public partial class BWRSteamSupply : SteamSupply, IBWRSteamSupply, IModelElement
     {
         
         /// <summary>
@@ -50,105 +50,147 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.GenerationDynamics
         /// </summary>
         private float _lowPowerLimit;
         
+        private static Lazy<ITypedElement> _lowPowerLimitAttribute = new Lazy<ITypedElement>(RetrieveLowPowerLimitAttribute);
+        
         /// <summary>
         /// The backing field for the InCoreThermalTC property
         /// </summary>
         private float _inCoreThermalTC;
+        
+        private static Lazy<ITypedElement> _inCoreThermalTCAttribute = new Lazy<ITypedElement>(RetrieveInCoreThermalTCAttribute);
         
         /// <summary>
         /// The backing field for the IntegralGain property
         /// </summary>
         private float _integralGain;
         
+        private static Lazy<ITypedElement> _integralGainAttribute = new Lazy<ITypedElement>(RetrieveIntegralGainAttribute);
+        
         /// <summary>
         /// The backing field for the PressureSetpointGA property
         /// </summary>
         private float _pressureSetpointGA;
+        
+        private static Lazy<ITypedElement> _pressureSetpointGAAttribute = new Lazy<ITypedElement>(RetrievePressureSetpointGAAttribute);
         
         /// <summary>
         /// The backing field for the RfAux1 property
         /// </summary>
         private float _rfAux1;
         
+        private static Lazy<ITypedElement> _rfAux1Attribute = new Lazy<ITypedElement>(RetrieveRfAux1Attribute);
+        
         /// <summary>
         /// The backing field for the RfAux2 property
         /// </summary>
         private float _rfAux2;
+        
+        private static Lazy<ITypedElement> _rfAux2Attribute = new Lazy<ITypedElement>(RetrieveRfAux2Attribute);
         
         /// <summary>
         /// The backing field for the LowerLimit property
         /// </summary>
         private float _lowerLimit;
         
+        private static Lazy<ITypedElement> _lowerLimitAttribute = new Lazy<ITypedElement>(RetrieveLowerLimitAttribute);
+        
         /// <summary>
         /// The backing field for the RodPatternConstant property
         /// </summary>
         private float _rodPatternConstant;
+        
+        private static Lazy<ITypedElement> _rodPatternConstantAttribute = new Lazy<ITypedElement>(RetrieveRodPatternConstantAttribute);
         
         /// <summary>
         /// The backing field for the RfAux8 property
         /// </summary>
         private float _rfAux8;
         
+        private static Lazy<ITypedElement> _rfAux8Attribute = new Lazy<ITypedElement>(RetrieveRfAux8Attribute);
+        
         /// <summary>
         /// The backing field for the RfAux7 property
         /// </summary>
         private float _rfAux7;
+        
+        private static Lazy<ITypedElement> _rfAux7Attribute = new Lazy<ITypedElement>(RetrieveRfAux7Attribute);
         
         /// <summary>
         /// The backing field for the RodPattern property
         /// </summary>
         private float _rodPattern;
         
+        private static Lazy<ITypedElement> _rodPatternAttribute = new Lazy<ITypedElement>(RetrieveRodPatternAttribute);
+        
         /// <summary>
         /// The backing field for the RfAux4 property
         /// </summary>
         private float _rfAux4;
+        
+        private static Lazy<ITypedElement> _rfAux4Attribute = new Lazy<ITypedElement>(RetrieveRfAux4Attribute);
         
         /// <summary>
         /// The backing field for the RfAux3 property
         /// </summary>
         private float _rfAux3;
         
+        private static Lazy<ITypedElement> _rfAux3Attribute = new Lazy<ITypedElement>(RetrieveRfAux3Attribute);
+        
         /// <summary>
         /// The backing field for the RfAux6 property
         /// </summary>
         private float _rfAux6;
+        
+        private static Lazy<ITypedElement> _rfAux6Attribute = new Lazy<ITypedElement>(RetrieveRfAux6Attribute);
         
         /// <summary>
         /// The backing field for the RfAux5 property
         /// </summary>
         private float _rfAux5;
         
+        private static Lazy<ITypedElement> _rfAux5Attribute = new Lazy<ITypedElement>(RetrieveRfAux5Attribute);
+        
         /// <summary>
         /// The backing field for the ProportionalGain property
         /// </summary>
         private float _proportionalGain;
+        
+        private static Lazy<ITypedElement> _proportionalGainAttribute = new Lazy<ITypedElement>(RetrieveProportionalGainAttribute);
         
         /// <summary>
         /// The backing field for the UpperLimit property
         /// </summary>
         private float _upperLimit;
         
+        private static Lazy<ITypedElement> _upperLimitAttribute = new Lazy<ITypedElement>(RetrieveUpperLimitAttribute);
+        
         /// <summary>
         /// The backing field for the HighPowerLimit property
         /// </summary>
         private float _highPowerLimit;
+        
+        private static Lazy<ITypedElement> _highPowerLimitAttribute = new Lazy<ITypedElement>(RetrieveHighPowerLimitAttribute);
         
         /// <summary>
         /// The backing field for the PressureSetpointTC2 property
         /// </summary>
         private float _pressureSetpointTC2;
         
+        private static Lazy<ITypedElement> _pressureSetpointTC2Attribute = new Lazy<ITypedElement>(RetrievePressureSetpointTC2Attribute);
+        
         /// <summary>
         /// The backing field for the PressureSetpointTC1 property
         /// </summary>
         private float _pressureSetpointTC1;
         
+        private static Lazy<ITypedElement> _pressureSetpointTC1Attribute = new Lazy<ITypedElement>(RetrievePressureSetpointTC1Attribute);
+        
         /// <summary>
         /// The backing field for the PressureLimit property
         /// </summary>
         private float _pressureLimit;
+        
+        private static Lazy<ITypedElement> _pressureLimitAttribute = new Lazy<ITypedElement>(RetrievePressureLimitAttribute);
         
         private static IClass _classInstance;
         
@@ -170,10 +212,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.GenerationDynamics
                     float old = this._lowPowerLimit;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnLowPowerLimitChanging(e);
-                    this.OnPropertyChanging("LowPowerLimit", e);
+                    this.OnPropertyChanging("LowPowerLimit", e, _lowPowerLimitAttribute);
                     this._lowPowerLimit = value;
                     this.OnLowPowerLimitChanged(e);
-                    this.OnPropertyChanged("LowPowerLimit", e);
+                    this.OnPropertyChanged("LowPowerLimit", e, _lowPowerLimitAttribute);
                 }
             }
         }
@@ -196,10 +238,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.GenerationDynamics
                     float old = this._inCoreThermalTC;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnInCoreThermalTCChanging(e);
-                    this.OnPropertyChanging("InCoreThermalTC", e);
+                    this.OnPropertyChanging("InCoreThermalTC", e, _inCoreThermalTCAttribute);
                     this._inCoreThermalTC = value;
                     this.OnInCoreThermalTCChanged(e);
-                    this.OnPropertyChanged("InCoreThermalTC", e);
+                    this.OnPropertyChanged("InCoreThermalTC", e, _inCoreThermalTCAttribute);
                 }
             }
         }
@@ -222,10 +264,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.GenerationDynamics
                     float old = this._integralGain;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnIntegralGainChanging(e);
-                    this.OnPropertyChanging("IntegralGain", e);
+                    this.OnPropertyChanging("IntegralGain", e, _integralGainAttribute);
                     this._integralGain = value;
                     this.OnIntegralGainChanged(e);
-                    this.OnPropertyChanged("IntegralGain", e);
+                    this.OnPropertyChanged("IntegralGain", e, _integralGainAttribute);
                 }
             }
         }
@@ -248,10 +290,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.GenerationDynamics
                     float old = this._pressureSetpointGA;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnPressureSetpointGAChanging(e);
-                    this.OnPropertyChanging("PressureSetpointGA", e);
+                    this.OnPropertyChanging("PressureSetpointGA", e, _pressureSetpointGAAttribute);
                     this._pressureSetpointGA = value;
                     this.OnPressureSetpointGAChanged(e);
-                    this.OnPropertyChanged("PressureSetpointGA", e);
+                    this.OnPropertyChanged("PressureSetpointGA", e, _pressureSetpointGAAttribute);
                 }
             }
         }
@@ -274,10 +316,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.GenerationDynamics
                     float old = this._rfAux1;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnRfAux1Changing(e);
-                    this.OnPropertyChanging("RfAux1", e);
+                    this.OnPropertyChanging("RfAux1", e, _rfAux1Attribute);
                     this._rfAux1 = value;
                     this.OnRfAux1Changed(e);
-                    this.OnPropertyChanged("RfAux1", e);
+                    this.OnPropertyChanged("RfAux1", e, _rfAux1Attribute);
                 }
             }
         }
@@ -300,10 +342,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.GenerationDynamics
                     float old = this._rfAux2;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnRfAux2Changing(e);
-                    this.OnPropertyChanging("RfAux2", e);
+                    this.OnPropertyChanging("RfAux2", e, _rfAux2Attribute);
                     this._rfAux2 = value;
                     this.OnRfAux2Changed(e);
-                    this.OnPropertyChanged("RfAux2", e);
+                    this.OnPropertyChanged("RfAux2", e, _rfAux2Attribute);
                 }
             }
         }
@@ -326,10 +368,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.GenerationDynamics
                     float old = this._lowerLimit;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnLowerLimitChanging(e);
-                    this.OnPropertyChanging("LowerLimit", e);
+                    this.OnPropertyChanging("LowerLimit", e, _lowerLimitAttribute);
                     this._lowerLimit = value;
                     this.OnLowerLimitChanged(e);
-                    this.OnPropertyChanged("LowerLimit", e);
+                    this.OnPropertyChanged("LowerLimit", e, _lowerLimitAttribute);
                 }
             }
         }
@@ -352,10 +394,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.GenerationDynamics
                     float old = this._rodPatternConstant;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnRodPatternConstantChanging(e);
-                    this.OnPropertyChanging("RodPatternConstant", e);
+                    this.OnPropertyChanging("RodPatternConstant", e, _rodPatternConstantAttribute);
                     this._rodPatternConstant = value;
                     this.OnRodPatternConstantChanged(e);
-                    this.OnPropertyChanged("RodPatternConstant", e);
+                    this.OnPropertyChanged("RodPatternConstant", e, _rodPatternConstantAttribute);
                 }
             }
         }
@@ -378,10 +420,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.GenerationDynamics
                     float old = this._rfAux8;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnRfAux8Changing(e);
-                    this.OnPropertyChanging("RfAux8", e);
+                    this.OnPropertyChanging("RfAux8", e, _rfAux8Attribute);
                     this._rfAux8 = value;
                     this.OnRfAux8Changed(e);
-                    this.OnPropertyChanged("RfAux8", e);
+                    this.OnPropertyChanged("RfAux8", e, _rfAux8Attribute);
                 }
             }
         }
@@ -404,10 +446,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.GenerationDynamics
                     float old = this._rfAux7;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnRfAux7Changing(e);
-                    this.OnPropertyChanging("RfAux7", e);
+                    this.OnPropertyChanging("RfAux7", e, _rfAux7Attribute);
                     this._rfAux7 = value;
                     this.OnRfAux7Changed(e);
-                    this.OnPropertyChanged("RfAux7", e);
+                    this.OnPropertyChanged("RfAux7", e, _rfAux7Attribute);
                 }
             }
         }
@@ -430,10 +472,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.GenerationDynamics
                     float old = this._rodPattern;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnRodPatternChanging(e);
-                    this.OnPropertyChanging("RodPattern", e);
+                    this.OnPropertyChanging("RodPattern", e, _rodPatternAttribute);
                     this._rodPattern = value;
                     this.OnRodPatternChanged(e);
-                    this.OnPropertyChanged("RodPattern", e);
+                    this.OnPropertyChanged("RodPattern", e, _rodPatternAttribute);
                 }
             }
         }
@@ -456,10 +498,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.GenerationDynamics
                     float old = this._rfAux4;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnRfAux4Changing(e);
-                    this.OnPropertyChanging("RfAux4", e);
+                    this.OnPropertyChanging("RfAux4", e, _rfAux4Attribute);
                     this._rfAux4 = value;
                     this.OnRfAux4Changed(e);
-                    this.OnPropertyChanged("RfAux4", e);
+                    this.OnPropertyChanged("RfAux4", e, _rfAux4Attribute);
                 }
             }
         }
@@ -482,10 +524,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.GenerationDynamics
                     float old = this._rfAux3;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnRfAux3Changing(e);
-                    this.OnPropertyChanging("RfAux3", e);
+                    this.OnPropertyChanging("RfAux3", e, _rfAux3Attribute);
                     this._rfAux3 = value;
                     this.OnRfAux3Changed(e);
-                    this.OnPropertyChanged("RfAux3", e);
+                    this.OnPropertyChanged("RfAux3", e, _rfAux3Attribute);
                 }
             }
         }
@@ -508,10 +550,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.GenerationDynamics
                     float old = this._rfAux6;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnRfAux6Changing(e);
-                    this.OnPropertyChanging("RfAux6", e);
+                    this.OnPropertyChanging("RfAux6", e, _rfAux6Attribute);
                     this._rfAux6 = value;
                     this.OnRfAux6Changed(e);
-                    this.OnPropertyChanged("RfAux6", e);
+                    this.OnPropertyChanged("RfAux6", e, _rfAux6Attribute);
                 }
             }
         }
@@ -534,10 +576,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.GenerationDynamics
                     float old = this._rfAux5;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnRfAux5Changing(e);
-                    this.OnPropertyChanging("RfAux5", e);
+                    this.OnPropertyChanging("RfAux5", e, _rfAux5Attribute);
                     this._rfAux5 = value;
                     this.OnRfAux5Changed(e);
-                    this.OnPropertyChanged("RfAux5", e);
+                    this.OnPropertyChanged("RfAux5", e, _rfAux5Attribute);
                 }
             }
         }
@@ -560,10 +602,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.GenerationDynamics
                     float old = this._proportionalGain;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnProportionalGainChanging(e);
-                    this.OnPropertyChanging("ProportionalGain", e);
+                    this.OnPropertyChanging("ProportionalGain", e, _proportionalGainAttribute);
                     this._proportionalGain = value;
                     this.OnProportionalGainChanged(e);
-                    this.OnPropertyChanged("ProportionalGain", e);
+                    this.OnPropertyChanged("ProportionalGain", e, _proportionalGainAttribute);
                 }
             }
         }
@@ -586,10 +628,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.GenerationDynamics
                     float old = this._upperLimit;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnUpperLimitChanging(e);
-                    this.OnPropertyChanging("UpperLimit", e);
+                    this.OnPropertyChanging("UpperLimit", e, _upperLimitAttribute);
                     this._upperLimit = value;
                     this.OnUpperLimitChanged(e);
-                    this.OnPropertyChanged("UpperLimit", e);
+                    this.OnPropertyChanged("UpperLimit", e, _upperLimitAttribute);
                 }
             }
         }
@@ -612,10 +654,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.GenerationDynamics
                     float old = this._highPowerLimit;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnHighPowerLimitChanging(e);
-                    this.OnPropertyChanging("HighPowerLimit", e);
+                    this.OnPropertyChanging("HighPowerLimit", e, _highPowerLimitAttribute);
                     this._highPowerLimit = value;
                     this.OnHighPowerLimitChanged(e);
-                    this.OnPropertyChanged("HighPowerLimit", e);
+                    this.OnPropertyChanged("HighPowerLimit", e, _highPowerLimitAttribute);
                 }
             }
         }
@@ -638,10 +680,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.GenerationDynamics
                     float old = this._pressureSetpointTC2;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnPressureSetpointTC2Changing(e);
-                    this.OnPropertyChanging("PressureSetpointTC2", e);
+                    this.OnPropertyChanging("PressureSetpointTC2", e, _pressureSetpointTC2Attribute);
                     this._pressureSetpointTC2 = value;
                     this.OnPressureSetpointTC2Changed(e);
-                    this.OnPropertyChanged("PressureSetpointTC2", e);
+                    this.OnPropertyChanged("PressureSetpointTC2", e, _pressureSetpointTC2Attribute);
                 }
             }
         }
@@ -664,10 +706,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.GenerationDynamics
                     float old = this._pressureSetpointTC1;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnPressureSetpointTC1Changing(e);
-                    this.OnPropertyChanging("PressureSetpointTC1", e);
+                    this.OnPropertyChanging("PressureSetpointTC1", e, _pressureSetpointTC1Attribute);
                     this._pressureSetpointTC1 = value;
                     this.OnPressureSetpointTC1Changed(e);
-                    this.OnPropertyChanged("PressureSetpointTC1", e);
+                    this.OnPropertyChanged("PressureSetpointTC1", e, _pressureSetpointTC1Attribute);
                 }
             }
         }
@@ -690,10 +732,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.GenerationDynamics
                     float old = this._pressureLimit;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnPressureLimitChanging(e);
-                    this.OnPropertyChanging("PressureLimit", e);
+                    this.OnPropertyChanging("PressureLimit", e, _pressureLimitAttribute);
                     this._pressureLimit = value;
                     this.OnPressureLimitChanged(e);
-                    this.OnPropertyChanged("PressureLimit", e);
+                    this.OnPropertyChanged("PressureLimit", e, _pressureLimitAttribute);
                 }
             }
         }
@@ -924,6 +966,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.GenerationDynamics
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> PressureLimitChanged;
         
+        private static ITypedElement RetrieveLowPowerLimitAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(BWRSteamSupply.ClassInstance)).Resolve("lowPowerLimit")));
+        }
+        
         /// <summary>
         /// Raises the LowPowerLimitChanging event
         /// </summary>
@@ -948,6 +995,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.GenerationDynamics
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveInCoreThermalTCAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(BWRSteamSupply.ClassInstance)).Resolve("inCoreThermalTC")));
         }
         
         /// <summary>
@@ -976,6 +1028,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.GenerationDynamics
             }
         }
         
+        private static ITypedElement RetrieveIntegralGainAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(BWRSteamSupply.ClassInstance)).Resolve("integralGain")));
+        }
+        
         /// <summary>
         /// Raises the IntegralGainChanging event
         /// </summary>
@@ -1000,6 +1057,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.GenerationDynamics
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrievePressureSetpointGAAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(BWRSteamSupply.ClassInstance)).Resolve("pressureSetpointGA")));
         }
         
         /// <summary>
@@ -1028,6 +1090,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.GenerationDynamics
             }
         }
         
+        private static ITypedElement RetrieveRfAux1Attribute()
+        {
+            return ((ITypedElement)(((ModelElement)(BWRSteamSupply.ClassInstance)).Resolve("rfAux1")));
+        }
+        
         /// <summary>
         /// Raises the RfAux1Changing event
         /// </summary>
@@ -1052,6 +1119,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.GenerationDynamics
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveRfAux2Attribute()
+        {
+            return ((ITypedElement)(((ModelElement)(BWRSteamSupply.ClassInstance)).Resolve("rfAux2")));
         }
         
         /// <summary>
@@ -1080,6 +1152,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.GenerationDynamics
             }
         }
         
+        private static ITypedElement RetrieveLowerLimitAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(BWRSteamSupply.ClassInstance)).Resolve("lowerLimit")));
+        }
+        
         /// <summary>
         /// Raises the LowerLimitChanging event
         /// </summary>
@@ -1104,6 +1181,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.GenerationDynamics
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveRodPatternConstantAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(BWRSteamSupply.ClassInstance)).Resolve("rodPatternConstant")));
         }
         
         /// <summary>
@@ -1132,6 +1214,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.GenerationDynamics
             }
         }
         
+        private static ITypedElement RetrieveRfAux8Attribute()
+        {
+            return ((ITypedElement)(((ModelElement)(BWRSteamSupply.ClassInstance)).Resolve("rfAux8")));
+        }
+        
         /// <summary>
         /// Raises the RfAux8Changing event
         /// </summary>
@@ -1156,6 +1243,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.GenerationDynamics
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveRfAux7Attribute()
+        {
+            return ((ITypedElement)(((ModelElement)(BWRSteamSupply.ClassInstance)).Resolve("rfAux7")));
         }
         
         /// <summary>
@@ -1184,6 +1276,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.GenerationDynamics
             }
         }
         
+        private static ITypedElement RetrieveRodPatternAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(BWRSteamSupply.ClassInstance)).Resolve("rodPattern")));
+        }
+        
         /// <summary>
         /// Raises the RodPatternChanging event
         /// </summary>
@@ -1208,6 +1305,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.GenerationDynamics
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveRfAux4Attribute()
+        {
+            return ((ITypedElement)(((ModelElement)(BWRSteamSupply.ClassInstance)).Resolve("rfAux4")));
         }
         
         /// <summary>
@@ -1236,6 +1338,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.GenerationDynamics
             }
         }
         
+        private static ITypedElement RetrieveRfAux3Attribute()
+        {
+            return ((ITypedElement)(((ModelElement)(BWRSteamSupply.ClassInstance)).Resolve("rfAux3")));
+        }
+        
         /// <summary>
         /// Raises the RfAux3Changing event
         /// </summary>
@@ -1260,6 +1367,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.GenerationDynamics
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveRfAux6Attribute()
+        {
+            return ((ITypedElement)(((ModelElement)(BWRSteamSupply.ClassInstance)).Resolve("rfAux6")));
         }
         
         /// <summary>
@@ -1288,6 +1400,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.GenerationDynamics
             }
         }
         
+        private static ITypedElement RetrieveRfAux5Attribute()
+        {
+            return ((ITypedElement)(((ModelElement)(BWRSteamSupply.ClassInstance)).Resolve("rfAux5")));
+        }
+        
         /// <summary>
         /// Raises the RfAux5Changing event
         /// </summary>
@@ -1312,6 +1429,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.GenerationDynamics
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveProportionalGainAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(BWRSteamSupply.ClassInstance)).Resolve("proportionalGain")));
         }
         
         /// <summary>
@@ -1340,6 +1462,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.GenerationDynamics
             }
         }
         
+        private static ITypedElement RetrieveUpperLimitAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(BWRSteamSupply.ClassInstance)).Resolve("upperLimit")));
+        }
+        
         /// <summary>
         /// Raises the UpperLimitChanging event
         /// </summary>
@@ -1364,6 +1491,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.GenerationDynamics
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveHighPowerLimitAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(BWRSteamSupply.ClassInstance)).Resolve("highPowerLimit")));
         }
         
         /// <summary>
@@ -1392,6 +1524,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.GenerationDynamics
             }
         }
         
+        private static ITypedElement RetrievePressureSetpointTC2Attribute()
+        {
+            return ((ITypedElement)(((ModelElement)(BWRSteamSupply.ClassInstance)).Resolve("pressureSetpointTC2")));
+        }
+        
         /// <summary>
         /// Raises the PressureSetpointTC2Changing event
         /// </summary>
@@ -1418,6 +1555,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.GenerationDynamics
             }
         }
         
+        private static ITypedElement RetrievePressureSetpointTC1Attribute()
+        {
+            return ((ITypedElement)(((ModelElement)(BWRSteamSupply.ClassInstance)).Resolve("pressureSetpointTC1")));
+        }
+        
         /// <summary>
         /// Raises the PressureSetpointTC1Changing event
         /// </summary>
@@ -1442,6 +1584,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.GenerationDynamics
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrievePressureLimitAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(BWRSteamSupply.ClassInstance)).Resolve("pressureLimit")));
         }
         
         /// <summary>
@@ -1704,7 +1851,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.GenerationDynamics
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public LowPowerLimitProxy(IBWRSteamSupply modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "lowPowerLimit")
             {
             }
             
@@ -1722,24 +1869,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.GenerationDynamics
                     this.ModelElement.LowPowerLimit = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.LowPowerLimitChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.LowPowerLimitChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1753,7 +1882,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.GenerationDynamics
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public InCoreThermalTCProxy(IBWRSteamSupply modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "inCoreThermalTC")
             {
             }
             
@@ -1771,24 +1900,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.GenerationDynamics
                     this.ModelElement.InCoreThermalTC = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.InCoreThermalTCChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.InCoreThermalTCChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1802,7 +1913,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.GenerationDynamics
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public IntegralGainProxy(IBWRSteamSupply modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "integralGain")
             {
             }
             
@@ -1820,24 +1931,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.GenerationDynamics
                     this.ModelElement.IntegralGain = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.IntegralGainChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.IntegralGainChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1851,7 +1944,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.GenerationDynamics
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public PressureSetpointGAProxy(IBWRSteamSupply modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "pressureSetpointGA")
             {
             }
             
@@ -1869,24 +1962,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.GenerationDynamics
                     this.ModelElement.PressureSetpointGA = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.PressureSetpointGAChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.PressureSetpointGAChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1900,7 +1975,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.GenerationDynamics
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public RfAux1Proxy(IBWRSteamSupply modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "rfAux1")
             {
             }
             
@@ -1918,24 +1993,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.GenerationDynamics
                     this.ModelElement.RfAux1 = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.RfAux1Changed += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.RfAux1Changed -= handler;
-            }
         }
         
         /// <summary>
@@ -1949,7 +2006,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.GenerationDynamics
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public RfAux2Proxy(IBWRSteamSupply modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "rfAux2")
             {
             }
             
@@ -1967,24 +2024,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.GenerationDynamics
                     this.ModelElement.RfAux2 = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.RfAux2Changed += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.RfAux2Changed -= handler;
-            }
         }
         
         /// <summary>
@@ -1998,7 +2037,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.GenerationDynamics
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public LowerLimitProxy(IBWRSteamSupply modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "lowerLimit")
             {
             }
             
@@ -2016,24 +2055,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.GenerationDynamics
                     this.ModelElement.LowerLimit = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.LowerLimitChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.LowerLimitChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -2047,7 +2068,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.GenerationDynamics
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public RodPatternConstantProxy(IBWRSteamSupply modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "rodPatternConstant")
             {
             }
             
@@ -2065,24 +2086,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.GenerationDynamics
                     this.ModelElement.RodPatternConstant = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.RodPatternConstantChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.RodPatternConstantChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -2096,7 +2099,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.GenerationDynamics
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public RfAux8Proxy(IBWRSteamSupply modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "rfAux8")
             {
             }
             
@@ -2114,24 +2117,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.GenerationDynamics
                     this.ModelElement.RfAux8 = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.RfAux8Changed += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.RfAux8Changed -= handler;
-            }
         }
         
         /// <summary>
@@ -2145,7 +2130,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.GenerationDynamics
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public RfAux7Proxy(IBWRSteamSupply modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "rfAux7")
             {
             }
             
@@ -2163,24 +2148,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.GenerationDynamics
                     this.ModelElement.RfAux7 = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.RfAux7Changed += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.RfAux7Changed -= handler;
-            }
         }
         
         /// <summary>
@@ -2194,7 +2161,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.GenerationDynamics
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public RodPatternProxy(IBWRSteamSupply modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "rodPattern")
             {
             }
             
@@ -2212,24 +2179,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.GenerationDynamics
                     this.ModelElement.RodPattern = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.RodPatternChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.RodPatternChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -2243,7 +2192,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.GenerationDynamics
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public RfAux4Proxy(IBWRSteamSupply modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "rfAux4")
             {
             }
             
@@ -2261,24 +2210,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.GenerationDynamics
                     this.ModelElement.RfAux4 = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.RfAux4Changed += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.RfAux4Changed -= handler;
-            }
         }
         
         /// <summary>
@@ -2292,7 +2223,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.GenerationDynamics
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public RfAux3Proxy(IBWRSteamSupply modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "rfAux3")
             {
             }
             
@@ -2310,24 +2241,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.GenerationDynamics
                     this.ModelElement.RfAux3 = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.RfAux3Changed += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.RfAux3Changed -= handler;
-            }
         }
         
         /// <summary>
@@ -2341,7 +2254,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.GenerationDynamics
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public RfAux6Proxy(IBWRSteamSupply modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "rfAux6")
             {
             }
             
@@ -2359,24 +2272,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.GenerationDynamics
                     this.ModelElement.RfAux6 = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.RfAux6Changed += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.RfAux6Changed -= handler;
-            }
         }
         
         /// <summary>
@@ -2390,7 +2285,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.GenerationDynamics
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public RfAux5Proxy(IBWRSteamSupply modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "rfAux5")
             {
             }
             
@@ -2408,24 +2303,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.GenerationDynamics
                     this.ModelElement.RfAux5 = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.RfAux5Changed += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.RfAux5Changed -= handler;
-            }
         }
         
         /// <summary>
@@ -2439,7 +2316,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.GenerationDynamics
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public ProportionalGainProxy(IBWRSteamSupply modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "proportionalGain")
             {
             }
             
@@ -2457,24 +2334,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.GenerationDynamics
                     this.ModelElement.ProportionalGain = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ProportionalGainChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ProportionalGainChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -2488,7 +2347,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.GenerationDynamics
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public UpperLimitProxy(IBWRSteamSupply modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "upperLimit")
             {
             }
             
@@ -2506,24 +2365,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.GenerationDynamics
                     this.ModelElement.UpperLimit = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.UpperLimitChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.UpperLimitChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -2537,7 +2378,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.GenerationDynamics
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public HighPowerLimitProxy(IBWRSteamSupply modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "highPowerLimit")
             {
             }
             
@@ -2555,24 +2396,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.GenerationDynamics
                     this.ModelElement.HighPowerLimit = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.HighPowerLimitChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.HighPowerLimitChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -2586,7 +2409,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.GenerationDynamics
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public PressureSetpointTC2Proxy(IBWRSteamSupply modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "pressureSetpointTC2")
             {
             }
             
@@ -2604,24 +2427,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.GenerationDynamics
                     this.ModelElement.PressureSetpointTC2 = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.PressureSetpointTC2Changed += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.PressureSetpointTC2Changed -= handler;
-            }
         }
         
         /// <summary>
@@ -2635,7 +2440,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.GenerationDynamics
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public PressureSetpointTC1Proxy(IBWRSteamSupply modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "pressureSetpointTC1")
             {
             }
             
@@ -2653,24 +2458,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.GenerationDynamics
                     this.ModelElement.PressureSetpointTC1 = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.PressureSetpointTC1Changed += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.PressureSetpointTC1Changed -= handler;
-            }
         }
         
         /// <summary>
@@ -2684,7 +2471,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.GenerationDynamics
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public PressureLimitProxy(IBWRSteamSupply modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "pressureLimit")
             {
             }
             
@@ -2701,24 +2488,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.GenerationDynamics
                 {
                     this.ModelElement.PressureLimit = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.PressureLimitChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.PressureLimitChanged -= handler;
             }
         }
     }

@@ -50,7 +50,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfOperations
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61970/Informative/InfOperations/Out" +
         "ageNotification")]
     [DebuggerDisplayAttribute("OutageNotification {UUID}")]
-    public class OutageNotification : Document, IOutageNotification, IModelElement
+    public partial class OutageNotification : Document, IOutageNotification, IModelElement
     {
         
         /// <summary>
@@ -58,15 +58,23 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfOperations
         /// </summary>
         private int _expectedInterruptionCount;
         
+        private static Lazy<ITypedElement> _expectedInterruptionCountAttribute = new Lazy<ITypedElement>(RetrieveExpectedInterruptionCountAttribute);
+        
         /// <summary>
         /// The backing field for the Duration property
         /// </summary>
         private float _duration;
         
+        private static Lazy<ITypedElement> _durationAttribute = new Lazy<ITypedElement>(RetrieveDurationAttribute);
+        
         /// <summary>
         /// The backing field for the Reason property
         /// </summary>
         private string _reason;
+        
+        private static Lazy<ITypedElement> _reasonAttribute = new Lazy<ITypedElement>(RetrieveReasonAttribute);
+        
+        private static Lazy<ITypedElement> _customerDatasReference = new Lazy<ITypedElement>(RetrieveCustomerDatasReference);
         
         /// <summary>
         /// The backing field for the CustomerDatas property
@@ -100,10 +108,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfOperations
                     int old = this._expectedInterruptionCount;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnExpectedInterruptionCountChanging(e);
-                    this.OnPropertyChanging("ExpectedInterruptionCount", e);
+                    this.OnPropertyChanging("ExpectedInterruptionCount", e, _expectedInterruptionCountAttribute);
                     this._expectedInterruptionCount = value;
                     this.OnExpectedInterruptionCountChanged(e);
-                    this.OnPropertyChanged("ExpectedInterruptionCount", e);
+                    this.OnPropertyChanged("ExpectedInterruptionCount", e, _expectedInterruptionCountAttribute);
                 }
             }
         }
@@ -126,10 +134,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfOperations
                     float old = this._duration;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnDurationChanging(e);
-                    this.OnPropertyChanging("Duration", e);
+                    this.OnPropertyChanging("Duration", e, _durationAttribute);
                     this._duration = value;
                     this.OnDurationChanged(e);
-                    this.OnPropertyChanged("Duration", e);
+                    this.OnPropertyChanged("Duration", e, _durationAttribute);
                 }
             }
         }
@@ -152,10 +160,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfOperations
                     string old = this._reason;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnReasonChanging(e);
-                    this.OnPropertyChanging("Reason", e);
+                    this.OnPropertyChanging("Reason", e, _reasonAttribute);
                     this._reason = value;
                     this.OnReasonChanged(e);
-                    this.OnPropertyChanged("Reason", e);
+                    this.OnPropertyChanged("Reason", e, _reasonAttribute);
                 }
             }
         }
@@ -232,6 +240,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfOperations
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> ReasonChanged;
         
+        private static ITypedElement RetrieveExpectedInterruptionCountAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(OutageNotification.ClassInstance)).Resolve("expectedInterruptionCount")));
+        }
+        
         /// <summary>
         /// Raises the ExpectedInterruptionCountChanging event
         /// </summary>
@@ -256,6 +269,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfOperations
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveDurationAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(OutageNotification.ClassInstance)).Resolve("duration")));
         }
         
         /// <summary>
@@ -284,6 +302,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfOperations
             }
         }
         
+        private static ITypedElement RetrieveReasonAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(OutageNotification.ClassInstance)).Resolve("reason")));
+        }
+        
         /// <summary>
         /// Raises the ReasonChanging event
         /// </summary>
@@ -310,6 +333,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfOperations
             }
         }
         
+        private static ITypedElement RetrieveCustomerDatasReference()
+        {
+            return ((ITypedElement)(((ModelElement)(OutageNotification.ClassInstance)).Resolve("CustomerDatas")));
+        }
+        
         /// <summary>
         /// Forwards CollectionChanging notifications for the CustomerDatas property to the parent model element
         /// </summary>
@@ -317,7 +345,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfOperations
         /// <param name="e">The original event data</param>
         private void CustomerDatasCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("CustomerDatas", e);
+            this.OnCollectionChanging("CustomerDatas", e, _customerDatasReference);
         }
         
         /// <summary>
@@ -327,7 +355,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfOperations
         /// <param name="e">The original event data</param>
         private void CustomerDatasCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("CustomerDatas", e);
+            this.OnCollectionChanged("CustomerDatas", e, _customerDatasReference);
         }
         
         /// <summary>
@@ -540,7 +568,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfOperations
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public ExpectedInterruptionCountProxy(IOutageNotification modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "expectedInterruptionCount")
             {
             }
             
@@ -558,24 +586,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfOperations
                     this.ModelElement.ExpectedInterruptionCount = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ExpectedInterruptionCountChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ExpectedInterruptionCountChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -589,7 +599,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfOperations
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public DurationProxy(IOutageNotification modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "duration")
             {
             }
             
@@ -607,24 +617,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfOperations
                     this.ModelElement.Duration = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.DurationChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.DurationChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -638,7 +630,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfOperations
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public ReasonProxy(IOutageNotification modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "reason")
             {
             }
             
@@ -655,24 +647,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfOperations
                 {
                     this.ModelElement.Reason = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ReasonChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ReasonChanged -= handler;
             }
         }
     }

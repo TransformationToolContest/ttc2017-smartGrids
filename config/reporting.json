@@ -1,20 +1,19 @@
 {
   "Dimensions": {
     "X_Dimensions": {
-      "Size": true,
-      "Iteration": false
+      "ChangeSet": true,
+      "Iteration": true
     },
     "Groups": {
-      "Query": true,
+      "View": true,
       "Tool": true
     }
   },
   "Summarize_Functions": [
     {
-      "Name": "revalidation",
+      "Name": "Updates",
       "Phases": [
-        "repair",
-        "recheck"
+        "Update"
       ]
     }
   ],

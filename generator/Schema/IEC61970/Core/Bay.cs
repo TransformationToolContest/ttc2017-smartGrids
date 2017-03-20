@@ -57,7 +57,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Core
     [XmlNamespacePrefixAttribute("cimCore")]
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61970/Core/Bay")]
     [DebuggerDisplayAttribute("Bay {UUID}")]
-    public class Bay : EquipmentContainer, IBay, IModelElement
+    public partial class Bay : EquipmentContainer, IBay, IModelElement
     {
         
         /// <summary>
@@ -65,25 +65,37 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Core
         /// </summary>
         private bool _bayEnergyMeasFlag;
         
+        private static Lazy<ITypedElement> _bayEnergyMeasFlagAttribute = new Lazy<ITypedElement>(RetrieveBayEnergyMeasFlagAttribute);
+        
         /// <summary>
         /// The backing field for the BusBarConfiguration property
         /// </summary>
         private Nullable<BusbarConfiguration> _busBarConfiguration;
+        
+        private static Lazy<ITypedElement> _busBarConfigurationAttribute = new Lazy<ITypedElement>(RetrieveBusBarConfigurationAttribute);
         
         /// <summary>
         /// The backing field for the BayPowerMeasFlag property
         /// </summary>
         private bool _bayPowerMeasFlag;
         
+        private static Lazy<ITypedElement> _bayPowerMeasFlagAttribute = new Lazy<ITypedElement>(RetrieveBayPowerMeasFlagAttribute);
+        
         /// <summary>
         /// The backing field for the BreakerConfiguration property
         /// </summary>
         private Nullable<BreakerConfiguration> _breakerConfiguration;
         
+        private static Lazy<ITypedElement> _breakerConfigurationAttribute = new Lazy<ITypedElement>(RetrieveBreakerConfigurationAttribute);
+        
+        private static Lazy<ITypedElement> _voltageLevelReference = new Lazy<ITypedElement>(RetrieveVoltageLevelReference);
+        
         /// <summary>
         /// The backing field for the VoltageLevel property
         /// </summary>
         private IVoltageLevel _voltageLevel;
+        
+        private static Lazy<ITypedElement> _substationReference = new Lazy<ITypedElement>(RetrieveSubstationReference);
         
         /// <summary>
         /// The backing field for the Substation property
@@ -110,10 +122,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Core
                     bool old = this._bayEnergyMeasFlag;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnBayEnergyMeasFlagChanging(e);
-                    this.OnPropertyChanging("BayEnergyMeasFlag", e);
+                    this.OnPropertyChanging("BayEnergyMeasFlag", e, _bayEnergyMeasFlagAttribute);
                     this._bayEnergyMeasFlag = value;
                     this.OnBayEnergyMeasFlagChanged(e);
-                    this.OnPropertyChanged("BayEnergyMeasFlag", e);
+                    this.OnPropertyChanged("BayEnergyMeasFlag", e, _bayEnergyMeasFlagAttribute);
                 }
             }
         }
@@ -136,10 +148,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Core
                     Nullable<BusbarConfiguration> old = this._busBarConfiguration;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnBusBarConfigurationChanging(e);
-                    this.OnPropertyChanging("BusBarConfiguration", e);
+                    this.OnPropertyChanging("BusBarConfiguration", e, _busBarConfigurationAttribute);
                     this._busBarConfiguration = value;
                     this.OnBusBarConfigurationChanged(e);
-                    this.OnPropertyChanged("BusBarConfiguration", e);
+                    this.OnPropertyChanged("BusBarConfiguration", e, _busBarConfigurationAttribute);
                 }
             }
         }
@@ -162,10 +174,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Core
                     bool old = this._bayPowerMeasFlag;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnBayPowerMeasFlagChanging(e);
-                    this.OnPropertyChanging("BayPowerMeasFlag", e);
+                    this.OnPropertyChanging("BayPowerMeasFlag", e, _bayPowerMeasFlagAttribute);
                     this._bayPowerMeasFlag = value;
                     this.OnBayPowerMeasFlagChanged(e);
-                    this.OnPropertyChanged("BayPowerMeasFlag", e);
+                    this.OnPropertyChanged("BayPowerMeasFlag", e, _bayPowerMeasFlagAttribute);
                 }
             }
         }
@@ -188,10 +200,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Core
                     Nullable<BreakerConfiguration> old = this._breakerConfiguration;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnBreakerConfigurationChanging(e);
-                    this.OnPropertyChanging("BreakerConfiguration", e);
+                    this.OnPropertyChanging("BreakerConfiguration", e, _breakerConfigurationAttribute);
                     this._breakerConfiguration = value;
                     this.OnBreakerConfigurationChanged(e);
-                    this.OnPropertyChanged("BreakerConfiguration", e);
+                    this.OnPropertyChanged("BreakerConfiguration", e, _breakerConfigurationAttribute);
                 }
             }
         }
@@ -214,7 +226,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Core
                     IVoltageLevel old = this._voltageLevel;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnVoltageLevelChanging(e);
-                    this.OnPropertyChanging("VoltageLevel", e);
+                    this.OnPropertyChanging("VoltageLevel", e, _voltageLevelReference);
                     this._voltageLevel = value;
                     if ((old != null))
                     {
@@ -227,7 +239,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Core
                         value.Deleted += this.OnResetVoltageLevel;
                     }
                     this.OnVoltageLevelChanged(e);
-                    this.OnPropertyChanged("VoltageLevel", e);
+                    this.OnPropertyChanged("VoltageLevel", e, _voltageLevelReference);
                 }
             }
         }
@@ -250,7 +262,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Core
                     ISubstation old = this._substation;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnSubstationChanging(e);
-                    this.OnPropertyChanging("Substation", e);
+                    this.OnPropertyChanging("Substation", e, _substationReference);
                     this._substation = value;
                     if ((old != null))
                     {
@@ -263,7 +275,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Core
                         value.Deleted += this.OnResetSubstation;
                     }
                     this.OnSubstationChanged(e);
-                    this.OnPropertyChanged("Substation", e);
+                    this.OnPropertyChanged("Substation", e, _substationReference);
                 }
             }
         }
@@ -354,6 +366,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Core
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> SubstationChanged;
         
+        private static ITypedElement RetrieveBayEnergyMeasFlagAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(Bay.ClassInstance)).Resolve("bayEnergyMeasFlag")));
+        }
+        
         /// <summary>
         /// Raises the BayEnergyMeasFlagChanging event
         /// </summary>
@@ -378,6 +395,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Core
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveBusBarConfigurationAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(Bay.ClassInstance)).Resolve("busBarConfiguration")));
         }
         
         /// <summary>
@@ -406,6 +428,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Core
             }
         }
         
+        private static ITypedElement RetrieveBayPowerMeasFlagAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(Bay.ClassInstance)).Resolve("bayPowerMeasFlag")));
+        }
+        
         /// <summary>
         /// Raises the BayPowerMeasFlagChanging event
         /// </summary>
@@ -432,6 +459,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Core
             }
         }
         
+        private static ITypedElement RetrieveBreakerConfigurationAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(Bay.ClassInstance)).Resolve("breakerConfiguration")));
+        }
+        
         /// <summary>
         /// Raises the BreakerConfigurationChanging event
         /// </summary>
@@ -456,6 +488,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Core
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveVoltageLevelReference()
+        {
+            return ((ITypedElement)(((ModelElement)(Bay.ClassInstance)).Resolve("VoltageLevel")));
         }
         
         /// <summary>
@@ -492,6 +529,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Core
         private void OnResetVoltageLevel(object sender, System.EventArgs eventArgs)
         {
             this.VoltageLevel = null;
+        }
+        
+        private static ITypedElement RetrieveSubstationReference()
+        {
+            return ((ITypedElement)(((ModelElement)(Bay.ClassInstance)).Resolve("Substation")));
         }
         
         /// <summary>
@@ -806,7 +848,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Core
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public BayEnergyMeasFlagProxy(IBay modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "bayEnergyMeasFlag")
             {
             }
             
@@ -824,24 +866,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Core
                     this.ModelElement.BayEnergyMeasFlag = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.BayEnergyMeasFlagChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.BayEnergyMeasFlagChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -855,7 +879,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Core
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public BusBarConfigurationProxy(IBay modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "busBarConfiguration")
             {
             }
             
@@ -873,24 +897,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Core
                     this.ModelElement.BusBarConfiguration = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.BusBarConfigurationChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.BusBarConfigurationChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -904,7 +910,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Core
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public BayPowerMeasFlagProxy(IBay modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "bayPowerMeasFlag")
             {
             }
             
@@ -922,24 +928,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Core
                     this.ModelElement.BayPowerMeasFlag = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.BayPowerMeasFlagChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.BayPowerMeasFlagChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -953,7 +941,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Core
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public BreakerConfigurationProxy(IBay modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "breakerConfiguration")
             {
             }
             
@@ -971,24 +959,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Core
                     this.ModelElement.BreakerConfiguration = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.BreakerConfigurationChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.BreakerConfigurationChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1002,7 +972,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Core
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public VoltageLevelProxy(IBay modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "VoltageLevel")
             {
             }
             
@@ -1020,24 +990,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Core
                     this.ModelElement.VoltageLevel = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.VoltageLevelChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.VoltageLevelChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1051,7 +1003,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Core
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public SubstationProxy(IBay modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "Substation")
             {
             }
             
@@ -1068,24 +1020,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Core
                 {
                     this.ModelElement.Substation = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.SubstationChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.SubstationChanged -= handler;
             }
         }
     }

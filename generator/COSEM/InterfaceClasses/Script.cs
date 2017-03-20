@@ -40,7 +40,7 @@ namespace TTC2017.SmartGrids.COSEM.InterfaceClasses
     [XmlNamespacePrefixAttribute("inter")]
     [ModelRepresentationClassAttribute("http://www.transformation-tool-contest.eu/2017/smartGrids/cosem#//InterfaceClasse" +
         "s/Script")]
-    public class Script : ModelElement, IScript, IModelElement
+    public partial class Script : ModelElement, IScript, IModelElement
     {
         
         private static IClass _classInstance;

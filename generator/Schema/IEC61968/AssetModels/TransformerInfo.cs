@@ -46,23 +46,31 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.AssetModels
     [XmlNamespacePrefixAttribute("cimAssetModels")]
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61968/AssetModels/TransformerInfo")]
     [DebuggerDisplayAttribute("TransformerInfo {UUID}")]
-    public class TransformerInfo : IdentifiedObject, ITransformerInfo, IModelElement
+    public partial class TransformerInfo : IdentifiedObject, ITransformerInfo, IModelElement
     {
+        
+        private static Lazy<ITypedElement> _transformersReference = new Lazy<ITypedElement>(RetrieveTransformersReference);
         
         /// <summary>
         /// The backing field for the Transformers property
         /// </summary>
         private TransformerInfoTransformersCollection _transformers;
         
+        private static Lazy<ITypedElement> _windingInfosReference = new Lazy<ITypedElement>(RetrieveWindingInfosReference);
+        
         /// <summary>
         /// The backing field for the WindingInfos property
         /// </summary>
         private TransformerInfoWindingInfosCollection _windingInfos;
         
+        private static Lazy<ITypedElement> _transformerAssetModelsReference = new Lazy<ITypedElement>(RetrieveTransformerAssetModelsReference);
+        
         /// <summary>
         /// The backing field for the TransformerAssetModels property
         /// </summary>
         private TransformerInfoTransformerAssetModelsCollection _transformerAssetModels;
+        
+        private static Lazy<ITypedElement> _transformerAssetsReference = new Lazy<ITypedElement>(RetrieveTransformerAssetsReference);
         
         /// <summary>
         /// The backing field for the TransformerAssets property
@@ -173,6 +181,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.AssetModels
             }
         }
         
+        private static ITypedElement RetrieveTransformersReference()
+        {
+            return ((ITypedElement)(((ModelElement)(TransformerInfo.ClassInstance)).Resolve("Transformers")));
+        }
+        
         /// <summary>
         /// Forwards CollectionChanging notifications for the Transformers property to the parent model element
         /// </summary>
@@ -180,7 +193,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.AssetModels
         /// <param name="e">The original event data</param>
         private void TransformersCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("Transformers", e);
+            this.OnCollectionChanging("Transformers", e, _transformersReference);
         }
         
         /// <summary>
@@ -190,7 +203,12 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.AssetModels
         /// <param name="e">The original event data</param>
         private void TransformersCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("Transformers", e);
+            this.OnCollectionChanged("Transformers", e, _transformersReference);
+        }
+        
+        private static ITypedElement RetrieveWindingInfosReference()
+        {
+            return ((ITypedElement)(((ModelElement)(TransformerInfo.ClassInstance)).Resolve("WindingInfos")));
         }
         
         /// <summary>
@@ -200,7 +218,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.AssetModels
         /// <param name="e">The original event data</param>
         private void WindingInfosCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("WindingInfos", e);
+            this.OnCollectionChanging("WindingInfos", e, _windingInfosReference);
         }
         
         /// <summary>
@@ -210,7 +228,12 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.AssetModels
         /// <param name="e">The original event data</param>
         private void WindingInfosCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("WindingInfos", e);
+            this.OnCollectionChanged("WindingInfos", e, _windingInfosReference);
+        }
+        
+        private static ITypedElement RetrieveTransformerAssetModelsReference()
+        {
+            return ((ITypedElement)(((ModelElement)(TransformerInfo.ClassInstance)).Resolve("TransformerAssetModels")));
         }
         
         /// <summary>
@@ -220,7 +243,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.AssetModels
         /// <param name="e">The original event data</param>
         private void TransformerAssetModelsCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("TransformerAssetModels", e);
+            this.OnCollectionChanging("TransformerAssetModels", e, _transformerAssetModelsReference);
         }
         
         /// <summary>
@@ -230,7 +253,12 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.AssetModels
         /// <param name="e">The original event data</param>
         private void TransformerAssetModelsCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("TransformerAssetModels", e);
+            this.OnCollectionChanged("TransformerAssetModels", e, _transformerAssetModelsReference);
+        }
+        
+        private static ITypedElement RetrieveTransformerAssetsReference()
+        {
+            return ((ITypedElement)(((ModelElement)(TransformerInfo.ClassInstance)).Resolve("TransformerAssets")));
         }
         
         /// <summary>
@@ -240,7 +268,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.AssetModels
         /// <param name="e">The original event data</param>
         private void TransformerAssetsCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("TransformerAssets", e);
+            this.OnCollectionChanging("TransformerAssets", e, _transformerAssetsReference);
         }
         
         /// <summary>
@@ -250,7 +278,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.AssetModels
         /// <param name="e">The original event data</param>
         private void TransformerAssetsCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("TransformerAssets", e);
+            this.OnCollectionChanged("TransformerAssets", e, _transformerAssetsReference);
         }
         
         /// <summary>

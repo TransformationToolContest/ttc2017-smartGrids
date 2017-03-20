@@ -46,7 +46,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61970/Generation/Production/WindGen" +
         "eratingUnit")]
     [DebuggerDisplayAttribute("WindGeneratingUnit {UUID}")]
-    public class WindGeneratingUnit : GeneratingUnit, IWindGeneratingUnit, IModelElement
+    public partial class WindGeneratingUnit : GeneratingUnit, IWindGeneratingUnit, IModelElement
     {
         
         private static IClass _classInstance;

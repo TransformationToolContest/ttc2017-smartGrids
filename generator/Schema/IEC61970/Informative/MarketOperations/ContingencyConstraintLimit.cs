@@ -50,18 +50,24 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61970/Informative/MarketOperations/" +
         "ContingencyConstraintLimit")]
     [DebuggerDisplayAttribute("ContingencyConstraintLimit {UUID}")]
-    public class ContingencyConstraintLimit : Curve, IContingencyConstraintLimit, IModelElement
+    public partial class ContingencyConstraintLimit : Curve, IContingencyConstraintLimit, IModelElement
     {
+        
+        private static Lazy<ITypedElement> _securityConstraintSumReference = new Lazy<ITypedElement>(RetrieveSecurityConstraintSumReference);
         
         /// <summary>
         /// The backing field for the SecurityConstraintSum property
         /// </summary>
         private ISecurityConstraintSum _securityConstraintSum;
         
+        private static Lazy<ITypedElement> _mWLimitSchedulesReference = new Lazy<ITypedElement>(RetrieveMWLimitSchedulesReference);
+        
         /// <summary>
         /// The backing field for the MWLimitSchedules property
         /// </summary>
         private IMWLimitSchedule _mWLimitSchedules;
+        
+        private static Lazy<ITypedElement> _contingencyReference = new Lazy<ITypedElement>(RetrieveContingencyReference);
         
         /// <summary>
         /// The backing field for the Contingency property
@@ -88,7 +94,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
                     ISecurityConstraintSum old = this._securityConstraintSum;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnSecurityConstraintSumChanging(e);
-                    this.OnPropertyChanging("SecurityConstraintSum", e);
+                    this.OnPropertyChanging("SecurityConstraintSum", e, _securityConstraintSumReference);
                     this._securityConstraintSum = value;
                     if ((old != null))
                     {
@@ -101,7 +107,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
                         value.Deleted += this.OnResetSecurityConstraintSum;
                     }
                     this.OnSecurityConstraintSumChanged(e);
-                    this.OnPropertyChanged("SecurityConstraintSum", e);
+                    this.OnPropertyChanged("SecurityConstraintSum", e, _securityConstraintSumReference);
                 }
             }
         }
@@ -124,7 +130,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
                     IMWLimitSchedule old = this._mWLimitSchedules;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnMWLimitSchedulesChanging(e);
-                    this.OnPropertyChanging("MWLimitSchedules", e);
+                    this.OnPropertyChanging("MWLimitSchedules", e, _mWLimitSchedulesReference);
                     this._mWLimitSchedules = value;
                     if ((old != null))
                     {
@@ -137,7 +143,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
                         value.Deleted += this.OnResetMWLimitSchedules;
                     }
                     this.OnMWLimitSchedulesChanged(e);
-                    this.OnPropertyChanged("MWLimitSchedules", e);
+                    this.OnPropertyChanged("MWLimitSchedules", e, _mWLimitSchedulesReference);
                 }
             }
         }
@@ -160,7 +166,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
                     IContingency old = this._contingency;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnContingencyChanging(e);
-                    this.OnPropertyChanging("Contingency", e);
+                    this.OnPropertyChanging("Contingency", e, _contingencyReference);
                     this._contingency = value;
                     if ((old != null))
                     {
@@ -173,7 +179,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
                         value.Deleted += this.OnResetContingency;
                     }
                     this.OnContingencyChanged(e);
-                    this.OnPropertyChanged("Contingency", e);
+                    this.OnPropertyChanged("Contingency", e, _contingencyReference);
                 }
             }
         }
@@ -235,6 +241,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> ContingencyChanged;
         
+        private static ITypedElement RetrieveSecurityConstraintSumReference()
+        {
+            return ((ITypedElement)(((ModelElement)(ContingencyConstraintLimit.ClassInstance)).Resolve("SecurityConstraintSum")));
+        }
+        
         /// <summary>
         /// Raises the SecurityConstraintSumChanging event
         /// </summary>
@@ -271,6 +282,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
             this.SecurityConstraintSum = null;
         }
         
+        private static ITypedElement RetrieveMWLimitSchedulesReference()
+        {
+            return ((ITypedElement)(((ModelElement)(ContingencyConstraintLimit.ClassInstance)).Resolve("MWLimitSchedules")));
+        }
+        
         /// <summary>
         /// Raises the MWLimitSchedulesChanging event
         /// </summary>
@@ -305,6 +321,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
         private void OnResetMWLimitSchedules(object sender, System.EventArgs eventArgs)
         {
             this.MWLimitSchedules = null;
+        }
+        
+        private static ITypedElement RetrieveContingencyReference()
+        {
+            return ((ITypedElement)(((ModelElement)(ContingencyConstraintLimit.ClassInstance)).Resolve("Contingency")));
         }
         
         /// <summary>
@@ -616,7 +637,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public SecurityConstraintSumProxy(IContingencyConstraintLimit modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "SecurityConstraintSum")
             {
             }
             
@@ -634,24 +655,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
                     this.ModelElement.SecurityConstraintSum = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.SecurityConstraintSumChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.SecurityConstraintSumChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -665,7 +668,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public MWLimitSchedulesProxy(IContingencyConstraintLimit modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "MWLimitSchedules")
             {
             }
             
@@ -683,24 +686,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
                     this.ModelElement.MWLimitSchedules = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.MWLimitSchedulesChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.MWLimitSchedulesChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -714,7 +699,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public ContingencyProxy(IContingencyConstraintLimit modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "Contingency")
             {
             }
             
@@ -731,24 +716,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
                 {
                     this.ModelElement.Contingency = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ContingencyChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ContingencyChanged -= handler;
             }
         }
     }

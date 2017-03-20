@@ -40,7 +40,7 @@ namespace TTC2017.SmartGrids.COSEM.InterfaceClasses
     [XmlNamespacePrefixAttribute("inter")]
     [ModelRepresentationClassAttribute("http://www.transformation-tool-contest.eu/2017/smartGrids/cosem#//InterfaceClasse" +
         "s/IEC_local_port_setup")]
-    public class IEC_local_port_setup : Base, IIEC_local_port_setup, IModelElement
+    public partial class IEC_local_port_setup : Base, IIEC_local_port_setup, IModelElement
     {
         
         private static IClass _classInstance;

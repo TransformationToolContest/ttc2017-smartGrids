@@ -50,7 +50,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61970/Informative/MarketOperations/" +
         "UnitInitialConditions")]
     [DebuggerDisplayAttribute("UnitInitialConditions {UUID}")]
-    public class UnitInitialConditions : IdentifiedObject, IUnitInitialConditions, IModelElement
+    public partial class UnitInitialConditions : IdentifiedObject, IUnitInitialConditions, IModelElement
     {
         
         /// <summary>
@@ -58,30 +58,44 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
         /// </summary>
         private int _resourceStatus;
         
+        private static Lazy<ITypedElement> _resourceStatusAttribute = new Lazy<ITypedElement>(RetrieveResourceStatusAttribute);
+        
         /// <summary>
         /// The backing field for the TimeInStatus property
         /// </summary>
         private float _timeInStatus;
+        
+        private static Lazy<ITypedElement> _timeInStatusAttribute = new Lazy<ITypedElement>(RetrieveTimeInStatusAttribute);
         
         /// <summary>
         /// The backing field for the ResourceMW property
         /// </summary>
         private float _resourceMW;
         
+        private static Lazy<ITypedElement> _resourceMWAttribute = new Lazy<ITypedElement>(RetrieveResourceMWAttribute);
+        
         /// <summary>
         /// The backing field for the CumEnergy property
         /// </summary>
         private object _cumEnergy;
+        
+        private static Lazy<ITypedElement> _cumEnergyAttribute = new Lazy<ITypedElement>(RetrieveCumEnergyAttribute);
         
         /// <summary>
         /// The backing field for the StatusDate property
         /// </summary>
         private DateTime _statusDate;
         
+        private static Lazy<ITypedElement> _statusDateAttribute = new Lazy<ITypedElement>(RetrieveStatusDateAttribute);
+        
         /// <summary>
         /// The backing field for the CumStatusChanges property
         /// </summary>
         private int _cumStatusChanges;
+        
+        private static Lazy<ITypedElement> _cumStatusChangesAttribute = new Lazy<ITypedElement>(RetrieveCumStatusChangesAttribute);
+        
+        private static Lazy<ITypedElement> _generatingUnitReference = new Lazy<ITypedElement>(RetrieveGeneratingUnitReference);
         
         /// <summary>
         /// The backing field for the GeneratingUnit property
@@ -108,10 +122,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
                     int old = this._resourceStatus;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnResourceStatusChanging(e);
-                    this.OnPropertyChanging("ResourceStatus", e);
+                    this.OnPropertyChanging("ResourceStatus", e, _resourceStatusAttribute);
                     this._resourceStatus = value;
                     this.OnResourceStatusChanged(e);
-                    this.OnPropertyChanged("ResourceStatus", e);
+                    this.OnPropertyChanged("ResourceStatus", e, _resourceStatusAttribute);
                 }
             }
         }
@@ -134,10 +148,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
                     float old = this._timeInStatus;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnTimeInStatusChanging(e);
-                    this.OnPropertyChanging("TimeInStatus", e);
+                    this.OnPropertyChanging("TimeInStatus", e, _timeInStatusAttribute);
                     this._timeInStatus = value;
                     this.OnTimeInStatusChanged(e);
-                    this.OnPropertyChanged("TimeInStatus", e);
+                    this.OnPropertyChanged("TimeInStatus", e, _timeInStatusAttribute);
                 }
             }
         }
@@ -160,10 +174,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
                     float old = this._resourceMW;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnResourceMWChanging(e);
-                    this.OnPropertyChanging("ResourceMW", e);
+                    this.OnPropertyChanging("ResourceMW", e, _resourceMWAttribute);
                     this._resourceMW = value;
                     this.OnResourceMWChanged(e);
-                    this.OnPropertyChanged("ResourceMW", e);
+                    this.OnPropertyChanged("ResourceMW", e, _resourceMWAttribute);
                 }
             }
         }
@@ -186,10 +200,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
                     object old = this._cumEnergy;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnCumEnergyChanging(e);
-                    this.OnPropertyChanging("CumEnergy", e);
+                    this.OnPropertyChanging("CumEnergy", e, _cumEnergyAttribute);
                     this._cumEnergy = value;
                     this.OnCumEnergyChanged(e);
-                    this.OnPropertyChanged("CumEnergy", e);
+                    this.OnPropertyChanged("CumEnergy", e, _cumEnergyAttribute);
                 }
             }
         }
@@ -212,10 +226,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
                     DateTime old = this._statusDate;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnStatusDateChanging(e);
-                    this.OnPropertyChanging("StatusDate", e);
+                    this.OnPropertyChanging("StatusDate", e, _statusDateAttribute);
                     this._statusDate = value;
                     this.OnStatusDateChanged(e);
-                    this.OnPropertyChanged("StatusDate", e);
+                    this.OnPropertyChanged("StatusDate", e, _statusDateAttribute);
                 }
             }
         }
@@ -238,10 +252,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
                     int old = this._cumStatusChanges;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnCumStatusChangesChanging(e);
-                    this.OnPropertyChanging("CumStatusChanges", e);
+                    this.OnPropertyChanging("CumStatusChanges", e, _cumStatusChangesAttribute);
                     this._cumStatusChanges = value;
                     this.OnCumStatusChangesChanged(e);
-                    this.OnPropertyChanged("CumStatusChanges", e);
+                    this.OnPropertyChanged("CumStatusChanges", e, _cumStatusChangesAttribute);
                 }
             }
         }
@@ -264,7 +278,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
                     IRegisteredGenerator old = this._generatingUnit;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnGeneratingUnitChanging(e);
-                    this.OnPropertyChanging("GeneratingUnit", e);
+                    this.OnPropertyChanging("GeneratingUnit", e, _generatingUnitReference);
                     this._generatingUnit = value;
                     if ((old != null))
                     {
@@ -277,7 +291,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
                         value.Deleted += this.OnResetGeneratingUnit;
                     }
                     this.OnGeneratingUnitChanged(e);
-                    this.OnPropertyChanged("GeneratingUnit", e);
+                    this.OnPropertyChanged("GeneratingUnit", e, _generatingUnitReference);
                 }
             }
         }
@@ -379,6 +393,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> GeneratingUnitChanged;
         
+        private static ITypedElement RetrieveResourceStatusAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(UnitInitialConditions.ClassInstance)).Resolve("resourceStatus")));
+        }
+        
         /// <summary>
         /// Raises the ResourceStatusChanging event
         /// </summary>
@@ -403,6 +422,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveTimeInStatusAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(UnitInitialConditions.ClassInstance)).Resolve("timeInStatus")));
         }
         
         /// <summary>
@@ -431,6 +455,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
             }
         }
         
+        private static ITypedElement RetrieveResourceMWAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(UnitInitialConditions.ClassInstance)).Resolve("resourceMW")));
+        }
+        
         /// <summary>
         /// Raises the ResourceMWChanging event
         /// </summary>
@@ -455,6 +484,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveCumEnergyAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(UnitInitialConditions.ClassInstance)).Resolve("cumEnergy")));
         }
         
         /// <summary>
@@ -483,6 +517,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
             }
         }
         
+        private static ITypedElement RetrieveStatusDateAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(UnitInitialConditions.ClassInstance)).Resolve("statusDate")));
+        }
+        
         /// <summary>
         /// Raises the StatusDateChanging event
         /// </summary>
@@ -509,6 +548,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
             }
         }
         
+        private static ITypedElement RetrieveCumStatusChangesAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(UnitInitialConditions.ClassInstance)).Resolve("cumStatusChanges")));
+        }
+        
         /// <summary>
         /// Raises the CumStatusChangesChanging event
         /// </summary>
@@ -533,6 +577,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveGeneratingUnitReference()
+        {
+            return ((ITypedElement)(((ModelElement)(UnitInitialConditions.ClassInstance)).Resolve("GeneratingUnit")));
         }
         
         /// <summary>
@@ -823,7 +872,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public ResourceStatusProxy(IUnitInitialConditions modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "resourceStatus")
             {
             }
             
@@ -841,24 +890,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
                     this.ModelElement.ResourceStatus = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ResourceStatusChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ResourceStatusChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -872,7 +903,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public TimeInStatusProxy(IUnitInitialConditions modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "timeInStatus")
             {
             }
             
@@ -890,24 +921,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
                     this.ModelElement.TimeInStatus = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.TimeInStatusChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.TimeInStatusChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -921,7 +934,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public ResourceMWProxy(IUnitInitialConditions modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "resourceMW")
             {
             }
             
@@ -939,24 +952,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
                     this.ModelElement.ResourceMW = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ResourceMWChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ResourceMWChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -970,7 +965,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public CumEnergyProxy(IUnitInitialConditions modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "cumEnergy")
             {
             }
             
@@ -988,24 +983,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
                     this.ModelElement.CumEnergy = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.CumEnergyChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.CumEnergyChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1019,7 +996,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public StatusDateProxy(IUnitInitialConditions modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "statusDate")
             {
             }
             
@@ -1037,24 +1014,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
                     this.ModelElement.StatusDate = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.StatusDateChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.StatusDateChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1068,7 +1027,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public CumStatusChangesProxy(IUnitInitialConditions modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "cumStatusChanges")
             {
             }
             
@@ -1086,24 +1045,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
                     this.ModelElement.CumStatusChanges = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.CumStatusChangesChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.CumStatusChangesChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1117,7 +1058,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public GeneratingUnitProxy(IUnitInitialConditions modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "GeneratingUnit")
             {
             }
             
@@ -1134,24 +1075,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
                 {
                     this.ModelElement.GeneratingUnit = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.GeneratingUnitChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.GeneratingUnitChanged -= handler;
             }
         }
     }

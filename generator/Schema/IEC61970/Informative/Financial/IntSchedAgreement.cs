@@ -47,13 +47,17 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.Financial
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61970/Informative/Financial/IntSche" +
         "dAgreement")]
     [DebuggerDisplayAttribute("IntSchedAgreement {UUID}")]
-    public class IntSchedAgreement : Agreement, IIntSchedAgreement, IModelElement
+    public partial class IntSchedAgreement : Agreement, IIntSchedAgreement, IModelElement
     {
         
         /// <summary>
         /// The backing field for the DefaultIntegrationMethod property
         /// </summary>
         private object _defaultIntegrationMethod;
+        
+        private static Lazy<ITypedElement> _defaultIntegrationMethodAttribute = new Lazy<ITypedElement>(RetrieveDefaultIntegrationMethodAttribute);
+        
+        private static Lazy<ITypedElement> _organisationsReference = new Lazy<ITypedElement>(RetrieveOrganisationsReference);
         
         /// <summary>
         /// The backing field for the Organisations property
@@ -87,10 +91,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.Financial
                     object old = this._defaultIntegrationMethod;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnDefaultIntegrationMethodChanging(e);
-                    this.OnPropertyChanging("DefaultIntegrationMethod", e);
+                    this.OnPropertyChanging("DefaultIntegrationMethod", e, _defaultIntegrationMethodAttribute);
                     this._defaultIntegrationMethod = value;
                     this.OnDefaultIntegrationMethodChanged(e);
-                    this.OnPropertyChanged("DefaultIntegrationMethod", e);
+                    this.OnPropertyChanged("DefaultIntegrationMethod", e, _defaultIntegrationMethodAttribute);
                 }
             }
         }
@@ -147,6 +151,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.Financial
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> DefaultIntegrationMethodChanged;
         
+        private static ITypedElement RetrieveDefaultIntegrationMethodAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(IntSchedAgreement.ClassInstance)).Resolve("defaultIntegrationMethod")));
+        }
+        
         /// <summary>
         /// Raises the DefaultIntegrationMethodChanging event
         /// </summary>
@@ -173,6 +182,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.Financial
             }
         }
         
+        private static ITypedElement RetrieveOrganisationsReference()
+        {
+            return ((ITypedElement)(((ModelElement)(IntSchedAgreement.ClassInstance)).Resolve("Organisations")));
+        }
+        
         /// <summary>
         /// Forwards CollectionChanging notifications for the Organisations property to the parent model element
         /// </summary>
@@ -180,7 +194,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.Financial
         /// <param name="e">The original event data</param>
         private void OrganisationsCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("Organisations", e);
+            this.OnCollectionChanging("Organisations", e, _organisationsReference);
         }
         
         /// <summary>
@@ -190,7 +204,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.Financial
         /// <param name="e">The original event data</param>
         private void OrganisationsCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("Organisations", e);
+            this.OnCollectionChanged("Organisations", e, _organisationsReference);
         }
         
         /// <summary>
@@ -385,7 +399,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.Financial
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public DefaultIntegrationMethodProxy(IIntSchedAgreement modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "defaultIntegrationMethod")
             {
             }
             
@@ -402,24 +416,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.Financial
                 {
                     this.ModelElement.DefaultIntegrationMethod = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.DefaultIntegrationMethodChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.DefaultIntegrationMethodChanged -= handler;
             }
         }
     }

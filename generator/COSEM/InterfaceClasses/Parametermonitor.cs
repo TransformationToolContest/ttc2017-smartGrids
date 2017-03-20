@@ -40,7 +40,7 @@ namespace TTC2017.SmartGrids.COSEM.InterfaceClasses
     [XmlNamespacePrefixAttribute("inter")]
     [ModelRepresentationClassAttribute("http://www.transformation-tool-contest.eu/2017/smartGrids/cosem#//InterfaceClasse" +
         "s/Parametermonitor")]
-    public class Parametermonitor : Base, IParametermonitor, IModelElement
+    public partial class Parametermonitor : Base, IParametermonitor, IModelElement
     {
         
         private static IClass _classInstance;

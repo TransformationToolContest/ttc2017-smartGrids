@@ -50,7 +50,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61970/Informative/MarketOperations/" +
         "GeneratingBid")]
     [DebuggerDisplayAttribute("GeneratingBid {UUID}")]
-    public class GeneratingBid : ResourceBid, IGeneratingBid, IModelElement
+    public partial class GeneratingBid : ResourceBid, IGeneratingBid, IModelElement
     {
         
         /// <summary>
@@ -58,90 +58,128 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
         /// </summary>
         private float _upTimeMin;
         
+        private static Lazy<ITypedElement> _upTimeMinAttribute = new Lazy<ITypedElement>(RetrieveUpTimeMinAttribute);
+        
         /// <summary>
         /// The backing field for the MaximumEconomicMW property
         /// </summary>
         private float _maximumEconomicMW;
+        
+        private static Lazy<ITypedElement> _maximumEconomicMWAttribute = new Lazy<ITypedElement>(RetrieveMaximumEconomicMWAttribute);
         
         /// <summary>
         /// The backing field for the UpTimeMax property
         /// </summary>
         private float _upTimeMax;
         
+        private static Lazy<ITypedElement> _upTimeMaxAttribute = new Lazy<ITypedElement>(RetrieveUpTimeMaxAttribute);
+        
         /// <summary>
         /// The backing field for the StartUpType property
         /// </summary>
         private int _startUpType;
+        
+        private static Lazy<ITypedElement> _startUpTypeAttribute = new Lazy<ITypedElement>(RetrieveStartUpTypeAttribute);
         
         /// <summary>
         /// The backing field for the NotificationTime property
         /// </summary>
         private float _notificationTime;
         
+        private static Lazy<ITypedElement> _notificationTimeAttribute = new Lazy<ITypedElement>(RetrieveNotificationTimeAttribute);
+        
         /// <summary>
         /// The backing field for the MaxEmergencyMW property
         /// </summary>
         private float _maxEmergencyMW;
+        
+        private static Lazy<ITypedElement> _maxEmergencyMWAttribute = new Lazy<ITypedElement>(RetrieveMaxEmergencyMWAttribute);
         
         /// <summary>
         /// The backing field for the StartupTime property
         /// </summary>
         private float _startupTime;
         
+        private static Lazy<ITypedElement> _startupTimeAttribute = new Lazy<ITypedElement>(RetrieveStartupTimeAttribute);
+        
         /// <summary>
         /// The backing field for the MinimumEconomicMW property
         /// </summary>
         private float _minimumEconomicMW;
+        
+        private static Lazy<ITypedElement> _minimumEconomicMWAttribute = new Lazy<ITypedElement>(RetrieveMinimumEconomicMWAttribute);
         
         /// <summary>
         /// The backing field for the MinEmergencyMW property
         /// </summary>
         private float _minEmergencyMW;
         
+        private static Lazy<ITypedElement> _minEmergencyMWAttribute = new Lazy<ITypedElement>(RetrieveMinEmergencyMWAttribute);
+        
         /// <summary>
         /// The backing field for the NoLoadCost property
         /// </summary>
         private float _noLoadCost;
+        
+        private static Lazy<ITypedElement> _noLoadCostAttribute = new Lazy<ITypedElement>(RetrieveNoLoadCostAttribute);
         
         /// <summary>
         /// The backing field for the MinimumDownTime property
         /// </summary>
         private float _minimumDownTime;
         
+        private static Lazy<ITypedElement> _minimumDownTimeAttribute = new Lazy<ITypedElement>(RetrieveMinimumDownTimeAttribute);
+        
         /// <summary>
         /// The backing field for the DownTimeMax property
         /// </summary>
         private float _downTimeMax;
+        
+        private static Lazy<ITypedElement> _downTimeMaxAttribute = new Lazy<ITypedElement>(RetrieveDownTimeMaxAttribute);
         
         /// <summary>
         /// The backing field for the StartUpRampRate property
         /// </summary>
         private object _startUpRampRate;
         
+        private static Lazy<ITypedElement> _startUpRampRateAttribute = new Lazy<ITypedElement>(RetrieveStartUpRampRateAttribute);
+        
         /// <summary>
         /// The backing field for the OperatingMode property
         /// </summary>
         private string _operatingMode;
+        
+        private static Lazy<ITypedElement> _operatingModeAttribute = new Lazy<ITypedElement>(RetrieveOperatingModeAttribute);
+        
+        private static Lazy<ITypedElement> _registeredGeneratorReference = new Lazy<ITypedElement>(RetrieveRegisteredGeneratorReference);
         
         /// <summary>
         /// The backing field for the RegisteredGenerator property
         /// </summary>
         private IRegisteredGenerator _registeredGenerator;
         
+        private static Lazy<ITypedElement> _bidSetReference = new Lazy<ITypedElement>(RetrieveBidSetReference);
+        
         /// <summary>
         /// The backing field for the BidSet property
         /// </summary>
         private IBidSet _bidSet;
+        
+        private static Lazy<ITypedElement> _startUpTimeCurveReference = new Lazy<ITypedElement>(RetrieveStartUpTimeCurveReference);
         
         /// <summary>
         /// The backing field for the StartUpTimeCurve property
         /// </summary>
         private IStartUpTimeCurve _startUpTimeCurve;
         
+        private static Lazy<ITypedElement> _notificationTimeCurveReference = new Lazy<ITypedElement>(RetrieveNotificationTimeCurveReference);
+        
         /// <summary>
         /// The backing field for the NotificationTimeCurve property
         /// </summary>
         private INotificationTimeCurve _notificationTimeCurve;
+        
+        private static Lazy<ITypedElement> _startUpCostCurveReference = new Lazy<ITypedElement>(RetrieveStartUpCostCurveReference);
         
         /// <summary>
         /// The backing field for the StartUpCostCurve property
@@ -168,10 +206,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
                     float old = this._upTimeMin;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnUpTimeMinChanging(e);
-                    this.OnPropertyChanging("UpTimeMin", e);
+                    this.OnPropertyChanging("UpTimeMin", e, _upTimeMinAttribute);
                     this._upTimeMin = value;
                     this.OnUpTimeMinChanged(e);
-                    this.OnPropertyChanged("UpTimeMin", e);
+                    this.OnPropertyChanged("UpTimeMin", e, _upTimeMinAttribute);
                 }
             }
         }
@@ -194,10 +232,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
                     float old = this._maximumEconomicMW;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnMaximumEconomicMWChanging(e);
-                    this.OnPropertyChanging("MaximumEconomicMW", e);
+                    this.OnPropertyChanging("MaximumEconomicMW", e, _maximumEconomicMWAttribute);
                     this._maximumEconomicMW = value;
                     this.OnMaximumEconomicMWChanged(e);
-                    this.OnPropertyChanged("MaximumEconomicMW", e);
+                    this.OnPropertyChanged("MaximumEconomicMW", e, _maximumEconomicMWAttribute);
                 }
             }
         }
@@ -220,10 +258,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
                     float old = this._upTimeMax;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnUpTimeMaxChanging(e);
-                    this.OnPropertyChanging("UpTimeMax", e);
+                    this.OnPropertyChanging("UpTimeMax", e, _upTimeMaxAttribute);
                     this._upTimeMax = value;
                     this.OnUpTimeMaxChanged(e);
-                    this.OnPropertyChanged("UpTimeMax", e);
+                    this.OnPropertyChanged("UpTimeMax", e, _upTimeMaxAttribute);
                 }
             }
         }
@@ -246,10 +284,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
                     int old = this._startUpType;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnStartUpTypeChanging(e);
-                    this.OnPropertyChanging("StartUpType", e);
+                    this.OnPropertyChanging("StartUpType", e, _startUpTypeAttribute);
                     this._startUpType = value;
                     this.OnStartUpTypeChanged(e);
-                    this.OnPropertyChanged("StartUpType", e);
+                    this.OnPropertyChanged("StartUpType", e, _startUpTypeAttribute);
                 }
             }
         }
@@ -272,10 +310,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
                     float old = this._notificationTime;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnNotificationTimeChanging(e);
-                    this.OnPropertyChanging("NotificationTime", e);
+                    this.OnPropertyChanging("NotificationTime", e, _notificationTimeAttribute);
                     this._notificationTime = value;
                     this.OnNotificationTimeChanged(e);
-                    this.OnPropertyChanged("NotificationTime", e);
+                    this.OnPropertyChanged("NotificationTime", e, _notificationTimeAttribute);
                 }
             }
         }
@@ -298,10 +336,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
                     float old = this._maxEmergencyMW;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnMaxEmergencyMWChanging(e);
-                    this.OnPropertyChanging("MaxEmergencyMW", e);
+                    this.OnPropertyChanging("MaxEmergencyMW", e, _maxEmergencyMWAttribute);
                     this._maxEmergencyMW = value;
                     this.OnMaxEmergencyMWChanged(e);
-                    this.OnPropertyChanged("MaxEmergencyMW", e);
+                    this.OnPropertyChanged("MaxEmergencyMW", e, _maxEmergencyMWAttribute);
                 }
             }
         }
@@ -324,10 +362,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
                     float old = this._startupTime;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnStartupTimeChanging(e);
-                    this.OnPropertyChanging("StartupTime", e);
+                    this.OnPropertyChanging("StartupTime", e, _startupTimeAttribute);
                     this._startupTime = value;
                     this.OnStartupTimeChanged(e);
-                    this.OnPropertyChanged("StartupTime", e);
+                    this.OnPropertyChanged("StartupTime", e, _startupTimeAttribute);
                 }
             }
         }
@@ -350,10 +388,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
                     float old = this._minimumEconomicMW;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnMinimumEconomicMWChanging(e);
-                    this.OnPropertyChanging("MinimumEconomicMW", e);
+                    this.OnPropertyChanging("MinimumEconomicMW", e, _minimumEconomicMWAttribute);
                     this._minimumEconomicMW = value;
                     this.OnMinimumEconomicMWChanged(e);
-                    this.OnPropertyChanged("MinimumEconomicMW", e);
+                    this.OnPropertyChanged("MinimumEconomicMW", e, _minimumEconomicMWAttribute);
                 }
             }
         }
@@ -376,10 +414,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
                     float old = this._minEmergencyMW;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnMinEmergencyMWChanging(e);
-                    this.OnPropertyChanging("MinEmergencyMW", e);
+                    this.OnPropertyChanging("MinEmergencyMW", e, _minEmergencyMWAttribute);
                     this._minEmergencyMW = value;
                     this.OnMinEmergencyMWChanged(e);
-                    this.OnPropertyChanged("MinEmergencyMW", e);
+                    this.OnPropertyChanged("MinEmergencyMW", e, _minEmergencyMWAttribute);
                 }
             }
         }
@@ -402,10 +440,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
                     float old = this._noLoadCost;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnNoLoadCostChanging(e);
-                    this.OnPropertyChanging("NoLoadCost", e);
+                    this.OnPropertyChanging("NoLoadCost", e, _noLoadCostAttribute);
                     this._noLoadCost = value;
                     this.OnNoLoadCostChanged(e);
-                    this.OnPropertyChanged("NoLoadCost", e);
+                    this.OnPropertyChanged("NoLoadCost", e, _noLoadCostAttribute);
                 }
             }
         }
@@ -428,10 +466,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
                     float old = this._minimumDownTime;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnMinimumDownTimeChanging(e);
-                    this.OnPropertyChanging("MinimumDownTime", e);
+                    this.OnPropertyChanging("MinimumDownTime", e, _minimumDownTimeAttribute);
                     this._minimumDownTime = value;
                     this.OnMinimumDownTimeChanged(e);
-                    this.OnPropertyChanged("MinimumDownTime", e);
+                    this.OnPropertyChanged("MinimumDownTime", e, _minimumDownTimeAttribute);
                 }
             }
         }
@@ -454,10 +492,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
                     float old = this._downTimeMax;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnDownTimeMaxChanging(e);
-                    this.OnPropertyChanging("DownTimeMax", e);
+                    this.OnPropertyChanging("DownTimeMax", e, _downTimeMaxAttribute);
                     this._downTimeMax = value;
                     this.OnDownTimeMaxChanged(e);
-                    this.OnPropertyChanged("DownTimeMax", e);
+                    this.OnPropertyChanged("DownTimeMax", e, _downTimeMaxAttribute);
                 }
             }
         }
@@ -480,10 +518,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
                     object old = this._startUpRampRate;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnStartUpRampRateChanging(e);
-                    this.OnPropertyChanging("StartUpRampRate", e);
+                    this.OnPropertyChanging("StartUpRampRate", e, _startUpRampRateAttribute);
                     this._startUpRampRate = value;
                     this.OnStartUpRampRateChanged(e);
-                    this.OnPropertyChanged("StartUpRampRate", e);
+                    this.OnPropertyChanged("StartUpRampRate", e, _startUpRampRateAttribute);
                 }
             }
         }
@@ -506,10 +544,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
                     string old = this._operatingMode;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnOperatingModeChanging(e);
-                    this.OnPropertyChanging("OperatingMode", e);
+                    this.OnPropertyChanging("OperatingMode", e, _operatingModeAttribute);
                     this._operatingMode = value;
                     this.OnOperatingModeChanged(e);
-                    this.OnPropertyChanged("OperatingMode", e);
+                    this.OnPropertyChanged("OperatingMode", e, _operatingModeAttribute);
                 }
             }
         }
@@ -532,7 +570,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
                     IRegisteredGenerator old = this._registeredGenerator;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnRegisteredGeneratorChanging(e);
-                    this.OnPropertyChanging("RegisteredGenerator", e);
+                    this.OnPropertyChanging("RegisteredGenerator", e, _registeredGeneratorReference);
                     this._registeredGenerator = value;
                     if ((old != null))
                     {
@@ -545,7 +583,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
                         value.Deleted += this.OnResetRegisteredGenerator;
                     }
                     this.OnRegisteredGeneratorChanged(e);
-                    this.OnPropertyChanged("RegisteredGenerator", e);
+                    this.OnPropertyChanged("RegisteredGenerator", e, _registeredGeneratorReference);
                 }
             }
         }
@@ -568,7 +606,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
                     IBidSet old = this._bidSet;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnBidSetChanging(e);
-                    this.OnPropertyChanging("BidSet", e);
+                    this.OnPropertyChanging("BidSet", e, _bidSetReference);
                     this._bidSet = value;
                     if ((old != null))
                     {
@@ -581,7 +619,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
                         value.Deleted += this.OnResetBidSet;
                     }
                     this.OnBidSetChanged(e);
-                    this.OnPropertyChanged("BidSet", e);
+                    this.OnPropertyChanged("BidSet", e, _bidSetReference);
                 }
             }
         }
@@ -604,7 +642,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
                     IStartUpTimeCurve old = this._startUpTimeCurve;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnStartUpTimeCurveChanging(e);
-                    this.OnPropertyChanging("StartUpTimeCurve", e);
+                    this.OnPropertyChanging("StartUpTimeCurve", e, _startUpTimeCurveReference);
                     this._startUpTimeCurve = value;
                     if ((old != null))
                     {
@@ -617,7 +655,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
                         value.Deleted += this.OnResetStartUpTimeCurve;
                     }
                     this.OnStartUpTimeCurveChanged(e);
-                    this.OnPropertyChanged("StartUpTimeCurve", e);
+                    this.OnPropertyChanged("StartUpTimeCurve", e, _startUpTimeCurveReference);
                 }
             }
         }
@@ -640,7 +678,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
                     INotificationTimeCurve old = this._notificationTimeCurve;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnNotificationTimeCurveChanging(e);
-                    this.OnPropertyChanging("NotificationTimeCurve", e);
+                    this.OnPropertyChanging("NotificationTimeCurve", e, _notificationTimeCurveReference);
                     this._notificationTimeCurve = value;
                     if ((old != null))
                     {
@@ -653,7 +691,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
                         value.Deleted += this.OnResetNotificationTimeCurve;
                     }
                     this.OnNotificationTimeCurveChanged(e);
-                    this.OnPropertyChanged("NotificationTimeCurve", e);
+                    this.OnPropertyChanged("NotificationTimeCurve", e, _notificationTimeCurveReference);
                 }
             }
         }
@@ -676,7 +714,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
                     IStartUpCostCurve old = this._startUpCostCurve;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnStartUpCostCurveChanging(e);
-                    this.OnPropertyChanging("StartUpCostCurve", e);
+                    this.OnPropertyChanging("StartUpCostCurve", e, _startUpCostCurveReference);
                     this._startUpCostCurve = value;
                     if ((old != null))
                     {
@@ -689,7 +727,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
                         value.Deleted += this.OnResetStartUpCostCurve;
                     }
                     this.OnStartUpCostCurveChanged(e);
-                    this.OnPropertyChanged("StartUpCostCurve", e);
+                    this.OnPropertyChanged("StartUpCostCurve", e, _startUpCostCurveReference);
                 }
             }
         }
@@ -911,6 +949,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> StartUpCostCurveChanged;
         
+        private static ITypedElement RetrieveUpTimeMinAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(GeneratingBid.ClassInstance)).Resolve("upTimeMin")));
+        }
+        
         /// <summary>
         /// Raises the UpTimeMinChanging event
         /// </summary>
@@ -935,6 +978,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveMaximumEconomicMWAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(GeneratingBid.ClassInstance)).Resolve("maximumEconomicMW")));
         }
         
         /// <summary>
@@ -963,6 +1011,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
             }
         }
         
+        private static ITypedElement RetrieveUpTimeMaxAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(GeneratingBid.ClassInstance)).Resolve("upTimeMax")));
+        }
+        
         /// <summary>
         /// Raises the UpTimeMaxChanging event
         /// </summary>
@@ -987,6 +1040,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveStartUpTypeAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(GeneratingBid.ClassInstance)).Resolve("startUpType")));
         }
         
         /// <summary>
@@ -1015,6 +1073,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
             }
         }
         
+        private static ITypedElement RetrieveNotificationTimeAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(GeneratingBid.ClassInstance)).Resolve("notificationTime")));
+        }
+        
         /// <summary>
         /// Raises the NotificationTimeChanging event
         /// </summary>
@@ -1039,6 +1102,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveMaxEmergencyMWAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(GeneratingBid.ClassInstance)).Resolve("maxEmergencyMW")));
         }
         
         /// <summary>
@@ -1067,6 +1135,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
             }
         }
         
+        private static ITypedElement RetrieveStartupTimeAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(GeneratingBid.ClassInstance)).Resolve("startupTime")));
+        }
+        
         /// <summary>
         /// Raises the StartupTimeChanging event
         /// </summary>
@@ -1091,6 +1164,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveMinimumEconomicMWAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(GeneratingBid.ClassInstance)).Resolve("minimumEconomicMW")));
         }
         
         /// <summary>
@@ -1119,6 +1197,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
             }
         }
         
+        private static ITypedElement RetrieveMinEmergencyMWAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(GeneratingBid.ClassInstance)).Resolve("minEmergencyMW")));
+        }
+        
         /// <summary>
         /// Raises the MinEmergencyMWChanging event
         /// </summary>
@@ -1143,6 +1226,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveNoLoadCostAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(GeneratingBid.ClassInstance)).Resolve("noLoadCost")));
         }
         
         /// <summary>
@@ -1171,6 +1259,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
             }
         }
         
+        private static ITypedElement RetrieveMinimumDownTimeAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(GeneratingBid.ClassInstance)).Resolve("minimumDownTime")));
+        }
+        
         /// <summary>
         /// Raises the MinimumDownTimeChanging event
         /// </summary>
@@ -1195,6 +1288,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveDownTimeMaxAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(GeneratingBid.ClassInstance)).Resolve("downTimeMax")));
         }
         
         /// <summary>
@@ -1223,6 +1321,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
             }
         }
         
+        private static ITypedElement RetrieveStartUpRampRateAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(GeneratingBid.ClassInstance)).Resolve("startUpRampRate")));
+        }
+        
         /// <summary>
         /// Raises the StartUpRampRateChanging event
         /// </summary>
@@ -1249,6 +1352,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
             }
         }
         
+        private static ITypedElement RetrieveOperatingModeAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(GeneratingBid.ClassInstance)).Resolve("operatingMode")));
+        }
+        
         /// <summary>
         /// Raises the OperatingModeChanging event
         /// </summary>
@@ -1273,6 +1381,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveRegisteredGeneratorReference()
+        {
+            return ((ITypedElement)(((ModelElement)(GeneratingBid.ClassInstance)).Resolve("RegisteredGenerator")));
         }
         
         /// <summary>
@@ -1311,6 +1424,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
             this.RegisteredGenerator = null;
         }
         
+        private static ITypedElement RetrieveBidSetReference()
+        {
+            return ((ITypedElement)(((ModelElement)(GeneratingBid.ClassInstance)).Resolve("BidSet")));
+        }
+        
         /// <summary>
         /// Raises the BidSetChanging event
         /// </summary>
@@ -1345,6 +1463,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
         private void OnResetBidSet(object sender, System.EventArgs eventArgs)
         {
             this.BidSet = null;
+        }
+        
+        private static ITypedElement RetrieveStartUpTimeCurveReference()
+        {
+            return ((ITypedElement)(((ModelElement)(GeneratingBid.ClassInstance)).Resolve("StartUpTimeCurve")));
         }
         
         /// <summary>
@@ -1383,6 +1506,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
             this.StartUpTimeCurve = null;
         }
         
+        private static ITypedElement RetrieveNotificationTimeCurveReference()
+        {
+            return ((ITypedElement)(((ModelElement)(GeneratingBid.ClassInstance)).Resolve("NotificationTimeCurve")));
+        }
+        
         /// <summary>
         /// Raises the NotificationTimeCurveChanging event
         /// </summary>
@@ -1417,6 +1545,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
         private void OnResetNotificationTimeCurve(object sender, System.EventArgs eventArgs)
         {
             this.NotificationTimeCurve = null;
+        }
+        
+        private static ITypedElement RetrieveStartUpCostCurveReference()
+        {
+            return ((ITypedElement)(((ModelElement)(GeneratingBid.ClassInstance)).Resolve("StartUpCostCurve")));
         }
         
         /// <summary>
@@ -1951,7 +2084,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public UpTimeMinProxy(IGeneratingBid modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "upTimeMin")
             {
             }
             
@@ -1969,24 +2102,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
                     this.ModelElement.UpTimeMin = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.UpTimeMinChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.UpTimeMinChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -2000,7 +2115,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public MaximumEconomicMWProxy(IGeneratingBid modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "maximumEconomicMW")
             {
             }
             
@@ -2018,24 +2133,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
                     this.ModelElement.MaximumEconomicMW = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.MaximumEconomicMWChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.MaximumEconomicMWChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -2049,7 +2146,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public UpTimeMaxProxy(IGeneratingBid modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "upTimeMax")
             {
             }
             
@@ -2067,24 +2164,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
                     this.ModelElement.UpTimeMax = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.UpTimeMaxChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.UpTimeMaxChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -2098,7 +2177,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public StartUpTypeProxy(IGeneratingBid modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "startUpType")
             {
             }
             
@@ -2116,24 +2195,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
                     this.ModelElement.StartUpType = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.StartUpTypeChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.StartUpTypeChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -2147,7 +2208,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public NotificationTimeProxy(IGeneratingBid modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "notificationTime")
             {
             }
             
@@ -2165,24 +2226,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
                     this.ModelElement.NotificationTime = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.NotificationTimeChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.NotificationTimeChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -2196,7 +2239,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public MaxEmergencyMWProxy(IGeneratingBid modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "maxEmergencyMW")
             {
             }
             
@@ -2214,24 +2257,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
                     this.ModelElement.MaxEmergencyMW = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.MaxEmergencyMWChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.MaxEmergencyMWChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -2245,7 +2270,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public StartupTimeProxy(IGeneratingBid modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "startupTime")
             {
             }
             
@@ -2263,24 +2288,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
                     this.ModelElement.StartupTime = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.StartupTimeChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.StartupTimeChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -2294,7 +2301,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public MinimumEconomicMWProxy(IGeneratingBid modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "minimumEconomicMW")
             {
             }
             
@@ -2312,24 +2319,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
                     this.ModelElement.MinimumEconomicMW = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.MinimumEconomicMWChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.MinimumEconomicMWChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -2343,7 +2332,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public MinEmergencyMWProxy(IGeneratingBid modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "minEmergencyMW")
             {
             }
             
@@ -2361,24 +2350,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
                     this.ModelElement.MinEmergencyMW = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.MinEmergencyMWChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.MinEmergencyMWChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -2392,7 +2363,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public NoLoadCostProxy(IGeneratingBid modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "noLoadCost")
             {
             }
             
@@ -2410,24 +2381,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
                     this.ModelElement.NoLoadCost = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.NoLoadCostChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.NoLoadCostChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -2441,7 +2394,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public MinimumDownTimeProxy(IGeneratingBid modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "minimumDownTime")
             {
             }
             
@@ -2459,24 +2412,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
                     this.ModelElement.MinimumDownTime = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.MinimumDownTimeChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.MinimumDownTimeChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -2490,7 +2425,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public DownTimeMaxProxy(IGeneratingBid modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "downTimeMax")
             {
             }
             
@@ -2508,24 +2443,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
                     this.ModelElement.DownTimeMax = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.DownTimeMaxChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.DownTimeMaxChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -2539,7 +2456,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public StartUpRampRateProxy(IGeneratingBid modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "startUpRampRate")
             {
             }
             
@@ -2557,24 +2474,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
                     this.ModelElement.StartUpRampRate = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.StartUpRampRateChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.StartUpRampRateChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -2588,7 +2487,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public OperatingModeProxy(IGeneratingBid modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "operatingMode")
             {
             }
             
@@ -2606,24 +2505,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
                     this.ModelElement.OperatingMode = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.OperatingModeChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.OperatingModeChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -2637,7 +2518,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public RegisteredGeneratorProxy(IGeneratingBid modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "RegisteredGenerator")
             {
             }
             
@@ -2655,24 +2536,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
                     this.ModelElement.RegisteredGenerator = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.RegisteredGeneratorChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.RegisteredGeneratorChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -2686,7 +2549,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public BidSetProxy(IGeneratingBid modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "BidSet")
             {
             }
             
@@ -2704,24 +2567,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
                     this.ModelElement.BidSet = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.BidSetChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.BidSetChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -2735,7 +2580,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public StartUpTimeCurveProxy(IGeneratingBid modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "StartUpTimeCurve")
             {
             }
             
@@ -2753,24 +2598,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
                     this.ModelElement.StartUpTimeCurve = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.StartUpTimeCurveChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.StartUpTimeCurveChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -2784,7 +2611,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public NotificationTimeCurveProxy(IGeneratingBid modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "NotificationTimeCurve")
             {
             }
             
@@ -2802,24 +2629,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
                     this.ModelElement.NotificationTimeCurve = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.NotificationTimeCurveChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.NotificationTimeCurveChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -2833,7 +2642,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public StartUpCostCurveProxy(IGeneratingBid modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "StartUpCostCurve")
             {
             }
             
@@ -2850,24 +2659,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
                 {
                     this.ModelElement.StartUpCostCurve = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.StartUpCostCurveChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.StartUpCostCurveChanged -= handler;
             }
         }
     }

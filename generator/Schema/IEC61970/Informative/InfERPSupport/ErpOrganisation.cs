@@ -56,7 +56,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfERPSupport
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61970/Informative/InfERPSupport/Erp" +
         "Organisation")]
     [DebuggerDisplayAttribute("ErpOrganisation {UUID}")]
-    public class ErpOrganisation : Organisation, IErpOrganisation, IModelElement
+    public partial class ErpOrganisation : Organisation, IErpOrganisation, IModelElement
     {
         
         /// <summary>
@@ -64,110 +64,156 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfERPSupport
         /// </summary>
         private string _mode;
         
+        private static Lazy<ITypedElement> _modeAttribute = new Lazy<ITypedElement>(RetrieveModeAttribute);
+        
         /// <summary>
         /// The backing field for the OptOut property
         /// </summary>
         private bool _optOut;
+        
+        private static Lazy<ITypedElement> _optOutAttribute = new Lazy<ITypedElement>(RetrieveOptOutAttribute);
         
         /// <summary>
         /// The backing field for the IsProfitCenter property
         /// </summary>
         private bool _isProfitCenter;
         
+        private static Lazy<ITypedElement> _isProfitCenterAttribute = new Lazy<ITypedElement>(RetrieveIsProfitCenterAttribute);
+        
         /// <summary>
         /// The backing field for the IsCostCenter property
         /// </summary>
         private bool _isCostCenter;
+        
+        private static Lazy<ITypedElement> _isCostCenterAttribute = new Lazy<ITypedElement>(RetrieveIsCostCenterAttribute);
         
         /// <summary>
         /// The backing field for the Code property
         /// </summary>
         private string _code;
         
+        private static Lazy<ITypedElement> _codeAttribute = new Lazy<ITypedElement>(RetrieveCodeAttribute);
+        
         /// <summary>
         /// The backing field for the IndustryID property
         /// </summary>
         private string _industryID;
+        
+        private static Lazy<ITypedElement> _industryIDAttribute = new Lazy<ITypedElement>(RetrieveIndustryIDAttribute);
         
         /// <summary>
         /// The backing field for the Category property
         /// </summary>
         private string _category;
         
+        private static Lazy<ITypedElement> _categoryAttribute = new Lazy<ITypedElement>(RetrieveCategoryAttribute);
+        
         /// <summary>
         /// The backing field for the GovernmentID property
         /// </summary>
         private string _governmentID;
+        
+        private static Lazy<ITypedElement> _governmentIDAttribute = new Lazy<ITypedElement>(RetrieveGovernmentIDAttribute);
+        
+        private static Lazy<ITypedElement> _crewsReference = new Lazy<ITypedElement>(RetrieveCrewsReference);
         
         /// <summary>
         /// The backing field for the Crews property
         /// </summary>
         private ErpOrganisationCrewsCollection _crews;
         
+        private static Lazy<ITypedElement> _requestsReference = new Lazy<ITypedElement>(RetrieveRequestsReference);
+        
         /// <summary>
         /// The backing field for the Requests property
         /// </summary>
         private ErpOrganisationRequestsCollection _requests;
+        
+        private static Lazy<ITypedElement> _registeredResourcesReference = new Lazy<ITypedElement>(RetrieveRegisteredResourcesReference);
         
         /// <summary>
         /// The backing field for the RegisteredResources property
         /// </summary>
         private ErpOrganisationRegisteredResourcesCollection _registeredResources;
         
+        private static Lazy<ITypedElement> _powerSystemResourceRolesReference = new Lazy<ITypedElement>(RetrievePowerSystemResourceRolesReference);
+        
         /// <summary>
         /// The backing field for the PowerSystemResourceRoles property
         /// </summary>
         private ErpOrganisationPowerSystemResourceRolesCollection _powerSystemResourceRoles;
+        
+        private static Lazy<ITypedElement> _documentRolesReference = new Lazy<ITypedElement>(RetrieveDocumentRolesReference);
         
         /// <summary>
         /// The backing field for the DocumentRoles property
         /// </summary>
         private ErpOrganisationDocumentRolesCollection _documentRoles;
         
+        private static Lazy<ITypedElement> _assetRolesReference = new Lazy<ITypedElement>(RetrieveAssetRolesReference);
+        
         /// <summary>
         /// The backing field for the AssetRoles property
         /// </summary>
         private ErpOrganisationAssetRolesCollection _assetRoles;
+        
+        private static Lazy<ITypedElement> _violationLimitsReference = new Lazy<ITypedElement>(RetrieveViolationLimitsReference);
         
         /// <summary>
         /// The backing field for the ViolationLimits property
         /// </summary>
         private ErpOrganisationViolationLimitsCollection _violationLimits;
         
+        private static Lazy<ITypedElement> _parentOrganisationRolesReference = new Lazy<ITypedElement>(RetrieveParentOrganisationRolesReference);
+        
         /// <summary>
         /// The backing field for the ParentOrganisationRoles property
         /// </summary>
         private ErpOrganisationParentOrganisationRolesCollection _parentOrganisationRoles;
+        
+        private static Lazy<ITypedElement> _landPropertyRolesReference = new Lazy<ITypedElement>(RetrieveLandPropertyRolesReference);
         
         /// <summary>
         /// The backing field for the LandPropertyRoles property
         /// </summary>
         private ErpOrganisationLandPropertyRolesCollection _landPropertyRoles;
         
+        private static Lazy<ITypedElement> _erpPersonRolesReference = new Lazy<ITypedElement>(RetrieveErpPersonRolesReference);
+        
         /// <summary>
         /// The backing field for the ErpPersonRoles property
         /// </summary>
         private ErpOrganisationErpPersonRolesCollection _erpPersonRoles;
+        
+        private static Lazy<ITypedElement> _childOrganisationRolesReference = new Lazy<ITypedElement>(RetrieveChildOrganisationRolesReference);
         
         /// <summary>
         /// The backing field for the ChildOrganisationRoles property
         /// </summary>
         private ErpOrganisationChildOrganisationRolesCollection _childOrganisationRoles;
         
+        private static Lazy<ITypedElement> _changeItemsReference = new Lazy<ITypedElement>(RetrieveChangeItemsReference);
+        
         /// <summary>
         /// The backing field for the ChangeItems property
         /// </summary>
         private ErpOrganisationChangeItemsCollection _changeItems;
+        
+        private static Lazy<ITypedElement> _locationsReference = new Lazy<ITypedElement>(RetrieveLocationsReference);
         
         /// <summary>
         /// The backing field for the Locations property
         /// </summary>
         private ErpOrganisationLocationsCollection _locations;
         
+        private static Lazy<ITypedElement> _intSchedAgreementReference = new Lazy<ITypedElement>(RetrieveIntSchedAgreementReference);
+        
         /// <summary>
         /// The backing field for the IntSchedAgreement property
         /// </summary>
         private ErpOrganisationIntSchedAgreementCollection _intSchedAgreement;
+        
+        private static Lazy<ITypedElement> _activityRecordsReference = new Lazy<ITypedElement>(RetrieveActivityRecordsReference);
         
         /// <summary>
         /// The backing field for the ActivityRecords property
@@ -243,10 +289,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfERPSupport
                     string old = this._mode;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnModeChanging(e);
-                    this.OnPropertyChanging("Mode", e);
+                    this.OnPropertyChanging("Mode", e, _modeAttribute);
                     this._mode = value;
                     this.OnModeChanged(e);
-                    this.OnPropertyChanged("Mode", e);
+                    this.OnPropertyChanged("Mode", e, _modeAttribute);
                 }
             }
         }
@@ -269,10 +315,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfERPSupport
                     bool old = this._optOut;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnOptOutChanging(e);
-                    this.OnPropertyChanging("OptOut", e);
+                    this.OnPropertyChanging("OptOut", e, _optOutAttribute);
                     this._optOut = value;
                     this.OnOptOutChanged(e);
-                    this.OnPropertyChanged("OptOut", e);
+                    this.OnPropertyChanged("OptOut", e, _optOutAttribute);
                 }
             }
         }
@@ -295,10 +341,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfERPSupport
                     bool old = this._isProfitCenter;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnIsProfitCenterChanging(e);
-                    this.OnPropertyChanging("IsProfitCenter", e);
+                    this.OnPropertyChanging("IsProfitCenter", e, _isProfitCenterAttribute);
                     this._isProfitCenter = value;
                     this.OnIsProfitCenterChanged(e);
-                    this.OnPropertyChanged("IsProfitCenter", e);
+                    this.OnPropertyChanged("IsProfitCenter", e, _isProfitCenterAttribute);
                 }
             }
         }
@@ -321,10 +367,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfERPSupport
                     bool old = this._isCostCenter;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnIsCostCenterChanging(e);
-                    this.OnPropertyChanging("IsCostCenter", e);
+                    this.OnPropertyChanging("IsCostCenter", e, _isCostCenterAttribute);
                     this._isCostCenter = value;
                     this.OnIsCostCenterChanged(e);
-                    this.OnPropertyChanged("IsCostCenter", e);
+                    this.OnPropertyChanged("IsCostCenter", e, _isCostCenterAttribute);
                 }
             }
         }
@@ -347,10 +393,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfERPSupport
                     string old = this._code;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnCodeChanging(e);
-                    this.OnPropertyChanging("Code", e);
+                    this.OnPropertyChanging("Code", e, _codeAttribute);
                     this._code = value;
                     this.OnCodeChanged(e);
-                    this.OnPropertyChanged("Code", e);
+                    this.OnPropertyChanged("Code", e, _codeAttribute);
                 }
             }
         }
@@ -373,10 +419,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfERPSupport
                     string old = this._industryID;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnIndustryIDChanging(e);
-                    this.OnPropertyChanging("IndustryID", e);
+                    this.OnPropertyChanging("IndustryID", e, _industryIDAttribute);
                     this._industryID = value;
                     this.OnIndustryIDChanged(e);
-                    this.OnPropertyChanged("IndustryID", e);
+                    this.OnPropertyChanged("IndustryID", e, _industryIDAttribute);
                 }
             }
         }
@@ -399,10 +445,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfERPSupport
                     string old = this._category;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnCategoryChanging(e);
-                    this.OnPropertyChanging("Category", e);
+                    this.OnPropertyChanging("Category", e, _categoryAttribute);
                     this._category = value;
                     this.OnCategoryChanged(e);
-                    this.OnPropertyChanged("Category", e);
+                    this.OnPropertyChanged("Category", e, _categoryAttribute);
                 }
             }
         }
@@ -425,10 +471,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfERPSupport
                     string old = this._governmentID;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnGovernmentIDChanging(e);
-                    this.OnPropertyChanging("GovernmentID", e);
+                    this.OnPropertyChanging("GovernmentID", e, _governmentIDAttribute);
                     this._governmentID = value;
                     this.OnGovernmentIDChanged(e);
-                    this.OnPropertyChanged("GovernmentID", e);
+                    this.OnPropertyChanged("GovernmentID", e, _governmentIDAttribute);
                 }
             }
         }
@@ -765,6 +811,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfERPSupport
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> GovernmentIDChanged;
         
+        private static ITypedElement RetrieveModeAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(ErpOrganisation.ClassInstance)).Resolve("mode")));
+        }
+        
         /// <summary>
         /// Raises the ModeChanging event
         /// </summary>
@@ -789,6 +840,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfERPSupport
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveOptOutAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(ErpOrganisation.ClassInstance)).Resolve("optOut")));
         }
         
         /// <summary>
@@ -817,6 +873,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfERPSupport
             }
         }
         
+        private static ITypedElement RetrieveIsProfitCenterAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(ErpOrganisation.ClassInstance)).Resolve("isProfitCenter")));
+        }
+        
         /// <summary>
         /// Raises the IsProfitCenterChanging event
         /// </summary>
@@ -841,6 +902,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfERPSupport
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveIsCostCenterAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(ErpOrganisation.ClassInstance)).Resolve("isCostCenter")));
         }
         
         /// <summary>
@@ -869,6 +935,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfERPSupport
             }
         }
         
+        private static ITypedElement RetrieveCodeAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(ErpOrganisation.ClassInstance)).Resolve("code")));
+        }
+        
         /// <summary>
         /// Raises the CodeChanging event
         /// </summary>
@@ -893,6 +964,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfERPSupport
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveIndustryIDAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(ErpOrganisation.ClassInstance)).Resolve("industryID")));
         }
         
         /// <summary>
@@ -921,6 +997,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfERPSupport
             }
         }
         
+        private static ITypedElement RetrieveCategoryAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(ErpOrganisation.ClassInstance)).Resolve("category")));
+        }
+        
         /// <summary>
         /// Raises the CategoryChanging event
         /// </summary>
@@ -945,6 +1026,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfERPSupport
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveGovernmentIDAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(ErpOrganisation.ClassInstance)).Resolve("governmentID")));
         }
         
         /// <summary>
@@ -973,6 +1059,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfERPSupport
             }
         }
         
+        private static ITypedElement RetrieveCrewsReference()
+        {
+            return ((ITypedElement)(((ModelElement)(ErpOrganisation.ClassInstance)).Resolve("Crews")));
+        }
+        
         /// <summary>
         /// Forwards CollectionChanging notifications for the Crews property to the parent model element
         /// </summary>
@@ -980,7 +1071,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfERPSupport
         /// <param name="e">The original event data</param>
         private void CrewsCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("Crews", e);
+            this.OnCollectionChanging("Crews", e, _crewsReference);
         }
         
         /// <summary>
@@ -990,7 +1081,12 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfERPSupport
         /// <param name="e">The original event data</param>
         private void CrewsCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("Crews", e);
+            this.OnCollectionChanged("Crews", e, _crewsReference);
+        }
+        
+        private static ITypedElement RetrieveRequestsReference()
+        {
+            return ((ITypedElement)(((ModelElement)(ErpOrganisation.ClassInstance)).Resolve("Requests")));
         }
         
         /// <summary>
@@ -1000,7 +1096,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfERPSupport
         /// <param name="e">The original event data</param>
         private void RequestsCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("Requests", e);
+            this.OnCollectionChanging("Requests", e, _requestsReference);
         }
         
         /// <summary>
@@ -1010,7 +1106,12 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfERPSupport
         /// <param name="e">The original event data</param>
         private void RequestsCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("Requests", e);
+            this.OnCollectionChanged("Requests", e, _requestsReference);
+        }
+        
+        private static ITypedElement RetrieveRegisteredResourcesReference()
+        {
+            return ((ITypedElement)(((ModelElement)(ErpOrganisation.ClassInstance)).Resolve("RegisteredResources")));
         }
         
         /// <summary>
@@ -1020,7 +1121,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfERPSupport
         /// <param name="e">The original event data</param>
         private void RegisteredResourcesCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("RegisteredResources", e);
+            this.OnCollectionChanging("RegisteredResources", e, _registeredResourcesReference);
         }
         
         /// <summary>
@@ -1030,7 +1131,12 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfERPSupport
         /// <param name="e">The original event data</param>
         private void RegisteredResourcesCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("RegisteredResources", e);
+            this.OnCollectionChanged("RegisteredResources", e, _registeredResourcesReference);
+        }
+        
+        private static ITypedElement RetrievePowerSystemResourceRolesReference()
+        {
+            return ((ITypedElement)(((ModelElement)(ErpOrganisation.ClassInstance)).Resolve("PowerSystemResourceRoles")));
         }
         
         /// <summary>
@@ -1040,7 +1146,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfERPSupport
         /// <param name="e">The original event data</param>
         private void PowerSystemResourceRolesCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("PowerSystemResourceRoles", e);
+            this.OnCollectionChanging("PowerSystemResourceRoles", e, _powerSystemResourceRolesReference);
         }
         
         /// <summary>
@@ -1050,7 +1156,12 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfERPSupport
         /// <param name="e">The original event data</param>
         private void PowerSystemResourceRolesCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("PowerSystemResourceRoles", e);
+            this.OnCollectionChanged("PowerSystemResourceRoles", e, _powerSystemResourceRolesReference);
+        }
+        
+        private static ITypedElement RetrieveDocumentRolesReference()
+        {
+            return ((ITypedElement)(((ModelElement)(ErpOrganisation.ClassInstance)).Resolve("DocumentRoles")));
         }
         
         /// <summary>
@@ -1060,7 +1171,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfERPSupport
         /// <param name="e">The original event data</param>
         private void DocumentRolesCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("DocumentRoles", e);
+            this.OnCollectionChanging("DocumentRoles", e, _documentRolesReference);
         }
         
         /// <summary>
@@ -1070,7 +1181,12 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfERPSupport
         /// <param name="e">The original event data</param>
         private void DocumentRolesCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("DocumentRoles", e);
+            this.OnCollectionChanged("DocumentRoles", e, _documentRolesReference);
+        }
+        
+        private static ITypedElement RetrieveAssetRolesReference()
+        {
+            return ((ITypedElement)(((ModelElement)(ErpOrganisation.ClassInstance)).Resolve("AssetRoles")));
         }
         
         /// <summary>
@@ -1080,7 +1196,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfERPSupport
         /// <param name="e">The original event data</param>
         private void AssetRolesCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("AssetRoles", e);
+            this.OnCollectionChanging("AssetRoles", e, _assetRolesReference);
         }
         
         /// <summary>
@@ -1090,7 +1206,12 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfERPSupport
         /// <param name="e">The original event data</param>
         private void AssetRolesCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("AssetRoles", e);
+            this.OnCollectionChanged("AssetRoles", e, _assetRolesReference);
+        }
+        
+        private static ITypedElement RetrieveViolationLimitsReference()
+        {
+            return ((ITypedElement)(((ModelElement)(ErpOrganisation.ClassInstance)).Resolve("ViolationLimits")));
         }
         
         /// <summary>
@@ -1100,7 +1221,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfERPSupport
         /// <param name="e">The original event data</param>
         private void ViolationLimitsCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("ViolationLimits", e);
+            this.OnCollectionChanging("ViolationLimits", e, _violationLimitsReference);
         }
         
         /// <summary>
@@ -1110,7 +1231,12 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfERPSupport
         /// <param name="e">The original event data</param>
         private void ViolationLimitsCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("ViolationLimits", e);
+            this.OnCollectionChanged("ViolationLimits", e, _violationLimitsReference);
+        }
+        
+        private static ITypedElement RetrieveParentOrganisationRolesReference()
+        {
+            return ((ITypedElement)(((ModelElement)(ErpOrganisation.ClassInstance)).Resolve("ParentOrganisationRoles")));
         }
         
         /// <summary>
@@ -1120,7 +1246,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfERPSupport
         /// <param name="e">The original event data</param>
         private void ParentOrganisationRolesCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("ParentOrganisationRoles", e);
+            this.OnCollectionChanging("ParentOrganisationRoles", e, _parentOrganisationRolesReference);
         }
         
         /// <summary>
@@ -1130,7 +1256,12 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfERPSupport
         /// <param name="e">The original event data</param>
         private void ParentOrganisationRolesCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("ParentOrganisationRoles", e);
+            this.OnCollectionChanged("ParentOrganisationRoles", e, _parentOrganisationRolesReference);
+        }
+        
+        private static ITypedElement RetrieveLandPropertyRolesReference()
+        {
+            return ((ITypedElement)(((ModelElement)(ErpOrganisation.ClassInstance)).Resolve("LandPropertyRoles")));
         }
         
         /// <summary>
@@ -1140,7 +1271,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfERPSupport
         /// <param name="e">The original event data</param>
         private void LandPropertyRolesCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("LandPropertyRoles", e);
+            this.OnCollectionChanging("LandPropertyRoles", e, _landPropertyRolesReference);
         }
         
         /// <summary>
@@ -1150,7 +1281,12 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfERPSupport
         /// <param name="e">The original event data</param>
         private void LandPropertyRolesCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("LandPropertyRoles", e);
+            this.OnCollectionChanged("LandPropertyRoles", e, _landPropertyRolesReference);
+        }
+        
+        private static ITypedElement RetrieveErpPersonRolesReference()
+        {
+            return ((ITypedElement)(((ModelElement)(ErpOrganisation.ClassInstance)).Resolve("ErpPersonRoles")));
         }
         
         /// <summary>
@@ -1160,7 +1296,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfERPSupport
         /// <param name="e">The original event data</param>
         private void ErpPersonRolesCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("ErpPersonRoles", e);
+            this.OnCollectionChanging("ErpPersonRoles", e, _erpPersonRolesReference);
         }
         
         /// <summary>
@@ -1170,7 +1306,12 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfERPSupport
         /// <param name="e">The original event data</param>
         private void ErpPersonRolesCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("ErpPersonRoles", e);
+            this.OnCollectionChanged("ErpPersonRoles", e, _erpPersonRolesReference);
+        }
+        
+        private static ITypedElement RetrieveChildOrganisationRolesReference()
+        {
+            return ((ITypedElement)(((ModelElement)(ErpOrganisation.ClassInstance)).Resolve("ChildOrganisationRoles")));
         }
         
         /// <summary>
@@ -1180,7 +1321,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfERPSupport
         /// <param name="e">The original event data</param>
         private void ChildOrganisationRolesCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("ChildOrganisationRoles", e);
+            this.OnCollectionChanging("ChildOrganisationRoles", e, _childOrganisationRolesReference);
         }
         
         /// <summary>
@@ -1190,7 +1331,12 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfERPSupport
         /// <param name="e">The original event data</param>
         private void ChildOrganisationRolesCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("ChildOrganisationRoles", e);
+            this.OnCollectionChanged("ChildOrganisationRoles", e, _childOrganisationRolesReference);
+        }
+        
+        private static ITypedElement RetrieveChangeItemsReference()
+        {
+            return ((ITypedElement)(((ModelElement)(ErpOrganisation.ClassInstance)).Resolve("ChangeItems")));
         }
         
         /// <summary>
@@ -1200,7 +1346,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfERPSupport
         /// <param name="e">The original event data</param>
         private void ChangeItemsCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("ChangeItems", e);
+            this.OnCollectionChanging("ChangeItems", e, _changeItemsReference);
         }
         
         /// <summary>
@@ -1210,7 +1356,12 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfERPSupport
         /// <param name="e">The original event data</param>
         private void ChangeItemsCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("ChangeItems", e);
+            this.OnCollectionChanged("ChangeItems", e, _changeItemsReference);
+        }
+        
+        private static ITypedElement RetrieveLocationsReference()
+        {
+            return ((ITypedElement)(((ModelElement)(ErpOrganisation.ClassInstance)).Resolve("Locations")));
         }
         
         /// <summary>
@@ -1220,7 +1371,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfERPSupport
         /// <param name="e">The original event data</param>
         private void LocationsCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("Locations", e);
+            this.OnCollectionChanging("Locations", e, _locationsReference);
         }
         
         /// <summary>
@@ -1230,7 +1381,12 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfERPSupport
         /// <param name="e">The original event data</param>
         private void LocationsCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("Locations", e);
+            this.OnCollectionChanged("Locations", e, _locationsReference);
+        }
+        
+        private static ITypedElement RetrieveIntSchedAgreementReference()
+        {
+            return ((ITypedElement)(((ModelElement)(ErpOrganisation.ClassInstance)).Resolve("IntSchedAgreement")));
         }
         
         /// <summary>
@@ -1240,7 +1396,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfERPSupport
         /// <param name="e">The original event data</param>
         private void IntSchedAgreementCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("IntSchedAgreement", e);
+            this.OnCollectionChanging("IntSchedAgreement", e, _intSchedAgreementReference);
         }
         
         /// <summary>
@@ -1250,7 +1406,12 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfERPSupport
         /// <param name="e">The original event data</param>
         private void IntSchedAgreementCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("IntSchedAgreement", e);
+            this.OnCollectionChanged("IntSchedAgreement", e, _intSchedAgreementReference);
+        }
+        
+        private static ITypedElement RetrieveActivityRecordsReference()
+        {
+            return ((ITypedElement)(((ModelElement)(ErpOrganisation.ClassInstance)).Resolve("ActivityRecords")));
         }
         
         /// <summary>
@@ -1260,7 +1421,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfERPSupport
         /// <param name="e">The original event data</param>
         private void ActivityRecordsCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("ActivityRecords", e);
+            this.OnCollectionChanging("ActivityRecords", e, _activityRecordsReference);
         }
         
         /// <summary>
@@ -1270,7 +1431,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfERPSupport
         /// <param name="e">The original event data</param>
         private void ActivityRecordsCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("ActivityRecords", e);
+            this.OnCollectionChanged("ActivityRecords", e, _activityRecordsReference);
         }
         
         /// <summary>
@@ -2059,7 +2220,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfERPSupport
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public ModeProxy(IErpOrganisation modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "mode")
             {
             }
             
@@ -2077,24 +2238,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfERPSupport
                     this.ModelElement.Mode = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ModeChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ModeChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -2108,7 +2251,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfERPSupport
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public OptOutProxy(IErpOrganisation modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "optOut")
             {
             }
             
@@ -2126,24 +2269,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfERPSupport
                     this.ModelElement.OptOut = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.OptOutChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.OptOutChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -2157,7 +2282,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfERPSupport
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public IsProfitCenterProxy(IErpOrganisation modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "isProfitCenter")
             {
             }
             
@@ -2175,24 +2300,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfERPSupport
                     this.ModelElement.IsProfitCenter = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.IsProfitCenterChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.IsProfitCenterChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -2206,7 +2313,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfERPSupport
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public IsCostCenterProxy(IErpOrganisation modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "isCostCenter")
             {
             }
             
@@ -2224,24 +2331,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfERPSupport
                     this.ModelElement.IsCostCenter = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.IsCostCenterChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.IsCostCenterChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -2255,7 +2344,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfERPSupport
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public CodeProxy(IErpOrganisation modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "code")
             {
             }
             
@@ -2273,24 +2362,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfERPSupport
                     this.ModelElement.Code = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.CodeChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.CodeChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -2304,7 +2375,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfERPSupport
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public IndustryIDProxy(IErpOrganisation modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "industryID")
             {
             }
             
@@ -2322,24 +2393,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfERPSupport
                     this.ModelElement.IndustryID = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.IndustryIDChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.IndustryIDChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -2353,7 +2406,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfERPSupport
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public CategoryProxy(IErpOrganisation modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "category")
             {
             }
             
@@ -2371,24 +2424,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfERPSupport
                     this.ModelElement.Category = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.CategoryChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.CategoryChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -2402,7 +2437,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfERPSupport
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public GovernmentIDProxy(IErpOrganisation modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "governmentID")
             {
             }
             
@@ -2419,24 +2454,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfERPSupport
                 {
                     this.ModelElement.GovernmentID = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.GovernmentIDChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.GovernmentIDChanged -= handler;
             }
         }
     }

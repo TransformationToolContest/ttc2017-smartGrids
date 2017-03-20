@@ -39,7 +39,7 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
     [XmlNamespacePrefixAttribute("objects")]
     [ModelRepresentationClassAttribute("http://www.transformation-tool-contest.eu/2017/smartGrids/cosem#//COSEMObjects/Me" +
         "asurementMethods")]
-    public class MeasurementMethods : Data, IMeasurementMethods, IModelElement
+    public partial class MeasurementMethods : Data, IMeasurementMethods, IModelElement
     {
         
         /// <summary>
@@ -47,35 +47,49 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
         /// </summary>
         private string _algorithm_for_active_power_measurement;
         
+        private static Lazy<ITypedElement> _algorithm_for_active_power_measurementAttribute = new Lazy<ITypedElement>(RetrieveAlgorithm_for_active_power_measurementAttribute);
+        
         /// <summary>
         /// The backing field for the Algorithm_for_active_energy_management property
         /// </summary>
         private string _algorithm_for_active_energy_management;
+        
+        private static Lazy<ITypedElement> _algorithm_for_active_energy_managementAttribute = new Lazy<ITypedElement>(RetrieveAlgorithm_for_active_energy_managementAttribute);
         
         /// <summary>
         /// The backing field for the Algorithm_for_reactive_power_measurement property
         /// </summary>
         private string _algorithm_for_reactive_power_measurement;
         
+        private static Lazy<ITypedElement> _algorithm_for_reactive_power_measurementAttribute = new Lazy<ITypedElement>(RetrieveAlgorithm_for_reactive_power_measurementAttribute);
+        
         /// <summary>
         /// The backing field for the Algorithm_for_reactive_energy_measurement property
         /// </summary>
         private string _algorithm_for_reactive_energy_measurement;
+        
+        private static Lazy<ITypedElement> _algorithm_for_reactive_energy_measurementAttribute = new Lazy<ITypedElement>(RetrieveAlgorithm_for_reactive_energy_measurementAttribute);
         
         /// <summary>
         /// The backing field for the Algorithm_for_apparent_power_measurement property
         /// </summary>
         private string _algorithm_for_apparent_power_measurement;
         
+        private static Lazy<ITypedElement> _algorithm_for_apparent_power_measurementAttribute = new Lazy<ITypedElement>(RetrieveAlgorithm_for_apparent_power_measurementAttribute);
+        
         /// <summary>
         /// The backing field for the Algorithm_for_apparent_energy_measurement property
         /// </summary>
         private string _algorithm_for_apparent_energy_measurement;
         
+        private static Lazy<ITypedElement> _algorithm_for_apparent_energy_measurementAttribute = new Lazy<ITypedElement>(RetrieveAlgorithm_for_apparent_energy_measurementAttribute);
+        
         /// <summary>
         /// The backing field for the Algorithm_for_power_factor_calculation property
         /// </summary>
         private string _algorithm_for_power_factor_calculation;
+        
+        private static Lazy<ITypedElement> _algorithm_for_power_factor_calculationAttribute = new Lazy<ITypedElement>(RetrieveAlgorithm_for_power_factor_calculationAttribute);
         
         private static IClass _classInstance;
         
@@ -96,10 +110,10 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     string old = this._algorithm_for_active_power_measurement;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnAlgorithm_for_active_power_measurementChanging(e);
-                    this.OnPropertyChanging("Algorithm_for_active_power_measurement", e);
+                    this.OnPropertyChanging("Algorithm_for_active_power_measurement", e, _algorithm_for_active_power_measurementAttribute);
                     this._algorithm_for_active_power_measurement = value;
                     this.OnAlgorithm_for_active_power_measurementChanged(e);
-                    this.OnPropertyChanged("Algorithm_for_active_power_measurement", e);
+                    this.OnPropertyChanged("Algorithm_for_active_power_measurement", e, _algorithm_for_active_power_measurementAttribute);
                 }
             }
         }
@@ -121,10 +135,10 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     string old = this._algorithm_for_active_energy_management;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnAlgorithm_for_active_energy_managementChanging(e);
-                    this.OnPropertyChanging("Algorithm_for_active_energy_management", e);
+                    this.OnPropertyChanging("Algorithm_for_active_energy_management", e, _algorithm_for_active_energy_managementAttribute);
                     this._algorithm_for_active_energy_management = value;
                     this.OnAlgorithm_for_active_energy_managementChanged(e);
-                    this.OnPropertyChanged("Algorithm_for_active_energy_management", e);
+                    this.OnPropertyChanged("Algorithm_for_active_energy_management", e, _algorithm_for_active_energy_managementAttribute);
                 }
             }
         }
@@ -146,10 +160,10 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     string old = this._algorithm_for_reactive_power_measurement;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnAlgorithm_for_reactive_power_measurementChanging(e);
-                    this.OnPropertyChanging("Algorithm_for_reactive_power_measurement", e);
+                    this.OnPropertyChanging("Algorithm_for_reactive_power_measurement", e, _algorithm_for_reactive_power_measurementAttribute);
                     this._algorithm_for_reactive_power_measurement = value;
                     this.OnAlgorithm_for_reactive_power_measurementChanged(e);
-                    this.OnPropertyChanged("Algorithm_for_reactive_power_measurement", e);
+                    this.OnPropertyChanged("Algorithm_for_reactive_power_measurement", e, _algorithm_for_reactive_power_measurementAttribute);
                 }
             }
         }
@@ -171,10 +185,10 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     string old = this._algorithm_for_reactive_energy_measurement;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnAlgorithm_for_reactive_energy_measurementChanging(e);
-                    this.OnPropertyChanging("Algorithm_for_reactive_energy_measurement", e);
+                    this.OnPropertyChanging("Algorithm_for_reactive_energy_measurement", e, _algorithm_for_reactive_energy_measurementAttribute);
                     this._algorithm_for_reactive_energy_measurement = value;
                     this.OnAlgorithm_for_reactive_energy_measurementChanged(e);
-                    this.OnPropertyChanged("Algorithm_for_reactive_energy_measurement", e);
+                    this.OnPropertyChanged("Algorithm_for_reactive_energy_measurement", e, _algorithm_for_reactive_energy_measurementAttribute);
                 }
             }
         }
@@ -196,10 +210,10 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     string old = this._algorithm_for_apparent_power_measurement;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnAlgorithm_for_apparent_power_measurementChanging(e);
-                    this.OnPropertyChanging("Algorithm_for_apparent_power_measurement", e);
+                    this.OnPropertyChanging("Algorithm_for_apparent_power_measurement", e, _algorithm_for_apparent_power_measurementAttribute);
                     this._algorithm_for_apparent_power_measurement = value;
                     this.OnAlgorithm_for_apparent_power_measurementChanged(e);
-                    this.OnPropertyChanged("Algorithm_for_apparent_power_measurement", e);
+                    this.OnPropertyChanged("Algorithm_for_apparent_power_measurement", e, _algorithm_for_apparent_power_measurementAttribute);
                 }
             }
         }
@@ -221,10 +235,10 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     string old = this._algorithm_for_apparent_energy_measurement;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnAlgorithm_for_apparent_energy_measurementChanging(e);
-                    this.OnPropertyChanging("Algorithm_for_apparent_energy_measurement", e);
+                    this.OnPropertyChanging("Algorithm_for_apparent_energy_measurement", e, _algorithm_for_apparent_energy_measurementAttribute);
                     this._algorithm_for_apparent_energy_measurement = value;
                     this.OnAlgorithm_for_apparent_energy_measurementChanged(e);
-                    this.OnPropertyChanged("Algorithm_for_apparent_energy_measurement", e);
+                    this.OnPropertyChanged("Algorithm_for_apparent_energy_measurement", e, _algorithm_for_apparent_energy_measurementAttribute);
                 }
             }
         }
@@ -246,10 +260,10 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     string old = this._algorithm_for_power_factor_calculation;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnAlgorithm_for_power_factor_calculationChanging(e);
-                    this.OnPropertyChanging("Algorithm_for_power_factor_calculation", e);
+                    this.OnPropertyChanging("Algorithm_for_power_factor_calculation", e, _algorithm_for_power_factor_calculationAttribute);
                     this._algorithm_for_power_factor_calculation = value;
                     this.OnAlgorithm_for_power_factor_calculationChanged(e);
-                    this.OnPropertyChanged("Algorithm_for_power_factor_calculation", e);
+                    this.OnPropertyChanged("Algorithm_for_power_factor_calculation", e, _algorithm_for_power_factor_calculationAttribute);
                 }
             }
         }
@@ -340,6 +354,11 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> Algorithm_for_power_factor_calculationChanged;
         
+        private static ITypedElement RetrieveAlgorithm_for_active_power_measurementAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(MeasurementMethods.ClassInstance)).Resolve("Algorithm_for_active_power_measurement")));
+        }
+        
         /// <summary>
         /// Raises the Algorithm_for_active_power_measurementChanging event
         /// </summary>
@@ -364,6 +383,11 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveAlgorithm_for_active_energy_managementAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(MeasurementMethods.ClassInstance)).Resolve("Algorithm_for_active_energy_management")));
         }
         
         /// <summary>
@@ -392,6 +416,11 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             }
         }
         
+        private static ITypedElement RetrieveAlgorithm_for_reactive_power_measurementAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(MeasurementMethods.ClassInstance)).Resolve("Algorithm_for_reactive_power_measurement")));
+        }
+        
         /// <summary>
         /// Raises the Algorithm_for_reactive_power_measurementChanging event
         /// </summary>
@@ -416,6 +445,11 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveAlgorithm_for_reactive_energy_measurementAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(MeasurementMethods.ClassInstance)).Resolve("Algorithm_for_reactive_energy_measurement")));
         }
         
         /// <summary>
@@ -444,6 +478,11 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             }
         }
         
+        private static ITypedElement RetrieveAlgorithm_for_apparent_power_measurementAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(MeasurementMethods.ClassInstance)).Resolve("Algorithm_for_apparent_power_measurement")));
+        }
+        
         /// <summary>
         /// Raises the Algorithm_for_apparent_power_measurementChanging event
         /// </summary>
@@ -470,6 +509,11 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             }
         }
         
+        private static ITypedElement RetrieveAlgorithm_for_apparent_energy_measurementAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(MeasurementMethods.ClassInstance)).Resolve("Algorithm_for_apparent_energy_measurement")));
+        }
+        
         /// <summary>
         /// Raises the Algorithm_for_apparent_energy_measurementChanging event
         /// </summary>
@@ -494,6 +538,11 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveAlgorithm_for_power_factor_calculationAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(MeasurementMethods.ClassInstance)).Resolve("Algorithm_for_power_factor_calculation")));
         }
         
         /// <summary>
@@ -630,7 +679,7 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public Algorithm_for_active_power_measurementProxy(IMeasurementMethods modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "Algorithm_for_active_power_measurement")
             {
             }
             
@@ -648,24 +697,6 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     this.ModelElement.Algorithm_for_active_power_measurement = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.Algorithm_for_active_power_measurementChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.Algorithm_for_active_power_measurementChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -679,7 +710,7 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public Algorithm_for_active_energy_managementProxy(IMeasurementMethods modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "Algorithm_for_active_energy_management")
             {
             }
             
@@ -697,24 +728,6 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     this.ModelElement.Algorithm_for_active_energy_management = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.Algorithm_for_active_energy_managementChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.Algorithm_for_active_energy_managementChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -728,7 +741,7 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public Algorithm_for_reactive_power_measurementProxy(IMeasurementMethods modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "Algorithm_for_reactive_power_measurement")
             {
             }
             
@@ -746,24 +759,6 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     this.ModelElement.Algorithm_for_reactive_power_measurement = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.Algorithm_for_reactive_power_measurementChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.Algorithm_for_reactive_power_measurementChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -777,7 +772,7 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public Algorithm_for_reactive_energy_measurementProxy(IMeasurementMethods modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "Algorithm_for_reactive_energy_measurement")
             {
             }
             
@@ -795,24 +790,6 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     this.ModelElement.Algorithm_for_reactive_energy_measurement = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.Algorithm_for_reactive_energy_measurementChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.Algorithm_for_reactive_energy_measurementChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -826,7 +803,7 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public Algorithm_for_apparent_power_measurementProxy(IMeasurementMethods modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "Algorithm_for_apparent_power_measurement")
             {
             }
             
@@ -844,24 +821,6 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     this.ModelElement.Algorithm_for_apparent_power_measurement = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.Algorithm_for_apparent_power_measurementChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.Algorithm_for_apparent_power_measurementChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -875,7 +834,7 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public Algorithm_for_apparent_energy_measurementProxy(IMeasurementMethods modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "Algorithm_for_apparent_energy_measurement")
             {
             }
             
@@ -893,24 +852,6 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     this.ModelElement.Algorithm_for_apparent_energy_measurement = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.Algorithm_for_apparent_energy_measurementChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.Algorithm_for_apparent_energy_measurementChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -924,7 +865,7 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public Algorithm_for_power_factor_calculationProxy(IMeasurementMethods modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "Algorithm_for_power_factor_calculation")
             {
             }
             
@@ -941,24 +882,6 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                 {
                     this.ModelElement.Algorithm_for_power_factor_calculation = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.Algorithm_for_power_factor_calculationChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.Algorithm_for_power_factor_calculationChanged -= handler;
             }
         }
     }

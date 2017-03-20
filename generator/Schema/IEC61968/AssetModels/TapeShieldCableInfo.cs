@@ -47,7 +47,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.AssetModels
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61968/AssetModels/TapeShieldCableIn" +
         "fo")]
     [DebuggerDisplayAttribute("TapeShieldCableInfo {UUID}")]
-    public class TapeShieldCableInfo : CableInfo, ITapeShieldCableInfo, IModelElement
+    public partial class TapeShieldCableInfo : CableInfo, ITapeShieldCableInfo, IModelElement
     {
         
         /// <summary>
@@ -55,10 +55,14 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.AssetModels
         /// </summary>
         private float _tapeLap;
         
+        private static Lazy<ITypedElement> _tapeLapAttribute = new Lazy<ITypedElement>(RetrieveTapeLapAttribute);
+        
         /// <summary>
         /// The backing field for the TapeThickness property
         /// </summary>
         private float _tapeThickness;
+        
+        private static Lazy<ITypedElement> _tapeThicknessAttribute = new Lazy<ITypedElement>(RetrieveTapeThicknessAttribute);
         
         private static IClass _classInstance;
         
@@ -80,10 +84,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.AssetModels
                     float old = this._tapeLap;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnTapeLapChanging(e);
-                    this.OnPropertyChanging("TapeLap", e);
+                    this.OnPropertyChanging("TapeLap", e, _tapeLapAttribute);
                     this._tapeLap = value;
                     this.OnTapeLapChanged(e);
-                    this.OnPropertyChanged("TapeLap", e);
+                    this.OnPropertyChanged("TapeLap", e, _tapeLapAttribute);
                 }
             }
         }
@@ -106,10 +110,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.AssetModels
                     float old = this._tapeThickness;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnTapeThicknessChanging(e);
-                    this.OnPropertyChanging("TapeThickness", e);
+                    this.OnPropertyChanging("TapeThickness", e, _tapeThicknessAttribute);
                     this._tapeThickness = value;
                     this.OnTapeThicknessChanged(e);
-                    this.OnPropertyChanged("TapeThickness", e);
+                    this.OnPropertyChanged("TapeThickness", e, _tapeThicknessAttribute);
                 }
             }
         }
@@ -150,6 +154,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.AssetModels
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> TapeThicknessChanged;
         
+        private static ITypedElement RetrieveTapeLapAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(TapeShieldCableInfo.ClassInstance)).Resolve("tapeLap")));
+        }
+        
         /// <summary>
         /// Raises the TapeLapChanging event
         /// </summary>
@@ -174,6 +183,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.AssetModels
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveTapeThicknessAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(TapeShieldCableInfo.ClassInstance)).Resolve("tapeThickness")));
         }
         
         /// <summary>
@@ -265,7 +279,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.AssetModels
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public TapeLapProxy(ITapeShieldCableInfo modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "tapeLap")
             {
             }
             
@@ -283,24 +297,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.AssetModels
                     this.ModelElement.TapeLap = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.TapeLapChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.TapeLapChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -314,7 +310,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.AssetModels
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public TapeThicknessProxy(ITapeShieldCableInfo modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "tapeThickness")
             {
             }
             
@@ -331,24 +327,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.AssetModels
                 {
                     this.ModelElement.TapeThickness = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.TapeThicknessChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.TapeThicknessChanged -= handler;
             }
         }
     }

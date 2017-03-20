@@ -45,7 +45,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssetModels
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61970/Informative/InfAssetModels/Ta" +
         "pChangerAssetModel")]
     [DebuggerDisplayAttribute("TapChangerAssetModel {UUID}")]
-    public class TapChangerAssetModel : AssetModel, ITapChangerAssetModel, IModelElement
+    public partial class TapChangerAssetModel : AssetModel, ITapChangerAssetModel, IModelElement
     {
         
         /// <summary>
@@ -53,75 +53,107 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssetModels
         /// </summary>
         private float _frequency;
         
+        private static Lazy<ITypedElement> _frequencyAttribute = new Lazy<ITypedElement>(RetrieveFrequencyAttribute);
+        
         /// <summary>
         /// The backing field for the RatedVoltage property
         /// </summary>
         private float _ratedVoltage;
+        
+        private static Lazy<ITypedElement> _ratedVoltageAttribute = new Lazy<ITypedElement>(RetrieveRatedVoltageAttribute);
         
         /// <summary>
         /// The backing field for the HighStep property
         /// </summary>
         private int _highStep;
         
+        private static Lazy<ITypedElement> _highStepAttribute = new Lazy<ITypedElement>(RetrieveHighStepAttribute);
+        
         /// <summary>
         /// The backing field for the RatedCurrent property
         /// </summary>
         private float _ratedCurrent;
+        
+        private static Lazy<ITypedElement> _ratedCurrentAttribute = new Lazy<ITypedElement>(RetrieveRatedCurrentAttribute);
         
         /// <summary>
         /// The backing field for the PhaseCount property
         /// </summary>
         private int _phaseCount;
         
+        private static Lazy<ITypedElement> _phaseCountAttribute = new Lazy<ITypedElement>(RetrievePhaseCountAttribute);
+        
         /// <summary>
         /// The backing field for the TapCount property
         /// </summary>
         private int _tapCount;
+        
+        private static Lazy<ITypedElement> _tapCountAttribute = new Lazy<ITypedElement>(RetrieveTapCountAttribute);
         
         /// <summary>
         /// The backing field for the RatedApparentPower property
         /// </summary>
         private float _ratedApparentPower;
         
+        private static Lazy<ITypedElement> _ratedApparentPowerAttribute = new Lazy<ITypedElement>(RetrieveRatedApparentPowerAttribute);
+        
         /// <summary>
         /// The backing field for the NeutralStep property
         /// </summary>
         private int _neutralStep;
+        
+        private static Lazy<ITypedElement> _neutralStepAttribute = new Lazy<ITypedElement>(RetrieveNeutralStepAttribute);
         
         /// <summary>
         /// The backing field for the LowStep property
         /// </summary>
         private int _lowStep;
         
+        private static Lazy<ITypedElement> _lowStepAttribute = new Lazy<ITypedElement>(RetrieveLowStepAttribute);
+        
         /// <summary>
         /// The backing field for the InitialDelay property
         /// </summary>
         private float _initialDelay;
+        
+        private static Lazy<ITypedElement> _initialDelayAttribute = new Lazy<ITypedElement>(RetrieveInitialDelayAttribute);
         
         /// <summary>
         /// The backing field for the StepVoltageIncrement property
         /// </summary>
         private float _stepVoltageIncrement;
         
+        private static Lazy<ITypedElement> _stepVoltageIncrementAttribute = new Lazy<ITypedElement>(RetrieveStepVoltageIncrementAttribute);
+        
         /// <summary>
         /// The backing field for the SwitchingKind property
         /// </summary>
         private Nullable<TapChangerSwitchingKind> _switchingKind;
+        
+        private static Lazy<ITypedElement> _switchingKindAttribute = new Lazy<ITypedElement>(RetrieveSwitchingKindAttribute);
         
         /// <summary>
         /// The backing field for the SubsequentDelay property
         /// </summary>
         private float _subsequentDelay;
         
+        private static Lazy<ITypedElement> _subsequentDelayAttribute = new Lazy<ITypedElement>(RetrieveSubsequentDelayAttribute);
+        
         /// <summary>
         /// The backing field for the StepPhaseIncrement property
         /// </summary>
         private float _stepPhaseIncrement;
         
+        private static Lazy<ITypedElement> _stepPhaseIncrementAttribute = new Lazy<ITypedElement>(RetrieveStepPhaseIncrementAttribute);
+        
         /// <summary>
         /// The backing field for the Bil property
         /// </summary>
         private float _bil;
+        
+        private static Lazy<ITypedElement> _bilAttribute = new Lazy<ITypedElement>(RetrieveBilAttribute);
+        
+        private static Lazy<ITypedElement> _tapChangerAssetsReference = new Lazy<ITypedElement>(RetrieveTapChangerAssetsReference);
         
         /// <summary>
         /// The backing field for the TapChangerAssets property
@@ -155,10 +187,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssetModels
                     float old = this._frequency;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnFrequencyChanging(e);
-                    this.OnPropertyChanging("Frequency", e);
+                    this.OnPropertyChanging("Frequency", e, _frequencyAttribute);
                     this._frequency = value;
                     this.OnFrequencyChanged(e);
-                    this.OnPropertyChanged("Frequency", e);
+                    this.OnPropertyChanged("Frequency", e, _frequencyAttribute);
                 }
             }
         }
@@ -181,10 +213,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssetModels
                     float old = this._ratedVoltage;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnRatedVoltageChanging(e);
-                    this.OnPropertyChanging("RatedVoltage", e);
+                    this.OnPropertyChanging("RatedVoltage", e, _ratedVoltageAttribute);
                     this._ratedVoltage = value;
                     this.OnRatedVoltageChanged(e);
-                    this.OnPropertyChanged("RatedVoltage", e);
+                    this.OnPropertyChanged("RatedVoltage", e, _ratedVoltageAttribute);
                 }
             }
         }
@@ -207,10 +239,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssetModels
                     int old = this._highStep;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnHighStepChanging(e);
-                    this.OnPropertyChanging("HighStep", e);
+                    this.OnPropertyChanging("HighStep", e, _highStepAttribute);
                     this._highStep = value;
                     this.OnHighStepChanged(e);
-                    this.OnPropertyChanged("HighStep", e);
+                    this.OnPropertyChanged("HighStep", e, _highStepAttribute);
                 }
             }
         }
@@ -233,10 +265,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssetModels
                     float old = this._ratedCurrent;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnRatedCurrentChanging(e);
-                    this.OnPropertyChanging("RatedCurrent", e);
+                    this.OnPropertyChanging("RatedCurrent", e, _ratedCurrentAttribute);
                     this._ratedCurrent = value;
                     this.OnRatedCurrentChanged(e);
-                    this.OnPropertyChanged("RatedCurrent", e);
+                    this.OnPropertyChanged("RatedCurrent", e, _ratedCurrentAttribute);
                 }
             }
         }
@@ -259,10 +291,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssetModels
                     int old = this._phaseCount;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnPhaseCountChanging(e);
-                    this.OnPropertyChanging("PhaseCount", e);
+                    this.OnPropertyChanging("PhaseCount", e, _phaseCountAttribute);
                     this._phaseCount = value;
                     this.OnPhaseCountChanged(e);
-                    this.OnPropertyChanged("PhaseCount", e);
+                    this.OnPropertyChanged("PhaseCount", e, _phaseCountAttribute);
                 }
             }
         }
@@ -285,10 +317,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssetModels
                     int old = this._tapCount;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnTapCountChanging(e);
-                    this.OnPropertyChanging("TapCount", e);
+                    this.OnPropertyChanging("TapCount", e, _tapCountAttribute);
                     this._tapCount = value;
                     this.OnTapCountChanged(e);
-                    this.OnPropertyChanged("TapCount", e);
+                    this.OnPropertyChanged("TapCount", e, _tapCountAttribute);
                 }
             }
         }
@@ -311,10 +343,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssetModels
                     float old = this._ratedApparentPower;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnRatedApparentPowerChanging(e);
-                    this.OnPropertyChanging("RatedApparentPower", e);
+                    this.OnPropertyChanging("RatedApparentPower", e, _ratedApparentPowerAttribute);
                     this._ratedApparentPower = value;
                     this.OnRatedApparentPowerChanged(e);
-                    this.OnPropertyChanged("RatedApparentPower", e);
+                    this.OnPropertyChanged("RatedApparentPower", e, _ratedApparentPowerAttribute);
                 }
             }
         }
@@ -337,10 +369,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssetModels
                     int old = this._neutralStep;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnNeutralStepChanging(e);
-                    this.OnPropertyChanging("NeutralStep", e);
+                    this.OnPropertyChanging("NeutralStep", e, _neutralStepAttribute);
                     this._neutralStep = value;
                     this.OnNeutralStepChanged(e);
-                    this.OnPropertyChanged("NeutralStep", e);
+                    this.OnPropertyChanged("NeutralStep", e, _neutralStepAttribute);
                 }
             }
         }
@@ -363,10 +395,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssetModels
                     int old = this._lowStep;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnLowStepChanging(e);
-                    this.OnPropertyChanging("LowStep", e);
+                    this.OnPropertyChanging("LowStep", e, _lowStepAttribute);
                     this._lowStep = value;
                     this.OnLowStepChanged(e);
-                    this.OnPropertyChanged("LowStep", e);
+                    this.OnPropertyChanged("LowStep", e, _lowStepAttribute);
                 }
             }
         }
@@ -389,10 +421,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssetModels
                     float old = this._initialDelay;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnInitialDelayChanging(e);
-                    this.OnPropertyChanging("InitialDelay", e);
+                    this.OnPropertyChanging("InitialDelay", e, _initialDelayAttribute);
                     this._initialDelay = value;
                     this.OnInitialDelayChanged(e);
-                    this.OnPropertyChanged("InitialDelay", e);
+                    this.OnPropertyChanged("InitialDelay", e, _initialDelayAttribute);
                 }
             }
         }
@@ -415,10 +447,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssetModels
                     float old = this._stepVoltageIncrement;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnStepVoltageIncrementChanging(e);
-                    this.OnPropertyChanging("StepVoltageIncrement", e);
+                    this.OnPropertyChanging("StepVoltageIncrement", e, _stepVoltageIncrementAttribute);
                     this._stepVoltageIncrement = value;
                     this.OnStepVoltageIncrementChanged(e);
-                    this.OnPropertyChanged("StepVoltageIncrement", e);
+                    this.OnPropertyChanged("StepVoltageIncrement", e, _stepVoltageIncrementAttribute);
                 }
             }
         }
@@ -441,10 +473,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssetModels
                     Nullable<TapChangerSwitchingKind> old = this._switchingKind;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnSwitchingKindChanging(e);
-                    this.OnPropertyChanging("SwitchingKind", e);
+                    this.OnPropertyChanging("SwitchingKind", e, _switchingKindAttribute);
                     this._switchingKind = value;
                     this.OnSwitchingKindChanged(e);
-                    this.OnPropertyChanged("SwitchingKind", e);
+                    this.OnPropertyChanged("SwitchingKind", e, _switchingKindAttribute);
                 }
             }
         }
@@ -467,10 +499,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssetModels
                     float old = this._subsequentDelay;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnSubsequentDelayChanging(e);
-                    this.OnPropertyChanging("SubsequentDelay", e);
+                    this.OnPropertyChanging("SubsequentDelay", e, _subsequentDelayAttribute);
                     this._subsequentDelay = value;
                     this.OnSubsequentDelayChanged(e);
-                    this.OnPropertyChanged("SubsequentDelay", e);
+                    this.OnPropertyChanged("SubsequentDelay", e, _subsequentDelayAttribute);
                 }
             }
         }
@@ -493,10 +525,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssetModels
                     float old = this._stepPhaseIncrement;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnStepPhaseIncrementChanging(e);
-                    this.OnPropertyChanging("StepPhaseIncrement", e);
+                    this.OnPropertyChanging("StepPhaseIncrement", e, _stepPhaseIncrementAttribute);
                     this._stepPhaseIncrement = value;
                     this.OnStepPhaseIncrementChanged(e);
-                    this.OnPropertyChanged("StepPhaseIncrement", e);
+                    this.OnPropertyChanged("StepPhaseIncrement", e, _stepPhaseIncrementAttribute);
                 }
             }
         }
@@ -519,10 +551,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssetModels
                     float old = this._bil;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnBilChanging(e);
-                    this.OnPropertyChanging("Bil", e);
+                    this.OnPropertyChanging("Bil", e, _bilAttribute);
                     this._bil = value;
                     this.OnBilChanged(e);
-                    this.OnPropertyChanged("Bil", e);
+                    this.OnPropertyChanged("Bil", e, _bilAttribute);
                 }
             }
         }
@@ -719,6 +751,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssetModels
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> BilChanged;
         
+        private static ITypedElement RetrieveFrequencyAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(TapChangerAssetModel.ClassInstance)).Resolve("frequency")));
+        }
+        
         /// <summary>
         /// Raises the FrequencyChanging event
         /// </summary>
@@ -743,6 +780,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssetModels
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveRatedVoltageAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(TapChangerAssetModel.ClassInstance)).Resolve("ratedVoltage")));
         }
         
         /// <summary>
@@ -771,6 +813,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssetModels
             }
         }
         
+        private static ITypedElement RetrieveHighStepAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(TapChangerAssetModel.ClassInstance)).Resolve("highStep")));
+        }
+        
         /// <summary>
         /// Raises the HighStepChanging event
         /// </summary>
@@ -795,6 +842,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssetModels
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveRatedCurrentAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(TapChangerAssetModel.ClassInstance)).Resolve("ratedCurrent")));
         }
         
         /// <summary>
@@ -823,6 +875,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssetModels
             }
         }
         
+        private static ITypedElement RetrievePhaseCountAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(TapChangerAssetModel.ClassInstance)).Resolve("phaseCount")));
+        }
+        
         /// <summary>
         /// Raises the PhaseCountChanging event
         /// </summary>
@@ -847,6 +904,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssetModels
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveTapCountAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(TapChangerAssetModel.ClassInstance)).Resolve("tapCount")));
         }
         
         /// <summary>
@@ -875,6 +937,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssetModels
             }
         }
         
+        private static ITypedElement RetrieveRatedApparentPowerAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(TapChangerAssetModel.ClassInstance)).Resolve("ratedApparentPower")));
+        }
+        
         /// <summary>
         /// Raises the RatedApparentPowerChanging event
         /// </summary>
@@ -899,6 +966,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssetModels
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveNeutralStepAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(TapChangerAssetModel.ClassInstance)).Resolve("neutralStep")));
         }
         
         /// <summary>
@@ -927,6 +999,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssetModels
             }
         }
         
+        private static ITypedElement RetrieveLowStepAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(TapChangerAssetModel.ClassInstance)).Resolve("lowStep")));
+        }
+        
         /// <summary>
         /// Raises the LowStepChanging event
         /// </summary>
@@ -951,6 +1028,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssetModels
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveInitialDelayAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(TapChangerAssetModel.ClassInstance)).Resolve("initialDelay")));
         }
         
         /// <summary>
@@ -979,6 +1061,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssetModels
             }
         }
         
+        private static ITypedElement RetrieveStepVoltageIncrementAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(TapChangerAssetModel.ClassInstance)).Resolve("stepVoltageIncrement")));
+        }
+        
         /// <summary>
         /// Raises the StepVoltageIncrementChanging event
         /// </summary>
@@ -1003,6 +1090,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssetModels
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveSwitchingKindAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(TapChangerAssetModel.ClassInstance)).Resolve("switchingKind")));
         }
         
         /// <summary>
@@ -1031,6 +1123,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssetModels
             }
         }
         
+        private static ITypedElement RetrieveSubsequentDelayAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(TapChangerAssetModel.ClassInstance)).Resolve("subsequentDelay")));
+        }
+        
         /// <summary>
         /// Raises the SubsequentDelayChanging event
         /// </summary>
@@ -1055,6 +1152,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssetModels
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveStepPhaseIncrementAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(TapChangerAssetModel.ClassInstance)).Resolve("stepPhaseIncrement")));
         }
         
         /// <summary>
@@ -1083,6 +1185,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssetModels
             }
         }
         
+        private static ITypedElement RetrieveBilAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(TapChangerAssetModel.ClassInstance)).Resolve("bil")));
+        }
+        
         /// <summary>
         /// Raises the BilChanging event
         /// </summary>
@@ -1109,6 +1216,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssetModels
             }
         }
         
+        private static ITypedElement RetrieveTapChangerAssetsReference()
+        {
+            return ((ITypedElement)(((ModelElement)(TapChangerAssetModel.ClassInstance)).Resolve("TapChangerAssets")));
+        }
+        
         /// <summary>
         /// Forwards CollectionChanging notifications for the TapChangerAssets property to the parent model element
         /// </summary>
@@ -1116,7 +1228,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssetModels
         /// <param name="e">The original event data</param>
         private void TapChangerAssetsCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("TapChangerAssets", e);
+            this.OnCollectionChanging("TapChangerAssets", e, _tapChangerAssetsReference);
         }
         
         /// <summary>
@@ -1126,7 +1238,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssetModels
         /// <param name="e">The original event data</param>
         private void TapChangerAssetsCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("TapChangerAssets", e);
+            this.OnCollectionChanged("TapChangerAssets", e, _tapChangerAssetsReference);
         }
         
         /// <summary>
@@ -1447,7 +1559,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssetModels
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public FrequencyProxy(ITapChangerAssetModel modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "frequency")
             {
             }
             
@@ -1465,24 +1577,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssetModels
                     this.ModelElement.Frequency = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.FrequencyChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.FrequencyChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1496,7 +1590,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssetModels
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public RatedVoltageProxy(ITapChangerAssetModel modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "ratedVoltage")
             {
             }
             
@@ -1514,24 +1608,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssetModels
                     this.ModelElement.RatedVoltage = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.RatedVoltageChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.RatedVoltageChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1545,7 +1621,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssetModels
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public HighStepProxy(ITapChangerAssetModel modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "highStep")
             {
             }
             
@@ -1563,24 +1639,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssetModels
                     this.ModelElement.HighStep = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.HighStepChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.HighStepChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1594,7 +1652,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssetModels
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public RatedCurrentProxy(ITapChangerAssetModel modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "ratedCurrent")
             {
             }
             
@@ -1612,24 +1670,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssetModels
                     this.ModelElement.RatedCurrent = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.RatedCurrentChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.RatedCurrentChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1643,7 +1683,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssetModels
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public PhaseCountProxy(ITapChangerAssetModel modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "phaseCount")
             {
             }
             
@@ -1661,24 +1701,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssetModels
                     this.ModelElement.PhaseCount = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.PhaseCountChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.PhaseCountChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1692,7 +1714,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssetModels
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public TapCountProxy(ITapChangerAssetModel modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "tapCount")
             {
             }
             
@@ -1710,24 +1732,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssetModels
                     this.ModelElement.TapCount = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.TapCountChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.TapCountChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1741,7 +1745,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssetModels
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public RatedApparentPowerProxy(ITapChangerAssetModel modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "ratedApparentPower")
             {
             }
             
@@ -1759,24 +1763,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssetModels
                     this.ModelElement.RatedApparentPower = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.RatedApparentPowerChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.RatedApparentPowerChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1790,7 +1776,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssetModels
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public NeutralStepProxy(ITapChangerAssetModel modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "neutralStep")
             {
             }
             
@@ -1808,24 +1794,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssetModels
                     this.ModelElement.NeutralStep = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.NeutralStepChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.NeutralStepChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1839,7 +1807,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssetModels
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public LowStepProxy(ITapChangerAssetModel modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "lowStep")
             {
             }
             
@@ -1857,24 +1825,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssetModels
                     this.ModelElement.LowStep = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.LowStepChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.LowStepChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1888,7 +1838,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssetModels
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public InitialDelayProxy(ITapChangerAssetModel modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "initialDelay")
             {
             }
             
@@ -1906,24 +1856,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssetModels
                     this.ModelElement.InitialDelay = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.InitialDelayChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.InitialDelayChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1937,7 +1869,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssetModels
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public StepVoltageIncrementProxy(ITapChangerAssetModel modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "stepVoltageIncrement")
             {
             }
             
@@ -1955,24 +1887,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssetModels
                     this.ModelElement.StepVoltageIncrement = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.StepVoltageIncrementChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.StepVoltageIncrementChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1986,7 +1900,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssetModels
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public SwitchingKindProxy(ITapChangerAssetModel modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "switchingKind")
             {
             }
             
@@ -2004,24 +1918,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssetModels
                     this.ModelElement.SwitchingKind = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.SwitchingKindChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.SwitchingKindChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -2035,7 +1931,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssetModels
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public SubsequentDelayProxy(ITapChangerAssetModel modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "subsequentDelay")
             {
             }
             
@@ -2053,24 +1949,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssetModels
                     this.ModelElement.SubsequentDelay = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.SubsequentDelayChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.SubsequentDelayChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -2084,7 +1962,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssetModels
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public StepPhaseIncrementProxy(ITapChangerAssetModel modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "stepPhaseIncrement")
             {
             }
             
@@ -2102,24 +1980,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssetModels
                     this.ModelElement.StepPhaseIncrement = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.StepPhaseIncrementChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.StepPhaseIncrementChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -2133,7 +1993,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssetModels
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public BilProxy(ITapChangerAssetModel modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "bil")
             {
             }
             
@@ -2150,24 +2010,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssetModels
                 {
                     this.ModelElement.Bil = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.BilChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.BilChanged -= handler;
             }
         }
     }

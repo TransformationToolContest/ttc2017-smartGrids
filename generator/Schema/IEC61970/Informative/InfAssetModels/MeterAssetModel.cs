@@ -45,7 +45,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssetModels
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61970/Informative/InfAssetModels/Me" +
         "terAssetModel")]
     [DebuggerDisplayAttribute("MeterAssetModel {UUID}")]
-    public class MeterAssetModel : ElectricalAssetModel, IMeterAssetModel, IModelElement
+    public partial class MeterAssetModel : ElectricalAssetModel, IMeterAssetModel, IModelElement
     {
         
         /// <summary>
@@ -53,65 +53,93 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssetModels
         /// </summary>
         private float _kH;
         
+        private static Lazy<ITypedElement> _kHAttribute = new Lazy<ITypedElement>(RetrieveKHAttribute);
+        
         /// <summary>
         /// The backing field for the IntervalDataMeter property
         /// </summary>
         private bool _intervalDataMeter;
+        
+        private static Lazy<ITypedElement> _intervalDataMeterAttribute = new Lazy<ITypedElement>(RetrieveIntervalDataMeterAttribute);
         
         /// <summary>
         /// The backing field for the MaxRegisterCount property
         /// </summary>
         private int _maxRegisterCount;
         
+        private static Lazy<ITypedElement> _maxRegisterCountAttribute = new Lazy<ITypedElement>(RetrieveMaxRegisterCountAttribute);
+        
         /// <summary>
         /// The backing field for the KVAhMeter property
         /// </summary>
         private bool _kVAhMeter;
+        
+        private static Lazy<ITypedElement> _kVAhMeterAttribute = new Lazy<ITypedElement>(RetrieveKVAhMeterAttribute);
         
         /// <summary>
         /// The backing field for the WireCount property
         /// </summary>
         private int _wireCount;
         
+        private static Lazy<ITypedElement> _wireCountAttribute = new Lazy<ITypedElement>(RetrieveWireCountAttribute);
+        
         /// <summary>
         /// The backing field for the TimeOfUseMeter property
         /// </summary>
         private bool _timeOfUseMeter;
+        
+        private static Lazy<ITypedElement> _timeOfUseMeterAttribute = new Lazy<ITypedElement>(RetrieveTimeOfUseMeterAttribute);
         
         /// <summary>
         /// The backing field for the DemandMeter property
         /// </summary>
         private bool _demandMeter;
         
+        private static Lazy<ITypedElement> _demandMeterAttribute = new Lazy<ITypedElement>(RetrieveDemandMeterAttribute);
+        
         /// <summary>
         /// The backing field for the ReactiveMeter property
         /// </summary>
         private bool _reactiveMeter;
+        
+        private static Lazy<ITypedElement> _reactiveMeterAttribute = new Lazy<ITypedElement>(RetrieveReactiveMeterAttribute);
         
         /// <summary>
         /// The backing field for the Form property
         /// </summary>
         private string _form;
         
+        private static Lazy<ITypedElement> _formAttribute = new Lazy<ITypedElement>(RetrieveFormAttribute);
+        
         /// <summary>
         /// The backing field for the RegisterRatio property
         /// </summary>
         private float _registerRatio;
+        
+        private static Lazy<ITypedElement> _registerRatioAttribute = new Lazy<ITypedElement>(RetrieveRegisterRatioAttribute);
         
         /// <summary>
         /// The backing field for the KwhMeter property
         /// </summary>
         private bool _kwhMeter;
         
+        private static Lazy<ITypedElement> _kwhMeterAttribute = new Lazy<ITypedElement>(RetrieveKwhMeterAttribute);
+        
         /// <summary>
         /// The backing field for the QMeter property
         /// </summary>
         private bool _qMeter;
         
+        private static Lazy<ITypedElement> _qMeterAttribute = new Lazy<ITypedElement>(RetrieveQMeterAttribute);
+        
         /// <summary>
         /// The backing field for the LoadProfileMeter property
         /// </summary>
         private bool _loadProfileMeter;
+        
+        private static Lazy<ITypedElement> _loadProfileMeterAttribute = new Lazy<ITypedElement>(RetrieveLoadProfileMeterAttribute);
+        
+        private static Lazy<ITypedElement> _meterAssetsReference = new Lazy<ITypedElement>(RetrieveMeterAssetsReference);
         
         /// <summary>
         /// The backing field for the MeterAssets property
@@ -145,10 +173,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssetModels
                     float old = this._kH;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnKHChanging(e);
-                    this.OnPropertyChanging("KH", e);
+                    this.OnPropertyChanging("KH", e, _kHAttribute);
                     this._kH = value;
                     this.OnKHChanged(e);
-                    this.OnPropertyChanged("KH", e);
+                    this.OnPropertyChanged("KH", e, _kHAttribute);
                 }
             }
         }
@@ -171,10 +199,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssetModels
                     bool old = this._intervalDataMeter;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnIntervalDataMeterChanging(e);
-                    this.OnPropertyChanging("IntervalDataMeter", e);
+                    this.OnPropertyChanging("IntervalDataMeter", e, _intervalDataMeterAttribute);
                     this._intervalDataMeter = value;
                     this.OnIntervalDataMeterChanged(e);
-                    this.OnPropertyChanged("IntervalDataMeter", e);
+                    this.OnPropertyChanged("IntervalDataMeter", e, _intervalDataMeterAttribute);
                 }
             }
         }
@@ -197,10 +225,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssetModels
                     int old = this._maxRegisterCount;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnMaxRegisterCountChanging(e);
-                    this.OnPropertyChanging("MaxRegisterCount", e);
+                    this.OnPropertyChanging("MaxRegisterCount", e, _maxRegisterCountAttribute);
                     this._maxRegisterCount = value;
                     this.OnMaxRegisterCountChanged(e);
-                    this.OnPropertyChanged("MaxRegisterCount", e);
+                    this.OnPropertyChanged("MaxRegisterCount", e, _maxRegisterCountAttribute);
                 }
             }
         }
@@ -223,10 +251,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssetModels
                     bool old = this._kVAhMeter;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnKVAhMeterChanging(e);
-                    this.OnPropertyChanging("KVAhMeter", e);
+                    this.OnPropertyChanging("KVAhMeter", e, _kVAhMeterAttribute);
                     this._kVAhMeter = value;
                     this.OnKVAhMeterChanged(e);
-                    this.OnPropertyChanged("KVAhMeter", e);
+                    this.OnPropertyChanged("KVAhMeter", e, _kVAhMeterAttribute);
                 }
             }
         }
@@ -249,10 +277,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssetModels
                     int old = this._wireCount;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnWireCountChanging(e);
-                    this.OnPropertyChanging("WireCount", e);
+                    this.OnPropertyChanging("WireCount", e, _wireCountAttribute);
                     this._wireCount = value;
                     this.OnWireCountChanged(e);
-                    this.OnPropertyChanged("WireCount", e);
+                    this.OnPropertyChanged("WireCount", e, _wireCountAttribute);
                 }
             }
         }
@@ -275,10 +303,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssetModels
                     bool old = this._timeOfUseMeter;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnTimeOfUseMeterChanging(e);
-                    this.OnPropertyChanging("TimeOfUseMeter", e);
+                    this.OnPropertyChanging("TimeOfUseMeter", e, _timeOfUseMeterAttribute);
                     this._timeOfUseMeter = value;
                     this.OnTimeOfUseMeterChanged(e);
-                    this.OnPropertyChanged("TimeOfUseMeter", e);
+                    this.OnPropertyChanged("TimeOfUseMeter", e, _timeOfUseMeterAttribute);
                 }
             }
         }
@@ -301,10 +329,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssetModels
                     bool old = this._demandMeter;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnDemandMeterChanging(e);
-                    this.OnPropertyChanging("DemandMeter", e);
+                    this.OnPropertyChanging("DemandMeter", e, _demandMeterAttribute);
                     this._demandMeter = value;
                     this.OnDemandMeterChanged(e);
-                    this.OnPropertyChanged("DemandMeter", e);
+                    this.OnPropertyChanged("DemandMeter", e, _demandMeterAttribute);
                 }
             }
         }
@@ -327,10 +355,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssetModels
                     bool old = this._reactiveMeter;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnReactiveMeterChanging(e);
-                    this.OnPropertyChanging("ReactiveMeter", e);
+                    this.OnPropertyChanging("ReactiveMeter", e, _reactiveMeterAttribute);
                     this._reactiveMeter = value;
                     this.OnReactiveMeterChanged(e);
-                    this.OnPropertyChanged("ReactiveMeter", e);
+                    this.OnPropertyChanged("ReactiveMeter", e, _reactiveMeterAttribute);
                 }
             }
         }
@@ -353,10 +381,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssetModels
                     string old = this._form;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnFormChanging(e);
-                    this.OnPropertyChanging("Form", e);
+                    this.OnPropertyChanging("Form", e, _formAttribute);
                     this._form = value;
                     this.OnFormChanged(e);
-                    this.OnPropertyChanged("Form", e);
+                    this.OnPropertyChanged("Form", e, _formAttribute);
                 }
             }
         }
@@ -379,10 +407,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssetModels
                     float old = this._registerRatio;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnRegisterRatioChanging(e);
-                    this.OnPropertyChanging("RegisterRatio", e);
+                    this.OnPropertyChanging("RegisterRatio", e, _registerRatioAttribute);
                     this._registerRatio = value;
                     this.OnRegisterRatioChanged(e);
-                    this.OnPropertyChanged("RegisterRatio", e);
+                    this.OnPropertyChanged("RegisterRatio", e, _registerRatioAttribute);
                 }
             }
         }
@@ -405,10 +433,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssetModels
                     bool old = this._kwhMeter;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnKwhMeterChanging(e);
-                    this.OnPropertyChanging("KwhMeter", e);
+                    this.OnPropertyChanging("KwhMeter", e, _kwhMeterAttribute);
                     this._kwhMeter = value;
                     this.OnKwhMeterChanged(e);
-                    this.OnPropertyChanged("KwhMeter", e);
+                    this.OnPropertyChanged("KwhMeter", e, _kwhMeterAttribute);
                 }
             }
         }
@@ -431,10 +459,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssetModels
                     bool old = this._qMeter;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnQMeterChanging(e);
-                    this.OnPropertyChanging("QMeter", e);
+                    this.OnPropertyChanging("QMeter", e, _qMeterAttribute);
                     this._qMeter = value;
                     this.OnQMeterChanged(e);
-                    this.OnPropertyChanged("QMeter", e);
+                    this.OnPropertyChanged("QMeter", e, _qMeterAttribute);
                 }
             }
         }
@@ -457,10 +485,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssetModels
                     bool old = this._loadProfileMeter;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnLoadProfileMeterChanging(e);
-                    this.OnPropertyChanging("LoadProfileMeter", e);
+                    this.OnPropertyChanging("LoadProfileMeter", e, _loadProfileMeterAttribute);
                     this._loadProfileMeter = value;
                     this.OnLoadProfileMeterChanged(e);
-                    this.OnPropertyChanged("LoadProfileMeter", e);
+                    this.OnPropertyChanged("LoadProfileMeter", e, _loadProfileMeterAttribute);
                 }
             }
         }
@@ -637,6 +665,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssetModels
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> LoadProfileMeterChanged;
         
+        private static ITypedElement RetrieveKHAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(MeterAssetModel.ClassInstance)).Resolve("kH")));
+        }
+        
         /// <summary>
         /// Raises the KHChanging event
         /// </summary>
@@ -661,6 +694,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssetModels
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveIntervalDataMeterAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(MeterAssetModel.ClassInstance)).Resolve("intervalDataMeter")));
         }
         
         /// <summary>
@@ -689,6 +727,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssetModels
             }
         }
         
+        private static ITypedElement RetrieveMaxRegisterCountAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(MeterAssetModel.ClassInstance)).Resolve("maxRegisterCount")));
+        }
+        
         /// <summary>
         /// Raises the MaxRegisterCountChanging event
         /// </summary>
@@ -713,6 +756,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssetModels
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveKVAhMeterAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(MeterAssetModel.ClassInstance)).Resolve("kVAhMeter")));
         }
         
         /// <summary>
@@ -741,6 +789,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssetModels
             }
         }
         
+        private static ITypedElement RetrieveWireCountAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(MeterAssetModel.ClassInstance)).Resolve("wireCount")));
+        }
+        
         /// <summary>
         /// Raises the WireCountChanging event
         /// </summary>
@@ -765,6 +818,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssetModels
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveTimeOfUseMeterAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(MeterAssetModel.ClassInstance)).Resolve("timeOfUseMeter")));
         }
         
         /// <summary>
@@ -793,6 +851,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssetModels
             }
         }
         
+        private static ITypedElement RetrieveDemandMeterAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(MeterAssetModel.ClassInstance)).Resolve("demandMeter")));
+        }
+        
         /// <summary>
         /// Raises the DemandMeterChanging event
         /// </summary>
@@ -817,6 +880,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssetModels
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveReactiveMeterAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(MeterAssetModel.ClassInstance)).Resolve("reactiveMeter")));
         }
         
         /// <summary>
@@ -845,6 +913,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssetModels
             }
         }
         
+        private static ITypedElement RetrieveFormAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(MeterAssetModel.ClassInstance)).Resolve("form")));
+        }
+        
         /// <summary>
         /// Raises the FormChanging event
         /// </summary>
@@ -869,6 +942,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssetModels
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveRegisterRatioAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(MeterAssetModel.ClassInstance)).Resolve("registerRatio")));
         }
         
         /// <summary>
@@ -897,6 +975,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssetModels
             }
         }
         
+        private static ITypedElement RetrieveKwhMeterAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(MeterAssetModel.ClassInstance)).Resolve("kwhMeter")));
+        }
+        
         /// <summary>
         /// Raises the KwhMeterChanging event
         /// </summary>
@@ -921,6 +1004,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssetModels
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveQMeterAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(MeterAssetModel.ClassInstance)).Resolve("qMeter")));
         }
         
         /// <summary>
@@ -949,6 +1037,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssetModels
             }
         }
         
+        private static ITypedElement RetrieveLoadProfileMeterAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(MeterAssetModel.ClassInstance)).Resolve("loadProfileMeter")));
+        }
+        
         /// <summary>
         /// Raises the LoadProfileMeterChanging event
         /// </summary>
@@ -975,6 +1068,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssetModels
             }
         }
         
+        private static ITypedElement RetrieveMeterAssetsReference()
+        {
+            return ((ITypedElement)(((ModelElement)(MeterAssetModel.ClassInstance)).Resolve("MeterAssets")));
+        }
+        
         /// <summary>
         /// Forwards CollectionChanging notifications for the MeterAssets property to the parent model element
         /// </summary>
@@ -982,7 +1080,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssetModels
         /// <param name="e">The original event data</param>
         private void MeterAssetsCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("MeterAssets", e);
+            this.OnCollectionChanging("MeterAssets", e, _meterAssetsReference);
         }
         
         /// <summary>
@@ -992,7 +1090,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssetModels
         /// <param name="e">The original event data</param>
         private void MeterAssetsCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("MeterAssets", e);
+            this.OnCollectionChanged("MeterAssets", e, _meterAssetsReference);
         }
         
         /// <summary>
@@ -1295,7 +1393,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssetModels
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public KHProxy(IMeterAssetModel modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "kH")
             {
             }
             
@@ -1313,24 +1411,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssetModels
                     this.ModelElement.KH = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.KHChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.KHChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1344,7 +1424,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssetModels
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public IntervalDataMeterProxy(IMeterAssetModel modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "intervalDataMeter")
             {
             }
             
@@ -1362,24 +1442,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssetModels
                     this.ModelElement.IntervalDataMeter = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.IntervalDataMeterChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.IntervalDataMeterChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1393,7 +1455,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssetModels
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public MaxRegisterCountProxy(IMeterAssetModel modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "maxRegisterCount")
             {
             }
             
@@ -1411,24 +1473,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssetModels
                     this.ModelElement.MaxRegisterCount = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.MaxRegisterCountChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.MaxRegisterCountChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1442,7 +1486,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssetModels
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public KVAhMeterProxy(IMeterAssetModel modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "kVAhMeter")
             {
             }
             
@@ -1460,24 +1504,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssetModels
                     this.ModelElement.KVAhMeter = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.KVAhMeterChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.KVAhMeterChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1491,7 +1517,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssetModels
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public WireCountProxy(IMeterAssetModel modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "wireCount")
             {
             }
             
@@ -1509,24 +1535,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssetModels
                     this.ModelElement.WireCount = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.WireCountChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.WireCountChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1540,7 +1548,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssetModels
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public TimeOfUseMeterProxy(IMeterAssetModel modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "timeOfUseMeter")
             {
             }
             
@@ -1558,24 +1566,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssetModels
                     this.ModelElement.TimeOfUseMeter = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.TimeOfUseMeterChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.TimeOfUseMeterChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1589,7 +1579,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssetModels
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public DemandMeterProxy(IMeterAssetModel modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "demandMeter")
             {
             }
             
@@ -1607,24 +1597,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssetModels
                     this.ModelElement.DemandMeter = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.DemandMeterChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.DemandMeterChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1638,7 +1610,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssetModels
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public ReactiveMeterProxy(IMeterAssetModel modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "reactiveMeter")
             {
             }
             
@@ -1656,24 +1628,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssetModels
                     this.ModelElement.ReactiveMeter = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ReactiveMeterChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ReactiveMeterChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1687,7 +1641,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssetModels
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public FormProxy(IMeterAssetModel modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "form")
             {
             }
             
@@ -1705,24 +1659,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssetModels
                     this.ModelElement.Form = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.FormChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.FormChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1736,7 +1672,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssetModels
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public RegisterRatioProxy(IMeterAssetModel modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "registerRatio")
             {
             }
             
@@ -1754,24 +1690,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssetModels
                     this.ModelElement.RegisterRatio = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.RegisterRatioChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.RegisterRatioChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1785,7 +1703,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssetModels
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public KwhMeterProxy(IMeterAssetModel modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "kwhMeter")
             {
             }
             
@@ -1803,24 +1721,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssetModels
                     this.ModelElement.KwhMeter = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.KwhMeterChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.KwhMeterChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1834,7 +1734,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssetModels
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public QMeterProxy(IMeterAssetModel modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "qMeter")
             {
             }
             
@@ -1852,24 +1752,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssetModels
                     this.ModelElement.QMeter = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.QMeterChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.QMeterChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1883,7 +1765,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssetModels
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public LoadProfileMeterProxy(IMeterAssetModel modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "loadProfileMeter")
             {
             }
             
@@ -1900,24 +1782,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssetModels
                 {
                     this.ModelElement.LoadProfileMeter = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.LoadProfileMeterChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.LoadProfileMeterChanged -= handler;
             }
         }
     }

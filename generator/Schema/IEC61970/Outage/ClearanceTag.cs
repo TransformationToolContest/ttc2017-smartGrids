@@ -41,7 +41,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Outage
     [XmlNamespacePrefixAttribute("cimOutage")]
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61970/Outage/ClearanceTag")]
     [DebuggerDisplayAttribute("ClearanceTag {UUID}")]
-    public class ClearanceTag : IdentifiedObject, IClearanceTag, IModelElement
+    public partial class ClearanceTag : IdentifiedObject, IClearanceTag, IModelElement
     {
         
         /// <summary>
@@ -49,50 +49,72 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Outage
         /// </summary>
         private bool _groundReqFlag;
         
+        private static Lazy<ITypedElement> _groundReqFlagAttribute = new Lazy<ITypedElement>(RetrieveGroundReqFlagAttribute);
+        
         /// <summary>
         /// The backing field for the TagIssueTime property
         /// </summary>
         private DateTime _tagIssueTime;
+        
+        private static Lazy<ITypedElement> _tagIssueTimeAttribute = new Lazy<ITypedElement>(RetrieveTagIssueTimeAttribute);
         
         /// <summary>
         /// The backing field for the WorkEndTime property
         /// </summary>
         private DateTime _workEndTime;
         
+        private static Lazy<ITypedElement> _workEndTimeAttribute = new Lazy<ITypedElement>(RetrieveWorkEndTimeAttribute);
+        
         /// <summary>
         /// The backing field for the AuthorityName property
         /// </summary>
         private string _authorityName;
+        
+        private static Lazy<ITypedElement> _authorityNameAttribute = new Lazy<ITypedElement>(RetrieveAuthorityNameAttribute);
         
         /// <summary>
         /// The backing field for the PhaseCheckReqFlag property
         /// </summary>
         private bool _phaseCheckReqFlag;
         
+        private static Lazy<ITypedElement> _phaseCheckReqFlagAttribute = new Lazy<ITypedElement>(RetrievePhaseCheckReqFlagAttribute);
+        
         /// <summary>
         /// The backing field for the DeenergizeReqFlag property
         /// </summary>
         private bool _deenergizeReqFlag;
+        
+        private static Lazy<ITypedElement> _deenergizeReqFlagAttribute = new Lazy<ITypedElement>(RetrieveDeenergizeReqFlagAttribute);
         
         /// <summary>
         /// The backing field for the WorkStartTime property
         /// </summary>
         private DateTime _workStartTime;
         
+        private static Lazy<ITypedElement> _workStartTimeAttribute = new Lazy<ITypedElement>(RetrieveWorkStartTimeAttribute);
+        
         /// <summary>
         /// The backing field for the WorkDescription property
         /// </summary>
         private string _workDescription;
+        
+        private static Lazy<ITypedElement> _workDescriptionAttribute = new Lazy<ITypedElement>(RetrieveWorkDescriptionAttribute);
+        
+        private static Lazy<ITypedElement> _safetyDocumentReference = new Lazy<ITypedElement>(RetrieveSafetyDocumentReference);
         
         /// <summary>
         /// The backing field for the SafetyDocument property
         /// </summary>
         private ISafetyDocument _safetyDocument;
         
+        private static Lazy<ITypedElement> _clearanceTagTypeReference = new Lazy<ITypedElement>(RetrieveClearanceTagTypeReference);
+        
         /// <summary>
         /// The backing field for the ClearanceTagType property
         /// </summary>
         private IClearanceTagType _clearanceTagType;
+        
+        private static Lazy<ITypedElement> _conductingEquipmentReference = new Lazy<ITypedElement>(RetrieveConductingEquipmentReference);
         
         /// <summary>
         /// The backing field for the ConductingEquipment property
@@ -119,10 +141,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Outage
                     bool old = this._groundReqFlag;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnGroundReqFlagChanging(e);
-                    this.OnPropertyChanging("GroundReqFlag", e);
+                    this.OnPropertyChanging("GroundReqFlag", e, _groundReqFlagAttribute);
                     this._groundReqFlag = value;
                     this.OnGroundReqFlagChanged(e);
-                    this.OnPropertyChanged("GroundReqFlag", e);
+                    this.OnPropertyChanged("GroundReqFlag", e, _groundReqFlagAttribute);
                 }
             }
         }
@@ -145,10 +167,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Outage
                     DateTime old = this._tagIssueTime;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnTagIssueTimeChanging(e);
-                    this.OnPropertyChanging("TagIssueTime", e);
+                    this.OnPropertyChanging("TagIssueTime", e, _tagIssueTimeAttribute);
                     this._tagIssueTime = value;
                     this.OnTagIssueTimeChanged(e);
-                    this.OnPropertyChanged("TagIssueTime", e);
+                    this.OnPropertyChanged("TagIssueTime", e, _tagIssueTimeAttribute);
                 }
             }
         }
@@ -171,10 +193,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Outage
                     DateTime old = this._workEndTime;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnWorkEndTimeChanging(e);
-                    this.OnPropertyChanging("WorkEndTime", e);
+                    this.OnPropertyChanging("WorkEndTime", e, _workEndTimeAttribute);
                     this._workEndTime = value;
                     this.OnWorkEndTimeChanged(e);
-                    this.OnPropertyChanged("WorkEndTime", e);
+                    this.OnPropertyChanged("WorkEndTime", e, _workEndTimeAttribute);
                 }
             }
         }
@@ -197,10 +219,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Outage
                     string old = this._authorityName;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnAuthorityNameChanging(e);
-                    this.OnPropertyChanging("AuthorityName", e);
+                    this.OnPropertyChanging("AuthorityName", e, _authorityNameAttribute);
                     this._authorityName = value;
                     this.OnAuthorityNameChanged(e);
-                    this.OnPropertyChanged("AuthorityName", e);
+                    this.OnPropertyChanged("AuthorityName", e, _authorityNameAttribute);
                 }
             }
         }
@@ -223,10 +245,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Outage
                     bool old = this._phaseCheckReqFlag;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnPhaseCheckReqFlagChanging(e);
-                    this.OnPropertyChanging("PhaseCheckReqFlag", e);
+                    this.OnPropertyChanging("PhaseCheckReqFlag", e, _phaseCheckReqFlagAttribute);
                     this._phaseCheckReqFlag = value;
                     this.OnPhaseCheckReqFlagChanged(e);
-                    this.OnPropertyChanged("PhaseCheckReqFlag", e);
+                    this.OnPropertyChanged("PhaseCheckReqFlag", e, _phaseCheckReqFlagAttribute);
                 }
             }
         }
@@ -249,10 +271,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Outage
                     bool old = this._deenergizeReqFlag;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnDeenergizeReqFlagChanging(e);
-                    this.OnPropertyChanging("DeenergizeReqFlag", e);
+                    this.OnPropertyChanging("DeenergizeReqFlag", e, _deenergizeReqFlagAttribute);
                     this._deenergizeReqFlag = value;
                     this.OnDeenergizeReqFlagChanged(e);
-                    this.OnPropertyChanged("DeenergizeReqFlag", e);
+                    this.OnPropertyChanged("DeenergizeReqFlag", e, _deenergizeReqFlagAttribute);
                 }
             }
         }
@@ -275,10 +297,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Outage
                     DateTime old = this._workStartTime;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnWorkStartTimeChanging(e);
-                    this.OnPropertyChanging("WorkStartTime", e);
+                    this.OnPropertyChanging("WorkStartTime", e, _workStartTimeAttribute);
                     this._workStartTime = value;
                     this.OnWorkStartTimeChanged(e);
-                    this.OnPropertyChanged("WorkStartTime", e);
+                    this.OnPropertyChanged("WorkStartTime", e, _workStartTimeAttribute);
                 }
             }
         }
@@ -301,10 +323,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Outage
                     string old = this._workDescription;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnWorkDescriptionChanging(e);
-                    this.OnPropertyChanging("WorkDescription", e);
+                    this.OnPropertyChanging("WorkDescription", e, _workDescriptionAttribute);
                     this._workDescription = value;
                     this.OnWorkDescriptionChanged(e);
-                    this.OnPropertyChanged("WorkDescription", e);
+                    this.OnPropertyChanged("WorkDescription", e, _workDescriptionAttribute);
                 }
             }
         }
@@ -327,7 +349,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Outage
                     ISafetyDocument old = this._safetyDocument;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnSafetyDocumentChanging(e);
-                    this.OnPropertyChanging("SafetyDocument", e);
+                    this.OnPropertyChanging("SafetyDocument", e, _safetyDocumentReference);
                     this._safetyDocument = value;
                     if ((old != null))
                     {
@@ -340,7 +362,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Outage
                         value.Deleted += this.OnResetSafetyDocument;
                     }
                     this.OnSafetyDocumentChanged(e);
-                    this.OnPropertyChanged("SafetyDocument", e);
+                    this.OnPropertyChanged("SafetyDocument", e, _safetyDocumentReference);
                 }
             }
         }
@@ -363,7 +385,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Outage
                     IClearanceTagType old = this._clearanceTagType;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnClearanceTagTypeChanging(e);
-                    this.OnPropertyChanging("ClearanceTagType", e);
+                    this.OnPropertyChanging("ClearanceTagType", e, _clearanceTagTypeReference);
                     this._clearanceTagType = value;
                     if ((old != null))
                     {
@@ -376,7 +398,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Outage
                         value.Deleted += this.OnResetClearanceTagType;
                     }
                     this.OnClearanceTagTypeChanged(e);
-                    this.OnPropertyChanged("ClearanceTagType", e);
+                    this.OnPropertyChanged("ClearanceTagType", e, _clearanceTagTypeReference);
                 }
             }
         }
@@ -399,7 +421,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Outage
                     IConductingEquipment old = this._conductingEquipment;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnConductingEquipmentChanging(e);
-                    this.OnPropertyChanging("ConductingEquipment", e);
+                    this.OnPropertyChanging("ConductingEquipment", e, _conductingEquipmentReference);
                     this._conductingEquipment = value;
                     if ((old != null))
                     {
@@ -412,7 +434,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Outage
                         value.Deleted += this.OnResetConductingEquipment;
                     }
                     this.OnConductingEquipmentChanged(e);
-                    this.OnPropertyChanged("ConductingEquipment", e);
+                    this.OnPropertyChanged("ConductingEquipment", e, _conductingEquipmentReference);
                 }
             }
         }
@@ -553,6 +575,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Outage
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> ConductingEquipmentChanged;
         
+        private static ITypedElement RetrieveGroundReqFlagAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(ClearanceTag.ClassInstance)).Resolve("groundReqFlag")));
+        }
+        
         /// <summary>
         /// Raises the GroundReqFlagChanging event
         /// </summary>
@@ -577,6 +604,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Outage
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveTagIssueTimeAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(ClearanceTag.ClassInstance)).Resolve("tagIssueTime")));
         }
         
         /// <summary>
@@ -605,6 +637,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Outage
             }
         }
         
+        private static ITypedElement RetrieveWorkEndTimeAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(ClearanceTag.ClassInstance)).Resolve("workEndTime")));
+        }
+        
         /// <summary>
         /// Raises the WorkEndTimeChanging event
         /// </summary>
@@ -629,6 +666,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Outage
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveAuthorityNameAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(ClearanceTag.ClassInstance)).Resolve("authorityName")));
         }
         
         /// <summary>
@@ -657,6 +699,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Outage
             }
         }
         
+        private static ITypedElement RetrievePhaseCheckReqFlagAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(ClearanceTag.ClassInstance)).Resolve("phaseCheckReqFlag")));
+        }
+        
         /// <summary>
         /// Raises the PhaseCheckReqFlagChanging event
         /// </summary>
@@ -681,6 +728,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Outage
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveDeenergizeReqFlagAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(ClearanceTag.ClassInstance)).Resolve("deenergizeReqFlag")));
         }
         
         /// <summary>
@@ -709,6 +761,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Outage
             }
         }
         
+        private static ITypedElement RetrieveWorkStartTimeAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(ClearanceTag.ClassInstance)).Resolve("workStartTime")));
+        }
+        
         /// <summary>
         /// Raises the WorkStartTimeChanging event
         /// </summary>
@@ -735,6 +792,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Outage
             }
         }
         
+        private static ITypedElement RetrieveWorkDescriptionAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(ClearanceTag.ClassInstance)).Resolve("workDescription")));
+        }
+        
         /// <summary>
         /// Raises the WorkDescriptionChanging event
         /// </summary>
@@ -759,6 +821,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Outage
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveSafetyDocumentReference()
+        {
+            return ((ITypedElement)(((ModelElement)(ClearanceTag.ClassInstance)).Resolve("SafetyDocument")));
         }
         
         /// <summary>
@@ -797,6 +864,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Outage
             this.SafetyDocument = null;
         }
         
+        private static ITypedElement RetrieveClearanceTagTypeReference()
+        {
+            return ((ITypedElement)(((ModelElement)(ClearanceTag.ClassInstance)).Resolve("ClearanceTagType")));
+        }
+        
         /// <summary>
         /// Raises the ClearanceTagTypeChanging event
         /// </summary>
@@ -831,6 +903,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Outage
         private void OnResetClearanceTagType(object sender, System.EventArgs eventArgs)
         {
             this.ClearanceTagType = null;
+        }
+        
+        private static ITypedElement RetrieveConductingEquipmentReference()
+        {
+            return ((ITypedElement)(((ModelElement)(ClearanceTag.ClassInstance)).Resolve("ConductingEquipment")));
         }
         
         /// <summary>
@@ -1224,7 +1301,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Outage
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public GroundReqFlagProxy(IClearanceTag modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "groundReqFlag")
             {
             }
             
@@ -1242,24 +1319,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Outage
                     this.ModelElement.GroundReqFlag = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.GroundReqFlagChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.GroundReqFlagChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1273,7 +1332,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Outage
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public TagIssueTimeProxy(IClearanceTag modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "tagIssueTime")
             {
             }
             
@@ -1291,24 +1350,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Outage
                     this.ModelElement.TagIssueTime = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.TagIssueTimeChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.TagIssueTimeChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1322,7 +1363,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Outage
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public WorkEndTimeProxy(IClearanceTag modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "workEndTime")
             {
             }
             
@@ -1340,24 +1381,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Outage
                     this.ModelElement.WorkEndTime = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.WorkEndTimeChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.WorkEndTimeChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1371,7 +1394,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Outage
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public AuthorityNameProxy(IClearanceTag modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "authorityName")
             {
             }
             
@@ -1389,24 +1412,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Outage
                     this.ModelElement.AuthorityName = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.AuthorityNameChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.AuthorityNameChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1420,7 +1425,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Outage
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public PhaseCheckReqFlagProxy(IClearanceTag modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "phaseCheckReqFlag")
             {
             }
             
@@ -1438,24 +1443,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Outage
                     this.ModelElement.PhaseCheckReqFlag = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.PhaseCheckReqFlagChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.PhaseCheckReqFlagChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1469,7 +1456,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Outage
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public DeenergizeReqFlagProxy(IClearanceTag modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "deenergizeReqFlag")
             {
             }
             
@@ -1487,24 +1474,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Outage
                     this.ModelElement.DeenergizeReqFlag = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.DeenergizeReqFlagChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.DeenergizeReqFlagChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1518,7 +1487,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Outage
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public WorkStartTimeProxy(IClearanceTag modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "workStartTime")
             {
             }
             
@@ -1536,24 +1505,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Outage
                     this.ModelElement.WorkStartTime = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.WorkStartTimeChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.WorkStartTimeChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1567,7 +1518,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Outage
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public WorkDescriptionProxy(IClearanceTag modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "workDescription")
             {
             }
             
@@ -1585,24 +1536,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Outage
                     this.ModelElement.WorkDescription = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.WorkDescriptionChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.WorkDescriptionChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1616,7 +1549,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Outage
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public SafetyDocumentProxy(IClearanceTag modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "SafetyDocument")
             {
             }
             
@@ -1634,24 +1567,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Outage
                     this.ModelElement.SafetyDocument = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.SafetyDocumentChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.SafetyDocumentChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1665,7 +1580,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Outage
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public ClearanceTagTypeProxy(IClearanceTag modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "ClearanceTagType")
             {
             }
             
@@ -1683,24 +1598,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Outage
                     this.ModelElement.ClearanceTagType = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ClearanceTagTypeChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ClearanceTagTypeChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1714,7 +1611,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Outage
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public ConductingEquipmentProxy(IClearanceTag modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "ConductingEquipment")
             {
             }
             
@@ -1731,24 +1628,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Outage
                 {
                     this.ModelElement.ConductingEquipment = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ConductingEquipmentChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ConductingEquipmentChanged -= handler;
             }
         }
     }

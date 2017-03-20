@@ -39,7 +39,7 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
     [XmlNamespacePrefixAttribute("objects")]
     [ModelRepresentationClassAttribute("http://www.transformation-tool-contest.eu/2017/smartGrids/cosem#//COSEMObjects/PP" +
         "PSetupObject")]
-    public class PPPSetupObject : PPPsetup, IPPPSetupObject, IModelElement
+    public partial class PPPSetupObject : PPPsetup, IPPPSetupObject, IModelElement
     {
         
         private static IClass _classInstance;

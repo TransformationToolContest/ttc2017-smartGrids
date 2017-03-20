@@ -55,7 +55,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Metering
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61968/Metering/ElectricMeteringFunc" +
         "tion")]
     [DebuggerDisplayAttribute("ElectricMeteringFunction {UUID}")]
-    public class ElectricMeteringFunction : DeviceFunction, IElectricMeteringFunction, IModelElement
+    public partial class ElectricMeteringFunction : DeviceFunction, IElectricMeteringFunction, IModelElement
     {
         
         /// <summary>
@@ -63,55 +63,79 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Metering
         /// </summary>
         private bool _demandMultiplierApplied;
         
+        private static Lazy<ITypedElement> _demandMultiplierAppliedAttribute = new Lazy<ITypedElement>(RetrieveDemandMultiplierAppliedAttribute);
+        
         /// <summary>
         /// The backing field for the TransformerCTRatio property
         /// </summary>
         private float _transformerCTRatio;
+        
+        private static Lazy<ITypedElement> _transformerCTRatioAttribute = new Lazy<ITypedElement>(RetrieveTransformerCTRatioAttribute);
         
         /// <summary>
         /// The backing field for the BillingMultiplier property
         /// </summary>
         private float _billingMultiplier;
         
+        private static Lazy<ITypedElement> _billingMultiplierAttribute = new Lazy<ITypedElement>(RetrieveBillingMultiplierAttribute);
+        
         /// <summary>
         /// The backing field for the CurrentRating property
         /// </summary>
         private float _currentRating;
+        
+        private static Lazy<ITypedElement> _currentRatingAttribute = new Lazy<ITypedElement>(RetrieveCurrentRatingAttribute);
         
         /// <summary>
         /// The backing field for the TransformerRatiosApplied property
         /// </summary>
         private bool _transformerRatiosApplied;
         
+        private static Lazy<ITypedElement> _transformerRatiosAppliedAttribute = new Lazy<ITypedElement>(RetrieveTransformerRatiosAppliedAttribute);
+        
         /// <summary>
         /// The backing field for the KWMultiplier property
         /// </summary>
         private int _kWMultiplier;
+        
+        private static Lazy<ITypedElement> _kWMultiplierAttribute = new Lazy<ITypedElement>(RetrieveKWMultiplierAttribute);
         
         /// <summary>
         /// The backing field for the BillingMultiplierApplied property
         /// </summary>
         private bool _billingMultiplierApplied;
         
+        private static Lazy<ITypedElement> _billingMultiplierAppliedAttribute = new Lazy<ITypedElement>(RetrieveBillingMultiplierAppliedAttribute);
+        
         /// <summary>
         /// The backing field for the DemandMultiplier property
         /// </summary>
         private float _demandMultiplier;
+        
+        private static Lazy<ITypedElement> _demandMultiplierAttribute = new Lazy<ITypedElement>(RetrieveDemandMultiplierAttribute);
         
         /// <summary>
         /// The backing field for the KWhMultiplier property
         /// </summary>
         private int _kWhMultiplier;
         
+        private static Lazy<ITypedElement> _kWhMultiplierAttribute = new Lazy<ITypedElement>(RetrieveKWhMultiplierAttribute);
+        
         /// <summary>
         /// The backing field for the TransformerVTRatio property
         /// </summary>
         private float _transformerVTRatio;
         
+        private static Lazy<ITypedElement> _transformerVTRatioAttribute = new Lazy<ITypedElement>(RetrieveTransformerVTRatioAttribute);
+        
         /// <summary>
         /// The backing field for the VoltageRating property
         /// </summary>
         private float _voltageRating;
+        
+        private static Lazy<ITypedElement> _voltageRatingAttribute = new Lazy<ITypedElement>(RetrieveVoltageRatingAttribute);
+        
+        private static Lazy<ITypedElement> _meteringFunctionConfigurationReference = new Lazy<ITypedElement>(RetrieveMeteringFunctionConfigurationReference);
         
         /// <summary>
         /// The backing field for the MeteringFunctionConfiguration property
@@ -138,10 +162,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Metering
                     bool old = this._demandMultiplierApplied;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnDemandMultiplierAppliedChanging(e);
-                    this.OnPropertyChanging("DemandMultiplierApplied", e);
+                    this.OnPropertyChanging("DemandMultiplierApplied", e, _demandMultiplierAppliedAttribute);
                     this._demandMultiplierApplied = value;
                     this.OnDemandMultiplierAppliedChanged(e);
-                    this.OnPropertyChanged("DemandMultiplierApplied", e);
+                    this.OnPropertyChanged("DemandMultiplierApplied", e, _demandMultiplierAppliedAttribute);
                 }
             }
         }
@@ -164,10 +188,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Metering
                     float old = this._transformerCTRatio;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnTransformerCTRatioChanging(e);
-                    this.OnPropertyChanging("TransformerCTRatio", e);
+                    this.OnPropertyChanging("TransformerCTRatio", e, _transformerCTRatioAttribute);
                     this._transformerCTRatio = value;
                     this.OnTransformerCTRatioChanged(e);
-                    this.OnPropertyChanged("TransformerCTRatio", e);
+                    this.OnPropertyChanged("TransformerCTRatio", e, _transformerCTRatioAttribute);
                 }
             }
         }
@@ -190,10 +214,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Metering
                     float old = this._billingMultiplier;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnBillingMultiplierChanging(e);
-                    this.OnPropertyChanging("BillingMultiplier", e);
+                    this.OnPropertyChanging("BillingMultiplier", e, _billingMultiplierAttribute);
                     this._billingMultiplier = value;
                     this.OnBillingMultiplierChanged(e);
-                    this.OnPropertyChanged("BillingMultiplier", e);
+                    this.OnPropertyChanged("BillingMultiplier", e, _billingMultiplierAttribute);
                 }
             }
         }
@@ -216,10 +240,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Metering
                     float old = this._currentRating;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnCurrentRatingChanging(e);
-                    this.OnPropertyChanging("CurrentRating", e);
+                    this.OnPropertyChanging("CurrentRating", e, _currentRatingAttribute);
                     this._currentRating = value;
                     this.OnCurrentRatingChanged(e);
-                    this.OnPropertyChanged("CurrentRating", e);
+                    this.OnPropertyChanged("CurrentRating", e, _currentRatingAttribute);
                 }
             }
         }
@@ -242,10 +266,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Metering
                     bool old = this._transformerRatiosApplied;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnTransformerRatiosAppliedChanging(e);
-                    this.OnPropertyChanging("TransformerRatiosApplied", e);
+                    this.OnPropertyChanging("TransformerRatiosApplied", e, _transformerRatiosAppliedAttribute);
                     this._transformerRatiosApplied = value;
                     this.OnTransformerRatiosAppliedChanged(e);
-                    this.OnPropertyChanged("TransformerRatiosApplied", e);
+                    this.OnPropertyChanged("TransformerRatiosApplied", e, _transformerRatiosAppliedAttribute);
                 }
             }
         }
@@ -268,10 +292,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Metering
                     int old = this._kWMultiplier;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnKWMultiplierChanging(e);
-                    this.OnPropertyChanging("KWMultiplier", e);
+                    this.OnPropertyChanging("KWMultiplier", e, _kWMultiplierAttribute);
                     this._kWMultiplier = value;
                     this.OnKWMultiplierChanged(e);
-                    this.OnPropertyChanged("KWMultiplier", e);
+                    this.OnPropertyChanged("KWMultiplier", e, _kWMultiplierAttribute);
                 }
             }
         }
@@ -294,10 +318,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Metering
                     bool old = this._billingMultiplierApplied;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnBillingMultiplierAppliedChanging(e);
-                    this.OnPropertyChanging("BillingMultiplierApplied", e);
+                    this.OnPropertyChanging("BillingMultiplierApplied", e, _billingMultiplierAppliedAttribute);
                     this._billingMultiplierApplied = value;
                     this.OnBillingMultiplierAppliedChanged(e);
-                    this.OnPropertyChanged("BillingMultiplierApplied", e);
+                    this.OnPropertyChanged("BillingMultiplierApplied", e, _billingMultiplierAppliedAttribute);
                 }
             }
         }
@@ -320,10 +344,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Metering
                     float old = this._demandMultiplier;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnDemandMultiplierChanging(e);
-                    this.OnPropertyChanging("DemandMultiplier", e);
+                    this.OnPropertyChanging("DemandMultiplier", e, _demandMultiplierAttribute);
                     this._demandMultiplier = value;
                     this.OnDemandMultiplierChanged(e);
-                    this.OnPropertyChanged("DemandMultiplier", e);
+                    this.OnPropertyChanged("DemandMultiplier", e, _demandMultiplierAttribute);
                 }
             }
         }
@@ -346,10 +370,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Metering
                     int old = this._kWhMultiplier;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnKWhMultiplierChanging(e);
-                    this.OnPropertyChanging("KWhMultiplier", e);
+                    this.OnPropertyChanging("KWhMultiplier", e, _kWhMultiplierAttribute);
                     this._kWhMultiplier = value;
                     this.OnKWhMultiplierChanged(e);
-                    this.OnPropertyChanged("KWhMultiplier", e);
+                    this.OnPropertyChanged("KWhMultiplier", e, _kWhMultiplierAttribute);
                 }
             }
         }
@@ -372,10 +396,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Metering
                     float old = this._transformerVTRatio;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnTransformerVTRatioChanging(e);
-                    this.OnPropertyChanging("TransformerVTRatio", e);
+                    this.OnPropertyChanging("TransformerVTRatio", e, _transformerVTRatioAttribute);
                     this._transformerVTRatio = value;
                     this.OnTransformerVTRatioChanged(e);
-                    this.OnPropertyChanged("TransformerVTRatio", e);
+                    this.OnPropertyChanged("TransformerVTRatio", e, _transformerVTRatioAttribute);
                 }
             }
         }
@@ -398,10 +422,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Metering
                     float old = this._voltageRating;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnVoltageRatingChanging(e);
-                    this.OnPropertyChanging("VoltageRating", e);
+                    this.OnPropertyChanging("VoltageRating", e, _voltageRatingAttribute);
                     this._voltageRating = value;
                     this.OnVoltageRatingChanged(e);
-                    this.OnPropertyChanged("VoltageRating", e);
+                    this.OnPropertyChanged("VoltageRating", e, _voltageRatingAttribute);
                 }
             }
         }
@@ -424,7 +448,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Metering
                     IMeteringFunctionConfiguration old = this._meteringFunctionConfiguration;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnMeteringFunctionConfigurationChanging(e);
-                    this.OnPropertyChanging("MeteringFunctionConfiguration", e);
+                    this.OnPropertyChanging("MeteringFunctionConfiguration", e, _meteringFunctionConfigurationReference);
                     this._meteringFunctionConfiguration = value;
                     if ((old != null))
                     {
@@ -437,7 +461,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Metering
                         value.Deleted += this.OnResetMeteringFunctionConfiguration;
                     }
                     this.OnMeteringFunctionConfigurationChanged(e);
-                    this.OnPropertyChanged("MeteringFunctionConfiguration", e);
+                    this.OnPropertyChanged("MeteringFunctionConfiguration", e, _meteringFunctionConfigurationReference);
                 }
             }
         }
@@ -589,6 +613,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Metering
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> MeteringFunctionConfigurationChanged;
         
+        private static ITypedElement RetrieveDemandMultiplierAppliedAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(ElectricMeteringFunction.ClassInstance)).Resolve("demandMultiplierApplied")));
+        }
+        
         /// <summary>
         /// Raises the DemandMultiplierAppliedChanging event
         /// </summary>
@@ -613,6 +642,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Metering
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveTransformerCTRatioAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(ElectricMeteringFunction.ClassInstance)).Resolve("transformerCTRatio")));
         }
         
         /// <summary>
@@ -641,6 +675,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Metering
             }
         }
         
+        private static ITypedElement RetrieveBillingMultiplierAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(ElectricMeteringFunction.ClassInstance)).Resolve("billingMultiplier")));
+        }
+        
         /// <summary>
         /// Raises the BillingMultiplierChanging event
         /// </summary>
@@ -665,6 +704,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Metering
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveCurrentRatingAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(ElectricMeteringFunction.ClassInstance)).Resolve("currentRating")));
         }
         
         /// <summary>
@@ -693,6 +737,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Metering
             }
         }
         
+        private static ITypedElement RetrieveTransformerRatiosAppliedAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(ElectricMeteringFunction.ClassInstance)).Resolve("transformerRatiosApplied")));
+        }
+        
         /// <summary>
         /// Raises the TransformerRatiosAppliedChanging event
         /// </summary>
@@ -717,6 +766,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Metering
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveKWMultiplierAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(ElectricMeteringFunction.ClassInstance)).Resolve("kWMultiplier")));
         }
         
         /// <summary>
@@ -745,6 +799,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Metering
             }
         }
         
+        private static ITypedElement RetrieveBillingMultiplierAppliedAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(ElectricMeteringFunction.ClassInstance)).Resolve("billingMultiplierApplied")));
+        }
+        
         /// <summary>
         /// Raises the BillingMultiplierAppliedChanging event
         /// </summary>
@@ -769,6 +828,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Metering
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveDemandMultiplierAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(ElectricMeteringFunction.ClassInstance)).Resolve("demandMultiplier")));
         }
         
         /// <summary>
@@ -797,6 +861,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Metering
             }
         }
         
+        private static ITypedElement RetrieveKWhMultiplierAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(ElectricMeteringFunction.ClassInstance)).Resolve("kWhMultiplier")));
+        }
+        
         /// <summary>
         /// Raises the KWhMultiplierChanging event
         /// </summary>
@@ -821,6 +890,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Metering
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveTransformerVTRatioAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(ElectricMeteringFunction.ClassInstance)).Resolve("transformerVTRatio")));
         }
         
         /// <summary>
@@ -849,6 +923,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Metering
             }
         }
         
+        private static ITypedElement RetrieveVoltageRatingAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(ElectricMeteringFunction.ClassInstance)).Resolve("voltageRating")));
+        }
+        
         /// <summary>
         /// Raises the VoltageRatingChanging event
         /// </summary>
@@ -873,6 +952,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Metering
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveMeteringFunctionConfigurationReference()
+        {
+            return ((ITypedElement)(((ModelElement)(ElectricMeteringFunction.ClassInstance)).Resolve("MeteringFunctionConfiguration")));
         }
         
         /// <summary>
@@ -1208,7 +1292,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Metering
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public DemandMultiplierAppliedProxy(IElectricMeteringFunction modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "demandMultiplierApplied")
             {
             }
             
@@ -1226,24 +1310,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Metering
                     this.ModelElement.DemandMultiplierApplied = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.DemandMultiplierAppliedChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.DemandMultiplierAppliedChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1257,7 +1323,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Metering
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public TransformerCTRatioProxy(IElectricMeteringFunction modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "transformerCTRatio")
             {
             }
             
@@ -1275,24 +1341,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Metering
                     this.ModelElement.TransformerCTRatio = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.TransformerCTRatioChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.TransformerCTRatioChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1306,7 +1354,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Metering
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public BillingMultiplierProxy(IElectricMeteringFunction modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "billingMultiplier")
             {
             }
             
@@ -1324,24 +1372,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Metering
                     this.ModelElement.BillingMultiplier = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.BillingMultiplierChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.BillingMultiplierChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1355,7 +1385,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Metering
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public CurrentRatingProxy(IElectricMeteringFunction modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "currentRating")
             {
             }
             
@@ -1373,24 +1403,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Metering
                     this.ModelElement.CurrentRating = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.CurrentRatingChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.CurrentRatingChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1404,7 +1416,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Metering
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public TransformerRatiosAppliedProxy(IElectricMeteringFunction modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "transformerRatiosApplied")
             {
             }
             
@@ -1422,24 +1434,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Metering
                     this.ModelElement.TransformerRatiosApplied = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.TransformerRatiosAppliedChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.TransformerRatiosAppliedChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1453,7 +1447,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Metering
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public KWMultiplierProxy(IElectricMeteringFunction modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "kWMultiplier")
             {
             }
             
@@ -1471,24 +1465,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Metering
                     this.ModelElement.KWMultiplier = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.KWMultiplierChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.KWMultiplierChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1502,7 +1478,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Metering
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public BillingMultiplierAppliedProxy(IElectricMeteringFunction modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "billingMultiplierApplied")
             {
             }
             
@@ -1520,24 +1496,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Metering
                     this.ModelElement.BillingMultiplierApplied = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.BillingMultiplierAppliedChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.BillingMultiplierAppliedChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1551,7 +1509,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Metering
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public DemandMultiplierProxy(IElectricMeteringFunction modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "demandMultiplier")
             {
             }
             
@@ -1569,24 +1527,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Metering
                     this.ModelElement.DemandMultiplier = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.DemandMultiplierChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.DemandMultiplierChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1600,7 +1540,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Metering
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public KWhMultiplierProxy(IElectricMeteringFunction modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "kWhMultiplier")
             {
             }
             
@@ -1618,24 +1558,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Metering
                     this.ModelElement.KWhMultiplier = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.KWhMultiplierChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.KWhMultiplierChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1649,7 +1571,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Metering
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public TransformerVTRatioProxy(IElectricMeteringFunction modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "transformerVTRatio")
             {
             }
             
@@ -1667,24 +1589,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Metering
                     this.ModelElement.TransformerVTRatio = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.TransformerVTRatioChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.TransformerVTRatioChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1698,7 +1602,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Metering
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public VoltageRatingProxy(IElectricMeteringFunction modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "voltageRating")
             {
             }
             
@@ -1716,24 +1620,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Metering
                     this.ModelElement.VoltageRating = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.VoltageRatingChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.VoltageRatingChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1747,7 +1633,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Metering
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public MeteringFunctionConfigurationProxy(IElectricMeteringFunction modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "MeteringFunctionConfiguration")
             {
             }
             
@@ -1764,24 +1650,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Metering
                 {
                     this.ModelElement.MeteringFunctionConfiguration = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.MeteringFunctionConfigurationChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.MeteringFunctionConfigurationChanged -= handler;
             }
         }
     }

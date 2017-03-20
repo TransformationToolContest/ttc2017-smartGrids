@@ -45,8 +45,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfGMLSupport
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61970/Informative/InfGMLSupport/Gml" +
         "BaseSymbol")]
     [DebuggerDisplayAttribute("GmlBaseSymbol {UUID}")]
-    public class GmlBaseSymbol : IdentifiedObject, IGmlBaseSymbol, IModelElement
+    public partial class GmlBaseSymbol : IdentifiedObject, IGmlBaseSymbol, IModelElement
     {
+        
+        private static Lazy<ITypedElement> _gmlSymbolsReference = new Lazy<ITypedElement>(RetrieveGmlSymbolsReference);
         
         /// <summary>
         /// The backing field for the GmlSymbols property
@@ -104,6 +106,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfGMLSupport
             }
         }
         
+        private static ITypedElement RetrieveGmlSymbolsReference()
+        {
+            return ((ITypedElement)(((ModelElement)(GmlBaseSymbol.ClassInstance)).Resolve("GmlSymbols")));
+        }
+        
         /// <summary>
         /// Forwards CollectionChanging notifications for the GmlSymbols property to the parent model element
         /// </summary>
@@ -111,7 +118,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfGMLSupport
         /// <param name="e">The original event data</param>
         private void GmlSymbolsCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("GmlSymbols", e);
+            this.OnCollectionChanging("GmlSymbols", e, _gmlSymbolsReference);
         }
         
         /// <summary>
@@ -121,7 +128,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfGMLSupport
         /// <param name="e">The original event data</param>
         private void GmlSymbolsCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("GmlSymbols", e);
+            this.OnCollectionChanged("GmlSymbols", e, _gmlSymbolsReference);
         }
         
         /// <summary>

@@ -53,7 +53,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
     [XmlNamespacePrefixAttribute("cimWires")]
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61970/Wires/FrequencyConverter")]
     [DebuggerDisplayAttribute("FrequencyConverter {UUID}")]
-    public class FrequencyConverter : RegulatingCondEq, IFrequencyConverter, IModelElement
+    public partial class FrequencyConverter : RegulatingCondEq, IFrequencyConverter, IModelElement
     {
         
         /// <summary>
@@ -61,30 +61,42 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
         /// </summary>
         private string _operatingMode;
         
+        private static Lazy<ITypedElement> _operatingModeAttribute = new Lazy<ITypedElement>(RetrieveOperatingModeAttribute);
+        
         /// <summary>
         /// The backing field for the Frequency property
         /// </summary>
         private float _frequency;
+        
+        private static Lazy<ITypedElement> _frequencyAttribute = new Lazy<ITypedElement>(RetrieveFrequencyAttribute);
         
         /// <summary>
         /// The backing field for the MaxP property
         /// </summary>
         private float _maxP;
         
+        private static Lazy<ITypedElement> _maxPAttribute = new Lazy<ITypedElement>(RetrieveMaxPAttribute);
+        
         /// <summary>
         /// The backing field for the MaxU property
         /// </summary>
         private float _maxU;
+        
+        private static Lazy<ITypedElement> _maxUAttribute = new Lazy<ITypedElement>(RetrieveMaxUAttribute);
         
         /// <summary>
         /// The backing field for the MinU property
         /// </summary>
         private float _minU;
         
+        private static Lazy<ITypedElement> _minUAttribute = new Lazy<ITypedElement>(RetrieveMinUAttribute);
+        
         /// <summary>
         /// The backing field for the MinP property
         /// </summary>
         private float _minP;
+        
+        private static Lazy<ITypedElement> _minPAttribute = new Lazy<ITypedElement>(RetrieveMinPAttribute);
         
         private static IClass _classInstance;
         
@@ -106,10 +118,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
                     string old = this._operatingMode;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnOperatingModeChanging(e);
-                    this.OnPropertyChanging("OperatingMode", e);
+                    this.OnPropertyChanging("OperatingMode", e, _operatingModeAttribute);
                     this._operatingMode = value;
                     this.OnOperatingModeChanged(e);
-                    this.OnPropertyChanged("OperatingMode", e);
+                    this.OnPropertyChanged("OperatingMode", e, _operatingModeAttribute);
                 }
             }
         }
@@ -132,10 +144,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
                     float old = this._frequency;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnFrequencyChanging(e);
-                    this.OnPropertyChanging("Frequency", e);
+                    this.OnPropertyChanging("Frequency", e, _frequencyAttribute);
                     this._frequency = value;
                     this.OnFrequencyChanged(e);
-                    this.OnPropertyChanged("Frequency", e);
+                    this.OnPropertyChanged("Frequency", e, _frequencyAttribute);
                 }
             }
         }
@@ -158,10 +170,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
                     float old = this._maxP;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnMaxPChanging(e);
-                    this.OnPropertyChanging("MaxP", e);
+                    this.OnPropertyChanging("MaxP", e, _maxPAttribute);
                     this._maxP = value;
                     this.OnMaxPChanged(e);
-                    this.OnPropertyChanged("MaxP", e);
+                    this.OnPropertyChanged("MaxP", e, _maxPAttribute);
                 }
             }
         }
@@ -184,10 +196,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
                     float old = this._maxU;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnMaxUChanging(e);
-                    this.OnPropertyChanging("MaxU", e);
+                    this.OnPropertyChanging("MaxU", e, _maxUAttribute);
                     this._maxU = value;
                     this.OnMaxUChanged(e);
-                    this.OnPropertyChanged("MaxU", e);
+                    this.OnPropertyChanged("MaxU", e, _maxUAttribute);
                 }
             }
         }
@@ -210,10 +222,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
                     float old = this._minU;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnMinUChanging(e);
-                    this.OnPropertyChanging("MinU", e);
+                    this.OnPropertyChanging("MinU", e, _minUAttribute);
                     this._minU = value;
                     this.OnMinUChanged(e);
-                    this.OnPropertyChanged("MinU", e);
+                    this.OnPropertyChanged("MinU", e, _minUAttribute);
                 }
             }
         }
@@ -236,10 +248,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
                     float old = this._minP;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnMinPChanging(e);
-                    this.OnPropertyChanging("MinP", e);
+                    this.OnPropertyChanging("MinP", e, _minPAttribute);
                     this._minP = value;
                     this.OnMinPChanged(e);
-                    this.OnPropertyChanged("MinP", e);
+                    this.OnPropertyChanged("MinP", e, _minPAttribute);
                 }
             }
         }
@@ -319,6 +331,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> MinPChanged;
         
+        private static ITypedElement RetrieveOperatingModeAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(FrequencyConverter.ClassInstance)).Resolve("operatingMode")));
+        }
+        
         /// <summary>
         /// Raises the OperatingModeChanging event
         /// </summary>
@@ -343,6 +360,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveFrequencyAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(FrequencyConverter.ClassInstance)).Resolve("frequency")));
         }
         
         /// <summary>
@@ -371,6 +393,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
             }
         }
         
+        private static ITypedElement RetrieveMaxPAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(FrequencyConverter.ClassInstance)).Resolve("maxP")));
+        }
+        
         /// <summary>
         /// Raises the MaxPChanging event
         /// </summary>
@@ -395,6 +422,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveMaxUAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(FrequencyConverter.ClassInstance)).Resolve("maxU")));
         }
         
         /// <summary>
@@ -423,6 +455,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
             }
         }
         
+        private static ITypedElement RetrieveMinUAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(FrequencyConverter.ClassInstance)).Resolve("minU")));
+        }
+        
         /// <summary>
         /// Raises the MinUChanging event
         /// </summary>
@@ -447,6 +484,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveMinPAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(FrequencyConverter.ClassInstance)).Resolve("minP")));
         }
         
         /// <summary>
@@ -573,7 +615,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public OperatingModeProxy(IFrequencyConverter modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "operatingMode")
             {
             }
             
@@ -591,24 +633,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
                     this.ModelElement.OperatingMode = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.OperatingModeChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.OperatingModeChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -622,7 +646,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public FrequencyProxy(IFrequencyConverter modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "frequency")
             {
             }
             
@@ -640,24 +664,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
                     this.ModelElement.Frequency = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.FrequencyChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.FrequencyChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -671,7 +677,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public MaxPProxy(IFrequencyConverter modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "maxP")
             {
             }
             
@@ -689,24 +695,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
                     this.ModelElement.MaxP = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.MaxPChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.MaxPChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -720,7 +708,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public MaxUProxy(IFrequencyConverter modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "maxU")
             {
             }
             
@@ -738,24 +726,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
                     this.ModelElement.MaxU = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.MaxUChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.MaxUChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -769,7 +739,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public MinUProxy(IFrequencyConverter modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "minU")
             {
             }
             
@@ -787,24 +757,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
                     this.ModelElement.MinU = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.MinUChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.MinUChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -818,7 +770,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public MinPProxy(IFrequencyConverter modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "minP")
             {
             }
             
@@ -835,24 +787,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
                 {
                     this.ModelElement.MinP = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.MinPChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.MinPChanged -= handler;
             }
         }
     }

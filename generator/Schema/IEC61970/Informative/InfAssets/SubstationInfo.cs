@@ -53,13 +53,15 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61970/Informative/InfAssets/Substat" +
         "ionInfo")]
     [DebuggerDisplayAttribute("SubstationInfo {UUID}")]
-    public class SubstationInfo : AssetInfo, ISubstationInfo, IModelElement
+    public partial class SubstationInfo : AssetInfo, ISubstationInfo, IModelElement
     {
         
         /// <summary>
         /// The backing field for the Function property
         /// </summary>
         private Nullable<SubstationFunctionKind> _function;
+        
+        private static Lazy<ITypedElement> _functionAttribute = new Lazy<ITypedElement>(RetrieveFunctionAttribute);
         
         private static IClass _classInstance;
         
@@ -81,10 +83,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
                     Nullable<SubstationFunctionKind> old = this._function;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnFunctionChanging(e);
-                    this.OnPropertyChanging("Function", e);
+                    this.OnPropertyChanging("Function", e, _functionAttribute);
                     this._function = value;
                     this.OnFunctionChanged(e);
-                    this.OnPropertyChanged("Function", e);
+                    this.OnPropertyChanged("Function", e, _functionAttribute);
                 }
             }
         }
@@ -114,6 +116,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
         /// Gets fired when the Function property changed its value
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> FunctionChanged;
+        
+        private static ITypedElement RetrieveFunctionAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(SubstationInfo.ClassInstance)).Resolve("function")));
+        }
         
         /// <summary>
         /// Raises the FunctionChanging event
@@ -195,7 +202,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public FunctionProxy(ISubstationInfo modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "function")
             {
             }
             
@@ -212,24 +219,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
                 {
                     this.ModelElement.Function = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.FunctionChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.FunctionChanged -= handler;
             }
         }
     }

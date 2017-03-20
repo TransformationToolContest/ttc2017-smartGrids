@@ -39,7 +39,7 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
     [XmlNamespacePrefixAttribute("objects")]
     [ModelRepresentationClassAttribute("http://www.transformation-tool-contest.eu/2017/smartGrids/cosem#//COSEMObjects/To" +
         "kenGatewayObject")]
-    public class TokenGatewayObject : Tokengateway, ITokenGatewayObject, IModelElement
+    public partial class TokenGatewayObject : Tokengateway, ITokenGatewayObject, IModelElement
     {
         
         private static IClass _classInstance;

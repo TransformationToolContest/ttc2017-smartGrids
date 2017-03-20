@@ -40,8 +40,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.SCADA
     [XmlNamespacePrefixAttribute("cimSCADA")]
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61970/SCADA/CommunicationLink")]
     [DebuggerDisplayAttribute("CommunicationLink {UUID}")]
-    public class CommunicationLink : PowerSystemResource, ICommunicationLink, IModelElement
+    public partial class CommunicationLink : PowerSystemResource, ICommunicationLink, IModelElement
     {
+        
+        private static Lazy<ITypedElement> _remoteUnitsReference = new Lazy<ITypedElement>(RetrieveRemoteUnitsReference);
         
         /// <summary>
         /// The backing field for the RemoteUnits property
@@ -98,6 +100,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.SCADA
             }
         }
         
+        private static ITypedElement RetrieveRemoteUnitsReference()
+        {
+            return ((ITypedElement)(((ModelElement)(CommunicationLink.ClassInstance)).Resolve("RemoteUnits")));
+        }
+        
         /// <summary>
         /// Forwards CollectionChanging notifications for the RemoteUnits property to the parent model element
         /// </summary>
@@ -105,7 +112,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.SCADA
         /// <param name="e">The original event data</param>
         private void RemoteUnitsCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("RemoteUnits", e);
+            this.OnCollectionChanging("RemoteUnits", e, _remoteUnitsReference);
         }
         
         /// <summary>
@@ -115,7 +122,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.SCADA
         /// <param name="e">The original event data</param>
         private void RemoteUnitsCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("RemoteUnits", e);
+            this.OnCollectionChanged("RemoteUnits", e, _remoteUnitsReference);
         }
         
         /// <summary>

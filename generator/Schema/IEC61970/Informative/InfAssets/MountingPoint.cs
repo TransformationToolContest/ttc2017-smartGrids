@@ -53,7 +53,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61970/Informative/InfAssets/Mountin" +
         "gPoint")]
     [DebuggerDisplayAttribute("MountingPoint {UUID}")]
-    public class MountingPoint : IdentifiedObject, IMountingPoint, IModelElement
+    public partial class MountingPoint : IdentifiedObject, IMountingPoint, IModelElement
     {
         
         /// <summary>
@@ -61,20 +61,30 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
         /// </summary>
         private int _xCoord;
         
+        private static Lazy<ITypedElement> _xCoordAttribute = new Lazy<ITypedElement>(RetrieveXCoordAttribute);
+        
         /// <summary>
         /// The backing field for the PhaseCode property
         /// </summary>
         private Nullable<PhaseCode> _phaseCode;
+        
+        private static Lazy<ITypedElement> _phaseCodeAttribute = new Lazy<ITypedElement>(RetrievePhaseCodeAttribute);
         
         /// <summary>
         /// The backing field for the YCoord property
         /// </summary>
         private int _yCoord;
         
+        private static Lazy<ITypedElement> _yCoordAttribute = new Lazy<ITypedElement>(RetrieveYCoordAttribute);
+        
+        private static Lazy<ITypedElement> _overheadConductorsReference = new Lazy<ITypedElement>(RetrieveOverheadConductorsReference);
+        
         /// <summary>
         /// The backing field for the OverheadConductors property
         /// </summary>
         private MountingPointOverheadConductorsCollection _overheadConductors;
+        
+        private static Lazy<ITypedElement> _connectionsReference = new Lazy<ITypedElement>(RetrieveConnectionsReference);
         
         /// <summary>
         /// The backing field for the Connections property
@@ -111,10 +121,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
                     int old = this._xCoord;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnXCoordChanging(e);
-                    this.OnPropertyChanging("XCoord", e);
+                    this.OnPropertyChanging("XCoord", e, _xCoordAttribute);
                     this._xCoord = value;
                     this.OnXCoordChanged(e);
-                    this.OnPropertyChanged("XCoord", e);
+                    this.OnPropertyChanged("XCoord", e, _xCoordAttribute);
                 }
             }
         }
@@ -137,10 +147,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
                     Nullable<PhaseCode> old = this._phaseCode;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnPhaseCodeChanging(e);
-                    this.OnPropertyChanging("PhaseCode", e);
+                    this.OnPropertyChanging("PhaseCode", e, _phaseCodeAttribute);
                     this._phaseCode = value;
                     this.OnPhaseCodeChanged(e);
-                    this.OnPropertyChanged("PhaseCode", e);
+                    this.OnPropertyChanged("PhaseCode", e, _phaseCodeAttribute);
                 }
             }
         }
@@ -163,10 +173,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
                     int old = this._yCoord;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnYCoordChanging(e);
-                    this.OnPropertyChanging("YCoord", e);
+                    this.OnPropertyChanging("YCoord", e, _yCoordAttribute);
                     this._yCoord = value;
                     this.OnYCoordChanged(e);
-                    this.OnPropertyChanged("YCoord", e);
+                    this.OnPropertyChanged("YCoord", e, _yCoordAttribute);
                 }
             }
         }
@@ -258,6 +268,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> YCoordChanged;
         
+        private static ITypedElement RetrieveXCoordAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(MountingPoint.ClassInstance)).Resolve("xCoord")));
+        }
+        
         /// <summary>
         /// Raises the XCoordChanging event
         /// </summary>
@@ -282,6 +297,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrievePhaseCodeAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(MountingPoint.ClassInstance)).Resolve("phaseCode")));
         }
         
         /// <summary>
@@ -310,6 +330,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
             }
         }
         
+        private static ITypedElement RetrieveYCoordAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(MountingPoint.ClassInstance)).Resolve("yCoord")));
+        }
+        
         /// <summary>
         /// Raises the YCoordChanging event
         /// </summary>
@@ -336,6 +361,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
             }
         }
         
+        private static ITypedElement RetrieveOverheadConductorsReference()
+        {
+            return ((ITypedElement)(((ModelElement)(MountingPoint.ClassInstance)).Resolve("OverheadConductors")));
+        }
+        
         /// <summary>
         /// Forwards CollectionChanging notifications for the OverheadConductors property to the parent model element
         /// </summary>
@@ -343,7 +373,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
         /// <param name="e">The original event data</param>
         private void OverheadConductorsCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("OverheadConductors", e);
+            this.OnCollectionChanging("OverheadConductors", e, _overheadConductorsReference);
         }
         
         /// <summary>
@@ -353,7 +383,12 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
         /// <param name="e">The original event data</param>
         private void OverheadConductorsCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("OverheadConductors", e);
+            this.OnCollectionChanged("OverheadConductors", e, _overheadConductorsReference);
+        }
+        
+        private static ITypedElement RetrieveConnectionsReference()
+        {
+            return ((ITypedElement)(((ModelElement)(MountingPoint.ClassInstance)).Resolve("Connections")));
         }
         
         /// <summary>
@@ -363,7 +398,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
         /// <param name="e">The original event data</param>
         private void ConnectionsCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("Connections", e);
+            this.OnCollectionChanging("Connections", e, _connectionsReference);
         }
         
         /// <summary>
@@ -373,7 +408,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
         /// <param name="e">The original event data</param>
         private void ConnectionsCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("Connections", e);
+            this.OnCollectionChanged("Connections", e, _connectionsReference);
         }
         
         /// <summary>
@@ -624,7 +659,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public XCoordProxy(IMountingPoint modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "xCoord")
             {
             }
             
@@ -642,24 +677,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
                     this.ModelElement.XCoord = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.XCoordChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.XCoordChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -673,7 +690,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public PhaseCodeProxy(IMountingPoint modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "phaseCode")
             {
             }
             
@@ -691,24 +708,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
                     this.ModelElement.PhaseCode = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.PhaseCodeChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.PhaseCodeChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -722,7 +721,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public YCoordProxy(IMountingPoint modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "yCoord")
             {
             }
             
@@ -739,24 +738,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
                 {
                     this.ModelElement.YCoord = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.YCoordChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.YCoordChanged -= handler;
             }
         }
     }

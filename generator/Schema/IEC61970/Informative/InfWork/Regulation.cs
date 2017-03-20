@@ -50,13 +50,15 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfWork
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61970/Informative/InfWork/Regulatio" +
         "n")]
     [DebuggerDisplayAttribute("Regulation {UUID}")]
-    public class Regulation : Document, IRegulation, IModelElement
+    public partial class Regulation : Document, IRegulation, IModelElement
     {
         
         /// <summary>
         /// The backing field for the ReferenceNumber property
         /// </summary>
         private string _referenceNumber;
+        
+        private static Lazy<ITypedElement> _referenceNumberAttribute = new Lazy<ITypedElement>(RetrieveReferenceNumberAttribute);
         
         private static IClass _classInstance;
         
@@ -78,10 +80,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfWork
                     string old = this._referenceNumber;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnReferenceNumberChanging(e);
-                    this.OnPropertyChanging("ReferenceNumber", e);
+                    this.OnPropertyChanging("ReferenceNumber", e, _referenceNumberAttribute);
                     this._referenceNumber = value;
                     this.OnReferenceNumberChanged(e);
-                    this.OnPropertyChanged("ReferenceNumber", e);
+                    this.OnPropertyChanged("ReferenceNumber", e, _referenceNumberAttribute);
                 }
             }
         }
@@ -111,6 +113,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfWork
         /// Gets fired when the ReferenceNumber property changed its value
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> ReferenceNumberChanged;
+        
+        private static ITypedElement RetrieveReferenceNumberAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(Regulation.ClassInstance)).Resolve("referenceNumber")));
+        }
         
         /// <summary>
         /// Raises the ReferenceNumberChanging event
@@ -192,7 +199,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfWork
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public ReferenceNumberProxy(IRegulation modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "referenceNumber")
             {
             }
             
@@ -209,24 +216,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfWork
                 {
                     this.ModelElement.ReferenceNumber = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ReferenceNumberChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ReferenceNumberChanged -= handler;
             }
         }
     }

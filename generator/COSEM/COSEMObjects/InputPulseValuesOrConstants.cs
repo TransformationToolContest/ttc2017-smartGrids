@@ -39,7 +39,7 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
     [XmlNamespacePrefixAttribute("objects")]
     [ModelRepresentationClassAttribute("http://www.transformation-tool-contest.eu/2017/smartGrids/cosem#//COSEMObjects/In" +
         "putPulseValuesOrConstants")]
-    public class InputPulseValuesOrConstants : Data, IInputPulseValuesOrConstants, IModelElement
+    public partial class InputPulseValuesOrConstants : Data, IInputPulseValuesOrConstants, IModelElement
     {
         
         /// <summary>
@@ -47,45 +47,63 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
         /// </summary>
         private Nullable<double> _activeEnergy;
         
+        private static Lazy<ITypedElement> _activeEnergyAttribute = new Lazy<ITypedElement>(RetrieveActiveEnergyAttribute);
+        
         /// <summary>
         /// The backing field for the Reactive_energy property
         /// </summary>
         private Nullable<double> _reactive_energy;
+        
+        private static Lazy<ITypedElement> _reactive_energyAttribute = new Lazy<ITypedElement>(RetrieveReactive_energyAttribute);
         
         /// <summary>
         /// The backing field for the Apparent_energy property
         /// </summary>
         private Nullable<double> _apparent_energy;
         
+        private static Lazy<ITypedElement> _apparent_energyAttribute = new Lazy<ITypedElement>(RetrieveApparent_energyAttribute);
+        
         /// <summary>
         /// The backing field for the Volt_squared_hours property
         /// </summary>
         private Nullable<double> _volt_squared_hours;
+        
+        private static Lazy<ITypedElement> _volt_squared_hoursAttribute = new Lazy<ITypedElement>(RetrieveVolt_squared_hoursAttribute);
         
         /// <summary>
         /// The backing field for the Ampere_squared_hours property
         /// </summary>
         private Nullable<double> _ampere_squared_hours;
         
+        private static Lazy<ITypedElement> _ampere_squared_hoursAttribute = new Lazy<ITypedElement>(RetrieveAmpere_squared_hoursAttribute);
+        
         /// <summary>
         /// The backing field for the Unitless_quantities property
         /// </summary>
         private Nullable<double> _unitless_quantities;
+        
+        private static Lazy<ITypedElement> _unitless_quantitiesAttribute = new Lazy<ITypedElement>(RetrieveUnitless_quantitiesAttribute);
         
         /// <summary>
         /// The backing field for the Active_energy_export property
         /// </summary>
         private Nullable<double> _active_energy_export;
         
+        private static Lazy<ITypedElement> _active_energy_exportAttribute = new Lazy<ITypedElement>(RetrieveActive_energy_exportAttribute);
+        
         /// <summary>
         /// The backing field for the Reactive_energy_export property
         /// </summary>
         private Nullable<double> _reactive_energy_export;
         
+        private static Lazy<ITypedElement> _reactive_energy_exportAttribute = new Lazy<ITypedElement>(RetrieveReactive_energy_exportAttribute);
+        
         /// <summary>
         /// The backing field for the Apparent_energy_export property
         /// </summary>
         private Nullable<double> _apparent_energy_export;
+        
+        private static Lazy<ITypedElement> _apparent_energy_exportAttribute = new Lazy<ITypedElement>(RetrieveApparent_energy_exportAttribute);
         
         private static IClass _classInstance;
         
@@ -106,10 +124,10 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     Nullable<double> old = this._activeEnergy;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnActiveEnergyChanging(e);
-                    this.OnPropertyChanging("ActiveEnergy", e);
+                    this.OnPropertyChanging("ActiveEnergy", e, _activeEnergyAttribute);
                     this._activeEnergy = value;
                     this.OnActiveEnergyChanged(e);
-                    this.OnPropertyChanged("ActiveEnergy", e);
+                    this.OnPropertyChanged("ActiveEnergy", e, _activeEnergyAttribute);
                 }
             }
         }
@@ -131,10 +149,10 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     Nullable<double> old = this._reactive_energy;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnReactive_energyChanging(e);
-                    this.OnPropertyChanging("Reactive_energy", e);
+                    this.OnPropertyChanging("Reactive_energy", e, _reactive_energyAttribute);
                     this._reactive_energy = value;
                     this.OnReactive_energyChanged(e);
-                    this.OnPropertyChanged("Reactive_energy", e);
+                    this.OnPropertyChanged("Reactive_energy", e, _reactive_energyAttribute);
                 }
             }
         }
@@ -156,10 +174,10 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     Nullable<double> old = this._apparent_energy;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnApparent_energyChanging(e);
-                    this.OnPropertyChanging("Apparent_energy", e);
+                    this.OnPropertyChanging("Apparent_energy", e, _apparent_energyAttribute);
                     this._apparent_energy = value;
                     this.OnApparent_energyChanged(e);
-                    this.OnPropertyChanged("Apparent_energy", e);
+                    this.OnPropertyChanged("Apparent_energy", e, _apparent_energyAttribute);
                 }
             }
         }
@@ -181,10 +199,10 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     Nullable<double> old = this._volt_squared_hours;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnVolt_squared_hoursChanging(e);
-                    this.OnPropertyChanging("Volt_squared_hours", e);
+                    this.OnPropertyChanging("Volt_squared_hours", e, _volt_squared_hoursAttribute);
                     this._volt_squared_hours = value;
                     this.OnVolt_squared_hoursChanged(e);
-                    this.OnPropertyChanged("Volt_squared_hours", e);
+                    this.OnPropertyChanged("Volt_squared_hours", e, _volt_squared_hoursAttribute);
                 }
             }
         }
@@ -206,10 +224,10 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     Nullable<double> old = this._ampere_squared_hours;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnAmpere_squared_hoursChanging(e);
-                    this.OnPropertyChanging("Ampere_squared_hours", e);
+                    this.OnPropertyChanging("Ampere_squared_hours", e, _ampere_squared_hoursAttribute);
                     this._ampere_squared_hours = value;
                     this.OnAmpere_squared_hoursChanged(e);
-                    this.OnPropertyChanged("Ampere_squared_hours", e);
+                    this.OnPropertyChanged("Ampere_squared_hours", e, _ampere_squared_hoursAttribute);
                 }
             }
         }
@@ -231,10 +249,10 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     Nullable<double> old = this._unitless_quantities;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnUnitless_quantitiesChanging(e);
-                    this.OnPropertyChanging("Unitless_quantities", e);
+                    this.OnPropertyChanging("Unitless_quantities", e, _unitless_quantitiesAttribute);
                     this._unitless_quantities = value;
                     this.OnUnitless_quantitiesChanged(e);
-                    this.OnPropertyChanged("Unitless_quantities", e);
+                    this.OnPropertyChanged("Unitless_quantities", e, _unitless_quantitiesAttribute);
                 }
             }
         }
@@ -256,10 +274,10 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     Nullable<double> old = this._active_energy_export;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnActive_energy_exportChanging(e);
-                    this.OnPropertyChanging("Active_energy_export", e);
+                    this.OnPropertyChanging("Active_energy_export", e, _active_energy_exportAttribute);
                     this._active_energy_export = value;
                     this.OnActive_energy_exportChanged(e);
-                    this.OnPropertyChanged("Active_energy_export", e);
+                    this.OnPropertyChanged("Active_energy_export", e, _active_energy_exportAttribute);
                 }
             }
         }
@@ -281,10 +299,10 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     Nullable<double> old = this._reactive_energy_export;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnReactive_energy_exportChanging(e);
-                    this.OnPropertyChanging("Reactive_energy_export", e);
+                    this.OnPropertyChanging("Reactive_energy_export", e, _reactive_energy_exportAttribute);
                     this._reactive_energy_export = value;
                     this.OnReactive_energy_exportChanged(e);
-                    this.OnPropertyChanged("Reactive_energy_export", e);
+                    this.OnPropertyChanged("Reactive_energy_export", e, _reactive_energy_exportAttribute);
                 }
             }
         }
@@ -306,10 +324,10 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     Nullable<double> old = this._apparent_energy_export;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnApparent_energy_exportChanging(e);
-                    this.OnPropertyChanging("Apparent_energy_export", e);
+                    this.OnPropertyChanging("Apparent_energy_export", e, _apparent_energy_exportAttribute);
                     this._apparent_energy_export = value;
                     this.OnApparent_energy_exportChanged(e);
-                    this.OnPropertyChanged("Apparent_energy_export", e);
+                    this.OnPropertyChanged("Apparent_energy_export", e, _apparent_energy_exportAttribute);
                 }
             }
         }
@@ -420,6 +438,11 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> Apparent_energy_exportChanged;
         
+        private static ITypedElement RetrieveActiveEnergyAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(InputPulseValuesOrConstants.ClassInstance)).Resolve("ActiveEnergy")));
+        }
+        
         /// <summary>
         /// Raises the ActiveEnergyChanging event
         /// </summary>
@@ -444,6 +467,11 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveReactive_energyAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(InputPulseValuesOrConstants.ClassInstance)).Resolve("Reactive_energy")));
         }
         
         /// <summary>
@@ -472,6 +500,11 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             }
         }
         
+        private static ITypedElement RetrieveApparent_energyAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(InputPulseValuesOrConstants.ClassInstance)).Resolve("Apparent_energy")));
+        }
+        
         /// <summary>
         /// Raises the Apparent_energyChanging event
         /// </summary>
@@ -496,6 +529,11 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveVolt_squared_hoursAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(InputPulseValuesOrConstants.ClassInstance)).Resolve("Volt_squared_hours")));
         }
         
         /// <summary>
@@ -524,6 +562,11 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             }
         }
         
+        private static ITypedElement RetrieveAmpere_squared_hoursAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(InputPulseValuesOrConstants.ClassInstance)).Resolve("Ampere_squared_hours")));
+        }
+        
         /// <summary>
         /// Raises the Ampere_squared_hoursChanging event
         /// </summary>
@@ -548,6 +591,11 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveUnitless_quantitiesAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(InputPulseValuesOrConstants.ClassInstance)).Resolve("Unitless_quantities")));
         }
         
         /// <summary>
@@ -576,6 +624,11 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             }
         }
         
+        private static ITypedElement RetrieveActive_energy_exportAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(InputPulseValuesOrConstants.ClassInstance)).Resolve("Active_energy_export")));
+        }
+        
         /// <summary>
         /// Raises the Active_energy_exportChanging event
         /// </summary>
@@ -602,6 +655,11 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             }
         }
         
+        private static ITypedElement RetrieveReactive_energy_exportAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(InputPulseValuesOrConstants.ClassInstance)).Resolve("Reactive_energy_export")));
+        }
+        
         /// <summary>
         /// Raises the Reactive_energy_exportChanging event
         /// </summary>
@@ -626,6 +684,11 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveApparent_energy_exportAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(InputPulseValuesOrConstants.ClassInstance)).Resolve("Apparent_energy_export")));
         }
         
         /// <summary>
@@ -780,7 +843,7 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public ActiveEnergyProxy(IInputPulseValuesOrConstants modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "ActiveEnergy")
             {
             }
             
@@ -798,24 +861,6 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     this.ModelElement.ActiveEnergy = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ActiveEnergyChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ActiveEnergyChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -829,7 +874,7 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public Reactive_energyProxy(IInputPulseValuesOrConstants modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "Reactive_energy")
             {
             }
             
@@ -847,24 +892,6 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     this.ModelElement.Reactive_energy = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.Reactive_energyChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.Reactive_energyChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -878,7 +905,7 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public Apparent_energyProxy(IInputPulseValuesOrConstants modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "Apparent_energy")
             {
             }
             
@@ -896,24 +923,6 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     this.ModelElement.Apparent_energy = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.Apparent_energyChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.Apparent_energyChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -927,7 +936,7 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public Volt_squared_hoursProxy(IInputPulseValuesOrConstants modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "Volt_squared_hours")
             {
             }
             
@@ -945,24 +954,6 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     this.ModelElement.Volt_squared_hours = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.Volt_squared_hoursChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.Volt_squared_hoursChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -976,7 +967,7 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public Ampere_squared_hoursProxy(IInputPulseValuesOrConstants modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "Ampere_squared_hours")
             {
             }
             
@@ -994,24 +985,6 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     this.ModelElement.Ampere_squared_hours = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.Ampere_squared_hoursChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.Ampere_squared_hoursChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1025,7 +998,7 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public Unitless_quantitiesProxy(IInputPulseValuesOrConstants modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "Unitless_quantities")
             {
             }
             
@@ -1043,24 +1016,6 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     this.ModelElement.Unitless_quantities = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.Unitless_quantitiesChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.Unitless_quantitiesChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1074,7 +1029,7 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public Active_energy_exportProxy(IInputPulseValuesOrConstants modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "Active_energy_export")
             {
             }
             
@@ -1092,24 +1047,6 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     this.ModelElement.Active_energy_export = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.Active_energy_exportChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.Active_energy_exportChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1123,7 +1060,7 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public Reactive_energy_exportProxy(IInputPulseValuesOrConstants modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "Reactive_energy_export")
             {
             }
             
@@ -1141,24 +1078,6 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     this.ModelElement.Reactive_energy_export = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.Reactive_energy_exportChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.Reactive_energy_exportChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1172,7 +1091,7 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public Apparent_energy_exportProxy(IInputPulseValuesOrConstants modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "Apparent_energy_export")
             {
             }
             
@@ -1189,24 +1108,6 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                 {
                     this.ModelElement.Apparent_energy_export = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.Apparent_energy_exportChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.Apparent_energy_exportChanged -= handler;
             }
         }
     }

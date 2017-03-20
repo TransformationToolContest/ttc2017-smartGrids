@@ -39,7 +39,7 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
     [XmlNamespacePrefixAttribute("objects")]
     [ModelRepresentationClassAttribute("http://www.transformation-tool-contest.eu/2017/smartGrids/cosem#//COSEMObjects/G3" +
         "_PLC_6LoWPAN_adaptation_layer_setup_object")]
-    public class G3_PLC_6LoWPAN_adaptation_layer_setup_object : G3_PLC_6LoWPAN, IG3_PLC_6LoWPAN_adaptation_layer_setup_object, IModelElement
+    public partial class G3_PLC_6LoWPAN_adaptation_layer_setup_object : G3_PLC_6LoWPAN, IG3_PLC_6LoWPAN_adaptation_layer_setup_object, IModelElement
     {
         
         private static IClass _classInstance;

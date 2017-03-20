@@ -44,13 +44,17 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.LoadModel
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61970/LoadModel/SeasonDayTypeSchedu" +
         "le")]
     [DebuggerDisplayAttribute("SeasonDayTypeSchedule {UUID}")]
-    public class SeasonDayTypeSchedule : RegularIntervalSchedule, ISeasonDayTypeSchedule, IModelElement
+    public partial class SeasonDayTypeSchedule : RegularIntervalSchedule, ISeasonDayTypeSchedule, IModelElement
     {
+        
+        private static Lazy<ITypedElement> _dayTypeReference = new Lazy<ITypedElement>(RetrieveDayTypeReference);
         
         /// <summary>
         /// The backing field for the DayType property
         /// </summary>
         private IDayType _dayType;
+        
+        private static Lazy<ITypedElement> _seasonReference = new Lazy<ITypedElement>(RetrieveSeasonReference);
         
         /// <summary>
         /// The backing field for the Season property
@@ -77,7 +81,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.LoadModel
                     IDayType old = this._dayType;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnDayTypeChanging(e);
-                    this.OnPropertyChanging("DayType", e);
+                    this.OnPropertyChanging("DayType", e, _dayTypeReference);
                     this._dayType = value;
                     if ((old != null))
                     {
@@ -90,7 +94,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.LoadModel
                         value.Deleted += this.OnResetDayType;
                     }
                     this.OnDayTypeChanged(e);
-                    this.OnPropertyChanged("DayType", e);
+                    this.OnPropertyChanged("DayType", e, _dayTypeReference);
                 }
             }
         }
@@ -113,7 +117,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.LoadModel
                     ISeason old = this._season;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnSeasonChanging(e);
-                    this.OnPropertyChanging("Season", e);
+                    this.OnPropertyChanging("Season", e, _seasonReference);
                     this._season = value;
                     if ((old != null))
                     {
@@ -126,7 +130,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.LoadModel
                         value.Deleted += this.OnResetSeason;
                     }
                     this.OnSeasonChanged(e);
-                    this.OnPropertyChanged("Season", e);
+                    this.OnPropertyChanged("Season", e, _seasonReference);
                 }
             }
         }
@@ -178,6 +182,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.LoadModel
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> SeasonChanged;
         
+        private static ITypedElement RetrieveDayTypeReference()
+        {
+            return ((ITypedElement)(((ModelElement)(SeasonDayTypeSchedule.ClassInstance)).Resolve("DayType")));
+        }
+        
         /// <summary>
         /// Raises the DayTypeChanging event
         /// </summary>
@@ -212,6 +221,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.LoadModel
         private void OnResetDayType(object sender, System.EventArgs eventArgs)
         {
             this.DayType = null;
+        }
+        
+        private static ITypedElement RetrieveSeasonReference()
+        {
+            return ((ITypedElement)(((ModelElement)(SeasonDayTypeSchedule.ClassInstance)).Resolve("Season")));
         }
         
         /// <summary>
@@ -480,7 +494,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.LoadModel
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public DayTypeProxy(ISeasonDayTypeSchedule modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "DayType")
             {
             }
             
@@ -498,24 +512,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.LoadModel
                     this.ModelElement.DayType = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.DayTypeChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.DayTypeChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -529,7 +525,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.LoadModel
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public SeasonProxy(ISeasonDayTypeSchedule modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "Season")
             {
             }
             
@@ -546,24 +542,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.LoadModel
                 {
                     this.ModelElement.Season = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.SeasonChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.SeasonChanged -= handler;
             }
         }
     }

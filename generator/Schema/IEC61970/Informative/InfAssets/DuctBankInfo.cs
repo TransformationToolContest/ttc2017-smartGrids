@@ -53,13 +53,17 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61970/Informative/InfAssets/DuctBan" +
         "kInfo")]
     [DebuggerDisplayAttribute("DuctBankInfo {UUID}")]
-    public class DuctBankInfo : AssetInfo, IDuctBankInfo, IModelElement
+    public partial class DuctBankInfo : AssetInfo, IDuctBankInfo, IModelElement
     {
         
         /// <summary>
         /// The backing field for the CircuitCount property
         /// </summary>
         private int _circuitCount;
+        
+        private static Lazy<ITypedElement> _circuitCountAttribute = new Lazy<ITypedElement>(RetrieveCircuitCountAttribute);
+        
+        private static Lazy<ITypedElement> _ductInfosReference = new Lazy<ITypedElement>(RetrieveDuctInfosReference);
         
         /// <summary>
         /// The backing field for the DuctInfos property
@@ -93,10 +97,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
                     int old = this._circuitCount;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnCircuitCountChanging(e);
-                    this.OnPropertyChanging("CircuitCount", e);
+                    this.OnPropertyChanging("CircuitCount", e, _circuitCountAttribute);
                     this._circuitCount = value;
                     this.OnCircuitCountChanged(e);
-                    this.OnPropertyChanged("CircuitCount", e);
+                    this.OnPropertyChanged("CircuitCount", e, _circuitCountAttribute);
                 }
             }
         }
@@ -153,6 +157,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> CircuitCountChanged;
         
+        private static ITypedElement RetrieveCircuitCountAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(DuctBankInfo.ClassInstance)).Resolve("circuitCount")));
+        }
+        
         /// <summary>
         /// Raises the CircuitCountChanging event
         /// </summary>
@@ -179,6 +188,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
             }
         }
         
+        private static ITypedElement RetrieveDuctInfosReference()
+        {
+            return ((ITypedElement)(((ModelElement)(DuctBankInfo.ClassInstance)).Resolve("DuctInfos")));
+        }
+        
         /// <summary>
         /// Forwards CollectionChanging notifications for the DuctInfos property to the parent model element
         /// </summary>
@@ -186,7 +200,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
         /// <param name="e">The original event data</param>
         private void DuctInfosCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("DuctInfos", e);
+            this.OnCollectionChanging("DuctInfos", e, _ductInfosReference);
         }
         
         /// <summary>
@@ -196,7 +210,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
         /// <param name="e">The original event data</param>
         private void DuctInfosCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("DuctInfos", e);
+            this.OnCollectionChanged("DuctInfos", e, _ductInfosReference);
         }
         
         /// <summary>
@@ -391,7 +405,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public CircuitCountProxy(IDuctBankInfo modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "circuitCount")
             {
             }
             
@@ -408,24 +422,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
                 {
                     this.ModelElement.CircuitCount = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.CircuitCountChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.CircuitCountChanged -= handler;
             }
         }
     }

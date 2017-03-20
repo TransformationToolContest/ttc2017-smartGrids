@@ -42,7 +42,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfLoadControl
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61970/Informative/InfLoadControl/Lo" +
         "adMgmtFunction")]
     [DebuggerDisplayAttribute("LoadMgmtFunction {UUID}")]
-    public class LoadMgmtFunction : DeviceFunction, ILoadMgmtFunction, IModelElement
+    public partial class LoadMgmtFunction : DeviceFunction, ILoadMgmtFunction, IModelElement
     {
         
         /// <summary>
@@ -50,35 +50,51 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfLoadControl
         /// </summary>
         private bool _manualOverRide;
         
+        private static Lazy<ITypedElement> _manualOverRideAttribute = new Lazy<ITypedElement>(RetrieveManualOverRideAttribute);
+        
         /// <summary>
         /// The backing field for the IsAutoOp property
         /// </summary>
         private bool _isAutoOp;
+        
+        private static Lazy<ITypedElement> _isAutoOpAttribute = new Lazy<ITypedElement>(RetrieveIsAutoOpAttribute);
         
         /// <summary>
         /// The backing field for the SchedulingBasis property
         /// </summary>
         private Nullable<LoadMgmtKind> _schedulingBasis;
         
+        private static Lazy<ITypedElement> _schedulingBasisAttribute = new Lazy<ITypedElement>(RetrieveSchedulingBasisAttribute);
+        
         /// <summary>
         /// The backing field for the RemoteOverRide property
         /// </summary>
         private bool _remoteOverRide;
+        
+        private static Lazy<ITypedElement> _remoteOverRideAttribute = new Lazy<ITypedElement>(RetrieveRemoteOverRideAttribute);
         
         /// <summary>
         /// The backing field for the LoadStatus property
         /// </summary>
         private Nullable<LoadStateKind> _loadStatus;
         
+        private static Lazy<ITypedElement> _loadStatusAttribute = new Lazy<ITypedElement>(RetrieveLoadStatusAttribute);
+        
         /// <summary>
         /// The backing field for the OverRideTimeOut property
         /// </summary>
         private float _overRideTimeOut;
         
+        private static Lazy<ITypedElement> _overRideTimeOutAttribute = new Lazy<ITypedElement>(RetrieveOverRideTimeOutAttribute);
+        
+        private static Lazy<ITypedElement> _switchesReference = new Lazy<ITypedElement>(RetrieveSwitchesReference);
+        
         /// <summary>
         /// The backing field for the Switches property
         /// </summary>
         private LoadMgmtFunctionSwitchesCollection _switches;
+        
+        private static Lazy<ITypedElement> _loadMgmtRecordsReference = new Lazy<ITypedElement>(RetrieveLoadMgmtRecordsReference);
         
         /// <summary>
         /// The backing field for the LoadMgmtRecords property
@@ -115,10 +131,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfLoadControl
                     bool old = this._manualOverRide;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnManualOverRideChanging(e);
-                    this.OnPropertyChanging("ManualOverRide", e);
+                    this.OnPropertyChanging("ManualOverRide", e, _manualOverRideAttribute);
                     this._manualOverRide = value;
                     this.OnManualOverRideChanged(e);
-                    this.OnPropertyChanged("ManualOverRide", e);
+                    this.OnPropertyChanged("ManualOverRide", e, _manualOverRideAttribute);
                 }
             }
         }
@@ -141,10 +157,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfLoadControl
                     bool old = this._isAutoOp;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnIsAutoOpChanging(e);
-                    this.OnPropertyChanging("IsAutoOp", e);
+                    this.OnPropertyChanging("IsAutoOp", e, _isAutoOpAttribute);
                     this._isAutoOp = value;
                     this.OnIsAutoOpChanged(e);
-                    this.OnPropertyChanged("IsAutoOp", e);
+                    this.OnPropertyChanged("IsAutoOp", e, _isAutoOpAttribute);
                 }
             }
         }
@@ -167,10 +183,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfLoadControl
                     Nullable<LoadMgmtKind> old = this._schedulingBasis;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnSchedulingBasisChanging(e);
-                    this.OnPropertyChanging("SchedulingBasis", e);
+                    this.OnPropertyChanging("SchedulingBasis", e, _schedulingBasisAttribute);
                     this._schedulingBasis = value;
                     this.OnSchedulingBasisChanged(e);
-                    this.OnPropertyChanged("SchedulingBasis", e);
+                    this.OnPropertyChanged("SchedulingBasis", e, _schedulingBasisAttribute);
                 }
             }
         }
@@ -193,10 +209,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfLoadControl
                     bool old = this._remoteOverRide;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnRemoteOverRideChanging(e);
-                    this.OnPropertyChanging("RemoteOverRide", e);
+                    this.OnPropertyChanging("RemoteOverRide", e, _remoteOverRideAttribute);
                     this._remoteOverRide = value;
                     this.OnRemoteOverRideChanged(e);
-                    this.OnPropertyChanged("RemoteOverRide", e);
+                    this.OnPropertyChanged("RemoteOverRide", e, _remoteOverRideAttribute);
                 }
             }
         }
@@ -219,10 +235,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfLoadControl
                     Nullable<LoadStateKind> old = this._loadStatus;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnLoadStatusChanging(e);
-                    this.OnPropertyChanging("LoadStatus", e);
+                    this.OnPropertyChanging("LoadStatus", e, _loadStatusAttribute);
                     this._loadStatus = value;
                     this.OnLoadStatusChanged(e);
-                    this.OnPropertyChanged("LoadStatus", e);
+                    this.OnPropertyChanged("LoadStatus", e, _loadStatusAttribute);
                 }
             }
         }
@@ -245,10 +261,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfLoadControl
                     float old = this._overRideTimeOut;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnOverRideTimeOutChanging(e);
-                    this.OnPropertyChanging("OverRideTimeOut", e);
+                    this.OnPropertyChanging("OverRideTimeOut", e, _overRideTimeOutAttribute);
                     this._overRideTimeOut = value;
                     this.OnOverRideTimeOutChanged(e);
-                    this.OnPropertyChanged("OverRideTimeOut", e);
+                    this.OnPropertyChanged("OverRideTimeOut", e, _overRideTimeOutAttribute);
                 }
             }
         }
@@ -370,6 +386,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfLoadControl
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> OverRideTimeOutChanged;
         
+        private static ITypedElement RetrieveManualOverRideAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(LoadMgmtFunction.ClassInstance)).Resolve("manualOverRide")));
+        }
+        
         /// <summary>
         /// Raises the ManualOverRideChanging event
         /// </summary>
@@ -394,6 +415,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfLoadControl
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveIsAutoOpAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(LoadMgmtFunction.ClassInstance)).Resolve("isAutoOp")));
         }
         
         /// <summary>
@@ -422,6 +448,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfLoadControl
             }
         }
         
+        private static ITypedElement RetrieveSchedulingBasisAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(LoadMgmtFunction.ClassInstance)).Resolve("schedulingBasis")));
+        }
+        
         /// <summary>
         /// Raises the SchedulingBasisChanging event
         /// </summary>
@@ -446,6 +477,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfLoadControl
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveRemoteOverRideAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(LoadMgmtFunction.ClassInstance)).Resolve("remoteOverRide")));
         }
         
         /// <summary>
@@ -474,6 +510,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfLoadControl
             }
         }
         
+        private static ITypedElement RetrieveLoadStatusAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(LoadMgmtFunction.ClassInstance)).Resolve("loadStatus")));
+        }
+        
         /// <summary>
         /// Raises the LoadStatusChanging event
         /// </summary>
@@ -498,6 +539,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfLoadControl
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveOverRideTimeOutAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(LoadMgmtFunction.ClassInstance)).Resolve("overRideTimeOut")));
         }
         
         /// <summary>
@@ -526,6 +572,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfLoadControl
             }
         }
         
+        private static ITypedElement RetrieveSwitchesReference()
+        {
+            return ((ITypedElement)(((ModelElement)(LoadMgmtFunction.ClassInstance)).Resolve("Switches")));
+        }
+        
         /// <summary>
         /// Forwards CollectionChanging notifications for the Switches property to the parent model element
         /// </summary>
@@ -533,7 +584,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfLoadControl
         /// <param name="e">The original event data</param>
         private void SwitchesCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("Switches", e);
+            this.OnCollectionChanging("Switches", e, _switchesReference);
         }
         
         /// <summary>
@@ -543,7 +594,12 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfLoadControl
         /// <param name="e">The original event data</param>
         private void SwitchesCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("Switches", e);
+            this.OnCollectionChanged("Switches", e, _switchesReference);
+        }
+        
+        private static ITypedElement RetrieveLoadMgmtRecordsReference()
+        {
+            return ((ITypedElement)(((ModelElement)(LoadMgmtFunction.ClassInstance)).Resolve("LoadMgmtRecords")));
         }
         
         /// <summary>
@@ -553,7 +609,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfLoadControl
         /// <param name="e">The original event data</param>
         private void LoadMgmtRecordsCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("LoadMgmtRecords", e);
+            this.OnCollectionChanging("LoadMgmtRecords", e, _loadMgmtRecordsReference);
         }
         
         /// <summary>
@@ -563,7 +619,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfLoadControl
         /// <param name="e">The original event data</param>
         private void LoadMgmtRecordsCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("LoadMgmtRecords", e);
+            this.OnCollectionChanged("LoadMgmtRecords", e, _loadMgmtRecordsReference);
         }
         
         /// <summary>
@@ -841,7 +897,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfLoadControl
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public ManualOverRideProxy(ILoadMgmtFunction modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "manualOverRide")
             {
             }
             
@@ -859,24 +915,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfLoadControl
                     this.ModelElement.ManualOverRide = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ManualOverRideChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ManualOverRideChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -890,7 +928,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfLoadControl
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public IsAutoOpProxy(ILoadMgmtFunction modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "isAutoOp")
             {
             }
             
@@ -908,24 +946,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfLoadControl
                     this.ModelElement.IsAutoOp = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.IsAutoOpChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.IsAutoOpChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -939,7 +959,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfLoadControl
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public SchedulingBasisProxy(ILoadMgmtFunction modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "schedulingBasis")
             {
             }
             
@@ -957,24 +977,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfLoadControl
                     this.ModelElement.SchedulingBasis = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.SchedulingBasisChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.SchedulingBasisChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -988,7 +990,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfLoadControl
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public RemoteOverRideProxy(ILoadMgmtFunction modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "remoteOverRide")
             {
             }
             
@@ -1006,24 +1008,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfLoadControl
                     this.ModelElement.RemoteOverRide = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.RemoteOverRideChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.RemoteOverRideChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1037,7 +1021,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfLoadControl
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public LoadStatusProxy(ILoadMgmtFunction modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "loadStatus")
             {
             }
             
@@ -1055,24 +1039,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfLoadControl
                     this.ModelElement.LoadStatus = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.LoadStatusChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.LoadStatusChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1086,7 +1052,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfLoadControl
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public OverRideTimeOutProxy(ILoadMgmtFunction modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "overRideTimeOut")
             {
             }
             
@@ -1103,24 +1069,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfLoadControl
                 {
                     this.ModelElement.OverRideTimeOut = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.OverRideTimeOutChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.OverRideTimeOutChanged -= handler;
             }
         }
     }

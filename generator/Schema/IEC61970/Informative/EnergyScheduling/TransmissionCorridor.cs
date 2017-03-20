@@ -49,13 +49,17 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.EnergyScheduling
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61970/Informative/EnergyScheduling/" +
         "TransmissionCorridor")]
     [DebuggerDisplayAttribute("TransmissionCorridor {UUID}")]
-    public class TransmissionCorridor : PowerSystemResource, ITransmissionCorridor, IModelElement
+    public partial class TransmissionCorridor : PowerSystemResource, ITransmissionCorridor, IModelElement
     {
+        
+        private static Lazy<ITypedElement> _transmissionRightOfWaysReference = new Lazy<ITypedElement>(RetrieveTransmissionRightOfWaysReference);
         
         /// <summary>
         /// The backing field for the TransmissionRightOfWays property
         /// </summary>
         private TransmissionCorridorTransmissionRightOfWaysCollection _transmissionRightOfWays;
+        
+        private static Lazy<ITypedElement> _containedInReference = new Lazy<ITypedElement>(RetrieveContainedInReference);
         
         /// <summary>
         /// The backing field for the ContainedIn property
@@ -131,6 +135,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.EnergyScheduling
             }
         }
         
+        private static ITypedElement RetrieveTransmissionRightOfWaysReference()
+        {
+            return ((ITypedElement)(((ModelElement)(TransmissionCorridor.ClassInstance)).Resolve("TransmissionRightOfWays")));
+        }
+        
         /// <summary>
         /// Forwards CollectionChanging notifications for the TransmissionRightOfWays property to the parent model element
         /// </summary>
@@ -138,7 +147,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.EnergyScheduling
         /// <param name="e">The original event data</param>
         private void TransmissionRightOfWaysCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("TransmissionRightOfWays", e);
+            this.OnCollectionChanging("TransmissionRightOfWays", e, _transmissionRightOfWaysReference);
         }
         
         /// <summary>
@@ -148,7 +157,12 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.EnergyScheduling
         /// <param name="e">The original event data</param>
         private void TransmissionRightOfWaysCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("TransmissionRightOfWays", e);
+            this.OnCollectionChanged("TransmissionRightOfWays", e, _transmissionRightOfWaysReference);
+        }
+        
+        private static ITypedElement RetrieveContainedInReference()
+        {
+            return ((ITypedElement)(((ModelElement)(TransmissionCorridor.ClassInstance)).Resolve("ContainedIn")));
         }
         
         /// <summary>
@@ -158,7 +172,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.EnergyScheduling
         /// <param name="e">The original event data</param>
         private void ContainedInCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("ContainedIn", e);
+            this.OnCollectionChanging("ContainedIn", e, _containedInReference);
         }
         
         /// <summary>
@@ -168,7 +182,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.EnergyScheduling
         /// <param name="e">The original event data</param>
         private void ContainedInCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("ContainedIn", e);
+            this.OnCollectionChanged("ContainedIn", e, _containedInReference);
         }
         
         /// <summary>

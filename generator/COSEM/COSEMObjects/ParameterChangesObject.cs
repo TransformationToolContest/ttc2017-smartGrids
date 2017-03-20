@@ -39,7 +39,7 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
     [XmlNamespacePrefixAttribute("objects")]
     [ModelRepresentationClassAttribute("http://www.transformation-tool-contest.eu/2017/smartGrids/cosem#//COSEMObjects/Pa" +
         "rameterChangesObject")]
-    public class ParameterChangesObject : Data, IParameterChangesObject, IModelElement
+    public partial class ParameterChangesObject : Data, IParameterChangesObject, IModelElement
     {
         
         /// <summary>
@@ -47,60 +47,84 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
         /// </summary>
         private Nullable<int> _numberConfigProgramChanges;
         
+        private static Lazy<ITypedElement> _numberConfigProgramChangesAttribute = new Lazy<ITypedElement>(RetrieveNumberConfigProgramChangesAttribute);
+        
         /// <summary>
         /// The backing field for the DateLastConfigChange property
         /// </summary>
         private Nullable<DateTime> _dateLastConfigChange;
+        
+        private static Lazy<ITypedElement> _dateLastConfigChangeAttribute = new Lazy<ITypedElement>(RetrieveDateLastConfigChangeAttribute);
         
         /// <summary>
         /// The backing field for the DateLastSwitchChange property
         /// </summary>
         private Nullable<DateTime> _dateLastSwitchChange;
         
+        private static Lazy<ITypedElement> _dateLastSwitchChangeAttribute = new Lazy<ITypedElement>(RetrieveDateLastSwitchChangeAttribute);
+        
         /// <summary>
         /// The backing field for the DateLastRippleControlChange property
         /// </summary>
         private Nullable<DateTime> _dateLastRippleControlChange;
+        
+        private static Lazy<ITypedElement> _dateLastRippleControlChangeAttribute = new Lazy<ITypedElement>(RetrieveDateLastRippleControlChangeAttribute);
         
         /// <summary>
         /// The backing field for the StatusSecuritySwitches property
         /// </summary>
         private string _statusSecuritySwitches;
         
+        private static Lazy<ITypedElement> _statusSecuritySwitchesAttribute = new Lazy<ITypedElement>(RetrieveStatusSecuritySwitchesAttribute);
+        
         /// <summary>
         /// The backing field for the DateLastCalibration property
         /// </summary>
         private Nullable<DateTime> _dateLastCalibration;
+        
+        private static Lazy<ITypedElement> _dateLastCalibrationAttribute = new Lazy<ITypedElement>(RetrieveDateLastCalibrationAttribute);
         
         /// <summary>
         /// The backing field for the DateNextConfig property
         /// </summary>
         private Nullable<DateTime> _dateNextConfig;
         
+        private static Lazy<ITypedElement> _dateNextConfigAttribute = new Lazy<ITypedElement>(RetrieveDateNextConfigAttribute);
+        
         /// <summary>
         /// The backing field for the DateActivationPassivCalendar property
         /// </summary>
         private Nullable<DateTime> _dateActivationPassivCalendar;
+        
+        private static Lazy<ITypedElement> _dateActivationPassivCalendarAttribute = new Lazy<ITypedElement>(RetrieveDateActivationPassivCalendarAttribute);
         
         /// <summary>
         /// The backing field for the NumberProtectedConfigChanges property
         /// </summary>
         private Nullable<int> _numberProtectedConfigChanges;
         
+        private static Lazy<ITypedElement> _numberProtectedConfigChangesAttribute = new Lazy<ITypedElement>(RetrieveNumberProtectedConfigChangesAttribute);
+        
         /// <summary>
         /// The backing field for the DateLastProtectedConfigChange property
         /// </summary>
         private Nullable<DateTime> _dateLastProtectedConfigChange;
+        
+        private static Lazy<ITypedElement> _dateLastProtectedConfigChangeAttribute = new Lazy<ITypedElement>(RetrieveDateLastProtectedConfigChangeAttribute);
         
         /// <summary>
         /// The backing field for the DateLastClockSynch property
         /// </summary>
         private Nullable<DateTime> _dateLastClockSynch;
         
+        private static Lazy<ITypedElement> _dateLastClockSynchAttribute = new Lazy<ITypedElement>(RetrieveDateLastClockSynchAttribute);
+        
         /// <summary>
         /// The backing field for the DateLastFirmwareActivation property
         /// </summary>
         private Nullable<DateTime> _dateLastFirmwareActivation;
+        
+        private static Lazy<ITypedElement> _dateLastFirmwareActivationAttribute = new Lazy<ITypedElement>(RetrieveDateLastFirmwareActivationAttribute);
         
         private static IClass _classInstance;
         
@@ -121,10 +145,10 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     Nullable<int> old = this._numberConfigProgramChanges;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnNumberConfigProgramChangesChanging(e);
-                    this.OnPropertyChanging("NumberConfigProgramChanges", e);
+                    this.OnPropertyChanging("NumberConfigProgramChanges", e, _numberConfigProgramChangesAttribute);
                     this._numberConfigProgramChanges = value;
                     this.OnNumberConfigProgramChangesChanged(e);
-                    this.OnPropertyChanged("NumberConfigProgramChanges", e);
+                    this.OnPropertyChanged("NumberConfigProgramChanges", e, _numberConfigProgramChangesAttribute);
                 }
             }
         }
@@ -146,10 +170,10 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     Nullable<DateTime> old = this._dateLastConfigChange;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnDateLastConfigChangeChanging(e);
-                    this.OnPropertyChanging("DateLastConfigChange", e);
+                    this.OnPropertyChanging("DateLastConfigChange", e, _dateLastConfigChangeAttribute);
                     this._dateLastConfigChange = value;
                     this.OnDateLastConfigChangeChanged(e);
-                    this.OnPropertyChanged("DateLastConfigChange", e);
+                    this.OnPropertyChanged("DateLastConfigChange", e, _dateLastConfigChangeAttribute);
                 }
             }
         }
@@ -171,10 +195,10 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     Nullable<DateTime> old = this._dateLastSwitchChange;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnDateLastSwitchChangeChanging(e);
-                    this.OnPropertyChanging("DateLastSwitchChange", e);
+                    this.OnPropertyChanging("DateLastSwitchChange", e, _dateLastSwitchChangeAttribute);
                     this._dateLastSwitchChange = value;
                     this.OnDateLastSwitchChangeChanged(e);
-                    this.OnPropertyChanged("DateLastSwitchChange", e);
+                    this.OnPropertyChanged("DateLastSwitchChange", e, _dateLastSwitchChangeAttribute);
                 }
             }
         }
@@ -196,10 +220,10 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     Nullable<DateTime> old = this._dateLastRippleControlChange;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnDateLastRippleControlChangeChanging(e);
-                    this.OnPropertyChanging("DateLastRippleControlChange", e);
+                    this.OnPropertyChanging("DateLastRippleControlChange", e, _dateLastRippleControlChangeAttribute);
                     this._dateLastRippleControlChange = value;
                     this.OnDateLastRippleControlChangeChanged(e);
-                    this.OnPropertyChanged("DateLastRippleControlChange", e);
+                    this.OnPropertyChanged("DateLastRippleControlChange", e, _dateLastRippleControlChangeAttribute);
                 }
             }
         }
@@ -221,10 +245,10 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     string old = this._statusSecuritySwitches;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnStatusSecuritySwitchesChanging(e);
-                    this.OnPropertyChanging("StatusSecuritySwitches", e);
+                    this.OnPropertyChanging("StatusSecuritySwitches", e, _statusSecuritySwitchesAttribute);
                     this._statusSecuritySwitches = value;
                     this.OnStatusSecuritySwitchesChanged(e);
-                    this.OnPropertyChanged("StatusSecuritySwitches", e);
+                    this.OnPropertyChanged("StatusSecuritySwitches", e, _statusSecuritySwitchesAttribute);
                 }
             }
         }
@@ -246,10 +270,10 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     Nullable<DateTime> old = this._dateLastCalibration;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnDateLastCalibrationChanging(e);
-                    this.OnPropertyChanging("DateLastCalibration", e);
+                    this.OnPropertyChanging("DateLastCalibration", e, _dateLastCalibrationAttribute);
                     this._dateLastCalibration = value;
                     this.OnDateLastCalibrationChanged(e);
-                    this.OnPropertyChanged("DateLastCalibration", e);
+                    this.OnPropertyChanged("DateLastCalibration", e, _dateLastCalibrationAttribute);
                 }
             }
         }
@@ -271,10 +295,10 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     Nullable<DateTime> old = this._dateNextConfig;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnDateNextConfigChanging(e);
-                    this.OnPropertyChanging("DateNextConfig", e);
+                    this.OnPropertyChanging("DateNextConfig", e, _dateNextConfigAttribute);
                     this._dateNextConfig = value;
                     this.OnDateNextConfigChanged(e);
-                    this.OnPropertyChanged("DateNextConfig", e);
+                    this.OnPropertyChanged("DateNextConfig", e, _dateNextConfigAttribute);
                 }
             }
         }
@@ -296,10 +320,10 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     Nullable<DateTime> old = this._dateActivationPassivCalendar;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnDateActivationPassivCalendarChanging(e);
-                    this.OnPropertyChanging("DateActivationPassivCalendar", e);
+                    this.OnPropertyChanging("DateActivationPassivCalendar", e, _dateActivationPassivCalendarAttribute);
                     this._dateActivationPassivCalendar = value;
                     this.OnDateActivationPassivCalendarChanged(e);
-                    this.OnPropertyChanged("DateActivationPassivCalendar", e);
+                    this.OnPropertyChanged("DateActivationPassivCalendar", e, _dateActivationPassivCalendarAttribute);
                 }
             }
         }
@@ -321,10 +345,10 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     Nullable<int> old = this._numberProtectedConfigChanges;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnNumberProtectedConfigChangesChanging(e);
-                    this.OnPropertyChanging("NumberProtectedConfigChanges", e);
+                    this.OnPropertyChanging("NumberProtectedConfigChanges", e, _numberProtectedConfigChangesAttribute);
                     this._numberProtectedConfigChanges = value;
                     this.OnNumberProtectedConfigChangesChanged(e);
-                    this.OnPropertyChanged("NumberProtectedConfigChanges", e);
+                    this.OnPropertyChanged("NumberProtectedConfigChanges", e, _numberProtectedConfigChangesAttribute);
                 }
             }
         }
@@ -346,10 +370,10 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     Nullable<DateTime> old = this._dateLastProtectedConfigChange;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnDateLastProtectedConfigChangeChanging(e);
-                    this.OnPropertyChanging("DateLastProtectedConfigChange", e);
+                    this.OnPropertyChanging("DateLastProtectedConfigChange", e, _dateLastProtectedConfigChangeAttribute);
                     this._dateLastProtectedConfigChange = value;
                     this.OnDateLastProtectedConfigChangeChanged(e);
-                    this.OnPropertyChanged("DateLastProtectedConfigChange", e);
+                    this.OnPropertyChanged("DateLastProtectedConfigChange", e, _dateLastProtectedConfigChangeAttribute);
                 }
             }
         }
@@ -371,10 +395,10 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     Nullable<DateTime> old = this._dateLastClockSynch;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnDateLastClockSynchChanging(e);
-                    this.OnPropertyChanging("DateLastClockSynch", e);
+                    this.OnPropertyChanging("DateLastClockSynch", e, _dateLastClockSynchAttribute);
                     this._dateLastClockSynch = value;
                     this.OnDateLastClockSynchChanged(e);
-                    this.OnPropertyChanged("DateLastClockSynch", e);
+                    this.OnPropertyChanged("DateLastClockSynch", e, _dateLastClockSynchAttribute);
                 }
             }
         }
@@ -396,10 +420,10 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     Nullable<DateTime> old = this._dateLastFirmwareActivation;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnDateLastFirmwareActivationChanging(e);
-                    this.OnPropertyChanging("DateLastFirmwareActivation", e);
+                    this.OnPropertyChanging("DateLastFirmwareActivation", e, _dateLastFirmwareActivationAttribute);
                     this._dateLastFirmwareActivation = value;
                     this.OnDateLastFirmwareActivationChanged(e);
-                    this.OnPropertyChanged("DateLastFirmwareActivation", e);
+                    this.OnPropertyChanged("DateLastFirmwareActivation", e, _dateLastFirmwareActivationAttribute);
                 }
             }
         }
@@ -540,6 +564,11 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> DateLastFirmwareActivationChanged;
         
+        private static ITypedElement RetrieveNumberConfigProgramChangesAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(ParameterChangesObject.ClassInstance)).Resolve("NumberConfigProgramChanges")));
+        }
+        
         /// <summary>
         /// Raises the NumberConfigProgramChangesChanging event
         /// </summary>
@@ -564,6 +593,11 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveDateLastConfigChangeAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(ParameterChangesObject.ClassInstance)).Resolve("DateLastConfigChange")));
         }
         
         /// <summary>
@@ -592,6 +626,11 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             }
         }
         
+        private static ITypedElement RetrieveDateLastSwitchChangeAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(ParameterChangesObject.ClassInstance)).Resolve("DateLastSwitchChange")));
+        }
+        
         /// <summary>
         /// Raises the DateLastSwitchChangeChanging event
         /// </summary>
@@ -616,6 +655,11 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveDateLastRippleControlChangeAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(ParameterChangesObject.ClassInstance)).Resolve("DateLastRippleControlChange")));
         }
         
         /// <summary>
@@ -644,6 +688,11 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             }
         }
         
+        private static ITypedElement RetrieveStatusSecuritySwitchesAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(ParameterChangesObject.ClassInstance)).Resolve("StatusSecuritySwitches")));
+        }
+        
         /// <summary>
         /// Raises the StatusSecuritySwitchesChanging event
         /// </summary>
@@ -668,6 +717,11 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveDateLastCalibrationAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(ParameterChangesObject.ClassInstance)).Resolve("DateLastCalibration")));
         }
         
         /// <summary>
@@ -696,6 +750,11 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             }
         }
         
+        private static ITypedElement RetrieveDateNextConfigAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(ParameterChangesObject.ClassInstance)).Resolve("DateNextConfig")));
+        }
+        
         /// <summary>
         /// Raises the DateNextConfigChanging event
         /// </summary>
@@ -720,6 +779,11 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveDateActivationPassivCalendarAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(ParameterChangesObject.ClassInstance)).Resolve("DateActivationPassivCalendar")));
         }
         
         /// <summary>
@@ -748,6 +812,11 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             }
         }
         
+        private static ITypedElement RetrieveNumberProtectedConfigChangesAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(ParameterChangesObject.ClassInstance)).Resolve("NumberProtectedConfigChanges")));
+        }
+        
         /// <summary>
         /// Raises the NumberProtectedConfigChangesChanging event
         /// </summary>
@@ -772,6 +841,11 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveDateLastProtectedConfigChangeAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(ParameterChangesObject.ClassInstance)).Resolve("DateLastProtectedConfigChange")));
         }
         
         /// <summary>
@@ -800,6 +874,11 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             }
         }
         
+        private static ITypedElement RetrieveDateLastClockSynchAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(ParameterChangesObject.ClassInstance)).Resolve("DateLastClockSynch")));
+        }
+        
         /// <summary>
         /// Raises the DateLastClockSynchChanging event
         /// </summary>
@@ -824,6 +903,11 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveDateLastFirmwareActivationAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(ParameterChangesObject.ClassInstance)).Resolve("DateLastFirmwareActivation")));
         }
         
         /// <summary>
@@ -1005,7 +1089,7 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public NumberConfigProgramChangesProxy(IParameterChangesObject modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "NumberConfigProgramChanges")
             {
             }
             
@@ -1023,24 +1107,6 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     this.ModelElement.NumberConfigProgramChanges = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.NumberConfigProgramChangesChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.NumberConfigProgramChangesChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1054,7 +1120,7 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public DateLastConfigChangeProxy(IParameterChangesObject modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "DateLastConfigChange")
             {
             }
             
@@ -1072,24 +1138,6 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     this.ModelElement.DateLastConfigChange = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.DateLastConfigChangeChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.DateLastConfigChangeChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1103,7 +1151,7 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public DateLastSwitchChangeProxy(IParameterChangesObject modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "DateLastSwitchChange")
             {
             }
             
@@ -1121,24 +1169,6 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     this.ModelElement.DateLastSwitchChange = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.DateLastSwitchChangeChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.DateLastSwitchChangeChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1152,7 +1182,7 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public DateLastRippleControlChangeProxy(IParameterChangesObject modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "DateLastRippleControlChange")
             {
             }
             
@@ -1170,24 +1200,6 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     this.ModelElement.DateLastRippleControlChange = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.DateLastRippleControlChangeChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.DateLastRippleControlChangeChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1201,7 +1213,7 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public StatusSecuritySwitchesProxy(IParameterChangesObject modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "StatusSecuritySwitches")
             {
             }
             
@@ -1219,24 +1231,6 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     this.ModelElement.StatusSecuritySwitches = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.StatusSecuritySwitchesChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.StatusSecuritySwitchesChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1250,7 +1244,7 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public DateLastCalibrationProxy(IParameterChangesObject modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "DateLastCalibration")
             {
             }
             
@@ -1268,24 +1262,6 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     this.ModelElement.DateLastCalibration = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.DateLastCalibrationChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.DateLastCalibrationChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1299,7 +1275,7 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public DateNextConfigProxy(IParameterChangesObject modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "DateNextConfig")
             {
             }
             
@@ -1317,24 +1293,6 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     this.ModelElement.DateNextConfig = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.DateNextConfigChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.DateNextConfigChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1348,7 +1306,7 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public DateActivationPassivCalendarProxy(IParameterChangesObject modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "DateActivationPassivCalendar")
             {
             }
             
@@ -1366,24 +1324,6 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     this.ModelElement.DateActivationPassivCalendar = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.DateActivationPassivCalendarChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.DateActivationPassivCalendarChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1397,7 +1337,7 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public NumberProtectedConfigChangesProxy(IParameterChangesObject modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "NumberProtectedConfigChanges")
             {
             }
             
@@ -1415,24 +1355,6 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     this.ModelElement.NumberProtectedConfigChanges = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.NumberProtectedConfigChangesChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.NumberProtectedConfigChangesChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1446,7 +1368,7 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public DateLastProtectedConfigChangeProxy(IParameterChangesObject modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "DateLastProtectedConfigChange")
             {
             }
             
@@ -1464,24 +1386,6 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     this.ModelElement.DateLastProtectedConfigChange = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.DateLastProtectedConfigChangeChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.DateLastProtectedConfigChangeChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1495,7 +1399,7 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public DateLastClockSynchProxy(IParameterChangesObject modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "DateLastClockSynch")
             {
             }
             
@@ -1513,24 +1417,6 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     this.ModelElement.DateLastClockSynch = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.DateLastClockSynchChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.DateLastClockSynchChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1544,7 +1430,7 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public DateLastFirmwareActivationProxy(IParameterChangesObject modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "DateLastFirmwareActivation")
             {
             }
             
@@ -1561,24 +1447,6 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                 {
                     this.ModelElement.DateLastFirmwareActivation = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.DateLastFirmwareActivationChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.DateLastFirmwareActivationChanged -= handler;
             }
         }
     }

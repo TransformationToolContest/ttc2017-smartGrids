@@ -39,7 +39,7 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
     [XmlNamespacePrefixAttribute("objects")]
     [ModelRepresentationClassAttribute("http://www.transformation-tool-contest.eu/2017/smartGrids/cosem#//COSEMObjects/El" +
         "ectricityValues")]
-    public class ElectricityValues : Data, IElectricityValues, IModelElement
+    public partial class ElectricityValues : Data, IElectricityValues, IModelElement
     {
         
         /// <summary>
@@ -47,430 +47,602 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
         /// </summary>
         private Nullable<double> _activePowerpL1;
         
+        private static Lazy<ITypedElement> _activePowerpL1Attribute = new Lazy<ITypedElement>(RetrieveActivePowerpL1Attribute);
+        
         /// <summary>
         /// The backing field for the ActivePowerpall property
         /// </summary>
         private Nullable<double> _activePowerpall;
+        
+        private static Lazy<ITypedElement> _activePowerpallAttribute = new Lazy<ITypedElement>(RetrieveActivePowerpallAttribute);
         
         /// <summary>
         /// The backing field for the ActivePowerpL2 property
         /// </summary>
         private Nullable<double> _activePowerpL2;
         
+        private static Lazy<ITypedElement> _activePowerpL2Attribute = new Lazy<ITypedElement>(RetrieveActivePowerpL2Attribute);
+        
         /// <summary>
         /// The backing field for the ActivePowerpL3 property
         /// </summary>
         private Nullable<double> _activePowerpL3;
+        
+        private static Lazy<ITypedElement> _activePowerpL3Attribute = new Lazy<ITypedElement>(RetrieveActivePowerpL3Attribute);
         
         /// <summary>
         /// The backing field for the ActivePowermL2 property
         /// </summary>
         private Nullable<double> _activePowermL2;
         
+        private static Lazy<ITypedElement> _activePowermL2Attribute = new Lazy<ITypedElement>(RetrieveActivePowermL2Attribute);
+        
         /// <summary>
         /// The backing field for the ActivePowermL1 property
         /// </summary>
         private Nullable<double> _activePowermL1;
+        
+        private static Lazy<ITypedElement> _activePowermL1Attribute = new Lazy<ITypedElement>(RetrieveActivePowermL1Attribute);
         
         /// <summary>
         /// The backing field for the ActivePowermL3 property
         /// </summary>
         private Nullable<double> _activePowermL3;
         
+        private static Lazy<ITypedElement> _activePowermL3Attribute = new Lazy<ITypedElement>(RetrieveActivePowermL3Attribute);
+        
         /// <summary>
         /// The backing field for the ActivePowermall property
         /// </summary>
         private Nullable<double> _activePowermall;
+        
+        private static Lazy<ITypedElement> _activePowermallAttribute = new Lazy<ITypedElement>(RetrieveActivePowermallAttribute);
         
         /// <summary>
         /// The backing field for the ReactivePowerpL1 property
         /// </summary>
         private Nullable<double> _reactivePowerpL1;
         
+        private static Lazy<ITypedElement> _reactivePowerpL1Attribute = new Lazy<ITypedElement>(RetrieveReactivePowerpL1Attribute);
+        
         /// <summary>
         /// The backing field for the ReactivePowerpL2 property
         /// </summary>
         private Nullable<double> _reactivePowerpL2;
+        
+        private static Lazy<ITypedElement> _reactivePowerpL2Attribute = new Lazy<ITypedElement>(RetrieveReactivePowerpL2Attribute);
         
         /// <summary>
         /// The backing field for the ReactivePowerpL3 property
         /// </summary>
         private Nullable<double> _reactivePowerpL3;
         
+        private static Lazy<ITypedElement> _reactivePowerpL3Attribute = new Lazy<ITypedElement>(RetrieveReactivePowerpL3Attribute);
+        
         /// <summary>
         /// The backing field for the ReactivePowerpall property
         /// </summary>
         private Nullable<double> _reactivePowerpall;
+        
+        private static Lazy<ITypedElement> _reactivePowerpallAttribute = new Lazy<ITypedElement>(RetrieveReactivePowerpallAttribute);
         
         /// <summary>
         /// The backing field for the ReactivePowermL1 property
         /// </summary>
         private Nullable<double> _reactivePowermL1;
         
+        private static Lazy<ITypedElement> _reactivePowermL1Attribute = new Lazy<ITypedElement>(RetrieveReactivePowermL1Attribute);
+        
         /// <summary>
         /// The backing field for the ReactivePowermL2 property
         /// </summary>
         private Nullable<double> _reactivePowermL2;
+        
+        private static Lazy<ITypedElement> _reactivePowermL2Attribute = new Lazy<ITypedElement>(RetrieveReactivePowermL2Attribute);
         
         /// <summary>
         /// The backing field for the ReactivePowermL3 property
         /// </summary>
         private Nullable<double> _reactivePowermL3;
         
+        private static Lazy<ITypedElement> _reactivePowermL3Attribute = new Lazy<ITypedElement>(RetrieveReactivePowermL3Attribute);
+        
         /// <summary>
         /// The backing field for the ReactivePowermall property
         /// </summary>
         private Nullable<double> _reactivePowermall;
+        
+        private static Lazy<ITypedElement> _reactivePowermallAttribute = new Lazy<ITypedElement>(RetrieveReactivePowermallAttribute);
         
         /// <summary>
         /// The backing field for the ReactivePowerQIL1 property
         /// </summary>
         private Nullable<double> _reactivePowerQIL1;
         
+        private static Lazy<ITypedElement> _reactivePowerQIL1Attribute = new Lazy<ITypedElement>(RetrieveReactivePowerQIL1Attribute);
+        
         /// <summary>
         /// The backing field for the ReactivePowerQIL2 property
         /// </summary>
         private Nullable<double> _reactivePowerQIL2;
+        
+        private static Lazy<ITypedElement> _reactivePowerQIL2Attribute = new Lazy<ITypedElement>(RetrieveReactivePowerQIL2Attribute);
         
         /// <summary>
         /// The backing field for the ReactivePowerQIL3 property
         /// </summary>
         private Nullable<double> _reactivePowerQIL3;
         
+        private static Lazy<ITypedElement> _reactivePowerQIL3Attribute = new Lazy<ITypedElement>(RetrieveReactivePowerQIL3Attribute);
+        
         /// <summary>
         /// The backing field for the ReactivePowerQIall property
         /// </summary>
         private Nullable<double> _reactivePowerQIall;
+        
+        private static Lazy<ITypedElement> _reactivePowerQIallAttribute = new Lazy<ITypedElement>(RetrieveReactivePowerQIallAttribute);
         
         /// <summary>
         /// The backing field for the ReactivePowerQIIL1 property
         /// </summary>
         private Nullable<double> _reactivePowerQIIL1;
         
+        private static Lazy<ITypedElement> _reactivePowerQIIL1Attribute = new Lazy<ITypedElement>(RetrieveReactivePowerQIIL1Attribute);
+        
         /// <summary>
         /// The backing field for the ReactivePowerQIIL2 property
         /// </summary>
         private Nullable<double> _reactivePowerQIIL2;
+        
+        private static Lazy<ITypedElement> _reactivePowerQIIL2Attribute = new Lazy<ITypedElement>(RetrieveReactivePowerQIIL2Attribute);
         
         /// <summary>
         /// The backing field for the ReactivePowerQIIL3 property
         /// </summary>
         private Nullable<double> _reactivePowerQIIL3;
         
+        private static Lazy<ITypedElement> _reactivePowerQIIL3Attribute = new Lazy<ITypedElement>(RetrieveReactivePowerQIIL3Attribute);
+        
         /// <summary>
         /// The backing field for the ReactivePowerQIIall property
         /// </summary>
         private Nullable<double> _reactivePowerQIIall;
+        
+        private static Lazy<ITypedElement> _reactivePowerQIIallAttribute = new Lazy<ITypedElement>(RetrieveReactivePowerQIIallAttribute);
         
         /// <summary>
         /// The backing field for the ReactivePowerQIIIL1 property
         /// </summary>
         private Nullable<double> _reactivePowerQIIIL1;
         
+        private static Lazy<ITypedElement> _reactivePowerQIIIL1Attribute = new Lazy<ITypedElement>(RetrieveReactivePowerQIIIL1Attribute);
+        
         /// <summary>
         /// The backing field for the ReactivePowerQIIIL2 property
         /// </summary>
         private Nullable<double> _reactivePowerQIIIL2;
+        
+        private static Lazy<ITypedElement> _reactivePowerQIIIL2Attribute = new Lazy<ITypedElement>(RetrieveReactivePowerQIIIL2Attribute);
         
         /// <summary>
         /// The backing field for the ReactivePowerQIIIL3 property
         /// </summary>
         private Nullable<double> _reactivePowerQIIIL3;
         
+        private static Lazy<ITypedElement> _reactivePowerQIIIL3Attribute = new Lazy<ITypedElement>(RetrieveReactivePowerQIIIL3Attribute);
+        
         /// <summary>
         /// The backing field for the ReactivePowerQIIIall property
         /// </summary>
         private Nullable<double> _reactivePowerQIIIall;
+        
+        private static Lazy<ITypedElement> _reactivePowerQIIIallAttribute = new Lazy<ITypedElement>(RetrieveReactivePowerQIIIallAttribute);
         
         /// <summary>
         /// The backing field for the ReactivePowerQIVL1 property
         /// </summary>
         private Nullable<double> _reactivePowerQIVL1;
         
+        private static Lazy<ITypedElement> _reactivePowerQIVL1Attribute = new Lazy<ITypedElement>(RetrieveReactivePowerQIVL1Attribute);
+        
         /// <summary>
         /// The backing field for the ReactivePowerQIVL2 property
         /// </summary>
         private Nullable<double> _reactivePowerQIVL2;
+        
+        private static Lazy<ITypedElement> _reactivePowerQIVL2Attribute = new Lazy<ITypedElement>(RetrieveReactivePowerQIVL2Attribute);
         
         /// <summary>
         /// The backing field for the ReactivePowerQIVL3 property
         /// </summary>
         private Nullable<double> _reactivePowerQIVL3;
         
+        private static Lazy<ITypedElement> _reactivePowerQIVL3Attribute = new Lazy<ITypedElement>(RetrieveReactivePowerQIVL3Attribute);
+        
         /// <summary>
         /// The backing field for the ReactivePowerQIVall property
         /// </summary>
         private Nullable<double> _reactivePowerQIVall;
+        
+        private static Lazy<ITypedElement> _reactivePowerQIVallAttribute = new Lazy<ITypedElement>(RetrieveReactivePowerQIVallAttribute);
         
         /// <summary>
         /// The backing field for the ApparentPowerpL1 property
         /// </summary>
         private Nullable<double> _apparentPowerpL1;
         
+        private static Lazy<ITypedElement> _apparentPowerpL1Attribute = new Lazy<ITypedElement>(RetrieveApparentPowerpL1Attribute);
+        
         /// <summary>
         /// The backing field for the ApparentPowerpL2 property
         /// </summary>
         private Nullable<double> _apparentPowerpL2;
+        
+        private static Lazy<ITypedElement> _apparentPowerpL2Attribute = new Lazy<ITypedElement>(RetrieveApparentPowerpL2Attribute);
         
         /// <summary>
         /// The backing field for the ApparentPowerpL3 property
         /// </summary>
         private Nullable<double> _apparentPowerpL3;
         
+        private static Lazy<ITypedElement> _apparentPowerpL3Attribute = new Lazy<ITypedElement>(RetrieveApparentPowerpL3Attribute);
+        
         /// <summary>
         /// The backing field for the ApparentPowerpAll property
         /// </summary>
         private Nullable<double> _apparentPowerpAll;
+        
+        private static Lazy<ITypedElement> _apparentPowerpAllAttribute = new Lazy<ITypedElement>(RetrieveApparentPowerpAllAttribute);
         
         /// <summary>
         /// The backing field for the ApparentPowermL1 property
         /// </summary>
         private Nullable<double> _apparentPowermL1;
         
+        private static Lazy<ITypedElement> _apparentPowermL1Attribute = new Lazy<ITypedElement>(RetrieveApparentPowermL1Attribute);
+        
         /// <summary>
         /// The backing field for the ApparentPowermL2 property
         /// </summary>
         private Nullable<double> _apparentPowermL2;
+        
+        private static Lazy<ITypedElement> _apparentPowermL2Attribute = new Lazy<ITypedElement>(RetrieveApparentPowermL2Attribute);
         
         /// <summary>
         /// The backing field for the ApparentPowermL3 property
         /// </summary>
         private Nullable<double> _apparentPowermL3;
         
+        private static Lazy<ITypedElement> _apparentPowermL3Attribute = new Lazy<ITypedElement>(RetrieveApparentPowermL3Attribute);
+        
         /// <summary>
         /// The backing field for the ApparentPowermAll property
         /// </summary>
         private Nullable<double> _apparentPowermAll;
+        
+        private static Lazy<ITypedElement> _apparentPowermAllAttribute = new Lazy<ITypedElement>(RetrieveApparentPowermAllAttribute);
         
         /// <summary>
         /// The backing field for the CurrentL1 property
         /// </summary>
         private Nullable<double> _currentL1;
         
+        private static Lazy<ITypedElement> _currentL1Attribute = new Lazy<ITypedElement>(RetrieveCurrentL1Attribute);
+        
         /// <summary>
         /// The backing field for the CurrentL2 property
         /// </summary>
         private Nullable<double> _currentL2;
+        
+        private static Lazy<ITypedElement> _currentL2Attribute = new Lazy<ITypedElement>(RetrieveCurrentL2Attribute);
         
         /// <summary>
         /// The backing field for the CurrentL3 property
         /// </summary>
         private Nullable<double> _currentL3;
         
+        private static Lazy<ITypedElement> _currentL3Attribute = new Lazy<ITypedElement>(RetrieveCurrentL3Attribute);
+        
         /// <summary>
         /// The backing field for the CurrentAll property
         /// </summary>
         private Nullable<double> _currentAll;
+        
+        private static Lazy<ITypedElement> _currentAllAttribute = new Lazy<ITypedElement>(RetrieveCurrentAllAttribute);
         
         /// <summary>
         /// The backing field for the VoltageL1 property
         /// </summary>
         private Nullable<double> _voltageL1;
         
+        private static Lazy<ITypedElement> _voltageL1Attribute = new Lazy<ITypedElement>(RetrieveVoltageL1Attribute);
+        
         /// <summary>
         /// The backing field for the VoltageL2 property
         /// </summary>
         private Nullable<double> _voltageL2;
+        
+        private static Lazy<ITypedElement> _voltageL2Attribute = new Lazy<ITypedElement>(RetrieveVoltageL2Attribute);
         
         /// <summary>
         /// The backing field for the VoltageL3 property
         /// </summary>
         private Nullable<double> _voltageL3;
         
+        private static Lazy<ITypedElement> _voltageL3Attribute = new Lazy<ITypedElement>(RetrieveVoltageL3Attribute);
+        
         /// <summary>
         /// The backing field for the VoltageAll property
         /// </summary>
         private Nullable<double> _voltageAll;
+        
+        private static Lazy<ITypedElement> _voltageAllAttribute = new Lazy<ITypedElement>(RetrieveVoltageAllAttribute);
         
         /// <summary>
         /// The backing field for the PowerFactorL1 property
         /// </summary>
         private Nullable<double> _powerFactorL1;
         
+        private static Lazy<ITypedElement> _powerFactorL1Attribute = new Lazy<ITypedElement>(RetrievePowerFactorL1Attribute);
+        
         /// <summary>
         /// The backing field for the PowerFactorL2 property
         /// </summary>
         private Nullable<double> _powerFactorL2;
+        
+        private static Lazy<ITypedElement> _powerFactorL2Attribute = new Lazy<ITypedElement>(RetrievePowerFactorL2Attribute);
         
         /// <summary>
         /// The backing field for the PowerFactorL3 property
         /// </summary>
         private Nullable<double> _powerFactorL3;
         
+        private static Lazy<ITypedElement> _powerFactorL3Attribute = new Lazy<ITypedElement>(RetrievePowerFactorL3Attribute);
+        
         /// <summary>
         /// The backing field for the PowerFactorAll property
         /// </summary>
         private Nullable<double> _powerFactorAll;
+        
+        private static Lazy<ITypedElement> _powerFactorAllAttribute = new Lazy<ITypedElement>(RetrievePowerFactorAllAttribute);
         
         /// <summary>
         /// The backing field for the SupplyFrequencyL1 property
         /// </summary>
         private Nullable<double> _supplyFrequencyL1;
         
+        private static Lazy<ITypedElement> _supplyFrequencyL1Attribute = new Lazy<ITypedElement>(RetrieveSupplyFrequencyL1Attribute);
+        
         /// <summary>
         /// The backing field for the SupplyFrequencyL2 property
         /// </summary>
         private Nullable<double> _supplyFrequencyL2;
+        
+        private static Lazy<ITypedElement> _supplyFrequencyL2Attribute = new Lazy<ITypedElement>(RetrieveSupplyFrequencyL2Attribute);
         
         /// <summary>
         /// The backing field for the SupplyFrequencyL3 property
         /// </summary>
         private Nullable<double> _supplyFrequencyL3;
         
+        private static Lazy<ITypedElement> _supplyFrequencyL3Attribute = new Lazy<ITypedElement>(RetrieveSupplyFrequencyL3Attribute);
+        
         /// <summary>
         /// The backing field for the SupplyFrequencyAll property
         /// </summary>
         private Nullable<double> _supplyFrequencyAll;
+        
+        private static Lazy<ITypedElement> _supplyFrequencyAllAttribute = new Lazy<ITypedElement>(RetrieveSupplyFrequencyAllAttribute);
         
         /// <summary>
         /// The backing field for the ActivePowerAbsPL1 property
         /// </summary>
         private Nullable<double> _activePowerAbsPL1;
         
+        private static Lazy<ITypedElement> _activePowerAbsPL1Attribute = new Lazy<ITypedElement>(RetrieveActivePowerAbsPL1Attribute);
+        
         /// <summary>
         /// The backing field for the ActivePowerAbsPL2 property
         /// </summary>
         private Nullable<double> _activePowerAbsPL2;
+        
+        private static Lazy<ITypedElement> _activePowerAbsPL2Attribute = new Lazy<ITypedElement>(RetrieveActivePowerAbsPL2Attribute);
         
         /// <summary>
         /// The backing field for the ActivePowerAbsPL3 property
         /// </summary>
         private Nullable<double> _activePowerAbsPL3;
         
+        private static Lazy<ITypedElement> _activePowerAbsPL3Attribute = new Lazy<ITypedElement>(RetrieveActivePowerAbsPL3Attribute);
+        
         /// <summary>
         /// The backing field for the ActivePowerAbsPAll property
         /// </summary>
         private Nullable<double> _activePowerAbsPAll;
+        
+        private static Lazy<ITypedElement> _activePowerAbsPAllAttribute = new Lazy<ITypedElement>(RetrieveActivePowerAbsPAllAttribute);
         
         /// <summary>
         /// The backing field for the ActivePowerAbsML1 property
         /// </summary>
         private Nullable<double> _activePowerAbsML1;
         
+        private static Lazy<ITypedElement> _activePowerAbsML1Attribute = new Lazy<ITypedElement>(RetrieveActivePowerAbsML1Attribute);
+        
         /// <summary>
         /// The backing field for the ActivePowerAbsML2 property
         /// </summary>
         private Nullable<double> _activePowerAbsML2;
+        
+        private static Lazy<ITypedElement> _activePowerAbsML2Attribute = new Lazy<ITypedElement>(RetrieveActivePowerAbsML2Attribute);
         
         /// <summary>
         /// The backing field for the ActivePowerAbsML3 property
         /// </summary>
         private Nullable<double> _activePowerAbsML3;
         
+        private static Lazy<ITypedElement> _activePowerAbsML3Attribute = new Lazy<ITypedElement>(RetrieveActivePowerAbsML3Attribute);
+        
         /// <summary>
         /// The backing field for the ActivePowerAbsMAll property
         /// </summary>
         private Nullable<double> _activePowerAbsMAll;
+        
+        private static Lazy<ITypedElement> _activePowerAbsMAllAttribute = new Lazy<ITypedElement>(RetrieveActivePowerAbsMAllAttribute);
         
         /// <summary>
         /// The backing field for the ActivePowerQIL1 property
         /// </summary>
         private Nullable<double> _activePowerQIL1;
         
+        private static Lazy<ITypedElement> _activePowerQIL1Attribute = new Lazy<ITypedElement>(RetrieveActivePowerQIL1Attribute);
+        
         /// <summary>
         /// The backing field for the ActivePowerQIL2 property
         /// </summary>
         private Nullable<double> _activePowerQIL2;
+        
+        private static Lazy<ITypedElement> _activePowerQIL2Attribute = new Lazy<ITypedElement>(RetrieveActivePowerQIL2Attribute);
         
         /// <summary>
         /// The backing field for the ActivePowerQIL3 property
         /// </summary>
         private Nullable<double> _activePowerQIL3;
         
+        private static Lazy<ITypedElement> _activePowerQIL3Attribute = new Lazy<ITypedElement>(RetrieveActivePowerQIL3Attribute);
+        
         /// <summary>
         /// The backing field for the ActivePowerQIall property
         /// </summary>
         private Nullable<double> _activePowerQIall;
+        
+        private static Lazy<ITypedElement> _activePowerQIallAttribute = new Lazy<ITypedElement>(RetrieveActivePowerQIallAttribute);
         
         /// <summary>
         /// The backing field for the ActivePowerQIIL1 property
         /// </summary>
         private Nullable<double> _activePowerQIIL1;
         
+        private static Lazy<ITypedElement> _activePowerQIIL1Attribute = new Lazy<ITypedElement>(RetrieveActivePowerQIIL1Attribute);
+        
         /// <summary>
         /// The backing field for the ActivePowerQIIL2 property
         /// </summary>
         private Nullable<double> _activePowerQIIL2;
+        
+        private static Lazy<ITypedElement> _activePowerQIIL2Attribute = new Lazy<ITypedElement>(RetrieveActivePowerQIIL2Attribute);
         
         /// <summary>
         /// The backing field for the ActivePowerQIIL3 property
         /// </summary>
         private Nullable<double> _activePowerQIIL3;
         
+        private static Lazy<ITypedElement> _activePowerQIIL3Attribute = new Lazy<ITypedElement>(RetrieveActivePowerQIIL3Attribute);
+        
         /// <summary>
         /// The backing field for the ActivePowerQIIall property
         /// </summary>
         private Nullable<double> _activePowerQIIall;
+        
+        private static Lazy<ITypedElement> _activePowerQIIallAttribute = new Lazy<ITypedElement>(RetrieveActivePowerQIIallAttribute);
         
         /// <summary>
         /// The backing field for the ActivePowerQIIIL1 property
         /// </summary>
         private Nullable<double> _activePowerQIIIL1;
         
+        private static Lazy<ITypedElement> _activePowerQIIIL1Attribute = new Lazy<ITypedElement>(RetrieveActivePowerQIIIL1Attribute);
+        
         /// <summary>
         /// The backing field for the ActivePowerQIIIL2 property
         /// </summary>
         private Nullable<double> _activePowerQIIIL2;
+        
+        private static Lazy<ITypedElement> _activePowerQIIIL2Attribute = new Lazy<ITypedElement>(RetrieveActivePowerQIIIL2Attribute);
         
         /// <summary>
         /// The backing field for the ActivePowerQIIIL3 property
         /// </summary>
         private Nullable<double> _activePowerQIIIL3;
         
+        private static Lazy<ITypedElement> _activePowerQIIIL3Attribute = new Lazy<ITypedElement>(RetrieveActivePowerQIIIL3Attribute);
+        
         /// <summary>
         /// The backing field for the ActivePowerQIIIall property
         /// </summary>
         private Nullable<double> _activePowerQIIIall;
+        
+        private static Lazy<ITypedElement> _activePowerQIIIallAttribute = new Lazy<ITypedElement>(RetrieveActivePowerQIIIallAttribute);
         
         /// <summary>
         /// The backing field for the ActivePowerQIVL1 property
         /// </summary>
         private Nullable<double> _activePowerQIVL1;
         
+        private static Lazy<ITypedElement> _activePowerQIVL1Attribute = new Lazy<ITypedElement>(RetrieveActivePowerQIVL1Attribute);
+        
         /// <summary>
         /// The backing field for the ActivePowerQIVL2 property
         /// </summary>
         private Nullable<double> _activePowerQIVL2;
+        
+        private static Lazy<ITypedElement> _activePowerQIVL2Attribute = new Lazy<ITypedElement>(RetrieveActivePowerQIVL2Attribute);
         
         /// <summary>
         /// The backing field for the ActivePowerQIVL3 property
         /// </summary>
         private Nullable<double> _activePowerQIVL3;
         
+        private static Lazy<ITypedElement> _activePowerQIVL3Attribute = new Lazy<ITypedElement>(RetrieveActivePowerQIVL3Attribute);
+        
         /// <summary>
         /// The backing field for the ActivePowerQIVall property
         /// </summary>
         private Nullable<double> _activePowerQIVall;
+        
+        private static Lazy<ITypedElement> _activePowerQIVallAttribute = new Lazy<ITypedElement>(RetrieveActivePowerQIVallAttribute);
         
         /// <summary>
         /// The backing field for the Angles property
         /// </summary>
         private Nullable<double> _angles;
         
+        private static Lazy<ITypedElement> _anglesAttribute = new Lazy<ITypedElement>(RetrieveAnglesAttribute);
+        
         /// <summary>
         /// The backing field for the Pulses property
         /// </summary>
         private Nullable<int> _pulses;
+        
+        private static Lazy<ITypedElement> _pulsesAttribute = new Lazy<ITypedElement>(RetrievePulsesAttribute);
         
         /// <summary>
         /// The backing field for the Ampere_squaredHours property
         /// </summary>
         private Nullable<double> _ampere_squaredHours;
         
+        private static Lazy<ITypedElement> _ampere_squaredHoursAttribute = new Lazy<ITypedElement>(RetrieveAmpere_squaredHoursAttribute);
+        
         /// <summary>
         /// The backing field for the Volt_squaredHours property
         /// </summary>
         private Nullable<double> _volt_squaredHours;
+        
+        private static Lazy<ITypedElement> _volt_squaredHoursAttribute = new Lazy<ITypedElement>(RetrieveVolt_squaredHoursAttribute);
         
         /// <summary>
         /// The backing field for the NeutralCurrent property
         /// </summary>
         private Nullable<double> _neutralCurrent;
         
+        private static Lazy<ITypedElement> _neutralCurrentAttribute = new Lazy<ITypedElement>(RetrieveNeutralCurrentAttribute);
+        
         /// <summary>
         /// The backing field for the NeutralVoltage property
         /// </summary>
         private Nullable<double> _neutralVoltage;
+        
+        private static Lazy<ITypedElement> _neutralVoltageAttribute = new Lazy<ITypedElement>(RetrieveNeutralVoltageAttribute);
         
         private static IClass _classInstance;
         
@@ -491,10 +663,10 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     Nullable<double> old = this._activePowerpL1;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnActivePowerpL1Changing(e);
-                    this.OnPropertyChanging("ActivePowerpL1", e);
+                    this.OnPropertyChanging("ActivePowerpL1", e, _activePowerpL1Attribute);
                     this._activePowerpL1 = value;
                     this.OnActivePowerpL1Changed(e);
-                    this.OnPropertyChanged("ActivePowerpL1", e);
+                    this.OnPropertyChanged("ActivePowerpL1", e, _activePowerpL1Attribute);
                 }
             }
         }
@@ -516,10 +688,10 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     Nullable<double> old = this._activePowerpall;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnActivePowerpallChanging(e);
-                    this.OnPropertyChanging("ActivePowerpall", e);
+                    this.OnPropertyChanging("ActivePowerpall", e, _activePowerpallAttribute);
                     this._activePowerpall = value;
                     this.OnActivePowerpallChanged(e);
-                    this.OnPropertyChanged("ActivePowerpall", e);
+                    this.OnPropertyChanged("ActivePowerpall", e, _activePowerpallAttribute);
                 }
             }
         }
@@ -541,10 +713,10 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     Nullable<double> old = this._activePowerpL2;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnActivePowerpL2Changing(e);
-                    this.OnPropertyChanging("ActivePowerpL2", e);
+                    this.OnPropertyChanging("ActivePowerpL2", e, _activePowerpL2Attribute);
                     this._activePowerpL2 = value;
                     this.OnActivePowerpL2Changed(e);
-                    this.OnPropertyChanged("ActivePowerpL2", e);
+                    this.OnPropertyChanged("ActivePowerpL2", e, _activePowerpL2Attribute);
                 }
             }
         }
@@ -566,10 +738,10 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     Nullable<double> old = this._activePowerpL3;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnActivePowerpL3Changing(e);
-                    this.OnPropertyChanging("ActivePowerpL3", e);
+                    this.OnPropertyChanging("ActivePowerpL3", e, _activePowerpL3Attribute);
                     this._activePowerpL3 = value;
                     this.OnActivePowerpL3Changed(e);
-                    this.OnPropertyChanged("ActivePowerpL3", e);
+                    this.OnPropertyChanged("ActivePowerpL3", e, _activePowerpL3Attribute);
                 }
             }
         }
@@ -591,10 +763,10 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     Nullable<double> old = this._activePowermL2;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnActivePowermL2Changing(e);
-                    this.OnPropertyChanging("ActivePowermL2", e);
+                    this.OnPropertyChanging("ActivePowermL2", e, _activePowermL2Attribute);
                     this._activePowermL2 = value;
                     this.OnActivePowermL2Changed(e);
-                    this.OnPropertyChanged("ActivePowermL2", e);
+                    this.OnPropertyChanged("ActivePowermL2", e, _activePowermL2Attribute);
                 }
             }
         }
@@ -616,10 +788,10 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     Nullable<double> old = this._activePowermL1;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnActivePowermL1Changing(e);
-                    this.OnPropertyChanging("ActivePowermL1", e);
+                    this.OnPropertyChanging("ActivePowermL1", e, _activePowermL1Attribute);
                     this._activePowermL1 = value;
                     this.OnActivePowermL1Changed(e);
-                    this.OnPropertyChanged("ActivePowermL1", e);
+                    this.OnPropertyChanged("ActivePowermL1", e, _activePowermL1Attribute);
                 }
             }
         }
@@ -641,10 +813,10 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     Nullable<double> old = this._activePowermL3;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnActivePowermL3Changing(e);
-                    this.OnPropertyChanging("ActivePowermL3", e);
+                    this.OnPropertyChanging("ActivePowermL3", e, _activePowermL3Attribute);
                     this._activePowermL3 = value;
                     this.OnActivePowermL3Changed(e);
-                    this.OnPropertyChanged("ActivePowermL3", e);
+                    this.OnPropertyChanged("ActivePowermL3", e, _activePowermL3Attribute);
                 }
             }
         }
@@ -666,10 +838,10 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     Nullable<double> old = this._activePowermall;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnActivePowermallChanging(e);
-                    this.OnPropertyChanging("ActivePowermall", e);
+                    this.OnPropertyChanging("ActivePowermall", e, _activePowermallAttribute);
                     this._activePowermall = value;
                     this.OnActivePowermallChanged(e);
-                    this.OnPropertyChanged("ActivePowermall", e);
+                    this.OnPropertyChanged("ActivePowermall", e, _activePowermallAttribute);
                 }
             }
         }
@@ -691,10 +863,10 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     Nullable<double> old = this._reactivePowerpL1;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnReactivePowerpL1Changing(e);
-                    this.OnPropertyChanging("ReactivePowerpL1", e);
+                    this.OnPropertyChanging("ReactivePowerpL1", e, _reactivePowerpL1Attribute);
                     this._reactivePowerpL1 = value;
                     this.OnReactivePowerpL1Changed(e);
-                    this.OnPropertyChanged("ReactivePowerpL1", e);
+                    this.OnPropertyChanged("ReactivePowerpL1", e, _reactivePowerpL1Attribute);
                 }
             }
         }
@@ -716,10 +888,10 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     Nullable<double> old = this._reactivePowerpL2;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnReactivePowerpL2Changing(e);
-                    this.OnPropertyChanging("ReactivePowerpL2", e);
+                    this.OnPropertyChanging("ReactivePowerpL2", e, _reactivePowerpL2Attribute);
                     this._reactivePowerpL2 = value;
                     this.OnReactivePowerpL2Changed(e);
-                    this.OnPropertyChanged("ReactivePowerpL2", e);
+                    this.OnPropertyChanged("ReactivePowerpL2", e, _reactivePowerpL2Attribute);
                 }
             }
         }
@@ -741,10 +913,10 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     Nullable<double> old = this._reactivePowerpL3;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnReactivePowerpL3Changing(e);
-                    this.OnPropertyChanging("ReactivePowerpL3", e);
+                    this.OnPropertyChanging("ReactivePowerpL3", e, _reactivePowerpL3Attribute);
                     this._reactivePowerpL3 = value;
                     this.OnReactivePowerpL3Changed(e);
-                    this.OnPropertyChanged("ReactivePowerpL3", e);
+                    this.OnPropertyChanged("ReactivePowerpL3", e, _reactivePowerpL3Attribute);
                 }
             }
         }
@@ -766,10 +938,10 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     Nullable<double> old = this._reactivePowerpall;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnReactivePowerpallChanging(e);
-                    this.OnPropertyChanging("ReactivePowerpall", e);
+                    this.OnPropertyChanging("ReactivePowerpall", e, _reactivePowerpallAttribute);
                     this._reactivePowerpall = value;
                     this.OnReactivePowerpallChanged(e);
-                    this.OnPropertyChanged("ReactivePowerpall", e);
+                    this.OnPropertyChanged("ReactivePowerpall", e, _reactivePowerpallAttribute);
                 }
             }
         }
@@ -791,10 +963,10 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     Nullable<double> old = this._reactivePowermL1;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnReactivePowermL1Changing(e);
-                    this.OnPropertyChanging("ReactivePowermL1", e);
+                    this.OnPropertyChanging("ReactivePowermL1", e, _reactivePowermL1Attribute);
                     this._reactivePowermL1 = value;
                     this.OnReactivePowermL1Changed(e);
-                    this.OnPropertyChanged("ReactivePowermL1", e);
+                    this.OnPropertyChanged("ReactivePowermL1", e, _reactivePowermL1Attribute);
                 }
             }
         }
@@ -816,10 +988,10 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     Nullable<double> old = this._reactivePowermL2;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnReactivePowermL2Changing(e);
-                    this.OnPropertyChanging("ReactivePowermL2", e);
+                    this.OnPropertyChanging("ReactivePowermL2", e, _reactivePowermL2Attribute);
                     this._reactivePowermL2 = value;
                     this.OnReactivePowermL2Changed(e);
-                    this.OnPropertyChanged("ReactivePowermL2", e);
+                    this.OnPropertyChanged("ReactivePowermL2", e, _reactivePowermL2Attribute);
                 }
             }
         }
@@ -841,10 +1013,10 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     Nullable<double> old = this._reactivePowermL3;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnReactivePowermL3Changing(e);
-                    this.OnPropertyChanging("ReactivePowermL3", e);
+                    this.OnPropertyChanging("ReactivePowermL3", e, _reactivePowermL3Attribute);
                     this._reactivePowermL3 = value;
                     this.OnReactivePowermL3Changed(e);
-                    this.OnPropertyChanged("ReactivePowermL3", e);
+                    this.OnPropertyChanged("ReactivePowermL3", e, _reactivePowermL3Attribute);
                 }
             }
         }
@@ -866,10 +1038,10 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     Nullable<double> old = this._reactivePowermall;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnReactivePowermallChanging(e);
-                    this.OnPropertyChanging("ReactivePowermall", e);
+                    this.OnPropertyChanging("ReactivePowermall", e, _reactivePowermallAttribute);
                     this._reactivePowermall = value;
                     this.OnReactivePowermallChanged(e);
-                    this.OnPropertyChanged("ReactivePowermall", e);
+                    this.OnPropertyChanged("ReactivePowermall", e, _reactivePowermallAttribute);
                 }
             }
         }
@@ -891,10 +1063,10 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     Nullable<double> old = this._reactivePowerQIL1;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnReactivePowerQIL1Changing(e);
-                    this.OnPropertyChanging("ReactivePowerQIL1", e);
+                    this.OnPropertyChanging("ReactivePowerQIL1", e, _reactivePowerQIL1Attribute);
                     this._reactivePowerQIL1 = value;
                     this.OnReactivePowerQIL1Changed(e);
-                    this.OnPropertyChanged("ReactivePowerQIL1", e);
+                    this.OnPropertyChanged("ReactivePowerQIL1", e, _reactivePowerQIL1Attribute);
                 }
             }
         }
@@ -916,10 +1088,10 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     Nullable<double> old = this._reactivePowerQIL2;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnReactivePowerQIL2Changing(e);
-                    this.OnPropertyChanging("ReactivePowerQIL2", e);
+                    this.OnPropertyChanging("ReactivePowerQIL2", e, _reactivePowerQIL2Attribute);
                     this._reactivePowerQIL2 = value;
                     this.OnReactivePowerQIL2Changed(e);
-                    this.OnPropertyChanged("ReactivePowerQIL2", e);
+                    this.OnPropertyChanged("ReactivePowerQIL2", e, _reactivePowerQIL2Attribute);
                 }
             }
         }
@@ -941,10 +1113,10 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     Nullable<double> old = this._reactivePowerQIL3;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnReactivePowerQIL3Changing(e);
-                    this.OnPropertyChanging("ReactivePowerQIL3", e);
+                    this.OnPropertyChanging("ReactivePowerQIL3", e, _reactivePowerQIL3Attribute);
                     this._reactivePowerQIL3 = value;
                     this.OnReactivePowerQIL3Changed(e);
-                    this.OnPropertyChanged("ReactivePowerQIL3", e);
+                    this.OnPropertyChanged("ReactivePowerQIL3", e, _reactivePowerQIL3Attribute);
                 }
             }
         }
@@ -966,10 +1138,10 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     Nullable<double> old = this._reactivePowerQIall;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnReactivePowerQIallChanging(e);
-                    this.OnPropertyChanging("ReactivePowerQIall", e);
+                    this.OnPropertyChanging("ReactivePowerQIall", e, _reactivePowerQIallAttribute);
                     this._reactivePowerQIall = value;
                     this.OnReactivePowerQIallChanged(e);
-                    this.OnPropertyChanged("ReactivePowerQIall", e);
+                    this.OnPropertyChanged("ReactivePowerQIall", e, _reactivePowerQIallAttribute);
                 }
             }
         }
@@ -991,10 +1163,10 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     Nullable<double> old = this._reactivePowerQIIL1;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnReactivePowerQIIL1Changing(e);
-                    this.OnPropertyChanging("ReactivePowerQIIL1", e);
+                    this.OnPropertyChanging("ReactivePowerQIIL1", e, _reactivePowerQIIL1Attribute);
                     this._reactivePowerQIIL1 = value;
                     this.OnReactivePowerQIIL1Changed(e);
-                    this.OnPropertyChanged("ReactivePowerQIIL1", e);
+                    this.OnPropertyChanged("ReactivePowerQIIL1", e, _reactivePowerQIIL1Attribute);
                 }
             }
         }
@@ -1016,10 +1188,10 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     Nullable<double> old = this._reactivePowerQIIL2;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnReactivePowerQIIL2Changing(e);
-                    this.OnPropertyChanging("ReactivePowerQIIL2", e);
+                    this.OnPropertyChanging("ReactivePowerQIIL2", e, _reactivePowerQIIL2Attribute);
                     this._reactivePowerQIIL2 = value;
                     this.OnReactivePowerQIIL2Changed(e);
-                    this.OnPropertyChanged("ReactivePowerQIIL2", e);
+                    this.OnPropertyChanged("ReactivePowerQIIL2", e, _reactivePowerQIIL2Attribute);
                 }
             }
         }
@@ -1041,10 +1213,10 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     Nullable<double> old = this._reactivePowerQIIL3;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnReactivePowerQIIL3Changing(e);
-                    this.OnPropertyChanging("ReactivePowerQIIL3", e);
+                    this.OnPropertyChanging("ReactivePowerQIIL3", e, _reactivePowerQIIL3Attribute);
                     this._reactivePowerQIIL3 = value;
                     this.OnReactivePowerQIIL3Changed(e);
-                    this.OnPropertyChanged("ReactivePowerQIIL3", e);
+                    this.OnPropertyChanged("ReactivePowerQIIL3", e, _reactivePowerQIIL3Attribute);
                 }
             }
         }
@@ -1066,10 +1238,10 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     Nullable<double> old = this._reactivePowerQIIall;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnReactivePowerQIIallChanging(e);
-                    this.OnPropertyChanging("ReactivePowerQIIall", e);
+                    this.OnPropertyChanging("ReactivePowerQIIall", e, _reactivePowerQIIallAttribute);
                     this._reactivePowerQIIall = value;
                     this.OnReactivePowerQIIallChanged(e);
-                    this.OnPropertyChanged("ReactivePowerQIIall", e);
+                    this.OnPropertyChanged("ReactivePowerQIIall", e, _reactivePowerQIIallAttribute);
                 }
             }
         }
@@ -1091,10 +1263,10 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     Nullable<double> old = this._reactivePowerQIIIL1;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnReactivePowerQIIIL1Changing(e);
-                    this.OnPropertyChanging("ReactivePowerQIIIL1", e);
+                    this.OnPropertyChanging("ReactivePowerQIIIL1", e, _reactivePowerQIIIL1Attribute);
                     this._reactivePowerQIIIL1 = value;
                     this.OnReactivePowerQIIIL1Changed(e);
-                    this.OnPropertyChanged("ReactivePowerQIIIL1", e);
+                    this.OnPropertyChanged("ReactivePowerQIIIL1", e, _reactivePowerQIIIL1Attribute);
                 }
             }
         }
@@ -1116,10 +1288,10 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     Nullable<double> old = this._reactivePowerQIIIL2;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnReactivePowerQIIIL2Changing(e);
-                    this.OnPropertyChanging("ReactivePowerQIIIL2", e);
+                    this.OnPropertyChanging("ReactivePowerQIIIL2", e, _reactivePowerQIIIL2Attribute);
                     this._reactivePowerQIIIL2 = value;
                     this.OnReactivePowerQIIIL2Changed(e);
-                    this.OnPropertyChanged("ReactivePowerQIIIL2", e);
+                    this.OnPropertyChanged("ReactivePowerQIIIL2", e, _reactivePowerQIIIL2Attribute);
                 }
             }
         }
@@ -1141,10 +1313,10 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     Nullable<double> old = this._reactivePowerQIIIL3;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnReactivePowerQIIIL3Changing(e);
-                    this.OnPropertyChanging("ReactivePowerQIIIL3", e);
+                    this.OnPropertyChanging("ReactivePowerQIIIL3", e, _reactivePowerQIIIL3Attribute);
                     this._reactivePowerQIIIL3 = value;
                     this.OnReactivePowerQIIIL3Changed(e);
-                    this.OnPropertyChanged("ReactivePowerQIIIL3", e);
+                    this.OnPropertyChanged("ReactivePowerQIIIL3", e, _reactivePowerQIIIL3Attribute);
                 }
             }
         }
@@ -1166,10 +1338,10 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     Nullable<double> old = this._reactivePowerQIIIall;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnReactivePowerQIIIallChanging(e);
-                    this.OnPropertyChanging("ReactivePowerQIIIall", e);
+                    this.OnPropertyChanging("ReactivePowerQIIIall", e, _reactivePowerQIIIallAttribute);
                     this._reactivePowerQIIIall = value;
                     this.OnReactivePowerQIIIallChanged(e);
-                    this.OnPropertyChanged("ReactivePowerQIIIall", e);
+                    this.OnPropertyChanged("ReactivePowerQIIIall", e, _reactivePowerQIIIallAttribute);
                 }
             }
         }
@@ -1191,10 +1363,10 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     Nullable<double> old = this._reactivePowerQIVL1;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnReactivePowerQIVL1Changing(e);
-                    this.OnPropertyChanging("ReactivePowerQIVL1", e);
+                    this.OnPropertyChanging("ReactivePowerQIVL1", e, _reactivePowerQIVL1Attribute);
                     this._reactivePowerQIVL1 = value;
                     this.OnReactivePowerQIVL1Changed(e);
-                    this.OnPropertyChanged("ReactivePowerQIVL1", e);
+                    this.OnPropertyChanged("ReactivePowerQIVL1", e, _reactivePowerQIVL1Attribute);
                 }
             }
         }
@@ -1216,10 +1388,10 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     Nullable<double> old = this._reactivePowerQIVL2;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnReactivePowerQIVL2Changing(e);
-                    this.OnPropertyChanging("ReactivePowerQIVL2", e);
+                    this.OnPropertyChanging("ReactivePowerQIVL2", e, _reactivePowerQIVL2Attribute);
                     this._reactivePowerQIVL2 = value;
                     this.OnReactivePowerQIVL2Changed(e);
-                    this.OnPropertyChanged("ReactivePowerQIVL2", e);
+                    this.OnPropertyChanged("ReactivePowerQIVL2", e, _reactivePowerQIVL2Attribute);
                 }
             }
         }
@@ -1241,10 +1413,10 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     Nullable<double> old = this._reactivePowerQIVL3;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnReactivePowerQIVL3Changing(e);
-                    this.OnPropertyChanging("ReactivePowerQIVL3", e);
+                    this.OnPropertyChanging("ReactivePowerQIVL3", e, _reactivePowerQIVL3Attribute);
                     this._reactivePowerQIVL3 = value;
                     this.OnReactivePowerQIVL3Changed(e);
-                    this.OnPropertyChanged("ReactivePowerQIVL3", e);
+                    this.OnPropertyChanged("ReactivePowerQIVL3", e, _reactivePowerQIVL3Attribute);
                 }
             }
         }
@@ -1266,10 +1438,10 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     Nullable<double> old = this._reactivePowerQIVall;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnReactivePowerQIVallChanging(e);
-                    this.OnPropertyChanging("ReactivePowerQIVall", e);
+                    this.OnPropertyChanging("ReactivePowerQIVall", e, _reactivePowerQIVallAttribute);
                     this._reactivePowerQIVall = value;
                     this.OnReactivePowerQIVallChanged(e);
-                    this.OnPropertyChanged("ReactivePowerQIVall", e);
+                    this.OnPropertyChanged("ReactivePowerQIVall", e, _reactivePowerQIVallAttribute);
                 }
             }
         }
@@ -1291,10 +1463,10 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     Nullable<double> old = this._apparentPowerpL1;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnApparentPowerpL1Changing(e);
-                    this.OnPropertyChanging("ApparentPowerpL1", e);
+                    this.OnPropertyChanging("ApparentPowerpL1", e, _apparentPowerpL1Attribute);
                     this._apparentPowerpL1 = value;
                     this.OnApparentPowerpL1Changed(e);
-                    this.OnPropertyChanged("ApparentPowerpL1", e);
+                    this.OnPropertyChanged("ApparentPowerpL1", e, _apparentPowerpL1Attribute);
                 }
             }
         }
@@ -1316,10 +1488,10 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     Nullable<double> old = this._apparentPowerpL2;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnApparentPowerpL2Changing(e);
-                    this.OnPropertyChanging("ApparentPowerpL2", e);
+                    this.OnPropertyChanging("ApparentPowerpL2", e, _apparentPowerpL2Attribute);
                     this._apparentPowerpL2 = value;
                     this.OnApparentPowerpL2Changed(e);
-                    this.OnPropertyChanged("ApparentPowerpL2", e);
+                    this.OnPropertyChanged("ApparentPowerpL2", e, _apparentPowerpL2Attribute);
                 }
             }
         }
@@ -1341,10 +1513,10 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     Nullable<double> old = this._apparentPowerpL3;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnApparentPowerpL3Changing(e);
-                    this.OnPropertyChanging("ApparentPowerpL3", e);
+                    this.OnPropertyChanging("ApparentPowerpL3", e, _apparentPowerpL3Attribute);
                     this._apparentPowerpL3 = value;
                     this.OnApparentPowerpL3Changed(e);
-                    this.OnPropertyChanged("ApparentPowerpL3", e);
+                    this.OnPropertyChanged("ApparentPowerpL3", e, _apparentPowerpL3Attribute);
                 }
             }
         }
@@ -1366,10 +1538,10 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     Nullable<double> old = this._apparentPowerpAll;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnApparentPowerpAllChanging(e);
-                    this.OnPropertyChanging("ApparentPowerpAll", e);
+                    this.OnPropertyChanging("ApparentPowerpAll", e, _apparentPowerpAllAttribute);
                     this._apparentPowerpAll = value;
                     this.OnApparentPowerpAllChanged(e);
-                    this.OnPropertyChanged("ApparentPowerpAll", e);
+                    this.OnPropertyChanged("ApparentPowerpAll", e, _apparentPowerpAllAttribute);
                 }
             }
         }
@@ -1391,10 +1563,10 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     Nullable<double> old = this._apparentPowermL1;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnApparentPowermL1Changing(e);
-                    this.OnPropertyChanging("ApparentPowermL1", e);
+                    this.OnPropertyChanging("ApparentPowermL1", e, _apparentPowermL1Attribute);
                     this._apparentPowermL1 = value;
                     this.OnApparentPowermL1Changed(e);
-                    this.OnPropertyChanged("ApparentPowermL1", e);
+                    this.OnPropertyChanged("ApparentPowermL1", e, _apparentPowermL1Attribute);
                 }
             }
         }
@@ -1416,10 +1588,10 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     Nullable<double> old = this._apparentPowermL2;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnApparentPowermL2Changing(e);
-                    this.OnPropertyChanging("ApparentPowermL2", e);
+                    this.OnPropertyChanging("ApparentPowermL2", e, _apparentPowermL2Attribute);
                     this._apparentPowermL2 = value;
                     this.OnApparentPowermL2Changed(e);
-                    this.OnPropertyChanged("ApparentPowermL2", e);
+                    this.OnPropertyChanged("ApparentPowermL2", e, _apparentPowermL2Attribute);
                 }
             }
         }
@@ -1441,10 +1613,10 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     Nullable<double> old = this._apparentPowermL3;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnApparentPowermL3Changing(e);
-                    this.OnPropertyChanging("ApparentPowermL3", e);
+                    this.OnPropertyChanging("ApparentPowermL3", e, _apparentPowermL3Attribute);
                     this._apparentPowermL3 = value;
                     this.OnApparentPowermL3Changed(e);
-                    this.OnPropertyChanged("ApparentPowermL3", e);
+                    this.OnPropertyChanged("ApparentPowermL3", e, _apparentPowermL3Attribute);
                 }
             }
         }
@@ -1466,10 +1638,10 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     Nullable<double> old = this._apparentPowermAll;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnApparentPowermAllChanging(e);
-                    this.OnPropertyChanging("ApparentPowermAll", e);
+                    this.OnPropertyChanging("ApparentPowermAll", e, _apparentPowermAllAttribute);
                     this._apparentPowermAll = value;
                     this.OnApparentPowermAllChanged(e);
-                    this.OnPropertyChanged("ApparentPowermAll", e);
+                    this.OnPropertyChanged("ApparentPowermAll", e, _apparentPowermAllAttribute);
                 }
             }
         }
@@ -1491,10 +1663,10 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     Nullable<double> old = this._currentL1;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnCurrentL1Changing(e);
-                    this.OnPropertyChanging("CurrentL1", e);
+                    this.OnPropertyChanging("CurrentL1", e, _currentL1Attribute);
                     this._currentL1 = value;
                     this.OnCurrentL1Changed(e);
-                    this.OnPropertyChanged("CurrentL1", e);
+                    this.OnPropertyChanged("CurrentL1", e, _currentL1Attribute);
                 }
             }
         }
@@ -1516,10 +1688,10 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     Nullable<double> old = this._currentL2;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnCurrentL2Changing(e);
-                    this.OnPropertyChanging("CurrentL2", e);
+                    this.OnPropertyChanging("CurrentL2", e, _currentL2Attribute);
                     this._currentL2 = value;
                     this.OnCurrentL2Changed(e);
-                    this.OnPropertyChanged("CurrentL2", e);
+                    this.OnPropertyChanged("CurrentL2", e, _currentL2Attribute);
                 }
             }
         }
@@ -1541,10 +1713,10 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     Nullable<double> old = this._currentL3;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnCurrentL3Changing(e);
-                    this.OnPropertyChanging("CurrentL3", e);
+                    this.OnPropertyChanging("CurrentL3", e, _currentL3Attribute);
                     this._currentL3 = value;
                     this.OnCurrentL3Changed(e);
-                    this.OnPropertyChanged("CurrentL3", e);
+                    this.OnPropertyChanged("CurrentL3", e, _currentL3Attribute);
                 }
             }
         }
@@ -1566,10 +1738,10 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     Nullable<double> old = this._currentAll;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnCurrentAllChanging(e);
-                    this.OnPropertyChanging("CurrentAll", e);
+                    this.OnPropertyChanging("CurrentAll", e, _currentAllAttribute);
                     this._currentAll = value;
                     this.OnCurrentAllChanged(e);
-                    this.OnPropertyChanged("CurrentAll", e);
+                    this.OnPropertyChanged("CurrentAll", e, _currentAllAttribute);
                 }
             }
         }
@@ -1591,10 +1763,10 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     Nullable<double> old = this._voltageL1;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnVoltageL1Changing(e);
-                    this.OnPropertyChanging("VoltageL1", e);
+                    this.OnPropertyChanging("VoltageL1", e, _voltageL1Attribute);
                     this._voltageL1 = value;
                     this.OnVoltageL1Changed(e);
-                    this.OnPropertyChanged("VoltageL1", e);
+                    this.OnPropertyChanged("VoltageL1", e, _voltageL1Attribute);
                 }
             }
         }
@@ -1616,10 +1788,10 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     Nullable<double> old = this._voltageL2;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnVoltageL2Changing(e);
-                    this.OnPropertyChanging("VoltageL2", e);
+                    this.OnPropertyChanging("VoltageL2", e, _voltageL2Attribute);
                     this._voltageL2 = value;
                     this.OnVoltageL2Changed(e);
-                    this.OnPropertyChanged("VoltageL2", e);
+                    this.OnPropertyChanged("VoltageL2", e, _voltageL2Attribute);
                 }
             }
         }
@@ -1641,10 +1813,10 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     Nullable<double> old = this._voltageL3;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnVoltageL3Changing(e);
-                    this.OnPropertyChanging("VoltageL3", e);
+                    this.OnPropertyChanging("VoltageL3", e, _voltageL3Attribute);
                     this._voltageL3 = value;
                     this.OnVoltageL3Changed(e);
-                    this.OnPropertyChanged("VoltageL3", e);
+                    this.OnPropertyChanged("VoltageL3", e, _voltageL3Attribute);
                 }
             }
         }
@@ -1666,10 +1838,10 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     Nullable<double> old = this._voltageAll;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnVoltageAllChanging(e);
-                    this.OnPropertyChanging("VoltageAll", e);
+                    this.OnPropertyChanging("VoltageAll", e, _voltageAllAttribute);
                     this._voltageAll = value;
                     this.OnVoltageAllChanged(e);
-                    this.OnPropertyChanged("VoltageAll", e);
+                    this.OnPropertyChanged("VoltageAll", e, _voltageAllAttribute);
                 }
             }
         }
@@ -1691,10 +1863,10 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     Nullable<double> old = this._powerFactorL1;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnPowerFactorL1Changing(e);
-                    this.OnPropertyChanging("PowerFactorL1", e);
+                    this.OnPropertyChanging("PowerFactorL1", e, _powerFactorL1Attribute);
                     this._powerFactorL1 = value;
                     this.OnPowerFactorL1Changed(e);
-                    this.OnPropertyChanged("PowerFactorL1", e);
+                    this.OnPropertyChanged("PowerFactorL1", e, _powerFactorL1Attribute);
                 }
             }
         }
@@ -1716,10 +1888,10 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     Nullable<double> old = this._powerFactorL2;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnPowerFactorL2Changing(e);
-                    this.OnPropertyChanging("PowerFactorL2", e);
+                    this.OnPropertyChanging("PowerFactorL2", e, _powerFactorL2Attribute);
                     this._powerFactorL2 = value;
                     this.OnPowerFactorL2Changed(e);
-                    this.OnPropertyChanged("PowerFactorL2", e);
+                    this.OnPropertyChanged("PowerFactorL2", e, _powerFactorL2Attribute);
                 }
             }
         }
@@ -1741,10 +1913,10 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     Nullable<double> old = this._powerFactorL3;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnPowerFactorL3Changing(e);
-                    this.OnPropertyChanging("PowerFactorL3", e);
+                    this.OnPropertyChanging("PowerFactorL3", e, _powerFactorL3Attribute);
                     this._powerFactorL3 = value;
                     this.OnPowerFactorL3Changed(e);
-                    this.OnPropertyChanged("PowerFactorL3", e);
+                    this.OnPropertyChanged("PowerFactorL3", e, _powerFactorL3Attribute);
                 }
             }
         }
@@ -1766,10 +1938,10 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     Nullable<double> old = this._powerFactorAll;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnPowerFactorAllChanging(e);
-                    this.OnPropertyChanging("PowerFactorAll", e);
+                    this.OnPropertyChanging("PowerFactorAll", e, _powerFactorAllAttribute);
                     this._powerFactorAll = value;
                     this.OnPowerFactorAllChanged(e);
-                    this.OnPropertyChanged("PowerFactorAll", e);
+                    this.OnPropertyChanged("PowerFactorAll", e, _powerFactorAllAttribute);
                 }
             }
         }
@@ -1791,10 +1963,10 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     Nullable<double> old = this._supplyFrequencyL1;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnSupplyFrequencyL1Changing(e);
-                    this.OnPropertyChanging("SupplyFrequencyL1", e);
+                    this.OnPropertyChanging("SupplyFrequencyL1", e, _supplyFrequencyL1Attribute);
                     this._supplyFrequencyL1 = value;
                     this.OnSupplyFrequencyL1Changed(e);
-                    this.OnPropertyChanged("SupplyFrequencyL1", e);
+                    this.OnPropertyChanged("SupplyFrequencyL1", e, _supplyFrequencyL1Attribute);
                 }
             }
         }
@@ -1816,10 +1988,10 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     Nullable<double> old = this._supplyFrequencyL2;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnSupplyFrequencyL2Changing(e);
-                    this.OnPropertyChanging("SupplyFrequencyL2", e);
+                    this.OnPropertyChanging("SupplyFrequencyL2", e, _supplyFrequencyL2Attribute);
                     this._supplyFrequencyL2 = value;
                     this.OnSupplyFrequencyL2Changed(e);
-                    this.OnPropertyChanged("SupplyFrequencyL2", e);
+                    this.OnPropertyChanged("SupplyFrequencyL2", e, _supplyFrequencyL2Attribute);
                 }
             }
         }
@@ -1841,10 +2013,10 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     Nullable<double> old = this._supplyFrequencyL3;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnSupplyFrequencyL3Changing(e);
-                    this.OnPropertyChanging("SupplyFrequencyL3", e);
+                    this.OnPropertyChanging("SupplyFrequencyL3", e, _supplyFrequencyL3Attribute);
                     this._supplyFrequencyL3 = value;
                     this.OnSupplyFrequencyL3Changed(e);
-                    this.OnPropertyChanged("SupplyFrequencyL3", e);
+                    this.OnPropertyChanged("SupplyFrequencyL3", e, _supplyFrequencyL3Attribute);
                 }
             }
         }
@@ -1866,10 +2038,10 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     Nullable<double> old = this._supplyFrequencyAll;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnSupplyFrequencyAllChanging(e);
-                    this.OnPropertyChanging("SupplyFrequencyAll", e);
+                    this.OnPropertyChanging("SupplyFrequencyAll", e, _supplyFrequencyAllAttribute);
                     this._supplyFrequencyAll = value;
                     this.OnSupplyFrequencyAllChanged(e);
-                    this.OnPropertyChanged("SupplyFrequencyAll", e);
+                    this.OnPropertyChanged("SupplyFrequencyAll", e, _supplyFrequencyAllAttribute);
                 }
             }
         }
@@ -1891,10 +2063,10 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     Nullable<double> old = this._activePowerAbsPL1;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnActivePowerAbsPL1Changing(e);
-                    this.OnPropertyChanging("ActivePowerAbsPL1", e);
+                    this.OnPropertyChanging("ActivePowerAbsPL1", e, _activePowerAbsPL1Attribute);
                     this._activePowerAbsPL1 = value;
                     this.OnActivePowerAbsPL1Changed(e);
-                    this.OnPropertyChanged("ActivePowerAbsPL1", e);
+                    this.OnPropertyChanged("ActivePowerAbsPL1", e, _activePowerAbsPL1Attribute);
                 }
             }
         }
@@ -1916,10 +2088,10 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     Nullable<double> old = this._activePowerAbsPL2;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnActivePowerAbsPL2Changing(e);
-                    this.OnPropertyChanging("ActivePowerAbsPL2", e);
+                    this.OnPropertyChanging("ActivePowerAbsPL2", e, _activePowerAbsPL2Attribute);
                     this._activePowerAbsPL2 = value;
                     this.OnActivePowerAbsPL2Changed(e);
-                    this.OnPropertyChanged("ActivePowerAbsPL2", e);
+                    this.OnPropertyChanged("ActivePowerAbsPL2", e, _activePowerAbsPL2Attribute);
                 }
             }
         }
@@ -1941,10 +2113,10 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     Nullable<double> old = this._activePowerAbsPL3;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnActivePowerAbsPL3Changing(e);
-                    this.OnPropertyChanging("ActivePowerAbsPL3", e);
+                    this.OnPropertyChanging("ActivePowerAbsPL3", e, _activePowerAbsPL3Attribute);
                     this._activePowerAbsPL3 = value;
                     this.OnActivePowerAbsPL3Changed(e);
-                    this.OnPropertyChanged("ActivePowerAbsPL3", e);
+                    this.OnPropertyChanged("ActivePowerAbsPL3", e, _activePowerAbsPL3Attribute);
                 }
             }
         }
@@ -1966,10 +2138,10 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     Nullable<double> old = this._activePowerAbsPAll;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnActivePowerAbsPAllChanging(e);
-                    this.OnPropertyChanging("ActivePowerAbsPAll", e);
+                    this.OnPropertyChanging("ActivePowerAbsPAll", e, _activePowerAbsPAllAttribute);
                     this._activePowerAbsPAll = value;
                     this.OnActivePowerAbsPAllChanged(e);
-                    this.OnPropertyChanged("ActivePowerAbsPAll", e);
+                    this.OnPropertyChanged("ActivePowerAbsPAll", e, _activePowerAbsPAllAttribute);
                 }
             }
         }
@@ -1991,10 +2163,10 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     Nullable<double> old = this._activePowerAbsML1;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnActivePowerAbsML1Changing(e);
-                    this.OnPropertyChanging("ActivePowerAbsML1", e);
+                    this.OnPropertyChanging("ActivePowerAbsML1", e, _activePowerAbsML1Attribute);
                     this._activePowerAbsML1 = value;
                     this.OnActivePowerAbsML1Changed(e);
-                    this.OnPropertyChanged("ActivePowerAbsML1", e);
+                    this.OnPropertyChanged("ActivePowerAbsML1", e, _activePowerAbsML1Attribute);
                 }
             }
         }
@@ -2016,10 +2188,10 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     Nullable<double> old = this._activePowerAbsML2;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnActivePowerAbsML2Changing(e);
-                    this.OnPropertyChanging("ActivePowerAbsML2", e);
+                    this.OnPropertyChanging("ActivePowerAbsML2", e, _activePowerAbsML2Attribute);
                     this._activePowerAbsML2 = value;
                     this.OnActivePowerAbsML2Changed(e);
-                    this.OnPropertyChanged("ActivePowerAbsML2", e);
+                    this.OnPropertyChanged("ActivePowerAbsML2", e, _activePowerAbsML2Attribute);
                 }
             }
         }
@@ -2041,10 +2213,10 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     Nullable<double> old = this._activePowerAbsML3;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnActivePowerAbsML3Changing(e);
-                    this.OnPropertyChanging("ActivePowerAbsML3", e);
+                    this.OnPropertyChanging("ActivePowerAbsML3", e, _activePowerAbsML3Attribute);
                     this._activePowerAbsML3 = value;
                     this.OnActivePowerAbsML3Changed(e);
-                    this.OnPropertyChanged("ActivePowerAbsML3", e);
+                    this.OnPropertyChanged("ActivePowerAbsML3", e, _activePowerAbsML3Attribute);
                 }
             }
         }
@@ -2066,10 +2238,10 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     Nullable<double> old = this._activePowerAbsMAll;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnActivePowerAbsMAllChanging(e);
-                    this.OnPropertyChanging("ActivePowerAbsMAll", e);
+                    this.OnPropertyChanging("ActivePowerAbsMAll", e, _activePowerAbsMAllAttribute);
                     this._activePowerAbsMAll = value;
                     this.OnActivePowerAbsMAllChanged(e);
-                    this.OnPropertyChanged("ActivePowerAbsMAll", e);
+                    this.OnPropertyChanged("ActivePowerAbsMAll", e, _activePowerAbsMAllAttribute);
                 }
             }
         }
@@ -2091,10 +2263,10 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     Nullable<double> old = this._activePowerQIL1;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnActivePowerQIL1Changing(e);
-                    this.OnPropertyChanging("ActivePowerQIL1", e);
+                    this.OnPropertyChanging("ActivePowerQIL1", e, _activePowerQIL1Attribute);
                     this._activePowerQIL1 = value;
                     this.OnActivePowerQIL1Changed(e);
-                    this.OnPropertyChanged("ActivePowerQIL1", e);
+                    this.OnPropertyChanged("ActivePowerQIL1", e, _activePowerQIL1Attribute);
                 }
             }
         }
@@ -2116,10 +2288,10 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     Nullable<double> old = this._activePowerQIL2;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnActivePowerQIL2Changing(e);
-                    this.OnPropertyChanging("ActivePowerQIL2", e);
+                    this.OnPropertyChanging("ActivePowerQIL2", e, _activePowerQIL2Attribute);
                     this._activePowerQIL2 = value;
                     this.OnActivePowerQIL2Changed(e);
-                    this.OnPropertyChanged("ActivePowerQIL2", e);
+                    this.OnPropertyChanged("ActivePowerQIL2", e, _activePowerQIL2Attribute);
                 }
             }
         }
@@ -2141,10 +2313,10 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     Nullable<double> old = this._activePowerQIL3;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnActivePowerQIL3Changing(e);
-                    this.OnPropertyChanging("ActivePowerQIL3", e);
+                    this.OnPropertyChanging("ActivePowerQIL3", e, _activePowerQIL3Attribute);
                     this._activePowerQIL3 = value;
                     this.OnActivePowerQIL3Changed(e);
-                    this.OnPropertyChanged("ActivePowerQIL3", e);
+                    this.OnPropertyChanged("ActivePowerQIL3", e, _activePowerQIL3Attribute);
                 }
             }
         }
@@ -2166,10 +2338,10 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     Nullable<double> old = this._activePowerQIall;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnActivePowerQIallChanging(e);
-                    this.OnPropertyChanging("ActivePowerQIall", e);
+                    this.OnPropertyChanging("ActivePowerQIall", e, _activePowerQIallAttribute);
                     this._activePowerQIall = value;
                     this.OnActivePowerQIallChanged(e);
-                    this.OnPropertyChanged("ActivePowerQIall", e);
+                    this.OnPropertyChanged("ActivePowerQIall", e, _activePowerQIallAttribute);
                 }
             }
         }
@@ -2191,10 +2363,10 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     Nullable<double> old = this._activePowerQIIL1;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnActivePowerQIIL1Changing(e);
-                    this.OnPropertyChanging("ActivePowerQIIL1", e);
+                    this.OnPropertyChanging("ActivePowerQIIL1", e, _activePowerQIIL1Attribute);
                     this._activePowerQIIL1 = value;
                     this.OnActivePowerQIIL1Changed(e);
-                    this.OnPropertyChanged("ActivePowerQIIL1", e);
+                    this.OnPropertyChanged("ActivePowerQIIL1", e, _activePowerQIIL1Attribute);
                 }
             }
         }
@@ -2216,10 +2388,10 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     Nullable<double> old = this._activePowerQIIL2;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnActivePowerQIIL2Changing(e);
-                    this.OnPropertyChanging("ActivePowerQIIL2", e);
+                    this.OnPropertyChanging("ActivePowerQIIL2", e, _activePowerQIIL2Attribute);
                     this._activePowerQIIL2 = value;
                     this.OnActivePowerQIIL2Changed(e);
-                    this.OnPropertyChanged("ActivePowerQIIL2", e);
+                    this.OnPropertyChanged("ActivePowerQIIL2", e, _activePowerQIIL2Attribute);
                 }
             }
         }
@@ -2241,10 +2413,10 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     Nullable<double> old = this._activePowerQIIL3;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnActivePowerQIIL3Changing(e);
-                    this.OnPropertyChanging("ActivePowerQIIL3", e);
+                    this.OnPropertyChanging("ActivePowerQIIL3", e, _activePowerQIIL3Attribute);
                     this._activePowerQIIL3 = value;
                     this.OnActivePowerQIIL3Changed(e);
-                    this.OnPropertyChanged("ActivePowerQIIL3", e);
+                    this.OnPropertyChanged("ActivePowerQIIL3", e, _activePowerQIIL3Attribute);
                 }
             }
         }
@@ -2266,10 +2438,10 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     Nullable<double> old = this._activePowerQIIall;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnActivePowerQIIallChanging(e);
-                    this.OnPropertyChanging("ActivePowerQIIall", e);
+                    this.OnPropertyChanging("ActivePowerQIIall", e, _activePowerQIIallAttribute);
                     this._activePowerQIIall = value;
                     this.OnActivePowerQIIallChanged(e);
-                    this.OnPropertyChanged("ActivePowerQIIall", e);
+                    this.OnPropertyChanged("ActivePowerQIIall", e, _activePowerQIIallAttribute);
                 }
             }
         }
@@ -2291,10 +2463,10 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     Nullable<double> old = this._activePowerQIIIL1;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnActivePowerQIIIL1Changing(e);
-                    this.OnPropertyChanging("ActivePowerQIIIL1", e);
+                    this.OnPropertyChanging("ActivePowerQIIIL1", e, _activePowerQIIIL1Attribute);
                     this._activePowerQIIIL1 = value;
                     this.OnActivePowerQIIIL1Changed(e);
-                    this.OnPropertyChanged("ActivePowerQIIIL1", e);
+                    this.OnPropertyChanged("ActivePowerQIIIL1", e, _activePowerQIIIL1Attribute);
                 }
             }
         }
@@ -2316,10 +2488,10 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     Nullable<double> old = this._activePowerQIIIL2;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnActivePowerQIIIL2Changing(e);
-                    this.OnPropertyChanging("ActivePowerQIIIL2", e);
+                    this.OnPropertyChanging("ActivePowerQIIIL2", e, _activePowerQIIIL2Attribute);
                     this._activePowerQIIIL2 = value;
                     this.OnActivePowerQIIIL2Changed(e);
-                    this.OnPropertyChanged("ActivePowerQIIIL2", e);
+                    this.OnPropertyChanged("ActivePowerQIIIL2", e, _activePowerQIIIL2Attribute);
                 }
             }
         }
@@ -2341,10 +2513,10 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     Nullable<double> old = this._activePowerQIIIL3;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnActivePowerQIIIL3Changing(e);
-                    this.OnPropertyChanging("ActivePowerQIIIL3", e);
+                    this.OnPropertyChanging("ActivePowerQIIIL3", e, _activePowerQIIIL3Attribute);
                     this._activePowerQIIIL3 = value;
                     this.OnActivePowerQIIIL3Changed(e);
-                    this.OnPropertyChanged("ActivePowerQIIIL3", e);
+                    this.OnPropertyChanged("ActivePowerQIIIL3", e, _activePowerQIIIL3Attribute);
                 }
             }
         }
@@ -2366,10 +2538,10 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     Nullable<double> old = this._activePowerQIIIall;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnActivePowerQIIIallChanging(e);
-                    this.OnPropertyChanging("ActivePowerQIIIall", e);
+                    this.OnPropertyChanging("ActivePowerQIIIall", e, _activePowerQIIIallAttribute);
                     this._activePowerQIIIall = value;
                     this.OnActivePowerQIIIallChanged(e);
-                    this.OnPropertyChanged("ActivePowerQIIIall", e);
+                    this.OnPropertyChanged("ActivePowerQIIIall", e, _activePowerQIIIallAttribute);
                 }
             }
         }
@@ -2391,10 +2563,10 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     Nullable<double> old = this._activePowerQIVL1;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnActivePowerQIVL1Changing(e);
-                    this.OnPropertyChanging("ActivePowerQIVL1", e);
+                    this.OnPropertyChanging("ActivePowerQIVL1", e, _activePowerQIVL1Attribute);
                     this._activePowerQIVL1 = value;
                     this.OnActivePowerQIVL1Changed(e);
-                    this.OnPropertyChanged("ActivePowerQIVL1", e);
+                    this.OnPropertyChanged("ActivePowerQIVL1", e, _activePowerQIVL1Attribute);
                 }
             }
         }
@@ -2416,10 +2588,10 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     Nullable<double> old = this._activePowerQIVL2;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnActivePowerQIVL2Changing(e);
-                    this.OnPropertyChanging("ActivePowerQIVL2", e);
+                    this.OnPropertyChanging("ActivePowerQIVL2", e, _activePowerQIVL2Attribute);
                     this._activePowerQIVL2 = value;
                     this.OnActivePowerQIVL2Changed(e);
-                    this.OnPropertyChanged("ActivePowerQIVL2", e);
+                    this.OnPropertyChanged("ActivePowerQIVL2", e, _activePowerQIVL2Attribute);
                 }
             }
         }
@@ -2441,10 +2613,10 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     Nullable<double> old = this._activePowerQIVL3;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnActivePowerQIVL3Changing(e);
-                    this.OnPropertyChanging("ActivePowerQIVL3", e);
+                    this.OnPropertyChanging("ActivePowerQIVL3", e, _activePowerQIVL3Attribute);
                     this._activePowerQIVL3 = value;
                     this.OnActivePowerQIVL3Changed(e);
-                    this.OnPropertyChanged("ActivePowerQIVL3", e);
+                    this.OnPropertyChanged("ActivePowerQIVL3", e, _activePowerQIVL3Attribute);
                 }
             }
         }
@@ -2466,10 +2638,10 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     Nullable<double> old = this._activePowerQIVall;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnActivePowerQIVallChanging(e);
-                    this.OnPropertyChanging("ActivePowerQIVall", e);
+                    this.OnPropertyChanging("ActivePowerQIVall", e, _activePowerQIVallAttribute);
                     this._activePowerQIVall = value;
                     this.OnActivePowerQIVallChanged(e);
-                    this.OnPropertyChanged("ActivePowerQIVall", e);
+                    this.OnPropertyChanged("ActivePowerQIVall", e, _activePowerQIVallAttribute);
                 }
             }
         }
@@ -2491,10 +2663,10 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     Nullable<double> old = this._angles;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnAnglesChanging(e);
-                    this.OnPropertyChanging("Angles", e);
+                    this.OnPropertyChanging("Angles", e, _anglesAttribute);
                     this._angles = value;
                     this.OnAnglesChanged(e);
-                    this.OnPropertyChanged("Angles", e);
+                    this.OnPropertyChanged("Angles", e, _anglesAttribute);
                 }
             }
         }
@@ -2516,10 +2688,10 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     Nullable<int> old = this._pulses;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnPulsesChanging(e);
-                    this.OnPropertyChanging("Pulses", e);
+                    this.OnPropertyChanging("Pulses", e, _pulsesAttribute);
                     this._pulses = value;
                     this.OnPulsesChanged(e);
-                    this.OnPropertyChanged("Pulses", e);
+                    this.OnPropertyChanged("Pulses", e, _pulsesAttribute);
                 }
             }
         }
@@ -2541,10 +2713,10 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     Nullable<double> old = this._ampere_squaredHours;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnAmpere_squaredHoursChanging(e);
-                    this.OnPropertyChanging("Ampere_squaredHours", e);
+                    this.OnPropertyChanging("Ampere_squaredHours", e, _ampere_squaredHoursAttribute);
                     this._ampere_squaredHours = value;
                     this.OnAmpere_squaredHoursChanged(e);
-                    this.OnPropertyChanged("Ampere_squaredHours", e);
+                    this.OnPropertyChanged("Ampere_squaredHours", e, _ampere_squaredHoursAttribute);
                 }
             }
         }
@@ -2566,10 +2738,10 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     Nullable<double> old = this._volt_squaredHours;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnVolt_squaredHoursChanging(e);
-                    this.OnPropertyChanging("Volt_squaredHours", e);
+                    this.OnPropertyChanging("Volt_squaredHours", e, _volt_squaredHoursAttribute);
                     this._volt_squaredHours = value;
                     this.OnVolt_squaredHoursChanged(e);
-                    this.OnPropertyChanged("Volt_squaredHours", e);
+                    this.OnPropertyChanged("Volt_squaredHours", e, _volt_squaredHoursAttribute);
                 }
             }
         }
@@ -2591,10 +2763,10 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     Nullable<double> old = this._neutralCurrent;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnNeutralCurrentChanging(e);
-                    this.OnPropertyChanging("NeutralCurrent", e);
+                    this.OnPropertyChanging("NeutralCurrent", e, _neutralCurrentAttribute);
                     this._neutralCurrent = value;
                     this.OnNeutralCurrentChanged(e);
-                    this.OnPropertyChanged("NeutralCurrent", e);
+                    this.OnPropertyChanged("NeutralCurrent", e, _neutralCurrentAttribute);
                 }
             }
         }
@@ -2616,10 +2788,10 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     Nullable<double> old = this._neutralVoltage;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnNeutralVoltageChanging(e);
-                    this.OnPropertyChanging("NeutralVoltage", e);
+                    this.OnPropertyChanging("NeutralVoltage", e, _neutralVoltageAttribute);
                     this._neutralVoltage = value;
                     this.OnNeutralVoltageChanged(e);
-                    this.OnPropertyChanged("NeutralVoltage", e);
+                    this.OnPropertyChanged("NeutralVoltage", e, _neutralVoltageAttribute);
                 }
             }
         }
@@ -3500,6 +3672,11 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> NeutralVoltageChanged;
         
+        private static ITypedElement RetrieveActivePowerpL1Attribute()
+        {
+            return ((ITypedElement)(((ModelElement)(ElectricityValues.ClassInstance)).Resolve("ActivePowerpL1")));
+        }
+        
         /// <summary>
         /// Raises the ActivePowerpL1Changing event
         /// </summary>
@@ -3524,6 +3701,11 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveActivePowerpallAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(ElectricityValues.ClassInstance)).Resolve("ActivePowerpall")));
         }
         
         /// <summary>
@@ -3552,6 +3734,11 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             }
         }
         
+        private static ITypedElement RetrieveActivePowerpL2Attribute()
+        {
+            return ((ITypedElement)(((ModelElement)(ElectricityValues.ClassInstance)).Resolve("ActivePowerpL2")));
+        }
+        
         /// <summary>
         /// Raises the ActivePowerpL2Changing event
         /// </summary>
@@ -3576,6 +3763,11 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveActivePowerpL3Attribute()
+        {
+            return ((ITypedElement)(((ModelElement)(ElectricityValues.ClassInstance)).Resolve("ActivePowerpL3")));
         }
         
         /// <summary>
@@ -3604,6 +3796,11 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             }
         }
         
+        private static ITypedElement RetrieveActivePowermL2Attribute()
+        {
+            return ((ITypedElement)(((ModelElement)(ElectricityValues.ClassInstance)).Resolve("ActivePowermL2")));
+        }
+        
         /// <summary>
         /// Raises the ActivePowermL2Changing event
         /// </summary>
@@ -3628,6 +3825,11 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveActivePowermL1Attribute()
+        {
+            return ((ITypedElement)(((ModelElement)(ElectricityValues.ClassInstance)).Resolve("ActivePowermL1")));
         }
         
         /// <summary>
@@ -3656,6 +3858,11 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             }
         }
         
+        private static ITypedElement RetrieveActivePowermL3Attribute()
+        {
+            return ((ITypedElement)(((ModelElement)(ElectricityValues.ClassInstance)).Resolve("ActivePowermL3")));
+        }
+        
         /// <summary>
         /// Raises the ActivePowermL3Changing event
         /// </summary>
@@ -3680,6 +3887,11 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveActivePowermallAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(ElectricityValues.ClassInstance)).Resolve("ActivePowermall")));
         }
         
         /// <summary>
@@ -3708,6 +3920,11 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             }
         }
         
+        private static ITypedElement RetrieveReactivePowerpL1Attribute()
+        {
+            return ((ITypedElement)(((ModelElement)(ElectricityValues.ClassInstance)).Resolve("ReactivePowerpL1")));
+        }
+        
         /// <summary>
         /// Raises the ReactivePowerpL1Changing event
         /// </summary>
@@ -3732,6 +3949,11 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveReactivePowerpL2Attribute()
+        {
+            return ((ITypedElement)(((ModelElement)(ElectricityValues.ClassInstance)).Resolve("ReactivePowerpL2")));
         }
         
         /// <summary>
@@ -3760,6 +3982,11 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             }
         }
         
+        private static ITypedElement RetrieveReactivePowerpL3Attribute()
+        {
+            return ((ITypedElement)(((ModelElement)(ElectricityValues.ClassInstance)).Resolve("ReactivePowerpL3")));
+        }
+        
         /// <summary>
         /// Raises the ReactivePowerpL3Changing event
         /// </summary>
@@ -3784,6 +4011,11 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveReactivePowerpallAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(ElectricityValues.ClassInstance)).Resolve("ReactivePowerpall")));
         }
         
         /// <summary>
@@ -3812,6 +4044,11 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             }
         }
         
+        private static ITypedElement RetrieveReactivePowermL1Attribute()
+        {
+            return ((ITypedElement)(((ModelElement)(ElectricityValues.ClassInstance)).Resolve("ReactivePowermL1")));
+        }
+        
         /// <summary>
         /// Raises the ReactivePowermL1Changing event
         /// </summary>
@@ -3836,6 +4073,11 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveReactivePowermL2Attribute()
+        {
+            return ((ITypedElement)(((ModelElement)(ElectricityValues.ClassInstance)).Resolve("ReactivePowermL2")));
         }
         
         /// <summary>
@@ -3864,6 +4106,11 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             }
         }
         
+        private static ITypedElement RetrieveReactivePowermL3Attribute()
+        {
+            return ((ITypedElement)(((ModelElement)(ElectricityValues.ClassInstance)).Resolve("ReactivePowermL3")));
+        }
+        
         /// <summary>
         /// Raises the ReactivePowermL3Changing event
         /// </summary>
@@ -3888,6 +4135,11 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveReactivePowermallAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(ElectricityValues.ClassInstance)).Resolve("ReactivePowermall")));
         }
         
         /// <summary>
@@ -3916,6 +4168,11 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             }
         }
         
+        private static ITypedElement RetrieveReactivePowerQIL1Attribute()
+        {
+            return ((ITypedElement)(((ModelElement)(ElectricityValues.ClassInstance)).Resolve("ReactivePowerQIL1")));
+        }
+        
         /// <summary>
         /// Raises the ReactivePowerQIL1Changing event
         /// </summary>
@@ -3940,6 +4197,11 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveReactivePowerQIL2Attribute()
+        {
+            return ((ITypedElement)(((ModelElement)(ElectricityValues.ClassInstance)).Resolve("ReactivePowerQIL2")));
         }
         
         /// <summary>
@@ -3968,6 +4230,11 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             }
         }
         
+        private static ITypedElement RetrieveReactivePowerQIL3Attribute()
+        {
+            return ((ITypedElement)(((ModelElement)(ElectricityValues.ClassInstance)).Resolve("ReactivePowerQIL3")));
+        }
+        
         /// <summary>
         /// Raises the ReactivePowerQIL3Changing event
         /// </summary>
@@ -3992,6 +4259,11 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveReactivePowerQIallAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(ElectricityValues.ClassInstance)).Resolve("ReactivePowerQIall")));
         }
         
         /// <summary>
@@ -4020,6 +4292,11 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             }
         }
         
+        private static ITypedElement RetrieveReactivePowerQIIL1Attribute()
+        {
+            return ((ITypedElement)(((ModelElement)(ElectricityValues.ClassInstance)).Resolve("ReactivePowerQIIL1")));
+        }
+        
         /// <summary>
         /// Raises the ReactivePowerQIIL1Changing event
         /// </summary>
@@ -4044,6 +4321,11 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveReactivePowerQIIL2Attribute()
+        {
+            return ((ITypedElement)(((ModelElement)(ElectricityValues.ClassInstance)).Resolve("ReactivePowerQIIL2")));
         }
         
         /// <summary>
@@ -4072,6 +4354,11 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             }
         }
         
+        private static ITypedElement RetrieveReactivePowerQIIL3Attribute()
+        {
+            return ((ITypedElement)(((ModelElement)(ElectricityValues.ClassInstance)).Resolve("ReactivePowerQIIL3")));
+        }
+        
         /// <summary>
         /// Raises the ReactivePowerQIIL3Changing event
         /// </summary>
@@ -4096,6 +4383,11 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveReactivePowerQIIallAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(ElectricityValues.ClassInstance)).Resolve("ReactivePowerQIIall")));
         }
         
         /// <summary>
@@ -4124,6 +4416,11 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             }
         }
         
+        private static ITypedElement RetrieveReactivePowerQIIIL1Attribute()
+        {
+            return ((ITypedElement)(((ModelElement)(ElectricityValues.ClassInstance)).Resolve("ReactivePowerQIIIL1")));
+        }
+        
         /// <summary>
         /// Raises the ReactivePowerQIIIL1Changing event
         /// </summary>
@@ -4148,6 +4445,11 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveReactivePowerQIIIL2Attribute()
+        {
+            return ((ITypedElement)(((ModelElement)(ElectricityValues.ClassInstance)).Resolve("ReactivePowerQIIIL2")));
         }
         
         /// <summary>
@@ -4176,6 +4478,11 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             }
         }
         
+        private static ITypedElement RetrieveReactivePowerQIIIL3Attribute()
+        {
+            return ((ITypedElement)(((ModelElement)(ElectricityValues.ClassInstance)).Resolve("ReactivePowerQIIIL3")));
+        }
+        
         /// <summary>
         /// Raises the ReactivePowerQIIIL3Changing event
         /// </summary>
@@ -4200,6 +4507,11 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveReactivePowerQIIIallAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(ElectricityValues.ClassInstance)).Resolve("ReactivePowerQIIIall")));
         }
         
         /// <summary>
@@ -4228,6 +4540,11 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             }
         }
         
+        private static ITypedElement RetrieveReactivePowerQIVL1Attribute()
+        {
+            return ((ITypedElement)(((ModelElement)(ElectricityValues.ClassInstance)).Resolve("ReactivePowerQIVL1")));
+        }
+        
         /// <summary>
         /// Raises the ReactivePowerQIVL1Changing event
         /// </summary>
@@ -4252,6 +4569,11 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveReactivePowerQIVL2Attribute()
+        {
+            return ((ITypedElement)(((ModelElement)(ElectricityValues.ClassInstance)).Resolve("ReactivePowerQIVL2")));
         }
         
         /// <summary>
@@ -4280,6 +4602,11 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             }
         }
         
+        private static ITypedElement RetrieveReactivePowerQIVL3Attribute()
+        {
+            return ((ITypedElement)(((ModelElement)(ElectricityValues.ClassInstance)).Resolve("ReactivePowerQIVL3")));
+        }
+        
         /// <summary>
         /// Raises the ReactivePowerQIVL3Changing event
         /// </summary>
@@ -4304,6 +4631,11 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveReactivePowerQIVallAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(ElectricityValues.ClassInstance)).Resolve("ReactivePowerQIVall")));
         }
         
         /// <summary>
@@ -4332,6 +4664,11 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             }
         }
         
+        private static ITypedElement RetrieveApparentPowerpL1Attribute()
+        {
+            return ((ITypedElement)(((ModelElement)(ElectricityValues.ClassInstance)).Resolve("ApparentPowerpL1")));
+        }
+        
         /// <summary>
         /// Raises the ApparentPowerpL1Changing event
         /// </summary>
@@ -4356,6 +4693,11 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveApparentPowerpL2Attribute()
+        {
+            return ((ITypedElement)(((ModelElement)(ElectricityValues.ClassInstance)).Resolve("ApparentPowerpL2")));
         }
         
         /// <summary>
@@ -4384,6 +4726,11 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             }
         }
         
+        private static ITypedElement RetrieveApparentPowerpL3Attribute()
+        {
+            return ((ITypedElement)(((ModelElement)(ElectricityValues.ClassInstance)).Resolve("ApparentPowerpL3")));
+        }
+        
         /// <summary>
         /// Raises the ApparentPowerpL3Changing event
         /// </summary>
@@ -4408,6 +4755,11 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveApparentPowerpAllAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(ElectricityValues.ClassInstance)).Resolve("ApparentPowerpAll")));
         }
         
         /// <summary>
@@ -4436,6 +4788,11 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             }
         }
         
+        private static ITypedElement RetrieveApparentPowermL1Attribute()
+        {
+            return ((ITypedElement)(((ModelElement)(ElectricityValues.ClassInstance)).Resolve("ApparentPowermL1")));
+        }
+        
         /// <summary>
         /// Raises the ApparentPowermL1Changing event
         /// </summary>
@@ -4460,6 +4817,11 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveApparentPowermL2Attribute()
+        {
+            return ((ITypedElement)(((ModelElement)(ElectricityValues.ClassInstance)).Resolve("ApparentPowermL2")));
         }
         
         /// <summary>
@@ -4488,6 +4850,11 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             }
         }
         
+        private static ITypedElement RetrieveApparentPowermL3Attribute()
+        {
+            return ((ITypedElement)(((ModelElement)(ElectricityValues.ClassInstance)).Resolve("ApparentPowermL3")));
+        }
+        
         /// <summary>
         /// Raises the ApparentPowermL3Changing event
         /// </summary>
@@ -4512,6 +4879,11 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveApparentPowermAllAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(ElectricityValues.ClassInstance)).Resolve("ApparentPowermAll")));
         }
         
         /// <summary>
@@ -4540,6 +4912,11 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             }
         }
         
+        private static ITypedElement RetrieveCurrentL1Attribute()
+        {
+            return ((ITypedElement)(((ModelElement)(ElectricityValues.ClassInstance)).Resolve("CurrentL1")));
+        }
+        
         /// <summary>
         /// Raises the CurrentL1Changing event
         /// </summary>
@@ -4564,6 +4941,11 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveCurrentL2Attribute()
+        {
+            return ((ITypedElement)(((ModelElement)(ElectricityValues.ClassInstance)).Resolve("CurrentL2")));
         }
         
         /// <summary>
@@ -4592,6 +4974,11 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             }
         }
         
+        private static ITypedElement RetrieveCurrentL3Attribute()
+        {
+            return ((ITypedElement)(((ModelElement)(ElectricityValues.ClassInstance)).Resolve("CurrentL3")));
+        }
+        
         /// <summary>
         /// Raises the CurrentL3Changing event
         /// </summary>
@@ -4616,6 +5003,11 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveCurrentAllAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(ElectricityValues.ClassInstance)).Resolve("CurrentAll")));
         }
         
         /// <summary>
@@ -4644,6 +5036,11 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             }
         }
         
+        private static ITypedElement RetrieveVoltageL1Attribute()
+        {
+            return ((ITypedElement)(((ModelElement)(ElectricityValues.ClassInstance)).Resolve("VoltageL1")));
+        }
+        
         /// <summary>
         /// Raises the VoltageL1Changing event
         /// </summary>
@@ -4668,6 +5065,11 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveVoltageL2Attribute()
+        {
+            return ((ITypedElement)(((ModelElement)(ElectricityValues.ClassInstance)).Resolve("VoltageL2")));
         }
         
         /// <summary>
@@ -4696,6 +5098,11 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             }
         }
         
+        private static ITypedElement RetrieveVoltageL3Attribute()
+        {
+            return ((ITypedElement)(((ModelElement)(ElectricityValues.ClassInstance)).Resolve("VoltageL3")));
+        }
+        
         /// <summary>
         /// Raises the VoltageL3Changing event
         /// </summary>
@@ -4720,6 +5127,11 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveVoltageAllAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(ElectricityValues.ClassInstance)).Resolve("VoltageAll")));
         }
         
         /// <summary>
@@ -4748,6 +5160,11 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             }
         }
         
+        private static ITypedElement RetrievePowerFactorL1Attribute()
+        {
+            return ((ITypedElement)(((ModelElement)(ElectricityValues.ClassInstance)).Resolve("PowerFactorL1")));
+        }
+        
         /// <summary>
         /// Raises the PowerFactorL1Changing event
         /// </summary>
@@ -4772,6 +5189,11 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrievePowerFactorL2Attribute()
+        {
+            return ((ITypedElement)(((ModelElement)(ElectricityValues.ClassInstance)).Resolve("PowerFactorL2")));
         }
         
         /// <summary>
@@ -4800,6 +5222,11 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             }
         }
         
+        private static ITypedElement RetrievePowerFactorL3Attribute()
+        {
+            return ((ITypedElement)(((ModelElement)(ElectricityValues.ClassInstance)).Resolve("PowerFactorL3")));
+        }
+        
         /// <summary>
         /// Raises the PowerFactorL3Changing event
         /// </summary>
@@ -4824,6 +5251,11 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrievePowerFactorAllAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(ElectricityValues.ClassInstance)).Resolve("PowerFactorAll")));
         }
         
         /// <summary>
@@ -4852,6 +5284,11 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             }
         }
         
+        private static ITypedElement RetrieveSupplyFrequencyL1Attribute()
+        {
+            return ((ITypedElement)(((ModelElement)(ElectricityValues.ClassInstance)).Resolve("SupplyFrequencyL1")));
+        }
+        
         /// <summary>
         /// Raises the SupplyFrequencyL1Changing event
         /// </summary>
@@ -4876,6 +5313,11 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveSupplyFrequencyL2Attribute()
+        {
+            return ((ITypedElement)(((ModelElement)(ElectricityValues.ClassInstance)).Resolve("SupplyFrequencyL2")));
         }
         
         /// <summary>
@@ -4904,6 +5346,11 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             }
         }
         
+        private static ITypedElement RetrieveSupplyFrequencyL3Attribute()
+        {
+            return ((ITypedElement)(((ModelElement)(ElectricityValues.ClassInstance)).Resolve("SupplyFrequencyL3")));
+        }
+        
         /// <summary>
         /// Raises the SupplyFrequencyL3Changing event
         /// </summary>
@@ -4928,6 +5375,11 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveSupplyFrequencyAllAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(ElectricityValues.ClassInstance)).Resolve("SupplyFrequencyAll")));
         }
         
         /// <summary>
@@ -4956,6 +5408,11 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             }
         }
         
+        private static ITypedElement RetrieveActivePowerAbsPL1Attribute()
+        {
+            return ((ITypedElement)(((ModelElement)(ElectricityValues.ClassInstance)).Resolve("ActivePowerAbsPL1")));
+        }
+        
         /// <summary>
         /// Raises the ActivePowerAbsPL1Changing event
         /// </summary>
@@ -4980,6 +5437,11 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveActivePowerAbsPL2Attribute()
+        {
+            return ((ITypedElement)(((ModelElement)(ElectricityValues.ClassInstance)).Resolve("ActivePowerAbsPL2")));
         }
         
         /// <summary>
@@ -5008,6 +5470,11 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             }
         }
         
+        private static ITypedElement RetrieveActivePowerAbsPL3Attribute()
+        {
+            return ((ITypedElement)(((ModelElement)(ElectricityValues.ClassInstance)).Resolve("ActivePowerAbsPL3")));
+        }
+        
         /// <summary>
         /// Raises the ActivePowerAbsPL3Changing event
         /// </summary>
@@ -5032,6 +5499,11 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveActivePowerAbsPAllAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(ElectricityValues.ClassInstance)).Resolve("ActivePowerAbsPAll")));
         }
         
         /// <summary>
@@ -5060,6 +5532,11 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             }
         }
         
+        private static ITypedElement RetrieveActivePowerAbsML1Attribute()
+        {
+            return ((ITypedElement)(((ModelElement)(ElectricityValues.ClassInstance)).Resolve("ActivePowerAbsML1")));
+        }
+        
         /// <summary>
         /// Raises the ActivePowerAbsML1Changing event
         /// </summary>
@@ -5084,6 +5561,11 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveActivePowerAbsML2Attribute()
+        {
+            return ((ITypedElement)(((ModelElement)(ElectricityValues.ClassInstance)).Resolve("ActivePowerAbsML2")));
         }
         
         /// <summary>
@@ -5112,6 +5594,11 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             }
         }
         
+        private static ITypedElement RetrieveActivePowerAbsML3Attribute()
+        {
+            return ((ITypedElement)(((ModelElement)(ElectricityValues.ClassInstance)).Resolve("ActivePowerAbsML3")));
+        }
+        
         /// <summary>
         /// Raises the ActivePowerAbsML3Changing event
         /// </summary>
@@ -5136,6 +5623,11 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveActivePowerAbsMAllAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(ElectricityValues.ClassInstance)).Resolve("ActivePowerAbsMAll")));
         }
         
         /// <summary>
@@ -5164,6 +5656,11 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             }
         }
         
+        private static ITypedElement RetrieveActivePowerQIL1Attribute()
+        {
+            return ((ITypedElement)(((ModelElement)(ElectricityValues.ClassInstance)).Resolve("ActivePowerQIL1")));
+        }
+        
         /// <summary>
         /// Raises the ActivePowerQIL1Changing event
         /// </summary>
@@ -5188,6 +5685,11 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveActivePowerQIL2Attribute()
+        {
+            return ((ITypedElement)(((ModelElement)(ElectricityValues.ClassInstance)).Resolve("ActivePowerQIL2")));
         }
         
         /// <summary>
@@ -5216,6 +5718,11 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             }
         }
         
+        private static ITypedElement RetrieveActivePowerQIL3Attribute()
+        {
+            return ((ITypedElement)(((ModelElement)(ElectricityValues.ClassInstance)).Resolve("ActivePowerQIL3")));
+        }
+        
         /// <summary>
         /// Raises the ActivePowerQIL3Changing event
         /// </summary>
@@ -5240,6 +5747,11 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveActivePowerQIallAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(ElectricityValues.ClassInstance)).Resolve("ActivePowerQIall")));
         }
         
         /// <summary>
@@ -5268,6 +5780,11 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             }
         }
         
+        private static ITypedElement RetrieveActivePowerQIIL1Attribute()
+        {
+            return ((ITypedElement)(((ModelElement)(ElectricityValues.ClassInstance)).Resolve("ActivePowerQIIL1")));
+        }
+        
         /// <summary>
         /// Raises the ActivePowerQIIL1Changing event
         /// </summary>
@@ -5292,6 +5809,11 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveActivePowerQIIL2Attribute()
+        {
+            return ((ITypedElement)(((ModelElement)(ElectricityValues.ClassInstance)).Resolve("ActivePowerQIIL2")));
         }
         
         /// <summary>
@@ -5320,6 +5842,11 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             }
         }
         
+        private static ITypedElement RetrieveActivePowerQIIL3Attribute()
+        {
+            return ((ITypedElement)(((ModelElement)(ElectricityValues.ClassInstance)).Resolve("ActivePowerQIIL3")));
+        }
+        
         /// <summary>
         /// Raises the ActivePowerQIIL3Changing event
         /// </summary>
@@ -5344,6 +5871,11 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveActivePowerQIIallAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(ElectricityValues.ClassInstance)).Resolve("ActivePowerQIIall")));
         }
         
         /// <summary>
@@ -5372,6 +5904,11 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             }
         }
         
+        private static ITypedElement RetrieveActivePowerQIIIL1Attribute()
+        {
+            return ((ITypedElement)(((ModelElement)(ElectricityValues.ClassInstance)).Resolve("ActivePowerQIIIL1")));
+        }
+        
         /// <summary>
         /// Raises the ActivePowerQIIIL1Changing event
         /// </summary>
@@ -5396,6 +5933,11 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveActivePowerQIIIL2Attribute()
+        {
+            return ((ITypedElement)(((ModelElement)(ElectricityValues.ClassInstance)).Resolve("ActivePowerQIIIL2")));
         }
         
         /// <summary>
@@ -5424,6 +5966,11 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             }
         }
         
+        private static ITypedElement RetrieveActivePowerQIIIL3Attribute()
+        {
+            return ((ITypedElement)(((ModelElement)(ElectricityValues.ClassInstance)).Resolve("ActivePowerQIIIL3")));
+        }
+        
         /// <summary>
         /// Raises the ActivePowerQIIIL3Changing event
         /// </summary>
@@ -5448,6 +5995,11 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveActivePowerQIIIallAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(ElectricityValues.ClassInstance)).Resolve("ActivePowerQIIIall")));
         }
         
         /// <summary>
@@ -5476,6 +6028,11 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             }
         }
         
+        private static ITypedElement RetrieveActivePowerQIVL1Attribute()
+        {
+            return ((ITypedElement)(((ModelElement)(ElectricityValues.ClassInstance)).Resolve("ActivePowerQIVL1")));
+        }
+        
         /// <summary>
         /// Raises the ActivePowerQIVL1Changing event
         /// </summary>
@@ -5500,6 +6057,11 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveActivePowerQIVL2Attribute()
+        {
+            return ((ITypedElement)(((ModelElement)(ElectricityValues.ClassInstance)).Resolve("ActivePowerQIVL2")));
         }
         
         /// <summary>
@@ -5528,6 +6090,11 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             }
         }
         
+        private static ITypedElement RetrieveActivePowerQIVL3Attribute()
+        {
+            return ((ITypedElement)(((ModelElement)(ElectricityValues.ClassInstance)).Resolve("ActivePowerQIVL3")));
+        }
+        
         /// <summary>
         /// Raises the ActivePowerQIVL3Changing event
         /// </summary>
@@ -5552,6 +6119,11 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveActivePowerQIVallAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(ElectricityValues.ClassInstance)).Resolve("ActivePowerQIVall")));
         }
         
         /// <summary>
@@ -5580,6 +6152,11 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             }
         }
         
+        private static ITypedElement RetrieveAnglesAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(ElectricityValues.ClassInstance)).Resolve("Angles")));
+        }
+        
         /// <summary>
         /// Raises the AnglesChanging event
         /// </summary>
@@ -5604,6 +6181,11 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrievePulsesAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(ElectricityValues.ClassInstance)).Resolve("Pulses")));
         }
         
         /// <summary>
@@ -5632,6 +6214,11 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             }
         }
         
+        private static ITypedElement RetrieveAmpere_squaredHoursAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(ElectricityValues.ClassInstance)).Resolve("Ampere_squaredHours")));
+        }
+        
         /// <summary>
         /// Raises the Ampere_squaredHoursChanging event
         /// </summary>
@@ -5656,6 +6243,11 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveVolt_squaredHoursAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(ElectricityValues.ClassInstance)).Resolve("Volt_squaredHours")));
         }
         
         /// <summary>
@@ -5684,6 +6276,11 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             }
         }
         
+        private static ITypedElement RetrieveNeutralCurrentAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(ElectricityValues.ClassInstance)).Resolve("NeutralCurrent")));
+        }
+        
         /// <summary>
         /// Raises the NeutralCurrentChanging event
         /// </summary>
@@ -5708,6 +6305,11 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveNeutralVoltageAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(ElectricityValues.ClassInstance)).Resolve("NeutralVoltage")));
         }
         
         /// <summary>
@@ -6555,7 +7157,7 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public ActivePowerpL1Proxy(IElectricityValues modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "ActivePowerpL1")
             {
             }
             
@@ -6573,24 +7175,6 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     this.ModelElement.ActivePowerpL1 = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ActivePowerpL1Changed += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ActivePowerpL1Changed -= handler;
-            }
         }
         
         /// <summary>
@@ -6604,7 +7188,7 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public ActivePowerpallProxy(IElectricityValues modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "ActivePowerpall")
             {
             }
             
@@ -6622,24 +7206,6 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     this.ModelElement.ActivePowerpall = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ActivePowerpallChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ActivePowerpallChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -6653,7 +7219,7 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public ActivePowerpL2Proxy(IElectricityValues modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "ActivePowerpL2")
             {
             }
             
@@ -6671,24 +7237,6 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     this.ModelElement.ActivePowerpL2 = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ActivePowerpL2Changed += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ActivePowerpL2Changed -= handler;
-            }
         }
         
         /// <summary>
@@ -6702,7 +7250,7 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public ActivePowerpL3Proxy(IElectricityValues modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "ActivePowerpL3")
             {
             }
             
@@ -6720,24 +7268,6 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     this.ModelElement.ActivePowerpL3 = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ActivePowerpL3Changed += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ActivePowerpL3Changed -= handler;
-            }
         }
         
         /// <summary>
@@ -6751,7 +7281,7 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public ActivePowermL2Proxy(IElectricityValues modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "ActivePowermL2")
             {
             }
             
@@ -6769,24 +7299,6 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     this.ModelElement.ActivePowermL2 = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ActivePowermL2Changed += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ActivePowermL2Changed -= handler;
-            }
         }
         
         /// <summary>
@@ -6800,7 +7312,7 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public ActivePowermL1Proxy(IElectricityValues modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "ActivePowermL1")
             {
             }
             
@@ -6818,24 +7330,6 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     this.ModelElement.ActivePowermL1 = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ActivePowermL1Changed += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ActivePowermL1Changed -= handler;
-            }
         }
         
         /// <summary>
@@ -6849,7 +7343,7 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public ActivePowermL3Proxy(IElectricityValues modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "ActivePowermL3")
             {
             }
             
@@ -6867,24 +7361,6 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     this.ModelElement.ActivePowermL3 = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ActivePowermL3Changed += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ActivePowermL3Changed -= handler;
-            }
         }
         
         /// <summary>
@@ -6898,7 +7374,7 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public ActivePowermallProxy(IElectricityValues modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "ActivePowermall")
             {
             }
             
@@ -6916,24 +7392,6 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     this.ModelElement.ActivePowermall = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ActivePowermallChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ActivePowermallChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -6947,7 +7405,7 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public ReactivePowerpL1Proxy(IElectricityValues modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "ReactivePowerpL1")
             {
             }
             
@@ -6965,24 +7423,6 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     this.ModelElement.ReactivePowerpL1 = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ReactivePowerpL1Changed += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ReactivePowerpL1Changed -= handler;
-            }
         }
         
         /// <summary>
@@ -6996,7 +7436,7 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public ReactivePowerpL2Proxy(IElectricityValues modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "ReactivePowerpL2")
             {
             }
             
@@ -7014,24 +7454,6 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     this.ModelElement.ReactivePowerpL2 = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ReactivePowerpL2Changed += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ReactivePowerpL2Changed -= handler;
-            }
         }
         
         /// <summary>
@@ -7045,7 +7467,7 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public ReactivePowerpL3Proxy(IElectricityValues modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "ReactivePowerpL3")
             {
             }
             
@@ -7063,24 +7485,6 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     this.ModelElement.ReactivePowerpL3 = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ReactivePowerpL3Changed += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ReactivePowerpL3Changed -= handler;
-            }
         }
         
         /// <summary>
@@ -7094,7 +7498,7 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public ReactivePowerpallProxy(IElectricityValues modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "ReactivePowerpall")
             {
             }
             
@@ -7112,24 +7516,6 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     this.ModelElement.ReactivePowerpall = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ReactivePowerpallChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ReactivePowerpallChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -7143,7 +7529,7 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public ReactivePowermL1Proxy(IElectricityValues modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "ReactivePowermL1")
             {
             }
             
@@ -7161,24 +7547,6 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     this.ModelElement.ReactivePowermL1 = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ReactivePowermL1Changed += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ReactivePowermL1Changed -= handler;
-            }
         }
         
         /// <summary>
@@ -7192,7 +7560,7 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public ReactivePowermL2Proxy(IElectricityValues modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "ReactivePowermL2")
             {
             }
             
@@ -7210,24 +7578,6 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     this.ModelElement.ReactivePowermL2 = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ReactivePowermL2Changed += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ReactivePowermL2Changed -= handler;
-            }
         }
         
         /// <summary>
@@ -7241,7 +7591,7 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public ReactivePowermL3Proxy(IElectricityValues modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "ReactivePowermL3")
             {
             }
             
@@ -7259,24 +7609,6 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     this.ModelElement.ReactivePowermL3 = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ReactivePowermL3Changed += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ReactivePowermL3Changed -= handler;
-            }
         }
         
         /// <summary>
@@ -7290,7 +7622,7 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public ReactivePowermallProxy(IElectricityValues modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "ReactivePowermall")
             {
             }
             
@@ -7308,24 +7640,6 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     this.ModelElement.ReactivePowermall = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ReactivePowermallChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ReactivePowermallChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -7339,7 +7653,7 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public ReactivePowerQIL1Proxy(IElectricityValues modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "ReactivePowerQIL1")
             {
             }
             
@@ -7357,24 +7671,6 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     this.ModelElement.ReactivePowerQIL1 = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ReactivePowerQIL1Changed += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ReactivePowerQIL1Changed -= handler;
-            }
         }
         
         /// <summary>
@@ -7388,7 +7684,7 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public ReactivePowerQIL2Proxy(IElectricityValues modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "ReactivePowerQIL2")
             {
             }
             
@@ -7406,24 +7702,6 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     this.ModelElement.ReactivePowerQIL2 = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ReactivePowerQIL2Changed += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ReactivePowerQIL2Changed -= handler;
-            }
         }
         
         /// <summary>
@@ -7437,7 +7715,7 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public ReactivePowerQIL3Proxy(IElectricityValues modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "ReactivePowerQIL3")
             {
             }
             
@@ -7455,24 +7733,6 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     this.ModelElement.ReactivePowerQIL3 = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ReactivePowerQIL3Changed += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ReactivePowerQIL3Changed -= handler;
-            }
         }
         
         /// <summary>
@@ -7486,7 +7746,7 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public ReactivePowerQIallProxy(IElectricityValues modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "ReactivePowerQIall")
             {
             }
             
@@ -7504,24 +7764,6 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     this.ModelElement.ReactivePowerQIall = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ReactivePowerQIallChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ReactivePowerQIallChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -7535,7 +7777,7 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public ReactivePowerQIIL1Proxy(IElectricityValues modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "ReactivePowerQIIL1")
             {
             }
             
@@ -7553,24 +7795,6 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     this.ModelElement.ReactivePowerQIIL1 = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ReactivePowerQIIL1Changed += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ReactivePowerQIIL1Changed -= handler;
-            }
         }
         
         /// <summary>
@@ -7584,7 +7808,7 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public ReactivePowerQIIL2Proxy(IElectricityValues modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "ReactivePowerQIIL2")
             {
             }
             
@@ -7602,24 +7826,6 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     this.ModelElement.ReactivePowerQIIL2 = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ReactivePowerQIIL2Changed += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ReactivePowerQIIL2Changed -= handler;
-            }
         }
         
         /// <summary>
@@ -7633,7 +7839,7 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public ReactivePowerQIIL3Proxy(IElectricityValues modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "ReactivePowerQIIL3")
             {
             }
             
@@ -7651,24 +7857,6 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     this.ModelElement.ReactivePowerQIIL3 = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ReactivePowerQIIL3Changed += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ReactivePowerQIIL3Changed -= handler;
-            }
         }
         
         /// <summary>
@@ -7682,7 +7870,7 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public ReactivePowerQIIallProxy(IElectricityValues modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "ReactivePowerQIIall")
             {
             }
             
@@ -7700,24 +7888,6 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     this.ModelElement.ReactivePowerQIIall = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ReactivePowerQIIallChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ReactivePowerQIIallChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -7731,7 +7901,7 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public ReactivePowerQIIIL1Proxy(IElectricityValues modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "ReactivePowerQIIIL1")
             {
             }
             
@@ -7749,24 +7919,6 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     this.ModelElement.ReactivePowerQIIIL1 = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ReactivePowerQIIIL1Changed += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ReactivePowerQIIIL1Changed -= handler;
-            }
         }
         
         /// <summary>
@@ -7780,7 +7932,7 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public ReactivePowerQIIIL2Proxy(IElectricityValues modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "ReactivePowerQIIIL2")
             {
             }
             
@@ -7798,24 +7950,6 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     this.ModelElement.ReactivePowerQIIIL2 = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ReactivePowerQIIIL2Changed += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ReactivePowerQIIIL2Changed -= handler;
-            }
         }
         
         /// <summary>
@@ -7829,7 +7963,7 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public ReactivePowerQIIIL3Proxy(IElectricityValues modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "ReactivePowerQIIIL3")
             {
             }
             
@@ -7847,24 +7981,6 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     this.ModelElement.ReactivePowerQIIIL3 = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ReactivePowerQIIIL3Changed += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ReactivePowerQIIIL3Changed -= handler;
-            }
         }
         
         /// <summary>
@@ -7878,7 +7994,7 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public ReactivePowerQIIIallProxy(IElectricityValues modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "ReactivePowerQIIIall")
             {
             }
             
@@ -7896,24 +8012,6 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     this.ModelElement.ReactivePowerQIIIall = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ReactivePowerQIIIallChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ReactivePowerQIIIallChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -7927,7 +8025,7 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public ReactivePowerQIVL1Proxy(IElectricityValues modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "ReactivePowerQIVL1")
             {
             }
             
@@ -7945,24 +8043,6 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     this.ModelElement.ReactivePowerQIVL1 = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ReactivePowerQIVL1Changed += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ReactivePowerQIVL1Changed -= handler;
-            }
         }
         
         /// <summary>
@@ -7976,7 +8056,7 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public ReactivePowerQIVL2Proxy(IElectricityValues modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "ReactivePowerQIVL2")
             {
             }
             
@@ -7994,24 +8074,6 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     this.ModelElement.ReactivePowerQIVL2 = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ReactivePowerQIVL2Changed += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ReactivePowerQIVL2Changed -= handler;
-            }
         }
         
         /// <summary>
@@ -8025,7 +8087,7 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public ReactivePowerQIVL3Proxy(IElectricityValues modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "ReactivePowerQIVL3")
             {
             }
             
@@ -8043,24 +8105,6 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     this.ModelElement.ReactivePowerQIVL3 = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ReactivePowerQIVL3Changed += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ReactivePowerQIVL3Changed -= handler;
-            }
         }
         
         /// <summary>
@@ -8074,7 +8118,7 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public ReactivePowerQIVallProxy(IElectricityValues modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "ReactivePowerQIVall")
             {
             }
             
@@ -8092,24 +8136,6 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     this.ModelElement.ReactivePowerQIVall = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ReactivePowerQIVallChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ReactivePowerQIVallChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -8123,7 +8149,7 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public ApparentPowerpL1Proxy(IElectricityValues modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "ApparentPowerpL1")
             {
             }
             
@@ -8141,24 +8167,6 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     this.ModelElement.ApparentPowerpL1 = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ApparentPowerpL1Changed += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ApparentPowerpL1Changed -= handler;
-            }
         }
         
         /// <summary>
@@ -8172,7 +8180,7 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public ApparentPowerpL2Proxy(IElectricityValues modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "ApparentPowerpL2")
             {
             }
             
@@ -8190,24 +8198,6 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     this.ModelElement.ApparentPowerpL2 = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ApparentPowerpL2Changed += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ApparentPowerpL2Changed -= handler;
-            }
         }
         
         /// <summary>
@@ -8221,7 +8211,7 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public ApparentPowerpL3Proxy(IElectricityValues modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "ApparentPowerpL3")
             {
             }
             
@@ -8239,24 +8229,6 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     this.ModelElement.ApparentPowerpL3 = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ApparentPowerpL3Changed += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ApparentPowerpL3Changed -= handler;
-            }
         }
         
         /// <summary>
@@ -8270,7 +8242,7 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public ApparentPowerpAllProxy(IElectricityValues modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "ApparentPowerpAll")
             {
             }
             
@@ -8288,24 +8260,6 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     this.ModelElement.ApparentPowerpAll = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ApparentPowerpAllChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ApparentPowerpAllChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -8319,7 +8273,7 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public ApparentPowermL1Proxy(IElectricityValues modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "ApparentPowermL1")
             {
             }
             
@@ -8337,24 +8291,6 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     this.ModelElement.ApparentPowermL1 = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ApparentPowermL1Changed += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ApparentPowermL1Changed -= handler;
-            }
         }
         
         /// <summary>
@@ -8368,7 +8304,7 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public ApparentPowermL2Proxy(IElectricityValues modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "ApparentPowermL2")
             {
             }
             
@@ -8386,24 +8322,6 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     this.ModelElement.ApparentPowermL2 = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ApparentPowermL2Changed += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ApparentPowermL2Changed -= handler;
-            }
         }
         
         /// <summary>
@@ -8417,7 +8335,7 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public ApparentPowermL3Proxy(IElectricityValues modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "ApparentPowermL3")
             {
             }
             
@@ -8435,24 +8353,6 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     this.ModelElement.ApparentPowermL3 = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ApparentPowermL3Changed += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ApparentPowermL3Changed -= handler;
-            }
         }
         
         /// <summary>
@@ -8466,7 +8366,7 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public ApparentPowermAllProxy(IElectricityValues modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "ApparentPowermAll")
             {
             }
             
@@ -8484,24 +8384,6 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     this.ModelElement.ApparentPowermAll = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ApparentPowermAllChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ApparentPowermAllChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -8515,7 +8397,7 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public CurrentL1Proxy(IElectricityValues modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "CurrentL1")
             {
             }
             
@@ -8533,24 +8415,6 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     this.ModelElement.CurrentL1 = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.CurrentL1Changed += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.CurrentL1Changed -= handler;
-            }
         }
         
         /// <summary>
@@ -8564,7 +8428,7 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public CurrentL2Proxy(IElectricityValues modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "CurrentL2")
             {
             }
             
@@ -8582,24 +8446,6 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     this.ModelElement.CurrentL2 = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.CurrentL2Changed += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.CurrentL2Changed -= handler;
-            }
         }
         
         /// <summary>
@@ -8613,7 +8459,7 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public CurrentL3Proxy(IElectricityValues modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "CurrentL3")
             {
             }
             
@@ -8631,24 +8477,6 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     this.ModelElement.CurrentL3 = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.CurrentL3Changed += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.CurrentL3Changed -= handler;
-            }
         }
         
         /// <summary>
@@ -8662,7 +8490,7 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public CurrentAllProxy(IElectricityValues modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "CurrentAll")
             {
             }
             
@@ -8680,24 +8508,6 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     this.ModelElement.CurrentAll = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.CurrentAllChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.CurrentAllChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -8711,7 +8521,7 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public VoltageL1Proxy(IElectricityValues modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "VoltageL1")
             {
             }
             
@@ -8729,24 +8539,6 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     this.ModelElement.VoltageL1 = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.VoltageL1Changed += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.VoltageL1Changed -= handler;
-            }
         }
         
         /// <summary>
@@ -8760,7 +8552,7 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public VoltageL2Proxy(IElectricityValues modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "VoltageL2")
             {
             }
             
@@ -8778,24 +8570,6 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     this.ModelElement.VoltageL2 = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.VoltageL2Changed += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.VoltageL2Changed -= handler;
-            }
         }
         
         /// <summary>
@@ -8809,7 +8583,7 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public VoltageL3Proxy(IElectricityValues modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "VoltageL3")
             {
             }
             
@@ -8827,24 +8601,6 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     this.ModelElement.VoltageL3 = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.VoltageL3Changed += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.VoltageL3Changed -= handler;
-            }
         }
         
         /// <summary>
@@ -8858,7 +8614,7 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public VoltageAllProxy(IElectricityValues modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "VoltageAll")
             {
             }
             
@@ -8876,24 +8632,6 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     this.ModelElement.VoltageAll = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.VoltageAllChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.VoltageAllChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -8907,7 +8645,7 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public PowerFactorL1Proxy(IElectricityValues modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "PowerFactorL1")
             {
             }
             
@@ -8925,24 +8663,6 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     this.ModelElement.PowerFactorL1 = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.PowerFactorL1Changed += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.PowerFactorL1Changed -= handler;
-            }
         }
         
         /// <summary>
@@ -8956,7 +8676,7 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public PowerFactorL2Proxy(IElectricityValues modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "PowerFactorL2")
             {
             }
             
@@ -8974,24 +8694,6 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     this.ModelElement.PowerFactorL2 = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.PowerFactorL2Changed += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.PowerFactorL2Changed -= handler;
-            }
         }
         
         /// <summary>
@@ -9005,7 +8707,7 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public PowerFactorL3Proxy(IElectricityValues modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "PowerFactorL3")
             {
             }
             
@@ -9023,24 +8725,6 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     this.ModelElement.PowerFactorL3 = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.PowerFactorL3Changed += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.PowerFactorL3Changed -= handler;
-            }
         }
         
         /// <summary>
@@ -9054,7 +8738,7 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public PowerFactorAllProxy(IElectricityValues modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "PowerFactorAll")
             {
             }
             
@@ -9072,24 +8756,6 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     this.ModelElement.PowerFactorAll = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.PowerFactorAllChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.PowerFactorAllChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -9103,7 +8769,7 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public SupplyFrequencyL1Proxy(IElectricityValues modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "SupplyFrequencyL1")
             {
             }
             
@@ -9121,24 +8787,6 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     this.ModelElement.SupplyFrequencyL1 = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.SupplyFrequencyL1Changed += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.SupplyFrequencyL1Changed -= handler;
-            }
         }
         
         /// <summary>
@@ -9152,7 +8800,7 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public SupplyFrequencyL2Proxy(IElectricityValues modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "SupplyFrequencyL2")
             {
             }
             
@@ -9170,24 +8818,6 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     this.ModelElement.SupplyFrequencyL2 = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.SupplyFrequencyL2Changed += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.SupplyFrequencyL2Changed -= handler;
-            }
         }
         
         /// <summary>
@@ -9201,7 +8831,7 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public SupplyFrequencyL3Proxy(IElectricityValues modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "SupplyFrequencyL3")
             {
             }
             
@@ -9219,24 +8849,6 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     this.ModelElement.SupplyFrequencyL3 = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.SupplyFrequencyL3Changed += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.SupplyFrequencyL3Changed -= handler;
-            }
         }
         
         /// <summary>
@@ -9250,7 +8862,7 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public SupplyFrequencyAllProxy(IElectricityValues modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "SupplyFrequencyAll")
             {
             }
             
@@ -9268,24 +8880,6 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     this.ModelElement.SupplyFrequencyAll = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.SupplyFrequencyAllChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.SupplyFrequencyAllChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -9299,7 +8893,7 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public ActivePowerAbsPL1Proxy(IElectricityValues modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "ActivePowerAbsPL1")
             {
             }
             
@@ -9317,24 +8911,6 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     this.ModelElement.ActivePowerAbsPL1 = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ActivePowerAbsPL1Changed += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ActivePowerAbsPL1Changed -= handler;
-            }
         }
         
         /// <summary>
@@ -9348,7 +8924,7 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public ActivePowerAbsPL2Proxy(IElectricityValues modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "ActivePowerAbsPL2")
             {
             }
             
@@ -9366,24 +8942,6 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     this.ModelElement.ActivePowerAbsPL2 = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ActivePowerAbsPL2Changed += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ActivePowerAbsPL2Changed -= handler;
-            }
         }
         
         /// <summary>
@@ -9397,7 +8955,7 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public ActivePowerAbsPL3Proxy(IElectricityValues modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "ActivePowerAbsPL3")
             {
             }
             
@@ -9415,24 +8973,6 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     this.ModelElement.ActivePowerAbsPL3 = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ActivePowerAbsPL3Changed += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ActivePowerAbsPL3Changed -= handler;
-            }
         }
         
         /// <summary>
@@ -9446,7 +8986,7 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public ActivePowerAbsPAllProxy(IElectricityValues modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "ActivePowerAbsPAll")
             {
             }
             
@@ -9464,24 +9004,6 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     this.ModelElement.ActivePowerAbsPAll = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ActivePowerAbsPAllChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ActivePowerAbsPAllChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -9495,7 +9017,7 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public ActivePowerAbsML1Proxy(IElectricityValues modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "ActivePowerAbsML1")
             {
             }
             
@@ -9513,24 +9035,6 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     this.ModelElement.ActivePowerAbsML1 = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ActivePowerAbsML1Changed += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ActivePowerAbsML1Changed -= handler;
-            }
         }
         
         /// <summary>
@@ -9544,7 +9048,7 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public ActivePowerAbsML2Proxy(IElectricityValues modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "ActivePowerAbsML2")
             {
             }
             
@@ -9562,24 +9066,6 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     this.ModelElement.ActivePowerAbsML2 = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ActivePowerAbsML2Changed += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ActivePowerAbsML2Changed -= handler;
-            }
         }
         
         /// <summary>
@@ -9593,7 +9079,7 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public ActivePowerAbsML3Proxy(IElectricityValues modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "ActivePowerAbsML3")
             {
             }
             
@@ -9611,24 +9097,6 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     this.ModelElement.ActivePowerAbsML3 = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ActivePowerAbsML3Changed += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ActivePowerAbsML3Changed -= handler;
-            }
         }
         
         /// <summary>
@@ -9642,7 +9110,7 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public ActivePowerAbsMAllProxy(IElectricityValues modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "ActivePowerAbsMAll")
             {
             }
             
@@ -9660,24 +9128,6 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     this.ModelElement.ActivePowerAbsMAll = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ActivePowerAbsMAllChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ActivePowerAbsMAllChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -9691,7 +9141,7 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public ActivePowerQIL1Proxy(IElectricityValues modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "ActivePowerQIL1")
             {
             }
             
@@ -9709,24 +9159,6 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     this.ModelElement.ActivePowerQIL1 = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ActivePowerQIL1Changed += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ActivePowerQIL1Changed -= handler;
-            }
         }
         
         /// <summary>
@@ -9740,7 +9172,7 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public ActivePowerQIL2Proxy(IElectricityValues modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "ActivePowerQIL2")
             {
             }
             
@@ -9758,24 +9190,6 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     this.ModelElement.ActivePowerQIL2 = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ActivePowerQIL2Changed += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ActivePowerQIL2Changed -= handler;
-            }
         }
         
         /// <summary>
@@ -9789,7 +9203,7 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public ActivePowerQIL3Proxy(IElectricityValues modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "ActivePowerQIL3")
             {
             }
             
@@ -9807,24 +9221,6 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     this.ModelElement.ActivePowerQIL3 = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ActivePowerQIL3Changed += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ActivePowerQIL3Changed -= handler;
-            }
         }
         
         /// <summary>
@@ -9838,7 +9234,7 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public ActivePowerQIallProxy(IElectricityValues modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "ActivePowerQIall")
             {
             }
             
@@ -9856,24 +9252,6 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     this.ModelElement.ActivePowerQIall = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ActivePowerQIallChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ActivePowerQIallChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -9887,7 +9265,7 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public ActivePowerQIIL1Proxy(IElectricityValues modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "ActivePowerQIIL1")
             {
             }
             
@@ -9905,24 +9283,6 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     this.ModelElement.ActivePowerQIIL1 = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ActivePowerQIIL1Changed += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ActivePowerQIIL1Changed -= handler;
-            }
         }
         
         /// <summary>
@@ -9936,7 +9296,7 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public ActivePowerQIIL2Proxy(IElectricityValues modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "ActivePowerQIIL2")
             {
             }
             
@@ -9954,24 +9314,6 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     this.ModelElement.ActivePowerQIIL2 = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ActivePowerQIIL2Changed += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ActivePowerQIIL2Changed -= handler;
-            }
         }
         
         /// <summary>
@@ -9985,7 +9327,7 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public ActivePowerQIIL3Proxy(IElectricityValues modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "ActivePowerQIIL3")
             {
             }
             
@@ -10003,24 +9345,6 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     this.ModelElement.ActivePowerQIIL3 = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ActivePowerQIIL3Changed += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ActivePowerQIIL3Changed -= handler;
-            }
         }
         
         /// <summary>
@@ -10034,7 +9358,7 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public ActivePowerQIIallProxy(IElectricityValues modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "ActivePowerQIIall")
             {
             }
             
@@ -10052,24 +9376,6 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     this.ModelElement.ActivePowerQIIall = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ActivePowerQIIallChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ActivePowerQIIallChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -10083,7 +9389,7 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public ActivePowerQIIIL1Proxy(IElectricityValues modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "ActivePowerQIIIL1")
             {
             }
             
@@ -10101,24 +9407,6 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     this.ModelElement.ActivePowerQIIIL1 = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ActivePowerQIIIL1Changed += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ActivePowerQIIIL1Changed -= handler;
-            }
         }
         
         /// <summary>
@@ -10132,7 +9420,7 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public ActivePowerQIIIL2Proxy(IElectricityValues modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "ActivePowerQIIIL2")
             {
             }
             
@@ -10150,24 +9438,6 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     this.ModelElement.ActivePowerQIIIL2 = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ActivePowerQIIIL2Changed += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ActivePowerQIIIL2Changed -= handler;
-            }
         }
         
         /// <summary>
@@ -10181,7 +9451,7 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public ActivePowerQIIIL3Proxy(IElectricityValues modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "ActivePowerQIIIL3")
             {
             }
             
@@ -10199,24 +9469,6 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     this.ModelElement.ActivePowerQIIIL3 = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ActivePowerQIIIL3Changed += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ActivePowerQIIIL3Changed -= handler;
-            }
         }
         
         /// <summary>
@@ -10230,7 +9482,7 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public ActivePowerQIIIallProxy(IElectricityValues modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "ActivePowerQIIIall")
             {
             }
             
@@ -10248,24 +9500,6 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     this.ModelElement.ActivePowerQIIIall = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ActivePowerQIIIallChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ActivePowerQIIIallChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -10279,7 +9513,7 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public ActivePowerQIVL1Proxy(IElectricityValues modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "ActivePowerQIVL1")
             {
             }
             
@@ -10297,24 +9531,6 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     this.ModelElement.ActivePowerQIVL1 = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ActivePowerQIVL1Changed += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ActivePowerQIVL1Changed -= handler;
-            }
         }
         
         /// <summary>
@@ -10328,7 +9544,7 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public ActivePowerQIVL2Proxy(IElectricityValues modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "ActivePowerQIVL2")
             {
             }
             
@@ -10346,24 +9562,6 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     this.ModelElement.ActivePowerQIVL2 = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ActivePowerQIVL2Changed += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ActivePowerQIVL2Changed -= handler;
-            }
         }
         
         /// <summary>
@@ -10377,7 +9575,7 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public ActivePowerQIVL3Proxy(IElectricityValues modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "ActivePowerQIVL3")
             {
             }
             
@@ -10395,24 +9593,6 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     this.ModelElement.ActivePowerQIVL3 = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ActivePowerQIVL3Changed += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ActivePowerQIVL3Changed -= handler;
-            }
         }
         
         /// <summary>
@@ -10426,7 +9606,7 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public ActivePowerQIVallProxy(IElectricityValues modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "ActivePowerQIVall")
             {
             }
             
@@ -10444,24 +9624,6 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     this.ModelElement.ActivePowerQIVall = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ActivePowerQIVallChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ActivePowerQIVallChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -10475,7 +9637,7 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public AnglesProxy(IElectricityValues modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "Angles")
             {
             }
             
@@ -10493,24 +9655,6 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     this.ModelElement.Angles = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.AnglesChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.AnglesChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -10524,7 +9668,7 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public PulsesProxy(IElectricityValues modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "Pulses")
             {
             }
             
@@ -10542,24 +9686,6 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     this.ModelElement.Pulses = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.PulsesChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.PulsesChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -10573,7 +9699,7 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public Ampere_squaredHoursProxy(IElectricityValues modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "Ampere_squaredHours")
             {
             }
             
@@ -10591,24 +9717,6 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     this.ModelElement.Ampere_squaredHours = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.Ampere_squaredHoursChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.Ampere_squaredHoursChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -10622,7 +9730,7 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public Volt_squaredHoursProxy(IElectricityValues modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "Volt_squaredHours")
             {
             }
             
@@ -10640,24 +9748,6 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     this.ModelElement.Volt_squaredHours = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.Volt_squaredHoursChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.Volt_squaredHoursChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -10671,7 +9761,7 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public NeutralCurrentProxy(IElectricityValues modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "NeutralCurrent")
             {
             }
             
@@ -10689,24 +9779,6 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     this.ModelElement.NeutralCurrent = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.NeutralCurrentChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.NeutralCurrentChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -10720,7 +9792,7 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public NeutralVoltageProxy(IElectricityValues modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "NeutralVoltage")
             {
             }
             
@@ -10737,24 +9809,6 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                 {
                     this.ModelElement.NeutralVoltage = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.NeutralVoltageChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.NeutralVoltageChanged -= handler;
             }
         }
     }

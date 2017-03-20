@@ -46,7 +46,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.PaymentMetering
     [XmlNamespacePrefixAttribute("cimPaymentMetering")]
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61968/PaymentMetering/Shift")]
     [DebuggerDisplayAttribute("Shift {UUID}")]
-    public class Shift : IdentifiedObject, IShift, IModelElement
+    public partial class Shift : IdentifiedObject, IShift, IModelElement
     {
         
         /// <summary>
@@ -54,35 +54,51 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.PaymentMetering
         /// </summary>
         private float _transactionsGrandTotal;
         
+        private static Lazy<ITypedElement> _transactionsGrandTotalAttribute = new Lazy<ITypedElement>(RetrieveTransactionsGrandTotalAttribute);
+        
         /// <summary>
         /// The backing field for the ReceiptsGrandTotalRounding property
         /// </summary>
         private float _receiptsGrandTotalRounding;
+        
+        private static Lazy<ITypedElement> _receiptsGrandTotalRoundingAttribute = new Lazy<ITypedElement>(RetrieveReceiptsGrandTotalRoundingAttribute);
         
         /// <summary>
         /// The backing field for the TransactionsGrandTotalRounding property
         /// </summary>
         private float _transactionsGrandTotalRounding;
         
+        private static Lazy<ITypedElement> _transactionsGrandTotalRoundingAttribute = new Lazy<ITypedElement>(RetrieveTransactionsGrandTotalRoundingAttribute);
+        
         /// <summary>
         /// The backing field for the ReceiptsGrandTotalNonBankable property
         /// </summary>
         private float _receiptsGrandTotalNonBankable;
+        
+        private static Lazy<ITypedElement> _receiptsGrandTotalNonBankableAttribute = new Lazy<ITypedElement>(RetrieveReceiptsGrandTotalNonBankableAttribute);
         
         /// <summary>
         /// The backing field for the ReceiptsGrandTotalBankable property
         /// </summary>
         private float _receiptsGrandTotalBankable;
         
+        private static Lazy<ITypedElement> _receiptsGrandTotalBankableAttribute = new Lazy<ITypedElement>(RetrieveReceiptsGrandTotalBankableAttribute);
+        
+        private static Lazy<ITypedElement> _activityIntervalReference = new Lazy<ITypedElement>(RetrieveActivityIntervalReference);
+        
         /// <summary>
         /// The backing field for the ActivityInterval property
         /// </summary>
         private IDateTimeInterval _activityInterval;
         
+        private static Lazy<ITypedElement> _transactionSummariesReference = new Lazy<ITypedElement>(RetrieveTransactionSummariesReference);
+        
         /// <summary>
         /// The backing field for the TransactionSummaries property
         /// </summary>
         private ShiftTransactionSummariesCollection _transactionSummaries;
+        
+        private static Lazy<ITypedElement> _receiptSummariesReference = new Lazy<ITypedElement>(RetrieveReceiptSummariesReference);
         
         /// <summary>
         /// The backing field for the ReceiptSummaries property
@@ -119,10 +135,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.PaymentMetering
                     float old = this._transactionsGrandTotal;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnTransactionsGrandTotalChanging(e);
-                    this.OnPropertyChanging("TransactionsGrandTotal", e);
+                    this.OnPropertyChanging("TransactionsGrandTotal", e, _transactionsGrandTotalAttribute);
                     this._transactionsGrandTotal = value;
                     this.OnTransactionsGrandTotalChanged(e);
-                    this.OnPropertyChanged("TransactionsGrandTotal", e);
+                    this.OnPropertyChanged("TransactionsGrandTotal", e, _transactionsGrandTotalAttribute);
                 }
             }
         }
@@ -145,10 +161,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.PaymentMetering
                     float old = this._receiptsGrandTotalRounding;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnReceiptsGrandTotalRoundingChanging(e);
-                    this.OnPropertyChanging("ReceiptsGrandTotalRounding", e);
+                    this.OnPropertyChanging("ReceiptsGrandTotalRounding", e, _receiptsGrandTotalRoundingAttribute);
                     this._receiptsGrandTotalRounding = value;
                     this.OnReceiptsGrandTotalRoundingChanged(e);
-                    this.OnPropertyChanged("ReceiptsGrandTotalRounding", e);
+                    this.OnPropertyChanged("ReceiptsGrandTotalRounding", e, _receiptsGrandTotalRoundingAttribute);
                 }
             }
         }
@@ -171,10 +187,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.PaymentMetering
                     float old = this._transactionsGrandTotalRounding;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnTransactionsGrandTotalRoundingChanging(e);
-                    this.OnPropertyChanging("TransactionsGrandTotalRounding", e);
+                    this.OnPropertyChanging("TransactionsGrandTotalRounding", e, _transactionsGrandTotalRoundingAttribute);
                     this._transactionsGrandTotalRounding = value;
                     this.OnTransactionsGrandTotalRoundingChanged(e);
-                    this.OnPropertyChanged("TransactionsGrandTotalRounding", e);
+                    this.OnPropertyChanged("TransactionsGrandTotalRounding", e, _transactionsGrandTotalRoundingAttribute);
                 }
             }
         }
@@ -197,10 +213,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.PaymentMetering
                     float old = this._receiptsGrandTotalNonBankable;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnReceiptsGrandTotalNonBankableChanging(e);
-                    this.OnPropertyChanging("ReceiptsGrandTotalNonBankable", e);
+                    this.OnPropertyChanging("ReceiptsGrandTotalNonBankable", e, _receiptsGrandTotalNonBankableAttribute);
                     this._receiptsGrandTotalNonBankable = value;
                     this.OnReceiptsGrandTotalNonBankableChanged(e);
-                    this.OnPropertyChanged("ReceiptsGrandTotalNonBankable", e);
+                    this.OnPropertyChanged("ReceiptsGrandTotalNonBankable", e, _receiptsGrandTotalNonBankableAttribute);
                 }
             }
         }
@@ -223,10 +239,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.PaymentMetering
                     float old = this._receiptsGrandTotalBankable;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnReceiptsGrandTotalBankableChanging(e);
-                    this.OnPropertyChanging("ReceiptsGrandTotalBankable", e);
+                    this.OnPropertyChanging("ReceiptsGrandTotalBankable", e, _receiptsGrandTotalBankableAttribute);
                     this._receiptsGrandTotalBankable = value;
                     this.OnReceiptsGrandTotalBankableChanged(e);
-                    this.OnPropertyChanged("ReceiptsGrandTotalBankable", e);
+                    this.OnPropertyChanged("ReceiptsGrandTotalBankable", e, _receiptsGrandTotalBankableAttribute);
                 }
             }
         }
@@ -249,7 +265,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.PaymentMetering
                     IDateTimeInterval old = this._activityInterval;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnActivityIntervalChanging(e);
-                    this.OnPropertyChanging("ActivityInterval", e);
+                    this.OnPropertyChanging("ActivityInterval", e, _activityIntervalReference);
                     this._activityInterval = value;
                     if ((old != null))
                     {
@@ -260,7 +276,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.PaymentMetering
                         value.Deleted += this.OnResetActivityInterval;
                     }
                     this.OnActivityIntervalChanged(e);
-                    this.OnPropertyChanged("ActivityInterval", e);
+                    this.OnPropertyChanged("ActivityInterval", e, _activityIntervalReference);
                 }
             }
         }
@@ -381,6 +397,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.PaymentMetering
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> ActivityIntervalChanged;
         
+        private static ITypedElement RetrieveTransactionsGrandTotalAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(Shift.ClassInstance)).Resolve("transactionsGrandTotal")));
+        }
+        
         /// <summary>
         /// Raises the TransactionsGrandTotalChanging event
         /// </summary>
@@ -405,6 +426,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.PaymentMetering
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveReceiptsGrandTotalRoundingAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(Shift.ClassInstance)).Resolve("receiptsGrandTotalRounding")));
         }
         
         /// <summary>
@@ -433,6 +459,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.PaymentMetering
             }
         }
         
+        private static ITypedElement RetrieveTransactionsGrandTotalRoundingAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(Shift.ClassInstance)).Resolve("transactionsGrandTotalRounding")));
+        }
+        
         /// <summary>
         /// Raises the TransactionsGrandTotalRoundingChanging event
         /// </summary>
@@ -457,6 +488,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.PaymentMetering
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveReceiptsGrandTotalNonBankableAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(Shift.ClassInstance)).Resolve("receiptsGrandTotalNonBankable")));
         }
         
         /// <summary>
@@ -485,6 +521,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.PaymentMetering
             }
         }
         
+        private static ITypedElement RetrieveReceiptsGrandTotalBankableAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(Shift.ClassInstance)).Resolve("receiptsGrandTotalBankable")));
+        }
+        
         /// <summary>
         /// Raises the ReceiptsGrandTotalBankableChanging event
         /// </summary>
@@ -509,6 +550,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.PaymentMetering
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveActivityIntervalReference()
+        {
+            return ((ITypedElement)(((ModelElement)(Shift.ClassInstance)).Resolve("activityInterval")));
         }
         
         /// <summary>
@@ -547,6 +593,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.PaymentMetering
             this.ActivityInterval = null;
         }
         
+        private static ITypedElement RetrieveTransactionSummariesReference()
+        {
+            return ((ITypedElement)(((ModelElement)(Shift.ClassInstance)).Resolve("TransactionSummaries")));
+        }
+        
         /// <summary>
         /// Forwards CollectionChanging notifications for the TransactionSummaries property to the parent model element
         /// </summary>
@@ -554,7 +605,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.PaymentMetering
         /// <param name="e">The original event data</param>
         private void TransactionSummariesCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("TransactionSummaries", e);
+            this.OnCollectionChanging("TransactionSummaries", e, _transactionSummariesReference);
         }
         
         /// <summary>
@@ -564,7 +615,12 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.PaymentMetering
         /// <param name="e">The original event data</param>
         private void TransactionSummariesCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("TransactionSummaries", e);
+            this.OnCollectionChanged("TransactionSummaries", e, _transactionSummariesReference);
+        }
+        
+        private static ITypedElement RetrieveReceiptSummariesReference()
+        {
+            return ((ITypedElement)(((ModelElement)(Shift.ClassInstance)).Resolve("ReceiptSummaries")));
         }
         
         /// <summary>
@@ -574,7 +630,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.PaymentMetering
         /// <param name="e">The original event data</param>
         private void ReceiptSummariesCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("ReceiptSummaries", e);
+            this.OnCollectionChanging("ReceiptSummaries", e, _receiptSummariesReference);
         }
         
         /// <summary>
@@ -584,7 +640,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.PaymentMetering
         /// <param name="e">The original event data</param>
         private void ReceiptSummariesCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("ReceiptSummaries", e);
+            this.OnCollectionChanged("ReceiptSummaries", e, _receiptSummariesReference);
         }
         
         /// <summary>
@@ -915,7 +971,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.PaymentMetering
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public TransactionsGrandTotalProxy(IShift modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "transactionsGrandTotal")
             {
             }
             
@@ -933,24 +989,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.PaymentMetering
                     this.ModelElement.TransactionsGrandTotal = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.TransactionsGrandTotalChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.TransactionsGrandTotalChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -964,7 +1002,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.PaymentMetering
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public ReceiptsGrandTotalRoundingProxy(IShift modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "receiptsGrandTotalRounding")
             {
             }
             
@@ -982,24 +1020,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.PaymentMetering
                     this.ModelElement.ReceiptsGrandTotalRounding = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ReceiptsGrandTotalRoundingChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ReceiptsGrandTotalRoundingChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1013,7 +1033,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.PaymentMetering
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public TransactionsGrandTotalRoundingProxy(IShift modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "transactionsGrandTotalRounding")
             {
             }
             
@@ -1031,24 +1051,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.PaymentMetering
                     this.ModelElement.TransactionsGrandTotalRounding = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.TransactionsGrandTotalRoundingChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.TransactionsGrandTotalRoundingChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1062,7 +1064,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.PaymentMetering
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public ReceiptsGrandTotalNonBankableProxy(IShift modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "receiptsGrandTotalNonBankable")
             {
             }
             
@@ -1080,24 +1082,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.PaymentMetering
                     this.ModelElement.ReceiptsGrandTotalNonBankable = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ReceiptsGrandTotalNonBankableChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ReceiptsGrandTotalNonBankableChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1111,7 +1095,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.PaymentMetering
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public ReceiptsGrandTotalBankableProxy(IShift modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "receiptsGrandTotalBankable")
             {
             }
             
@@ -1129,24 +1113,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.PaymentMetering
                     this.ModelElement.ReceiptsGrandTotalBankable = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ReceiptsGrandTotalBankableChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ReceiptsGrandTotalBankableChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1160,7 +1126,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.PaymentMetering
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public ActivityIntervalProxy(IShift modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "activityInterval")
             {
             }
             
@@ -1177,24 +1143,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.PaymentMetering
                 {
                     this.ModelElement.ActivityInterval = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ActivityIntervalChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ActivityIntervalChanged -= handler;
             }
         }
     }

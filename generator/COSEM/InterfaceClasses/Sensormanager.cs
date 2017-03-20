@@ -40,7 +40,7 @@ namespace TTC2017.SmartGrids.COSEM.InterfaceClasses
     [XmlNamespacePrefixAttribute("inter")]
     [ModelRepresentationClassAttribute("http://www.transformation-tool-contest.eu/2017/smartGrids/cosem#//InterfaceClasse" +
         "s/Sensormanager")]
-    public class Sensormanager : Base, ISensormanager, IModelElement
+    public partial class Sensormanager : Base, ISensormanager, IModelElement
     {
         
         private static IClass _classInstance;

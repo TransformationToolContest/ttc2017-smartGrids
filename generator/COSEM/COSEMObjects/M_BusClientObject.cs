@@ -39,7 +39,7 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
     [XmlNamespacePrefixAttribute("objects")]
     [ModelRepresentationClassAttribute("http://www.transformation-tool-contest.eu/2017/smartGrids/cosem#//COSEMObjects/M_" +
         "BusClientObject")]
-    public class M_BusClientObject : M_Bus_client, IM_BusClientObject, IModelElement
+    public partial class M_BusClientObject : M_Bus_client, IM_BusClientObject, IModelElement
     {
         
         private static IClass _classInstance;

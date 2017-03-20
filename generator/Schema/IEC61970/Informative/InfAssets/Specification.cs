@@ -53,38 +53,52 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61970/Informative/InfAssets/Specifi" +
         "cation")]
     [DebuggerDisplayAttribute("Specification {UUID}")]
-    public class Specification : Document, ISpecification, IModelElement
+    public partial class Specification : Document, ISpecification, IModelElement
     {
+        
+        private static Lazy<ITypedElement> _assetProperitesReference = new Lazy<ITypedElement>(RetrieveAssetProperitesReference);
         
         /// <summary>
         /// The backing field for the AssetProperites property
         /// </summary>
         private SpecificationAssetProperitesCollection _assetProperites;
         
+        private static Lazy<ITypedElement> _reliabilityInfosReference = new Lazy<ITypedElement>(RetrieveReliabilityInfosReference);
+        
         /// <summary>
         /// The backing field for the ReliabilityInfos property
         /// </summary>
         private SpecificationReliabilityInfosCollection _reliabilityInfos;
+        
+        private static Lazy<ITypedElement> _ratingsReference = new Lazy<ITypedElement>(RetrieveRatingsReference);
         
         /// <summary>
         /// The backing field for the Ratings property
         /// </summary>
         private SpecificationRatingsCollection _ratings;
         
+        private static Lazy<ITypedElement> _qualificationRequirementsReference = new Lazy<ITypedElement>(RetrieveQualificationRequirementsReference);
+        
         /// <summary>
         /// The backing field for the QualificationRequirements property
         /// </summary>
         private SpecificationQualificationRequirementsCollection _qualificationRequirements;
+        
+        private static Lazy<ITypedElement> _assetPropertyCurvesReference = new Lazy<ITypedElement>(RetrieveAssetPropertyCurvesReference);
         
         /// <summary>
         /// The backing field for the AssetPropertyCurves property
         /// </summary>
         private SpecificationAssetPropertyCurvesCollection _assetPropertyCurves;
         
+        private static Lazy<ITypedElement> _dimensionsInfosReference = new Lazy<ITypedElement>(RetrieveDimensionsInfosReference);
+        
         /// <summary>
         /// The backing field for the DimensionsInfos property
         /// </summary>
         private SpecificationDimensionsInfosCollection _dimensionsInfos;
+        
+        private static Lazy<ITypedElement> _mediumsReference = new Lazy<ITypedElement>(RetrieveMediumsReference);
         
         /// <summary>
         /// The backing field for the Mediums property
@@ -250,6 +264,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
             }
         }
         
+        private static ITypedElement RetrieveAssetProperitesReference()
+        {
+            return ((ITypedElement)(((ModelElement)(Specification.ClassInstance)).Resolve("AssetProperites")));
+        }
+        
         /// <summary>
         /// Forwards CollectionChanging notifications for the AssetProperites property to the parent model element
         /// </summary>
@@ -257,7 +276,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
         /// <param name="e">The original event data</param>
         private void AssetProperitesCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("AssetProperites", e);
+            this.OnCollectionChanging("AssetProperites", e, _assetProperitesReference);
         }
         
         /// <summary>
@@ -267,7 +286,12 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
         /// <param name="e">The original event data</param>
         private void AssetProperitesCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("AssetProperites", e);
+            this.OnCollectionChanged("AssetProperites", e, _assetProperitesReference);
+        }
+        
+        private static ITypedElement RetrieveReliabilityInfosReference()
+        {
+            return ((ITypedElement)(((ModelElement)(Specification.ClassInstance)).Resolve("ReliabilityInfos")));
         }
         
         /// <summary>
@@ -277,7 +301,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
         /// <param name="e">The original event data</param>
         private void ReliabilityInfosCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("ReliabilityInfos", e);
+            this.OnCollectionChanging("ReliabilityInfos", e, _reliabilityInfosReference);
         }
         
         /// <summary>
@@ -287,7 +311,12 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
         /// <param name="e">The original event data</param>
         private void ReliabilityInfosCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("ReliabilityInfos", e);
+            this.OnCollectionChanged("ReliabilityInfos", e, _reliabilityInfosReference);
+        }
+        
+        private static ITypedElement RetrieveRatingsReference()
+        {
+            return ((ITypedElement)(((ModelElement)(Specification.ClassInstance)).Resolve("Ratings")));
         }
         
         /// <summary>
@@ -297,7 +326,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
         /// <param name="e">The original event data</param>
         private void RatingsCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("Ratings", e);
+            this.OnCollectionChanging("Ratings", e, _ratingsReference);
         }
         
         /// <summary>
@@ -307,7 +336,12 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
         /// <param name="e">The original event data</param>
         private void RatingsCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("Ratings", e);
+            this.OnCollectionChanged("Ratings", e, _ratingsReference);
+        }
+        
+        private static ITypedElement RetrieveQualificationRequirementsReference()
+        {
+            return ((ITypedElement)(((ModelElement)(Specification.ClassInstance)).Resolve("QualificationRequirements")));
         }
         
         /// <summary>
@@ -317,7 +351,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
         /// <param name="e">The original event data</param>
         private void QualificationRequirementsCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("QualificationRequirements", e);
+            this.OnCollectionChanging("QualificationRequirements", e, _qualificationRequirementsReference);
         }
         
         /// <summary>
@@ -327,7 +361,12 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
         /// <param name="e">The original event data</param>
         private void QualificationRequirementsCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("QualificationRequirements", e);
+            this.OnCollectionChanged("QualificationRequirements", e, _qualificationRequirementsReference);
+        }
+        
+        private static ITypedElement RetrieveAssetPropertyCurvesReference()
+        {
+            return ((ITypedElement)(((ModelElement)(Specification.ClassInstance)).Resolve("AssetPropertyCurves")));
         }
         
         /// <summary>
@@ -337,7 +376,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
         /// <param name="e">The original event data</param>
         private void AssetPropertyCurvesCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("AssetPropertyCurves", e);
+            this.OnCollectionChanging("AssetPropertyCurves", e, _assetPropertyCurvesReference);
         }
         
         /// <summary>
@@ -347,7 +386,12 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
         /// <param name="e">The original event data</param>
         private void AssetPropertyCurvesCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("AssetPropertyCurves", e);
+            this.OnCollectionChanged("AssetPropertyCurves", e, _assetPropertyCurvesReference);
+        }
+        
+        private static ITypedElement RetrieveDimensionsInfosReference()
+        {
+            return ((ITypedElement)(((ModelElement)(Specification.ClassInstance)).Resolve("DimensionsInfos")));
         }
         
         /// <summary>
@@ -357,7 +401,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
         /// <param name="e">The original event data</param>
         private void DimensionsInfosCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("DimensionsInfos", e);
+            this.OnCollectionChanging("DimensionsInfos", e, _dimensionsInfosReference);
         }
         
         /// <summary>
@@ -367,7 +411,12 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
         /// <param name="e">The original event data</param>
         private void DimensionsInfosCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("DimensionsInfos", e);
+            this.OnCollectionChanged("DimensionsInfos", e, _dimensionsInfosReference);
+        }
+        
+        private static ITypedElement RetrieveMediumsReference()
+        {
+            return ((ITypedElement)(((ModelElement)(Specification.ClassInstance)).Resolve("Mediums")));
         }
         
         /// <summary>
@@ -377,7 +426,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
         /// <param name="e">The original event data</param>
         private void MediumsCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("Mediums", e);
+            this.OnCollectionChanging("Mediums", e, _mediumsReference);
         }
         
         /// <summary>
@@ -387,7 +436,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
         /// <param name="e">The original event data</param>
         private void MediumsCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("Mediums", e);
+            this.OnCollectionChanged("Mediums", e, _mediumsReference);
         }
         
         /// <summary>

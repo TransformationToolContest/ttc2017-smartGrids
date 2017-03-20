@@ -39,33 +39,45 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
     [XmlNamespacePrefixAttribute("data")]
     [ModelRepresentationClassAttribute("http://www.transformation-tool-contest.eu/2017/smartGrids/substationStandard#//Da" +
         "taclasses/RangeConfig")]
-    public class RangeConfig : ModelElement, IRangeConfig, IModelElement
+    public partial class RangeConfig : ModelElement, IRangeConfig, IModelElement
     {
+        
+        private static Lazy<ITypedElement> _hhLimReference = new Lazy<ITypedElement>(RetrieveHhLimReference);
         
         /// <summary>
         /// The backing field for the HhLim property
         /// </summary>
         private IAnalogueValue _hhLim;
         
+        private static Lazy<ITypedElement> _hLimReference = new Lazy<ITypedElement>(RetrieveHLimReference);
+        
         /// <summary>
         /// The backing field for the HLim property
         /// </summary>
         private IAnalogueValue _hLim;
+        
+        private static Lazy<ITypedElement> _lLimReference = new Lazy<ITypedElement>(RetrieveLLimReference);
         
         /// <summary>
         /// The backing field for the LLim property
         /// </summary>
         private IAnalogueValue _lLim;
         
+        private static Lazy<ITypedElement> _llLimReference = new Lazy<ITypedElement>(RetrieveLlLimReference);
+        
         /// <summary>
         /// The backing field for the LlLim property
         /// </summary>
         private IAnalogueValue _llLim;
         
+        private static Lazy<ITypedElement> _minReference = new Lazy<ITypedElement>(RetrieveMinReference);
+        
         /// <summary>
         /// The backing field for the Min property
         /// </summary>
         private IAnalogueValue _min;
+        
+        private static Lazy<ITypedElement> _maxReference = new Lazy<ITypedElement>(RetrieveMaxReference);
         
         /// <summary>
         /// The backing field for the Max property
@@ -92,7 +104,7 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
                     IAnalogueValue old = this._hhLim;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnHhLimChanging(e);
-                    this.OnPropertyChanging("HhLim", e);
+                    this.OnPropertyChanging("HhLim", e, _hhLimReference);
                     this._hhLim = value;
                     if ((old != null))
                     {
@@ -103,7 +115,7 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
                         value.Deleted += this.OnResetHhLim;
                     }
                     this.OnHhLimChanged(e);
-                    this.OnPropertyChanged("HhLim", e);
+                    this.OnPropertyChanged("HhLim", e, _hhLimReference);
                 }
             }
         }
@@ -126,7 +138,7 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
                     IAnalogueValue old = this._hLim;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnHLimChanging(e);
-                    this.OnPropertyChanging("HLim", e);
+                    this.OnPropertyChanging("HLim", e, _hLimReference);
                     this._hLim = value;
                     if ((old != null))
                     {
@@ -137,7 +149,7 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
                         value.Deleted += this.OnResetHLim;
                     }
                     this.OnHLimChanged(e);
-                    this.OnPropertyChanged("HLim", e);
+                    this.OnPropertyChanged("HLim", e, _hLimReference);
                 }
             }
         }
@@ -160,7 +172,7 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
                     IAnalogueValue old = this._lLim;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnLLimChanging(e);
-                    this.OnPropertyChanging("LLim", e);
+                    this.OnPropertyChanging("LLim", e, _lLimReference);
                     this._lLim = value;
                     if ((old != null))
                     {
@@ -171,7 +183,7 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
                         value.Deleted += this.OnResetLLim;
                     }
                     this.OnLLimChanged(e);
-                    this.OnPropertyChanged("LLim", e);
+                    this.OnPropertyChanged("LLim", e, _lLimReference);
                 }
             }
         }
@@ -194,7 +206,7 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
                     IAnalogueValue old = this._llLim;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnLlLimChanging(e);
-                    this.OnPropertyChanging("LlLim", e);
+                    this.OnPropertyChanging("LlLim", e, _llLimReference);
                     this._llLim = value;
                     if ((old != null))
                     {
@@ -205,7 +217,7 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
                         value.Deleted += this.OnResetLlLim;
                     }
                     this.OnLlLimChanged(e);
-                    this.OnPropertyChanged("LlLim", e);
+                    this.OnPropertyChanged("LlLim", e, _llLimReference);
                 }
             }
         }
@@ -228,7 +240,7 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
                     IAnalogueValue old = this._min;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnMinChanging(e);
-                    this.OnPropertyChanging("Min", e);
+                    this.OnPropertyChanging("Min", e, _minReference);
                     this._min = value;
                     if ((old != null))
                     {
@@ -239,7 +251,7 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
                         value.Deleted += this.OnResetMin;
                     }
                     this.OnMinChanged(e);
-                    this.OnPropertyChanged("Min", e);
+                    this.OnPropertyChanged("Min", e, _minReference);
                 }
             }
         }
@@ -262,7 +274,7 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
                     IAnalogueValue old = this._max;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnMaxChanging(e);
-                    this.OnPropertyChanging("Max", e);
+                    this.OnPropertyChanging("Max", e, _maxReference);
                     this._max = value;
                     if ((old != null))
                     {
@@ -273,7 +285,7 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
                         value.Deleted += this.OnResetMax;
                     }
                     this.OnMaxChanged(e);
-                    this.OnPropertyChanged("Max", e);
+                    this.OnPropertyChanged("Max", e, _maxReference);
                 }
             }
         }
@@ -365,6 +377,11 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> MaxChanged;
         
+        private static ITypedElement RetrieveHhLimReference()
+        {
+            return ((ITypedElement)(((ModelElement)(RangeConfig.ClassInstance)).Resolve("hhLim")));
+        }
+        
         /// <summary>
         /// Raises the HhLimChanging event
         /// </summary>
@@ -399,6 +416,11 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
         private void OnResetHhLim(object sender, System.EventArgs eventArgs)
         {
             this.HhLim = null;
+        }
+        
+        private static ITypedElement RetrieveHLimReference()
+        {
+            return ((ITypedElement)(((ModelElement)(RangeConfig.ClassInstance)).Resolve("hLim")));
         }
         
         /// <summary>
@@ -437,6 +459,11 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
             this.HLim = null;
         }
         
+        private static ITypedElement RetrieveLLimReference()
+        {
+            return ((ITypedElement)(((ModelElement)(RangeConfig.ClassInstance)).Resolve("lLim")));
+        }
+        
         /// <summary>
         /// Raises the LLimChanging event
         /// </summary>
@@ -471,6 +498,11 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
         private void OnResetLLim(object sender, System.EventArgs eventArgs)
         {
             this.LLim = null;
+        }
+        
+        private static ITypedElement RetrieveLlLimReference()
+        {
+            return ((ITypedElement)(((ModelElement)(RangeConfig.ClassInstance)).Resolve("llLim")));
         }
         
         /// <summary>
@@ -509,6 +541,11 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
             this.LlLim = null;
         }
         
+        private static ITypedElement RetrieveMinReference()
+        {
+            return ((ITypedElement)(((ModelElement)(RangeConfig.ClassInstance)).Resolve("min")));
+        }
+        
         /// <summary>
         /// Raises the MinChanging event
         /// </summary>
@@ -543,6 +580,11 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
         private void OnResetMin(object sender, System.EventArgs eventArgs)
         {
             this.Min = null;
+        }
+        
+        private static ITypedElement RetrieveMaxReference()
+        {
+            return ((ITypedElement)(((ModelElement)(RangeConfig.ClassInstance)).Resolve("max")));
         }
         
         /// <summary>
@@ -983,7 +1025,7 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public HhLimProxy(IRangeConfig modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "hhLim")
             {
             }
             
@@ -1001,24 +1043,6 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
                     this.ModelElement.HhLim = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.HhLimChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.HhLimChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1032,7 +1056,7 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public HLimProxy(IRangeConfig modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "hLim")
             {
             }
             
@@ -1050,24 +1074,6 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
                     this.ModelElement.HLim = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.HLimChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.HLimChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1081,7 +1087,7 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public LLimProxy(IRangeConfig modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "lLim")
             {
             }
             
@@ -1099,24 +1105,6 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
                     this.ModelElement.LLim = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.LLimChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.LLimChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1130,7 +1118,7 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public LlLimProxy(IRangeConfig modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "llLim")
             {
             }
             
@@ -1148,24 +1136,6 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
                     this.ModelElement.LlLim = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.LlLimChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.LlLimChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1179,7 +1149,7 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public MinProxy(IRangeConfig modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "min")
             {
             }
             
@@ -1197,24 +1167,6 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
                     this.ModelElement.Min = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.MinChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.MinChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1228,7 +1180,7 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public MaxProxy(IRangeConfig modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "max")
             {
             }
             
@@ -1245,24 +1197,6 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
                 {
                     this.ModelElement.Max = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.MaxChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.MaxChanged -= handler;
             }
         }
     }

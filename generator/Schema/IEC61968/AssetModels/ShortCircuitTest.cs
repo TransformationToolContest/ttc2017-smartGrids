@@ -46,7 +46,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.AssetModels
     [XmlNamespacePrefixAttribute("cimAssetModels")]
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61968/AssetModels/ShortCircuitTest")]
     [DebuggerDisplayAttribute("ShortCircuitTest {UUID}")]
-    public class ShortCircuitTest : DistributionWindingTest, IShortCircuitTest, IModelElement
+    public partial class ShortCircuitTest : DistributionWindingTest, IShortCircuitTest, IModelElement
     {
         
         /// <summary>
@@ -54,20 +54,30 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.AssetModels
         /// </summary>
         private float _loadLoss;
         
+        private static Lazy<ITypedElement> _loadLossAttribute = new Lazy<ITypedElement>(RetrieveLoadLossAttribute);
+        
         /// <summary>
         /// The backing field for the LoadLossZero property
         /// </summary>
         private float _loadLossZero;
+        
+        private static Lazy<ITypedElement> _loadLossZeroAttribute = new Lazy<ITypedElement>(RetrieveLoadLossZeroAttribute);
         
         /// <summary>
         /// The backing field for the LeakageImpedance property
         /// </summary>
         private float _leakageImpedance;
         
+        private static Lazy<ITypedElement> _leakageImpedanceAttribute = new Lazy<ITypedElement>(RetrieveLeakageImpedanceAttribute);
+        
         /// <summary>
         /// The backing field for the LeakageImpedanceZero property
         /// </summary>
         private float _leakageImpedanceZero;
+        
+        private static Lazy<ITypedElement> _leakageImpedanceZeroAttribute = new Lazy<ITypedElement>(RetrieveLeakageImpedanceZeroAttribute);
+        
+        private static Lazy<ITypedElement> _shortedWindingSpecsReference = new Lazy<ITypedElement>(RetrieveShortedWindingSpecsReference);
         
         /// <summary>
         /// The backing field for the ShortedWindingSpecs property
@@ -101,10 +111,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.AssetModels
                     float old = this._loadLoss;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnLoadLossChanging(e);
-                    this.OnPropertyChanging("LoadLoss", e);
+                    this.OnPropertyChanging("LoadLoss", e, _loadLossAttribute);
                     this._loadLoss = value;
                     this.OnLoadLossChanged(e);
-                    this.OnPropertyChanged("LoadLoss", e);
+                    this.OnPropertyChanged("LoadLoss", e, _loadLossAttribute);
                 }
             }
         }
@@ -127,10 +137,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.AssetModels
                     float old = this._loadLossZero;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnLoadLossZeroChanging(e);
-                    this.OnPropertyChanging("LoadLossZero", e);
+                    this.OnPropertyChanging("LoadLossZero", e, _loadLossZeroAttribute);
                     this._loadLossZero = value;
                     this.OnLoadLossZeroChanged(e);
-                    this.OnPropertyChanged("LoadLossZero", e);
+                    this.OnPropertyChanged("LoadLossZero", e, _loadLossZeroAttribute);
                 }
             }
         }
@@ -153,10 +163,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.AssetModels
                     float old = this._leakageImpedance;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnLeakageImpedanceChanging(e);
-                    this.OnPropertyChanging("LeakageImpedance", e);
+                    this.OnPropertyChanging("LeakageImpedance", e, _leakageImpedanceAttribute);
                     this._leakageImpedance = value;
                     this.OnLeakageImpedanceChanged(e);
-                    this.OnPropertyChanged("LeakageImpedance", e);
+                    this.OnPropertyChanged("LeakageImpedance", e, _leakageImpedanceAttribute);
                 }
             }
         }
@@ -179,10 +189,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.AssetModels
                     float old = this._leakageImpedanceZero;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnLeakageImpedanceZeroChanging(e);
-                    this.OnPropertyChanging("LeakageImpedanceZero", e);
+                    this.OnPropertyChanging("LeakageImpedanceZero", e, _leakageImpedanceZeroAttribute);
                     this._leakageImpedanceZero = value;
                     this.OnLeakageImpedanceZeroChanged(e);
-                    this.OnPropertyChanged("LeakageImpedanceZero", e);
+                    this.OnPropertyChanged("LeakageImpedanceZero", e, _leakageImpedanceZeroAttribute);
                 }
             }
         }
@@ -268,6 +278,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.AssetModels
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> LeakageImpedanceZeroChanged;
         
+        private static ITypedElement RetrieveLoadLossAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(ShortCircuitTest.ClassInstance)).Resolve("loadLoss")));
+        }
+        
         /// <summary>
         /// Raises the LoadLossChanging event
         /// </summary>
@@ -292,6 +307,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.AssetModels
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveLoadLossZeroAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(ShortCircuitTest.ClassInstance)).Resolve("loadLossZero")));
         }
         
         /// <summary>
@@ -320,6 +340,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.AssetModels
             }
         }
         
+        private static ITypedElement RetrieveLeakageImpedanceAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(ShortCircuitTest.ClassInstance)).Resolve("leakageImpedance")));
+        }
+        
         /// <summary>
         /// Raises the LeakageImpedanceChanging event
         /// </summary>
@@ -344,6 +369,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.AssetModels
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveLeakageImpedanceZeroAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(ShortCircuitTest.ClassInstance)).Resolve("leakageImpedanceZero")));
         }
         
         /// <summary>
@@ -372,6 +402,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.AssetModels
             }
         }
         
+        private static ITypedElement RetrieveShortedWindingSpecsReference()
+        {
+            return ((ITypedElement)(((ModelElement)(ShortCircuitTest.ClassInstance)).Resolve("ShortedWindingSpecs")));
+        }
+        
         /// <summary>
         /// Forwards CollectionChanging notifications for the ShortedWindingSpecs property to the parent model element
         /// </summary>
@@ -379,7 +414,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.AssetModels
         /// <param name="e">The original event data</param>
         private void ShortedWindingSpecsCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("ShortedWindingSpecs", e);
+            this.OnCollectionChanging("ShortedWindingSpecs", e, _shortedWindingSpecsReference);
         }
         
         /// <summary>
@@ -389,7 +424,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.AssetModels
         /// <param name="e">The original event data</param>
         private void ShortedWindingSpecsCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("ShortedWindingSpecs", e);
+            this.OnCollectionChanged("ShortedWindingSpecs", e, _shortedWindingSpecsReference);
         }
         
         /// <summary>
@@ -610,7 +645,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.AssetModels
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public LoadLossProxy(IShortCircuitTest modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "loadLoss")
             {
             }
             
@@ -628,24 +663,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.AssetModels
                     this.ModelElement.LoadLoss = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.LoadLossChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.LoadLossChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -659,7 +676,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.AssetModels
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public LoadLossZeroProxy(IShortCircuitTest modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "loadLossZero")
             {
             }
             
@@ -677,24 +694,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.AssetModels
                     this.ModelElement.LoadLossZero = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.LoadLossZeroChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.LoadLossZeroChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -708,7 +707,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.AssetModels
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public LeakageImpedanceProxy(IShortCircuitTest modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "leakageImpedance")
             {
             }
             
@@ -726,24 +725,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.AssetModels
                     this.ModelElement.LeakageImpedance = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.LeakageImpedanceChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.LeakageImpedanceChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -757,7 +738,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.AssetModels
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public LeakageImpedanceZeroProxy(IShortCircuitTest modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "leakageImpedanceZero")
             {
             }
             
@@ -774,24 +755,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.AssetModels
                 {
                     this.ModelElement.LeakageImpedanceZero = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.LeakageImpedanceZeroChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.LeakageImpedanceZeroChanged -= handler;
             }
         }
     }

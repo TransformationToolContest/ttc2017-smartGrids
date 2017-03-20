@@ -41,8 +41,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfMetering
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61970/Informative/InfMetering/Meter" +
         "ingFunctionConfiguration")]
     [DebuggerDisplayAttribute("MeteringFunctionConfiguration {UUID}")]
-    public class MeteringFunctionConfiguration : IdentifiedObject, IMeteringFunctionConfiguration, IModelElement
+    public partial class MeteringFunctionConfiguration : IdentifiedObject, IMeteringFunctionConfiguration, IModelElement
     {
+        
+        private static Lazy<ITypedElement> _electricMeteringFunctionsReference = new Lazy<ITypedElement>(RetrieveElectricMeteringFunctionsReference);
         
         /// <summary>
         /// The backing field for the ElectricMeteringFunctions property
@@ -100,6 +102,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfMetering
             }
         }
         
+        private static ITypedElement RetrieveElectricMeteringFunctionsReference()
+        {
+            return ((ITypedElement)(((ModelElement)(MeteringFunctionConfiguration.ClassInstance)).Resolve("ElectricMeteringFunctions")));
+        }
+        
         /// <summary>
         /// Forwards CollectionChanging notifications for the ElectricMeteringFunctions property to the parent model element
         /// </summary>
@@ -107,7 +114,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfMetering
         /// <param name="e">The original event data</param>
         private void ElectricMeteringFunctionsCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("ElectricMeteringFunctions", e);
+            this.OnCollectionChanging("ElectricMeteringFunctions", e, _electricMeteringFunctionsReference);
         }
         
         /// <summary>
@@ -117,7 +124,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfMetering
         /// <param name="e">The original event data</param>
         private void ElectricMeteringFunctionsCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("ElectricMeteringFunctions", e);
+            this.OnCollectionChanged("ElectricMeteringFunctions", e, _electricMeteringFunctionsReference);
         }
         
         /// <summary>

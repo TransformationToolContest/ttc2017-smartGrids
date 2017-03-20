@@ -51,18 +51,24 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Common
     [XmlNamespacePrefixAttribute("cimCommon")]
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61968/Common/StreetAddress")]
     [DebuggerDisplayAttribute("StreetAddress {UUID}")]
-    public class StreetAddress : Element, IStreetAddress, IModelElement
+    public partial class StreetAddress : Element, IStreetAddress, IModelElement
     {
+        
+        private static Lazy<ITypedElement> _streetDetailReference = new Lazy<ITypedElement>(RetrieveStreetDetailReference);
         
         /// <summary>
         /// The backing field for the StreetDetail property
         /// </summary>
         private IStreetDetail _streetDetail;
         
+        private static Lazy<ITypedElement> _statusReference = new Lazy<ITypedElement>(RetrieveStatusReference);
+        
         /// <summary>
         /// The backing field for the Status property
         /// </summary>
         private IStatus _status;
+        
+        private static Lazy<ITypedElement> _townDetailReference = new Lazy<ITypedElement>(RetrieveTownDetailReference);
         
         /// <summary>
         /// The backing field for the TownDetail property
@@ -89,7 +95,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Common
                     IStreetDetail old = this._streetDetail;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnStreetDetailChanging(e);
-                    this.OnPropertyChanging("StreetDetail", e);
+                    this.OnPropertyChanging("StreetDetail", e, _streetDetailReference);
                     this._streetDetail = value;
                     if ((old != null))
                     {
@@ -100,7 +106,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Common
                         value.Deleted += this.OnResetStreetDetail;
                     }
                     this.OnStreetDetailChanged(e);
-                    this.OnPropertyChanged("StreetDetail", e);
+                    this.OnPropertyChanged("StreetDetail", e, _streetDetailReference);
                 }
             }
         }
@@ -123,7 +129,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Common
                     IStatus old = this._status;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnStatusChanging(e);
-                    this.OnPropertyChanging("Status", e);
+                    this.OnPropertyChanging("Status", e, _statusReference);
                     this._status = value;
                     if ((old != null))
                     {
@@ -134,7 +140,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Common
                         value.Deleted += this.OnResetStatus;
                     }
                     this.OnStatusChanged(e);
-                    this.OnPropertyChanged("Status", e);
+                    this.OnPropertyChanged("Status", e, _statusReference);
                 }
             }
         }
@@ -157,7 +163,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Common
                     ITownDetail old = this._townDetail;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnTownDetailChanging(e);
-                    this.OnPropertyChanging("TownDetail", e);
+                    this.OnPropertyChanging("TownDetail", e, _townDetailReference);
                     this._townDetail = value;
                     if ((old != null))
                     {
@@ -168,7 +174,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Common
                         value.Deleted += this.OnResetTownDetail;
                     }
                     this.OnTownDetailChanged(e);
-                    this.OnPropertyChanged("TownDetail", e);
+                    this.OnPropertyChanged("TownDetail", e, _townDetailReference);
                 }
             }
         }
@@ -229,6 +235,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Common
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> TownDetailChanged;
         
+        private static ITypedElement RetrieveStreetDetailReference()
+        {
+            return ((ITypedElement)(((ModelElement)(StreetAddress.ClassInstance)).Resolve("streetDetail")));
+        }
+        
         /// <summary>
         /// Raises the StreetDetailChanging event
         /// </summary>
@@ -265,6 +276,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Common
             this.StreetDetail = null;
         }
         
+        private static ITypedElement RetrieveStatusReference()
+        {
+            return ((ITypedElement)(((ModelElement)(StreetAddress.ClassInstance)).Resolve("status")));
+        }
+        
         /// <summary>
         /// Raises the StatusChanging event
         /// </summary>
@@ -299,6 +315,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Common
         private void OnResetStatus(object sender, System.EventArgs eventArgs)
         {
             this.Status = null;
+        }
+        
+        private static ITypedElement RetrieveTownDetailReference()
+        {
+            return ((ITypedElement)(((ModelElement)(StreetAddress.ClassInstance)).Resolve("townDetail")));
         }
         
         /// <summary>
@@ -609,7 +630,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Common
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public StreetDetailProxy(IStreetAddress modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "streetDetail")
             {
             }
             
@@ -627,24 +648,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Common
                     this.ModelElement.StreetDetail = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.StreetDetailChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.StreetDetailChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -658,7 +661,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Common
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public StatusProxy(IStreetAddress modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "status")
             {
             }
             
@@ -676,24 +679,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Common
                     this.ModelElement.Status = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.StatusChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.StatusChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -707,7 +692,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Common
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public TownDetailProxy(IStreetAddress modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "townDetail")
             {
             }
             
@@ -724,24 +709,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Common
                 {
                     this.ModelElement.TownDetail = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.TownDetailChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.TownDetailChanged -= handler;
             }
         }
     }

@@ -57,8 +57,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Core
     [XmlNamespacePrefixAttribute("cimCore")]
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61970/Core/GeographicalRegion")]
     [DebuggerDisplayAttribute("GeographicalRegion {UUID}")]
-    public class GeographicalRegion : IdentifiedObject, IGeographicalRegion, IModelElement
+    public partial class GeographicalRegion : IdentifiedObject, IGeographicalRegion, IModelElement
     {
+        
+        private static Lazy<ITypedElement> _regionsReference = new Lazy<ITypedElement>(RetrieveRegionsReference);
         
         /// <summary>
         /// The backing field for the Regions property
@@ -115,6 +117,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Core
             }
         }
         
+        private static ITypedElement RetrieveRegionsReference()
+        {
+            return ((ITypedElement)(((ModelElement)(GeographicalRegion.ClassInstance)).Resolve("Regions")));
+        }
+        
         /// <summary>
         /// Forwards CollectionChanging notifications for the Regions property to the parent model element
         /// </summary>
@@ -122,7 +129,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Core
         /// <param name="e">The original event data</param>
         private void RegionsCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("Regions", e);
+            this.OnCollectionChanging("Regions", e, _regionsReference);
         }
         
         /// <summary>
@@ -132,7 +139,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Core
         /// <param name="e">The original event data</param>
         private void RegionsCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("Regions", e);
+            this.OnCollectionChanged("Regions", e, _regionsReference);
         }
         
         /// <summary>

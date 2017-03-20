@@ -50,7 +50,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61970/Informative/MarketOperations/" +
         "PnodeClearing")]
     [DebuggerDisplayAttribute("PnodeClearing {UUID}")]
-    public class PnodeClearing : MarketFactors, IPnodeClearing, IModelElement
+    public partial class PnodeClearing : MarketFactors, IPnodeClearing, IModelElement
     {
         
         /// <summary>
@@ -58,15 +58,23 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
         /// </summary>
         private float _congestLMP;
         
+        private static Lazy<ITypedElement> _congestLMPAttribute = new Lazy<ITypedElement>(RetrieveCongestLMPAttribute);
+        
         /// <summary>
         /// The backing field for the CostLMP property
         /// </summary>
         private float _costLMP;
         
+        private static Lazy<ITypedElement> _costLMPAttribute = new Lazy<ITypedElement>(RetrieveCostLMPAttribute);
+        
         /// <summary>
         /// The backing field for the LossLMP property
         /// </summary>
         private float _lossLMP;
+        
+        private static Lazy<ITypedElement> _lossLMPAttribute = new Lazy<ITypedElement>(RetrieveLossLMPAttribute);
+        
+        private static Lazy<ITypedElement> _pnodeReference = new Lazy<ITypedElement>(RetrievePnodeReference);
         
         /// <summary>
         /// The backing field for the Pnode property
@@ -93,10 +101,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
                     float old = this._congestLMP;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnCongestLMPChanging(e);
-                    this.OnPropertyChanging("CongestLMP", e);
+                    this.OnPropertyChanging("CongestLMP", e, _congestLMPAttribute);
                     this._congestLMP = value;
                     this.OnCongestLMPChanged(e);
-                    this.OnPropertyChanged("CongestLMP", e);
+                    this.OnPropertyChanged("CongestLMP", e, _congestLMPAttribute);
                 }
             }
         }
@@ -119,10 +127,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
                     float old = this._costLMP;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnCostLMPChanging(e);
-                    this.OnPropertyChanging("CostLMP", e);
+                    this.OnPropertyChanging("CostLMP", e, _costLMPAttribute);
                     this._costLMP = value;
                     this.OnCostLMPChanged(e);
-                    this.OnPropertyChanged("CostLMP", e);
+                    this.OnPropertyChanged("CostLMP", e, _costLMPAttribute);
                 }
             }
         }
@@ -145,10 +153,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
                     float old = this._lossLMP;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnLossLMPChanging(e);
-                    this.OnPropertyChanging("LossLMP", e);
+                    this.OnPropertyChanging("LossLMP", e, _lossLMPAttribute);
                     this._lossLMP = value;
                     this.OnLossLMPChanged(e);
-                    this.OnPropertyChanged("LossLMP", e);
+                    this.OnPropertyChanged("LossLMP", e, _lossLMPAttribute);
                 }
             }
         }
@@ -171,7 +179,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
                     IPnode old = this._pnode;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnPnodeChanging(e);
-                    this.OnPropertyChanging("Pnode", e);
+                    this.OnPropertyChanging("Pnode", e, _pnodeReference);
                     this._pnode = value;
                     if ((old != null))
                     {
@@ -184,7 +192,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
                         value.Deleted += this.OnResetPnode;
                     }
                     this.OnPnodeChanged(e);
-                    this.OnPropertyChanged("Pnode", e);
+                    this.OnPropertyChanged("Pnode", e, _pnodeReference);
                 }
             }
         }
@@ -256,6 +264,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> PnodeChanged;
         
+        private static ITypedElement RetrieveCongestLMPAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(PnodeClearing.ClassInstance)).Resolve("congestLMP")));
+        }
+        
         /// <summary>
         /// Raises the CongestLMPChanging event
         /// </summary>
@@ -280,6 +293,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveCostLMPAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(PnodeClearing.ClassInstance)).Resolve("costLMP")));
         }
         
         /// <summary>
@@ -308,6 +326,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
             }
         }
         
+        private static ITypedElement RetrieveLossLMPAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(PnodeClearing.ClassInstance)).Resolve("lossLMP")));
+        }
+        
         /// <summary>
         /// Raises the LossLMPChanging event
         /// </summary>
@@ -332,6 +355,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrievePnodeReference()
+        {
+            return ((ITypedElement)(((ModelElement)(PnodeClearing.ClassInstance)).Resolve("Pnode")));
         }
         
         /// <summary>
@@ -595,7 +623,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public CongestLMPProxy(IPnodeClearing modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "congestLMP")
             {
             }
             
@@ -613,24 +641,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
                     this.ModelElement.CongestLMP = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.CongestLMPChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.CongestLMPChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -644,7 +654,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public CostLMPProxy(IPnodeClearing modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "costLMP")
             {
             }
             
@@ -662,24 +672,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
                     this.ModelElement.CostLMP = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.CostLMPChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.CostLMPChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -693,7 +685,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public LossLMPProxy(IPnodeClearing modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "lossLMP")
             {
             }
             
@@ -711,24 +703,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
                     this.ModelElement.LossLMP = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.LossLMPChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.LossLMPChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -742,7 +716,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public PnodeProxy(IPnodeClearing modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "Pnode")
             {
             }
             
@@ -759,24 +733,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
                 {
                     this.ModelElement.Pnode = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.PnodeChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.PnodeChanged -= handler;
             }
         }
     }

@@ -48,18 +48,24 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Assets
     [XmlNamespacePrefixAttribute("cimAssets")]
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61968/Assets/AssetContainer")]
     [DebuggerDisplayAttribute("AssetContainer {UUID}")]
-    public class AssetContainer : Asset, IAssetContainer, IModelElement
+    public partial class AssetContainer : Asset, IAssetContainer, IModelElement
     {
+        
+        private static Lazy<ITypedElement> _landPropertiesReference = new Lazy<ITypedElement>(RetrieveLandPropertiesReference);
         
         /// <summary>
         /// The backing field for the LandProperties property
         /// </summary>
         private AssetContainerLandPropertiesCollection _landProperties;
         
+        private static Lazy<ITypedElement> _assetsReference = new Lazy<ITypedElement>(RetrieveAssetsReference);
+        
         /// <summary>
         /// The backing field for the Assets property
         /// </summary>
         private AssetContainerAssetsCollection _assets;
+        
+        private static Lazy<ITypedElement> _sealsReference = new Lazy<ITypedElement>(RetrieveSealsReference);
         
         /// <summary>
         /// The backing field for the Seals property
@@ -152,6 +158,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Assets
             }
         }
         
+        private static ITypedElement RetrieveLandPropertiesReference()
+        {
+            return ((ITypedElement)(((ModelElement)(ClassInstance)).Resolve("LandProperties")));
+        }
+        
         /// <summary>
         /// Forwards CollectionChanging notifications for the LandProperties property to the parent model element
         /// </summary>
@@ -159,7 +170,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Assets
         /// <param name="e">The original event data</param>
         private void LandPropertiesCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("LandProperties", e);
+            this.OnCollectionChanging("LandProperties", e, _landPropertiesReference);
         }
         
         /// <summary>
@@ -169,7 +180,12 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Assets
         /// <param name="e">The original event data</param>
         private void LandPropertiesCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("LandProperties", e);
+            this.OnCollectionChanged("LandProperties", e, _landPropertiesReference);
+        }
+        
+        private static ITypedElement RetrieveAssetsReference()
+        {
+            return ((ITypedElement)(((ModelElement)(ClassInstance)).Resolve("Assets")));
         }
         
         /// <summary>
@@ -179,7 +195,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Assets
         /// <param name="e">The original event data</param>
         private void AssetsCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("Assets", e);
+            this.OnCollectionChanging("Assets", e, _assetsReference);
         }
         
         /// <summary>
@@ -189,7 +205,12 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Assets
         /// <param name="e">The original event data</param>
         private void AssetsCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("Assets", e);
+            this.OnCollectionChanged("Assets", e, _assetsReference);
+        }
+        
+        private static ITypedElement RetrieveSealsReference()
+        {
+            return ((ITypedElement)(((ModelElement)(ClassInstance)).Resolve("Seals")));
         }
         
         /// <summary>
@@ -199,7 +220,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Assets
         /// <param name="e">The original event data</param>
         private void SealsCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("Seals", e);
+            this.OnCollectionChanging("Seals", e, _sealsReference);
         }
         
         /// <summary>
@@ -209,7 +230,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Assets
         /// <param name="e">The original event data</param>
         private void SealsCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("Seals", e);
+            this.OnCollectionChanged("Seals", e, _sealsReference);
         }
         
         /// <summary>

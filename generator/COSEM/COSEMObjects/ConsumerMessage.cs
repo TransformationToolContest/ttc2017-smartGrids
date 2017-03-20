@@ -39,7 +39,7 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
     [XmlNamespacePrefixAttribute("objects")]
     [ModelRepresentationClassAttribute("http://www.transformation-tool-contest.eu/2017/smartGrids/cosem#//COSEMObjects/Co" +
         "nsumerMessage")]
-    public class ConsumerMessage : Data, IConsumerMessage, IModelElement
+    public partial class ConsumerMessage : Data, IConsumerMessage, IModelElement
     {
         
         /// <summary>
@@ -47,10 +47,14 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
         /// </summary>
         private string _consumer_message_via_local_consumer_information_port;
         
+        private static Lazy<ITypedElement> _consumer_message_via_local_consumer_information_portAttribute = new Lazy<ITypedElement>(RetrieveConsumer_message_via_local_consumer_information_portAttribute);
+        
         /// <summary>
         /// The backing field for the Consumer_message_via_meter_display property
         /// </summary>
         private string _consumer_message_via_meter_display;
+        
+        private static Lazy<ITypedElement> _consumer_message_via_meter_displayAttribute = new Lazy<ITypedElement>(RetrieveConsumer_message_via_meter_displayAttribute);
         
         private static IClass _classInstance;
         
@@ -71,10 +75,10 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     string old = this._consumer_message_via_local_consumer_information_port;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnConsumer_message_via_local_consumer_information_portChanging(e);
-                    this.OnPropertyChanging("Consumer_message_via_local_consumer_information_port", e);
+                    this.OnPropertyChanging("Consumer_message_via_local_consumer_information_port", e, _consumer_message_via_local_consumer_information_portAttribute);
                     this._consumer_message_via_local_consumer_information_port = value;
                     this.OnConsumer_message_via_local_consumer_information_portChanged(e);
-                    this.OnPropertyChanged("Consumer_message_via_local_consumer_information_port", e);
+                    this.OnPropertyChanged("Consumer_message_via_local_consumer_information_port", e, _consumer_message_via_local_consumer_information_portAttribute);
                 }
             }
         }
@@ -96,10 +100,10 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     string old = this._consumer_message_via_meter_display;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnConsumer_message_via_meter_displayChanging(e);
-                    this.OnPropertyChanging("Consumer_message_via_meter_display", e);
+                    this.OnPropertyChanging("Consumer_message_via_meter_display", e, _consumer_message_via_meter_displayAttribute);
                     this._consumer_message_via_meter_display = value;
                     this.OnConsumer_message_via_meter_displayChanged(e);
-                    this.OnPropertyChanged("Consumer_message_via_meter_display", e);
+                    this.OnPropertyChanged("Consumer_message_via_meter_display", e, _consumer_message_via_meter_displayAttribute);
                 }
             }
         }
@@ -140,6 +144,11 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> Consumer_message_via_meter_displayChanged;
         
+        private static ITypedElement RetrieveConsumer_message_via_local_consumer_information_portAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(ConsumerMessage.ClassInstance)).Resolve("Consumer_message_via_local_consumer_information_port")));
+        }
+        
         /// <summary>
         /// Raises the Consumer_message_via_local_consumer_information_portChanging event
         /// </summary>
@@ -164,6 +173,11 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveConsumer_message_via_meter_displayAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(ConsumerMessage.ClassInstance)).Resolve("Consumer_message_via_meter_display")));
         }
         
         /// <summary>
@@ -255,7 +269,7 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public Consumer_message_via_local_consumer_information_portProxy(IConsumerMessage modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "Consumer_message_via_local_consumer_information_port")
             {
             }
             
@@ -273,24 +287,6 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     this.ModelElement.Consumer_message_via_local_consumer_information_port = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.Consumer_message_via_local_consumer_information_portChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.Consumer_message_via_local_consumer_information_portChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -304,7 +300,7 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public Consumer_message_via_meter_displayProxy(IConsumerMessage modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "Consumer_message_via_meter_display")
             {
             }
             
@@ -321,24 +317,6 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                 {
                     this.ModelElement.Consumer_message_via_meter_display = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.Consumer_message_via_meter_displayChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.Consumer_message_via_meter_displayChanged -= handler;
             }
         }
     }

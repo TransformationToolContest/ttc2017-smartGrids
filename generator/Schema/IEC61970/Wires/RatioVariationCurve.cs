@@ -53,8 +53,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
     [XmlNamespacePrefixAttribute("cimWires")]
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61970/Wires/RatioVariationCurve")]
     [DebuggerDisplayAttribute("RatioVariationCurve {UUID}")]
-    public class RatioVariationCurve : Curve, IRatioVariationCurve, IModelElement
+    public partial class RatioVariationCurve : Curve, IRatioVariationCurve, IModelElement
     {
+        
+        private static Lazy<ITypedElement> _ratioTapChangerReference = new Lazy<ITypedElement>(RetrieveRatioTapChangerReference);
         
         /// <summary>
         /// The backing field for the RatioTapChanger property
@@ -81,7 +83,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
                     IRatioTapChanger old = this._ratioTapChanger;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnRatioTapChangerChanging(e);
-                    this.OnPropertyChanging("RatioTapChanger", e);
+                    this.OnPropertyChanging("RatioTapChanger", e, _ratioTapChangerReference);
                     this._ratioTapChanger = value;
                     if ((old != null))
                     {
@@ -94,7 +96,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
                         value.Deleted += this.OnResetRatioTapChanger;
                     }
                     this.OnRatioTapChangerChanged(e);
-                    this.OnPropertyChanged("RatioTapChanger", e);
+                    this.OnPropertyChanged("RatioTapChanger", e, _ratioTapChangerReference);
                 }
             }
         }
@@ -134,6 +136,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
         /// Gets fired when the RatioTapChanger property changed its value
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> RatioTapChangerChanged;
+        
+        private static ITypedElement RetrieveRatioTapChangerReference()
+        {
+            return ((ITypedElement)(((ModelElement)(RatioVariationCurve.ClassInstance)).Resolve("RatioTapChanger")));
+        }
         
         /// <summary>
         /// Raises the RatioTapChangerChanging event
@@ -357,7 +364,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public RatioTapChangerProxy(IRatioVariationCurve modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "RatioTapChanger")
             {
             }
             
@@ -374,24 +381,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
                 {
                     this.ModelElement.RatioTapChanger = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.RatioTapChangerChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.RatioTapChangerChanged -= handler;
             }
         }
     }

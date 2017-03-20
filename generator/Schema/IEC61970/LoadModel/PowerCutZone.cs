@@ -43,7 +43,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.LoadModel
     [XmlNamespacePrefixAttribute("cimLoadModel")]
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61970/LoadModel/PowerCutZone")]
     [DebuggerDisplayAttribute("PowerCutZone {UUID}")]
-    public class PowerCutZone : PowerSystemResource, IPowerCutZone, IModelElement
+    public partial class PowerCutZone : PowerSystemResource, IPowerCutZone, IModelElement
     {
         
         /// <summary>
@@ -51,10 +51,16 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.LoadModel
         /// </summary>
         private float _cutLevel1;
         
+        private static Lazy<ITypedElement> _cutLevel1Attribute = new Lazy<ITypedElement>(RetrieveCutLevel1Attribute);
+        
         /// <summary>
         /// The backing field for the CutLevel2 property
         /// </summary>
         private float _cutLevel2;
+        
+        private static Lazy<ITypedElement> _cutLevel2Attribute = new Lazy<ITypedElement>(RetrieveCutLevel2Attribute);
+        
+        private static Lazy<ITypedElement> _energyConsumersReference = new Lazy<ITypedElement>(RetrieveEnergyConsumersReference);
         
         /// <summary>
         /// The backing field for the EnergyConsumers property
@@ -88,10 +94,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.LoadModel
                     float old = this._cutLevel1;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnCutLevel1Changing(e);
-                    this.OnPropertyChanging("CutLevel1", e);
+                    this.OnPropertyChanging("CutLevel1", e, _cutLevel1Attribute);
                     this._cutLevel1 = value;
                     this.OnCutLevel1Changed(e);
-                    this.OnPropertyChanged("CutLevel1", e);
+                    this.OnPropertyChanged("CutLevel1", e, _cutLevel1Attribute);
                 }
             }
         }
@@ -114,10 +120,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.LoadModel
                     float old = this._cutLevel2;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnCutLevel2Changing(e);
-                    this.OnPropertyChanging("CutLevel2", e);
+                    this.OnPropertyChanging("CutLevel2", e, _cutLevel2Attribute);
                     this._cutLevel2 = value;
                     this.OnCutLevel2Changed(e);
-                    this.OnPropertyChanged("CutLevel2", e);
+                    this.OnPropertyChanged("CutLevel2", e, _cutLevel2Attribute);
                 }
             }
         }
@@ -183,6 +189,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.LoadModel
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> CutLevel2Changed;
         
+        private static ITypedElement RetrieveCutLevel1Attribute()
+        {
+            return ((ITypedElement)(((ModelElement)(PowerCutZone.ClassInstance)).Resolve("cutLevel1")));
+        }
+        
         /// <summary>
         /// Raises the CutLevel1Changing event
         /// </summary>
@@ -207,6 +218,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.LoadModel
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveCutLevel2Attribute()
+        {
+            return ((ITypedElement)(((ModelElement)(PowerCutZone.ClassInstance)).Resolve("cutLevel2")));
         }
         
         /// <summary>
@@ -235,6 +251,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.LoadModel
             }
         }
         
+        private static ITypedElement RetrieveEnergyConsumersReference()
+        {
+            return ((ITypedElement)(((ModelElement)(PowerCutZone.ClassInstance)).Resolve("EnergyConsumers")));
+        }
+        
         /// <summary>
         /// Forwards CollectionChanging notifications for the EnergyConsumers property to the parent model element
         /// </summary>
@@ -242,7 +263,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.LoadModel
         /// <param name="e">The original event data</param>
         private void EnergyConsumersCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("EnergyConsumers", e);
+            this.OnCollectionChanging("EnergyConsumers", e, _energyConsumersReference);
         }
         
         /// <summary>
@@ -252,7 +273,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.LoadModel
         /// <param name="e">The original event data</param>
         private void EnergyConsumersCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("EnergyConsumers", e);
+            this.OnCollectionChanged("EnergyConsumers", e, _energyConsumersReference);
         }
         
         /// <summary>
@@ -455,7 +476,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.LoadModel
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public CutLevel1Proxy(IPowerCutZone modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "cutLevel1")
             {
             }
             
@@ -473,24 +494,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.LoadModel
                     this.ModelElement.CutLevel1 = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.CutLevel1Changed += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.CutLevel1Changed -= handler;
-            }
         }
         
         /// <summary>
@@ -504,7 +507,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.LoadModel
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public CutLevel2Proxy(IPowerCutZone modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "cutLevel2")
             {
             }
             
@@ -521,24 +524,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.LoadModel
                 {
                     this.ModelElement.CutLevel2 = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.CutLevel2Changed += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.CutLevel2Changed -= handler;
             }
         }
     }

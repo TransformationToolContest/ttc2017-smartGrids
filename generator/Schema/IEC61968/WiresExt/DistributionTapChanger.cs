@@ -45,7 +45,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.WiresExt
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61968/WiresExt/DistributionTapChang" +
         "er")]
     [DebuggerDisplayAttribute("DistributionTapChanger {UUID}")]
-    public class DistributionTapChanger : RatioTapChanger, IDistributionTapChanger, IModelElement
+    public partial class DistributionTapChanger : RatioTapChanger, IDistributionTapChanger, IModelElement
     {
         
         /// <summary>
@@ -53,60 +53,84 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.WiresExt
         /// </summary>
         private float _ptRatio;
         
+        private static Lazy<ITypedElement> _ptRatioAttribute = new Lazy<ITypedElement>(RetrievePtRatioAttribute);
+        
         /// <summary>
         /// The backing field for the LimitVoltage property
         /// </summary>
         private float _limitVoltage;
+        
+        private static Lazy<ITypedElement> _limitVoltageAttribute = new Lazy<ITypedElement>(RetrieveLimitVoltageAttribute);
         
         /// <summary>
         /// The backing field for the ReverseLineDropR property
         /// </summary>
         private float _reverseLineDropR;
         
+        private static Lazy<ITypedElement> _reverseLineDropRAttribute = new Lazy<ITypedElement>(RetrieveReverseLineDropRAttribute);
+        
         /// <summary>
         /// The backing field for the ReverseLineDropX property
         /// </summary>
         private float _reverseLineDropX;
+        
+        private static Lazy<ITypedElement> _reverseLineDropXAttribute = new Lazy<ITypedElement>(RetrieveReverseLineDropXAttribute);
         
         /// <summary>
         /// The backing field for the CtRating property
         /// </summary>
         private float _ctRating;
         
+        private static Lazy<ITypedElement> _ctRatingAttribute = new Lazy<ITypedElement>(RetrieveCtRatingAttribute);
+        
         /// <summary>
         /// The backing field for the LineDropR property
         /// </summary>
         private float _lineDropR;
+        
+        private static Lazy<ITypedElement> _lineDropRAttribute = new Lazy<ITypedElement>(RetrieveLineDropRAttribute);
         
         /// <summary>
         /// The backing field for the BandVoltage property
         /// </summary>
         private float _bandVoltage;
         
+        private static Lazy<ITypedElement> _bandVoltageAttribute = new Lazy<ITypedElement>(RetrieveBandVoltageAttribute);
+        
         /// <summary>
         /// The backing field for the LineDropX property
         /// </summary>
         private float _lineDropX;
+        
+        private static Lazy<ITypedElement> _lineDropXAttribute = new Lazy<ITypedElement>(RetrieveLineDropXAttribute);
         
         /// <summary>
         /// The backing field for the CtRatio property
         /// </summary>
         private float _ctRatio;
         
+        private static Lazy<ITypedElement> _ctRatioAttribute = new Lazy<ITypedElement>(RetrieveCtRatioAttribute);
+        
         /// <summary>
         /// The backing field for the LineDropCompensation property
         /// </summary>
         private bool _lineDropCompensation;
+        
+        private static Lazy<ITypedElement> _lineDropCompensationAttribute = new Lazy<ITypedElement>(RetrieveLineDropCompensationAttribute);
         
         /// <summary>
         /// The backing field for the MonitoredPhase property
         /// </summary>
         private Nullable<PhaseCode> _monitoredPhase;
         
+        private static Lazy<ITypedElement> _monitoredPhaseAttribute = new Lazy<ITypedElement>(RetrieveMonitoredPhaseAttribute);
+        
         /// <summary>
         /// The backing field for the TargetVoltage property
         /// </summary>
         private float _targetVoltage;
+        
+        private static Lazy<ITypedElement> _targetVoltageAttribute = new Lazy<ITypedElement>(RetrieveTargetVoltageAttribute);
         
         private static IClass _classInstance;
         
@@ -128,10 +152,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.WiresExt
                     float old = this._ptRatio;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnPtRatioChanging(e);
-                    this.OnPropertyChanging("PtRatio", e);
+                    this.OnPropertyChanging("PtRatio", e, _ptRatioAttribute);
                     this._ptRatio = value;
                     this.OnPtRatioChanged(e);
-                    this.OnPropertyChanged("PtRatio", e);
+                    this.OnPropertyChanged("PtRatio", e, _ptRatioAttribute);
                 }
             }
         }
@@ -154,10 +178,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.WiresExt
                     float old = this._limitVoltage;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnLimitVoltageChanging(e);
-                    this.OnPropertyChanging("LimitVoltage", e);
+                    this.OnPropertyChanging("LimitVoltage", e, _limitVoltageAttribute);
                     this._limitVoltage = value;
                     this.OnLimitVoltageChanged(e);
-                    this.OnPropertyChanged("LimitVoltage", e);
+                    this.OnPropertyChanged("LimitVoltage", e, _limitVoltageAttribute);
                 }
             }
         }
@@ -180,10 +204,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.WiresExt
                     float old = this._reverseLineDropR;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnReverseLineDropRChanging(e);
-                    this.OnPropertyChanging("ReverseLineDropR", e);
+                    this.OnPropertyChanging("ReverseLineDropR", e, _reverseLineDropRAttribute);
                     this._reverseLineDropR = value;
                     this.OnReverseLineDropRChanged(e);
-                    this.OnPropertyChanged("ReverseLineDropR", e);
+                    this.OnPropertyChanged("ReverseLineDropR", e, _reverseLineDropRAttribute);
                 }
             }
         }
@@ -206,10 +230,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.WiresExt
                     float old = this._reverseLineDropX;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnReverseLineDropXChanging(e);
-                    this.OnPropertyChanging("ReverseLineDropX", e);
+                    this.OnPropertyChanging("ReverseLineDropX", e, _reverseLineDropXAttribute);
                     this._reverseLineDropX = value;
                     this.OnReverseLineDropXChanged(e);
-                    this.OnPropertyChanged("ReverseLineDropX", e);
+                    this.OnPropertyChanged("ReverseLineDropX", e, _reverseLineDropXAttribute);
                 }
             }
         }
@@ -232,10 +256,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.WiresExt
                     float old = this._ctRating;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnCtRatingChanging(e);
-                    this.OnPropertyChanging("CtRating", e);
+                    this.OnPropertyChanging("CtRating", e, _ctRatingAttribute);
                     this._ctRating = value;
                     this.OnCtRatingChanged(e);
-                    this.OnPropertyChanged("CtRating", e);
+                    this.OnPropertyChanged("CtRating", e, _ctRatingAttribute);
                 }
             }
         }
@@ -258,10 +282,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.WiresExt
                     float old = this._lineDropR;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnLineDropRChanging(e);
-                    this.OnPropertyChanging("LineDropR", e);
+                    this.OnPropertyChanging("LineDropR", e, _lineDropRAttribute);
                     this._lineDropR = value;
                     this.OnLineDropRChanged(e);
-                    this.OnPropertyChanged("LineDropR", e);
+                    this.OnPropertyChanged("LineDropR", e, _lineDropRAttribute);
                 }
             }
         }
@@ -284,10 +308,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.WiresExt
                     float old = this._bandVoltage;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnBandVoltageChanging(e);
-                    this.OnPropertyChanging("BandVoltage", e);
+                    this.OnPropertyChanging("BandVoltage", e, _bandVoltageAttribute);
                     this._bandVoltage = value;
                     this.OnBandVoltageChanged(e);
-                    this.OnPropertyChanged("BandVoltage", e);
+                    this.OnPropertyChanged("BandVoltage", e, _bandVoltageAttribute);
                 }
             }
         }
@@ -310,10 +334,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.WiresExt
                     float old = this._lineDropX;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnLineDropXChanging(e);
-                    this.OnPropertyChanging("LineDropX", e);
+                    this.OnPropertyChanging("LineDropX", e, _lineDropXAttribute);
                     this._lineDropX = value;
                     this.OnLineDropXChanged(e);
-                    this.OnPropertyChanged("LineDropX", e);
+                    this.OnPropertyChanged("LineDropX", e, _lineDropXAttribute);
                 }
             }
         }
@@ -336,10 +360,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.WiresExt
                     float old = this._ctRatio;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnCtRatioChanging(e);
-                    this.OnPropertyChanging("CtRatio", e);
+                    this.OnPropertyChanging("CtRatio", e, _ctRatioAttribute);
                     this._ctRatio = value;
                     this.OnCtRatioChanged(e);
-                    this.OnPropertyChanged("CtRatio", e);
+                    this.OnPropertyChanged("CtRatio", e, _ctRatioAttribute);
                 }
             }
         }
@@ -362,10 +386,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.WiresExt
                     bool old = this._lineDropCompensation;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnLineDropCompensationChanging(e);
-                    this.OnPropertyChanging("LineDropCompensation", e);
+                    this.OnPropertyChanging("LineDropCompensation", e, _lineDropCompensationAttribute);
                     this._lineDropCompensation = value;
                     this.OnLineDropCompensationChanged(e);
-                    this.OnPropertyChanged("LineDropCompensation", e);
+                    this.OnPropertyChanged("LineDropCompensation", e, _lineDropCompensationAttribute);
                 }
             }
         }
@@ -388,10 +412,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.WiresExt
                     Nullable<PhaseCode> old = this._monitoredPhase;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnMonitoredPhaseChanging(e);
-                    this.OnPropertyChanging("MonitoredPhase", e);
+                    this.OnPropertyChanging("MonitoredPhase", e, _monitoredPhaseAttribute);
                     this._monitoredPhase = value;
                     this.OnMonitoredPhaseChanged(e);
-                    this.OnPropertyChanged("MonitoredPhase", e);
+                    this.OnPropertyChanged("MonitoredPhase", e, _monitoredPhaseAttribute);
                 }
             }
         }
@@ -414,10 +438,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.WiresExt
                     float old = this._targetVoltage;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnTargetVoltageChanging(e);
-                    this.OnPropertyChanging("TargetVoltage", e);
+                    this.OnPropertyChanging("TargetVoltage", e, _targetVoltageAttribute);
                     this._targetVoltage = value;
                     this.OnTargetVoltageChanged(e);
-                    this.OnPropertyChanged("TargetVoltage", e);
+                    this.OnPropertyChanged("TargetVoltage", e, _targetVoltageAttribute);
                 }
             }
         }
@@ -558,6 +582,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.WiresExt
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> TargetVoltageChanged;
         
+        private static ITypedElement RetrievePtRatioAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(DistributionTapChanger.ClassInstance)).Resolve("ptRatio")));
+        }
+        
         /// <summary>
         /// Raises the PtRatioChanging event
         /// </summary>
@@ -582,6 +611,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.WiresExt
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveLimitVoltageAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(DistributionTapChanger.ClassInstance)).Resolve("limitVoltage")));
         }
         
         /// <summary>
@@ -610,6 +644,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.WiresExt
             }
         }
         
+        private static ITypedElement RetrieveReverseLineDropRAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(DistributionTapChanger.ClassInstance)).Resolve("reverseLineDropR")));
+        }
+        
         /// <summary>
         /// Raises the ReverseLineDropRChanging event
         /// </summary>
@@ -634,6 +673,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.WiresExt
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveReverseLineDropXAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(DistributionTapChanger.ClassInstance)).Resolve("reverseLineDropX")));
         }
         
         /// <summary>
@@ -662,6 +706,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.WiresExt
             }
         }
         
+        private static ITypedElement RetrieveCtRatingAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(DistributionTapChanger.ClassInstance)).Resolve("ctRating")));
+        }
+        
         /// <summary>
         /// Raises the CtRatingChanging event
         /// </summary>
@@ -686,6 +735,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.WiresExt
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveLineDropRAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(DistributionTapChanger.ClassInstance)).Resolve("lineDropR")));
         }
         
         /// <summary>
@@ -714,6 +768,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.WiresExt
             }
         }
         
+        private static ITypedElement RetrieveBandVoltageAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(DistributionTapChanger.ClassInstance)).Resolve("bandVoltage")));
+        }
+        
         /// <summary>
         /// Raises the BandVoltageChanging event
         /// </summary>
@@ -738,6 +797,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.WiresExt
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveLineDropXAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(DistributionTapChanger.ClassInstance)).Resolve("lineDropX")));
         }
         
         /// <summary>
@@ -766,6 +830,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.WiresExt
             }
         }
         
+        private static ITypedElement RetrieveCtRatioAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(DistributionTapChanger.ClassInstance)).Resolve("ctRatio")));
+        }
+        
         /// <summary>
         /// Raises the CtRatioChanging event
         /// </summary>
@@ -790,6 +859,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.WiresExt
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveLineDropCompensationAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(DistributionTapChanger.ClassInstance)).Resolve("lineDropCompensation")));
         }
         
         /// <summary>
@@ -818,6 +892,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.WiresExt
             }
         }
         
+        private static ITypedElement RetrieveMonitoredPhaseAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(DistributionTapChanger.ClassInstance)).Resolve("monitoredPhase")));
+        }
+        
         /// <summary>
         /// Raises the MonitoredPhaseChanging event
         /// </summary>
@@ -842,6 +921,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.WiresExt
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveTargetVoltageAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(DistributionTapChanger.ClassInstance)).Resolve("targetVoltage")));
         }
         
         /// <summary>
@@ -1023,7 +1107,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.WiresExt
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public PtRatioProxy(IDistributionTapChanger modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "ptRatio")
             {
             }
             
@@ -1041,24 +1125,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.WiresExt
                     this.ModelElement.PtRatio = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.PtRatioChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.PtRatioChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1072,7 +1138,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.WiresExt
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public LimitVoltageProxy(IDistributionTapChanger modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "limitVoltage")
             {
             }
             
@@ -1090,24 +1156,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.WiresExt
                     this.ModelElement.LimitVoltage = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.LimitVoltageChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.LimitVoltageChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1121,7 +1169,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.WiresExt
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public ReverseLineDropRProxy(IDistributionTapChanger modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "reverseLineDropR")
             {
             }
             
@@ -1139,24 +1187,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.WiresExt
                     this.ModelElement.ReverseLineDropR = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ReverseLineDropRChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ReverseLineDropRChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1170,7 +1200,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.WiresExt
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public ReverseLineDropXProxy(IDistributionTapChanger modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "reverseLineDropX")
             {
             }
             
@@ -1188,24 +1218,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.WiresExt
                     this.ModelElement.ReverseLineDropX = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ReverseLineDropXChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ReverseLineDropXChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1219,7 +1231,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.WiresExt
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public CtRatingProxy(IDistributionTapChanger modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "ctRating")
             {
             }
             
@@ -1237,24 +1249,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.WiresExt
                     this.ModelElement.CtRating = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.CtRatingChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.CtRatingChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1268,7 +1262,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.WiresExt
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public LineDropRProxy(IDistributionTapChanger modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "lineDropR")
             {
             }
             
@@ -1286,24 +1280,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.WiresExt
                     this.ModelElement.LineDropR = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.LineDropRChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.LineDropRChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1317,7 +1293,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.WiresExt
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public BandVoltageProxy(IDistributionTapChanger modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "bandVoltage")
             {
             }
             
@@ -1335,24 +1311,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.WiresExt
                     this.ModelElement.BandVoltage = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.BandVoltageChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.BandVoltageChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1366,7 +1324,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.WiresExt
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public LineDropXProxy(IDistributionTapChanger modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "lineDropX")
             {
             }
             
@@ -1384,24 +1342,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.WiresExt
                     this.ModelElement.LineDropX = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.LineDropXChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.LineDropXChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1415,7 +1355,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.WiresExt
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public CtRatioProxy(IDistributionTapChanger modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "ctRatio")
             {
             }
             
@@ -1433,24 +1373,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.WiresExt
                     this.ModelElement.CtRatio = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.CtRatioChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.CtRatioChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1464,7 +1386,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.WiresExt
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public LineDropCompensationProxy(IDistributionTapChanger modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "lineDropCompensation")
             {
             }
             
@@ -1482,24 +1404,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.WiresExt
                     this.ModelElement.LineDropCompensation = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.LineDropCompensationChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.LineDropCompensationChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1513,7 +1417,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.WiresExt
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public MonitoredPhaseProxy(IDistributionTapChanger modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "monitoredPhase")
             {
             }
             
@@ -1531,24 +1435,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.WiresExt
                     this.ModelElement.MonitoredPhase = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.MonitoredPhaseChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.MonitoredPhaseChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1562,7 +1448,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.WiresExt
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public TargetVoltageProxy(IDistributionTapChanger modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "targetVoltage")
             {
             }
             
@@ -1579,24 +1465,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.WiresExt
                 {
                     this.ModelElement.TargetVoltage = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.TargetVoltageChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.TargetVoltageChanged -= handler;
             }
         }
     }

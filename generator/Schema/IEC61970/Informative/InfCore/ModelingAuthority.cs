@@ -40,8 +40,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfCore
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61970/Informative/InfCore/ModelingA" +
         "uthority")]
     [DebuggerDisplayAttribute("ModelingAuthority {UUID}")]
-    public class ModelingAuthority : IdentifiedObject, IModelingAuthority, IModelElement
+    public partial class ModelingAuthority : IdentifiedObject, IModelingAuthority, IModelElement
     {
+        
+        private static Lazy<ITypedElement> _modelingAuthoritySetsReference = new Lazy<ITypedElement>(RetrieveModelingAuthoritySetsReference);
         
         /// <summary>
         /// The backing field for the ModelingAuthoritySets property
@@ -99,6 +101,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfCore
             }
         }
         
+        private static ITypedElement RetrieveModelingAuthoritySetsReference()
+        {
+            return ((ITypedElement)(((ModelElement)(ModelingAuthority.ClassInstance)).Resolve("ModelingAuthoritySets")));
+        }
+        
         /// <summary>
         /// Forwards CollectionChanging notifications for the ModelingAuthoritySets property to the parent model element
         /// </summary>
@@ -106,7 +113,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfCore
         /// <param name="e">The original event data</param>
         private void ModelingAuthoritySetsCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("ModelingAuthoritySets", e);
+            this.OnCollectionChanging("ModelingAuthoritySets", e, _modelingAuthoritySetsReference);
         }
         
         /// <summary>
@@ -116,7 +123,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfCore
         /// <param name="e">The original event data</param>
         private void ModelingAuthoritySetsCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("ModelingAuthoritySets", e);
+            this.OnCollectionChanged("ModelingAuthoritySets", e, _modelingAuthoritySetsReference);
         }
         
         /// <summary>

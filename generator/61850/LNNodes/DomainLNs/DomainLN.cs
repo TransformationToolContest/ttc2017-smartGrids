@@ -40,23 +40,31 @@ namespace TTC2017.SmartGrids.SubstationStandard.LNNodes.DomainLNs
     [XmlNamespacePrefixAttribute("domain")]
     [ModelRepresentationClassAttribute("http://www.transformation-tool-contest.eu/2017/smartGrids/substationStandard#//LN" +
         "Nodes/DomainLNs/DomainLN")]
-    public class DomainLN : ModelElement, IDomainLN, IModelElement
+    public partial class DomainLN : ModelElement, IDomainLN, IModelElement
     {
+        
+        private static Lazy<ITypedElement> _modeReference = new Lazy<ITypedElement>(RetrieveModeReference);
         
         /// <summary>
         /// The backing field for the Mode property
         /// </summary>
         private IINC _mode;
         
+        private static Lazy<ITypedElement> _behaviourReference = new Lazy<ITypedElement>(RetrieveBehaviourReference);
+        
         /// <summary>
         /// The backing field for the Behaviour property
         /// </summary>
         private IINS _behaviour;
         
+        private static Lazy<ITypedElement> _healthReference = new Lazy<ITypedElement>(RetrieveHealthReference);
+        
         /// <summary>
         /// The backing field for the Health property
         /// </summary>
         private IINS _health;
+        
+        private static Lazy<ITypedElement> _namePltReference = new Lazy<ITypedElement>(RetrieveNamePltReference);
         
         /// <summary>
         /// The backing field for the NamePlt property
@@ -82,7 +90,7 @@ namespace TTC2017.SmartGrids.SubstationStandard.LNNodes.DomainLNs
                     IINC old = this._mode;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnModeChanging(e);
-                    this.OnPropertyChanging("Mode", e);
+                    this.OnPropertyChanging("Mode", e, _modeReference);
                     this._mode = value;
                     if ((old != null))
                     {
@@ -93,7 +101,7 @@ namespace TTC2017.SmartGrids.SubstationStandard.LNNodes.DomainLNs
                         value.Deleted += this.OnResetMode;
                     }
                     this.OnModeChanged(e);
-                    this.OnPropertyChanged("Mode", e);
+                    this.OnPropertyChanged("Mode", e, _modeReference);
                 }
             }
         }
@@ -115,7 +123,7 @@ namespace TTC2017.SmartGrids.SubstationStandard.LNNodes.DomainLNs
                     IINS old = this._behaviour;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnBehaviourChanging(e);
-                    this.OnPropertyChanging("Behaviour", e);
+                    this.OnPropertyChanging("Behaviour", e, _behaviourReference);
                     this._behaviour = value;
                     if ((old != null))
                     {
@@ -126,7 +134,7 @@ namespace TTC2017.SmartGrids.SubstationStandard.LNNodes.DomainLNs
                         value.Deleted += this.OnResetBehaviour;
                     }
                     this.OnBehaviourChanged(e);
-                    this.OnPropertyChanged("Behaviour", e);
+                    this.OnPropertyChanged("Behaviour", e, _behaviourReference);
                 }
             }
         }
@@ -148,7 +156,7 @@ namespace TTC2017.SmartGrids.SubstationStandard.LNNodes.DomainLNs
                     IINS old = this._health;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnHealthChanging(e);
-                    this.OnPropertyChanging("Health", e);
+                    this.OnPropertyChanging("Health", e, _healthReference);
                     this._health = value;
                     if ((old != null))
                     {
@@ -159,7 +167,7 @@ namespace TTC2017.SmartGrids.SubstationStandard.LNNodes.DomainLNs
                         value.Deleted += this.OnResetHealth;
                     }
                     this.OnHealthChanged(e);
-                    this.OnPropertyChanged("Health", e);
+                    this.OnPropertyChanged("Health", e, _healthReference);
                 }
             }
         }
@@ -181,7 +189,7 @@ namespace TTC2017.SmartGrids.SubstationStandard.LNNodes.DomainLNs
                     ILPL old = this._namePlt;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnNamePltChanging(e);
-                    this.OnPropertyChanging("NamePlt", e);
+                    this.OnPropertyChanging("NamePlt", e, _namePltReference);
                     this._namePlt = value;
                     if ((old != null))
                     {
@@ -192,7 +200,7 @@ namespace TTC2017.SmartGrids.SubstationStandard.LNNodes.DomainLNs
                         value.Deleted += this.OnResetNamePlt;
                     }
                     this.OnNamePltChanged(e);
-                    this.OnPropertyChanged("NamePlt", e);
+                    this.OnPropertyChanged("NamePlt", e, _namePltReference);
                 }
             }
         }
@@ -264,6 +272,11 @@ namespace TTC2017.SmartGrids.SubstationStandard.LNNodes.DomainLNs
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> NamePltChanged;
         
+        private static ITypedElement RetrieveModeReference()
+        {
+            return ((ITypedElement)(((ModelElement)(DomainLN.ClassInstance)).Resolve("Mode")));
+        }
+        
         /// <summary>
         /// Raises the ModeChanging event
         /// </summary>
@@ -298,6 +311,11 @@ namespace TTC2017.SmartGrids.SubstationStandard.LNNodes.DomainLNs
         private void OnResetMode(object sender, System.EventArgs eventArgs)
         {
             this.Mode = null;
+        }
+        
+        private static ITypedElement RetrieveBehaviourReference()
+        {
+            return ((ITypedElement)(((ModelElement)(DomainLN.ClassInstance)).Resolve("Behaviour")));
         }
         
         /// <summary>
@@ -336,6 +354,11 @@ namespace TTC2017.SmartGrids.SubstationStandard.LNNodes.DomainLNs
             this.Behaviour = null;
         }
         
+        private static ITypedElement RetrieveHealthReference()
+        {
+            return ((ITypedElement)(((ModelElement)(DomainLN.ClassInstance)).Resolve("Health")));
+        }
+        
         /// <summary>
         /// Raises the HealthChanging event
         /// </summary>
@@ -370,6 +393,11 @@ namespace TTC2017.SmartGrids.SubstationStandard.LNNodes.DomainLNs
         private void OnResetHealth(object sender, System.EventArgs eventArgs)
         {
             this.Health = null;
+        }
+        
+        private static ITypedElement RetrieveNamePltReference()
+        {
+            return ((ITypedElement)(((ModelElement)(DomainLN.ClassInstance)).Resolve("NamePlt")));
         }
         
         /// <summary>
@@ -724,7 +752,7 @@ namespace TTC2017.SmartGrids.SubstationStandard.LNNodes.DomainLNs
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public ModeProxy(IDomainLN modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "Mode")
             {
             }
             
@@ -742,24 +770,6 @@ namespace TTC2017.SmartGrids.SubstationStandard.LNNodes.DomainLNs
                     this.ModelElement.Mode = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ModeChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ModeChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -773,7 +783,7 @@ namespace TTC2017.SmartGrids.SubstationStandard.LNNodes.DomainLNs
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public BehaviourProxy(IDomainLN modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "Behaviour")
             {
             }
             
@@ -791,24 +801,6 @@ namespace TTC2017.SmartGrids.SubstationStandard.LNNodes.DomainLNs
                     this.ModelElement.Behaviour = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.BehaviourChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.BehaviourChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -822,7 +814,7 @@ namespace TTC2017.SmartGrids.SubstationStandard.LNNodes.DomainLNs
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public HealthProxy(IDomainLN modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "Health")
             {
             }
             
@@ -840,24 +832,6 @@ namespace TTC2017.SmartGrids.SubstationStandard.LNNodes.DomainLNs
                     this.ModelElement.Health = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.HealthChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.HealthChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -871,7 +845,7 @@ namespace TTC2017.SmartGrids.SubstationStandard.LNNodes.DomainLNs
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public NamePltProxy(IDomainLN modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "NamePlt")
             {
             }
             
@@ -888,24 +862,6 @@ namespace TTC2017.SmartGrids.SubstationStandard.LNNodes.DomainLNs
                 {
                     this.ModelElement.NamePlt = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.NamePltChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.NamePltChanged -= handler;
             }
         }
     }

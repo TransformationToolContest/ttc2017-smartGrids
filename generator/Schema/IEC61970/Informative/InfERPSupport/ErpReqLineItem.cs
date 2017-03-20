@@ -56,7 +56,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfERPSupport
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61970/Informative/InfERPSupport/Erp" +
         "ReqLineItem")]
     [DebuggerDisplayAttribute("ErpReqLineItem {UUID}")]
-    public class ErpReqLineItem : IdentifiedObject, IErpReqLineItem, IModelElement
+    public partial class ErpReqLineItem : IdentifiedObject, IErpReqLineItem, IModelElement
     {
         
         /// <summary>
@@ -64,45 +64,65 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfERPSupport
         /// </summary>
         private string _deliveryDate;
         
+        private static Lazy<ITypedElement> _deliveryDateAttribute = new Lazy<ITypedElement>(RetrieveDeliveryDateAttribute);
+        
         /// <summary>
         /// The backing field for the Quantity property
         /// </summary>
         private int _quantity;
+        
+        private static Lazy<ITypedElement> _quantityAttribute = new Lazy<ITypedElement>(RetrieveQuantityAttribute);
         
         /// <summary>
         /// The backing field for the Code property
         /// </summary>
         private string _code;
         
+        private static Lazy<ITypedElement> _codeAttribute = new Lazy<ITypedElement>(RetrieveCodeAttribute);
+        
         /// <summary>
         /// The backing field for the Cost property
         /// </summary>
         private float _cost;
+        
+        private static Lazy<ITypedElement> _costAttribute = new Lazy<ITypedElement>(RetrieveCostAttribute);
+        
+        private static Lazy<ITypedElement> _typeMaterialReference = new Lazy<ITypedElement>(RetrieveTypeMaterialReference);
         
         /// <summary>
         /// The backing field for the TypeMaterial property
         /// </summary>
         private ITypeMaterial _typeMaterial;
         
+        private static Lazy<ITypedElement> _erpQuoteLineItemReference = new Lazy<ITypedElement>(RetrieveErpQuoteLineItemReference);
+        
         /// <summary>
         /// The backing field for the ErpQuoteLineItem property
         /// </summary>
         private IErpQuoteLineItem _erpQuoteLineItem;
+        
+        private static Lazy<ITypedElement> _statusReference = new Lazy<ITypedElement>(RetrieveStatusReference);
         
         /// <summary>
         /// The backing field for the Status property
         /// </summary>
         private IStatus _status;
         
+        private static Lazy<ITypedElement> _erpRequisitionReference = new Lazy<ITypedElement>(RetrieveErpRequisitionReference);
+        
         /// <summary>
         /// The backing field for the ErpRequisition property
         /// </summary>
         private IErpRequisition _erpRequisition;
         
+        private static Lazy<ITypedElement> _typeAssetReference = new Lazy<ITypedElement>(RetrieveTypeAssetReference);
+        
         /// <summary>
         /// The backing field for the TypeAsset property
         /// </summary>
         private ITypeAsset _typeAsset;
+        
+        private static Lazy<ITypedElement> _erpPOLineItemReference = new Lazy<ITypedElement>(RetrieveErpPOLineItemReference);
         
         /// <summary>
         /// The backing field for the ErpPOLineItem property
@@ -129,10 +149,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfERPSupport
                     string old = this._deliveryDate;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnDeliveryDateChanging(e);
-                    this.OnPropertyChanging("DeliveryDate", e);
+                    this.OnPropertyChanging("DeliveryDate", e, _deliveryDateAttribute);
                     this._deliveryDate = value;
                     this.OnDeliveryDateChanged(e);
-                    this.OnPropertyChanged("DeliveryDate", e);
+                    this.OnPropertyChanged("DeliveryDate", e, _deliveryDateAttribute);
                 }
             }
         }
@@ -155,10 +175,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfERPSupport
                     int old = this._quantity;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnQuantityChanging(e);
-                    this.OnPropertyChanging("Quantity", e);
+                    this.OnPropertyChanging("Quantity", e, _quantityAttribute);
                     this._quantity = value;
                     this.OnQuantityChanged(e);
-                    this.OnPropertyChanged("Quantity", e);
+                    this.OnPropertyChanged("Quantity", e, _quantityAttribute);
                 }
             }
         }
@@ -181,10 +201,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfERPSupport
                     string old = this._code;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnCodeChanging(e);
-                    this.OnPropertyChanging("Code", e);
+                    this.OnPropertyChanging("Code", e, _codeAttribute);
                     this._code = value;
                     this.OnCodeChanged(e);
-                    this.OnPropertyChanged("Code", e);
+                    this.OnPropertyChanged("Code", e, _codeAttribute);
                 }
             }
         }
@@ -207,10 +227,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfERPSupport
                     float old = this._cost;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnCostChanging(e);
-                    this.OnPropertyChanging("Cost", e);
+                    this.OnPropertyChanging("Cost", e, _costAttribute);
                     this._cost = value;
                     this.OnCostChanged(e);
-                    this.OnPropertyChanged("Cost", e);
+                    this.OnPropertyChanged("Cost", e, _costAttribute);
                 }
             }
         }
@@ -233,7 +253,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfERPSupport
                     ITypeMaterial old = this._typeMaterial;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnTypeMaterialChanging(e);
-                    this.OnPropertyChanging("TypeMaterial", e);
+                    this.OnPropertyChanging("TypeMaterial", e, _typeMaterialReference);
                     this._typeMaterial = value;
                     if ((old != null))
                     {
@@ -246,7 +266,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfERPSupport
                         value.Deleted += this.OnResetTypeMaterial;
                     }
                     this.OnTypeMaterialChanged(e);
-                    this.OnPropertyChanged("TypeMaterial", e);
+                    this.OnPropertyChanged("TypeMaterial", e, _typeMaterialReference);
                 }
             }
         }
@@ -269,7 +289,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfERPSupport
                     IErpQuoteLineItem old = this._erpQuoteLineItem;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnErpQuoteLineItemChanging(e);
-                    this.OnPropertyChanging("ErpQuoteLineItem", e);
+                    this.OnPropertyChanging("ErpQuoteLineItem", e, _erpQuoteLineItemReference);
                     this._erpQuoteLineItem = value;
                     if ((old != null))
                     {
@@ -282,7 +302,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfERPSupport
                         value.Deleted += this.OnResetErpQuoteLineItem;
                     }
                     this.OnErpQuoteLineItemChanged(e);
-                    this.OnPropertyChanged("ErpQuoteLineItem", e);
+                    this.OnPropertyChanged("ErpQuoteLineItem", e, _erpQuoteLineItemReference);
                 }
             }
         }
@@ -305,7 +325,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfERPSupport
                     IStatus old = this._status;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnStatusChanging(e);
-                    this.OnPropertyChanging("Status", e);
+                    this.OnPropertyChanging("Status", e, _statusReference);
                     this._status = value;
                     if ((old != null))
                     {
@@ -316,7 +336,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfERPSupport
                         value.Deleted += this.OnResetStatus;
                     }
                     this.OnStatusChanged(e);
-                    this.OnPropertyChanged("Status", e);
+                    this.OnPropertyChanged("Status", e, _statusReference);
                 }
             }
         }
@@ -339,7 +359,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfERPSupport
                     IErpRequisition old = this._erpRequisition;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnErpRequisitionChanging(e);
-                    this.OnPropertyChanging("ErpRequisition", e);
+                    this.OnPropertyChanging("ErpRequisition", e, _erpRequisitionReference);
                     this._erpRequisition = value;
                     if ((old != null))
                     {
@@ -352,7 +372,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfERPSupport
                         value.Deleted += this.OnResetErpRequisition;
                     }
                     this.OnErpRequisitionChanged(e);
-                    this.OnPropertyChanged("ErpRequisition", e);
+                    this.OnPropertyChanged("ErpRequisition", e, _erpRequisitionReference);
                 }
             }
         }
@@ -375,7 +395,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfERPSupport
                     ITypeAsset old = this._typeAsset;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnTypeAssetChanging(e);
-                    this.OnPropertyChanging("TypeAsset", e);
+                    this.OnPropertyChanging("TypeAsset", e, _typeAssetReference);
                     this._typeAsset = value;
                     if ((old != null))
                     {
@@ -388,7 +408,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfERPSupport
                         value.Deleted += this.OnResetTypeAsset;
                     }
                     this.OnTypeAssetChanged(e);
-                    this.OnPropertyChanged("TypeAsset", e);
+                    this.OnPropertyChanged("TypeAsset", e, _typeAssetReference);
                 }
             }
         }
@@ -411,7 +431,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfERPSupport
                     IErpPOLineItem old = this._erpPOLineItem;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnErpPOLineItemChanging(e);
-                    this.OnPropertyChanging("ErpPOLineItem", e);
+                    this.OnPropertyChanging("ErpPOLineItem", e, _erpPOLineItemReference);
                     this._erpPOLineItem = value;
                     if ((old != null))
                     {
@@ -424,7 +444,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfERPSupport
                         value.Deleted += this.OnResetErpPOLineItem;
                     }
                     this.OnErpPOLineItemChanged(e);
-                    this.OnPropertyChanged("ErpPOLineItem", e);
+                    this.OnPropertyChanged("ErpPOLineItem", e, _erpPOLineItemReference);
                 }
             }
         }
@@ -556,6 +576,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfERPSupport
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> ErpPOLineItemChanged;
         
+        private static ITypedElement RetrieveDeliveryDateAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(ErpReqLineItem.ClassInstance)).Resolve("deliveryDate")));
+        }
+        
         /// <summary>
         /// Raises the DeliveryDateChanging event
         /// </summary>
@@ -580,6 +605,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfERPSupport
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveQuantityAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(ErpReqLineItem.ClassInstance)).Resolve("quantity")));
         }
         
         /// <summary>
@@ -608,6 +638,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfERPSupport
             }
         }
         
+        private static ITypedElement RetrieveCodeAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(ErpReqLineItem.ClassInstance)).Resolve("code")));
+        }
+        
         /// <summary>
         /// Raises the CodeChanging event
         /// </summary>
@@ -634,6 +669,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfERPSupport
             }
         }
         
+        private static ITypedElement RetrieveCostAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(ErpReqLineItem.ClassInstance)).Resolve("cost")));
+        }
+        
         /// <summary>
         /// Raises the CostChanging event
         /// </summary>
@@ -658,6 +698,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfERPSupport
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveTypeMaterialReference()
+        {
+            return ((ITypedElement)(((ModelElement)(ErpReqLineItem.ClassInstance)).Resolve("TypeMaterial")));
         }
         
         /// <summary>
@@ -696,6 +741,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfERPSupport
             this.TypeMaterial = null;
         }
         
+        private static ITypedElement RetrieveErpQuoteLineItemReference()
+        {
+            return ((ITypedElement)(((ModelElement)(ErpReqLineItem.ClassInstance)).Resolve("ErpQuoteLineItem")));
+        }
+        
         /// <summary>
         /// Raises the ErpQuoteLineItemChanging event
         /// </summary>
@@ -730,6 +780,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfERPSupport
         private void OnResetErpQuoteLineItem(object sender, System.EventArgs eventArgs)
         {
             this.ErpQuoteLineItem = null;
+        }
+        
+        private static ITypedElement RetrieveStatusReference()
+        {
+            return ((ITypedElement)(((ModelElement)(ErpReqLineItem.ClassInstance)).Resolve("status")));
         }
         
         /// <summary>
@@ -768,6 +823,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfERPSupport
             this.Status = null;
         }
         
+        private static ITypedElement RetrieveErpRequisitionReference()
+        {
+            return ((ITypedElement)(((ModelElement)(ErpReqLineItem.ClassInstance)).Resolve("ErpRequisition")));
+        }
+        
         /// <summary>
         /// Raises the ErpRequisitionChanging event
         /// </summary>
@@ -804,6 +864,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfERPSupport
             this.ErpRequisition = null;
         }
         
+        private static ITypedElement RetrieveTypeAssetReference()
+        {
+            return ((ITypedElement)(((ModelElement)(ErpReqLineItem.ClassInstance)).Resolve("TypeAsset")));
+        }
+        
         /// <summary>
         /// Raises the TypeAssetChanging event
         /// </summary>
@@ -838,6 +903,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfERPSupport
         private void OnResetTypeAsset(object sender, System.EventArgs eventArgs)
         {
             this.TypeAsset = null;
+        }
+        
+        private static ITypedElement RetrieveErpPOLineItemReference()
+        {
+            return ((ITypedElement)(((ModelElement)(ErpReqLineItem.ClassInstance)).Resolve("ErpPOLineItem")));
         }
         
         /// <summary>
@@ -1325,7 +1395,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfERPSupport
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public DeliveryDateProxy(IErpReqLineItem modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "deliveryDate")
             {
             }
             
@@ -1343,24 +1413,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfERPSupport
                     this.ModelElement.DeliveryDate = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.DeliveryDateChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.DeliveryDateChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1374,7 +1426,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfERPSupport
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public QuantityProxy(IErpReqLineItem modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "quantity")
             {
             }
             
@@ -1392,24 +1444,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfERPSupport
                     this.ModelElement.Quantity = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.QuantityChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.QuantityChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1423,7 +1457,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfERPSupport
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public CodeProxy(IErpReqLineItem modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "code")
             {
             }
             
@@ -1441,24 +1475,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfERPSupport
                     this.ModelElement.Code = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.CodeChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.CodeChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1472,7 +1488,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfERPSupport
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public CostProxy(IErpReqLineItem modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "cost")
             {
             }
             
@@ -1490,24 +1506,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfERPSupport
                     this.ModelElement.Cost = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.CostChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.CostChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1521,7 +1519,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfERPSupport
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public TypeMaterialProxy(IErpReqLineItem modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "TypeMaterial")
             {
             }
             
@@ -1539,24 +1537,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfERPSupport
                     this.ModelElement.TypeMaterial = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.TypeMaterialChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.TypeMaterialChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1570,7 +1550,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfERPSupport
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public ErpQuoteLineItemProxy(IErpReqLineItem modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "ErpQuoteLineItem")
             {
             }
             
@@ -1588,24 +1568,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfERPSupport
                     this.ModelElement.ErpQuoteLineItem = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ErpQuoteLineItemChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ErpQuoteLineItemChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1619,7 +1581,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfERPSupport
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public StatusProxy(IErpReqLineItem modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "status")
             {
             }
             
@@ -1637,24 +1599,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfERPSupport
                     this.ModelElement.Status = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.StatusChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.StatusChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1668,7 +1612,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfERPSupport
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public ErpRequisitionProxy(IErpReqLineItem modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "ErpRequisition")
             {
             }
             
@@ -1686,24 +1630,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfERPSupport
                     this.ModelElement.ErpRequisition = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ErpRequisitionChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ErpRequisitionChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1717,7 +1643,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfERPSupport
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public TypeAssetProxy(IErpReqLineItem modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "TypeAsset")
             {
             }
             
@@ -1735,24 +1661,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfERPSupport
                     this.ModelElement.TypeAsset = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.TypeAssetChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.TypeAssetChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1766,7 +1674,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfERPSupport
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public ErpPOLineItemProxy(IErpReqLineItem modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "ErpPOLineItem")
             {
             }
             
@@ -1783,24 +1691,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfERPSupport
                 {
                     this.ModelElement.ErpPOLineItem = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ErpPOLineItemChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ErpPOLineItemChanged -= handler;
             }
         }
     }

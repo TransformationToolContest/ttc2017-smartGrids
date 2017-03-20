@@ -39,7 +39,7 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
     [XmlNamespacePrefixAttribute("objects")]
     [ModelRepresentationClassAttribute("http://www.transformation-tool-contest.eu/2017/smartGrids/cosem#//COSEMObjects/Sp" +
         "ecialDays")]
-    public class SpecialDays : Specialdaystable, ISpecialDays, IModelElement
+    public partial class SpecialDays : Specialdaystable, ISpecialDays, IModelElement
     {
         
         private static IClass _classInstance;

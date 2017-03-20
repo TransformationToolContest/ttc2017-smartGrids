@@ -51,18 +51,24 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Meas
     [XmlNamespacePrefixAttribute("cimMeas")]
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61970/Meas/ValueAliasSet")]
     [DebuggerDisplayAttribute("ValueAliasSet {UUID}")]
-    public class ValueAliasSet : IdentifiedObject, IValueAliasSet, IModelElement
+    public partial class ValueAliasSet : IdentifiedObject, IValueAliasSet, IModelElement
     {
+        
+        private static Lazy<ITypedElement> _valuesReference = new Lazy<ITypedElement>(RetrieveValuesReference);
         
         /// <summary>
         /// The backing field for the Values property
         /// </summary>
         private ValueAliasSetValuesCollection _values;
         
+        private static Lazy<ITypedElement> _commandsReference = new Lazy<ITypedElement>(RetrieveCommandsReference);
+        
         /// <summary>
         /// The backing field for the Commands property
         /// </summary>
         private ValueAliasSetCommandsCollection _commands;
+        
+        private static Lazy<ITypedElement> _discretesReference = new Lazy<ITypedElement>(RetrieveDiscretesReference);
         
         /// <summary>
         /// The backing field for the Discretes property
@@ -155,6 +161,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Meas
             }
         }
         
+        private static ITypedElement RetrieveValuesReference()
+        {
+            return ((ITypedElement)(((ModelElement)(ValueAliasSet.ClassInstance)).Resolve("Values")));
+        }
+        
         /// <summary>
         /// Forwards CollectionChanging notifications for the Values property to the parent model element
         /// </summary>
@@ -162,7 +173,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Meas
         /// <param name="e">The original event data</param>
         private void ValuesCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("Values", e);
+            this.OnCollectionChanging("Values", e, _valuesReference);
         }
         
         /// <summary>
@@ -172,7 +183,12 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Meas
         /// <param name="e">The original event data</param>
         private void ValuesCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("Values", e);
+            this.OnCollectionChanged("Values", e, _valuesReference);
+        }
+        
+        private static ITypedElement RetrieveCommandsReference()
+        {
+            return ((ITypedElement)(((ModelElement)(ValueAliasSet.ClassInstance)).Resolve("Commands")));
         }
         
         /// <summary>
@@ -182,7 +198,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Meas
         /// <param name="e">The original event data</param>
         private void CommandsCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("Commands", e);
+            this.OnCollectionChanging("Commands", e, _commandsReference);
         }
         
         /// <summary>
@@ -192,7 +208,12 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Meas
         /// <param name="e">The original event data</param>
         private void CommandsCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("Commands", e);
+            this.OnCollectionChanged("Commands", e, _commandsReference);
+        }
+        
+        private static ITypedElement RetrieveDiscretesReference()
+        {
+            return ((ITypedElement)(((ModelElement)(ValueAliasSet.ClassInstance)).Resolve("Discretes")));
         }
         
         /// <summary>
@@ -202,7 +223,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Meas
         /// <param name="e">The original event data</param>
         private void DiscretesCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("Discretes", e);
+            this.OnCollectionChanging("Discretes", e, _discretesReference);
         }
         
         /// <summary>
@@ -212,7 +233,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Meas
         /// <param name="e">The original event data</param>
         private void DiscretesCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("Discretes", e);
+            this.OnCollectionChanged("Discretes", e, _discretesReference);
         }
         
         /// <summary>

@@ -53,7 +53,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61970/Informative/InfAssets/JointIn" +
         "fo")]
     [DebuggerDisplayAttribute("JointInfo {UUID}")]
-    public class JointInfo : ElectricalInfo, IJointInfo, IModelElement
+    public partial class JointInfo : ElectricalInfo, IJointInfo, IModelElement
     {
         
         /// <summary>
@@ -61,15 +61,21 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
         /// </summary>
         private Nullable<JointFillKind> _fillKind;
         
+        private static Lazy<ITypedElement> _fillKindAttribute = new Lazy<ITypedElement>(RetrieveFillKindAttribute);
+        
         /// <summary>
         /// The backing field for the ConfigurationKind property
         /// </summary>
         private Nullable<JointConfigurationKind> _configurationKind;
         
+        private static Lazy<ITypedElement> _configurationKindAttribute = new Lazy<ITypedElement>(RetrieveConfigurationKindAttribute);
+        
         /// <summary>
         /// The backing field for the Insulation property
         /// </summary>
         private string _insulation;
+        
+        private static Lazy<ITypedElement> _insulationAttribute = new Lazy<ITypedElement>(RetrieveInsulationAttribute);
         
         private static IClass _classInstance;
         
@@ -91,10 +97,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
                     Nullable<JointFillKind> old = this._fillKind;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnFillKindChanging(e);
-                    this.OnPropertyChanging("FillKind", e);
+                    this.OnPropertyChanging("FillKind", e, _fillKindAttribute);
                     this._fillKind = value;
                     this.OnFillKindChanged(e);
-                    this.OnPropertyChanged("FillKind", e);
+                    this.OnPropertyChanged("FillKind", e, _fillKindAttribute);
                 }
             }
         }
@@ -117,10 +123,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
                     Nullable<JointConfigurationKind> old = this._configurationKind;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnConfigurationKindChanging(e);
-                    this.OnPropertyChanging("ConfigurationKind", e);
+                    this.OnPropertyChanging("ConfigurationKind", e, _configurationKindAttribute);
                     this._configurationKind = value;
                     this.OnConfigurationKindChanged(e);
-                    this.OnPropertyChanged("ConfigurationKind", e);
+                    this.OnPropertyChanged("ConfigurationKind", e, _configurationKindAttribute);
                 }
             }
         }
@@ -143,10 +149,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
                     string old = this._insulation;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnInsulationChanging(e);
-                    this.OnPropertyChanging("Insulation", e);
+                    this.OnPropertyChanging("Insulation", e, _insulationAttribute);
                     this._insulation = value;
                     this.OnInsulationChanged(e);
-                    this.OnPropertyChanged("Insulation", e);
+                    this.OnPropertyChanged("Insulation", e, _insulationAttribute);
                 }
             }
         }
@@ -197,6 +203,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> InsulationChanged;
         
+        private static ITypedElement RetrieveFillKindAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(JointInfo.ClassInstance)).Resolve("fillKind")));
+        }
+        
         /// <summary>
         /// Raises the FillKindChanging event
         /// </summary>
@@ -223,6 +234,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
             }
         }
         
+        private static ITypedElement RetrieveConfigurationKindAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(JointInfo.ClassInstance)).Resolve("configurationKind")));
+        }
+        
         /// <summary>
         /// Raises the ConfigurationKindChanging event
         /// </summary>
@@ -247,6 +263,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveInsulationAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(JointInfo.ClassInstance)).Resolve("insulation")));
         }
         
         /// <summary>
@@ -347,7 +368,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public FillKindProxy(IJointInfo modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "fillKind")
             {
             }
             
@@ -365,24 +386,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
                     this.ModelElement.FillKind = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.FillKindChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.FillKindChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -396,7 +399,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public ConfigurationKindProxy(IJointInfo modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "configurationKind")
             {
             }
             
@@ -414,24 +417,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
                     this.ModelElement.ConfigurationKind = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ConfigurationKindChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ConfigurationKindChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -445,7 +430,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public InsulationProxy(IJointInfo modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "insulation")
             {
             }
             
@@ -462,24 +447,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
                 {
                     this.ModelElement.Insulation = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.InsulationChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.InsulationChanged -= handler;
             }
         }
     }

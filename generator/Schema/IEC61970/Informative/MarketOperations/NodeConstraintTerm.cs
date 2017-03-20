@@ -50,8 +50,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61970/Informative/MarketOperations/" +
         "NodeConstraintTerm")]
     [DebuggerDisplayAttribute("NodeConstraintTerm {UUID}")]
-    public class NodeConstraintTerm : ConstraintTerm, INodeConstraintTerm, IModelElement
+    public partial class NodeConstraintTerm : ConstraintTerm, INodeConstraintTerm, IModelElement
     {
+        
+        private static Lazy<ITypedElement> _connectivityNodeReference = new Lazy<ITypedElement>(RetrieveConnectivityNodeReference);
         
         /// <summary>
         /// The backing field for the ConnectivityNode property
@@ -78,7 +80,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
                     IConnectivityNode old = this._connectivityNode;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnConnectivityNodeChanging(e);
-                    this.OnPropertyChanging("ConnectivityNode", e);
+                    this.OnPropertyChanging("ConnectivityNode", e, _connectivityNodeReference);
                     this._connectivityNode = value;
                     if ((old != null))
                     {
@@ -91,7 +93,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
                         value.Deleted += this.OnResetConnectivityNode;
                     }
                     this.OnConnectivityNodeChanged(e);
-                    this.OnPropertyChanged("ConnectivityNode", e);
+                    this.OnPropertyChanged("ConnectivityNode", e, _connectivityNodeReference);
                 }
             }
         }
@@ -132,6 +134,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
         /// Gets fired when the ConnectivityNode property changed its value
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> ConnectivityNodeChanged;
+        
+        private static ITypedElement RetrieveConnectivityNodeReference()
+        {
+            return ((ITypedElement)(((ModelElement)(NodeConstraintTerm.ClassInstance)).Resolve("ConnectivityNode")));
+        }
         
         /// <summary>
         /// Raises the ConnectivityNodeChanging event
@@ -356,7 +363,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public ConnectivityNodeProxy(INodeConstraintTerm modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "ConnectivityNode")
             {
             }
             
@@ -373,24 +380,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
                 {
                     this.ModelElement.ConnectivityNode = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ConnectivityNodeChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ConnectivityNodeChanged -= handler;
             }
         }
     }

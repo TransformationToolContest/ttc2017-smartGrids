@@ -46,7 +46,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfPaymentMetering
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61970/Informative/InfPaymentMeterin" +
         "g/Token")]
     [DebuggerDisplayAttribute("Token {UUID}")]
-    public class Token : IdentifiedObject, IToken, IModelElement
+    public partial class Token : IdentifiedObject, IToken, IModelElement
     {
         
         /// <summary>
@@ -54,10 +54,16 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfPaymentMetering
         /// </summary>
         private string _comment;
         
+        private static Lazy<ITypedElement> _commentAttribute = new Lazy<ITypedElement>(RetrieveCommentAttribute);
+        
         /// <summary>
         /// The backing field for the Code property
         /// </summary>
         private string _code;
+        
+        private static Lazy<ITypedElement> _codeAttribute = new Lazy<ITypedElement>(RetrieveCodeAttribute);
+        
+        private static Lazy<ITypedElement> _pointOfSaleReference = new Lazy<ITypedElement>(RetrievePointOfSaleReference);
         
         /// <summary>
         /// The backing field for the PointOfSale property
@@ -84,10 +90,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfPaymentMetering
                     string old = this._comment;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnCommentChanging(e);
-                    this.OnPropertyChanging("Comment", e);
+                    this.OnPropertyChanging("Comment", e, _commentAttribute);
                     this._comment = value;
                     this.OnCommentChanged(e);
-                    this.OnPropertyChanged("Comment", e);
+                    this.OnPropertyChanged("Comment", e, _commentAttribute);
                 }
             }
         }
@@ -110,10 +116,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfPaymentMetering
                     string old = this._code;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnCodeChanging(e);
-                    this.OnPropertyChanging("Code", e);
+                    this.OnPropertyChanging("Code", e, _codeAttribute);
                     this._code = value;
                     this.OnCodeChanged(e);
-                    this.OnPropertyChanged("Code", e);
+                    this.OnPropertyChanged("Code", e, _codeAttribute);
                 }
             }
         }
@@ -136,7 +142,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfPaymentMetering
                     IPointOfSale old = this._pointOfSale;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnPointOfSaleChanging(e);
-                    this.OnPropertyChanging("PointOfSale", e);
+                    this.OnPropertyChanging("PointOfSale", e, _pointOfSaleReference);
                     this._pointOfSale = value;
                     if ((old != null))
                     {
@@ -149,7 +155,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfPaymentMetering
                         value.Deleted += this.OnResetPointOfSale;
                     }
                     this.OnPointOfSaleChanged(e);
-                    this.OnPropertyChanged("PointOfSale", e);
+                    this.OnPropertyChanged("PointOfSale", e, _pointOfSaleReference);
                 }
             }
         }
@@ -211,6 +217,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfPaymentMetering
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> PointOfSaleChanged;
         
+        private static ITypedElement RetrieveCommentAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(Token.ClassInstance)).Resolve("comment")));
+        }
+        
         /// <summary>
         /// Raises the CommentChanging event
         /// </summary>
@@ -237,6 +248,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfPaymentMetering
             }
         }
         
+        private static ITypedElement RetrieveCodeAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(Token.ClassInstance)).Resolve("code")));
+        }
+        
         /// <summary>
         /// Raises the CodeChanging event
         /// </summary>
@@ -261,6 +277,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfPaymentMetering
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrievePointOfSaleReference()
+        {
+            return ((ITypedElement)(((ModelElement)(Token.ClassInstance)).Resolve("PointOfSale")));
         }
         
         /// <summary>
@@ -515,7 +536,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfPaymentMetering
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public CommentProxy(IToken modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "comment")
             {
             }
             
@@ -533,24 +554,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfPaymentMetering
                     this.ModelElement.Comment = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.CommentChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.CommentChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -564,7 +567,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfPaymentMetering
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public CodeProxy(IToken modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "code")
             {
             }
             
@@ -582,24 +585,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfPaymentMetering
                     this.ModelElement.Code = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.CodeChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.CodeChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -613,7 +598,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfPaymentMetering
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public PointOfSaleProxy(IToken modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "PointOfSale")
             {
             }
             
@@ -630,24 +615,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfPaymentMetering
                 {
                     this.ModelElement.PointOfSale = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.PointOfSaleChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.PointOfSaleChanged -= handler;
             }
         }
     }

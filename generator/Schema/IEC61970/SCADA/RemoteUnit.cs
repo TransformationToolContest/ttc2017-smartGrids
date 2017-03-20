@@ -40,7 +40,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.SCADA
     [XmlNamespacePrefixAttribute("cimSCADA")]
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61970/SCADA/RemoteUnit")]
     [DebuggerDisplayAttribute("RemoteUnit {UUID}")]
-    public class RemoteUnit : PowerSystemResource, IRemoteUnit, IModelElement
+    public partial class RemoteUnit : PowerSystemResource, IRemoteUnit, IModelElement
     {
         
         /// <summary>
@@ -48,10 +48,16 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.SCADA
         /// </summary>
         private Nullable<RemoteUnitType> _remoteUnitType;
         
+        private static Lazy<ITypedElement> _remoteUnitTypeAttribute = new Lazy<ITypedElement>(RetrieveRemoteUnitTypeAttribute);
+        
+        private static Lazy<ITypedElement> _remotePointsReference = new Lazy<ITypedElement>(RetrieveRemotePointsReference);
+        
         /// <summary>
         /// The backing field for the RemotePoints property
         /// </summary>
         private RemoteUnitRemotePointsCollection _remotePoints;
+        
+        private static Lazy<ITypedElement> _communicationLinksReference = new Lazy<ITypedElement>(RetrieveCommunicationLinksReference);
         
         /// <summary>
         /// The backing field for the CommunicationLinks property
@@ -88,10 +94,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.SCADA
                     Nullable<RemoteUnitType> old = this._remoteUnitType;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnRemoteUnitTypeChanging(e);
-                    this.OnPropertyChanging("RemoteUnitType", e);
+                    this.OnPropertyChanging("RemoteUnitType", e, _remoteUnitTypeAttribute);
                     this._remoteUnitType = value;
                     this.OnRemoteUnitTypeChanged(e);
-                    this.OnPropertyChanged("RemoteUnitType", e);
+                    this.OnPropertyChanged("RemoteUnitType", e, _remoteUnitTypeAttribute);
                 }
             }
         }
@@ -162,6 +168,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.SCADA
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> RemoteUnitTypeChanged;
         
+        private static ITypedElement RetrieveRemoteUnitTypeAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(RemoteUnit.ClassInstance)).Resolve("remoteUnitType")));
+        }
+        
         /// <summary>
         /// Raises the RemoteUnitTypeChanging event
         /// </summary>
@@ -188,6 +199,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.SCADA
             }
         }
         
+        private static ITypedElement RetrieveRemotePointsReference()
+        {
+            return ((ITypedElement)(((ModelElement)(RemoteUnit.ClassInstance)).Resolve("RemotePoints")));
+        }
+        
         /// <summary>
         /// Forwards CollectionChanging notifications for the RemotePoints property to the parent model element
         /// </summary>
@@ -195,7 +211,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.SCADA
         /// <param name="e">The original event data</param>
         private void RemotePointsCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("RemotePoints", e);
+            this.OnCollectionChanging("RemotePoints", e, _remotePointsReference);
         }
         
         /// <summary>
@@ -205,7 +221,12 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.SCADA
         /// <param name="e">The original event data</param>
         private void RemotePointsCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("RemotePoints", e);
+            this.OnCollectionChanged("RemotePoints", e, _remotePointsReference);
+        }
+        
+        private static ITypedElement RetrieveCommunicationLinksReference()
+        {
+            return ((ITypedElement)(((ModelElement)(RemoteUnit.ClassInstance)).Resolve("CommunicationLinks")));
         }
         
         /// <summary>
@@ -215,7 +236,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.SCADA
         /// <param name="e">The original event data</param>
         private void CommunicationLinksCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("CommunicationLinks", e);
+            this.OnCollectionChanging("CommunicationLinks", e, _communicationLinksReference);
         }
         
         /// <summary>
@@ -225,7 +246,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.SCADA
         /// <param name="e">The original event data</param>
         private void CommunicationLinksCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("CommunicationLinks", e);
+            this.OnCollectionChanged("CommunicationLinks", e, _communicationLinksReference);
         }
         
         /// <summary>
@@ -457,7 +478,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.SCADA
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public RemoteUnitTypeProxy(IRemoteUnit modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "remoteUnitType")
             {
             }
             
@@ -474,24 +495,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.SCADA
                 {
                     this.ModelElement.RemoteUnitType = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.RemoteUnitTypeChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.RemoteUnitTypeChanged -= handler;
             }
         }
     }

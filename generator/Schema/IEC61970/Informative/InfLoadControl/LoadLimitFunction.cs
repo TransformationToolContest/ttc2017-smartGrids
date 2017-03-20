@@ -42,7 +42,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfLoadControl
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61970/Informative/InfLoadControl/Lo" +
         "adLimitFunction")]
     [DebuggerDisplayAttribute("LoadLimitFunction {UUID}")]
-    public class LoadLimitFunction : LoadMgmtFunction, ILoadLimitFunction, IModelElement
+    public partial class LoadLimitFunction : LoadMgmtFunction, ILoadLimitFunction, IModelElement
     {
         
         /// <summary>
@@ -50,20 +50,28 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfLoadControl
         /// </summary>
         private bool _isAutoReconOp;
         
+        private static Lazy<ITypedElement> _isAutoReconOpAttribute = new Lazy<ITypedElement>(RetrieveIsAutoReconOpAttribute);
+        
         /// <summary>
         /// The backing field for the MaximumLoad property
         /// </summary>
         private float _maximumLoad;
+        
+        private static Lazy<ITypedElement> _maximumLoadAttribute = new Lazy<ITypedElement>(RetrieveMaximumLoadAttribute);
         
         /// <summary>
         /// The backing field for the ReconnectTimeDelay property
         /// </summary>
         private float _reconnectTimeDelay;
         
+        private static Lazy<ITypedElement> _reconnectTimeDelayAttribute = new Lazy<ITypedElement>(RetrieveReconnectTimeDelayAttribute);
+        
         /// <summary>
         /// The backing field for the DisconnectTimeDelay property
         /// </summary>
         private float _disconnectTimeDelay;
+        
+        private static Lazy<ITypedElement> _disconnectTimeDelayAttribute = new Lazy<ITypedElement>(RetrieveDisconnectTimeDelayAttribute);
         
         private static IClass _classInstance;
         
@@ -85,10 +93,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfLoadControl
                     bool old = this._isAutoReconOp;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnIsAutoReconOpChanging(e);
-                    this.OnPropertyChanging("IsAutoReconOp", e);
+                    this.OnPropertyChanging("IsAutoReconOp", e, _isAutoReconOpAttribute);
                     this._isAutoReconOp = value;
                     this.OnIsAutoReconOpChanged(e);
-                    this.OnPropertyChanged("IsAutoReconOp", e);
+                    this.OnPropertyChanged("IsAutoReconOp", e, _isAutoReconOpAttribute);
                 }
             }
         }
@@ -111,10 +119,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfLoadControl
                     float old = this._maximumLoad;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnMaximumLoadChanging(e);
-                    this.OnPropertyChanging("MaximumLoad", e);
+                    this.OnPropertyChanging("MaximumLoad", e, _maximumLoadAttribute);
                     this._maximumLoad = value;
                     this.OnMaximumLoadChanged(e);
-                    this.OnPropertyChanged("MaximumLoad", e);
+                    this.OnPropertyChanged("MaximumLoad", e, _maximumLoadAttribute);
                 }
             }
         }
@@ -137,10 +145,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfLoadControl
                     float old = this._reconnectTimeDelay;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnReconnectTimeDelayChanging(e);
-                    this.OnPropertyChanging("ReconnectTimeDelay", e);
+                    this.OnPropertyChanging("ReconnectTimeDelay", e, _reconnectTimeDelayAttribute);
                     this._reconnectTimeDelay = value;
                     this.OnReconnectTimeDelayChanged(e);
-                    this.OnPropertyChanged("ReconnectTimeDelay", e);
+                    this.OnPropertyChanged("ReconnectTimeDelay", e, _reconnectTimeDelayAttribute);
                 }
             }
         }
@@ -163,10 +171,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfLoadControl
                     float old = this._disconnectTimeDelay;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnDisconnectTimeDelayChanging(e);
-                    this.OnPropertyChanging("DisconnectTimeDelay", e);
+                    this.OnPropertyChanging("DisconnectTimeDelay", e, _disconnectTimeDelayAttribute);
                     this._disconnectTimeDelay = value;
                     this.OnDisconnectTimeDelayChanged(e);
-                    this.OnPropertyChanged("DisconnectTimeDelay", e);
+                    this.OnPropertyChanged("DisconnectTimeDelay", e, _disconnectTimeDelayAttribute);
                 }
             }
         }
@@ -227,6 +235,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfLoadControl
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> DisconnectTimeDelayChanged;
         
+        private static ITypedElement RetrieveIsAutoReconOpAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(LoadLimitFunction.ClassInstance)).Resolve("isAutoReconOp")));
+        }
+        
         /// <summary>
         /// Raises the IsAutoReconOpChanging event
         /// </summary>
@@ -251,6 +264,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfLoadControl
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveMaximumLoadAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(LoadLimitFunction.ClassInstance)).Resolve("maximumLoad")));
         }
         
         /// <summary>
@@ -279,6 +297,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfLoadControl
             }
         }
         
+        private static ITypedElement RetrieveReconnectTimeDelayAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(LoadLimitFunction.ClassInstance)).Resolve("reconnectTimeDelay")));
+        }
+        
         /// <summary>
         /// Raises the ReconnectTimeDelayChanging event
         /// </summary>
@@ -303,6 +326,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfLoadControl
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveDisconnectTimeDelayAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(LoadLimitFunction.ClassInstance)).Resolve("disconnectTimeDelay")));
         }
         
         /// <summary>
@@ -412,7 +440,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfLoadControl
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public IsAutoReconOpProxy(ILoadLimitFunction modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "isAutoReconOp")
             {
             }
             
@@ -430,24 +458,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfLoadControl
                     this.ModelElement.IsAutoReconOp = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.IsAutoReconOpChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.IsAutoReconOpChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -461,7 +471,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfLoadControl
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public MaximumLoadProxy(ILoadLimitFunction modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "maximumLoad")
             {
             }
             
@@ -479,24 +489,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfLoadControl
                     this.ModelElement.MaximumLoad = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.MaximumLoadChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.MaximumLoadChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -510,7 +502,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfLoadControl
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public ReconnectTimeDelayProxy(ILoadLimitFunction modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "reconnectTimeDelay")
             {
             }
             
@@ -528,24 +520,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfLoadControl
                     this.ModelElement.ReconnectTimeDelay = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ReconnectTimeDelayChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ReconnectTimeDelayChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -559,7 +533,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfLoadControl
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public DisconnectTimeDelayProxy(ILoadLimitFunction modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "disconnectTimeDelay")
             {
             }
             
@@ -576,24 +550,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfLoadControl
                 {
                     this.ModelElement.DisconnectTimeDelay = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.DisconnectTimeDelayChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.DisconnectTimeDelayChanged -= handler;
             }
         }
     }

@@ -45,7 +45,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfGMLSupport
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61970/Informative/InfGMLSupport/Gml" +
         "Font")]
     [DebuggerDisplayAttribute("GmlFont {UUID}")]
-    public class GmlFont : IdentifiedObject, IGmlFont, IModelElement
+    public partial class GmlFont : IdentifiedObject, IGmlFont, IModelElement
     {
         
         /// <summary>
@@ -53,35 +53,51 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfGMLSupport
         /// </summary>
         private string _weight;
         
+        private static Lazy<ITypedElement> _weightAttribute = new Lazy<ITypedElement>(RetrieveWeightAttribute);
+        
         /// <summary>
         /// The backing field for the Family property
         /// </summary>
         private string _family;
+        
+        private static Lazy<ITypedElement> _familyAttribute = new Lazy<ITypedElement>(RetrieveFamilyAttribute);
         
         /// <summary>
         /// The backing field for the Style property
         /// </summary>
         private string _style;
         
+        private static Lazy<ITypedElement> _styleAttribute = new Lazy<ITypedElement>(RetrieveStyleAttribute);
+        
         /// <summary>
         /// The backing field for the AbsoluteSize property
         /// </summary>
         private bool _absoluteSize;
+        
+        private static Lazy<ITypedElement> _absoluteSizeAttribute = new Lazy<ITypedElement>(RetrieveAbsoluteSizeAttribute);
         
         /// <summary>
         /// The backing field for the Size property
         /// </summary>
         private string _size;
         
+        private static Lazy<ITypedElement> _sizeAttribute = new Lazy<ITypedElement>(RetrieveSizeAttribute);
+        
+        private static Lazy<ITypedElement> _gmlTextSymbolsReference = new Lazy<ITypedElement>(RetrieveGmlTextSymbolsReference);
+        
         /// <summary>
         /// The backing field for the GmlTextSymbols property
         /// </summary>
         private GmlFontGmlTextSymbolsCollection _gmlTextSymbols;
         
+        private static Lazy<ITypedElement> _gmlColourReference = new Lazy<ITypedElement>(RetrieveGmlColourReference);
+        
         /// <summary>
         /// The backing field for the GmlColour property
         /// </summary>
         private IGmlColour _gmlColour;
+        
+        private static Lazy<ITypedElement> _gmlSvgParametersReference = new Lazy<ITypedElement>(RetrieveGmlSvgParametersReference);
         
         /// <summary>
         /// The backing field for the GmlSvgParameters property
@@ -118,10 +134,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfGMLSupport
                     string old = this._weight;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnWeightChanging(e);
-                    this.OnPropertyChanging("Weight", e);
+                    this.OnPropertyChanging("Weight", e, _weightAttribute);
                     this._weight = value;
                     this.OnWeightChanged(e);
-                    this.OnPropertyChanged("Weight", e);
+                    this.OnPropertyChanged("Weight", e, _weightAttribute);
                 }
             }
         }
@@ -144,10 +160,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfGMLSupport
                     string old = this._family;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnFamilyChanging(e);
-                    this.OnPropertyChanging("Family", e);
+                    this.OnPropertyChanging("Family", e, _familyAttribute);
                     this._family = value;
                     this.OnFamilyChanged(e);
-                    this.OnPropertyChanged("Family", e);
+                    this.OnPropertyChanged("Family", e, _familyAttribute);
                 }
             }
         }
@@ -170,10 +186,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfGMLSupport
                     string old = this._style;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnStyleChanging(e);
-                    this.OnPropertyChanging("Style", e);
+                    this.OnPropertyChanging("Style", e, _styleAttribute);
                     this._style = value;
                     this.OnStyleChanged(e);
-                    this.OnPropertyChanged("Style", e);
+                    this.OnPropertyChanged("Style", e, _styleAttribute);
                 }
             }
         }
@@ -196,10 +212,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfGMLSupport
                     bool old = this._absoluteSize;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnAbsoluteSizeChanging(e);
-                    this.OnPropertyChanging("AbsoluteSize", e);
+                    this.OnPropertyChanging("AbsoluteSize", e, _absoluteSizeAttribute);
                     this._absoluteSize = value;
                     this.OnAbsoluteSizeChanged(e);
-                    this.OnPropertyChanged("AbsoluteSize", e);
+                    this.OnPropertyChanged("AbsoluteSize", e, _absoluteSizeAttribute);
                 }
             }
         }
@@ -222,10 +238,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfGMLSupport
                     string old = this._size;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnSizeChanging(e);
-                    this.OnPropertyChanging("Size", e);
+                    this.OnPropertyChanging("Size", e, _sizeAttribute);
                     this._size = value;
                     this.OnSizeChanged(e);
-                    this.OnPropertyChanged("Size", e);
+                    this.OnPropertyChanged("Size", e, _sizeAttribute);
                 }
             }
         }
@@ -263,7 +279,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfGMLSupport
                     IGmlColour old = this._gmlColour;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnGmlColourChanging(e);
-                    this.OnPropertyChanging("GmlColour", e);
+                    this.OnPropertyChanging("GmlColour", e, _gmlColourReference);
                     this._gmlColour = value;
                     if ((old != null))
                     {
@@ -276,7 +292,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfGMLSupport
                         value.Deleted += this.OnResetGmlColour;
                     }
                     this.OnGmlColourChanged(e);
-                    this.OnPropertyChanged("GmlColour", e);
+                    this.OnPropertyChanged("GmlColour", e, _gmlColourReference);
                 }
             }
         }
@@ -383,6 +399,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfGMLSupport
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> GmlColourChanged;
         
+        private static ITypedElement RetrieveWeightAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(GmlFont.ClassInstance)).Resolve("weight")));
+        }
+        
         /// <summary>
         /// Raises the WeightChanging event
         /// </summary>
@@ -407,6 +428,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfGMLSupport
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveFamilyAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(GmlFont.ClassInstance)).Resolve("family")));
         }
         
         /// <summary>
@@ -435,6 +461,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfGMLSupport
             }
         }
         
+        private static ITypedElement RetrieveStyleAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(GmlFont.ClassInstance)).Resolve("style")));
+        }
+        
         /// <summary>
         /// Raises the StyleChanging event
         /// </summary>
@@ -459,6 +490,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfGMLSupport
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveAbsoluteSizeAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(GmlFont.ClassInstance)).Resolve("absoluteSize")));
         }
         
         /// <summary>
@@ -487,6 +523,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfGMLSupport
             }
         }
         
+        private static ITypedElement RetrieveSizeAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(GmlFont.ClassInstance)).Resolve("size")));
+        }
+        
         /// <summary>
         /// Raises the SizeChanging event
         /// </summary>
@@ -513,6 +554,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfGMLSupport
             }
         }
         
+        private static ITypedElement RetrieveGmlTextSymbolsReference()
+        {
+            return ((ITypedElement)(((ModelElement)(GmlFont.ClassInstance)).Resolve("GmlTextSymbols")));
+        }
+        
         /// <summary>
         /// Forwards CollectionChanging notifications for the GmlTextSymbols property to the parent model element
         /// </summary>
@@ -520,7 +566,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfGMLSupport
         /// <param name="e">The original event data</param>
         private void GmlTextSymbolsCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("GmlTextSymbols", e);
+            this.OnCollectionChanging("GmlTextSymbols", e, _gmlTextSymbolsReference);
         }
         
         /// <summary>
@@ -530,7 +576,12 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfGMLSupport
         /// <param name="e">The original event data</param>
         private void GmlTextSymbolsCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("GmlTextSymbols", e);
+            this.OnCollectionChanged("GmlTextSymbols", e, _gmlTextSymbolsReference);
+        }
+        
+        private static ITypedElement RetrieveGmlColourReference()
+        {
+            return ((ITypedElement)(((ModelElement)(GmlFont.ClassInstance)).Resolve("GmlColour")));
         }
         
         /// <summary>
@@ -569,6 +620,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfGMLSupport
             this.GmlColour = null;
         }
         
+        private static ITypedElement RetrieveGmlSvgParametersReference()
+        {
+            return ((ITypedElement)(((ModelElement)(GmlFont.ClassInstance)).Resolve("GmlSvgParameters")));
+        }
+        
         /// <summary>
         /// Forwards CollectionChanging notifications for the GmlSvgParameters property to the parent model element
         /// </summary>
@@ -576,7 +632,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfGMLSupport
         /// <param name="e">The original event data</param>
         private void GmlSvgParametersCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("GmlSvgParameters", e);
+            this.OnCollectionChanging("GmlSvgParameters", e, _gmlSvgParametersReference);
         }
         
         /// <summary>
@@ -586,7 +642,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfGMLSupport
         /// <param name="e">The original event data</param>
         private void GmlSvgParametersCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("GmlSvgParameters", e);
+            this.OnCollectionChanged("GmlSvgParameters", e, _gmlSvgParametersReference);
         }
         
         /// <summary>
@@ -918,7 +974,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfGMLSupport
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public WeightProxy(IGmlFont modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "weight")
             {
             }
             
@@ -936,24 +992,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfGMLSupport
                     this.ModelElement.Weight = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.WeightChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.WeightChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -967,7 +1005,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfGMLSupport
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public FamilyProxy(IGmlFont modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "family")
             {
             }
             
@@ -985,24 +1023,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfGMLSupport
                     this.ModelElement.Family = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.FamilyChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.FamilyChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1016,7 +1036,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfGMLSupport
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public StyleProxy(IGmlFont modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "style")
             {
             }
             
@@ -1034,24 +1054,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfGMLSupport
                     this.ModelElement.Style = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.StyleChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.StyleChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1065,7 +1067,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfGMLSupport
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public AbsoluteSizeProxy(IGmlFont modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "absoluteSize")
             {
             }
             
@@ -1083,24 +1085,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfGMLSupport
                     this.ModelElement.AbsoluteSize = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.AbsoluteSizeChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.AbsoluteSizeChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1114,7 +1098,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfGMLSupport
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public SizeProxy(IGmlFont modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "size")
             {
             }
             
@@ -1132,24 +1116,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfGMLSupport
                     this.ModelElement.Size = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.SizeChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.SizeChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1163,7 +1129,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfGMLSupport
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public GmlColourProxy(IGmlFont modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "GmlColour")
             {
             }
             
@@ -1180,24 +1146,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfGMLSupport
                 {
                     this.ModelElement.GmlColour = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.GmlColourChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.GmlColourChanged -= handler;
             }
         }
     }

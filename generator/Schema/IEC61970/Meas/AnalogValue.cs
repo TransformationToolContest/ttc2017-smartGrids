@@ -51,7 +51,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Meas
     [XmlNamespacePrefixAttribute("cimMeas")]
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61970/Meas/AnalogValue")]
     [DebuggerDisplayAttribute("AnalogValue {UUID}")]
-    public class AnalogValue : MeasurementValue, IAnalogValue, IModelElement
+    public partial class AnalogValue : MeasurementValue, IAnalogValue, IModelElement
     {
         
         /// <summary>
@@ -59,15 +59,23 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Meas
         /// </summary>
         private float _value;
         
+        private static Lazy<ITypedElement> _valueAttribute = new Lazy<ITypedElement>(RetrieveValueAttribute);
+        
+        private static Lazy<ITypedElement> _altGeneratingUnitReference = new Lazy<ITypedElement>(RetrieveAltGeneratingUnitReference);
+        
         /// <summary>
         /// The backing field for the AltGeneratingUnit property
         /// </summary>
         private AnalogValueAltGeneratingUnitCollection _altGeneratingUnit;
         
+        private static Lazy<ITypedElement> _altTieMeasReference = new Lazy<ITypedElement>(RetrieveAltTieMeasReference);
+        
         /// <summary>
         /// The backing field for the AltTieMeas property
         /// </summary>
         private AnalogValueAltTieMeasCollection _altTieMeas;
+        
+        private static Lazy<ITypedElement> _analogReference = new Lazy<ITypedElement>(RetrieveAnalogReference);
         
         /// <summary>
         /// The backing field for the Analog property
@@ -104,10 +112,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Meas
                     float old = this._value;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnValueChanging(e);
-                    this.OnPropertyChanging("Value", e);
+                    this.OnPropertyChanging("Value", e, _valueAttribute);
                     this._value = value;
                     this.OnValueChanged(e);
-                    this.OnPropertyChanged("Value", e);
+                    this.OnPropertyChanged("Value", e, _valueAttribute);
                 }
             }
         }
@@ -160,7 +168,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Meas
                     IAnalog old = this._analog;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnAnalogChanging(e);
-                    this.OnPropertyChanging("Analog", e);
+                    this.OnPropertyChanging("Analog", e, _analogReference);
                     this._analog = value;
                     if ((old != null))
                     {
@@ -173,7 +181,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Meas
                         value.Deleted += this.OnResetAnalog;
                     }
                     this.OnAnalogChanged(e);
-                    this.OnPropertyChanged("Analog", e);
+                    this.OnPropertyChanged("Analog", e, _analogReference);
                 }
             }
         }
@@ -224,6 +232,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Meas
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> AnalogChanged;
         
+        private static ITypedElement RetrieveValueAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(AnalogValue.ClassInstance)).Resolve("value")));
+        }
+        
         /// <summary>
         /// Raises the ValueChanging event
         /// </summary>
@@ -250,6 +263,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Meas
             }
         }
         
+        private static ITypedElement RetrieveAltGeneratingUnitReference()
+        {
+            return ((ITypedElement)(((ModelElement)(AnalogValue.ClassInstance)).Resolve("AltGeneratingUnit")));
+        }
+        
         /// <summary>
         /// Forwards CollectionChanging notifications for the AltGeneratingUnit property to the parent model element
         /// </summary>
@@ -257,7 +275,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Meas
         /// <param name="e">The original event data</param>
         private void AltGeneratingUnitCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("AltGeneratingUnit", e);
+            this.OnCollectionChanging("AltGeneratingUnit", e, _altGeneratingUnitReference);
         }
         
         /// <summary>
@@ -267,7 +285,12 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Meas
         /// <param name="e">The original event data</param>
         private void AltGeneratingUnitCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("AltGeneratingUnit", e);
+            this.OnCollectionChanged("AltGeneratingUnit", e, _altGeneratingUnitReference);
+        }
+        
+        private static ITypedElement RetrieveAltTieMeasReference()
+        {
+            return ((ITypedElement)(((ModelElement)(AnalogValue.ClassInstance)).Resolve("AltTieMeas")));
         }
         
         /// <summary>
@@ -277,7 +300,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Meas
         /// <param name="e">The original event data</param>
         private void AltTieMeasCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("AltTieMeas", e);
+            this.OnCollectionChanging("AltTieMeas", e, _altTieMeasReference);
         }
         
         /// <summary>
@@ -287,7 +310,12 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Meas
         /// <param name="e">The original event data</param>
         private void AltTieMeasCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("AltTieMeas", e);
+            this.OnCollectionChanged("AltTieMeas", e, _altTieMeasReference);
+        }
+        
+        private static ITypedElement RetrieveAnalogReference()
+        {
+            return ((ITypedElement)(((ModelElement)(AnalogValue.ClassInstance)).Resolve("Analog")));
         }
         
         /// <summary>
@@ -618,7 +646,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Meas
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public ValueProxy(IAnalogValue modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "value")
             {
             }
             
@@ -636,24 +664,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Meas
                     this.ModelElement.Value = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ValueChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ValueChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -667,7 +677,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Meas
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public AnalogProxy(IAnalogValue modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "Analog")
             {
             }
             
@@ -684,24 +694,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Meas
                 {
                     this.ModelElement.Analog = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.AnalogChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.AnalogChanged -= handler;
             }
         }
     }

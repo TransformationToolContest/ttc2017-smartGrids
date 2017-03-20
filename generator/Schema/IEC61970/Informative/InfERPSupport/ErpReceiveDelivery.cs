@@ -56,8 +56,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfERPSupport
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61970/Informative/InfERPSupport/Erp" +
         "ReceiveDelivery")]
     [DebuggerDisplayAttribute("ErpReceiveDelivery {UUID}")]
-    public class ErpReceiveDelivery : Document, IErpReceiveDelivery, IModelElement
+    public partial class ErpReceiveDelivery : Document, IErpReceiveDelivery, IModelElement
     {
+        
+        private static Lazy<ITypedElement> _erpRecDelvLineItemsReference = new Lazy<ITypedElement>(RetrieveErpRecDelvLineItemsReference);
         
         /// <summary>
         /// The backing field for the ErpRecDelvLineItems property
@@ -115,6 +117,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfERPSupport
             }
         }
         
+        private static ITypedElement RetrieveErpRecDelvLineItemsReference()
+        {
+            return ((ITypedElement)(((ModelElement)(ErpReceiveDelivery.ClassInstance)).Resolve("ErpRecDelvLineItems")));
+        }
+        
         /// <summary>
         /// Forwards CollectionChanging notifications for the ErpRecDelvLineItems property to the parent model element
         /// </summary>
@@ -122,7 +129,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfERPSupport
         /// <param name="e">The original event data</param>
         private void ErpRecDelvLineItemsCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("ErpRecDelvLineItems", e);
+            this.OnCollectionChanging("ErpRecDelvLineItems", e, _erpRecDelvLineItemsReference);
         }
         
         /// <summary>
@@ -132,7 +139,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfERPSupport
         /// <param name="e">The original event data</param>
         private void ErpRecDelvLineItemsCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("ErpRecDelvLineItems", e);
+            this.OnCollectionChanged("ErpRecDelvLineItems", e, _erpRecDelvLineItemsReference);
         }
         
         /// <summary>

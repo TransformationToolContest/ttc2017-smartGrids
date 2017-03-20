@@ -45,8 +45,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfTypeAsset
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61970/Informative/InfTypeAsset/Elec" +
         "tricalTypeAsset")]
     [DebuggerDisplayAttribute("ElectricalTypeAsset {UUID}")]
-    public class ElectricalTypeAsset : TTC2017.SmartGrids.CIM.IEC61970.Informative.InfTypeAsset.TypeAsset, IElectricalTypeAsset, IModelElement
+    public partial class ElectricalTypeAsset : TTC2017.SmartGrids.CIM.IEC61970.Informative.InfTypeAsset.TypeAsset, IElectricalTypeAsset, IModelElement
     {
+        
+        private static Lazy<ITypedElement> _electricalInfosReference = new Lazy<ITypedElement>(RetrieveElectricalInfosReference);
         
         /// <summary>
         /// The backing field for the ElectricalInfos property
@@ -104,6 +106,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfTypeAsset
             }
         }
         
+        private static ITypedElement RetrieveElectricalInfosReference()
+        {
+            return ((ITypedElement)(((ModelElement)(ElectricalTypeAsset.ClassInstance)).Resolve("ElectricalInfos")));
+        }
+        
         /// <summary>
         /// Forwards CollectionChanging notifications for the ElectricalInfos property to the parent model element
         /// </summary>
@@ -111,7 +118,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfTypeAsset
         /// <param name="e">The original event data</param>
         private void ElectricalInfosCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("ElectricalInfos", e);
+            this.OnCollectionChanging("ElectricalInfos", e, _electricalInfosReference);
         }
         
         /// <summary>
@@ -121,7 +128,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfTypeAsset
         /// <param name="e">The original event data</param>
         private void ElectricalInfosCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("ElectricalInfos", e);
+            this.OnCollectionChanged("ElectricalInfos", e, _electricalInfosReference);
         }
         
         /// <summary>

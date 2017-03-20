@@ -50,13 +50,15 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfWork
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61970/Informative/InfWork/WorkStatu" +
         "sEntry")]
     [DebuggerDisplayAttribute("WorkStatusEntry {UUID}")]
-    public class WorkStatusEntry : ActivityRecord, IWorkStatusEntry, IModelElement
+    public partial class WorkStatusEntry : ActivityRecord, IWorkStatusEntry, IModelElement
     {
         
         /// <summary>
         /// The backing field for the PercentComplete property
         /// </summary>
         private float _percentComplete;
+        
+        private static Lazy<ITypedElement> _percentCompleteAttribute = new Lazy<ITypedElement>(RetrievePercentCompleteAttribute);
         
         private static IClass _classInstance;
         
@@ -78,10 +80,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfWork
                     float old = this._percentComplete;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnPercentCompleteChanging(e);
-                    this.OnPropertyChanging("PercentComplete", e);
+                    this.OnPropertyChanging("PercentComplete", e, _percentCompleteAttribute);
                     this._percentComplete = value;
                     this.OnPercentCompleteChanged(e);
-                    this.OnPropertyChanged("PercentComplete", e);
+                    this.OnPropertyChanged("PercentComplete", e, _percentCompleteAttribute);
                 }
             }
         }
@@ -111,6 +113,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfWork
         /// Gets fired when the PercentComplete property changed its value
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> PercentCompleteChanged;
+        
+        private static ITypedElement RetrievePercentCompleteAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(WorkStatusEntry.ClassInstance)).Resolve("percentComplete")));
+        }
         
         /// <summary>
         /// Raises the PercentCompleteChanging event
@@ -192,7 +199,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfWork
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public PercentCompleteProxy(IWorkStatusEntry modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "percentComplete")
             {
             }
             
@@ -209,24 +216,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfWork
                 {
                     this.ModelElement.PercentComplete = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.PercentCompleteChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.PercentCompleteChanged -= handler;
             }
         }
     }

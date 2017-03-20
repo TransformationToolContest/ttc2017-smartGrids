@@ -51,7 +51,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Common
     [XmlNamespacePrefixAttribute("cimCommon")]
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61968/Common/DateTimeInterval")]
     [DebuggerDisplayAttribute("DateTimeInterval {UUID}")]
-    public class DateTimeInterval : Element, IDateTimeInterval, IModelElement
+    public partial class DateTimeInterval : Element, IDateTimeInterval, IModelElement
     {
         
         /// <summary>
@@ -59,10 +59,14 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Common
         /// </summary>
         private DateTime _start;
         
+        private static Lazy<ITypedElement> _startAttribute = new Lazy<ITypedElement>(RetrieveStartAttribute);
+        
         /// <summary>
         /// The backing field for the End property
         /// </summary>
         private DateTime _end;
+        
+        private static Lazy<ITypedElement> _endAttribute = new Lazy<ITypedElement>(RetrieveEndAttribute);
         
         private static IClass _classInstance;
         
@@ -84,10 +88,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Common
                     DateTime old = this._start;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnStartChanging(e);
-                    this.OnPropertyChanging("Start", e);
+                    this.OnPropertyChanging("Start", e, _startAttribute);
                     this._start = value;
                     this.OnStartChanged(e);
-                    this.OnPropertyChanged("Start", e);
+                    this.OnPropertyChanged("Start", e, _startAttribute);
                 }
             }
         }
@@ -110,10 +114,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Common
                     DateTime old = this._end;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnEndChanging(e);
-                    this.OnPropertyChanging("End", e);
+                    this.OnPropertyChanging("End", e, _endAttribute);
                     this._end = value;
                     this.OnEndChanged(e);
-                    this.OnPropertyChanged("End", e);
+                    this.OnPropertyChanged("End", e, _endAttribute);
                 }
             }
         }
@@ -153,6 +157,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Common
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> EndChanged;
         
+        private static ITypedElement RetrieveStartAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(DateTimeInterval.ClassInstance)).Resolve("start")));
+        }
+        
         /// <summary>
         /// Raises the StartChanging event
         /// </summary>
@@ -177,6 +186,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Common
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveEndAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(DateTimeInterval.ClassInstance)).Resolve("end")));
         }
         
         /// <summary>
@@ -267,7 +281,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Common
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public StartProxy(IDateTimeInterval modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "start")
             {
             }
             
@@ -285,24 +299,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Common
                     this.ModelElement.Start = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.StartChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.StartChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -316,7 +312,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Common
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public EndProxy(IDateTimeInterval modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "end")
             {
             }
             
@@ -333,24 +329,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Common
                 {
                     this.ModelElement.End = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.EndChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.EndChanged -= handler;
             }
         }
     }

@@ -42,7 +42,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.LoadControl
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61968/LoadControl/ConnectDisconnect" +
         "Function")]
     [DebuggerDisplayAttribute("ConnectDisconnectFunction {UUID}")]
-    public class ConnectDisconnectFunction : DeviceFunction, IConnectDisconnectFunction, IModelElement
+    public partial class ConnectDisconnectFunction : DeviceFunction, IConnectDisconnectFunction, IModelElement
     {
         
         /// <summary>
@@ -50,40 +50,58 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.LoadControl
         /// </summary>
         private bool _isDelayedDiscon;
         
+        private static Lazy<ITypedElement> _isDelayedDisconAttribute = new Lazy<ITypedElement>(RetrieveIsDelayedDisconAttribute);
+        
         /// <summary>
         /// The backing field for the IsLocalAutoReconOp property
         /// </summary>
         private bool _isLocalAutoReconOp;
+        
+        private static Lazy<ITypedElement> _isLocalAutoReconOpAttribute = new Lazy<ITypedElement>(RetrieveIsLocalAutoReconOpAttribute);
         
         /// <summary>
         /// The backing field for the IsLocalAutoDisconOp property
         /// </summary>
         private bool _isLocalAutoDisconOp;
         
+        private static Lazy<ITypedElement> _isLocalAutoDisconOpAttribute = new Lazy<ITypedElement>(RetrieveIsLocalAutoDisconOpAttribute);
+        
         /// <summary>
         /// The backing field for the IsConnected property
         /// </summary>
         private bool _isConnected;
+        
+        private static Lazy<ITypedElement> _isConnectedAttribute = new Lazy<ITypedElement>(RetrieveIsConnectedAttribute);
         
         /// <summary>
         /// The backing field for the IsRemoteAutoDisconOp property
         /// </summary>
         private bool _isRemoteAutoDisconOp;
         
+        private static Lazy<ITypedElement> _isRemoteAutoDisconOpAttribute = new Lazy<ITypedElement>(RetrieveIsRemoteAutoDisconOpAttribute);
+        
         /// <summary>
         /// The backing field for the EventCount property
         /// </summary>
         private int _eventCount;
+        
+        private static Lazy<ITypedElement> _eventCountAttribute = new Lazy<ITypedElement>(RetrieveEventCountAttribute);
         
         /// <summary>
         /// The backing field for the IsRemoteAutoReconOp property
         /// </summary>
         private bool _isRemoteAutoReconOp;
         
+        private static Lazy<ITypedElement> _isRemoteAutoReconOpAttribute = new Lazy<ITypedElement>(RetrieveIsRemoteAutoReconOpAttribute);
+        
+        private static Lazy<ITypedElement> _switchesReference = new Lazy<ITypedElement>(RetrieveSwitchesReference);
+        
         /// <summary>
         /// The backing field for the Switches property
         /// </summary>
         private ConnectDisconnectFunctionSwitchesCollection _switches;
+        
+        private static Lazy<ITypedElement> _rcdInfoReference = new Lazy<ITypedElement>(RetrieveRcdInfoReference);
         
         /// <summary>
         /// The backing field for the RcdInfo property
@@ -117,10 +135,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.LoadControl
                     bool old = this._isDelayedDiscon;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnIsDelayedDisconChanging(e);
-                    this.OnPropertyChanging("IsDelayedDiscon", e);
+                    this.OnPropertyChanging("IsDelayedDiscon", e, _isDelayedDisconAttribute);
                     this._isDelayedDiscon = value;
                     this.OnIsDelayedDisconChanged(e);
-                    this.OnPropertyChanged("IsDelayedDiscon", e);
+                    this.OnPropertyChanged("IsDelayedDiscon", e, _isDelayedDisconAttribute);
                 }
             }
         }
@@ -143,10 +161,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.LoadControl
                     bool old = this._isLocalAutoReconOp;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnIsLocalAutoReconOpChanging(e);
-                    this.OnPropertyChanging("IsLocalAutoReconOp", e);
+                    this.OnPropertyChanging("IsLocalAutoReconOp", e, _isLocalAutoReconOpAttribute);
                     this._isLocalAutoReconOp = value;
                     this.OnIsLocalAutoReconOpChanged(e);
-                    this.OnPropertyChanged("IsLocalAutoReconOp", e);
+                    this.OnPropertyChanged("IsLocalAutoReconOp", e, _isLocalAutoReconOpAttribute);
                 }
             }
         }
@@ -169,10 +187,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.LoadControl
                     bool old = this._isLocalAutoDisconOp;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnIsLocalAutoDisconOpChanging(e);
-                    this.OnPropertyChanging("IsLocalAutoDisconOp", e);
+                    this.OnPropertyChanging("IsLocalAutoDisconOp", e, _isLocalAutoDisconOpAttribute);
                     this._isLocalAutoDisconOp = value;
                     this.OnIsLocalAutoDisconOpChanged(e);
-                    this.OnPropertyChanged("IsLocalAutoDisconOp", e);
+                    this.OnPropertyChanged("IsLocalAutoDisconOp", e, _isLocalAutoDisconOpAttribute);
                 }
             }
         }
@@ -195,10 +213,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.LoadControl
                     bool old = this._isConnected;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnIsConnectedChanging(e);
-                    this.OnPropertyChanging("IsConnected", e);
+                    this.OnPropertyChanging("IsConnected", e, _isConnectedAttribute);
                     this._isConnected = value;
                     this.OnIsConnectedChanged(e);
-                    this.OnPropertyChanged("IsConnected", e);
+                    this.OnPropertyChanged("IsConnected", e, _isConnectedAttribute);
                 }
             }
         }
@@ -221,10 +239,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.LoadControl
                     bool old = this._isRemoteAutoDisconOp;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnIsRemoteAutoDisconOpChanging(e);
-                    this.OnPropertyChanging("IsRemoteAutoDisconOp", e);
+                    this.OnPropertyChanging("IsRemoteAutoDisconOp", e, _isRemoteAutoDisconOpAttribute);
                     this._isRemoteAutoDisconOp = value;
                     this.OnIsRemoteAutoDisconOpChanged(e);
-                    this.OnPropertyChanged("IsRemoteAutoDisconOp", e);
+                    this.OnPropertyChanged("IsRemoteAutoDisconOp", e, _isRemoteAutoDisconOpAttribute);
                 }
             }
         }
@@ -247,10 +265,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.LoadControl
                     int old = this._eventCount;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnEventCountChanging(e);
-                    this.OnPropertyChanging("EventCount", e);
+                    this.OnPropertyChanging("EventCount", e, _eventCountAttribute);
                     this._eventCount = value;
                     this.OnEventCountChanged(e);
-                    this.OnPropertyChanged("EventCount", e);
+                    this.OnPropertyChanged("EventCount", e, _eventCountAttribute);
                 }
             }
         }
@@ -273,10 +291,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.LoadControl
                     bool old = this._isRemoteAutoReconOp;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnIsRemoteAutoReconOpChanging(e);
-                    this.OnPropertyChanging("IsRemoteAutoReconOp", e);
+                    this.OnPropertyChanging("IsRemoteAutoReconOp", e, _isRemoteAutoReconOpAttribute);
                     this._isRemoteAutoReconOp = value;
                     this.OnIsRemoteAutoReconOpChanged(e);
-                    this.OnPropertyChanged("IsRemoteAutoReconOp", e);
+                    this.OnPropertyChanged("IsRemoteAutoReconOp", e, _isRemoteAutoReconOpAttribute);
                 }
             }
         }
@@ -314,7 +332,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.LoadControl
                     IRemoteConnectDisconnectInfo old = this._rcdInfo;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnRcdInfoChanging(e);
-                    this.OnPropertyChanging("RcdInfo", e);
+                    this.OnPropertyChanging("RcdInfo", e, _rcdInfoReference);
                     this._rcdInfo = value;
                     if ((old != null))
                     {
@@ -325,7 +343,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.LoadControl
                         value.Deleted += this.OnResetRcdInfo;
                     }
                     this.OnRcdInfoChanged(e);
-                    this.OnPropertyChanged("RcdInfo", e);
+                    this.OnPropertyChanged("RcdInfo", e, _rcdInfoReference);
                 }
             }
         }
@@ -437,6 +455,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.LoadControl
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> RcdInfoChanged;
         
+        private static ITypedElement RetrieveIsDelayedDisconAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(ConnectDisconnectFunction.ClassInstance)).Resolve("isDelayedDiscon")));
+        }
+        
         /// <summary>
         /// Raises the IsDelayedDisconChanging event
         /// </summary>
@@ -461,6 +484,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.LoadControl
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveIsLocalAutoReconOpAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(ConnectDisconnectFunction.ClassInstance)).Resolve("isLocalAutoReconOp")));
         }
         
         /// <summary>
@@ -489,6 +517,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.LoadControl
             }
         }
         
+        private static ITypedElement RetrieveIsLocalAutoDisconOpAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(ConnectDisconnectFunction.ClassInstance)).Resolve("isLocalAutoDisconOp")));
+        }
+        
         /// <summary>
         /// Raises the IsLocalAutoDisconOpChanging event
         /// </summary>
@@ -513,6 +546,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.LoadControl
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveIsConnectedAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(ConnectDisconnectFunction.ClassInstance)).Resolve("isConnected")));
         }
         
         /// <summary>
@@ -541,6 +579,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.LoadControl
             }
         }
         
+        private static ITypedElement RetrieveIsRemoteAutoDisconOpAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(ConnectDisconnectFunction.ClassInstance)).Resolve("isRemoteAutoDisconOp")));
+        }
+        
         /// <summary>
         /// Raises the IsRemoteAutoDisconOpChanging event
         /// </summary>
@@ -565,6 +608,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.LoadControl
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveEventCountAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(ConnectDisconnectFunction.ClassInstance)).Resolve("eventCount")));
         }
         
         /// <summary>
@@ -593,6 +641,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.LoadControl
             }
         }
         
+        private static ITypedElement RetrieveIsRemoteAutoReconOpAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(ConnectDisconnectFunction.ClassInstance)).Resolve("isRemoteAutoReconOp")));
+        }
+        
         /// <summary>
         /// Raises the IsRemoteAutoReconOpChanging event
         /// </summary>
@@ -619,6 +672,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.LoadControl
             }
         }
         
+        private static ITypedElement RetrieveSwitchesReference()
+        {
+            return ((ITypedElement)(((ModelElement)(ConnectDisconnectFunction.ClassInstance)).Resolve("Switches")));
+        }
+        
         /// <summary>
         /// Forwards CollectionChanging notifications for the Switches property to the parent model element
         /// </summary>
@@ -626,7 +684,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.LoadControl
         /// <param name="e">The original event data</param>
         private void SwitchesCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("Switches", e);
+            this.OnCollectionChanging("Switches", e, _switchesReference);
         }
         
         /// <summary>
@@ -636,7 +694,12 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.LoadControl
         /// <param name="e">The original event data</param>
         private void SwitchesCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("Switches", e);
+            this.OnCollectionChanged("Switches", e, _switchesReference);
+        }
+        
+        private static ITypedElement RetrieveRcdInfoReference()
+        {
+            return ((ITypedElement)(((ModelElement)(ConnectDisconnectFunction.ClassInstance)).Resolve("rcdInfo")));
         }
         
         /// <summary>
@@ -984,7 +1047,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.LoadControl
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public IsDelayedDisconProxy(IConnectDisconnectFunction modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "isDelayedDiscon")
             {
             }
             
@@ -1002,24 +1065,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.LoadControl
                     this.ModelElement.IsDelayedDiscon = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.IsDelayedDisconChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.IsDelayedDisconChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1033,7 +1078,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.LoadControl
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public IsLocalAutoReconOpProxy(IConnectDisconnectFunction modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "isLocalAutoReconOp")
             {
             }
             
@@ -1051,24 +1096,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.LoadControl
                     this.ModelElement.IsLocalAutoReconOp = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.IsLocalAutoReconOpChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.IsLocalAutoReconOpChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1082,7 +1109,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.LoadControl
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public IsLocalAutoDisconOpProxy(IConnectDisconnectFunction modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "isLocalAutoDisconOp")
             {
             }
             
@@ -1100,24 +1127,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.LoadControl
                     this.ModelElement.IsLocalAutoDisconOp = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.IsLocalAutoDisconOpChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.IsLocalAutoDisconOpChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1131,7 +1140,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.LoadControl
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public IsConnectedProxy(IConnectDisconnectFunction modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "isConnected")
             {
             }
             
@@ -1149,24 +1158,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.LoadControl
                     this.ModelElement.IsConnected = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.IsConnectedChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.IsConnectedChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1180,7 +1171,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.LoadControl
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public IsRemoteAutoDisconOpProxy(IConnectDisconnectFunction modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "isRemoteAutoDisconOp")
             {
             }
             
@@ -1198,24 +1189,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.LoadControl
                     this.ModelElement.IsRemoteAutoDisconOp = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.IsRemoteAutoDisconOpChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.IsRemoteAutoDisconOpChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1229,7 +1202,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.LoadControl
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public EventCountProxy(IConnectDisconnectFunction modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "eventCount")
             {
             }
             
@@ -1247,24 +1220,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.LoadControl
                     this.ModelElement.EventCount = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.EventCountChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.EventCountChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1278,7 +1233,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.LoadControl
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public IsRemoteAutoReconOpProxy(IConnectDisconnectFunction modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "isRemoteAutoReconOp")
             {
             }
             
@@ -1296,24 +1251,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.LoadControl
                     this.ModelElement.IsRemoteAutoReconOp = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.IsRemoteAutoReconOpChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.IsRemoteAutoReconOpChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1327,7 +1264,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.LoadControl
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public RcdInfoProxy(IConnectDisconnectFunction modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "rcdInfo")
             {
             }
             
@@ -1344,24 +1281,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.LoadControl
                 {
                     this.ModelElement.RcdInfo = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.RcdInfoChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.RcdInfoChanged -= handler;
             }
         }
     }

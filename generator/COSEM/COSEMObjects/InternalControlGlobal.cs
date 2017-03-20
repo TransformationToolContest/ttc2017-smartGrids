@@ -39,7 +39,7 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
     [XmlNamespacePrefixAttribute("objects")]
     [ModelRepresentationClassAttribute("http://www.transformation-tool-contest.eu/2017/smartGrids/cosem#//COSEMObjects/In" +
         "ternalControlGlobal")]
-    public class InternalControlGlobal : Profilegeneric, IInternalControlGlobal, IModelElement
+    public partial class InternalControlGlobal : Profilegeneric, IInternalControlGlobal, IModelElement
     {
         
         private static IClass _classInstance;

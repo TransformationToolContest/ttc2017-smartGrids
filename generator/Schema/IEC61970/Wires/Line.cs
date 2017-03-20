@@ -53,18 +53,24 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
     [XmlNamespacePrefixAttribute("cimWires")]
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61970/Wires/Line")]
     [DebuggerDisplayAttribute("Line {UUID}")]
-    public class Line : EquipmentContainer, ILine, IModelElement
+    public partial class Line : EquipmentContainer, ILine, IModelElement
     {
+        
+        private static Lazy<ITypedElement> _transmissionRightOfWayReference = new Lazy<ITypedElement>(RetrieveTransmissionRightOfWayReference);
         
         /// <summary>
         /// The backing field for the TransmissionRightOfWay property
         /// </summary>
         private ITransmissionRightOfWay _transmissionRightOfWay;
         
+        private static Lazy<ITypedElement> _flowgatesReference = new Lazy<ITypedElement>(RetrieveFlowgatesReference);
+        
         /// <summary>
         /// The backing field for the Flowgates property
         /// </summary>
         private LineFlowgatesCollection _flowgates;
+        
+        private static Lazy<ITypedElement> _regionReference = new Lazy<ITypedElement>(RetrieveRegionReference);
         
         /// <summary>
         /// The backing field for the Region property
@@ -98,7 +104,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
                     ITransmissionRightOfWay old = this._transmissionRightOfWay;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnTransmissionRightOfWayChanging(e);
-                    this.OnPropertyChanging("TransmissionRightOfWay", e);
+                    this.OnPropertyChanging("TransmissionRightOfWay", e, _transmissionRightOfWayReference);
                     this._transmissionRightOfWay = value;
                     if ((old != null))
                     {
@@ -111,7 +117,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
                         value.Deleted += this.OnResetTransmissionRightOfWay;
                     }
                     this.OnTransmissionRightOfWayChanged(e);
-                    this.OnPropertyChanged("TransmissionRightOfWay", e);
+                    this.OnPropertyChanged("TransmissionRightOfWay", e, _transmissionRightOfWayReference);
                 }
             }
         }
@@ -149,7 +155,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
                     ISubGeographicalRegion old = this._region;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnRegionChanging(e);
-                    this.OnPropertyChanging("Region", e);
+                    this.OnPropertyChanging("Region", e, _regionReference);
                     this._region = value;
                     if ((old != null))
                     {
@@ -162,7 +168,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
                         value.Deleted += this.OnResetRegion;
                     }
                     this.OnRegionChanged(e);
-                    this.OnPropertyChanged("Region", e);
+                    this.OnPropertyChanged("Region", e, _regionReference);
                 }
             }
         }
@@ -213,6 +219,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> RegionChanged;
         
+        private static ITypedElement RetrieveTransmissionRightOfWayReference()
+        {
+            return ((ITypedElement)(((ModelElement)(Line.ClassInstance)).Resolve("TransmissionRightOfWay")));
+        }
+        
         /// <summary>
         /// Raises the TransmissionRightOfWayChanging event
         /// </summary>
@@ -249,6 +260,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
             this.TransmissionRightOfWay = null;
         }
         
+        private static ITypedElement RetrieveFlowgatesReference()
+        {
+            return ((ITypedElement)(((ModelElement)(Line.ClassInstance)).Resolve("Flowgates")));
+        }
+        
         /// <summary>
         /// Forwards CollectionChanging notifications for the Flowgates property to the parent model element
         /// </summary>
@@ -256,7 +272,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
         /// <param name="e">The original event data</param>
         private void FlowgatesCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("Flowgates", e);
+            this.OnCollectionChanging("Flowgates", e, _flowgatesReference);
         }
         
         /// <summary>
@@ -266,7 +282,12 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
         /// <param name="e">The original event data</param>
         private void FlowgatesCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("Flowgates", e);
+            this.OnCollectionChanged("Flowgates", e, _flowgatesReference);
+        }
+        
+        private static ITypedElement RetrieveRegionReference()
+        {
+            return ((ITypedElement)(((ModelElement)(Line.ClassInstance)).Resolve("Region")));
         }
         
         /// <summary>
@@ -582,7 +603,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public TransmissionRightOfWayProxy(ILine modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "TransmissionRightOfWay")
             {
             }
             
@@ -600,24 +621,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
                     this.ModelElement.TransmissionRightOfWay = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.TransmissionRightOfWayChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.TransmissionRightOfWayChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -631,7 +634,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public RegionProxy(ILine modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "Region")
             {
             }
             
@@ -648,24 +651,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
                 {
                     this.ModelElement.Region = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.RegionChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.RegionChanged -= handler;
             }
         }
     }

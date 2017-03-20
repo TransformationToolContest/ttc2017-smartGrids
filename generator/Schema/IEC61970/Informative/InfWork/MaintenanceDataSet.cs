@@ -50,7 +50,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfWork
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61970/Informative/InfWork/Maintenan" +
         "ceDataSet")]
     [DebuggerDisplayAttribute("MaintenanceDataSet {UUID}")]
-    public class MaintenanceDataSet : ProcedureDataSet, IMaintenanceDataSet, IModelElement
+    public partial class MaintenanceDataSet : ProcedureDataSet, IMaintenanceDataSet, IModelElement
     {
         
         /// <summary>
@@ -58,15 +58,21 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfWork
         /// </summary>
         private string _maintCode;
         
+        private static Lazy<ITypedElement> _maintCodeAttribute = new Lazy<ITypedElement>(RetrieveMaintCodeAttribute);
+        
         /// <summary>
         /// The backing field for the ConditionBefore property
         /// </summary>
         private string _conditionBefore;
         
+        private static Lazy<ITypedElement> _conditionBeforeAttribute = new Lazy<ITypedElement>(RetrieveConditionBeforeAttribute);
+        
         /// <summary>
         /// The backing field for the ConditionAfter property
         /// </summary>
         private string _conditionAfter;
+        
+        private static Lazy<ITypedElement> _conditionAfterAttribute = new Lazy<ITypedElement>(RetrieveConditionAfterAttribute);
         
         private static IClass _classInstance;
         
@@ -88,10 +94,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfWork
                     string old = this._maintCode;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnMaintCodeChanging(e);
-                    this.OnPropertyChanging("MaintCode", e);
+                    this.OnPropertyChanging("MaintCode", e, _maintCodeAttribute);
                     this._maintCode = value;
                     this.OnMaintCodeChanged(e);
-                    this.OnPropertyChanged("MaintCode", e);
+                    this.OnPropertyChanged("MaintCode", e, _maintCodeAttribute);
                 }
             }
         }
@@ -114,10 +120,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfWork
                     string old = this._conditionBefore;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnConditionBeforeChanging(e);
-                    this.OnPropertyChanging("ConditionBefore", e);
+                    this.OnPropertyChanging("ConditionBefore", e, _conditionBeforeAttribute);
                     this._conditionBefore = value;
                     this.OnConditionBeforeChanged(e);
-                    this.OnPropertyChanged("ConditionBefore", e);
+                    this.OnPropertyChanged("ConditionBefore", e, _conditionBeforeAttribute);
                 }
             }
         }
@@ -140,10 +146,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfWork
                     string old = this._conditionAfter;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnConditionAfterChanging(e);
-                    this.OnPropertyChanging("ConditionAfter", e);
+                    this.OnPropertyChanging("ConditionAfter", e, _conditionAfterAttribute);
                     this._conditionAfter = value;
                     this.OnConditionAfterChanged(e);
-                    this.OnPropertyChanged("ConditionAfter", e);
+                    this.OnPropertyChanged("ConditionAfter", e, _conditionAfterAttribute);
                 }
             }
         }
@@ -194,6 +200,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfWork
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> ConditionAfterChanged;
         
+        private static ITypedElement RetrieveMaintCodeAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(MaintenanceDataSet.ClassInstance)).Resolve("maintCode")));
+        }
+        
         /// <summary>
         /// Raises the MaintCodeChanging event
         /// </summary>
@@ -220,6 +231,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfWork
             }
         }
         
+        private static ITypedElement RetrieveConditionBeforeAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(MaintenanceDataSet.ClassInstance)).Resolve("conditionBefore")));
+        }
+        
         /// <summary>
         /// Raises the ConditionBeforeChanging event
         /// </summary>
@@ -244,6 +260,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfWork
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveConditionAfterAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(MaintenanceDataSet.ClassInstance)).Resolve("conditionAfter")));
         }
         
         /// <summary>
@@ -344,7 +365,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfWork
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public MaintCodeProxy(IMaintenanceDataSet modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "maintCode")
             {
             }
             
@@ -362,24 +383,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfWork
                     this.ModelElement.MaintCode = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.MaintCodeChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.MaintCodeChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -393,7 +396,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfWork
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public ConditionBeforeProxy(IMaintenanceDataSet modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "conditionBefore")
             {
             }
             
@@ -411,24 +414,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfWork
                     this.ModelElement.ConditionBefore = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ConditionBeforeChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ConditionBeforeChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -442,7 +427,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfWork
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public ConditionAfterProxy(IMaintenanceDataSet modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "conditionAfter")
             {
             }
             
@@ -459,24 +444,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfWork
                 {
                     this.ModelElement.ConditionAfter = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ConditionAfterChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ConditionAfterChanged -= handler;
             }
         }
     }

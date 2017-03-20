@@ -56,13 +56,17 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfERPSupport
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61970/Informative/InfERPSupport/Erp" +
         "SiteLevelData")]
     [DebuggerDisplayAttribute("ErpSiteLevelData {UUID}")]
-    public class ErpSiteLevelData : IdentifiedObject, IErpSiteLevelData, IModelElement
+    public partial class ErpSiteLevelData : IdentifiedObject, IErpSiteLevelData, IModelElement
     {
+        
+        private static Lazy<ITypedElement> _landPropertyReference = new Lazy<ITypedElement>(RetrieveLandPropertyReference);
         
         /// <summary>
         /// The backing field for the LandProperty property
         /// </summary>
         private ILandProperty _landProperty;
+        
+        private static Lazy<ITypedElement> _statusReference = new Lazy<ITypedElement>(RetrieveStatusReference);
         
         /// <summary>
         /// The backing field for the Status property
@@ -89,7 +93,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfERPSupport
                     ILandProperty old = this._landProperty;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnLandPropertyChanging(e);
-                    this.OnPropertyChanging("LandProperty", e);
+                    this.OnPropertyChanging("LandProperty", e, _landPropertyReference);
                     this._landProperty = value;
                     if ((old != null))
                     {
@@ -102,7 +106,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfERPSupport
                         value.Deleted += this.OnResetLandProperty;
                     }
                     this.OnLandPropertyChanged(e);
-                    this.OnPropertyChanged("LandProperty", e);
+                    this.OnPropertyChanged("LandProperty", e, _landPropertyReference);
                 }
             }
         }
@@ -125,7 +129,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfERPSupport
                     IStatus old = this._status;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnStatusChanging(e);
-                    this.OnPropertyChanging("Status", e);
+                    this.OnPropertyChanging("Status", e, _statusReference);
                     this._status = value;
                     if ((old != null))
                     {
@@ -136,7 +140,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfERPSupport
                         value.Deleted += this.OnResetStatus;
                     }
                     this.OnStatusChanged(e);
-                    this.OnPropertyChanged("Status", e);
+                    this.OnPropertyChanged("Status", e, _statusReference);
                 }
             }
         }
@@ -188,6 +192,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfERPSupport
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> StatusChanged;
         
+        private static ITypedElement RetrieveLandPropertyReference()
+        {
+            return ((ITypedElement)(((ModelElement)(ErpSiteLevelData.ClassInstance)).Resolve("LandProperty")));
+        }
+        
         /// <summary>
         /// Raises the LandPropertyChanging event
         /// </summary>
@@ -222,6 +231,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfERPSupport
         private void OnResetLandProperty(object sender, System.EventArgs eventArgs)
         {
             this.LandProperty = null;
+        }
+        
+        private static ITypedElement RetrieveStatusReference()
+        {
+            return ((ITypedElement)(((ModelElement)(ErpSiteLevelData.ClassInstance)).Resolve("status")));
         }
         
         /// <summary>
@@ -490,7 +504,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfERPSupport
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public LandPropertyProxy(IErpSiteLevelData modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "LandProperty")
             {
             }
             
@@ -508,24 +522,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfERPSupport
                     this.ModelElement.LandProperty = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.LandPropertyChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.LandPropertyChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -539,7 +535,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfERPSupport
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public StatusProxy(IErpSiteLevelData modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "status")
             {
             }
             
@@ -556,24 +552,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfERPSupport
                 {
                     this.ModelElement.Status = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.StatusChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.StatusChanged -= handler;
             }
         }
     }

@@ -40,7 +40,7 @@ namespace TTC2017.SmartGrids.COSEM.InterfaceClasses
     [XmlNamespacePrefixAttribute("inter")]
     [ModelRepresentationClassAttribute("http://www.transformation-tool-contest.eu/2017/smartGrids/cosem#//InterfaceClasse" +
         "s/M_Bus_client")]
-    public class M_Bus_client : Base, IM_Bus_client, IModelElement
+    public partial class M_Bus_client : Base, IM_Bus_client, IModelElement
     {
         
         private static IClass _classInstance;

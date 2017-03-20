@@ -45,7 +45,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfGMLSupport
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61970/Informative/InfGMLSupport/Gml" +
         "LabelStyle")]
     [DebuggerDisplayAttribute("GmlLabelStyle {UUID}")]
-    public class GmlLabelStyle : IdentifiedObject, IGmlLabelStyle, IModelElement
+    public partial class GmlLabelStyle : IdentifiedObject, IGmlLabelStyle, IModelElement
     {
         
         /// <summary>
@@ -53,25 +53,37 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfGMLSupport
         /// </summary>
         private string _style;
         
+        private static Lazy<ITypedElement> _styleAttribute = new Lazy<ITypedElement>(RetrieveStyleAttribute);
+        
         /// <summary>
         /// The backing field for the Transform property
         /// </summary>
         private string _transform;
+        
+        private static Lazy<ITypedElement> _transformAttribute = new Lazy<ITypedElement>(RetrieveTransformAttribute);
         
         /// <summary>
         /// The backing field for the LabelExpression property
         /// </summary>
         private string _labelExpression;
         
+        private static Lazy<ITypedElement> _labelExpressionAttribute = new Lazy<ITypedElement>(RetrieveLabelExpressionAttribute);
+        
+        private static Lazy<ITypedElement> _gmlFeatureStyleReference = new Lazy<ITypedElement>(RetrieveGmlFeatureStyleReference);
+        
         /// <summary>
         /// The backing field for the GmlFeatureStyle property
         /// </summary>
         private IGmlFeatureStyle _gmlFeatureStyle;
         
+        private static Lazy<ITypedElement> _gmlGeometryStylesReference = new Lazy<ITypedElement>(RetrieveGmlGeometryStylesReference);
+        
         /// <summary>
         /// The backing field for the GmlGeometryStyles property
         /// </summary>
         private GmlLabelStyleGmlGeometryStylesCollection _gmlGeometryStyles;
+        
+        private static Lazy<ITypedElement> _gmlTopologyStylesReference = new Lazy<ITypedElement>(RetrieveGmlTopologyStylesReference);
         
         /// <summary>
         /// The backing field for the GmlTopologyStyles property
@@ -108,10 +120,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfGMLSupport
                     string old = this._style;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnStyleChanging(e);
-                    this.OnPropertyChanging("Style", e);
+                    this.OnPropertyChanging("Style", e, _styleAttribute);
                     this._style = value;
                     this.OnStyleChanged(e);
-                    this.OnPropertyChanged("Style", e);
+                    this.OnPropertyChanged("Style", e, _styleAttribute);
                 }
             }
         }
@@ -134,10 +146,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfGMLSupport
                     string old = this._transform;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnTransformChanging(e);
-                    this.OnPropertyChanging("Transform", e);
+                    this.OnPropertyChanging("Transform", e, _transformAttribute);
                     this._transform = value;
                     this.OnTransformChanged(e);
-                    this.OnPropertyChanged("Transform", e);
+                    this.OnPropertyChanged("Transform", e, _transformAttribute);
                 }
             }
         }
@@ -160,10 +172,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfGMLSupport
                     string old = this._labelExpression;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnLabelExpressionChanging(e);
-                    this.OnPropertyChanging("LabelExpression", e);
+                    this.OnPropertyChanging("LabelExpression", e, _labelExpressionAttribute);
                     this._labelExpression = value;
                     this.OnLabelExpressionChanged(e);
-                    this.OnPropertyChanged("LabelExpression", e);
+                    this.OnPropertyChanged("LabelExpression", e, _labelExpressionAttribute);
                 }
             }
         }
@@ -186,7 +198,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfGMLSupport
                     IGmlFeatureStyle old = this._gmlFeatureStyle;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnGmlFeatureStyleChanging(e);
-                    this.OnPropertyChanging("GmlFeatureStyle", e);
+                    this.OnPropertyChanging("GmlFeatureStyle", e, _gmlFeatureStyleReference);
                     this._gmlFeatureStyle = value;
                     if ((old != null))
                     {
@@ -199,7 +211,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfGMLSupport
                         value.Deleted += this.OnResetGmlFeatureStyle;
                     }
                     this.OnGmlFeatureStyleChanged(e);
-                    this.OnPropertyChanged("GmlFeatureStyle", e);
+                    this.OnPropertyChanged("GmlFeatureStyle", e, _gmlFeatureStyleReference);
                 }
             }
         }
@@ -301,6 +313,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfGMLSupport
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> GmlFeatureStyleChanged;
         
+        private static ITypedElement RetrieveStyleAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(GmlLabelStyle.ClassInstance)).Resolve("style")));
+        }
+        
         /// <summary>
         /// Raises the StyleChanging event
         /// </summary>
@@ -325,6 +342,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfGMLSupport
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveTransformAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(GmlLabelStyle.ClassInstance)).Resolve("transform")));
         }
         
         /// <summary>
@@ -353,6 +375,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfGMLSupport
             }
         }
         
+        private static ITypedElement RetrieveLabelExpressionAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(GmlLabelStyle.ClassInstance)).Resolve("labelExpression")));
+        }
+        
         /// <summary>
         /// Raises the LabelExpressionChanging event
         /// </summary>
@@ -377,6 +404,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfGMLSupport
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveGmlFeatureStyleReference()
+        {
+            return ((ITypedElement)(((ModelElement)(GmlLabelStyle.ClassInstance)).Resolve("GmlFeatureStyle")));
         }
         
         /// <summary>
@@ -415,6 +447,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfGMLSupport
             this.GmlFeatureStyle = null;
         }
         
+        private static ITypedElement RetrieveGmlGeometryStylesReference()
+        {
+            return ((ITypedElement)(((ModelElement)(GmlLabelStyle.ClassInstance)).Resolve("GmlGeometryStyles")));
+        }
+        
         /// <summary>
         /// Forwards CollectionChanging notifications for the GmlGeometryStyles property to the parent model element
         /// </summary>
@@ -422,7 +459,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfGMLSupport
         /// <param name="e">The original event data</param>
         private void GmlGeometryStylesCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("GmlGeometryStyles", e);
+            this.OnCollectionChanging("GmlGeometryStyles", e, _gmlGeometryStylesReference);
         }
         
         /// <summary>
@@ -432,7 +469,12 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfGMLSupport
         /// <param name="e">The original event data</param>
         private void GmlGeometryStylesCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("GmlGeometryStyles", e);
+            this.OnCollectionChanged("GmlGeometryStyles", e, _gmlGeometryStylesReference);
+        }
+        
+        private static ITypedElement RetrieveGmlTopologyStylesReference()
+        {
+            return ((ITypedElement)(((ModelElement)(GmlLabelStyle.ClassInstance)).Resolve("GmlTopologyStyles")));
         }
         
         /// <summary>
@@ -442,7 +484,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfGMLSupport
         /// <param name="e">The original event data</param>
         private void GmlTopologyStylesCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("GmlTopologyStyles", e);
+            this.OnCollectionChanging("GmlTopologyStyles", e, _gmlTopologyStylesReference);
         }
         
         /// <summary>
@@ -452,7 +494,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfGMLSupport
         /// <param name="e">The original event data</param>
         private void GmlTopologyStylesCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("GmlTopologyStyles", e);
+            this.OnCollectionChanged("GmlTopologyStyles", e, _gmlTopologyStylesReference);
         }
         
         /// <summary>
@@ -766,7 +808,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfGMLSupport
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public StyleProxy(IGmlLabelStyle modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "style")
             {
             }
             
@@ -784,24 +826,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfGMLSupport
                     this.ModelElement.Style = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.StyleChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.StyleChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -815,7 +839,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfGMLSupport
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public TransformProxy(IGmlLabelStyle modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "transform")
             {
             }
             
@@ -833,24 +857,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfGMLSupport
                     this.ModelElement.Transform = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.TransformChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.TransformChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -864,7 +870,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfGMLSupport
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public LabelExpressionProxy(IGmlLabelStyle modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "labelExpression")
             {
             }
             
@@ -882,24 +888,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfGMLSupport
                     this.ModelElement.LabelExpression = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.LabelExpressionChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.LabelExpressionChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -913,7 +901,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfGMLSupport
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public GmlFeatureStyleProxy(IGmlLabelStyle modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "GmlFeatureStyle")
             {
             }
             
@@ -930,24 +918,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfGMLSupport
                 {
                     this.ModelElement.GmlFeatureStyle = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.GmlFeatureStyleChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.GmlFeatureStyleChanged -= handler;
             }
         }
     }

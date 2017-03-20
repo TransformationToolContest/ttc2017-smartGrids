@@ -37,29 +37,29 @@
       <HintPath>packages\CommandLineParser.1.9.71\lib\net45\CommandLine.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="NMF.Collections, Version=1.0.68.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>packages\NMF-Repository.1.0.68\lib\net40\NMF.Collections.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="NMF.Collections, Version=1.0.71.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\NMF\Models\Models\bin\Debug\NMF.Collections.dll</HintPath>
     </Reference>
-    <Reference Include="NMF.Expressions, Version=1.0.68.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>packages\NMF-Expressions.1.0.68\lib\net40\NMF.Expressions.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="NMF.Expressions, Version=1.0.71.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\NMF\Models\Models\bin\Debug\NMF.Expressions.dll</HintPath>
     </Reference>
-    <Reference Include="NMF.Expressions.Linq, Version=1.0.68.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>packages\NMF-Expressions.1.0.68\lib\net40\NMF.Expressions.Linq.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="NMF.Expressions.Linq, Version=1.0.71.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\NMF\Models\Models\bin\Debug\NMF.Expressions.Linq.dll</HintPath>
     </Reference>
-    <Reference Include="NMF.Models, Version=1.0.68.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>packages\NMF-Repository.1.0.68\lib\net40\NMF.Models.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="NMF.Models, Version=1.0.71.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\NMF\Models\Models\bin\Debug\NMF.Models.dll</HintPath>
     </Reference>
-    <Reference Include="NMF.Serialization, Version=1.0.68.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>packages\NMF-Repository.1.0.68\lib\net40\NMF.Serialization.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="NMF.Serialization, Version=1.0.71.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\NMF\Models\Models\bin\Debug\NMF.Serialization.dll</HintPath>
     </Reference>
-    <Reference Include="NMF.Utilities, Version=1.0.68.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>packages\NMF-Utilities.1.0.68\lib\net40\NMF.Utilities.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="NMF.Utilities, Version=1.0.71.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\NMF\Models\Models\bin\Debug\NMF.Utilities.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />

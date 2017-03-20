@@ -42,7 +42,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.StateVariables
     [XmlNamespacePrefixAttribute("cimStateVariables")]
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61970/StateVariables/SvPowerFlow")]
     [DebuggerDisplayAttribute("SvPowerFlow {UUID}")]
-    public class SvPowerFlow : StateVariable, ISvPowerFlow, IModelElement
+    public partial class SvPowerFlow : StateVariable, ISvPowerFlow, IModelElement
     {
         
         /// <summary>
@@ -50,10 +50,16 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.StateVariables
         /// </summary>
         private float _p;
         
+        private static Lazy<ITypedElement> _pAttribute = new Lazy<ITypedElement>(RetrievePAttribute);
+        
         /// <summary>
         /// The backing field for the Q property
         /// </summary>
         private float _q;
+        
+        private static Lazy<ITypedElement> _qAttribute = new Lazy<ITypedElement>(RetrieveQAttribute);
+        
+        private static Lazy<ITypedElement> _terminalReference = new Lazy<ITypedElement>(RetrieveTerminalReference);
         
         /// <summary>
         /// The backing field for the Terminal property
@@ -80,10 +86,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.StateVariables
                     float old = this._p;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnPChanging(e);
-                    this.OnPropertyChanging("P", e);
+                    this.OnPropertyChanging("P", e, _pAttribute);
                     this._p = value;
                     this.OnPChanged(e);
-                    this.OnPropertyChanged("P", e);
+                    this.OnPropertyChanged("P", e, _pAttribute);
                 }
             }
         }
@@ -106,10 +112,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.StateVariables
                     float old = this._q;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnQChanging(e);
-                    this.OnPropertyChanging("Q", e);
+                    this.OnPropertyChanging("Q", e, _qAttribute);
                     this._q = value;
                     this.OnQChanged(e);
-                    this.OnPropertyChanged("Q", e);
+                    this.OnPropertyChanged("Q", e, _qAttribute);
                 }
             }
         }
@@ -132,7 +138,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.StateVariables
                     ITerminal old = this._terminal;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnTerminalChanging(e);
-                    this.OnPropertyChanging("Terminal", e);
+                    this.OnPropertyChanging("Terminal", e, _terminalReference);
                     this._terminal = value;
                     if ((old != null))
                     {
@@ -145,7 +151,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.StateVariables
                         value.Deleted += this.OnResetTerminal;
                     }
                     this.OnTerminalChanged(e);
-                    this.OnPropertyChanged("Terminal", e);
+                    this.OnPropertyChanged("Terminal", e, _terminalReference);
                 }
             }
         }
@@ -206,6 +212,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.StateVariables
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> TerminalChanged;
         
+        private static ITypedElement RetrievePAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(SvPowerFlow.ClassInstance)).Resolve("p")));
+        }
+        
         /// <summary>
         /// Raises the PChanging event
         /// </summary>
@@ -232,6 +243,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.StateVariables
             }
         }
         
+        private static ITypedElement RetrieveQAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(SvPowerFlow.ClassInstance)).Resolve("q")));
+        }
+        
         /// <summary>
         /// Raises the QChanging event
         /// </summary>
@@ -256,6 +272,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.StateVariables
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveTerminalReference()
+        {
+            return ((ITypedElement)(((ModelElement)(SvPowerFlow.ClassInstance)).Resolve("Terminal")));
         }
         
         /// <summary>
@@ -509,7 +530,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.StateVariables
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public PProxy(ISvPowerFlow modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "p")
             {
             }
             
@@ -527,24 +548,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.StateVariables
                     this.ModelElement.P = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.PChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.PChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -558,7 +561,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.StateVariables
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public QProxy(ISvPowerFlow modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "q")
             {
             }
             
@@ -576,24 +579,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.StateVariables
                     this.ModelElement.Q = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.QChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.QChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -607,7 +592,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.StateVariables
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public TerminalProxy(ISvPowerFlow modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "Terminal")
             {
             }
             
@@ -624,24 +609,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.StateVariables
                 {
                     this.ModelElement.Terminal = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.TerminalChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.TerminalChanged -= handler;
             }
         }
     }

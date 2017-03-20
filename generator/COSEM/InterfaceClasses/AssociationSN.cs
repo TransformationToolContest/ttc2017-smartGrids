@@ -40,7 +40,7 @@ namespace TTC2017.SmartGrids.COSEM.InterfaceClasses
     [XmlNamespacePrefixAttribute("inter")]
     [ModelRepresentationClassAttribute("http://www.transformation-tool-contest.eu/2017/smartGrids/cosem#//InterfaceClasse" +
         "s/AssociationSN")]
-    public class AssociationSN : Base, IAssociationSN, IModelElement
+    public partial class AssociationSN : Base, IAssociationSN, IModelElement
     {
         
         private static IClass _classInstance;

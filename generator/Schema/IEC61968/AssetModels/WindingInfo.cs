@@ -46,7 +46,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.AssetModels
     [XmlNamespacePrefixAttribute("cimAssetModels")]
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61968/AssetModels/WindingInfo")]
     [DebuggerDisplayAttribute("WindingInfo {UUID}")]
-    public class WindingInfo : IdentifiedObject, IWindingInfo, IModelElement
+    public partial class WindingInfo : IdentifiedObject, IWindingInfo, IModelElement
     {
         
         /// <summary>
@@ -54,60 +54,86 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.AssetModels
         /// </summary>
         private float _emergencyS;
         
+        private static Lazy<ITypedElement> _emergencySAttribute = new Lazy<ITypedElement>(RetrieveEmergencySAttribute);
+        
         /// <summary>
         /// The backing field for the PhaseAngle property
         /// </summary>
         private int _phaseAngle;
+        
+        private static Lazy<ITypedElement> _phaseAngleAttribute = new Lazy<ITypedElement>(RetrievePhaseAngleAttribute);
         
         /// <summary>
         /// The backing field for the RatedS property
         /// </summary>
         private float _ratedS;
         
+        private static Lazy<ITypedElement> _ratedSAttribute = new Lazy<ITypedElement>(RetrieveRatedSAttribute);
+        
         /// <summary>
         /// The backing field for the RatedU property
         /// </summary>
         private float _ratedU;
+        
+        private static Lazy<ITypedElement> _ratedUAttribute = new Lazy<ITypedElement>(RetrieveRatedUAttribute);
         
         /// <summary>
         /// The backing field for the R property
         /// </summary>
         private float _r;
         
+        private static Lazy<ITypedElement> _rAttribute = new Lazy<ITypedElement>(RetrieveRAttribute);
+        
         /// <summary>
         /// The backing field for the SequenceNumber property
         /// </summary>
         private int _sequenceNumber;
+        
+        private static Lazy<ITypedElement> _sequenceNumberAttribute = new Lazy<ITypedElement>(RetrieveSequenceNumberAttribute);
         
         /// <summary>
         /// The backing field for the ShortTermS property
         /// </summary>
         private float _shortTermS;
         
+        private static Lazy<ITypedElement> _shortTermSAttribute = new Lazy<ITypedElement>(RetrieveShortTermSAttribute);
+        
         /// <summary>
         /// The backing field for the ConnectionKind property
         /// </summary>
         private Nullable<WindingConnection> _connectionKind;
+        
+        private static Lazy<ITypedElement> _connectionKindAttribute = new Lazy<ITypedElement>(RetrieveConnectionKindAttribute);
         
         /// <summary>
         /// The backing field for the InsulationU property
         /// </summary>
         private float _insulationU;
         
+        private static Lazy<ITypedElement> _insulationUAttribute = new Lazy<ITypedElement>(RetrieveInsulationUAttribute);
+        
+        private static Lazy<ITypedElement> _windingTestsReference = new Lazy<ITypedElement>(RetrieveWindingTestsReference);
+        
         /// <summary>
         /// The backing field for the WindingTests property
         /// </summary>
         private WindingInfoWindingTestsCollection _windingTests;
+        
+        private static Lazy<ITypedElement> _windingsReference = new Lazy<ITypedElement>(RetrieveWindingsReference);
         
         /// <summary>
         /// The backing field for the Windings property
         /// </summary>
         private WindingInfoWindingsCollection _windings;
         
+        private static Lazy<ITypedElement> _toWindingSpecsReference = new Lazy<ITypedElement>(RetrieveToWindingSpecsReference);
+        
         /// <summary>
         /// The backing field for the ToWindingSpecs property
         /// </summary>
         private WindingInfoToWindingSpecsCollection _toWindingSpecs;
+        
+        private static Lazy<ITypedElement> _transformerInfoReference = new Lazy<ITypedElement>(RetrieveTransformerInfoReference);
         
         /// <summary>
         /// The backing field for the TransformerInfo property
@@ -147,10 +173,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.AssetModels
                     float old = this._emergencyS;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnEmergencySChanging(e);
-                    this.OnPropertyChanging("EmergencyS", e);
+                    this.OnPropertyChanging("EmergencyS", e, _emergencySAttribute);
                     this._emergencyS = value;
                     this.OnEmergencySChanged(e);
-                    this.OnPropertyChanged("EmergencyS", e);
+                    this.OnPropertyChanged("EmergencyS", e, _emergencySAttribute);
                 }
             }
         }
@@ -173,10 +199,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.AssetModels
                     int old = this._phaseAngle;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnPhaseAngleChanging(e);
-                    this.OnPropertyChanging("PhaseAngle", e);
+                    this.OnPropertyChanging("PhaseAngle", e, _phaseAngleAttribute);
                     this._phaseAngle = value;
                     this.OnPhaseAngleChanged(e);
-                    this.OnPropertyChanged("PhaseAngle", e);
+                    this.OnPropertyChanged("PhaseAngle", e, _phaseAngleAttribute);
                 }
             }
         }
@@ -199,10 +225,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.AssetModels
                     float old = this._ratedS;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnRatedSChanging(e);
-                    this.OnPropertyChanging("RatedS", e);
+                    this.OnPropertyChanging("RatedS", e, _ratedSAttribute);
                     this._ratedS = value;
                     this.OnRatedSChanged(e);
-                    this.OnPropertyChanged("RatedS", e);
+                    this.OnPropertyChanged("RatedS", e, _ratedSAttribute);
                 }
             }
         }
@@ -225,10 +251,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.AssetModels
                     float old = this._ratedU;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnRatedUChanging(e);
-                    this.OnPropertyChanging("RatedU", e);
+                    this.OnPropertyChanging("RatedU", e, _ratedUAttribute);
                     this._ratedU = value;
                     this.OnRatedUChanged(e);
-                    this.OnPropertyChanged("RatedU", e);
+                    this.OnPropertyChanged("RatedU", e, _ratedUAttribute);
                 }
             }
         }
@@ -251,10 +277,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.AssetModels
                     float old = this._r;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnRChanging(e);
-                    this.OnPropertyChanging("R", e);
+                    this.OnPropertyChanging("R", e, _rAttribute);
                     this._r = value;
                     this.OnRChanged(e);
-                    this.OnPropertyChanged("R", e);
+                    this.OnPropertyChanged("R", e, _rAttribute);
                 }
             }
         }
@@ -277,10 +303,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.AssetModels
                     int old = this._sequenceNumber;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnSequenceNumberChanging(e);
-                    this.OnPropertyChanging("SequenceNumber", e);
+                    this.OnPropertyChanging("SequenceNumber", e, _sequenceNumberAttribute);
                     this._sequenceNumber = value;
                     this.OnSequenceNumberChanged(e);
-                    this.OnPropertyChanged("SequenceNumber", e);
+                    this.OnPropertyChanged("SequenceNumber", e, _sequenceNumberAttribute);
                 }
             }
         }
@@ -303,10 +329,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.AssetModels
                     float old = this._shortTermS;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnShortTermSChanging(e);
-                    this.OnPropertyChanging("ShortTermS", e);
+                    this.OnPropertyChanging("ShortTermS", e, _shortTermSAttribute);
                     this._shortTermS = value;
                     this.OnShortTermSChanged(e);
-                    this.OnPropertyChanged("ShortTermS", e);
+                    this.OnPropertyChanged("ShortTermS", e, _shortTermSAttribute);
                 }
             }
         }
@@ -329,10 +355,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.AssetModels
                     Nullable<WindingConnection> old = this._connectionKind;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnConnectionKindChanging(e);
-                    this.OnPropertyChanging("ConnectionKind", e);
+                    this.OnPropertyChanging("ConnectionKind", e, _connectionKindAttribute);
                     this._connectionKind = value;
                     this.OnConnectionKindChanged(e);
-                    this.OnPropertyChanged("ConnectionKind", e);
+                    this.OnPropertyChanged("ConnectionKind", e, _connectionKindAttribute);
                 }
             }
         }
@@ -355,10 +381,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.AssetModels
                     float old = this._insulationU;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnInsulationUChanging(e);
-                    this.OnPropertyChanging("InsulationU", e);
+                    this.OnPropertyChanging("InsulationU", e, _insulationUAttribute);
                     this._insulationU = value;
                     this.OnInsulationUChanged(e);
-                    this.OnPropertyChanged("InsulationU", e);
+                    this.OnPropertyChanged("InsulationU", e, _insulationUAttribute);
                 }
             }
         }
@@ -426,7 +452,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.AssetModels
                     ITransformerInfo old = this._transformerInfo;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnTransformerInfoChanging(e);
-                    this.OnPropertyChanging("TransformerInfo", e);
+                    this.OnPropertyChanging("TransformerInfo", e, _transformerInfoReference);
                     this._transformerInfo = value;
                     if ((old != null))
                     {
@@ -439,7 +465,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.AssetModels
                         value.Deleted += this.OnResetTransformerInfo;
                     }
                     this.OnTransformerInfoChanged(e);
-                    this.OnPropertyChanged("TransformerInfo", e);
+                    this.OnPropertyChanged("TransformerInfo", e, _transformerInfoReference);
                 }
             }
         }
@@ -570,6 +596,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.AssetModels
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> TransformerInfoChanged;
         
+        private static ITypedElement RetrieveEmergencySAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(WindingInfo.ClassInstance)).Resolve("emergencyS")));
+        }
+        
         /// <summary>
         /// Raises the EmergencySChanging event
         /// </summary>
@@ -594,6 +625,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.AssetModels
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrievePhaseAngleAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(WindingInfo.ClassInstance)).Resolve("phaseAngle")));
         }
         
         /// <summary>
@@ -622,6 +658,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.AssetModels
             }
         }
         
+        private static ITypedElement RetrieveRatedSAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(WindingInfo.ClassInstance)).Resolve("ratedS")));
+        }
+        
         /// <summary>
         /// Raises the RatedSChanging event
         /// </summary>
@@ -646,6 +687,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.AssetModels
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveRatedUAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(WindingInfo.ClassInstance)).Resolve("ratedU")));
         }
         
         /// <summary>
@@ -674,6 +720,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.AssetModels
             }
         }
         
+        private static ITypedElement RetrieveRAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(WindingInfo.ClassInstance)).Resolve("r")));
+        }
+        
         /// <summary>
         /// Raises the RChanging event
         /// </summary>
@@ -698,6 +749,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.AssetModels
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveSequenceNumberAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(WindingInfo.ClassInstance)).Resolve("sequenceNumber")));
         }
         
         /// <summary>
@@ -726,6 +782,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.AssetModels
             }
         }
         
+        private static ITypedElement RetrieveShortTermSAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(WindingInfo.ClassInstance)).Resolve("shortTermS")));
+        }
+        
         /// <summary>
         /// Raises the ShortTermSChanging event
         /// </summary>
@@ -750,6 +811,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.AssetModels
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveConnectionKindAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(WindingInfo.ClassInstance)).Resolve("connectionKind")));
         }
         
         /// <summary>
@@ -778,6 +844,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.AssetModels
             }
         }
         
+        private static ITypedElement RetrieveInsulationUAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(WindingInfo.ClassInstance)).Resolve("insulationU")));
+        }
+        
         /// <summary>
         /// Raises the InsulationUChanging event
         /// </summary>
@@ -804,6 +875,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.AssetModels
             }
         }
         
+        private static ITypedElement RetrieveWindingTestsReference()
+        {
+            return ((ITypedElement)(((ModelElement)(WindingInfo.ClassInstance)).Resolve("WindingTests")));
+        }
+        
         /// <summary>
         /// Forwards CollectionChanging notifications for the WindingTests property to the parent model element
         /// </summary>
@@ -811,7 +887,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.AssetModels
         /// <param name="e">The original event data</param>
         private void WindingTestsCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("WindingTests", e);
+            this.OnCollectionChanging("WindingTests", e, _windingTestsReference);
         }
         
         /// <summary>
@@ -821,7 +897,12 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.AssetModels
         /// <param name="e">The original event data</param>
         private void WindingTestsCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("WindingTests", e);
+            this.OnCollectionChanged("WindingTests", e, _windingTestsReference);
+        }
+        
+        private static ITypedElement RetrieveWindingsReference()
+        {
+            return ((ITypedElement)(((ModelElement)(WindingInfo.ClassInstance)).Resolve("Windings")));
         }
         
         /// <summary>
@@ -831,7 +912,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.AssetModels
         /// <param name="e">The original event data</param>
         private void WindingsCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("Windings", e);
+            this.OnCollectionChanging("Windings", e, _windingsReference);
         }
         
         /// <summary>
@@ -841,7 +922,12 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.AssetModels
         /// <param name="e">The original event data</param>
         private void WindingsCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("Windings", e);
+            this.OnCollectionChanged("Windings", e, _windingsReference);
+        }
+        
+        private static ITypedElement RetrieveToWindingSpecsReference()
+        {
+            return ((ITypedElement)(((ModelElement)(WindingInfo.ClassInstance)).Resolve("ToWindingSpecs")));
         }
         
         /// <summary>
@@ -851,7 +937,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.AssetModels
         /// <param name="e">The original event data</param>
         private void ToWindingSpecsCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("ToWindingSpecs", e);
+            this.OnCollectionChanging("ToWindingSpecs", e, _toWindingSpecsReference);
         }
         
         /// <summary>
@@ -861,7 +947,12 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.AssetModels
         /// <param name="e">The original event data</param>
         private void ToWindingSpecsCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("ToWindingSpecs", e);
+            this.OnCollectionChanged("ToWindingSpecs", e, _toWindingSpecsReference);
+        }
+        
+        private static ITypedElement RetrieveTransformerInfoReference()
+        {
+            return ((ITypedElement)(((ModelElement)(WindingInfo.ClassInstance)).Resolve("TransformerInfo")));
         }
         
         /// <summary>
@@ -1302,7 +1393,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.AssetModels
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public EmergencySProxy(IWindingInfo modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "emergencyS")
             {
             }
             
@@ -1320,24 +1411,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.AssetModels
                     this.ModelElement.EmergencyS = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.EmergencySChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.EmergencySChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1351,7 +1424,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.AssetModels
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public PhaseAngleProxy(IWindingInfo modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "phaseAngle")
             {
             }
             
@@ -1369,24 +1442,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.AssetModels
                     this.ModelElement.PhaseAngle = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.PhaseAngleChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.PhaseAngleChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1400,7 +1455,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.AssetModels
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public RatedSProxy(IWindingInfo modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "ratedS")
             {
             }
             
@@ -1418,24 +1473,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.AssetModels
                     this.ModelElement.RatedS = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.RatedSChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.RatedSChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1449,7 +1486,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.AssetModels
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public RatedUProxy(IWindingInfo modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "ratedU")
             {
             }
             
@@ -1467,24 +1504,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.AssetModels
                     this.ModelElement.RatedU = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.RatedUChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.RatedUChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1498,7 +1517,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.AssetModels
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public RProxy(IWindingInfo modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "r")
             {
             }
             
@@ -1516,24 +1535,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.AssetModels
                     this.ModelElement.R = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.RChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.RChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1547,7 +1548,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.AssetModels
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public SequenceNumberProxy(IWindingInfo modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "sequenceNumber")
             {
             }
             
@@ -1565,24 +1566,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.AssetModels
                     this.ModelElement.SequenceNumber = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.SequenceNumberChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.SequenceNumberChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1596,7 +1579,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.AssetModels
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public ShortTermSProxy(IWindingInfo modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "shortTermS")
             {
             }
             
@@ -1614,24 +1597,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.AssetModels
                     this.ModelElement.ShortTermS = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ShortTermSChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ShortTermSChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1645,7 +1610,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.AssetModels
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public ConnectionKindProxy(IWindingInfo modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "connectionKind")
             {
             }
             
@@ -1663,24 +1628,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.AssetModels
                     this.ModelElement.ConnectionKind = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ConnectionKindChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ConnectionKindChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1694,7 +1641,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.AssetModels
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public InsulationUProxy(IWindingInfo modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "insulationU")
             {
             }
             
@@ -1712,24 +1659,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.AssetModels
                     this.ModelElement.InsulationU = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.InsulationUChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.InsulationUChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1743,7 +1672,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.AssetModels
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public TransformerInfoProxy(IWindingInfo modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "TransformerInfo")
             {
             }
             
@@ -1760,24 +1689,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.AssetModels
                 {
                     this.ModelElement.TransformerInfo = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.TransformerInfoChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.TransformerInfoChanged -= handler;
             }
         }
     }

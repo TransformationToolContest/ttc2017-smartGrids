@@ -39,7 +39,7 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
     [XmlNamespacePrefixAttribute("objects")]
     [ModelRepresentationClassAttribute("http://www.transformation-tool-contest.eu/2017/smartGrids/cosem#//COSEMObjects/Ut" +
         "ilitiesTableObject")]
-    public class UtilitiesTableObject : Utilitytables, IUtilitiesTableObject, IModelElement
+    public partial class UtilitiesTableObject : Utilitytables, IUtilitiesTableObject, IModelElement
     {
         
         /// <summary>
@@ -47,20 +47,28 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
         /// </summary>
         private string _standard;
         
+        private static Lazy<ITypedElement> _standardAttribute = new Lazy<ITypedElement>(RetrieveStandardAttribute);
+        
         /// <summary>
         /// The backing field for the Manufacturer property
         /// </summary>
         private string _manufacturer;
+        
+        private static Lazy<ITypedElement> _manufacturerAttribute = new Lazy<ITypedElement>(RetrieveManufacturerAttribute);
         
         /// <summary>
         /// The backing field for the StdPending property
         /// </summary>
         private string _stdPending;
         
+        private static Lazy<ITypedElement> _stdPendingAttribute = new Lazy<ITypedElement>(RetrieveStdPendingAttribute);
+        
         /// <summary>
         /// The backing field for the MfgPending property
         /// </summary>
         private string _mfgPending;
+        
+        private static Lazy<ITypedElement> _mfgPendingAttribute = new Lazy<ITypedElement>(RetrieveMfgPendingAttribute);
         
         private static IClass _classInstance;
         
@@ -81,10 +89,10 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     string old = this._standard;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnStandardChanging(e);
-                    this.OnPropertyChanging("Standard", e);
+                    this.OnPropertyChanging("Standard", e, _standardAttribute);
                     this._standard = value;
                     this.OnStandardChanged(e);
-                    this.OnPropertyChanged("Standard", e);
+                    this.OnPropertyChanged("Standard", e, _standardAttribute);
                 }
             }
         }
@@ -106,10 +114,10 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     string old = this._manufacturer;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnManufacturerChanging(e);
-                    this.OnPropertyChanging("Manufacturer", e);
+                    this.OnPropertyChanging("Manufacturer", e, _manufacturerAttribute);
                     this._manufacturer = value;
                     this.OnManufacturerChanged(e);
-                    this.OnPropertyChanged("Manufacturer", e);
+                    this.OnPropertyChanged("Manufacturer", e, _manufacturerAttribute);
                 }
             }
         }
@@ -131,10 +139,10 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     string old = this._stdPending;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnStdPendingChanging(e);
-                    this.OnPropertyChanging("StdPending", e);
+                    this.OnPropertyChanging("StdPending", e, _stdPendingAttribute);
                     this._stdPending = value;
                     this.OnStdPendingChanged(e);
-                    this.OnPropertyChanged("StdPending", e);
+                    this.OnPropertyChanged("StdPending", e, _stdPendingAttribute);
                 }
             }
         }
@@ -156,10 +164,10 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     string old = this._mfgPending;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnMfgPendingChanging(e);
-                    this.OnPropertyChanging("MfgPending", e);
+                    this.OnPropertyChanging("MfgPending", e, _mfgPendingAttribute);
                     this._mfgPending = value;
                     this.OnMfgPendingChanged(e);
-                    this.OnPropertyChanged("MfgPending", e);
+                    this.OnPropertyChanged("MfgPending", e, _mfgPendingAttribute);
                 }
             }
         }
@@ -220,6 +228,11 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> MfgPendingChanged;
         
+        private static ITypedElement RetrieveStandardAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(UtilitiesTableObject.ClassInstance)).Resolve("Standard")));
+        }
+        
         /// <summary>
         /// Raises the StandardChanging event
         /// </summary>
@@ -244,6 +257,11 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveManufacturerAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(UtilitiesTableObject.ClassInstance)).Resolve("Manufacturer")));
         }
         
         /// <summary>
@@ -272,6 +290,11 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             }
         }
         
+        private static ITypedElement RetrieveStdPendingAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(UtilitiesTableObject.ClassInstance)).Resolve("StdPending")));
+        }
+        
         /// <summary>
         /// Raises the StdPendingChanging event
         /// </summary>
@@ -296,6 +319,11 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveMfgPendingAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(UtilitiesTableObject.ClassInstance)).Resolve("MfgPending")));
         }
         
         /// <summary>
@@ -405,7 +433,7 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public StandardProxy(IUtilitiesTableObject modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "Standard")
             {
             }
             
@@ -423,24 +451,6 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     this.ModelElement.Standard = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.StandardChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.StandardChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -454,7 +464,7 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public ManufacturerProxy(IUtilitiesTableObject modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "Manufacturer")
             {
             }
             
@@ -472,24 +482,6 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     this.ModelElement.Manufacturer = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ManufacturerChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ManufacturerChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -503,7 +495,7 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public StdPendingProxy(IUtilitiesTableObject modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "StdPending")
             {
             }
             
@@ -521,24 +513,6 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     this.ModelElement.StdPending = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.StdPendingChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.StdPendingChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -552,7 +526,7 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public MfgPendingProxy(IUtilitiesTableObject modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "MfgPending")
             {
             }
             
@@ -569,24 +543,6 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                 {
                     this.ModelElement.MfgPending = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.MfgPendingChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.MfgPendingChanged -= handler;
             }
         }
     }

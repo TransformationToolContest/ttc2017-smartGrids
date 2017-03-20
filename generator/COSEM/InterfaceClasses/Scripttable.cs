@@ -40,8 +40,10 @@ namespace TTC2017.SmartGrids.COSEM.InterfaceClasses
     [XmlNamespacePrefixAttribute("inter")]
     [ModelRepresentationClassAttribute("http://www.transformation-tool-contest.eu/2017/smartGrids/cosem#//InterfaceClasse" +
         "s/Scripttable")]
-    public class Scripttable : Base, IScripttable, IModelElement
+    public partial class Scripttable : Base, IScripttable, IModelElement
     {
+        
+        private static Lazy<ITypedElement> _includesReference = new Lazy<ITypedElement>(RetrieveIncludesReference);
         
         /// <summary>
         /// The backing field for the Includes property
@@ -99,6 +101,11 @@ namespace TTC2017.SmartGrids.COSEM.InterfaceClasses
             }
         }
         
+        private static ITypedElement RetrieveIncludesReference()
+        {
+            return ((ITypedElement)(((ModelElement)(Scripttable.ClassInstance)).Resolve("includes")));
+        }
+        
         /// <summary>
         /// Forwards CollectionChanging notifications for the Includes property to the parent model element
         /// </summary>
@@ -106,7 +113,7 @@ namespace TTC2017.SmartGrids.COSEM.InterfaceClasses
         /// <param name="e">The original event data</param>
         private void IncludesCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("Includes", e);
+            this.OnCollectionChanging("Includes", e, _includesReference);
         }
         
         /// <summary>
@@ -116,7 +123,7 @@ namespace TTC2017.SmartGrids.COSEM.InterfaceClasses
         /// <param name="e">The original event data</param>
         private void IncludesCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("Includes", e);
+            this.OnCollectionChanged("Includes", e, _includesReference);
         }
         
         /// <summary>

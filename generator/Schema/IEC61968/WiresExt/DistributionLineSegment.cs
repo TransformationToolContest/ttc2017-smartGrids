@@ -45,23 +45,31 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.WiresExt
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61968/WiresExt/DistributionLineSegm" +
         "ent")]
     [DebuggerDisplayAttribute("DistributionLineSegment {UUID}")]
-    public class DistributionLineSegment : ACLineSegment, IDistributionLineSegment, IModelElement
+    public partial class DistributionLineSegment : ACLineSegment, IDistributionLineSegment, IModelElement
     {
+        
+        private static Lazy<ITypedElement> _phaseImpedanceReference = new Lazy<ITypedElement>(RetrievePhaseImpedanceReference);
         
         /// <summary>
         /// The backing field for the PhaseImpedance property
         /// </summary>
         private IPerLengthPhaseImpedance _phaseImpedance;
         
+        private static Lazy<ITypedElement> _conductorAssetsReference = new Lazy<ITypedElement>(RetrieveConductorAssetsReference);
+        
         /// <summary>
         /// The backing field for the ConductorAssets property
         /// </summary>
         private DistributionLineSegmentConductorAssetsCollection _conductorAssets;
         
+        private static Lazy<ITypedElement> _sequenceImpedanceReference = new Lazy<ITypedElement>(RetrieveSequenceImpedanceReference);
+        
         /// <summary>
         /// The backing field for the SequenceImpedance property
         /// </summary>
         private IPerLengthSequenceImpedance _sequenceImpedance;
+        
+        private static Lazy<ITypedElement> _conductorInfoReference = new Lazy<ITypedElement>(RetrieveConductorInfoReference);
         
         /// <summary>
         /// The backing field for the ConductorInfo property
@@ -95,7 +103,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.WiresExt
                     IPerLengthPhaseImpedance old = this._phaseImpedance;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnPhaseImpedanceChanging(e);
-                    this.OnPropertyChanging("PhaseImpedance", e);
+                    this.OnPropertyChanging("PhaseImpedance", e, _phaseImpedanceReference);
                     this._phaseImpedance = value;
                     if ((old != null))
                     {
@@ -108,7 +116,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.WiresExt
                         value.Deleted += this.OnResetPhaseImpedance;
                     }
                     this.OnPhaseImpedanceChanged(e);
-                    this.OnPropertyChanged("PhaseImpedance", e);
+                    this.OnPropertyChanged("PhaseImpedance", e, _phaseImpedanceReference);
                 }
             }
         }
@@ -146,7 +154,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.WiresExt
                     IPerLengthSequenceImpedance old = this._sequenceImpedance;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnSequenceImpedanceChanging(e);
-                    this.OnPropertyChanging("SequenceImpedance", e);
+                    this.OnPropertyChanging("SequenceImpedance", e, _sequenceImpedanceReference);
                     this._sequenceImpedance = value;
                     if ((old != null))
                     {
@@ -159,7 +167,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.WiresExt
                         value.Deleted += this.OnResetSequenceImpedance;
                     }
                     this.OnSequenceImpedanceChanged(e);
-                    this.OnPropertyChanged("SequenceImpedance", e);
+                    this.OnPropertyChanged("SequenceImpedance", e, _sequenceImpedanceReference);
                 }
             }
         }
@@ -182,7 +190,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.WiresExt
                     IConductorInfo old = this._conductorInfo;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnConductorInfoChanging(e);
-                    this.OnPropertyChanging("ConductorInfo", e);
+                    this.OnPropertyChanging("ConductorInfo", e, _conductorInfoReference);
                     this._conductorInfo = value;
                     if ((old != null))
                     {
@@ -195,7 +203,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.WiresExt
                         value.Deleted += this.OnResetConductorInfo;
                     }
                     this.OnConductorInfoChanged(e);
-                    this.OnPropertyChanged("ConductorInfo", e);
+                    this.OnPropertyChanged("ConductorInfo", e, _conductorInfoReference);
                 }
             }
         }
@@ -257,6 +265,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.WiresExt
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> ConductorInfoChanged;
         
+        private static ITypedElement RetrievePhaseImpedanceReference()
+        {
+            return ((ITypedElement)(((ModelElement)(DistributionLineSegment.ClassInstance)).Resolve("PhaseImpedance")));
+        }
+        
         /// <summary>
         /// Raises the PhaseImpedanceChanging event
         /// </summary>
@@ -293,6 +306,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.WiresExt
             this.PhaseImpedance = null;
         }
         
+        private static ITypedElement RetrieveConductorAssetsReference()
+        {
+            return ((ITypedElement)(((ModelElement)(DistributionLineSegment.ClassInstance)).Resolve("ConductorAssets")));
+        }
+        
         /// <summary>
         /// Forwards CollectionChanging notifications for the ConductorAssets property to the parent model element
         /// </summary>
@@ -300,7 +318,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.WiresExt
         /// <param name="e">The original event data</param>
         private void ConductorAssetsCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("ConductorAssets", e);
+            this.OnCollectionChanging("ConductorAssets", e, _conductorAssetsReference);
         }
         
         /// <summary>
@@ -310,7 +328,12 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.WiresExt
         /// <param name="e">The original event data</param>
         private void ConductorAssetsCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("ConductorAssets", e);
+            this.OnCollectionChanged("ConductorAssets", e, _conductorAssetsReference);
+        }
+        
+        private static ITypedElement RetrieveSequenceImpedanceReference()
+        {
+            return ((ITypedElement)(((ModelElement)(DistributionLineSegment.ClassInstance)).Resolve("SequenceImpedance")));
         }
         
         /// <summary>
@@ -347,6 +370,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.WiresExt
         private void OnResetSequenceImpedance(object sender, System.EventArgs eventArgs)
         {
             this.SequenceImpedance = null;
+        }
+        
+        private static ITypedElement RetrieveConductorInfoReference()
+        {
+            return ((ITypedElement)(((ModelElement)(DistributionLineSegment.ClassInstance)).Resolve("ConductorInfo")));
         }
         
         /// <summary>
@@ -706,7 +734,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.WiresExt
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public PhaseImpedanceProxy(IDistributionLineSegment modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "PhaseImpedance")
             {
             }
             
@@ -724,24 +752,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.WiresExt
                     this.ModelElement.PhaseImpedance = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.PhaseImpedanceChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.PhaseImpedanceChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -755,7 +765,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.WiresExt
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public SequenceImpedanceProxy(IDistributionLineSegment modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "SequenceImpedance")
             {
             }
             
@@ -773,24 +783,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.WiresExt
                     this.ModelElement.SequenceImpedance = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.SequenceImpedanceChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.SequenceImpedanceChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -804,7 +796,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.WiresExt
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public ConductorInfoProxy(IDistributionLineSegment modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "ConductorInfo")
             {
             }
             
@@ -821,24 +813,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.WiresExt
                 {
                     this.ModelElement.ConductorInfo = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ConductorInfoChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ConductorInfoChanged -= handler;
             }
         }
     }

@@ -53,7 +53,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61970/Informative/InfAssets/Procedu" +
         "reDataSet")]
     [DebuggerDisplayAttribute("ProcedureDataSet {UUID}")]
-    public class ProcedureDataSet : Document, IProcedureDataSet, IModelElement
+    public partial class ProcedureDataSet : Document, IProcedureDataSet, IModelElement
     {
         
         /// <summary>
@@ -61,20 +61,30 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
         /// </summary>
         private DateTime _completedDateTime;
         
+        private static Lazy<ITypedElement> _completedDateTimeAttribute = new Lazy<ITypedElement>(RetrieveCompletedDateTimeAttribute);
+        
+        private static Lazy<ITypedElement> _measurementValuesReference = new Lazy<ITypedElement>(RetrieveMeasurementValuesReference);
+        
         /// <summary>
         /// The backing field for the MeasurementValues property
         /// </summary>
         private ProcedureDataSetMeasurementValuesCollection _measurementValues;
+        
+        private static Lazy<ITypedElement> _transformerObservationsReference = new Lazy<ITypedElement>(RetrieveTransformerObservationsReference);
         
         /// <summary>
         /// The backing field for the TransformerObservations property
         /// </summary>
         private ProcedureDataSetTransformerObservationsCollection _transformerObservations;
         
+        private static Lazy<ITypedElement> _propertiesReference = new Lazy<ITypedElement>(RetrievePropertiesReference);
+        
         /// <summary>
         /// The backing field for the Properties property
         /// </summary>
         private ProcedureDataSetPropertiesCollection _properties;
+        
+        private static Lazy<ITypedElement> _procedureReference = new Lazy<ITypedElement>(RetrieveProcedureReference);
         
         /// <summary>
         /// The backing field for the Procedure property
@@ -114,10 +124,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
                     DateTime old = this._completedDateTime;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnCompletedDateTimeChanging(e);
-                    this.OnPropertyChanging("CompletedDateTime", e);
+                    this.OnPropertyChanging("CompletedDateTime", e, _completedDateTimeAttribute);
                     this._completedDateTime = value;
                     this.OnCompletedDateTimeChanged(e);
-                    this.OnPropertyChanged("CompletedDateTime", e);
+                    this.OnPropertyChanged("CompletedDateTime", e, _completedDateTimeAttribute);
                 }
             }
         }
@@ -185,7 +195,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
                     IProcedure old = this._procedure;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnProcedureChanging(e);
-                    this.OnPropertyChanging("Procedure", e);
+                    this.OnPropertyChanging("Procedure", e, _procedureReference);
                     this._procedure = value;
                     if ((old != null))
                     {
@@ -198,7 +208,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
                         value.Deleted += this.OnResetProcedure;
                     }
                     this.OnProcedureChanged(e);
-                    this.OnPropertyChanged("Procedure", e);
+                    this.OnPropertyChanged("Procedure", e, _procedureReference);
                 }
             }
         }
@@ -250,6 +260,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> ProcedureChanged;
         
+        private static ITypedElement RetrieveCompletedDateTimeAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(ProcedureDataSet.ClassInstance)).Resolve("completedDateTime")));
+        }
+        
         /// <summary>
         /// Raises the CompletedDateTimeChanging event
         /// </summary>
@@ -276,6 +291,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
             }
         }
         
+        private static ITypedElement RetrieveMeasurementValuesReference()
+        {
+            return ((ITypedElement)(((ModelElement)(ProcedureDataSet.ClassInstance)).Resolve("MeasurementValues")));
+        }
+        
         /// <summary>
         /// Forwards CollectionChanging notifications for the MeasurementValues property to the parent model element
         /// </summary>
@@ -283,7 +303,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
         /// <param name="e">The original event data</param>
         private void MeasurementValuesCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("MeasurementValues", e);
+            this.OnCollectionChanging("MeasurementValues", e, _measurementValuesReference);
         }
         
         /// <summary>
@@ -293,7 +313,12 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
         /// <param name="e">The original event data</param>
         private void MeasurementValuesCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("MeasurementValues", e);
+            this.OnCollectionChanged("MeasurementValues", e, _measurementValuesReference);
+        }
+        
+        private static ITypedElement RetrieveTransformerObservationsReference()
+        {
+            return ((ITypedElement)(((ModelElement)(ProcedureDataSet.ClassInstance)).Resolve("TransformerObservations")));
         }
         
         /// <summary>
@@ -303,7 +328,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
         /// <param name="e">The original event data</param>
         private void TransformerObservationsCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("TransformerObservations", e);
+            this.OnCollectionChanging("TransformerObservations", e, _transformerObservationsReference);
         }
         
         /// <summary>
@@ -313,7 +338,12 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
         /// <param name="e">The original event data</param>
         private void TransformerObservationsCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("TransformerObservations", e);
+            this.OnCollectionChanged("TransformerObservations", e, _transformerObservationsReference);
+        }
+        
+        private static ITypedElement RetrievePropertiesReference()
+        {
+            return ((ITypedElement)(((ModelElement)(ProcedureDataSet.ClassInstance)).Resolve("Properties")));
         }
         
         /// <summary>
@@ -323,7 +353,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
         /// <param name="e">The original event data</param>
         private void PropertiesCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("Properties", e);
+            this.OnCollectionChanging("Properties", e, _propertiesReference);
         }
         
         /// <summary>
@@ -333,7 +363,12 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
         /// <param name="e">The original event data</param>
         private void PropertiesCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("Properties", e);
+            this.OnCollectionChanged("Properties", e, _propertiesReference);
+        }
+        
+        private static ITypedElement RetrieveProcedureReference()
+        {
+            return ((ITypedElement)(((ModelElement)(ProcedureDataSet.ClassInstance)).Resolve("Procedure")));
         }
         
         /// <summary>
@@ -703,7 +738,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public CompletedDateTimeProxy(IProcedureDataSet modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "completedDateTime")
             {
             }
             
@@ -721,24 +756,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
                     this.ModelElement.CompletedDateTime = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.CompletedDateTimeChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.CompletedDateTimeChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -752,7 +769,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public ProcedureProxy(IProcedureDataSet modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "Procedure")
             {
             }
             
@@ -769,24 +786,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
                 {
                     this.ModelElement.Procedure = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ProcedureChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ProcedureChanged -= handler;
             }
         }
     }

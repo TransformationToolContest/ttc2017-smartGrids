@@ -40,7 +40,7 @@ namespace TTC2017.SmartGrids.COSEM.InterfaceClasses
     [XmlNamespacePrefixAttribute("inter")]
     [ModelRepresentationClassAttribute("http://www.transformation-tool-contest.eu/2017/smartGrids/cosem#//InterfaceClasse" +
         "s/SMTPsetup")]
-    public class SMTPsetup : Base, ISMTPsetup, IModelElement
+    public partial class SMTPsetup : Base, ISMTPsetup, IModelElement
     {
         
         private static IClass _classInstance;

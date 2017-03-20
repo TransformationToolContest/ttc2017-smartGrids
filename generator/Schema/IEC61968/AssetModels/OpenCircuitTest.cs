@@ -46,7 +46,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.AssetModels
     [XmlNamespacePrefixAttribute("cimAssetModels")]
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61968/AssetModels/OpenCircuitTest")]
     [DebuggerDisplayAttribute("OpenCircuitTest {UUID}")]
-    public class OpenCircuitTest : DistributionWindingTest, IOpenCircuitTest, IModelElement
+    public partial class OpenCircuitTest : DistributionWindingTest, IOpenCircuitTest, IModelElement
     {
         
         /// <summary>
@@ -54,20 +54,30 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.AssetModels
         /// </summary>
         private float _noLoadLoss;
         
+        private static Lazy<ITypedElement> _noLoadLossAttribute = new Lazy<ITypedElement>(RetrieveNoLoadLossAttribute);
+        
         /// <summary>
         /// The backing field for the ExcitingCurrent property
         /// </summary>
         private float _excitingCurrent;
+        
+        private static Lazy<ITypedElement> _excitingCurrentAttribute = new Lazy<ITypedElement>(RetrieveExcitingCurrentAttribute);
         
         /// <summary>
         /// The backing field for the ExcitingCurrentZero property
         /// </summary>
         private float _excitingCurrentZero;
         
+        private static Lazy<ITypedElement> _excitingCurrentZeroAttribute = new Lazy<ITypedElement>(RetrieveExcitingCurrentZeroAttribute);
+        
         /// <summary>
         /// The backing field for the NoLoadLossZero property
         /// </summary>
         private float _noLoadLossZero;
+        
+        private static Lazy<ITypedElement> _noLoadLossZeroAttribute = new Lazy<ITypedElement>(RetrieveNoLoadLossZeroAttribute);
+        
+        private static Lazy<ITypedElement> _measuredWindingSpecsReference = new Lazy<ITypedElement>(RetrieveMeasuredWindingSpecsReference);
         
         /// <summary>
         /// The backing field for the MeasuredWindingSpecs property
@@ -101,10 +111,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.AssetModels
                     float old = this._noLoadLoss;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnNoLoadLossChanging(e);
-                    this.OnPropertyChanging("NoLoadLoss", e);
+                    this.OnPropertyChanging("NoLoadLoss", e, _noLoadLossAttribute);
                     this._noLoadLoss = value;
                     this.OnNoLoadLossChanged(e);
-                    this.OnPropertyChanged("NoLoadLoss", e);
+                    this.OnPropertyChanged("NoLoadLoss", e, _noLoadLossAttribute);
                 }
             }
         }
@@ -127,10 +137,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.AssetModels
                     float old = this._excitingCurrent;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnExcitingCurrentChanging(e);
-                    this.OnPropertyChanging("ExcitingCurrent", e);
+                    this.OnPropertyChanging("ExcitingCurrent", e, _excitingCurrentAttribute);
                     this._excitingCurrent = value;
                     this.OnExcitingCurrentChanged(e);
-                    this.OnPropertyChanged("ExcitingCurrent", e);
+                    this.OnPropertyChanged("ExcitingCurrent", e, _excitingCurrentAttribute);
                 }
             }
         }
@@ -153,10 +163,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.AssetModels
                     float old = this._excitingCurrentZero;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnExcitingCurrentZeroChanging(e);
-                    this.OnPropertyChanging("ExcitingCurrentZero", e);
+                    this.OnPropertyChanging("ExcitingCurrentZero", e, _excitingCurrentZeroAttribute);
                     this._excitingCurrentZero = value;
                     this.OnExcitingCurrentZeroChanged(e);
-                    this.OnPropertyChanged("ExcitingCurrentZero", e);
+                    this.OnPropertyChanged("ExcitingCurrentZero", e, _excitingCurrentZeroAttribute);
                 }
             }
         }
@@ -179,10 +189,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.AssetModels
                     float old = this._noLoadLossZero;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnNoLoadLossZeroChanging(e);
-                    this.OnPropertyChanging("NoLoadLossZero", e);
+                    this.OnPropertyChanging("NoLoadLossZero", e, _noLoadLossZeroAttribute);
                     this._noLoadLossZero = value;
                     this.OnNoLoadLossZeroChanged(e);
-                    this.OnPropertyChanged("NoLoadLossZero", e);
+                    this.OnPropertyChanged("NoLoadLossZero", e, _noLoadLossZeroAttribute);
                 }
             }
         }
@@ -268,6 +278,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.AssetModels
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> NoLoadLossZeroChanged;
         
+        private static ITypedElement RetrieveNoLoadLossAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(OpenCircuitTest.ClassInstance)).Resolve("noLoadLoss")));
+        }
+        
         /// <summary>
         /// Raises the NoLoadLossChanging event
         /// </summary>
@@ -292,6 +307,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.AssetModels
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveExcitingCurrentAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(OpenCircuitTest.ClassInstance)).Resolve("excitingCurrent")));
         }
         
         /// <summary>
@@ -320,6 +340,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.AssetModels
             }
         }
         
+        private static ITypedElement RetrieveExcitingCurrentZeroAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(OpenCircuitTest.ClassInstance)).Resolve("excitingCurrentZero")));
+        }
+        
         /// <summary>
         /// Raises the ExcitingCurrentZeroChanging event
         /// </summary>
@@ -344,6 +369,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.AssetModels
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveNoLoadLossZeroAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(OpenCircuitTest.ClassInstance)).Resolve("noLoadLossZero")));
         }
         
         /// <summary>
@@ -372,6 +402,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.AssetModels
             }
         }
         
+        private static ITypedElement RetrieveMeasuredWindingSpecsReference()
+        {
+            return ((ITypedElement)(((ModelElement)(OpenCircuitTest.ClassInstance)).Resolve("MeasuredWindingSpecs")));
+        }
+        
         /// <summary>
         /// Forwards CollectionChanging notifications for the MeasuredWindingSpecs property to the parent model element
         /// </summary>
@@ -379,7 +414,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.AssetModels
         /// <param name="e">The original event data</param>
         private void MeasuredWindingSpecsCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("MeasuredWindingSpecs", e);
+            this.OnCollectionChanging("MeasuredWindingSpecs", e, _measuredWindingSpecsReference);
         }
         
         /// <summary>
@@ -389,7 +424,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.AssetModels
         /// <param name="e">The original event data</param>
         private void MeasuredWindingSpecsCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("MeasuredWindingSpecs", e);
+            this.OnCollectionChanged("MeasuredWindingSpecs", e, _measuredWindingSpecsReference);
         }
         
         /// <summary>
@@ -610,7 +645,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.AssetModels
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public NoLoadLossProxy(IOpenCircuitTest modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "noLoadLoss")
             {
             }
             
@@ -628,24 +663,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.AssetModels
                     this.ModelElement.NoLoadLoss = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.NoLoadLossChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.NoLoadLossChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -659,7 +676,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.AssetModels
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public ExcitingCurrentProxy(IOpenCircuitTest modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "excitingCurrent")
             {
             }
             
@@ -677,24 +694,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.AssetModels
                     this.ModelElement.ExcitingCurrent = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ExcitingCurrentChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ExcitingCurrentChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -708,7 +707,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.AssetModels
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public ExcitingCurrentZeroProxy(IOpenCircuitTest modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "excitingCurrentZero")
             {
             }
             
@@ -726,24 +725,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.AssetModels
                     this.ModelElement.ExcitingCurrentZero = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ExcitingCurrentZeroChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ExcitingCurrentZeroChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -757,7 +738,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.AssetModels
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public NoLoadLossZeroProxy(IOpenCircuitTest modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "noLoadLossZero")
             {
             }
             
@@ -774,24 +755,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.AssetModels
                 {
                     this.ModelElement.NoLoadLossZero = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.NoLoadLossZeroChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.NoLoadLossZeroChanged -= handler;
             }
         }
     }

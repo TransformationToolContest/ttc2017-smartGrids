@@ -44,7 +44,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.Reservation
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61970/Informative/Reservation/Trans" +
         "missionPath")]
     [DebuggerDisplayAttribute("TransmissionPath {UUID}")]
-    public class TransmissionPath : Element, ITransmissionPath, IModelElement
+    public partial class TransmissionPath : Element, ITransmissionPath, IModelElement
     {
         
         /// <summary>
@@ -52,35 +52,51 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.Reservation
         /// </summary>
         private float _availTransferCapability;
         
+        private static Lazy<ITypedElement> _availTransferCapabilityAttribute = new Lazy<ITypedElement>(RetrieveAvailTransferCapabilityAttribute);
+        
         /// <summary>
         /// The backing field for the ParallelPathFlag property
         /// </summary>
         private bool _parallelPathFlag;
+        
+        private static Lazy<ITypedElement> _parallelPathFlagAttribute = new Lazy<ITypedElement>(RetrieveParallelPathFlagAttribute);
         
         /// <summary>
         /// The backing field for the TotalTransferCapability property
         /// </summary>
         private float _totalTransferCapability;
         
+        private static Lazy<ITypedElement> _totalTransferCapabilityAttribute = new Lazy<ITypedElement>(RetrieveTotalTransferCapabilityAttribute);
+        
+        private static Lazy<ITypedElement> _deliveryPointForReference = new Lazy<ITypedElement>(RetrieveDeliveryPointForReference);
+        
         /// <summary>
         /// The backing field for the DeliveryPointFor property
         /// </summary>
         private IServicePoint _deliveryPointFor;
+        
+        private static Lazy<ITypedElement> _offeredOnReference = new Lazy<ITypedElement>(RetrieveOfferedOnReference);
         
         /// <summary>
         /// The backing field for the OfferedOn property
         /// </summary>
         private TransmissionPathOfferedOnCollection _offeredOn;
         
+        private static Lazy<ITypedElement> _pointOfReceiptForReference = new Lazy<ITypedElement>(RetrievePointOfReceiptForReference);
+        
         /// <summary>
         /// The backing field for the PointOfReceiptFor property
         /// </summary>
         private IServicePoint _pointOfReceiptFor;
         
+        private static Lazy<ITypedElement> _forReference = new Lazy<ITypedElement>(RetrieveForReference);
+        
         /// <summary>
         /// The backing field for the For property
         /// </summary>
         private ITransmissionCorridor _for;
+        
+        private static Lazy<ITypedElement> _locatedOnReference = new Lazy<ITypedElement>(RetrieveLocatedOnReference);
         
         /// <summary>
         /// The backing field for the LocatedOn property
@@ -117,10 +133,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.Reservation
                     float old = this._availTransferCapability;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnAvailTransferCapabilityChanging(e);
-                    this.OnPropertyChanging("AvailTransferCapability", e);
+                    this.OnPropertyChanging("AvailTransferCapability", e, _availTransferCapabilityAttribute);
                     this._availTransferCapability = value;
                     this.OnAvailTransferCapabilityChanged(e);
-                    this.OnPropertyChanged("AvailTransferCapability", e);
+                    this.OnPropertyChanged("AvailTransferCapability", e, _availTransferCapabilityAttribute);
                 }
             }
         }
@@ -143,10 +159,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.Reservation
                     bool old = this._parallelPathFlag;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnParallelPathFlagChanging(e);
-                    this.OnPropertyChanging("ParallelPathFlag", e);
+                    this.OnPropertyChanging("ParallelPathFlag", e, _parallelPathFlagAttribute);
                     this._parallelPathFlag = value;
                     this.OnParallelPathFlagChanged(e);
-                    this.OnPropertyChanged("ParallelPathFlag", e);
+                    this.OnPropertyChanged("ParallelPathFlag", e, _parallelPathFlagAttribute);
                 }
             }
         }
@@ -169,10 +185,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.Reservation
                     float old = this._totalTransferCapability;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnTotalTransferCapabilityChanging(e);
-                    this.OnPropertyChanging("TotalTransferCapability", e);
+                    this.OnPropertyChanging("TotalTransferCapability", e, _totalTransferCapabilityAttribute);
                     this._totalTransferCapability = value;
                     this.OnTotalTransferCapabilityChanged(e);
-                    this.OnPropertyChanged("TotalTransferCapability", e);
+                    this.OnPropertyChanged("TotalTransferCapability", e, _totalTransferCapabilityAttribute);
                 }
             }
         }
@@ -195,7 +211,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.Reservation
                     IServicePoint old = this._deliveryPointFor;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnDeliveryPointForChanging(e);
-                    this.OnPropertyChanging("DeliveryPointFor", e);
+                    this.OnPropertyChanging("DeliveryPointFor", e, _deliveryPointForReference);
                     this._deliveryPointFor = value;
                     if ((old != null))
                     {
@@ -208,7 +224,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.Reservation
                         value.Deleted += this.OnResetDeliveryPointFor;
                     }
                     this.OnDeliveryPointForChanged(e);
-                    this.OnPropertyChanged("DeliveryPointFor", e);
+                    this.OnPropertyChanged("DeliveryPointFor", e, _deliveryPointForReference);
                 }
             }
         }
@@ -246,7 +262,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.Reservation
                     IServicePoint old = this._pointOfReceiptFor;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnPointOfReceiptForChanging(e);
-                    this.OnPropertyChanging("PointOfReceiptFor", e);
+                    this.OnPropertyChanging("PointOfReceiptFor", e, _pointOfReceiptForReference);
                     this._pointOfReceiptFor = value;
                     if ((old != null))
                     {
@@ -259,7 +275,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.Reservation
                         value.Deleted += this.OnResetPointOfReceiptFor;
                     }
                     this.OnPointOfReceiptForChanged(e);
-                    this.OnPropertyChanged("PointOfReceiptFor", e);
+                    this.OnPropertyChanged("PointOfReceiptFor", e, _pointOfReceiptForReference);
                 }
             }
         }
@@ -282,7 +298,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.Reservation
                     ITransmissionCorridor old = this._for;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnForChanging(e);
-                    this.OnPropertyChanging("For", e);
+                    this.OnPropertyChanging("For", e, _forReference);
                     this._for = value;
                     if ((old != null))
                     {
@@ -295,7 +311,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.Reservation
                         value.Deleted += this.OnResetFor;
                     }
                     this.OnForChanged(e);
-                    this.OnPropertyChanged("For", e);
+                    this.OnPropertyChanged("For", e, _forReference);
                 }
             }
         }
@@ -402,6 +418,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.Reservation
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> ForChanged;
         
+        private static ITypedElement RetrieveAvailTransferCapabilityAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(TransmissionPath.ClassInstance)).Resolve("availTransferCapability")));
+        }
+        
         /// <summary>
         /// Raises the AvailTransferCapabilityChanging event
         /// </summary>
@@ -426,6 +447,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.Reservation
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveParallelPathFlagAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(TransmissionPath.ClassInstance)).Resolve("parallelPathFlag")));
         }
         
         /// <summary>
@@ -454,6 +480,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.Reservation
             }
         }
         
+        private static ITypedElement RetrieveTotalTransferCapabilityAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(TransmissionPath.ClassInstance)).Resolve("totalTransferCapability")));
+        }
+        
         /// <summary>
         /// Raises the TotalTransferCapabilityChanging event
         /// </summary>
@@ -478,6 +509,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.Reservation
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveDeliveryPointForReference()
+        {
+            return ((ITypedElement)(((ModelElement)(TransmissionPath.ClassInstance)).Resolve("DeliveryPointFor")));
         }
         
         /// <summary>
@@ -516,6 +552,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.Reservation
             this.DeliveryPointFor = null;
         }
         
+        private static ITypedElement RetrieveOfferedOnReference()
+        {
+            return ((ITypedElement)(((ModelElement)(TransmissionPath.ClassInstance)).Resolve("OfferedOn")));
+        }
+        
         /// <summary>
         /// Forwards CollectionChanging notifications for the OfferedOn property to the parent model element
         /// </summary>
@@ -523,7 +564,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.Reservation
         /// <param name="e">The original event data</param>
         private void OfferedOnCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("OfferedOn", e);
+            this.OnCollectionChanging("OfferedOn", e, _offeredOnReference);
         }
         
         /// <summary>
@@ -533,7 +574,12 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.Reservation
         /// <param name="e">The original event data</param>
         private void OfferedOnCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("OfferedOn", e);
+            this.OnCollectionChanged("OfferedOn", e, _offeredOnReference);
+        }
+        
+        private static ITypedElement RetrievePointOfReceiptForReference()
+        {
+            return ((ITypedElement)(((ModelElement)(TransmissionPath.ClassInstance)).Resolve("PointOfReceiptFor")));
         }
         
         /// <summary>
@@ -572,6 +618,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.Reservation
             this.PointOfReceiptFor = null;
         }
         
+        private static ITypedElement RetrieveForReference()
+        {
+            return ((ITypedElement)(((ModelElement)(TransmissionPath.ClassInstance)).Resolve("For")));
+        }
+        
         /// <summary>
         /// Raises the ForChanging event
         /// </summary>
@@ -608,6 +659,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.Reservation
             this.For = null;
         }
         
+        private static ITypedElement RetrieveLocatedOnReference()
+        {
+            return ((ITypedElement)(((ModelElement)(TransmissionPath.ClassInstance)).Resolve("LocatedOn")));
+        }
+        
         /// <summary>
         /// Forwards CollectionChanging notifications for the LocatedOn property to the parent model element
         /// </summary>
@@ -615,7 +671,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.Reservation
         /// <param name="e">The original event data</param>
         private void LocatedOnCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("LocatedOn", e);
+            this.OnCollectionChanging("LocatedOn", e, _locatedOnReference);
         }
         
         /// <summary>
@@ -625,7 +681,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.Reservation
         /// <param name="e">The original event data</param>
         private void LocatedOnCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("LocatedOn", e);
+            this.OnCollectionChanged("LocatedOn", e, _locatedOnReference);
         }
         
         /// <summary>
@@ -1025,7 +1081,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.Reservation
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public AvailTransferCapabilityProxy(ITransmissionPath modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "availTransferCapability")
             {
             }
             
@@ -1043,24 +1099,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.Reservation
                     this.ModelElement.AvailTransferCapability = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.AvailTransferCapabilityChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.AvailTransferCapabilityChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1074,7 +1112,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.Reservation
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public ParallelPathFlagProxy(ITransmissionPath modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "parallelPathFlag")
             {
             }
             
@@ -1092,24 +1130,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.Reservation
                     this.ModelElement.ParallelPathFlag = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ParallelPathFlagChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ParallelPathFlagChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1123,7 +1143,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.Reservation
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public TotalTransferCapabilityProxy(ITransmissionPath modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "totalTransferCapability")
             {
             }
             
@@ -1141,24 +1161,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.Reservation
                     this.ModelElement.TotalTransferCapability = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.TotalTransferCapabilityChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.TotalTransferCapabilityChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1172,7 +1174,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.Reservation
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public DeliveryPointForProxy(ITransmissionPath modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "DeliveryPointFor")
             {
             }
             
@@ -1190,24 +1192,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.Reservation
                     this.ModelElement.DeliveryPointFor = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.DeliveryPointForChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.DeliveryPointForChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1221,7 +1205,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.Reservation
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public PointOfReceiptForProxy(ITransmissionPath modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "PointOfReceiptFor")
             {
             }
             
@@ -1239,24 +1223,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.Reservation
                     this.ModelElement.PointOfReceiptFor = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.PointOfReceiptForChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.PointOfReceiptForChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1270,7 +1236,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.Reservation
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public ForProxy(ITransmissionPath modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "For")
             {
             }
             
@@ -1287,24 +1253,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.Reservation
                 {
                     this.ModelElement.For = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ForChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ForChanged -= handler;
             }
         }
     }

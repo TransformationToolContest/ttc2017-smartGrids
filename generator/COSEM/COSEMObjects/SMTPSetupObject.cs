@@ -39,7 +39,7 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
     [XmlNamespacePrefixAttribute("objects")]
     [ModelRepresentationClassAttribute("http://www.transformation-tool-contest.eu/2017/smartGrids/cosem#//COSEMObjects/SM" +
         "TPSetupObject")]
-    public class SMTPSetupObject : SMTPsetup, ISMTPSetupObject, IModelElement
+    public partial class SMTPSetupObject : SMTPsetup, ISMTPSetupObject, IModelElement
     {
         
         private static IClass _classInstance;

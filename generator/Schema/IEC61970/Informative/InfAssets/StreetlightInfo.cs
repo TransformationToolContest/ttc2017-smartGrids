@@ -53,7 +53,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61970/Informative/InfAssets/Streetl" +
         "ightInfo")]
     [DebuggerDisplayAttribute("StreetlightInfo {UUID}")]
-    public class StreetlightInfo : ElectricalInfo, IStreetlightInfo, IModelElement
+    public partial class StreetlightInfo : ElectricalInfo, IStreetlightInfo, IModelElement
     {
         
         /// <summary>
@@ -61,15 +61,23 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
         /// </summary>
         private float _lightRating;
         
+        private static Lazy<ITypedElement> _lightRatingAttribute = new Lazy<ITypedElement>(RetrieveLightRatingAttribute);
+        
         /// <summary>
         /// The backing field for the ArmLength property
         /// </summary>
         private float _armLength;
         
+        private static Lazy<ITypedElement> _armLengthAttribute = new Lazy<ITypedElement>(RetrieveArmLengthAttribute);
+        
         /// <summary>
         /// The backing field for the LampKind property
         /// </summary>
         private Nullable<StreetlightLampKind> _lampKind;
+        
+        private static Lazy<ITypedElement> _lampKindAttribute = new Lazy<ITypedElement>(RetrieveLampKindAttribute);
+        
+        private static Lazy<ITypedElement> _poleReference = new Lazy<ITypedElement>(RetrievePoleReference);
         
         /// <summary>
         /// The backing field for the Pole property
@@ -96,10 +104,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
                     float old = this._lightRating;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnLightRatingChanging(e);
-                    this.OnPropertyChanging("LightRating", e);
+                    this.OnPropertyChanging("LightRating", e, _lightRatingAttribute);
                     this._lightRating = value;
                     this.OnLightRatingChanged(e);
-                    this.OnPropertyChanged("LightRating", e);
+                    this.OnPropertyChanged("LightRating", e, _lightRatingAttribute);
                 }
             }
         }
@@ -122,10 +130,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
                     float old = this._armLength;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnArmLengthChanging(e);
-                    this.OnPropertyChanging("ArmLength", e);
+                    this.OnPropertyChanging("ArmLength", e, _armLengthAttribute);
                     this._armLength = value;
                     this.OnArmLengthChanged(e);
-                    this.OnPropertyChanged("ArmLength", e);
+                    this.OnPropertyChanged("ArmLength", e, _armLengthAttribute);
                 }
             }
         }
@@ -148,10 +156,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
                     Nullable<StreetlightLampKind> old = this._lampKind;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnLampKindChanging(e);
-                    this.OnPropertyChanging("LampKind", e);
+                    this.OnPropertyChanging("LampKind", e, _lampKindAttribute);
                     this._lampKind = value;
                     this.OnLampKindChanged(e);
-                    this.OnPropertyChanged("LampKind", e);
+                    this.OnPropertyChanged("LampKind", e, _lampKindAttribute);
                 }
             }
         }
@@ -174,7 +182,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
                     IPoleInfo old = this._pole;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnPoleChanging(e);
-                    this.OnPropertyChanging("Pole", e);
+                    this.OnPropertyChanging("Pole", e, _poleReference);
                     this._pole = value;
                     if ((old != null))
                     {
@@ -187,7 +195,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
                         value.Deleted += this.OnResetPole;
                     }
                     this.OnPoleChanged(e);
-                    this.OnPropertyChanged("Pole", e);
+                    this.OnPropertyChanged("Pole", e, _poleReference);
                 }
             }
         }
@@ -259,6 +267,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> PoleChanged;
         
+        private static ITypedElement RetrieveLightRatingAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(StreetlightInfo.ClassInstance)).Resolve("lightRating")));
+        }
+        
         /// <summary>
         /// Raises the LightRatingChanging event
         /// </summary>
@@ -283,6 +296,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveArmLengthAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(StreetlightInfo.ClassInstance)).Resolve("armLength")));
         }
         
         /// <summary>
@@ -311,6 +329,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
             }
         }
         
+        private static ITypedElement RetrieveLampKindAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(StreetlightInfo.ClassInstance)).Resolve("lampKind")));
+        }
+        
         /// <summary>
         /// Raises the LampKindChanging event
         /// </summary>
@@ -335,6 +358,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrievePoleReference()
+        {
+            return ((ITypedElement)(((ModelElement)(StreetlightInfo.ClassInstance)).Resolve("Pole")));
         }
         
         /// <summary>
@@ -598,7 +626,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public LightRatingProxy(IStreetlightInfo modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "lightRating")
             {
             }
             
@@ -616,24 +644,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
                     this.ModelElement.LightRating = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.LightRatingChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.LightRatingChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -647,7 +657,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public ArmLengthProxy(IStreetlightInfo modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "armLength")
             {
             }
             
@@ -665,24 +675,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
                     this.ModelElement.ArmLength = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ArmLengthChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ArmLengthChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -696,7 +688,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public LampKindProxy(IStreetlightInfo modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "lampKind")
             {
             }
             
@@ -714,24 +706,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
                     this.ModelElement.LampKind = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.LampKindChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.LampKindChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -745,7 +719,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public PoleProxy(IStreetlightInfo modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "Pole")
             {
             }
             
@@ -762,24 +736,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
                 {
                     this.ModelElement.Pole = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.PoleChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.PoleChanged -= handler;
             }
         }
     }

@@ -44,8 +44,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.LoadModel
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61970/LoadModel/NonConformLoadSched" +
         "ule")]
     [DebuggerDisplayAttribute("NonConformLoadSchedule {UUID}")]
-    public class NonConformLoadSchedule : SeasonDayTypeSchedule, INonConformLoadSchedule, IModelElement
+    public partial class NonConformLoadSchedule : SeasonDayTypeSchedule, INonConformLoadSchedule, IModelElement
     {
+        
+        private static Lazy<ITypedElement> _nonConformLoadGroupReference = new Lazy<ITypedElement>(RetrieveNonConformLoadGroupReference);
         
         /// <summary>
         /// The backing field for the NonConformLoadGroup property
@@ -72,7 +74,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.LoadModel
                     INonConformLoadGroup old = this._nonConformLoadGroup;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnNonConformLoadGroupChanging(e);
-                    this.OnPropertyChanging("NonConformLoadGroup", e);
+                    this.OnPropertyChanging("NonConformLoadGroup", e, _nonConformLoadGroupReference);
                     this._nonConformLoadGroup = value;
                     if ((old != null))
                     {
@@ -85,7 +87,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.LoadModel
                         value.Deleted += this.OnResetNonConformLoadGroup;
                     }
                     this.OnNonConformLoadGroupChanged(e);
-                    this.OnPropertyChanged("NonConformLoadGroup", e);
+                    this.OnPropertyChanged("NonConformLoadGroup", e, _nonConformLoadGroupReference);
                 }
             }
         }
@@ -126,6 +128,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.LoadModel
         /// Gets fired when the NonConformLoadGroup property changed its value
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> NonConformLoadGroupChanged;
+        
+        private static ITypedElement RetrieveNonConformLoadGroupReference()
+        {
+            return ((ITypedElement)(((ModelElement)(NonConformLoadSchedule.ClassInstance)).Resolve("NonConformLoadGroup")));
+        }
         
         /// <summary>
         /// Raises the NonConformLoadGroupChanging event
@@ -350,7 +357,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.LoadModel
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public NonConformLoadGroupProxy(INonConformLoadSchedule modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "NonConformLoadGroup")
             {
             }
             
@@ -367,24 +374,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.LoadModel
                 {
                     this.ModelElement.NonConformLoadGroup = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.NonConformLoadGroupChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.NonConformLoadGroupChanged -= handler;
             }
         }
     }

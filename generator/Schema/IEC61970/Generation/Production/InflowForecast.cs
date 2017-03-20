@@ -46,8 +46,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61970/Generation/Production/InflowF" +
         "orecast")]
     [DebuggerDisplayAttribute("InflowForecast {UUID}")]
-    public class InflowForecast : RegularIntervalSchedule, IInflowForecast, IModelElement
+    public partial class InflowForecast : RegularIntervalSchedule, IInflowForecast, IModelElement
     {
+        
+        private static Lazy<ITypedElement> _reservoirReference = new Lazy<ITypedElement>(RetrieveReservoirReference);
         
         /// <summary>
         /// The backing field for the Reservoir property
@@ -74,7 +76,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
                     IReservoir old = this._reservoir;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnReservoirChanging(e);
-                    this.OnPropertyChanging("Reservoir", e);
+                    this.OnPropertyChanging("Reservoir", e, _reservoirReference);
                     this._reservoir = value;
                     if ((old != null))
                     {
@@ -87,7 +89,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
                         value.Deleted += this.OnResetReservoir;
                     }
                     this.OnReservoirChanged(e);
-                    this.OnPropertyChanged("Reservoir", e);
+                    this.OnPropertyChanged("Reservoir", e, _reservoirReference);
                 }
             }
         }
@@ -128,6 +130,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
         /// Gets fired when the Reservoir property changed its value
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> ReservoirChanged;
+        
+        private static ITypedElement RetrieveReservoirReference()
+        {
+            return ((ITypedElement)(((ModelElement)(InflowForecast.ClassInstance)).Resolve("Reservoir")));
+        }
         
         /// <summary>
         /// Raises the ReservoirChanging event
@@ -352,7 +359,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public ReservoirProxy(IInflowForecast modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "Reservoir")
             {
             }
             
@@ -369,24 +376,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
                 {
                     this.ModelElement.Reservoir = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ReservoirChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ReservoirChanged -= handler;
             }
         }
     }

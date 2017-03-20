@@ -41,7 +41,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.OperationalLimits
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61970/OperationalLimits/BranchGroup" +
         "Terminal")]
     [DebuggerDisplayAttribute("BranchGroupTerminal {UUID}")]
-    public class BranchGroupTerminal : Element, IBranchGroupTerminal, IModelElement
+    public partial class BranchGroupTerminal : Element, IBranchGroupTerminal, IModelElement
     {
         
         /// <summary>
@@ -49,10 +49,16 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.OperationalLimits
         /// </summary>
         private bool _positiveFlowIn;
         
+        private static Lazy<ITypedElement> _positiveFlowInAttribute = new Lazy<ITypedElement>(RetrievePositiveFlowInAttribute);
+        
+        private static Lazy<ITypedElement> _terminalReference = new Lazy<ITypedElement>(RetrieveTerminalReference);
+        
         /// <summary>
         /// The backing field for the Terminal property
         /// </summary>
         private ITerminal _terminal;
+        
+        private static Lazy<ITypedElement> _branchGroupReference = new Lazy<ITypedElement>(RetrieveBranchGroupReference);
         
         /// <summary>
         /// The backing field for the BranchGroup property
@@ -79,10 +85,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.OperationalLimits
                     bool old = this._positiveFlowIn;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnPositiveFlowInChanging(e);
-                    this.OnPropertyChanging("PositiveFlowIn", e);
+                    this.OnPropertyChanging("PositiveFlowIn", e, _positiveFlowInAttribute);
                     this._positiveFlowIn = value;
                     this.OnPositiveFlowInChanged(e);
-                    this.OnPropertyChanged("PositiveFlowIn", e);
+                    this.OnPropertyChanged("PositiveFlowIn", e, _positiveFlowInAttribute);
                 }
             }
         }
@@ -105,7 +111,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.OperationalLimits
                     ITerminal old = this._terminal;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnTerminalChanging(e);
-                    this.OnPropertyChanging("Terminal", e);
+                    this.OnPropertyChanging("Terminal", e, _terminalReference);
                     this._terminal = value;
                     if ((old != null))
                     {
@@ -118,7 +124,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.OperationalLimits
                         value.Deleted += this.OnResetTerminal;
                     }
                     this.OnTerminalChanged(e);
-                    this.OnPropertyChanged("Terminal", e);
+                    this.OnPropertyChanged("Terminal", e, _terminalReference);
                 }
             }
         }
@@ -141,7 +147,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.OperationalLimits
                     IBranchGroup old = this._branchGroup;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnBranchGroupChanging(e);
-                    this.OnPropertyChanging("BranchGroup", e);
+                    this.OnPropertyChanging("BranchGroup", e, _branchGroupReference);
                     this._branchGroup = value;
                     if ((old != null))
                     {
@@ -154,7 +160,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.OperationalLimits
                         value.Deleted += this.OnResetBranchGroup;
                     }
                     this.OnBranchGroupChanged(e);
-                    this.OnPropertyChanged("BranchGroup", e);
+                    this.OnPropertyChanged("BranchGroup", e, _branchGroupReference);
                 }
             }
         }
@@ -216,6 +222,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.OperationalLimits
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> BranchGroupChanged;
         
+        private static ITypedElement RetrievePositiveFlowInAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(BranchGroupTerminal.ClassInstance)).Resolve("positiveFlowIn")));
+        }
+        
         /// <summary>
         /// Raises the PositiveFlowInChanging event
         /// </summary>
@@ -240,6 +251,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.OperationalLimits
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveTerminalReference()
+        {
+            return ((ITypedElement)(((ModelElement)(BranchGroupTerminal.ClassInstance)).Resolve("Terminal")));
         }
         
         /// <summary>
@@ -276,6 +292,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.OperationalLimits
         private void OnResetTerminal(object sender, System.EventArgs eventArgs)
         {
             this.Terminal = null;
+        }
+        
+        private static ITypedElement RetrieveBranchGroupReference()
+        {
+            return ((ITypedElement)(((ModelElement)(BranchGroupTerminal.ClassInstance)).Resolve("BranchGroup")));
         }
         
         /// <summary>
@@ -564,7 +585,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.OperationalLimits
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public PositiveFlowInProxy(IBranchGroupTerminal modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "positiveFlowIn")
             {
             }
             
@@ -582,24 +603,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.OperationalLimits
                     this.ModelElement.PositiveFlowIn = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.PositiveFlowInChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.PositiveFlowInChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -613,7 +616,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.OperationalLimits
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public TerminalProxy(IBranchGroupTerminal modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "Terminal")
             {
             }
             
@@ -631,24 +634,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.OperationalLimits
                     this.ModelElement.Terminal = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.TerminalChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.TerminalChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -662,7 +647,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.OperationalLimits
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public BranchGroupProxy(IBranchGroupTerminal modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "BranchGroup")
             {
             }
             
@@ -679,24 +664,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.OperationalLimits
                 {
                     this.ModelElement.BranchGroup = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.BranchGroupChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.BranchGroupChanged -= handler;
             }
         }
     }

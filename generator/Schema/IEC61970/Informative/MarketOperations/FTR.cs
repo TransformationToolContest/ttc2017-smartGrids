@@ -50,7 +50,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61970/Informative/MarketOperations/" +
         "FTR")]
     [DebuggerDisplayAttribute("FTR {UUID}")]
-    public class FTR : Agreement, IFTR, IModelElement
+    public partial class FTR : Agreement, IFTR, IModelElement
     {
         
         /// <summary>
@@ -58,35 +58,51 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
         /// </summary>
         private float _baseEnergy;
         
+        private static Lazy<ITypedElement> _baseEnergyAttribute = new Lazy<ITypedElement>(RetrieveBaseEnergyAttribute);
+        
         /// <summary>
         /// The backing field for the Action property
         /// </summary>
         private string _action;
+        
+        private static Lazy<ITypedElement> _actionAttribute = new Lazy<ITypedElement>(RetrieveActionAttribute);
         
         /// <summary>
         /// The backing field for the Optimized property
         /// </summary>
         private string _optimized;
         
+        private static Lazy<ITypedElement> _optimizedAttribute = new Lazy<ITypedElement>(RetrieveOptimizedAttribute);
+        
         /// <summary>
         /// The backing field for the Class property
         /// </summary>
         private string _class;
+        
+        private static Lazy<ITypedElement> _classAttribute = new Lazy<ITypedElement>(RetrieveClassAttribute);
         
         /// <summary>
         /// The backing field for the FtrType property
         /// </summary>
         private string _ftrType;
         
+        private static Lazy<ITypedElement> _ftrTypeAttribute = new Lazy<ITypedElement>(RetrieveFtrTypeAttribute);
+        
+        private static Lazy<ITypedElement> _energyPriceCurveReference = new Lazy<ITypedElement>(RetrieveEnergyPriceCurveReference);
+        
         /// <summary>
         /// The backing field for the EnergyPriceCurve property
         /// </summary>
         private IEnergyPriceCurve _energyPriceCurve;
         
+        private static Lazy<ITypedElement> _pnodesReference = new Lazy<ITypedElement>(RetrievePnodesReference);
+        
         /// <summary>
         /// The backing field for the Pnodes property
         /// </summary>
         private FTRPnodesCollection _pnodes;
+        
+        private static Lazy<ITypedElement> _flowgateReference = new Lazy<ITypedElement>(RetrieveFlowgateReference);
         
         /// <summary>
         /// The backing field for the Flowgate property
@@ -120,10 +136,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
                     float old = this._baseEnergy;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnBaseEnergyChanging(e);
-                    this.OnPropertyChanging("BaseEnergy", e);
+                    this.OnPropertyChanging("BaseEnergy", e, _baseEnergyAttribute);
                     this._baseEnergy = value;
                     this.OnBaseEnergyChanged(e);
-                    this.OnPropertyChanged("BaseEnergy", e);
+                    this.OnPropertyChanged("BaseEnergy", e, _baseEnergyAttribute);
                 }
             }
         }
@@ -146,10 +162,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
                     string old = this._action;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnActionChanging(e);
-                    this.OnPropertyChanging("Action", e);
+                    this.OnPropertyChanging("Action", e, _actionAttribute);
                     this._action = value;
                     this.OnActionChanged(e);
-                    this.OnPropertyChanged("Action", e);
+                    this.OnPropertyChanged("Action", e, _actionAttribute);
                 }
             }
         }
@@ -172,10 +188,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
                     string old = this._optimized;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnOptimizedChanging(e);
-                    this.OnPropertyChanging("Optimized", e);
+                    this.OnPropertyChanging("Optimized", e, _optimizedAttribute);
                     this._optimized = value;
                     this.OnOptimizedChanged(e);
-                    this.OnPropertyChanged("Optimized", e);
+                    this.OnPropertyChanged("Optimized", e, _optimizedAttribute);
                 }
             }
         }
@@ -198,10 +214,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
                     string old = this._class;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnClassChanging(e);
-                    this.OnPropertyChanging("Class", e);
+                    this.OnPropertyChanging("Class", e, _classAttribute);
                     this._class = value;
                     this.OnClassChanged(e);
-                    this.OnPropertyChanged("Class", e);
+                    this.OnPropertyChanged("Class", e, _classAttribute);
                 }
             }
         }
@@ -224,10 +240,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
                     string old = this._ftrType;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnFtrTypeChanging(e);
-                    this.OnPropertyChanging("FtrType", e);
+                    this.OnPropertyChanging("FtrType", e, _ftrTypeAttribute);
                     this._ftrType = value;
                     this.OnFtrTypeChanged(e);
-                    this.OnPropertyChanged("FtrType", e);
+                    this.OnPropertyChanged("FtrType", e, _ftrTypeAttribute);
                 }
             }
         }
@@ -250,7 +266,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
                     IEnergyPriceCurve old = this._energyPriceCurve;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnEnergyPriceCurveChanging(e);
-                    this.OnPropertyChanging("EnergyPriceCurve", e);
+                    this.OnPropertyChanging("EnergyPriceCurve", e, _energyPriceCurveReference);
                     this._energyPriceCurve = value;
                     if ((old != null))
                     {
@@ -263,7 +279,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
                         value.Deleted += this.OnResetEnergyPriceCurve;
                     }
                     this.OnEnergyPriceCurveChanged(e);
-                    this.OnPropertyChanged("EnergyPriceCurve", e);
+                    this.OnPropertyChanged("EnergyPriceCurve", e, _energyPriceCurveReference);
                 }
             }
         }
@@ -301,7 +317,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
                     IFlowgate old = this._flowgate;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnFlowgateChanging(e);
-                    this.OnPropertyChanging("Flowgate", e);
+                    this.OnPropertyChanging("Flowgate", e, _flowgateReference);
                     this._flowgate = value;
                     if ((old != null))
                     {
@@ -314,7 +330,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
                         value.Deleted += this.OnResetFlowgate;
                     }
                     this.OnFlowgateChanged(e);
-                    this.OnPropertyChanged("Flowgate", e);
+                    this.OnPropertyChanged("Flowgate", e, _flowgateReference);
                 }
             }
         }
@@ -416,6 +432,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> FlowgateChanged;
         
+        private static ITypedElement RetrieveBaseEnergyAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(FTR.ClassInstance)).Resolve("baseEnergy")));
+        }
+        
         /// <summary>
         /// Raises the BaseEnergyChanging event
         /// </summary>
@@ -440,6 +461,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveActionAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(FTR.ClassInstance)).Resolve("action")));
         }
         
         /// <summary>
@@ -468,6 +494,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
             }
         }
         
+        private static ITypedElement RetrieveOptimizedAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(FTR.ClassInstance)).Resolve("optimized")));
+        }
+        
         /// <summary>
         /// Raises the OptimizedChanging event
         /// </summary>
@@ -492,6 +523,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveClassAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(FTR.ClassInstance)).Resolve("class")));
         }
         
         /// <summary>
@@ -520,6 +556,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
             }
         }
         
+        private static ITypedElement RetrieveFtrTypeAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(FTR.ClassInstance)).Resolve("ftrType")));
+        }
+        
         /// <summary>
         /// Raises the FtrTypeChanging event
         /// </summary>
@@ -544,6 +585,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveEnergyPriceCurveReference()
+        {
+            return ((ITypedElement)(((ModelElement)(FTR.ClassInstance)).Resolve("EnergyPriceCurve")));
         }
         
         /// <summary>
@@ -582,6 +628,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
             this.EnergyPriceCurve = null;
         }
         
+        private static ITypedElement RetrievePnodesReference()
+        {
+            return ((ITypedElement)(((ModelElement)(FTR.ClassInstance)).Resolve("Pnodes")));
+        }
+        
         /// <summary>
         /// Forwards CollectionChanging notifications for the Pnodes property to the parent model element
         /// </summary>
@@ -589,7 +640,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
         /// <param name="e">The original event data</param>
         private void PnodesCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("Pnodes", e);
+            this.OnCollectionChanging("Pnodes", e, _pnodesReference);
         }
         
         /// <summary>
@@ -599,7 +650,12 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
         /// <param name="e">The original event data</param>
         private void PnodesCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("Pnodes", e);
+            this.OnCollectionChanged("Pnodes", e, _pnodesReference);
+        }
+        
+        private static ITypedElement RetrieveFlowgateReference()
+        {
+            return ((ITypedElement)(((ModelElement)(FTR.ClassInstance)).Resolve("Flowgate")));
         }
         
         /// <summary>
@@ -972,7 +1028,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public BaseEnergyProxy(IFTR modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "baseEnergy")
             {
             }
             
@@ -990,24 +1046,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
                     this.ModelElement.BaseEnergy = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.BaseEnergyChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.BaseEnergyChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1021,7 +1059,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public ActionProxy(IFTR modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "action")
             {
             }
             
@@ -1039,24 +1077,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
                     this.ModelElement.Action = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ActionChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ActionChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1070,7 +1090,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public OptimizedProxy(IFTR modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "optimized")
             {
             }
             
@@ -1088,24 +1108,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
                     this.ModelElement.Optimized = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.OptimizedChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.OptimizedChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1119,7 +1121,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public ClassProxy(IFTR modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "class")
             {
             }
             
@@ -1137,24 +1139,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
                     this.ModelElement.Class = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ClassChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ClassChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1168,7 +1152,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public FtrTypeProxy(IFTR modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "ftrType")
             {
             }
             
@@ -1186,24 +1170,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
                     this.ModelElement.FtrType = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.FtrTypeChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.FtrTypeChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1217,7 +1183,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public EnergyPriceCurveProxy(IFTR modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "EnergyPriceCurve")
             {
             }
             
@@ -1235,24 +1201,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
                     this.ModelElement.EnergyPriceCurve = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.EnergyPriceCurveChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.EnergyPriceCurveChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1266,7 +1214,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public FlowgateProxy(IFTR modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "Flowgate")
             {
             }
             
@@ -1283,24 +1231,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
                 {
                     this.ModelElement.Flowgate = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.FlowgateChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.FlowgateChanged -= handler;
             }
         }
     }

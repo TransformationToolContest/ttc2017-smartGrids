@@ -49,7 +49,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfWork
     [XmlNamespacePrefixAttribute("cimInfWork")]
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61970/Informative/InfWork/Project")]
     [DebuggerDisplayAttribute("Project {UUID}")]
-    public class Project : Document, IProject, IModelElement
+    public partial class Project : Document, IProject, IModelElement
     {
         
         /// <summary>
@@ -57,30 +57,44 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfWork
         /// </summary>
         private float _budget;
         
+        private static Lazy<ITypedElement> _budgetAttribute = new Lazy<ITypedElement>(RetrieveBudgetAttribute);
+        
+        private static Lazy<ITypedElement> _erpProjectAccountingReference = new Lazy<ITypedElement>(RetrieveErpProjectAccountingReference);
+        
         /// <summary>
         /// The backing field for the ErpProjectAccounting property
         /// </summary>
         private IErpProjectAccounting _erpProjectAccounting;
+        
+        private static Lazy<ITypedElement> _worksReference = new Lazy<ITypedElement>(RetrieveWorksReference);
         
         /// <summary>
         /// The backing field for the Works property
         /// </summary>
         private ProjectWorksCollection _works;
         
+        private static Lazy<ITypedElement> _requestsReference = new Lazy<ITypedElement>(RetrieveRequestsReference);
+        
         /// <summary>
         /// The backing field for the Requests property
         /// </summary>
         private ProjectRequestsCollection _requests;
+        
+        private static Lazy<ITypedElement> _businessCaseReference = new Lazy<ITypedElement>(RetrieveBusinessCaseReference);
         
         /// <summary>
         /// The backing field for the BusinessCase property
         /// </summary>
         private IBusinessCase _businessCase;
         
+        private static Lazy<ITypedElement> _subProjectsReference = new Lazy<ITypedElement>(RetrieveSubProjectsReference);
+        
         /// <summary>
         /// The backing field for the SubProjects property
         /// </summary>
         private ProjectSubProjectsCollection _subProjects;
+        
+        private static Lazy<ITypedElement> _parentProjectReference = new Lazy<ITypedElement>(RetrieveParentProjectReference);
         
         /// <summary>
         /// The backing field for the ParentProject property
@@ -120,10 +134,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfWork
                     float old = this._budget;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnBudgetChanging(e);
-                    this.OnPropertyChanging("Budget", e);
+                    this.OnPropertyChanging("Budget", e, _budgetAttribute);
                     this._budget = value;
                     this.OnBudgetChanged(e);
-                    this.OnPropertyChanged("Budget", e);
+                    this.OnPropertyChanged("Budget", e, _budgetAttribute);
                 }
             }
         }
@@ -146,7 +160,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfWork
                     IErpProjectAccounting old = this._erpProjectAccounting;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnErpProjectAccountingChanging(e);
-                    this.OnPropertyChanging("ErpProjectAccounting", e);
+                    this.OnPropertyChanging("ErpProjectAccounting", e, _erpProjectAccountingReference);
                     this._erpProjectAccounting = value;
                     if ((old != null))
                     {
@@ -159,7 +173,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfWork
                         value.Deleted += this.OnResetErpProjectAccounting;
                     }
                     this.OnErpProjectAccountingChanged(e);
-                    this.OnPropertyChanged("ErpProjectAccounting", e);
+                    this.OnPropertyChanged("ErpProjectAccounting", e, _erpProjectAccountingReference);
                 }
             }
         }
@@ -212,7 +226,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfWork
                     IBusinessCase old = this._businessCase;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnBusinessCaseChanging(e);
-                    this.OnPropertyChanging("BusinessCase", e);
+                    this.OnPropertyChanging("BusinessCase", e, _businessCaseReference);
                     this._businessCase = value;
                     if ((old != null))
                     {
@@ -225,7 +239,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfWork
                         value.Deleted += this.OnResetBusinessCase;
                     }
                     this.OnBusinessCaseChanged(e);
-                    this.OnPropertyChanged("BusinessCase", e);
+                    this.OnPropertyChanged("BusinessCase", e, _businessCaseReference);
                 }
             }
         }
@@ -263,7 +277,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfWork
                     IProject old = this._parentProject;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnParentProjectChanging(e);
-                    this.OnPropertyChanging("ParentProject", e);
+                    this.OnPropertyChanging("ParentProject", e, _parentProjectReference);
                     this._parentProject = value;
                     if ((old != null))
                     {
@@ -276,7 +290,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfWork
                         value.Deleted += this.OnResetParentProject;
                     }
                     this.OnParentProjectChanged(e);
-                    this.OnPropertyChanged("ParentProject", e);
+                    this.OnPropertyChanged("ParentProject", e, _parentProjectReference);
                 }
             }
         }
@@ -347,6 +361,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfWork
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> ParentProjectChanged;
         
+        private static ITypedElement RetrieveBudgetAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(Project.ClassInstance)).Resolve("budget")));
+        }
+        
         /// <summary>
         /// Raises the BudgetChanging event
         /// </summary>
@@ -371,6 +390,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfWork
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveErpProjectAccountingReference()
+        {
+            return ((ITypedElement)(((ModelElement)(Project.ClassInstance)).Resolve("ErpProjectAccounting")));
         }
         
         /// <summary>
@@ -409,6 +433,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfWork
             this.ErpProjectAccounting = null;
         }
         
+        private static ITypedElement RetrieveWorksReference()
+        {
+            return ((ITypedElement)(((ModelElement)(Project.ClassInstance)).Resolve("Works")));
+        }
+        
         /// <summary>
         /// Forwards CollectionChanging notifications for the Works property to the parent model element
         /// </summary>
@@ -416,7 +445,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfWork
         /// <param name="e">The original event data</param>
         private void WorksCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("Works", e);
+            this.OnCollectionChanging("Works", e, _worksReference);
         }
         
         /// <summary>
@@ -426,7 +455,12 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfWork
         /// <param name="e">The original event data</param>
         private void WorksCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("Works", e);
+            this.OnCollectionChanged("Works", e, _worksReference);
+        }
+        
+        private static ITypedElement RetrieveRequestsReference()
+        {
+            return ((ITypedElement)(((ModelElement)(Project.ClassInstance)).Resolve("Requests")));
         }
         
         /// <summary>
@@ -436,7 +470,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfWork
         /// <param name="e">The original event data</param>
         private void RequestsCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("Requests", e);
+            this.OnCollectionChanging("Requests", e, _requestsReference);
         }
         
         /// <summary>
@@ -446,7 +480,12 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfWork
         /// <param name="e">The original event data</param>
         private void RequestsCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("Requests", e);
+            this.OnCollectionChanged("Requests", e, _requestsReference);
+        }
+        
+        private static ITypedElement RetrieveBusinessCaseReference()
+        {
+            return ((ITypedElement)(((ModelElement)(Project.ClassInstance)).Resolve("BusinessCase")));
         }
         
         /// <summary>
@@ -485,6 +524,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfWork
             this.BusinessCase = null;
         }
         
+        private static ITypedElement RetrieveSubProjectsReference()
+        {
+            return ((ITypedElement)(((ModelElement)(Project.ClassInstance)).Resolve("SubProjects")));
+        }
+        
         /// <summary>
         /// Forwards CollectionChanging notifications for the SubProjects property to the parent model element
         /// </summary>
@@ -492,7 +536,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfWork
         /// <param name="e">The original event data</param>
         private void SubProjectsCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("SubProjects", e);
+            this.OnCollectionChanging("SubProjects", e, _subProjectsReference);
         }
         
         /// <summary>
@@ -502,7 +546,12 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfWork
         /// <param name="e">The original event data</param>
         private void SubProjectsCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("SubProjects", e);
+            this.OnCollectionChanged("SubProjects", e, _subProjectsReference);
+        }
+        
+        private static ITypedElement RetrieveParentProjectReference()
+        {
+            return ((ITypedElement)(((ModelElement)(Project.ClassInstance)).Resolve("ParentProject")));
         }
         
         /// <summary>
@@ -957,7 +1006,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfWork
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public BudgetProxy(IProject modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "budget")
             {
             }
             
@@ -975,24 +1024,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfWork
                     this.ModelElement.Budget = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.BudgetChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.BudgetChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1006,7 +1037,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfWork
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public ErpProjectAccountingProxy(IProject modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "ErpProjectAccounting")
             {
             }
             
@@ -1024,24 +1055,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfWork
                     this.ModelElement.ErpProjectAccounting = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ErpProjectAccountingChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ErpProjectAccountingChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1055,7 +1068,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfWork
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public BusinessCaseProxy(IProject modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "BusinessCase")
             {
             }
             
@@ -1073,24 +1086,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfWork
                     this.ModelElement.BusinessCase = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.BusinessCaseChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.BusinessCaseChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1104,7 +1099,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfWork
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public ParentProjectProxy(IProject modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "ParentProject")
             {
             }
             
@@ -1121,24 +1116,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfWork
                 {
                     this.ModelElement.ParentProject = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ParentProjectChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ParentProjectChanged -= handler;
             }
         }
     }

@@ -42,13 +42,17 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.GenerationDynamics
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61970/Generation/GenerationDynamics" +
         "/SteamSupply")]
     [DebuggerDisplayAttribute("SteamSupply {UUID}")]
-    public class SteamSupply : PowerSystemResource, ISteamSupply, IModelElement
+    public partial class SteamSupply : PowerSystemResource, ISteamSupply, IModelElement
     {
         
         /// <summary>
         /// The backing field for the SteamSupplyRating property
         /// </summary>
         private float _steamSupplyRating;
+        
+        private static Lazy<ITypedElement> _steamSupplyRatingAttribute = new Lazy<ITypedElement>(RetrieveSteamSupplyRatingAttribute);
+        
+        private static Lazy<ITypedElement> _steamTurbinesReference = new Lazy<ITypedElement>(RetrieveSteamTurbinesReference);
         
         /// <summary>
         /// The backing field for the SteamTurbines property
@@ -82,10 +86,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.GenerationDynamics
                     float old = this._steamSupplyRating;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnSteamSupplyRatingChanging(e);
-                    this.OnPropertyChanging("SteamSupplyRating", e);
+                    this.OnPropertyChanging("SteamSupplyRating", e, _steamSupplyRatingAttribute);
                     this._steamSupplyRating = value;
                     this.OnSteamSupplyRatingChanged(e);
-                    this.OnPropertyChanged("SteamSupplyRating", e);
+                    this.OnPropertyChanged("SteamSupplyRating", e, _steamSupplyRatingAttribute);
                 }
             }
         }
@@ -142,6 +146,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.GenerationDynamics
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> SteamSupplyRatingChanged;
         
+        private static ITypedElement RetrieveSteamSupplyRatingAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(SteamSupply.ClassInstance)).Resolve("steamSupplyRating")));
+        }
+        
         /// <summary>
         /// Raises the SteamSupplyRatingChanging event
         /// </summary>
@@ -168,6 +177,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.GenerationDynamics
             }
         }
         
+        private static ITypedElement RetrieveSteamTurbinesReference()
+        {
+            return ((ITypedElement)(((ModelElement)(SteamSupply.ClassInstance)).Resolve("SteamTurbines")));
+        }
+        
         /// <summary>
         /// Forwards CollectionChanging notifications for the SteamTurbines property to the parent model element
         /// </summary>
@@ -175,7 +189,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.GenerationDynamics
         /// <param name="e">The original event data</param>
         private void SteamTurbinesCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("SteamTurbines", e);
+            this.OnCollectionChanging("SteamTurbines", e, _steamTurbinesReference);
         }
         
         /// <summary>
@@ -185,7 +199,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.GenerationDynamics
         /// <param name="e">The original event data</param>
         private void SteamTurbinesCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("SteamTurbines", e);
+            this.OnCollectionChanged("SteamTurbines", e, _steamTurbinesReference);
         }
         
         /// <summary>
@@ -380,7 +394,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.GenerationDynamics
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public SteamSupplyRatingProxy(ISteamSupply modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "steamSupplyRating")
             {
             }
             
@@ -397,24 +411,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.GenerationDynamics
                 {
                     this.ModelElement.SteamSupplyRating = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.SteamSupplyRatingChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.SteamSupplyRatingChanged -= handler;
             }
         }
     }

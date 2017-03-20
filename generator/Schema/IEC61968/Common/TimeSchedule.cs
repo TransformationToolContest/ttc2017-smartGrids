@@ -51,7 +51,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Common
     [XmlNamespacePrefixAttribute("cimCommon")]
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61968/Common/TimeSchedule")]
     [DebuggerDisplayAttribute("TimeSchedule {UUID}")]
-    public class TimeSchedule : Document, ITimeSchedule, IModelElement
+    public partial class TimeSchedule : Document, ITimeSchedule, IModelElement
     {
         
         /// <summary>
@@ -59,25 +59,37 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Common
         /// </summary>
         private string _recurrencePattern;
         
+        private static Lazy<ITypedElement> _recurrencePatternAttribute = new Lazy<ITypedElement>(RetrieveRecurrencePatternAttribute);
+        
         /// <summary>
         /// The backing field for the Disabled property
         /// </summary>
         private bool _disabled;
+        
+        private static Lazy<ITypedElement> _disabledAttribute = new Lazy<ITypedElement>(RetrieveDisabledAttribute);
         
         /// <summary>
         /// The backing field for the RecurrencePeriod property
         /// </summary>
         private float _recurrencePeriod;
         
+        private static Lazy<ITypedElement> _recurrencePeriodAttribute = new Lazy<ITypedElement>(RetrieveRecurrencePeriodAttribute);
+        
         /// <summary>
         /// The backing field for the Offset property
         /// </summary>
         private float _offset;
         
+        private static Lazy<ITypedElement> _offsetAttribute = new Lazy<ITypedElement>(RetrieveOffsetAttribute);
+        
+        private static Lazy<ITypedElement> _scheduleIntervalReference = new Lazy<ITypedElement>(RetrieveScheduleIntervalReference);
+        
         /// <summary>
         /// The backing field for the ScheduleInterval property
         /// </summary>
         private IDateTimeInterval _scheduleInterval;
+        
+        private static Lazy<ITypedElement> _timePointsReference = new Lazy<ITypedElement>(RetrieveTimePointsReference);
         
         /// <summary>
         /// The backing field for the TimePoints property
@@ -111,10 +123,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Common
                     string old = this._recurrencePattern;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnRecurrencePatternChanging(e);
-                    this.OnPropertyChanging("RecurrencePattern", e);
+                    this.OnPropertyChanging("RecurrencePattern", e, _recurrencePatternAttribute);
                     this._recurrencePattern = value;
                     this.OnRecurrencePatternChanged(e);
-                    this.OnPropertyChanged("RecurrencePattern", e);
+                    this.OnPropertyChanged("RecurrencePattern", e, _recurrencePatternAttribute);
                 }
             }
         }
@@ -137,10 +149,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Common
                     bool old = this._disabled;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnDisabledChanging(e);
-                    this.OnPropertyChanging("Disabled", e);
+                    this.OnPropertyChanging("Disabled", e, _disabledAttribute);
                     this._disabled = value;
                     this.OnDisabledChanged(e);
-                    this.OnPropertyChanged("Disabled", e);
+                    this.OnPropertyChanged("Disabled", e, _disabledAttribute);
                 }
             }
         }
@@ -163,10 +175,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Common
                     float old = this._recurrencePeriod;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnRecurrencePeriodChanging(e);
-                    this.OnPropertyChanging("RecurrencePeriod", e);
+                    this.OnPropertyChanging("RecurrencePeriod", e, _recurrencePeriodAttribute);
                     this._recurrencePeriod = value;
                     this.OnRecurrencePeriodChanged(e);
-                    this.OnPropertyChanged("RecurrencePeriod", e);
+                    this.OnPropertyChanged("RecurrencePeriod", e, _recurrencePeriodAttribute);
                 }
             }
         }
@@ -189,10 +201,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Common
                     float old = this._offset;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnOffsetChanging(e);
-                    this.OnPropertyChanging("Offset", e);
+                    this.OnPropertyChanging("Offset", e, _offsetAttribute);
                     this._offset = value;
                     this.OnOffsetChanged(e);
-                    this.OnPropertyChanged("Offset", e);
+                    this.OnPropertyChanged("Offset", e, _offsetAttribute);
                 }
             }
         }
@@ -215,7 +227,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Common
                     IDateTimeInterval old = this._scheduleInterval;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnScheduleIntervalChanging(e);
-                    this.OnPropertyChanging("ScheduleInterval", e);
+                    this.OnPropertyChanging("ScheduleInterval", e, _scheduleIntervalReference);
                     this._scheduleInterval = value;
                     if ((old != null))
                     {
@@ -226,7 +238,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Common
                         value.Deleted += this.OnResetScheduleInterval;
                     }
                     this.OnScheduleIntervalChanged(e);
-                    this.OnPropertyChanged("ScheduleInterval", e);
+                    this.OnPropertyChanged("ScheduleInterval", e, _scheduleIntervalReference);
                 }
             }
         }
@@ -322,6 +334,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Common
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> ScheduleIntervalChanged;
         
+        private static ITypedElement RetrieveRecurrencePatternAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(TimeSchedule.ClassInstance)).Resolve("recurrencePattern")));
+        }
+        
         /// <summary>
         /// Raises the RecurrencePatternChanging event
         /// </summary>
@@ -346,6 +363,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Common
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveDisabledAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(TimeSchedule.ClassInstance)).Resolve("disabled")));
         }
         
         /// <summary>
@@ -374,6 +396,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Common
             }
         }
         
+        private static ITypedElement RetrieveRecurrencePeriodAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(TimeSchedule.ClassInstance)).Resolve("recurrencePeriod")));
+        }
+        
         /// <summary>
         /// Raises the RecurrencePeriodChanging event
         /// </summary>
@@ -400,6 +427,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Common
             }
         }
         
+        private static ITypedElement RetrieveOffsetAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(TimeSchedule.ClassInstance)).Resolve("offset")));
+        }
+        
         /// <summary>
         /// Raises the OffsetChanging event
         /// </summary>
@@ -424,6 +456,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Common
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveScheduleIntervalReference()
+        {
+            return ((ITypedElement)(((ModelElement)(TimeSchedule.ClassInstance)).Resolve("scheduleInterval")));
         }
         
         /// <summary>
@@ -462,6 +499,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Common
             this.ScheduleInterval = null;
         }
         
+        private static ITypedElement RetrieveTimePointsReference()
+        {
+            return ((ITypedElement)(((ModelElement)(TimeSchedule.ClassInstance)).Resolve("TimePoints")));
+        }
+        
         /// <summary>
         /// Forwards CollectionChanging notifications for the TimePoints property to the parent model element
         /// </summary>
@@ -469,7 +511,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Common
         /// <param name="e">The original event data</param>
         private void TimePointsCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("TimePoints", e);
+            this.OnCollectionChanging("TimePoints", e, _timePointsReference);
         }
         
         /// <summary>
@@ -479,7 +521,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Common
         /// <param name="e">The original event data</param>
         private void TimePointsCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("TimePoints", e);
+            this.OnCollectionChanged("TimePoints", e, _timePointsReference);
         }
         
         /// <summary>
@@ -763,7 +805,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Common
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public RecurrencePatternProxy(ITimeSchedule modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "recurrencePattern")
             {
             }
             
@@ -781,24 +823,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Common
                     this.ModelElement.RecurrencePattern = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.RecurrencePatternChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.RecurrencePatternChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -812,7 +836,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Common
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public DisabledProxy(ITimeSchedule modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "disabled")
             {
             }
             
@@ -830,24 +854,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Common
                     this.ModelElement.Disabled = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.DisabledChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.DisabledChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -861,7 +867,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Common
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public RecurrencePeriodProxy(ITimeSchedule modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "recurrencePeriod")
             {
             }
             
@@ -879,24 +885,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Common
                     this.ModelElement.RecurrencePeriod = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.RecurrencePeriodChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.RecurrencePeriodChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -910,7 +898,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Common
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public OffsetProxy(ITimeSchedule modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "offset")
             {
             }
             
@@ -928,24 +916,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Common
                     this.ModelElement.Offset = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.OffsetChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.OffsetChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -959,7 +929,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Common
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public ScheduleIntervalProxy(ITimeSchedule modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "scheduleInterval")
             {
             }
             
@@ -976,24 +946,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Common
                 {
                     this.ModelElement.ScheduleInterval = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ScheduleIntervalChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ScheduleIntervalChanged -= handler;
             }
         }
     }

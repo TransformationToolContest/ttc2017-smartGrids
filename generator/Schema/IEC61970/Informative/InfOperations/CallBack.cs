@@ -50,7 +50,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfOperations
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61970/Informative/InfOperations/Cal" +
         "lBack")]
     [DebuggerDisplayAttribute("CallBack {UUID}")]
-    public class CallBack : IdentifiedObject, ICallBack, IModelElement
+    public partial class CallBack : IdentifiedObject, ICallBack, IModelElement
     {
         
         /// <summary>
@@ -58,40 +58,58 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfOperations
         /// </summary>
         private string _advice;
         
+        private static Lazy<ITypedElement> _adviceAttribute = new Lazy<ITypedElement>(RetrieveAdviceAttribute);
+        
         /// <summary>
         /// The backing field for the ProblemInfo property
         /// </summary>
         private string _problemInfo;
+        
+        private static Lazy<ITypedElement> _problemInfoAttribute = new Lazy<ITypedElement>(RetrieveProblemInfoAttribute);
         
         /// <summary>
         /// The backing field for the ContactDetail property
         /// </summary>
         private string _contactDetail;
         
+        private static Lazy<ITypedElement> _contactDetailAttribute = new Lazy<ITypedElement>(RetrieveContactDetailAttribute);
+        
         /// <summary>
         /// The backing field for the DateTime property
         /// </summary>
         private DateTime _dateTime;
+        
+        private static Lazy<ITypedElement> _dateTimeAttribute = new Lazy<ITypedElement>(RetrieveDateTimeAttribute);
         
         /// <summary>
         /// The backing field for the Comment property
         /// </summary>
         private string _comment;
         
+        private static Lazy<ITypedElement> _commentAttribute = new Lazy<ITypedElement>(RetrieveCommentAttribute);
+        
+        private static Lazy<ITypedElement> _statusReference = new Lazy<ITypedElement>(RetrieveStatusReference);
+        
         /// <summary>
         /// The backing field for the Status property
         /// </summary>
         private IStatus _status;
+        
+        private static Lazy<ITypedElement> _erpPersonsReference = new Lazy<ITypedElement>(RetrieveErpPersonsReference);
         
         /// <summary>
         /// The backing field for the ErpPersons property
         /// </summary>
         private CallBackErpPersonsCollection _erpPersons;
         
+        private static Lazy<ITypedElement> _appointmentsReference = new Lazy<ITypedElement>(RetrieveAppointmentsReference);
+        
         /// <summary>
         /// The backing field for the Appointments property
         /// </summary>
         private CallBackAppointmentsCollection _appointments;
+        
+        private static Lazy<ITypedElement> _troubleTicketsReference = new Lazy<ITypedElement>(RetrieveTroubleTicketsReference);
         
         /// <summary>
         /// The backing field for the TroubleTickets property
@@ -131,10 +149,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfOperations
                     string old = this._advice;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnAdviceChanging(e);
-                    this.OnPropertyChanging("Advice", e);
+                    this.OnPropertyChanging("Advice", e, _adviceAttribute);
                     this._advice = value;
                     this.OnAdviceChanged(e);
-                    this.OnPropertyChanged("Advice", e);
+                    this.OnPropertyChanged("Advice", e, _adviceAttribute);
                 }
             }
         }
@@ -157,10 +175,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfOperations
                     string old = this._problemInfo;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnProblemInfoChanging(e);
-                    this.OnPropertyChanging("ProblemInfo", e);
+                    this.OnPropertyChanging("ProblemInfo", e, _problemInfoAttribute);
                     this._problemInfo = value;
                     this.OnProblemInfoChanged(e);
-                    this.OnPropertyChanged("ProblemInfo", e);
+                    this.OnPropertyChanged("ProblemInfo", e, _problemInfoAttribute);
                 }
             }
         }
@@ -183,10 +201,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfOperations
                     string old = this._contactDetail;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnContactDetailChanging(e);
-                    this.OnPropertyChanging("ContactDetail", e);
+                    this.OnPropertyChanging("ContactDetail", e, _contactDetailAttribute);
                     this._contactDetail = value;
                     this.OnContactDetailChanged(e);
-                    this.OnPropertyChanged("ContactDetail", e);
+                    this.OnPropertyChanged("ContactDetail", e, _contactDetailAttribute);
                 }
             }
         }
@@ -209,10 +227,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfOperations
                     DateTime old = this._dateTime;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnDateTimeChanging(e);
-                    this.OnPropertyChanging("DateTime", e);
+                    this.OnPropertyChanging("DateTime", e, _dateTimeAttribute);
                     this._dateTime = value;
                     this.OnDateTimeChanged(e);
-                    this.OnPropertyChanged("DateTime", e);
+                    this.OnPropertyChanged("DateTime", e, _dateTimeAttribute);
                 }
             }
         }
@@ -235,10 +253,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfOperations
                     string old = this._comment;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnCommentChanging(e);
-                    this.OnPropertyChanging("Comment", e);
+                    this.OnPropertyChanging("Comment", e, _commentAttribute);
                     this._comment = value;
                     this.OnCommentChanged(e);
-                    this.OnPropertyChanged("Comment", e);
+                    this.OnPropertyChanged("Comment", e, _commentAttribute);
                 }
             }
         }
@@ -261,7 +279,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfOperations
                     IStatus old = this._status;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnStatusChanging(e);
-                    this.OnPropertyChanging("Status", e);
+                    this.OnPropertyChanging("Status", e, _statusReference);
                     this._status = value;
                     if ((old != null))
                     {
@@ -272,7 +290,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfOperations
                         value.Deleted += this.OnResetStatus;
                     }
                     this.OnStatusChanged(e);
-                    this.OnPropertyChanged("Status", e);
+                    this.OnPropertyChanged("Status", e, _statusReference);
                 }
             }
         }
@@ -409,6 +427,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfOperations
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> StatusChanged;
         
+        private static ITypedElement RetrieveAdviceAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(CallBack.ClassInstance)).Resolve("advice")));
+        }
+        
         /// <summary>
         /// Raises the AdviceChanging event
         /// </summary>
@@ -433,6 +456,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfOperations
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveProblemInfoAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(CallBack.ClassInstance)).Resolve("problemInfo")));
         }
         
         /// <summary>
@@ -461,6 +489,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfOperations
             }
         }
         
+        private static ITypedElement RetrieveContactDetailAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(CallBack.ClassInstance)).Resolve("contactDetail")));
+        }
+        
         /// <summary>
         /// Raises the ContactDetailChanging event
         /// </summary>
@@ -485,6 +518,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfOperations
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveDateTimeAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(CallBack.ClassInstance)).Resolve("dateTime")));
         }
         
         /// <summary>
@@ -513,6 +551,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfOperations
             }
         }
         
+        private static ITypedElement RetrieveCommentAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(CallBack.ClassInstance)).Resolve("comment")));
+        }
+        
         /// <summary>
         /// Raises the CommentChanging event
         /// </summary>
@@ -537,6 +580,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfOperations
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveStatusReference()
+        {
+            return ((ITypedElement)(((ModelElement)(CallBack.ClassInstance)).Resolve("status")));
         }
         
         /// <summary>
@@ -575,6 +623,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfOperations
             this.Status = null;
         }
         
+        private static ITypedElement RetrieveErpPersonsReference()
+        {
+            return ((ITypedElement)(((ModelElement)(CallBack.ClassInstance)).Resolve("ErpPersons")));
+        }
+        
         /// <summary>
         /// Forwards CollectionChanging notifications for the ErpPersons property to the parent model element
         /// </summary>
@@ -582,7 +635,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfOperations
         /// <param name="e">The original event data</param>
         private void ErpPersonsCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("ErpPersons", e);
+            this.OnCollectionChanging("ErpPersons", e, _erpPersonsReference);
         }
         
         /// <summary>
@@ -592,7 +645,12 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfOperations
         /// <param name="e">The original event data</param>
         private void ErpPersonsCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("ErpPersons", e);
+            this.OnCollectionChanged("ErpPersons", e, _erpPersonsReference);
+        }
+        
+        private static ITypedElement RetrieveAppointmentsReference()
+        {
+            return ((ITypedElement)(((ModelElement)(CallBack.ClassInstance)).Resolve("Appointments")));
         }
         
         /// <summary>
@@ -602,7 +660,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfOperations
         /// <param name="e">The original event data</param>
         private void AppointmentsCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("Appointments", e);
+            this.OnCollectionChanging("Appointments", e, _appointmentsReference);
         }
         
         /// <summary>
@@ -612,7 +670,12 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfOperations
         /// <param name="e">The original event data</param>
         private void AppointmentsCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("Appointments", e);
+            this.OnCollectionChanged("Appointments", e, _appointmentsReference);
+        }
+        
+        private static ITypedElement RetrieveTroubleTicketsReference()
+        {
+            return ((ITypedElement)(((ModelElement)(CallBack.ClassInstance)).Resolve("TroubleTickets")));
         }
         
         /// <summary>
@@ -622,7 +685,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfOperations
         /// <param name="e">The original event data</param>
         private void TroubleTicketsCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("TroubleTickets", e);
+            this.OnCollectionChanging("TroubleTickets", e, _troubleTicketsReference);
         }
         
         /// <summary>
@@ -632,7 +695,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfOperations
         /// <param name="e">The original event data</param>
         private void TroubleTicketsCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("TroubleTickets", e);
+            this.OnCollectionChanged("TroubleTickets", e, _troubleTicketsReference);
         }
         
         /// <summary>
@@ -1002,7 +1065,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfOperations
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public AdviceProxy(ICallBack modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "advice")
             {
             }
             
@@ -1020,24 +1083,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfOperations
                     this.ModelElement.Advice = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.AdviceChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.AdviceChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1051,7 +1096,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfOperations
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public ProblemInfoProxy(ICallBack modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "problemInfo")
             {
             }
             
@@ -1069,24 +1114,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfOperations
                     this.ModelElement.ProblemInfo = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ProblemInfoChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ProblemInfoChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1100,7 +1127,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfOperations
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public ContactDetailProxy(ICallBack modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "contactDetail")
             {
             }
             
@@ -1118,24 +1145,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfOperations
                     this.ModelElement.ContactDetail = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ContactDetailChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ContactDetailChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1149,7 +1158,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfOperations
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public DateTimeProxy(ICallBack modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "dateTime")
             {
             }
             
@@ -1167,24 +1176,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfOperations
                     this.ModelElement.DateTime = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.DateTimeChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.DateTimeChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1198,7 +1189,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfOperations
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public CommentProxy(ICallBack modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "comment")
             {
             }
             
@@ -1216,24 +1207,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfOperations
                     this.ModelElement.Comment = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.CommentChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.CommentChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1247,7 +1220,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfOperations
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public StatusProxy(ICallBack modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "status")
             {
             }
             
@@ -1264,24 +1237,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfOperations
                 {
                     this.ModelElement.Status = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.StatusChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.StatusChanged -= handler;
             }
         }
     }

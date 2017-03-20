@@ -46,7 +46,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61970/Generation/Production/Emissio" +
         "nAccount")]
     [DebuggerDisplayAttribute("EmissionAccount {UUID}")]
-    public class EmissionAccount : Curve, IEmissionAccount, IModelElement
+    public partial class EmissionAccount : Curve, IEmissionAccount, IModelElement
     {
         
         /// <summary>
@@ -54,10 +54,16 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
         /// </summary>
         private Nullable<EmissionValueSource> _emissionValueSource;
         
+        private static Lazy<ITypedElement> _emissionValueSourceAttribute = new Lazy<ITypedElement>(RetrieveEmissionValueSourceAttribute);
+        
         /// <summary>
         /// The backing field for the EmissionType property
         /// </summary>
         private Nullable<EmissionType> _emissionType;
+        
+        private static Lazy<ITypedElement> _emissionTypeAttribute = new Lazy<ITypedElement>(RetrieveEmissionTypeAttribute);
+        
+        private static Lazy<ITypedElement> _thermalGeneratingUnitReference = new Lazy<ITypedElement>(RetrieveThermalGeneratingUnitReference);
         
         /// <summary>
         /// The backing field for the ThermalGeneratingUnit property
@@ -84,10 +90,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
                     Nullable<EmissionValueSource> old = this._emissionValueSource;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnEmissionValueSourceChanging(e);
-                    this.OnPropertyChanging("EmissionValueSource", e);
+                    this.OnPropertyChanging("EmissionValueSource", e, _emissionValueSourceAttribute);
                     this._emissionValueSource = value;
                     this.OnEmissionValueSourceChanged(e);
-                    this.OnPropertyChanged("EmissionValueSource", e);
+                    this.OnPropertyChanged("EmissionValueSource", e, _emissionValueSourceAttribute);
                 }
             }
         }
@@ -110,10 +116,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
                     Nullable<EmissionType> old = this._emissionType;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnEmissionTypeChanging(e);
-                    this.OnPropertyChanging("EmissionType", e);
+                    this.OnPropertyChanging("EmissionType", e, _emissionTypeAttribute);
                     this._emissionType = value;
                     this.OnEmissionTypeChanged(e);
-                    this.OnPropertyChanged("EmissionType", e);
+                    this.OnPropertyChanged("EmissionType", e, _emissionTypeAttribute);
                 }
             }
         }
@@ -136,7 +142,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
                     IThermalGeneratingUnit old = this._thermalGeneratingUnit;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnThermalGeneratingUnitChanging(e);
-                    this.OnPropertyChanging("ThermalGeneratingUnit", e);
+                    this.OnPropertyChanging("ThermalGeneratingUnit", e, _thermalGeneratingUnitReference);
                     this._thermalGeneratingUnit = value;
                     if ((old != null))
                     {
@@ -149,7 +155,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
                         value.Deleted += this.OnResetThermalGeneratingUnit;
                     }
                     this.OnThermalGeneratingUnitChanged(e);
-                    this.OnPropertyChanged("ThermalGeneratingUnit", e);
+                    this.OnPropertyChanged("ThermalGeneratingUnit", e, _thermalGeneratingUnitReference);
                 }
             }
         }
@@ -211,6 +217,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> ThermalGeneratingUnitChanged;
         
+        private static ITypedElement RetrieveEmissionValueSourceAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(EmissionAccount.ClassInstance)).Resolve("emissionValueSource")));
+        }
+        
         /// <summary>
         /// Raises the EmissionValueSourceChanging event
         /// </summary>
@@ -237,6 +248,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
             }
         }
         
+        private static ITypedElement RetrieveEmissionTypeAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(EmissionAccount.ClassInstance)).Resolve("emissionType")));
+        }
+        
         /// <summary>
         /// Raises the EmissionTypeChanging event
         /// </summary>
@@ -261,6 +277,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveThermalGeneratingUnitReference()
+        {
+            return ((ITypedElement)(((ModelElement)(EmissionAccount.ClassInstance)).Resolve("ThermalGeneratingUnit")));
         }
         
         /// <summary>
@@ -515,7 +536,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public EmissionValueSourceProxy(IEmissionAccount modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "emissionValueSource")
             {
             }
             
@@ -533,24 +554,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
                     this.ModelElement.EmissionValueSource = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.EmissionValueSourceChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.EmissionValueSourceChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -564,7 +567,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public EmissionTypeProxy(IEmissionAccount modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "emissionType")
             {
             }
             
@@ -582,24 +585,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
                     this.ModelElement.EmissionType = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.EmissionTypeChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.EmissionTypeChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -613,7 +598,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public ThermalGeneratingUnitProxy(IEmissionAccount modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "ThermalGeneratingUnit")
             {
             }
             
@@ -630,24 +615,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
                 {
                     this.ModelElement.ThermalGeneratingUnit = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ThermalGeneratingUnitChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ThermalGeneratingUnitChanged -= handler;
             }
         }
     }

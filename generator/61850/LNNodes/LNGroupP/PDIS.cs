@@ -41,123 +41,171 @@ namespace TTC2017.SmartGrids.SubstationStandard.LNNodes.LNGroupP
     [XmlNamespacePrefixAttribute("groupP")]
     [ModelRepresentationClassAttribute("http://www.transformation-tool-contest.eu/2017/smartGrids/substationStandard#//LN" +
         "Nodes/LNGroupP/PDIS")]
-    public class PDIS : TTC2017.SmartGrids.SubstationStandard.LNNodes.LNGroupP.GroupP, IPDIS, IModelElement
+    public partial class PDIS : TTC2017.SmartGrids.SubstationStandard.LNNodes.LNGroupP.GroupP, IPDIS, IModelElement
     {
+        
+        private static Lazy<ITypedElement> _strReference = new Lazy<ITypedElement>(RetrieveStrReference);
         
         /// <summary>
         /// The backing field for the Str property
         /// </summary>
         private IACD _str;
         
+        private static Lazy<ITypedElement> _opReference = new Lazy<ITypedElement>(RetrieveOpReference);
+        
         /// <summary>
         /// The backing field for the Op property
         /// </summary>
         private IACT _op;
+        
+        private static Lazy<ITypedElement> _poRchReference = new Lazy<ITypedElement>(RetrievePoRchReference);
         
         /// <summary>
         /// The backing field for the PoRch property
         /// </summary>
         private IASG _poRch;
         
+        private static Lazy<ITypedElement> _phStrReference = new Lazy<ITypedElement>(RetrievePhStrReference);
+        
         /// <summary>
         /// The backing field for the PhStr property
         /// </summary>
         private IASG _phStr;
+        
+        private static Lazy<ITypedElement> _gndStrReference = new Lazy<ITypedElement>(RetrieveGndStrReference);
         
         /// <summary>
         /// The backing field for the GndStr property
         /// </summary>
         private IASG _gndStr;
         
+        private static Lazy<ITypedElement> _dirModReference = new Lazy<ITypedElement>(RetrieveDirModReference);
+        
         /// <summary>
         /// The backing field for the DirMod property
         /// </summary>
         private IING _dirMod;
+        
+        private static Lazy<ITypedElement> _pctRchReference = new Lazy<ITypedElement>(RetrievePctRchReference);
         
         /// <summary>
         /// The backing field for the PctRch property
         /// </summary>
         private IASG _pctRch;
         
+        private static Lazy<ITypedElement> _ofsReference = new Lazy<ITypedElement>(RetrieveOfsReference);
+        
         /// <summary>
         /// The backing field for the Ofs property
         /// </summary>
         private IASG _ofs;
+        
+        private static Lazy<ITypedElement> _pctOfsReference = new Lazy<ITypedElement>(RetrievePctOfsReference);
         
         /// <summary>
         /// The backing field for the PctOfs property
         /// </summary>
         private IASG _pctOfs;
         
+        private static Lazy<ITypedElement> _risLodReference = new Lazy<ITypedElement>(RetrieveRisLodReference);
+        
         /// <summary>
         /// The backing field for the RisLod property
         /// </summary>
         private IASG _risLod;
+        
+        private static Lazy<ITypedElement> _angLodReference = new Lazy<ITypedElement>(RetrieveAngLodReference);
         
         /// <summary>
         /// The backing field for the AngLod property
         /// </summary>
         private IASG _angLod;
         
+        private static Lazy<ITypedElement> _tmDlModReference = new Lazy<ITypedElement>(RetrieveTmDlModReference);
+        
         /// <summary>
         /// The backing field for the TmDlMod property
         /// </summary>
         private ISPG _tmDlMod;
+        
+        private static Lazy<ITypedElement> _opDlTmmsReference = new Lazy<ITypedElement>(RetrieveOpDlTmmsReference);
         
         /// <summary>
         /// The backing field for the OpDlTmms property
         /// </summary>
         private IING _opDlTmms;
         
+        private static Lazy<ITypedElement> _phDlModReference = new Lazy<ITypedElement>(RetrievePhDlModReference);
+        
         /// <summary>
         /// The backing field for the PhDlMod property
         /// </summary>
         private ISPG _phDlMod;
+        
+        private static Lazy<ITypedElement> _phDlTmmsReference = new Lazy<ITypedElement>(RetrievePhDlTmmsReference);
         
         /// <summary>
         /// The backing field for the PhDlTmms property
         /// </summary>
         private IING _phDlTmms;
         
+        private static Lazy<ITypedElement> _gndDlModReference = new Lazy<ITypedElement>(RetrieveGndDlModReference);
+        
         /// <summary>
         /// The backing field for the GndDlMod property
         /// </summary>
         private ISPG _gndDlMod;
+        
+        private static Lazy<ITypedElement> _gndDlTmmsReference = new Lazy<ITypedElement>(RetrieveGndDlTmmsReference);
         
         /// <summary>
         /// The backing field for the GndDlTmms property
         /// </summary>
         private IING _gndDlTmms;
         
+        private static Lazy<ITypedElement> _x1Reference = new Lazy<ITypedElement>(RetrieveX1Reference);
+        
         /// <summary>
         /// The backing field for the X1 property
         /// </summary>
         private IASG _x1;
+        
+        private static Lazy<ITypedElement> _linAngReference = new Lazy<ITypedElement>(RetrieveLinAngReference);
         
         /// <summary>
         /// The backing field for the LinAng property
         /// </summary>
         private IASG _linAng;
         
+        private static Lazy<ITypedElement> _risGndRchReference = new Lazy<ITypedElement>(RetrieveRisGndRchReference);
+        
         /// <summary>
         /// The backing field for the RisGndRch property
         /// </summary>
         private IASG _risGndRch;
+        
+        private static Lazy<ITypedElement> _risPhRchReference = new Lazy<ITypedElement>(RetrieveRisPhRchReference);
         
         /// <summary>
         /// The backing field for the RisPhRch property
         /// </summary>
         private IASG _risPhRch;
         
+        private static Lazy<ITypedElement> _k0FactReference = new Lazy<ITypedElement>(RetrieveK0FactReference);
+        
         /// <summary>
         /// The backing field for the K0Fact property
         /// </summary>
         private IASG _k0Fact;
         
+        private static Lazy<ITypedElement> _k0FactAngReference = new Lazy<ITypedElement>(RetrieveK0FactAngReference);
+        
         /// <summary>
         /// The backing field for the K0FactAng property
         /// </summary>
         private IASG _k0FactAng;
+        
+        private static Lazy<ITypedElement> _rsDlTmmsReference = new Lazy<ITypedElement>(RetrieveRsDlTmmsReference);
         
         /// <summary>
         /// The backing field for the RsDlTmms property
@@ -183,7 +231,7 @@ namespace TTC2017.SmartGrids.SubstationStandard.LNNodes.LNGroupP
                     IACD old = this._str;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnStrChanging(e);
-                    this.OnPropertyChanging("Str", e);
+                    this.OnPropertyChanging("Str", e, _strReference);
                     this._str = value;
                     if ((old != null))
                     {
@@ -194,7 +242,7 @@ namespace TTC2017.SmartGrids.SubstationStandard.LNNodes.LNGroupP
                         value.Deleted += this.OnResetStr;
                     }
                     this.OnStrChanged(e);
-                    this.OnPropertyChanged("Str", e);
+                    this.OnPropertyChanged("Str", e, _strReference);
                 }
             }
         }
@@ -216,7 +264,7 @@ namespace TTC2017.SmartGrids.SubstationStandard.LNNodes.LNGroupP
                     IACT old = this._op;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnOpChanging(e);
-                    this.OnPropertyChanging("Op", e);
+                    this.OnPropertyChanging("Op", e, _opReference);
                     this._op = value;
                     if ((old != null))
                     {
@@ -227,7 +275,7 @@ namespace TTC2017.SmartGrids.SubstationStandard.LNNodes.LNGroupP
                         value.Deleted += this.OnResetOp;
                     }
                     this.OnOpChanged(e);
-                    this.OnPropertyChanged("Op", e);
+                    this.OnPropertyChanged("Op", e, _opReference);
                 }
             }
         }
@@ -249,7 +297,7 @@ namespace TTC2017.SmartGrids.SubstationStandard.LNNodes.LNGroupP
                     IASG old = this._poRch;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnPoRchChanging(e);
-                    this.OnPropertyChanging("PoRch", e);
+                    this.OnPropertyChanging("PoRch", e, _poRchReference);
                     this._poRch = value;
                     if ((old != null))
                     {
@@ -260,7 +308,7 @@ namespace TTC2017.SmartGrids.SubstationStandard.LNNodes.LNGroupP
                         value.Deleted += this.OnResetPoRch;
                     }
                     this.OnPoRchChanged(e);
-                    this.OnPropertyChanged("PoRch", e);
+                    this.OnPropertyChanged("PoRch", e, _poRchReference);
                 }
             }
         }
@@ -282,7 +330,7 @@ namespace TTC2017.SmartGrids.SubstationStandard.LNNodes.LNGroupP
                     IASG old = this._phStr;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnPhStrChanging(e);
-                    this.OnPropertyChanging("PhStr", e);
+                    this.OnPropertyChanging("PhStr", e, _phStrReference);
                     this._phStr = value;
                     if ((old != null))
                     {
@@ -293,7 +341,7 @@ namespace TTC2017.SmartGrids.SubstationStandard.LNNodes.LNGroupP
                         value.Deleted += this.OnResetPhStr;
                     }
                     this.OnPhStrChanged(e);
-                    this.OnPropertyChanged("PhStr", e);
+                    this.OnPropertyChanged("PhStr", e, _phStrReference);
                 }
             }
         }
@@ -315,7 +363,7 @@ namespace TTC2017.SmartGrids.SubstationStandard.LNNodes.LNGroupP
                     IASG old = this._gndStr;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnGndStrChanging(e);
-                    this.OnPropertyChanging("GndStr", e);
+                    this.OnPropertyChanging("GndStr", e, _gndStrReference);
                     this._gndStr = value;
                     if ((old != null))
                     {
@@ -326,7 +374,7 @@ namespace TTC2017.SmartGrids.SubstationStandard.LNNodes.LNGroupP
                         value.Deleted += this.OnResetGndStr;
                     }
                     this.OnGndStrChanged(e);
-                    this.OnPropertyChanged("GndStr", e);
+                    this.OnPropertyChanged("GndStr", e, _gndStrReference);
                 }
             }
         }
@@ -348,7 +396,7 @@ namespace TTC2017.SmartGrids.SubstationStandard.LNNodes.LNGroupP
                     IING old = this._dirMod;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnDirModChanging(e);
-                    this.OnPropertyChanging("DirMod", e);
+                    this.OnPropertyChanging("DirMod", e, _dirModReference);
                     this._dirMod = value;
                     if ((old != null))
                     {
@@ -359,7 +407,7 @@ namespace TTC2017.SmartGrids.SubstationStandard.LNNodes.LNGroupP
                         value.Deleted += this.OnResetDirMod;
                     }
                     this.OnDirModChanged(e);
-                    this.OnPropertyChanged("DirMod", e);
+                    this.OnPropertyChanged("DirMod", e, _dirModReference);
                 }
             }
         }
@@ -381,7 +429,7 @@ namespace TTC2017.SmartGrids.SubstationStandard.LNNodes.LNGroupP
                     IASG old = this._pctRch;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnPctRchChanging(e);
-                    this.OnPropertyChanging("PctRch", e);
+                    this.OnPropertyChanging("PctRch", e, _pctRchReference);
                     this._pctRch = value;
                     if ((old != null))
                     {
@@ -392,7 +440,7 @@ namespace TTC2017.SmartGrids.SubstationStandard.LNNodes.LNGroupP
                         value.Deleted += this.OnResetPctRch;
                     }
                     this.OnPctRchChanged(e);
-                    this.OnPropertyChanged("PctRch", e);
+                    this.OnPropertyChanged("PctRch", e, _pctRchReference);
                 }
             }
         }
@@ -414,7 +462,7 @@ namespace TTC2017.SmartGrids.SubstationStandard.LNNodes.LNGroupP
                     IASG old = this._ofs;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnOfsChanging(e);
-                    this.OnPropertyChanging("Ofs", e);
+                    this.OnPropertyChanging("Ofs", e, _ofsReference);
                     this._ofs = value;
                     if ((old != null))
                     {
@@ -425,7 +473,7 @@ namespace TTC2017.SmartGrids.SubstationStandard.LNNodes.LNGroupP
                         value.Deleted += this.OnResetOfs;
                     }
                     this.OnOfsChanged(e);
-                    this.OnPropertyChanged("Ofs", e);
+                    this.OnPropertyChanged("Ofs", e, _ofsReference);
                 }
             }
         }
@@ -447,7 +495,7 @@ namespace TTC2017.SmartGrids.SubstationStandard.LNNodes.LNGroupP
                     IASG old = this._pctOfs;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnPctOfsChanging(e);
-                    this.OnPropertyChanging("PctOfs", e);
+                    this.OnPropertyChanging("PctOfs", e, _pctOfsReference);
                     this._pctOfs = value;
                     if ((old != null))
                     {
@@ -458,7 +506,7 @@ namespace TTC2017.SmartGrids.SubstationStandard.LNNodes.LNGroupP
                         value.Deleted += this.OnResetPctOfs;
                     }
                     this.OnPctOfsChanged(e);
-                    this.OnPropertyChanged("PctOfs", e);
+                    this.OnPropertyChanged("PctOfs", e, _pctOfsReference);
                 }
             }
         }
@@ -480,7 +528,7 @@ namespace TTC2017.SmartGrids.SubstationStandard.LNNodes.LNGroupP
                     IASG old = this._risLod;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnRisLodChanging(e);
-                    this.OnPropertyChanging("RisLod", e);
+                    this.OnPropertyChanging("RisLod", e, _risLodReference);
                     this._risLod = value;
                     if ((old != null))
                     {
@@ -491,7 +539,7 @@ namespace TTC2017.SmartGrids.SubstationStandard.LNNodes.LNGroupP
                         value.Deleted += this.OnResetRisLod;
                     }
                     this.OnRisLodChanged(e);
-                    this.OnPropertyChanged("RisLod", e);
+                    this.OnPropertyChanged("RisLod", e, _risLodReference);
                 }
             }
         }
@@ -513,7 +561,7 @@ namespace TTC2017.SmartGrids.SubstationStandard.LNNodes.LNGroupP
                     IASG old = this._angLod;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnAngLodChanging(e);
-                    this.OnPropertyChanging("AngLod", e);
+                    this.OnPropertyChanging("AngLod", e, _angLodReference);
                     this._angLod = value;
                     if ((old != null))
                     {
@@ -524,7 +572,7 @@ namespace TTC2017.SmartGrids.SubstationStandard.LNNodes.LNGroupP
                         value.Deleted += this.OnResetAngLod;
                     }
                     this.OnAngLodChanged(e);
-                    this.OnPropertyChanged("AngLod", e);
+                    this.OnPropertyChanged("AngLod", e, _angLodReference);
                 }
             }
         }
@@ -546,7 +594,7 @@ namespace TTC2017.SmartGrids.SubstationStandard.LNNodes.LNGroupP
                     ISPG old = this._tmDlMod;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnTmDlModChanging(e);
-                    this.OnPropertyChanging("TmDlMod", e);
+                    this.OnPropertyChanging("TmDlMod", e, _tmDlModReference);
                     this._tmDlMod = value;
                     if ((old != null))
                     {
@@ -557,7 +605,7 @@ namespace TTC2017.SmartGrids.SubstationStandard.LNNodes.LNGroupP
                         value.Deleted += this.OnResetTmDlMod;
                     }
                     this.OnTmDlModChanged(e);
-                    this.OnPropertyChanged("TmDlMod", e);
+                    this.OnPropertyChanged("TmDlMod", e, _tmDlModReference);
                 }
             }
         }
@@ -579,7 +627,7 @@ namespace TTC2017.SmartGrids.SubstationStandard.LNNodes.LNGroupP
                     IING old = this._opDlTmms;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnOpDlTmmsChanging(e);
-                    this.OnPropertyChanging("OpDlTmms", e);
+                    this.OnPropertyChanging("OpDlTmms", e, _opDlTmmsReference);
                     this._opDlTmms = value;
                     if ((old != null))
                     {
@@ -590,7 +638,7 @@ namespace TTC2017.SmartGrids.SubstationStandard.LNNodes.LNGroupP
                         value.Deleted += this.OnResetOpDlTmms;
                     }
                     this.OnOpDlTmmsChanged(e);
-                    this.OnPropertyChanged("OpDlTmms", e);
+                    this.OnPropertyChanged("OpDlTmms", e, _opDlTmmsReference);
                 }
             }
         }
@@ -612,7 +660,7 @@ namespace TTC2017.SmartGrids.SubstationStandard.LNNodes.LNGroupP
                     ISPG old = this._phDlMod;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnPhDlModChanging(e);
-                    this.OnPropertyChanging("PhDlMod", e);
+                    this.OnPropertyChanging("PhDlMod", e, _phDlModReference);
                     this._phDlMod = value;
                     if ((old != null))
                     {
@@ -623,7 +671,7 @@ namespace TTC2017.SmartGrids.SubstationStandard.LNNodes.LNGroupP
                         value.Deleted += this.OnResetPhDlMod;
                     }
                     this.OnPhDlModChanged(e);
-                    this.OnPropertyChanged("PhDlMod", e);
+                    this.OnPropertyChanged("PhDlMod", e, _phDlModReference);
                 }
             }
         }
@@ -645,7 +693,7 @@ namespace TTC2017.SmartGrids.SubstationStandard.LNNodes.LNGroupP
                     IING old = this._phDlTmms;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnPhDlTmmsChanging(e);
-                    this.OnPropertyChanging("PhDlTmms", e);
+                    this.OnPropertyChanging("PhDlTmms", e, _phDlTmmsReference);
                     this._phDlTmms = value;
                     if ((old != null))
                     {
@@ -656,7 +704,7 @@ namespace TTC2017.SmartGrids.SubstationStandard.LNNodes.LNGroupP
                         value.Deleted += this.OnResetPhDlTmms;
                     }
                     this.OnPhDlTmmsChanged(e);
-                    this.OnPropertyChanged("PhDlTmms", e);
+                    this.OnPropertyChanged("PhDlTmms", e, _phDlTmmsReference);
                 }
             }
         }
@@ -678,7 +726,7 @@ namespace TTC2017.SmartGrids.SubstationStandard.LNNodes.LNGroupP
                     ISPG old = this._gndDlMod;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnGndDlModChanging(e);
-                    this.OnPropertyChanging("GndDlMod", e);
+                    this.OnPropertyChanging("GndDlMod", e, _gndDlModReference);
                     this._gndDlMod = value;
                     if ((old != null))
                     {
@@ -689,7 +737,7 @@ namespace TTC2017.SmartGrids.SubstationStandard.LNNodes.LNGroupP
                         value.Deleted += this.OnResetGndDlMod;
                     }
                     this.OnGndDlModChanged(e);
-                    this.OnPropertyChanged("GndDlMod", e);
+                    this.OnPropertyChanged("GndDlMod", e, _gndDlModReference);
                 }
             }
         }
@@ -711,7 +759,7 @@ namespace TTC2017.SmartGrids.SubstationStandard.LNNodes.LNGroupP
                     IING old = this._gndDlTmms;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnGndDlTmmsChanging(e);
-                    this.OnPropertyChanging("GndDlTmms", e);
+                    this.OnPropertyChanging("GndDlTmms", e, _gndDlTmmsReference);
                     this._gndDlTmms = value;
                     if ((old != null))
                     {
@@ -722,7 +770,7 @@ namespace TTC2017.SmartGrids.SubstationStandard.LNNodes.LNGroupP
                         value.Deleted += this.OnResetGndDlTmms;
                     }
                     this.OnGndDlTmmsChanged(e);
-                    this.OnPropertyChanged("GndDlTmms", e);
+                    this.OnPropertyChanged("GndDlTmms", e, _gndDlTmmsReference);
                 }
             }
         }
@@ -744,7 +792,7 @@ namespace TTC2017.SmartGrids.SubstationStandard.LNNodes.LNGroupP
                     IASG old = this._x1;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnX1Changing(e);
-                    this.OnPropertyChanging("X1", e);
+                    this.OnPropertyChanging("X1", e, _x1Reference);
                     this._x1 = value;
                     if ((old != null))
                     {
@@ -755,7 +803,7 @@ namespace TTC2017.SmartGrids.SubstationStandard.LNNodes.LNGroupP
                         value.Deleted += this.OnResetX1;
                     }
                     this.OnX1Changed(e);
-                    this.OnPropertyChanged("X1", e);
+                    this.OnPropertyChanged("X1", e, _x1Reference);
                 }
             }
         }
@@ -777,7 +825,7 @@ namespace TTC2017.SmartGrids.SubstationStandard.LNNodes.LNGroupP
                     IASG old = this._linAng;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnLinAngChanging(e);
-                    this.OnPropertyChanging("LinAng", e);
+                    this.OnPropertyChanging("LinAng", e, _linAngReference);
                     this._linAng = value;
                     if ((old != null))
                     {
@@ -788,7 +836,7 @@ namespace TTC2017.SmartGrids.SubstationStandard.LNNodes.LNGroupP
                         value.Deleted += this.OnResetLinAng;
                     }
                     this.OnLinAngChanged(e);
-                    this.OnPropertyChanged("LinAng", e);
+                    this.OnPropertyChanged("LinAng", e, _linAngReference);
                 }
             }
         }
@@ -810,7 +858,7 @@ namespace TTC2017.SmartGrids.SubstationStandard.LNNodes.LNGroupP
                     IASG old = this._risGndRch;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnRisGndRchChanging(e);
-                    this.OnPropertyChanging("RisGndRch", e);
+                    this.OnPropertyChanging("RisGndRch", e, _risGndRchReference);
                     this._risGndRch = value;
                     if ((old != null))
                     {
@@ -821,7 +869,7 @@ namespace TTC2017.SmartGrids.SubstationStandard.LNNodes.LNGroupP
                         value.Deleted += this.OnResetRisGndRch;
                     }
                     this.OnRisGndRchChanged(e);
-                    this.OnPropertyChanged("RisGndRch", e);
+                    this.OnPropertyChanged("RisGndRch", e, _risGndRchReference);
                 }
             }
         }
@@ -843,7 +891,7 @@ namespace TTC2017.SmartGrids.SubstationStandard.LNNodes.LNGroupP
                     IASG old = this._risPhRch;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnRisPhRchChanging(e);
-                    this.OnPropertyChanging("RisPhRch", e);
+                    this.OnPropertyChanging("RisPhRch", e, _risPhRchReference);
                     this._risPhRch = value;
                     if ((old != null))
                     {
@@ -854,7 +902,7 @@ namespace TTC2017.SmartGrids.SubstationStandard.LNNodes.LNGroupP
                         value.Deleted += this.OnResetRisPhRch;
                     }
                     this.OnRisPhRchChanged(e);
-                    this.OnPropertyChanged("RisPhRch", e);
+                    this.OnPropertyChanged("RisPhRch", e, _risPhRchReference);
                 }
             }
         }
@@ -876,7 +924,7 @@ namespace TTC2017.SmartGrids.SubstationStandard.LNNodes.LNGroupP
                     IASG old = this._k0Fact;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnK0FactChanging(e);
-                    this.OnPropertyChanging("K0Fact", e);
+                    this.OnPropertyChanging("K0Fact", e, _k0FactReference);
                     this._k0Fact = value;
                     if ((old != null))
                     {
@@ -887,7 +935,7 @@ namespace TTC2017.SmartGrids.SubstationStandard.LNNodes.LNGroupP
                         value.Deleted += this.OnResetK0Fact;
                     }
                     this.OnK0FactChanged(e);
-                    this.OnPropertyChanged("K0Fact", e);
+                    this.OnPropertyChanged("K0Fact", e, _k0FactReference);
                 }
             }
         }
@@ -909,7 +957,7 @@ namespace TTC2017.SmartGrids.SubstationStandard.LNNodes.LNGroupP
                     IASG old = this._k0FactAng;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnK0FactAngChanging(e);
-                    this.OnPropertyChanging("K0FactAng", e);
+                    this.OnPropertyChanging("K0FactAng", e, _k0FactAngReference);
                     this._k0FactAng = value;
                     if ((old != null))
                     {
@@ -920,7 +968,7 @@ namespace TTC2017.SmartGrids.SubstationStandard.LNNodes.LNGroupP
                         value.Deleted += this.OnResetK0FactAng;
                     }
                     this.OnK0FactAngChanged(e);
-                    this.OnPropertyChanged("K0FactAng", e);
+                    this.OnPropertyChanged("K0FactAng", e, _k0FactAngReference);
                 }
             }
         }
@@ -942,7 +990,7 @@ namespace TTC2017.SmartGrids.SubstationStandard.LNNodes.LNGroupP
                     IING old = this._rsDlTmms;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnRsDlTmmsChanging(e);
-                    this.OnPropertyChanging("RsDlTmms", e);
+                    this.OnPropertyChanging("RsDlTmms", e, _rsDlTmmsReference);
                     this._rsDlTmms = value;
                     if ((old != null))
                     {
@@ -953,7 +1001,7 @@ namespace TTC2017.SmartGrids.SubstationStandard.LNNodes.LNGroupP
                         value.Deleted += this.OnResetRsDlTmms;
                     }
                     this.OnRsDlTmmsChanged(e);
-                    this.OnPropertyChanged("RsDlTmms", e);
+                    this.OnPropertyChanged("RsDlTmms", e, _rsDlTmmsReference);
                 }
             }
         }
@@ -1225,6 +1273,11 @@ namespace TTC2017.SmartGrids.SubstationStandard.LNNodes.LNGroupP
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> RsDlTmmsChanged;
         
+        private static ITypedElement RetrieveStrReference()
+        {
+            return ((ITypedElement)(((ModelElement)(PDIS.ClassInstance)).Resolve("Str")));
+        }
+        
         /// <summary>
         /// Raises the StrChanging event
         /// </summary>
@@ -1259,6 +1312,11 @@ namespace TTC2017.SmartGrids.SubstationStandard.LNNodes.LNGroupP
         private void OnResetStr(object sender, System.EventArgs eventArgs)
         {
             this.Str = null;
+        }
+        
+        private static ITypedElement RetrieveOpReference()
+        {
+            return ((ITypedElement)(((ModelElement)(PDIS.ClassInstance)).Resolve("Op")));
         }
         
         /// <summary>
@@ -1297,6 +1355,11 @@ namespace TTC2017.SmartGrids.SubstationStandard.LNNodes.LNGroupP
             this.Op = null;
         }
         
+        private static ITypedElement RetrievePoRchReference()
+        {
+            return ((ITypedElement)(((ModelElement)(PDIS.ClassInstance)).Resolve("PoRch")));
+        }
+        
         /// <summary>
         /// Raises the PoRchChanging event
         /// </summary>
@@ -1331,6 +1394,11 @@ namespace TTC2017.SmartGrids.SubstationStandard.LNNodes.LNGroupP
         private void OnResetPoRch(object sender, System.EventArgs eventArgs)
         {
             this.PoRch = null;
+        }
+        
+        private static ITypedElement RetrievePhStrReference()
+        {
+            return ((ITypedElement)(((ModelElement)(PDIS.ClassInstance)).Resolve("PhStr")));
         }
         
         /// <summary>
@@ -1369,6 +1437,11 @@ namespace TTC2017.SmartGrids.SubstationStandard.LNNodes.LNGroupP
             this.PhStr = null;
         }
         
+        private static ITypedElement RetrieveGndStrReference()
+        {
+            return ((ITypedElement)(((ModelElement)(PDIS.ClassInstance)).Resolve("GndStr")));
+        }
+        
         /// <summary>
         /// Raises the GndStrChanging event
         /// </summary>
@@ -1403,6 +1476,11 @@ namespace TTC2017.SmartGrids.SubstationStandard.LNNodes.LNGroupP
         private void OnResetGndStr(object sender, System.EventArgs eventArgs)
         {
             this.GndStr = null;
+        }
+        
+        private static ITypedElement RetrieveDirModReference()
+        {
+            return ((ITypedElement)(((ModelElement)(PDIS.ClassInstance)).Resolve("DirMod")));
         }
         
         /// <summary>
@@ -1441,6 +1519,11 @@ namespace TTC2017.SmartGrids.SubstationStandard.LNNodes.LNGroupP
             this.DirMod = null;
         }
         
+        private static ITypedElement RetrievePctRchReference()
+        {
+            return ((ITypedElement)(((ModelElement)(PDIS.ClassInstance)).Resolve("PctRch")));
+        }
+        
         /// <summary>
         /// Raises the PctRchChanging event
         /// </summary>
@@ -1475,6 +1558,11 @@ namespace TTC2017.SmartGrids.SubstationStandard.LNNodes.LNGroupP
         private void OnResetPctRch(object sender, System.EventArgs eventArgs)
         {
             this.PctRch = null;
+        }
+        
+        private static ITypedElement RetrieveOfsReference()
+        {
+            return ((ITypedElement)(((ModelElement)(PDIS.ClassInstance)).Resolve("Ofs")));
         }
         
         /// <summary>
@@ -1513,6 +1601,11 @@ namespace TTC2017.SmartGrids.SubstationStandard.LNNodes.LNGroupP
             this.Ofs = null;
         }
         
+        private static ITypedElement RetrievePctOfsReference()
+        {
+            return ((ITypedElement)(((ModelElement)(PDIS.ClassInstance)).Resolve("PctOfs")));
+        }
+        
         /// <summary>
         /// Raises the PctOfsChanging event
         /// </summary>
@@ -1547,6 +1640,11 @@ namespace TTC2017.SmartGrids.SubstationStandard.LNNodes.LNGroupP
         private void OnResetPctOfs(object sender, System.EventArgs eventArgs)
         {
             this.PctOfs = null;
+        }
+        
+        private static ITypedElement RetrieveRisLodReference()
+        {
+            return ((ITypedElement)(((ModelElement)(PDIS.ClassInstance)).Resolve("RisLod")));
         }
         
         /// <summary>
@@ -1585,6 +1683,11 @@ namespace TTC2017.SmartGrids.SubstationStandard.LNNodes.LNGroupP
             this.RisLod = null;
         }
         
+        private static ITypedElement RetrieveAngLodReference()
+        {
+            return ((ITypedElement)(((ModelElement)(PDIS.ClassInstance)).Resolve("AngLod")));
+        }
+        
         /// <summary>
         /// Raises the AngLodChanging event
         /// </summary>
@@ -1619,6 +1722,11 @@ namespace TTC2017.SmartGrids.SubstationStandard.LNNodes.LNGroupP
         private void OnResetAngLod(object sender, System.EventArgs eventArgs)
         {
             this.AngLod = null;
+        }
+        
+        private static ITypedElement RetrieveTmDlModReference()
+        {
+            return ((ITypedElement)(((ModelElement)(PDIS.ClassInstance)).Resolve("TmDlMod")));
         }
         
         /// <summary>
@@ -1657,6 +1765,11 @@ namespace TTC2017.SmartGrids.SubstationStandard.LNNodes.LNGroupP
             this.TmDlMod = null;
         }
         
+        private static ITypedElement RetrieveOpDlTmmsReference()
+        {
+            return ((ITypedElement)(((ModelElement)(PDIS.ClassInstance)).Resolve("OpDlTmms")));
+        }
+        
         /// <summary>
         /// Raises the OpDlTmmsChanging event
         /// </summary>
@@ -1691,6 +1804,11 @@ namespace TTC2017.SmartGrids.SubstationStandard.LNNodes.LNGroupP
         private void OnResetOpDlTmms(object sender, System.EventArgs eventArgs)
         {
             this.OpDlTmms = null;
+        }
+        
+        private static ITypedElement RetrievePhDlModReference()
+        {
+            return ((ITypedElement)(((ModelElement)(PDIS.ClassInstance)).Resolve("PhDlMod")));
         }
         
         /// <summary>
@@ -1729,6 +1847,11 @@ namespace TTC2017.SmartGrids.SubstationStandard.LNNodes.LNGroupP
             this.PhDlMod = null;
         }
         
+        private static ITypedElement RetrievePhDlTmmsReference()
+        {
+            return ((ITypedElement)(((ModelElement)(PDIS.ClassInstance)).Resolve("PhDlTmms")));
+        }
+        
         /// <summary>
         /// Raises the PhDlTmmsChanging event
         /// </summary>
@@ -1763,6 +1886,11 @@ namespace TTC2017.SmartGrids.SubstationStandard.LNNodes.LNGroupP
         private void OnResetPhDlTmms(object sender, System.EventArgs eventArgs)
         {
             this.PhDlTmms = null;
+        }
+        
+        private static ITypedElement RetrieveGndDlModReference()
+        {
+            return ((ITypedElement)(((ModelElement)(PDIS.ClassInstance)).Resolve("GndDlMod")));
         }
         
         /// <summary>
@@ -1801,6 +1929,11 @@ namespace TTC2017.SmartGrids.SubstationStandard.LNNodes.LNGroupP
             this.GndDlMod = null;
         }
         
+        private static ITypedElement RetrieveGndDlTmmsReference()
+        {
+            return ((ITypedElement)(((ModelElement)(PDIS.ClassInstance)).Resolve("GndDlTmms")));
+        }
+        
         /// <summary>
         /// Raises the GndDlTmmsChanging event
         /// </summary>
@@ -1835,6 +1968,11 @@ namespace TTC2017.SmartGrids.SubstationStandard.LNNodes.LNGroupP
         private void OnResetGndDlTmms(object sender, System.EventArgs eventArgs)
         {
             this.GndDlTmms = null;
+        }
+        
+        private static ITypedElement RetrieveX1Reference()
+        {
+            return ((ITypedElement)(((ModelElement)(PDIS.ClassInstance)).Resolve("X1")));
         }
         
         /// <summary>
@@ -1873,6 +2011,11 @@ namespace TTC2017.SmartGrids.SubstationStandard.LNNodes.LNGroupP
             this.X1 = null;
         }
         
+        private static ITypedElement RetrieveLinAngReference()
+        {
+            return ((ITypedElement)(((ModelElement)(PDIS.ClassInstance)).Resolve("LinAng")));
+        }
+        
         /// <summary>
         /// Raises the LinAngChanging event
         /// </summary>
@@ -1907,6 +2050,11 @@ namespace TTC2017.SmartGrids.SubstationStandard.LNNodes.LNGroupP
         private void OnResetLinAng(object sender, System.EventArgs eventArgs)
         {
             this.LinAng = null;
+        }
+        
+        private static ITypedElement RetrieveRisGndRchReference()
+        {
+            return ((ITypedElement)(((ModelElement)(PDIS.ClassInstance)).Resolve("RisGndRch")));
         }
         
         /// <summary>
@@ -1945,6 +2093,11 @@ namespace TTC2017.SmartGrids.SubstationStandard.LNNodes.LNGroupP
             this.RisGndRch = null;
         }
         
+        private static ITypedElement RetrieveRisPhRchReference()
+        {
+            return ((ITypedElement)(((ModelElement)(PDIS.ClassInstance)).Resolve("RisPhRch")));
+        }
+        
         /// <summary>
         /// Raises the RisPhRchChanging event
         /// </summary>
@@ -1979,6 +2132,11 @@ namespace TTC2017.SmartGrids.SubstationStandard.LNNodes.LNGroupP
         private void OnResetRisPhRch(object sender, System.EventArgs eventArgs)
         {
             this.RisPhRch = null;
+        }
+        
+        private static ITypedElement RetrieveK0FactReference()
+        {
+            return ((ITypedElement)(((ModelElement)(PDIS.ClassInstance)).Resolve("K0Fact")));
         }
         
         /// <summary>
@@ -2017,6 +2175,11 @@ namespace TTC2017.SmartGrids.SubstationStandard.LNNodes.LNGroupP
             this.K0Fact = null;
         }
         
+        private static ITypedElement RetrieveK0FactAngReference()
+        {
+            return ((ITypedElement)(((ModelElement)(PDIS.ClassInstance)).Resolve("K0FactAng")));
+        }
+        
         /// <summary>
         /// Raises the K0FactAngChanging event
         /// </summary>
@@ -2051,6 +2214,11 @@ namespace TTC2017.SmartGrids.SubstationStandard.LNNodes.LNGroupP
         private void OnResetK0FactAng(object sender, System.EventArgs eventArgs)
         {
             this.K0FactAng = null;
+        }
+        
+        private static ITypedElement RetrieveRsDlTmmsReference()
+        {
+            return ((ITypedElement)(((ModelElement)(PDIS.ClassInstance)).Resolve("RsDlTmms")));
         }
         
         /// <summary>
@@ -3265,7 +3433,7 @@ namespace TTC2017.SmartGrids.SubstationStandard.LNNodes.LNGroupP
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public StrProxy(IPDIS modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "Str")
             {
             }
             
@@ -3283,24 +3451,6 @@ namespace TTC2017.SmartGrids.SubstationStandard.LNNodes.LNGroupP
                     this.ModelElement.Str = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.StrChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.StrChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -3314,7 +3464,7 @@ namespace TTC2017.SmartGrids.SubstationStandard.LNNodes.LNGroupP
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public OpProxy(IPDIS modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "Op")
             {
             }
             
@@ -3332,24 +3482,6 @@ namespace TTC2017.SmartGrids.SubstationStandard.LNNodes.LNGroupP
                     this.ModelElement.Op = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.OpChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.OpChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -3363,7 +3495,7 @@ namespace TTC2017.SmartGrids.SubstationStandard.LNNodes.LNGroupP
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public PoRchProxy(IPDIS modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "PoRch")
             {
             }
             
@@ -3381,24 +3513,6 @@ namespace TTC2017.SmartGrids.SubstationStandard.LNNodes.LNGroupP
                     this.ModelElement.PoRch = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.PoRchChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.PoRchChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -3412,7 +3526,7 @@ namespace TTC2017.SmartGrids.SubstationStandard.LNNodes.LNGroupP
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public PhStrProxy(IPDIS modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "PhStr")
             {
             }
             
@@ -3430,24 +3544,6 @@ namespace TTC2017.SmartGrids.SubstationStandard.LNNodes.LNGroupP
                     this.ModelElement.PhStr = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.PhStrChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.PhStrChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -3461,7 +3557,7 @@ namespace TTC2017.SmartGrids.SubstationStandard.LNNodes.LNGroupP
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public GndStrProxy(IPDIS modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "GndStr")
             {
             }
             
@@ -3479,24 +3575,6 @@ namespace TTC2017.SmartGrids.SubstationStandard.LNNodes.LNGroupP
                     this.ModelElement.GndStr = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.GndStrChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.GndStrChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -3510,7 +3588,7 @@ namespace TTC2017.SmartGrids.SubstationStandard.LNNodes.LNGroupP
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public DirModProxy(IPDIS modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "DirMod")
             {
             }
             
@@ -3528,24 +3606,6 @@ namespace TTC2017.SmartGrids.SubstationStandard.LNNodes.LNGroupP
                     this.ModelElement.DirMod = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.DirModChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.DirModChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -3559,7 +3619,7 @@ namespace TTC2017.SmartGrids.SubstationStandard.LNNodes.LNGroupP
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public PctRchProxy(IPDIS modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "PctRch")
             {
             }
             
@@ -3577,24 +3637,6 @@ namespace TTC2017.SmartGrids.SubstationStandard.LNNodes.LNGroupP
                     this.ModelElement.PctRch = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.PctRchChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.PctRchChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -3608,7 +3650,7 @@ namespace TTC2017.SmartGrids.SubstationStandard.LNNodes.LNGroupP
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public OfsProxy(IPDIS modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "Ofs")
             {
             }
             
@@ -3626,24 +3668,6 @@ namespace TTC2017.SmartGrids.SubstationStandard.LNNodes.LNGroupP
                     this.ModelElement.Ofs = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.OfsChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.OfsChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -3657,7 +3681,7 @@ namespace TTC2017.SmartGrids.SubstationStandard.LNNodes.LNGroupP
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public PctOfsProxy(IPDIS modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "PctOfs")
             {
             }
             
@@ -3675,24 +3699,6 @@ namespace TTC2017.SmartGrids.SubstationStandard.LNNodes.LNGroupP
                     this.ModelElement.PctOfs = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.PctOfsChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.PctOfsChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -3706,7 +3712,7 @@ namespace TTC2017.SmartGrids.SubstationStandard.LNNodes.LNGroupP
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public RisLodProxy(IPDIS modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "RisLod")
             {
             }
             
@@ -3724,24 +3730,6 @@ namespace TTC2017.SmartGrids.SubstationStandard.LNNodes.LNGroupP
                     this.ModelElement.RisLod = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.RisLodChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.RisLodChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -3755,7 +3743,7 @@ namespace TTC2017.SmartGrids.SubstationStandard.LNNodes.LNGroupP
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public AngLodProxy(IPDIS modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "AngLod")
             {
             }
             
@@ -3773,24 +3761,6 @@ namespace TTC2017.SmartGrids.SubstationStandard.LNNodes.LNGroupP
                     this.ModelElement.AngLod = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.AngLodChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.AngLodChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -3804,7 +3774,7 @@ namespace TTC2017.SmartGrids.SubstationStandard.LNNodes.LNGroupP
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public TmDlModProxy(IPDIS modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "TmDlMod")
             {
             }
             
@@ -3822,24 +3792,6 @@ namespace TTC2017.SmartGrids.SubstationStandard.LNNodes.LNGroupP
                     this.ModelElement.TmDlMod = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.TmDlModChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.TmDlModChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -3853,7 +3805,7 @@ namespace TTC2017.SmartGrids.SubstationStandard.LNNodes.LNGroupP
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public OpDlTmmsProxy(IPDIS modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "OpDlTmms")
             {
             }
             
@@ -3871,24 +3823,6 @@ namespace TTC2017.SmartGrids.SubstationStandard.LNNodes.LNGroupP
                     this.ModelElement.OpDlTmms = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.OpDlTmmsChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.OpDlTmmsChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -3902,7 +3836,7 @@ namespace TTC2017.SmartGrids.SubstationStandard.LNNodes.LNGroupP
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public PhDlModProxy(IPDIS modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "PhDlMod")
             {
             }
             
@@ -3920,24 +3854,6 @@ namespace TTC2017.SmartGrids.SubstationStandard.LNNodes.LNGroupP
                     this.ModelElement.PhDlMod = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.PhDlModChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.PhDlModChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -3951,7 +3867,7 @@ namespace TTC2017.SmartGrids.SubstationStandard.LNNodes.LNGroupP
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public PhDlTmmsProxy(IPDIS modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "PhDlTmms")
             {
             }
             
@@ -3969,24 +3885,6 @@ namespace TTC2017.SmartGrids.SubstationStandard.LNNodes.LNGroupP
                     this.ModelElement.PhDlTmms = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.PhDlTmmsChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.PhDlTmmsChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -4000,7 +3898,7 @@ namespace TTC2017.SmartGrids.SubstationStandard.LNNodes.LNGroupP
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public GndDlModProxy(IPDIS modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "GndDlMod")
             {
             }
             
@@ -4018,24 +3916,6 @@ namespace TTC2017.SmartGrids.SubstationStandard.LNNodes.LNGroupP
                     this.ModelElement.GndDlMod = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.GndDlModChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.GndDlModChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -4049,7 +3929,7 @@ namespace TTC2017.SmartGrids.SubstationStandard.LNNodes.LNGroupP
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public GndDlTmmsProxy(IPDIS modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "GndDlTmms")
             {
             }
             
@@ -4067,24 +3947,6 @@ namespace TTC2017.SmartGrids.SubstationStandard.LNNodes.LNGroupP
                     this.ModelElement.GndDlTmms = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.GndDlTmmsChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.GndDlTmmsChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -4098,7 +3960,7 @@ namespace TTC2017.SmartGrids.SubstationStandard.LNNodes.LNGroupP
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public X1Proxy(IPDIS modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "X1")
             {
             }
             
@@ -4116,24 +3978,6 @@ namespace TTC2017.SmartGrids.SubstationStandard.LNNodes.LNGroupP
                     this.ModelElement.X1 = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.X1Changed += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.X1Changed -= handler;
-            }
         }
         
         /// <summary>
@@ -4147,7 +3991,7 @@ namespace TTC2017.SmartGrids.SubstationStandard.LNNodes.LNGroupP
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public LinAngProxy(IPDIS modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "LinAng")
             {
             }
             
@@ -4165,24 +4009,6 @@ namespace TTC2017.SmartGrids.SubstationStandard.LNNodes.LNGroupP
                     this.ModelElement.LinAng = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.LinAngChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.LinAngChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -4196,7 +4022,7 @@ namespace TTC2017.SmartGrids.SubstationStandard.LNNodes.LNGroupP
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public RisGndRchProxy(IPDIS modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "RisGndRch")
             {
             }
             
@@ -4214,24 +4040,6 @@ namespace TTC2017.SmartGrids.SubstationStandard.LNNodes.LNGroupP
                     this.ModelElement.RisGndRch = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.RisGndRchChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.RisGndRchChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -4245,7 +4053,7 @@ namespace TTC2017.SmartGrids.SubstationStandard.LNNodes.LNGroupP
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public RisPhRchProxy(IPDIS modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "RisPhRch")
             {
             }
             
@@ -4263,24 +4071,6 @@ namespace TTC2017.SmartGrids.SubstationStandard.LNNodes.LNGroupP
                     this.ModelElement.RisPhRch = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.RisPhRchChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.RisPhRchChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -4294,7 +4084,7 @@ namespace TTC2017.SmartGrids.SubstationStandard.LNNodes.LNGroupP
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public K0FactProxy(IPDIS modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "K0Fact")
             {
             }
             
@@ -4312,24 +4102,6 @@ namespace TTC2017.SmartGrids.SubstationStandard.LNNodes.LNGroupP
                     this.ModelElement.K0Fact = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.K0FactChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.K0FactChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -4343,7 +4115,7 @@ namespace TTC2017.SmartGrids.SubstationStandard.LNNodes.LNGroupP
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public K0FactAngProxy(IPDIS modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "K0FactAng")
             {
             }
             
@@ -4361,24 +4133,6 @@ namespace TTC2017.SmartGrids.SubstationStandard.LNNodes.LNGroupP
                     this.ModelElement.K0FactAng = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.K0FactAngChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.K0FactAngChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -4392,7 +4146,7 @@ namespace TTC2017.SmartGrids.SubstationStandard.LNNodes.LNGroupP
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public RsDlTmmsProxy(IPDIS modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "RsDlTmms")
             {
             }
             
@@ -4409,24 +4163,6 @@ namespace TTC2017.SmartGrids.SubstationStandard.LNNodes.LNGroupP
                 {
                     this.ModelElement.RsDlTmms = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.RsDlTmmsChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.RsDlTmmsChanged -= handler;
             }
         }
     }

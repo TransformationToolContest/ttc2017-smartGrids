@@ -53,13 +53,15 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
     [XmlNamespacePrefixAttribute("cimWires")]
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61970/Wires/Fuse")]
     [DebuggerDisplayAttribute("Fuse {UUID}")]
-    public class Fuse : Switch, IFuse, IModelElement
+    public partial class Fuse : Switch, IFuse, IModelElement
     {
         
         /// <summary>
         /// The backing field for the RatingCurrent property
         /// </summary>
         private float _ratingCurrent;
+        
+        private static Lazy<ITypedElement> _ratingCurrentAttribute = new Lazy<ITypedElement>(RetrieveRatingCurrentAttribute);
         
         private static IClass _classInstance;
         
@@ -81,10 +83,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
                     float old = this._ratingCurrent;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnRatingCurrentChanging(e);
-                    this.OnPropertyChanging("RatingCurrent", e);
+                    this.OnPropertyChanging("RatingCurrent", e, _ratingCurrentAttribute);
                     this._ratingCurrent = value;
                     this.OnRatingCurrentChanged(e);
-                    this.OnPropertyChanged("RatingCurrent", e);
+                    this.OnPropertyChanged("RatingCurrent", e, _ratingCurrentAttribute);
                 }
             }
         }
@@ -113,6 +115,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
         /// Gets fired when the RatingCurrent property changed its value
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> RatingCurrentChanged;
+        
+        private static ITypedElement RetrieveRatingCurrentAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(Fuse.ClassInstance)).Resolve("ratingCurrent")));
+        }
         
         /// <summary>
         /// Raises the RatingCurrentChanging event
@@ -193,7 +200,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public RatingCurrentProxy(IFuse modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "ratingCurrent")
             {
             }
             
@@ -210,24 +217,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
                 {
                     this.ModelElement.RatingCurrent = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.RatingCurrentChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.RatingCurrentChanged -= handler;
             }
         }
     }

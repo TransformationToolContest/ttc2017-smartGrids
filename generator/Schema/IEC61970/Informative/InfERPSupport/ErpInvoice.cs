@@ -56,7 +56,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfERPSupport
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61970/Informative/InfERPSupport/Erp" +
         "Invoice")]
     [DebuggerDisplayAttribute("ErpInvoice {UUID}")]
-    public class ErpInvoice : Document, IErpInvoice, IModelElement
+    public partial class ErpInvoice : Document, IErpInvoice, IModelElement
     {
         
         /// <summary>
@@ -64,50 +64,72 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfERPSupport
         /// </summary>
         private float _amount;
         
+        private static Lazy<ITypedElement> _amountAttribute = new Lazy<ITypedElement>(RetrieveAmountAttribute);
+        
         /// <summary>
         /// The backing field for the Kind property
         /// </summary>
         private Nullable<ErpInvoiceKind> _kind;
+        
+        private static Lazy<ITypedElement> _kindAttribute = new Lazy<ITypedElement>(RetrieveKindAttribute);
         
         /// <summary>
         /// The backing field for the TransactionDateTime property
         /// </summary>
         private DateTime _transactionDateTime;
         
+        private static Lazy<ITypedElement> _transactionDateTimeAttribute = new Lazy<ITypedElement>(RetrieveTransactionDateTimeAttribute);
+        
         /// <summary>
         /// The backing field for the ReferenceNumber property
         /// </summary>
         private string _referenceNumber;
+        
+        private static Lazy<ITypedElement> _referenceNumberAttribute = new Lazy<ITypedElement>(RetrieveReferenceNumberAttribute);
         
         /// <summary>
         /// The backing field for the DueDate property
         /// </summary>
         private string _dueDate;
         
+        private static Lazy<ITypedElement> _dueDateAttribute = new Lazy<ITypedElement>(RetrieveDueDateAttribute);
+        
         /// <summary>
         /// The backing field for the MailedDate property
         /// </summary>
         private string _mailedDate;
+        
+        private static Lazy<ITypedElement> _mailedDateAttribute = new Lazy<ITypedElement>(RetrieveMailedDateAttribute);
         
         /// <summary>
         /// The backing field for the TransferType property
         /// </summary>
         private string _transferType;
         
+        private static Lazy<ITypedElement> _transferTypeAttribute = new Lazy<ITypedElement>(RetrieveTransferTypeAttribute);
+        
         /// <summary>
         /// The backing field for the ProForma property
         /// </summary>
         private bool _proForma;
+        
+        private static Lazy<ITypedElement> _proFormaAttribute = new Lazy<ITypedElement>(RetrieveProFormaAttribute);
         
         /// <summary>
         /// The backing field for the BillMediaKind property
         /// </summary>
         private Nullable<BillMediaKind> _billMediaKind;
         
+        private static Lazy<ITypedElement> _billMediaKindAttribute = new Lazy<ITypedElement>(RetrieveBillMediaKindAttribute);
+        
+        private static Lazy<ITypedElement> _customerAccountReference = new Lazy<ITypedElement>(RetrieveCustomerAccountReference);
+        
         /// <summary>
         /// The backing field for the CustomerAccount property
         /// </summary>
         private ICustomerAccount _customerAccount;
+        
+        private static Lazy<ITypedElement> _erpInvoiceLineItemsReference = new Lazy<ITypedElement>(RetrieveErpInvoiceLineItemsReference);
         
         /// <summary>
         /// The backing field for the ErpInvoiceLineItems property
@@ -141,10 +163,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfERPSupport
                     float old = this._amount;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnAmountChanging(e);
-                    this.OnPropertyChanging("Amount", e);
+                    this.OnPropertyChanging("Amount", e, _amountAttribute);
                     this._amount = value;
                     this.OnAmountChanged(e);
-                    this.OnPropertyChanged("Amount", e);
+                    this.OnPropertyChanged("Amount", e, _amountAttribute);
                 }
             }
         }
@@ -167,10 +189,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfERPSupport
                     Nullable<ErpInvoiceKind> old = this._kind;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnKindChanging(e);
-                    this.OnPropertyChanging("Kind", e);
+                    this.OnPropertyChanging("Kind", e, _kindAttribute);
                     this._kind = value;
                     this.OnKindChanged(e);
-                    this.OnPropertyChanged("Kind", e);
+                    this.OnPropertyChanged("Kind", e, _kindAttribute);
                 }
             }
         }
@@ -193,10 +215,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfERPSupport
                     DateTime old = this._transactionDateTime;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnTransactionDateTimeChanging(e);
-                    this.OnPropertyChanging("TransactionDateTime", e);
+                    this.OnPropertyChanging("TransactionDateTime", e, _transactionDateTimeAttribute);
                     this._transactionDateTime = value;
                     this.OnTransactionDateTimeChanged(e);
-                    this.OnPropertyChanged("TransactionDateTime", e);
+                    this.OnPropertyChanged("TransactionDateTime", e, _transactionDateTimeAttribute);
                 }
             }
         }
@@ -219,10 +241,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfERPSupport
                     string old = this._referenceNumber;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnReferenceNumberChanging(e);
-                    this.OnPropertyChanging("ReferenceNumber", e);
+                    this.OnPropertyChanging("ReferenceNumber", e, _referenceNumberAttribute);
                     this._referenceNumber = value;
                     this.OnReferenceNumberChanged(e);
-                    this.OnPropertyChanged("ReferenceNumber", e);
+                    this.OnPropertyChanged("ReferenceNumber", e, _referenceNumberAttribute);
                 }
             }
         }
@@ -245,10 +267,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfERPSupport
                     string old = this._dueDate;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnDueDateChanging(e);
-                    this.OnPropertyChanging("DueDate", e);
+                    this.OnPropertyChanging("DueDate", e, _dueDateAttribute);
                     this._dueDate = value;
                     this.OnDueDateChanged(e);
-                    this.OnPropertyChanged("DueDate", e);
+                    this.OnPropertyChanged("DueDate", e, _dueDateAttribute);
                 }
             }
         }
@@ -271,10 +293,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfERPSupport
                     string old = this._mailedDate;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnMailedDateChanging(e);
-                    this.OnPropertyChanging("MailedDate", e);
+                    this.OnPropertyChanging("MailedDate", e, _mailedDateAttribute);
                     this._mailedDate = value;
                     this.OnMailedDateChanged(e);
-                    this.OnPropertyChanged("MailedDate", e);
+                    this.OnPropertyChanged("MailedDate", e, _mailedDateAttribute);
                 }
             }
         }
@@ -297,10 +319,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfERPSupport
                     string old = this._transferType;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnTransferTypeChanging(e);
-                    this.OnPropertyChanging("TransferType", e);
+                    this.OnPropertyChanging("TransferType", e, _transferTypeAttribute);
                     this._transferType = value;
                     this.OnTransferTypeChanged(e);
-                    this.OnPropertyChanged("TransferType", e);
+                    this.OnPropertyChanged("TransferType", e, _transferTypeAttribute);
                 }
             }
         }
@@ -323,10 +345,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfERPSupport
                     bool old = this._proForma;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnProFormaChanging(e);
-                    this.OnPropertyChanging("ProForma", e);
+                    this.OnPropertyChanging("ProForma", e, _proFormaAttribute);
                     this._proForma = value;
                     this.OnProFormaChanged(e);
-                    this.OnPropertyChanged("ProForma", e);
+                    this.OnPropertyChanged("ProForma", e, _proFormaAttribute);
                 }
             }
         }
@@ -349,10 +371,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfERPSupport
                     Nullable<BillMediaKind> old = this._billMediaKind;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnBillMediaKindChanging(e);
-                    this.OnPropertyChanging("BillMediaKind", e);
+                    this.OnPropertyChanging("BillMediaKind", e, _billMediaKindAttribute);
                     this._billMediaKind = value;
                     this.OnBillMediaKindChanged(e);
-                    this.OnPropertyChanged("BillMediaKind", e);
+                    this.OnPropertyChanged("BillMediaKind", e, _billMediaKindAttribute);
                 }
             }
         }
@@ -375,7 +397,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfERPSupport
                     ICustomerAccount old = this._customerAccount;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnCustomerAccountChanging(e);
-                    this.OnPropertyChanging("CustomerAccount", e);
+                    this.OnPropertyChanging("CustomerAccount", e, _customerAccountReference);
                     this._customerAccount = value;
                     if ((old != null))
                     {
@@ -388,7 +410,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfERPSupport
                         value.Deleted += this.OnResetCustomerAccount;
                     }
                     this.OnCustomerAccountChanged(e);
-                    this.OnPropertyChanged("CustomerAccount", e);
+                    this.OnPropertyChanged("CustomerAccount", e, _customerAccountReference);
                 }
             }
         }
@@ -535,6 +557,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfERPSupport
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> CustomerAccountChanged;
         
+        private static ITypedElement RetrieveAmountAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(ErpInvoice.ClassInstance)).Resolve("amount")));
+        }
+        
         /// <summary>
         /// Raises the AmountChanging event
         /// </summary>
@@ -559,6 +586,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfERPSupport
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveKindAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(ErpInvoice.ClassInstance)).Resolve("kind")));
         }
         
         /// <summary>
@@ -587,6 +619,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfERPSupport
             }
         }
         
+        private static ITypedElement RetrieveTransactionDateTimeAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(ErpInvoice.ClassInstance)).Resolve("transactionDateTime")));
+        }
+        
         /// <summary>
         /// Raises the TransactionDateTimeChanging event
         /// </summary>
@@ -611,6 +648,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfERPSupport
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveReferenceNumberAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(ErpInvoice.ClassInstance)).Resolve("referenceNumber")));
         }
         
         /// <summary>
@@ -639,6 +681,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfERPSupport
             }
         }
         
+        private static ITypedElement RetrieveDueDateAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(ErpInvoice.ClassInstance)).Resolve("dueDate")));
+        }
+        
         /// <summary>
         /// Raises the DueDateChanging event
         /// </summary>
@@ -663,6 +710,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfERPSupport
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveMailedDateAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(ErpInvoice.ClassInstance)).Resolve("mailedDate")));
         }
         
         /// <summary>
@@ -691,6 +743,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfERPSupport
             }
         }
         
+        private static ITypedElement RetrieveTransferTypeAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(ErpInvoice.ClassInstance)).Resolve("transferType")));
+        }
+        
         /// <summary>
         /// Raises the TransferTypeChanging event
         /// </summary>
@@ -715,6 +772,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfERPSupport
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveProFormaAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(ErpInvoice.ClassInstance)).Resolve("proForma")));
         }
         
         /// <summary>
@@ -743,6 +805,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfERPSupport
             }
         }
         
+        private static ITypedElement RetrieveBillMediaKindAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(ErpInvoice.ClassInstance)).Resolve("billMediaKind")));
+        }
+        
         /// <summary>
         /// Raises the BillMediaKindChanging event
         /// </summary>
@@ -767,6 +834,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfERPSupport
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveCustomerAccountReference()
+        {
+            return ((ITypedElement)(((ModelElement)(ErpInvoice.ClassInstance)).Resolve("CustomerAccount")));
         }
         
         /// <summary>
@@ -805,6 +877,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfERPSupport
             this.CustomerAccount = null;
         }
         
+        private static ITypedElement RetrieveErpInvoiceLineItemsReference()
+        {
+            return ((ITypedElement)(((ModelElement)(ErpInvoice.ClassInstance)).Resolve("ErpInvoiceLineItems")));
+        }
+        
         /// <summary>
         /// Forwards CollectionChanging notifications for the ErpInvoiceLineItems property to the parent model element
         /// </summary>
@@ -812,7 +889,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfERPSupport
         /// <param name="e">The original event data</param>
         private void ErpInvoiceLineItemsCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("ErpInvoiceLineItems", e);
+            this.OnCollectionChanging("ErpInvoiceLineItems", e, _erpInvoiceLineItemsReference);
         }
         
         /// <summary>
@@ -822,7 +899,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfERPSupport
         /// <param name="e">The original event data</param>
         private void ErpInvoiceLineItemsCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("ErpInvoiceLineItems", e);
+            this.OnCollectionChanged("ErpInvoiceLineItems", e, _erpInvoiceLineItemsReference);
         }
         
         /// <summary>
@@ -1152,7 +1229,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfERPSupport
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public AmountProxy(IErpInvoice modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "amount")
             {
             }
             
@@ -1170,24 +1247,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfERPSupport
                     this.ModelElement.Amount = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.AmountChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.AmountChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1201,7 +1260,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfERPSupport
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public KindProxy(IErpInvoice modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "kind")
             {
             }
             
@@ -1219,24 +1278,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfERPSupport
                     this.ModelElement.Kind = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.KindChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.KindChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1250,7 +1291,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfERPSupport
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public TransactionDateTimeProxy(IErpInvoice modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "transactionDateTime")
             {
             }
             
@@ -1268,24 +1309,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfERPSupport
                     this.ModelElement.TransactionDateTime = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.TransactionDateTimeChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.TransactionDateTimeChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1299,7 +1322,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfERPSupport
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public ReferenceNumberProxy(IErpInvoice modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "referenceNumber")
             {
             }
             
@@ -1317,24 +1340,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfERPSupport
                     this.ModelElement.ReferenceNumber = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ReferenceNumberChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ReferenceNumberChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1348,7 +1353,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfERPSupport
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public DueDateProxy(IErpInvoice modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "dueDate")
             {
             }
             
@@ -1366,24 +1371,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfERPSupport
                     this.ModelElement.DueDate = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.DueDateChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.DueDateChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1397,7 +1384,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfERPSupport
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public MailedDateProxy(IErpInvoice modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "mailedDate")
             {
             }
             
@@ -1415,24 +1402,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfERPSupport
                     this.ModelElement.MailedDate = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.MailedDateChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.MailedDateChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1446,7 +1415,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfERPSupport
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public TransferTypeProxy(IErpInvoice modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "transferType")
             {
             }
             
@@ -1464,24 +1433,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfERPSupport
                     this.ModelElement.TransferType = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.TransferTypeChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.TransferTypeChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1495,7 +1446,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfERPSupport
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public ProFormaProxy(IErpInvoice modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "proForma")
             {
             }
             
@@ -1513,24 +1464,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfERPSupport
                     this.ModelElement.ProForma = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ProFormaChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ProFormaChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1544,7 +1477,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfERPSupport
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public BillMediaKindProxy(IErpInvoice modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "billMediaKind")
             {
             }
             
@@ -1562,24 +1495,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfERPSupport
                     this.ModelElement.BillMediaKind = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.BillMediaKindChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.BillMediaKindChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1593,7 +1508,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfERPSupport
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public CustomerAccountProxy(IErpInvoice modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "CustomerAccount")
             {
             }
             
@@ -1610,24 +1525,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfERPSupport
                 {
                     this.ModelElement.CustomerAccount = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.CustomerAccountChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.CustomerAccountChanged -= handler;
             }
         }
     }

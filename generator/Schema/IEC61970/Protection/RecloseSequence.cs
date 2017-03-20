@@ -40,7 +40,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Protection
     [XmlNamespacePrefixAttribute("cimProtection")]
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61970/Protection/RecloseSequence")]
     [DebuggerDisplayAttribute("RecloseSequence {UUID}")]
-    public class RecloseSequence : IdentifiedObject, IRecloseSequence, IModelElement
+    public partial class RecloseSequence : IdentifiedObject, IRecloseSequence, IModelElement
     {
         
         /// <summary>
@@ -48,10 +48,16 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Protection
         /// </summary>
         private float _recloseDelay;
         
+        private static Lazy<ITypedElement> _recloseDelayAttribute = new Lazy<ITypedElement>(RetrieveRecloseDelayAttribute);
+        
         /// <summary>
         /// The backing field for the RecloseStep property
         /// </summary>
         private int _recloseStep;
+        
+        private static Lazy<ITypedElement> _recloseStepAttribute = new Lazy<ITypedElement>(RetrieveRecloseStepAttribute);
+        
+        private static Lazy<ITypedElement> _protectedSwitchReference = new Lazy<ITypedElement>(RetrieveProtectedSwitchReference);
         
         /// <summary>
         /// The backing field for the ProtectedSwitch property
@@ -78,10 +84,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Protection
                     float old = this._recloseDelay;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnRecloseDelayChanging(e);
-                    this.OnPropertyChanging("RecloseDelay", e);
+                    this.OnPropertyChanging("RecloseDelay", e, _recloseDelayAttribute);
                     this._recloseDelay = value;
                     this.OnRecloseDelayChanged(e);
-                    this.OnPropertyChanged("RecloseDelay", e);
+                    this.OnPropertyChanged("RecloseDelay", e, _recloseDelayAttribute);
                 }
             }
         }
@@ -104,10 +110,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Protection
                     int old = this._recloseStep;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnRecloseStepChanging(e);
-                    this.OnPropertyChanging("RecloseStep", e);
+                    this.OnPropertyChanging("RecloseStep", e, _recloseStepAttribute);
                     this._recloseStep = value;
                     this.OnRecloseStepChanged(e);
-                    this.OnPropertyChanged("RecloseStep", e);
+                    this.OnPropertyChanged("RecloseStep", e, _recloseStepAttribute);
                 }
             }
         }
@@ -130,7 +136,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Protection
                     IProtectedSwitch old = this._protectedSwitch;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnProtectedSwitchChanging(e);
-                    this.OnPropertyChanging("ProtectedSwitch", e);
+                    this.OnPropertyChanging("ProtectedSwitch", e, _protectedSwitchReference);
                     this._protectedSwitch = value;
                     if ((old != null))
                     {
@@ -143,7 +149,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Protection
                         value.Deleted += this.OnResetProtectedSwitch;
                     }
                     this.OnProtectedSwitchChanged(e);
-                    this.OnPropertyChanged("ProtectedSwitch", e);
+                    this.OnPropertyChanged("ProtectedSwitch", e, _protectedSwitchReference);
                 }
             }
         }
@@ -204,6 +210,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Protection
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> ProtectedSwitchChanged;
         
+        private static ITypedElement RetrieveRecloseDelayAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(RecloseSequence.ClassInstance)).Resolve("recloseDelay")));
+        }
+        
         /// <summary>
         /// Raises the RecloseDelayChanging event
         /// </summary>
@@ -230,6 +241,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Protection
             }
         }
         
+        private static ITypedElement RetrieveRecloseStepAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(RecloseSequence.ClassInstance)).Resolve("recloseStep")));
+        }
+        
         /// <summary>
         /// Raises the RecloseStepChanging event
         /// </summary>
@@ -254,6 +270,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Protection
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveProtectedSwitchReference()
+        {
+            return ((ITypedElement)(((ModelElement)(RecloseSequence.ClassInstance)).Resolve("ProtectedSwitch")));
         }
         
         /// <summary>
@@ -507,7 +528,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Protection
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public RecloseDelayProxy(IRecloseSequence modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "recloseDelay")
             {
             }
             
@@ -525,24 +546,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Protection
                     this.ModelElement.RecloseDelay = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.RecloseDelayChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.RecloseDelayChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -556,7 +559,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Protection
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public RecloseStepProxy(IRecloseSequence modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "recloseStep")
             {
             }
             
@@ -574,24 +577,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Protection
                     this.ModelElement.RecloseStep = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.RecloseStepChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.RecloseStepChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -605,7 +590,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Protection
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public ProtectedSwitchProxy(IRecloseSequence modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "ProtectedSwitch")
             {
             }
             
@@ -622,24 +607,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Protection
                 {
                     this.ModelElement.ProtectedSwitch = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ProtectedSwitchChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ProtectedSwitchChanged -= handler;
             }
         }
     }

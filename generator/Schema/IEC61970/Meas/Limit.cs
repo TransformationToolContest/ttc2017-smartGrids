@@ -51,8 +51,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Meas
     [XmlNamespacePrefixAttribute("cimMeas")]
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61970/Meas/Limit")]
     [DebuggerDisplayAttribute("Limit {UUID}")]
-    public class Limit : IdentifiedObject, ILimit, IModelElement
+    public partial class Limit : IdentifiedObject, ILimit, IModelElement
     {
+        
+        private static Lazy<ITypedElement> _proceduresReference = new Lazy<ITypedElement>(RetrieveProceduresReference);
         
         /// <summary>
         /// The backing field for the Procedures property
@@ -109,6 +111,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Meas
             }
         }
         
+        private static ITypedElement RetrieveProceduresReference()
+        {
+            return ((ITypedElement)(((ModelElement)(Limit.ClassInstance)).Resolve("Procedures")));
+        }
+        
         /// <summary>
         /// Forwards CollectionChanging notifications for the Procedures property to the parent model element
         /// </summary>
@@ -116,7 +123,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Meas
         /// <param name="e">The original event data</param>
         private void ProceduresCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("Procedures", e);
+            this.OnCollectionChanging("Procedures", e, _proceduresReference);
         }
         
         /// <summary>
@@ -126,7 +133,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Meas
         /// <param name="e">The original event data</param>
         private void ProceduresCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("Procedures", e);
+            this.OnCollectionChanged("Procedures", e, _proceduresReference);
         }
         
         /// <summary>

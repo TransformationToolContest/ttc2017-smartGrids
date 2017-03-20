@@ -53,7 +53,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61970/Informative/InfAssets/Vehicle" +
         "Info")]
     [DebuggerDisplayAttribute("VehicleInfo {UUID}")]
-    public class VehicleInfo : AssetInfo, IVehicleInfo, IModelElement
+    public partial class VehicleInfo : AssetInfo, IVehicleInfo, IModelElement
     {
         
         /// <summary>
@@ -61,15 +61,23 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
         /// </summary>
         private Nullable<VehicleUsageKind> _usageKind;
         
+        private static Lazy<ITypedElement> _usageKindAttribute = new Lazy<ITypedElement>(RetrieveUsageKindAttribute);
+        
         /// <summary>
         /// The backing field for the OdometerReadDateTime property
         /// </summary>
         private DateTime _odometerReadDateTime;
         
+        private static Lazy<ITypedElement> _odometerReadDateTimeAttribute = new Lazy<ITypedElement>(RetrieveOdometerReadDateTimeAttribute);
+        
         /// <summary>
         /// The backing field for the OdometerReading property
         /// </summary>
         private float _odometerReading;
+        
+        private static Lazy<ITypedElement> _odometerReadingAttribute = new Lazy<ITypedElement>(RetrieveOdometerReadingAttribute);
+        
+        private static Lazy<ITypedElement> _crewReference = new Lazy<ITypedElement>(RetrieveCrewReference);
         
         /// <summary>
         /// The backing field for the Crew property
@@ -96,10 +104,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
                     Nullable<VehicleUsageKind> old = this._usageKind;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnUsageKindChanging(e);
-                    this.OnPropertyChanging("UsageKind", e);
+                    this.OnPropertyChanging("UsageKind", e, _usageKindAttribute);
                     this._usageKind = value;
                     this.OnUsageKindChanged(e);
-                    this.OnPropertyChanged("UsageKind", e);
+                    this.OnPropertyChanged("UsageKind", e, _usageKindAttribute);
                 }
             }
         }
@@ -122,10 +130,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
                     DateTime old = this._odometerReadDateTime;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnOdometerReadDateTimeChanging(e);
-                    this.OnPropertyChanging("OdometerReadDateTime", e);
+                    this.OnPropertyChanging("OdometerReadDateTime", e, _odometerReadDateTimeAttribute);
                     this._odometerReadDateTime = value;
                     this.OnOdometerReadDateTimeChanged(e);
-                    this.OnPropertyChanged("OdometerReadDateTime", e);
+                    this.OnPropertyChanged("OdometerReadDateTime", e, _odometerReadDateTimeAttribute);
                 }
             }
         }
@@ -148,10 +156,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
                     float old = this._odometerReading;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnOdometerReadingChanging(e);
-                    this.OnPropertyChanging("OdometerReading", e);
+                    this.OnPropertyChanging("OdometerReading", e, _odometerReadingAttribute);
                     this._odometerReading = value;
                     this.OnOdometerReadingChanged(e);
-                    this.OnPropertyChanged("OdometerReading", e);
+                    this.OnPropertyChanged("OdometerReading", e, _odometerReadingAttribute);
                 }
             }
         }
@@ -174,7 +182,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
                     ICrew old = this._crew;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnCrewChanging(e);
-                    this.OnPropertyChanging("Crew", e);
+                    this.OnPropertyChanging("Crew", e, _crewReference);
                     this._crew = value;
                     if ((old != null))
                     {
@@ -187,7 +195,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
                         value.Deleted += this.OnResetCrew;
                     }
                     this.OnCrewChanged(e);
-                    this.OnPropertyChanged("Crew", e);
+                    this.OnPropertyChanged("Crew", e, _crewReference);
                 }
             }
         }
@@ -259,6 +267,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> CrewChanged;
         
+        private static ITypedElement RetrieveUsageKindAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(VehicleInfo.ClassInstance)).Resolve("usageKind")));
+        }
+        
         /// <summary>
         /// Raises the UsageKindChanging event
         /// </summary>
@@ -283,6 +296,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveOdometerReadDateTimeAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(VehicleInfo.ClassInstance)).Resolve("odometerReadDateTime")));
         }
         
         /// <summary>
@@ -311,6 +329,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
             }
         }
         
+        private static ITypedElement RetrieveOdometerReadingAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(VehicleInfo.ClassInstance)).Resolve("odometerReading")));
+        }
+        
         /// <summary>
         /// Raises the OdometerReadingChanging event
         /// </summary>
@@ -335,6 +358,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveCrewReference()
+        {
+            return ((ITypedElement)(((ModelElement)(VehicleInfo.ClassInstance)).Resolve("Crew")));
         }
         
         /// <summary>
@@ -598,7 +626,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public UsageKindProxy(IVehicleInfo modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "usageKind")
             {
             }
             
@@ -616,24 +644,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
                     this.ModelElement.UsageKind = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.UsageKindChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.UsageKindChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -647,7 +657,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public OdometerReadDateTimeProxy(IVehicleInfo modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "odometerReadDateTime")
             {
             }
             
@@ -665,24 +675,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
                     this.ModelElement.OdometerReadDateTime = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.OdometerReadDateTimeChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.OdometerReadDateTimeChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -696,7 +688,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public OdometerReadingProxy(IVehicleInfo modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "odometerReading")
             {
             }
             
@@ -714,24 +706,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
                     this.ModelElement.OdometerReading = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.OdometerReadingChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.OdometerReadingChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -745,7 +719,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public CrewProxy(IVehicleInfo modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "Crew")
             {
             }
             
@@ -762,24 +736,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
                 {
                     this.ModelElement.Crew = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.CrewChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.CrewChanged -= handler;
             }
         }
     }

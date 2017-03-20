@@ -44,18 +44,24 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.ControlArea
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61970/ControlArea/ControlAreaGenera" +
         "tingUnit")]
     [DebuggerDisplayAttribute("ControlAreaGeneratingUnit {UUID}")]
-    public class ControlAreaGeneratingUnit : Element, IControlAreaGeneratingUnit, IModelElement
+    public partial class ControlAreaGeneratingUnit : Element, IControlAreaGeneratingUnit, IModelElement
     {
+        
+        private static Lazy<ITypedElement> _controlAreaReference = new Lazy<ITypedElement>(RetrieveControlAreaReference);
         
         /// <summary>
         /// The backing field for the ControlArea property
         /// </summary>
         private IControlArea _controlArea;
         
+        private static Lazy<ITypedElement> _altGeneratingUnitMeasReference = new Lazy<ITypedElement>(RetrieveAltGeneratingUnitMeasReference);
+        
         /// <summary>
         /// The backing field for the AltGeneratingUnitMeas property
         /// </summary>
         private ControlAreaGeneratingUnitAltGeneratingUnitMeasCollection _altGeneratingUnitMeas;
+        
+        private static Lazy<ITypedElement> _generatingUnitReference = new Lazy<ITypedElement>(RetrieveGeneratingUnitReference);
         
         /// <summary>
         /// The backing field for the GeneratingUnit property
@@ -89,7 +95,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.ControlArea
                     IControlArea old = this._controlArea;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnControlAreaChanging(e);
-                    this.OnPropertyChanging("ControlArea", e);
+                    this.OnPropertyChanging("ControlArea", e, _controlAreaReference);
                     this._controlArea = value;
                     if ((old != null))
                     {
@@ -102,7 +108,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.ControlArea
                         value.Deleted += this.OnResetControlArea;
                     }
                     this.OnControlAreaChanged(e);
-                    this.OnPropertyChanged("ControlArea", e);
+                    this.OnPropertyChanged("ControlArea", e, _controlAreaReference);
                 }
             }
         }
@@ -140,7 +146,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.ControlArea
                     IGeneratingUnit old = this._generatingUnit;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnGeneratingUnitChanging(e);
-                    this.OnPropertyChanging("GeneratingUnit", e);
+                    this.OnPropertyChanging("GeneratingUnit", e, _generatingUnitReference);
                     this._generatingUnit = value;
                     if ((old != null))
                     {
@@ -153,7 +159,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.ControlArea
                         value.Deleted += this.OnResetGeneratingUnit;
                     }
                     this.OnGeneratingUnitChanged(e);
-                    this.OnPropertyChanged("GeneratingUnit", e);
+                    this.OnPropertyChanged("GeneratingUnit", e, _generatingUnitReference);
                 }
             }
         }
@@ -205,6 +211,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.ControlArea
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> GeneratingUnitChanged;
         
+        private static ITypedElement RetrieveControlAreaReference()
+        {
+            return ((ITypedElement)(((ModelElement)(ControlAreaGeneratingUnit.ClassInstance)).Resolve("ControlArea")));
+        }
+        
         /// <summary>
         /// Raises the ControlAreaChanging event
         /// </summary>
@@ -241,6 +252,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.ControlArea
             this.ControlArea = null;
         }
         
+        private static ITypedElement RetrieveAltGeneratingUnitMeasReference()
+        {
+            return ((ITypedElement)(((ModelElement)(ControlAreaGeneratingUnit.ClassInstance)).Resolve("AltGeneratingUnitMeas")));
+        }
+        
         /// <summary>
         /// Forwards CollectionChanging notifications for the AltGeneratingUnitMeas property to the parent model element
         /// </summary>
@@ -248,7 +264,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.ControlArea
         /// <param name="e">The original event data</param>
         private void AltGeneratingUnitMeasCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("AltGeneratingUnitMeas", e);
+            this.OnCollectionChanging("AltGeneratingUnitMeas", e, _altGeneratingUnitMeasReference);
         }
         
         /// <summary>
@@ -258,7 +274,12 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.ControlArea
         /// <param name="e">The original event data</param>
         private void AltGeneratingUnitMeasCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("AltGeneratingUnitMeas", e);
+            this.OnCollectionChanged("AltGeneratingUnitMeas", e, _altGeneratingUnitMeasReference);
+        }
+        
+        private static ITypedElement RetrieveGeneratingUnitReference()
+        {
+            return ((ITypedElement)(((ModelElement)(ControlAreaGeneratingUnit.ClassInstance)).Resolve("GeneratingUnit")));
         }
         
         /// <summary>
@@ -575,7 +596,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.ControlArea
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public ControlAreaProxy(IControlAreaGeneratingUnit modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "ControlArea")
             {
             }
             
@@ -593,24 +614,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.ControlArea
                     this.ModelElement.ControlArea = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ControlAreaChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ControlAreaChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -624,7 +627,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.ControlArea
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public GeneratingUnitProxy(IControlAreaGeneratingUnit modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "GeneratingUnit")
             {
             }
             
@@ -641,24 +644,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.ControlArea
                 {
                     this.ModelElement.GeneratingUnit = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.GeneratingUnitChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.GeneratingUnitChanged -= handler;
             }
         }
     }

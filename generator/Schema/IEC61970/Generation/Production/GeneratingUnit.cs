@@ -46,7 +46,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61970/Generation/Production/Generat" +
         "ingUnit")]
     [DebuggerDisplayAttribute("GeneratingUnit {UUID}")]
-    public class GeneratingUnit : Equipment, IGeneratingUnit, IModelElement
+    public partial class GeneratingUnit : Equipment, IGeneratingUnit, IModelElement
     {
         
         /// <summary>
@@ -54,250 +54,352 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
         /// </summary>
         private float _highControlLimit;
         
+        private static Lazy<ITypedElement> _highControlLimitAttribute = new Lazy<ITypedElement>(RetrieveHighControlLimitAttribute);
+        
         /// <summary>
         /// The backing field for the RaiseRampRate property
         /// </summary>
         private float _raiseRampRate;
+        
+        private static Lazy<ITypedElement> _raiseRampRateAttribute = new Lazy<ITypedElement>(RetrieveRaiseRampRateAttribute);
         
         /// <summary>
         /// The backing field for the GenOperatingMode property
         /// </summary>
         private Nullable<GeneratorOperatingMode> _genOperatingMode;
         
+        private static Lazy<ITypedElement> _genOperatingModeAttribute = new Lazy<ITypedElement>(RetrieveGenOperatingModeAttribute);
+        
         /// <summary>
         /// The backing field for the AutoCntrlMarginP property
         /// </summary>
         private float _autoCntrlMarginP;
+        
+        private static Lazy<ITypedElement> _autoCntrlMarginPAttribute = new Lazy<ITypedElement>(RetrieveAutoCntrlMarginPAttribute);
         
         /// <summary>
         /// The backing field for the ControlPulseLow property
         /// </summary>
         private float _controlPulseLow;
         
+        private static Lazy<ITypedElement> _controlPulseLowAttribute = new Lazy<ITypedElement>(RetrieveControlPulseLowAttribute);
+        
         /// <summary>
         /// The backing field for the GovernorMPL property
         /// </summary>
         private float _governorMPL;
+        
+        private static Lazy<ITypedElement> _governorMPLAttribute = new Lazy<ITypedElement>(RetrieveGovernorMPLAttribute);
         
         /// <summary>
         /// The backing field for the RatedGrossMaxP property
         /// </summary>
         private float _ratedGrossMaxP;
         
+        private static Lazy<ITypedElement> _ratedGrossMaxPAttribute = new Lazy<ITypedElement>(RetrieveRatedGrossMaxPAttribute);
+        
         /// <summary>
         /// The backing field for the AllocSpinResP property
         /// </summary>
         private float _allocSpinResP;
+        
+        private static Lazy<ITypedElement> _allocSpinResPAttribute = new Lazy<ITypedElement>(RetrieveAllocSpinResPAttribute);
         
         /// <summary>
         /// The backing field for the StepChange property
         /// </summary>
         private float _stepChange;
         
+        private static Lazy<ITypedElement> _stepChangeAttribute = new Lazy<ITypedElement>(RetrieveStepChangeAttribute);
+        
         /// <summary>
         /// The backing field for the StartupCost property
         /// </summary>
         private float _startupCost;
+        
+        private static Lazy<ITypedElement> _startupCostAttribute = new Lazy<ITypedElement>(RetrieveStartupCostAttribute);
         
         /// <summary>
         /// The backing field for the SpinReserveRamp property
         /// </summary>
         private float _spinReserveRamp;
         
+        private static Lazy<ITypedElement> _spinReserveRampAttribute = new Lazy<ITypedElement>(RetrieveSpinReserveRampAttribute);
+        
         /// <summary>
         /// The backing field for the NominalP property
         /// </summary>
         private float _nominalP;
+        
+        private static Lazy<ITypedElement> _nominalPAttribute = new Lazy<ITypedElement>(RetrieveNominalPAttribute);
         
         /// <summary>
         /// The backing field for the GovernorSCD property
         /// </summary>
         private float _governorSCD;
         
+        private static Lazy<ITypedElement> _governorSCDAttribute = new Lazy<ITypedElement>(RetrieveGovernorSCDAttribute);
+        
         /// <summary>
         /// The backing field for the PenaltyFactor property
         /// </summary>
         private float _penaltyFactor;
+        
+        private static Lazy<ITypedElement> _penaltyFactorAttribute = new Lazy<ITypedElement>(RetrievePenaltyFactorAttribute);
         
         /// <summary>
         /// The backing field for the ControlPulseHigh property
         /// </summary>
         private float _controlPulseHigh;
         
+        private static Lazy<ITypedElement> _controlPulseHighAttribute = new Lazy<ITypedElement>(RetrieveControlPulseHighAttribute);
+        
         /// <summary>
         /// The backing field for the EnergyMinP property
         /// </summary>
         private float _energyMinP;
+        
+        private static Lazy<ITypedElement> _energyMinPAttribute = new Lazy<ITypedElement>(RetrieveEnergyMinPAttribute);
         
         /// <summary>
         /// The backing field for the StartupTime property
         /// </summary>
         private float _startupTime;
         
+        private static Lazy<ITypedElement> _startupTimeAttribute = new Lazy<ITypedElement>(RetrieveStartupTimeAttribute);
+        
         /// <summary>
         /// The backing field for the TieLinePF property
         /// </summary>
         private float _tieLinePF;
+        
+        private static Lazy<ITypedElement> _tieLinePFAttribute = new Lazy<ITypedElement>(RetrieveTieLinePFAttribute);
         
         /// <summary>
         /// The backing field for the LowerRampRate property
         /// </summary>
         private float _lowerRampRate;
         
+        private static Lazy<ITypedElement> _lowerRampRateAttribute = new Lazy<ITypedElement>(RetrieveLowerRampRateAttribute);
+        
         /// <summary>
         /// The backing field for the InitialP property
         /// </summary>
         private float _initialP;
+        
+        private static Lazy<ITypedElement> _initialPAttribute = new Lazy<ITypedElement>(RetrieveInitialPAttribute);
         
         /// <summary>
         /// The backing field for the ControlResponseRate property
         /// </summary>
         private float _controlResponseRate;
         
+        private static Lazy<ITypedElement> _controlResponseRateAttribute = new Lazy<ITypedElement>(RetrieveControlResponseRateAttribute);
+        
         /// <summary>
         /// The backing field for the MinEconomicP property
         /// </summary>
         private float _minEconomicP;
+        
+        private static Lazy<ITypedElement> _minEconomicPAttribute = new Lazy<ITypedElement>(RetrieveMinEconomicPAttribute);
         
         /// <summary>
         /// The backing field for the ModelDetail property
         /// </summary>
         private object _modelDetail;
         
+        private static Lazy<ITypedElement> _modelDetailAttribute = new Lazy<ITypedElement>(RetrieveModelDetailAttribute);
+        
         /// <summary>
         /// The backing field for the FuelPriority property
         /// </summary>
         private int _fuelPriority;
+        
+        private static Lazy<ITypedElement> _fuelPriorityAttribute = new Lazy<ITypedElement>(RetrieveFuelPriorityAttribute);
         
         /// <summary>
         /// The backing field for the MaxEconomicP property
         /// </summary>
         private float _maxEconomicP;
         
+        private static Lazy<ITypedElement> _maxEconomicPAttribute = new Lazy<ITypedElement>(RetrieveMaxEconomicPAttribute);
+        
         /// <summary>
         /// The backing field for the GenControlSource property
         /// </summary>
         private Nullable<GeneratorControlSource> _genControlSource;
+        
+        private static Lazy<ITypedElement> _genControlSourceAttribute = new Lazy<ITypedElement>(RetrieveGenControlSourceAttribute);
         
         /// <summary>
         /// The backing field for the RatedGrossMinP property
         /// </summary>
         private float _ratedGrossMinP;
         
+        private static Lazy<ITypedElement> _ratedGrossMinPAttribute = new Lazy<ITypedElement>(RetrieveRatedGrossMinPAttribute);
+        
         /// <summary>
         /// The backing field for the VariableCost property
         /// </summary>
         private float _variableCost;
+        
+        private static Lazy<ITypedElement> _variableCostAttribute = new Lazy<ITypedElement>(RetrieveVariableCostAttribute);
         
         /// <summary>
         /// The backing field for the MinOperatingP property
         /// </summary>
         private float _minOperatingP;
         
+        private static Lazy<ITypedElement> _minOperatingPAttribute = new Lazy<ITypedElement>(RetrieveMinOperatingPAttribute);
+        
         /// <summary>
         /// The backing field for the BaseP property
         /// </summary>
         private float _baseP;
+        
+        private static Lazy<ITypedElement> _basePAttribute = new Lazy<ITypedElement>(RetrieveBasePAttribute);
         
         /// <summary>
         /// The backing field for the ShortPF property
         /// </summary>
         private float _shortPF;
         
+        private static Lazy<ITypedElement> _shortPFAttribute = new Lazy<ITypedElement>(RetrieveShortPFAttribute);
+        
         /// <summary>
         /// The backing field for the LowControlLimit property
         /// </summary>
         private float _lowControlLimit;
+        
+        private static Lazy<ITypedElement> _lowControlLimitAttribute = new Lazy<ITypedElement>(RetrieveLowControlLimitAttribute);
         
         /// <summary>
         /// The backing field for the LongPF property
         /// </summary>
         private float _longPF;
         
+        private static Lazy<ITypedElement> _longPFAttribute = new Lazy<ITypedElement>(RetrieveLongPFAttribute);
+        
         /// <summary>
         /// The backing field for the MaxOperatingP property
         /// </summary>
         private float _maxOperatingP;
+        
+        private static Lazy<ITypedElement> _maxOperatingPAttribute = new Lazy<ITypedElement>(RetrieveMaxOperatingPAttribute);
         
         /// <summary>
         /// The backing field for the FastStartFlag property
         /// </summary>
         private bool _fastStartFlag;
         
+        private static Lazy<ITypedElement> _fastStartFlagAttribute = new Lazy<ITypedElement>(RetrieveFastStartFlagAttribute);
+        
         /// <summary>
         /// The backing field for the GenControlMode property
         /// </summary>
         private Nullable<GeneratorControlMode> _genControlMode;
+        
+        private static Lazy<ITypedElement> _genControlModeAttribute = new Lazy<ITypedElement>(RetrieveGenControlModeAttribute);
         
         /// <summary>
         /// The backing field for the RatedNetMaxP property
         /// </summary>
         private float _ratedNetMaxP;
         
+        private static Lazy<ITypedElement> _ratedNetMaxPAttribute = new Lazy<ITypedElement>(RetrieveRatedNetMaxPAttribute);
+        
         /// <summary>
         /// The backing field for the Efficiency property
         /// </summary>
         private float _efficiency;
+        
+        private static Lazy<ITypedElement> _efficiencyAttribute = new Lazy<ITypedElement>(RetrieveEfficiencyAttribute);
         
         /// <summary>
         /// The backing field for the MinimumOffTime property
         /// </summary>
         private float _minimumOffTime;
         
+        private static Lazy<ITypedElement> _minimumOffTimeAttribute = new Lazy<ITypedElement>(RetrieveMinimumOffTimeAttribute);
+        
         /// <summary>
         /// The backing field for the DispReserveFlag property
         /// </summary>
         private bool _dispReserveFlag;
+        
+        private static Lazy<ITypedElement> _dispReserveFlagAttribute = new Lazy<ITypedElement>(RetrieveDispReserveFlagAttribute);
         
         /// <summary>
         /// The backing field for the MaximumAllowableSpinningReserve property
         /// </summary>
         private float _maximumAllowableSpinningReserve;
         
+        private static Lazy<ITypedElement> _maximumAllowableSpinningReserveAttribute = new Lazy<ITypedElement>(RetrieveMaximumAllowableSpinningReserveAttribute);
+        
         /// <summary>
         /// The backing field for the ControlDeadband property
         /// </summary>
         private float _controlDeadband;
+        
+        private static Lazy<ITypedElement> _controlDeadbandAttribute = new Lazy<ITypedElement>(RetrieveControlDeadbandAttribute);
         
         /// <summary>
         /// The backing field for the NormalPF property
         /// </summary>
         private float _normalPF;
         
+        private static Lazy<ITypedElement> _normalPFAttribute = new Lazy<ITypedElement>(RetrieveNormalPFAttribute);
+        
+        private static Lazy<ITypedElement> _operatedBy_GenerationProviderReference = new Lazy<ITypedElement>(RetrieveOperatedBy_GenerationProviderReference);
+        
         /// <summary>
         /// The backing field for the OperatedBy_GenerationProvider property
         /// </summary>
         private IGenerationProvider _operatedBy_GenerationProvider;
+        
+        private static Lazy<ITypedElement> _genUnitOpScheduleReference = new Lazy<ITypedElement>(RetrieveGenUnitOpScheduleReference);
         
         /// <summary>
         /// The backing field for the GenUnitOpSchedule property
         /// </summary>
         private IGenUnitOpSchedule _genUnitOpSchedule;
         
+        private static Lazy<ITypedElement> _controlAreaGeneratingUnitReference = new Lazy<ITypedElement>(RetrieveControlAreaGeneratingUnitReference);
+        
         /// <summary>
         /// The backing field for the ControlAreaGeneratingUnit property
         /// </summary>
         private GeneratingUnitControlAreaGeneratingUnitCollection _controlAreaGeneratingUnit;
+        
+        private static Lazy<ITypedElement> _grossToNetActivePowerCurvesReference = new Lazy<ITypedElement>(RetrieveGrossToNetActivePowerCurvesReference);
         
         /// <summary>
         /// The backing field for the GrossToNetActivePowerCurves property
         /// </summary>
         private GeneratingUnitGrossToNetActivePowerCurvesCollection _grossToNetActivePowerCurves;
         
+        private static Lazy<ITypedElement> _genUnitOpCostCurvesReference = new Lazy<ITypedElement>(RetrieveGenUnitOpCostCurvesReference);
+        
         /// <summary>
         /// The backing field for the GenUnitOpCostCurves property
         /// </summary>
         private GeneratingUnitGenUnitOpCostCurvesCollection _genUnitOpCostCurves;
+        
+        private static Lazy<ITypedElement> _synchronousMachinesReference = new Lazy<ITypedElement>(RetrieveSynchronousMachinesReference);
         
         /// <summary>
         /// The backing field for the SynchronousMachines property
         /// </summary>
         private GeneratingUnitSynchronousMachinesCollection _synchronousMachines;
         
+        private static Lazy<ITypedElement> _registeredGeneratorReference = new Lazy<ITypedElement>(RetrieveRegisteredGeneratorReference);
+        
         /// <summary>
         /// The backing field for the RegisteredGenerator property
         /// </summary>
         private IRegisteredGenerator _registeredGenerator;
+        
+        private static Lazy<ITypedElement> _subControlAreaReference = new Lazy<ITypedElement>(RetrieveSubControlAreaReference);
         
         /// <summary>
         /// The backing field for the SubControlArea property
@@ -340,10 +442,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
                     float old = this._highControlLimit;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnHighControlLimitChanging(e);
-                    this.OnPropertyChanging("HighControlLimit", e);
+                    this.OnPropertyChanging("HighControlLimit", e, _highControlLimitAttribute);
                     this._highControlLimit = value;
                     this.OnHighControlLimitChanged(e);
-                    this.OnPropertyChanged("HighControlLimit", e);
+                    this.OnPropertyChanged("HighControlLimit", e, _highControlLimitAttribute);
                 }
             }
         }
@@ -366,10 +468,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
                     float old = this._raiseRampRate;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnRaiseRampRateChanging(e);
-                    this.OnPropertyChanging("RaiseRampRate", e);
+                    this.OnPropertyChanging("RaiseRampRate", e, _raiseRampRateAttribute);
                     this._raiseRampRate = value;
                     this.OnRaiseRampRateChanged(e);
-                    this.OnPropertyChanged("RaiseRampRate", e);
+                    this.OnPropertyChanged("RaiseRampRate", e, _raiseRampRateAttribute);
                 }
             }
         }
@@ -392,10 +494,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
                     Nullable<GeneratorOperatingMode> old = this._genOperatingMode;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnGenOperatingModeChanging(e);
-                    this.OnPropertyChanging("GenOperatingMode", e);
+                    this.OnPropertyChanging("GenOperatingMode", e, _genOperatingModeAttribute);
                     this._genOperatingMode = value;
                     this.OnGenOperatingModeChanged(e);
-                    this.OnPropertyChanged("GenOperatingMode", e);
+                    this.OnPropertyChanged("GenOperatingMode", e, _genOperatingModeAttribute);
                 }
             }
         }
@@ -418,10 +520,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
                     float old = this._autoCntrlMarginP;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnAutoCntrlMarginPChanging(e);
-                    this.OnPropertyChanging("AutoCntrlMarginP", e);
+                    this.OnPropertyChanging("AutoCntrlMarginP", e, _autoCntrlMarginPAttribute);
                     this._autoCntrlMarginP = value;
                     this.OnAutoCntrlMarginPChanged(e);
-                    this.OnPropertyChanged("AutoCntrlMarginP", e);
+                    this.OnPropertyChanged("AutoCntrlMarginP", e, _autoCntrlMarginPAttribute);
                 }
             }
         }
@@ -444,10 +546,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
                     float old = this._controlPulseLow;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnControlPulseLowChanging(e);
-                    this.OnPropertyChanging("ControlPulseLow", e);
+                    this.OnPropertyChanging("ControlPulseLow", e, _controlPulseLowAttribute);
                     this._controlPulseLow = value;
                     this.OnControlPulseLowChanged(e);
-                    this.OnPropertyChanged("ControlPulseLow", e);
+                    this.OnPropertyChanged("ControlPulseLow", e, _controlPulseLowAttribute);
                 }
             }
         }
@@ -470,10 +572,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
                     float old = this._governorMPL;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnGovernorMPLChanging(e);
-                    this.OnPropertyChanging("GovernorMPL", e);
+                    this.OnPropertyChanging("GovernorMPL", e, _governorMPLAttribute);
                     this._governorMPL = value;
                     this.OnGovernorMPLChanged(e);
-                    this.OnPropertyChanged("GovernorMPL", e);
+                    this.OnPropertyChanged("GovernorMPL", e, _governorMPLAttribute);
                 }
             }
         }
@@ -496,10 +598,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
                     float old = this._ratedGrossMaxP;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnRatedGrossMaxPChanging(e);
-                    this.OnPropertyChanging("RatedGrossMaxP", e);
+                    this.OnPropertyChanging("RatedGrossMaxP", e, _ratedGrossMaxPAttribute);
                     this._ratedGrossMaxP = value;
                     this.OnRatedGrossMaxPChanged(e);
-                    this.OnPropertyChanged("RatedGrossMaxP", e);
+                    this.OnPropertyChanged("RatedGrossMaxP", e, _ratedGrossMaxPAttribute);
                 }
             }
         }
@@ -522,10 +624,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
                     float old = this._allocSpinResP;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnAllocSpinResPChanging(e);
-                    this.OnPropertyChanging("AllocSpinResP", e);
+                    this.OnPropertyChanging("AllocSpinResP", e, _allocSpinResPAttribute);
                     this._allocSpinResP = value;
                     this.OnAllocSpinResPChanged(e);
-                    this.OnPropertyChanged("AllocSpinResP", e);
+                    this.OnPropertyChanged("AllocSpinResP", e, _allocSpinResPAttribute);
                 }
             }
         }
@@ -548,10 +650,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
                     float old = this._stepChange;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnStepChangeChanging(e);
-                    this.OnPropertyChanging("StepChange", e);
+                    this.OnPropertyChanging("StepChange", e, _stepChangeAttribute);
                     this._stepChange = value;
                     this.OnStepChangeChanged(e);
-                    this.OnPropertyChanged("StepChange", e);
+                    this.OnPropertyChanged("StepChange", e, _stepChangeAttribute);
                 }
             }
         }
@@ -574,10 +676,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
                     float old = this._startupCost;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnStartupCostChanging(e);
-                    this.OnPropertyChanging("StartupCost", e);
+                    this.OnPropertyChanging("StartupCost", e, _startupCostAttribute);
                     this._startupCost = value;
                     this.OnStartupCostChanged(e);
-                    this.OnPropertyChanged("StartupCost", e);
+                    this.OnPropertyChanged("StartupCost", e, _startupCostAttribute);
                 }
             }
         }
@@ -600,10 +702,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
                     float old = this._spinReserveRamp;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnSpinReserveRampChanging(e);
-                    this.OnPropertyChanging("SpinReserveRamp", e);
+                    this.OnPropertyChanging("SpinReserveRamp", e, _spinReserveRampAttribute);
                     this._spinReserveRamp = value;
                     this.OnSpinReserveRampChanged(e);
-                    this.OnPropertyChanged("SpinReserveRamp", e);
+                    this.OnPropertyChanged("SpinReserveRamp", e, _spinReserveRampAttribute);
                 }
             }
         }
@@ -626,10 +728,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
                     float old = this._nominalP;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnNominalPChanging(e);
-                    this.OnPropertyChanging("NominalP", e);
+                    this.OnPropertyChanging("NominalP", e, _nominalPAttribute);
                     this._nominalP = value;
                     this.OnNominalPChanged(e);
-                    this.OnPropertyChanged("NominalP", e);
+                    this.OnPropertyChanged("NominalP", e, _nominalPAttribute);
                 }
             }
         }
@@ -652,10 +754,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
                     float old = this._governorSCD;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnGovernorSCDChanging(e);
-                    this.OnPropertyChanging("GovernorSCD", e);
+                    this.OnPropertyChanging("GovernorSCD", e, _governorSCDAttribute);
                     this._governorSCD = value;
                     this.OnGovernorSCDChanged(e);
-                    this.OnPropertyChanged("GovernorSCD", e);
+                    this.OnPropertyChanged("GovernorSCD", e, _governorSCDAttribute);
                 }
             }
         }
@@ -678,10 +780,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
                     float old = this._penaltyFactor;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnPenaltyFactorChanging(e);
-                    this.OnPropertyChanging("PenaltyFactor", e);
+                    this.OnPropertyChanging("PenaltyFactor", e, _penaltyFactorAttribute);
                     this._penaltyFactor = value;
                     this.OnPenaltyFactorChanged(e);
-                    this.OnPropertyChanged("PenaltyFactor", e);
+                    this.OnPropertyChanged("PenaltyFactor", e, _penaltyFactorAttribute);
                 }
             }
         }
@@ -704,10 +806,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
                     float old = this._controlPulseHigh;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnControlPulseHighChanging(e);
-                    this.OnPropertyChanging("ControlPulseHigh", e);
+                    this.OnPropertyChanging("ControlPulseHigh", e, _controlPulseHighAttribute);
                     this._controlPulseHigh = value;
                     this.OnControlPulseHighChanged(e);
-                    this.OnPropertyChanged("ControlPulseHigh", e);
+                    this.OnPropertyChanged("ControlPulseHigh", e, _controlPulseHighAttribute);
                 }
             }
         }
@@ -730,10 +832,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
                     float old = this._energyMinP;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnEnergyMinPChanging(e);
-                    this.OnPropertyChanging("EnergyMinP", e);
+                    this.OnPropertyChanging("EnergyMinP", e, _energyMinPAttribute);
                     this._energyMinP = value;
                     this.OnEnergyMinPChanged(e);
-                    this.OnPropertyChanged("EnergyMinP", e);
+                    this.OnPropertyChanged("EnergyMinP", e, _energyMinPAttribute);
                 }
             }
         }
@@ -756,10 +858,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
                     float old = this._startupTime;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnStartupTimeChanging(e);
-                    this.OnPropertyChanging("StartupTime", e);
+                    this.OnPropertyChanging("StartupTime", e, _startupTimeAttribute);
                     this._startupTime = value;
                     this.OnStartupTimeChanged(e);
-                    this.OnPropertyChanged("StartupTime", e);
+                    this.OnPropertyChanged("StartupTime", e, _startupTimeAttribute);
                 }
             }
         }
@@ -782,10 +884,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
                     float old = this._tieLinePF;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnTieLinePFChanging(e);
-                    this.OnPropertyChanging("TieLinePF", e);
+                    this.OnPropertyChanging("TieLinePF", e, _tieLinePFAttribute);
                     this._tieLinePF = value;
                     this.OnTieLinePFChanged(e);
-                    this.OnPropertyChanged("TieLinePF", e);
+                    this.OnPropertyChanged("TieLinePF", e, _tieLinePFAttribute);
                 }
             }
         }
@@ -808,10 +910,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
                     float old = this._lowerRampRate;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnLowerRampRateChanging(e);
-                    this.OnPropertyChanging("LowerRampRate", e);
+                    this.OnPropertyChanging("LowerRampRate", e, _lowerRampRateAttribute);
                     this._lowerRampRate = value;
                     this.OnLowerRampRateChanged(e);
-                    this.OnPropertyChanged("LowerRampRate", e);
+                    this.OnPropertyChanged("LowerRampRate", e, _lowerRampRateAttribute);
                 }
             }
         }
@@ -834,10 +936,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
                     float old = this._initialP;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnInitialPChanging(e);
-                    this.OnPropertyChanging("InitialP", e);
+                    this.OnPropertyChanging("InitialP", e, _initialPAttribute);
                     this._initialP = value;
                     this.OnInitialPChanged(e);
-                    this.OnPropertyChanged("InitialP", e);
+                    this.OnPropertyChanged("InitialP", e, _initialPAttribute);
                 }
             }
         }
@@ -860,10 +962,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
                     float old = this._controlResponseRate;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnControlResponseRateChanging(e);
-                    this.OnPropertyChanging("ControlResponseRate", e);
+                    this.OnPropertyChanging("ControlResponseRate", e, _controlResponseRateAttribute);
                     this._controlResponseRate = value;
                     this.OnControlResponseRateChanged(e);
-                    this.OnPropertyChanged("ControlResponseRate", e);
+                    this.OnPropertyChanged("ControlResponseRate", e, _controlResponseRateAttribute);
                 }
             }
         }
@@ -886,10 +988,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
                     float old = this._minEconomicP;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnMinEconomicPChanging(e);
-                    this.OnPropertyChanging("MinEconomicP", e);
+                    this.OnPropertyChanging("MinEconomicP", e, _minEconomicPAttribute);
                     this._minEconomicP = value;
                     this.OnMinEconomicPChanged(e);
-                    this.OnPropertyChanged("MinEconomicP", e);
+                    this.OnPropertyChanged("MinEconomicP", e, _minEconomicPAttribute);
                 }
             }
         }
@@ -912,10 +1014,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
                     object old = this._modelDetail;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnModelDetailChanging(e);
-                    this.OnPropertyChanging("ModelDetail", e);
+                    this.OnPropertyChanging("ModelDetail", e, _modelDetailAttribute);
                     this._modelDetail = value;
                     this.OnModelDetailChanged(e);
-                    this.OnPropertyChanged("ModelDetail", e);
+                    this.OnPropertyChanged("ModelDetail", e, _modelDetailAttribute);
                 }
             }
         }
@@ -938,10 +1040,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
                     int old = this._fuelPriority;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnFuelPriorityChanging(e);
-                    this.OnPropertyChanging("FuelPriority", e);
+                    this.OnPropertyChanging("FuelPriority", e, _fuelPriorityAttribute);
                     this._fuelPriority = value;
                     this.OnFuelPriorityChanged(e);
-                    this.OnPropertyChanged("FuelPriority", e);
+                    this.OnPropertyChanged("FuelPriority", e, _fuelPriorityAttribute);
                 }
             }
         }
@@ -964,10 +1066,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
                     float old = this._maxEconomicP;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnMaxEconomicPChanging(e);
-                    this.OnPropertyChanging("MaxEconomicP", e);
+                    this.OnPropertyChanging("MaxEconomicP", e, _maxEconomicPAttribute);
                     this._maxEconomicP = value;
                     this.OnMaxEconomicPChanged(e);
-                    this.OnPropertyChanged("MaxEconomicP", e);
+                    this.OnPropertyChanged("MaxEconomicP", e, _maxEconomicPAttribute);
                 }
             }
         }
@@ -990,10 +1092,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
                     Nullable<GeneratorControlSource> old = this._genControlSource;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnGenControlSourceChanging(e);
-                    this.OnPropertyChanging("GenControlSource", e);
+                    this.OnPropertyChanging("GenControlSource", e, _genControlSourceAttribute);
                     this._genControlSource = value;
                     this.OnGenControlSourceChanged(e);
-                    this.OnPropertyChanged("GenControlSource", e);
+                    this.OnPropertyChanged("GenControlSource", e, _genControlSourceAttribute);
                 }
             }
         }
@@ -1016,10 +1118,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
                     float old = this._ratedGrossMinP;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnRatedGrossMinPChanging(e);
-                    this.OnPropertyChanging("RatedGrossMinP", e);
+                    this.OnPropertyChanging("RatedGrossMinP", e, _ratedGrossMinPAttribute);
                     this._ratedGrossMinP = value;
                     this.OnRatedGrossMinPChanged(e);
-                    this.OnPropertyChanged("RatedGrossMinP", e);
+                    this.OnPropertyChanged("RatedGrossMinP", e, _ratedGrossMinPAttribute);
                 }
             }
         }
@@ -1042,10 +1144,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
                     float old = this._variableCost;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnVariableCostChanging(e);
-                    this.OnPropertyChanging("VariableCost", e);
+                    this.OnPropertyChanging("VariableCost", e, _variableCostAttribute);
                     this._variableCost = value;
                     this.OnVariableCostChanged(e);
-                    this.OnPropertyChanged("VariableCost", e);
+                    this.OnPropertyChanged("VariableCost", e, _variableCostAttribute);
                 }
             }
         }
@@ -1068,10 +1170,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
                     float old = this._minOperatingP;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnMinOperatingPChanging(e);
-                    this.OnPropertyChanging("MinOperatingP", e);
+                    this.OnPropertyChanging("MinOperatingP", e, _minOperatingPAttribute);
                     this._minOperatingP = value;
                     this.OnMinOperatingPChanged(e);
-                    this.OnPropertyChanged("MinOperatingP", e);
+                    this.OnPropertyChanged("MinOperatingP", e, _minOperatingPAttribute);
                 }
             }
         }
@@ -1094,10 +1196,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
                     float old = this._baseP;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnBasePChanging(e);
-                    this.OnPropertyChanging("BaseP", e);
+                    this.OnPropertyChanging("BaseP", e, _basePAttribute);
                     this._baseP = value;
                     this.OnBasePChanged(e);
-                    this.OnPropertyChanged("BaseP", e);
+                    this.OnPropertyChanged("BaseP", e, _basePAttribute);
                 }
             }
         }
@@ -1120,10 +1222,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
                     float old = this._shortPF;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnShortPFChanging(e);
-                    this.OnPropertyChanging("ShortPF", e);
+                    this.OnPropertyChanging("ShortPF", e, _shortPFAttribute);
                     this._shortPF = value;
                     this.OnShortPFChanged(e);
-                    this.OnPropertyChanged("ShortPF", e);
+                    this.OnPropertyChanged("ShortPF", e, _shortPFAttribute);
                 }
             }
         }
@@ -1146,10 +1248,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
                     float old = this._lowControlLimit;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnLowControlLimitChanging(e);
-                    this.OnPropertyChanging("LowControlLimit", e);
+                    this.OnPropertyChanging("LowControlLimit", e, _lowControlLimitAttribute);
                     this._lowControlLimit = value;
                     this.OnLowControlLimitChanged(e);
-                    this.OnPropertyChanged("LowControlLimit", e);
+                    this.OnPropertyChanged("LowControlLimit", e, _lowControlLimitAttribute);
                 }
             }
         }
@@ -1172,10 +1274,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
                     float old = this._longPF;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnLongPFChanging(e);
-                    this.OnPropertyChanging("LongPF", e);
+                    this.OnPropertyChanging("LongPF", e, _longPFAttribute);
                     this._longPF = value;
                     this.OnLongPFChanged(e);
-                    this.OnPropertyChanged("LongPF", e);
+                    this.OnPropertyChanged("LongPF", e, _longPFAttribute);
                 }
             }
         }
@@ -1198,10 +1300,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
                     float old = this._maxOperatingP;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnMaxOperatingPChanging(e);
-                    this.OnPropertyChanging("MaxOperatingP", e);
+                    this.OnPropertyChanging("MaxOperatingP", e, _maxOperatingPAttribute);
                     this._maxOperatingP = value;
                     this.OnMaxOperatingPChanged(e);
-                    this.OnPropertyChanged("MaxOperatingP", e);
+                    this.OnPropertyChanged("MaxOperatingP", e, _maxOperatingPAttribute);
                 }
             }
         }
@@ -1224,10 +1326,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
                     bool old = this._fastStartFlag;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnFastStartFlagChanging(e);
-                    this.OnPropertyChanging("FastStartFlag", e);
+                    this.OnPropertyChanging("FastStartFlag", e, _fastStartFlagAttribute);
                     this._fastStartFlag = value;
                     this.OnFastStartFlagChanged(e);
-                    this.OnPropertyChanged("FastStartFlag", e);
+                    this.OnPropertyChanged("FastStartFlag", e, _fastStartFlagAttribute);
                 }
             }
         }
@@ -1250,10 +1352,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
                     Nullable<GeneratorControlMode> old = this._genControlMode;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnGenControlModeChanging(e);
-                    this.OnPropertyChanging("GenControlMode", e);
+                    this.OnPropertyChanging("GenControlMode", e, _genControlModeAttribute);
                     this._genControlMode = value;
                     this.OnGenControlModeChanged(e);
-                    this.OnPropertyChanged("GenControlMode", e);
+                    this.OnPropertyChanged("GenControlMode", e, _genControlModeAttribute);
                 }
             }
         }
@@ -1276,10 +1378,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
                     float old = this._ratedNetMaxP;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnRatedNetMaxPChanging(e);
-                    this.OnPropertyChanging("RatedNetMaxP", e);
+                    this.OnPropertyChanging("RatedNetMaxP", e, _ratedNetMaxPAttribute);
                     this._ratedNetMaxP = value;
                     this.OnRatedNetMaxPChanged(e);
-                    this.OnPropertyChanged("RatedNetMaxP", e);
+                    this.OnPropertyChanged("RatedNetMaxP", e, _ratedNetMaxPAttribute);
                 }
             }
         }
@@ -1302,10 +1404,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
                     float old = this._efficiency;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnEfficiencyChanging(e);
-                    this.OnPropertyChanging("Efficiency", e);
+                    this.OnPropertyChanging("Efficiency", e, _efficiencyAttribute);
                     this._efficiency = value;
                     this.OnEfficiencyChanged(e);
-                    this.OnPropertyChanged("Efficiency", e);
+                    this.OnPropertyChanged("Efficiency", e, _efficiencyAttribute);
                 }
             }
         }
@@ -1328,10 +1430,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
                     float old = this._minimumOffTime;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnMinimumOffTimeChanging(e);
-                    this.OnPropertyChanging("MinimumOffTime", e);
+                    this.OnPropertyChanging("MinimumOffTime", e, _minimumOffTimeAttribute);
                     this._minimumOffTime = value;
                     this.OnMinimumOffTimeChanged(e);
-                    this.OnPropertyChanged("MinimumOffTime", e);
+                    this.OnPropertyChanged("MinimumOffTime", e, _minimumOffTimeAttribute);
                 }
             }
         }
@@ -1354,10 +1456,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
                     bool old = this._dispReserveFlag;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnDispReserveFlagChanging(e);
-                    this.OnPropertyChanging("DispReserveFlag", e);
+                    this.OnPropertyChanging("DispReserveFlag", e, _dispReserveFlagAttribute);
                     this._dispReserveFlag = value;
                     this.OnDispReserveFlagChanged(e);
-                    this.OnPropertyChanged("DispReserveFlag", e);
+                    this.OnPropertyChanged("DispReserveFlag", e, _dispReserveFlagAttribute);
                 }
             }
         }
@@ -1380,10 +1482,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
                     float old = this._maximumAllowableSpinningReserve;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnMaximumAllowableSpinningReserveChanging(e);
-                    this.OnPropertyChanging("MaximumAllowableSpinningReserve", e);
+                    this.OnPropertyChanging("MaximumAllowableSpinningReserve", e, _maximumAllowableSpinningReserveAttribute);
                     this._maximumAllowableSpinningReserve = value;
                     this.OnMaximumAllowableSpinningReserveChanged(e);
-                    this.OnPropertyChanged("MaximumAllowableSpinningReserve", e);
+                    this.OnPropertyChanged("MaximumAllowableSpinningReserve", e, _maximumAllowableSpinningReserveAttribute);
                 }
             }
         }
@@ -1406,10 +1508,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
                     float old = this._controlDeadband;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnControlDeadbandChanging(e);
-                    this.OnPropertyChanging("ControlDeadband", e);
+                    this.OnPropertyChanging("ControlDeadband", e, _controlDeadbandAttribute);
                     this._controlDeadband = value;
                     this.OnControlDeadbandChanged(e);
-                    this.OnPropertyChanged("ControlDeadband", e);
+                    this.OnPropertyChanged("ControlDeadband", e, _controlDeadbandAttribute);
                 }
             }
         }
@@ -1432,10 +1534,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
                     float old = this._normalPF;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnNormalPFChanging(e);
-                    this.OnPropertyChanging("NormalPF", e);
+                    this.OnPropertyChanging("NormalPF", e, _normalPFAttribute);
                     this._normalPF = value;
                     this.OnNormalPFChanged(e);
-                    this.OnPropertyChanged("NormalPF", e);
+                    this.OnPropertyChanged("NormalPF", e, _normalPFAttribute);
                 }
             }
         }
@@ -1458,7 +1560,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
                     IGenerationProvider old = this._operatedBy_GenerationProvider;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnOperatedBy_GenerationProviderChanging(e);
-                    this.OnPropertyChanging("OperatedBy_GenerationProvider", e);
+                    this.OnPropertyChanging("OperatedBy_GenerationProvider", e, _operatedBy_GenerationProviderReference);
                     this._operatedBy_GenerationProvider = value;
                     if ((old != null))
                     {
@@ -1471,7 +1573,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
                         value.Deleted += this.OnResetOperatedBy_GenerationProvider;
                     }
                     this.OnOperatedBy_GenerationProviderChanged(e);
-                    this.OnPropertyChanged("OperatedBy_GenerationProvider", e);
+                    this.OnPropertyChanged("OperatedBy_GenerationProvider", e, _operatedBy_GenerationProviderReference);
                 }
             }
         }
@@ -1494,7 +1596,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
                     IGenUnitOpSchedule old = this._genUnitOpSchedule;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnGenUnitOpScheduleChanging(e);
-                    this.OnPropertyChanging("GenUnitOpSchedule", e);
+                    this.OnPropertyChanging("GenUnitOpSchedule", e, _genUnitOpScheduleReference);
                     this._genUnitOpSchedule = value;
                     if ((old != null))
                     {
@@ -1507,7 +1609,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
                         value.Deleted += this.OnResetGenUnitOpSchedule;
                     }
                     this.OnGenUnitOpScheduleChanged(e);
-                    this.OnPropertyChanged("GenUnitOpSchedule", e);
+                    this.OnPropertyChanged("GenUnitOpSchedule", e, _genUnitOpScheduleReference);
                 }
             }
         }
@@ -1590,7 +1692,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
                     IRegisteredGenerator old = this._registeredGenerator;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnRegisteredGeneratorChanging(e);
-                    this.OnPropertyChanging("RegisteredGenerator", e);
+                    this.OnPropertyChanging("RegisteredGenerator", e, _registeredGeneratorReference);
                     this._registeredGenerator = value;
                     if ((old != null))
                     {
@@ -1603,7 +1705,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
                         value.Deleted += this.OnResetRegisteredGenerator;
                     }
                     this.OnRegisteredGeneratorChanged(e);
-                    this.OnPropertyChanged("RegisteredGenerator", e);
+                    this.OnPropertyChanged("RegisteredGenerator", e, _registeredGeneratorReference);
                 }
             }
         }
@@ -1626,7 +1728,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
                     ISubControlArea old = this._subControlArea;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnSubControlAreaChanging(e);
-                    this.OnPropertyChanging("SubControlArea", e);
+                    this.OnPropertyChanging("SubControlArea", e, _subControlAreaReference);
                     this._subControlArea = value;
                     if ((old != null))
                     {
@@ -1639,7 +1741,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
                         value.Deleted += this.OnResetSubControlArea;
                     }
                     this.OnSubControlAreaChanged(e);
-                    this.OnPropertyChanged("SubControlArea", e);
+                    this.OnPropertyChanged("SubControlArea", e, _subControlAreaReference);
                 }
             }
         }
@@ -2141,6 +2243,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> SubControlAreaChanged;
         
+        private static ITypedElement RetrieveHighControlLimitAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(GeneratingUnit.ClassInstance)).Resolve("highControlLimit")));
+        }
+        
         /// <summary>
         /// Raises the HighControlLimitChanging event
         /// </summary>
@@ -2165,6 +2272,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveRaiseRampRateAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(GeneratingUnit.ClassInstance)).Resolve("raiseRampRate")));
         }
         
         /// <summary>
@@ -2193,6 +2305,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
             }
         }
         
+        private static ITypedElement RetrieveGenOperatingModeAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(GeneratingUnit.ClassInstance)).Resolve("genOperatingMode")));
+        }
+        
         /// <summary>
         /// Raises the GenOperatingModeChanging event
         /// </summary>
@@ -2217,6 +2334,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveAutoCntrlMarginPAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(GeneratingUnit.ClassInstance)).Resolve("autoCntrlMarginP")));
         }
         
         /// <summary>
@@ -2245,6 +2367,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
             }
         }
         
+        private static ITypedElement RetrieveControlPulseLowAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(GeneratingUnit.ClassInstance)).Resolve("controlPulseLow")));
+        }
+        
         /// <summary>
         /// Raises the ControlPulseLowChanging event
         /// </summary>
@@ -2269,6 +2396,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveGovernorMPLAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(GeneratingUnit.ClassInstance)).Resolve("governorMPL")));
         }
         
         /// <summary>
@@ -2297,6 +2429,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
             }
         }
         
+        private static ITypedElement RetrieveRatedGrossMaxPAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(GeneratingUnit.ClassInstance)).Resolve("ratedGrossMaxP")));
+        }
+        
         /// <summary>
         /// Raises the RatedGrossMaxPChanging event
         /// </summary>
@@ -2321,6 +2458,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveAllocSpinResPAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(GeneratingUnit.ClassInstance)).Resolve("allocSpinResP")));
         }
         
         /// <summary>
@@ -2349,6 +2491,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
             }
         }
         
+        private static ITypedElement RetrieveStepChangeAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(GeneratingUnit.ClassInstance)).Resolve("stepChange")));
+        }
+        
         /// <summary>
         /// Raises the StepChangeChanging event
         /// </summary>
@@ -2373,6 +2520,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveStartupCostAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(GeneratingUnit.ClassInstance)).Resolve("startupCost")));
         }
         
         /// <summary>
@@ -2401,6 +2553,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
             }
         }
         
+        private static ITypedElement RetrieveSpinReserveRampAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(GeneratingUnit.ClassInstance)).Resolve("spinReserveRamp")));
+        }
+        
         /// <summary>
         /// Raises the SpinReserveRampChanging event
         /// </summary>
@@ -2425,6 +2582,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveNominalPAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(GeneratingUnit.ClassInstance)).Resolve("nominalP")));
         }
         
         /// <summary>
@@ -2453,6 +2615,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
             }
         }
         
+        private static ITypedElement RetrieveGovernorSCDAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(GeneratingUnit.ClassInstance)).Resolve("governorSCD")));
+        }
+        
         /// <summary>
         /// Raises the GovernorSCDChanging event
         /// </summary>
@@ -2477,6 +2644,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrievePenaltyFactorAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(GeneratingUnit.ClassInstance)).Resolve("penaltyFactor")));
         }
         
         /// <summary>
@@ -2505,6 +2677,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
             }
         }
         
+        private static ITypedElement RetrieveControlPulseHighAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(GeneratingUnit.ClassInstance)).Resolve("controlPulseHigh")));
+        }
+        
         /// <summary>
         /// Raises the ControlPulseHighChanging event
         /// </summary>
@@ -2529,6 +2706,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveEnergyMinPAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(GeneratingUnit.ClassInstance)).Resolve("energyMinP")));
         }
         
         /// <summary>
@@ -2557,6 +2739,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
             }
         }
         
+        private static ITypedElement RetrieveStartupTimeAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(GeneratingUnit.ClassInstance)).Resolve("startupTime")));
+        }
+        
         /// <summary>
         /// Raises the StartupTimeChanging event
         /// </summary>
@@ -2581,6 +2768,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveTieLinePFAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(GeneratingUnit.ClassInstance)).Resolve("tieLinePF")));
         }
         
         /// <summary>
@@ -2609,6 +2801,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
             }
         }
         
+        private static ITypedElement RetrieveLowerRampRateAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(GeneratingUnit.ClassInstance)).Resolve("lowerRampRate")));
+        }
+        
         /// <summary>
         /// Raises the LowerRampRateChanging event
         /// </summary>
@@ -2633,6 +2830,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveInitialPAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(GeneratingUnit.ClassInstance)).Resolve("initialP")));
         }
         
         /// <summary>
@@ -2661,6 +2863,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
             }
         }
         
+        private static ITypedElement RetrieveControlResponseRateAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(GeneratingUnit.ClassInstance)).Resolve("controlResponseRate")));
+        }
+        
         /// <summary>
         /// Raises the ControlResponseRateChanging event
         /// </summary>
@@ -2685,6 +2892,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveMinEconomicPAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(GeneratingUnit.ClassInstance)).Resolve("minEconomicP")));
         }
         
         /// <summary>
@@ -2713,6 +2925,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
             }
         }
         
+        private static ITypedElement RetrieveModelDetailAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(GeneratingUnit.ClassInstance)).Resolve("modelDetail")));
+        }
+        
         /// <summary>
         /// Raises the ModelDetailChanging event
         /// </summary>
@@ -2737,6 +2954,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveFuelPriorityAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(GeneratingUnit.ClassInstance)).Resolve("fuelPriority")));
         }
         
         /// <summary>
@@ -2765,6 +2987,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
             }
         }
         
+        private static ITypedElement RetrieveMaxEconomicPAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(GeneratingUnit.ClassInstance)).Resolve("maxEconomicP")));
+        }
+        
         /// <summary>
         /// Raises the MaxEconomicPChanging event
         /// </summary>
@@ -2789,6 +3016,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveGenControlSourceAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(GeneratingUnit.ClassInstance)).Resolve("genControlSource")));
         }
         
         /// <summary>
@@ -2817,6 +3049,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
             }
         }
         
+        private static ITypedElement RetrieveRatedGrossMinPAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(GeneratingUnit.ClassInstance)).Resolve("ratedGrossMinP")));
+        }
+        
         /// <summary>
         /// Raises the RatedGrossMinPChanging event
         /// </summary>
@@ -2841,6 +3078,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveVariableCostAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(GeneratingUnit.ClassInstance)).Resolve("variableCost")));
         }
         
         /// <summary>
@@ -2869,6 +3111,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
             }
         }
         
+        private static ITypedElement RetrieveMinOperatingPAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(GeneratingUnit.ClassInstance)).Resolve("minOperatingP")));
+        }
+        
         /// <summary>
         /// Raises the MinOperatingPChanging event
         /// </summary>
@@ -2893,6 +3140,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveBasePAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(GeneratingUnit.ClassInstance)).Resolve("baseP")));
         }
         
         /// <summary>
@@ -2921,6 +3173,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
             }
         }
         
+        private static ITypedElement RetrieveShortPFAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(GeneratingUnit.ClassInstance)).Resolve("shortPF")));
+        }
+        
         /// <summary>
         /// Raises the ShortPFChanging event
         /// </summary>
@@ -2945,6 +3202,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveLowControlLimitAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(GeneratingUnit.ClassInstance)).Resolve("lowControlLimit")));
         }
         
         /// <summary>
@@ -2973,6 +3235,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
             }
         }
         
+        private static ITypedElement RetrieveLongPFAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(GeneratingUnit.ClassInstance)).Resolve("longPF")));
+        }
+        
         /// <summary>
         /// Raises the LongPFChanging event
         /// </summary>
@@ -2997,6 +3264,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveMaxOperatingPAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(GeneratingUnit.ClassInstance)).Resolve("maxOperatingP")));
         }
         
         /// <summary>
@@ -3025,6 +3297,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
             }
         }
         
+        private static ITypedElement RetrieveFastStartFlagAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(GeneratingUnit.ClassInstance)).Resolve("fastStartFlag")));
+        }
+        
         /// <summary>
         /// Raises the FastStartFlagChanging event
         /// </summary>
@@ -3049,6 +3326,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveGenControlModeAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(GeneratingUnit.ClassInstance)).Resolve("genControlMode")));
         }
         
         /// <summary>
@@ -3077,6 +3359,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
             }
         }
         
+        private static ITypedElement RetrieveRatedNetMaxPAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(GeneratingUnit.ClassInstance)).Resolve("ratedNetMaxP")));
+        }
+        
         /// <summary>
         /// Raises the RatedNetMaxPChanging event
         /// </summary>
@@ -3101,6 +3388,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveEfficiencyAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(GeneratingUnit.ClassInstance)).Resolve("efficiency")));
         }
         
         /// <summary>
@@ -3129,6 +3421,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
             }
         }
         
+        private static ITypedElement RetrieveMinimumOffTimeAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(GeneratingUnit.ClassInstance)).Resolve("minimumOffTime")));
+        }
+        
         /// <summary>
         /// Raises the MinimumOffTimeChanging event
         /// </summary>
@@ -3153,6 +3450,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveDispReserveFlagAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(GeneratingUnit.ClassInstance)).Resolve("dispReserveFlag")));
         }
         
         /// <summary>
@@ -3181,6 +3483,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
             }
         }
         
+        private static ITypedElement RetrieveMaximumAllowableSpinningReserveAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(GeneratingUnit.ClassInstance)).Resolve("maximumAllowableSpinningReserve")));
+        }
+        
         /// <summary>
         /// Raises the MaximumAllowableSpinningReserveChanging event
         /// </summary>
@@ -3205,6 +3512,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveControlDeadbandAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(GeneratingUnit.ClassInstance)).Resolve("controlDeadband")));
         }
         
         /// <summary>
@@ -3233,6 +3545,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
             }
         }
         
+        private static ITypedElement RetrieveNormalPFAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(GeneratingUnit.ClassInstance)).Resolve("normalPF")));
+        }
+        
         /// <summary>
         /// Raises the NormalPFChanging event
         /// </summary>
@@ -3257,6 +3574,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveOperatedBy_GenerationProviderReference()
+        {
+            return ((ITypedElement)(((ModelElement)(GeneratingUnit.ClassInstance)).Resolve("OperatedBy_GenerationProvider")));
         }
         
         /// <summary>
@@ -3295,6 +3617,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
             this.OperatedBy_GenerationProvider = null;
         }
         
+        private static ITypedElement RetrieveGenUnitOpScheduleReference()
+        {
+            return ((ITypedElement)(((ModelElement)(GeneratingUnit.ClassInstance)).Resolve("GenUnitOpSchedule")));
+        }
+        
         /// <summary>
         /// Raises the GenUnitOpScheduleChanging event
         /// </summary>
@@ -3331,6 +3658,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
             this.GenUnitOpSchedule = null;
         }
         
+        private static ITypedElement RetrieveControlAreaGeneratingUnitReference()
+        {
+            return ((ITypedElement)(((ModelElement)(GeneratingUnit.ClassInstance)).Resolve("ControlAreaGeneratingUnit")));
+        }
+        
         /// <summary>
         /// Forwards CollectionChanging notifications for the ControlAreaGeneratingUnit property to the parent model element
         /// </summary>
@@ -3338,7 +3670,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
         /// <param name="e">The original event data</param>
         private void ControlAreaGeneratingUnitCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("ControlAreaGeneratingUnit", e);
+            this.OnCollectionChanging("ControlAreaGeneratingUnit", e, _controlAreaGeneratingUnitReference);
         }
         
         /// <summary>
@@ -3348,7 +3680,12 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
         /// <param name="e">The original event data</param>
         private void ControlAreaGeneratingUnitCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("ControlAreaGeneratingUnit", e);
+            this.OnCollectionChanged("ControlAreaGeneratingUnit", e, _controlAreaGeneratingUnitReference);
+        }
+        
+        private static ITypedElement RetrieveGrossToNetActivePowerCurvesReference()
+        {
+            return ((ITypedElement)(((ModelElement)(GeneratingUnit.ClassInstance)).Resolve("GrossToNetActivePowerCurves")));
         }
         
         /// <summary>
@@ -3358,7 +3695,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
         /// <param name="e">The original event data</param>
         private void GrossToNetActivePowerCurvesCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("GrossToNetActivePowerCurves", e);
+            this.OnCollectionChanging("GrossToNetActivePowerCurves", e, _grossToNetActivePowerCurvesReference);
         }
         
         /// <summary>
@@ -3368,7 +3705,12 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
         /// <param name="e">The original event data</param>
         private void GrossToNetActivePowerCurvesCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("GrossToNetActivePowerCurves", e);
+            this.OnCollectionChanged("GrossToNetActivePowerCurves", e, _grossToNetActivePowerCurvesReference);
+        }
+        
+        private static ITypedElement RetrieveGenUnitOpCostCurvesReference()
+        {
+            return ((ITypedElement)(((ModelElement)(GeneratingUnit.ClassInstance)).Resolve("GenUnitOpCostCurves")));
         }
         
         /// <summary>
@@ -3378,7 +3720,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
         /// <param name="e">The original event data</param>
         private void GenUnitOpCostCurvesCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("GenUnitOpCostCurves", e);
+            this.OnCollectionChanging("GenUnitOpCostCurves", e, _genUnitOpCostCurvesReference);
         }
         
         /// <summary>
@@ -3388,7 +3730,12 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
         /// <param name="e">The original event data</param>
         private void GenUnitOpCostCurvesCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("GenUnitOpCostCurves", e);
+            this.OnCollectionChanged("GenUnitOpCostCurves", e, _genUnitOpCostCurvesReference);
+        }
+        
+        private static ITypedElement RetrieveSynchronousMachinesReference()
+        {
+            return ((ITypedElement)(((ModelElement)(GeneratingUnit.ClassInstance)).Resolve("SynchronousMachines")));
         }
         
         /// <summary>
@@ -3398,7 +3745,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
         /// <param name="e">The original event data</param>
         private void SynchronousMachinesCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("SynchronousMachines", e);
+            this.OnCollectionChanging("SynchronousMachines", e, _synchronousMachinesReference);
         }
         
         /// <summary>
@@ -3408,7 +3755,12 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
         /// <param name="e">The original event data</param>
         private void SynchronousMachinesCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("SynchronousMachines", e);
+            this.OnCollectionChanged("SynchronousMachines", e, _synchronousMachinesReference);
+        }
+        
+        private static ITypedElement RetrieveRegisteredGeneratorReference()
+        {
+            return ((ITypedElement)(((ModelElement)(GeneratingUnit.ClassInstance)).Resolve("RegisteredGenerator")));
         }
         
         /// <summary>
@@ -3445,6 +3797,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
         private void OnResetRegisteredGenerator(object sender, System.EventArgs eventArgs)
         {
             this.RegisteredGenerator = null;
+        }
+        
+        private static ITypedElement RetrieveSubControlAreaReference()
+        {
+            return ((ITypedElement)(((ModelElement)(GeneratingUnit.ClassInstance)).Resolve("SubControlArea")));
         }
         
         /// <summary>
@@ -4359,7 +4716,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public HighControlLimitProxy(IGeneratingUnit modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "highControlLimit")
             {
             }
             
@@ -4377,24 +4734,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
                     this.ModelElement.HighControlLimit = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.HighControlLimitChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.HighControlLimitChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -4408,7 +4747,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public RaiseRampRateProxy(IGeneratingUnit modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "raiseRampRate")
             {
             }
             
@@ -4426,24 +4765,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
                     this.ModelElement.RaiseRampRate = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.RaiseRampRateChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.RaiseRampRateChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -4457,7 +4778,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public GenOperatingModeProxy(IGeneratingUnit modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "genOperatingMode")
             {
             }
             
@@ -4475,24 +4796,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
                     this.ModelElement.GenOperatingMode = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.GenOperatingModeChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.GenOperatingModeChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -4506,7 +4809,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public AutoCntrlMarginPProxy(IGeneratingUnit modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "autoCntrlMarginP")
             {
             }
             
@@ -4524,24 +4827,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
                     this.ModelElement.AutoCntrlMarginP = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.AutoCntrlMarginPChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.AutoCntrlMarginPChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -4555,7 +4840,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public ControlPulseLowProxy(IGeneratingUnit modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "controlPulseLow")
             {
             }
             
@@ -4573,24 +4858,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
                     this.ModelElement.ControlPulseLow = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ControlPulseLowChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ControlPulseLowChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -4604,7 +4871,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public GovernorMPLProxy(IGeneratingUnit modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "governorMPL")
             {
             }
             
@@ -4622,24 +4889,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
                     this.ModelElement.GovernorMPL = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.GovernorMPLChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.GovernorMPLChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -4653,7 +4902,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public RatedGrossMaxPProxy(IGeneratingUnit modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "ratedGrossMaxP")
             {
             }
             
@@ -4671,24 +4920,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
                     this.ModelElement.RatedGrossMaxP = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.RatedGrossMaxPChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.RatedGrossMaxPChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -4702,7 +4933,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public AllocSpinResPProxy(IGeneratingUnit modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "allocSpinResP")
             {
             }
             
@@ -4720,24 +4951,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
                     this.ModelElement.AllocSpinResP = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.AllocSpinResPChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.AllocSpinResPChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -4751,7 +4964,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public StepChangeProxy(IGeneratingUnit modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "stepChange")
             {
             }
             
@@ -4769,24 +4982,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
                     this.ModelElement.StepChange = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.StepChangeChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.StepChangeChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -4800,7 +4995,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public StartupCostProxy(IGeneratingUnit modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "startupCost")
             {
             }
             
@@ -4818,24 +5013,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
                     this.ModelElement.StartupCost = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.StartupCostChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.StartupCostChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -4849,7 +5026,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public SpinReserveRampProxy(IGeneratingUnit modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "spinReserveRamp")
             {
             }
             
@@ -4867,24 +5044,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
                     this.ModelElement.SpinReserveRamp = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.SpinReserveRampChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.SpinReserveRampChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -4898,7 +5057,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public NominalPProxy(IGeneratingUnit modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "nominalP")
             {
             }
             
@@ -4916,24 +5075,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
                     this.ModelElement.NominalP = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.NominalPChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.NominalPChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -4947,7 +5088,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public GovernorSCDProxy(IGeneratingUnit modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "governorSCD")
             {
             }
             
@@ -4965,24 +5106,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
                     this.ModelElement.GovernorSCD = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.GovernorSCDChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.GovernorSCDChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -4996,7 +5119,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public PenaltyFactorProxy(IGeneratingUnit modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "penaltyFactor")
             {
             }
             
@@ -5014,24 +5137,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
                     this.ModelElement.PenaltyFactor = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.PenaltyFactorChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.PenaltyFactorChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -5045,7 +5150,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public ControlPulseHighProxy(IGeneratingUnit modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "controlPulseHigh")
             {
             }
             
@@ -5063,24 +5168,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
                     this.ModelElement.ControlPulseHigh = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ControlPulseHighChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ControlPulseHighChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -5094,7 +5181,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public EnergyMinPProxy(IGeneratingUnit modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "energyMinP")
             {
             }
             
@@ -5112,24 +5199,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
                     this.ModelElement.EnergyMinP = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.EnergyMinPChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.EnergyMinPChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -5143,7 +5212,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public StartupTimeProxy(IGeneratingUnit modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "startupTime")
             {
             }
             
@@ -5161,24 +5230,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
                     this.ModelElement.StartupTime = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.StartupTimeChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.StartupTimeChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -5192,7 +5243,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public TieLinePFProxy(IGeneratingUnit modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "tieLinePF")
             {
             }
             
@@ -5210,24 +5261,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
                     this.ModelElement.TieLinePF = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.TieLinePFChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.TieLinePFChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -5241,7 +5274,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public LowerRampRateProxy(IGeneratingUnit modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "lowerRampRate")
             {
             }
             
@@ -5259,24 +5292,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
                     this.ModelElement.LowerRampRate = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.LowerRampRateChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.LowerRampRateChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -5290,7 +5305,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public InitialPProxy(IGeneratingUnit modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "initialP")
             {
             }
             
@@ -5308,24 +5323,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
                     this.ModelElement.InitialP = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.InitialPChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.InitialPChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -5339,7 +5336,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public ControlResponseRateProxy(IGeneratingUnit modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "controlResponseRate")
             {
             }
             
@@ -5357,24 +5354,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
                     this.ModelElement.ControlResponseRate = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ControlResponseRateChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ControlResponseRateChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -5388,7 +5367,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public MinEconomicPProxy(IGeneratingUnit modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "minEconomicP")
             {
             }
             
@@ -5406,24 +5385,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
                     this.ModelElement.MinEconomicP = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.MinEconomicPChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.MinEconomicPChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -5437,7 +5398,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public ModelDetailProxy(IGeneratingUnit modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "modelDetail")
             {
             }
             
@@ -5455,24 +5416,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
                     this.ModelElement.ModelDetail = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ModelDetailChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ModelDetailChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -5486,7 +5429,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public FuelPriorityProxy(IGeneratingUnit modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "fuelPriority")
             {
             }
             
@@ -5504,24 +5447,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
                     this.ModelElement.FuelPriority = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.FuelPriorityChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.FuelPriorityChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -5535,7 +5460,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public MaxEconomicPProxy(IGeneratingUnit modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "maxEconomicP")
             {
             }
             
@@ -5553,24 +5478,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
                     this.ModelElement.MaxEconomicP = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.MaxEconomicPChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.MaxEconomicPChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -5584,7 +5491,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public GenControlSourceProxy(IGeneratingUnit modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "genControlSource")
             {
             }
             
@@ -5602,24 +5509,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
                     this.ModelElement.GenControlSource = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.GenControlSourceChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.GenControlSourceChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -5633,7 +5522,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public RatedGrossMinPProxy(IGeneratingUnit modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "ratedGrossMinP")
             {
             }
             
@@ -5651,24 +5540,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
                     this.ModelElement.RatedGrossMinP = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.RatedGrossMinPChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.RatedGrossMinPChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -5682,7 +5553,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public VariableCostProxy(IGeneratingUnit modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "variableCost")
             {
             }
             
@@ -5700,24 +5571,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
                     this.ModelElement.VariableCost = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.VariableCostChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.VariableCostChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -5731,7 +5584,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public MinOperatingPProxy(IGeneratingUnit modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "minOperatingP")
             {
             }
             
@@ -5749,24 +5602,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
                     this.ModelElement.MinOperatingP = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.MinOperatingPChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.MinOperatingPChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -5780,7 +5615,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public BasePProxy(IGeneratingUnit modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "baseP")
             {
             }
             
@@ -5798,24 +5633,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
                     this.ModelElement.BaseP = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.BasePChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.BasePChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -5829,7 +5646,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public ShortPFProxy(IGeneratingUnit modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "shortPF")
             {
             }
             
@@ -5847,24 +5664,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
                     this.ModelElement.ShortPF = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ShortPFChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ShortPFChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -5878,7 +5677,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public LowControlLimitProxy(IGeneratingUnit modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "lowControlLimit")
             {
             }
             
@@ -5896,24 +5695,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
                     this.ModelElement.LowControlLimit = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.LowControlLimitChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.LowControlLimitChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -5927,7 +5708,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public LongPFProxy(IGeneratingUnit modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "longPF")
             {
             }
             
@@ -5945,24 +5726,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
                     this.ModelElement.LongPF = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.LongPFChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.LongPFChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -5976,7 +5739,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public MaxOperatingPProxy(IGeneratingUnit modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "maxOperatingP")
             {
             }
             
@@ -5994,24 +5757,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
                     this.ModelElement.MaxOperatingP = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.MaxOperatingPChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.MaxOperatingPChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -6025,7 +5770,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public FastStartFlagProxy(IGeneratingUnit modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "fastStartFlag")
             {
             }
             
@@ -6043,24 +5788,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
                     this.ModelElement.FastStartFlag = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.FastStartFlagChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.FastStartFlagChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -6074,7 +5801,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public GenControlModeProxy(IGeneratingUnit modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "genControlMode")
             {
             }
             
@@ -6092,24 +5819,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
                     this.ModelElement.GenControlMode = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.GenControlModeChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.GenControlModeChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -6123,7 +5832,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public RatedNetMaxPProxy(IGeneratingUnit modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "ratedNetMaxP")
             {
             }
             
@@ -6141,24 +5850,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
                     this.ModelElement.RatedNetMaxP = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.RatedNetMaxPChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.RatedNetMaxPChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -6172,7 +5863,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public EfficiencyProxy(IGeneratingUnit modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "efficiency")
             {
             }
             
@@ -6190,24 +5881,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
                     this.ModelElement.Efficiency = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.EfficiencyChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.EfficiencyChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -6221,7 +5894,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public MinimumOffTimeProxy(IGeneratingUnit modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "minimumOffTime")
             {
             }
             
@@ -6239,24 +5912,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
                     this.ModelElement.MinimumOffTime = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.MinimumOffTimeChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.MinimumOffTimeChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -6270,7 +5925,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public DispReserveFlagProxy(IGeneratingUnit modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "dispReserveFlag")
             {
             }
             
@@ -6288,24 +5943,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
                     this.ModelElement.DispReserveFlag = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.DispReserveFlagChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.DispReserveFlagChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -6319,7 +5956,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public MaximumAllowableSpinningReserveProxy(IGeneratingUnit modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "maximumAllowableSpinningReserve")
             {
             }
             
@@ -6337,24 +5974,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
                     this.ModelElement.MaximumAllowableSpinningReserve = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.MaximumAllowableSpinningReserveChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.MaximumAllowableSpinningReserveChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -6368,7 +5987,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public ControlDeadbandProxy(IGeneratingUnit modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "controlDeadband")
             {
             }
             
@@ -6386,24 +6005,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
                     this.ModelElement.ControlDeadband = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ControlDeadbandChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ControlDeadbandChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -6417,7 +6018,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public NormalPFProxy(IGeneratingUnit modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "normalPF")
             {
             }
             
@@ -6435,24 +6036,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
                     this.ModelElement.NormalPF = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.NormalPFChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.NormalPFChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -6466,7 +6049,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public OperatedBy_GenerationProviderProxy(IGeneratingUnit modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "OperatedBy_GenerationProvider")
             {
             }
             
@@ -6484,24 +6067,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
                     this.ModelElement.OperatedBy_GenerationProvider = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.OperatedBy_GenerationProviderChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.OperatedBy_GenerationProviderChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -6515,7 +6080,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public GenUnitOpScheduleProxy(IGeneratingUnit modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "GenUnitOpSchedule")
             {
             }
             
@@ -6533,24 +6098,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
                     this.ModelElement.GenUnitOpSchedule = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.GenUnitOpScheduleChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.GenUnitOpScheduleChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -6564,7 +6111,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public RegisteredGeneratorProxy(IGeneratingUnit modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "RegisteredGenerator")
             {
             }
             
@@ -6582,24 +6129,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
                     this.ModelElement.RegisteredGenerator = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.RegisteredGeneratorChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.RegisteredGeneratorChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -6613,7 +6142,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public SubControlAreaProxy(IGeneratingUnit modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "SubControlArea")
             {
             }
             
@@ -6630,24 +6159,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
                 {
                     this.ModelElement.SubControlArea = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.SubControlAreaChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.SubControlAreaChanged -= handler;
             }
         }
     }

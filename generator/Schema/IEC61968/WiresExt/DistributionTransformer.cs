@@ -45,28 +45,38 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.WiresExt
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61968/WiresExt/DistributionTransfor" +
         "mer")]
     [DebuggerDisplayAttribute("DistributionTransformer {UUID}")]
-    public class DistributionTransformer : Equipment, IDistributionTransformer, IModelElement
+    public partial class DistributionTransformer : Equipment, IDistributionTransformer, IModelElement
     {
+        
+        private static Lazy<ITypedElement> _transformerBankReference = new Lazy<ITypedElement>(RetrieveTransformerBankReference);
         
         /// <summary>
         /// The backing field for the TransformerBank property
         /// </summary>
         private ITransformerBank _transformerBank;
         
+        private static Lazy<ITypedElement> _transformerObservationsReference = new Lazy<ITypedElement>(RetrieveTransformerObservationsReference);
+        
         /// <summary>
         /// The backing field for the TransformerObservations property
         /// </summary>
         private DistributionTransformerTransformerObservationsCollection _transformerObservations;
+        
+        private static Lazy<ITypedElement> _transformerInfoReference = new Lazy<ITypedElement>(RetrieveTransformerInfoReference);
         
         /// <summary>
         /// The backing field for the TransformerInfo property
         /// </summary>
         private ITransformerInfo _transformerInfo;
         
+        private static Lazy<ITypedElement> _serviceDeliveryPointsReference = new Lazy<ITypedElement>(RetrieveServiceDeliveryPointsReference);
+        
         /// <summary>
         /// The backing field for the ServiceDeliveryPoints property
         /// </summary>
         private DistributionTransformerServiceDeliveryPointsCollection _serviceDeliveryPoints;
+        
+        private static Lazy<ITypedElement> _windingsReference = new Lazy<ITypedElement>(RetrieveWindingsReference);
         
         /// <summary>
         /// The backing field for the Windings property
@@ -106,7 +116,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.WiresExt
                     ITransformerBank old = this._transformerBank;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnTransformerBankChanging(e);
-                    this.OnPropertyChanging("TransformerBank", e);
+                    this.OnPropertyChanging("TransformerBank", e, _transformerBankReference);
                     this._transformerBank = value;
                     if ((old != null))
                     {
@@ -119,7 +129,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.WiresExt
                         value.Deleted += this.OnResetTransformerBank;
                     }
                     this.OnTransformerBankChanged(e);
-                    this.OnPropertyChanged("TransformerBank", e);
+                    this.OnPropertyChanged("TransformerBank", e, _transformerBankReference);
                 }
             }
         }
@@ -157,7 +167,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.WiresExt
                     ITransformerInfo old = this._transformerInfo;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnTransformerInfoChanging(e);
-                    this.OnPropertyChanging("TransformerInfo", e);
+                    this.OnPropertyChanging("TransformerInfo", e, _transformerInfoReference);
                     this._transformerInfo = value;
                     if ((old != null))
                     {
@@ -170,7 +180,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.WiresExt
                         value.Deleted += this.OnResetTransformerInfo;
                     }
                     this.OnTransformerInfoChanged(e);
-                    this.OnPropertyChanged("TransformerInfo", e);
+                    this.OnPropertyChanged("TransformerInfo", e, _transformerInfoReference);
                 }
             }
         }
@@ -252,6 +262,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.WiresExt
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> TransformerInfoChanged;
         
+        private static ITypedElement RetrieveTransformerBankReference()
+        {
+            return ((ITypedElement)(((ModelElement)(DistributionTransformer.ClassInstance)).Resolve("TransformerBank")));
+        }
+        
         /// <summary>
         /// Raises the TransformerBankChanging event
         /// </summary>
@@ -288,6 +303,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.WiresExt
             this.TransformerBank = null;
         }
         
+        private static ITypedElement RetrieveTransformerObservationsReference()
+        {
+            return ((ITypedElement)(((ModelElement)(DistributionTransformer.ClassInstance)).Resolve("TransformerObservations")));
+        }
+        
         /// <summary>
         /// Forwards CollectionChanging notifications for the TransformerObservations property to the parent model element
         /// </summary>
@@ -295,7 +315,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.WiresExt
         /// <param name="e">The original event data</param>
         private void TransformerObservationsCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("TransformerObservations", e);
+            this.OnCollectionChanging("TransformerObservations", e, _transformerObservationsReference);
         }
         
         /// <summary>
@@ -305,7 +325,12 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.WiresExt
         /// <param name="e">The original event data</param>
         private void TransformerObservationsCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("TransformerObservations", e);
+            this.OnCollectionChanged("TransformerObservations", e, _transformerObservationsReference);
+        }
+        
+        private static ITypedElement RetrieveTransformerInfoReference()
+        {
+            return ((ITypedElement)(((ModelElement)(DistributionTransformer.ClassInstance)).Resolve("TransformerInfo")));
         }
         
         /// <summary>
@@ -344,6 +369,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.WiresExt
             this.TransformerInfo = null;
         }
         
+        private static ITypedElement RetrieveServiceDeliveryPointsReference()
+        {
+            return ((ITypedElement)(((ModelElement)(DistributionTransformer.ClassInstance)).Resolve("ServiceDeliveryPoints")));
+        }
+        
         /// <summary>
         /// Forwards CollectionChanging notifications for the ServiceDeliveryPoints property to the parent model element
         /// </summary>
@@ -351,7 +381,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.WiresExt
         /// <param name="e">The original event data</param>
         private void ServiceDeliveryPointsCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("ServiceDeliveryPoints", e);
+            this.OnCollectionChanging("ServiceDeliveryPoints", e, _serviceDeliveryPointsReference);
         }
         
         /// <summary>
@@ -361,7 +391,12 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.WiresExt
         /// <param name="e">The original event data</param>
         private void ServiceDeliveryPointsCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("ServiceDeliveryPoints", e);
+            this.OnCollectionChanged("ServiceDeliveryPoints", e, _serviceDeliveryPointsReference);
+        }
+        
+        private static ITypedElement RetrieveWindingsReference()
+        {
+            return ((ITypedElement)(((ModelElement)(DistributionTransformer.ClassInstance)).Resolve("Windings")));
         }
         
         /// <summary>
@@ -371,7 +406,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.WiresExt
         /// <param name="e">The original event data</param>
         private void WindingsCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("Windings", e);
+            this.OnCollectionChanging("Windings", e, _windingsReference);
         }
         
         /// <summary>
@@ -381,7 +416,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.WiresExt
         /// <param name="e">The original event data</param>
         private void WindingsCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("Windings", e);
+            this.OnCollectionChanged("Windings", e, _windingsReference);
         }
         
         /// <summary>
@@ -738,7 +773,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.WiresExt
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public TransformerBankProxy(IDistributionTransformer modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "TransformerBank")
             {
             }
             
@@ -756,24 +791,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.WiresExt
                     this.ModelElement.TransformerBank = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.TransformerBankChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.TransformerBankChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -787,7 +804,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.WiresExt
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public TransformerInfoProxy(IDistributionTransformer modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "TransformerInfo")
             {
             }
             
@@ -804,24 +821,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.WiresExt
                 {
                     this.ModelElement.TransformerInfo = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.TransformerInfoChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.TransformerInfoChanged -= handler;
             }
         }
     }

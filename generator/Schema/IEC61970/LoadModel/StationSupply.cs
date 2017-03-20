@@ -43,7 +43,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.LoadModel
     [XmlNamespacePrefixAttribute("cimLoadModel")]
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61970/LoadModel/StationSupply")]
     [DebuggerDisplayAttribute("StationSupply {UUID}")]
-    public class StationSupply : EnergyConsumer, IStationSupply, IModelElement
+    public partial class StationSupply : EnergyConsumer, IStationSupply, IModelElement
     {
         
         private static IClass _classInstance;

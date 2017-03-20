@@ -46,7 +46,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfCustomers
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61970/Informative/InfCustomers/Serv" +
         "iceGuarantee")]
     [DebuggerDisplayAttribute("ServiceGuarantee {UUID}")]
-    public class ServiceGuarantee : Document, IServiceGuarantee, IModelElement
+    public partial class ServiceGuarantee : Document, IServiceGuarantee, IModelElement
     {
         
         /// <summary>
@@ -54,15 +54,23 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfCustomers
         /// </summary>
         private float _payAmount;
         
+        private static Lazy<ITypedElement> _payAmountAttribute = new Lazy<ITypedElement>(RetrievePayAmountAttribute);
+        
         /// <summary>
         /// The backing field for the AutomaticPay property
         /// </summary>
         private bool _automaticPay;
         
+        private static Lazy<ITypedElement> _automaticPayAttribute = new Lazy<ITypedElement>(RetrieveAutomaticPayAttribute);
+        
         /// <summary>
         /// The backing field for the ServiceRequirement property
         /// </summary>
         private string _serviceRequirement;
+        
+        private static Lazy<ITypedElement> _serviceRequirementAttribute = new Lazy<ITypedElement>(RetrieveServiceRequirementAttribute);
+        
+        private static Lazy<ITypedElement> _applicationPeriodReference = new Lazy<ITypedElement>(RetrieveApplicationPeriodReference);
         
         /// <summary>
         /// The backing field for the ApplicationPeriod property
@@ -89,10 +97,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfCustomers
                     float old = this._payAmount;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnPayAmountChanging(e);
-                    this.OnPropertyChanging("PayAmount", e);
+                    this.OnPropertyChanging("PayAmount", e, _payAmountAttribute);
                     this._payAmount = value;
                     this.OnPayAmountChanged(e);
-                    this.OnPropertyChanged("PayAmount", e);
+                    this.OnPropertyChanged("PayAmount", e, _payAmountAttribute);
                 }
             }
         }
@@ -115,10 +123,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfCustomers
                     bool old = this._automaticPay;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnAutomaticPayChanging(e);
-                    this.OnPropertyChanging("AutomaticPay", e);
+                    this.OnPropertyChanging("AutomaticPay", e, _automaticPayAttribute);
                     this._automaticPay = value;
                     this.OnAutomaticPayChanged(e);
-                    this.OnPropertyChanged("AutomaticPay", e);
+                    this.OnPropertyChanged("AutomaticPay", e, _automaticPayAttribute);
                 }
             }
         }
@@ -141,10 +149,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfCustomers
                     string old = this._serviceRequirement;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnServiceRequirementChanging(e);
-                    this.OnPropertyChanging("ServiceRequirement", e);
+                    this.OnPropertyChanging("ServiceRequirement", e, _serviceRequirementAttribute);
                     this._serviceRequirement = value;
                     this.OnServiceRequirementChanged(e);
-                    this.OnPropertyChanged("ServiceRequirement", e);
+                    this.OnPropertyChanged("ServiceRequirement", e, _serviceRequirementAttribute);
                 }
             }
         }
@@ -167,7 +175,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfCustomers
                     IDateTimeInterval old = this._applicationPeriod;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnApplicationPeriodChanging(e);
-                    this.OnPropertyChanging("ApplicationPeriod", e);
+                    this.OnPropertyChanging("ApplicationPeriod", e, _applicationPeriodReference);
                     this._applicationPeriod = value;
                     if ((old != null))
                     {
@@ -178,7 +186,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfCustomers
                         value.Deleted += this.OnResetApplicationPeriod;
                     }
                     this.OnApplicationPeriodChanged(e);
-                    this.OnPropertyChanged("ApplicationPeriod", e);
+                    this.OnPropertyChanged("ApplicationPeriod", e, _applicationPeriodReference);
                 }
             }
         }
@@ -250,6 +258,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfCustomers
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> ApplicationPeriodChanged;
         
+        private static ITypedElement RetrievePayAmountAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(ServiceGuarantee.ClassInstance)).Resolve("payAmount")));
+        }
+        
         /// <summary>
         /// Raises the PayAmountChanging event
         /// </summary>
@@ -274,6 +287,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfCustomers
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveAutomaticPayAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(ServiceGuarantee.ClassInstance)).Resolve("automaticPay")));
         }
         
         /// <summary>
@@ -302,6 +320,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfCustomers
             }
         }
         
+        private static ITypedElement RetrieveServiceRequirementAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(ServiceGuarantee.ClassInstance)).Resolve("serviceRequirement")));
+        }
+        
         /// <summary>
         /// Raises the ServiceRequirementChanging event
         /// </summary>
@@ -326,6 +349,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfCustomers
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveApplicationPeriodReference()
+        {
+            return ((ITypedElement)(((ModelElement)(ServiceGuarantee.ClassInstance)).Resolve("applicationPeriod")));
         }
         
         /// <summary>
@@ -589,7 +617,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfCustomers
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public PayAmountProxy(IServiceGuarantee modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "payAmount")
             {
             }
             
@@ -607,24 +635,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfCustomers
                     this.ModelElement.PayAmount = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.PayAmountChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.PayAmountChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -638,7 +648,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfCustomers
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public AutomaticPayProxy(IServiceGuarantee modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "automaticPay")
             {
             }
             
@@ -656,24 +666,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfCustomers
                     this.ModelElement.AutomaticPay = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.AutomaticPayChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.AutomaticPayChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -687,7 +679,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfCustomers
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public ServiceRequirementProxy(IServiceGuarantee modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "serviceRequirement")
             {
             }
             
@@ -705,24 +697,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfCustomers
                     this.ModelElement.ServiceRequirement = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ServiceRequirementChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ServiceRequirementChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -736,7 +710,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfCustomers
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public ApplicationPeriodProxy(IServiceGuarantee modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "applicationPeriod")
             {
             }
             
@@ -753,24 +727,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfCustomers
                 {
                     this.ModelElement.ApplicationPeriod = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ApplicationPeriodChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ApplicationPeriodChanged -= handler;
             }
         }
     }

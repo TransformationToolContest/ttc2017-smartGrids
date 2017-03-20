@@ -39,7 +39,7 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
     [XmlNamespacePrefixAttribute("objects")]
     [ModelRepresentationClassAttribute("http://www.transformation-tool-contest.eu/2017/smartGrids/cosem#//COSEMObjects/IP" +
         "v4SetupObject")]
-    public class IPv4SetupObject : IPv4setup, IIPv4SetupObject, IModelElement
+    public partial class IPv4SetupObject : IPv4setup, IIPv4SetupObject, IModelElement
     {
         
         private static IClass _classInstance;

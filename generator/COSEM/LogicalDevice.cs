@@ -38,7 +38,7 @@ namespace TTC2017.SmartGrids.COSEM
     [XmlNamespaceAttribute("http://www.transformation-tool-contest.eu/2017/smartGrids/cosem")]
     [XmlNamespacePrefixAttribute("cosem")]
     [ModelRepresentationClassAttribute("http://www.transformation-tool-contest.eu/2017/smartGrids/cosem#//LogicalDevice")]
-    public class LogicalDevice : ModelElement, ILogicalDevice, IModelElement
+    public partial class LogicalDevice : ModelElement, ILogicalDevice, IModelElement
     {
         
         /// <summary>
@@ -46,110 +46,156 @@ namespace TTC2017.SmartGrids.COSEM
         /// </summary>
         private string _iD;
         
+        private static Lazy<ITypedElement> _iDAttribute = new Lazy<ITypedElement>(RetrieveIDAttribute);
+        
+        private static Lazy<ITypedElement> _aAReference = new Lazy<ITypedElement>(RetrieveAAReference);
+        
         /// <summary>
         /// The backing field for the AA property
         /// </summary>
         private ICurrentAssociation _aA;
+        
+        private static Lazy<ITypedElement> _nameReference = new Lazy<ITypedElement>(RetrieveNameReference);
         
         /// <summary>
         /// The backing field for the Name property
         /// </summary>
         private ILogicalDeviceName _name;
         
+        private static Lazy<ITypedElement> _autoConnectReference = new Lazy<ITypedElement>(RetrieveAutoConnectReference);
+        
         /// <summary>
         /// The backing field for the AutoConnect property
         /// </summary>
         private IAutoConnectObject _autoConnect;
+        
+        private static Lazy<ITypedElement> _billingPeriodValuesReference = new Lazy<ITypedElement>(RetrieveBillingPeriodValuesReference);
         
         /// <summary>
         /// The backing field for the BillingPeriodValues property
         /// </summary>
         private IBillingPeriodValues _billingPeriodValues;
         
+        private static Lazy<ITypedElement> _electricityIDReference = new Lazy<ITypedElement>(RetrieveElectricityIDReference);
+        
         /// <summary>
         /// The backing field for the ElectricityID property
         /// </summary>
         private IElectricityID _electricityID;
+        
+        private static Lazy<ITypedElement> _programEntriesReference = new Lazy<ITypedElement>(RetrieveProgramEntriesReference);
         
         /// <summary>
         /// The backing field for the ProgramEntries property
         /// </summary>
         private IElectricityProgramEntries _programEntries;
         
+        private static Lazy<ITypedElement> _outputPulseReference = new Lazy<ITypedElement>(RetrieveOutputPulseReference);
+        
         /// <summary>
         /// The backing field for the OutputPulse property
         /// </summary>
         private IOutputPulseValues_constants _outputPulse;
+        
+        private static Lazy<ITypedElement> _readingFactorReference = new Lazy<ITypedElement>(RetrieveReadingFactorReference);
         
         /// <summary>
         /// The backing field for the ReadingFactor property
         /// </summary>
         private IReadingFactorAndCT_VTratio _readingFactor;
         
+        private static Lazy<ITypedElement> _nominalValuesReference = new Lazy<ITypedElement>(RetrieveNominalValuesReference);
+        
         /// <summary>
         /// The backing field for the NominalValues property
         /// </summary>
         private IElectricityNominalValues _nominalValues;
+        
+        private static Lazy<ITypedElement> _inputPulseReference = new Lazy<ITypedElement>(RetrieveInputPulseReference);
         
         /// <summary>
         /// The backing field for the InputPulse property
         /// </summary>
         private IInputPulseValuesOrConstants _inputPulse;
         
+        private static Lazy<ITypedElement> _measurementPeriodReference = new Lazy<ITypedElement>(RetrieveMeasurementPeriodReference);
+        
         /// <summary>
         /// The backing field for the MeasurementPeriod property
         /// </summary>
         private IMeasurementPeriod_recordingInterval_billingPeriodDuration _measurementPeriod;
+        
+        private static Lazy<ITypedElement> _timeEntriesReference = new Lazy<ITypedElement>(RetrieveTimeEntriesReference);
         
         /// <summary>
         /// The backing field for the TimeEntries property
         /// </summary>
         private ITimeEntries _timeEntries;
         
+        private static Lazy<ITypedElement> _transformerLineLossesReference = new Lazy<ITypedElement>(RetrieveTransformerLineLossesReference);
+        
         /// <summary>
         /// The backing field for the TransformerLineLosses property
         /// </summary>
         private ITransformerAndLineLosses _transformerLineLosses;
+        
+        private static Lazy<ITypedElement> _measurementAlgorithmReference = new Lazy<ITypedElement>(RetrieveMeasurementAlgorithmReference);
         
         /// <summary>
         /// The backing field for the MeasurementAlgorithm property
         /// </summary>
         private IMeasurementMethods _measurementAlgorithm;
         
+        private static Lazy<ITypedElement> _meteringPointReference = new Lazy<ITypedElement>(RetrieveMeteringPointReference);
+        
         /// <summary>
         /// The backing field for the MeteringPoint property
         /// </summary>
         private IMeteringPointID _meteringPoint;
+        
+        private static Lazy<ITypedElement> _electricityRelatedStatusReference = new Lazy<ITypedElement>(RetrieveElectricityRelatedStatusReference);
         
         /// <summary>
         /// The backing field for the ElectricityRelatedStatus property
         /// </summary>
         private IElectricityRelatedStatusData _electricityRelatedStatus;
         
+        private static Lazy<ITypedElement> _registerMonitorReference = new Lazy<ITypedElement>(RetrieveRegisterMonitorReference);
+        
         /// <summary>
         /// The backing field for the RegisterMonitor property
         /// </summary>
         private IRegisterMonitorObject _registerMonitor;
+        
+        private static Lazy<ITypedElement> _electricityValuesReference = new Lazy<ITypedElement>(RetrieveElectricityValuesReference);
         
         /// <summary>
         /// The backing field for the ElectricityValues property
         /// </summary>
         private IElectricityValues _electricityValues;
         
+        private static Lazy<ITypedElement> _measurementValueTypesReference = new Lazy<ITypedElement>(RetrieveMeasurementValueTypesReference);
+        
         /// <summary>
         /// The backing field for the MeasurementValueTypes property
         /// </summary>
         private IMeasurementValues _measurementValueTypes;
+        
+        private static Lazy<ITypedElement> _harmonicsReference = new Lazy<ITypedElement>(RetrieveHarmonicsReference);
         
         /// <summary>
         /// The backing field for the Harmonics property
         /// </summary>
         private IElectricityHarmonics _harmonics;
         
+        private static Lazy<ITypedElement> _tariffsReference = new Lazy<ITypedElement>(RetrieveTariffsReference);
+        
         /// <summary>
         /// The backing field for the Tariffs property
         /// </summary>
         private ICurrentlyActiveTariff _tariffs;
+        
+        private static Lazy<ITypedElement> _phaseanglesReference = new Lazy<ITypedElement>(RetrievePhaseanglesReference);
         
         /// <summary>
         /// The backing field for the Phaseangles property
@@ -175,10 +221,10 @@ namespace TTC2017.SmartGrids.COSEM
                     string old = this._iD;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnIDChanging(e);
-                    this.OnPropertyChanging("ID", e);
+                    this.OnPropertyChanging("ID", e, _iDAttribute);
                     this._iD = value;
                     this.OnIDChanged(e);
-                    this.OnPropertyChanged("ID", e);
+                    this.OnPropertyChanged("ID", e, _iDAttribute);
                 }
             }
         }
@@ -201,7 +247,7 @@ namespace TTC2017.SmartGrids.COSEM
                     ICurrentAssociation old = this._aA;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnAAChanging(e);
-                    this.OnPropertyChanging("AA", e);
+                    this.OnPropertyChanging("AA", e, _aAReference);
                     this._aA = value;
                     if ((old != null))
                     {
@@ -214,7 +260,7 @@ namespace TTC2017.SmartGrids.COSEM
                         value.Deleted += this.OnResetAA;
                     }
                     this.OnAAChanged(e);
-                    this.OnPropertyChanged("AA", e);
+                    this.OnPropertyChanged("AA", e, _aAReference);
                 }
             }
         }
@@ -238,7 +284,7 @@ namespace TTC2017.SmartGrids.COSEM
                     ILogicalDeviceName old = this._name;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnNameChanging(e);
-                    this.OnPropertyChanging("Name", e);
+                    this.OnPropertyChanging("Name", e, _nameReference);
                     this._name = value;
                     if ((old != null))
                     {
@@ -251,7 +297,7 @@ namespace TTC2017.SmartGrids.COSEM
                         value.Deleted += this.OnResetName;
                     }
                     this.OnNameChanged(e);
-                    this.OnPropertyChanged("Name", e);
+                    this.OnPropertyChanged("Name", e, _nameReference);
                 }
             }
         }
@@ -274,7 +320,7 @@ namespace TTC2017.SmartGrids.COSEM
                     IAutoConnectObject old = this._autoConnect;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnAutoConnectChanging(e);
-                    this.OnPropertyChanging("AutoConnect", e);
+                    this.OnPropertyChanging("AutoConnect", e, _autoConnectReference);
                     this._autoConnect = value;
                     if ((old != null))
                     {
@@ -287,7 +333,7 @@ namespace TTC2017.SmartGrids.COSEM
                         value.Deleted += this.OnResetAutoConnect;
                     }
                     this.OnAutoConnectChanged(e);
-                    this.OnPropertyChanged("AutoConnect", e);
+                    this.OnPropertyChanged("AutoConnect", e, _autoConnectReference);
                 }
             }
         }
@@ -310,7 +356,7 @@ namespace TTC2017.SmartGrids.COSEM
                     IBillingPeriodValues old = this._billingPeriodValues;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnBillingPeriodValuesChanging(e);
-                    this.OnPropertyChanging("BillingPeriodValues", e);
+                    this.OnPropertyChanging("BillingPeriodValues", e, _billingPeriodValuesReference);
                     this._billingPeriodValues = value;
                     if ((old != null))
                     {
@@ -323,7 +369,7 @@ namespace TTC2017.SmartGrids.COSEM
                         value.Deleted += this.OnResetBillingPeriodValues;
                     }
                     this.OnBillingPeriodValuesChanged(e);
-                    this.OnPropertyChanged("BillingPeriodValues", e);
+                    this.OnPropertyChanged("BillingPeriodValues", e, _billingPeriodValuesReference);
                 }
             }
         }
@@ -346,7 +392,7 @@ namespace TTC2017.SmartGrids.COSEM
                     IElectricityID old = this._electricityID;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnElectricityIDChanging(e);
-                    this.OnPropertyChanging("ElectricityID", e);
+                    this.OnPropertyChanging("ElectricityID", e, _electricityIDReference);
                     this._electricityID = value;
                     if ((old != null))
                     {
@@ -359,7 +405,7 @@ namespace TTC2017.SmartGrids.COSEM
                         value.Deleted += this.OnResetElectricityID;
                     }
                     this.OnElectricityIDChanged(e);
-                    this.OnPropertyChanged("ElectricityID", e);
+                    this.OnPropertyChanged("ElectricityID", e, _electricityIDReference);
                 }
             }
         }
@@ -382,7 +428,7 @@ namespace TTC2017.SmartGrids.COSEM
                     IElectricityProgramEntries old = this._programEntries;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnProgramEntriesChanging(e);
-                    this.OnPropertyChanging("ProgramEntries", e);
+                    this.OnPropertyChanging("ProgramEntries", e, _programEntriesReference);
                     this._programEntries = value;
                     if ((old != null))
                     {
@@ -395,7 +441,7 @@ namespace TTC2017.SmartGrids.COSEM
                         value.Deleted += this.OnResetProgramEntries;
                     }
                     this.OnProgramEntriesChanged(e);
-                    this.OnPropertyChanged("ProgramEntries", e);
+                    this.OnPropertyChanged("ProgramEntries", e, _programEntriesReference);
                 }
             }
         }
@@ -418,7 +464,7 @@ namespace TTC2017.SmartGrids.COSEM
                     IOutputPulseValues_constants old = this._outputPulse;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnOutputPulseChanging(e);
-                    this.OnPropertyChanging("OutputPulse", e);
+                    this.OnPropertyChanging("OutputPulse", e, _outputPulseReference);
                     this._outputPulse = value;
                     if ((old != null))
                     {
@@ -431,7 +477,7 @@ namespace TTC2017.SmartGrids.COSEM
                         value.Deleted += this.OnResetOutputPulse;
                     }
                     this.OnOutputPulseChanged(e);
-                    this.OnPropertyChanged("OutputPulse", e);
+                    this.OnPropertyChanged("OutputPulse", e, _outputPulseReference);
                 }
             }
         }
@@ -454,7 +500,7 @@ namespace TTC2017.SmartGrids.COSEM
                     IReadingFactorAndCT_VTratio old = this._readingFactor;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnReadingFactorChanging(e);
-                    this.OnPropertyChanging("ReadingFactor", e);
+                    this.OnPropertyChanging("ReadingFactor", e, _readingFactorReference);
                     this._readingFactor = value;
                     if ((old != null))
                     {
@@ -467,7 +513,7 @@ namespace TTC2017.SmartGrids.COSEM
                         value.Deleted += this.OnResetReadingFactor;
                     }
                     this.OnReadingFactorChanged(e);
-                    this.OnPropertyChanged("ReadingFactor", e);
+                    this.OnPropertyChanged("ReadingFactor", e, _readingFactorReference);
                 }
             }
         }
@@ -490,7 +536,7 @@ namespace TTC2017.SmartGrids.COSEM
                     IElectricityNominalValues old = this._nominalValues;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnNominalValuesChanging(e);
-                    this.OnPropertyChanging("NominalValues", e);
+                    this.OnPropertyChanging("NominalValues", e, _nominalValuesReference);
                     this._nominalValues = value;
                     if ((old != null))
                     {
@@ -503,7 +549,7 @@ namespace TTC2017.SmartGrids.COSEM
                         value.Deleted += this.OnResetNominalValues;
                     }
                     this.OnNominalValuesChanged(e);
-                    this.OnPropertyChanged("NominalValues", e);
+                    this.OnPropertyChanged("NominalValues", e, _nominalValuesReference);
                 }
             }
         }
@@ -526,7 +572,7 @@ namespace TTC2017.SmartGrids.COSEM
                     IInputPulseValuesOrConstants old = this._inputPulse;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnInputPulseChanging(e);
-                    this.OnPropertyChanging("InputPulse", e);
+                    this.OnPropertyChanging("InputPulse", e, _inputPulseReference);
                     this._inputPulse = value;
                     if ((old != null))
                     {
@@ -539,7 +585,7 @@ namespace TTC2017.SmartGrids.COSEM
                         value.Deleted += this.OnResetInputPulse;
                     }
                     this.OnInputPulseChanged(e);
-                    this.OnPropertyChanged("InputPulse", e);
+                    this.OnPropertyChanged("InputPulse", e, _inputPulseReference);
                 }
             }
         }
@@ -562,7 +608,7 @@ namespace TTC2017.SmartGrids.COSEM
                     IMeasurementPeriod_recordingInterval_billingPeriodDuration old = this._measurementPeriod;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnMeasurementPeriodChanging(e);
-                    this.OnPropertyChanging("MeasurementPeriod", e);
+                    this.OnPropertyChanging("MeasurementPeriod", e, _measurementPeriodReference);
                     this._measurementPeriod = value;
                     if ((old != null))
                     {
@@ -575,7 +621,7 @@ namespace TTC2017.SmartGrids.COSEM
                         value.Deleted += this.OnResetMeasurementPeriod;
                     }
                     this.OnMeasurementPeriodChanged(e);
-                    this.OnPropertyChanged("MeasurementPeriod", e);
+                    this.OnPropertyChanged("MeasurementPeriod", e, _measurementPeriodReference);
                 }
             }
         }
@@ -598,7 +644,7 @@ namespace TTC2017.SmartGrids.COSEM
                     ITimeEntries old = this._timeEntries;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnTimeEntriesChanging(e);
-                    this.OnPropertyChanging("TimeEntries", e);
+                    this.OnPropertyChanging("TimeEntries", e, _timeEntriesReference);
                     this._timeEntries = value;
                     if ((old != null))
                     {
@@ -611,7 +657,7 @@ namespace TTC2017.SmartGrids.COSEM
                         value.Deleted += this.OnResetTimeEntries;
                     }
                     this.OnTimeEntriesChanged(e);
-                    this.OnPropertyChanged("TimeEntries", e);
+                    this.OnPropertyChanged("TimeEntries", e, _timeEntriesReference);
                 }
             }
         }
@@ -634,7 +680,7 @@ namespace TTC2017.SmartGrids.COSEM
                     ITransformerAndLineLosses old = this._transformerLineLosses;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnTransformerLineLossesChanging(e);
-                    this.OnPropertyChanging("TransformerLineLosses", e);
+                    this.OnPropertyChanging("TransformerLineLosses", e, _transformerLineLossesReference);
                     this._transformerLineLosses = value;
                     if ((old != null))
                     {
@@ -647,7 +693,7 @@ namespace TTC2017.SmartGrids.COSEM
                         value.Deleted += this.OnResetTransformerLineLosses;
                     }
                     this.OnTransformerLineLossesChanged(e);
-                    this.OnPropertyChanged("TransformerLineLosses", e);
+                    this.OnPropertyChanged("TransformerLineLosses", e, _transformerLineLossesReference);
                 }
             }
         }
@@ -670,7 +716,7 @@ namespace TTC2017.SmartGrids.COSEM
                     IMeasurementMethods old = this._measurementAlgorithm;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnMeasurementAlgorithmChanging(e);
-                    this.OnPropertyChanging("MeasurementAlgorithm", e);
+                    this.OnPropertyChanging("MeasurementAlgorithm", e, _measurementAlgorithmReference);
                     this._measurementAlgorithm = value;
                     if ((old != null))
                     {
@@ -683,7 +729,7 @@ namespace TTC2017.SmartGrids.COSEM
                         value.Deleted += this.OnResetMeasurementAlgorithm;
                     }
                     this.OnMeasurementAlgorithmChanged(e);
-                    this.OnPropertyChanged("MeasurementAlgorithm", e);
+                    this.OnPropertyChanged("MeasurementAlgorithm", e, _measurementAlgorithmReference);
                 }
             }
         }
@@ -706,7 +752,7 @@ namespace TTC2017.SmartGrids.COSEM
                     IMeteringPointID old = this._meteringPoint;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnMeteringPointChanging(e);
-                    this.OnPropertyChanging("MeteringPoint", e);
+                    this.OnPropertyChanging("MeteringPoint", e, _meteringPointReference);
                     this._meteringPoint = value;
                     if ((old != null))
                     {
@@ -719,7 +765,7 @@ namespace TTC2017.SmartGrids.COSEM
                         value.Deleted += this.OnResetMeteringPoint;
                     }
                     this.OnMeteringPointChanged(e);
-                    this.OnPropertyChanged("MeteringPoint", e);
+                    this.OnPropertyChanged("MeteringPoint", e, _meteringPointReference);
                 }
             }
         }
@@ -742,7 +788,7 @@ namespace TTC2017.SmartGrids.COSEM
                     IElectricityRelatedStatusData old = this._electricityRelatedStatus;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnElectricityRelatedStatusChanging(e);
-                    this.OnPropertyChanging("ElectricityRelatedStatus", e);
+                    this.OnPropertyChanging("ElectricityRelatedStatus", e, _electricityRelatedStatusReference);
                     this._electricityRelatedStatus = value;
                     if ((old != null))
                     {
@@ -755,7 +801,7 @@ namespace TTC2017.SmartGrids.COSEM
                         value.Deleted += this.OnResetElectricityRelatedStatus;
                     }
                     this.OnElectricityRelatedStatusChanged(e);
-                    this.OnPropertyChanged("ElectricityRelatedStatus", e);
+                    this.OnPropertyChanged("ElectricityRelatedStatus", e, _electricityRelatedStatusReference);
                 }
             }
         }
@@ -778,7 +824,7 @@ namespace TTC2017.SmartGrids.COSEM
                     IRegisterMonitorObject old = this._registerMonitor;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnRegisterMonitorChanging(e);
-                    this.OnPropertyChanging("RegisterMonitor", e);
+                    this.OnPropertyChanging("RegisterMonitor", e, _registerMonitorReference);
                     this._registerMonitor = value;
                     if ((old != null))
                     {
@@ -791,7 +837,7 @@ namespace TTC2017.SmartGrids.COSEM
                         value.Deleted += this.OnResetRegisterMonitor;
                     }
                     this.OnRegisterMonitorChanged(e);
-                    this.OnPropertyChanged("RegisterMonitor", e);
+                    this.OnPropertyChanged("RegisterMonitor", e, _registerMonitorReference);
                 }
             }
         }
@@ -814,7 +860,7 @@ namespace TTC2017.SmartGrids.COSEM
                     IElectricityValues old = this._electricityValues;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnElectricityValuesChanging(e);
-                    this.OnPropertyChanging("ElectricityValues", e);
+                    this.OnPropertyChanging("ElectricityValues", e, _electricityValuesReference);
                     this._electricityValues = value;
                     if ((old != null))
                     {
@@ -827,7 +873,7 @@ namespace TTC2017.SmartGrids.COSEM
                         value.Deleted += this.OnResetElectricityValues;
                     }
                     this.OnElectricityValuesChanged(e);
-                    this.OnPropertyChanged("ElectricityValues", e);
+                    this.OnPropertyChanged("ElectricityValues", e, _electricityValuesReference);
                 }
             }
         }
@@ -850,7 +896,7 @@ namespace TTC2017.SmartGrids.COSEM
                     IMeasurementValues old = this._measurementValueTypes;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnMeasurementValueTypesChanging(e);
-                    this.OnPropertyChanging("MeasurementValueTypes", e);
+                    this.OnPropertyChanging("MeasurementValueTypes", e, _measurementValueTypesReference);
                     this._measurementValueTypes = value;
                     if ((old != null))
                     {
@@ -863,7 +909,7 @@ namespace TTC2017.SmartGrids.COSEM
                         value.Deleted += this.OnResetMeasurementValueTypes;
                     }
                     this.OnMeasurementValueTypesChanged(e);
-                    this.OnPropertyChanged("MeasurementValueTypes", e);
+                    this.OnPropertyChanged("MeasurementValueTypes", e, _measurementValueTypesReference);
                 }
             }
         }
@@ -886,7 +932,7 @@ namespace TTC2017.SmartGrids.COSEM
                     IElectricityHarmonics old = this._harmonics;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnHarmonicsChanging(e);
-                    this.OnPropertyChanging("Harmonics", e);
+                    this.OnPropertyChanging("Harmonics", e, _harmonicsReference);
                     this._harmonics = value;
                     if ((old != null))
                     {
@@ -899,7 +945,7 @@ namespace TTC2017.SmartGrids.COSEM
                         value.Deleted += this.OnResetHarmonics;
                     }
                     this.OnHarmonicsChanged(e);
-                    this.OnPropertyChanged("Harmonics", e);
+                    this.OnPropertyChanged("Harmonics", e, _harmonicsReference);
                 }
             }
         }
@@ -922,7 +968,7 @@ namespace TTC2017.SmartGrids.COSEM
                     ICurrentlyActiveTariff old = this._tariffs;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnTariffsChanging(e);
-                    this.OnPropertyChanging("Tariffs", e);
+                    this.OnPropertyChanging("Tariffs", e, _tariffsReference);
                     this._tariffs = value;
                     if ((old != null))
                     {
@@ -935,7 +981,7 @@ namespace TTC2017.SmartGrids.COSEM
                         value.Deleted += this.OnResetTariffs;
                     }
                     this.OnTariffsChanged(e);
-                    this.OnPropertyChanged("Tariffs", e);
+                    this.OnPropertyChanged("Tariffs", e, _tariffsReference);
                 }
             }
         }
@@ -958,7 +1004,7 @@ namespace TTC2017.SmartGrids.COSEM
                     IExtendedPhaseAngleMeasurement old = this._phaseangles;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnPhaseanglesChanging(e);
-                    this.OnPropertyChanging("Phaseangles", e);
+                    this.OnPropertyChanging("Phaseangles", e, _phaseanglesReference);
                     this._phaseangles = value;
                     if ((old != null))
                     {
@@ -971,7 +1017,7 @@ namespace TTC2017.SmartGrids.COSEM
                         value.Deleted += this.OnResetPhaseangles;
                     }
                     this.OnPhaseanglesChanged(e);
-                    this.OnPropertyChanged("Phaseangles", e);
+                    this.OnPropertyChanged("Phaseangles", e, _phaseanglesReference);
                 }
             }
         }
@@ -1243,6 +1289,11 @@ namespace TTC2017.SmartGrids.COSEM
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> PhaseanglesChanged;
         
+        private static ITypedElement RetrieveIDAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(LogicalDevice.ClassInstance)).Resolve("ID")));
+        }
+        
         /// <summary>
         /// Raises the IDChanging event
         /// </summary>
@@ -1267,6 +1318,11 @@ namespace TTC2017.SmartGrids.COSEM
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveAAReference()
+        {
+            return ((ITypedElement)(((ModelElement)(LogicalDevice.ClassInstance)).Resolve("AA")));
         }
         
         /// <summary>
@@ -1305,6 +1361,11 @@ namespace TTC2017.SmartGrids.COSEM
             this.AA = null;
         }
         
+        private static ITypedElement RetrieveNameReference()
+        {
+            return ((ITypedElement)(((ModelElement)(LogicalDevice.ClassInstance)).Resolve("name")));
+        }
+        
         /// <summary>
         /// Raises the NameChanging event
         /// </summary>
@@ -1339,6 +1400,11 @@ namespace TTC2017.SmartGrids.COSEM
         private void OnResetName(object sender, System.EventArgs eventArgs)
         {
             this.Name = null;
+        }
+        
+        private static ITypedElement RetrieveAutoConnectReference()
+        {
+            return ((ITypedElement)(((ModelElement)(LogicalDevice.ClassInstance)).Resolve("AutoConnect")));
         }
         
         /// <summary>
@@ -1377,6 +1443,11 @@ namespace TTC2017.SmartGrids.COSEM
             this.AutoConnect = null;
         }
         
+        private static ITypedElement RetrieveBillingPeriodValuesReference()
+        {
+            return ((ITypedElement)(((ModelElement)(LogicalDevice.ClassInstance)).Resolve("BillingPeriodValues")));
+        }
+        
         /// <summary>
         /// Raises the BillingPeriodValuesChanging event
         /// </summary>
@@ -1411,6 +1482,11 @@ namespace TTC2017.SmartGrids.COSEM
         private void OnResetBillingPeriodValues(object sender, System.EventArgs eventArgs)
         {
             this.BillingPeriodValues = null;
+        }
+        
+        private static ITypedElement RetrieveElectricityIDReference()
+        {
+            return ((ITypedElement)(((ModelElement)(LogicalDevice.ClassInstance)).Resolve("ElectricityID")));
         }
         
         /// <summary>
@@ -1449,6 +1525,11 @@ namespace TTC2017.SmartGrids.COSEM
             this.ElectricityID = null;
         }
         
+        private static ITypedElement RetrieveProgramEntriesReference()
+        {
+            return ((ITypedElement)(((ModelElement)(LogicalDevice.ClassInstance)).Resolve("ProgramEntries")));
+        }
+        
         /// <summary>
         /// Raises the ProgramEntriesChanging event
         /// </summary>
@@ -1483,6 +1564,11 @@ namespace TTC2017.SmartGrids.COSEM
         private void OnResetProgramEntries(object sender, System.EventArgs eventArgs)
         {
             this.ProgramEntries = null;
+        }
+        
+        private static ITypedElement RetrieveOutputPulseReference()
+        {
+            return ((ITypedElement)(((ModelElement)(LogicalDevice.ClassInstance)).Resolve("OutputPulse")));
         }
         
         /// <summary>
@@ -1521,6 +1607,11 @@ namespace TTC2017.SmartGrids.COSEM
             this.OutputPulse = null;
         }
         
+        private static ITypedElement RetrieveReadingFactorReference()
+        {
+            return ((ITypedElement)(((ModelElement)(LogicalDevice.ClassInstance)).Resolve("ReadingFactor")));
+        }
+        
         /// <summary>
         /// Raises the ReadingFactorChanging event
         /// </summary>
@@ -1555,6 +1646,11 @@ namespace TTC2017.SmartGrids.COSEM
         private void OnResetReadingFactor(object sender, System.EventArgs eventArgs)
         {
             this.ReadingFactor = null;
+        }
+        
+        private static ITypedElement RetrieveNominalValuesReference()
+        {
+            return ((ITypedElement)(((ModelElement)(LogicalDevice.ClassInstance)).Resolve("NominalValues")));
         }
         
         /// <summary>
@@ -1593,6 +1689,11 @@ namespace TTC2017.SmartGrids.COSEM
             this.NominalValues = null;
         }
         
+        private static ITypedElement RetrieveInputPulseReference()
+        {
+            return ((ITypedElement)(((ModelElement)(LogicalDevice.ClassInstance)).Resolve("InputPulse")));
+        }
+        
         /// <summary>
         /// Raises the InputPulseChanging event
         /// </summary>
@@ -1627,6 +1728,11 @@ namespace TTC2017.SmartGrids.COSEM
         private void OnResetInputPulse(object sender, System.EventArgs eventArgs)
         {
             this.InputPulse = null;
+        }
+        
+        private static ITypedElement RetrieveMeasurementPeriodReference()
+        {
+            return ((ITypedElement)(((ModelElement)(LogicalDevice.ClassInstance)).Resolve("MeasurementPeriod")));
         }
         
         /// <summary>
@@ -1665,6 +1771,11 @@ namespace TTC2017.SmartGrids.COSEM
             this.MeasurementPeriod = null;
         }
         
+        private static ITypedElement RetrieveTimeEntriesReference()
+        {
+            return ((ITypedElement)(((ModelElement)(LogicalDevice.ClassInstance)).Resolve("TimeEntries")));
+        }
+        
         /// <summary>
         /// Raises the TimeEntriesChanging event
         /// </summary>
@@ -1699,6 +1810,11 @@ namespace TTC2017.SmartGrids.COSEM
         private void OnResetTimeEntries(object sender, System.EventArgs eventArgs)
         {
             this.TimeEntries = null;
+        }
+        
+        private static ITypedElement RetrieveTransformerLineLossesReference()
+        {
+            return ((ITypedElement)(((ModelElement)(LogicalDevice.ClassInstance)).Resolve("TransformerLineLosses")));
         }
         
         /// <summary>
@@ -1737,6 +1853,11 @@ namespace TTC2017.SmartGrids.COSEM
             this.TransformerLineLosses = null;
         }
         
+        private static ITypedElement RetrieveMeasurementAlgorithmReference()
+        {
+            return ((ITypedElement)(((ModelElement)(LogicalDevice.ClassInstance)).Resolve("MeasurementAlgorithm")));
+        }
+        
         /// <summary>
         /// Raises the MeasurementAlgorithmChanging event
         /// </summary>
@@ -1771,6 +1892,11 @@ namespace TTC2017.SmartGrids.COSEM
         private void OnResetMeasurementAlgorithm(object sender, System.EventArgs eventArgs)
         {
             this.MeasurementAlgorithm = null;
+        }
+        
+        private static ITypedElement RetrieveMeteringPointReference()
+        {
+            return ((ITypedElement)(((ModelElement)(LogicalDevice.ClassInstance)).Resolve("MeteringPoint")));
         }
         
         /// <summary>
@@ -1809,6 +1935,11 @@ namespace TTC2017.SmartGrids.COSEM
             this.MeteringPoint = null;
         }
         
+        private static ITypedElement RetrieveElectricityRelatedStatusReference()
+        {
+            return ((ITypedElement)(((ModelElement)(LogicalDevice.ClassInstance)).Resolve("ElectricityRelatedStatus")));
+        }
+        
         /// <summary>
         /// Raises the ElectricityRelatedStatusChanging event
         /// </summary>
@@ -1843,6 +1974,11 @@ namespace TTC2017.SmartGrids.COSEM
         private void OnResetElectricityRelatedStatus(object sender, System.EventArgs eventArgs)
         {
             this.ElectricityRelatedStatus = null;
+        }
+        
+        private static ITypedElement RetrieveRegisterMonitorReference()
+        {
+            return ((ITypedElement)(((ModelElement)(LogicalDevice.ClassInstance)).Resolve("RegisterMonitor")));
         }
         
         /// <summary>
@@ -1881,6 +2017,11 @@ namespace TTC2017.SmartGrids.COSEM
             this.RegisterMonitor = null;
         }
         
+        private static ITypedElement RetrieveElectricityValuesReference()
+        {
+            return ((ITypedElement)(((ModelElement)(LogicalDevice.ClassInstance)).Resolve("ElectricityValues")));
+        }
+        
         /// <summary>
         /// Raises the ElectricityValuesChanging event
         /// </summary>
@@ -1915,6 +2056,11 @@ namespace TTC2017.SmartGrids.COSEM
         private void OnResetElectricityValues(object sender, System.EventArgs eventArgs)
         {
             this.ElectricityValues = null;
+        }
+        
+        private static ITypedElement RetrieveMeasurementValueTypesReference()
+        {
+            return ((ITypedElement)(((ModelElement)(LogicalDevice.ClassInstance)).Resolve("MeasurementValueTypes")));
         }
         
         /// <summary>
@@ -1953,6 +2099,11 @@ namespace TTC2017.SmartGrids.COSEM
             this.MeasurementValueTypes = null;
         }
         
+        private static ITypedElement RetrieveHarmonicsReference()
+        {
+            return ((ITypedElement)(((ModelElement)(LogicalDevice.ClassInstance)).Resolve("Harmonics")));
+        }
+        
         /// <summary>
         /// Raises the HarmonicsChanging event
         /// </summary>
@@ -1989,6 +2140,11 @@ namespace TTC2017.SmartGrids.COSEM
             this.Harmonics = null;
         }
         
+        private static ITypedElement RetrieveTariffsReference()
+        {
+            return ((ITypedElement)(((ModelElement)(LogicalDevice.ClassInstance)).Resolve("Tariffs")));
+        }
+        
         /// <summary>
         /// Raises the TariffsChanging event
         /// </summary>
@@ -2023,6 +2179,11 @@ namespace TTC2017.SmartGrids.COSEM
         private void OnResetTariffs(object sender, System.EventArgs eventArgs)
         {
             this.Tariffs = null;
+        }
+        
+        private static ITypedElement RetrievePhaseanglesReference()
+        {
+            return ((ITypedElement)(((ModelElement)(LogicalDevice.ClassInstance)).Resolve("Phaseangles")));
         }
         
         /// <summary>
@@ -4117,7 +4278,7 @@ namespace TTC2017.SmartGrids.COSEM
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public IDProxy(ILogicalDevice modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "ID")
             {
             }
             
@@ -4135,24 +4296,6 @@ namespace TTC2017.SmartGrids.COSEM
                     this.ModelElement.ID = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.IDChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.IDChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -4166,7 +4309,7 @@ namespace TTC2017.SmartGrids.COSEM
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public AAProxy(ILogicalDevice modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "AA")
             {
             }
             
@@ -4184,24 +4327,6 @@ namespace TTC2017.SmartGrids.COSEM
                     this.ModelElement.AA = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.AAChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.AAChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -4215,7 +4340,7 @@ namespace TTC2017.SmartGrids.COSEM
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public NameProxy(ILogicalDevice modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "name")
             {
             }
             
@@ -4233,24 +4358,6 @@ namespace TTC2017.SmartGrids.COSEM
                     this.ModelElement.Name = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.NameChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.NameChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -4264,7 +4371,7 @@ namespace TTC2017.SmartGrids.COSEM
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public AutoConnectProxy(ILogicalDevice modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "AutoConnect")
             {
             }
             
@@ -4282,24 +4389,6 @@ namespace TTC2017.SmartGrids.COSEM
                     this.ModelElement.AutoConnect = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.AutoConnectChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.AutoConnectChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -4313,7 +4402,7 @@ namespace TTC2017.SmartGrids.COSEM
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public BillingPeriodValuesProxy(ILogicalDevice modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "BillingPeriodValues")
             {
             }
             
@@ -4331,24 +4420,6 @@ namespace TTC2017.SmartGrids.COSEM
                     this.ModelElement.BillingPeriodValues = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.BillingPeriodValuesChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.BillingPeriodValuesChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -4362,7 +4433,7 @@ namespace TTC2017.SmartGrids.COSEM
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public ElectricityIDProxy(ILogicalDevice modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "ElectricityID")
             {
             }
             
@@ -4380,24 +4451,6 @@ namespace TTC2017.SmartGrids.COSEM
                     this.ModelElement.ElectricityID = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ElectricityIDChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ElectricityIDChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -4411,7 +4464,7 @@ namespace TTC2017.SmartGrids.COSEM
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public ProgramEntriesProxy(ILogicalDevice modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "ProgramEntries")
             {
             }
             
@@ -4429,24 +4482,6 @@ namespace TTC2017.SmartGrids.COSEM
                     this.ModelElement.ProgramEntries = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ProgramEntriesChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ProgramEntriesChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -4460,7 +4495,7 @@ namespace TTC2017.SmartGrids.COSEM
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public OutputPulseProxy(ILogicalDevice modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "OutputPulse")
             {
             }
             
@@ -4478,24 +4513,6 @@ namespace TTC2017.SmartGrids.COSEM
                     this.ModelElement.OutputPulse = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.OutputPulseChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.OutputPulseChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -4509,7 +4526,7 @@ namespace TTC2017.SmartGrids.COSEM
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public ReadingFactorProxy(ILogicalDevice modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "ReadingFactor")
             {
             }
             
@@ -4527,24 +4544,6 @@ namespace TTC2017.SmartGrids.COSEM
                     this.ModelElement.ReadingFactor = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ReadingFactorChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ReadingFactorChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -4558,7 +4557,7 @@ namespace TTC2017.SmartGrids.COSEM
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public NominalValuesProxy(ILogicalDevice modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "NominalValues")
             {
             }
             
@@ -4576,24 +4575,6 @@ namespace TTC2017.SmartGrids.COSEM
                     this.ModelElement.NominalValues = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.NominalValuesChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.NominalValuesChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -4607,7 +4588,7 @@ namespace TTC2017.SmartGrids.COSEM
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public InputPulseProxy(ILogicalDevice modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "InputPulse")
             {
             }
             
@@ -4625,24 +4606,6 @@ namespace TTC2017.SmartGrids.COSEM
                     this.ModelElement.InputPulse = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.InputPulseChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.InputPulseChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -4656,7 +4619,7 @@ namespace TTC2017.SmartGrids.COSEM
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public MeasurementPeriodProxy(ILogicalDevice modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "MeasurementPeriod")
             {
             }
             
@@ -4674,24 +4637,6 @@ namespace TTC2017.SmartGrids.COSEM
                     this.ModelElement.MeasurementPeriod = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.MeasurementPeriodChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.MeasurementPeriodChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -4705,7 +4650,7 @@ namespace TTC2017.SmartGrids.COSEM
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public TimeEntriesProxy(ILogicalDevice modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "TimeEntries")
             {
             }
             
@@ -4723,24 +4668,6 @@ namespace TTC2017.SmartGrids.COSEM
                     this.ModelElement.TimeEntries = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.TimeEntriesChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.TimeEntriesChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -4754,7 +4681,7 @@ namespace TTC2017.SmartGrids.COSEM
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public TransformerLineLossesProxy(ILogicalDevice modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "TransformerLineLosses")
             {
             }
             
@@ -4772,24 +4699,6 @@ namespace TTC2017.SmartGrids.COSEM
                     this.ModelElement.TransformerLineLosses = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.TransformerLineLossesChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.TransformerLineLossesChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -4803,7 +4712,7 @@ namespace TTC2017.SmartGrids.COSEM
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public MeasurementAlgorithmProxy(ILogicalDevice modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "MeasurementAlgorithm")
             {
             }
             
@@ -4821,24 +4730,6 @@ namespace TTC2017.SmartGrids.COSEM
                     this.ModelElement.MeasurementAlgorithm = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.MeasurementAlgorithmChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.MeasurementAlgorithmChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -4852,7 +4743,7 @@ namespace TTC2017.SmartGrids.COSEM
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public MeteringPointProxy(ILogicalDevice modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "MeteringPoint")
             {
             }
             
@@ -4870,24 +4761,6 @@ namespace TTC2017.SmartGrids.COSEM
                     this.ModelElement.MeteringPoint = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.MeteringPointChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.MeteringPointChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -4901,7 +4774,7 @@ namespace TTC2017.SmartGrids.COSEM
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public ElectricityRelatedStatusProxy(ILogicalDevice modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "ElectricityRelatedStatus")
             {
             }
             
@@ -4919,24 +4792,6 @@ namespace TTC2017.SmartGrids.COSEM
                     this.ModelElement.ElectricityRelatedStatus = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ElectricityRelatedStatusChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ElectricityRelatedStatusChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -4950,7 +4805,7 @@ namespace TTC2017.SmartGrids.COSEM
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public RegisterMonitorProxy(ILogicalDevice modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "RegisterMonitor")
             {
             }
             
@@ -4968,24 +4823,6 @@ namespace TTC2017.SmartGrids.COSEM
                     this.ModelElement.RegisterMonitor = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.RegisterMonitorChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.RegisterMonitorChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -4999,7 +4836,7 @@ namespace TTC2017.SmartGrids.COSEM
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public ElectricityValuesProxy(ILogicalDevice modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "ElectricityValues")
             {
             }
             
@@ -5017,24 +4854,6 @@ namespace TTC2017.SmartGrids.COSEM
                     this.ModelElement.ElectricityValues = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ElectricityValuesChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ElectricityValuesChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -5048,7 +4867,7 @@ namespace TTC2017.SmartGrids.COSEM
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public MeasurementValueTypesProxy(ILogicalDevice modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "MeasurementValueTypes")
             {
             }
             
@@ -5066,24 +4885,6 @@ namespace TTC2017.SmartGrids.COSEM
                     this.ModelElement.MeasurementValueTypes = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.MeasurementValueTypesChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.MeasurementValueTypesChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -5097,7 +4898,7 @@ namespace TTC2017.SmartGrids.COSEM
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public HarmonicsProxy(ILogicalDevice modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "Harmonics")
             {
             }
             
@@ -5115,24 +4916,6 @@ namespace TTC2017.SmartGrids.COSEM
                     this.ModelElement.Harmonics = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.HarmonicsChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.HarmonicsChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -5146,7 +4929,7 @@ namespace TTC2017.SmartGrids.COSEM
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public TariffsProxy(ILogicalDevice modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "Tariffs")
             {
             }
             
@@ -5164,24 +4947,6 @@ namespace TTC2017.SmartGrids.COSEM
                     this.ModelElement.Tariffs = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.TariffsChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.TariffsChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -5195,7 +4960,7 @@ namespace TTC2017.SmartGrids.COSEM
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public PhaseanglesProxy(ILogicalDevice modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "Phaseangles")
             {
             }
             
@@ -5212,24 +4977,6 @@ namespace TTC2017.SmartGrids.COSEM
                 {
                     this.ModelElement.Phaseangles = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.PhaseanglesChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.PhaseanglesChanged -= handler;
             }
         }
     }

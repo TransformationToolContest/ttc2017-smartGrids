@@ -40,7 +40,7 @@ namespace TTC2017.SmartGrids.COSEM.InterfaceClasses
     [XmlNamespacePrefixAttribute("inter")]
     [ModelRepresentationClassAttribute("http://www.transformation-tool-contest.eu/2017/smartGrids/cosem#//InterfaceClasse" +
         "s/Registertable")]
-    public class Registertable : Base, IRegistertable, IModelElement
+    public partial class Registertable : Base, IRegistertable, IModelElement
     {
         
         private static IClass _classInstance;

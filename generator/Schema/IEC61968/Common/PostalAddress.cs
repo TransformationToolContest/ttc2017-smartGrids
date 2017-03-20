@@ -51,7 +51,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Common
     [XmlNamespacePrefixAttribute("cimCommon")]
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61968/Common/PostalAddress")]
     [DebuggerDisplayAttribute("PostalAddress {UUID}")]
-    public class PostalAddress : Element, IPostalAddress, IModelElement
+    public partial class PostalAddress : Element, IPostalAddress, IModelElement
     {
         
         /// <summary>
@@ -59,15 +59,23 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Common
         /// </summary>
         private string _postalCode;
         
+        private static Lazy<ITypedElement> _postalCodeAttribute = new Lazy<ITypedElement>(RetrievePostalCodeAttribute);
+        
         /// <summary>
         /// The backing field for the PoBox property
         /// </summary>
         private string _poBox;
         
+        private static Lazy<ITypedElement> _poBoxAttribute = new Lazy<ITypedElement>(RetrievePoBoxAttribute);
+        
+        private static Lazy<ITypedElement> _townDetailReference = new Lazy<ITypedElement>(RetrieveTownDetailReference);
+        
         /// <summary>
         /// The backing field for the TownDetail property
         /// </summary>
         private ITownDetail _townDetail;
+        
+        private static Lazy<ITypedElement> _streetDetailReference = new Lazy<ITypedElement>(RetrieveStreetDetailReference);
         
         /// <summary>
         /// The backing field for the StreetDetail property
@@ -94,10 +102,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Common
                     string old = this._postalCode;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnPostalCodeChanging(e);
-                    this.OnPropertyChanging("PostalCode", e);
+                    this.OnPropertyChanging("PostalCode", e, _postalCodeAttribute);
                     this._postalCode = value;
                     this.OnPostalCodeChanged(e);
-                    this.OnPropertyChanged("PostalCode", e);
+                    this.OnPropertyChanged("PostalCode", e, _postalCodeAttribute);
                 }
             }
         }
@@ -120,10 +128,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Common
                     string old = this._poBox;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnPoBoxChanging(e);
-                    this.OnPropertyChanging("PoBox", e);
+                    this.OnPropertyChanging("PoBox", e, _poBoxAttribute);
                     this._poBox = value;
                     this.OnPoBoxChanged(e);
-                    this.OnPropertyChanged("PoBox", e);
+                    this.OnPropertyChanged("PoBox", e, _poBoxAttribute);
                 }
             }
         }
@@ -146,7 +154,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Common
                     ITownDetail old = this._townDetail;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnTownDetailChanging(e);
-                    this.OnPropertyChanging("TownDetail", e);
+                    this.OnPropertyChanging("TownDetail", e, _townDetailReference);
                     this._townDetail = value;
                     if ((old != null))
                     {
@@ -157,7 +165,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Common
                         value.Deleted += this.OnResetTownDetail;
                     }
                     this.OnTownDetailChanged(e);
-                    this.OnPropertyChanged("TownDetail", e);
+                    this.OnPropertyChanged("TownDetail", e, _townDetailReference);
                 }
             }
         }
@@ -180,7 +188,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Common
                     IStreetDetail old = this._streetDetail;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnStreetDetailChanging(e);
-                    this.OnPropertyChanging("StreetDetail", e);
+                    this.OnPropertyChanging("StreetDetail", e, _streetDetailReference);
                     this._streetDetail = value;
                     if ((old != null))
                     {
@@ -191,7 +199,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Common
                         value.Deleted += this.OnResetStreetDetail;
                     }
                     this.OnStreetDetailChanged(e);
-                    this.OnPropertyChanged("StreetDetail", e);
+                    this.OnPropertyChanged("StreetDetail", e, _streetDetailReference);
                 }
             }
         }
@@ -262,6 +270,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Common
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> StreetDetailChanged;
         
+        private static ITypedElement RetrievePostalCodeAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(PostalAddress.ClassInstance)).Resolve("postalCode")));
+        }
+        
         /// <summary>
         /// Raises the PostalCodeChanging event
         /// </summary>
@@ -288,6 +301,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Common
             }
         }
         
+        private static ITypedElement RetrievePoBoxAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(PostalAddress.ClassInstance)).Resolve("poBox")));
+        }
+        
         /// <summary>
         /// Raises the PoBoxChanging event
         /// </summary>
@@ -312,6 +330,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Common
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveTownDetailReference()
+        {
+            return ((ITypedElement)(((ModelElement)(PostalAddress.ClassInstance)).Resolve("townDetail")));
         }
         
         /// <summary>
@@ -348,6 +371,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Common
         private void OnResetTownDetail(object sender, System.EventArgs eventArgs)
         {
             this.TownDetail = null;
+        }
+        
+        private static ITypedElement RetrieveStreetDetailReference()
+        {
+            return ((ITypedElement)(((ModelElement)(PostalAddress.ClassInstance)).Resolve("streetDetail")));
         }
         
         /// <summary>
@@ -644,7 +672,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Common
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public PostalCodeProxy(IPostalAddress modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "postalCode")
             {
             }
             
@@ -662,24 +690,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Common
                     this.ModelElement.PostalCode = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.PostalCodeChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.PostalCodeChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -693,7 +703,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Common
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public PoBoxProxy(IPostalAddress modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "poBox")
             {
             }
             
@@ -711,24 +721,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Common
                     this.ModelElement.PoBox = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.PoBoxChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.PoBoxChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -742,7 +734,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Common
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public TownDetailProxy(IPostalAddress modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "townDetail")
             {
             }
             
@@ -760,24 +752,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Common
                     this.ModelElement.TownDetail = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.TownDetailChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.TownDetailChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -791,7 +765,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Common
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public StreetDetailProxy(IPostalAddress modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "streetDetail")
             {
             }
             
@@ -808,24 +782,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Common
                 {
                     this.ModelElement.StreetDetail = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.StreetDetailChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.StreetDetailChanged -= handler;
             }
         }
     }

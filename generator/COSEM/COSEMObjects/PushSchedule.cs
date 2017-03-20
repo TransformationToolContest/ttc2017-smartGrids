@@ -39,7 +39,7 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
     [XmlNamespacePrefixAttribute("objects")]
     [ModelRepresentationClassAttribute("http://www.transformation-tool-contest.eu/2017/smartGrids/cosem#//COSEMObjects/Pu" +
         "shSchedule")]
-    public class PushSchedule : Singleactionschedule, IPushSchedule, IModelElement
+    public partial class PushSchedule : Singleactionschedule, IPushSchedule, IModelElement
     {
         
         private static IClass _classInstance;

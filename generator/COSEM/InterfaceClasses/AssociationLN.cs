@@ -40,8 +40,10 @@ namespace TTC2017.SmartGrids.COSEM.InterfaceClasses
     [XmlNamespacePrefixAttribute("inter")]
     [ModelRepresentationClassAttribute("http://www.transformation-tool-contest.eu/2017/smartGrids/cosem#//InterfaceClasse" +
         "s/AssociationLN")]
-    public class AssociationLN : Base, IAssociationLN, IModelElement
+    public partial class AssociationLN : Base, IAssociationLN, IModelElement
     {
+        
+        private static Lazy<ITypedElement> _aAReference = new Lazy<ITypedElement>(RetrieveAAReference);
         
         /// <summary>
         /// The backing field for the AA property
@@ -67,7 +69,7 @@ namespace TTC2017.SmartGrids.COSEM.InterfaceClasses
                     IApplicationAssociation old = this._aA;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnAAChanging(e);
-                    this.OnPropertyChanging("AA", e);
+                    this.OnPropertyChanging("AA", e, _aAReference);
                     this._aA = value;
                     if ((old != null))
                     {
@@ -78,7 +80,7 @@ namespace TTC2017.SmartGrids.COSEM.InterfaceClasses
                         value.Deleted += this.OnResetAA;
                     }
                     this.OnAAChanged(e);
-                    this.OnPropertyChanged("AA", e);
+                    this.OnPropertyChanged("AA", e, _aAReference);
                 }
             }
         }
@@ -119,6 +121,11 @@ namespace TTC2017.SmartGrids.COSEM.InterfaceClasses
         /// Gets fired when the AA property changed its value
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> AAChanged;
+        
+        private static ITypedElement RetrieveAAReference()
+        {
+            return ((ITypedElement)(((ModelElement)(AssociationLN.ClassInstance)).Resolve("AA")));
+        }
         
         /// <summary>
         /// Raises the AAChanging event
@@ -343,7 +350,7 @@ namespace TTC2017.SmartGrids.COSEM.InterfaceClasses
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public AAProxy(IAssociationLN modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "AA")
             {
             }
             
@@ -360,24 +367,6 @@ namespace TTC2017.SmartGrids.COSEM.InterfaceClasses
                 {
                     this.ModelElement.AA = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.AAChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.AAChanged -= handler;
             }
         }
     }

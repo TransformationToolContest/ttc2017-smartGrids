@@ -40,7 +40,7 @@ namespace TTC2017.SmartGrids.COSEM.InterfaceClasses
     [XmlNamespacePrefixAttribute("inter")]
     [ModelRepresentationClassAttribute("http://www.transformation-tool-contest.eu/2017/smartGrids/cosem#//InterfaceClasse" +
         "s/Specialdaystable")]
-    public class Specialdaystable : Base, ISpecialdaystable, IModelElement
+    public partial class Specialdaystable : Base, ISpecialdaystable, IModelElement
     {
         
         private static IClass _classInstance;

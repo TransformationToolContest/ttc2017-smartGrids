@@ -39,7 +39,7 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
     [XmlNamespacePrefixAttribute("objects")]
     [ModelRepresentationClassAttribute("http://www.transformation-tool-contest.eu/2017/smartGrids/cosem#//COSEMObjects/En" +
         "vironmentRelatedParameters")]
-    public class EnvironmentRelatedParameters : Register, IEnvironmentRelatedParameters, IModelElement
+    public partial class EnvironmentRelatedParameters : Register, IEnvironmentRelatedParameters, IModelElement
     {
         
         /// <summary>
@@ -47,15 +47,21 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
         /// </summary>
         private Nullable<double> _ambient_temperature;
         
+        private static Lazy<ITypedElement> _ambient_temperatureAttribute = new Lazy<ITypedElement>(RetrieveAmbient_temperatureAttribute);
+        
         /// <summary>
         /// The backing field for the Ambient_pressure property
         /// </summary>
         private Nullable<double> _ambient_pressure;
         
+        private static Lazy<ITypedElement> _ambient_pressureAttribute = new Lazy<ITypedElement>(RetrieveAmbient_pressureAttribute);
+        
         /// <summary>
         /// The backing field for the Relative_humidity property
         /// </summary>
         private Nullable<double> _relative_humidity;
+        
+        private static Lazy<ITypedElement> _relative_humidityAttribute = new Lazy<ITypedElement>(RetrieveRelative_humidityAttribute);
         
         private static IClass _classInstance;
         
@@ -77,10 +83,10 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     Nullable<double> old = this._ambient_temperature;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnAmbient_temperatureChanging(e);
-                    this.OnPropertyChanging("Ambient_temperature", e);
+                    this.OnPropertyChanging("Ambient_temperature", e, _ambient_temperatureAttribute);
                     this._ambient_temperature = value;
                     this.OnAmbient_temperatureChanged(e);
-                    this.OnPropertyChanged("Ambient_temperature", e);
+                    this.OnPropertyChanged("Ambient_temperature", e, _ambient_temperatureAttribute);
                 }
             }
         }
@@ -102,10 +108,10 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     Nullable<double> old = this._ambient_pressure;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnAmbient_pressureChanging(e);
-                    this.OnPropertyChanging("Ambient_pressure", e);
+                    this.OnPropertyChanging("Ambient_pressure", e, _ambient_pressureAttribute);
                     this._ambient_pressure = value;
                     this.OnAmbient_pressureChanged(e);
-                    this.OnPropertyChanged("Ambient_pressure", e);
+                    this.OnPropertyChanged("Ambient_pressure", e, _ambient_pressureAttribute);
                 }
             }
         }
@@ -127,10 +133,10 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     Nullable<double> old = this._relative_humidity;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnRelative_humidityChanging(e);
-                    this.OnPropertyChanging("Relative_humidity", e);
+                    this.OnPropertyChanging("Relative_humidity", e, _relative_humidityAttribute);
                     this._relative_humidity = value;
                     this.OnRelative_humidityChanged(e);
-                    this.OnPropertyChanged("Relative_humidity", e);
+                    this.OnPropertyChanged("Relative_humidity", e, _relative_humidityAttribute);
                 }
             }
         }
@@ -181,6 +187,11 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> Relative_humidityChanged;
         
+        private static ITypedElement RetrieveAmbient_temperatureAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(EnvironmentRelatedParameters.ClassInstance)).Resolve("ambient_temperature")));
+        }
+        
         /// <summary>
         /// Raises the Ambient_temperatureChanging event
         /// </summary>
@@ -207,6 +218,11 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             }
         }
         
+        private static ITypedElement RetrieveAmbient_pressureAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(EnvironmentRelatedParameters.ClassInstance)).Resolve("Ambient_pressure")));
+        }
+        
         /// <summary>
         /// Raises the Ambient_pressureChanging event
         /// </summary>
@@ -231,6 +247,11 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveRelative_humidityAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(EnvironmentRelatedParameters.ClassInstance)).Resolve("Relative_humidity")));
         }
         
         /// <summary>
@@ -331,7 +352,7 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public Ambient_temperatureProxy(IEnvironmentRelatedParameters modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "ambient_temperature")
             {
             }
             
@@ -349,24 +370,6 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     this.ModelElement.Ambient_temperature = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.Ambient_temperatureChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.Ambient_temperatureChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -380,7 +383,7 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public Ambient_pressureProxy(IEnvironmentRelatedParameters modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "Ambient_pressure")
             {
             }
             
@@ -398,24 +401,6 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     this.ModelElement.Ambient_pressure = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.Ambient_pressureChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.Ambient_pressureChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -429,7 +414,7 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public Relative_humidityProxy(IEnvironmentRelatedParameters modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "Relative_humidity")
             {
             }
             
@@ -446,24 +431,6 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                 {
                     this.ModelElement.Relative_humidity = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.Relative_humidityChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.Relative_humidityChanged -= handler;
             }
         }
     }

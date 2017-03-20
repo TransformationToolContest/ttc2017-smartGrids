@@ -40,7 +40,7 @@ namespace TTC2017.SmartGrids.COSEM.InterfaceClasses
     [XmlNamespacePrefixAttribute("inter")]
     [ModelRepresentationClassAttribute("http://www.transformation-tool-contest.eu/2017/smartGrids/cosem#//InterfaceClasse" +
         "s/Limiter")]
-    public class Limiter : Base, ILimiter, IModelElement
+    public partial class Limiter : Base, ILimiter, IModelElement
     {
         
         private static IClass _classInstance;

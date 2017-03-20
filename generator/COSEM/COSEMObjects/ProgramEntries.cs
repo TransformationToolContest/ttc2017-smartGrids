@@ -39,7 +39,7 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
     [XmlNamespacePrefixAttribute("objects")]
     [ModelRepresentationClassAttribute("http://www.transformation-tool-contest.eu/2017/smartGrids/cosem#//COSEMObjects/Pr" +
         "ogramEntries")]
-    public class ProgramEntries : Data, IProgramEntries, IModelElement
+    public partial class ProgramEntries : Data, IProgramEntries, IModelElement
     {
         
         /// <summary>
@@ -47,15 +47,21 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
         /// </summary>
         private string _activeFirmwareIdentifier;
         
+        private static Lazy<ITypedElement> _activeFirmwareIdentifierAttribute = new Lazy<ITypedElement>(RetrieveActiveFirmwareIdentifierAttribute);
+        
         /// <summary>
         /// The backing field for the ActiveFirmwareVersion property
         /// </summary>
         private string _activeFirmwareVersion;
         
+        private static Lazy<ITypedElement> _activeFirmwareVersionAttribute = new Lazy<ITypedElement>(RetrieveActiveFirmwareVersionAttribute);
+        
         /// <summary>
         /// The backing field for the ActiveFirmwareSignature property
         /// </summary>
         private string _activeFirmwareSignature;
+        
+        private static Lazy<ITypedElement> _activeFirmwareSignatureAttribute = new Lazy<ITypedElement>(RetrieveActiveFirmwareSignatureAttribute);
         
         private static IClass _classInstance;
         
@@ -76,10 +82,10 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     string old = this._activeFirmwareIdentifier;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnActiveFirmwareIdentifierChanging(e);
-                    this.OnPropertyChanging("ActiveFirmwareIdentifier", e);
+                    this.OnPropertyChanging("ActiveFirmwareIdentifier", e, _activeFirmwareIdentifierAttribute);
                     this._activeFirmwareIdentifier = value;
                     this.OnActiveFirmwareIdentifierChanged(e);
-                    this.OnPropertyChanged("ActiveFirmwareIdentifier", e);
+                    this.OnPropertyChanged("ActiveFirmwareIdentifier", e, _activeFirmwareIdentifierAttribute);
                 }
             }
         }
@@ -101,10 +107,10 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     string old = this._activeFirmwareVersion;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnActiveFirmwareVersionChanging(e);
-                    this.OnPropertyChanging("ActiveFirmwareVersion", e);
+                    this.OnPropertyChanging("ActiveFirmwareVersion", e, _activeFirmwareVersionAttribute);
                     this._activeFirmwareVersion = value;
                     this.OnActiveFirmwareVersionChanged(e);
-                    this.OnPropertyChanged("ActiveFirmwareVersion", e);
+                    this.OnPropertyChanged("ActiveFirmwareVersion", e, _activeFirmwareVersionAttribute);
                 }
             }
         }
@@ -126,10 +132,10 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     string old = this._activeFirmwareSignature;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnActiveFirmwareSignatureChanging(e);
-                    this.OnPropertyChanging("ActiveFirmwareSignature", e);
+                    this.OnPropertyChanging("ActiveFirmwareSignature", e, _activeFirmwareSignatureAttribute);
                     this._activeFirmwareSignature = value;
                     this.OnActiveFirmwareSignatureChanged(e);
-                    this.OnPropertyChanged("ActiveFirmwareSignature", e);
+                    this.OnPropertyChanged("ActiveFirmwareSignature", e, _activeFirmwareSignatureAttribute);
                 }
             }
         }
@@ -180,6 +186,11 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> ActiveFirmwareSignatureChanged;
         
+        private static ITypedElement RetrieveActiveFirmwareIdentifierAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(ProgramEntries.ClassInstance)).Resolve("ActiveFirmwareIdentifier")));
+        }
+        
         /// <summary>
         /// Raises the ActiveFirmwareIdentifierChanging event
         /// </summary>
@@ -206,6 +217,11 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             }
         }
         
+        private static ITypedElement RetrieveActiveFirmwareVersionAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(ProgramEntries.ClassInstance)).Resolve("ActiveFirmwareVersion")));
+        }
+        
         /// <summary>
         /// Raises the ActiveFirmwareVersionChanging event
         /// </summary>
@@ -230,6 +246,11 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveActiveFirmwareSignatureAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(ProgramEntries.ClassInstance)).Resolve("ActiveFirmwareSignature")));
         }
         
         /// <summary>
@@ -330,7 +351,7 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public ActiveFirmwareIdentifierProxy(IProgramEntries modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "ActiveFirmwareIdentifier")
             {
             }
             
@@ -348,24 +369,6 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     this.ModelElement.ActiveFirmwareIdentifier = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ActiveFirmwareIdentifierChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ActiveFirmwareIdentifierChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -379,7 +382,7 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public ActiveFirmwareVersionProxy(IProgramEntries modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "ActiveFirmwareVersion")
             {
             }
             
@@ -397,24 +400,6 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     this.ModelElement.ActiveFirmwareVersion = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ActiveFirmwareVersionChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ActiveFirmwareVersionChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -428,7 +413,7 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public ActiveFirmwareSignatureProxy(IProgramEntries modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "ActiveFirmwareSignature")
             {
             }
             
@@ -445,24 +430,6 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                 {
                     this.ModelElement.ActiveFirmwareSignature = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ActiveFirmwareSignatureChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ActiveFirmwareSignatureChanged -= handler;
             }
         }
     }

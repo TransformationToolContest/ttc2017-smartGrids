@@ -39,7 +39,7 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
     [XmlNamespacePrefixAttribute("objects")]
     [ModelRepresentationClassAttribute("http://www.transformation-tool-contest.eu/2017/smartGrids/cosem#//COSEMObjects/M_" +
         "BusProfileGeneric")]
-    public class M_BusProfileGeneric : Profilegeneric, IM_BusProfileGeneric, IModelElement
+    public partial class M_BusProfileGeneric : Profilegeneric, IM_BusProfileGeneric, IModelElement
     {
         
         private static IClass _classInstance;

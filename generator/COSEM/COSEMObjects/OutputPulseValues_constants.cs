@@ -39,7 +39,7 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
     [XmlNamespacePrefixAttribute("objects")]
     [ModelRepresentationClassAttribute("http://www.transformation-tool-contest.eu/2017/smartGrids/cosem#//COSEMObjects/Ou" +
         "tputPulseValues_constants")]
-    public class OutputPulseValues_constants : Data, IOutputPulseValues_constants, IModelElement
+    public partial class OutputPulseValues_constants : Data, IOutputPulseValues_constants, IModelElement
     {
         
         /// <summary>
@@ -47,50 +47,70 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
         /// </summary>
         private Nullable<double> _activeenergymetrologicalLED;
         
+        private static Lazy<ITypedElement> _activeenergymetrologicalLEDAttribute = new Lazy<ITypedElement>(RetrieveActiveenergymetrologicalLEDAttribute);
+        
         /// <summary>
         /// The backing field for the ReactiveenergymetrologicalLED property
         /// </summary>
         private Nullable<double> _reactiveenergymetrologicalLED;
+        
+        private static Lazy<ITypedElement> _reactiveenergymetrologicalLEDAttribute = new Lazy<ITypedElement>(RetrieveReactiveenergymetrologicalLEDAttribute);
         
         /// <summary>
         /// The backing field for the ApparentenergymetrologicalLED property
         /// </summary>
         private Nullable<double> _apparentenergymetrologicalLED;
         
+        private static Lazy<ITypedElement> _apparentenergymetrologicalLEDAttribute = new Lazy<ITypedElement>(RetrieveApparentenergymetrologicalLEDAttribute);
+        
         /// <summary>
         /// The backing field for the Activeenergyoutputpulse property
         /// </summary>
         private Nullable<double> _activeenergyoutputpulse;
+        
+        private static Lazy<ITypedElement> _activeenergyoutputpulseAttribute = new Lazy<ITypedElement>(RetrieveActiveenergyoutputpulseAttribute);
         
         /// <summary>
         /// The backing field for the Reactiveenergyoutputpulse property
         /// </summary>
         private Nullable<double> _reactiveenergyoutputpulse;
         
+        private static Lazy<ITypedElement> _reactiveenergyoutputpulseAttribute = new Lazy<ITypedElement>(RetrieveReactiveenergyoutputpulseAttribute);
+        
         /// <summary>
         /// The backing field for the Apparentenergyoutputpulse property
         /// </summary>
         private Nullable<double> _apparentenergyoutputpulse;
+        
+        private static Lazy<ITypedElement> _apparentenergyoutputpulseAttribute = new Lazy<ITypedElement>(RetrieveApparentenergyoutputpulseAttribute);
         
         /// <summary>
         /// The backing field for the Volt_squaredhoursmetrologicalLED property
         /// </summary>
         private Nullable<double> _volt_squaredhoursmetrologicalLED;
         
+        private static Lazy<ITypedElement> _volt_squaredhoursmetrologicalLEDAttribute = new Lazy<ITypedElement>(RetrieveVolt_squaredhoursmetrologicalLEDAttribute);
+        
         /// <summary>
         /// The backing field for the Ampere_squaredhoursmetrologicalLED property
         /// </summary>
         private Nullable<double> _ampere_squaredhoursmetrologicalLED;
+        
+        private static Lazy<ITypedElement> _ampere_squaredhoursmetrologicalLEDAttribute = new Lazy<ITypedElement>(RetrieveAmpere_squaredhoursmetrologicalLEDAttribute);
         
         /// <summary>
         /// The backing field for the Volt_squaredhoursoutputpulse property
         /// </summary>
         private Nullable<double> _volt_squaredhoursoutputpulse;
         
+        private static Lazy<ITypedElement> _volt_squaredhoursoutputpulseAttribute = new Lazy<ITypedElement>(RetrieveVolt_squaredhoursoutputpulseAttribute);
+        
         /// <summary>
         /// The backing field for the Ampere_squaredhoursoutputpulse property
         /// </summary>
         private Nullable<double> _ampere_squaredhoursoutputpulse;
+        
+        private static Lazy<ITypedElement> _ampere_squaredhoursoutputpulseAttribute = new Lazy<ITypedElement>(RetrieveAmpere_squaredhoursoutputpulseAttribute);
         
         private static IClass _classInstance;
         
@@ -111,10 +131,10 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     Nullable<double> old = this._activeenergymetrologicalLED;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnActiveenergymetrologicalLEDChanging(e);
-                    this.OnPropertyChanging("ActiveenergymetrologicalLED", e);
+                    this.OnPropertyChanging("ActiveenergymetrologicalLED", e, _activeenergymetrologicalLEDAttribute);
                     this._activeenergymetrologicalLED = value;
                     this.OnActiveenergymetrologicalLEDChanged(e);
-                    this.OnPropertyChanged("ActiveenergymetrologicalLED", e);
+                    this.OnPropertyChanged("ActiveenergymetrologicalLED", e, _activeenergymetrologicalLEDAttribute);
                 }
             }
         }
@@ -136,10 +156,10 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     Nullable<double> old = this._reactiveenergymetrologicalLED;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnReactiveenergymetrologicalLEDChanging(e);
-                    this.OnPropertyChanging("ReactiveenergymetrologicalLED", e);
+                    this.OnPropertyChanging("ReactiveenergymetrologicalLED", e, _reactiveenergymetrologicalLEDAttribute);
                     this._reactiveenergymetrologicalLED = value;
                     this.OnReactiveenergymetrologicalLEDChanged(e);
-                    this.OnPropertyChanged("ReactiveenergymetrologicalLED", e);
+                    this.OnPropertyChanged("ReactiveenergymetrologicalLED", e, _reactiveenergymetrologicalLEDAttribute);
                 }
             }
         }
@@ -161,10 +181,10 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     Nullable<double> old = this._apparentenergymetrologicalLED;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnApparentenergymetrologicalLEDChanging(e);
-                    this.OnPropertyChanging("ApparentenergymetrologicalLED", e);
+                    this.OnPropertyChanging("ApparentenergymetrologicalLED", e, _apparentenergymetrologicalLEDAttribute);
                     this._apparentenergymetrologicalLED = value;
                     this.OnApparentenergymetrologicalLEDChanged(e);
-                    this.OnPropertyChanged("ApparentenergymetrologicalLED", e);
+                    this.OnPropertyChanged("ApparentenergymetrologicalLED", e, _apparentenergymetrologicalLEDAttribute);
                 }
             }
         }
@@ -186,10 +206,10 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     Nullable<double> old = this._activeenergyoutputpulse;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnActiveenergyoutputpulseChanging(e);
-                    this.OnPropertyChanging("Activeenergyoutputpulse", e);
+                    this.OnPropertyChanging("Activeenergyoutputpulse", e, _activeenergyoutputpulseAttribute);
                     this._activeenergyoutputpulse = value;
                     this.OnActiveenergyoutputpulseChanged(e);
-                    this.OnPropertyChanged("Activeenergyoutputpulse", e);
+                    this.OnPropertyChanged("Activeenergyoutputpulse", e, _activeenergyoutputpulseAttribute);
                 }
             }
         }
@@ -211,10 +231,10 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     Nullable<double> old = this._reactiveenergyoutputpulse;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnReactiveenergyoutputpulseChanging(e);
-                    this.OnPropertyChanging("Reactiveenergyoutputpulse", e);
+                    this.OnPropertyChanging("Reactiveenergyoutputpulse", e, _reactiveenergyoutputpulseAttribute);
                     this._reactiveenergyoutputpulse = value;
                     this.OnReactiveenergyoutputpulseChanged(e);
-                    this.OnPropertyChanged("Reactiveenergyoutputpulse", e);
+                    this.OnPropertyChanged("Reactiveenergyoutputpulse", e, _reactiveenergyoutputpulseAttribute);
                 }
             }
         }
@@ -236,10 +256,10 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     Nullable<double> old = this._apparentenergyoutputpulse;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnApparentenergyoutputpulseChanging(e);
-                    this.OnPropertyChanging("Apparentenergyoutputpulse", e);
+                    this.OnPropertyChanging("Apparentenergyoutputpulse", e, _apparentenergyoutputpulseAttribute);
                     this._apparentenergyoutputpulse = value;
                     this.OnApparentenergyoutputpulseChanged(e);
-                    this.OnPropertyChanged("Apparentenergyoutputpulse", e);
+                    this.OnPropertyChanged("Apparentenergyoutputpulse", e, _apparentenergyoutputpulseAttribute);
                 }
             }
         }
@@ -261,10 +281,10 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     Nullable<double> old = this._volt_squaredhoursmetrologicalLED;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnVolt_squaredhoursmetrologicalLEDChanging(e);
-                    this.OnPropertyChanging("Volt_squaredhoursmetrologicalLED", e);
+                    this.OnPropertyChanging("Volt_squaredhoursmetrologicalLED", e, _volt_squaredhoursmetrologicalLEDAttribute);
                     this._volt_squaredhoursmetrologicalLED = value;
                     this.OnVolt_squaredhoursmetrologicalLEDChanged(e);
-                    this.OnPropertyChanged("Volt_squaredhoursmetrologicalLED", e);
+                    this.OnPropertyChanged("Volt_squaredhoursmetrologicalLED", e, _volt_squaredhoursmetrologicalLEDAttribute);
                 }
             }
         }
@@ -286,10 +306,10 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     Nullable<double> old = this._ampere_squaredhoursmetrologicalLED;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnAmpere_squaredhoursmetrologicalLEDChanging(e);
-                    this.OnPropertyChanging("Ampere_squaredhoursmetrologicalLED", e);
+                    this.OnPropertyChanging("Ampere_squaredhoursmetrologicalLED", e, _ampere_squaredhoursmetrologicalLEDAttribute);
                     this._ampere_squaredhoursmetrologicalLED = value;
                     this.OnAmpere_squaredhoursmetrologicalLEDChanged(e);
-                    this.OnPropertyChanged("Ampere_squaredhoursmetrologicalLED", e);
+                    this.OnPropertyChanged("Ampere_squaredhoursmetrologicalLED", e, _ampere_squaredhoursmetrologicalLEDAttribute);
                 }
             }
         }
@@ -311,10 +331,10 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     Nullable<double> old = this._volt_squaredhoursoutputpulse;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnVolt_squaredhoursoutputpulseChanging(e);
-                    this.OnPropertyChanging("Volt_squaredhoursoutputpulse", e);
+                    this.OnPropertyChanging("Volt_squaredhoursoutputpulse", e, _volt_squaredhoursoutputpulseAttribute);
                     this._volt_squaredhoursoutputpulse = value;
                     this.OnVolt_squaredhoursoutputpulseChanged(e);
-                    this.OnPropertyChanged("Volt_squaredhoursoutputpulse", e);
+                    this.OnPropertyChanged("Volt_squaredhoursoutputpulse", e, _volt_squaredhoursoutputpulseAttribute);
                 }
             }
         }
@@ -336,10 +356,10 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     Nullable<double> old = this._ampere_squaredhoursoutputpulse;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnAmpere_squaredhoursoutputpulseChanging(e);
-                    this.OnPropertyChanging("Ampere_squaredhoursoutputpulse", e);
+                    this.OnPropertyChanging("Ampere_squaredhoursoutputpulse", e, _ampere_squaredhoursoutputpulseAttribute);
                     this._ampere_squaredhoursoutputpulse = value;
                     this.OnAmpere_squaredhoursoutputpulseChanged(e);
-                    this.OnPropertyChanged("Ampere_squaredhoursoutputpulse", e);
+                    this.OnPropertyChanged("Ampere_squaredhoursoutputpulse", e, _ampere_squaredhoursoutputpulseAttribute);
                 }
             }
         }
@@ -460,6 +480,11 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> Ampere_squaredhoursoutputpulseChanged;
         
+        private static ITypedElement RetrieveActiveenergymetrologicalLEDAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(OutputPulseValues_constants.ClassInstance)).Resolve("ActiveenergymetrologicalLED")));
+        }
+        
         /// <summary>
         /// Raises the ActiveenergymetrologicalLEDChanging event
         /// </summary>
@@ -484,6 +509,11 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveReactiveenergymetrologicalLEDAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(OutputPulseValues_constants.ClassInstance)).Resolve("ReactiveenergymetrologicalLED")));
         }
         
         /// <summary>
@@ -512,6 +542,11 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             }
         }
         
+        private static ITypedElement RetrieveApparentenergymetrologicalLEDAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(OutputPulseValues_constants.ClassInstance)).Resolve("ApparentenergymetrologicalLED")));
+        }
+        
         /// <summary>
         /// Raises the ApparentenergymetrologicalLEDChanging event
         /// </summary>
@@ -536,6 +571,11 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveActiveenergyoutputpulseAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(OutputPulseValues_constants.ClassInstance)).Resolve("Activeenergyoutputpulse")));
         }
         
         /// <summary>
@@ -564,6 +604,11 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             }
         }
         
+        private static ITypedElement RetrieveReactiveenergyoutputpulseAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(OutputPulseValues_constants.ClassInstance)).Resolve("Reactiveenergyoutputpulse")));
+        }
+        
         /// <summary>
         /// Raises the ReactiveenergyoutputpulseChanging event
         /// </summary>
@@ -588,6 +633,11 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveApparentenergyoutputpulseAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(OutputPulseValues_constants.ClassInstance)).Resolve("Apparentenergyoutputpulse")));
         }
         
         /// <summary>
@@ -616,6 +666,11 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             }
         }
         
+        private static ITypedElement RetrieveVolt_squaredhoursmetrologicalLEDAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(OutputPulseValues_constants.ClassInstance)).Resolve("Volt_squaredhoursmetrologicalLED")));
+        }
+        
         /// <summary>
         /// Raises the Volt_squaredhoursmetrologicalLEDChanging event
         /// </summary>
@@ -640,6 +695,11 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveAmpere_squaredhoursmetrologicalLEDAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(OutputPulseValues_constants.ClassInstance)).Resolve("Ampere_squaredhoursmetrologicalLED")));
         }
         
         /// <summary>
@@ -668,6 +728,11 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             }
         }
         
+        private static ITypedElement RetrieveVolt_squaredhoursoutputpulseAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(OutputPulseValues_constants.ClassInstance)).Resolve("Volt_squaredhoursoutputpulse")));
+        }
+        
         /// <summary>
         /// Raises the Volt_squaredhoursoutputpulseChanging event
         /// </summary>
@@ -692,6 +757,11 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveAmpere_squaredhoursoutputpulseAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(OutputPulseValues_constants.ClassInstance)).Resolve("Ampere_squaredhoursoutputpulse")));
         }
         
         /// <summary>
@@ -855,7 +925,7 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public ActiveenergymetrologicalLEDProxy(IOutputPulseValues_constants modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "ActiveenergymetrologicalLED")
             {
             }
             
@@ -873,24 +943,6 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     this.ModelElement.ActiveenergymetrologicalLED = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ActiveenergymetrologicalLEDChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ActiveenergymetrologicalLEDChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -904,7 +956,7 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public ReactiveenergymetrologicalLEDProxy(IOutputPulseValues_constants modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "ReactiveenergymetrologicalLED")
             {
             }
             
@@ -922,24 +974,6 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     this.ModelElement.ReactiveenergymetrologicalLED = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ReactiveenergymetrologicalLEDChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ReactiveenergymetrologicalLEDChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -953,7 +987,7 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public ApparentenergymetrologicalLEDProxy(IOutputPulseValues_constants modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "ApparentenergymetrologicalLED")
             {
             }
             
@@ -971,24 +1005,6 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     this.ModelElement.ApparentenergymetrologicalLED = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ApparentenergymetrologicalLEDChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ApparentenergymetrologicalLEDChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1002,7 +1018,7 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public ActiveenergyoutputpulseProxy(IOutputPulseValues_constants modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "Activeenergyoutputpulse")
             {
             }
             
@@ -1020,24 +1036,6 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     this.ModelElement.Activeenergyoutputpulse = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ActiveenergyoutputpulseChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ActiveenergyoutputpulseChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1051,7 +1049,7 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public ReactiveenergyoutputpulseProxy(IOutputPulseValues_constants modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "Reactiveenergyoutputpulse")
             {
             }
             
@@ -1069,24 +1067,6 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     this.ModelElement.Reactiveenergyoutputpulse = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ReactiveenergyoutputpulseChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ReactiveenergyoutputpulseChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1100,7 +1080,7 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public ApparentenergyoutputpulseProxy(IOutputPulseValues_constants modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "Apparentenergyoutputpulse")
             {
             }
             
@@ -1118,24 +1098,6 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     this.ModelElement.Apparentenergyoutputpulse = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ApparentenergyoutputpulseChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ApparentenergyoutputpulseChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1149,7 +1111,7 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public Volt_squaredhoursmetrologicalLEDProxy(IOutputPulseValues_constants modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "Volt_squaredhoursmetrologicalLED")
             {
             }
             
@@ -1167,24 +1129,6 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     this.ModelElement.Volt_squaredhoursmetrologicalLED = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.Volt_squaredhoursmetrologicalLEDChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.Volt_squaredhoursmetrologicalLEDChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1198,7 +1142,7 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public Ampere_squaredhoursmetrologicalLEDProxy(IOutputPulseValues_constants modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "Ampere_squaredhoursmetrologicalLED")
             {
             }
             
@@ -1216,24 +1160,6 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     this.ModelElement.Ampere_squaredhoursmetrologicalLED = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.Ampere_squaredhoursmetrologicalLEDChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.Ampere_squaredhoursmetrologicalLEDChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1247,7 +1173,7 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public Volt_squaredhoursoutputpulseProxy(IOutputPulseValues_constants modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "Volt_squaredhoursoutputpulse")
             {
             }
             
@@ -1265,24 +1191,6 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     this.ModelElement.Volt_squaredhoursoutputpulse = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.Volt_squaredhoursoutputpulseChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.Volt_squaredhoursoutputpulseChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1296,7 +1204,7 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public Ampere_squaredhoursoutputpulseProxy(IOutputPulseValues_constants modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "Ampere_squaredhoursoutputpulse")
             {
             }
             
@@ -1313,24 +1221,6 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                 {
                     this.ModelElement.Ampere_squaredhoursoutputpulse = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.Ampere_squaredhoursoutputpulseChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.Ampere_squaredhoursoutputpulseChanged -= handler;
             }
         }
     }

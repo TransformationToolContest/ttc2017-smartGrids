@@ -39,7 +39,7 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
     [XmlNamespacePrefixAttribute("objects")]
     [ModelRepresentationClassAttribute("http://www.transformation-tool-contest.eu/2017/smartGrids/cosem#//COSEMObjects/MD" +
         "IReset")]
-    public class MDIReset : Scripttable, IMDIReset, IModelElement
+    public partial class MDIReset : Scripttable, IMDIReset, IModelElement
     {
         
         private static IClass _classInstance;

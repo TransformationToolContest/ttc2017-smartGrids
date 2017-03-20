@@ -53,7 +53,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61970/Informative/InfAssets/Protect" +
         "ionEquipmentInfo")]
     [DebuggerDisplayAttribute("ProtectionEquipmentInfo {UUID}")]
-    public class ProtectionEquipmentInfo : ElectricalInfo, IProtectionEquipmentInfo, IModelElement
+    public partial class ProtectionEquipmentInfo : ElectricalInfo, IProtectionEquipmentInfo, IModelElement
     {
         
         /// <summary>
@@ -61,10 +61,14 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
         /// </summary>
         private float _phaseTrip;
         
+        private static Lazy<ITypedElement> _phaseTripAttribute = new Lazy<ITypedElement>(RetrievePhaseTripAttribute);
+        
         /// <summary>
         /// The backing field for the GroundTrip property
         /// </summary>
         private float _groundTrip;
+        
+        private static Lazy<ITypedElement> _groundTripAttribute = new Lazy<ITypedElement>(RetrieveGroundTripAttribute);
         
         private static IClass _classInstance;
         
@@ -86,10 +90,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
                     float old = this._phaseTrip;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnPhaseTripChanging(e);
-                    this.OnPropertyChanging("PhaseTrip", e);
+                    this.OnPropertyChanging("PhaseTrip", e, _phaseTripAttribute);
                     this._phaseTrip = value;
                     this.OnPhaseTripChanged(e);
-                    this.OnPropertyChanged("PhaseTrip", e);
+                    this.OnPropertyChanged("PhaseTrip", e, _phaseTripAttribute);
                 }
             }
         }
@@ -112,10 +116,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
                     float old = this._groundTrip;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnGroundTripChanging(e);
-                    this.OnPropertyChanging("GroundTrip", e);
+                    this.OnPropertyChanging("GroundTrip", e, _groundTripAttribute);
                     this._groundTrip = value;
                     this.OnGroundTripChanged(e);
-                    this.OnPropertyChanged("GroundTrip", e);
+                    this.OnPropertyChanged("GroundTrip", e, _groundTripAttribute);
                 }
             }
         }
@@ -156,6 +160,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> GroundTripChanged;
         
+        private static ITypedElement RetrievePhaseTripAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(ProtectionEquipmentInfo.ClassInstance)).Resolve("phaseTrip")));
+        }
+        
         /// <summary>
         /// Raises the PhaseTripChanging event
         /// </summary>
@@ -180,6 +189,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveGroundTripAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(ProtectionEquipmentInfo.ClassInstance)).Resolve("groundTrip")));
         }
         
         /// <summary>
@@ -271,7 +285,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public PhaseTripProxy(IProtectionEquipmentInfo modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "phaseTrip")
             {
             }
             
@@ -289,24 +303,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
                     this.ModelElement.PhaseTrip = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.PhaseTripChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.PhaseTripChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -320,7 +316,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public GroundTripProxy(IProtectionEquipmentInfo modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "groundTrip")
             {
             }
             
@@ -337,24 +333,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
                 {
                     this.ModelElement.GroundTrip = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.GroundTripChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.GroundTripChanged -= handler;
             }
         }
     }

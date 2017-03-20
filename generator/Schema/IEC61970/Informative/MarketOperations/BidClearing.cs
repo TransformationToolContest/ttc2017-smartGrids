@@ -50,7 +50,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61970/Informative/MarketOperations/" +
         "BidClearing")]
     [DebuggerDisplayAttribute("BidClearing {UUID}")]
-    public class BidClearing : Element, IBidClearing, IModelElement
+    public partial class BidClearing : Element, IBidClearing, IModelElement
     {
         
         /// <summary>
@@ -58,15 +58,23 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
         /// </summary>
         private float _startUpCost;
         
+        private static Lazy<ITypedElement> _startUpCostAttribute = new Lazy<ITypedElement>(RetrieveStartUpCostAttribute);
+        
         /// <summary>
         /// The backing field for the NoLoadCost property
         /// </summary>
         private float _noLoadCost;
         
+        private static Lazy<ITypedElement> _noLoadCostAttribute = new Lazy<ITypedElement>(RetrieveNoLoadCostAttribute);
+        
         /// <summary>
         /// The backing field for the LostOpCost property
         /// </summary>
         private float _lostOpCost;
+        
+        private static Lazy<ITypedElement> _lostOpCostAttribute = new Lazy<ITypedElement>(RetrieveLostOpCostAttribute);
+        
+        private static Lazy<ITypedElement> _bidReference = new Lazy<ITypedElement>(RetrieveBidReference);
         
         /// <summary>
         /// The backing field for the Bid property
@@ -93,10 +101,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
                     float old = this._startUpCost;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnStartUpCostChanging(e);
-                    this.OnPropertyChanging("StartUpCost", e);
+                    this.OnPropertyChanging("StartUpCost", e, _startUpCostAttribute);
                     this._startUpCost = value;
                     this.OnStartUpCostChanged(e);
-                    this.OnPropertyChanged("StartUpCost", e);
+                    this.OnPropertyChanged("StartUpCost", e, _startUpCostAttribute);
                 }
             }
         }
@@ -119,10 +127,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
                     float old = this._noLoadCost;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnNoLoadCostChanging(e);
-                    this.OnPropertyChanging("NoLoadCost", e);
+                    this.OnPropertyChanging("NoLoadCost", e, _noLoadCostAttribute);
                     this._noLoadCost = value;
                     this.OnNoLoadCostChanged(e);
-                    this.OnPropertyChanged("NoLoadCost", e);
+                    this.OnPropertyChanged("NoLoadCost", e, _noLoadCostAttribute);
                 }
             }
         }
@@ -145,10 +153,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
                     float old = this._lostOpCost;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnLostOpCostChanging(e);
-                    this.OnPropertyChanging("LostOpCost", e);
+                    this.OnPropertyChanging("LostOpCost", e, _lostOpCostAttribute);
                     this._lostOpCost = value;
                     this.OnLostOpCostChanged(e);
-                    this.OnPropertyChanged("LostOpCost", e);
+                    this.OnPropertyChanged("LostOpCost", e, _lostOpCostAttribute);
                 }
             }
         }
@@ -171,7 +179,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
                     IBid old = this._bid;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnBidChanging(e);
-                    this.OnPropertyChanging("Bid", e);
+                    this.OnPropertyChanging("Bid", e, _bidReference);
                     this._bid = value;
                     if ((old != null))
                     {
@@ -184,7 +192,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
                         value.Deleted += this.OnResetBid;
                     }
                     this.OnBidChanged(e);
-                    this.OnPropertyChanged("Bid", e);
+                    this.OnPropertyChanged("Bid", e, _bidReference);
                 }
             }
         }
@@ -256,6 +264,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> BidChanged;
         
+        private static ITypedElement RetrieveStartUpCostAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(BidClearing.ClassInstance)).Resolve("startUpCost")));
+        }
+        
         /// <summary>
         /// Raises the StartUpCostChanging event
         /// </summary>
@@ -280,6 +293,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveNoLoadCostAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(BidClearing.ClassInstance)).Resolve("noLoadCost")));
         }
         
         /// <summary>
@@ -308,6 +326,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
             }
         }
         
+        private static ITypedElement RetrieveLostOpCostAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(BidClearing.ClassInstance)).Resolve("lostOpCost")));
+        }
+        
         /// <summary>
         /// Raises the LostOpCostChanging event
         /// </summary>
@@ -332,6 +355,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveBidReference()
+        {
+            return ((ITypedElement)(((ModelElement)(BidClearing.ClassInstance)).Resolve("Bid")));
         }
         
         /// <summary>
@@ -595,7 +623,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public StartUpCostProxy(IBidClearing modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "startUpCost")
             {
             }
             
@@ -613,24 +641,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
                     this.ModelElement.StartUpCost = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.StartUpCostChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.StartUpCostChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -644,7 +654,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public NoLoadCostProxy(IBidClearing modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "noLoadCost")
             {
             }
             
@@ -662,24 +672,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
                     this.ModelElement.NoLoadCost = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.NoLoadCostChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.NoLoadCostChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -693,7 +685,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public LostOpCostProxy(IBidClearing modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "lostOpCost")
             {
             }
             
@@ -711,24 +703,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
                     this.ModelElement.LostOpCost = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.LostOpCostChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.LostOpCostChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -742,7 +716,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public BidProxy(IBidClearing modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "Bid")
             {
             }
             
@@ -759,24 +733,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
                 {
                     this.ModelElement.Bid = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.BidChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.BidChanged -= handler;
             }
         }
     }

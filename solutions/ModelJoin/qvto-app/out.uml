@@ -1,6 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<mmsource:root xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:mmsource="http://www.mmsource.fr" xsi:schemaLocation="http://www.mmsource.fr src/test/resources/qvto4abcmodel/sample/MMSource.ecore" xmi:id="_n7p2sAlfEeekT_ytwyO8VQ">
-  <element xmi:type="mmsource:B" xmi:id="_n7p2sQlfEeekT_ytwyO8VQ" Id="10" b="Quentin work at FraBen Company"/>
-  <element xmi:type="mmsource:B" xmi:id="_n7p2sglfEeekT_ytwyO8VQ" b="Bob"/>
-  <element xmi:type="mmsource:C" xmi:id="_n7p2swlfEeekT_ytwyO8VQ" Id="15" c="Anthony"/>
-</mmsource:root>

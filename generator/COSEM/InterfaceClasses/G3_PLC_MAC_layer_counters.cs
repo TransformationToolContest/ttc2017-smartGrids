@@ -40,7 +40,7 @@ namespace TTC2017.SmartGrids.COSEM.InterfaceClasses
     [XmlNamespacePrefixAttribute("inter")]
     [ModelRepresentationClassAttribute("http://www.transformation-tool-contest.eu/2017/smartGrids/cosem#//InterfaceClasse" +
         "s/G3_PLC_MAC_layer_counters")]
-    public class G3_PLC_MAC_layer_counters : Base, IG3_PLC_MAC_layer_counters, IModelElement
+    public partial class G3_PLC_MAC_layer_counters : Base, IG3_PLC_MAC_layer_counters, IModelElement
     {
         
         private static IClass _classInstance;

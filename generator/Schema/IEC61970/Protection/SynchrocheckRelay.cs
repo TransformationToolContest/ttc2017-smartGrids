@@ -40,7 +40,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Protection
     [XmlNamespacePrefixAttribute("cimProtection")]
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61970/Protection/SynchrocheckRelay")]
     [DebuggerDisplayAttribute("SynchrocheckRelay {UUID}")]
-    public class SynchrocheckRelay : ProtectionEquipment, ISynchrocheckRelay, IModelElement
+    public partial class SynchrocheckRelay : ProtectionEquipment, ISynchrocheckRelay, IModelElement
     {
         
         /// <summary>
@@ -48,15 +48,21 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Protection
         /// </summary>
         private float _maxVoltDiff;
         
+        private static Lazy<ITypedElement> _maxVoltDiffAttribute = new Lazy<ITypedElement>(RetrieveMaxVoltDiffAttribute);
+        
         /// <summary>
         /// The backing field for the MaxFreqDiff property
         /// </summary>
         private float _maxFreqDiff;
         
+        private static Lazy<ITypedElement> _maxFreqDiffAttribute = new Lazy<ITypedElement>(RetrieveMaxFreqDiffAttribute);
+        
         /// <summary>
         /// The backing field for the MaxAngleDiff property
         /// </summary>
         private float _maxAngleDiff;
+        
+        private static Lazy<ITypedElement> _maxAngleDiffAttribute = new Lazy<ITypedElement>(RetrieveMaxAngleDiffAttribute);
         
         private static IClass _classInstance;
         
@@ -78,10 +84,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Protection
                     float old = this._maxVoltDiff;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnMaxVoltDiffChanging(e);
-                    this.OnPropertyChanging("MaxVoltDiff", e);
+                    this.OnPropertyChanging("MaxVoltDiff", e, _maxVoltDiffAttribute);
                     this._maxVoltDiff = value;
                     this.OnMaxVoltDiffChanged(e);
-                    this.OnPropertyChanged("MaxVoltDiff", e);
+                    this.OnPropertyChanged("MaxVoltDiff", e, _maxVoltDiffAttribute);
                 }
             }
         }
@@ -104,10 +110,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Protection
                     float old = this._maxFreqDiff;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnMaxFreqDiffChanging(e);
-                    this.OnPropertyChanging("MaxFreqDiff", e);
+                    this.OnPropertyChanging("MaxFreqDiff", e, _maxFreqDiffAttribute);
                     this._maxFreqDiff = value;
                     this.OnMaxFreqDiffChanged(e);
-                    this.OnPropertyChanged("MaxFreqDiff", e);
+                    this.OnPropertyChanged("MaxFreqDiff", e, _maxFreqDiffAttribute);
                 }
             }
         }
@@ -130,10 +136,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Protection
                     float old = this._maxAngleDiff;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnMaxAngleDiffChanging(e);
-                    this.OnPropertyChanging("MaxAngleDiff", e);
+                    this.OnPropertyChanging("MaxAngleDiff", e, _maxAngleDiffAttribute);
                     this._maxAngleDiff = value;
                     this.OnMaxAngleDiffChanged(e);
-                    this.OnPropertyChanged("MaxAngleDiff", e);
+                    this.OnPropertyChanged("MaxAngleDiff", e, _maxAngleDiffAttribute);
                 }
             }
         }
@@ -183,6 +189,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Protection
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> MaxAngleDiffChanged;
         
+        private static ITypedElement RetrieveMaxVoltDiffAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(SynchrocheckRelay.ClassInstance)).Resolve("maxVoltDiff")));
+        }
+        
         /// <summary>
         /// Raises the MaxVoltDiffChanging event
         /// </summary>
@@ -209,6 +220,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Protection
             }
         }
         
+        private static ITypedElement RetrieveMaxFreqDiffAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(SynchrocheckRelay.ClassInstance)).Resolve("maxFreqDiff")));
+        }
+        
         /// <summary>
         /// Raises the MaxFreqDiffChanging event
         /// </summary>
@@ -233,6 +249,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Protection
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveMaxAngleDiffAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(SynchrocheckRelay.ClassInstance)).Resolve("maxAngleDiff")));
         }
         
         /// <summary>
@@ -332,7 +353,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Protection
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public MaxVoltDiffProxy(ISynchrocheckRelay modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "maxVoltDiff")
             {
             }
             
@@ -350,24 +371,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Protection
                     this.ModelElement.MaxVoltDiff = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.MaxVoltDiffChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.MaxVoltDiffChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -381,7 +384,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Protection
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public MaxFreqDiffProxy(ISynchrocheckRelay modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "maxFreqDiff")
             {
             }
             
@@ -399,24 +402,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Protection
                     this.ModelElement.MaxFreqDiff = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.MaxFreqDiffChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.MaxFreqDiffChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -430,7 +415,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Protection
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public MaxAngleDiffProxy(ISynchrocheckRelay modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "maxAngleDiff")
             {
             }
             
@@ -447,24 +432,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Protection
                 {
                     this.ModelElement.MaxAngleDiff = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.MaxAngleDiffChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.MaxAngleDiffChanged -= handler;
             }
         }
     }

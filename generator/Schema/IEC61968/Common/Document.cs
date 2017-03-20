@@ -51,7 +51,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Common
     [XmlNamespacePrefixAttribute("cimCommon")]
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61968/Common/Document")]
     [DebuggerDisplayAttribute("Document {UUID}")]
-    public class Document : IdentifiedObject, IDocument, IModelElement
+    public partial class Document : IdentifiedObject, IDocument, IModelElement
     {
         
         /// <summary>
@@ -59,105 +59,149 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Common
         /// </summary>
         private string _subject;
         
+        private static Lazy<ITypedElement> _subjectAttribute = new Lazy<ITypedElement>(RetrieveSubjectAttribute);
+        
         /// <summary>
         /// The backing field for the CreatedDateTime property
         /// </summary>
         private DateTime _createdDateTime;
+        
+        private static Lazy<ITypedElement> _createdDateTimeAttribute = new Lazy<ITypedElement>(RetrieveCreatedDateTimeAttribute);
         
         /// <summary>
         /// The backing field for the RevisionNumber property
         /// </summary>
         private string _revisionNumber;
         
+        private static Lazy<ITypedElement> _revisionNumberAttribute = new Lazy<ITypedElement>(RetrieveRevisionNumberAttribute);
+        
         /// <summary>
         /// The backing field for the Category property
         /// </summary>
         private string _category;
+        
+        private static Lazy<ITypedElement> _categoryAttribute = new Lazy<ITypedElement>(RetrieveCategoryAttribute);
         
         /// <summary>
         /// The backing field for the LastModifiedDateTime property
         /// </summary>
         private DateTime _lastModifiedDateTime;
         
+        private static Lazy<ITypedElement> _lastModifiedDateTimeAttribute = new Lazy<ITypedElement>(RetrieveLastModifiedDateTimeAttribute);
+        
         /// <summary>
         /// The backing field for the Title property
         /// </summary>
         private string _title;
+        
+        private static Lazy<ITypedElement> _titleAttribute = new Lazy<ITypedElement>(RetrieveTitleAttribute);
+        
+        private static Lazy<ITypedElement> _scheduledEventsReference = new Lazy<ITypedElement>(RetrieveScheduledEventsReference);
         
         /// <summary>
         /// The backing field for the ScheduledEvents property
         /// </summary>
         private DocumentScheduledEventsCollection _scheduledEvents;
         
+        private static Lazy<ITypedElement> _erpOrganisationRolesReference = new Lazy<ITypedElement>(RetrieveErpOrganisationRolesReference);
+        
         /// <summary>
         /// The backing field for the ErpOrganisationRoles property
         /// </summary>
         private DocumentErpOrganisationRolesCollection _erpOrganisationRoles;
+        
+        private static Lazy<ITypedElement> _toDocumentRolesReference = new Lazy<ITypedElement>(RetrieveToDocumentRolesReference);
         
         /// <summary>
         /// The backing field for the ToDocumentRoles property
         /// </summary>
         private DocumentToDocumentRolesCollection _toDocumentRoles;
         
+        private static Lazy<ITypedElement> _assetRolesReference = new Lazy<ITypedElement>(RetrieveAssetRolesReference);
+        
         /// <summary>
         /// The backing field for the AssetRoles property
         /// </summary>
         private DocumentAssetRolesCollection _assetRoles;
+        
+        private static Lazy<ITypedElement> _erpPersonRolesReference = new Lazy<ITypedElement>(RetrieveErpPersonRolesReference);
         
         /// <summary>
         /// The backing field for the ErpPersonRoles property
         /// </summary>
         private DocumentErpPersonRolesCollection _erpPersonRoles;
         
+        private static Lazy<ITypedElement> _electronicAddressReference = new Lazy<ITypedElement>(RetrieveElectronicAddressReference);
+        
         /// <summary>
         /// The backing field for the ElectronicAddress property
         /// </summary>
         private IElectronicAddress _electronicAddress;
+        
+        private static Lazy<ITypedElement> _statusReference = new Lazy<ITypedElement>(RetrieveStatusReference);
         
         /// <summary>
         /// The backing field for the Status property
         /// </summary>
         private IStatus _status;
         
+        private static Lazy<ITypedElement> _networkDataSetsReference = new Lazy<ITypedElement>(RetrieveNetworkDataSetsReference);
+        
         /// <summary>
         /// The backing field for the NetworkDataSets property
         /// </summary>
         private DocumentNetworkDataSetsCollection _networkDataSets;
+        
+        private static Lazy<ITypedElement> _powerSystemResourceRolesReference = new Lazy<ITypedElement>(RetrievePowerSystemResourceRolesReference);
         
         /// <summary>
         /// The backing field for the PowerSystemResourceRoles property
         /// </summary>
         private DocumentPowerSystemResourceRolesCollection _powerSystemResourceRoles;
         
+        private static Lazy<ITypedElement> _activityRecordsReference = new Lazy<ITypedElement>(RetrieveActivityRecordsReference);
+        
         /// <summary>
         /// The backing field for the ActivityRecords property
         /// </summary>
         private DocumentActivityRecordsCollection _activityRecords;
+        
+        private static Lazy<ITypedElement> _measurementsReference = new Lazy<ITypedElement>(RetrieveMeasurementsReference);
         
         /// <summary>
         /// The backing field for the Measurements property
         /// </summary>
         private DocumentMeasurementsCollection _measurements;
         
+        private static Lazy<ITypedElement> _fromDocumentRolesReference = new Lazy<ITypedElement>(RetrieveFromDocumentRolesReference);
+        
         /// <summary>
         /// The backing field for the FromDocumentRoles property
         /// </summary>
         private DocumentFromDocumentRolesCollection _fromDocumentRoles;
+        
+        private static Lazy<ITypedElement> _changeSetsReference = new Lazy<ITypedElement>(RetrieveChangeSetsReference);
         
         /// <summary>
         /// The backing field for the ChangeSets property
         /// </summary>
         private DocumentChangeSetsCollection _changeSets;
         
+        private static Lazy<ITypedElement> _docStatusReference = new Lazy<ITypedElement>(RetrieveDocStatusReference);
+        
         /// <summary>
         /// The backing field for the DocStatus property
         /// </summary>
         private IStatus _docStatus;
         
+        private static Lazy<ITypedElement> _changeItemsReference = new Lazy<ITypedElement>(RetrieveChangeItemsReference);
+        
         /// <summary>
         /// The backing field for the ChangeItems property
         /// </summary>
         private DocumentChangeItemsCollection _changeItems;
+        
+        private static Lazy<ITypedElement> _scheduleParameterInfosReference = new Lazy<ITypedElement>(RetrieveScheduleParameterInfosReference);
         
         /// <summary>
         /// The backing field for the ScheduleParameterInfos property
@@ -227,10 +271,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Common
                     string old = this._subject;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnSubjectChanging(e);
-                    this.OnPropertyChanging("Subject", e);
+                    this.OnPropertyChanging("Subject", e, _subjectAttribute);
                     this._subject = value;
                     this.OnSubjectChanged(e);
-                    this.OnPropertyChanged("Subject", e);
+                    this.OnPropertyChanged("Subject", e, _subjectAttribute);
                 }
             }
         }
@@ -253,10 +297,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Common
                     DateTime old = this._createdDateTime;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnCreatedDateTimeChanging(e);
-                    this.OnPropertyChanging("CreatedDateTime", e);
+                    this.OnPropertyChanging("CreatedDateTime", e, _createdDateTimeAttribute);
                     this._createdDateTime = value;
                     this.OnCreatedDateTimeChanged(e);
-                    this.OnPropertyChanged("CreatedDateTime", e);
+                    this.OnPropertyChanged("CreatedDateTime", e, _createdDateTimeAttribute);
                 }
             }
         }
@@ -279,10 +323,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Common
                     string old = this._revisionNumber;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnRevisionNumberChanging(e);
-                    this.OnPropertyChanging("RevisionNumber", e);
+                    this.OnPropertyChanging("RevisionNumber", e, _revisionNumberAttribute);
                     this._revisionNumber = value;
                     this.OnRevisionNumberChanged(e);
-                    this.OnPropertyChanged("RevisionNumber", e);
+                    this.OnPropertyChanged("RevisionNumber", e, _revisionNumberAttribute);
                 }
             }
         }
@@ -305,10 +349,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Common
                     string old = this._category;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnCategoryChanging(e);
-                    this.OnPropertyChanging("Category", e);
+                    this.OnPropertyChanging("Category", e, _categoryAttribute);
                     this._category = value;
                     this.OnCategoryChanged(e);
-                    this.OnPropertyChanged("Category", e);
+                    this.OnPropertyChanged("Category", e, _categoryAttribute);
                 }
             }
         }
@@ -331,10 +375,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Common
                     DateTime old = this._lastModifiedDateTime;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnLastModifiedDateTimeChanging(e);
-                    this.OnPropertyChanging("LastModifiedDateTime", e);
+                    this.OnPropertyChanging("LastModifiedDateTime", e, _lastModifiedDateTimeAttribute);
                     this._lastModifiedDateTime = value;
                     this.OnLastModifiedDateTimeChanged(e);
-                    this.OnPropertyChanged("LastModifiedDateTime", e);
+                    this.OnPropertyChanged("LastModifiedDateTime", e, _lastModifiedDateTimeAttribute);
                 }
             }
         }
@@ -357,10 +401,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Common
                     string old = this._title;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnTitleChanging(e);
-                    this.OnPropertyChanging("Title", e);
+                    this.OnPropertyChanging("Title", e, _titleAttribute);
                     this._title = value;
                     this.OnTitleChanged(e);
-                    this.OnPropertyChanged("Title", e);
+                    this.OnPropertyChanged("Title", e, _titleAttribute);
                 }
             }
         }
@@ -458,7 +502,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Common
                     IElectronicAddress old = this._electronicAddress;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnElectronicAddressChanging(e);
-                    this.OnPropertyChanging("ElectronicAddress", e);
+                    this.OnPropertyChanging("ElectronicAddress", e, _electronicAddressReference);
                     this._electronicAddress = value;
                     if ((old != null))
                     {
@@ -469,7 +513,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Common
                         value.Deleted += this.OnResetElectronicAddress;
                     }
                     this.OnElectronicAddressChanged(e);
-                    this.OnPropertyChanged("ElectronicAddress", e);
+                    this.OnPropertyChanged("ElectronicAddress", e, _electronicAddressReference);
                 }
             }
         }
@@ -492,7 +536,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Common
                     IStatus old = this._status;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnStatusChanging(e);
-                    this.OnPropertyChanging("Status", e);
+                    this.OnPropertyChanging("Status", e, _statusReference);
                     this._status = value;
                     if ((old != null))
                     {
@@ -503,7 +547,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Common
                         value.Deleted += this.OnResetStatus;
                     }
                     this.OnStatusChanged(e);
-                    this.OnPropertyChanged("Status", e);
+                    this.OnPropertyChanged("Status", e, _statusReference);
                 }
             }
         }
@@ -616,7 +660,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Common
                     IStatus old = this._docStatus;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnDocStatusChanging(e);
-                    this.OnPropertyChanging("DocStatus", e);
+                    this.OnPropertyChanging("DocStatus", e, _docStatusReference);
                     this._docStatus = value;
                     if ((old != null))
                     {
@@ -627,7 +671,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Common
                         value.Deleted += this.OnResetDocStatus;
                     }
                     this.OnDocStatusChanged(e);
-                    this.OnPropertyChanged("DocStatus", e);
+                    this.OnPropertyChanged("DocStatus", e, _docStatusReference);
                 }
             }
         }
@@ -778,6 +822,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Common
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> DocStatusChanged;
         
+        private static ITypedElement RetrieveSubjectAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(Document.ClassInstance)).Resolve("subject")));
+        }
+        
         /// <summary>
         /// Raises the SubjectChanging event
         /// </summary>
@@ -802,6 +851,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Common
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveCreatedDateTimeAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(Document.ClassInstance)).Resolve("createdDateTime")));
         }
         
         /// <summary>
@@ -830,6 +884,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Common
             }
         }
         
+        private static ITypedElement RetrieveRevisionNumberAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(Document.ClassInstance)).Resolve("revisionNumber")));
+        }
+        
         /// <summary>
         /// Raises the RevisionNumberChanging event
         /// </summary>
@@ -854,6 +913,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Common
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveCategoryAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(Document.ClassInstance)).Resolve("category")));
         }
         
         /// <summary>
@@ -882,6 +946,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Common
             }
         }
         
+        private static ITypedElement RetrieveLastModifiedDateTimeAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(Document.ClassInstance)).Resolve("lastModifiedDateTime")));
+        }
+        
         /// <summary>
         /// Raises the LastModifiedDateTimeChanging event
         /// </summary>
@@ -906,6 +975,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Common
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveTitleAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(Document.ClassInstance)).Resolve("title")));
         }
         
         /// <summary>
@@ -934,6 +1008,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Common
             }
         }
         
+        private static ITypedElement RetrieveScheduledEventsReference()
+        {
+            return ((ITypedElement)(((ModelElement)(Document.ClassInstance)).Resolve("ScheduledEvents")));
+        }
+        
         /// <summary>
         /// Forwards CollectionChanging notifications for the ScheduledEvents property to the parent model element
         /// </summary>
@@ -941,7 +1020,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Common
         /// <param name="e">The original event data</param>
         private void ScheduledEventsCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("ScheduledEvents", e);
+            this.OnCollectionChanging("ScheduledEvents", e, _scheduledEventsReference);
         }
         
         /// <summary>
@@ -951,7 +1030,12 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Common
         /// <param name="e">The original event data</param>
         private void ScheduledEventsCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("ScheduledEvents", e);
+            this.OnCollectionChanged("ScheduledEvents", e, _scheduledEventsReference);
+        }
+        
+        private static ITypedElement RetrieveErpOrganisationRolesReference()
+        {
+            return ((ITypedElement)(((ModelElement)(Document.ClassInstance)).Resolve("ErpOrganisationRoles")));
         }
         
         /// <summary>
@@ -961,7 +1045,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Common
         /// <param name="e">The original event data</param>
         private void ErpOrganisationRolesCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("ErpOrganisationRoles", e);
+            this.OnCollectionChanging("ErpOrganisationRoles", e, _erpOrganisationRolesReference);
         }
         
         /// <summary>
@@ -971,7 +1055,12 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Common
         /// <param name="e">The original event data</param>
         private void ErpOrganisationRolesCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("ErpOrganisationRoles", e);
+            this.OnCollectionChanged("ErpOrganisationRoles", e, _erpOrganisationRolesReference);
+        }
+        
+        private static ITypedElement RetrieveToDocumentRolesReference()
+        {
+            return ((ITypedElement)(((ModelElement)(Document.ClassInstance)).Resolve("ToDocumentRoles")));
         }
         
         /// <summary>
@@ -981,7 +1070,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Common
         /// <param name="e">The original event data</param>
         private void ToDocumentRolesCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("ToDocumentRoles", e);
+            this.OnCollectionChanging("ToDocumentRoles", e, _toDocumentRolesReference);
         }
         
         /// <summary>
@@ -991,7 +1080,12 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Common
         /// <param name="e">The original event data</param>
         private void ToDocumentRolesCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("ToDocumentRoles", e);
+            this.OnCollectionChanged("ToDocumentRoles", e, _toDocumentRolesReference);
+        }
+        
+        private static ITypedElement RetrieveAssetRolesReference()
+        {
+            return ((ITypedElement)(((ModelElement)(Document.ClassInstance)).Resolve("AssetRoles")));
         }
         
         /// <summary>
@@ -1001,7 +1095,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Common
         /// <param name="e">The original event data</param>
         private void AssetRolesCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("AssetRoles", e);
+            this.OnCollectionChanging("AssetRoles", e, _assetRolesReference);
         }
         
         /// <summary>
@@ -1011,7 +1105,12 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Common
         /// <param name="e">The original event data</param>
         private void AssetRolesCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("AssetRoles", e);
+            this.OnCollectionChanged("AssetRoles", e, _assetRolesReference);
+        }
+        
+        private static ITypedElement RetrieveErpPersonRolesReference()
+        {
+            return ((ITypedElement)(((ModelElement)(Document.ClassInstance)).Resolve("ErpPersonRoles")));
         }
         
         /// <summary>
@@ -1021,7 +1120,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Common
         /// <param name="e">The original event data</param>
         private void ErpPersonRolesCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("ErpPersonRoles", e);
+            this.OnCollectionChanging("ErpPersonRoles", e, _erpPersonRolesReference);
         }
         
         /// <summary>
@@ -1031,7 +1130,12 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Common
         /// <param name="e">The original event data</param>
         private void ErpPersonRolesCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("ErpPersonRoles", e);
+            this.OnCollectionChanged("ErpPersonRoles", e, _erpPersonRolesReference);
+        }
+        
+        private static ITypedElement RetrieveElectronicAddressReference()
+        {
+            return ((ITypedElement)(((ModelElement)(Document.ClassInstance)).Resolve("electronicAddress")));
         }
         
         /// <summary>
@@ -1070,6 +1174,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Common
             this.ElectronicAddress = null;
         }
         
+        private static ITypedElement RetrieveStatusReference()
+        {
+            return ((ITypedElement)(((ModelElement)(Document.ClassInstance)).Resolve("status")));
+        }
+        
         /// <summary>
         /// Raises the StatusChanging event
         /// </summary>
@@ -1106,6 +1215,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Common
             this.Status = null;
         }
         
+        private static ITypedElement RetrieveNetworkDataSetsReference()
+        {
+            return ((ITypedElement)(((ModelElement)(Document.ClassInstance)).Resolve("NetworkDataSets")));
+        }
+        
         /// <summary>
         /// Forwards CollectionChanging notifications for the NetworkDataSets property to the parent model element
         /// </summary>
@@ -1113,7 +1227,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Common
         /// <param name="e">The original event data</param>
         private void NetworkDataSetsCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("NetworkDataSets", e);
+            this.OnCollectionChanging("NetworkDataSets", e, _networkDataSetsReference);
         }
         
         /// <summary>
@@ -1123,7 +1237,12 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Common
         /// <param name="e">The original event data</param>
         private void NetworkDataSetsCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("NetworkDataSets", e);
+            this.OnCollectionChanged("NetworkDataSets", e, _networkDataSetsReference);
+        }
+        
+        private static ITypedElement RetrievePowerSystemResourceRolesReference()
+        {
+            return ((ITypedElement)(((ModelElement)(Document.ClassInstance)).Resolve("PowerSystemResourceRoles")));
         }
         
         /// <summary>
@@ -1133,7 +1252,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Common
         /// <param name="e">The original event data</param>
         private void PowerSystemResourceRolesCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("PowerSystemResourceRoles", e);
+            this.OnCollectionChanging("PowerSystemResourceRoles", e, _powerSystemResourceRolesReference);
         }
         
         /// <summary>
@@ -1143,7 +1262,12 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Common
         /// <param name="e">The original event data</param>
         private void PowerSystemResourceRolesCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("PowerSystemResourceRoles", e);
+            this.OnCollectionChanged("PowerSystemResourceRoles", e, _powerSystemResourceRolesReference);
+        }
+        
+        private static ITypedElement RetrieveActivityRecordsReference()
+        {
+            return ((ITypedElement)(((ModelElement)(Document.ClassInstance)).Resolve("ActivityRecords")));
         }
         
         /// <summary>
@@ -1153,7 +1277,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Common
         /// <param name="e">The original event data</param>
         private void ActivityRecordsCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("ActivityRecords", e);
+            this.OnCollectionChanging("ActivityRecords", e, _activityRecordsReference);
         }
         
         /// <summary>
@@ -1163,7 +1287,12 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Common
         /// <param name="e">The original event data</param>
         private void ActivityRecordsCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("ActivityRecords", e);
+            this.OnCollectionChanged("ActivityRecords", e, _activityRecordsReference);
+        }
+        
+        private static ITypedElement RetrieveMeasurementsReference()
+        {
+            return ((ITypedElement)(((ModelElement)(Document.ClassInstance)).Resolve("Measurements")));
         }
         
         /// <summary>
@@ -1173,7 +1302,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Common
         /// <param name="e">The original event data</param>
         private void MeasurementsCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("Measurements", e);
+            this.OnCollectionChanging("Measurements", e, _measurementsReference);
         }
         
         /// <summary>
@@ -1183,7 +1312,12 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Common
         /// <param name="e">The original event data</param>
         private void MeasurementsCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("Measurements", e);
+            this.OnCollectionChanged("Measurements", e, _measurementsReference);
+        }
+        
+        private static ITypedElement RetrieveFromDocumentRolesReference()
+        {
+            return ((ITypedElement)(((ModelElement)(Document.ClassInstance)).Resolve("FromDocumentRoles")));
         }
         
         /// <summary>
@@ -1193,7 +1327,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Common
         /// <param name="e">The original event data</param>
         private void FromDocumentRolesCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("FromDocumentRoles", e);
+            this.OnCollectionChanging("FromDocumentRoles", e, _fromDocumentRolesReference);
         }
         
         /// <summary>
@@ -1203,7 +1337,12 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Common
         /// <param name="e">The original event data</param>
         private void FromDocumentRolesCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("FromDocumentRoles", e);
+            this.OnCollectionChanged("FromDocumentRoles", e, _fromDocumentRolesReference);
+        }
+        
+        private static ITypedElement RetrieveChangeSetsReference()
+        {
+            return ((ITypedElement)(((ModelElement)(Document.ClassInstance)).Resolve("ChangeSets")));
         }
         
         /// <summary>
@@ -1213,7 +1352,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Common
         /// <param name="e">The original event data</param>
         private void ChangeSetsCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("ChangeSets", e);
+            this.OnCollectionChanging("ChangeSets", e, _changeSetsReference);
         }
         
         /// <summary>
@@ -1223,7 +1362,12 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Common
         /// <param name="e">The original event data</param>
         private void ChangeSetsCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("ChangeSets", e);
+            this.OnCollectionChanged("ChangeSets", e, _changeSetsReference);
+        }
+        
+        private static ITypedElement RetrieveDocStatusReference()
+        {
+            return ((ITypedElement)(((ModelElement)(Document.ClassInstance)).Resolve("docStatus")));
         }
         
         /// <summary>
@@ -1262,6 +1406,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Common
             this.DocStatus = null;
         }
         
+        private static ITypedElement RetrieveChangeItemsReference()
+        {
+            return ((ITypedElement)(((ModelElement)(Document.ClassInstance)).Resolve("ChangeItems")));
+        }
+        
         /// <summary>
         /// Forwards CollectionChanging notifications for the ChangeItems property to the parent model element
         /// </summary>
@@ -1269,7 +1418,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Common
         /// <param name="e">The original event data</param>
         private void ChangeItemsCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("ChangeItems", e);
+            this.OnCollectionChanging("ChangeItems", e, _changeItemsReference);
         }
         
         /// <summary>
@@ -1279,7 +1428,12 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Common
         /// <param name="e">The original event data</param>
         private void ChangeItemsCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("ChangeItems", e);
+            this.OnCollectionChanged("ChangeItems", e, _changeItemsReference);
+        }
+        
+        private static ITypedElement RetrieveScheduleParameterInfosReference()
+        {
+            return ((ITypedElement)(((ModelElement)(Document.ClassInstance)).Resolve("ScheduleParameterInfos")));
         }
         
         /// <summary>
@@ -1289,7 +1443,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Common
         /// <param name="e">The original event data</param>
         private void ScheduleParameterInfosCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("ScheduleParameterInfos", e);
+            this.OnCollectionChanging("ScheduleParameterInfos", e, _scheduleParameterInfosReference);
         }
         
         /// <summary>
@@ -1299,7 +1453,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Common
         /// <param name="e">The original event data</param>
         private void ScheduleParameterInfosCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("ScheduleParameterInfos", e);
+            this.OnCollectionChanged("ScheduleParameterInfos", e, _scheduleParameterInfosReference);
         }
         
         /// <summary>
@@ -2142,7 +2296,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Common
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public SubjectProxy(IDocument modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "subject")
             {
             }
             
@@ -2160,24 +2314,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Common
                     this.ModelElement.Subject = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.SubjectChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.SubjectChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -2191,7 +2327,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Common
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public CreatedDateTimeProxy(IDocument modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "createdDateTime")
             {
             }
             
@@ -2209,24 +2345,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Common
                     this.ModelElement.CreatedDateTime = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.CreatedDateTimeChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.CreatedDateTimeChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -2240,7 +2358,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Common
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public RevisionNumberProxy(IDocument modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "revisionNumber")
             {
             }
             
@@ -2258,24 +2376,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Common
                     this.ModelElement.RevisionNumber = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.RevisionNumberChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.RevisionNumberChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -2289,7 +2389,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Common
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public CategoryProxy(IDocument modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "category")
             {
             }
             
@@ -2307,24 +2407,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Common
                     this.ModelElement.Category = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.CategoryChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.CategoryChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -2338,7 +2420,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Common
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public LastModifiedDateTimeProxy(IDocument modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "lastModifiedDateTime")
             {
             }
             
@@ -2356,24 +2438,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Common
                     this.ModelElement.LastModifiedDateTime = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.LastModifiedDateTimeChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.LastModifiedDateTimeChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -2387,7 +2451,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Common
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public TitleProxy(IDocument modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "title")
             {
             }
             
@@ -2405,24 +2469,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Common
                     this.ModelElement.Title = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.TitleChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.TitleChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -2436,7 +2482,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Common
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public ElectronicAddressProxy(IDocument modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "electronicAddress")
             {
             }
             
@@ -2454,24 +2500,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Common
                     this.ModelElement.ElectronicAddress = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ElectronicAddressChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ElectronicAddressChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -2485,7 +2513,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Common
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public StatusProxy(IDocument modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "status")
             {
             }
             
@@ -2503,24 +2531,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Common
                     this.ModelElement.Status = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.StatusChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.StatusChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -2534,7 +2544,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Common
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public DocStatusProxy(IDocument modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "docStatus")
             {
             }
             
@@ -2551,24 +2561,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Common
                 {
                     this.ModelElement.DocStatus = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.DocStatusChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.DocStatusChanged -= handler;
             }
         }
     }

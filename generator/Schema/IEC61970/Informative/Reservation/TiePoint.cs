@@ -44,7 +44,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.Reservation
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61970/Informative/Reservation/TiePo" +
         "int")]
     [DebuggerDisplayAttribute("TiePoint {UUID}")]
-    public class TiePoint : IdentifiedObject, ITiePoint, IModelElement
+    public partial class TiePoint : IdentifiedObject, ITiePoint, IModelElement
     {
         
         /// <summary>
@@ -52,15 +52,23 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.Reservation
         /// </summary>
         private float _tiePointMWRating;
         
+        private static Lazy<ITypedElement> _tiePointMWRatingAttribute = new Lazy<ITypedElement>(RetrieveTiePointMWRatingAttribute);
+        
+        private static Lazy<ITypedElement> _by_MeasurementsReference = new Lazy<ITypedElement>(RetrieveBy_MeasurementsReference);
+        
         /// <summary>
         /// The backing field for the By_Measurements property
         /// </summary>
         private TiePointBy_MeasurementsCollection _by_Measurements;
         
+        private static Lazy<ITypedElement> _declared_ServicePointReference = new Lazy<ITypedElement>(RetrieveDeclared_ServicePointReference);
+        
         /// <summary>
         /// The backing field for the Declared_ServicePoint property
         /// </summary>
         private IServicePoint _declared_ServicePoint;
+        
+        private static Lazy<ITypedElement> _for_MeasurementsReference = new Lazy<ITypedElement>(RetrieveFor_MeasurementsReference);
         
         /// <summary>
         /// The backing field for the For_Measurements property
@@ -97,10 +105,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.Reservation
                     float old = this._tiePointMWRating;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnTiePointMWRatingChanging(e);
-                    this.OnPropertyChanging("TiePointMWRating", e);
+                    this.OnPropertyChanging("TiePointMWRating", e, _tiePointMWRatingAttribute);
                     this._tiePointMWRating = value;
                     this.OnTiePointMWRatingChanged(e);
-                    this.OnPropertyChanged("TiePointMWRating", e);
+                    this.OnPropertyChanged("TiePointMWRating", e, _tiePointMWRatingAttribute);
                 }
             }
         }
@@ -138,7 +146,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.Reservation
                     IServicePoint old = this._declared_ServicePoint;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnDeclared_ServicePointChanging(e);
-                    this.OnPropertyChanging("Declared_ServicePoint", e);
+                    this.OnPropertyChanging("Declared_ServicePoint", e, _declared_ServicePointReference);
                     this._declared_ServicePoint = value;
                     if ((old != null))
                     {
@@ -151,7 +159,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.Reservation
                         value.Deleted += this.OnResetDeclared_ServicePoint;
                     }
                     this.OnDeclared_ServicePointChanged(e);
-                    this.OnPropertyChanged("Declared_ServicePoint", e);
+                    this.OnPropertyChanged("Declared_ServicePoint", e, _declared_ServicePointReference);
                 }
             }
         }
@@ -218,6 +226,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.Reservation
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> Declared_ServicePointChanged;
         
+        private static ITypedElement RetrieveTiePointMWRatingAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(TiePoint.ClassInstance)).Resolve("tiePointMWRating")));
+        }
+        
         /// <summary>
         /// Raises the TiePointMWRatingChanging event
         /// </summary>
@@ -244,6 +257,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.Reservation
             }
         }
         
+        private static ITypedElement RetrieveBy_MeasurementsReference()
+        {
+            return ((ITypedElement)(((ModelElement)(TiePoint.ClassInstance)).Resolve("By_Measurements")));
+        }
+        
         /// <summary>
         /// Forwards CollectionChanging notifications for the By_Measurements property to the parent model element
         /// </summary>
@@ -251,7 +269,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.Reservation
         /// <param name="e">The original event data</param>
         private void By_MeasurementsCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("By_Measurements", e);
+            this.OnCollectionChanging("By_Measurements", e, _by_MeasurementsReference);
         }
         
         /// <summary>
@@ -261,7 +279,12 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.Reservation
         /// <param name="e">The original event data</param>
         private void By_MeasurementsCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("By_Measurements", e);
+            this.OnCollectionChanged("By_Measurements", e, _by_MeasurementsReference);
+        }
+        
+        private static ITypedElement RetrieveDeclared_ServicePointReference()
+        {
+            return ((ITypedElement)(((ModelElement)(TiePoint.ClassInstance)).Resolve("Declared_ServicePoint")));
         }
         
         /// <summary>
@@ -300,6 +323,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.Reservation
             this.Declared_ServicePoint = null;
         }
         
+        private static ITypedElement RetrieveFor_MeasurementsReference()
+        {
+            return ((ITypedElement)(((ModelElement)(TiePoint.ClassInstance)).Resolve("For_Measurements")));
+        }
+        
         /// <summary>
         /// Forwards CollectionChanging notifications for the For_Measurements property to the parent model element
         /// </summary>
@@ -307,7 +335,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.Reservation
         /// <param name="e">The original event data</param>
         private void For_MeasurementsCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("For_Measurements", e);
+            this.OnCollectionChanging("For_Measurements", e, _for_MeasurementsReference);
         }
         
         /// <summary>
@@ -317,7 +345,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.Reservation
         /// <param name="e">The original event data</param>
         private void For_MeasurementsCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("For_Measurements", e);
+            this.OnCollectionChanged("For_Measurements", e, _for_MeasurementsReference);
         }
         
         /// <summary>
@@ -612,7 +640,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.Reservation
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public TiePointMWRatingProxy(ITiePoint modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "tiePointMWRating")
             {
             }
             
@@ -630,24 +658,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.Reservation
                     this.ModelElement.TiePointMWRating = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.TiePointMWRatingChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.TiePointMWRatingChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -661,7 +671,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.Reservation
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public Declared_ServicePointProxy(ITiePoint modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "Declared_ServicePoint")
             {
             }
             
@@ -678,24 +688,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.Reservation
                 {
                     this.ModelElement.Declared_ServicePoint = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.Declared_ServicePointChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.Declared_ServicePointChanged -= handler;
             }
         }
     }

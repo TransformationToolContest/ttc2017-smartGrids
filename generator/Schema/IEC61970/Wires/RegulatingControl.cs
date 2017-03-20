@@ -53,7 +53,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
     [XmlNamespacePrefixAttribute("cimWires")]
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61970/Wires/RegulatingControl")]
     [DebuggerDisplayAttribute("RegulatingControl {UUID}")]
-    public class RegulatingControl : PowerSystemResource, IRegulatingControl, IModelElement
+    public partial class RegulatingControl : PowerSystemResource, IRegulatingControl, IModelElement
     {
         
         /// <summary>
@@ -61,35 +61,51 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
         /// </summary>
         private Nullable<RegulatingControlModeKind> _mode;
         
+        private static Lazy<ITypedElement> _modeAttribute = new Lazy<ITypedElement>(RetrieveModeAttribute);
+        
         /// <summary>
         /// The backing field for the TargetRange property
         /// </summary>
         private float _targetRange;
+        
+        private static Lazy<ITypedElement> _targetRangeAttribute = new Lazy<ITypedElement>(RetrieveTargetRangeAttribute);
         
         /// <summary>
         /// The backing field for the TargetValue property
         /// </summary>
         private float _targetValue;
         
+        private static Lazy<ITypedElement> _targetValueAttribute = new Lazy<ITypedElement>(RetrieveTargetValueAttribute);
+        
         /// <summary>
         /// The backing field for the Discrete property
         /// </summary>
         private bool _discrete;
+        
+        private static Lazy<ITypedElement> _discreteAttribute = new Lazy<ITypedElement>(RetrieveDiscreteAttribute);
+        
+        private static Lazy<ITypedElement> _tapChangerReference = new Lazy<ITypedElement>(RetrieveTapChangerReference);
         
         /// <summary>
         /// The backing field for the TapChanger property
         /// </summary>
         private RegulatingControlTapChangerCollection _tapChanger;
         
+        private static Lazy<ITypedElement> _terminalReference = new Lazy<ITypedElement>(RetrieveTerminalReference);
+        
         /// <summary>
         /// The backing field for the Terminal property
         /// </summary>
         private ITerminal _terminal;
         
+        private static Lazy<ITypedElement> _regulatingCondEqReference = new Lazy<ITypedElement>(RetrieveRegulatingCondEqReference);
+        
         /// <summary>
         /// The backing field for the RegulatingCondEq property
         /// </summary>
         private RegulatingControlRegulatingCondEqCollection _regulatingCondEq;
+        
+        private static Lazy<ITypedElement> _regulationScheduleReference = new Lazy<ITypedElement>(RetrieveRegulationScheduleReference);
         
         /// <summary>
         /// The backing field for the RegulationSchedule property
@@ -129,10 +145,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
                     Nullable<RegulatingControlModeKind> old = this._mode;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnModeChanging(e);
-                    this.OnPropertyChanging("Mode", e);
+                    this.OnPropertyChanging("Mode", e, _modeAttribute);
                     this._mode = value;
                     this.OnModeChanged(e);
-                    this.OnPropertyChanged("Mode", e);
+                    this.OnPropertyChanged("Mode", e, _modeAttribute);
                 }
             }
         }
@@ -155,10 +171,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
                     float old = this._targetRange;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnTargetRangeChanging(e);
-                    this.OnPropertyChanging("TargetRange", e);
+                    this.OnPropertyChanging("TargetRange", e, _targetRangeAttribute);
                     this._targetRange = value;
                     this.OnTargetRangeChanged(e);
-                    this.OnPropertyChanged("TargetRange", e);
+                    this.OnPropertyChanged("TargetRange", e, _targetRangeAttribute);
                 }
             }
         }
@@ -181,10 +197,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
                     float old = this._targetValue;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnTargetValueChanging(e);
-                    this.OnPropertyChanging("TargetValue", e);
+                    this.OnPropertyChanging("TargetValue", e, _targetValueAttribute);
                     this._targetValue = value;
                     this.OnTargetValueChanged(e);
-                    this.OnPropertyChanged("TargetValue", e);
+                    this.OnPropertyChanged("TargetValue", e, _targetValueAttribute);
                 }
             }
         }
@@ -207,10 +223,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
                     bool old = this._discrete;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnDiscreteChanging(e);
-                    this.OnPropertyChanging("Discrete", e);
+                    this.OnPropertyChanging("Discrete", e, _discreteAttribute);
                     this._discrete = value;
                     this.OnDiscreteChanged(e);
-                    this.OnPropertyChanged("Discrete", e);
+                    this.OnPropertyChanged("Discrete", e, _discreteAttribute);
                 }
             }
         }
@@ -248,7 +264,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
                     ITerminal old = this._terminal;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnTerminalChanging(e);
-                    this.OnPropertyChanging("Terminal", e);
+                    this.OnPropertyChanging("Terminal", e, _terminalReference);
                     this._terminal = value;
                     if ((old != null))
                     {
@@ -261,7 +277,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
                         value.Deleted += this.OnResetTerminal;
                     }
                     this.OnTerminalChanged(e);
-                    this.OnPropertyChanged("Terminal", e);
+                    this.OnPropertyChanged("Terminal", e, _terminalReference);
                 }
             }
         }
@@ -372,6 +388,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> TerminalChanged;
         
+        private static ITypedElement RetrieveModeAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(RegulatingControl.ClassInstance)).Resolve("mode")));
+        }
+        
         /// <summary>
         /// Raises the ModeChanging event
         /// </summary>
@@ -396,6 +417,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveTargetRangeAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(RegulatingControl.ClassInstance)).Resolve("targetRange")));
         }
         
         /// <summary>
@@ -424,6 +450,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
             }
         }
         
+        private static ITypedElement RetrieveTargetValueAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(RegulatingControl.ClassInstance)).Resolve("targetValue")));
+        }
+        
         /// <summary>
         /// Raises the TargetValueChanging event
         /// </summary>
@@ -448,6 +479,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveDiscreteAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(RegulatingControl.ClassInstance)).Resolve("discrete")));
         }
         
         /// <summary>
@@ -476,6 +512,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
             }
         }
         
+        private static ITypedElement RetrieveTapChangerReference()
+        {
+            return ((ITypedElement)(((ModelElement)(RegulatingControl.ClassInstance)).Resolve("TapChanger")));
+        }
+        
         /// <summary>
         /// Forwards CollectionChanging notifications for the TapChanger property to the parent model element
         /// </summary>
@@ -483,7 +524,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
         /// <param name="e">The original event data</param>
         private void TapChangerCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("TapChanger", e);
+            this.OnCollectionChanging("TapChanger", e, _tapChangerReference);
         }
         
         /// <summary>
@@ -493,7 +534,12 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
         /// <param name="e">The original event data</param>
         private void TapChangerCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("TapChanger", e);
+            this.OnCollectionChanged("TapChanger", e, _tapChangerReference);
+        }
+        
+        private static ITypedElement RetrieveTerminalReference()
+        {
+            return ((ITypedElement)(((ModelElement)(RegulatingControl.ClassInstance)).Resolve("Terminal")));
         }
         
         /// <summary>
@@ -532,6 +578,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
             this.Terminal = null;
         }
         
+        private static ITypedElement RetrieveRegulatingCondEqReference()
+        {
+            return ((ITypedElement)(((ModelElement)(RegulatingControl.ClassInstance)).Resolve("RegulatingCondEq")));
+        }
+        
         /// <summary>
         /// Forwards CollectionChanging notifications for the RegulatingCondEq property to the parent model element
         /// </summary>
@@ -539,7 +590,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
         /// <param name="e">The original event data</param>
         private void RegulatingCondEqCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("RegulatingCondEq", e);
+            this.OnCollectionChanging("RegulatingCondEq", e, _regulatingCondEqReference);
         }
         
         /// <summary>
@@ -549,7 +600,12 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
         /// <param name="e">The original event data</param>
         private void RegulatingCondEqCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("RegulatingCondEq", e);
+            this.OnCollectionChanged("RegulatingCondEq", e, _regulatingCondEqReference);
+        }
+        
+        private static ITypedElement RetrieveRegulationScheduleReference()
+        {
+            return ((ITypedElement)(((ModelElement)(RegulatingControl.ClassInstance)).Resolve("RegulationSchedule")));
         }
         
         /// <summary>
@@ -559,7 +615,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
         /// <param name="e">The original event data</param>
         private void RegulationScheduleCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("RegulationSchedule", e);
+            this.OnCollectionChanging("RegulationSchedule", e, _regulationScheduleReference);
         }
         
         /// <summary>
@@ -569,7 +625,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
         /// <param name="e">The original event data</param>
         private void RegulationScheduleCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("RegulationSchedule", e);
+            this.OnCollectionChanged("RegulationSchedule", e, _regulationScheduleReference);
         }
         
         /// <summary>
@@ -929,7 +985,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public ModeProxy(IRegulatingControl modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "mode")
             {
             }
             
@@ -947,24 +1003,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
                     this.ModelElement.Mode = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ModeChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ModeChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -978,7 +1016,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public TargetRangeProxy(IRegulatingControl modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "targetRange")
             {
             }
             
@@ -996,24 +1034,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
                     this.ModelElement.TargetRange = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.TargetRangeChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.TargetRangeChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1027,7 +1047,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public TargetValueProxy(IRegulatingControl modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "targetValue")
             {
             }
             
@@ -1045,24 +1065,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
                     this.ModelElement.TargetValue = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.TargetValueChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.TargetValueChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1076,7 +1078,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public DiscreteProxy(IRegulatingControl modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "discrete")
             {
             }
             
@@ -1094,24 +1096,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
                     this.ModelElement.Discrete = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.DiscreteChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.DiscreteChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1125,7 +1109,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public TerminalProxy(IRegulatingControl modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "Terminal")
             {
             }
             
@@ -1142,24 +1126,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
                 {
                     this.ModelElement.Terminal = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.TerminalChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.TerminalChanged -= handler;
             }
         }
     }

@@ -40,7 +40,7 @@ namespace TTC2017.SmartGrids.COSEM.InterfaceClasses
     [XmlNamespacePrefixAttribute("inter")]
     [ModelRepresentationClassAttribute("http://www.transformation-tool-contest.eu/2017/smartGrids/cosem#//InterfaceClasse" +
         "s/G3_PLC_MAC_setup")]
-    public class G3_PLC_MAC_setup : Base, IG3_PLC_MAC_setup, IModelElement
+    public partial class G3_PLC_MAC_setup : Base, IG3_PLC_MAC_setup, IModelElement
     {
         
         private static IClass _classInstance;

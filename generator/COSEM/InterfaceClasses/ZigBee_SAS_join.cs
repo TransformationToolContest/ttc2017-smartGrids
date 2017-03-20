@@ -40,7 +40,7 @@ namespace TTC2017.SmartGrids.COSEM.InterfaceClasses
     [XmlNamespacePrefixAttribute("inter")]
     [ModelRepresentationClassAttribute("http://www.transformation-tool-contest.eu/2017/smartGrids/cosem#//InterfaceClasse" +
         "s/ZigBee_SAS_join")]
-    public class ZigBee_SAS_join : Base, IZigBee_SAS_join, IModelElement
+    public partial class ZigBee_SAS_join : Base, IZigBee_SAS_join, IModelElement
     {
         
         private static IClass _classInstance;

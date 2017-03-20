@@ -56,8 +56,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfERPSupport
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61970/Informative/InfERPSupport/Erp" +
         "Quote")]
     [DebuggerDisplayAttribute("ErpQuote {UUID}")]
-    public class ErpQuote : Document, IErpQuote, IModelElement
+    public partial class ErpQuote : Document, IErpQuote, IModelElement
     {
+        
+        private static Lazy<ITypedElement> _erpQuoteLineItemsReference = new Lazy<ITypedElement>(RetrieveErpQuoteLineItemsReference);
         
         /// <summary>
         /// The backing field for the ErpQuoteLineItems property
@@ -115,6 +117,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfERPSupport
             }
         }
         
+        private static ITypedElement RetrieveErpQuoteLineItemsReference()
+        {
+            return ((ITypedElement)(((ModelElement)(ErpQuote.ClassInstance)).Resolve("ErpQuoteLineItems")));
+        }
+        
         /// <summary>
         /// Forwards CollectionChanging notifications for the ErpQuoteLineItems property to the parent model element
         /// </summary>
@@ -122,7 +129,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfERPSupport
         /// <param name="e">The original event data</param>
         private void ErpQuoteLineItemsCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("ErpQuoteLineItems", e);
+            this.OnCollectionChanging("ErpQuoteLineItems", e, _erpQuoteLineItemsReference);
         }
         
         /// <summary>
@@ -132,7 +139,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfERPSupport
         /// <param name="e">The original event data</param>
         private void ErpQuoteLineItemsCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("ErpQuoteLineItems", e);
+            this.OnCollectionChanged("ErpQuoteLineItems", e, _erpQuoteLineItemsReference);
         }
         
         /// <summary>

@@ -50,13 +50,17 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61970/Informative/MarketOperations/" +
         "ResourceGroupReq")]
     [DebuggerDisplayAttribute("ResourceGroupReq {UUID}")]
-    public class ResourceGroupReq : IdentifiedObject, IResourceGroupReq, IModelElement
+    public partial class ResourceGroupReq : IdentifiedObject, IResourceGroupReq, IModelElement
     {
+        
+        private static Lazy<ITypedElement> _resourceGroupReference = new Lazy<ITypedElement>(RetrieveResourceGroupReference);
         
         /// <summary>
         /// The backing field for the ResourceGroup property
         /// </summary>
         private IResourceGroup _resourceGroup;
+        
+        private static Lazy<ITypedElement> _rTOsReference = new Lazy<ITypedElement>(RetrieveRTOsReference);
         
         /// <summary>
         /// The backing field for the RTOs property
@@ -90,7 +94,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
                     IResourceGroup old = this._resourceGroup;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnResourceGroupChanging(e);
-                    this.OnPropertyChanging("ResourceGroup", e);
+                    this.OnPropertyChanging("ResourceGroup", e, _resourceGroupReference);
                     this._resourceGroup = value;
                     if ((old != null))
                     {
@@ -103,7 +107,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
                         value.Deleted += this.OnResetResourceGroup;
                     }
                     this.OnResourceGroupChanged(e);
-                    this.OnPropertyChanged("ResourceGroup", e);
+                    this.OnPropertyChanged("ResourceGroup", e, _resourceGroupReference);
                 }
             }
         }
@@ -160,6 +164,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> ResourceGroupChanged;
         
+        private static ITypedElement RetrieveResourceGroupReference()
+        {
+            return ((ITypedElement)(((ModelElement)(ResourceGroupReq.ClassInstance)).Resolve("ResourceGroup")));
+        }
+        
         /// <summary>
         /// Raises the ResourceGroupChanging event
         /// </summary>
@@ -196,6 +205,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
             this.ResourceGroup = null;
         }
         
+        private static ITypedElement RetrieveRTOsReference()
+        {
+            return ((ITypedElement)(((ModelElement)(ResourceGroupReq.ClassInstance)).Resolve("RTOs")));
+        }
+        
         /// <summary>
         /// Forwards CollectionChanging notifications for the RTOs property to the parent model element
         /// </summary>
@@ -203,7 +217,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
         /// <param name="e">The original event data</param>
         private void RTOsCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("RTOs", e);
+            this.OnCollectionChanging("RTOs", e, _rTOsReference);
         }
         
         /// <summary>
@@ -213,7 +227,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
         /// <param name="e">The original event data</param>
         private void RTOsCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("RTOs", e);
+            this.OnCollectionChanged("RTOs", e, _rTOsReference);
         }
         
         /// <summary>
@@ -451,7 +465,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public ResourceGroupProxy(IResourceGroupReq modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "ResourceGroup")
             {
             }
             
@@ -468,24 +482,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
                 {
                     this.ModelElement.ResourceGroup = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ResourceGroupChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ResourceGroupChanged -= handler;
             }
         }
     }

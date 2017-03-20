@@ -50,7 +50,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfWork
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61970/Informative/InfWork/Capabilit" +
         "y")]
     [DebuggerDisplayAttribute("Capability {UUID}")]
-    public class Capability : IdentifiedObject, ICapability, IModelElement
+    public partial class Capability : IdentifiedObject, ICapability, IModelElement
     {
         
         /// <summary>
@@ -58,30 +58,44 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfWork
         /// </summary>
         private string _category;
         
+        private static Lazy<ITypedElement> _categoryAttribute = new Lazy<ITypedElement>(RetrieveCategoryAttribute);
+        
         /// <summary>
         /// The backing field for the PerformanceFactor property
         /// </summary>
         private string _performanceFactor;
+        
+        private static Lazy<ITypedElement> _performanceFactorAttribute = new Lazy<ITypedElement>(RetrievePerformanceFactorAttribute);
+        
+        private static Lazy<ITypedElement> _workTasksReference = new Lazy<ITypedElement>(RetrieveWorkTasksReference);
         
         /// <summary>
         /// The backing field for the WorkTasks property
         /// </summary>
         private CapabilityWorkTasksCollection _workTasks;
         
+        private static Lazy<ITypedElement> _validityIntervalReference = new Lazy<ITypedElement>(RetrieveValidityIntervalReference);
+        
         /// <summary>
         /// The backing field for the ValidityInterval property
         /// </summary>
         private IDateTimeInterval _validityInterval;
+        
+        private static Lazy<ITypedElement> _crewReference = new Lazy<ITypedElement>(RetrieveCrewReference);
         
         /// <summary>
         /// The backing field for the Crew property
         /// </summary>
         private ICrew _crew;
         
+        private static Lazy<ITypedElement> _craftsReference = new Lazy<ITypedElement>(RetrieveCraftsReference);
+        
         /// <summary>
         /// The backing field for the Crafts property
         /// </summary>
         private CapabilityCraftsCollection _crafts;
+        
+        private static Lazy<ITypedElement> _statusReference = new Lazy<ITypedElement>(RetrieveStatusReference);
         
         /// <summary>
         /// The backing field for the Status property
@@ -118,10 +132,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfWork
                     string old = this._category;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnCategoryChanging(e);
-                    this.OnPropertyChanging("Category", e);
+                    this.OnPropertyChanging("Category", e, _categoryAttribute);
                     this._category = value;
                     this.OnCategoryChanged(e);
-                    this.OnPropertyChanged("Category", e);
+                    this.OnPropertyChanged("Category", e, _categoryAttribute);
                 }
             }
         }
@@ -144,10 +158,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfWork
                     string old = this._performanceFactor;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnPerformanceFactorChanging(e);
-                    this.OnPropertyChanging("PerformanceFactor", e);
+                    this.OnPropertyChanging("PerformanceFactor", e, _performanceFactorAttribute);
                     this._performanceFactor = value;
                     this.OnPerformanceFactorChanged(e);
-                    this.OnPropertyChanged("PerformanceFactor", e);
+                    this.OnPropertyChanged("PerformanceFactor", e, _performanceFactorAttribute);
                 }
             }
         }
@@ -185,7 +199,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfWork
                     IDateTimeInterval old = this._validityInterval;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnValidityIntervalChanging(e);
-                    this.OnPropertyChanging("ValidityInterval", e);
+                    this.OnPropertyChanging("ValidityInterval", e, _validityIntervalReference);
                     this._validityInterval = value;
                     if ((old != null))
                     {
@@ -196,7 +210,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfWork
                         value.Deleted += this.OnResetValidityInterval;
                     }
                     this.OnValidityIntervalChanged(e);
-                    this.OnPropertyChanged("ValidityInterval", e);
+                    this.OnPropertyChanged("ValidityInterval", e, _validityIntervalReference);
                 }
             }
         }
@@ -219,7 +233,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfWork
                     ICrew old = this._crew;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnCrewChanging(e);
-                    this.OnPropertyChanging("Crew", e);
+                    this.OnPropertyChanging("Crew", e, _crewReference);
                     this._crew = value;
                     if ((old != null))
                     {
@@ -232,7 +246,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfWork
                         value.Deleted += this.OnResetCrew;
                     }
                     this.OnCrewChanged(e);
-                    this.OnPropertyChanged("Crew", e);
+                    this.OnPropertyChanged("Crew", e, _crewReference);
                 }
             }
         }
@@ -270,7 +284,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfWork
                     IStatus old = this._status;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnStatusChanging(e);
-                    this.OnPropertyChanging("Status", e);
+                    this.OnPropertyChanging("Status", e, _statusReference);
                     this._status = value;
                     if ((old != null))
                     {
@@ -281,7 +295,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfWork
                         value.Deleted += this.OnResetStatus;
                     }
                     this.OnStatusChanged(e);
-                    this.OnPropertyChanged("Status", e);
+                    this.OnPropertyChanged("Status", e, _statusReference);
                 }
             }
         }
@@ -363,6 +377,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfWork
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> StatusChanged;
         
+        private static ITypedElement RetrieveCategoryAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(Capability.ClassInstance)).Resolve("category")));
+        }
+        
         /// <summary>
         /// Raises the CategoryChanging event
         /// </summary>
@@ -387,6 +406,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfWork
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrievePerformanceFactorAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(Capability.ClassInstance)).Resolve("performanceFactor")));
         }
         
         /// <summary>
@@ -415,6 +439,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfWork
             }
         }
         
+        private static ITypedElement RetrieveWorkTasksReference()
+        {
+            return ((ITypedElement)(((ModelElement)(Capability.ClassInstance)).Resolve("WorkTasks")));
+        }
+        
         /// <summary>
         /// Forwards CollectionChanging notifications for the WorkTasks property to the parent model element
         /// </summary>
@@ -422,7 +451,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfWork
         /// <param name="e">The original event data</param>
         private void WorkTasksCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("WorkTasks", e);
+            this.OnCollectionChanging("WorkTasks", e, _workTasksReference);
         }
         
         /// <summary>
@@ -432,7 +461,12 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfWork
         /// <param name="e">The original event data</param>
         private void WorkTasksCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("WorkTasks", e);
+            this.OnCollectionChanged("WorkTasks", e, _workTasksReference);
+        }
+        
+        private static ITypedElement RetrieveValidityIntervalReference()
+        {
+            return ((ITypedElement)(((ModelElement)(Capability.ClassInstance)).Resolve("validityInterval")));
         }
         
         /// <summary>
@@ -471,6 +505,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfWork
             this.ValidityInterval = null;
         }
         
+        private static ITypedElement RetrieveCrewReference()
+        {
+            return ((ITypedElement)(((ModelElement)(Capability.ClassInstance)).Resolve("Crew")));
+        }
+        
         /// <summary>
         /// Raises the CrewChanging event
         /// </summary>
@@ -507,6 +546,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfWork
             this.Crew = null;
         }
         
+        private static ITypedElement RetrieveCraftsReference()
+        {
+            return ((ITypedElement)(((ModelElement)(Capability.ClassInstance)).Resolve("Crafts")));
+        }
+        
         /// <summary>
         /// Forwards CollectionChanging notifications for the Crafts property to the parent model element
         /// </summary>
@@ -514,7 +558,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfWork
         /// <param name="e">The original event data</param>
         private void CraftsCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("Crafts", e);
+            this.OnCollectionChanging("Crafts", e, _craftsReference);
         }
         
         /// <summary>
@@ -524,7 +568,12 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfWork
         /// <param name="e">The original event data</param>
         private void CraftsCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("Crafts", e);
+            this.OnCollectionChanged("Crafts", e, _craftsReference);
+        }
+        
+        private static ITypedElement RetrieveStatusReference()
+        {
+            return ((ITypedElement)(((ModelElement)(Capability.ClassInstance)).Resolve("status")));
         }
         
         /// <summary>
@@ -951,7 +1000,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfWork
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public CategoryProxy(ICapability modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "category")
             {
             }
             
@@ -969,24 +1018,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfWork
                     this.ModelElement.Category = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.CategoryChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.CategoryChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1000,7 +1031,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfWork
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public PerformanceFactorProxy(ICapability modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "performanceFactor")
             {
             }
             
@@ -1018,24 +1049,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfWork
                     this.ModelElement.PerformanceFactor = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.PerformanceFactorChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.PerformanceFactorChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1049,7 +1062,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfWork
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public ValidityIntervalProxy(ICapability modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "validityInterval")
             {
             }
             
@@ -1067,24 +1080,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfWork
                     this.ModelElement.ValidityInterval = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ValidityIntervalChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ValidityIntervalChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1098,7 +1093,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfWork
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public CrewProxy(ICapability modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "Crew")
             {
             }
             
@@ -1116,24 +1111,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfWork
                     this.ModelElement.Crew = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.CrewChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.CrewChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1147,7 +1124,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfWork
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public StatusProxy(ICapability modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "status")
             {
             }
             
@@ -1164,24 +1141,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfWork
                 {
                     this.ModelElement.Status = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.StatusChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.StatusChanged -= handler;
             }
         }
     }

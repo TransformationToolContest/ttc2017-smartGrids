@@ -51,7 +51,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Meas
     [XmlNamespacePrefixAttribute("cimMeas")]
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61970/Meas/Discrete")]
     [DebuggerDisplayAttribute("Discrete {UUID}")]
-    public class Discrete : Measurement, IDiscrete, IModelElement
+    public partial class Discrete : Measurement, IDiscrete, IModelElement
     {
         
         /// <summary>
@@ -59,25 +59,37 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Meas
         /// </summary>
         private int _minValue;
         
+        private static Lazy<ITypedElement> _minValueAttribute = new Lazy<ITypedElement>(RetrieveMinValueAttribute);
+        
         /// <summary>
         /// The backing field for the MaxValue property
         /// </summary>
         private int _maxValue;
+        
+        private static Lazy<ITypedElement> _maxValueAttribute = new Lazy<ITypedElement>(RetrieveMaxValueAttribute);
         
         /// <summary>
         /// The backing field for the NormalValue property
         /// </summary>
         private int _normalValue;
         
+        private static Lazy<ITypedElement> _normalValueAttribute = new Lazy<ITypedElement>(RetrieveNormalValueAttribute);
+        
+        private static Lazy<ITypedElement> _valueAliasSetReference = new Lazy<ITypedElement>(RetrieveValueAliasSetReference);
+        
         /// <summary>
         /// The backing field for the ValueAliasSet property
         /// </summary>
         private IValueAliasSet _valueAliasSet;
         
+        private static Lazy<ITypedElement> _commandReference = new Lazy<ITypedElement>(RetrieveCommandReference);
+        
         /// <summary>
         /// The backing field for the Command property
         /// </summary>
         private ICommand _command;
+        
+        private static Lazy<ITypedElement> _discreteValuesReference = new Lazy<ITypedElement>(RetrieveDiscreteValuesReference);
         
         /// <summary>
         /// The backing field for the DiscreteValues property
@@ -111,10 +123,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Meas
                     int old = this._minValue;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnMinValueChanging(e);
-                    this.OnPropertyChanging("MinValue", e);
+                    this.OnPropertyChanging("MinValue", e, _minValueAttribute);
                     this._minValue = value;
                     this.OnMinValueChanged(e);
-                    this.OnPropertyChanged("MinValue", e);
+                    this.OnPropertyChanged("MinValue", e, _minValueAttribute);
                 }
             }
         }
@@ -137,10 +149,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Meas
                     int old = this._maxValue;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnMaxValueChanging(e);
-                    this.OnPropertyChanging("MaxValue", e);
+                    this.OnPropertyChanging("MaxValue", e, _maxValueAttribute);
                     this._maxValue = value;
                     this.OnMaxValueChanged(e);
-                    this.OnPropertyChanged("MaxValue", e);
+                    this.OnPropertyChanged("MaxValue", e, _maxValueAttribute);
                 }
             }
         }
@@ -163,10 +175,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Meas
                     int old = this._normalValue;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnNormalValueChanging(e);
-                    this.OnPropertyChanging("NormalValue", e);
+                    this.OnPropertyChanging("NormalValue", e, _normalValueAttribute);
                     this._normalValue = value;
                     this.OnNormalValueChanged(e);
-                    this.OnPropertyChanged("NormalValue", e);
+                    this.OnPropertyChanged("NormalValue", e, _normalValueAttribute);
                 }
             }
         }
@@ -189,7 +201,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Meas
                     IValueAliasSet old = this._valueAliasSet;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnValueAliasSetChanging(e);
-                    this.OnPropertyChanging("ValueAliasSet", e);
+                    this.OnPropertyChanging("ValueAliasSet", e, _valueAliasSetReference);
                     this._valueAliasSet = value;
                     if ((old != null))
                     {
@@ -202,7 +214,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Meas
                         value.Deleted += this.OnResetValueAliasSet;
                     }
                     this.OnValueAliasSetChanged(e);
-                    this.OnPropertyChanged("ValueAliasSet", e);
+                    this.OnPropertyChanged("ValueAliasSet", e, _valueAliasSetReference);
                 }
             }
         }
@@ -225,7 +237,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Meas
                     ICommand old = this._command;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnCommandChanging(e);
-                    this.OnPropertyChanging("Command", e);
+                    this.OnPropertyChanging("Command", e, _commandReference);
                     this._command = value;
                     if ((old != null))
                     {
@@ -238,7 +250,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Meas
                         value.Deleted += this.OnResetCommand;
                     }
                     this.OnCommandChanged(e);
-                    this.OnPropertyChanged("Command", e);
+                    this.OnPropertyChanged("Command", e, _commandReference);
                 }
             }
         }
@@ -334,6 +346,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Meas
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> CommandChanged;
         
+        private static ITypedElement RetrieveMinValueAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(Discrete.ClassInstance)).Resolve("minValue")));
+        }
+        
         /// <summary>
         /// Raises the MinValueChanging event
         /// </summary>
@@ -358,6 +375,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Meas
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveMaxValueAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(Discrete.ClassInstance)).Resolve("maxValue")));
         }
         
         /// <summary>
@@ -386,6 +408,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Meas
             }
         }
         
+        private static ITypedElement RetrieveNormalValueAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(Discrete.ClassInstance)).Resolve("normalValue")));
+        }
+        
         /// <summary>
         /// Raises the NormalValueChanging event
         /// </summary>
@@ -410,6 +437,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Meas
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveValueAliasSetReference()
+        {
+            return ((ITypedElement)(((ModelElement)(Discrete.ClassInstance)).Resolve("ValueAliasSet")));
         }
         
         /// <summary>
@@ -448,6 +480,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Meas
             this.ValueAliasSet = null;
         }
         
+        private static ITypedElement RetrieveCommandReference()
+        {
+            return ((ITypedElement)(((ModelElement)(Discrete.ClassInstance)).Resolve("Command")));
+        }
+        
         /// <summary>
         /// Raises the CommandChanging event
         /// </summary>
@@ -484,6 +521,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Meas
             this.Command = null;
         }
         
+        private static ITypedElement RetrieveDiscreteValuesReference()
+        {
+            return ((ITypedElement)(((ModelElement)(Discrete.ClassInstance)).Resolve("DiscreteValues")));
+        }
+        
         /// <summary>
         /// Forwards CollectionChanging notifications for the DiscreteValues property to the parent model element
         /// </summary>
@@ -491,7 +533,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Meas
         /// <param name="e">The original event data</param>
         private void DiscreteValuesCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("DiscreteValues", e);
+            this.OnCollectionChanging("DiscreteValues", e, _discreteValuesReference);
         }
         
         /// <summary>
@@ -501,7 +543,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Meas
         /// <param name="e">The original event data</param>
         private void DiscreteValuesCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("DiscreteValues", e);
+            this.OnCollectionChanged("DiscreteValues", e, _discreteValuesReference);
         }
         
         /// <summary>
@@ -819,7 +861,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Meas
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public MinValueProxy(IDiscrete modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "minValue")
             {
             }
             
@@ -837,24 +879,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Meas
                     this.ModelElement.MinValue = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.MinValueChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.MinValueChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -868,7 +892,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Meas
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public MaxValueProxy(IDiscrete modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "maxValue")
             {
             }
             
@@ -886,24 +910,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Meas
                     this.ModelElement.MaxValue = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.MaxValueChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.MaxValueChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -917,7 +923,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Meas
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public NormalValueProxy(IDiscrete modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "normalValue")
             {
             }
             
@@ -935,24 +941,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Meas
                     this.ModelElement.NormalValue = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.NormalValueChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.NormalValueChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -966,7 +954,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Meas
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public ValueAliasSetProxy(IDiscrete modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "ValueAliasSet")
             {
             }
             
@@ -984,24 +972,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Meas
                     this.ModelElement.ValueAliasSet = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ValueAliasSetChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ValueAliasSetChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1015,7 +985,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Meas
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public CommandProxy(IDiscrete modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "Command")
             {
             }
             
@@ -1032,24 +1002,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Meas
                 {
                     this.ModelElement.Command = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.CommandChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.CommandChanged -= handler;
             }
         }
     }

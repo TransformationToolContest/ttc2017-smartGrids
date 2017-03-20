@@ -56,18 +56,24 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfERPSupport
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61970/Informative/InfERPSupport/Erp" +
         "TimeEntry")]
     [DebuggerDisplayAttribute("ErpTimeEntry {UUID}")]
-    public class ErpTimeEntry : IdentifiedObject, IErpTimeEntry, IModelElement
+    public partial class ErpTimeEntry : IdentifiedObject, IErpTimeEntry, IModelElement
     {
+        
+        private static Lazy<ITypedElement> _erpProjectAccountingReference = new Lazy<ITypedElement>(RetrieveErpProjectAccountingReference);
         
         /// <summary>
         /// The backing field for the ErpProjectAccounting property
         /// </summary>
         private IErpProjectAccounting _erpProjectAccounting;
         
+        private static Lazy<ITypedElement> _statusReference = new Lazy<ITypedElement>(RetrieveStatusReference);
+        
         /// <summary>
         /// The backing field for the Status property
         /// </summary>
         private IStatus _status;
+        
+        private static Lazy<ITypedElement> _erpTimeSheetReference = new Lazy<ITypedElement>(RetrieveErpTimeSheetReference);
         
         /// <summary>
         /// The backing field for the ErpTimeSheet property
@@ -94,7 +100,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfERPSupport
                     IErpProjectAccounting old = this._erpProjectAccounting;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnErpProjectAccountingChanging(e);
-                    this.OnPropertyChanging("ErpProjectAccounting", e);
+                    this.OnPropertyChanging("ErpProjectAccounting", e, _erpProjectAccountingReference);
                     this._erpProjectAccounting = value;
                     if ((old != null))
                     {
@@ -107,7 +113,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfERPSupport
                         value.Deleted += this.OnResetErpProjectAccounting;
                     }
                     this.OnErpProjectAccountingChanged(e);
-                    this.OnPropertyChanged("ErpProjectAccounting", e);
+                    this.OnPropertyChanged("ErpProjectAccounting", e, _erpProjectAccountingReference);
                 }
             }
         }
@@ -130,7 +136,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfERPSupport
                     IStatus old = this._status;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnStatusChanging(e);
-                    this.OnPropertyChanging("Status", e);
+                    this.OnPropertyChanging("Status", e, _statusReference);
                     this._status = value;
                     if ((old != null))
                     {
@@ -141,7 +147,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfERPSupport
                         value.Deleted += this.OnResetStatus;
                     }
                     this.OnStatusChanged(e);
-                    this.OnPropertyChanged("Status", e);
+                    this.OnPropertyChanged("Status", e, _statusReference);
                 }
             }
         }
@@ -164,7 +170,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfERPSupport
                     IErpTimeSheet old = this._erpTimeSheet;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnErpTimeSheetChanging(e);
-                    this.OnPropertyChanging("ErpTimeSheet", e);
+                    this.OnPropertyChanging("ErpTimeSheet", e, _erpTimeSheetReference);
                     this._erpTimeSheet = value;
                     if ((old != null))
                     {
@@ -177,7 +183,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfERPSupport
                         value.Deleted += this.OnResetErpTimeSheet;
                     }
                     this.OnErpTimeSheetChanged(e);
-                    this.OnPropertyChanged("ErpTimeSheet", e);
+                    this.OnPropertyChanged("ErpTimeSheet", e, _erpTimeSheetReference);
                 }
             }
         }
@@ -239,6 +245,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfERPSupport
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> ErpTimeSheetChanged;
         
+        private static ITypedElement RetrieveErpProjectAccountingReference()
+        {
+            return ((ITypedElement)(((ModelElement)(ErpTimeEntry.ClassInstance)).Resolve("ErpProjectAccounting")));
+        }
+        
         /// <summary>
         /// Raises the ErpProjectAccountingChanging event
         /// </summary>
@@ -275,6 +286,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfERPSupport
             this.ErpProjectAccounting = null;
         }
         
+        private static ITypedElement RetrieveStatusReference()
+        {
+            return ((ITypedElement)(((ModelElement)(ErpTimeEntry.ClassInstance)).Resolve("status")));
+        }
+        
         /// <summary>
         /// Raises the StatusChanging event
         /// </summary>
@@ -309,6 +325,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfERPSupport
         private void OnResetStatus(object sender, System.EventArgs eventArgs)
         {
             this.Status = null;
+        }
+        
+        private static ITypedElement RetrieveErpTimeSheetReference()
+        {
+            return ((ITypedElement)(((ModelElement)(ErpTimeEntry.ClassInstance)).Resolve("ErpTimeSheet")));
         }
         
         /// <summary>
@@ -620,7 +641,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfERPSupport
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public ErpProjectAccountingProxy(IErpTimeEntry modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "ErpProjectAccounting")
             {
             }
             
@@ -638,24 +659,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfERPSupport
                     this.ModelElement.ErpProjectAccounting = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ErpProjectAccountingChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ErpProjectAccountingChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -669,7 +672,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfERPSupport
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public StatusProxy(IErpTimeEntry modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "status")
             {
             }
             
@@ -687,24 +690,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfERPSupport
                     this.ModelElement.Status = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.StatusChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.StatusChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -718,7 +703,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfERPSupport
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public ErpTimeSheetProxy(IErpTimeEntry modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "ErpTimeSheet")
             {
             }
             
@@ -735,24 +720,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfERPSupport
                 {
                     this.ModelElement.ErpTimeSheet = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ErpTimeSheetChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ErpTimeSheetChanged -= handler;
             }
         }
     }

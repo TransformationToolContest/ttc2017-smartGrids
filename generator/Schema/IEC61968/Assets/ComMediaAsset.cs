@@ -48,7 +48,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Assets
     [XmlNamespacePrefixAttribute("cimAssets")]
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61968/Assets/ComMediaAsset")]
     [DebuggerDisplayAttribute("ComMediaAsset {UUID}")]
-    public class ComMediaAsset : Asset, IComMediaAsset, IModelElement
+    public partial class ComMediaAsset : Asset, IComMediaAsset, IModelElement
     {
         
         private static IClass _classInstance;

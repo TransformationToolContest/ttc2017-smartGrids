@@ -40,7 +40,7 @@ namespace TTC2017.SmartGrids.COSEM.InterfaceClasses
     [XmlNamespacePrefixAttribute("inter")]
     [ModelRepresentationClassAttribute("http://www.transformation-tool-contest.eu/2017/smartGrids/cosem#//InterfaceClasse" +
         "s/Dataprotection")]
-    public class Dataprotection : Base, IDataprotection, IModelElement
+    public partial class Dataprotection : Base, IDataprotection, IModelElement
     {
         
         private static IClass _classInstance;

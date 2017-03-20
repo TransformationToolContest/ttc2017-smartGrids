@@ -47,7 +47,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.PaymentMetering
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61968/PaymentMetering/ServiceSuppli" +
         "er")]
     [DebuggerDisplayAttribute("ServiceSupplier {UUID}")]
-    public class ServiceSupplier : Organisation, IServiceSupplier, IModelElement
+    public partial class ServiceSupplier : Organisation, IServiceSupplier, IModelElement
     {
         
         /// <summary>
@@ -55,20 +55,30 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.PaymentMetering
         /// </summary>
         private string _issuerIdentificationNumber;
         
+        private static Lazy<ITypedElement> _issuerIdentificationNumberAttribute = new Lazy<ITypedElement>(RetrieveIssuerIdentificationNumberAttribute);
+        
         /// <summary>
         /// The backing field for the Kind property
         /// </summary>
         private Nullable<SupplierKind> _kind;
+        
+        private static Lazy<ITypedElement> _kindAttribute = new Lazy<ITypedElement>(RetrieveKindAttribute);
+        
+        private static Lazy<ITypedElement> _serviceDeliveryPointsReference = new Lazy<ITypedElement>(RetrieveServiceDeliveryPointsReference);
         
         /// <summary>
         /// The backing field for the ServiceDeliveryPoints property
         /// </summary>
         private ServiceSupplierServiceDeliveryPointsCollection _serviceDeliveryPoints;
         
+        private static Lazy<ITypedElement> _bankAccountsReference = new Lazy<ITypedElement>(RetrieveBankAccountsReference);
+        
         /// <summary>
         /// The backing field for the BankAccounts property
         /// </summary>
         private ServiceSupplierBankAccountsCollection _bankAccounts;
+        
+        private static Lazy<ITypedElement> _customerAgreementsReference = new Lazy<ITypedElement>(RetrieveCustomerAgreementsReference);
         
         /// <summary>
         /// The backing field for the CustomerAgreements property
@@ -108,10 +118,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.PaymentMetering
                     string old = this._issuerIdentificationNumber;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnIssuerIdentificationNumberChanging(e);
-                    this.OnPropertyChanging("IssuerIdentificationNumber", e);
+                    this.OnPropertyChanging("IssuerIdentificationNumber", e, _issuerIdentificationNumberAttribute);
                     this._issuerIdentificationNumber = value;
                     this.OnIssuerIdentificationNumberChanged(e);
-                    this.OnPropertyChanged("IssuerIdentificationNumber", e);
+                    this.OnPropertyChanged("IssuerIdentificationNumber", e, _issuerIdentificationNumberAttribute);
                 }
             }
         }
@@ -134,10 +144,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.PaymentMetering
                     Nullable<SupplierKind> old = this._kind;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnKindChanging(e);
-                    this.OnPropertyChanging("Kind", e);
+                    this.OnPropertyChanging("Kind", e, _kindAttribute);
                     this._kind = value;
                     this.OnKindChanged(e);
-                    this.OnPropertyChanged("Kind", e);
+                    this.OnPropertyChanged("Kind", e, _kindAttribute);
                 }
             }
         }
@@ -234,6 +244,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.PaymentMetering
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> KindChanged;
         
+        private static ITypedElement RetrieveIssuerIdentificationNumberAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(ServiceSupplier.ClassInstance)).Resolve("issuerIdentificationNumber")));
+        }
+        
         /// <summary>
         /// Raises the IssuerIdentificationNumberChanging event
         /// </summary>
@@ -258,6 +273,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.PaymentMetering
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveKindAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(ServiceSupplier.ClassInstance)).Resolve("kind")));
         }
         
         /// <summary>
@@ -286,6 +306,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.PaymentMetering
             }
         }
         
+        private static ITypedElement RetrieveServiceDeliveryPointsReference()
+        {
+            return ((ITypedElement)(((ModelElement)(ServiceSupplier.ClassInstance)).Resolve("ServiceDeliveryPoints")));
+        }
+        
         /// <summary>
         /// Forwards CollectionChanging notifications for the ServiceDeliveryPoints property to the parent model element
         /// </summary>
@@ -293,7 +318,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.PaymentMetering
         /// <param name="e">The original event data</param>
         private void ServiceDeliveryPointsCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("ServiceDeliveryPoints", e);
+            this.OnCollectionChanging("ServiceDeliveryPoints", e, _serviceDeliveryPointsReference);
         }
         
         /// <summary>
@@ -303,7 +328,12 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.PaymentMetering
         /// <param name="e">The original event data</param>
         private void ServiceDeliveryPointsCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("ServiceDeliveryPoints", e);
+            this.OnCollectionChanged("ServiceDeliveryPoints", e, _serviceDeliveryPointsReference);
+        }
+        
+        private static ITypedElement RetrieveBankAccountsReference()
+        {
+            return ((ITypedElement)(((ModelElement)(ServiceSupplier.ClassInstance)).Resolve("BankAccounts")));
         }
         
         /// <summary>
@@ -313,7 +343,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.PaymentMetering
         /// <param name="e">The original event data</param>
         private void BankAccountsCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("BankAccounts", e);
+            this.OnCollectionChanging("BankAccounts", e, _bankAccountsReference);
         }
         
         /// <summary>
@@ -323,7 +353,12 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.PaymentMetering
         /// <param name="e">The original event data</param>
         private void BankAccountsCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("BankAccounts", e);
+            this.OnCollectionChanged("BankAccounts", e, _bankAccountsReference);
+        }
+        
+        private static ITypedElement RetrieveCustomerAgreementsReference()
+        {
+            return ((ITypedElement)(((ModelElement)(ServiceSupplier.ClassInstance)).Resolve("CustomerAgreements")));
         }
         
         /// <summary>
@@ -333,7 +368,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.PaymentMetering
         /// <param name="e">The original event data</param>
         private void CustomerAgreementsCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("CustomerAgreements", e);
+            this.OnCollectionChanging("CustomerAgreements", e, _customerAgreementsReference);
         }
         
         /// <summary>
@@ -343,7 +378,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.PaymentMetering
         /// <param name="e">The original event data</param>
         private void CustomerAgreementsCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("CustomerAgreements", e);
+            this.OnCollectionChanged("CustomerAgreements", e, _customerAgreementsReference);
         }
         
         /// <summary>
@@ -623,7 +658,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.PaymentMetering
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public IssuerIdentificationNumberProxy(IServiceSupplier modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "issuerIdentificationNumber")
             {
             }
             
@@ -641,24 +676,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.PaymentMetering
                     this.ModelElement.IssuerIdentificationNumber = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.IssuerIdentificationNumberChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.IssuerIdentificationNumberChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -672,7 +689,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.PaymentMetering
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public KindProxy(IServiceSupplier modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "kind")
             {
             }
             
@@ -689,24 +706,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.PaymentMetering
                 {
                     this.ModelElement.Kind = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.KindChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.KindChanged -= handler;
             }
         }
     }

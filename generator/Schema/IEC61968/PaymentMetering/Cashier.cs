@@ -46,18 +46,24 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.PaymentMetering
     [XmlNamespacePrefixAttribute("cimPaymentMetering")]
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61968/PaymentMetering/Cashier")]
     [DebuggerDisplayAttribute("Cashier {UUID}")]
-    public class Cashier : IdentifiedObject, ICashier, IModelElement
+    public partial class Cashier : IdentifiedObject, ICashier, IModelElement
     {
+        
+        private static Lazy<ITypedElement> _cashierShiftsReference = new Lazy<ITypedElement>(RetrieveCashierShiftsReference);
         
         /// <summary>
         /// The backing field for the CashierShifts property
         /// </summary>
         private CashierCashierShiftsCollection _cashierShifts;
         
+        private static Lazy<ITypedElement> _electronicAddressReference = new Lazy<ITypedElement>(RetrieveElectronicAddressReference);
+        
         /// <summary>
         /// The backing field for the ElectronicAddress property
         /// </summary>
         private IElectronicAddress _electronicAddress;
+        
+        private static Lazy<ITypedElement> _vendorReference = new Lazy<ITypedElement>(RetrieveVendorReference);
         
         /// <summary>
         /// The backing field for the Vendor property
@@ -106,7 +112,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.PaymentMetering
                     IElectronicAddress old = this._electronicAddress;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnElectronicAddressChanging(e);
-                    this.OnPropertyChanging("ElectronicAddress", e);
+                    this.OnPropertyChanging("ElectronicAddress", e, _electronicAddressReference);
                     this._electronicAddress = value;
                     if ((old != null))
                     {
@@ -117,7 +123,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.PaymentMetering
                         value.Deleted += this.OnResetElectronicAddress;
                     }
                     this.OnElectronicAddressChanged(e);
-                    this.OnPropertyChanged("ElectronicAddress", e);
+                    this.OnPropertyChanged("ElectronicAddress", e, _electronicAddressReference);
                 }
             }
         }
@@ -140,7 +146,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.PaymentMetering
                     IVendor old = this._vendor;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnVendorChanging(e);
-                    this.OnPropertyChanging("Vendor", e);
+                    this.OnPropertyChanging("Vendor", e, _vendorReference);
                     this._vendor = value;
                     if ((old != null))
                     {
@@ -153,7 +159,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.PaymentMetering
                         value.Deleted += this.OnResetVendor;
                     }
                     this.OnVendorChanged(e);
-                    this.OnPropertyChanged("Vendor", e);
+                    this.OnPropertyChanged("Vendor", e, _vendorReference);
                 }
             }
         }
@@ -204,6 +210,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.PaymentMetering
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> VendorChanged;
         
+        private static ITypedElement RetrieveCashierShiftsReference()
+        {
+            return ((ITypedElement)(((ModelElement)(Cashier.ClassInstance)).Resolve("CashierShifts")));
+        }
+        
         /// <summary>
         /// Forwards CollectionChanging notifications for the CashierShifts property to the parent model element
         /// </summary>
@@ -211,7 +222,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.PaymentMetering
         /// <param name="e">The original event data</param>
         private void CashierShiftsCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("CashierShifts", e);
+            this.OnCollectionChanging("CashierShifts", e, _cashierShiftsReference);
         }
         
         /// <summary>
@@ -221,7 +232,12 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.PaymentMetering
         /// <param name="e">The original event data</param>
         private void CashierShiftsCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("CashierShifts", e);
+            this.OnCollectionChanged("CashierShifts", e, _cashierShiftsReference);
+        }
+        
+        private static ITypedElement RetrieveElectronicAddressReference()
+        {
+            return ((ITypedElement)(((ModelElement)(Cashier.ClassInstance)).Resolve("electronicAddress")));
         }
         
         /// <summary>
@@ -258,6 +274,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.PaymentMetering
         private void OnResetElectronicAddress(object sender, System.EventArgs eventArgs)
         {
             this.ElectronicAddress = null;
+        }
+        
+        private static ITypedElement RetrieveVendorReference()
+        {
+            return ((ITypedElement)(((ModelElement)(Cashier.ClassInstance)).Resolve("Vendor")));
         }
         
         /// <summary>
@@ -573,7 +594,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.PaymentMetering
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public ElectronicAddressProxy(ICashier modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "electronicAddress")
             {
             }
             
@@ -591,24 +612,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.PaymentMetering
                     this.ModelElement.ElectronicAddress = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ElectronicAddressChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ElectronicAddressChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -622,7 +625,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.PaymentMetering
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public VendorProxy(ICashier modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "Vendor")
             {
             }
             
@@ -639,24 +642,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.PaymentMetering
                 {
                     this.ModelElement.Vendor = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.VendorChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.VendorChanged -= handler;
             }
         }
     }

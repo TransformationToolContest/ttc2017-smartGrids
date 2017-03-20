@@ -55,7 +55,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Metering
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61968/Metering/ServiceDeliveryPoint" +
         "")]
     [DebuggerDisplayAttribute("ServiceDeliveryPoint {UUID}")]
-    public class ServiceDeliveryPoint : IdentifiedObject, IServiceDeliveryPoint, IModelElement
+    public partial class ServiceDeliveryPoint : IdentifiedObject, IServiceDeliveryPoint, IModelElement
     {
         
         /// <summary>
@@ -63,100 +63,142 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Metering
         /// </summary>
         private Nullable<PhaseCode> _phaseCode;
         
+        private static Lazy<ITypedElement> _phaseCodeAttribute = new Lazy<ITypedElement>(RetrievePhaseCodeAttribute);
+        
         /// <summary>
         /// The backing field for the RatedPower property
         /// </summary>
         private float _ratedPower;
+        
+        private static Lazy<ITypedElement> _ratedPowerAttribute = new Lazy<ITypedElement>(RetrieveRatedPowerAttribute);
         
         /// <summary>
         /// The backing field for the Grounded property
         /// </summary>
         private bool _grounded;
         
+        private static Lazy<ITypedElement> _groundedAttribute = new Lazy<ITypedElement>(RetrieveGroundedAttribute);
+        
         /// <summary>
         /// The backing field for the RatedCurrent property
         /// </summary>
         private float _ratedCurrent;
+        
+        private static Lazy<ITypedElement> _ratedCurrentAttribute = new Lazy<ITypedElement>(RetrieveRatedCurrentAttribute);
         
         /// <summary>
         /// The backing field for the NominalServiceVoltage property
         /// </summary>
         private int _nominalServiceVoltage;
         
+        private static Lazy<ITypedElement> _nominalServiceVoltageAttribute = new Lazy<ITypedElement>(RetrieveNominalServiceVoltageAttribute);
+        
         /// <summary>
         /// The backing field for the EstimatedLoad property
         /// </summary>
         private float _estimatedLoad;
+        
+        private static Lazy<ITypedElement> _estimatedLoadAttribute = new Lazy<ITypedElement>(RetrieveEstimatedLoadAttribute);
         
         /// <summary>
         /// The backing field for the ServicePriority property
         /// </summary>
         private string _servicePriority;
         
+        private static Lazy<ITypedElement> _servicePriorityAttribute = new Lazy<ITypedElement>(RetrieveServicePriorityAttribute);
+        
         /// <summary>
         /// The backing field for the ServiceDeliveryRemark property
         /// </summary>
         private string _serviceDeliveryRemark;
+        
+        private static Lazy<ITypedElement> _serviceDeliveryRemarkAttribute = new Lazy<ITypedElement>(RetrieveServiceDeliveryRemarkAttribute);
         
         /// <summary>
         /// The backing field for the CheckBilling property
         /// </summary>
         private bool _checkBilling;
         
+        private static Lazy<ITypedElement> _checkBillingAttribute = new Lazy<ITypedElement>(RetrieveCheckBillingAttribute);
+        
         /// <summary>
         /// The backing field for the CtptReference property
         /// </summary>
         private int _ctptReference;
+        
+        private static Lazy<ITypedElement> _ctptReferenceAttribute = new Lazy<ITypedElement>(RetrieveCtptReferenceAttribute);
+        
+        private static Lazy<ITypedElement> _serviceLocationReference = new Lazy<ITypedElement>(RetrieveServiceLocationReference);
         
         /// <summary>
         /// The backing field for the ServiceLocation property
         /// </summary>
         private IServiceLocation _serviceLocation;
         
+        private static Lazy<ITypedElement> _powerQualityPricingsReference = new Lazy<ITypedElement>(RetrievePowerQualityPricingsReference);
+        
         /// <summary>
         /// The backing field for the PowerQualityPricings property
         /// </summary>
         private ServiceDeliveryPointPowerQualityPricingsCollection _powerQualityPricings;
+        
+        private static Lazy<ITypedElement> _customerAgreementReference = new Lazy<ITypedElement>(RetrieveCustomerAgreementReference);
         
         /// <summary>
         /// The backing field for the CustomerAgreement property
         /// </summary>
         private ICustomerAgreement _customerAgreement;
         
+        private static Lazy<ITypedElement> _energyConsumerReference = new Lazy<ITypedElement>(RetrieveEnergyConsumerReference);
+        
         /// <summary>
         /// The backing field for the EnergyConsumer property
         /// </summary>
         private IEnergyConsumer _energyConsumer;
+        
+        private static Lazy<ITypedElement> _serviceCategoryReference = new Lazy<ITypedElement>(RetrieveServiceCategoryReference);
         
         /// <summary>
         /// The backing field for the ServiceCategory property
         /// </summary>
         private IServiceCategory _serviceCategory;
         
+        private static Lazy<ITypedElement> _endDeviceAssetsReference = new Lazy<ITypedElement>(RetrieveEndDeviceAssetsReference);
+        
         /// <summary>
         /// The backing field for the EndDeviceAssets property
         /// </summary>
         private ServiceDeliveryPointEndDeviceAssetsCollection _endDeviceAssets;
+        
+        private static Lazy<ITypedElement> _serviceSupplierReference = new Lazy<ITypedElement>(RetrieveServiceSupplierReference);
         
         /// <summary>
         /// The backing field for the ServiceSupplier property
         /// </summary>
         private IServiceSupplier _serviceSupplier;
         
+        private static Lazy<ITypedElement> _pricingStructuresReference = new Lazy<ITypedElement>(RetrievePricingStructuresReference);
+        
         /// <summary>
         /// The backing field for the PricingStructures property
         /// </summary>
         private ServiceDeliveryPointPricingStructuresCollection _pricingStructures;
+        
+        private static Lazy<ITypedElement> _transformerReference = new Lazy<ITypedElement>(RetrieveTransformerReference);
         
         /// <summary>
         /// The backing field for the Transformer property
         /// </summary>
         private IDistributionTransformer _transformer;
         
+        private static Lazy<ITypedElement> _meterReadingsReference = new Lazy<ITypedElement>(RetrieveMeterReadingsReference);
+        
         /// <summary>
         /// The backing field for the MeterReadings property
         /// </summary>
         private ServiceDeliveryPointMeterReadingsCollection _meterReadings;
+        
+        private static Lazy<ITypedElement> _sDPLocationsReference = new Lazy<ITypedElement>(RetrieveSDPLocationsReference);
         
         /// <summary>
         /// The backing field for the SDPLocations property
@@ -202,10 +244,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Metering
                     Nullable<PhaseCode> old = this._phaseCode;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnPhaseCodeChanging(e);
-                    this.OnPropertyChanging("PhaseCode", e);
+                    this.OnPropertyChanging("PhaseCode", e, _phaseCodeAttribute);
                     this._phaseCode = value;
                     this.OnPhaseCodeChanged(e);
-                    this.OnPropertyChanged("PhaseCode", e);
+                    this.OnPropertyChanged("PhaseCode", e, _phaseCodeAttribute);
                 }
             }
         }
@@ -228,10 +270,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Metering
                     float old = this._ratedPower;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnRatedPowerChanging(e);
-                    this.OnPropertyChanging("RatedPower", e);
+                    this.OnPropertyChanging("RatedPower", e, _ratedPowerAttribute);
                     this._ratedPower = value;
                     this.OnRatedPowerChanged(e);
-                    this.OnPropertyChanged("RatedPower", e);
+                    this.OnPropertyChanged("RatedPower", e, _ratedPowerAttribute);
                 }
             }
         }
@@ -254,10 +296,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Metering
                     bool old = this._grounded;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnGroundedChanging(e);
-                    this.OnPropertyChanging("Grounded", e);
+                    this.OnPropertyChanging("Grounded", e, _groundedAttribute);
                     this._grounded = value;
                     this.OnGroundedChanged(e);
-                    this.OnPropertyChanged("Grounded", e);
+                    this.OnPropertyChanged("Grounded", e, _groundedAttribute);
                 }
             }
         }
@@ -280,10 +322,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Metering
                     float old = this._ratedCurrent;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnRatedCurrentChanging(e);
-                    this.OnPropertyChanging("RatedCurrent", e);
+                    this.OnPropertyChanging("RatedCurrent", e, _ratedCurrentAttribute);
                     this._ratedCurrent = value;
                     this.OnRatedCurrentChanged(e);
-                    this.OnPropertyChanged("RatedCurrent", e);
+                    this.OnPropertyChanged("RatedCurrent", e, _ratedCurrentAttribute);
                 }
             }
         }
@@ -306,10 +348,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Metering
                     int old = this._nominalServiceVoltage;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnNominalServiceVoltageChanging(e);
-                    this.OnPropertyChanging("NominalServiceVoltage", e);
+                    this.OnPropertyChanging("NominalServiceVoltage", e, _nominalServiceVoltageAttribute);
                     this._nominalServiceVoltage = value;
                     this.OnNominalServiceVoltageChanged(e);
-                    this.OnPropertyChanged("NominalServiceVoltage", e);
+                    this.OnPropertyChanged("NominalServiceVoltage", e, _nominalServiceVoltageAttribute);
                 }
             }
         }
@@ -332,10 +374,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Metering
                     float old = this._estimatedLoad;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnEstimatedLoadChanging(e);
-                    this.OnPropertyChanging("EstimatedLoad", e);
+                    this.OnPropertyChanging("EstimatedLoad", e, _estimatedLoadAttribute);
                     this._estimatedLoad = value;
                     this.OnEstimatedLoadChanged(e);
-                    this.OnPropertyChanged("EstimatedLoad", e);
+                    this.OnPropertyChanged("EstimatedLoad", e, _estimatedLoadAttribute);
                 }
             }
         }
@@ -358,10 +400,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Metering
                     string old = this._servicePriority;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnServicePriorityChanging(e);
-                    this.OnPropertyChanging("ServicePriority", e);
+                    this.OnPropertyChanging("ServicePriority", e, _servicePriorityAttribute);
                     this._servicePriority = value;
                     this.OnServicePriorityChanged(e);
-                    this.OnPropertyChanged("ServicePriority", e);
+                    this.OnPropertyChanged("ServicePriority", e, _servicePriorityAttribute);
                 }
             }
         }
@@ -384,10 +426,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Metering
                     string old = this._serviceDeliveryRemark;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnServiceDeliveryRemarkChanging(e);
-                    this.OnPropertyChanging("ServiceDeliveryRemark", e);
+                    this.OnPropertyChanging("ServiceDeliveryRemark", e, _serviceDeliveryRemarkAttribute);
                     this._serviceDeliveryRemark = value;
                     this.OnServiceDeliveryRemarkChanged(e);
-                    this.OnPropertyChanged("ServiceDeliveryRemark", e);
+                    this.OnPropertyChanged("ServiceDeliveryRemark", e, _serviceDeliveryRemarkAttribute);
                 }
             }
         }
@@ -410,10 +452,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Metering
                     bool old = this._checkBilling;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnCheckBillingChanging(e);
-                    this.OnPropertyChanging("CheckBilling", e);
+                    this.OnPropertyChanging("CheckBilling", e, _checkBillingAttribute);
                     this._checkBilling = value;
                     this.OnCheckBillingChanged(e);
-                    this.OnPropertyChanged("CheckBilling", e);
+                    this.OnPropertyChanged("CheckBilling", e, _checkBillingAttribute);
                 }
             }
         }
@@ -436,10 +478,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Metering
                     int old = this._ctptReference;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnCtptReferenceChanging(e);
-                    this.OnPropertyChanging("CtptReference", e);
+                    this.OnPropertyChanging("CtptReference", e, _ctptReferenceAttribute);
                     this._ctptReference = value;
                     this.OnCtptReferenceChanged(e);
-                    this.OnPropertyChanged("CtptReference", e);
+                    this.OnPropertyChanged("CtptReference", e, _ctptReferenceAttribute);
                 }
             }
         }
@@ -462,7 +504,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Metering
                     IServiceLocation old = this._serviceLocation;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnServiceLocationChanging(e);
-                    this.OnPropertyChanging("ServiceLocation", e);
+                    this.OnPropertyChanging("ServiceLocation", e, _serviceLocationReference);
                     this._serviceLocation = value;
                     if ((old != null))
                     {
@@ -475,7 +517,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Metering
                         value.Deleted += this.OnResetServiceLocation;
                     }
                     this.OnServiceLocationChanged(e);
-                    this.OnPropertyChanged("ServiceLocation", e);
+                    this.OnPropertyChanged("ServiceLocation", e, _serviceLocationReference);
                 }
             }
         }
@@ -513,7 +555,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Metering
                     ICustomerAgreement old = this._customerAgreement;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnCustomerAgreementChanging(e);
-                    this.OnPropertyChanging("CustomerAgreement", e);
+                    this.OnPropertyChanging("CustomerAgreement", e, _customerAgreementReference);
                     this._customerAgreement = value;
                     if ((old != null))
                     {
@@ -526,7 +568,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Metering
                         value.Deleted += this.OnResetCustomerAgreement;
                     }
                     this.OnCustomerAgreementChanged(e);
-                    this.OnPropertyChanged("CustomerAgreement", e);
+                    this.OnPropertyChanged("CustomerAgreement", e, _customerAgreementReference);
                 }
             }
         }
@@ -549,7 +591,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Metering
                     IEnergyConsumer old = this._energyConsumer;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnEnergyConsumerChanging(e);
-                    this.OnPropertyChanging("EnergyConsumer", e);
+                    this.OnPropertyChanging("EnergyConsumer", e, _energyConsumerReference);
                     this._energyConsumer = value;
                     if ((old != null))
                     {
@@ -562,7 +604,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Metering
                         value.Deleted += this.OnResetEnergyConsumer;
                     }
                     this.OnEnergyConsumerChanged(e);
-                    this.OnPropertyChanged("EnergyConsumer", e);
+                    this.OnPropertyChanged("EnergyConsumer", e, _energyConsumerReference);
                 }
             }
         }
@@ -585,7 +627,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Metering
                     IServiceCategory old = this._serviceCategory;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnServiceCategoryChanging(e);
-                    this.OnPropertyChanging("ServiceCategory", e);
+                    this.OnPropertyChanging("ServiceCategory", e, _serviceCategoryReference);
                     this._serviceCategory = value;
                     if ((old != null))
                     {
@@ -598,7 +640,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Metering
                         value.Deleted += this.OnResetServiceCategory;
                     }
                     this.OnServiceCategoryChanged(e);
-                    this.OnPropertyChanged("ServiceCategory", e);
+                    this.OnPropertyChanged("ServiceCategory", e, _serviceCategoryReference);
                 }
             }
         }
@@ -636,7 +678,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Metering
                     IServiceSupplier old = this._serviceSupplier;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnServiceSupplierChanging(e);
-                    this.OnPropertyChanging("ServiceSupplier", e);
+                    this.OnPropertyChanging("ServiceSupplier", e, _serviceSupplierReference);
                     this._serviceSupplier = value;
                     if ((old != null))
                     {
@@ -649,7 +691,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Metering
                         value.Deleted += this.OnResetServiceSupplier;
                     }
                     this.OnServiceSupplierChanged(e);
-                    this.OnPropertyChanged("ServiceSupplier", e);
+                    this.OnPropertyChanged("ServiceSupplier", e, _serviceSupplierReference);
                 }
             }
         }
@@ -687,7 +729,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Metering
                     IDistributionTransformer old = this._transformer;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnTransformerChanging(e);
-                    this.OnPropertyChanging("Transformer", e);
+                    this.OnPropertyChanging("Transformer", e, _transformerReference);
                     this._transformer = value;
                     if ((old != null))
                     {
@@ -700,7 +742,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Metering
                         value.Deleted += this.OnResetTransformer;
                     }
                     this.OnTransformerChanged(e);
-                    this.OnPropertyChanged("Transformer", e);
+                    this.OnPropertyChanged("Transformer", e, _transformerReference);
                 }
             }
         }
@@ -922,6 +964,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Metering
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> TransformerChanged;
         
+        private static ITypedElement RetrievePhaseCodeAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(ServiceDeliveryPoint.ClassInstance)).Resolve("phaseCode")));
+        }
+        
         /// <summary>
         /// Raises the PhaseCodeChanging event
         /// </summary>
@@ -946,6 +993,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Metering
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveRatedPowerAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(ServiceDeliveryPoint.ClassInstance)).Resolve("ratedPower")));
         }
         
         /// <summary>
@@ -974,6 +1026,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Metering
             }
         }
         
+        private static ITypedElement RetrieveGroundedAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(ServiceDeliveryPoint.ClassInstance)).Resolve("grounded")));
+        }
+        
         /// <summary>
         /// Raises the GroundedChanging event
         /// </summary>
@@ -998,6 +1055,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Metering
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveRatedCurrentAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(ServiceDeliveryPoint.ClassInstance)).Resolve("ratedCurrent")));
         }
         
         /// <summary>
@@ -1026,6 +1088,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Metering
             }
         }
         
+        private static ITypedElement RetrieveNominalServiceVoltageAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(ServiceDeliveryPoint.ClassInstance)).Resolve("nominalServiceVoltage")));
+        }
+        
         /// <summary>
         /// Raises the NominalServiceVoltageChanging event
         /// </summary>
@@ -1050,6 +1117,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Metering
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveEstimatedLoadAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(ServiceDeliveryPoint.ClassInstance)).Resolve("estimatedLoad")));
         }
         
         /// <summary>
@@ -1078,6 +1150,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Metering
             }
         }
         
+        private static ITypedElement RetrieveServicePriorityAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(ServiceDeliveryPoint.ClassInstance)).Resolve("servicePriority")));
+        }
+        
         /// <summary>
         /// Raises the ServicePriorityChanging event
         /// </summary>
@@ -1102,6 +1179,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Metering
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveServiceDeliveryRemarkAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(ServiceDeliveryPoint.ClassInstance)).Resolve("serviceDeliveryRemark")));
         }
         
         /// <summary>
@@ -1130,6 +1212,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Metering
             }
         }
         
+        private static ITypedElement RetrieveCheckBillingAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(ServiceDeliveryPoint.ClassInstance)).Resolve("checkBilling")));
+        }
+        
         /// <summary>
         /// Raises the CheckBillingChanging event
         /// </summary>
@@ -1156,6 +1243,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Metering
             }
         }
         
+        private static ITypedElement RetrieveCtptReferenceAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(ServiceDeliveryPoint.ClassInstance)).Resolve("ctptReference")));
+        }
+        
         /// <summary>
         /// Raises the CtptReferenceChanging event
         /// </summary>
@@ -1180,6 +1272,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Metering
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveServiceLocationReference()
+        {
+            return ((ITypedElement)(((ModelElement)(ServiceDeliveryPoint.ClassInstance)).Resolve("ServiceLocation")));
         }
         
         /// <summary>
@@ -1218,6 +1315,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Metering
             this.ServiceLocation = null;
         }
         
+        private static ITypedElement RetrievePowerQualityPricingsReference()
+        {
+            return ((ITypedElement)(((ModelElement)(ServiceDeliveryPoint.ClassInstance)).Resolve("PowerQualityPricings")));
+        }
+        
         /// <summary>
         /// Forwards CollectionChanging notifications for the PowerQualityPricings property to the parent model element
         /// </summary>
@@ -1225,7 +1327,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Metering
         /// <param name="e">The original event data</param>
         private void PowerQualityPricingsCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("PowerQualityPricings", e);
+            this.OnCollectionChanging("PowerQualityPricings", e, _powerQualityPricingsReference);
         }
         
         /// <summary>
@@ -1235,7 +1337,12 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Metering
         /// <param name="e">The original event data</param>
         private void PowerQualityPricingsCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("PowerQualityPricings", e);
+            this.OnCollectionChanged("PowerQualityPricings", e, _powerQualityPricingsReference);
+        }
+        
+        private static ITypedElement RetrieveCustomerAgreementReference()
+        {
+            return ((ITypedElement)(((ModelElement)(ServiceDeliveryPoint.ClassInstance)).Resolve("CustomerAgreement")));
         }
         
         /// <summary>
@@ -1274,6 +1381,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Metering
             this.CustomerAgreement = null;
         }
         
+        private static ITypedElement RetrieveEnergyConsumerReference()
+        {
+            return ((ITypedElement)(((ModelElement)(ServiceDeliveryPoint.ClassInstance)).Resolve("EnergyConsumer")));
+        }
+        
         /// <summary>
         /// Raises the EnergyConsumerChanging event
         /// </summary>
@@ -1308,6 +1420,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Metering
         private void OnResetEnergyConsumer(object sender, System.EventArgs eventArgs)
         {
             this.EnergyConsumer = null;
+        }
+        
+        private static ITypedElement RetrieveServiceCategoryReference()
+        {
+            return ((ITypedElement)(((ModelElement)(ServiceDeliveryPoint.ClassInstance)).Resolve("ServiceCategory")));
         }
         
         /// <summary>
@@ -1346,6 +1463,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Metering
             this.ServiceCategory = null;
         }
         
+        private static ITypedElement RetrieveEndDeviceAssetsReference()
+        {
+            return ((ITypedElement)(((ModelElement)(ServiceDeliveryPoint.ClassInstance)).Resolve("EndDeviceAssets")));
+        }
+        
         /// <summary>
         /// Forwards CollectionChanging notifications for the EndDeviceAssets property to the parent model element
         /// </summary>
@@ -1353,7 +1475,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Metering
         /// <param name="e">The original event data</param>
         private void EndDeviceAssetsCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("EndDeviceAssets", e);
+            this.OnCollectionChanging("EndDeviceAssets", e, _endDeviceAssetsReference);
         }
         
         /// <summary>
@@ -1363,7 +1485,12 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Metering
         /// <param name="e">The original event data</param>
         private void EndDeviceAssetsCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("EndDeviceAssets", e);
+            this.OnCollectionChanged("EndDeviceAssets", e, _endDeviceAssetsReference);
+        }
+        
+        private static ITypedElement RetrieveServiceSupplierReference()
+        {
+            return ((ITypedElement)(((ModelElement)(ServiceDeliveryPoint.ClassInstance)).Resolve("ServiceSupplier")));
         }
         
         /// <summary>
@@ -1402,6 +1529,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Metering
             this.ServiceSupplier = null;
         }
         
+        private static ITypedElement RetrievePricingStructuresReference()
+        {
+            return ((ITypedElement)(((ModelElement)(ServiceDeliveryPoint.ClassInstance)).Resolve("PricingStructures")));
+        }
+        
         /// <summary>
         /// Forwards CollectionChanging notifications for the PricingStructures property to the parent model element
         /// </summary>
@@ -1409,7 +1541,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Metering
         /// <param name="e">The original event data</param>
         private void PricingStructuresCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("PricingStructures", e);
+            this.OnCollectionChanging("PricingStructures", e, _pricingStructuresReference);
         }
         
         /// <summary>
@@ -1419,7 +1551,12 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Metering
         /// <param name="e">The original event data</param>
         private void PricingStructuresCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("PricingStructures", e);
+            this.OnCollectionChanged("PricingStructures", e, _pricingStructuresReference);
+        }
+        
+        private static ITypedElement RetrieveTransformerReference()
+        {
+            return ((ITypedElement)(((ModelElement)(ServiceDeliveryPoint.ClassInstance)).Resolve("Transformer")));
         }
         
         /// <summary>
@@ -1458,6 +1595,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Metering
             this.Transformer = null;
         }
         
+        private static ITypedElement RetrieveMeterReadingsReference()
+        {
+            return ((ITypedElement)(((ModelElement)(ServiceDeliveryPoint.ClassInstance)).Resolve("MeterReadings")));
+        }
+        
         /// <summary>
         /// Forwards CollectionChanging notifications for the MeterReadings property to the parent model element
         /// </summary>
@@ -1465,7 +1607,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Metering
         /// <param name="e">The original event data</param>
         private void MeterReadingsCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("MeterReadings", e);
+            this.OnCollectionChanging("MeterReadings", e, _meterReadingsReference);
         }
         
         /// <summary>
@@ -1475,7 +1617,12 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Metering
         /// <param name="e">The original event data</param>
         private void MeterReadingsCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("MeterReadings", e);
+            this.OnCollectionChanged("MeterReadings", e, _meterReadingsReference);
+        }
+        
+        private static ITypedElement RetrieveSDPLocationsReference()
+        {
+            return ((ITypedElement)(((ModelElement)(ServiceDeliveryPoint.ClassInstance)).Resolve("SDPLocations")));
         }
         
         /// <summary>
@@ -1485,7 +1632,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Metering
         /// <param name="e">The original event data</param>
         private void SDPLocationsCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("SDPLocations", e);
+            this.OnCollectionChanging("SDPLocations", e, _sDPLocationsReference);
         }
         
         /// <summary>
@@ -1495,7 +1642,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Metering
         /// <param name="e">The original event data</param>
         private void SDPLocationsCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("SDPLocations", e);
+            this.OnCollectionChanged("SDPLocations", e, _sDPLocationsReference);
         }
         
         /// <summary>
@@ -2201,7 +2348,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Metering
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public PhaseCodeProxy(IServiceDeliveryPoint modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "phaseCode")
             {
             }
             
@@ -2219,24 +2366,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Metering
                     this.ModelElement.PhaseCode = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.PhaseCodeChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.PhaseCodeChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -2250,7 +2379,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Metering
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public RatedPowerProxy(IServiceDeliveryPoint modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "ratedPower")
             {
             }
             
@@ -2268,24 +2397,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Metering
                     this.ModelElement.RatedPower = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.RatedPowerChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.RatedPowerChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -2299,7 +2410,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Metering
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public GroundedProxy(IServiceDeliveryPoint modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "grounded")
             {
             }
             
@@ -2317,24 +2428,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Metering
                     this.ModelElement.Grounded = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.GroundedChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.GroundedChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -2348,7 +2441,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Metering
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public RatedCurrentProxy(IServiceDeliveryPoint modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "ratedCurrent")
             {
             }
             
@@ -2366,24 +2459,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Metering
                     this.ModelElement.RatedCurrent = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.RatedCurrentChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.RatedCurrentChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -2397,7 +2472,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Metering
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public NominalServiceVoltageProxy(IServiceDeliveryPoint modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "nominalServiceVoltage")
             {
             }
             
@@ -2415,24 +2490,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Metering
                     this.ModelElement.NominalServiceVoltage = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.NominalServiceVoltageChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.NominalServiceVoltageChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -2446,7 +2503,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Metering
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public EstimatedLoadProxy(IServiceDeliveryPoint modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "estimatedLoad")
             {
             }
             
@@ -2464,24 +2521,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Metering
                     this.ModelElement.EstimatedLoad = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.EstimatedLoadChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.EstimatedLoadChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -2495,7 +2534,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Metering
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public ServicePriorityProxy(IServiceDeliveryPoint modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "servicePriority")
             {
             }
             
@@ -2513,24 +2552,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Metering
                     this.ModelElement.ServicePriority = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ServicePriorityChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ServicePriorityChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -2544,7 +2565,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Metering
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public ServiceDeliveryRemarkProxy(IServiceDeliveryPoint modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "serviceDeliveryRemark")
             {
             }
             
@@ -2562,24 +2583,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Metering
                     this.ModelElement.ServiceDeliveryRemark = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ServiceDeliveryRemarkChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ServiceDeliveryRemarkChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -2593,7 +2596,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Metering
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public CheckBillingProxy(IServiceDeliveryPoint modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "checkBilling")
             {
             }
             
@@ -2611,24 +2614,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Metering
                     this.ModelElement.CheckBilling = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.CheckBillingChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.CheckBillingChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -2642,7 +2627,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Metering
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public CtptReferenceProxy(IServiceDeliveryPoint modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "ctptReference")
             {
             }
             
@@ -2660,24 +2645,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Metering
                     this.ModelElement.CtptReference = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.CtptReferenceChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.CtptReferenceChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -2691,7 +2658,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Metering
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public ServiceLocationProxy(IServiceDeliveryPoint modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "ServiceLocation")
             {
             }
             
@@ -2709,24 +2676,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Metering
                     this.ModelElement.ServiceLocation = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ServiceLocationChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ServiceLocationChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -2740,7 +2689,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Metering
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public CustomerAgreementProxy(IServiceDeliveryPoint modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "CustomerAgreement")
             {
             }
             
@@ -2758,24 +2707,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Metering
                     this.ModelElement.CustomerAgreement = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.CustomerAgreementChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.CustomerAgreementChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -2789,7 +2720,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Metering
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public EnergyConsumerProxy(IServiceDeliveryPoint modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "EnergyConsumer")
             {
             }
             
@@ -2807,24 +2738,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Metering
                     this.ModelElement.EnergyConsumer = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.EnergyConsumerChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.EnergyConsumerChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -2838,7 +2751,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Metering
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public ServiceCategoryProxy(IServiceDeliveryPoint modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "ServiceCategory")
             {
             }
             
@@ -2856,24 +2769,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Metering
                     this.ModelElement.ServiceCategory = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ServiceCategoryChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ServiceCategoryChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -2887,7 +2782,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Metering
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public ServiceSupplierProxy(IServiceDeliveryPoint modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "ServiceSupplier")
             {
             }
             
@@ -2905,24 +2800,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Metering
                     this.ModelElement.ServiceSupplier = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ServiceSupplierChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ServiceSupplierChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -2936,7 +2813,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Metering
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public TransformerProxy(IServiceDeliveryPoint modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "Transformer")
             {
             }
             
@@ -2953,24 +2830,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Metering
                 {
                     this.ModelElement.Transformer = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.TransformerChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.TransformerChanged -= handler;
             }
         }
     }

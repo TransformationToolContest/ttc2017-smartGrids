@@ -38,13 +38,17 @@ namespace TTC2017.SmartGrids.COSEM
     [XmlNamespaceAttribute("http://www.transformation-tool-contest.eu/2017/smartGrids/cosem")]
     [XmlNamespacePrefixAttribute("cosem")]
     [ModelRepresentationClassAttribute("http://www.transformation-tool-contest.eu/2017/smartGrids/cosem#//COSEM")]
-    public class COSEM : ModelElement, ICOSEM, IModelElement
+    public partial class COSEM : ModelElement, ICOSEM, IModelElement
     {
+        
+        private static Lazy<ITypedElement> _physicalDeviceReference = new Lazy<ITypedElement>(RetrievePhysicalDeviceReference);
         
         /// <summary>
         /// The backing field for the PhysicalDevice property
         /// </summary>
         private ObservableCompositionOrderedSet<IPhysicalDevice> _physicalDevice;
+        
+        private static Lazy<ITypedElement> _logicalDeviceReference = new Lazy<ITypedElement>(RetrieveLogicalDeviceReference);
         
         /// <summary>
         /// The backing field for the LogicalDevice property
@@ -130,6 +134,11 @@ namespace TTC2017.SmartGrids.COSEM
             }
         }
         
+        private static ITypedElement RetrievePhysicalDeviceReference()
+        {
+            return ((ITypedElement)(((ModelElement)(COSEM.ClassInstance)).Resolve("PhysicalDevice")));
+        }
+        
         /// <summary>
         /// Forwards CollectionChanging notifications for the PhysicalDevice property to the parent model element
         /// </summary>
@@ -137,7 +146,7 @@ namespace TTC2017.SmartGrids.COSEM
         /// <param name="e">The original event data</param>
         private void PhysicalDeviceCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("PhysicalDevice", e);
+            this.OnCollectionChanging("PhysicalDevice", e, _physicalDeviceReference);
         }
         
         /// <summary>
@@ -147,7 +156,12 @@ namespace TTC2017.SmartGrids.COSEM
         /// <param name="e">The original event data</param>
         private void PhysicalDeviceCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("PhysicalDevice", e);
+            this.OnCollectionChanged("PhysicalDevice", e, _physicalDeviceReference);
+        }
+        
+        private static ITypedElement RetrieveLogicalDeviceReference()
+        {
+            return ((ITypedElement)(((ModelElement)(COSEM.ClassInstance)).Resolve("LogicalDevice")));
         }
         
         /// <summary>
@@ -157,7 +171,7 @@ namespace TTC2017.SmartGrids.COSEM
         /// <param name="e">The original event data</param>
         private void LogicalDeviceCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("LogicalDevice", e);
+            this.OnCollectionChanging("LogicalDevice", e, _logicalDeviceReference);
         }
         
         /// <summary>
@@ -167,7 +181,7 @@ namespace TTC2017.SmartGrids.COSEM
         /// <param name="e">The original event data</param>
         private void LogicalDeviceCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("LogicalDevice", e);
+            this.OnCollectionChanged("LogicalDevice", e, _logicalDeviceReference);
         }
         
         /// <summary>
@@ -239,6 +253,24 @@ namespace TTC2017.SmartGrids.COSEM
                 return this._logicalDevice;
             }
             return base.GetCollectionForFeature(feature);
+        }
+        
+        /// <summary>
+        /// Gets the property name for the given container
+        /// </summary>
+        /// <returns>The name of the respective container reference</returns>
+        /// <param name="container">The container object</param>
+        protected override string GetCompositionName(object container)
+        {
+            if ((container == this._physicalDevice))
+            {
+                return "PhysicalDevice";
+            }
+            if ((container == this._logicalDevice))
+            {
+                return "LogicalDevice";
+            }
+            return base.GetCompositionName(container);
         }
         
         /// <summary>

@@ -50,7 +50,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfWork
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61970/Informative/InfWork/MiscCostI" +
         "tem")]
     [DebuggerDisplayAttribute("MiscCostItem {UUID}")]
-    public class MiscCostItem : IdentifiedObject, IMiscCostItem, IModelElement
+    public partial class MiscCostItem : IdentifiedObject, IMiscCostItem, IModelElement
     {
         
         /// <summary>
@@ -58,40 +58,58 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfWork
         /// </summary>
         private float _costPerUnit;
         
+        private static Lazy<ITypedElement> _costPerUnitAttribute = new Lazy<ITypedElement>(RetrieveCostPerUnitAttribute);
+        
         /// <summary>
         /// The backing field for the Quantity property
         /// </summary>
         private object _quantity;
+        
+        private static Lazy<ITypedElement> _quantityAttribute = new Lazy<ITypedElement>(RetrieveQuantityAttribute);
         
         /// <summary>
         /// The backing field for the Account property
         /// </summary>
         private string _account;
         
+        private static Lazy<ITypedElement> _accountAttribute = new Lazy<ITypedElement>(RetrieveAccountAttribute);
+        
         /// <summary>
         /// The backing field for the ExternalRefID property
         /// </summary>
         private string _externalRefID;
+        
+        private static Lazy<ITypedElement> _externalRefIDAttribute = new Lazy<ITypedElement>(RetrieveExternalRefIDAttribute);
         
         /// <summary>
         /// The backing field for the CostType property
         /// </summary>
         private string _costType;
         
+        private static Lazy<ITypedElement> _costTypeAttribute = new Lazy<ITypedElement>(RetrieveCostTypeAttribute);
+        
+        private static Lazy<ITypedElement> _statusReference = new Lazy<ITypedElement>(RetrieveStatusReference);
+        
         /// <summary>
         /// The backing field for the Status property
         /// </summary>
         private IStatus _status;
+        
+        private static Lazy<ITypedElement> _designLocationReference = new Lazy<ITypedElement>(RetrieveDesignLocationReference);
         
         /// <summary>
         /// The backing field for the DesignLocation property
         /// </summary>
         private IDesignLocation _designLocation;
         
+        private static Lazy<ITypedElement> _workTaskReference = new Lazy<ITypedElement>(RetrieveWorkTaskReference);
+        
         /// <summary>
         /// The backing field for the WorkTask property
         /// </summary>
         private IWorkTask _workTask;
+        
+        private static Lazy<ITypedElement> _workCostDetailReference = new Lazy<ITypedElement>(RetrieveWorkCostDetailReference);
         
         /// <summary>
         /// The backing field for the WorkCostDetail property
@@ -118,10 +136,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfWork
                     float old = this._costPerUnit;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnCostPerUnitChanging(e);
-                    this.OnPropertyChanging("CostPerUnit", e);
+                    this.OnPropertyChanging("CostPerUnit", e, _costPerUnitAttribute);
                     this._costPerUnit = value;
                     this.OnCostPerUnitChanged(e);
-                    this.OnPropertyChanged("CostPerUnit", e);
+                    this.OnPropertyChanged("CostPerUnit", e, _costPerUnitAttribute);
                 }
             }
         }
@@ -144,10 +162,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfWork
                     object old = this._quantity;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnQuantityChanging(e);
-                    this.OnPropertyChanging("Quantity", e);
+                    this.OnPropertyChanging("Quantity", e, _quantityAttribute);
                     this._quantity = value;
                     this.OnQuantityChanged(e);
-                    this.OnPropertyChanged("Quantity", e);
+                    this.OnPropertyChanged("Quantity", e, _quantityAttribute);
                 }
             }
         }
@@ -170,10 +188,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfWork
                     string old = this._account;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnAccountChanging(e);
-                    this.OnPropertyChanging("Account", e);
+                    this.OnPropertyChanging("Account", e, _accountAttribute);
                     this._account = value;
                     this.OnAccountChanged(e);
-                    this.OnPropertyChanged("Account", e);
+                    this.OnPropertyChanged("Account", e, _accountAttribute);
                 }
             }
         }
@@ -196,10 +214,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfWork
                     string old = this._externalRefID;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnExternalRefIDChanging(e);
-                    this.OnPropertyChanging("ExternalRefID", e);
+                    this.OnPropertyChanging("ExternalRefID", e, _externalRefIDAttribute);
                     this._externalRefID = value;
                     this.OnExternalRefIDChanged(e);
-                    this.OnPropertyChanged("ExternalRefID", e);
+                    this.OnPropertyChanged("ExternalRefID", e, _externalRefIDAttribute);
                 }
             }
         }
@@ -222,10 +240,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfWork
                     string old = this._costType;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnCostTypeChanging(e);
-                    this.OnPropertyChanging("CostType", e);
+                    this.OnPropertyChanging("CostType", e, _costTypeAttribute);
                     this._costType = value;
                     this.OnCostTypeChanged(e);
-                    this.OnPropertyChanged("CostType", e);
+                    this.OnPropertyChanged("CostType", e, _costTypeAttribute);
                 }
             }
         }
@@ -248,7 +266,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfWork
                     IStatus old = this._status;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnStatusChanging(e);
-                    this.OnPropertyChanging("Status", e);
+                    this.OnPropertyChanging("Status", e, _statusReference);
                     this._status = value;
                     if ((old != null))
                     {
@@ -259,7 +277,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfWork
                         value.Deleted += this.OnResetStatus;
                     }
                     this.OnStatusChanged(e);
-                    this.OnPropertyChanged("Status", e);
+                    this.OnPropertyChanged("Status", e, _statusReference);
                 }
             }
         }
@@ -282,7 +300,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfWork
                     IDesignLocation old = this._designLocation;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnDesignLocationChanging(e);
-                    this.OnPropertyChanging("DesignLocation", e);
+                    this.OnPropertyChanging("DesignLocation", e, _designLocationReference);
                     this._designLocation = value;
                     if ((old != null))
                     {
@@ -295,7 +313,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfWork
                         value.Deleted += this.OnResetDesignLocation;
                     }
                     this.OnDesignLocationChanged(e);
-                    this.OnPropertyChanged("DesignLocation", e);
+                    this.OnPropertyChanged("DesignLocation", e, _designLocationReference);
                 }
             }
         }
@@ -318,7 +336,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfWork
                     IWorkTask old = this._workTask;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnWorkTaskChanging(e);
-                    this.OnPropertyChanging("WorkTask", e);
+                    this.OnPropertyChanging("WorkTask", e, _workTaskReference);
                     this._workTask = value;
                     if ((old != null))
                     {
@@ -331,7 +349,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfWork
                         value.Deleted += this.OnResetWorkTask;
                     }
                     this.OnWorkTaskChanged(e);
-                    this.OnPropertyChanged("WorkTask", e);
+                    this.OnPropertyChanged("WorkTask", e, _workTaskReference);
                 }
             }
         }
@@ -354,7 +372,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfWork
                     IWorkCostDetail old = this._workCostDetail;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnWorkCostDetailChanging(e);
-                    this.OnPropertyChanging("WorkCostDetail", e);
+                    this.OnPropertyChanging("WorkCostDetail", e, _workCostDetailReference);
                     this._workCostDetail = value;
                     if ((old != null))
                     {
@@ -367,7 +385,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfWork
                         value.Deleted += this.OnResetWorkCostDetail;
                     }
                     this.OnWorkCostDetailChanged(e);
-                    this.OnPropertyChanged("WorkCostDetail", e);
+                    this.OnPropertyChanged("WorkCostDetail", e, _workCostDetailReference);
                 }
             }
         }
@@ -489,6 +507,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfWork
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> WorkCostDetailChanged;
         
+        private static ITypedElement RetrieveCostPerUnitAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(MiscCostItem.ClassInstance)).Resolve("costPerUnit")));
+        }
+        
         /// <summary>
         /// Raises the CostPerUnitChanging event
         /// </summary>
@@ -513,6 +536,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfWork
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveQuantityAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(MiscCostItem.ClassInstance)).Resolve("quantity")));
         }
         
         /// <summary>
@@ -541,6 +569,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfWork
             }
         }
         
+        private static ITypedElement RetrieveAccountAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(MiscCostItem.ClassInstance)).Resolve("account")));
+        }
+        
         /// <summary>
         /// Raises the AccountChanging event
         /// </summary>
@@ -565,6 +598,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfWork
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveExternalRefIDAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(MiscCostItem.ClassInstance)).Resolve("externalRefID")));
         }
         
         /// <summary>
@@ -593,6 +631,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfWork
             }
         }
         
+        private static ITypedElement RetrieveCostTypeAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(MiscCostItem.ClassInstance)).Resolve("costType")));
+        }
+        
         /// <summary>
         /// Raises the CostTypeChanging event
         /// </summary>
@@ -617,6 +660,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfWork
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveStatusReference()
+        {
+            return ((ITypedElement)(((ModelElement)(MiscCostItem.ClassInstance)).Resolve("status")));
         }
         
         /// <summary>
@@ -655,6 +703,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfWork
             this.Status = null;
         }
         
+        private static ITypedElement RetrieveDesignLocationReference()
+        {
+            return ((ITypedElement)(((ModelElement)(MiscCostItem.ClassInstance)).Resolve("DesignLocation")));
+        }
+        
         /// <summary>
         /// Raises the DesignLocationChanging event
         /// </summary>
@@ -691,6 +744,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfWork
             this.DesignLocation = null;
         }
         
+        private static ITypedElement RetrieveWorkTaskReference()
+        {
+            return ((ITypedElement)(((ModelElement)(MiscCostItem.ClassInstance)).Resolve("WorkTask")));
+        }
+        
         /// <summary>
         /// Raises the WorkTaskChanging event
         /// </summary>
@@ -725,6 +783,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfWork
         private void OnResetWorkTask(object sender, System.EventArgs eventArgs)
         {
             this.WorkTask = null;
+        }
+        
+        private static ITypedElement RetrieveWorkCostDetailReference()
+        {
+            return ((ITypedElement)(((ModelElement)(MiscCostItem.ClassInstance)).Resolve("WorkCostDetail")));
         }
         
         /// <summary>
@@ -1135,7 +1198,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfWork
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public CostPerUnitProxy(IMiscCostItem modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "costPerUnit")
             {
             }
             
@@ -1153,24 +1216,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfWork
                     this.ModelElement.CostPerUnit = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.CostPerUnitChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.CostPerUnitChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1184,7 +1229,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfWork
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public QuantityProxy(IMiscCostItem modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "quantity")
             {
             }
             
@@ -1202,24 +1247,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfWork
                     this.ModelElement.Quantity = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.QuantityChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.QuantityChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1233,7 +1260,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfWork
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public AccountProxy(IMiscCostItem modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "account")
             {
             }
             
@@ -1251,24 +1278,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfWork
                     this.ModelElement.Account = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.AccountChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.AccountChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1282,7 +1291,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfWork
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public ExternalRefIDProxy(IMiscCostItem modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "externalRefID")
             {
             }
             
@@ -1300,24 +1309,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfWork
                     this.ModelElement.ExternalRefID = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ExternalRefIDChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ExternalRefIDChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1331,7 +1322,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfWork
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public CostTypeProxy(IMiscCostItem modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "costType")
             {
             }
             
@@ -1349,24 +1340,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfWork
                     this.ModelElement.CostType = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.CostTypeChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.CostTypeChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1380,7 +1353,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfWork
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public StatusProxy(IMiscCostItem modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "status")
             {
             }
             
@@ -1398,24 +1371,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfWork
                     this.ModelElement.Status = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.StatusChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.StatusChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1429,7 +1384,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfWork
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public DesignLocationProxy(IMiscCostItem modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "DesignLocation")
             {
             }
             
@@ -1447,24 +1402,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfWork
                     this.ModelElement.DesignLocation = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.DesignLocationChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.DesignLocationChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1478,7 +1415,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfWork
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public WorkTaskProxy(IMiscCostItem modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "WorkTask")
             {
             }
             
@@ -1496,24 +1433,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfWork
                     this.ModelElement.WorkTask = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.WorkTaskChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.WorkTaskChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1527,7 +1446,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfWork
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public WorkCostDetailProxy(IMiscCostItem modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "WorkCostDetail")
             {
             }
             
@@ -1544,24 +1463,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfWork
                 {
                     this.ModelElement.WorkCostDetail = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.WorkCostDetailChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.WorkCostDetailChanged -= handler;
             }
         }
     }

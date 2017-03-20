@@ -40,7 +40,7 @@ namespace TTC2017.SmartGrids.COSEM.InterfaceClasses
     [XmlNamespacePrefixAttribute("inter")]
     [ModelRepresentationClassAttribute("http://www.transformation-tool-contest.eu/2017/smartGrids/cosem#//InterfaceClasse" +
         "s/Wireless_Mode_Q_Channel")]
-    public class Wireless_Mode_Q_Channel : Base, IWireless_Mode_Q_Channel, IModelElement
+    public partial class Wireless_Mode_Q_Channel : Base, IWireless_Mode_Q_Channel, IModelElement
     {
         
         private static IClass _classInstance;

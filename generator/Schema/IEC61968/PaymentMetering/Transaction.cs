@@ -46,7 +46,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.PaymentMetering
     [XmlNamespacePrefixAttribute("cimPaymentMetering")]
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61968/PaymentMetering/Transaction")]
     [DebuggerDisplayAttribute("Transaction {UUID}")]
-    public class Transaction : IdentifiedObject, ITransaction, IModelElement
+    public partial class Transaction : IdentifiedObject, ITransaction, IModelElement
     {
         
         /// <summary>
@@ -54,75 +54,107 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.PaymentMetering
         /// </summary>
         private Nullable<TransactionKind> _kind;
         
+        private static Lazy<ITypedElement> _kindAttribute = new Lazy<ITypedElement>(RetrieveKindAttribute);
+        
         /// <summary>
         /// The backing field for the ServiceUnitsError property
         /// </summary>
         private float _serviceUnitsError;
+        
+        private static Lazy<ITypedElement> _serviceUnitsErrorAttribute = new Lazy<ITypedElement>(RetrieveServiceUnitsErrorAttribute);
         
         /// <summary>
         /// The backing field for the ReversedId property
         /// </summary>
         private string _reversedId;
         
+        private static Lazy<ITypedElement> _reversedIdAttribute = new Lazy<ITypedElement>(RetrieveReversedIdAttribute);
+        
         /// <summary>
         /// The backing field for the ReceiverReference property
         /// </summary>
         private string _receiverReference;
+        
+        private static Lazy<ITypedElement> _receiverReferenceAttribute = new Lazy<ITypedElement>(RetrieveReceiverReferenceAttribute);
         
         /// <summary>
         /// The backing field for the DonorReference property
         /// </summary>
         private string _donorReference;
         
+        private static Lazy<ITypedElement> _donorReferenceAttribute = new Lazy<ITypedElement>(RetrieveDonorReferenceAttribute);
+        
         /// <summary>
         /// The backing field for the ServiceUnitsEnergy property
         /// </summary>
         private float _serviceUnitsEnergy;
+        
+        private static Lazy<ITypedElement> _serviceUnitsEnergyAttribute = new Lazy<ITypedElement>(RetrieveServiceUnitsEnergyAttribute);
         
         /// <summary>
         /// The backing field for the DiverseReference property
         /// </summary>
         private string _diverseReference;
         
+        private static Lazy<ITypedElement> _diverseReferenceAttribute = new Lazy<ITypedElement>(RetrieveDiverseReferenceAttribute);
+        
+        private static Lazy<ITypedElement> _userAttributesReference = new Lazy<ITypedElement>(RetrieveUserAttributesReference);
+        
         /// <summary>
         /// The backing field for the UserAttributes property
         /// </summary>
         private TransactionUserAttributesCollection _userAttributes;
+        
+        private static Lazy<ITypedElement> _meterAssetReference = new Lazy<ITypedElement>(RetrieveMeterAssetReference);
         
         /// <summary>
         /// The backing field for the MeterAsset property
         /// </summary>
         private IMeterAsset _meterAsset;
         
+        private static Lazy<ITypedElement> _lineReference = new Lazy<ITypedElement>(RetrieveLineReference);
+        
         /// <summary>
         /// The backing field for the Line property
         /// </summary>
         private ILineDetail _line;
+        
+        private static Lazy<ITypedElement> _vendorShiftReference = new Lazy<ITypedElement>(RetrieveVendorShiftReference);
         
         /// <summary>
         /// The backing field for the VendorShift property
         /// </summary>
         private IVendorShift _vendorShift;
         
+        private static Lazy<ITypedElement> _cashierShiftReference = new Lazy<ITypedElement>(RetrieveCashierShiftReference);
+        
         /// <summary>
         /// The backing field for the CashierShift property
         /// </summary>
         private ICashierShift _cashierShift;
+        
+        private static Lazy<ITypedElement> _auxiliaryAccountReference = new Lazy<ITypedElement>(RetrieveAuxiliaryAccountReference);
         
         /// <summary>
         /// The backing field for the AuxiliaryAccount property
         /// </summary>
         private IAuxiliaryAccount _auxiliaryAccount;
         
+        private static Lazy<ITypedElement> _pricingStructureReference = new Lazy<ITypedElement>(RetrievePricingStructureReference);
+        
         /// <summary>
         /// The backing field for the PricingStructure property
         /// </summary>
         private IPricingStructure _pricingStructure;
         
+        private static Lazy<ITypedElement> _customerAccountReference = new Lazy<ITypedElement>(RetrieveCustomerAccountReference);
+        
         /// <summary>
         /// The backing field for the CustomerAccount property
         /// </summary>
         private ICustomerAccount _customerAccount;
+        
+        private static Lazy<ITypedElement> _receiptReference = new Lazy<ITypedElement>(RetrieveReceiptReference);
         
         /// <summary>
         /// The backing field for the Receipt property
@@ -156,10 +188,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.PaymentMetering
                     Nullable<TransactionKind> old = this._kind;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnKindChanging(e);
-                    this.OnPropertyChanging("Kind", e);
+                    this.OnPropertyChanging("Kind", e, _kindAttribute);
                     this._kind = value;
                     this.OnKindChanged(e);
-                    this.OnPropertyChanged("Kind", e);
+                    this.OnPropertyChanged("Kind", e, _kindAttribute);
                 }
             }
         }
@@ -182,10 +214,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.PaymentMetering
                     float old = this._serviceUnitsError;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnServiceUnitsErrorChanging(e);
-                    this.OnPropertyChanging("ServiceUnitsError", e);
+                    this.OnPropertyChanging("ServiceUnitsError", e, _serviceUnitsErrorAttribute);
                     this._serviceUnitsError = value;
                     this.OnServiceUnitsErrorChanged(e);
-                    this.OnPropertyChanged("ServiceUnitsError", e);
+                    this.OnPropertyChanged("ServiceUnitsError", e, _serviceUnitsErrorAttribute);
                 }
             }
         }
@@ -208,10 +240,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.PaymentMetering
                     string old = this._reversedId;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnReversedIdChanging(e);
-                    this.OnPropertyChanging("ReversedId", e);
+                    this.OnPropertyChanging("ReversedId", e, _reversedIdAttribute);
                     this._reversedId = value;
                     this.OnReversedIdChanged(e);
-                    this.OnPropertyChanged("ReversedId", e);
+                    this.OnPropertyChanged("ReversedId", e, _reversedIdAttribute);
                 }
             }
         }
@@ -234,10 +266,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.PaymentMetering
                     string old = this._receiverReference;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnReceiverReferenceChanging(e);
-                    this.OnPropertyChanging("ReceiverReference", e);
+                    this.OnPropertyChanging("ReceiverReference", e, _receiverReferenceAttribute);
                     this._receiverReference = value;
                     this.OnReceiverReferenceChanged(e);
-                    this.OnPropertyChanged("ReceiverReference", e);
+                    this.OnPropertyChanged("ReceiverReference", e, _receiverReferenceAttribute);
                 }
             }
         }
@@ -260,10 +292,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.PaymentMetering
                     string old = this._donorReference;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnDonorReferenceChanging(e);
-                    this.OnPropertyChanging("DonorReference", e);
+                    this.OnPropertyChanging("DonorReference", e, _donorReferenceAttribute);
                     this._donorReference = value;
                     this.OnDonorReferenceChanged(e);
-                    this.OnPropertyChanged("DonorReference", e);
+                    this.OnPropertyChanged("DonorReference", e, _donorReferenceAttribute);
                 }
             }
         }
@@ -286,10 +318,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.PaymentMetering
                     float old = this._serviceUnitsEnergy;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnServiceUnitsEnergyChanging(e);
-                    this.OnPropertyChanging("ServiceUnitsEnergy", e);
+                    this.OnPropertyChanging("ServiceUnitsEnergy", e, _serviceUnitsEnergyAttribute);
                     this._serviceUnitsEnergy = value;
                     this.OnServiceUnitsEnergyChanged(e);
-                    this.OnPropertyChanged("ServiceUnitsEnergy", e);
+                    this.OnPropertyChanged("ServiceUnitsEnergy", e, _serviceUnitsEnergyAttribute);
                 }
             }
         }
@@ -312,10 +344,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.PaymentMetering
                     string old = this._diverseReference;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnDiverseReferenceChanging(e);
-                    this.OnPropertyChanging("DiverseReference", e);
+                    this.OnPropertyChanging("DiverseReference", e, _diverseReferenceAttribute);
                     this._diverseReference = value;
                     this.OnDiverseReferenceChanged(e);
-                    this.OnPropertyChanged("DiverseReference", e);
+                    this.OnPropertyChanged("DiverseReference", e, _diverseReferenceAttribute);
                 }
             }
         }
@@ -353,7 +385,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.PaymentMetering
                     IMeterAsset old = this._meterAsset;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnMeterAssetChanging(e);
-                    this.OnPropertyChanging("MeterAsset", e);
+                    this.OnPropertyChanging("MeterAsset", e, _meterAssetReference);
                     this._meterAsset = value;
                     if ((old != null))
                     {
@@ -366,7 +398,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.PaymentMetering
                         value.Deleted += this.OnResetMeterAsset;
                     }
                     this.OnMeterAssetChanged(e);
-                    this.OnPropertyChanged("MeterAsset", e);
+                    this.OnPropertyChanged("MeterAsset", e, _meterAssetReference);
                 }
             }
         }
@@ -389,7 +421,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.PaymentMetering
                     ILineDetail old = this._line;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnLineChanging(e);
-                    this.OnPropertyChanging("Line", e);
+                    this.OnPropertyChanging("Line", e, _lineReference);
                     this._line = value;
                     if ((old != null))
                     {
@@ -400,7 +432,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.PaymentMetering
                         value.Deleted += this.OnResetLine;
                     }
                     this.OnLineChanged(e);
-                    this.OnPropertyChanged("Line", e);
+                    this.OnPropertyChanged("Line", e, _lineReference);
                 }
             }
         }
@@ -423,7 +455,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.PaymentMetering
                     IVendorShift old = this._vendorShift;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnVendorShiftChanging(e);
-                    this.OnPropertyChanging("VendorShift", e);
+                    this.OnPropertyChanging("VendorShift", e, _vendorShiftReference);
                     this._vendorShift = value;
                     if ((old != null))
                     {
@@ -436,7 +468,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.PaymentMetering
                         value.Deleted += this.OnResetVendorShift;
                     }
                     this.OnVendorShiftChanged(e);
-                    this.OnPropertyChanged("VendorShift", e);
+                    this.OnPropertyChanged("VendorShift", e, _vendorShiftReference);
                 }
             }
         }
@@ -459,7 +491,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.PaymentMetering
                     ICashierShift old = this._cashierShift;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnCashierShiftChanging(e);
-                    this.OnPropertyChanging("CashierShift", e);
+                    this.OnPropertyChanging("CashierShift", e, _cashierShiftReference);
                     this._cashierShift = value;
                     if ((old != null))
                     {
@@ -472,7 +504,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.PaymentMetering
                         value.Deleted += this.OnResetCashierShift;
                     }
                     this.OnCashierShiftChanged(e);
-                    this.OnPropertyChanged("CashierShift", e);
+                    this.OnPropertyChanged("CashierShift", e, _cashierShiftReference);
                 }
             }
         }
@@ -495,7 +527,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.PaymentMetering
                     IAuxiliaryAccount old = this._auxiliaryAccount;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnAuxiliaryAccountChanging(e);
-                    this.OnPropertyChanging("AuxiliaryAccount", e);
+                    this.OnPropertyChanging("AuxiliaryAccount", e, _auxiliaryAccountReference);
                     this._auxiliaryAccount = value;
                     if ((old != null))
                     {
@@ -508,7 +540,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.PaymentMetering
                         value.Deleted += this.OnResetAuxiliaryAccount;
                     }
                     this.OnAuxiliaryAccountChanged(e);
-                    this.OnPropertyChanged("AuxiliaryAccount", e);
+                    this.OnPropertyChanged("AuxiliaryAccount", e, _auxiliaryAccountReference);
                 }
             }
         }
@@ -531,7 +563,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.PaymentMetering
                     IPricingStructure old = this._pricingStructure;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnPricingStructureChanging(e);
-                    this.OnPropertyChanging("PricingStructure", e);
+                    this.OnPropertyChanging("PricingStructure", e, _pricingStructureReference);
                     this._pricingStructure = value;
                     if ((old != null))
                     {
@@ -544,7 +576,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.PaymentMetering
                         value.Deleted += this.OnResetPricingStructure;
                     }
                     this.OnPricingStructureChanged(e);
-                    this.OnPropertyChanged("PricingStructure", e);
+                    this.OnPropertyChanged("PricingStructure", e, _pricingStructureReference);
                 }
             }
         }
@@ -567,7 +599,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.PaymentMetering
                     ICustomerAccount old = this._customerAccount;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnCustomerAccountChanging(e);
-                    this.OnPropertyChanging("CustomerAccount", e);
+                    this.OnPropertyChanging("CustomerAccount", e, _customerAccountReference);
                     this._customerAccount = value;
                     if ((old != null))
                     {
@@ -580,7 +612,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.PaymentMetering
                         value.Deleted += this.OnResetCustomerAccount;
                     }
                     this.OnCustomerAccountChanged(e);
-                    this.OnPropertyChanged("CustomerAccount", e);
+                    this.OnPropertyChanged("CustomerAccount", e, _customerAccountReference);
                 }
             }
         }
@@ -603,7 +635,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.PaymentMetering
                     IReceipt old = this._receipt;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnReceiptChanging(e);
-                    this.OnPropertyChanging("Receipt", e);
+                    this.OnPropertyChanging("Receipt", e, _receiptReference);
                     this._receipt = value;
                     if ((old != null))
                     {
@@ -616,7 +648,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.PaymentMetering
                         value.Deleted += this.OnResetReceipt;
                     }
                     this.OnReceiptChanged(e);
-                    this.OnPropertyChanged("Receipt", e);
+                    this.OnPropertyChanged("Receipt", e, _receiptReference);
                 }
             }
         }
@@ -797,6 +829,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.PaymentMetering
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> ReceiptChanged;
         
+        private static ITypedElement RetrieveKindAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(Transaction.ClassInstance)).Resolve("kind")));
+        }
+        
         /// <summary>
         /// Raises the KindChanging event
         /// </summary>
@@ -821,6 +858,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.PaymentMetering
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveServiceUnitsErrorAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(Transaction.ClassInstance)).Resolve("serviceUnitsError")));
         }
         
         /// <summary>
@@ -849,6 +891,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.PaymentMetering
             }
         }
         
+        private static ITypedElement RetrieveReversedIdAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(Transaction.ClassInstance)).Resolve("reversedId")));
+        }
+        
         /// <summary>
         /// Raises the ReversedIdChanging event
         /// </summary>
@@ -873,6 +920,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.PaymentMetering
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveReceiverReferenceAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(Transaction.ClassInstance)).Resolve("receiverReference")));
         }
         
         /// <summary>
@@ -901,6 +953,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.PaymentMetering
             }
         }
         
+        private static ITypedElement RetrieveDonorReferenceAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(Transaction.ClassInstance)).Resolve("donorReference")));
+        }
+        
         /// <summary>
         /// Raises the DonorReferenceChanging event
         /// </summary>
@@ -925,6 +982,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.PaymentMetering
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveServiceUnitsEnergyAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(Transaction.ClassInstance)).Resolve("serviceUnitsEnergy")));
         }
         
         /// <summary>
@@ -953,6 +1015,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.PaymentMetering
             }
         }
         
+        private static ITypedElement RetrieveDiverseReferenceAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(Transaction.ClassInstance)).Resolve("diverseReference")));
+        }
+        
         /// <summary>
         /// Raises the DiverseReferenceChanging event
         /// </summary>
@@ -979,6 +1046,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.PaymentMetering
             }
         }
         
+        private static ITypedElement RetrieveUserAttributesReference()
+        {
+            return ((ITypedElement)(((ModelElement)(Transaction.ClassInstance)).Resolve("UserAttributes")));
+        }
+        
         /// <summary>
         /// Forwards CollectionChanging notifications for the UserAttributes property to the parent model element
         /// </summary>
@@ -986,7 +1058,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.PaymentMetering
         /// <param name="e">The original event data</param>
         private void UserAttributesCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("UserAttributes", e);
+            this.OnCollectionChanging("UserAttributes", e, _userAttributesReference);
         }
         
         /// <summary>
@@ -996,7 +1068,12 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.PaymentMetering
         /// <param name="e">The original event data</param>
         private void UserAttributesCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("UserAttributes", e);
+            this.OnCollectionChanged("UserAttributes", e, _userAttributesReference);
+        }
+        
+        private static ITypedElement RetrieveMeterAssetReference()
+        {
+            return ((ITypedElement)(((ModelElement)(Transaction.ClassInstance)).Resolve("MeterAsset")));
         }
         
         /// <summary>
@@ -1035,6 +1112,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.PaymentMetering
             this.MeterAsset = null;
         }
         
+        private static ITypedElement RetrieveLineReference()
+        {
+            return ((ITypedElement)(((ModelElement)(Transaction.ClassInstance)).Resolve("line")));
+        }
+        
         /// <summary>
         /// Raises the LineChanging event
         /// </summary>
@@ -1069,6 +1151,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.PaymentMetering
         private void OnResetLine(object sender, System.EventArgs eventArgs)
         {
             this.Line = null;
+        }
+        
+        private static ITypedElement RetrieveVendorShiftReference()
+        {
+            return ((ITypedElement)(((ModelElement)(Transaction.ClassInstance)).Resolve("VendorShift")));
         }
         
         /// <summary>
@@ -1107,6 +1194,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.PaymentMetering
             this.VendorShift = null;
         }
         
+        private static ITypedElement RetrieveCashierShiftReference()
+        {
+            return ((ITypedElement)(((ModelElement)(Transaction.ClassInstance)).Resolve("CashierShift")));
+        }
+        
         /// <summary>
         /// Raises the CashierShiftChanging event
         /// </summary>
@@ -1141,6 +1233,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.PaymentMetering
         private void OnResetCashierShift(object sender, System.EventArgs eventArgs)
         {
             this.CashierShift = null;
+        }
+        
+        private static ITypedElement RetrieveAuxiliaryAccountReference()
+        {
+            return ((ITypedElement)(((ModelElement)(Transaction.ClassInstance)).Resolve("AuxiliaryAccount")));
         }
         
         /// <summary>
@@ -1179,6 +1276,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.PaymentMetering
             this.AuxiliaryAccount = null;
         }
         
+        private static ITypedElement RetrievePricingStructureReference()
+        {
+            return ((ITypedElement)(((ModelElement)(Transaction.ClassInstance)).Resolve("PricingStructure")));
+        }
+        
         /// <summary>
         /// Raises the PricingStructureChanging event
         /// </summary>
@@ -1215,6 +1317,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.PaymentMetering
             this.PricingStructure = null;
         }
         
+        private static ITypedElement RetrieveCustomerAccountReference()
+        {
+            return ((ITypedElement)(((ModelElement)(Transaction.ClassInstance)).Resolve("CustomerAccount")));
+        }
+        
         /// <summary>
         /// Raises the CustomerAccountChanging event
         /// </summary>
@@ -1249,6 +1356,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.PaymentMetering
         private void OnResetCustomerAccount(object sender, System.EventArgs eventArgs)
         {
             this.CustomerAccount = null;
+        }
+        
+        private static ITypedElement RetrieveReceiptReference()
+        {
+            return ((ITypedElement)(((ModelElement)(Transaction.ClassInstance)).Resolve("Receipt")));
         }
         
         /// <summary>
@@ -1896,7 +2008,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.PaymentMetering
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public KindProxy(ITransaction modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "kind")
             {
             }
             
@@ -1914,24 +2026,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.PaymentMetering
                     this.ModelElement.Kind = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.KindChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.KindChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1945,7 +2039,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.PaymentMetering
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public ServiceUnitsErrorProxy(ITransaction modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "serviceUnitsError")
             {
             }
             
@@ -1963,24 +2057,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.PaymentMetering
                     this.ModelElement.ServiceUnitsError = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ServiceUnitsErrorChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ServiceUnitsErrorChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1994,7 +2070,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.PaymentMetering
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public ReversedIdProxy(ITransaction modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "reversedId")
             {
             }
             
@@ -2012,24 +2088,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.PaymentMetering
                     this.ModelElement.ReversedId = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ReversedIdChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ReversedIdChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -2043,7 +2101,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.PaymentMetering
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public ReceiverReferenceProxy(ITransaction modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "receiverReference")
             {
             }
             
@@ -2061,24 +2119,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.PaymentMetering
                     this.ModelElement.ReceiverReference = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ReceiverReferenceChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ReceiverReferenceChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -2092,7 +2132,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.PaymentMetering
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public DonorReferenceProxy(ITransaction modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "donorReference")
             {
             }
             
@@ -2110,24 +2150,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.PaymentMetering
                     this.ModelElement.DonorReference = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.DonorReferenceChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.DonorReferenceChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -2141,7 +2163,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.PaymentMetering
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public ServiceUnitsEnergyProxy(ITransaction modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "serviceUnitsEnergy")
             {
             }
             
@@ -2159,24 +2181,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.PaymentMetering
                     this.ModelElement.ServiceUnitsEnergy = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ServiceUnitsEnergyChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ServiceUnitsEnergyChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -2190,7 +2194,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.PaymentMetering
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public DiverseReferenceProxy(ITransaction modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "diverseReference")
             {
             }
             
@@ -2208,24 +2212,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.PaymentMetering
                     this.ModelElement.DiverseReference = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.DiverseReferenceChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.DiverseReferenceChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -2239,7 +2225,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.PaymentMetering
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public MeterAssetProxy(ITransaction modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "MeterAsset")
             {
             }
             
@@ -2257,24 +2243,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.PaymentMetering
                     this.ModelElement.MeterAsset = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.MeterAssetChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.MeterAssetChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -2288,7 +2256,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.PaymentMetering
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public LineProxy(ITransaction modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "line")
             {
             }
             
@@ -2306,24 +2274,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.PaymentMetering
                     this.ModelElement.Line = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.LineChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.LineChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -2337,7 +2287,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.PaymentMetering
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public VendorShiftProxy(ITransaction modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "VendorShift")
             {
             }
             
@@ -2355,24 +2305,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.PaymentMetering
                     this.ModelElement.VendorShift = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.VendorShiftChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.VendorShiftChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -2386,7 +2318,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.PaymentMetering
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public CashierShiftProxy(ITransaction modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "CashierShift")
             {
             }
             
@@ -2404,24 +2336,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.PaymentMetering
                     this.ModelElement.CashierShift = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.CashierShiftChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.CashierShiftChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -2435,7 +2349,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.PaymentMetering
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public AuxiliaryAccountProxy(ITransaction modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "AuxiliaryAccount")
             {
             }
             
@@ -2453,24 +2367,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.PaymentMetering
                     this.ModelElement.AuxiliaryAccount = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.AuxiliaryAccountChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.AuxiliaryAccountChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -2484,7 +2380,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.PaymentMetering
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public PricingStructureProxy(ITransaction modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "PricingStructure")
             {
             }
             
@@ -2502,24 +2398,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.PaymentMetering
                     this.ModelElement.PricingStructure = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.PricingStructureChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.PricingStructureChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -2533,7 +2411,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.PaymentMetering
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public CustomerAccountProxy(ITransaction modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "CustomerAccount")
             {
             }
             
@@ -2551,24 +2429,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.PaymentMetering
                     this.ModelElement.CustomerAccount = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.CustomerAccountChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.CustomerAccountChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -2582,7 +2442,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.PaymentMetering
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public ReceiptProxy(ITransaction modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "Receipt")
             {
             }
             
@@ -2599,24 +2459,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.PaymentMetering
                 {
                     this.ModelElement.Receipt = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ReceiptChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ReceiptChanged -= handler;
             }
         }
     }

@@ -53,13 +53,17 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61970/Informative/InfAssets/WorkEqu" +
         "ipmentInfo")]
     [DebuggerDisplayAttribute("WorkEquipmentInfo {UUID}")]
-    public class WorkEquipmentInfo : AssetInfo, IWorkEquipmentInfo, IModelElement
+    public partial class WorkEquipmentInfo : AssetInfo, IWorkEquipmentInfo, IModelElement
     {
+        
+        private static Lazy<ITypedElement> _crewReference = new Lazy<ITypedElement>(RetrieveCrewReference);
         
         /// <summary>
         /// The backing field for the Crew property
         /// </summary>
         private ICrew _crew;
+        
+        private static Lazy<ITypedElement> _usagesReference = new Lazy<ITypedElement>(RetrieveUsagesReference);
         
         /// <summary>
         /// The backing field for the Usages property
@@ -93,7 +97,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
                     ICrew old = this._crew;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnCrewChanging(e);
-                    this.OnPropertyChanging("Crew", e);
+                    this.OnPropertyChanging("Crew", e, _crewReference);
                     this._crew = value;
                     if ((old != null))
                     {
@@ -106,7 +110,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
                         value.Deleted += this.OnResetCrew;
                     }
                     this.OnCrewChanged(e);
-                    this.OnPropertyChanged("Crew", e);
+                    this.OnPropertyChanged("Crew", e, _crewReference);
                 }
             }
         }
@@ -163,6 +167,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> CrewChanged;
         
+        private static ITypedElement RetrieveCrewReference()
+        {
+            return ((ITypedElement)(((ModelElement)(WorkEquipmentInfo.ClassInstance)).Resolve("Crew")));
+        }
+        
         /// <summary>
         /// Raises the CrewChanging event
         /// </summary>
@@ -199,6 +208,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
             this.Crew = null;
         }
         
+        private static ITypedElement RetrieveUsagesReference()
+        {
+            return ((ITypedElement)(((ModelElement)(WorkEquipmentInfo.ClassInstance)).Resolve("Usages")));
+        }
+        
         /// <summary>
         /// Forwards CollectionChanging notifications for the Usages property to the parent model element
         /// </summary>
@@ -206,7 +220,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
         /// <param name="e">The original event data</param>
         private void UsagesCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("Usages", e);
+            this.OnCollectionChanging("Usages", e, _usagesReference);
         }
         
         /// <summary>
@@ -216,7 +230,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
         /// <param name="e">The original event data</param>
         private void UsagesCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("Usages", e);
+            this.OnCollectionChanged("Usages", e, _usagesReference);
         }
         
         /// <summary>
@@ -454,7 +468,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public CrewProxy(IWorkEquipmentInfo modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "Crew")
             {
             }
             
@@ -471,24 +485,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
                 {
                     this.ModelElement.Crew = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.CrewChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.CrewChanged -= handler;
             }
         }
     }

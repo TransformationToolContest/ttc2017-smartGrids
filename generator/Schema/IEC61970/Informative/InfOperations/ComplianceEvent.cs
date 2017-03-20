@@ -50,7 +50,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfOperations
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61970/Informative/InfOperations/Com" +
         "plianceEvent")]
     [DebuggerDisplayAttribute("ComplianceEvent {UUID}")]
-    public class ComplianceEvent : ActivityRecord, IComplianceEvent, IModelElement
+    public partial class ComplianceEvent : ActivityRecord, IComplianceEvent, IModelElement
     {
         
         /// <summary>
@@ -58,10 +58,14 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfOperations
         /// </summary>
         private string _complianceType;
         
+        private static Lazy<ITypedElement> _complianceTypeAttribute = new Lazy<ITypedElement>(RetrieveComplianceTypeAttribute);
+        
         /// <summary>
         /// The backing field for the Deadline property
         /// </summary>
         private DateTime _deadline;
+        
+        private static Lazy<ITypedElement> _deadlineAttribute = new Lazy<ITypedElement>(RetrieveDeadlineAttribute);
         
         private static IClass _classInstance;
         
@@ -83,10 +87,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfOperations
                     string old = this._complianceType;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnComplianceTypeChanging(e);
-                    this.OnPropertyChanging("ComplianceType", e);
+                    this.OnPropertyChanging("ComplianceType", e, _complianceTypeAttribute);
                     this._complianceType = value;
                     this.OnComplianceTypeChanged(e);
-                    this.OnPropertyChanged("ComplianceType", e);
+                    this.OnPropertyChanged("ComplianceType", e, _complianceTypeAttribute);
                 }
             }
         }
@@ -109,10 +113,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfOperations
                     DateTime old = this._deadline;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnDeadlineChanging(e);
-                    this.OnPropertyChanging("Deadline", e);
+                    this.OnPropertyChanging("Deadline", e, _deadlineAttribute);
                     this._deadline = value;
                     this.OnDeadlineChanged(e);
-                    this.OnPropertyChanged("Deadline", e);
+                    this.OnPropertyChanged("Deadline", e, _deadlineAttribute);
                 }
             }
         }
@@ -153,6 +157,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfOperations
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> DeadlineChanged;
         
+        private static ITypedElement RetrieveComplianceTypeAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(ComplianceEvent.ClassInstance)).Resolve("complianceType")));
+        }
+        
         /// <summary>
         /// Raises the ComplianceTypeChanging event
         /// </summary>
@@ -177,6 +186,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfOperations
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveDeadlineAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(ComplianceEvent.ClassInstance)).Resolve("deadline")));
         }
         
         /// <summary>
@@ -268,7 +282,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfOperations
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public ComplianceTypeProxy(IComplianceEvent modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "complianceType")
             {
             }
             
@@ -286,24 +300,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfOperations
                     this.ModelElement.ComplianceType = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ComplianceTypeChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ComplianceTypeChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -317,7 +313,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfOperations
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public DeadlineProxy(IComplianceEvent modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "deadline")
             {
             }
             
@@ -334,24 +330,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfOperations
                 {
                     this.ModelElement.Deadline = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.DeadlineChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.DeadlineChanged -= handler;
             }
         }
     }

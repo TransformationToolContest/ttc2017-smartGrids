@@ -47,38 +47,52 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.Financial
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61970/Informative/Financial/Transmi" +
         "ssionProvider")]
     [DebuggerDisplayAttribute("TransmissionProvider {UUID}")]
-    public class TransmissionProvider : ErpOrganisation, ITransmissionProvider, IModelElement
+    public partial class TransmissionProvider : ErpOrganisation, ITransmissionProvider, IModelElement
     {
+        
+        private static Lazy<ITypedElement> _servicePointReference = new Lazy<ITypedElement>(RetrieveServicePointReference);
         
         /// <summary>
         /// The backing field for the ServicePoint property
         /// </summary>
         private TransmissionProviderServicePointCollection _servicePoint;
         
+        private static Lazy<ITypedElement> _ancillaryServicesReference = new Lazy<ITypedElement>(RetrieveAncillaryServicesReference);
+        
         /// <summary>
         /// The backing field for the AncillaryServices property
         /// </summary>
         private TransmissionProviderAncillaryServicesCollection _ancillaryServices;
+        
+        private static Lazy<ITypedElement> _forReference = new Lazy<ITypedElement>(RetrieveForReference);
         
         /// <summary>
         /// The backing field for the For property
         /// </summary>
         private TransmissionProviderForCollection _for;
         
+        private static Lazy<ITypedElement> _offeredByReference = new Lazy<ITypedElement>(RetrieveOfferedByReference);
+        
         /// <summary>
         /// The backing field for the OfferedBy property
         /// </summary>
         private TransmissionProviderOfferedByCollection _offeredBy;
+        
+        private static Lazy<ITypedElement> _flowgateReference = new Lazy<ITypedElement>(RetrieveFlowgateReference);
         
         /// <summary>
         /// The backing field for the Flowgate property
         /// </summary>
         private TransmissionProviderFlowgateCollection _flowgate;
         
+        private static Lazy<ITypedElement> _soldByReference = new Lazy<ITypedElement>(RetrieveSoldByReference);
+        
         /// <summary>
         /// The backing field for the SoldBy property
         /// </summary>
         private TransmissionProviderSoldByCollection _soldBy;
+        
+        private static Lazy<ITypedElement> _transmissionProductsReference = new Lazy<ITypedElement>(RetrieveTransmissionProductsReference);
         
         /// <summary>
         /// The backing field for the TransmissionProducts property
@@ -244,6 +258,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.Financial
             }
         }
         
+        private static ITypedElement RetrieveServicePointReference()
+        {
+            return ((ITypedElement)(((ModelElement)(TransmissionProvider.ClassInstance)).Resolve("ServicePoint")));
+        }
+        
         /// <summary>
         /// Forwards CollectionChanging notifications for the ServicePoint property to the parent model element
         /// </summary>
@@ -251,7 +270,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.Financial
         /// <param name="e">The original event data</param>
         private void ServicePointCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("ServicePoint", e);
+            this.OnCollectionChanging("ServicePoint", e, _servicePointReference);
         }
         
         /// <summary>
@@ -261,7 +280,12 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.Financial
         /// <param name="e">The original event data</param>
         private void ServicePointCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("ServicePoint", e);
+            this.OnCollectionChanged("ServicePoint", e, _servicePointReference);
+        }
+        
+        private static ITypedElement RetrieveAncillaryServicesReference()
+        {
+            return ((ITypedElement)(((ModelElement)(TransmissionProvider.ClassInstance)).Resolve("AncillaryServices")));
         }
         
         /// <summary>
@@ -271,7 +295,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.Financial
         /// <param name="e">The original event data</param>
         private void AncillaryServicesCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("AncillaryServices", e);
+            this.OnCollectionChanging("AncillaryServices", e, _ancillaryServicesReference);
         }
         
         /// <summary>
@@ -281,7 +305,12 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.Financial
         /// <param name="e">The original event data</param>
         private void AncillaryServicesCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("AncillaryServices", e);
+            this.OnCollectionChanged("AncillaryServices", e, _ancillaryServicesReference);
+        }
+        
+        private static ITypedElement RetrieveForReference()
+        {
+            return ((ITypedElement)(((ModelElement)(TransmissionProvider.ClassInstance)).Resolve("For")));
         }
         
         /// <summary>
@@ -291,7 +320,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.Financial
         /// <param name="e">The original event data</param>
         private void ForCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("For", e);
+            this.OnCollectionChanging("For", e, _forReference);
         }
         
         /// <summary>
@@ -301,7 +330,12 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.Financial
         /// <param name="e">The original event data</param>
         private void ForCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("For", e);
+            this.OnCollectionChanged("For", e, _forReference);
+        }
+        
+        private static ITypedElement RetrieveOfferedByReference()
+        {
+            return ((ITypedElement)(((ModelElement)(TransmissionProvider.ClassInstance)).Resolve("OfferedBy")));
         }
         
         /// <summary>
@@ -311,7 +345,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.Financial
         /// <param name="e">The original event data</param>
         private void OfferedByCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("OfferedBy", e);
+            this.OnCollectionChanging("OfferedBy", e, _offeredByReference);
         }
         
         /// <summary>
@@ -321,7 +355,12 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.Financial
         /// <param name="e">The original event data</param>
         private void OfferedByCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("OfferedBy", e);
+            this.OnCollectionChanged("OfferedBy", e, _offeredByReference);
+        }
+        
+        private static ITypedElement RetrieveFlowgateReference()
+        {
+            return ((ITypedElement)(((ModelElement)(TransmissionProvider.ClassInstance)).Resolve("Flowgate")));
         }
         
         /// <summary>
@@ -331,7 +370,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.Financial
         /// <param name="e">The original event data</param>
         private void FlowgateCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("Flowgate", e);
+            this.OnCollectionChanging("Flowgate", e, _flowgateReference);
         }
         
         /// <summary>
@@ -341,7 +380,12 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.Financial
         /// <param name="e">The original event data</param>
         private void FlowgateCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("Flowgate", e);
+            this.OnCollectionChanged("Flowgate", e, _flowgateReference);
+        }
+        
+        private static ITypedElement RetrieveSoldByReference()
+        {
+            return ((ITypedElement)(((ModelElement)(TransmissionProvider.ClassInstance)).Resolve("SoldBy")));
         }
         
         /// <summary>
@@ -351,7 +395,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.Financial
         /// <param name="e">The original event data</param>
         private void SoldByCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("SoldBy", e);
+            this.OnCollectionChanging("SoldBy", e, _soldByReference);
         }
         
         /// <summary>
@@ -361,7 +405,12 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.Financial
         /// <param name="e">The original event data</param>
         private void SoldByCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("SoldBy", e);
+            this.OnCollectionChanged("SoldBy", e, _soldByReference);
+        }
+        
+        private static ITypedElement RetrieveTransmissionProductsReference()
+        {
+            return ((ITypedElement)(((ModelElement)(TransmissionProvider.ClassInstance)).Resolve("TransmissionProducts")));
         }
         
         /// <summary>
@@ -371,7 +420,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.Financial
         /// <param name="e">The original event data</param>
         private void TransmissionProductsCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("TransmissionProducts", e);
+            this.OnCollectionChanging("TransmissionProducts", e, _transmissionProductsReference);
         }
         
         /// <summary>
@@ -381,7 +430,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.Financial
         /// <param name="e">The original event data</param>
         private void TransmissionProductsCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("TransmissionProducts", e);
+            this.OnCollectionChanged("TransmissionProducts", e, _transmissionProductsReference);
         }
         
         /// <summary>

@@ -53,8 +53,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
     [XmlNamespacePrefixAttribute("cimWires")]
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61970/Wires/BusbarSection")]
     [DebuggerDisplayAttribute("BusbarSection {UUID}")]
-    public class BusbarSection : Connector, IBusbarSection, IModelElement
+    public partial class BusbarSection : Connector, IBusbarSection, IModelElement
     {
+        
+        private static Lazy<ITypedElement> _voltageControlZoneReference = new Lazy<ITypedElement>(RetrieveVoltageControlZoneReference);
         
         /// <summary>
         /// The backing field for the VoltageControlZone property
@@ -81,7 +83,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
                     IVoltageControlZone old = this._voltageControlZone;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnVoltageControlZoneChanging(e);
-                    this.OnPropertyChanging("VoltageControlZone", e);
+                    this.OnPropertyChanging("VoltageControlZone", e, _voltageControlZoneReference);
                     this._voltageControlZone = value;
                     if ((old != null))
                     {
@@ -94,7 +96,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
                         value.Deleted += this.OnResetVoltageControlZone;
                     }
                     this.OnVoltageControlZoneChanged(e);
-                    this.OnPropertyChanged("VoltageControlZone", e);
+                    this.OnPropertyChanged("VoltageControlZone", e, _voltageControlZoneReference);
                 }
             }
         }
@@ -134,6 +136,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
         /// Gets fired when the VoltageControlZone property changed its value
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> VoltageControlZoneChanged;
+        
+        private static ITypedElement RetrieveVoltageControlZoneReference()
+        {
+            return ((ITypedElement)(((ModelElement)(BusbarSection.ClassInstance)).Resolve("VoltageControlZone")));
+        }
         
         /// <summary>
         /// Raises the VoltageControlZoneChanging event
@@ -357,7 +364,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public VoltageControlZoneProxy(IBusbarSection modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "VoltageControlZone")
             {
             }
             
@@ -374,24 +381,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
                 {
                     this.ModelElement.VoltageControlZone = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.VoltageControlZoneChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.VoltageControlZoneChanged -= handler;
             }
         }
     }

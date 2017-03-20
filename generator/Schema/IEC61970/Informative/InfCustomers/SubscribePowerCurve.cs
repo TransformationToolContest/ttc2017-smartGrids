@@ -46,8 +46,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfCustomers
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61970/Informative/InfCustomers/Subs" +
         "cribePowerCurve")]
     [DebuggerDisplayAttribute("SubscribePowerCurve {UUID}")]
-    public class SubscribePowerCurve : Curve, ISubscribePowerCurve, IModelElement
+    public partial class SubscribePowerCurve : Curve, ISubscribePowerCurve, IModelElement
     {
+        
+        private static Lazy<ITypedElement> _pricingStructureReference = new Lazy<ITypedElement>(RetrievePricingStructureReference);
         
         /// <summary>
         /// The backing field for the PricingStructure property
@@ -74,7 +76,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfCustomers
                     IPricingStructure old = this._pricingStructure;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnPricingStructureChanging(e);
-                    this.OnPropertyChanging("PricingStructure", e);
+                    this.OnPropertyChanging("PricingStructure", e, _pricingStructureReference);
                     this._pricingStructure = value;
                     if ((old != null))
                     {
@@ -87,7 +89,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfCustomers
                         value.Deleted += this.OnResetPricingStructure;
                     }
                     this.OnPricingStructureChanged(e);
-                    this.OnPropertyChanged("PricingStructure", e);
+                    this.OnPropertyChanged("PricingStructure", e, _pricingStructureReference);
                 }
             }
         }
@@ -128,6 +130,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfCustomers
         /// Gets fired when the PricingStructure property changed its value
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> PricingStructureChanged;
+        
+        private static ITypedElement RetrievePricingStructureReference()
+        {
+            return ((ITypedElement)(((ModelElement)(SubscribePowerCurve.ClassInstance)).Resolve("PricingStructure")));
+        }
         
         /// <summary>
         /// Raises the PricingStructureChanging event
@@ -352,7 +359,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfCustomers
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public PricingStructureProxy(ISubscribePowerCurve modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "PricingStructure")
             {
             }
             
@@ -369,24 +376,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfCustomers
                 {
                     this.ModelElement.PricingStructure = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.PricingStructureChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.PricingStructureChanged -= handler;
             }
         }
     }

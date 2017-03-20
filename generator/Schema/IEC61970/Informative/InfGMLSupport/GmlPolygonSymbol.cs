@@ -45,18 +45,24 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfGMLSupport
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61970/Informative/InfGMLSupport/Gml" +
         "PolygonSymbol")]
     [DebuggerDisplayAttribute("GmlPolygonSymbol {UUID}")]
-    public class GmlPolygonSymbol : GmlSymbol, IGmlPolygonSymbol, IModelElement
+    public partial class GmlPolygonSymbol : GmlSymbol, IGmlPolygonSymbol, IModelElement
     {
+        
+        private static Lazy<ITypedElement> _gmlDiagramObjectReference = new Lazy<ITypedElement>(RetrieveGmlDiagramObjectReference);
         
         /// <summary>
         /// The backing field for the GmlDiagramObject property
         /// </summary>
         private IGmlDiagramObject _gmlDiagramObject;
         
+        private static Lazy<ITypedElement> _gmlStrokeReference = new Lazy<ITypedElement>(RetrieveGmlStrokeReference);
+        
         /// <summary>
         /// The backing field for the GmlStroke property
         /// </summary>
         private IGmlStroke _gmlStroke;
+        
+        private static Lazy<ITypedElement> _gmlFillReference = new Lazy<ITypedElement>(RetrieveGmlFillReference);
         
         /// <summary>
         /// The backing field for the GmlFill property
@@ -83,7 +89,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfGMLSupport
                     IGmlDiagramObject old = this._gmlDiagramObject;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnGmlDiagramObjectChanging(e);
-                    this.OnPropertyChanging("GmlDiagramObject", e);
+                    this.OnPropertyChanging("GmlDiagramObject", e, _gmlDiagramObjectReference);
                     this._gmlDiagramObject = value;
                     if ((old != null))
                     {
@@ -96,7 +102,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfGMLSupport
                         value.Deleted += this.OnResetGmlDiagramObject;
                     }
                     this.OnGmlDiagramObjectChanged(e);
-                    this.OnPropertyChanged("GmlDiagramObject", e);
+                    this.OnPropertyChanged("GmlDiagramObject", e, _gmlDiagramObjectReference);
                 }
             }
         }
@@ -119,7 +125,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfGMLSupport
                     IGmlStroke old = this._gmlStroke;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnGmlStrokeChanging(e);
-                    this.OnPropertyChanging("GmlStroke", e);
+                    this.OnPropertyChanging("GmlStroke", e, _gmlStrokeReference);
                     this._gmlStroke = value;
                     if ((old != null))
                     {
@@ -132,7 +138,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfGMLSupport
                         value.Deleted += this.OnResetGmlStroke;
                     }
                     this.OnGmlStrokeChanged(e);
-                    this.OnPropertyChanged("GmlStroke", e);
+                    this.OnPropertyChanged("GmlStroke", e, _gmlStrokeReference);
                 }
             }
         }
@@ -155,7 +161,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfGMLSupport
                     IGmlFill old = this._gmlFill;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnGmlFillChanging(e);
-                    this.OnPropertyChanging("GmlFill", e);
+                    this.OnPropertyChanging("GmlFill", e, _gmlFillReference);
                     this._gmlFill = value;
                     if ((old != null))
                     {
@@ -168,7 +174,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfGMLSupport
                         value.Deleted += this.OnResetGmlFill;
                     }
                     this.OnGmlFillChanged(e);
-                    this.OnPropertyChanged("GmlFill", e);
+                    this.OnPropertyChanged("GmlFill", e, _gmlFillReference);
                 }
             }
         }
@@ -230,6 +236,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfGMLSupport
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> GmlFillChanged;
         
+        private static ITypedElement RetrieveGmlDiagramObjectReference()
+        {
+            return ((ITypedElement)(((ModelElement)(GmlPolygonSymbol.ClassInstance)).Resolve("GmlDiagramObject")));
+        }
+        
         /// <summary>
         /// Raises the GmlDiagramObjectChanging event
         /// </summary>
@@ -266,6 +277,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfGMLSupport
             this.GmlDiagramObject = null;
         }
         
+        private static ITypedElement RetrieveGmlStrokeReference()
+        {
+            return ((ITypedElement)(((ModelElement)(GmlPolygonSymbol.ClassInstance)).Resolve("GmlStroke")));
+        }
+        
         /// <summary>
         /// Raises the GmlStrokeChanging event
         /// </summary>
@@ -300,6 +316,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfGMLSupport
         private void OnResetGmlStroke(object sender, System.EventArgs eventArgs)
         {
             this.GmlStroke = null;
+        }
+        
+        private static ITypedElement RetrieveGmlFillReference()
+        {
+            return ((ITypedElement)(((ModelElement)(GmlPolygonSymbol.ClassInstance)).Resolve("GmlFill")));
         }
         
         /// <summary>
@@ -611,7 +632,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfGMLSupport
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public GmlDiagramObjectProxy(IGmlPolygonSymbol modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "GmlDiagramObject")
             {
             }
             
@@ -629,24 +650,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfGMLSupport
                     this.ModelElement.GmlDiagramObject = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.GmlDiagramObjectChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.GmlDiagramObjectChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -660,7 +663,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfGMLSupport
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public GmlStrokeProxy(IGmlPolygonSymbol modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "GmlStroke")
             {
             }
             
@@ -678,24 +681,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfGMLSupport
                     this.ModelElement.GmlStroke = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.GmlStrokeChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.GmlStrokeChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -709,7 +694,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfGMLSupport
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public GmlFillProxy(IGmlPolygonSymbol modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "GmlFill")
             {
             }
             
@@ -726,24 +711,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfGMLSupport
                 {
                     this.ModelElement.GmlFill = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.GmlFillChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.GmlFillChanged -= handler;
             }
         }
     }

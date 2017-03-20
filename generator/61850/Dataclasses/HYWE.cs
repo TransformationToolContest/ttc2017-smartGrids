@@ -39,7 +39,7 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
     [XmlNamespacePrefixAttribute("data")]
     [ModelRepresentationClassAttribute("http://www.transformation-tool-contest.eu/2017/smartGrids/substationStandard#//Da" +
         "taclasses/HYWE")]
-    public class HYWE : ModelElement, IHYWE, IModelElement
+    public partial class HYWE : ModelElement, IHYWE, IModelElement
     {
         
         /// <summary>
@@ -47,80 +47,114 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
         /// </summary>
         private Nullable<int> _numHar;
         
+        private static Lazy<ITypedElement> _numHarAttribute = new Lazy<ITypedElement>(RetrieveNumHarAttribute);
+        
         /// <summary>
         /// The backing field for the NumCyc property
         /// </summary>
         private Nullable<int> _numCyc;
+        
+        private static Lazy<ITypedElement> _numCycAttribute = new Lazy<ITypedElement>(RetrieveNumCycAttribute);
         
         /// <summary>
         /// The backing field for the EvalTm property
         /// </summary>
         private Nullable<int> _evalTm;
         
+        private static Lazy<ITypedElement> _evalTmAttribute = new Lazy<ITypedElement>(RetrieveEvalTmAttribute);
+        
         /// <summary>
         /// The backing field for the SmpRate property
         /// </summary>
         private Nullable<int> _smpRate;
+        
+        private static Lazy<ITypedElement> _smpRateAttribute = new Lazy<ITypedElement>(RetrieveSmpRateAttribute);
         
         /// <summary>
         /// The backing field for the Frequency property
         /// </summary>
         private Nullable<float> _frequency;
         
+        private static Lazy<ITypedElement> _frequencyAttribute = new Lazy<ITypedElement>(RetrieveFrequencyAttribute);
+        
         /// <summary>
         /// The backing field for the RmsCyc property
         /// </summary>
         private Nullable<int> _rmsCyc;
+        
+        private static Lazy<ITypedElement> _rmsCycAttribute = new Lazy<ITypedElement>(RetrieveRmsCycAttribute);
+        
+        private static Lazy<ITypedElement> _qReference = new Lazy<ITypedElement>(RetrieveQReference);
         
         /// <summary>
         /// The backing field for the Q property
         /// </summary>
         private IQuality _q;
         
+        private static Lazy<ITypedElement> _tReference = new Lazy<ITypedElement>(RetrieveTReference);
+        
         /// <summary>
         /// The backing field for the T property
         /// </summary>
         private ITimeStamp _t;
+        
+        private static Lazy<ITypedElement> _phsAHarReference = new Lazy<ITypedElement>(RetrievePhsAHarReference);
         
         /// <summary>
         /// The backing field for the PhsAHar property
         /// </summary>
         private IVectorArray _phsAHar;
         
+        private static Lazy<ITypedElement> _phsBHarReference = new Lazy<ITypedElement>(RetrievePhsBHarReference);
+        
         /// <summary>
         /// The backing field for the PhsBHar property
         /// </summary>
         private IVectorArray _phsBHar;
+        
+        private static Lazy<ITypedElement> _phsCHarReference = new Lazy<ITypedElement>(RetrievePhsCHarReference);
         
         /// <summary>
         /// The backing field for the PhsCHar property
         /// </summary>
         private IVectorArray _phsCHar;
         
+        private static Lazy<ITypedElement> _neutHarReference = new Lazy<ITypedElement>(RetrieveNeutHarReference);
+        
         /// <summary>
         /// The backing field for the NeutHar property
         /// </summary>
         private IVectorArray _neutHar;
+        
+        private static Lazy<ITypedElement> _netHarReference = new Lazy<ITypedElement>(RetrieveNetHarReference);
         
         /// <summary>
         /// The backing field for the NetHar property
         /// </summary>
         private IVectorArray _netHar;
         
+        private static Lazy<ITypedElement> _resHarReference = new Lazy<ITypedElement>(RetrieveResHarReference);
+        
         /// <summary>
         /// The backing field for the ResHar property
         /// </summary>
         private IVectorArray _resHar;
+        
+        private static Lazy<ITypedElement> _unitsReference = new Lazy<ITypedElement>(RetrieveUnitsReference);
         
         /// <summary>
         /// The backing field for the Units property
         /// </summary>
         private IUnits _units;
         
+        private static Lazy<ITypedElement> _angRefReference = new Lazy<ITypedElement>(RetrieveAngRefReference);
+        
         /// <summary>
         /// The backing field for the AngRef property
         /// </summary>
         private IAngleReference _angRef;
+        
+        private static Lazy<ITypedElement> _hvRefReference = new Lazy<ITypedElement>(RetrieveHvRefReference);
         
         /// <summary>
         /// The backing field for the HvRef property
@@ -147,10 +181,10 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
                     Nullable<int> old = this._numHar;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnNumHarChanging(e);
-                    this.OnPropertyChanging("NumHar", e);
+                    this.OnPropertyChanging("NumHar", e, _numHarAttribute);
                     this._numHar = value;
                     this.OnNumHarChanged(e);
-                    this.OnPropertyChanged("NumHar", e);
+                    this.OnPropertyChanged("NumHar", e, _numHarAttribute);
                 }
             }
         }
@@ -173,10 +207,10 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
                     Nullable<int> old = this._numCyc;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnNumCycChanging(e);
-                    this.OnPropertyChanging("NumCyc", e);
+                    this.OnPropertyChanging("NumCyc", e, _numCycAttribute);
                     this._numCyc = value;
                     this.OnNumCycChanged(e);
-                    this.OnPropertyChanged("NumCyc", e);
+                    this.OnPropertyChanged("NumCyc", e, _numCycAttribute);
                 }
             }
         }
@@ -199,10 +233,10 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
                     Nullable<int> old = this._evalTm;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnEvalTmChanging(e);
-                    this.OnPropertyChanging("EvalTm", e);
+                    this.OnPropertyChanging("EvalTm", e, _evalTmAttribute);
                     this._evalTm = value;
                     this.OnEvalTmChanged(e);
-                    this.OnPropertyChanged("EvalTm", e);
+                    this.OnPropertyChanged("EvalTm", e, _evalTmAttribute);
                 }
             }
         }
@@ -225,10 +259,10 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
                     Nullable<int> old = this._smpRate;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnSmpRateChanging(e);
-                    this.OnPropertyChanging("SmpRate", e);
+                    this.OnPropertyChanging("SmpRate", e, _smpRateAttribute);
                     this._smpRate = value;
                     this.OnSmpRateChanged(e);
-                    this.OnPropertyChanged("SmpRate", e);
+                    this.OnPropertyChanged("SmpRate", e, _smpRateAttribute);
                 }
             }
         }
@@ -251,10 +285,10 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
                     Nullable<float> old = this._frequency;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnFrequencyChanging(e);
-                    this.OnPropertyChanging("Frequency", e);
+                    this.OnPropertyChanging("Frequency", e, _frequencyAttribute);
                     this._frequency = value;
                     this.OnFrequencyChanged(e);
-                    this.OnPropertyChanged("Frequency", e);
+                    this.OnPropertyChanged("Frequency", e, _frequencyAttribute);
                 }
             }
         }
@@ -277,10 +311,10 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
                     Nullable<int> old = this._rmsCyc;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnRmsCycChanging(e);
-                    this.OnPropertyChanging("RmsCyc", e);
+                    this.OnPropertyChanging("RmsCyc", e, _rmsCycAttribute);
                     this._rmsCyc = value;
                     this.OnRmsCycChanged(e);
-                    this.OnPropertyChanged("RmsCyc", e);
+                    this.OnPropertyChanged("RmsCyc", e, _rmsCycAttribute);
                 }
             }
         }
@@ -303,7 +337,7 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
                     IQuality old = this._q;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnQChanging(e);
-                    this.OnPropertyChanging("Q", e);
+                    this.OnPropertyChanging("Q", e, _qReference);
                     this._q = value;
                     if ((old != null))
                     {
@@ -314,7 +348,7 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
                         value.Deleted += this.OnResetQ;
                     }
                     this.OnQChanged(e);
-                    this.OnPropertyChanged("Q", e);
+                    this.OnPropertyChanged("Q", e, _qReference);
                 }
             }
         }
@@ -337,7 +371,7 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
                     ITimeStamp old = this._t;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnTChanging(e);
-                    this.OnPropertyChanging("T", e);
+                    this.OnPropertyChanging("T", e, _tReference);
                     this._t = value;
                     if ((old != null))
                     {
@@ -348,7 +382,7 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
                         value.Deleted += this.OnResetT;
                     }
                     this.OnTChanged(e);
-                    this.OnPropertyChanged("T", e);
+                    this.OnPropertyChanged("T", e, _tReference);
                 }
             }
         }
@@ -371,7 +405,7 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
                     IVectorArray old = this._phsAHar;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnPhsAHarChanging(e);
-                    this.OnPropertyChanging("PhsAHar", e);
+                    this.OnPropertyChanging("PhsAHar", e, _phsAHarReference);
                     this._phsAHar = value;
                     if ((old != null))
                     {
@@ -382,7 +416,7 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
                         value.Deleted += this.OnResetPhsAHar;
                     }
                     this.OnPhsAHarChanged(e);
-                    this.OnPropertyChanged("PhsAHar", e);
+                    this.OnPropertyChanged("PhsAHar", e, _phsAHarReference);
                 }
             }
         }
@@ -405,7 +439,7 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
                     IVectorArray old = this._phsBHar;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnPhsBHarChanging(e);
-                    this.OnPropertyChanging("PhsBHar", e);
+                    this.OnPropertyChanging("PhsBHar", e, _phsBHarReference);
                     this._phsBHar = value;
                     if ((old != null))
                     {
@@ -416,7 +450,7 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
                         value.Deleted += this.OnResetPhsBHar;
                     }
                     this.OnPhsBHarChanged(e);
-                    this.OnPropertyChanged("PhsBHar", e);
+                    this.OnPropertyChanged("PhsBHar", e, _phsBHarReference);
                 }
             }
         }
@@ -439,7 +473,7 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
                     IVectorArray old = this._phsCHar;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnPhsCHarChanging(e);
-                    this.OnPropertyChanging("PhsCHar", e);
+                    this.OnPropertyChanging("PhsCHar", e, _phsCHarReference);
                     this._phsCHar = value;
                     if ((old != null))
                     {
@@ -450,7 +484,7 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
                         value.Deleted += this.OnResetPhsCHar;
                     }
                     this.OnPhsCHarChanged(e);
-                    this.OnPropertyChanged("PhsCHar", e);
+                    this.OnPropertyChanged("PhsCHar", e, _phsCHarReference);
                 }
             }
         }
@@ -473,7 +507,7 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
                     IVectorArray old = this._neutHar;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnNeutHarChanging(e);
-                    this.OnPropertyChanging("NeutHar", e);
+                    this.OnPropertyChanging("NeutHar", e, _neutHarReference);
                     this._neutHar = value;
                     if ((old != null))
                     {
@@ -484,7 +518,7 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
                         value.Deleted += this.OnResetNeutHar;
                     }
                     this.OnNeutHarChanged(e);
-                    this.OnPropertyChanged("NeutHar", e);
+                    this.OnPropertyChanged("NeutHar", e, _neutHarReference);
                 }
             }
         }
@@ -507,7 +541,7 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
                     IVectorArray old = this._netHar;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnNetHarChanging(e);
-                    this.OnPropertyChanging("NetHar", e);
+                    this.OnPropertyChanging("NetHar", e, _netHarReference);
                     this._netHar = value;
                     if ((old != null))
                     {
@@ -518,7 +552,7 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
                         value.Deleted += this.OnResetNetHar;
                     }
                     this.OnNetHarChanged(e);
-                    this.OnPropertyChanged("NetHar", e);
+                    this.OnPropertyChanged("NetHar", e, _netHarReference);
                 }
             }
         }
@@ -541,7 +575,7 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
                     IVectorArray old = this._resHar;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnResHarChanging(e);
-                    this.OnPropertyChanging("ResHar", e);
+                    this.OnPropertyChanging("ResHar", e, _resHarReference);
                     this._resHar = value;
                     if ((old != null))
                     {
@@ -552,7 +586,7 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
                         value.Deleted += this.OnResetResHar;
                     }
                     this.OnResHarChanged(e);
-                    this.OnPropertyChanged("ResHar", e);
+                    this.OnPropertyChanged("ResHar", e, _resHarReference);
                 }
             }
         }
@@ -575,7 +609,7 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
                     IUnits old = this._units;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnUnitsChanging(e);
-                    this.OnPropertyChanging("Units", e);
+                    this.OnPropertyChanging("Units", e, _unitsReference);
                     this._units = value;
                     if ((old != null))
                     {
@@ -586,7 +620,7 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
                         value.Deleted += this.OnResetUnits;
                     }
                     this.OnUnitsChanged(e);
-                    this.OnPropertyChanged("Units", e);
+                    this.OnPropertyChanged("Units", e, _unitsReference);
                 }
             }
         }
@@ -609,7 +643,7 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
                     IAngleReference old = this._angRef;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnAngRefChanging(e);
-                    this.OnPropertyChanging("AngRef", e);
+                    this.OnPropertyChanging("AngRef", e, _angRefReference);
                     this._angRef = value;
                     if ((old != null))
                     {
@@ -620,7 +654,7 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
                         value.Deleted += this.OnResetAngRef;
                     }
                     this.OnAngRefChanged(e);
-                    this.OnPropertyChanged("AngRef", e);
+                    this.OnPropertyChanged("AngRef", e, _angRefReference);
                 }
             }
         }
@@ -643,7 +677,7 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
                     IMagReference old = this._hvRef;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnHvRefChanging(e);
-                    this.OnPropertyChanging("HvRef", e);
+                    this.OnPropertyChanging("HvRef", e, _hvRefReference);
                     this._hvRef = value;
                     if ((old != null))
                     {
@@ -654,7 +688,7 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
                         value.Deleted += this.OnResetHvRef;
                     }
                     this.OnHvRefChanged(e);
-                    this.OnPropertyChanged("HvRef", e);
+                    this.OnPropertyChanged("HvRef", e, _hvRefReference);
                 }
             }
         }
@@ -856,6 +890,11 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> HvRefChanged;
         
+        private static ITypedElement RetrieveNumHarAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(HYWE.ClassInstance)).Resolve("numHar")));
+        }
+        
         /// <summary>
         /// Raises the NumHarChanging event
         /// </summary>
@@ -880,6 +919,11 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveNumCycAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(HYWE.ClassInstance)).Resolve("numCyc")));
         }
         
         /// <summary>
@@ -908,6 +952,11 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
             }
         }
         
+        private static ITypedElement RetrieveEvalTmAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(HYWE.ClassInstance)).Resolve("evalTm")));
+        }
+        
         /// <summary>
         /// Raises the EvalTmChanging event
         /// </summary>
@@ -932,6 +981,11 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveSmpRateAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(HYWE.ClassInstance)).Resolve("smpRate")));
         }
         
         /// <summary>
@@ -960,6 +1014,11 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
             }
         }
         
+        private static ITypedElement RetrieveFrequencyAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(HYWE.ClassInstance)).Resolve("frequency")));
+        }
+        
         /// <summary>
         /// Raises the FrequencyChanging event
         /// </summary>
@@ -986,6 +1045,11 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
             }
         }
         
+        private static ITypedElement RetrieveRmsCycAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(HYWE.ClassInstance)).Resolve("rmsCyc")));
+        }
+        
         /// <summary>
         /// Raises the RmsCycChanging event
         /// </summary>
@@ -1010,6 +1074,11 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveQReference()
+        {
+            return ((ITypedElement)(((ModelElement)(HYWE.ClassInstance)).Resolve("q")));
         }
         
         /// <summary>
@@ -1048,6 +1117,11 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
             this.Q = null;
         }
         
+        private static ITypedElement RetrieveTReference()
+        {
+            return ((ITypedElement)(((ModelElement)(HYWE.ClassInstance)).Resolve("t")));
+        }
+        
         /// <summary>
         /// Raises the TChanging event
         /// </summary>
@@ -1082,6 +1156,11 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
         private void OnResetT(object sender, System.EventArgs eventArgs)
         {
             this.T = null;
+        }
+        
+        private static ITypedElement RetrievePhsAHarReference()
+        {
+            return ((ITypedElement)(((ModelElement)(HYWE.ClassInstance)).Resolve("phsAHar")));
         }
         
         /// <summary>
@@ -1120,6 +1199,11 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
             this.PhsAHar = null;
         }
         
+        private static ITypedElement RetrievePhsBHarReference()
+        {
+            return ((ITypedElement)(((ModelElement)(HYWE.ClassInstance)).Resolve("phsBHar")));
+        }
+        
         /// <summary>
         /// Raises the PhsBHarChanging event
         /// </summary>
@@ -1154,6 +1238,11 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
         private void OnResetPhsBHar(object sender, System.EventArgs eventArgs)
         {
             this.PhsBHar = null;
+        }
+        
+        private static ITypedElement RetrievePhsCHarReference()
+        {
+            return ((ITypedElement)(((ModelElement)(HYWE.ClassInstance)).Resolve("phsCHar")));
         }
         
         /// <summary>
@@ -1192,6 +1281,11 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
             this.PhsCHar = null;
         }
         
+        private static ITypedElement RetrieveNeutHarReference()
+        {
+            return ((ITypedElement)(((ModelElement)(HYWE.ClassInstance)).Resolve("neutHar")));
+        }
+        
         /// <summary>
         /// Raises the NeutHarChanging event
         /// </summary>
@@ -1226,6 +1320,11 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
         private void OnResetNeutHar(object sender, System.EventArgs eventArgs)
         {
             this.NeutHar = null;
+        }
+        
+        private static ITypedElement RetrieveNetHarReference()
+        {
+            return ((ITypedElement)(((ModelElement)(HYWE.ClassInstance)).Resolve("netHar")));
         }
         
         /// <summary>
@@ -1264,6 +1363,11 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
             this.NetHar = null;
         }
         
+        private static ITypedElement RetrieveResHarReference()
+        {
+            return ((ITypedElement)(((ModelElement)(HYWE.ClassInstance)).Resolve("resHar")));
+        }
+        
         /// <summary>
         /// Raises the ResHarChanging event
         /// </summary>
@@ -1298,6 +1402,11 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
         private void OnResetResHar(object sender, System.EventArgs eventArgs)
         {
             this.ResHar = null;
+        }
+        
+        private static ITypedElement RetrieveUnitsReference()
+        {
+            return ((ITypedElement)(((ModelElement)(HYWE.ClassInstance)).Resolve("units")));
         }
         
         /// <summary>
@@ -1336,6 +1445,11 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
             this.Units = null;
         }
         
+        private static ITypedElement RetrieveAngRefReference()
+        {
+            return ((ITypedElement)(((ModelElement)(HYWE.ClassInstance)).Resolve("angRef")));
+        }
+        
         /// <summary>
         /// Raises the AngRefChanging event
         /// </summary>
@@ -1370,6 +1484,11 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
         private void OnResetAngRef(object sender, System.EventArgs eventArgs)
         {
             this.AngRef = null;
+        }
+        
+        private static ITypedElement RetrieveHvRefReference()
+        {
+            return ((ITypedElement)(((ModelElement)(HYWE.ClassInstance)).Resolve("hvRef")));
         }
         
         /// <summary>
@@ -2090,7 +2209,7 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public NumHarProxy(IHYWE modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "numHar")
             {
             }
             
@@ -2108,24 +2227,6 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
                     this.ModelElement.NumHar = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.NumHarChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.NumHarChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -2139,7 +2240,7 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public NumCycProxy(IHYWE modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "numCyc")
             {
             }
             
@@ -2157,24 +2258,6 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
                     this.ModelElement.NumCyc = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.NumCycChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.NumCycChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -2188,7 +2271,7 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public EvalTmProxy(IHYWE modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "evalTm")
             {
             }
             
@@ -2206,24 +2289,6 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
                     this.ModelElement.EvalTm = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.EvalTmChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.EvalTmChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -2237,7 +2302,7 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public SmpRateProxy(IHYWE modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "smpRate")
             {
             }
             
@@ -2255,24 +2320,6 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
                     this.ModelElement.SmpRate = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.SmpRateChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.SmpRateChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -2286,7 +2333,7 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public FrequencyProxy(IHYWE modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "frequency")
             {
             }
             
@@ -2304,24 +2351,6 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
                     this.ModelElement.Frequency = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.FrequencyChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.FrequencyChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -2335,7 +2364,7 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public RmsCycProxy(IHYWE modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "rmsCyc")
             {
             }
             
@@ -2353,24 +2382,6 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
                     this.ModelElement.RmsCyc = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.RmsCycChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.RmsCycChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -2384,7 +2395,7 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public QProxy(IHYWE modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "q")
             {
             }
             
@@ -2402,24 +2413,6 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
                     this.ModelElement.Q = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.QChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.QChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -2433,7 +2426,7 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public TProxy(IHYWE modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "t")
             {
             }
             
@@ -2451,24 +2444,6 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
                     this.ModelElement.T = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.TChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.TChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -2482,7 +2457,7 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public PhsAHarProxy(IHYWE modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "phsAHar")
             {
             }
             
@@ -2500,24 +2475,6 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
                     this.ModelElement.PhsAHar = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.PhsAHarChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.PhsAHarChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -2531,7 +2488,7 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public PhsBHarProxy(IHYWE modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "phsBHar")
             {
             }
             
@@ -2549,24 +2506,6 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
                     this.ModelElement.PhsBHar = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.PhsBHarChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.PhsBHarChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -2580,7 +2519,7 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public PhsCHarProxy(IHYWE modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "phsCHar")
             {
             }
             
@@ -2598,24 +2537,6 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
                     this.ModelElement.PhsCHar = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.PhsCHarChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.PhsCHarChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -2629,7 +2550,7 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public NeutHarProxy(IHYWE modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "neutHar")
             {
             }
             
@@ -2647,24 +2568,6 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
                     this.ModelElement.NeutHar = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.NeutHarChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.NeutHarChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -2678,7 +2581,7 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public NetHarProxy(IHYWE modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "netHar")
             {
             }
             
@@ -2696,24 +2599,6 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
                     this.ModelElement.NetHar = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.NetHarChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.NetHarChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -2727,7 +2612,7 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public ResHarProxy(IHYWE modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "resHar")
             {
             }
             
@@ -2745,24 +2630,6 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
                     this.ModelElement.ResHar = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ResHarChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ResHarChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -2776,7 +2643,7 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public UnitsProxy(IHYWE modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "units")
             {
             }
             
@@ -2794,24 +2661,6 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
                     this.ModelElement.Units = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.UnitsChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.UnitsChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -2825,7 +2674,7 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public AngRefProxy(IHYWE modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "angRef")
             {
             }
             
@@ -2843,24 +2692,6 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
                     this.ModelElement.AngRef = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.AngRefChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.AngRefChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -2874,7 +2705,7 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public HvRefProxy(IHYWE modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "hvRef")
             {
             }
             
@@ -2891,24 +2722,6 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
                 {
                     this.ModelElement.HvRef = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.HvRefChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.HvRefChanged -= handler;
             }
         }
     }

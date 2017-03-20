@@ -56,8 +56,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfERPSupport
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61970/Informative/InfERPSupport/Erp" +
         "Requisition")]
     [DebuggerDisplayAttribute("ErpRequisition {UUID}")]
-    public class ErpRequisition : Document, IErpRequisition, IModelElement
+    public partial class ErpRequisition : Document, IErpRequisition, IModelElement
     {
+        
+        private static Lazy<ITypedElement> _erpReqLineItemsReference = new Lazy<ITypedElement>(RetrieveErpReqLineItemsReference);
         
         /// <summary>
         /// The backing field for the ErpReqLineItems property
@@ -115,6 +117,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfERPSupport
             }
         }
         
+        private static ITypedElement RetrieveErpReqLineItemsReference()
+        {
+            return ((ITypedElement)(((ModelElement)(ErpRequisition.ClassInstance)).Resolve("ErpReqLineItems")));
+        }
+        
         /// <summary>
         /// Forwards CollectionChanging notifications for the ErpReqLineItems property to the parent model element
         /// </summary>
@@ -122,7 +129,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfERPSupport
         /// <param name="e">The original event data</param>
         private void ErpReqLineItemsCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("ErpReqLineItems", e);
+            this.OnCollectionChanging("ErpReqLineItems", e, _erpReqLineItemsReference);
         }
         
         /// <summary>
@@ -132,7 +139,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfERPSupport
         /// <param name="e">The original event data</param>
         private void ErpReqLineItemsCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("ErpReqLineItems", e);
+            this.OnCollectionChanged("ErpReqLineItems", e, _erpReqLineItemsReference);
         }
         
         /// <summary>

@@ -45,13 +45,17 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssetModels
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61970/Informative/InfAssetModels/As" +
         "setModelCatalogue")]
     [DebuggerDisplayAttribute("AssetModelCatalogue {UUID}")]
-    public class AssetModelCatalogue : IdentifiedObject, IAssetModelCatalogue, IModelElement
+    public partial class AssetModelCatalogue : IdentifiedObject, IAssetModelCatalogue, IModelElement
     {
+        
+        private static Lazy<ITypedElement> _assetModelCatalogueItemsReference = new Lazy<ITypedElement>(RetrieveAssetModelCatalogueItemsReference);
         
         /// <summary>
         /// The backing field for the AssetModelCatalogueItems property
         /// </summary>
         private AssetModelCatalogueAssetModelCatalogueItemsCollection _assetModelCatalogueItems;
+        
+        private static Lazy<ITypedElement> _statusReference = new Lazy<ITypedElement>(RetrieveStatusReference);
         
         /// <summary>
         /// The backing field for the Status property
@@ -100,7 +104,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssetModels
                     IStatus old = this._status;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnStatusChanging(e);
-                    this.OnPropertyChanging("Status", e);
+                    this.OnPropertyChanging("Status", e, _statusReference);
                     this._status = value;
                     if ((old != null))
                     {
@@ -111,7 +115,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssetModels
                         value.Deleted += this.OnResetStatus;
                     }
                     this.OnStatusChanged(e);
-                    this.OnPropertyChanged("Status", e);
+                    this.OnPropertyChanged("Status", e, _statusReference);
                 }
             }
         }
@@ -153,6 +157,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssetModels
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> StatusChanged;
         
+        private static ITypedElement RetrieveAssetModelCatalogueItemsReference()
+        {
+            return ((ITypedElement)(((ModelElement)(AssetModelCatalogue.ClassInstance)).Resolve("AssetModelCatalogueItems")));
+        }
+        
         /// <summary>
         /// Forwards CollectionChanging notifications for the AssetModelCatalogueItems property to the parent model element
         /// </summary>
@@ -160,7 +169,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssetModels
         /// <param name="e">The original event data</param>
         private void AssetModelCatalogueItemsCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("AssetModelCatalogueItems", e);
+            this.OnCollectionChanging("AssetModelCatalogueItems", e, _assetModelCatalogueItemsReference);
         }
         
         /// <summary>
@@ -170,7 +179,12 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssetModels
         /// <param name="e">The original event data</param>
         private void AssetModelCatalogueItemsCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("AssetModelCatalogueItems", e);
+            this.OnCollectionChanged("AssetModelCatalogueItems", e, _assetModelCatalogueItemsReference);
+        }
+        
+        private static ITypedElement RetrieveStatusReference()
+        {
+            return ((ITypedElement)(((ModelElement)(AssetModelCatalogue.ClassInstance)).Resolve("status")));
         }
         
         /// <summary>
@@ -444,7 +458,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssetModels
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public StatusProxy(IAssetModelCatalogue modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "status")
             {
             }
             
@@ -461,24 +475,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssetModels
                 {
                     this.ModelElement.Status = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.StatusChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.StatusChanged -= handler;
             }
         }
     }

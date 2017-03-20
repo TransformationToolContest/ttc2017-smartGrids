@@ -45,8 +45,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfGMLSupport
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61970/Informative/InfGMLSupport/Gml" +
         "FeatureType")]
     [DebuggerDisplayAttribute("GmlFeatureType {UUID}")]
-    public class GmlFeatureType : IdentifiedObject, IGmlFeatureType, IModelElement
+    public partial class GmlFeatureType : IdentifiedObject, IGmlFeatureType, IModelElement
     {
+        
+        private static Lazy<ITypedElement> _gmlFeatureStylesReference = new Lazy<ITypedElement>(RetrieveGmlFeatureStylesReference);
         
         /// <summary>
         /// The backing field for the GmlFeatureStyles property
@@ -104,6 +106,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfGMLSupport
             }
         }
         
+        private static ITypedElement RetrieveGmlFeatureStylesReference()
+        {
+            return ((ITypedElement)(((ModelElement)(GmlFeatureType.ClassInstance)).Resolve("GmlFeatureStyles")));
+        }
+        
         /// <summary>
         /// Forwards CollectionChanging notifications for the GmlFeatureStyles property to the parent model element
         /// </summary>
@@ -111,7 +118,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfGMLSupport
         /// <param name="e">The original event data</param>
         private void GmlFeatureStylesCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("GmlFeatureStyles", e);
+            this.OnCollectionChanging("GmlFeatureStyles", e, _gmlFeatureStylesReference);
         }
         
         /// <summary>
@@ -121,7 +128,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfGMLSupport
         /// <param name="e">The original event data</param>
         private void GmlFeatureStylesCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("GmlFeatureStyles", e);
+            this.OnCollectionChanged("GmlFeatureStyles", e, _gmlFeatureStylesReference);
         }
         
         /// <summary>

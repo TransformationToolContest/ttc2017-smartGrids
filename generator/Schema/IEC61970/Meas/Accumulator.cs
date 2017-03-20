@@ -51,7 +51,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Meas
     [XmlNamespacePrefixAttribute("cimMeas")]
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61970/Meas/Accumulator")]
     [DebuggerDisplayAttribute("Accumulator {UUID}")]
-    public class Accumulator : Measurement, IAccumulator, IModelElement
+    public partial class Accumulator : Measurement, IAccumulator, IModelElement
     {
         
         /// <summary>
@@ -59,10 +59,16 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Meas
         /// </summary>
         private int _maxValue;
         
+        private static Lazy<ITypedElement> _maxValueAttribute = new Lazy<ITypedElement>(RetrieveMaxValueAttribute);
+        
+        private static Lazy<ITypedElement> _accumulatorValuesReference = new Lazy<ITypedElement>(RetrieveAccumulatorValuesReference);
+        
         /// <summary>
         /// The backing field for the AccumulatorValues property
         /// </summary>
         private AccumulatorAccumulatorValuesCollection _accumulatorValues;
+        
+        private static Lazy<ITypedElement> _limitSetsReference = new Lazy<ITypedElement>(RetrieveLimitSetsReference);
         
         /// <summary>
         /// The backing field for the LimitSets property
@@ -99,10 +105,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Meas
                     int old = this._maxValue;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnMaxValueChanging(e);
-                    this.OnPropertyChanging("MaxValue", e);
+                    this.OnPropertyChanging("MaxValue", e, _maxValueAttribute);
                     this._maxValue = value;
                     this.OnMaxValueChanged(e);
-                    this.OnPropertyChanged("MaxValue", e);
+                    this.OnPropertyChanged("MaxValue", e, _maxValueAttribute);
                 }
             }
         }
@@ -173,6 +179,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Meas
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> MaxValueChanged;
         
+        private static ITypedElement RetrieveMaxValueAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(Accumulator.ClassInstance)).Resolve("maxValue")));
+        }
+        
         /// <summary>
         /// Raises the MaxValueChanging event
         /// </summary>
@@ -199,6 +210,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Meas
             }
         }
         
+        private static ITypedElement RetrieveAccumulatorValuesReference()
+        {
+            return ((ITypedElement)(((ModelElement)(Accumulator.ClassInstance)).Resolve("AccumulatorValues")));
+        }
+        
         /// <summary>
         /// Forwards CollectionChanging notifications for the AccumulatorValues property to the parent model element
         /// </summary>
@@ -206,7 +222,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Meas
         /// <param name="e">The original event data</param>
         private void AccumulatorValuesCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("AccumulatorValues", e);
+            this.OnCollectionChanging("AccumulatorValues", e, _accumulatorValuesReference);
         }
         
         /// <summary>
@@ -216,7 +232,12 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Meas
         /// <param name="e">The original event data</param>
         private void AccumulatorValuesCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("AccumulatorValues", e);
+            this.OnCollectionChanged("AccumulatorValues", e, _accumulatorValuesReference);
+        }
+        
+        private static ITypedElement RetrieveLimitSetsReference()
+        {
+            return ((ITypedElement)(((ModelElement)(Accumulator.ClassInstance)).Resolve("LimitSets")));
         }
         
         /// <summary>
@@ -226,7 +247,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Meas
         /// <param name="e">The original event data</param>
         private void LimitSetsCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("LimitSets", e);
+            this.OnCollectionChanging("LimitSets", e, _limitSetsReference);
         }
         
         /// <summary>
@@ -236,7 +257,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Meas
         /// <param name="e">The original event data</param>
         private void LimitSetsCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("LimitSets", e);
+            this.OnCollectionChanged("LimitSets", e, _limitSetsReference);
         }
         
         /// <summary>
@@ -468,7 +489,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Meas
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public MaxValueProxy(IAccumulator modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "maxValue")
             {
             }
             
@@ -485,24 +506,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Meas
                 {
                     this.ModelElement.MaxValue = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.MaxValueChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.MaxValueChanged -= handler;
             }
         }
     }

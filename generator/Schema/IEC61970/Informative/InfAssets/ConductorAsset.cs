@@ -53,7 +53,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61970/Informative/InfAssets/Conduct" +
         "orAsset")]
     [DebuggerDisplayAttribute("ConductorAsset {UUID}")]
-    public class ConductorAsset : Asset, IConductorAsset, IModelElement
+    public partial class ConductorAsset : Asset, IConductorAsset, IModelElement
     {
         
         /// <summary>
@@ -61,20 +61,30 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
         /// </summary>
         private string _groundingMethod;
         
+        private static Lazy<ITypedElement> _groundingMethodAttribute = new Lazy<ITypedElement>(RetrieveGroundingMethodAttribute);
+        
         /// <summary>
         /// The backing field for the Insulated property
         /// </summary>
         private bool _insulated;
+        
+        private static Lazy<ITypedElement> _insulatedAttribute = new Lazy<ITypedElement>(RetrieveInsulatedAttribute);
         
         /// <summary>
         /// The backing field for the IsHorizontal property
         /// </summary>
         private bool _isHorizontal;
         
+        private static Lazy<ITypedElement> _isHorizontalAttribute = new Lazy<ITypedElement>(RetrieveIsHorizontalAttribute);
+        
+        private static Lazy<ITypedElement> _circuitSectionReference = new Lazy<ITypedElement>(RetrieveCircuitSectionReference);
+        
         /// <summary>
         /// The backing field for the CircuitSection property
         /// </summary>
         private ICircuitSection _circuitSection;
+        
+        private static Lazy<ITypedElement> _conductorSegmentReference = new Lazy<ITypedElement>(RetrieveConductorSegmentReference);
         
         /// <summary>
         /// The backing field for the ConductorSegment property
@@ -101,10 +111,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
                     string old = this._groundingMethod;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnGroundingMethodChanging(e);
-                    this.OnPropertyChanging("GroundingMethod", e);
+                    this.OnPropertyChanging("GroundingMethod", e, _groundingMethodAttribute);
                     this._groundingMethod = value;
                     this.OnGroundingMethodChanged(e);
-                    this.OnPropertyChanged("GroundingMethod", e);
+                    this.OnPropertyChanged("GroundingMethod", e, _groundingMethodAttribute);
                 }
             }
         }
@@ -127,10 +137,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
                     bool old = this._insulated;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnInsulatedChanging(e);
-                    this.OnPropertyChanging("Insulated", e);
+                    this.OnPropertyChanging("Insulated", e, _insulatedAttribute);
                     this._insulated = value;
                     this.OnInsulatedChanged(e);
-                    this.OnPropertyChanged("Insulated", e);
+                    this.OnPropertyChanged("Insulated", e, _insulatedAttribute);
                 }
             }
         }
@@ -153,10 +163,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
                     bool old = this._isHorizontal;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnIsHorizontalChanging(e);
-                    this.OnPropertyChanging("IsHorizontal", e);
+                    this.OnPropertyChanging("IsHorizontal", e, _isHorizontalAttribute);
                     this._isHorizontal = value;
                     this.OnIsHorizontalChanged(e);
-                    this.OnPropertyChanged("IsHorizontal", e);
+                    this.OnPropertyChanged("IsHorizontal", e, _isHorizontalAttribute);
                 }
             }
         }
@@ -179,7 +189,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
                     ICircuitSection old = this._circuitSection;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnCircuitSectionChanging(e);
-                    this.OnPropertyChanging("CircuitSection", e);
+                    this.OnPropertyChanging("CircuitSection", e, _circuitSectionReference);
                     this._circuitSection = value;
                     if ((old != null))
                     {
@@ -192,7 +202,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
                         value.Deleted += this.OnResetCircuitSection;
                     }
                     this.OnCircuitSectionChanged(e);
-                    this.OnPropertyChanged("CircuitSection", e);
+                    this.OnPropertyChanged("CircuitSection", e, _circuitSectionReference);
                 }
             }
         }
@@ -215,7 +225,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
                     IDistributionLineSegment old = this._conductorSegment;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnConductorSegmentChanging(e);
-                    this.OnPropertyChanging("ConductorSegment", e);
+                    this.OnPropertyChanging("ConductorSegment", e, _conductorSegmentReference);
                     this._conductorSegment = value;
                     if ((old != null))
                     {
@@ -228,7 +238,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
                         value.Deleted += this.OnResetConductorSegment;
                     }
                     this.OnConductorSegmentChanged(e);
-                    this.OnPropertyChanged("ConductorSegment", e);
+                    this.OnPropertyChanged("ConductorSegment", e, _conductorSegmentReference);
                 }
             }
         }
@@ -310,6 +320,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> ConductorSegmentChanged;
         
+        private static ITypedElement RetrieveGroundingMethodAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(ConductorAsset.ClassInstance)).Resolve("groundingMethod")));
+        }
+        
         /// <summary>
         /// Raises the GroundingMethodChanging event
         /// </summary>
@@ -334,6 +349,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveInsulatedAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(ConductorAsset.ClassInstance)).Resolve("insulated")));
         }
         
         /// <summary>
@@ -362,6 +382,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
             }
         }
         
+        private static ITypedElement RetrieveIsHorizontalAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(ConductorAsset.ClassInstance)).Resolve("isHorizontal")));
+        }
+        
         /// <summary>
         /// Raises the IsHorizontalChanging event
         /// </summary>
@@ -386,6 +411,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveCircuitSectionReference()
+        {
+            return ((ITypedElement)(((ModelElement)(ConductorAsset.ClassInstance)).Resolve("CircuitSection")));
         }
         
         /// <summary>
@@ -422,6 +452,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
         private void OnResetCircuitSection(object sender, System.EventArgs eventArgs)
         {
             this.CircuitSection = null;
+        }
+        
+        private static ITypedElement RetrieveConductorSegmentReference()
+        {
+            return ((ITypedElement)(((ModelElement)(ConductorAsset.ClassInstance)).Resolve("ConductorSegment")));
         }
         
         /// <summary>
@@ -728,7 +763,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public GroundingMethodProxy(IConductorAsset modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "groundingMethod")
             {
             }
             
@@ -746,24 +781,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
                     this.ModelElement.GroundingMethod = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.GroundingMethodChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.GroundingMethodChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -777,7 +794,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public InsulatedProxy(IConductorAsset modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "insulated")
             {
             }
             
@@ -795,24 +812,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
                     this.ModelElement.Insulated = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.InsulatedChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.InsulatedChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -826,7 +825,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public IsHorizontalProxy(IConductorAsset modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "isHorizontal")
             {
             }
             
@@ -844,24 +843,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
                     this.ModelElement.IsHorizontal = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.IsHorizontalChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.IsHorizontalChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -875,7 +856,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public CircuitSectionProxy(IConductorAsset modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "CircuitSection")
             {
             }
             
@@ -893,24 +874,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
                     this.ModelElement.CircuitSection = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.CircuitSectionChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.CircuitSectionChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -924,7 +887,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public ConductorSegmentProxy(IConductorAsset modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "ConductorSegment")
             {
             }
             
@@ -941,24 +904,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
                 {
                     this.ModelElement.ConductorSegment = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ConductorSegmentChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ConductorSegmentChanged -= handler;
             }
         }
     }

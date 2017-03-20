@@ -38,7 +38,7 @@ namespace TTC2017.SmartGrids.CIM
     [XmlNamespacePrefixAttribute("cim")]
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//Stereotype")]
     [DebuggerDisplayAttribute("Stereotype {UUID}")]
-    public class Stereotype : Element, IStereotype, IModelElement
+    public partial class Stereotype : Element, IStereotype, IModelElement
     {
         
         private static IClass _classInstance;

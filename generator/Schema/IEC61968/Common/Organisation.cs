@@ -51,38 +51,52 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Common
     [XmlNamespacePrefixAttribute("cimCommon")]
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61968/Common/Organisation")]
     [DebuggerDisplayAttribute("Organisation {UUID}")]
-    public class Organisation : IdentifiedObject, IOrganisation, IModelElement
+    public partial class Organisation : IdentifiedObject, IOrganisation, IModelElement
     {
+        
+        private static Lazy<ITypedElement> _streetAddressReference = new Lazy<ITypedElement>(RetrieveStreetAddressReference);
         
         /// <summary>
         /// The backing field for the StreetAddress property
         /// </summary>
         private IStreetAddress _streetAddress;
         
+        private static Lazy<ITypedElement> _electronicAddressReference = new Lazy<ITypedElement>(RetrieveElectronicAddressReference);
+        
         /// <summary>
         /// The backing field for the ElectronicAddress property
         /// </summary>
         private IElectronicAddress _electronicAddress;
+        
+        private static Lazy<ITypedElement> _postalAddressReference = new Lazy<ITypedElement>(RetrievePostalAddressReference);
         
         /// <summary>
         /// The backing field for the PostalAddress property
         /// </summary>
         private IPostalAddress _postalAddress;
         
+        private static Lazy<ITypedElement> _phone1Reference = new Lazy<ITypedElement>(RetrievePhone1Reference);
+        
         /// <summary>
         /// The backing field for the Phone1 property
         /// </summary>
         private ITelephoneNumber _phone1;
+        
+        private static Lazy<ITypedElement> _phone2Reference = new Lazy<ITypedElement>(RetrievePhone2Reference);
         
         /// <summary>
         /// The backing field for the Phone2 property
         /// </summary>
         private ITelephoneNumber _phone2;
         
+        private static Lazy<ITypedElement> _marketRolesReference = new Lazy<ITypedElement>(RetrieveMarketRolesReference);
+        
         /// <summary>
         /// The backing field for the MarketRoles property
         /// </summary>
         private OrganisationMarketRolesCollection _marketRoles;
+        
+        private static Lazy<ITypedElement> _businessRolesReference = new Lazy<ITypedElement>(RetrieveBusinessRolesReference);
         
         /// <summary>
         /// The backing field for the BusinessRoles property
@@ -119,7 +133,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Common
                     IStreetAddress old = this._streetAddress;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnStreetAddressChanging(e);
-                    this.OnPropertyChanging("StreetAddress", e);
+                    this.OnPropertyChanging("StreetAddress", e, _streetAddressReference);
                     this._streetAddress = value;
                     if ((old != null))
                     {
@@ -130,7 +144,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Common
                         value.Deleted += this.OnResetStreetAddress;
                     }
                     this.OnStreetAddressChanged(e);
-                    this.OnPropertyChanged("StreetAddress", e);
+                    this.OnPropertyChanged("StreetAddress", e, _streetAddressReference);
                 }
             }
         }
@@ -153,7 +167,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Common
                     IElectronicAddress old = this._electronicAddress;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnElectronicAddressChanging(e);
-                    this.OnPropertyChanging("ElectronicAddress", e);
+                    this.OnPropertyChanging("ElectronicAddress", e, _electronicAddressReference);
                     this._electronicAddress = value;
                     if ((old != null))
                     {
@@ -164,7 +178,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Common
                         value.Deleted += this.OnResetElectronicAddress;
                     }
                     this.OnElectronicAddressChanged(e);
-                    this.OnPropertyChanged("ElectronicAddress", e);
+                    this.OnPropertyChanged("ElectronicAddress", e, _electronicAddressReference);
                 }
             }
         }
@@ -187,7 +201,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Common
                     IPostalAddress old = this._postalAddress;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnPostalAddressChanging(e);
-                    this.OnPropertyChanging("PostalAddress", e);
+                    this.OnPropertyChanging("PostalAddress", e, _postalAddressReference);
                     this._postalAddress = value;
                     if ((old != null))
                     {
@@ -198,7 +212,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Common
                         value.Deleted += this.OnResetPostalAddress;
                     }
                     this.OnPostalAddressChanged(e);
-                    this.OnPropertyChanged("PostalAddress", e);
+                    this.OnPropertyChanged("PostalAddress", e, _postalAddressReference);
                 }
             }
         }
@@ -221,7 +235,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Common
                     ITelephoneNumber old = this._phone1;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnPhone1Changing(e);
-                    this.OnPropertyChanging("Phone1", e);
+                    this.OnPropertyChanging("Phone1", e, _phone1Reference);
                     this._phone1 = value;
                     if ((old != null))
                     {
@@ -232,7 +246,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Common
                         value.Deleted += this.OnResetPhone1;
                     }
                     this.OnPhone1Changed(e);
-                    this.OnPropertyChanged("Phone1", e);
+                    this.OnPropertyChanged("Phone1", e, _phone1Reference);
                 }
             }
         }
@@ -255,7 +269,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Common
                     ITelephoneNumber old = this._phone2;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnPhone2Changing(e);
-                    this.OnPropertyChanging("Phone2", e);
+                    this.OnPropertyChanging("Phone2", e, _phone2Reference);
                     this._phone2 = value;
                     if ((old != null))
                     {
@@ -266,7 +280,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Common
                         value.Deleted += this.OnResetPhone2;
                     }
                     this.OnPhone2Changed(e);
-                    this.OnPropertyChanged("Phone2", e);
+                    this.OnPropertyChanged("Phone2", e, _phone2Reference);
                 }
             }
         }
@@ -377,6 +391,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Common
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> Phone2Changed;
         
+        private static ITypedElement RetrieveStreetAddressReference()
+        {
+            return ((ITypedElement)(((ModelElement)(Organisation.ClassInstance)).Resolve("streetAddress")));
+        }
+        
         /// <summary>
         /// Raises the StreetAddressChanging event
         /// </summary>
@@ -411,6 +430,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Common
         private void OnResetStreetAddress(object sender, System.EventArgs eventArgs)
         {
             this.StreetAddress = null;
+        }
+        
+        private static ITypedElement RetrieveElectronicAddressReference()
+        {
+            return ((ITypedElement)(((ModelElement)(Organisation.ClassInstance)).Resolve("electronicAddress")));
         }
         
         /// <summary>
@@ -449,6 +473,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Common
             this.ElectronicAddress = null;
         }
         
+        private static ITypedElement RetrievePostalAddressReference()
+        {
+            return ((ITypedElement)(((ModelElement)(Organisation.ClassInstance)).Resolve("postalAddress")));
+        }
+        
         /// <summary>
         /// Raises the PostalAddressChanging event
         /// </summary>
@@ -483,6 +512,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Common
         private void OnResetPostalAddress(object sender, System.EventArgs eventArgs)
         {
             this.PostalAddress = null;
+        }
+        
+        private static ITypedElement RetrievePhone1Reference()
+        {
+            return ((ITypedElement)(((ModelElement)(Organisation.ClassInstance)).Resolve("phone1")));
         }
         
         /// <summary>
@@ -521,6 +555,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Common
             this.Phone1 = null;
         }
         
+        private static ITypedElement RetrievePhone2Reference()
+        {
+            return ((ITypedElement)(((ModelElement)(Organisation.ClassInstance)).Resolve("phone2")));
+        }
+        
         /// <summary>
         /// Raises the Phone2Changing event
         /// </summary>
@@ -557,6 +596,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Common
             this.Phone2 = null;
         }
         
+        private static ITypedElement RetrieveMarketRolesReference()
+        {
+            return ((ITypedElement)(((ModelElement)(Organisation.ClassInstance)).Resolve("MarketRoles")));
+        }
+        
         /// <summary>
         /// Forwards CollectionChanging notifications for the MarketRoles property to the parent model element
         /// </summary>
@@ -564,7 +608,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Common
         /// <param name="e">The original event data</param>
         private void MarketRolesCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("MarketRoles", e);
+            this.OnCollectionChanging("MarketRoles", e, _marketRolesReference);
         }
         
         /// <summary>
@@ -574,7 +618,12 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Common
         /// <param name="e">The original event data</param>
         private void MarketRolesCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("MarketRoles", e);
+            this.OnCollectionChanged("MarketRoles", e, _marketRolesReference);
+        }
+        
+        private static ITypedElement RetrieveBusinessRolesReference()
+        {
+            return ((ITypedElement)(((ModelElement)(Organisation.ClassInstance)).Resolve("BusinessRoles")));
         }
         
         /// <summary>
@@ -584,7 +633,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Common
         /// <param name="e">The original event data</param>
         private void BusinessRolesCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("BusinessRoles", e);
+            this.OnCollectionChanging("BusinessRoles", e, _businessRolesReference);
         }
         
         /// <summary>
@@ -594,7 +643,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Common
         /// <param name="e">The original event data</param>
         private void BusinessRolesCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("BusinessRoles", e);
+            this.OnCollectionChanged("BusinessRoles", e, _businessRolesReference);
         }
         
         /// <summary>
@@ -1041,7 +1090,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Common
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public StreetAddressProxy(IOrganisation modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "streetAddress")
             {
             }
             
@@ -1059,24 +1108,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Common
                     this.ModelElement.StreetAddress = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.StreetAddressChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.StreetAddressChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1090,7 +1121,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Common
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public ElectronicAddressProxy(IOrganisation modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "electronicAddress")
             {
             }
             
@@ -1108,24 +1139,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Common
                     this.ModelElement.ElectronicAddress = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ElectronicAddressChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ElectronicAddressChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1139,7 +1152,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Common
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public PostalAddressProxy(IOrganisation modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "postalAddress")
             {
             }
             
@@ -1157,24 +1170,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Common
                     this.ModelElement.PostalAddress = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.PostalAddressChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.PostalAddressChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1188,7 +1183,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Common
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public Phone1Proxy(IOrganisation modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "phone1")
             {
             }
             
@@ -1206,24 +1201,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Common
                     this.ModelElement.Phone1 = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.Phone1Changed += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.Phone1Changed -= handler;
-            }
         }
         
         /// <summary>
@@ -1237,7 +1214,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Common
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public Phone2Proxy(IOrganisation modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "phone2")
             {
             }
             
@@ -1254,24 +1231,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Common
                 {
                     this.ModelElement.Phone2 = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.Phone2Changed += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.Phone2Changed -= handler;
             }
         }
     }

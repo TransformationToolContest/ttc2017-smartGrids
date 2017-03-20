@@ -50,18 +50,24 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfOperations
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61970/Informative/InfOperations/Inc" +
         "identRecord")]
     [DebuggerDisplayAttribute("IncidentRecord {UUID}")]
-    public class IncidentRecord : Document, IIncidentRecord, IModelElement
+    public partial class IncidentRecord : Document, IIncidentRecord, IModelElement
     {
+        
+        private static Lazy<ITypedElement> _incidentCodesReference = new Lazy<ITypedElement>(RetrieveIncidentCodesReference);
         
         /// <summary>
         /// The backing field for the IncidentCodes property
         /// </summary>
         private IncidentRecordIncidentCodesCollection _incidentCodes;
         
+        private static Lazy<ITypedElement> _troubleTicketsReference = new Lazy<ITypedElement>(RetrieveTroubleTicketsReference);
+        
         /// <summary>
         /// The backing field for the TroubleTickets property
         /// </summary>
         private IncidentRecordTroubleTicketsCollection _troubleTickets;
+        
+        private static Lazy<ITypedElement> _periodReference = new Lazy<ITypedElement>(RetrievePeriodReference);
         
         /// <summary>
         /// The backing field for the Period property
@@ -128,7 +134,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfOperations
                     IDateTimeInterval old = this._period;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnPeriodChanging(e);
-                    this.OnPropertyChanging("Period", e);
+                    this.OnPropertyChanging("Period", e, _periodReference);
                     this._period = value;
                     if ((old != null))
                     {
@@ -139,7 +145,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfOperations
                         value.Deleted += this.OnResetPeriod;
                     }
                     this.OnPeriodChanged(e);
-                    this.OnPropertyChanged("Period", e);
+                    this.OnPropertyChanged("Period", e, _periodReference);
                 }
             }
         }
@@ -181,6 +187,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfOperations
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> PeriodChanged;
         
+        private static ITypedElement RetrieveIncidentCodesReference()
+        {
+            return ((ITypedElement)(((ModelElement)(IncidentRecord.ClassInstance)).Resolve("IncidentCodes")));
+        }
+        
         /// <summary>
         /// Forwards CollectionChanging notifications for the IncidentCodes property to the parent model element
         /// </summary>
@@ -188,7 +199,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfOperations
         /// <param name="e">The original event data</param>
         private void IncidentCodesCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("IncidentCodes", e);
+            this.OnCollectionChanging("IncidentCodes", e, _incidentCodesReference);
         }
         
         /// <summary>
@@ -198,7 +209,12 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfOperations
         /// <param name="e">The original event data</param>
         private void IncidentCodesCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("IncidentCodes", e);
+            this.OnCollectionChanged("IncidentCodes", e, _incidentCodesReference);
+        }
+        
+        private static ITypedElement RetrieveTroubleTicketsReference()
+        {
+            return ((ITypedElement)(((ModelElement)(IncidentRecord.ClassInstance)).Resolve("TroubleTickets")));
         }
         
         /// <summary>
@@ -208,7 +224,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfOperations
         /// <param name="e">The original event data</param>
         private void TroubleTicketsCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("TroubleTickets", e);
+            this.OnCollectionChanging("TroubleTickets", e, _troubleTicketsReference);
         }
         
         /// <summary>
@@ -218,7 +234,12 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfOperations
         /// <param name="e">The original event data</param>
         private void TroubleTicketsCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("TroubleTickets", e);
+            this.OnCollectionChanged("TroubleTickets", e, _troubleTicketsReference);
+        }
+        
+        private static ITypedElement RetrievePeriodReference()
+        {
+            return ((ITypedElement)(((ModelElement)(IncidentRecord.ClassInstance)).Resolve("period")));
         }
         
         /// <summary>
@@ -530,7 +551,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfOperations
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public PeriodProxy(IIncidentRecord modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "period")
             {
             }
             
@@ -547,24 +568,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfOperations
                 {
                     this.ModelElement.Period = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.PeriodChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.PeriodChanged -= handler;
             }
         }
     }

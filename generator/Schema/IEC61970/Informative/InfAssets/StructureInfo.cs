@@ -53,7 +53,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61970/Informative/InfAssets/Structu" +
         "reInfo")]
     [DebuggerDisplayAttribute("StructureInfo {UUID}")]
-    public class StructureInfo : AssetInfo, IStructureInfo, IModelElement
+    public partial class StructureInfo : AssetInfo, IStructureInfo, IModelElement
     {
         
         /// <summary>
@@ -61,40 +61,58 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
         /// </summary>
         private string _weedRemovedDate;
         
+        private static Lazy<ITypedElement> _weedRemovedDateAttribute = new Lazy<ITypedElement>(RetrieveWeedRemovedDateAttribute);
+        
         /// <summary>
         /// The backing field for the FumigantName property
         /// </summary>
         private string _fumigantName;
+        
+        private static Lazy<ITypedElement> _fumigantNameAttribute = new Lazy<ITypedElement>(RetrieveFumigantNameAttribute);
         
         /// <summary>
         /// The backing field for the FumigantAppliedDate property
         /// </summary>
         private string _fumigantAppliedDate;
         
+        private static Lazy<ITypedElement> _fumigantAppliedDateAttribute = new Lazy<ITypedElement>(RetrieveFumigantAppliedDateAttribute);
+        
         /// <summary>
         /// The backing field for the RemoveWeed property
         /// </summary>
         private bool _removeWeed;
+        
+        private static Lazy<ITypedElement> _removeWeedAttribute = new Lazy<ITypedElement>(RetrieveRemoveWeedAttribute);
         
         /// <summary>
         /// The backing field for the Height property
         /// </summary>
         private float _height;
         
+        private static Lazy<ITypedElement> _heightAttribute = new Lazy<ITypedElement>(RetrieveHeightAttribute);
+        
         /// <summary>
         /// The backing field for the MaterialKind property
         /// </summary>
         private Nullable<StructureMaterialKind> _materialKind;
+        
+        private static Lazy<ITypedElement> _materialKindAttribute = new Lazy<ITypedElement>(RetrieveMaterialKindAttribute);
         
         /// <summary>
         /// The backing field for the RatedVoltage property
         /// </summary>
         private float _ratedVoltage;
         
+        private static Lazy<ITypedElement> _ratedVoltageAttribute = new Lazy<ITypedElement>(RetrieveRatedVoltageAttribute);
+        
+        private static Lazy<ITypedElement> _structureSupportInfosReference = new Lazy<ITypedElement>(RetrieveStructureSupportInfosReference);
+        
         /// <summary>
         /// The backing field for the StructureSupportInfos property
         /// </summary>
         private StructureInfoStructureSupportInfosCollection _structureSupportInfos;
+        
+        private static Lazy<ITypedElement> _mountingConnectionsReference = new Lazy<ITypedElement>(RetrieveMountingConnectionsReference);
         
         /// <summary>
         /// The backing field for the MountingConnections property
@@ -131,10 +149,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
                     string old = this._weedRemovedDate;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnWeedRemovedDateChanging(e);
-                    this.OnPropertyChanging("WeedRemovedDate", e);
+                    this.OnPropertyChanging("WeedRemovedDate", e, _weedRemovedDateAttribute);
                     this._weedRemovedDate = value;
                     this.OnWeedRemovedDateChanged(e);
-                    this.OnPropertyChanged("WeedRemovedDate", e);
+                    this.OnPropertyChanged("WeedRemovedDate", e, _weedRemovedDateAttribute);
                 }
             }
         }
@@ -157,10 +175,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
                     string old = this._fumigantName;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnFumigantNameChanging(e);
-                    this.OnPropertyChanging("FumigantName", e);
+                    this.OnPropertyChanging("FumigantName", e, _fumigantNameAttribute);
                     this._fumigantName = value;
                     this.OnFumigantNameChanged(e);
-                    this.OnPropertyChanged("FumigantName", e);
+                    this.OnPropertyChanged("FumigantName", e, _fumigantNameAttribute);
                 }
             }
         }
@@ -183,10 +201,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
                     string old = this._fumigantAppliedDate;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnFumigantAppliedDateChanging(e);
-                    this.OnPropertyChanging("FumigantAppliedDate", e);
+                    this.OnPropertyChanging("FumigantAppliedDate", e, _fumigantAppliedDateAttribute);
                     this._fumigantAppliedDate = value;
                     this.OnFumigantAppliedDateChanged(e);
-                    this.OnPropertyChanged("FumigantAppliedDate", e);
+                    this.OnPropertyChanged("FumigantAppliedDate", e, _fumigantAppliedDateAttribute);
                 }
             }
         }
@@ -209,10 +227,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
                     bool old = this._removeWeed;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnRemoveWeedChanging(e);
-                    this.OnPropertyChanging("RemoveWeed", e);
+                    this.OnPropertyChanging("RemoveWeed", e, _removeWeedAttribute);
                     this._removeWeed = value;
                     this.OnRemoveWeedChanged(e);
-                    this.OnPropertyChanged("RemoveWeed", e);
+                    this.OnPropertyChanged("RemoveWeed", e, _removeWeedAttribute);
                 }
             }
         }
@@ -235,10 +253,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
                     float old = this._height;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnHeightChanging(e);
-                    this.OnPropertyChanging("Height", e);
+                    this.OnPropertyChanging("Height", e, _heightAttribute);
                     this._height = value;
                     this.OnHeightChanged(e);
-                    this.OnPropertyChanged("Height", e);
+                    this.OnPropertyChanged("Height", e, _heightAttribute);
                 }
             }
         }
@@ -261,10 +279,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
                     Nullable<StructureMaterialKind> old = this._materialKind;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnMaterialKindChanging(e);
-                    this.OnPropertyChanging("MaterialKind", e);
+                    this.OnPropertyChanging("MaterialKind", e, _materialKindAttribute);
                     this._materialKind = value;
                     this.OnMaterialKindChanged(e);
-                    this.OnPropertyChanged("MaterialKind", e);
+                    this.OnPropertyChanged("MaterialKind", e, _materialKindAttribute);
                 }
             }
         }
@@ -287,10 +305,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
                     float old = this._ratedVoltage;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnRatedVoltageChanging(e);
-                    this.OnPropertyChanging("RatedVoltage", e);
+                    this.OnPropertyChanging("RatedVoltage", e, _ratedVoltageAttribute);
                     this._ratedVoltage = value;
                     this.OnRatedVoltageChanged(e);
-                    this.OnPropertyChanged("RatedVoltage", e);
+                    this.OnPropertyChanged("RatedVoltage", e, _ratedVoltageAttribute);
                 }
             }
         }
@@ -422,6 +440,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> RatedVoltageChanged;
         
+        private static ITypedElement RetrieveWeedRemovedDateAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(StructureInfo.ClassInstance)).Resolve("weedRemovedDate")));
+        }
+        
         /// <summary>
         /// Raises the WeedRemovedDateChanging event
         /// </summary>
@@ -446,6 +469,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveFumigantNameAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(StructureInfo.ClassInstance)).Resolve("fumigantName")));
         }
         
         /// <summary>
@@ -474,6 +502,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
             }
         }
         
+        private static ITypedElement RetrieveFumigantAppliedDateAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(StructureInfo.ClassInstance)).Resolve("fumigantAppliedDate")));
+        }
+        
         /// <summary>
         /// Raises the FumigantAppliedDateChanging event
         /// </summary>
@@ -498,6 +531,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveRemoveWeedAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(StructureInfo.ClassInstance)).Resolve("removeWeed")));
         }
         
         /// <summary>
@@ -526,6 +564,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
             }
         }
         
+        private static ITypedElement RetrieveHeightAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(StructureInfo.ClassInstance)).Resolve("height")));
+        }
+        
         /// <summary>
         /// Raises the HeightChanging event
         /// </summary>
@@ -550,6 +593,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveMaterialKindAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(StructureInfo.ClassInstance)).Resolve("materialKind")));
         }
         
         /// <summary>
@@ -578,6 +626,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
             }
         }
         
+        private static ITypedElement RetrieveRatedVoltageAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(StructureInfo.ClassInstance)).Resolve("ratedVoltage")));
+        }
+        
         /// <summary>
         /// Raises the RatedVoltageChanging event
         /// </summary>
@@ -604,6 +657,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
             }
         }
         
+        private static ITypedElement RetrieveStructureSupportInfosReference()
+        {
+            return ((ITypedElement)(((ModelElement)(StructureInfo.ClassInstance)).Resolve("StructureSupportInfos")));
+        }
+        
         /// <summary>
         /// Forwards CollectionChanging notifications for the StructureSupportInfos property to the parent model element
         /// </summary>
@@ -611,7 +669,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
         /// <param name="e">The original event data</param>
         private void StructureSupportInfosCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("StructureSupportInfos", e);
+            this.OnCollectionChanging("StructureSupportInfos", e, _structureSupportInfosReference);
         }
         
         /// <summary>
@@ -621,7 +679,12 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
         /// <param name="e">The original event data</param>
         private void StructureSupportInfosCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("StructureSupportInfos", e);
+            this.OnCollectionChanged("StructureSupportInfos", e, _structureSupportInfosReference);
+        }
+        
+        private static ITypedElement RetrieveMountingConnectionsReference()
+        {
+            return ((ITypedElement)(((ModelElement)(StructureInfo.ClassInstance)).Resolve("MountingConnections")));
         }
         
         /// <summary>
@@ -631,7 +694,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
         /// <param name="e">The original event data</param>
         private void MountingConnectionsCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("MountingConnections", e);
+            this.OnCollectionChanging("MountingConnections", e, _mountingConnectionsReference);
         }
         
         /// <summary>
@@ -641,7 +704,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
         /// <param name="e">The original event data</param>
         private void MountingConnectionsCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("MountingConnections", e);
+            this.OnCollectionChanged("MountingConnections", e, _mountingConnectionsReference);
         }
         
         /// <summary>
@@ -928,7 +991,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public WeedRemovedDateProxy(IStructureInfo modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "weedRemovedDate")
             {
             }
             
@@ -946,24 +1009,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
                     this.ModelElement.WeedRemovedDate = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.WeedRemovedDateChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.WeedRemovedDateChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -977,7 +1022,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public FumigantNameProxy(IStructureInfo modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "fumigantName")
             {
             }
             
@@ -995,24 +1040,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
                     this.ModelElement.FumigantName = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.FumigantNameChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.FumigantNameChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1026,7 +1053,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public FumigantAppliedDateProxy(IStructureInfo modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "fumigantAppliedDate")
             {
             }
             
@@ -1044,24 +1071,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
                     this.ModelElement.FumigantAppliedDate = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.FumigantAppliedDateChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.FumigantAppliedDateChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1075,7 +1084,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public RemoveWeedProxy(IStructureInfo modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "removeWeed")
             {
             }
             
@@ -1093,24 +1102,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
                     this.ModelElement.RemoveWeed = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.RemoveWeedChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.RemoveWeedChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1124,7 +1115,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public HeightProxy(IStructureInfo modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "height")
             {
             }
             
@@ -1142,24 +1133,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
                     this.ModelElement.Height = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.HeightChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.HeightChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1173,7 +1146,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public MaterialKindProxy(IStructureInfo modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "materialKind")
             {
             }
             
@@ -1191,24 +1164,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
                     this.ModelElement.MaterialKind = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.MaterialKindChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.MaterialKindChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1222,7 +1177,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public RatedVoltageProxy(IStructureInfo modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "ratedVoltage")
             {
             }
             
@@ -1239,24 +1194,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
                 {
                     this.ModelElement.RatedVoltage = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.RatedVoltageChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.RatedVoltageChanged -= handler;
             }
         }
     }

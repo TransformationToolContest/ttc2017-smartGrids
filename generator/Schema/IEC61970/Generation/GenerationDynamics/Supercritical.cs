@@ -42,7 +42,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.GenerationDynamics
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61970/Generation/GenerationDynamics" +
         "/Supercritical")]
     [DebuggerDisplayAttribute("Supercritical {UUID}")]
-    public class Supercritical : FossilSteamSupply, ISupercritical, IModelElement
+    public partial class Supercritical : FossilSteamSupply, ISupercritical, IModelElement
     {
         
         private static IClass _classInstance;

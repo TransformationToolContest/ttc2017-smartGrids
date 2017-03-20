@@ -50,7 +50,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfOperations
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61970/Informative/InfOperations/Pla" +
         "nnedOutage")]
     [DebuggerDisplayAttribute("PlannedOutage {UUID}")]
-    public class PlannedOutage : Document, IPlannedOutage, IModelElement
+    public partial class PlannedOutage : Document, IPlannedOutage, IModelElement
     {
         
         /// <summary>
@@ -58,10 +58,16 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfOperations
         /// </summary>
         private Nullable<OutageKind> _kind;
         
+        private static Lazy<ITypedElement> _kindAttribute = new Lazy<ITypedElement>(RetrieveKindAttribute);
+        
+        private static Lazy<ITypedElement> _customerDatasReference = new Lazy<ITypedElement>(RetrieveCustomerDatasReference);
+        
         /// <summary>
         /// The backing field for the CustomerDatas property
         /// </summary>
         private PlannedOutageCustomerDatasCollection _customerDatas;
+        
+        private static Lazy<ITypedElement> _outageSchedulesReference = new Lazy<ITypedElement>(RetrieveOutageSchedulesReference);
         
         /// <summary>
         /// The backing field for the OutageSchedules property
@@ -98,10 +104,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfOperations
                     Nullable<OutageKind> old = this._kind;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnKindChanging(e);
-                    this.OnPropertyChanging("Kind", e);
+                    this.OnPropertyChanging("Kind", e, _kindAttribute);
                     this._kind = value;
                     this.OnKindChanged(e);
-                    this.OnPropertyChanged("Kind", e);
+                    this.OnPropertyChanged("Kind", e, _kindAttribute);
                 }
             }
         }
@@ -173,6 +179,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfOperations
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> KindChanged;
         
+        private static ITypedElement RetrieveKindAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(PlannedOutage.ClassInstance)).Resolve("kind")));
+        }
+        
         /// <summary>
         /// Raises the KindChanging event
         /// </summary>
@@ -199,6 +210,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfOperations
             }
         }
         
+        private static ITypedElement RetrieveCustomerDatasReference()
+        {
+            return ((ITypedElement)(((ModelElement)(PlannedOutage.ClassInstance)).Resolve("CustomerDatas")));
+        }
+        
         /// <summary>
         /// Forwards CollectionChanging notifications for the CustomerDatas property to the parent model element
         /// </summary>
@@ -206,7 +222,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfOperations
         /// <param name="e">The original event data</param>
         private void CustomerDatasCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("CustomerDatas", e);
+            this.OnCollectionChanging("CustomerDatas", e, _customerDatasReference);
         }
         
         /// <summary>
@@ -216,7 +232,12 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfOperations
         /// <param name="e">The original event data</param>
         private void CustomerDatasCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("CustomerDatas", e);
+            this.OnCollectionChanged("CustomerDatas", e, _customerDatasReference);
+        }
+        
+        private static ITypedElement RetrieveOutageSchedulesReference()
+        {
+            return ((ITypedElement)(((ModelElement)(PlannedOutage.ClassInstance)).Resolve("OutageSchedules")));
         }
         
         /// <summary>
@@ -226,7 +247,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfOperations
         /// <param name="e">The original event data</param>
         private void OutageSchedulesCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("OutageSchedules", e);
+            this.OnCollectionChanging("OutageSchedules", e, _outageSchedulesReference);
         }
         
         /// <summary>
@@ -236,7 +257,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfOperations
         /// <param name="e">The original event data</param>
         private void OutageSchedulesCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("OutageSchedules", e);
+            this.OnCollectionChanged("OutageSchedules", e, _outageSchedulesReference);
         }
         
         /// <summary>
@@ -469,7 +490,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfOperations
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public KindProxy(IPlannedOutage modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "kind")
             {
             }
             
@@ -486,24 +507,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfOperations
                 {
                     this.ModelElement.Kind = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.KindChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.KindChanged -= handler;
             }
         }
     }

@@ -39,7 +39,7 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
     [XmlNamespacePrefixAttribute("objects")]
     [ModelRepresentationClassAttribute("http://www.transformation-tool-contest.eu/2017/smartGrids/cosem#//COSEMObjects/GP" +
         "RSModemSetupObject")]
-    public class GPRSModemSetupObject : GPRS_modem_setup, IGPRSModemSetupObject, IModelElement
+    public partial class GPRSModemSetupObject : GPRS_modem_setup, IGPRSModemSetupObject, IModelElement
     {
         
         private static IClass _classInstance;

@@ -56,13 +56,17 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfERPSupport
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61970/Informative/InfERPSupport/Erp" +
         "Payable")]
     [DebuggerDisplayAttribute("ErpPayable {UUID}")]
-    public class ErpPayable : Document, IErpPayable, IModelElement
+    public partial class ErpPayable : Document, IErpPayable, IModelElement
     {
+        
+        private static Lazy<ITypedElement> _contractorItemsReference = new Lazy<ITypedElement>(RetrieveContractorItemsReference);
         
         /// <summary>
         /// The backing field for the ContractorItems property
         /// </summary>
         private ErpPayableContractorItemsCollection _contractorItems;
+        
+        private static Lazy<ITypedElement> _erpPayableLineItemsReference = new Lazy<ITypedElement>(RetrieveErpPayableLineItemsReference);
         
         /// <summary>
         /// The backing field for the ErpPayableLineItems property
@@ -138,6 +142,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfERPSupport
             }
         }
         
+        private static ITypedElement RetrieveContractorItemsReference()
+        {
+            return ((ITypedElement)(((ModelElement)(ErpPayable.ClassInstance)).Resolve("ContractorItems")));
+        }
+        
         /// <summary>
         /// Forwards CollectionChanging notifications for the ContractorItems property to the parent model element
         /// </summary>
@@ -145,7 +154,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfERPSupport
         /// <param name="e">The original event data</param>
         private void ContractorItemsCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("ContractorItems", e);
+            this.OnCollectionChanging("ContractorItems", e, _contractorItemsReference);
         }
         
         /// <summary>
@@ -155,7 +164,12 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfERPSupport
         /// <param name="e">The original event data</param>
         private void ContractorItemsCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("ContractorItems", e);
+            this.OnCollectionChanged("ContractorItems", e, _contractorItemsReference);
+        }
+        
+        private static ITypedElement RetrieveErpPayableLineItemsReference()
+        {
+            return ((ITypedElement)(((ModelElement)(ErpPayable.ClassInstance)).Resolve("ErpPayableLineItems")));
         }
         
         /// <summary>
@@ -165,7 +179,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfERPSupport
         /// <param name="e">The original event data</param>
         private void ErpPayableLineItemsCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("ErpPayableLineItems", e);
+            this.OnCollectionChanging("ErpPayableLineItems", e, _erpPayableLineItemsReference);
         }
         
         /// <summary>
@@ -175,7 +189,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfERPSupport
         /// <param name="e">The original event data</param>
         private void ErpPayableLineItemsCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("ErpPayableLineItems", e);
+            this.OnCollectionChanged("ErpPayableLineItems", e, _erpPayableLineItemsReference);
         }
         
         /// <summary>

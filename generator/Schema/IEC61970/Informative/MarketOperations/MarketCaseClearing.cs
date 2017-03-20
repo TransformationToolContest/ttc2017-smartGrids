@@ -50,7 +50,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61970/Informative/MarketOperations/" +
         "MarketCaseClearing")]
     [DebuggerDisplayAttribute("MarketCaseClearing {UUID}")]
-    public class MarketCaseClearing : MarketFactors, IMarketCaseClearing, IModelElement
+    public partial class MarketCaseClearing : MarketFactors, IMarketCaseClearing, IModelElement
     {
         
         /// <summary>
@@ -58,15 +58,23 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
         /// </summary>
         private DateTime _postedDate;
         
+        private static Lazy<ITypedElement> _postedDateAttribute = new Lazy<ITypedElement>(RetrievePostedDateAttribute);
+        
         /// <summary>
         /// The backing field for the CaseType property
         /// </summary>
         private string _caseType;
         
+        private static Lazy<ITypedElement> _caseTypeAttribute = new Lazy<ITypedElement>(RetrieveCaseTypeAttribute);
+        
         /// <summary>
         /// The backing field for the ModifiedDate property
         /// </summary>
         private DateTime _modifiedDate;
+        
+        private static Lazy<ITypedElement> _modifiedDateAttribute = new Lazy<ITypedElement>(RetrieveModifiedDateAttribute);
+        
+        private static Lazy<ITypedElement> _ancillaryServiceClearingReference = new Lazy<ITypedElement>(RetrieveAncillaryServiceClearingReference);
         
         /// <summary>
         /// The backing field for the AncillaryServiceClearing property
@@ -100,10 +108,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
                     DateTime old = this._postedDate;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnPostedDateChanging(e);
-                    this.OnPropertyChanging("PostedDate", e);
+                    this.OnPropertyChanging("PostedDate", e, _postedDateAttribute);
                     this._postedDate = value;
                     this.OnPostedDateChanged(e);
-                    this.OnPropertyChanged("PostedDate", e);
+                    this.OnPropertyChanged("PostedDate", e, _postedDateAttribute);
                 }
             }
         }
@@ -126,10 +134,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
                     string old = this._caseType;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnCaseTypeChanging(e);
-                    this.OnPropertyChanging("CaseType", e);
+                    this.OnPropertyChanging("CaseType", e, _caseTypeAttribute);
                     this._caseType = value;
                     this.OnCaseTypeChanged(e);
-                    this.OnPropertyChanged("CaseType", e);
+                    this.OnPropertyChanged("CaseType", e, _caseTypeAttribute);
                 }
             }
         }
@@ -152,10 +160,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
                     DateTime old = this._modifiedDate;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnModifiedDateChanging(e);
-                    this.OnPropertyChanging("ModifiedDate", e);
+                    this.OnPropertyChanging("ModifiedDate", e, _modifiedDateAttribute);
                     this._modifiedDate = value;
                     this.OnModifiedDateChanged(e);
-                    this.OnPropertyChanged("ModifiedDate", e);
+                    this.OnPropertyChanged("ModifiedDate", e, _modifiedDateAttribute);
                 }
             }
         }
@@ -232,6 +240,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> ModifiedDateChanged;
         
+        private static ITypedElement RetrievePostedDateAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(MarketCaseClearing.ClassInstance)).Resolve("postedDate")));
+        }
+        
         /// <summary>
         /// Raises the PostedDateChanging event
         /// </summary>
@@ -256,6 +269,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveCaseTypeAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(MarketCaseClearing.ClassInstance)).Resolve("caseType")));
         }
         
         /// <summary>
@@ -284,6 +302,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
             }
         }
         
+        private static ITypedElement RetrieveModifiedDateAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(MarketCaseClearing.ClassInstance)).Resolve("modifiedDate")));
+        }
+        
         /// <summary>
         /// Raises the ModifiedDateChanging event
         /// </summary>
@@ -310,6 +333,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
             }
         }
         
+        private static ITypedElement RetrieveAncillaryServiceClearingReference()
+        {
+            return ((ITypedElement)(((ModelElement)(MarketCaseClearing.ClassInstance)).Resolve("AncillaryServiceClearing")));
+        }
+        
         /// <summary>
         /// Forwards CollectionChanging notifications for the AncillaryServiceClearing property to the parent model element
         /// </summary>
@@ -317,7 +345,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
         /// <param name="e">The original event data</param>
         private void AncillaryServiceClearingCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("AncillaryServiceClearing", e);
+            this.OnCollectionChanging("AncillaryServiceClearing", e, _ancillaryServiceClearingReference);
         }
         
         /// <summary>
@@ -327,7 +355,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
         /// <param name="e">The original event data</param>
         private void AncillaryServiceClearingCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("AncillaryServiceClearing", e);
+            this.OnCollectionChanged("AncillaryServiceClearing", e, _ancillaryServiceClearingReference);
         }
         
         /// <summary>
@@ -540,7 +568,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public PostedDateProxy(IMarketCaseClearing modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "postedDate")
             {
             }
             
@@ -558,24 +586,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
                     this.ModelElement.PostedDate = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.PostedDateChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.PostedDateChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -589,7 +599,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public CaseTypeProxy(IMarketCaseClearing modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "caseType")
             {
             }
             
@@ -607,24 +617,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
                     this.ModelElement.CaseType = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.CaseTypeChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.CaseTypeChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -638,7 +630,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public ModifiedDateProxy(IMarketCaseClearing modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "modifiedDate")
             {
             }
             
@@ -655,24 +647,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
                 {
                     this.ModelElement.ModifiedDate = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ModifiedDateChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ModifiedDateChanged -= handler;
             }
         }
     }

@@ -39,7 +39,7 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
     [XmlNamespacePrefixAttribute("objects")]
     [ModelRepresentationClassAttribute("http://www.transformation-tool-contest.eu/2017/smartGrids/cosem#//COSEMObjects/PR" +
         "IME_NB_OFDM_PLC_Application_identification_object")]
-    public class PRIME_NB_OFDM_PLC_Application_identification_object : PRIME_NB_OFDM_PLC_Application_identification, IPRIME_NB_OFDM_PLC_Application_identification_object, IModelElement
+    public partial class PRIME_NB_OFDM_PLC_Application_identification_object : PRIME_NB_OFDM_PLC_Application_identification, IPRIME_NB_OFDM_PLC_Application_identification_object, IModelElement
     {
         
         private static IClass _classInstance;

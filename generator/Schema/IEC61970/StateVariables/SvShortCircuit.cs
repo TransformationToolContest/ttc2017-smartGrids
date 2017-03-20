@@ -43,7 +43,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.StateVariables
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61970/StateVariables/SvShortCircuit" +
         "")]
     [DebuggerDisplayAttribute("SvShortCircuit {UUID}")]
-    public class SvShortCircuit : StateVariable, ISvShortCircuit, IModelElement
+    public partial class SvShortCircuit : StateVariable, ISvShortCircuit, IModelElement
     {
         
         /// <summary>
@@ -51,20 +51,30 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.StateVariables
         /// </summary>
         private float _r0PerR;
         
+        private static Lazy<ITypedElement> _r0PerRAttribute = new Lazy<ITypedElement>(RetrieveR0PerRAttribute);
+        
         /// <summary>
         /// The backing field for the SShortCircuit property
         /// </summary>
         private float _sShortCircuit;
+        
+        private static Lazy<ITypedElement> _sShortCircuitAttribute = new Lazy<ITypedElement>(RetrieveSShortCircuitAttribute);
         
         /// <summary>
         /// The backing field for the XPerR property
         /// </summary>
         private float _xPerR;
         
+        private static Lazy<ITypedElement> _xPerRAttribute = new Lazy<ITypedElement>(RetrieveXPerRAttribute);
+        
         /// <summary>
         /// The backing field for the X0PerX property
         /// </summary>
         private float _x0PerX;
+        
+        private static Lazy<ITypedElement> _x0PerXAttribute = new Lazy<ITypedElement>(RetrieveX0PerXAttribute);
+        
+        private static Lazy<ITypedElement> _topologicalNodeReference = new Lazy<ITypedElement>(RetrieveTopologicalNodeReference);
         
         /// <summary>
         /// The backing field for the TopologicalNode property
@@ -91,10 +101,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.StateVariables
                     float old = this._r0PerR;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnR0PerRChanging(e);
-                    this.OnPropertyChanging("R0PerR", e);
+                    this.OnPropertyChanging("R0PerR", e, _r0PerRAttribute);
                     this._r0PerR = value;
                     this.OnR0PerRChanged(e);
-                    this.OnPropertyChanged("R0PerR", e);
+                    this.OnPropertyChanged("R0PerR", e, _r0PerRAttribute);
                 }
             }
         }
@@ -117,10 +127,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.StateVariables
                     float old = this._sShortCircuit;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnSShortCircuitChanging(e);
-                    this.OnPropertyChanging("SShortCircuit", e);
+                    this.OnPropertyChanging("SShortCircuit", e, _sShortCircuitAttribute);
                     this._sShortCircuit = value;
                     this.OnSShortCircuitChanged(e);
-                    this.OnPropertyChanged("SShortCircuit", e);
+                    this.OnPropertyChanged("SShortCircuit", e, _sShortCircuitAttribute);
                 }
             }
         }
@@ -143,10 +153,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.StateVariables
                     float old = this._xPerR;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnXPerRChanging(e);
-                    this.OnPropertyChanging("XPerR", e);
+                    this.OnPropertyChanging("XPerR", e, _xPerRAttribute);
                     this._xPerR = value;
                     this.OnXPerRChanged(e);
-                    this.OnPropertyChanged("XPerR", e);
+                    this.OnPropertyChanged("XPerR", e, _xPerRAttribute);
                 }
             }
         }
@@ -169,10 +179,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.StateVariables
                     float old = this._x0PerX;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnX0PerXChanging(e);
-                    this.OnPropertyChanging("X0PerX", e);
+                    this.OnPropertyChanging("X0PerX", e, _x0PerXAttribute);
                     this._x0PerX = value;
                     this.OnX0PerXChanged(e);
-                    this.OnPropertyChanged("X0PerX", e);
+                    this.OnPropertyChanged("X0PerX", e, _x0PerXAttribute);
                 }
             }
         }
@@ -195,7 +205,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.StateVariables
                     ITopologicalNode old = this._topologicalNode;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnTopologicalNodeChanging(e);
-                    this.OnPropertyChanging("TopologicalNode", e);
+                    this.OnPropertyChanging("TopologicalNode", e, _topologicalNodeReference);
                     this._topologicalNode = value;
                     if ((old != null))
                     {
@@ -208,7 +218,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.StateVariables
                         value.Deleted += this.OnResetTopologicalNode;
                     }
                     this.OnTopologicalNodeChanged(e);
-                    this.OnPropertyChanged("TopologicalNode", e);
+                    this.OnPropertyChanged("TopologicalNode", e, _topologicalNodeReference);
                 }
             }
         }
@@ -290,6 +300,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.StateVariables
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> TopologicalNodeChanged;
         
+        private static ITypedElement RetrieveR0PerRAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(SvShortCircuit.ClassInstance)).Resolve("r0PerR")));
+        }
+        
         /// <summary>
         /// Raises the R0PerRChanging event
         /// </summary>
@@ -314,6 +329,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.StateVariables
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveSShortCircuitAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(SvShortCircuit.ClassInstance)).Resolve("sShortCircuit")));
         }
         
         /// <summary>
@@ -342,6 +362,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.StateVariables
             }
         }
         
+        private static ITypedElement RetrieveXPerRAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(SvShortCircuit.ClassInstance)).Resolve("xPerR")));
+        }
+        
         /// <summary>
         /// Raises the XPerRChanging event
         /// </summary>
@@ -368,6 +393,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.StateVariables
             }
         }
         
+        private static ITypedElement RetrieveX0PerXAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(SvShortCircuit.ClassInstance)).Resolve("x0PerX")));
+        }
+        
         /// <summary>
         /// Raises the X0PerXChanging event
         /// </summary>
@@ -392,6 +422,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.StateVariables
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveTopologicalNodeReference()
+        {
+            return ((ITypedElement)(((ModelElement)(SvShortCircuit.ClassInstance)).Resolve("TopologicalNode")));
         }
         
         /// <summary>
@@ -664,7 +699,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.StateVariables
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public R0PerRProxy(ISvShortCircuit modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "r0PerR")
             {
             }
             
@@ -682,24 +717,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.StateVariables
                     this.ModelElement.R0PerR = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.R0PerRChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.R0PerRChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -713,7 +730,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.StateVariables
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public SShortCircuitProxy(ISvShortCircuit modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "sShortCircuit")
             {
             }
             
@@ -731,24 +748,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.StateVariables
                     this.ModelElement.SShortCircuit = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.SShortCircuitChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.SShortCircuitChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -762,7 +761,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.StateVariables
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public XPerRProxy(ISvShortCircuit modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "xPerR")
             {
             }
             
@@ -780,24 +779,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.StateVariables
                     this.ModelElement.XPerR = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.XPerRChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.XPerRChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -811,7 +792,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.StateVariables
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public X0PerXProxy(ISvShortCircuit modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "x0PerX")
             {
             }
             
@@ -829,24 +810,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.StateVariables
                     this.ModelElement.X0PerX = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.X0PerXChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.X0PerXChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -860,7 +823,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.StateVariables
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public TopologicalNodeProxy(ISvShortCircuit modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "TopologicalNode")
             {
             }
             
@@ -877,24 +840,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.StateVariables
                 {
                     this.ModelElement.TopologicalNode = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.TopologicalNodeChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.TopologicalNodeChanged -= handler;
             }
         }
     }

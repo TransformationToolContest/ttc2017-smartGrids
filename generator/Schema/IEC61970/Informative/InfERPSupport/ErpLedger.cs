@@ -56,8 +56,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfERPSupport
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61970/Informative/InfERPSupport/Erp" +
         "Ledger")]
     [DebuggerDisplayAttribute("ErpLedger {UUID}")]
-    public class ErpLedger : Document, IErpLedger, IModelElement
+    public partial class ErpLedger : Document, IErpLedger, IModelElement
     {
+        
+        private static Lazy<ITypedElement> _erpLedgerEntriesReference = new Lazy<ITypedElement>(RetrieveErpLedgerEntriesReference);
         
         /// <summary>
         /// The backing field for the ErpLedgerEntries property
@@ -115,6 +117,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfERPSupport
             }
         }
         
+        private static ITypedElement RetrieveErpLedgerEntriesReference()
+        {
+            return ((ITypedElement)(((ModelElement)(ErpLedger.ClassInstance)).Resolve("ErpLedgerEntries")));
+        }
+        
         /// <summary>
         /// Forwards CollectionChanging notifications for the ErpLedgerEntries property to the parent model element
         /// </summary>
@@ -122,7 +129,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfERPSupport
         /// <param name="e">The original event data</param>
         private void ErpLedgerEntriesCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("ErpLedgerEntries", e);
+            this.OnCollectionChanging("ErpLedgerEntries", e, _erpLedgerEntriesReference);
         }
         
         /// <summary>
@@ -132,7 +139,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfERPSupport
         /// <param name="e">The original event data</param>
         private void ErpLedgerEntriesCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("ErpLedgerEntries", e);
+            this.OnCollectionChanged("ErpLedgerEntries", e, _erpLedgerEntriesReference);
         }
         
         /// <summary>

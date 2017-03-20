@@ -46,7 +46,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.AssetModels
     [XmlNamespacePrefixAttribute("cimAssetModels")]
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61968/AssetModels/WireType")]
     [DebuggerDisplayAttribute("WireType {UUID}")]
-    public class WireType : IdentifiedObject, IWireType, IModelElement
+    public partial class WireType : IdentifiedObject, IWireType, IModelElement
     {
         
         /// <summary>
@@ -54,65 +54,93 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.AssetModels
         /// </summary>
         private float _rAC75;
         
+        private static Lazy<ITypedElement> _rAC75Attribute = new Lazy<ITypedElement>(RetrieveRAC75Attribute);
+        
         /// <summary>
         /// The backing field for the RAC50 property
         /// </summary>
         private float _rAC50;
+        
+        private static Lazy<ITypedElement> _rAC50Attribute = new Lazy<ITypedElement>(RetrieveRAC50Attribute);
         
         /// <summary>
         /// The backing field for the Radius property
         /// </summary>
         private float _radius;
         
+        private static Lazy<ITypedElement> _radiusAttribute = new Lazy<ITypedElement>(RetrieveRadiusAttribute);
+        
         /// <summary>
         /// The backing field for the StrandCount property
         /// </summary>
         private int _strandCount;
+        
+        private static Lazy<ITypedElement> _strandCountAttribute = new Lazy<ITypedElement>(RetrieveStrandCountAttribute);
         
         /// <summary>
         /// The backing field for the CoreRadius property
         /// </summary>
         private float _coreRadius;
         
+        private static Lazy<ITypedElement> _coreRadiusAttribute = new Lazy<ITypedElement>(RetrieveCoreRadiusAttribute);
+        
         /// <summary>
         /// The backing field for the RAC25 property
         /// </summary>
         private float _rAC25;
+        
+        private static Lazy<ITypedElement> _rAC25Attribute = new Lazy<ITypedElement>(RetrieveRAC25Attribute);
         
         /// <summary>
         /// The backing field for the RDC20 property
         /// </summary>
         private float _rDC20;
         
+        private static Lazy<ITypedElement> _rDC20Attribute = new Lazy<ITypedElement>(RetrieveRDC20Attribute);
+        
         /// <summary>
         /// The backing field for the SizeDescription property
         /// </summary>
         private string _sizeDescription;
+        
+        private static Lazy<ITypedElement> _sizeDescriptionAttribute = new Lazy<ITypedElement>(RetrieveSizeDescriptionAttribute);
         
         /// <summary>
         /// The backing field for the CoreStrandCount property
         /// </summary>
         private int _coreStrandCount;
         
+        private static Lazy<ITypedElement> _coreStrandCountAttribute = new Lazy<ITypedElement>(RetrieveCoreStrandCountAttribute);
+        
         /// <summary>
         /// The backing field for the RatedCurrent property
         /// </summary>
         private float _ratedCurrent;
+        
+        private static Lazy<ITypedElement> _ratedCurrentAttribute = new Lazy<ITypedElement>(RetrieveRatedCurrentAttribute);
         
         /// <summary>
         /// The backing field for the Gmr property
         /// </summary>
         private float _gmr;
         
+        private static Lazy<ITypedElement> _gmrAttribute = new Lazy<ITypedElement>(RetrieveGmrAttribute);
+        
         /// <summary>
         /// The backing field for the Material property
         /// </summary>
         private Nullable<ConductorMaterialKind> _material;
         
+        private static Lazy<ITypedElement> _materialAttribute = new Lazy<ITypedElement>(RetrieveMaterialAttribute);
+        
+        private static Lazy<ITypedElement> _concentricNeutralCableInfosReference = new Lazy<ITypedElement>(RetrieveConcentricNeutralCableInfosReference);
+        
         /// <summary>
         /// The backing field for the ConcentricNeutralCableInfos property
         /// </summary>
         private WireTypeConcentricNeutralCableInfosCollection _concentricNeutralCableInfos;
+        
+        private static Lazy<ITypedElement> _wireArrangementsReference = new Lazy<ITypedElement>(RetrieveWireArrangementsReference);
         
         /// <summary>
         /// The backing field for the WireArrangements property
@@ -149,10 +177,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.AssetModels
                     float old = this._rAC75;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnRAC75Changing(e);
-                    this.OnPropertyChanging("RAC75", e);
+                    this.OnPropertyChanging("RAC75", e, _rAC75Attribute);
                     this._rAC75 = value;
                     this.OnRAC75Changed(e);
-                    this.OnPropertyChanged("RAC75", e);
+                    this.OnPropertyChanged("RAC75", e, _rAC75Attribute);
                 }
             }
         }
@@ -175,10 +203,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.AssetModels
                     float old = this._rAC50;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnRAC50Changing(e);
-                    this.OnPropertyChanging("RAC50", e);
+                    this.OnPropertyChanging("RAC50", e, _rAC50Attribute);
                     this._rAC50 = value;
                     this.OnRAC50Changed(e);
-                    this.OnPropertyChanged("RAC50", e);
+                    this.OnPropertyChanged("RAC50", e, _rAC50Attribute);
                 }
             }
         }
@@ -201,10 +229,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.AssetModels
                     float old = this._radius;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnRadiusChanging(e);
-                    this.OnPropertyChanging("Radius", e);
+                    this.OnPropertyChanging("Radius", e, _radiusAttribute);
                     this._radius = value;
                     this.OnRadiusChanged(e);
-                    this.OnPropertyChanged("Radius", e);
+                    this.OnPropertyChanged("Radius", e, _radiusAttribute);
                 }
             }
         }
@@ -227,10 +255,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.AssetModels
                     int old = this._strandCount;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnStrandCountChanging(e);
-                    this.OnPropertyChanging("StrandCount", e);
+                    this.OnPropertyChanging("StrandCount", e, _strandCountAttribute);
                     this._strandCount = value;
                     this.OnStrandCountChanged(e);
-                    this.OnPropertyChanged("StrandCount", e);
+                    this.OnPropertyChanged("StrandCount", e, _strandCountAttribute);
                 }
             }
         }
@@ -253,10 +281,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.AssetModels
                     float old = this._coreRadius;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnCoreRadiusChanging(e);
-                    this.OnPropertyChanging("CoreRadius", e);
+                    this.OnPropertyChanging("CoreRadius", e, _coreRadiusAttribute);
                     this._coreRadius = value;
                     this.OnCoreRadiusChanged(e);
-                    this.OnPropertyChanged("CoreRadius", e);
+                    this.OnPropertyChanged("CoreRadius", e, _coreRadiusAttribute);
                 }
             }
         }
@@ -279,10 +307,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.AssetModels
                     float old = this._rAC25;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnRAC25Changing(e);
-                    this.OnPropertyChanging("RAC25", e);
+                    this.OnPropertyChanging("RAC25", e, _rAC25Attribute);
                     this._rAC25 = value;
                     this.OnRAC25Changed(e);
-                    this.OnPropertyChanged("RAC25", e);
+                    this.OnPropertyChanged("RAC25", e, _rAC25Attribute);
                 }
             }
         }
@@ -305,10 +333,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.AssetModels
                     float old = this._rDC20;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnRDC20Changing(e);
-                    this.OnPropertyChanging("RDC20", e);
+                    this.OnPropertyChanging("RDC20", e, _rDC20Attribute);
                     this._rDC20 = value;
                     this.OnRDC20Changed(e);
-                    this.OnPropertyChanged("RDC20", e);
+                    this.OnPropertyChanged("RDC20", e, _rDC20Attribute);
                 }
             }
         }
@@ -331,10 +359,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.AssetModels
                     string old = this._sizeDescription;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnSizeDescriptionChanging(e);
-                    this.OnPropertyChanging("SizeDescription", e);
+                    this.OnPropertyChanging("SizeDescription", e, _sizeDescriptionAttribute);
                     this._sizeDescription = value;
                     this.OnSizeDescriptionChanged(e);
-                    this.OnPropertyChanged("SizeDescription", e);
+                    this.OnPropertyChanged("SizeDescription", e, _sizeDescriptionAttribute);
                 }
             }
         }
@@ -357,10 +385,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.AssetModels
                     int old = this._coreStrandCount;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnCoreStrandCountChanging(e);
-                    this.OnPropertyChanging("CoreStrandCount", e);
+                    this.OnPropertyChanging("CoreStrandCount", e, _coreStrandCountAttribute);
                     this._coreStrandCount = value;
                     this.OnCoreStrandCountChanged(e);
-                    this.OnPropertyChanged("CoreStrandCount", e);
+                    this.OnPropertyChanged("CoreStrandCount", e, _coreStrandCountAttribute);
                 }
             }
         }
@@ -383,10 +411,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.AssetModels
                     float old = this._ratedCurrent;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnRatedCurrentChanging(e);
-                    this.OnPropertyChanging("RatedCurrent", e);
+                    this.OnPropertyChanging("RatedCurrent", e, _ratedCurrentAttribute);
                     this._ratedCurrent = value;
                     this.OnRatedCurrentChanged(e);
-                    this.OnPropertyChanged("RatedCurrent", e);
+                    this.OnPropertyChanged("RatedCurrent", e, _ratedCurrentAttribute);
                 }
             }
         }
@@ -409,10 +437,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.AssetModels
                     float old = this._gmr;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnGmrChanging(e);
-                    this.OnPropertyChanging("Gmr", e);
+                    this.OnPropertyChanging("Gmr", e, _gmrAttribute);
                     this._gmr = value;
                     this.OnGmrChanged(e);
-                    this.OnPropertyChanged("Gmr", e);
+                    this.OnPropertyChanged("Gmr", e, _gmrAttribute);
                 }
             }
         }
@@ -435,10 +463,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.AssetModels
                     Nullable<ConductorMaterialKind> old = this._material;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnMaterialChanging(e);
-                    this.OnPropertyChanging("Material", e);
+                    this.OnPropertyChanging("Material", e, _materialAttribute);
                     this._material = value;
                     this.OnMaterialChanged(e);
-                    this.OnPropertyChanged("Material", e);
+                    this.OnPropertyChanged("Material", e, _materialAttribute);
                 }
             }
         }
@@ -619,6 +647,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.AssetModels
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> MaterialChanged;
         
+        private static ITypedElement RetrieveRAC75Attribute()
+        {
+            return ((ITypedElement)(((ModelElement)(WireType.ClassInstance)).Resolve("rAC75")));
+        }
+        
         /// <summary>
         /// Raises the RAC75Changing event
         /// </summary>
@@ -643,6 +676,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.AssetModels
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveRAC50Attribute()
+        {
+            return ((ITypedElement)(((ModelElement)(WireType.ClassInstance)).Resolve("rAC50")));
         }
         
         /// <summary>
@@ -671,6 +709,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.AssetModels
             }
         }
         
+        private static ITypedElement RetrieveRadiusAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(WireType.ClassInstance)).Resolve("radius")));
+        }
+        
         /// <summary>
         /// Raises the RadiusChanging event
         /// </summary>
@@ -695,6 +738,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.AssetModels
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveStrandCountAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(WireType.ClassInstance)).Resolve("strandCount")));
         }
         
         /// <summary>
@@ -723,6 +771,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.AssetModels
             }
         }
         
+        private static ITypedElement RetrieveCoreRadiusAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(WireType.ClassInstance)).Resolve("coreRadius")));
+        }
+        
         /// <summary>
         /// Raises the CoreRadiusChanging event
         /// </summary>
@@ -747,6 +800,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.AssetModels
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveRAC25Attribute()
+        {
+            return ((ITypedElement)(((ModelElement)(WireType.ClassInstance)).Resolve("rAC25")));
         }
         
         /// <summary>
@@ -775,6 +833,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.AssetModels
             }
         }
         
+        private static ITypedElement RetrieveRDC20Attribute()
+        {
+            return ((ITypedElement)(((ModelElement)(WireType.ClassInstance)).Resolve("rDC20")));
+        }
+        
         /// <summary>
         /// Raises the RDC20Changing event
         /// </summary>
@@ -799,6 +862,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.AssetModels
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveSizeDescriptionAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(WireType.ClassInstance)).Resolve("sizeDescription")));
         }
         
         /// <summary>
@@ -827,6 +895,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.AssetModels
             }
         }
         
+        private static ITypedElement RetrieveCoreStrandCountAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(WireType.ClassInstance)).Resolve("coreStrandCount")));
+        }
+        
         /// <summary>
         /// Raises the CoreStrandCountChanging event
         /// </summary>
@@ -851,6 +924,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.AssetModels
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveRatedCurrentAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(WireType.ClassInstance)).Resolve("ratedCurrent")));
         }
         
         /// <summary>
@@ -879,6 +957,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.AssetModels
             }
         }
         
+        private static ITypedElement RetrieveGmrAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(WireType.ClassInstance)).Resolve("gmr")));
+        }
+        
         /// <summary>
         /// Raises the GmrChanging event
         /// </summary>
@@ -903,6 +986,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.AssetModels
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveMaterialAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(WireType.ClassInstance)).Resolve("material")));
         }
         
         /// <summary>
@@ -931,6 +1019,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.AssetModels
             }
         }
         
+        private static ITypedElement RetrieveConcentricNeutralCableInfosReference()
+        {
+            return ((ITypedElement)(((ModelElement)(WireType.ClassInstance)).Resolve("ConcentricNeutralCableInfos")));
+        }
+        
         /// <summary>
         /// Forwards CollectionChanging notifications for the ConcentricNeutralCableInfos property to the parent model element
         /// </summary>
@@ -938,7 +1031,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.AssetModels
         /// <param name="e">The original event data</param>
         private void ConcentricNeutralCableInfosCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("ConcentricNeutralCableInfos", e);
+            this.OnCollectionChanging("ConcentricNeutralCableInfos", e, _concentricNeutralCableInfosReference);
         }
         
         /// <summary>
@@ -948,7 +1041,12 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.AssetModels
         /// <param name="e">The original event data</param>
         private void ConcentricNeutralCableInfosCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("ConcentricNeutralCableInfos", e);
+            this.OnCollectionChanged("ConcentricNeutralCableInfos", e, _concentricNeutralCableInfosReference);
+        }
+        
+        private static ITypedElement RetrieveWireArrangementsReference()
+        {
+            return ((ITypedElement)(((ModelElement)(WireType.ClassInstance)).Resolve("WireArrangements")));
         }
         
         /// <summary>
@@ -958,7 +1056,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.AssetModels
         /// <param name="e">The original event data</param>
         private void WireArrangementsCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("WireArrangements", e);
+            this.OnCollectionChanging("WireArrangements", e, _wireArrangementsReference);
         }
         
         /// <summary>
@@ -968,7 +1066,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.AssetModels
         /// <param name="e">The original event data</param>
         private void WireArrangementsCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("WireArrangements", e);
+            this.OnCollectionChanged("WireArrangements", e, _wireArrangementsReference);
         }
         
         /// <summary>
@@ -1299,7 +1397,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.AssetModels
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public RAC75Proxy(IWireType modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "rAC75")
             {
             }
             
@@ -1317,24 +1415,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.AssetModels
                     this.ModelElement.RAC75 = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.RAC75Changed += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.RAC75Changed -= handler;
-            }
         }
         
         /// <summary>
@@ -1348,7 +1428,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.AssetModels
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public RAC50Proxy(IWireType modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "rAC50")
             {
             }
             
@@ -1366,24 +1446,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.AssetModels
                     this.ModelElement.RAC50 = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.RAC50Changed += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.RAC50Changed -= handler;
-            }
         }
         
         /// <summary>
@@ -1397,7 +1459,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.AssetModels
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public RadiusProxy(IWireType modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "radius")
             {
             }
             
@@ -1415,24 +1477,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.AssetModels
                     this.ModelElement.Radius = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.RadiusChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.RadiusChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1446,7 +1490,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.AssetModels
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public StrandCountProxy(IWireType modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "strandCount")
             {
             }
             
@@ -1464,24 +1508,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.AssetModels
                     this.ModelElement.StrandCount = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.StrandCountChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.StrandCountChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1495,7 +1521,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.AssetModels
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public CoreRadiusProxy(IWireType modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "coreRadius")
             {
             }
             
@@ -1513,24 +1539,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.AssetModels
                     this.ModelElement.CoreRadius = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.CoreRadiusChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.CoreRadiusChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1544,7 +1552,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.AssetModels
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public RAC25Proxy(IWireType modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "rAC25")
             {
             }
             
@@ -1562,24 +1570,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.AssetModels
                     this.ModelElement.RAC25 = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.RAC25Changed += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.RAC25Changed -= handler;
-            }
         }
         
         /// <summary>
@@ -1593,7 +1583,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.AssetModels
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public RDC20Proxy(IWireType modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "rDC20")
             {
             }
             
@@ -1611,24 +1601,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.AssetModels
                     this.ModelElement.RDC20 = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.RDC20Changed += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.RDC20Changed -= handler;
-            }
         }
         
         /// <summary>
@@ -1642,7 +1614,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.AssetModels
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public SizeDescriptionProxy(IWireType modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "sizeDescription")
             {
             }
             
@@ -1660,24 +1632,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.AssetModels
                     this.ModelElement.SizeDescription = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.SizeDescriptionChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.SizeDescriptionChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1691,7 +1645,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.AssetModels
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public CoreStrandCountProxy(IWireType modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "coreStrandCount")
             {
             }
             
@@ -1709,24 +1663,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.AssetModels
                     this.ModelElement.CoreStrandCount = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.CoreStrandCountChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.CoreStrandCountChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1740,7 +1676,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.AssetModels
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public RatedCurrentProxy(IWireType modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "ratedCurrent")
             {
             }
             
@@ -1758,24 +1694,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.AssetModels
                     this.ModelElement.RatedCurrent = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.RatedCurrentChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.RatedCurrentChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1789,7 +1707,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.AssetModels
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public GmrProxy(IWireType modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "gmr")
             {
             }
             
@@ -1807,24 +1725,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.AssetModels
                     this.ModelElement.Gmr = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.GmrChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.GmrChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1838,7 +1738,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.AssetModels
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public MaterialProxy(IWireType modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "material")
             {
             }
             
@@ -1855,24 +1755,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.AssetModels
                 {
                     this.ModelElement.Material = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.MaterialChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.MaterialChanged -= handler;
             }
         }
     }

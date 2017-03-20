@@ -39,13 +39,15 @@ namespace TTC2017.SmartGrids.CIM
     [XmlNamespacePrefixAttribute("cim")]
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//Element")]
     [DebuggerDisplayAttribute("Element {UUID}")]
-    public abstract class Element : ModelElement, IElement, IModelElement
+    public abstract partial class Element : ModelElement, IElement, IModelElement
     {
         
         /// <summary>
         /// The backing field for the UUID property
         /// </summary>
         private string _uUID;
+        
+        private static Lazy<ITypedElement> _uUIDAttribute = new Lazy<ITypedElement>(RetrieveUUIDAttribute);
         
         private static IClass _classInstance;
         
@@ -67,10 +69,10 @@ namespace TTC2017.SmartGrids.CIM
                     string old = this._uUID;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnUUIDChanging(e);
-                    this.OnPropertyChanging("UUID", e);
+                    this.OnPropertyChanging("UUID", e, _uUIDAttribute);
                     this._uUID = value;
                     this.OnUUIDChanged(e);
-                    this.OnPropertyChanged("UUID", e);
+                    this.OnPropertyChanged("UUID", e, _uUIDAttribute);
                 }
             }
         }
@@ -110,6 +112,11 @@ namespace TTC2017.SmartGrids.CIM
         /// Gets fired when the UUID property changed its value
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> UUIDChanged;
+        
+        private static ITypedElement RetrieveUUIDAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(Element.ClassInstance)).Resolve("UUID")));
+        }
         
         /// <summary>
         /// Raises the UUIDChanging event
@@ -192,7 +199,7 @@ namespace TTC2017.SmartGrids.CIM
             return this.UUID.ToString();
         }
         
-        protected override Uri CreateUriWithFragment(string fragment, bool absolute)
+        protected override Uri CreateUriWithFragment(string fragment, bool absolute, IModelElement baseElement)
         {
             return this.CreateUriFromGlobalIdentifier(fragment, absolute);
         }
@@ -222,7 +229,7 @@ namespace TTC2017.SmartGrids.CIM
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public UUIDProxy(IElement modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "UUID")
             {
             }
             
@@ -239,24 +246,6 @@ namespace TTC2017.SmartGrids.CIM
                 {
                     this.ModelElement.UUID = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.UUIDChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.UUIDChanged -= handler;
             }
         }
     }

@@ -43,18 +43,24 @@ namespace TTC2017.SmartGrids.SubstationStandard.LNNodes.LNGroupZ
     [XmlNamespacePrefixAttribute("groupz")]
     [ModelRepresentationClassAttribute("http://www.transformation-tool-contest.eu/2017/smartGrids/substationStandard#//LN" +
         "Nodes/LNGroupZ/ZAXN")]
-    public class ZAXN : TTC2017.SmartGrids.SubstationStandard.LNNodes.LNGroupZ.GroupZ, IZAXN, IModelElement
+    public partial class ZAXN : TTC2017.SmartGrids.SubstationStandard.LNNodes.LNGroupZ.GroupZ, IZAXN, IModelElement
     {
+        
+        private static Lazy<ITypedElement> _opTmhReference = new Lazy<ITypedElement>(RetrieveOpTmhReference);
         
         /// <summary>
         /// The backing field for the OpTmh property
         /// </summary>
         private IINS _opTmh;
         
+        private static Lazy<ITypedElement> _volReference = new Lazy<ITypedElement>(RetrieveVolReference);
+        
         /// <summary>
         /// The backing field for the Vol property
         /// </summary>
         private IMV _vol;
+        
+        private static Lazy<ITypedElement> _ampReference = new Lazy<ITypedElement>(RetrieveAmpReference);
         
         /// <summary>
         /// The backing field for the Amp property
@@ -80,7 +86,7 @@ namespace TTC2017.SmartGrids.SubstationStandard.LNNodes.LNGroupZ
                     IINS old = this._opTmh;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnOpTmhChanging(e);
-                    this.OnPropertyChanging("OpTmh", e);
+                    this.OnPropertyChanging("OpTmh", e, _opTmhReference);
                     this._opTmh = value;
                     if ((old != null))
                     {
@@ -91,7 +97,7 @@ namespace TTC2017.SmartGrids.SubstationStandard.LNNodes.LNGroupZ
                         value.Deleted += this.OnResetOpTmh;
                     }
                     this.OnOpTmhChanged(e);
-                    this.OnPropertyChanged("OpTmh", e);
+                    this.OnPropertyChanged("OpTmh", e, _opTmhReference);
                 }
             }
         }
@@ -113,7 +119,7 @@ namespace TTC2017.SmartGrids.SubstationStandard.LNNodes.LNGroupZ
                     IMV old = this._vol;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnVolChanging(e);
-                    this.OnPropertyChanging("Vol", e);
+                    this.OnPropertyChanging("Vol", e, _volReference);
                     this._vol = value;
                     if ((old != null))
                     {
@@ -124,7 +130,7 @@ namespace TTC2017.SmartGrids.SubstationStandard.LNNodes.LNGroupZ
                         value.Deleted += this.OnResetVol;
                     }
                     this.OnVolChanged(e);
-                    this.OnPropertyChanged("Vol", e);
+                    this.OnPropertyChanged("Vol", e, _volReference);
                 }
             }
         }
@@ -146,7 +152,7 @@ namespace TTC2017.SmartGrids.SubstationStandard.LNNodes.LNGroupZ
                     IMV old = this._amp;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnAmpChanging(e);
-                    this.OnPropertyChanging("Amp", e);
+                    this.OnPropertyChanging("Amp", e, _ampReference);
                     this._amp = value;
                     if ((old != null))
                     {
@@ -157,7 +163,7 @@ namespace TTC2017.SmartGrids.SubstationStandard.LNNodes.LNGroupZ
                         value.Deleted += this.OnResetAmp;
                     }
                     this.OnAmpChanged(e);
-                    this.OnPropertyChanged("Amp", e);
+                    this.OnPropertyChanged("Amp", e, _ampReference);
                 }
             }
         }
@@ -219,6 +225,11 @@ namespace TTC2017.SmartGrids.SubstationStandard.LNNodes.LNGroupZ
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> AmpChanged;
         
+        private static ITypedElement RetrieveOpTmhReference()
+        {
+            return ((ITypedElement)(((ModelElement)(ZAXN.ClassInstance)).Resolve("OpTmh")));
+        }
+        
         /// <summary>
         /// Raises the OpTmhChanging event
         /// </summary>
@@ -255,6 +266,11 @@ namespace TTC2017.SmartGrids.SubstationStandard.LNNodes.LNGroupZ
             this.OpTmh = null;
         }
         
+        private static ITypedElement RetrieveVolReference()
+        {
+            return ((ITypedElement)(((ModelElement)(ZAXN.ClassInstance)).Resolve("Vol")));
+        }
+        
         /// <summary>
         /// Raises the VolChanging event
         /// </summary>
@@ -289,6 +305,11 @@ namespace TTC2017.SmartGrids.SubstationStandard.LNNodes.LNGroupZ
         private void OnResetVol(object sender, System.EventArgs eventArgs)
         {
             this.Vol = null;
+        }
+        
+        private static ITypedElement RetrieveAmpReference()
+        {
+            return ((ITypedElement)(((ModelElement)(ZAXN.ClassInstance)).Resolve("Amp")));
         }
         
         /// <summary>
@@ -600,7 +621,7 @@ namespace TTC2017.SmartGrids.SubstationStandard.LNNodes.LNGroupZ
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public OpTmhProxy(IZAXN modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "OpTmh")
             {
             }
             
@@ -618,24 +639,6 @@ namespace TTC2017.SmartGrids.SubstationStandard.LNNodes.LNGroupZ
                     this.ModelElement.OpTmh = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.OpTmhChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.OpTmhChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -649,7 +652,7 @@ namespace TTC2017.SmartGrids.SubstationStandard.LNNodes.LNGroupZ
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public VolProxy(IZAXN modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "Vol")
             {
             }
             
@@ -667,24 +670,6 @@ namespace TTC2017.SmartGrids.SubstationStandard.LNNodes.LNGroupZ
                     this.ModelElement.Vol = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.VolChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.VolChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -698,7 +683,7 @@ namespace TTC2017.SmartGrids.SubstationStandard.LNNodes.LNGroupZ
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public AmpProxy(IZAXN modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "Amp")
             {
             }
             
@@ -715,24 +700,6 @@ namespace TTC2017.SmartGrids.SubstationStandard.LNNodes.LNGroupZ
                 {
                     this.ModelElement.Amp = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.AmpChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.AmpChanged -= handler;
             }
         }
     }

@@ -50,7 +50,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61970/Informative/MarketOperations/" +
         "TransactionBid")]
     [DebuggerDisplayAttribute("TransactionBid {UUID}")]
-    public class TransactionBid : Bid, ITransactionBid, IModelElement
+    public partial class TransactionBid : Bid, ITransactionBid, IModelElement
     {
         
         /// <summary>
@@ -58,15 +58,23 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
         /// </summary>
         private string _energyTransId;
         
+        private static Lazy<ITypedElement> _energyTransIdAttribute = new Lazy<ITypedElement>(RetrieveEnergyTransIdAttribute);
+        
+        private static Lazy<ITypedElement> _energyProfilesReference = new Lazy<ITypedElement>(RetrieveEnergyProfilesReference);
+        
         /// <summary>
         /// The backing field for the EnergyProfiles property
         /// </summary>
         private TransactionBidEnergyProfilesCollection _energyProfiles;
         
+        private static Lazy<ITypedElement> _delivery_PnodeReference = new Lazy<ITypedElement>(RetrieveDelivery_PnodeReference);
+        
         /// <summary>
         /// The backing field for the Delivery_Pnode property
         /// </summary>
         private IPnode _delivery_Pnode;
+        
+        private static Lazy<ITypedElement> _receipt_PnodeReference = new Lazy<ITypedElement>(RetrieveReceipt_PnodeReference);
         
         /// <summary>
         /// The backing field for the Receipt_Pnode property
@@ -99,10 +107,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
                     string old = this._energyTransId;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnEnergyTransIdChanging(e);
-                    this.OnPropertyChanging("EnergyTransId", e);
+                    this.OnPropertyChanging("EnergyTransId", e, _energyTransIdAttribute);
                     this._energyTransId = value;
                     this.OnEnergyTransIdChanged(e);
-                    this.OnPropertyChanged("EnergyTransId", e);
+                    this.OnPropertyChanged("EnergyTransId", e, _energyTransIdAttribute);
                 }
             }
         }
@@ -140,7 +148,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
                     IPnode old = this._delivery_Pnode;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnDelivery_PnodeChanging(e);
-                    this.OnPropertyChanging("Delivery_Pnode", e);
+                    this.OnPropertyChanging("Delivery_Pnode", e, _delivery_PnodeReference);
                     this._delivery_Pnode = value;
                     if ((old != null))
                     {
@@ -153,7 +161,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
                         value.Deleted += this.OnResetDelivery_Pnode;
                     }
                     this.OnDelivery_PnodeChanged(e);
-                    this.OnPropertyChanged("Delivery_Pnode", e);
+                    this.OnPropertyChanged("Delivery_Pnode", e, _delivery_PnodeReference);
                 }
             }
         }
@@ -176,7 +184,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
                     IPnode old = this._receipt_Pnode;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnReceipt_PnodeChanging(e);
-                    this.OnPropertyChanging("Receipt_Pnode", e);
+                    this.OnPropertyChanging("Receipt_Pnode", e, _receipt_PnodeReference);
                     this._receipt_Pnode = value;
                     if ((old != null))
                     {
@@ -189,7 +197,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
                         value.Deleted += this.OnResetReceipt_Pnode;
                     }
                     this.OnReceipt_PnodeChanged(e);
-                    this.OnPropertyChanged("Receipt_Pnode", e);
+                    this.OnPropertyChanged("Receipt_Pnode", e, _receipt_PnodeReference);
                 }
             }
         }
@@ -251,6 +259,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> Receipt_PnodeChanged;
         
+        private static ITypedElement RetrieveEnergyTransIdAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(TransactionBid.ClassInstance)).Resolve("EnergyTransId")));
+        }
+        
         /// <summary>
         /// Raises the EnergyTransIdChanging event
         /// </summary>
@@ -277,6 +290,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
             }
         }
         
+        private static ITypedElement RetrieveEnergyProfilesReference()
+        {
+            return ((ITypedElement)(((ModelElement)(TransactionBid.ClassInstance)).Resolve("EnergyProfiles")));
+        }
+        
         /// <summary>
         /// Forwards CollectionChanging notifications for the EnergyProfiles property to the parent model element
         /// </summary>
@@ -284,7 +302,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
         /// <param name="e">The original event data</param>
         private void EnergyProfilesCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("EnergyProfiles", e);
+            this.OnCollectionChanging("EnergyProfiles", e, _energyProfilesReference);
         }
         
         /// <summary>
@@ -294,7 +312,12 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
         /// <param name="e">The original event data</param>
         private void EnergyProfilesCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("EnergyProfiles", e);
+            this.OnCollectionChanged("EnergyProfiles", e, _energyProfilesReference);
+        }
+        
+        private static ITypedElement RetrieveDelivery_PnodeReference()
+        {
+            return ((ITypedElement)(((ModelElement)(TransactionBid.ClassInstance)).Resolve("Delivery_Pnode")));
         }
         
         /// <summary>
@@ -331,6 +354,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
         private void OnResetDelivery_Pnode(object sender, System.EventArgs eventArgs)
         {
             this.Delivery_Pnode = null;
+        }
+        
+        private static ITypedElement RetrieveReceipt_PnodeReference()
+        {
+            return ((ITypedElement)(((ModelElement)(TransactionBid.ClassInstance)).Resolve("Receipt_Pnode")));
         }
         
         /// <summary>
@@ -667,7 +695,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public EnergyTransIdProxy(ITransactionBid modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "EnergyTransId")
             {
             }
             
@@ -685,24 +713,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
                     this.ModelElement.EnergyTransId = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.EnergyTransIdChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.EnergyTransIdChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -716,7 +726,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public Delivery_PnodeProxy(ITransactionBid modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "Delivery_Pnode")
             {
             }
             
@@ -734,24 +744,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
                     this.ModelElement.Delivery_Pnode = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.Delivery_PnodeChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.Delivery_PnodeChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -765,7 +757,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public Receipt_PnodeProxy(ITransactionBid modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "Receipt_Pnode")
             {
             }
             
@@ -782,24 +774,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
                 {
                     this.ModelElement.Receipt_Pnode = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.Receipt_PnodeChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.Receipt_PnodeChanged -= handler;
             }
         }
     }

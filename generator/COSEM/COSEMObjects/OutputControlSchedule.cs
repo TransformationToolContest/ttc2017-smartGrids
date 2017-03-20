@@ -39,7 +39,7 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
     [XmlNamespacePrefixAttribute("objects")]
     [ModelRepresentationClassAttribute("http://www.transformation-tool-contest.eu/2017/smartGrids/cosem#//COSEMObjects/Ou" +
         "tputControlSchedule")]
-    public class OutputControlSchedule : Singleactionschedule, IOutputControlSchedule, IModelElement
+    public partial class OutputControlSchedule : Singleactionschedule, IOutputControlSchedule, IModelElement
     {
         
         private static IClass _classInstance;

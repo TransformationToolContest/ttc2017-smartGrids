@@ -49,7 +49,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.EnergyScheduling
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61970/Informative/EnergyScheduling/" +
         "DynamicSchedule")]
     [DebuggerDisplayAttribute("DynamicSchedule {UUID}")]
-    public class DynamicSchedule : RegularIntervalSchedule, IDynamicSchedule, IModelElement
+    public partial class DynamicSchedule : RegularIntervalSchedule, IDynamicSchedule, IModelElement
     {
         
         /// <summary>
@@ -57,20 +57,30 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.EnergyScheduling
         /// </summary>
         private string _dynSchedStatus;
         
+        private static Lazy<ITypedElement> _dynSchedStatusAttribute = new Lazy<ITypedElement>(RetrieveDynSchedStatusAttribute);
+        
         /// <summary>
         /// The backing field for the DynSchedSignRev property
         /// </summary>
         private bool _dynSchedSignRev;
+        
+        private static Lazy<ITypedElement> _dynSchedSignRevAttribute = new Lazy<ITypedElement>(RetrieveDynSchedSignRevAttribute);
+        
+        private static Lazy<ITypedElement> _receive_HostControlAreaReference = new Lazy<ITypedElement>(RetrieveReceive_HostControlAreaReference);
         
         /// <summary>
         /// The backing field for the Receive_HostControlArea property
         /// </summary>
         private IHostControlArea _receive_HostControlArea;
         
+        private static Lazy<ITypedElement> _measurementReference = new Lazy<ITypedElement>(RetrieveMeasurementReference);
+        
         /// <summary>
         /// The backing field for the Measurement property
         /// </summary>
         private IMeasurement _measurement;
+        
+        private static Lazy<ITypedElement> _send_HostControlAreaReference = new Lazy<ITypedElement>(RetrieveSend_HostControlAreaReference);
         
         /// <summary>
         /// The backing field for the Send_HostControlArea property
@@ -97,10 +107,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.EnergyScheduling
                     string old = this._dynSchedStatus;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnDynSchedStatusChanging(e);
-                    this.OnPropertyChanging("DynSchedStatus", e);
+                    this.OnPropertyChanging("DynSchedStatus", e, _dynSchedStatusAttribute);
                     this._dynSchedStatus = value;
                     this.OnDynSchedStatusChanged(e);
-                    this.OnPropertyChanged("DynSchedStatus", e);
+                    this.OnPropertyChanged("DynSchedStatus", e, _dynSchedStatusAttribute);
                 }
             }
         }
@@ -123,10 +133,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.EnergyScheduling
                     bool old = this._dynSchedSignRev;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnDynSchedSignRevChanging(e);
-                    this.OnPropertyChanging("DynSchedSignRev", e);
+                    this.OnPropertyChanging("DynSchedSignRev", e, _dynSchedSignRevAttribute);
                     this._dynSchedSignRev = value;
                     this.OnDynSchedSignRevChanged(e);
-                    this.OnPropertyChanged("DynSchedSignRev", e);
+                    this.OnPropertyChanged("DynSchedSignRev", e, _dynSchedSignRevAttribute);
                 }
             }
         }
@@ -149,7 +159,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.EnergyScheduling
                     IHostControlArea old = this._receive_HostControlArea;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnReceive_HostControlAreaChanging(e);
-                    this.OnPropertyChanging("Receive_HostControlArea", e);
+                    this.OnPropertyChanging("Receive_HostControlArea", e, _receive_HostControlAreaReference);
                     this._receive_HostControlArea = value;
                     if ((old != null))
                     {
@@ -162,7 +172,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.EnergyScheduling
                         value.Deleted += this.OnResetReceive_HostControlArea;
                     }
                     this.OnReceive_HostControlAreaChanged(e);
-                    this.OnPropertyChanged("Receive_HostControlArea", e);
+                    this.OnPropertyChanged("Receive_HostControlArea", e, _receive_HostControlAreaReference);
                 }
             }
         }
@@ -185,7 +195,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.EnergyScheduling
                     IMeasurement old = this._measurement;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnMeasurementChanging(e);
-                    this.OnPropertyChanging("Measurement", e);
+                    this.OnPropertyChanging("Measurement", e, _measurementReference);
                     this._measurement = value;
                     if ((old != null))
                     {
@@ -198,7 +208,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.EnergyScheduling
                         value.Deleted += this.OnResetMeasurement;
                     }
                     this.OnMeasurementChanged(e);
-                    this.OnPropertyChanged("Measurement", e);
+                    this.OnPropertyChanged("Measurement", e, _measurementReference);
                 }
             }
         }
@@ -221,7 +231,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.EnergyScheduling
                     IHostControlArea old = this._send_HostControlArea;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnSend_HostControlAreaChanging(e);
-                    this.OnPropertyChanging("Send_HostControlArea", e);
+                    this.OnPropertyChanging("Send_HostControlArea", e, _send_HostControlAreaReference);
                     this._send_HostControlArea = value;
                     if ((old != null))
                     {
@@ -234,7 +244,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.EnergyScheduling
                         value.Deleted += this.OnResetSend_HostControlArea;
                     }
                     this.OnSend_HostControlAreaChanged(e);
-                    this.OnPropertyChanged("Send_HostControlArea", e);
+                    this.OnPropertyChanged("Send_HostControlArea", e, _send_HostControlAreaReference);
                 }
             }
         }
@@ -316,6 +326,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.EnergyScheduling
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> Send_HostControlAreaChanged;
         
+        private static ITypedElement RetrieveDynSchedStatusAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(DynamicSchedule.ClassInstance)).Resolve("dynSchedStatus")));
+        }
+        
         /// <summary>
         /// Raises the DynSchedStatusChanging event
         /// </summary>
@@ -342,6 +357,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.EnergyScheduling
             }
         }
         
+        private static ITypedElement RetrieveDynSchedSignRevAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(DynamicSchedule.ClassInstance)).Resolve("dynSchedSignRev")));
+        }
+        
         /// <summary>
         /// Raises the DynSchedSignRevChanging event
         /// </summary>
@@ -366,6 +386,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.EnergyScheduling
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveReceive_HostControlAreaReference()
+        {
+            return ((ITypedElement)(((ModelElement)(DynamicSchedule.ClassInstance)).Resolve("Receive_HostControlArea")));
         }
         
         /// <summary>
@@ -404,6 +429,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.EnergyScheduling
             this.Receive_HostControlArea = null;
         }
         
+        private static ITypedElement RetrieveMeasurementReference()
+        {
+            return ((ITypedElement)(((ModelElement)(DynamicSchedule.ClassInstance)).Resolve("Measurement")));
+        }
+        
         /// <summary>
         /// Raises the MeasurementChanging event
         /// </summary>
@@ -438,6 +468,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.EnergyScheduling
         private void OnResetMeasurement(object sender, System.EventArgs eventArgs)
         {
             this.Measurement = null;
+        }
+        
+        private static ITypedElement RetrieveSend_HostControlAreaReference()
+        {
+            return ((ITypedElement)(((ModelElement)(DynamicSchedule.ClassInstance)).Resolve("Send_HostControlArea")));
         }
         
         /// <summary>
@@ -778,7 +813,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.EnergyScheduling
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public DynSchedStatusProxy(IDynamicSchedule modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "dynSchedStatus")
             {
             }
             
@@ -796,24 +831,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.EnergyScheduling
                     this.ModelElement.DynSchedStatus = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.DynSchedStatusChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.DynSchedStatusChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -827,7 +844,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.EnergyScheduling
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public DynSchedSignRevProxy(IDynamicSchedule modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "dynSchedSignRev")
             {
             }
             
@@ -845,24 +862,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.EnergyScheduling
                     this.ModelElement.DynSchedSignRev = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.DynSchedSignRevChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.DynSchedSignRevChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -876,7 +875,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.EnergyScheduling
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public Receive_HostControlAreaProxy(IDynamicSchedule modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "Receive_HostControlArea")
             {
             }
             
@@ -894,24 +893,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.EnergyScheduling
                     this.ModelElement.Receive_HostControlArea = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.Receive_HostControlAreaChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.Receive_HostControlAreaChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -925,7 +906,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.EnergyScheduling
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public MeasurementProxy(IDynamicSchedule modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "Measurement")
             {
             }
             
@@ -943,24 +924,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.EnergyScheduling
                     this.ModelElement.Measurement = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.MeasurementChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.MeasurementChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -974,7 +937,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.EnergyScheduling
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public Send_HostControlAreaProxy(IDynamicSchedule modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "Send_HostControlArea")
             {
             }
             
@@ -991,24 +954,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.EnergyScheduling
                 {
                     this.ModelElement.Send_HostControlArea = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.Send_HostControlAreaChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.Send_HostControlAreaChanged -= handler;
             }
         }
     }

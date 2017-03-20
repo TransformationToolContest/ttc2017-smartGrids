@@ -43,7 +43,7 @@ namespace TTC2017.SmartGrids.SubstationStandard.LNNodes.LNGroupY
     [XmlNamespacePrefixAttribute("groupy")]
     [ModelRepresentationClassAttribute("http://www.transformation-tool-contest.eu/2017/smartGrids/substationStandard#//LN" +
         "Nodes/LNGroupY/YPSH")]
-    public class YPSH : TTC2017.SmartGrids.SubstationStandard.LNNodes.LNGroupY.GroupY, IYPSH, IModelElement
+    public partial class YPSH : TTC2017.SmartGrids.SubstationStandard.LNNodes.LNGroupY.GroupY, IYPSH, IModelElement
     {
         
         /// <summary>
@@ -51,30 +51,44 @@ namespace TTC2017.SmartGrids.SubstationStandard.LNNodes.LNGroupY
         /// </summary>
         private Nullable<SwitchingCapabilityKind> _shOpCap;
         
+        private static Lazy<ITypedElement> _shOpCapAttribute = new Lazy<ITypedElement>(RetrieveShOpCapAttribute);
+        
         /// <summary>
         /// The backing field for the MaxOpCap property
         /// </summary>
         private Nullable<SwitchingCapabilityKind> _maxOpCap;
+        
+        private static Lazy<ITypedElement> _maxOpCapAttribute = new Lazy<ITypedElement>(RetrieveMaxOpCapAttribute);
+        
+        private static Lazy<ITypedElement> _opTmhReference = new Lazy<ITypedElement>(RetrieveOpTmhReference);
         
         /// <summary>
         /// The backing field for the OpTmh property
         /// </summary>
         private IINS _opTmh;
         
+        private static Lazy<ITypedElement> _posReference = new Lazy<ITypedElement>(RetrievePosReference);
+        
         /// <summary>
         /// The backing field for the Pos property
         /// </summary>
         private IDPC _pos;
+        
+        private static Lazy<ITypedElement> _blkOpnReference = new Lazy<ITypedElement>(RetrieveBlkOpnReference);
         
         /// <summary>
         /// The backing field for the BlkOpn property
         /// </summary>
         private ISPC _blkOpn;
         
+        private static Lazy<ITypedElement> _blkClsReference = new Lazy<ITypedElement>(RetrieveBlkClsReference);
+        
         /// <summary>
         /// The backing field for the BlkCls property
         /// </summary>
         private ISPC _blkCls;
+        
+        private static Lazy<ITypedElement> _chaMotEnaReference = new Lazy<ITypedElement>(RetrieveChaMotEnaReference);
         
         /// <summary>
         /// The backing field for the ChaMotEna property
@@ -100,10 +114,10 @@ namespace TTC2017.SmartGrids.SubstationStandard.LNNodes.LNGroupY
                     Nullable<SwitchingCapabilityKind> old = this._shOpCap;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnShOpCapChanging(e);
-                    this.OnPropertyChanging("ShOpCap", e);
+                    this.OnPropertyChanging("ShOpCap", e, _shOpCapAttribute);
                     this._shOpCap = value;
                     this.OnShOpCapChanged(e);
-                    this.OnPropertyChanged("ShOpCap", e);
+                    this.OnPropertyChanged("ShOpCap", e, _shOpCapAttribute);
                 }
             }
         }
@@ -125,10 +139,10 @@ namespace TTC2017.SmartGrids.SubstationStandard.LNNodes.LNGroupY
                     Nullable<SwitchingCapabilityKind> old = this._maxOpCap;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnMaxOpCapChanging(e);
-                    this.OnPropertyChanging("MaxOpCap", e);
+                    this.OnPropertyChanging("MaxOpCap", e, _maxOpCapAttribute);
                     this._maxOpCap = value;
                     this.OnMaxOpCapChanged(e);
-                    this.OnPropertyChanged("MaxOpCap", e);
+                    this.OnPropertyChanged("MaxOpCap", e, _maxOpCapAttribute);
                 }
             }
         }
@@ -150,7 +164,7 @@ namespace TTC2017.SmartGrids.SubstationStandard.LNNodes.LNGroupY
                     IINS old = this._opTmh;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnOpTmhChanging(e);
-                    this.OnPropertyChanging("OpTmh", e);
+                    this.OnPropertyChanging("OpTmh", e, _opTmhReference);
                     this._opTmh = value;
                     if ((old != null))
                     {
@@ -161,7 +175,7 @@ namespace TTC2017.SmartGrids.SubstationStandard.LNNodes.LNGroupY
                         value.Deleted += this.OnResetOpTmh;
                     }
                     this.OnOpTmhChanged(e);
-                    this.OnPropertyChanged("OpTmh", e);
+                    this.OnPropertyChanged("OpTmh", e, _opTmhReference);
                 }
             }
         }
@@ -183,7 +197,7 @@ namespace TTC2017.SmartGrids.SubstationStandard.LNNodes.LNGroupY
                     IDPC old = this._pos;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnPosChanging(e);
-                    this.OnPropertyChanging("Pos", e);
+                    this.OnPropertyChanging("Pos", e, _posReference);
                     this._pos = value;
                     if ((old != null))
                     {
@@ -194,7 +208,7 @@ namespace TTC2017.SmartGrids.SubstationStandard.LNNodes.LNGroupY
                         value.Deleted += this.OnResetPos;
                     }
                     this.OnPosChanged(e);
-                    this.OnPropertyChanged("Pos", e);
+                    this.OnPropertyChanged("Pos", e, _posReference);
                 }
             }
         }
@@ -216,7 +230,7 @@ namespace TTC2017.SmartGrids.SubstationStandard.LNNodes.LNGroupY
                     ISPC old = this._blkOpn;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnBlkOpnChanging(e);
-                    this.OnPropertyChanging("BlkOpn", e);
+                    this.OnPropertyChanging("BlkOpn", e, _blkOpnReference);
                     this._blkOpn = value;
                     if ((old != null))
                     {
@@ -227,7 +241,7 @@ namespace TTC2017.SmartGrids.SubstationStandard.LNNodes.LNGroupY
                         value.Deleted += this.OnResetBlkOpn;
                     }
                     this.OnBlkOpnChanged(e);
-                    this.OnPropertyChanged("BlkOpn", e);
+                    this.OnPropertyChanged("BlkOpn", e, _blkOpnReference);
                 }
             }
         }
@@ -249,7 +263,7 @@ namespace TTC2017.SmartGrids.SubstationStandard.LNNodes.LNGroupY
                     ISPC old = this._blkCls;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnBlkClsChanging(e);
-                    this.OnPropertyChanging("BlkCls", e);
+                    this.OnPropertyChanging("BlkCls", e, _blkClsReference);
                     this._blkCls = value;
                     if ((old != null))
                     {
@@ -260,7 +274,7 @@ namespace TTC2017.SmartGrids.SubstationStandard.LNNodes.LNGroupY
                         value.Deleted += this.OnResetBlkCls;
                     }
                     this.OnBlkClsChanged(e);
-                    this.OnPropertyChanged("BlkCls", e);
+                    this.OnPropertyChanged("BlkCls", e, _blkClsReference);
                 }
             }
         }
@@ -282,7 +296,7 @@ namespace TTC2017.SmartGrids.SubstationStandard.LNNodes.LNGroupY
                     ISPC old = this._chaMotEna;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnChaMotEnaChanging(e);
-                    this.OnPropertyChanging("ChaMotEna", e);
+                    this.OnPropertyChanging("ChaMotEna", e, _chaMotEnaReference);
                     this._chaMotEna = value;
                     if ((old != null))
                     {
@@ -293,7 +307,7 @@ namespace TTC2017.SmartGrids.SubstationStandard.LNNodes.LNGroupY
                         value.Deleted += this.OnResetChaMotEna;
                     }
                     this.OnChaMotEnaChanged(e);
-                    this.OnPropertyChanged("ChaMotEna", e);
+                    this.OnPropertyChanged("ChaMotEna", e, _chaMotEnaReference);
                 }
             }
         }
@@ -395,6 +409,11 @@ namespace TTC2017.SmartGrids.SubstationStandard.LNNodes.LNGroupY
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> ChaMotEnaChanged;
         
+        private static ITypedElement RetrieveShOpCapAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(YPSH.ClassInstance)).Resolve("ShOpCap")));
+        }
+        
         /// <summary>
         /// Raises the ShOpCapChanging event
         /// </summary>
@@ -421,6 +440,11 @@ namespace TTC2017.SmartGrids.SubstationStandard.LNNodes.LNGroupY
             }
         }
         
+        private static ITypedElement RetrieveMaxOpCapAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(YPSH.ClassInstance)).Resolve("MaxOpCap")));
+        }
+        
         /// <summary>
         /// Raises the MaxOpCapChanging event
         /// </summary>
@@ -445,6 +469,11 @@ namespace TTC2017.SmartGrids.SubstationStandard.LNNodes.LNGroupY
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveOpTmhReference()
+        {
+            return ((ITypedElement)(((ModelElement)(YPSH.ClassInstance)).Resolve("OpTmh")));
         }
         
         /// <summary>
@@ -483,6 +512,11 @@ namespace TTC2017.SmartGrids.SubstationStandard.LNNodes.LNGroupY
             this.OpTmh = null;
         }
         
+        private static ITypedElement RetrievePosReference()
+        {
+            return ((ITypedElement)(((ModelElement)(YPSH.ClassInstance)).Resolve("Pos")));
+        }
+        
         /// <summary>
         /// Raises the PosChanging event
         /// </summary>
@@ -517,6 +551,11 @@ namespace TTC2017.SmartGrids.SubstationStandard.LNNodes.LNGroupY
         private void OnResetPos(object sender, System.EventArgs eventArgs)
         {
             this.Pos = null;
+        }
+        
+        private static ITypedElement RetrieveBlkOpnReference()
+        {
+            return ((ITypedElement)(((ModelElement)(YPSH.ClassInstance)).Resolve("BlkOpn")));
         }
         
         /// <summary>
@@ -555,6 +594,11 @@ namespace TTC2017.SmartGrids.SubstationStandard.LNNodes.LNGroupY
             this.BlkOpn = null;
         }
         
+        private static ITypedElement RetrieveBlkClsReference()
+        {
+            return ((ITypedElement)(((ModelElement)(YPSH.ClassInstance)).Resolve("BlkCls")));
+        }
+        
         /// <summary>
         /// Raises the BlkClsChanging event
         /// </summary>
@@ -589,6 +633,11 @@ namespace TTC2017.SmartGrids.SubstationStandard.LNNodes.LNGroupY
         private void OnResetBlkCls(object sender, System.EventArgs eventArgs)
         {
             this.BlkCls = null;
+        }
+        
+        private static ITypedElement RetrieveChaMotEnaReference()
+        {
+            return ((ITypedElement)(((ModelElement)(YPSH.ClassInstance)).Resolve("ChaMotEna")));
         }
         
         /// <summary>
@@ -1015,7 +1064,7 @@ namespace TTC2017.SmartGrids.SubstationStandard.LNNodes.LNGroupY
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public ShOpCapProxy(IYPSH modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "ShOpCap")
             {
             }
             
@@ -1033,24 +1082,6 @@ namespace TTC2017.SmartGrids.SubstationStandard.LNNodes.LNGroupY
                     this.ModelElement.ShOpCap = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ShOpCapChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ShOpCapChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1064,7 +1095,7 @@ namespace TTC2017.SmartGrids.SubstationStandard.LNNodes.LNGroupY
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public MaxOpCapProxy(IYPSH modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "MaxOpCap")
             {
             }
             
@@ -1082,24 +1113,6 @@ namespace TTC2017.SmartGrids.SubstationStandard.LNNodes.LNGroupY
                     this.ModelElement.MaxOpCap = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.MaxOpCapChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.MaxOpCapChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1113,7 +1126,7 @@ namespace TTC2017.SmartGrids.SubstationStandard.LNNodes.LNGroupY
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public OpTmhProxy(IYPSH modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "OpTmh")
             {
             }
             
@@ -1131,24 +1144,6 @@ namespace TTC2017.SmartGrids.SubstationStandard.LNNodes.LNGroupY
                     this.ModelElement.OpTmh = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.OpTmhChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.OpTmhChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1162,7 +1157,7 @@ namespace TTC2017.SmartGrids.SubstationStandard.LNNodes.LNGroupY
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public PosProxy(IYPSH modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "Pos")
             {
             }
             
@@ -1180,24 +1175,6 @@ namespace TTC2017.SmartGrids.SubstationStandard.LNNodes.LNGroupY
                     this.ModelElement.Pos = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.PosChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.PosChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1211,7 +1188,7 @@ namespace TTC2017.SmartGrids.SubstationStandard.LNNodes.LNGroupY
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public BlkOpnProxy(IYPSH modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "BlkOpn")
             {
             }
             
@@ -1229,24 +1206,6 @@ namespace TTC2017.SmartGrids.SubstationStandard.LNNodes.LNGroupY
                     this.ModelElement.BlkOpn = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.BlkOpnChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.BlkOpnChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1260,7 +1219,7 @@ namespace TTC2017.SmartGrids.SubstationStandard.LNNodes.LNGroupY
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public BlkClsProxy(IYPSH modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "BlkCls")
             {
             }
             
@@ -1278,24 +1237,6 @@ namespace TTC2017.SmartGrids.SubstationStandard.LNNodes.LNGroupY
                     this.ModelElement.BlkCls = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.BlkClsChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.BlkClsChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1309,7 +1250,7 @@ namespace TTC2017.SmartGrids.SubstationStandard.LNNodes.LNGroupY
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public ChaMotEnaProxy(IYPSH modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "ChaMotEna")
             {
             }
             
@@ -1326,24 +1267,6 @@ namespace TTC2017.SmartGrids.SubstationStandard.LNNodes.LNGroupY
                 {
                     this.ModelElement.ChaMotEna = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ChaMotEnaChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ChaMotEnaChanged -= handler;
             }
         }
     }

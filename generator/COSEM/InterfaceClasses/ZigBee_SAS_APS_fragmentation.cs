@@ -40,7 +40,7 @@ namespace TTC2017.SmartGrids.COSEM.InterfaceClasses
     [XmlNamespacePrefixAttribute("inter")]
     [ModelRepresentationClassAttribute("http://www.transformation-tool-contest.eu/2017/smartGrids/cosem#//InterfaceClasse" +
         "s/ZigBee_SAS_APS_fragmentation")]
-    public class ZigBee_SAS_APS_fragmentation : Base, IZigBee_SAS_APS_fragmentation, IModelElement
+    public partial class ZigBee_SAS_APS_fragmentation : Base, IZigBee_SAS_APS_fragmentation, IModelElement
     {
         
         private static IClass _classInstance;

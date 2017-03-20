@@ -40,7 +40,7 @@ namespace TTC2017.SmartGrids.COSEM.InterfaceClasses
     [XmlNamespacePrefixAttribute("inter")]
     [ModelRepresentationClassAttribute("http://www.transformation-tool-contest.eu/2017/smartGrids/cosem#//InterfaceClasse" +
         "s/IEC_twisted_pair_setup")]
-    public class IEC_twisted_pair_setup : Base, IIEC_twisted_pair_setup, IModelElement
+    public partial class IEC_twisted_pair_setup : Base, IIEC_twisted_pair_setup, IModelElement
     {
         
         private static IClass _classInstance;

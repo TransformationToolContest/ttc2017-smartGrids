@@ -51,8 +51,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Meas
     [XmlNamespacePrefixAttribute("cimMeas")]
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61970/Meas/StringMeasurement")]
     [DebuggerDisplayAttribute("StringMeasurement {UUID}")]
-    public class StringMeasurement : Measurement, IStringMeasurement, IModelElement
+    public partial class StringMeasurement : Measurement, IStringMeasurement, IModelElement
     {
+        
+        private static Lazy<ITypedElement> _stringMeasurementValuesReference = new Lazy<ITypedElement>(RetrieveStringMeasurementValuesReference);
         
         /// <summary>
         /// The backing field for the StringMeasurementValues property
@@ -109,6 +111,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Meas
             }
         }
         
+        private static ITypedElement RetrieveStringMeasurementValuesReference()
+        {
+            return ((ITypedElement)(((ModelElement)(StringMeasurement.ClassInstance)).Resolve("StringMeasurementValues")));
+        }
+        
         /// <summary>
         /// Forwards CollectionChanging notifications for the StringMeasurementValues property to the parent model element
         /// </summary>
@@ -116,7 +123,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Meas
         /// <param name="e">The original event data</param>
         private void StringMeasurementValuesCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("StringMeasurementValues", e);
+            this.OnCollectionChanging("StringMeasurementValues", e, _stringMeasurementValuesReference);
         }
         
         /// <summary>
@@ -126,7 +133,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Meas
         /// <param name="e">The original event data</param>
         private void StringMeasurementValuesCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("StringMeasurementValues", e);
+            this.OnCollectionChanged("StringMeasurementValues", e, _stringMeasurementValuesReference);
         }
         
         /// <summary>

@@ -51,7 +51,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Meas
     [XmlNamespacePrefixAttribute("cimMeas")]
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61970/Meas/MeasurementValue")]
     [DebuggerDisplayAttribute("MeasurementValue {UUID}")]
-    public class MeasurementValue : IdentifiedObject, IMeasurementValue, IModelElement
+    public partial class MeasurementValue : IdentifiedObject, IMeasurementValue, IModelElement
     {
         
         /// <summary>
@@ -59,35 +59,51 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Meas
         /// </summary>
         private float _sensorAccuracy;
         
+        private static Lazy<ITypedElement> _sensorAccuracyAttribute = new Lazy<ITypedElement>(RetrieveSensorAccuracyAttribute);
+        
         /// <summary>
         /// The backing field for the TimeStamp property
         /// </summary>
         private DateTime _timeStamp;
+        
+        private static Lazy<ITypedElement> _timeStampAttribute = new Lazy<ITypedElement>(RetrieveTimeStampAttribute);
+        
+        private static Lazy<ITypedElement> _gmlValuesReference = new Lazy<ITypedElement>(RetrieveGmlValuesReference);
         
         /// <summary>
         /// The backing field for the GmlValues property
         /// </summary>
         private MeasurementValueGmlValuesCollection _gmlValues;
         
+        private static Lazy<ITypedElement> _procedureDataSetsReference = new Lazy<ITypedElement>(RetrieveProcedureDataSetsReference);
+        
         /// <summary>
         /// The backing field for the ProcedureDataSets property
         /// </summary>
         private MeasurementValueProcedureDataSetsCollection _procedureDataSets;
+        
+        private static Lazy<ITypedElement> _measurementValueQualityReference = new Lazy<ITypedElement>(RetrieveMeasurementValueQualityReference);
         
         /// <summary>
         /// The backing field for the MeasurementValueQuality property
         /// </summary>
         private IMeasurementValueQuality _measurementValueQuality;
         
+        private static Lazy<ITypedElement> _erpPersonReference = new Lazy<ITypedElement>(RetrieveErpPersonReference);
+        
         /// <summary>
         /// The backing field for the ErpPerson property
         /// </summary>
         private IErpPerson _erpPerson;
         
+        private static Lazy<ITypedElement> _measurementValueSourceReference = new Lazy<ITypedElement>(RetrieveMeasurementValueSourceReference);
+        
         /// <summary>
         /// The backing field for the MeasurementValueSource property
         /// </summary>
         private IMeasurementValueSource _measurementValueSource;
+        
+        private static Lazy<ITypedElement> _remoteSourceReference = new Lazy<ITypedElement>(RetrieveRemoteSourceReference);
         
         /// <summary>
         /// The backing field for the RemoteSource property
@@ -124,10 +140,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Meas
                     float old = this._sensorAccuracy;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnSensorAccuracyChanging(e);
-                    this.OnPropertyChanging("SensorAccuracy", e);
+                    this.OnPropertyChanging("SensorAccuracy", e, _sensorAccuracyAttribute);
                     this._sensorAccuracy = value;
                     this.OnSensorAccuracyChanged(e);
-                    this.OnPropertyChanged("SensorAccuracy", e);
+                    this.OnPropertyChanged("SensorAccuracy", e, _sensorAccuracyAttribute);
                 }
             }
         }
@@ -150,10 +166,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Meas
                     DateTime old = this._timeStamp;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnTimeStampChanging(e);
-                    this.OnPropertyChanging("TimeStamp", e);
+                    this.OnPropertyChanging("TimeStamp", e, _timeStampAttribute);
                     this._timeStamp = value;
                     this.OnTimeStampChanged(e);
-                    this.OnPropertyChanged("TimeStamp", e);
+                    this.OnPropertyChanged("TimeStamp", e, _timeStampAttribute);
                 }
             }
         }
@@ -206,7 +222,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Meas
                     IMeasurementValueQuality old = this._measurementValueQuality;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnMeasurementValueQualityChanging(e);
-                    this.OnPropertyChanging("MeasurementValueQuality", e);
+                    this.OnPropertyChanging("MeasurementValueQuality", e, _measurementValueQualityReference);
                     this._measurementValueQuality = value;
                     if ((old != null))
                     {
@@ -219,7 +235,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Meas
                         value.Deleted += this.OnResetMeasurementValueQuality;
                     }
                     this.OnMeasurementValueQualityChanged(e);
-                    this.OnPropertyChanged("MeasurementValueQuality", e);
+                    this.OnPropertyChanged("MeasurementValueQuality", e, _measurementValueQualityReference);
                 }
             }
         }
@@ -242,7 +258,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Meas
                     IErpPerson old = this._erpPerson;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnErpPersonChanging(e);
-                    this.OnPropertyChanging("ErpPerson", e);
+                    this.OnPropertyChanging("ErpPerson", e, _erpPersonReference);
                     this._erpPerson = value;
                     if ((old != null))
                     {
@@ -255,7 +271,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Meas
                         value.Deleted += this.OnResetErpPerson;
                     }
                     this.OnErpPersonChanged(e);
-                    this.OnPropertyChanged("ErpPerson", e);
+                    this.OnPropertyChanged("ErpPerson", e, _erpPersonReference);
                 }
             }
         }
@@ -278,7 +294,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Meas
                     IMeasurementValueSource old = this._measurementValueSource;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnMeasurementValueSourceChanging(e);
-                    this.OnPropertyChanging("MeasurementValueSource", e);
+                    this.OnPropertyChanging("MeasurementValueSource", e, _measurementValueSourceReference);
                     this._measurementValueSource = value;
                     if ((old != null))
                     {
@@ -291,7 +307,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Meas
                         value.Deleted += this.OnResetMeasurementValueSource;
                     }
                     this.OnMeasurementValueSourceChanged(e);
-                    this.OnPropertyChanged("MeasurementValueSource", e);
+                    this.OnPropertyChanged("MeasurementValueSource", e, _measurementValueSourceReference);
                 }
             }
         }
@@ -314,7 +330,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Meas
                     IRemoteSource old = this._remoteSource;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnRemoteSourceChanging(e);
-                    this.OnPropertyChanging("RemoteSource", e);
+                    this.OnPropertyChanging("RemoteSource", e, _remoteSourceReference);
                     this._remoteSource = value;
                     if ((old != null))
                     {
@@ -327,7 +343,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Meas
                         value.Deleted += this.OnResetRemoteSource;
                     }
                     this.OnRemoteSourceChanged(e);
-                    this.OnPropertyChanged("RemoteSource", e);
+                    this.OnPropertyChanged("RemoteSource", e, _remoteSourceReference);
                 }
             }
         }
@@ -418,6 +434,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Meas
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> RemoteSourceChanged;
         
+        private static ITypedElement RetrieveSensorAccuracyAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(MeasurementValue.ClassInstance)).Resolve("sensorAccuracy")));
+        }
+        
         /// <summary>
         /// Raises the SensorAccuracyChanging event
         /// </summary>
@@ -442,6 +463,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Meas
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveTimeStampAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(MeasurementValue.ClassInstance)).Resolve("timeStamp")));
         }
         
         /// <summary>
@@ -470,6 +496,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Meas
             }
         }
         
+        private static ITypedElement RetrieveGmlValuesReference()
+        {
+            return ((ITypedElement)(((ModelElement)(MeasurementValue.ClassInstance)).Resolve("GmlValues")));
+        }
+        
         /// <summary>
         /// Forwards CollectionChanging notifications for the GmlValues property to the parent model element
         /// </summary>
@@ -477,7 +508,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Meas
         /// <param name="e">The original event data</param>
         private void GmlValuesCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("GmlValues", e);
+            this.OnCollectionChanging("GmlValues", e, _gmlValuesReference);
         }
         
         /// <summary>
@@ -487,7 +518,12 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Meas
         /// <param name="e">The original event data</param>
         private void GmlValuesCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("GmlValues", e);
+            this.OnCollectionChanged("GmlValues", e, _gmlValuesReference);
+        }
+        
+        private static ITypedElement RetrieveProcedureDataSetsReference()
+        {
+            return ((ITypedElement)(((ModelElement)(MeasurementValue.ClassInstance)).Resolve("ProcedureDataSets")));
         }
         
         /// <summary>
@@ -497,7 +533,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Meas
         /// <param name="e">The original event data</param>
         private void ProcedureDataSetsCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("ProcedureDataSets", e);
+            this.OnCollectionChanging("ProcedureDataSets", e, _procedureDataSetsReference);
         }
         
         /// <summary>
@@ -507,7 +543,12 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Meas
         /// <param name="e">The original event data</param>
         private void ProcedureDataSetsCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("ProcedureDataSets", e);
+            this.OnCollectionChanged("ProcedureDataSets", e, _procedureDataSetsReference);
+        }
+        
+        private static ITypedElement RetrieveMeasurementValueQualityReference()
+        {
+            return ((ITypedElement)(((ModelElement)(MeasurementValue.ClassInstance)).Resolve("MeasurementValueQuality")));
         }
         
         /// <summary>
@@ -546,6 +587,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Meas
             this.MeasurementValueQuality = null;
         }
         
+        private static ITypedElement RetrieveErpPersonReference()
+        {
+            return ((ITypedElement)(((ModelElement)(MeasurementValue.ClassInstance)).Resolve("ErpPerson")));
+        }
+        
         /// <summary>
         /// Raises the ErpPersonChanging event
         /// </summary>
@@ -582,6 +628,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Meas
             this.ErpPerson = null;
         }
         
+        private static ITypedElement RetrieveMeasurementValueSourceReference()
+        {
+            return ((ITypedElement)(((ModelElement)(MeasurementValue.ClassInstance)).Resolve("MeasurementValueSource")));
+        }
+        
         /// <summary>
         /// Raises the MeasurementValueSourceChanging event
         /// </summary>
@@ -616,6 +667,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Meas
         private void OnResetMeasurementValueSource(object sender, System.EventArgs eventArgs)
         {
             this.MeasurementValueSource = null;
+        }
+        
+        private static ITypedElement RetrieveRemoteSourceReference()
+        {
+            return ((ITypedElement)(((ModelElement)(MeasurementValue.ClassInstance)).Resolve("RemoteSource")));
         }
         
         /// <summary>
@@ -1084,7 +1140,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Meas
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public SensorAccuracyProxy(IMeasurementValue modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "sensorAccuracy")
             {
             }
             
@@ -1102,24 +1158,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Meas
                     this.ModelElement.SensorAccuracy = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.SensorAccuracyChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.SensorAccuracyChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1133,7 +1171,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Meas
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public TimeStampProxy(IMeasurementValue modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "timeStamp")
             {
             }
             
@@ -1151,24 +1189,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Meas
                     this.ModelElement.TimeStamp = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.TimeStampChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.TimeStampChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1182,7 +1202,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Meas
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public MeasurementValueQualityProxy(IMeasurementValue modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "MeasurementValueQuality")
             {
             }
             
@@ -1200,24 +1220,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Meas
                     this.ModelElement.MeasurementValueQuality = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.MeasurementValueQualityChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.MeasurementValueQualityChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1231,7 +1233,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Meas
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public ErpPersonProxy(IMeasurementValue modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "ErpPerson")
             {
             }
             
@@ -1249,24 +1251,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Meas
                     this.ModelElement.ErpPerson = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ErpPersonChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ErpPersonChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1280,7 +1264,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Meas
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public MeasurementValueSourceProxy(IMeasurementValue modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "MeasurementValueSource")
             {
             }
             
@@ -1298,24 +1282,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Meas
                     this.ModelElement.MeasurementValueSource = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.MeasurementValueSourceChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.MeasurementValueSourceChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1329,7 +1295,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Meas
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public RemoteSourceProxy(IMeasurementValue modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "RemoteSource")
             {
             }
             
@@ -1346,24 +1312,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Meas
                 {
                     this.ModelElement.RemoteSource = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.RemoteSourceChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.RemoteSourceChanged -= handler;
             }
         }
     }

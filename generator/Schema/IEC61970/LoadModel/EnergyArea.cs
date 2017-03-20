@@ -43,8 +43,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.LoadModel
     [XmlNamespacePrefixAttribute("cimLoadModel")]
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61970/LoadModel/EnergyArea")]
     [DebuggerDisplayAttribute("EnergyArea {UUID}")]
-    public class EnergyArea : IdentifiedObject, IEnergyArea, IModelElement
+    public partial class EnergyArea : IdentifiedObject, IEnergyArea, IModelElement
     {
+        
+        private static Lazy<ITypedElement> _controlAreaReference = new Lazy<ITypedElement>(RetrieveControlAreaReference);
         
         /// <summary>
         /// The backing field for the ControlArea property
@@ -71,7 +73,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.LoadModel
                     IControlArea old = this._controlArea;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnControlAreaChanging(e);
-                    this.OnPropertyChanging("ControlArea", e);
+                    this.OnPropertyChanging("ControlArea", e, _controlAreaReference);
                     this._controlArea = value;
                     if ((old != null))
                     {
@@ -84,7 +86,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.LoadModel
                         value.Deleted += this.OnResetControlArea;
                     }
                     this.OnControlAreaChanged(e);
-                    this.OnPropertyChanged("ControlArea", e);
+                    this.OnPropertyChanged("ControlArea", e, _controlAreaReference);
                 }
             }
         }
@@ -124,6 +126,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.LoadModel
         /// Gets fired when the ControlArea property changed its value
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> ControlAreaChanged;
+        
+        private static ITypedElement RetrieveControlAreaReference()
+        {
+            return ((ITypedElement)(((ModelElement)(EnergyArea.ClassInstance)).Resolve("ControlArea")));
+        }
         
         /// <summary>
         /// Raises the ControlAreaChanging event
@@ -347,7 +354,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.LoadModel
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public ControlAreaProxy(IEnergyArea modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "ControlArea")
             {
             }
             
@@ -364,24 +371,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.LoadModel
                 {
                     this.ModelElement.ControlArea = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ControlAreaChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ControlAreaChanged -= handler;
             }
         }
     }

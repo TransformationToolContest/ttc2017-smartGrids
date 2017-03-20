@@ -56,8 +56,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfERPSupport
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61970/Informative/InfERPSupport/Erp" +
         "Journal")]
     [DebuggerDisplayAttribute("ErpJournal {UUID}")]
-    public class ErpJournal : Document, IErpJournal, IModelElement
+    public partial class ErpJournal : Document, IErpJournal, IModelElement
     {
+        
+        private static Lazy<ITypedElement> _erpJournalEntriesReference = new Lazy<ITypedElement>(RetrieveErpJournalEntriesReference);
         
         /// <summary>
         /// The backing field for the ErpJournalEntries property
@@ -115,6 +117,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfERPSupport
             }
         }
         
+        private static ITypedElement RetrieveErpJournalEntriesReference()
+        {
+            return ((ITypedElement)(((ModelElement)(ErpJournal.ClassInstance)).Resolve("ErpJournalEntries")));
+        }
+        
         /// <summary>
         /// Forwards CollectionChanging notifications for the ErpJournalEntries property to the parent model element
         /// </summary>
@@ -122,7 +129,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfERPSupport
         /// <param name="e">The original event data</param>
         private void ErpJournalEntriesCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("ErpJournalEntries", e);
+            this.OnCollectionChanging("ErpJournalEntries", e, _erpJournalEntriesReference);
         }
         
         /// <summary>
@@ -132,7 +139,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfERPSupport
         /// <param name="e">The original event data</param>
         private void ErpJournalEntriesCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("ErpJournalEntries", e);
+            this.OnCollectionChanged("ErpJournalEntries", e, _erpJournalEntriesReference);
         }
         
         /// <summary>

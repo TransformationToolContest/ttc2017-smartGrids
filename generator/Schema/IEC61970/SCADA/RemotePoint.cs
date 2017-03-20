@@ -40,8 +40,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.SCADA
     [XmlNamespacePrefixAttribute("cimSCADA")]
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61970/SCADA/RemotePoint")]
     [DebuggerDisplayAttribute("RemotePoint {UUID}")]
-    public class RemotePoint : IdentifiedObject, IRemotePoint, IModelElement
+    public partial class RemotePoint : IdentifiedObject, IRemotePoint, IModelElement
     {
+        
+        private static Lazy<ITypedElement> _remoteUnitReference = new Lazy<ITypedElement>(RetrieveRemoteUnitReference);
         
         /// <summary>
         /// The backing field for the RemoteUnit property
@@ -68,7 +70,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.SCADA
                     IRemoteUnit old = this._remoteUnit;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnRemoteUnitChanging(e);
-                    this.OnPropertyChanging("RemoteUnit", e);
+                    this.OnPropertyChanging("RemoteUnit", e, _remoteUnitReference);
                     this._remoteUnit = value;
                     if ((old != null))
                     {
@@ -81,7 +83,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.SCADA
                         value.Deleted += this.OnResetRemoteUnit;
                     }
                     this.OnRemoteUnitChanged(e);
-                    this.OnPropertyChanged("RemoteUnit", e);
+                    this.OnPropertyChanged("RemoteUnit", e, _remoteUnitReference);
                 }
             }
         }
@@ -121,6 +123,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.SCADA
         /// Gets fired when the RemoteUnit property changed its value
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> RemoteUnitChanged;
+        
+        private static ITypedElement RetrieveRemoteUnitReference()
+        {
+            return ((ITypedElement)(((ModelElement)(RemotePoint.ClassInstance)).Resolve("RemoteUnit")));
+        }
         
         /// <summary>
         /// Raises the RemoteUnitChanging event
@@ -344,7 +351,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.SCADA
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public RemoteUnitProxy(IRemotePoint modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "RemoteUnit")
             {
             }
             
@@ -361,24 +368,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.SCADA
                 {
                     this.ModelElement.RemoteUnit = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.RemoteUnitChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.RemoteUnitChanged -= handler;
             }
         }
     }

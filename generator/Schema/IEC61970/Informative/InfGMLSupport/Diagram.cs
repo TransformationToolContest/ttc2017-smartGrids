@@ -45,7 +45,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfGMLSupport
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61970/Informative/InfGMLSupport/Dia" +
         "gram")]
     [DebuggerDisplayAttribute("Diagram {UUID}")]
-    public class Diagram : Document, IDiagram, IModelElement
+    public partial class Diagram : Document, IDiagram, IModelElement
     {
         
         /// <summary>
@@ -53,15 +53,23 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfGMLSupport
         /// </summary>
         private Nullable<DiagramKind> _kind;
         
+        private static Lazy<ITypedElement> _kindAttribute = new Lazy<ITypedElement>(RetrieveKindAttribute);
+        
+        private static Lazy<ITypedElement> _coordinateSystemReference = new Lazy<ITypedElement>(RetrieveCoordinateSystemReference);
+        
         /// <summary>
         /// The backing field for the CoordinateSystem property
         /// </summary>
         private ICoordinateSystem _coordinateSystem;
         
+        private static Lazy<ITypedElement> _gmlDiagramObjectsReference = new Lazy<ITypedElement>(RetrieveGmlDiagramObjectsReference);
+        
         /// <summary>
         /// The backing field for the GmlDiagramObjects property
         /// </summary>
         private DiagramGmlDiagramObjectsCollection _gmlDiagramObjects;
+        
+        private static Lazy<ITypedElement> _designLocationsReference = new Lazy<ITypedElement>(RetrieveDesignLocationsReference);
         
         /// <summary>
         /// The backing field for the DesignLocations property
@@ -98,10 +106,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfGMLSupport
                     Nullable<DiagramKind> old = this._kind;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnKindChanging(e);
-                    this.OnPropertyChanging("Kind", e);
+                    this.OnPropertyChanging("Kind", e, _kindAttribute);
                     this._kind = value;
                     this.OnKindChanged(e);
-                    this.OnPropertyChanged("Kind", e);
+                    this.OnPropertyChanged("Kind", e, _kindAttribute);
                 }
             }
         }
@@ -124,7 +132,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfGMLSupport
                     ICoordinateSystem old = this._coordinateSystem;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnCoordinateSystemChanging(e);
-                    this.OnPropertyChanging("CoordinateSystem", e);
+                    this.OnPropertyChanging("CoordinateSystem", e, _coordinateSystemReference);
                     this._coordinateSystem = value;
                     if ((old != null))
                     {
@@ -137,7 +145,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfGMLSupport
                         value.Deleted += this.OnResetCoordinateSystem;
                     }
                     this.OnCoordinateSystemChanged(e);
-                    this.OnPropertyChanged("CoordinateSystem", e);
+                    this.OnPropertyChanged("CoordinateSystem", e, _coordinateSystemReference);
                 }
             }
         }
@@ -219,6 +227,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfGMLSupport
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> CoordinateSystemChanged;
         
+        private static ITypedElement RetrieveKindAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(Diagram.ClassInstance)).Resolve("kind")));
+        }
+        
         /// <summary>
         /// Raises the KindChanging event
         /// </summary>
@@ -243,6 +256,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfGMLSupport
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveCoordinateSystemReference()
+        {
+            return ((ITypedElement)(((ModelElement)(Diagram.ClassInstance)).Resolve("CoordinateSystem")));
         }
         
         /// <summary>
@@ -281,6 +299,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfGMLSupport
             this.CoordinateSystem = null;
         }
         
+        private static ITypedElement RetrieveGmlDiagramObjectsReference()
+        {
+            return ((ITypedElement)(((ModelElement)(Diagram.ClassInstance)).Resolve("GmlDiagramObjects")));
+        }
+        
         /// <summary>
         /// Forwards CollectionChanging notifications for the GmlDiagramObjects property to the parent model element
         /// </summary>
@@ -288,7 +311,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfGMLSupport
         /// <param name="e">The original event data</param>
         private void GmlDiagramObjectsCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("GmlDiagramObjects", e);
+            this.OnCollectionChanging("GmlDiagramObjects", e, _gmlDiagramObjectsReference);
         }
         
         /// <summary>
@@ -298,7 +321,12 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfGMLSupport
         /// <param name="e">The original event data</param>
         private void GmlDiagramObjectsCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("GmlDiagramObjects", e);
+            this.OnCollectionChanged("GmlDiagramObjects", e, _gmlDiagramObjectsReference);
+        }
+        
+        private static ITypedElement RetrieveDesignLocationsReference()
+        {
+            return ((ITypedElement)(((ModelElement)(Diagram.ClassInstance)).Resolve("DesignLocations")));
         }
         
         /// <summary>
@@ -308,7 +336,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfGMLSupport
         /// <param name="e">The original event data</param>
         private void DesignLocationsCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("DesignLocations", e);
+            this.OnCollectionChanging("DesignLocations", e, _designLocationsReference);
         }
         
         /// <summary>
@@ -318,7 +346,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfGMLSupport
         /// <param name="e">The original event data</param>
         private void DesignLocationsCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("DesignLocations", e);
+            this.OnCollectionChanged("DesignLocations", e, _designLocationsReference);
         }
         
         /// <summary>
@@ -614,7 +642,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfGMLSupport
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public KindProxy(IDiagram modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "kind")
             {
             }
             
@@ -632,24 +660,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfGMLSupport
                     this.ModelElement.Kind = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.KindChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.KindChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -663,7 +673,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfGMLSupport
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public CoordinateSystemProxy(IDiagram modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "CoordinateSystem")
             {
             }
             
@@ -680,24 +690,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfGMLSupport
                 {
                     this.ModelElement.CoordinateSystem = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.CoordinateSystemChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.CoordinateSystemChanged -= handler;
             }
         }
     }

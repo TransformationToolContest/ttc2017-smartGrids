@@ -41,7 +41,7 @@ namespace TTC2017.SmartGrids.SubstationStandard.LNNodes.LNGroupR
     [XmlNamespacePrefixAttribute("groupr")]
     [ModelRepresentationClassAttribute("http://www.transformation-tool-contest.eu/2017/smartGrids/substationStandard#//LN" +
         "Nodes/LNGroupR/GroupR")]
-    public class GroupR : DomainLN, IGroupR, IModelElement
+    public partial class GroupR : DomainLN, IGroupR, IModelElement
     {
         
         private static IClass _classInstance;

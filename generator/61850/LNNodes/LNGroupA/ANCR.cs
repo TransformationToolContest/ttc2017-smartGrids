@@ -41,18 +41,24 @@ namespace TTC2017.SmartGrids.SubstationStandard.LNNodes.LNGroupA
     [XmlNamespacePrefixAttribute("groupa")]
     [ModelRepresentationClassAttribute("http://www.transformation-tool-contest.eu/2017/smartGrids/substationStandard#//LN" +
         "Nodes/LNGroupA/ANCR")]
-    public class ANCR : TTC2017.SmartGrids.SubstationStandard.LNNodes.LNGroupA.GroupA, IANCR, IModelElement
+    public partial class ANCR : TTC2017.SmartGrids.SubstationStandard.LNNodes.LNGroupA.GroupA, IANCR, IModelElement
     {
+        
+        private static Lazy<ITypedElement> _tapChgReference = new Lazy<ITypedElement>(RetrieveTapChgReference);
         
         /// <summary>
         /// The backing field for the TapChg property
         /// </summary>
         private IBSC _tapChg;
         
+        private static Lazy<ITypedElement> _rColReference = new Lazy<ITypedElement>(RetrieveRColReference);
+        
         /// <summary>
         /// The backing field for the RCol property
         /// </summary>
         private ISPC _rCol;
+        
+        private static Lazy<ITypedElement> _lColReference = new Lazy<ITypedElement>(RetrieveLColReference);
         
         /// <summary>
         /// The backing field for the LCol property
@@ -78,7 +84,7 @@ namespace TTC2017.SmartGrids.SubstationStandard.LNNodes.LNGroupA
                     IBSC old = this._tapChg;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnTapChgChanging(e);
-                    this.OnPropertyChanging("TapChg", e);
+                    this.OnPropertyChanging("TapChg", e, _tapChgReference);
                     this._tapChg = value;
                     if ((old != null))
                     {
@@ -89,7 +95,7 @@ namespace TTC2017.SmartGrids.SubstationStandard.LNNodes.LNGroupA
                         value.Deleted += this.OnResetTapChg;
                     }
                     this.OnTapChgChanged(e);
-                    this.OnPropertyChanged("TapChg", e);
+                    this.OnPropertyChanged("TapChg", e, _tapChgReference);
                 }
             }
         }
@@ -111,7 +117,7 @@ namespace TTC2017.SmartGrids.SubstationStandard.LNNodes.LNGroupA
                     ISPC old = this._rCol;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnRColChanging(e);
-                    this.OnPropertyChanging("RCol", e);
+                    this.OnPropertyChanging("RCol", e, _rColReference);
                     this._rCol = value;
                     if ((old != null))
                     {
@@ -122,7 +128,7 @@ namespace TTC2017.SmartGrids.SubstationStandard.LNNodes.LNGroupA
                         value.Deleted += this.OnResetRCol;
                     }
                     this.OnRColChanged(e);
-                    this.OnPropertyChanged("RCol", e);
+                    this.OnPropertyChanged("RCol", e, _rColReference);
                 }
             }
         }
@@ -144,7 +150,7 @@ namespace TTC2017.SmartGrids.SubstationStandard.LNNodes.LNGroupA
                     ISPC old = this._lCol;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnLColChanging(e);
-                    this.OnPropertyChanging("LCol", e);
+                    this.OnPropertyChanging("LCol", e, _lColReference);
                     this._lCol = value;
                     if ((old != null))
                     {
@@ -155,7 +161,7 @@ namespace TTC2017.SmartGrids.SubstationStandard.LNNodes.LNGroupA
                         value.Deleted += this.OnResetLCol;
                     }
                     this.OnLColChanged(e);
-                    this.OnPropertyChanged("LCol", e);
+                    this.OnPropertyChanged("LCol", e, _lColReference);
                 }
             }
         }
@@ -217,6 +223,11 @@ namespace TTC2017.SmartGrids.SubstationStandard.LNNodes.LNGroupA
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> LColChanged;
         
+        private static ITypedElement RetrieveTapChgReference()
+        {
+            return ((ITypedElement)(((ModelElement)(ANCR.ClassInstance)).Resolve("TapChg")));
+        }
+        
         /// <summary>
         /// Raises the TapChgChanging event
         /// </summary>
@@ -253,6 +264,11 @@ namespace TTC2017.SmartGrids.SubstationStandard.LNNodes.LNGroupA
             this.TapChg = null;
         }
         
+        private static ITypedElement RetrieveRColReference()
+        {
+            return ((ITypedElement)(((ModelElement)(ANCR.ClassInstance)).Resolve("RCol")));
+        }
+        
         /// <summary>
         /// Raises the RColChanging event
         /// </summary>
@@ -287,6 +303,11 @@ namespace TTC2017.SmartGrids.SubstationStandard.LNNodes.LNGroupA
         private void OnResetRCol(object sender, System.EventArgs eventArgs)
         {
             this.RCol = null;
+        }
+        
+        private static ITypedElement RetrieveLColReference()
+        {
+            return ((ITypedElement)(((ModelElement)(ANCR.ClassInstance)).Resolve("LCol")));
         }
         
         /// <summary>
@@ -598,7 +619,7 @@ namespace TTC2017.SmartGrids.SubstationStandard.LNNodes.LNGroupA
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public TapChgProxy(IANCR modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "TapChg")
             {
             }
             
@@ -616,24 +637,6 @@ namespace TTC2017.SmartGrids.SubstationStandard.LNNodes.LNGroupA
                     this.ModelElement.TapChg = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.TapChgChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.TapChgChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -647,7 +650,7 @@ namespace TTC2017.SmartGrids.SubstationStandard.LNNodes.LNGroupA
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public RColProxy(IANCR modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "RCol")
             {
             }
             
@@ -665,24 +668,6 @@ namespace TTC2017.SmartGrids.SubstationStandard.LNNodes.LNGroupA
                     this.ModelElement.RCol = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.RColChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.RColChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -696,7 +681,7 @@ namespace TTC2017.SmartGrids.SubstationStandard.LNNodes.LNGroupA
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public LColProxy(IANCR modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "LCol")
             {
             }
             
@@ -713,24 +698,6 @@ namespace TTC2017.SmartGrids.SubstationStandard.LNNodes.LNGroupA
                 {
                     this.ModelElement.LCol = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.LColChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.LColChanged -= handler;
             }
         }
     }

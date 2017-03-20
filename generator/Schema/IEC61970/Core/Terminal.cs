@@ -57,7 +57,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Core
     [XmlNamespacePrefixAttribute("cimCore")]
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61970/Core/Terminal")]
     [DebuggerDisplayAttribute("Terminal {UUID}")]
-    public class Terminal : IdentifiedObject, ITerminal, IModelElement
+    public partial class Terminal : IdentifiedObject, ITerminal, IModelElement
     {
         
         /// <summary>
@@ -65,70 +65,100 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Core
         /// </summary>
         private bool _connected;
         
+        private static Lazy<ITypedElement> _connectedAttribute = new Lazy<ITypedElement>(RetrieveConnectedAttribute);
+        
         /// <summary>
         /// The backing field for the SequenceNumber property
         /// </summary>
         private int _sequenceNumber;
+        
+        private static Lazy<ITypedElement> _sequenceNumberAttribute = new Lazy<ITypedElement>(RetrieveSequenceNumberAttribute);
+        
+        private static Lazy<ITypedElement> _connectivityNodeReference = new Lazy<ITypedElement>(RetrieveConnectivityNodeReference);
         
         /// <summary>
         /// The backing field for the ConnectivityNode property
         /// </summary>
         private IConnectivityNode _connectivityNode;
         
+        private static Lazy<ITypedElement> _svPowerFlowReference = new Lazy<ITypedElement>(RetrieveSvPowerFlowReference);
+        
         /// <summary>
         /// The backing field for the SvPowerFlow property
         /// </summary>
         private ISvPowerFlow _svPowerFlow;
+        
+        private static Lazy<ITypedElement> _hasFirst_MutualCouplingReference = new Lazy<ITypedElement>(RetrieveHasFirst_MutualCouplingReference);
         
         /// <summary>
         /// The backing field for the HasFirst_MutualCoupling property
         /// </summary>
         private TerminalHasFirst_MutualCouplingCollection _hasFirst_MutualCoupling;
         
+        private static Lazy<ITypedElement> _terminalConstraintsReference = new Lazy<ITypedElement>(RetrieveTerminalConstraintsReference);
+        
         /// <summary>
         /// The backing field for the TerminalConstraints property
         /// </summary>
         private TerminalTerminalConstraintsCollection _terminalConstraints;
+        
+        private static Lazy<ITypedElement> _regulatingControlReference = new Lazy<ITypedElement>(RetrieveRegulatingControlReference);
         
         /// <summary>
         /// The backing field for the RegulatingControl property
         /// </summary>
         private TerminalRegulatingControlCollection _regulatingControl;
         
+        private static Lazy<ITypedElement> _measurementsReference = new Lazy<ITypedElement>(RetrieveMeasurementsReference);
+        
         /// <summary>
         /// The backing field for the Measurements property
         /// </summary>
         private TerminalMeasurementsCollection _measurements;
+        
+        private static Lazy<ITypedElement> _tieFlowReference = new Lazy<ITypedElement>(RetrieveTieFlowReference);
         
         /// <summary>
         /// The backing field for the TieFlow property
         /// </summary>
         private TerminalTieFlowCollection _tieFlow;
         
+        private static Lazy<ITypedElement> _topologicalNodeReference = new Lazy<ITypedElement>(RetrieveTopologicalNodeReference);
+        
         /// <summary>
         /// The backing field for the TopologicalNode property
         /// </summary>
         private ITopologicalNode _topologicalNode;
+        
+        private static Lazy<ITypedElement> _branchGroupTerminalReference = new Lazy<ITypedElement>(RetrieveBranchGroupTerminalReference);
         
         /// <summary>
         /// The backing field for the BranchGroupTerminal property
         /// </summary>
         private TerminalBranchGroupTerminalCollection _branchGroupTerminal;
         
+        private static Lazy<ITypedElement> _bushingInfoReference = new Lazy<ITypedElement>(RetrieveBushingInfoReference);
+        
         /// <summary>
         /// The backing field for the BushingInfo property
         /// </summary>
         private IBushingInfo _bushingInfo;
+        
+        private static Lazy<ITypedElement> _conductingEquipmentReference = new Lazy<ITypedElement>(RetrieveConductingEquipmentReference);
         
         /// <summary>
         /// The backing field for the ConductingEquipment property
         /// </summary>
         private IConductingEquipment _conductingEquipment;
         
+        private static Lazy<ITypedElement> _hasSecond_MutualCouplingReference = new Lazy<ITypedElement>(RetrieveHasSecond_MutualCouplingReference);
+        
         /// <summary>
         /// The backing field for the HasSecond_MutualCoupling property
         /// </summary>
         private TerminalHasSecond_MutualCouplingCollection _hasSecond_MutualCoupling;
+        
+        private static Lazy<ITypedElement> _operationalLimitSetReference = new Lazy<ITypedElement>(RetrieveOperationalLimitSetReference);
         
         /// <summary>
         /// The backing field for the OperationalLimitSet property
@@ -183,10 +213,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Core
                     bool old = this._connected;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnConnectedChanging(e);
-                    this.OnPropertyChanging("Connected", e);
+                    this.OnPropertyChanging("Connected", e, _connectedAttribute);
                     this._connected = value;
                     this.OnConnectedChanged(e);
-                    this.OnPropertyChanged("Connected", e);
+                    this.OnPropertyChanged("Connected", e, _connectedAttribute);
                 }
             }
         }
@@ -209,10 +239,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Core
                     int old = this._sequenceNumber;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnSequenceNumberChanging(e);
-                    this.OnPropertyChanging("SequenceNumber", e);
+                    this.OnPropertyChanging("SequenceNumber", e, _sequenceNumberAttribute);
                     this._sequenceNumber = value;
                     this.OnSequenceNumberChanged(e);
-                    this.OnPropertyChanged("SequenceNumber", e);
+                    this.OnPropertyChanged("SequenceNumber", e, _sequenceNumberAttribute);
                 }
             }
         }
@@ -235,7 +265,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Core
                     IConnectivityNode old = this._connectivityNode;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnConnectivityNodeChanging(e);
-                    this.OnPropertyChanging("ConnectivityNode", e);
+                    this.OnPropertyChanging("ConnectivityNode", e, _connectivityNodeReference);
                     this._connectivityNode = value;
                     if ((old != null))
                     {
@@ -248,7 +278,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Core
                         value.Deleted += this.OnResetConnectivityNode;
                     }
                     this.OnConnectivityNodeChanged(e);
-                    this.OnPropertyChanged("ConnectivityNode", e);
+                    this.OnPropertyChanged("ConnectivityNode", e, _connectivityNodeReference);
                 }
             }
         }
@@ -271,7 +301,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Core
                     ISvPowerFlow old = this._svPowerFlow;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnSvPowerFlowChanging(e);
-                    this.OnPropertyChanging("SvPowerFlow", e);
+                    this.OnPropertyChanging("SvPowerFlow", e, _svPowerFlowReference);
                     this._svPowerFlow = value;
                     if ((old != null))
                     {
@@ -284,7 +314,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Core
                         value.Deleted += this.OnResetSvPowerFlow;
                     }
                     this.OnSvPowerFlowChanged(e);
-                    this.OnPropertyChanged("SvPowerFlow", e);
+                    this.OnPropertyChanged("SvPowerFlow", e, _svPowerFlowReference);
                 }
             }
         }
@@ -382,7 +412,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Core
                     ITopologicalNode old = this._topologicalNode;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnTopologicalNodeChanging(e);
-                    this.OnPropertyChanging("TopologicalNode", e);
+                    this.OnPropertyChanging("TopologicalNode", e, _topologicalNodeReference);
                     this._topologicalNode = value;
                     if ((old != null))
                     {
@@ -395,7 +425,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Core
                         value.Deleted += this.OnResetTopologicalNode;
                     }
                     this.OnTopologicalNodeChanged(e);
-                    this.OnPropertyChanged("TopologicalNode", e);
+                    this.OnPropertyChanged("TopologicalNode", e, _topologicalNodeReference);
                 }
             }
         }
@@ -433,7 +463,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Core
                     IBushingInfo old = this._bushingInfo;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnBushingInfoChanging(e);
-                    this.OnPropertyChanging("BushingInfo", e);
+                    this.OnPropertyChanging("BushingInfo", e, _bushingInfoReference);
                     this._bushingInfo = value;
                     if ((old != null))
                     {
@@ -446,7 +476,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Core
                         value.Deleted += this.OnResetBushingInfo;
                     }
                     this.OnBushingInfoChanged(e);
-                    this.OnPropertyChanged("BushingInfo", e);
+                    this.OnPropertyChanged("BushingInfo", e, _bushingInfoReference);
                 }
             }
         }
@@ -469,7 +499,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Core
                     IConductingEquipment old = this._conductingEquipment;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnConductingEquipmentChanging(e);
-                    this.OnPropertyChanging("ConductingEquipment", e);
+                    this.OnPropertyChanging("ConductingEquipment", e, _conductingEquipmentReference);
                     this._conductingEquipment = value;
                     if ((old != null))
                     {
@@ -482,7 +512,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Core
                         value.Deleted += this.OnResetConductingEquipment;
                     }
                     this.OnConductingEquipmentChanged(e);
-                    this.OnPropertyChanged("ConductingEquipment", e);
+                    this.OnPropertyChanged("ConductingEquipment", e, _conductingEquipmentReference);
                 }
             }
         }
@@ -613,6 +643,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Core
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> ConductingEquipmentChanged;
         
+        private static ITypedElement RetrieveConnectedAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(Terminal.ClassInstance)).Resolve("connected")));
+        }
+        
         /// <summary>
         /// Raises the ConnectedChanging event
         /// </summary>
@@ -639,6 +674,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Core
             }
         }
         
+        private static ITypedElement RetrieveSequenceNumberAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(Terminal.ClassInstance)).Resolve("sequenceNumber")));
+        }
+        
         /// <summary>
         /// Raises the SequenceNumberChanging event
         /// </summary>
@@ -663,6 +703,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Core
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveConnectivityNodeReference()
+        {
+            return ((ITypedElement)(((ModelElement)(Terminal.ClassInstance)).Resolve("ConnectivityNode")));
         }
         
         /// <summary>
@@ -701,6 +746,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Core
             this.ConnectivityNode = null;
         }
         
+        private static ITypedElement RetrieveSvPowerFlowReference()
+        {
+            return ((ITypedElement)(((ModelElement)(Terminal.ClassInstance)).Resolve("SvPowerFlow")));
+        }
+        
         /// <summary>
         /// Raises the SvPowerFlowChanging event
         /// </summary>
@@ -737,6 +787,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Core
             this.SvPowerFlow = null;
         }
         
+        private static ITypedElement RetrieveHasFirst_MutualCouplingReference()
+        {
+            return ((ITypedElement)(((ModelElement)(Terminal.ClassInstance)).Resolve("HasFirst_MutualCoupling")));
+        }
+        
         /// <summary>
         /// Forwards CollectionChanging notifications for the HasFirst_MutualCoupling property to the parent model element
         /// </summary>
@@ -744,7 +799,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Core
         /// <param name="e">The original event data</param>
         private void HasFirst_MutualCouplingCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("HasFirst_MutualCoupling", e);
+            this.OnCollectionChanging("HasFirst_MutualCoupling", e, _hasFirst_MutualCouplingReference);
         }
         
         /// <summary>
@@ -754,7 +809,12 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Core
         /// <param name="e">The original event data</param>
         private void HasFirst_MutualCouplingCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("HasFirst_MutualCoupling", e);
+            this.OnCollectionChanged("HasFirst_MutualCoupling", e, _hasFirst_MutualCouplingReference);
+        }
+        
+        private static ITypedElement RetrieveTerminalConstraintsReference()
+        {
+            return ((ITypedElement)(((ModelElement)(Terminal.ClassInstance)).Resolve("TerminalConstraints")));
         }
         
         /// <summary>
@@ -764,7 +824,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Core
         /// <param name="e">The original event data</param>
         private void TerminalConstraintsCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("TerminalConstraints", e);
+            this.OnCollectionChanging("TerminalConstraints", e, _terminalConstraintsReference);
         }
         
         /// <summary>
@@ -774,7 +834,12 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Core
         /// <param name="e">The original event data</param>
         private void TerminalConstraintsCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("TerminalConstraints", e);
+            this.OnCollectionChanged("TerminalConstraints", e, _terminalConstraintsReference);
+        }
+        
+        private static ITypedElement RetrieveRegulatingControlReference()
+        {
+            return ((ITypedElement)(((ModelElement)(Terminal.ClassInstance)).Resolve("RegulatingControl")));
         }
         
         /// <summary>
@@ -784,7 +849,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Core
         /// <param name="e">The original event data</param>
         private void RegulatingControlCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("RegulatingControl", e);
+            this.OnCollectionChanging("RegulatingControl", e, _regulatingControlReference);
         }
         
         /// <summary>
@@ -794,7 +859,12 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Core
         /// <param name="e">The original event data</param>
         private void RegulatingControlCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("RegulatingControl", e);
+            this.OnCollectionChanged("RegulatingControl", e, _regulatingControlReference);
+        }
+        
+        private static ITypedElement RetrieveMeasurementsReference()
+        {
+            return ((ITypedElement)(((ModelElement)(Terminal.ClassInstance)).Resolve("Measurements")));
         }
         
         /// <summary>
@@ -804,7 +874,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Core
         /// <param name="e">The original event data</param>
         private void MeasurementsCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("Measurements", e);
+            this.OnCollectionChanging("Measurements", e, _measurementsReference);
         }
         
         /// <summary>
@@ -814,7 +884,12 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Core
         /// <param name="e">The original event data</param>
         private void MeasurementsCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("Measurements", e);
+            this.OnCollectionChanged("Measurements", e, _measurementsReference);
+        }
+        
+        private static ITypedElement RetrieveTieFlowReference()
+        {
+            return ((ITypedElement)(((ModelElement)(Terminal.ClassInstance)).Resolve("TieFlow")));
         }
         
         /// <summary>
@@ -824,7 +899,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Core
         /// <param name="e">The original event data</param>
         private void TieFlowCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("TieFlow", e);
+            this.OnCollectionChanging("TieFlow", e, _tieFlowReference);
         }
         
         /// <summary>
@@ -834,7 +909,12 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Core
         /// <param name="e">The original event data</param>
         private void TieFlowCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("TieFlow", e);
+            this.OnCollectionChanged("TieFlow", e, _tieFlowReference);
+        }
+        
+        private static ITypedElement RetrieveTopologicalNodeReference()
+        {
+            return ((ITypedElement)(((ModelElement)(Terminal.ClassInstance)).Resolve("TopologicalNode")));
         }
         
         /// <summary>
@@ -873,6 +953,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Core
             this.TopologicalNode = null;
         }
         
+        private static ITypedElement RetrieveBranchGroupTerminalReference()
+        {
+            return ((ITypedElement)(((ModelElement)(Terminal.ClassInstance)).Resolve("BranchGroupTerminal")));
+        }
+        
         /// <summary>
         /// Forwards CollectionChanging notifications for the BranchGroupTerminal property to the parent model element
         /// </summary>
@@ -880,7 +965,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Core
         /// <param name="e">The original event data</param>
         private void BranchGroupTerminalCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("BranchGroupTerminal", e);
+            this.OnCollectionChanging("BranchGroupTerminal", e, _branchGroupTerminalReference);
         }
         
         /// <summary>
@@ -890,7 +975,12 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Core
         /// <param name="e">The original event data</param>
         private void BranchGroupTerminalCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("BranchGroupTerminal", e);
+            this.OnCollectionChanged("BranchGroupTerminal", e, _branchGroupTerminalReference);
+        }
+        
+        private static ITypedElement RetrieveBushingInfoReference()
+        {
+            return ((ITypedElement)(((ModelElement)(Terminal.ClassInstance)).Resolve("BushingInfo")));
         }
         
         /// <summary>
@@ -929,6 +1019,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Core
             this.BushingInfo = null;
         }
         
+        private static ITypedElement RetrieveConductingEquipmentReference()
+        {
+            return ((ITypedElement)(((ModelElement)(Terminal.ClassInstance)).Resolve("ConductingEquipment")));
+        }
+        
         /// <summary>
         /// Raises the ConductingEquipmentChanging event
         /// </summary>
@@ -965,6 +1060,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Core
             this.ConductingEquipment = null;
         }
         
+        private static ITypedElement RetrieveHasSecond_MutualCouplingReference()
+        {
+            return ((ITypedElement)(((ModelElement)(Terminal.ClassInstance)).Resolve("HasSecond_MutualCoupling")));
+        }
+        
         /// <summary>
         /// Forwards CollectionChanging notifications for the HasSecond_MutualCoupling property to the parent model element
         /// </summary>
@@ -972,7 +1072,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Core
         /// <param name="e">The original event data</param>
         private void HasSecond_MutualCouplingCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("HasSecond_MutualCoupling", e);
+            this.OnCollectionChanging("HasSecond_MutualCoupling", e, _hasSecond_MutualCouplingReference);
         }
         
         /// <summary>
@@ -982,7 +1082,12 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Core
         /// <param name="e">The original event data</param>
         private void HasSecond_MutualCouplingCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("HasSecond_MutualCoupling", e);
+            this.OnCollectionChanged("HasSecond_MutualCoupling", e, _hasSecond_MutualCouplingReference);
+        }
+        
+        private static ITypedElement RetrieveOperationalLimitSetReference()
+        {
+            return ((ITypedElement)(((ModelElement)(Terminal.ClassInstance)).Resolve("OperationalLimitSet")));
         }
         
         /// <summary>
@@ -992,7 +1097,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Core
         /// <param name="e">The original event data</param>
         private void OperationalLimitSetCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("OperationalLimitSet", e);
+            this.OnCollectionChanging("OperationalLimitSet", e, _operationalLimitSetReference);
         }
         
         /// <summary>
@@ -1002,7 +1107,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Core
         /// <param name="e">The original event data</param>
         private void OperationalLimitSetCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("OperationalLimitSet", e);
+            this.OnCollectionChanged("OperationalLimitSet", e, _operationalLimitSetReference);
         }
         
         /// <summary>
@@ -1705,7 +1810,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Core
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public ConnectedProxy(ITerminal modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "connected")
             {
             }
             
@@ -1723,24 +1828,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Core
                     this.ModelElement.Connected = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ConnectedChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ConnectedChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1754,7 +1841,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Core
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public SequenceNumberProxy(ITerminal modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "sequenceNumber")
             {
             }
             
@@ -1772,24 +1859,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Core
                     this.ModelElement.SequenceNumber = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.SequenceNumberChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.SequenceNumberChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1803,7 +1872,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Core
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public ConnectivityNodeProxy(ITerminal modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "ConnectivityNode")
             {
             }
             
@@ -1821,24 +1890,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Core
                     this.ModelElement.ConnectivityNode = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ConnectivityNodeChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ConnectivityNodeChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1852,7 +1903,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Core
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public SvPowerFlowProxy(ITerminal modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "SvPowerFlow")
             {
             }
             
@@ -1870,24 +1921,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Core
                     this.ModelElement.SvPowerFlow = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.SvPowerFlowChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.SvPowerFlowChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1901,7 +1934,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Core
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public TopologicalNodeProxy(ITerminal modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "TopologicalNode")
             {
             }
             
@@ -1919,24 +1952,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Core
                     this.ModelElement.TopologicalNode = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.TopologicalNodeChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.TopologicalNodeChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1950,7 +1965,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Core
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public BushingInfoProxy(ITerminal modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "BushingInfo")
             {
             }
             
@@ -1968,24 +1983,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Core
                     this.ModelElement.BushingInfo = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.BushingInfoChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.BushingInfoChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1999,7 +1996,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Core
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public ConductingEquipmentProxy(ITerminal modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "ConductingEquipment")
             {
             }
             
@@ -2016,24 +2013,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Core
                 {
                     this.ModelElement.ConductingEquipment = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ConductingEquipmentChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ConductingEquipmentChanged -= handler;
             }
         }
     }

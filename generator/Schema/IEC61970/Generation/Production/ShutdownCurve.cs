@@ -46,7 +46,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61970/Generation/Production/Shutdow" +
         "nCurve")]
     [DebuggerDisplayAttribute("ShutdownCurve {UUID}")]
-    public class ShutdownCurve : Curve, IShutdownCurve, IModelElement
+    public partial class ShutdownCurve : Curve, IShutdownCurve, IModelElement
     {
         
         /// <summary>
@@ -54,10 +54,16 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
         /// </summary>
         private float _shutdownCost;
         
+        private static Lazy<ITypedElement> _shutdownCostAttribute = new Lazy<ITypedElement>(RetrieveShutdownCostAttribute);
+        
         /// <summary>
         /// The backing field for the ShutdownDate property
         /// </summary>
         private DateTime _shutdownDate;
+        
+        private static Lazy<ITypedElement> _shutdownDateAttribute = new Lazy<ITypedElement>(RetrieveShutdownDateAttribute);
+        
+        private static Lazy<ITypedElement> _thermalGeneratingUnitReference = new Lazy<ITypedElement>(RetrieveThermalGeneratingUnitReference);
         
         /// <summary>
         /// The backing field for the ThermalGeneratingUnit property
@@ -84,10 +90,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
                     float old = this._shutdownCost;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnShutdownCostChanging(e);
-                    this.OnPropertyChanging("ShutdownCost", e);
+                    this.OnPropertyChanging("ShutdownCost", e, _shutdownCostAttribute);
                     this._shutdownCost = value;
                     this.OnShutdownCostChanged(e);
-                    this.OnPropertyChanged("ShutdownCost", e);
+                    this.OnPropertyChanged("ShutdownCost", e, _shutdownCostAttribute);
                 }
             }
         }
@@ -110,10 +116,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
                     DateTime old = this._shutdownDate;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnShutdownDateChanging(e);
-                    this.OnPropertyChanging("ShutdownDate", e);
+                    this.OnPropertyChanging("ShutdownDate", e, _shutdownDateAttribute);
                     this._shutdownDate = value;
                     this.OnShutdownDateChanged(e);
-                    this.OnPropertyChanged("ShutdownDate", e);
+                    this.OnPropertyChanged("ShutdownDate", e, _shutdownDateAttribute);
                 }
             }
         }
@@ -136,7 +142,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
                     IThermalGeneratingUnit old = this._thermalGeneratingUnit;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnThermalGeneratingUnitChanging(e);
-                    this.OnPropertyChanging("ThermalGeneratingUnit", e);
+                    this.OnPropertyChanging("ThermalGeneratingUnit", e, _thermalGeneratingUnitReference);
                     this._thermalGeneratingUnit = value;
                     if ((old != null))
                     {
@@ -149,7 +155,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
                         value.Deleted += this.OnResetThermalGeneratingUnit;
                     }
                     this.OnThermalGeneratingUnitChanged(e);
-                    this.OnPropertyChanged("ThermalGeneratingUnit", e);
+                    this.OnPropertyChanged("ThermalGeneratingUnit", e, _thermalGeneratingUnitReference);
                 }
             }
         }
@@ -211,6 +217,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> ThermalGeneratingUnitChanged;
         
+        private static ITypedElement RetrieveShutdownCostAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(ShutdownCurve.ClassInstance)).Resolve("shutdownCost")));
+        }
+        
         /// <summary>
         /// Raises the ShutdownCostChanging event
         /// </summary>
@@ -237,6 +248,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
             }
         }
         
+        private static ITypedElement RetrieveShutdownDateAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(ShutdownCurve.ClassInstance)).Resolve("shutdownDate")));
+        }
+        
         /// <summary>
         /// Raises the ShutdownDateChanging event
         /// </summary>
@@ -261,6 +277,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveThermalGeneratingUnitReference()
+        {
+            return ((ITypedElement)(((ModelElement)(ShutdownCurve.ClassInstance)).Resolve("ThermalGeneratingUnit")));
         }
         
         /// <summary>
@@ -515,7 +536,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public ShutdownCostProxy(IShutdownCurve modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "shutdownCost")
             {
             }
             
@@ -533,24 +554,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
                     this.ModelElement.ShutdownCost = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ShutdownCostChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ShutdownCostChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -564,7 +567,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public ShutdownDateProxy(IShutdownCurve modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "shutdownDate")
             {
             }
             
@@ -582,24 +585,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
                     this.ModelElement.ShutdownDate = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ShutdownDateChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ShutdownDateChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -613,7 +598,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public ThermalGeneratingUnitProxy(IShutdownCurve modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "ThermalGeneratingUnit")
             {
             }
             
@@ -630,24 +615,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
                 {
                     this.ModelElement.ThermalGeneratingUnit = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ThermalGeneratingUnitChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ThermalGeneratingUnitChanged -= handler;
             }
         }
     }

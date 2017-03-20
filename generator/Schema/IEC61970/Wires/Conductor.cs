@@ -53,13 +53,15 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
     [XmlNamespacePrefixAttribute("cimWires")]
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61970/Wires/Conductor")]
     [DebuggerDisplayAttribute("Conductor {UUID}")]
-    public class Conductor : ConductingEquipment, IConductor, IModelElement
+    public partial class Conductor : ConductingEquipment, IConductor, IModelElement
     {
         
         /// <summary>
         /// The backing field for the Length property
         /// </summary>
         private float _length;
+        
+        private static Lazy<ITypedElement> _lengthAttribute = new Lazy<ITypedElement>(RetrieveLengthAttribute);
         
         private static IClass _classInstance;
         
@@ -81,10 +83,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
                     float old = this._length;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnLengthChanging(e);
-                    this.OnPropertyChanging("Length", e);
+                    this.OnPropertyChanging("Length", e, _lengthAttribute);
                     this._length = value;
                     this.OnLengthChanged(e);
-                    this.OnPropertyChanged("Length", e);
+                    this.OnPropertyChanged("Length", e, _lengthAttribute);
                 }
             }
         }
@@ -113,6 +115,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
         /// Gets fired when the Length property changed its value
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> LengthChanged;
+        
+        private static ITypedElement RetrieveLengthAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(Conductor.ClassInstance)).Resolve("length")));
+        }
         
         /// <summary>
         /// Raises the LengthChanging event
@@ -193,7 +200,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public LengthProxy(IConductor modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "length")
             {
             }
             
@@ -210,24 +217,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
                 {
                     this.ModelElement.Length = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.LengthChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.LengthChanged -= handler;
             }
         }
     }

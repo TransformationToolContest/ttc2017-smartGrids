@@ -47,7 +47,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Customers
     [XmlNamespacePrefixAttribute("cimCustomers")]
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61968/Customers/ServiceLocation")]
     [DebuggerDisplayAttribute("ServiceLocation {UUID}")]
-    public class ServiceLocation : Location, IServiceLocation, IModelElement
+    public partial class ServiceLocation : Location, IServiceLocation, IModelElement
     {
         
         /// <summary>
@@ -55,30 +55,44 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Customers
         /// </summary>
         private bool _needsInspection;
         
+        private static Lazy<ITypedElement> _needsInspectionAttribute = new Lazy<ITypedElement>(RetrieveNeedsInspectionAttribute);
+        
         /// <summary>
         /// The backing field for the AccessMethod property
         /// </summary>
         private string _accessMethod;
+        
+        private static Lazy<ITypedElement> _accessMethodAttribute = new Lazy<ITypedElement>(RetrieveAccessMethodAttribute);
         
         /// <summary>
         /// The backing field for the SiteAccessProblem property
         /// </summary>
         private string _siteAccessProblem;
         
+        private static Lazy<ITypedElement> _siteAccessProblemAttribute = new Lazy<ITypedElement>(RetrieveSiteAccessProblemAttribute);
+        
+        private static Lazy<ITypedElement> _serviceDeliveryPointsReference = new Lazy<ITypedElement>(RetrieveServiceDeliveryPointsReference);
+        
         /// <summary>
         /// The backing field for the ServiceDeliveryPoints property
         /// </summary>
         private ServiceLocationServiceDeliveryPointsCollection _serviceDeliveryPoints;
+        
+        private static Lazy<ITypedElement> _erpPersonsReference = new Lazy<ITypedElement>(RetrieveErpPersonsReference);
         
         /// <summary>
         /// The backing field for the ErpPersons property
         /// </summary>
         private ServiceLocationErpPersonsCollection _erpPersons;
         
+        private static Lazy<ITypedElement> _customerAgreementsReference = new Lazy<ITypedElement>(RetrieveCustomerAgreementsReference);
+        
         /// <summary>
         /// The backing field for the CustomerAgreements property
         /// </summary>
         private ServiceLocationCustomerAgreementsCollection _customerAgreements;
+        
+        private static Lazy<ITypedElement> _endDeviceAssetsReference = new Lazy<ITypedElement>(RetrieveEndDeviceAssetsReference);
         
         /// <summary>
         /// The backing field for the EndDeviceAssets property
@@ -121,10 +135,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Customers
                     bool old = this._needsInspection;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnNeedsInspectionChanging(e);
-                    this.OnPropertyChanging("NeedsInspection", e);
+                    this.OnPropertyChanging("NeedsInspection", e, _needsInspectionAttribute);
                     this._needsInspection = value;
                     this.OnNeedsInspectionChanged(e);
-                    this.OnPropertyChanged("NeedsInspection", e);
+                    this.OnPropertyChanged("NeedsInspection", e, _needsInspectionAttribute);
                 }
             }
         }
@@ -147,10 +161,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Customers
                     string old = this._accessMethod;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnAccessMethodChanging(e);
-                    this.OnPropertyChanging("AccessMethod", e);
+                    this.OnPropertyChanging("AccessMethod", e, _accessMethodAttribute);
                     this._accessMethod = value;
                     this.OnAccessMethodChanged(e);
-                    this.OnPropertyChanged("AccessMethod", e);
+                    this.OnPropertyChanged("AccessMethod", e, _accessMethodAttribute);
                 }
             }
         }
@@ -173,10 +187,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Customers
                     string old = this._siteAccessProblem;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnSiteAccessProblemChanging(e);
-                    this.OnPropertyChanging("SiteAccessProblem", e);
+                    this.OnPropertyChanging("SiteAccessProblem", e, _siteAccessProblemAttribute);
                     this._siteAccessProblem = value;
                     this.OnSiteAccessProblemChanged(e);
-                    this.OnPropertyChanged("SiteAccessProblem", e);
+                    this.OnPropertyChanged("SiteAccessProblem", e, _siteAccessProblemAttribute);
                 }
             }
         }
@@ -297,6 +311,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Customers
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> SiteAccessProblemChanged;
         
+        private static ITypedElement RetrieveNeedsInspectionAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(ServiceLocation.ClassInstance)).Resolve("needsInspection")));
+        }
+        
         /// <summary>
         /// Raises the NeedsInspectionChanging event
         /// </summary>
@@ -321,6 +340,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Customers
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveAccessMethodAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(ServiceLocation.ClassInstance)).Resolve("accessMethod")));
         }
         
         /// <summary>
@@ -349,6 +373,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Customers
             }
         }
         
+        private static ITypedElement RetrieveSiteAccessProblemAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(ServiceLocation.ClassInstance)).Resolve("siteAccessProblem")));
+        }
+        
         /// <summary>
         /// Raises the SiteAccessProblemChanging event
         /// </summary>
@@ -375,6 +404,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Customers
             }
         }
         
+        private static ITypedElement RetrieveServiceDeliveryPointsReference()
+        {
+            return ((ITypedElement)(((ModelElement)(ServiceLocation.ClassInstance)).Resolve("ServiceDeliveryPoints")));
+        }
+        
         /// <summary>
         /// Forwards CollectionChanging notifications for the ServiceDeliveryPoints property to the parent model element
         /// </summary>
@@ -382,7 +416,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Customers
         /// <param name="e">The original event data</param>
         private void ServiceDeliveryPointsCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("ServiceDeliveryPoints", e);
+            this.OnCollectionChanging("ServiceDeliveryPoints", e, _serviceDeliveryPointsReference);
         }
         
         /// <summary>
@@ -392,7 +426,12 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Customers
         /// <param name="e">The original event data</param>
         private void ServiceDeliveryPointsCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("ServiceDeliveryPoints", e);
+            this.OnCollectionChanged("ServiceDeliveryPoints", e, _serviceDeliveryPointsReference);
+        }
+        
+        private static ITypedElement RetrieveErpPersonsReference()
+        {
+            return ((ITypedElement)(((ModelElement)(ServiceLocation.ClassInstance)).Resolve("ErpPersons")));
         }
         
         /// <summary>
@@ -402,7 +441,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Customers
         /// <param name="e">The original event data</param>
         private void ErpPersonsCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("ErpPersons", e);
+            this.OnCollectionChanging("ErpPersons", e, _erpPersonsReference);
         }
         
         /// <summary>
@@ -412,7 +451,12 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Customers
         /// <param name="e">The original event data</param>
         private void ErpPersonsCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("ErpPersons", e);
+            this.OnCollectionChanged("ErpPersons", e, _erpPersonsReference);
+        }
+        
+        private static ITypedElement RetrieveCustomerAgreementsReference()
+        {
+            return ((ITypedElement)(((ModelElement)(ServiceLocation.ClassInstance)).Resolve("CustomerAgreements")));
         }
         
         /// <summary>
@@ -422,7 +466,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Customers
         /// <param name="e">The original event data</param>
         private void CustomerAgreementsCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("CustomerAgreements", e);
+            this.OnCollectionChanging("CustomerAgreements", e, _customerAgreementsReference);
         }
         
         /// <summary>
@@ -432,7 +476,12 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Customers
         /// <param name="e">The original event data</param>
         private void CustomerAgreementsCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("CustomerAgreements", e);
+            this.OnCollectionChanged("CustomerAgreements", e, _customerAgreementsReference);
+        }
+        
+        private static ITypedElement RetrieveEndDeviceAssetsReference()
+        {
+            return ((ITypedElement)(((ModelElement)(ServiceLocation.ClassInstance)).Resolve("EndDeviceAssets")));
         }
         
         /// <summary>
@@ -442,7 +491,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Customers
         /// <param name="e">The original event data</param>
         private void EndDeviceAssetsCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("EndDeviceAssets", e);
+            this.OnCollectionChanging("EndDeviceAssets", e, _endDeviceAssetsReference);
         }
         
         /// <summary>
@@ -452,7 +501,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Customers
         /// <param name="e">The original event data</param>
         private void EndDeviceAssetsCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("EndDeviceAssets", e);
+            this.OnCollectionChanged("EndDeviceAssets", e, _endDeviceAssetsReference);
         }
         
         /// <summary>
@@ -778,7 +827,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Customers
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public NeedsInspectionProxy(IServiceLocation modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "needsInspection")
             {
             }
             
@@ -796,24 +845,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Customers
                     this.ModelElement.NeedsInspection = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.NeedsInspectionChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.NeedsInspectionChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -827,7 +858,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Customers
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public AccessMethodProxy(IServiceLocation modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "accessMethod")
             {
             }
             
@@ -845,24 +876,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Customers
                     this.ModelElement.AccessMethod = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.AccessMethodChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.AccessMethodChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -876,7 +889,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Customers
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public SiteAccessProblemProxy(IServiceLocation modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "siteAccessProblem")
             {
             }
             
@@ -893,24 +906,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Customers
                 {
                     this.ModelElement.SiteAccessProblem = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.SiteAccessProblemChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.SiteAccessProblemChanged -= handler;
             }
         }
     }

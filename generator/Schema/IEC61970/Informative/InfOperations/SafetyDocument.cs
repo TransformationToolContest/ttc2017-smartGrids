@@ -50,18 +50,24 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfOperations
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61970/Informative/InfOperations/Saf" +
         "etyDocument")]
     [DebuggerDisplayAttribute("SafetyDocument {UUID}")]
-    public class SafetyDocument : Document, ISafetyDocument, IModelElement
+    public partial class SafetyDocument : Document, ISafetyDocument, IModelElement
     {
+        
+        private static Lazy<ITypedElement> _powerSystemResourceReference = new Lazy<ITypedElement>(RetrievePowerSystemResourceReference);
         
         /// <summary>
         /// The backing field for the PowerSystemResource property
         /// </summary>
         private IPowerSystemResource _powerSystemResource;
         
+        private static Lazy<ITypedElement> _clearanceTagsReference = new Lazy<ITypedElement>(RetrieveClearanceTagsReference);
+        
         /// <summary>
         /// The backing field for the ClearanceTags property
         /// </summary>
         private SafetyDocumentClearanceTagsCollection _clearanceTags;
+        
+        private static Lazy<ITypedElement> _scheduleStepsReference = new Lazy<ITypedElement>(RetrieveScheduleStepsReference);
         
         /// <summary>
         /// The backing field for the ScheduleSteps property
@@ -98,7 +104,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfOperations
                     IPowerSystemResource old = this._powerSystemResource;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnPowerSystemResourceChanging(e);
-                    this.OnPropertyChanging("PowerSystemResource", e);
+                    this.OnPropertyChanging("PowerSystemResource", e, _powerSystemResourceReference);
                     this._powerSystemResource = value;
                     if ((old != null))
                     {
@@ -111,7 +117,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfOperations
                         value.Deleted += this.OnResetPowerSystemResource;
                     }
                     this.OnPowerSystemResourceChanged(e);
-                    this.OnPropertyChanged("PowerSystemResource", e);
+                    this.OnPropertyChanged("PowerSystemResource", e, _powerSystemResourceReference);
                 }
             }
         }
@@ -183,6 +189,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfOperations
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> PowerSystemResourceChanged;
         
+        private static ITypedElement RetrievePowerSystemResourceReference()
+        {
+            return ((ITypedElement)(((ModelElement)(SafetyDocument.ClassInstance)).Resolve("PowerSystemResource")));
+        }
+        
         /// <summary>
         /// Raises the PowerSystemResourceChanging event
         /// </summary>
@@ -219,6 +230,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfOperations
             this.PowerSystemResource = null;
         }
         
+        private static ITypedElement RetrieveClearanceTagsReference()
+        {
+            return ((ITypedElement)(((ModelElement)(SafetyDocument.ClassInstance)).Resolve("ClearanceTags")));
+        }
+        
         /// <summary>
         /// Forwards CollectionChanging notifications for the ClearanceTags property to the parent model element
         /// </summary>
@@ -226,7 +242,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfOperations
         /// <param name="e">The original event data</param>
         private void ClearanceTagsCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("ClearanceTags", e);
+            this.OnCollectionChanging("ClearanceTags", e, _clearanceTagsReference);
         }
         
         /// <summary>
@@ -236,7 +252,12 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfOperations
         /// <param name="e">The original event data</param>
         private void ClearanceTagsCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("ClearanceTags", e);
+            this.OnCollectionChanged("ClearanceTags", e, _clearanceTagsReference);
+        }
+        
+        private static ITypedElement RetrieveScheduleStepsReference()
+        {
+            return ((ITypedElement)(((ModelElement)(SafetyDocument.ClassInstance)).Resolve("ScheduleSteps")));
         }
         
         /// <summary>
@@ -246,7 +267,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfOperations
         /// <param name="e">The original event data</param>
         private void ScheduleStepsCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("ScheduleSteps", e);
+            this.OnCollectionChanging("ScheduleSteps", e, _scheduleStepsReference);
         }
         
         /// <summary>
@@ -256,7 +277,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfOperations
         /// <param name="e">The original event data</param>
         private void ScheduleStepsCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("ScheduleSteps", e);
+            this.OnCollectionChanged("ScheduleSteps", e, _scheduleStepsReference);
         }
         
         /// <summary>
@@ -532,7 +553,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfOperations
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public PowerSystemResourceProxy(ISafetyDocument modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "PowerSystemResource")
             {
             }
             
@@ -549,24 +570,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfOperations
                 {
                     this.ModelElement.PowerSystemResource = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.PowerSystemResourceChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.PowerSystemResourceChanged -= handler;
             }
         }
     }

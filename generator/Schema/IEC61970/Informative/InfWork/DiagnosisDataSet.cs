@@ -50,7 +50,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfWork
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61970/Informative/InfWork/Diagnosis" +
         "DataSet")]
     [DebuggerDisplayAttribute("DiagnosisDataSet {UUID}")]
-    public class DiagnosisDataSet : ProcedureDataSet, IDiagnosisDataSet, IModelElement
+    public partial class DiagnosisDataSet : ProcedureDataSet, IDiagnosisDataSet, IModelElement
     {
         
         /// <summary>
@@ -58,65 +58,91 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfWork
         /// </summary>
         private Nullable<PhaseCode> _phaseCode;
         
+        private static Lazy<ITypedElement> _phaseCodeAttribute = new Lazy<ITypedElement>(RetrievePhaseCodeAttribute);
+        
         /// <summary>
         /// The backing field for the FinalCode property
         /// </summary>
         private string _finalCode;
+        
+        private static Lazy<ITypedElement> _finalCodeAttribute = new Lazy<ITypedElement>(RetrieveFinalCodeAttribute);
         
         /// <summary>
         /// The backing field for the Effect property
         /// </summary>
         private string _effect;
         
+        private static Lazy<ITypedElement> _effectAttribute = new Lazy<ITypedElement>(RetrieveEffectAttribute);
+        
         /// <summary>
         /// The backing field for the FailureMode property
         /// </summary>
         private string _failureMode;
+        
+        private static Lazy<ITypedElement> _failureModeAttribute = new Lazy<ITypedElement>(RetrieveFailureModeAttribute);
         
         /// <summary>
         /// The backing field for the RootOrigin property
         /// </summary>
         private string _rootOrigin;
         
+        private static Lazy<ITypedElement> _rootOriginAttribute = new Lazy<ITypedElement>(RetrieveRootOriginAttribute);
+        
         /// <summary>
         /// The backing field for the FinalCause property
         /// </summary>
         private string _finalCause;
+        
+        private static Lazy<ITypedElement> _finalCauseAttribute = new Lazy<ITypedElement>(RetrieveFinalCauseAttribute);
         
         /// <summary>
         /// The backing field for the RootRemark property
         /// </summary>
         private string _rootRemark;
         
+        private static Lazy<ITypedElement> _rootRemarkAttribute = new Lazy<ITypedElement>(RetrieveRootRemarkAttribute);
+        
         /// <summary>
         /// The backing field for the RootCause property
         /// </summary>
         private string _rootCause;
+        
+        private static Lazy<ITypedElement> _rootCauseAttribute = new Lazy<ITypedElement>(RetrieveRootCauseAttribute);
         
         /// <summary>
         /// The backing field for the PreliminaryRemark property
         /// </summary>
         private string _preliminaryRemark;
         
+        private static Lazy<ITypedElement> _preliminaryRemarkAttribute = new Lazy<ITypedElement>(RetrievePreliminaryRemarkAttribute);
+        
         /// <summary>
         /// The backing field for the PreliminaryCode property
         /// </summary>
         private string _preliminaryCode;
+        
+        private static Lazy<ITypedElement> _preliminaryCodeAttribute = new Lazy<ITypedElement>(RetrievePreliminaryCodeAttribute);
         
         /// <summary>
         /// The backing field for the PreliminaryDateTime property
         /// </summary>
         private DateTime _preliminaryDateTime;
         
+        private static Lazy<ITypedElement> _preliminaryDateTimeAttribute = new Lazy<ITypedElement>(RetrievePreliminaryDateTimeAttribute);
+        
         /// <summary>
         /// The backing field for the FinalRemark property
         /// </summary>
         private string _finalRemark;
         
+        private static Lazy<ITypedElement> _finalRemarkAttribute = new Lazy<ITypedElement>(RetrieveFinalRemarkAttribute);
+        
         /// <summary>
         /// The backing field for the FinalOrigin property
         /// </summary>
         private string _finalOrigin;
+        
+        private static Lazy<ITypedElement> _finalOriginAttribute = new Lazy<ITypedElement>(RetrieveFinalOriginAttribute);
         
         private static IClass _classInstance;
         
@@ -138,10 +164,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfWork
                     Nullable<PhaseCode> old = this._phaseCode;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnPhaseCodeChanging(e);
-                    this.OnPropertyChanging("PhaseCode", e);
+                    this.OnPropertyChanging("PhaseCode", e, _phaseCodeAttribute);
                     this._phaseCode = value;
                     this.OnPhaseCodeChanged(e);
-                    this.OnPropertyChanged("PhaseCode", e);
+                    this.OnPropertyChanged("PhaseCode", e, _phaseCodeAttribute);
                 }
             }
         }
@@ -164,10 +190,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfWork
                     string old = this._finalCode;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnFinalCodeChanging(e);
-                    this.OnPropertyChanging("FinalCode", e);
+                    this.OnPropertyChanging("FinalCode", e, _finalCodeAttribute);
                     this._finalCode = value;
                     this.OnFinalCodeChanged(e);
-                    this.OnPropertyChanged("FinalCode", e);
+                    this.OnPropertyChanged("FinalCode", e, _finalCodeAttribute);
                 }
             }
         }
@@ -190,10 +216,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfWork
                     string old = this._effect;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnEffectChanging(e);
-                    this.OnPropertyChanging("Effect", e);
+                    this.OnPropertyChanging("Effect", e, _effectAttribute);
                     this._effect = value;
                     this.OnEffectChanged(e);
-                    this.OnPropertyChanged("Effect", e);
+                    this.OnPropertyChanged("Effect", e, _effectAttribute);
                 }
             }
         }
@@ -216,10 +242,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfWork
                     string old = this._failureMode;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnFailureModeChanging(e);
-                    this.OnPropertyChanging("FailureMode", e);
+                    this.OnPropertyChanging("FailureMode", e, _failureModeAttribute);
                     this._failureMode = value;
                     this.OnFailureModeChanged(e);
-                    this.OnPropertyChanged("FailureMode", e);
+                    this.OnPropertyChanged("FailureMode", e, _failureModeAttribute);
                 }
             }
         }
@@ -242,10 +268,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfWork
                     string old = this._rootOrigin;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnRootOriginChanging(e);
-                    this.OnPropertyChanging("RootOrigin", e);
+                    this.OnPropertyChanging("RootOrigin", e, _rootOriginAttribute);
                     this._rootOrigin = value;
                     this.OnRootOriginChanged(e);
-                    this.OnPropertyChanged("RootOrigin", e);
+                    this.OnPropertyChanged("RootOrigin", e, _rootOriginAttribute);
                 }
             }
         }
@@ -268,10 +294,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfWork
                     string old = this._finalCause;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnFinalCauseChanging(e);
-                    this.OnPropertyChanging("FinalCause", e);
+                    this.OnPropertyChanging("FinalCause", e, _finalCauseAttribute);
                     this._finalCause = value;
                     this.OnFinalCauseChanged(e);
-                    this.OnPropertyChanged("FinalCause", e);
+                    this.OnPropertyChanged("FinalCause", e, _finalCauseAttribute);
                 }
             }
         }
@@ -294,10 +320,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfWork
                     string old = this._rootRemark;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnRootRemarkChanging(e);
-                    this.OnPropertyChanging("RootRemark", e);
+                    this.OnPropertyChanging("RootRemark", e, _rootRemarkAttribute);
                     this._rootRemark = value;
                     this.OnRootRemarkChanged(e);
-                    this.OnPropertyChanged("RootRemark", e);
+                    this.OnPropertyChanged("RootRemark", e, _rootRemarkAttribute);
                 }
             }
         }
@@ -320,10 +346,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfWork
                     string old = this._rootCause;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnRootCauseChanging(e);
-                    this.OnPropertyChanging("RootCause", e);
+                    this.OnPropertyChanging("RootCause", e, _rootCauseAttribute);
                     this._rootCause = value;
                     this.OnRootCauseChanged(e);
-                    this.OnPropertyChanged("RootCause", e);
+                    this.OnPropertyChanged("RootCause", e, _rootCauseAttribute);
                 }
             }
         }
@@ -346,10 +372,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfWork
                     string old = this._preliminaryRemark;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnPreliminaryRemarkChanging(e);
-                    this.OnPropertyChanging("PreliminaryRemark", e);
+                    this.OnPropertyChanging("PreliminaryRemark", e, _preliminaryRemarkAttribute);
                     this._preliminaryRemark = value;
                     this.OnPreliminaryRemarkChanged(e);
-                    this.OnPropertyChanged("PreliminaryRemark", e);
+                    this.OnPropertyChanged("PreliminaryRemark", e, _preliminaryRemarkAttribute);
                 }
             }
         }
@@ -372,10 +398,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfWork
                     string old = this._preliminaryCode;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnPreliminaryCodeChanging(e);
-                    this.OnPropertyChanging("PreliminaryCode", e);
+                    this.OnPropertyChanging("PreliminaryCode", e, _preliminaryCodeAttribute);
                     this._preliminaryCode = value;
                     this.OnPreliminaryCodeChanged(e);
-                    this.OnPropertyChanged("PreliminaryCode", e);
+                    this.OnPropertyChanged("PreliminaryCode", e, _preliminaryCodeAttribute);
                 }
             }
         }
@@ -398,10 +424,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfWork
                     DateTime old = this._preliminaryDateTime;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnPreliminaryDateTimeChanging(e);
-                    this.OnPropertyChanging("PreliminaryDateTime", e);
+                    this.OnPropertyChanging("PreliminaryDateTime", e, _preliminaryDateTimeAttribute);
                     this._preliminaryDateTime = value;
                     this.OnPreliminaryDateTimeChanged(e);
-                    this.OnPropertyChanged("PreliminaryDateTime", e);
+                    this.OnPropertyChanged("PreliminaryDateTime", e, _preliminaryDateTimeAttribute);
                 }
             }
         }
@@ -424,10 +450,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfWork
                     string old = this._finalRemark;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnFinalRemarkChanging(e);
-                    this.OnPropertyChanging("FinalRemark", e);
+                    this.OnPropertyChanging("FinalRemark", e, _finalRemarkAttribute);
                     this._finalRemark = value;
                     this.OnFinalRemarkChanged(e);
-                    this.OnPropertyChanged("FinalRemark", e);
+                    this.OnPropertyChanged("FinalRemark", e, _finalRemarkAttribute);
                 }
             }
         }
@@ -450,10 +476,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfWork
                     string old = this._finalOrigin;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnFinalOriginChanging(e);
-                    this.OnPropertyChanging("FinalOrigin", e);
+                    this.OnPropertyChanging("FinalOrigin", e, _finalOriginAttribute);
                     this._finalOrigin = value;
                     this.OnFinalOriginChanged(e);
-                    this.OnPropertyChanged("FinalOrigin", e);
+                    this.OnPropertyChanged("FinalOrigin", e, _finalOriginAttribute);
                 }
             }
         }
@@ -604,6 +630,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfWork
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> FinalOriginChanged;
         
+        private static ITypedElement RetrievePhaseCodeAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(DiagnosisDataSet.ClassInstance)).Resolve("phaseCode")));
+        }
+        
         /// <summary>
         /// Raises the PhaseCodeChanging event
         /// </summary>
@@ -628,6 +659,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfWork
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveFinalCodeAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(DiagnosisDataSet.ClassInstance)).Resolve("finalCode")));
         }
         
         /// <summary>
@@ -656,6 +692,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfWork
             }
         }
         
+        private static ITypedElement RetrieveEffectAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(DiagnosisDataSet.ClassInstance)).Resolve("effect")));
+        }
+        
         /// <summary>
         /// Raises the EffectChanging event
         /// </summary>
@@ -680,6 +721,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfWork
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveFailureModeAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(DiagnosisDataSet.ClassInstance)).Resolve("failureMode")));
         }
         
         /// <summary>
@@ -708,6 +754,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfWork
             }
         }
         
+        private static ITypedElement RetrieveRootOriginAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(DiagnosisDataSet.ClassInstance)).Resolve("rootOrigin")));
+        }
+        
         /// <summary>
         /// Raises the RootOriginChanging event
         /// </summary>
@@ -732,6 +783,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfWork
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveFinalCauseAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(DiagnosisDataSet.ClassInstance)).Resolve("finalCause")));
         }
         
         /// <summary>
@@ -760,6 +816,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfWork
             }
         }
         
+        private static ITypedElement RetrieveRootRemarkAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(DiagnosisDataSet.ClassInstance)).Resolve("rootRemark")));
+        }
+        
         /// <summary>
         /// Raises the RootRemarkChanging event
         /// </summary>
@@ -784,6 +845,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfWork
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveRootCauseAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(DiagnosisDataSet.ClassInstance)).Resolve("rootCause")));
         }
         
         /// <summary>
@@ -812,6 +878,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfWork
             }
         }
         
+        private static ITypedElement RetrievePreliminaryRemarkAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(DiagnosisDataSet.ClassInstance)).Resolve("preliminaryRemark")));
+        }
+        
         /// <summary>
         /// Raises the PreliminaryRemarkChanging event
         /// </summary>
@@ -836,6 +907,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfWork
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrievePreliminaryCodeAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(DiagnosisDataSet.ClassInstance)).Resolve("preliminaryCode")));
         }
         
         /// <summary>
@@ -864,6 +940,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfWork
             }
         }
         
+        private static ITypedElement RetrievePreliminaryDateTimeAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(DiagnosisDataSet.ClassInstance)).Resolve("preliminaryDateTime")));
+        }
+        
         /// <summary>
         /// Raises the PreliminaryDateTimeChanging event
         /// </summary>
@@ -890,6 +971,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfWork
             }
         }
         
+        private static ITypedElement RetrieveFinalRemarkAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(DiagnosisDataSet.ClassInstance)).Resolve("finalRemark")));
+        }
+        
         /// <summary>
         /// Raises the FinalRemarkChanging event
         /// </summary>
@@ -914,6 +1000,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfWork
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveFinalOriginAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(DiagnosisDataSet.ClassInstance)).Resolve("finalOrigin")));
         }
         
         /// <summary>
@@ -1104,7 +1195,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfWork
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public PhaseCodeProxy(IDiagnosisDataSet modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "phaseCode")
             {
             }
             
@@ -1122,24 +1213,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfWork
                     this.ModelElement.PhaseCode = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.PhaseCodeChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.PhaseCodeChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1153,7 +1226,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfWork
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public FinalCodeProxy(IDiagnosisDataSet modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "finalCode")
             {
             }
             
@@ -1171,24 +1244,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfWork
                     this.ModelElement.FinalCode = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.FinalCodeChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.FinalCodeChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1202,7 +1257,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfWork
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public EffectProxy(IDiagnosisDataSet modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "effect")
             {
             }
             
@@ -1220,24 +1275,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfWork
                     this.ModelElement.Effect = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.EffectChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.EffectChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1251,7 +1288,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfWork
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public FailureModeProxy(IDiagnosisDataSet modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "failureMode")
             {
             }
             
@@ -1269,24 +1306,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfWork
                     this.ModelElement.FailureMode = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.FailureModeChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.FailureModeChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1300,7 +1319,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfWork
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public RootOriginProxy(IDiagnosisDataSet modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "rootOrigin")
             {
             }
             
@@ -1318,24 +1337,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfWork
                     this.ModelElement.RootOrigin = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.RootOriginChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.RootOriginChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1349,7 +1350,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfWork
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public FinalCauseProxy(IDiagnosisDataSet modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "finalCause")
             {
             }
             
@@ -1367,24 +1368,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfWork
                     this.ModelElement.FinalCause = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.FinalCauseChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.FinalCauseChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1398,7 +1381,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfWork
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public RootRemarkProxy(IDiagnosisDataSet modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "rootRemark")
             {
             }
             
@@ -1416,24 +1399,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfWork
                     this.ModelElement.RootRemark = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.RootRemarkChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.RootRemarkChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1447,7 +1412,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfWork
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public RootCauseProxy(IDiagnosisDataSet modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "rootCause")
             {
             }
             
@@ -1465,24 +1430,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfWork
                     this.ModelElement.RootCause = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.RootCauseChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.RootCauseChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1496,7 +1443,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfWork
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public PreliminaryRemarkProxy(IDiagnosisDataSet modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "preliminaryRemark")
             {
             }
             
@@ -1514,24 +1461,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfWork
                     this.ModelElement.PreliminaryRemark = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.PreliminaryRemarkChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.PreliminaryRemarkChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1545,7 +1474,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfWork
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public PreliminaryCodeProxy(IDiagnosisDataSet modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "preliminaryCode")
             {
             }
             
@@ -1563,24 +1492,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfWork
                     this.ModelElement.PreliminaryCode = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.PreliminaryCodeChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.PreliminaryCodeChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1594,7 +1505,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfWork
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public PreliminaryDateTimeProxy(IDiagnosisDataSet modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "preliminaryDateTime")
             {
             }
             
@@ -1612,24 +1523,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfWork
                     this.ModelElement.PreliminaryDateTime = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.PreliminaryDateTimeChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.PreliminaryDateTimeChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1643,7 +1536,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfWork
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public FinalRemarkProxy(IDiagnosisDataSet modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "finalRemark")
             {
             }
             
@@ -1661,24 +1554,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfWork
                     this.ModelElement.FinalRemark = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.FinalRemarkChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.FinalRemarkChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1692,7 +1567,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfWork
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public FinalOriginProxy(IDiagnosisDataSet modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "finalOrigin")
             {
             }
             
@@ -1709,24 +1584,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfWork
                 {
                     this.ModelElement.FinalOrigin = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.FinalOriginChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.FinalOriginChanged -= handler;
             }
         }
     }

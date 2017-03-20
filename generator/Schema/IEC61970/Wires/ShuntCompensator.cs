@@ -53,7 +53,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
     [XmlNamespacePrefixAttribute("cimWires")]
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61970/Wires/ShuntCompensator")]
     [DebuggerDisplayAttribute("ShuntCompensator {UUID}")]
-    public class ShuntCompensator : RegulatingCondEq, IShuntCompensator, IModelElement
+    public partial class ShuntCompensator : RegulatingCondEq, IShuntCompensator, IModelElement
     {
         
         /// <summary>
@@ -61,75 +61,107 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
         /// </summary>
         private int _normalSections;
         
+        private static Lazy<ITypedElement> _normalSectionsAttribute = new Lazy<ITypedElement>(RetrieveNormalSectionsAttribute);
+        
         /// <summary>
         /// The backing field for the MinU property
         /// </summary>
         private float _minU;
+        
+        private static Lazy<ITypedElement> _minUAttribute = new Lazy<ITypedElement>(RetrieveMinUAttribute);
         
         /// <summary>
         /// The backing field for the B0PerSection property
         /// </summary>
         private float _b0PerSection;
         
+        private static Lazy<ITypedElement> _b0PerSectionAttribute = new Lazy<ITypedElement>(RetrieveB0PerSectionAttribute);
+        
         /// <summary>
         /// The backing field for the NomQ property
         /// </summary>
         private float _nomQ;
+        
+        private static Lazy<ITypedElement> _nomQAttribute = new Lazy<ITypedElement>(RetrieveNomQAttribute);
         
         /// <summary>
         /// The backing field for the NomU property
         /// </summary>
         private float _nomU;
         
+        private static Lazy<ITypedElement> _nomUAttribute = new Lazy<ITypedElement>(RetrieveNomUAttribute);
+        
         /// <summary>
         /// The backing field for the MaximumSections property
         /// </summary>
         private int _maximumSections;
+        
+        private static Lazy<ITypedElement> _maximumSectionsAttribute = new Lazy<ITypedElement>(RetrieveMaximumSectionsAttribute);
         
         /// <summary>
         /// The backing field for the SwitchOnCount property
         /// </summary>
         private int _switchOnCount;
         
+        private static Lazy<ITypedElement> _switchOnCountAttribute = new Lazy<ITypedElement>(RetrieveSwitchOnCountAttribute);
+        
         /// <summary>
         /// The backing field for the MaxU property
         /// </summary>
         private float _maxU;
+        
+        private static Lazy<ITypedElement> _maxUAttribute = new Lazy<ITypedElement>(RetrieveMaxUAttribute);
         
         /// <summary>
         /// The backing field for the BPerSection property
         /// </summary>
         private float _bPerSection;
         
+        private static Lazy<ITypedElement> _bPerSectionAttribute = new Lazy<ITypedElement>(RetrieveBPerSectionAttribute);
+        
         /// <summary>
         /// The backing field for the GPerSection property
         /// </summary>
         private float _gPerSection;
+        
+        private static Lazy<ITypedElement> _gPerSectionAttribute = new Lazy<ITypedElement>(RetrieveGPerSectionAttribute);
         
         /// <summary>
         /// The backing field for the SwitchOnDate property
         /// </summary>
         private DateTime _switchOnDate;
         
+        private static Lazy<ITypedElement> _switchOnDateAttribute = new Lazy<ITypedElement>(RetrieveSwitchOnDateAttribute);
+        
         /// <summary>
         /// The backing field for the AVRDelay property
         /// </summary>
         private float _aVRDelay;
+        
+        private static Lazy<ITypedElement> _aVRDelayAttribute = new Lazy<ITypedElement>(RetrieveAVRDelayAttribute);
         
         /// <summary>
         /// The backing field for the VoltageSensitivity property
         /// </summary>
         private float _voltageSensitivity;
         
+        private static Lazy<ITypedElement> _voltageSensitivityAttribute = new Lazy<ITypedElement>(RetrieveVoltageSensitivityAttribute);
+        
         /// <summary>
         /// The backing field for the G0PerSection property
         /// </summary>
         private float _g0PerSection;
         
+        private static Lazy<ITypedElement> _g0PerSectionAttribute = new Lazy<ITypedElement>(RetrieveG0PerSectionAttribute);
+        
         /// <summary>
         /// The backing field for the ReactivePerSection property
         /// </summary>
         private float _reactivePerSection;
+        
+        private static Lazy<ITypedElement> _reactivePerSectionAttribute = new Lazy<ITypedElement>(RetrieveReactivePerSectionAttribute);
+        
+        private static Lazy<ITypedElement> _svShuntCompensatorSectionsReference = new Lazy<ITypedElement>(RetrieveSvShuntCompensatorSectionsReference);
         
         /// <summary>
         /// The backing field for the SvShuntCompensatorSections property
@@ -156,10 +188,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
                     int old = this._normalSections;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnNormalSectionsChanging(e);
-                    this.OnPropertyChanging("NormalSections", e);
+                    this.OnPropertyChanging("NormalSections", e, _normalSectionsAttribute);
                     this._normalSections = value;
                     this.OnNormalSectionsChanged(e);
-                    this.OnPropertyChanged("NormalSections", e);
+                    this.OnPropertyChanged("NormalSections", e, _normalSectionsAttribute);
                 }
             }
         }
@@ -182,10 +214,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
                     float old = this._minU;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnMinUChanging(e);
-                    this.OnPropertyChanging("MinU", e);
+                    this.OnPropertyChanging("MinU", e, _minUAttribute);
                     this._minU = value;
                     this.OnMinUChanged(e);
-                    this.OnPropertyChanged("MinU", e);
+                    this.OnPropertyChanged("MinU", e, _minUAttribute);
                 }
             }
         }
@@ -208,10 +240,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
                     float old = this._b0PerSection;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnB0PerSectionChanging(e);
-                    this.OnPropertyChanging("B0PerSection", e);
+                    this.OnPropertyChanging("B0PerSection", e, _b0PerSectionAttribute);
                     this._b0PerSection = value;
                     this.OnB0PerSectionChanged(e);
-                    this.OnPropertyChanged("B0PerSection", e);
+                    this.OnPropertyChanged("B0PerSection", e, _b0PerSectionAttribute);
                 }
             }
         }
@@ -234,10 +266,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
                     float old = this._nomQ;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnNomQChanging(e);
-                    this.OnPropertyChanging("NomQ", e);
+                    this.OnPropertyChanging("NomQ", e, _nomQAttribute);
                     this._nomQ = value;
                     this.OnNomQChanged(e);
-                    this.OnPropertyChanged("NomQ", e);
+                    this.OnPropertyChanged("NomQ", e, _nomQAttribute);
                 }
             }
         }
@@ -260,10 +292,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
                     float old = this._nomU;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnNomUChanging(e);
-                    this.OnPropertyChanging("NomU", e);
+                    this.OnPropertyChanging("NomU", e, _nomUAttribute);
                     this._nomU = value;
                     this.OnNomUChanged(e);
-                    this.OnPropertyChanged("NomU", e);
+                    this.OnPropertyChanged("NomU", e, _nomUAttribute);
                 }
             }
         }
@@ -286,10 +318,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
                     int old = this._maximumSections;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnMaximumSectionsChanging(e);
-                    this.OnPropertyChanging("MaximumSections", e);
+                    this.OnPropertyChanging("MaximumSections", e, _maximumSectionsAttribute);
                     this._maximumSections = value;
                     this.OnMaximumSectionsChanged(e);
-                    this.OnPropertyChanged("MaximumSections", e);
+                    this.OnPropertyChanged("MaximumSections", e, _maximumSectionsAttribute);
                 }
             }
         }
@@ -312,10 +344,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
                     int old = this._switchOnCount;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnSwitchOnCountChanging(e);
-                    this.OnPropertyChanging("SwitchOnCount", e);
+                    this.OnPropertyChanging("SwitchOnCount", e, _switchOnCountAttribute);
                     this._switchOnCount = value;
                     this.OnSwitchOnCountChanged(e);
-                    this.OnPropertyChanged("SwitchOnCount", e);
+                    this.OnPropertyChanged("SwitchOnCount", e, _switchOnCountAttribute);
                 }
             }
         }
@@ -338,10 +370,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
                     float old = this._maxU;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnMaxUChanging(e);
-                    this.OnPropertyChanging("MaxU", e);
+                    this.OnPropertyChanging("MaxU", e, _maxUAttribute);
                     this._maxU = value;
                     this.OnMaxUChanged(e);
-                    this.OnPropertyChanged("MaxU", e);
+                    this.OnPropertyChanged("MaxU", e, _maxUAttribute);
                 }
             }
         }
@@ -364,10 +396,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
                     float old = this._bPerSection;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnBPerSectionChanging(e);
-                    this.OnPropertyChanging("BPerSection", e);
+                    this.OnPropertyChanging("BPerSection", e, _bPerSectionAttribute);
                     this._bPerSection = value;
                     this.OnBPerSectionChanged(e);
-                    this.OnPropertyChanged("BPerSection", e);
+                    this.OnPropertyChanged("BPerSection", e, _bPerSectionAttribute);
                 }
             }
         }
@@ -390,10 +422,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
                     float old = this._gPerSection;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnGPerSectionChanging(e);
-                    this.OnPropertyChanging("GPerSection", e);
+                    this.OnPropertyChanging("GPerSection", e, _gPerSectionAttribute);
                     this._gPerSection = value;
                     this.OnGPerSectionChanged(e);
-                    this.OnPropertyChanged("GPerSection", e);
+                    this.OnPropertyChanged("GPerSection", e, _gPerSectionAttribute);
                 }
             }
         }
@@ -416,10 +448,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
                     DateTime old = this._switchOnDate;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnSwitchOnDateChanging(e);
-                    this.OnPropertyChanging("SwitchOnDate", e);
+                    this.OnPropertyChanging("SwitchOnDate", e, _switchOnDateAttribute);
                     this._switchOnDate = value;
                     this.OnSwitchOnDateChanged(e);
-                    this.OnPropertyChanged("SwitchOnDate", e);
+                    this.OnPropertyChanged("SwitchOnDate", e, _switchOnDateAttribute);
                 }
             }
         }
@@ -442,10 +474,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
                     float old = this._aVRDelay;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnAVRDelayChanging(e);
-                    this.OnPropertyChanging("AVRDelay", e);
+                    this.OnPropertyChanging("AVRDelay", e, _aVRDelayAttribute);
                     this._aVRDelay = value;
                     this.OnAVRDelayChanged(e);
-                    this.OnPropertyChanged("AVRDelay", e);
+                    this.OnPropertyChanged("AVRDelay", e, _aVRDelayAttribute);
                 }
             }
         }
@@ -468,10 +500,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
                     float old = this._voltageSensitivity;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnVoltageSensitivityChanging(e);
-                    this.OnPropertyChanging("VoltageSensitivity", e);
+                    this.OnPropertyChanging("VoltageSensitivity", e, _voltageSensitivityAttribute);
                     this._voltageSensitivity = value;
                     this.OnVoltageSensitivityChanged(e);
-                    this.OnPropertyChanged("VoltageSensitivity", e);
+                    this.OnPropertyChanged("VoltageSensitivity", e, _voltageSensitivityAttribute);
                 }
             }
         }
@@ -494,10 +526,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
                     float old = this._g0PerSection;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnG0PerSectionChanging(e);
-                    this.OnPropertyChanging("G0PerSection", e);
+                    this.OnPropertyChanging("G0PerSection", e, _g0PerSectionAttribute);
                     this._g0PerSection = value;
                     this.OnG0PerSectionChanged(e);
-                    this.OnPropertyChanged("G0PerSection", e);
+                    this.OnPropertyChanged("G0PerSection", e, _g0PerSectionAttribute);
                 }
             }
         }
@@ -520,10 +552,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
                     float old = this._reactivePerSection;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnReactivePerSectionChanging(e);
-                    this.OnPropertyChanging("ReactivePerSection", e);
+                    this.OnPropertyChanging("ReactivePerSection", e, _reactivePerSectionAttribute);
                     this._reactivePerSection = value;
                     this.OnReactivePerSectionChanged(e);
-                    this.OnPropertyChanged("ReactivePerSection", e);
+                    this.OnPropertyChanged("ReactivePerSection", e, _reactivePerSectionAttribute);
                 }
             }
         }
@@ -546,7 +578,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
                     ISvShuntCompensatorSections old = this._svShuntCompensatorSections;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnSvShuntCompensatorSectionsChanging(e);
-                    this.OnPropertyChanging("SvShuntCompensatorSections", e);
+                    this.OnPropertyChanging("SvShuntCompensatorSections", e, _svShuntCompensatorSectionsReference);
                     this._svShuntCompensatorSections = value;
                     if ((old != null))
                     {
@@ -559,7 +591,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
                         value.Deleted += this.OnResetSvShuntCompensatorSections;
                     }
                     this.OnSvShuntCompensatorSectionsChanged(e);
-                    this.OnPropertyChanged("SvShuntCompensatorSections", e);
+                    this.OnPropertyChanged("SvShuntCompensatorSections", e, _svShuntCompensatorSectionsReference);
                 }
             }
         }
@@ -750,6 +782,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> SvShuntCompensatorSectionsChanged;
         
+        private static ITypedElement RetrieveNormalSectionsAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(ShuntCompensator.ClassInstance)).Resolve("normalSections")));
+        }
+        
         /// <summary>
         /// Raises the NormalSectionsChanging event
         /// </summary>
@@ -774,6 +811,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveMinUAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(ShuntCompensator.ClassInstance)).Resolve("minU")));
         }
         
         /// <summary>
@@ -802,6 +844,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
             }
         }
         
+        private static ITypedElement RetrieveB0PerSectionAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(ShuntCompensator.ClassInstance)).Resolve("b0PerSection")));
+        }
+        
         /// <summary>
         /// Raises the B0PerSectionChanging event
         /// </summary>
@@ -826,6 +873,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveNomQAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(ShuntCompensator.ClassInstance)).Resolve("nomQ")));
         }
         
         /// <summary>
@@ -854,6 +906,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
             }
         }
         
+        private static ITypedElement RetrieveNomUAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(ShuntCompensator.ClassInstance)).Resolve("nomU")));
+        }
+        
         /// <summary>
         /// Raises the NomUChanging event
         /// </summary>
@@ -878,6 +935,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveMaximumSectionsAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(ShuntCompensator.ClassInstance)).Resolve("maximumSections")));
         }
         
         /// <summary>
@@ -906,6 +968,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
             }
         }
         
+        private static ITypedElement RetrieveSwitchOnCountAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(ShuntCompensator.ClassInstance)).Resolve("switchOnCount")));
+        }
+        
         /// <summary>
         /// Raises the SwitchOnCountChanging event
         /// </summary>
@@ -930,6 +997,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveMaxUAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(ShuntCompensator.ClassInstance)).Resolve("maxU")));
         }
         
         /// <summary>
@@ -958,6 +1030,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
             }
         }
         
+        private static ITypedElement RetrieveBPerSectionAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(ShuntCompensator.ClassInstance)).Resolve("bPerSection")));
+        }
+        
         /// <summary>
         /// Raises the BPerSectionChanging event
         /// </summary>
@@ -982,6 +1059,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveGPerSectionAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(ShuntCompensator.ClassInstance)).Resolve("gPerSection")));
         }
         
         /// <summary>
@@ -1010,6 +1092,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
             }
         }
         
+        private static ITypedElement RetrieveSwitchOnDateAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(ShuntCompensator.ClassInstance)).Resolve("switchOnDate")));
+        }
+        
         /// <summary>
         /// Raises the SwitchOnDateChanging event
         /// </summary>
@@ -1034,6 +1121,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveAVRDelayAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(ShuntCompensator.ClassInstance)).Resolve("aVRDelay")));
         }
         
         /// <summary>
@@ -1062,6 +1154,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
             }
         }
         
+        private static ITypedElement RetrieveVoltageSensitivityAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(ShuntCompensator.ClassInstance)).Resolve("voltageSensitivity")));
+        }
+        
         /// <summary>
         /// Raises the VoltageSensitivityChanging event
         /// </summary>
@@ -1086,6 +1183,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveG0PerSectionAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(ShuntCompensator.ClassInstance)).Resolve("g0PerSection")));
         }
         
         /// <summary>
@@ -1114,6 +1216,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
             }
         }
         
+        private static ITypedElement RetrieveReactivePerSectionAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(ShuntCompensator.ClassInstance)).Resolve("reactivePerSection")));
+        }
+        
         /// <summary>
         /// Raises the ReactivePerSectionChanging event
         /// </summary>
@@ -1138,6 +1245,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveSvShuntCompensatorSectionsReference()
+        {
+            return ((ITypedElement)(((ModelElement)(ShuntCompensator.ClassInstance)).Resolve("SvShuntCompensatorSections")));
         }
         
         /// <summary>
@@ -1508,7 +1620,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public NormalSectionsProxy(IShuntCompensator modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "normalSections")
             {
             }
             
@@ -1526,24 +1638,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
                     this.ModelElement.NormalSections = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.NormalSectionsChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.NormalSectionsChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1557,7 +1651,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public MinUProxy(IShuntCompensator modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "minU")
             {
             }
             
@@ -1575,24 +1669,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
                     this.ModelElement.MinU = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.MinUChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.MinUChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1606,7 +1682,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public B0PerSectionProxy(IShuntCompensator modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "b0PerSection")
             {
             }
             
@@ -1624,24 +1700,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
                     this.ModelElement.B0PerSection = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.B0PerSectionChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.B0PerSectionChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1655,7 +1713,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public NomQProxy(IShuntCompensator modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "nomQ")
             {
             }
             
@@ -1673,24 +1731,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
                     this.ModelElement.NomQ = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.NomQChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.NomQChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1704,7 +1744,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public NomUProxy(IShuntCompensator modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "nomU")
             {
             }
             
@@ -1722,24 +1762,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
                     this.ModelElement.NomU = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.NomUChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.NomUChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1753,7 +1775,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public MaximumSectionsProxy(IShuntCompensator modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "maximumSections")
             {
             }
             
@@ -1771,24 +1793,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
                     this.ModelElement.MaximumSections = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.MaximumSectionsChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.MaximumSectionsChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1802,7 +1806,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public SwitchOnCountProxy(IShuntCompensator modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "switchOnCount")
             {
             }
             
@@ -1820,24 +1824,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
                     this.ModelElement.SwitchOnCount = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.SwitchOnCountChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.SwitchOnCountChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1851,7 +1837,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public MaxUProxy(IShuntCompensator modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "maxU")
             {
             }
             
@@ -1869,24 +1855,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
                     this.ModelElement.MaxU = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.MaxUChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.MaxUChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1900,7 +1868,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public BPerSectionProxy(IShuntCompensator modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "bPerSection")
             {
             }
             
@@ -1918,24 +1886,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
                     this.ModelElement.BPerSection = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.BPerSectionChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.BPerSectionChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1949,7 +1899,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public GPerSectionProxy(IShuntCompensator modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "gPerSection")
             {
             }
             
@@ -1967,24 +1917,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
                     this.ModelElement.GPerSection = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.GPerSectionChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.GPerSectionChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1998,7 +1930,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public SwitchOnDateProxy(IShuntCompensator modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "switchOnDate")
             {
             }
             
@@ -2016,24 +1948,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
                     this.ModelElement.SwitchOnDate = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.SwitchOnDateChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.SwitchOnDateChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -2047,7 +1961,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public AVRDelayProxy(IShuntCompensator modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "aVRDelay")
             {
             }
             
@@ -2065,24 +1979,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
                     this.ModelElement.AVRDelay = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.AVRDelayChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.AVRDelayChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -2096,7 +1992,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public VoltageSensitivityProxy(IShuntCompensator modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "voltageSensitivity")
             {
             }
             
@@ -2114,24 +2010,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
                     this.ModelElement.VoltageSensitivity = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.VoltageSensitivityChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.VoltageSensitivityChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -2145,7 +2023,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public G0PerSectionProxy(IShuntCompensator modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "g0PerSection")
             {
             }
             
@@ -2163,24 +2041,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
                     this.ModelElement.G0PerSection = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.G0PerSectionChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.G0PerSectionChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -2194,7 +2054,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public ReactivePerSectionProxy(IShuntCompensator modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "reactivePerSection")
             {
             }
             
@@ -2212,24 +2072,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
                     this.ModelElement.ReactivePerSection = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ReactivePerSectionChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ReactivePerSectionChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -2243,7 +2085,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public SvShuntCompensatorSectionsProxy(IShuntCompensator modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "SvShuntCompensatorSections")
             {
             }
             
@@ -2260,24 +2102,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
                 {
                     this.ModelElement.SvShuntCompensatorSections = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.SvShuntCompensatorSectionsChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.SvShuntCompensatorSectionsChanged -= handler;
             }
         }
     }

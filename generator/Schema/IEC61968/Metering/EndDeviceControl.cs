@@ -54,7 +54,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Metering
     [XmlNamespacePrefixAttribute("cimMetering")]
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61968/Metering/EndDeviceControl")]
     [DebuggerDisplayAttribute("EndDeviceControl {UUID}")]
-    public class EndDeviceControl : IdentifiedObject, IEndDeviceControl, IModelElement
+    public partial class EndDeviceControl : IdentifiedObject, IEndDeviceControl, IModelElement
     {
         
         /// <summary>
@@ -62,40 +62,58 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Metering
         /// </summary>
         private bool _drProgramMandatory;
         
+        private static Lazy<ITypedElement> _drProgramMandatoryAttribute = new Lazy<ITypedElement>(RetrieveDrProgramMandatoryAttribute);
+        
         /// <summary>
         /// The backing field for the DrProgramLevel property
         /// </summary>
         private int _drProgramLevel;
+        
+        private static Lazy<ITypedElement> _drProgramLevelAttribute = new Lazy<ITypedElement>(RetrieveDrProgramLevelAttribute);
         
         /// <summary>
         /// The backing field for the Type property
         /// </summary>
         private string _type;
         
+        private static Lazy<ITypedElement> _typeAttribute = new Lazy<ITypedElement>(RetrieveTypeAttribute);
+        
         /// <summary>
         /// The backing field for the PriceSignal property
         /// </summary>
         private float _priceSignal;
+        
+        private static Lazy<ITypedElement> _priceSignalAttribute = new Lazy<ITypedElement>(RetrievePriceSignalAttribute);
+        
+        private static Lazy<ITypedElement> _scheduledIntervalReference = new Lazy<ITypedElement>(RetrieveScheduledIntervalReference);
         
         /// <summary>
         /// The backing field for the ScheduledInterval property
         /// </summary>
         private IDateTimeInterval _scheduledInterval;
         
+        private static Lazy<ITypedElement> _customerAgreementReference = new Lazy<ITypedElement>(RetrieveCustomerAgreementReference);
+        
         /// <summary>
         /// The backing field for the CustomerAgreement property
         /// </summary>
         private ICustomerAgreement _customerAgreement;
+        
+        private static Lazy<ITypedElement> _endDeviceAssetReference = new Lazy<ITypedElement>(RetrieveEndDeviceAssetReference);
         
         /// <summary>
         /// The backing field for the EndDeviceAsset property
         /// </summary>
         private IEndDeviceAsset _endDeviceAsset;
         
+        private static Lazy<ITypedElement> _endDeviceGroupReference = new Lazy<ITypedElement>(RetrieveEndDeviceGroupReference);
+        
         /// <summary>
         /// The backing field for the EndDeviceGroup property
         /// </summary>
         private IEndDeviceGroup _endDeviceGroup;
+        
+        private static Lazy<ITypedElement> _demandResponseProgramReference = new Lazy<ITypedElement>(RetrieveDemandResponseProgramReference);
         
         /// <summary>
         /// The backing field for the DemandResponseProgram property
@@ -122,10 +140,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Metering
                     bool old = this._drProgramMandatory;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnDrProgramMandatoryChanging(e);
-                    this.OnPropertyChanging("DrProgramMandatory", e);
+                    this.OnPropertyChanging("DrProgramMandatory", e, _drProgramMandatoryAttribute);
                     this._drProgramMandatory = value;
                     this.OnDrProgramMandatoryChanged(e);
-                    this.OnPropertyChanged("DrProgramMandatory", e);
+                    this.OnPropertyChanged("DrProgramMandatory", e, _drProgramMandatoryAttribute);
                 }
             }
         }
@@ -148,10 +166,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Metering
                     int old = this._drProgramLevel;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnDrProgramLevelChanging(e);
-                    this.OnPropertyChanging("DrProgramLevel", e);
+                    this.OnPropertyChanging("DrProgramLevel", e, _drProgramLevelAttribute);
                     this._drProgramLevel = value;
                     this.OnDrProgramLevelChanged(e);
-                    this.OnPropertyChanged("DrProgramLevel", e);
+                    this.OnPropertyChanged("DrProgramLevel", e, _drProgramLevelAttribute);
                 }
             }
         }
@@ -174,10 +192,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Metering
                     string old = this._type;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnTypeChanging(e);
-                    this.OnPropertyChanging("Type", e);
+                    this.OnPropertyChanging("Type", e, _typeAttribute);
                     this._type = value;
                     this.OnTypeChanged(e);
-                    this.OnPropertyChanged("Type", e);
+                    this.OnPropertyChanged("Type", e, _typeAttribute);
                 }
             }
         }
@@ -200,10 +218,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Metering
                     float old = this._priceSignal;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnPriceSignalChanging(e);
-                    this.OnPropertyChanging("PriceSignal", e);
+                    this.OnPropertyChanging("PriceSignal", e, _priceSignalAttribute);
                     this._priceSignal = value;
                     this.OnPriceSignalChanged(e);
-                    this.OnPropertyChanged("PriceSignal", e);
+                    this.OnPropertyChanged("PriceSignal", e, _priceSignalAttribute);
                 }
             }
         }
@@ -226,7 +244,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Metering
                     IDateTimeInterval old = this._scheduledInterval;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnScheduledIntervalChanging(e);
-                    this.OnPropertyChanging("ScheduledInterval", e);
+                    this.OnPropertyChanging("ScheduledInterval", e, _scheduledIntervalReference);
                     this._scheduledInterval = value;
                     if ((old != null))
                     {
@@ -237,7 +255,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Metering
                         value.Deleted += this.OnResetScheduledInterval;
                     }
                     this.OnScheduledIntervalChanged(e);
-                    this.OnPropertyChanged("ScheduledInterval", e);
+                    this.OnPropertyChanged("ScheduledInterval", e, _scheduledIntervalReference);
                 }
             }
         }
@@ -260,7 +278,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Metering
                     ICustomerAgreement old = this._customerAgreement;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnCustomerAgreementChanging(e);
-                    this.OnPropertyChanging("CustomerAgreement", e);
+                    this.OnPropertyChanging("CustomerAgreement", e, _customerAgreementReference);
                     this._customerAgreement = value;
                     if ((old != null))
                     {
@@ -273,7 +291,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Metering
                         value.Deleted += this.OnResetCustomerAgreement;
                     }
                     this.OnCustomerAgreementChanged(e);
-                    this.OnPropertyChanged("CustomerAgreement", e);
+                    this.OnPropertyChanged("CustomerAgreement", e, _customerAgreementReference);
                 }
             }
         }
@@ -296,7 +314,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Metering
                     IEndDeviceAsset old = this._endDeviceAsset;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnEndDeviceAssetChanging(e);
-                    this.OnPropertyChanging("EndDeviceAsset", e);
+                    this.OnPropertyChanging("EndDeviceAsset", e, _endDeviceAssetReference);
                     this._endDeviceAsset = value;
                     if ((old != null))
                     {
@@ -309,7 +327,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Metering
                         value.Deleted += this.OnResetEndDeviceAsset;
                     }
                     this.OnEndDeviceAssetChanged(e);
-                    this.OnPropertyChanged("EndDeviceAsset", e);
+                    this.OnPropertyChanged("EndDeviceAsset", e, _endDeviceAssetReference);
                 }
             }
         }
@@ -332,7 +350,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Metering
                     IEndDeviceGroup old = this._endDeviceGroup;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnEndDeviceGroupChanging(e);
-                    this.OnPropertyChanging("EndDeviceGroup", e);
+                    this.OnPropertyChanging("EndDeviceGroup", e, _endDeviceGroupReference);
                     this._endDeviceGroup = value;
                     if ((old != null))
                     {
@@ -345,7 +363,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Metering
                         value.Deleted += this.OnResetEndDeviceGroup;
                     }
                     this.OnEndDeviceGroupChanged(e);
-                    this.OnPropertyChanged("EndDeviceGroup", e);
+                    this.OnPropertyChanged("EndDeviceGroup", e, _endDeviceGroupReference);
                 }
             }
         }
@@ -368,7 +386,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Metering
                     IDemandResponseProgram old = this._demandResponseProgram;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnDemandResponseProgramChanging(e);
-                    this.OnPropertyChanging("DemandResponseProgram", e);
+                    this.OnPropertyChanging("DemandResponseProgram", e, _demandResponseProgramReference);
                     this._demandResponseProgram = value;
                     if ((old != null))
                     {
@@ -381,7 +399,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Metering
                         value.Deleted += this.OnResetDemandResponseProgram;
                     }
                     this.OnDemandResponseProgramChanged(e);
-                    this.OnPropertyChanged("DemandResponseProgram", e);
+                    this.OnPropertyChanged("DemandResponseProgram", e, _demandResponseProgramReference);
                 }
             }
         }
@@ -502,6 +520,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Metering
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> DemandResponseProgramChanged;
         
+        private static ITypedElement RetrieveDrProgramMandatoryAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(EndDeviceControl.ClassInstance)).Resolve("drProgramMandatory")));
+        }
+        
         /// <summary>
         /// Raises the DrProgramMandatoryChanging event
         /// </summary>
@@ -526,6 +549,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Metering
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveDrProgramLevelAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(EndDeviceControl.ClassInstance)).Resolve("drProgramLevel")));
         }
         
         /// <summary>
@@ -554,6 +582,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Metering
             }
         }
         
+        private static ITypedElement RetrieveTypeAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(EndDeviceControl.ClassInstance)).Resolve("type")));
+        }
+        
         /// <summary>
         /// Raises the TypeChanging event
         /// </summary>
@@ -580,6 +613,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Metering
             }
         }
         
+        private static ITypedElement RetrievePriceSignalAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(EndDeviceControl.ClassInstance)).Resolve("priceSignal")));
+        }
+        
         /// <summary>
         /// Raises the PriceSignalChanging event
         /// </summary>
@@ -604,6 +642,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Metering
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveScheduledIntervalReference()
+        {
+            return ((ITypedElement)(((ModelElement)(EndDeviceControl.ClassInstance)).Resolve("scheduledInterval")));
         }
         
         /// <summary>
@@ -642,6 +685,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Metering
             this.ScheduledInterval = null;
         }
         
+        private static ITypedElement RetrieveCustomerAgreementReference()
+        {
+            return ((ITypedElement)(((ModelElement)(EndDeviceControl.ClassInstance)).Resolve("CustomerAgreement")));
+        }
+        
         /// <summary>
         /// Raises the CustomerAgreementChanging event
         /// </summary>
@@ -676,6 +724,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Metering
         private void OnResetCustomerAgreement(object sender, System.EventArgs eventArgs)
         {
             this.CustomerAgreement = null;
+        }
+        
+        private static ITypedElement RetrieveEndDeviceAssetReference()
+        {
+            return ((ITypedElement)(((ModelElement)(EndDeviceControl.ClassInstance)).Resolve("EndDeviceAsset")));
         }
         
         /// <summary>
@@ -714,6 +767,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Metering
             this.EndDeviceAsset = null;
         }
         
+        private static ITypedElement RetrieveEndDeviceGroupReference()
+        {
+            return ((ITypedElement)(((ModelElement)(EndDeviceControl.ClassInstance)).Resolve("EndDeviceGroup")));
+        }
+        
         /// <summary>
         /// Raises the EndDeviceGroupChanging event
         /// </summary>
@@ -748,6 +806,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Metering
         private void OnResetEndDeviceGroup(object sender, System.EventArgs eventArgs)
         {
             this.EndDeviceGroup = null;
+        }
+        
+        private static ITypedElement RetrieveDemandResponseProgramReference()
+        {
+            return ((ITypedElement)(((ModelElement)(EndDeviceControl.ClassInstance)).Resolve("DemandResponseProgram")));
         }
         
         /// <summary>
@@ -1191,7 +1254,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Metering
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public DrProgramMandatoryProxy(IEndDeviceControl modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "drProgramMandatory")
             {
             }
             
@@ -1209,24 +1272,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Metering
                     this.ModelElement.DrProgramMandatory = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.DrProgramMandatoryChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.DrProgramMandatoryChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1240,7 +1285,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Metering
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public DrProgramLevelProxy(IEndDeviceControl modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "drProgramLevel")
             {
             }
             
@@ -1258,24 +1303,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Metering
                     this.ModelElement.DrProgramLevel = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.DrProgramLevelChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.DrProgramLevelChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1289,7 +1316,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Metering
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public TypeProxy(IEndDeviceControl modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "type")
             {
             }
             
@@ -1307,24 +1334,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Metering
                     this.ModelElement.Type = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.TypeChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.TypeChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1338,7 +1347,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Metering
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public PriceSignalProxy(IEndDeviceControl modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "priceSignal")
             {
             }
             
@@ -1356,24 +1365,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Metering
                     this.ModelElement.PriceSignal = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.PriceSignalChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.PriceSignalChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1387,7 +1378,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Metering
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public ScheduledIntervalProxy(IEndDeviceControl modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "scheduledInterval")
             {
             }
             
@@ -1405,24 +1396,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Metering
                     this.ModelElement.ScheduledInterval = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ScheduledIntervalChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ScheduledIntervalChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1436,7 +1409,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Metering
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public CustomerAgreementProxy(IEndDeviceControl modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "CustomerAgreement")
             {
             }
             
@@ -1454,24 +1427,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Metering
                     this.ModelElement.CustomerAgreement = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.CustomerAgreementChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.CustomerAgreementChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1485,7 +1440,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Metering
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public EndDeviceAssetProxy(IEndDeviceControl modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "EndDeviceAsset")
             {
             }
             
@@ -1503,24 +1458,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Metering
                     this.ModelElement.EndDeviceAsset = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.EndDeviceAssetChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.EndDeviceAssetChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1534,7 +1471,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Metering
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public EndDeviceGroupProxy(IEndDeviceControl modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "EndDeviceGroup")
             {
             }
             
@@ -1552,24 +1489,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Metering
                     this.ModelElement.EndDeviceGroup = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.EndDeviceGroupChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.EndDeviceGroupChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1583,7 +1502,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Metering
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public DemandResponseProgramProxy(IEndDeviceControl modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "DemandResponseProgram")
             {
             }
             
@@ -1600,24 +1519,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Metering
                 {
                     this.ModelElement.DemandResponseProgram = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.DemandResponseProgramChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.DemandResponseProgramChanged -= handler;
             }
         }
     }

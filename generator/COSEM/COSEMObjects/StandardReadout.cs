@@ -39,7 +39,7 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
     [XmlNamespacePrefixAttribute("objects")]
     [ModelRepresentationClassAttribute("http://www.transformation-tool-contest.eu/2017/smartGrids/cosem#//COSEMObjects/St" +
         "andardReadout")]
-    public class StandardReadout : Profilegeneric, IStandardReadout, IModelElement
+    public partial class StandardReadout : Profilegeneric, IStandardReadout, IModelElement
     {
         
         /// <summary>
@@ -47,30 +47,42 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
         /// </summary>
         private string _generalLocalPortReadout;
         
+        private static Lazy<ITypedElement> _generalLocalPortReadoutAttribute = new Lazy<ITypedElement>(RetrieveGeneralLocalPortReadoutAttribute);
+        
         /// <summary>
         /// The backing field for the GeneralDisplayReadout property
         /// </summary>
         private string _generalDisplayReadout;
+        
+        private static Lazy<ITypedElement> _generalDisplayReadoutAttribute = new Lazy<ITypedElement>(RetrieveGeneralDisplayReadoutAttribute);
         
         /// <summary>
         /// The backing field for the AlternateDisplayReadout property
         /// </summary>
         private string _alternateDisplayReadout;
         
+        private static Lazy<ITypedElement> _alternateDisplayReadoutAttribute = new Lazy<ITypedElement>(RetrieveAlternateDisplayReadoutAttribute);
+        
         /// <summary>
         /// The backing field for the ServiceDisplayReadout property
         /// </summary>
         private string _serviceDisplayReadout;
+        
+        private static Lazy<ITypedElement> _serviceDisplayReadoutAttribute = new Lazy<ITypedElement>(RetrieveServiceDisplayReadoutAttribute);
         
         /// <summary>
         /// The backing field for the ListConfigMeterData property
         /// </summary>
         private string _listConfigMeterData;
         
+        private static Lazy<ITypedElement> _listConfigMeterDataAttribute = new Lazy<ITypedElement>(RetrieveListConfigMeterDataAttribute);
+        
         /// <summary>
         /// The backing field for the AdditionalReadout property
         /// </summary>
         private string _additionalReadout;
+        
+        private static Lazy<ITypedElement> _additionalReadoutAttribute = new Lazy<ITypedElement>(RetrieveAdditionalReadoutAttribute);
         
         private static IClass _classInstance;
         
@@ -91,10 +103,10 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     string old = this._generalLocalPortReadout;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnGeneralLocalPortReadoutChanging(e);
-                    this.OnPropertyChanging("GeneralLocalPortReadout", e);
+                    this.OnPropertyChanging("GeneralLocalPortReadout", e, _generalLocalPortReadoutAttribute);
                     this._generalLocalPortReadout = value;
                     this.OnGeneralLocalPortReadoutChanged(e);
-                    this.OnPropertyChanged("GeneralLocalPortReadout", e);
+                    this.OnPropertyChanged("GeneralLocalPortReadout", e, _generalLocalPortReadoutAttribute);
                 }
             }
         }
@@ -116,10 +128,10 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     string old = this._generalDisplayReadout;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnGeneralDisplayReadoutChanging(e);
-                    this.OnPropertyChanging("GeneralDisplayReadout", e);
+                    this.OnPropertyChanging("GeneralDisplayReadout", e, _generalDisplayReadoutAttribute);
                     this._generalDisplayReadout = value;
                     this.OnGeneralDisplayReadoutChanged(e);
-                    this.OnPropertyChanged("GeneralDisplayReadout", e);
+                    this.OnPropertyChanged("GeneralDisplayReadout", e, _generalDisplayReadoutAttribute);
                 }
             }
         }
@@ -141,10 +153,10 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     string old = this._alternateDisplayReadout;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnAlternateDisplayReadoutChanging(e);
-                    this.OnPropertyChanging("AlternateDisplayReadout", e);
+                    this.OnPropertyChanging("AlternateDisplayReadout", e, _alternateDisplayReadoutAttribute);
                     this._alternateDisplayReadout = value;
                     this.OnAlternateDisplayReadoutChanged(e);
-                    this.OnPropertyChanged("AlternateDisplayReadout", e);
+                    this.OnPropertyChanged("AlternateDisplayReadout", e, _alternateDisplayReadoutAttribute);
                 }
             }
         }
@@ -166,10 +178,10 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     string old = this._serviceDisplayReadout;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnServiceDisplayReadoutChanging(e);
-                    this.OnPropertyChanging("ServiceDisplayReadout", e);
+                    this.OnPropertyChanging("ServiceDisplayReadout", e, _serviceDisplayReadoutAttribute);
                     this._serviceDisplayReadout = value;
                     this.OnServiceDisplayReadoutChanged(e);
-                    this.OnPropertyChanged("ServiceDisplayReadout", e);
+                    this.OnPropertyChanged("ServiceDisplayReadout", e, _serviceDisplayReadoutAttribute);
                 }
             }
         }
@@ -191,10 +203,10 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     string old = this._listConfigMeterData;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnListConfigMeterDataChanging(e);
-                    this.OnPropertyChanging("ListConfigMeterData", e);
+                    this.OnPropertyChanging("ListConfigMeterData", e, _listConfigMeterDataAttribute);
                     this._listConfigMeterData = value;
                     this.OnListConfigMeterDataChanged(e);
-                    this.OnPropertyChanged("ListConfigMeterData", e);
+                    this.OnPropertyChanged("ListConfigMeterData", e, _listConfigMeterDataAttribute);
                 }
             }
         }
@@ -216,10 +228,10 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     string old = this._additionalReadout;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnAdditionalReadoutChanging(e);
-                    this.OnPropertyChanging("AdditionalReadout", e);
+                    this.OnPropertyChanging("AdditionalReadout", e, _additionalReadoutAttribute);
                     this._additionalReadout = value;
                     this.OnAdditionalReadoutChanged(e);
-                    this.OnPropertyChanged("AdditionalReadout", e);
+                    this.OnPropertyChanged("AdditionalReadout", e, _additionalReadoutAttribute);
                 }
             }
         }
@@ -300,6 +312,11 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> AdditionalReadoutChanged;
         
+        private static ITypedElement RetrieveGeneralLocalPortReadoutAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(StandardReadout.ClassInstance)).Resolve("GeneralLocalPortReadout")));
+        }
+        
         /// <summary>
         /// Raises the GeneralLocalPortReadoutChanging event
         /// </summary>
@@ -324,6 +341,11 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveGeneralDisplayReadoutAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(StandardReadout.ClassInstance)).Resolve("GeneralDisplayReadout")));
         }
         
         /// <summary>
@@ -352,6 +374,11 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             }
         }
         
+        private static ITypedElement RetrieveAlternateDisplayReadoutAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(StandardReadout.ClassInstance)).Resolve("AlternateDisplayReadout")));
+        }
+        
         /// <summary>
         /// Raises the AlternateDisplayReadoutChanging event
         /// </summary>
@@ -376,6 +403,11 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveServiceDisplayReadoutAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(StandardReadout.ClassInstance)).Resolve("ServiceDisplayReadout")));
         }
         
         /// <summary>
@@ -404,6 +436,11 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             }
         }
         
+        private static ITypedElement RetrieveListConfigMeterDataAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(StandardReadout.ClassInstance)).Resolve("ListConfigMeterData")));
+        }
+        
         /// <summary>
         /// Raises the ListConfigMeterDataChanging event
         /// </summary>
@@ -428,6 +465,11 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveAdditionalReadoutAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(StandardReadout.ClassInstance)).Resolve("AdditionalReadout")));
         }
         
         /// <summary>
@@ -555,7 +597,7 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public GeneralLocalPortReadoutProxy(IStandardReadout modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "GeneralLocalPortReadout")
             {
             }
             
@@ -573,24 +615,6 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     this.ModelElement.GeneralLocalPortReadout = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.GeneralLocalPortReadoutChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.GeneralLocalPortReadoutChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -604,7 +628,7 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public GeneralDisplayReadoutProxy(IStandardReadout modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "GeneralDisplayReadout")
             {
             }
             
@@ -622,24 +646,6 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     this.ModelElement.GeneralDisplayReadout = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.GeneralDisplayReadoutChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.GeneralDisplayReadoutChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -653,7 +659,7 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public AlternateDisplayReadoutProxy(IStandardReadout modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "AlternateDisplayReadout")
             {
             }
             
@@ -671,24 +677,6 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     this.ModelElement.AlternateDisplayReadout = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.AlternateDisplayReadoutChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.AlternateDisplayReadoutChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -702,7 +690,7 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public ServiceDisplayReadoutProxy(IStandardReadout modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "ServiceDisplayReadout")
             {
             }
             
@@ -720,24 +708,6 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     this.ModelElement.ServiceDisplayReadout = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ServiceDisplayReadoutChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ServiceDisplayReadoutChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -751,7 +721,7 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public ListConfigMeterDataProxy(IStandardReadout modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "ListConfigMeterData")
             {
             }
             
@@ -769,24 +739,6 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     this.ModelElement.ListConfigMeterData = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ListConfigMeterDataChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ListConfigMeterDataChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -800,7 +752,7 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public AdditionalReadoutProxy(IStandardReadout modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "AdditionalReadout")
             {
             }
             
@@ -817,24 +769,6 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                 {
                     this.ModelElement.AdditionalReadout = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.AdditionalReadoutChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.AdditionalReadoutChanged -= handler;
             }
         }
     }

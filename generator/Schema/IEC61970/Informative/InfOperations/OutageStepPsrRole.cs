@@ -50,13 +50,17 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfOperations
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61970/Informative/InfOperations/Out" +
         "ageStepPsrRole")]
     [DebuggerDisplayAttribute("OutageStepPsrRole {UUID}")]
-    public class OutageStepPsrRole : Role, IOutageStepPsrRole, IModelElement
+    public partial class OutageStepPsrRole : Role, IOutageStepPsrRole, IModelElement
     {
+        
+        private static Lazy<ITypedElement> _conductingEquipmentReference = new Lazy<ITypedElement>(RetrieveConductingEquipmentReference);
         
         /// <summary>
         /// The backing field for the ConductingEquipment property
         /// </summary>
         private IConductingEquipment _conductingEquipment;
+        
+        private static Lazy<ITypedElement> _outageStepReference = new Lazy<ITypedElement>(RetrieveOutageStepReference);
         
         /// <summary>
         /// The backing field for the OutageStep property
@@ -83,7 +87,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfOperations
                     IConductingEquipment old = this._conductingEquipment;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnConductingEquipmentChanging(e);
-                    this.OnPropertyChanging("ConductingEquipment", e);
+                    this.OnPropertyChanging("ConductingEquipment", e, _conductingEquipmentReference);
                     this._conductingEquipment = value;
                     if ((old != null))
                     {
@@ -96,7 +100,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfOperations
                         value.Deleted += this.OnResetConductingEquipment;
                     }
                     this.OnConductingEquipmentChanged(e);
-                    this.OnPropertyChanged("ConductingEquipment", e);
+                    this.OnPropertyChanged("ConductingEquipment", e, _conductingEquipmentReference);
                 }
             }
         }
@@ -119,7 +123,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfOperations
                     IOutageStep old = this._outageStep;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnOutageStepChanging(e);
-                    this.OnPropertyChanging("OutageStep", e);
+                    this.OnPropertyChanging("OutageStep", e, _outageStepReference);
                     this._outageStep = value;
                     if ((old != null))
                     {
@@ -132,7 +136,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfOperations
                         value.Deleted += this.OnResetOutageStep;
                     }
                     this.OnOutageStepChanged(e);
-                    this.OnPropertyChanged("OutageStep", e);
+                    this.OnPropertyChanged("OutageStep", e, _outageStepReference);
                 }
             }
         }
@@ -184,6 +188,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfOperations
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> OutageStepChanged;
         
+        private static ITypedElement RetrieveConductingEquipmentReference()
+        {
+            return ((ITypedElement)(((ModelElement)(OutageStepPsrRole.ClassInstance)).Resolve("ConductingEquipment")));
+        }
+        
         /// <summary>
         /// Raises the ConductingEquipmentChanging event
         /// </summary>
@@ -218,6 +227,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfOperations
         private void OnResetConductingEquipment(object sender, System.EventArgs eventArgs)
         {
             this.ConductingEquipment = null;
+        }
+        
+        private static ITypedElement RetrieveOutageStepReference()
+        {
+            return ((ITypedElement)(((ModelElement)(OutageStepPsrRole.ClassInstance)).Resolve("OutageStep")));
         }
         
         /// <summary>
@@ -486,7 +500,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfOperations
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public ConductingEquipmentProxy(IOutageStepPsrRole modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "ConductingEquipment")
             {
             }
             
@@ -504,24 +518,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfOperations
                     this.ModelElement.ConductingEquipment = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ConductingEquipmentChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ConductingEquipmentChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -535,7 +531,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfOperations
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public OutageStepProxy(IOutageStepPsrRole modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "OutageStep")
             {
             }
             
@@ -552,24 +548,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfOperations
                 {
                     this.ModelElement.OutageStep = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.OutageStepChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.OutageStepChanged -= handler;
             }
         }
     }

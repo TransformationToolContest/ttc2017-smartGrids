@@ -46,13 +46,17 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61970/Generation/Production/Combine" +
         "dCyclePlant")]
     [DebuggerDisplayAttribute("CombinedCyclePlant {UUID}")]
-    public class CombinedCyclePlant : PowerSystemResource, ICombinedCyclePlant, IModelElement
+    public partial class CombinedCyclePlant : PowerSystemResource, ICombinedCyclePlant, IModelElement
     {
         
         /// <summary>
         /// The backing field for the CombCyclePlantRating property
         /// </summary>
         private float _combCyclePlantRating;
+        
+        private static Lazy<ITypedElement> _combCyclePlantRatingAttribute = new Lazy<ITypedElement>(RetrieveCombCyclePlantRatingAttribute);
+        
+        private static Lazy<ITypedElement> _thermalGeneratingUnitsReference = new Lazy<ITypedElement>(RetrieveThermalGeneratingUnitsReference);
         
         /// <summary>
         /// The backing field for the ThermalGeneratingUnits property
@@ -86,10 +90,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
                     float old = this._combCyclePlantRating;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnCombCyclePlantRatingChanging(e);
-                    this.OnPropertyChanging("CombCyclePlantRating", e);
+                    this.OnPropertyChanging("CombCyclePlantRating", e, _combCyclePlantRatingAttribute);
                     this._combCyclePlantRating = value;
                     this.OnCombCyclePlantRatingChanged(e);
-                    this.OnPropertyChanged("CombCyclePlantRating", e);
+                    this.OnPropertyChanged("CombCyclePlantRating", e, _combCyclePlantRatingAttribute);
                 }
             }
         }
@@ -146,6 +150,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> CombCyclePlantRatingChanged;
         
+        private static ITypedElement RetrieveCombCyclePlantRatingAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(CombinedCyclePlant.ClassInstance)).Resolve("combCyclePlantRating")));
+        }
+        
         /// <summary>
         /// Raises the CombCyclePlantRatingChanging event
         /// </summary>
@@ -172,6 +181,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
             }
         }
         
+        private static ITypedElement RetrieveThermalGeneratingUnitsReference()
+        {
+            return ((ITypedElement)(((ModelElement)(CombinedCyclePlant.ClassInstance)).Resolve("ThermalGeneratingUnits")));
+        }
+        
         /// <summary>
         /// Forwards CollectionChanging notifications for the ThermalGeneratingUnits property to the parent model element
         /// </summary>
@@ -179,7 +193,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
         /// <param name="e">The original event data</param>
         private void ThermalGeneratingUnitsCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("ThermalGeneratingUnits", e);
+            this.OnCollectionChanging("ThermalGeneratingUnits", e, _thermalGeneratingUnitsReference);
         }
         
         /// <summary>
@@ -189,7 +203,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
         /// <param name="e">The original event data</param>
         private void ThermalGeneratingUnitsCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("ThermalGeneratingUnits", e);
+            this.OnCollectionChanged("ThermalGeneratingUnits", e, _thermalGeneratingUnitsReference);
         }
         
         /// <summary>
@@ -384,7 +398,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public CombCyclePlantRatingProxy(ICombinedCyclePlant modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "combCyclePlantRating")
             {
             }
             
@@ -401,24 +415,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
                 {
                     this.ModelElement.CombCyclePlantRating = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.CombCyclePlantRatingChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.CombCyclePlantRatingChanged -= handler;
             }
         }
     }

@@ -39,7 +39,7 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
     [XmlNamespacePrefixAttribute("objects")]
     [ModelRepresentationClassAttribute("http://www.transformation-tool-contest.eu/2017/smartGrids/cosem#//COSEMObjects/Wi" +
         "relessModeQChannelObject")]
-    public class WirelessModeQChannelObject : Wireless_Mode_Q_Channel, IWirelessModeQChannelObject, IModelElement
+    public partial class WirelessModeQChannelObject : Wireless_Mode_Q_Channel, IWirelessModeQChannelObject, IModelElement
     {
         
         private static IClass _classInstance;

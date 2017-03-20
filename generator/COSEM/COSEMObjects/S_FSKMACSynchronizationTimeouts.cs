@@ -39,7 +39,7 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
     [XmlNamespacePrefixAttribute("objects")]
     [ModelRepresentationClassAttribute("http://www.transformation-tool-contest.eu/2017/smartGrids/cosem#//COSEMObjects/S_" +
         "FSKMACSynchronizationTimeouts")]
-    public class S_FSKMACSynchronizationTimeouts : S_FSKMACsynctimeouts, IS_FSKMACSynchronizationTimeouts, IModelElement
+    public partial class S_FSKMACSynchronizationTimeouts : S_FSKMACsynctimeouts, IS_FSKMACSynchronizationTimeouts, IModelElement
     {
         
         private static IClass _classInstance;

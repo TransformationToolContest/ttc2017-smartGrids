@@ -9,69 +9,94 @@ import shutil
 import subprocess
 import sys
 import ConfigParser
+import json
 from subprocess import CalledProcessError
 
+BASE_DIRECTORY = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+print "Running benchmark with root directory " + BASE_DIRECTORY
 
 class JSONObject(object):
     def __init__(self, d):
         self.__dict__ = d
 
 
-def build(conf, skip_tests):
+def build(conf, skip_tests=False):
     """
     Builds all solutions
     """
     for tool in conf.Tools:
         config = ConfigParser.ConfigParser()
-        config.read(os.path.combine(__file__, "..", "solutions", tool, "solution.ini"))
+        config.read(os.path.join(BASE_DIRECTORY, "solutions", tool, "solution.ini"))
         set_working_directory("solutions", tool)
         if skip_tests:
-            subprocess.check_call(config.get('build', 'default'), shell=True)
-        else:
             subprocess.check_call(config.get('build', 'skipTests'), shell=True)
+        else:
+            subprocess.check_call(config.get('build', 'default'), shell=True)
 
 
 def generate(conf):
     """
     Generates additional change sequences
     """
-    pass
+    set_working_directory("generator")
+    generator_bin = os.path.join("bin", "Release", "Generator.exe")
+    models_dir = os.path.join(BASE_DIRECTORY, "models")
+    for change_set in conf.ChangeSets:
+        full_change_path = os.path.abspath(os.path.join(BASE_DIRECTORY, "changes", change_set))
+        subprocess.check_call([generator_bin,
+                               "--cim", os.path.join(models_dir, "CIM_DCIM.xmi"),
+                               "--cosem", os.path.join(models_dir, "COSEM.xmi"),
+                               "--substation", os.path.join(models_dir, "Substandard.xmi"),
+                               "--cimOut", os.path.join(full_change_path, "CIM_DCIM"),
+                               "--cosemOut", os.path.join(full_change_path, "COSEM"),
+                               "--substationOut", os.path.join(full_change_path, "Substandard"),
+                               "-n", conf.SequenceLength, "-d", conf.Sequences])
 
 
 def benchmark(conf):
     """
     Runs measurements
     """
-    header = os.path.combine(__file__, "..", "output", "header.csv")
-    result_file = os.path.combine(__file__, "..", "output", "output.csv")
+    header = os.path.join(BASE_DIRECTORY, "output", "header.csv")
+    result_file = os.path.join(BASE_DIRECTORY, "output", "output.csv")
     if os.path.exists(result_file):
         os.remove(result_file)
     shutil.copy(header, result_file)
-    for tool in conf.Tools:
-       config = ConfigParser.ConfigParser()
-       config.read(os.path.combine(__file__, "..", "solutions", tool, "solution.ini"))
-       set_working_directory("solutions", tool)
-       for change_set in conf.ChangeSets:
-           for view in conf.Views:
-                print("Running benchmark: tool = " + tool + ", change set = " + change_set +
-                      ", view = " + view)
-                try:
-                    output = subprocess.check_output(config.get('run', view).replace("$CHANGE", change_set))
-                    with open(result_file, "ab") as file:
-                        file.write(output)
-                except CalledProcessError as e:
-                    print("Program exited with error")
+    os.environ['Sequences'] = str(conf.Sequences)
+    os.environ['SequenceLength'] = str(conf.SequenceLength)
+    os.environ['Runs'] = str(conf.Runs)
+    for r in range(0, conf.Runs):
+        os.environ['RunIndex'] = str(r)
+        for tool in conf.Tools:
+            config = ConfigParser.ConfigParser()
+            config.read(os.path.join(BASE_DIRECTORY, "solutions", tool, "solution.ini"))
+            set_working_directory("solutions", tool)
+            os.environ['Tool'] = tool
+            for change_set in conf.ChangeSets:
+                full_change_path = os.path.abspath(os.path.join(BASE_DIRECTORY, "changes", change_set))
+                os.environ['ChangeSet'] = change_set
+                os.environ['ChangePath'] = full_change_path
+                for view in conf.Views:
+                    os.environ['View'] = view
+                    print("Running benchmark: tool = " + tool + ", change set = " + change_set +
+                          ", view = " + view)
+                    try:
+                        output = subprocess.check_output(config.get('run', view), shell=True)
+                        with open(result_file, "ab") as file:
+                            file.write(output)
+                    except CalledProcessError as e:
+                        print("Program exited with error")
 
 
 def clean_dir(*path):
-    dir = os.path.combine(__file__, "..", *path)
+    dir = os.path.join(BASE_DIRECTORY, *path)
     if os.path.exists(dir):
         shutil.rmtree(dir)
     os.mkdir(dir)
 
 
 def set_working_directory(*path):
-    dir = os.path.combine(__file__, "..", *path)
+    dir = os.path.join(BASE_DIRECTORY, *path)
     os.chdir(dir)
 
 
@@ -81,7 +106,7 @@ def visualize():
     """
     clean_dir("diagrams")
     set_working_directory("reporting")
-    subprocess.call(["Rscript", "visualize.R", os.path.combine("..", "config", "reporting.json")])
+    subprocess.call(["Rscript", "visualize.R", os.path.join(BASE_DIRECTORY, "config", "reporting.json")])
 
 
 def extract_results():
@@ -140,7 +165,7 @@ if __name__ == "__main__":
     # with the test and the visualization/reporting
     no_args = all(val==False for val in vars(args).values())
     if no_args:
-        build(False)
+        build(config, False)
         benchmark(config)
         visualize()
         extract_results()

@@ -42,13 +42,17 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfLoadControl
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61970/Informative/InfLoadControl/Lo" +
         "adMgmtRecord")]
     [DebuggerDisplayAttribute("LoadMgmtRecord {UUID}")]
-    public class LoadMgmtRecord : ActivityRecord, ILoadMgmtRecord, IModelElement
+    public partial class LoadMgmtRecord : ActivityRecord, ILoadMgmtRecord, IModelElement
     {
         
         /// <summary>
         /// The backing field for the LoadReduction property
         /// </summary>
         private float _loadReduction;
+        
+        private static Lazy<ITypedElement> _loadReductionAttribute = new Lazy<ITypedElement>(RetrieveLoadReductionAttribute);
+        
+        private static Lazy<ITypedElement> _loadMgmtFunctionReference = new Lazy<ITypedElement>(RetrieveLoadMgmtFunctionReference);
         
         /// <summary>
         /// The backing field for the LoadMgmtFunction property
@@ -75,10 +79,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfLoadControl
                     float old = this._loadReduction;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnLoadReductionChanging(e);
-                    this.OnPropertyChanging("LoadReduction", e);
+                    this.OnPropertyChanging("LoadReduction", e, _loadReductionAttribute);
                     this._loadReduction = value;
                     this.OnLoadReductionChanged(e);
-                    this.OnPropertyChanged("LoadReduction", e);
+                    this.OnPropertyChanged("LoadReduction", e, _loadReductionAttribute);
                 }
             }
         }
@@ -101,7 +105,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfLoadControl
                     ILoadMgmtFunction old = this._loadMgmtFunction;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnLoadMgmtFunctionChanging(e);
-                    this.OnPropertyChanging("LoadMgmtFunction", e);
+                    this.OnPropertyChanging("LoadMgmtFunction", e, _loadMgmtFunctionReference);
                     this._loadMgmtFunction = value;
                     if ((old != null))
                     {
@@ -114,7 +118,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfLoadControl
                         value.Deleted += this.OnResetLoadMgmtFunction;
                     }
                     this.OnLoadMgmtFunctionChanged(e);
-                    this.OnPropertyChanged("LoadMgmtFunction", e);
+                    this.OnPropertyChanged("LoadMgmtFunction", e, _loadMgmtFunctionReference);
                 }
             }
         }
@@ -166,6 +170,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfLoadControl
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> LoadMgmtFunctionChanged;
         
+        private static ITypedElement RetrieveLoadReductionAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(LoadMgmtRecord.ClassInstance)).Resolve("loadReduction")));
+        }
+        
         /// <summary>
         /// Raises the LoadReductionChanging event
         /// </summary>
@@ -190,6 +199,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfLoadControl
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveLoadMgmtFunctionReference()
+        {
+            return ((ITypedElement)(((ModelElement)(LoadMgmtRecord.ClassInstance)).Resolve("LoadMgmtFunction")));
         }
         
         /// <summary>
@@ -435,7 +449,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfLoadControl
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public LoadReductionProxy(ILoadMgmtRecord modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "loadReduction")
             {
             }
             
@@ -453,24 +467,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfLoadControl
                     this.ModelElement.LoadReduction = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.LoadReductionChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.LoadReductionChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -484,7 +480,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfLoadControl
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public LoadMgmtFunctionProxy(ILoadMgmtRecord modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "LoadMgmtFunction")
             {
             }
             
@@ -501,24 +497,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfLoadControl
                 {
                     this.ModelElement.LoadMgmtFunction = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.LoadMgmtFunctionChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.LoadMgmtFunctionChanged -= handler;
             }
         }
     }

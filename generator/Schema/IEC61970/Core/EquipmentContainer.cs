@@ -57,8 +57,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Core
     [XmlNamespacePrefixAttribute("cimCore")]
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61970/Core/EquipmentContainer")]
     [DebuggerDisplayAttribute("EquipmentContainer {UUID}")]
-    public class EquipmentContainer : ConnectivityNodeContainer, IEquipmentContainer, IModelElement
+    public partial class EquipmentContainer : ConnectivityNodeContainer, IEquipmentContainer, IModelElement
     {
+        
+        private static Lazy<ITypedElement> _equipmentsReference = new Lazy<ITypedElement>(RetrieveEquipmentsReference);
         
         /// <summary>
         /// The backing field for the Equipments property
@@ -115,6 +117,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Core
             }
         }
         
+        private static ITypedElement RetrieveEquipmentsReference()
+        {
+            return ((ITypedElement)(((ModelElement)(EquipmentContainer.ClassInstance)).Resolve("Equipments")));
+        }
+        
         /// <summary>
         /// Forwards CollectionChanging notifications for the Equipments property to the parent model element
         /// </summary>
@@ -122,7 +129,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Core
         /// <param name="e">The original event data</param>
         private void EquipmentsCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("Equipments", e);
+            this.OnCollectionChanging("Equipments", e, _equipmentsReference);
         }
         
         /// <summary>
@@ -132,7 +139,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Core
         /// <param name="e">The original event data</param>
         private void EquipmentsCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("Equipments", e);
+            this.OnCollectionChanged("Equipments", e, _equipmentsReference);
         }
         
         /// <summary>

@@ -46,13 +46,17 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61970/Generation/Production/StartRa" +
         "mpCurve")]
     [DebuggerDisplayAttribute("StartRampCurve {UUID}")]
-    public class StartRampCurve : Curve, IStartRampCurve, IModelElement
+    public partial class StartRampCurve : Curve, IStartRampCurve, IModelElement
     {
         
         /// <summary>
         /// The backing field for the HotStandbyRamp property
         /// </summary>
         private float _hotStandbyRamp;
+        
+        private static Lazy<ITypedElement> _hotStandbyRampAttribute = new Lazy<ITypedElement>(RetrieveHotStandbyRampAttribute);
+        
+        private static Lazy<ITypedElement> _startupModelReference = new Lazy<ITypedElement>(RetrieveStartupModelReference);
         
         /// <summary>
         /// The backing field for the StartupModel property
@@ -79,10 +83,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
                     float old = this._hotStandbyRamp;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnHotStandbyRampChanging(e);
-                    this.OnPropertyChanging("HotStandbyRamp", e);
+                    this.OnPropertyChanging("HotStandbyRamp", e, _hotStandbyRampAttribute);
                     this._hotStandbyRamp = value;
                     this.OnHotStandbyRampChanged(e);
-                    this.OnPropertyChanged("HotStandbyRamp", e);
+                    this.OnPropertyChanged("HotStandbyRamp", e, _hotStandbyRampAttribute);
                 }
             }
         }
@@ -105,7 +109,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
                     IStartupModel old = this._startupModel;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnStartupModelChanging(e);
-                    this.OnPropertyChanging("StartupModel", e);
+                    this.OnPropertyChanging("StartupModel", e, _startupModelReference);
                     this._startupModel = value;
                     if ((old != null))
                     {
@@ -118,7 +122,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
                         value.Deleted += this.OnResetStartupModel;
                     }
                     this.OnStartupModelChanged(e);
-                    this.OnPropertyChanged("StartupModel", e);
+                    this.OnPropertyChanged("StartupModel", e, _startupModelReference);
                 }
             }
         }
@@ -170,6 +174,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> StartupModelChanged;
         
+        private static ITypedElement RetrieveHotStandbyRampAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(StartRampCurve.ClassInstance)).Resolve("hotStandbyRamp")));
+        }
+        
         /// <summary>
         /// Raises the HotStandbyRampChanging event
         /// </summary>
@@ -194,6 +203,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveStartupModelReference()
+        {
+            return ((ITypedElement)(((ModelElement)(StartRampCurve.ClassInstance)).Resolve("StartupModel")));
         }
         
         /// <summary>
@@ -439,7 +453,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public HotStandbyRampProxy(IStartRampCurve modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "hotStandbyRamp")
             {
             }
             
@@ -457,24 +471,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
                     this.ModelElement.HotStandbyRamp = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.HotStandbyRampChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.HotStandbyRampChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -488,7 +484,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public StartupModelProxy(IStartRampCurve modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "StartupModel")
             {
             }
             
@@ -505,24 +501,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
                 {
                     this.ModelElement.StartupModel = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.StartupModelChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.StartupModelChanged -= handler;
             }
         }
     }

@@ -39,13 +39,17 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
     [XmlNamespacePrefixAttribute("data")]
     [ModelRepresentationClassAttribute("http://www.transformation-tool-contest.eu/2017/smartGrids/substationStandard#//Da" +
         "taclasses/Originator")]
-    public class Originator : ModelElement, IOriginator, IModelElement
+    public partial class Originator : ModelElement, IOriginator, IModelElement
     {
         
         /// <summary>
         /// The backing field for the Orident property
         /// </summary>
         private string _orident;
+        
+        private static Lazy<ITypedElement> _oridentAttribute = new Lazy<ITypedElement>(RetrieveOridentAttribute);
+        
+        private static Lazy<ITypedElement> _orCatReference = new Lazy<ITypedElement>(RetrieveOrCatReference);
         
         /// <summary>
         /// The backing field for the OrCat property
@@ -72,10 +76,10 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
                     string old = this._orident;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnOridentChanging(e);
-                    this.OnPropertyChanging("Orident", e);
+                    this.OnPropertyChanging("Orident", e, _oridentAttribute);
                     this._orident = value;
                     this.OnOridentChanged(e);
-                    this.OnPropertyChanged("Orident", e);
+                    this.OnPropertyChanged("Orident", e, _oridentAttribute);
                 }
             }
         }
@@ -98,7 +102,7 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
                     IOriginatorCategory old = this._orCat;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnOrCatChanging(e);
-                    this.OnPropertyChanging("OrCat", e);
+                    this.OnPropertyChanging("OrCat", e, _orCatReference);
                     this._orCat = value;
                     if ((old != null))
                     {
@@ -109,7 +113,7 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
                         value.Deleted += this.OnResetOrCat;
                     }
                     this.OnOrCatChanged(e);
-                    this.OnPropertyChanged("OrCat", e);
+                    this.OnPropertyChanged("OrCat", e, _orCatReference);
                 }
             }
         }
@@ -161,6 +165,11 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> OrCatChanged;
         
+        private static ITypedElement RetrieveOridentAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(Originator.ClassInstance)).Resolve("orident")));
+        }
+        
         /// <summary>
         /// Raises the OridentChanging event
         /// </summary>
@@ -185,6 +194,11 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveOrCatReference()
+        {
+            return ((ITypedElement)(((ModelElement)(Originator.ClassInstance)).Resolve("orCat")));
         }
         
         /// <summary>
@@ -430,7 +444,7 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public OridentProxy(IOriginator modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "orident")
             {
             }
             
@@ -448,24 +462,6 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
                     this.ModelElement.Orident = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.OridentChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.OridentChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -479,7 +475,7 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public OrCatProxy(IOriginator modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "orCat")
             {
             }
             
@@ -496,24 +492,6 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
                 {
                     this.ModelElement.OrCat = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.OrCatChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.OrCatChanged -= handler;
             }
         }
     }

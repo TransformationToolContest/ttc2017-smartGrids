@@ -53,8 +53,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61970/Informative/InfAssets/TapChan" +
         "gerAsset")]
     [DebuggerDisplayAttribute("TapChangerAsset {UUID}")]
-    public class TapChangerAsset : Asset, ITapChangerAsset, IModelElement
+    public partial class TapChangerAsset : Asset, ITapChangerAsset, IModelElement
     {
+        
+        private static Lazy<ITypedElement> _tapChangerAssetModelReference = new Lazy<ITypedElement>(RetrieveTapChangerAssetModelReference);
         
         /// <summary>
         /// The backing field for the TapChangerAssetModel property
@@ -81,7 +83,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
                     ITapChangerAssetModel old = this._tapChangerAssetModel;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnTapChangerAssetModelChanging(e);
-                    this.OnPropertyChanging("TapChangerAssetModel", e);
+                    this.OnPropertyChanging("TapChangerAssetModel", e, _tapChangerAssetModelReference);
                     this._tapChangerAssetModel = value;
                     if ((old != null))
                     {
@@ -94,7 +96,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
                         value.Deleted += this.OnResetTapChangerAssetModel;
                     }
                     this.OnTapChangerAssetModelChanged(e);
-                    this.OnPropertyChanged("TapChangerAssetModel", e);
+                    this.OnPropertyChanged("TapChangerAssetModel", e, _tapChangerAssetModelReference);
                 }
             }
         }
@@ -135,6 +137,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
         /// Gets fired when the TapChangerAssetModel property changed its value
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> TapChangerAssetModelChanged;
+        
+        private static ITypedElement RetrieveTapChangerAssetModelReference()
+        {
+            return ((ITypedElement)(((ModelElement)(TapChangerAsset.ClassInstance)).Resolve("TapChangerAssetModel")));
+        }
         
         /// <summary>
         /// Raises the TapChangerAssetModelChanging event
@@ -359,7 +366,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public TapChangerAssetModelProxy(ITapChangerAsset modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "TapChangerAssetModel")
             {
             }
             
@@ -376,24 +383,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
                 {
                     this.ModelElement.TapChangerAssetModel = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.TapChangerAssetModelChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.TapChangerAssetModelChanged -= handler;
             }
         }
     }

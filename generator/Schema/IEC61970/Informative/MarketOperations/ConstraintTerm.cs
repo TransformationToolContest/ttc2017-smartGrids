@@ -50,7 +50,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61970/Informative/MarketOperations/" +
         "ConstraintTerm")]
     [DebuggerDisplayAttribute("ConstraintTerm {UUID}")]
-    public class ConstraintTerm : IdentifiedObject, IConstraintTerm, IModelElement
+    public partial class ConstraintTerm : IdentifiedObject, IConstraintTerm, IModelElement
     {
         
         /// <summary>
@@ -58,10 +58,16 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
         /// </summary>
         private string _factor;
         
+        private static Lazy<ITypedElement> _factorAttribute = new Lazy<ITypedElement>(RetrieveFactorAttribute);
+        
         /// <summary>
         /// The backing field for the Function property
         /// </summary>
         private string _function;
+        
+        private static Lazy<ITypedElement> _functionAttribute = new Lazy<ITypedElement>(RetrieveFunctionAttribute);
+        
+        private static Lazy<ITypedElement> _securityConstraintSumReference = new Lazy<ITypedElement>(RetrieveSecurityConstraintSumReference);
         
         /// <summary>
         /// The backing field for the SecurityConstraintSum property
@@ -88,10 +94,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
                     string old = this._factor;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnFactorChanging(e);
-                    this.OnPropertyChanging("Factor", e);
+                    this.OnPropertyChanging("Factor", e, _factorAttribute);
                     this._factor = value;
                     this.OnFactorChanged(e);
-                    this.OnPropertyChanged("Factor", e);
+                    this.OnPropertyChanged("Factor", e, _factorAttribute);
                 }
             }
         }
@@ -114,10 +120,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
                     string old = this._function;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnFunctionChanging(e);
-                    this.OnPropertyChanging("Function", e);
+                    this.OnPropertyChanging("Function", e, _functionAttribute);
                     this._function = value;
                     this.OnFunctionChanged(e);
-                    this.OnPropertyChanged("Function", e);
+                    this.OnPropertyChanged("Function", e, _functionAttribute);
                 }
             }
         }
@@ -140,7 +146,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
                     ISecurityConstraintSum old = this._securityConstraintSum;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnSecurityConstraintSumChanging(e);
-                    this.OnPropertyChanging("SecurityConstraintSum", e);
+                    this.OnPropertyChanging("SecurityConstraintSum", e, _securityConstraintSumReference);
                     this._securityConstraintSum = value;
                     if ((old != null))
                     {
@@ -153,7 +159,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
                         value.Deleted += this.OnResetSecurityConstraintSum;
                     }
                     this.OnSecurityConstraintSumChanged(e);
-                    this.OnPropertyChanged("SecurityConstraintSum", e);
+                    this.OnPropertyChanged("SecurityConstraintSum", e, _securityConstraintSumReference);
                 }
             }
         }
@@ -215,6 +221,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> SecurityConstraintSumChanged;
         
+        private static ITypedElement RetrieveFactorAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(ConstraintTerm.ClassInstance)).Resolve("factor")));
+        }
+        
         /// <summary>
         /// Raises the FactorChanging event
         /// </summary>
@@ -241,6 +252,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
             }
         }
         
+        private static ITypedElement RetrieveFunctionAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(ConstraintTerm.ClassInstance)).Resolve("function")));
+        }
+        
         /// <summary>
         /// Raises the FunctionChanging event
         /// </summary>
@@ -265,6 +281,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveSecurityConstraintSumReference()
+        {
+            return ((ITypedElement)(((ModelElement)(ConstraintTerm.ClassInstance)).Resolve("SecurityConstraintSum")));
         }
         
         /// <summary>
@@ -519,7 +540,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public FactorProxy(IConstraintTerm modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "factor")
             {
             }
             
@@ -537,24 +558,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
                     this.ModelElement.Factor = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.FactorChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.FactorChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -568,7 +571,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public FunctionProxy(IConstraintTerm modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "function")
             {
             }
             
@@ -586,24 +589,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
                     this.ModelElement.Function = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.FunctionChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.FunctionChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -617,7 +602,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public SecurityConstraintSumProxy(IConstraintTerm modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "SecurityConstraintSum")
             {
             }
             
@@ -634,24 +619,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
                 {
                     this.ModelElement.SecurityConstraintSum = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.SecurityConstraintSumChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.SecurityConstraintSumChanged -= handler;
             }
         }
     }

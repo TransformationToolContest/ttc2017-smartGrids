@@ -40,7 +40,7 @@ namespace TTC2017.SmartGrids.COSEM.InterfaceClasses
     [XmlNamespacePrefixAttribute("inter")]
     [ModelRepresentationClassAttribute("http://www.transformation-tool-contest.eu/2017/smartGrids/cosem#//InterfaceClasse" +
         "s/DemandRegister")]
-    public class DemandRegister : ExtendedRegister, IDemandRegister, IModelElement
+    public partial class DemandRegister : ExtendedRegister, IDemandRegister, IModelElement
     {
         
         /// <summary>
@@ -48,10 +48,14 @@ namespace TTC2017.SmartGrids.COSEM.InterfaceClasses
         /// </summary>
         private Nullable<int> _number_of_periods;
         
+        private static Lazy<ITypedElement> _number_of_periodsAttribute = new Lazy<ITypedElement>(RetrieveNumber_of_periodsAttribute);
+        
         /// <summary>
         /// The backing field for the Period property
         /// </summary>
         private Nullable<int> _period;
+        
+        private static Lazy<ITypedElement> _periodAttribute = new Lazy<ITypedElement>(RetrievePeriodAttribute);
         
         private static IClass _classInstance;
         
@@ -73,10 +77,10 @@ namespace TTC2017.SmartGrids.COSEM.InterfaceClasses
                     Nullable<int> old = this._number_of_periods;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnNumber_of_periodsChanging(e);
-                    this.OnPropertyChanging("Number_of_periods", e);
+                    this.OnPropertyChanging("Number_of_periods", e, _number_of_periodsAttribute);
                     this._number_of_periods = value;
                     this.OnNumber_of_periodsChanged(e);
-                    this.OnPropertyChanged("Number_of_periods", e);
+                    this.OnPropertyChanged("Number_of_periods", e, _number_of_periodsAttribute);
                 }
             }
         }
@@ -99,10 +103,10 @@ namespace TTC2017.SmartGrids.COSEM.InterfaceClasses
                     Nullable<int> old = this._period;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnPeriodChanging(e);
-                    this.OnPropertyChanging("Period", e);
+                    this.OnPropertyChanging("Period", e, _periodAttribute);
                     this._period = value;
                     this.OnPeriodChanged(e);
-                    this.OnPropertyChanged("Period", e);
+                    this.OnPropertyChanged("Period", e, _periodAttribute);
                 }
             }
         }
@@ -143,6 +147,11 @@ namespace TTC2017.SmartGrids.COSEM.InterfaceClasses
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> PeriodChanged;
         
+        private static ITypedElement RetrieveNumber_of_periodsAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(DemandRegister.ClassInstance)).Resolve("number_of_periods")));
+        }
+        
         /// <summary>
         /// Raises the Number_of_periodsChanging event
         /// </summary>
@@ -167,6 +176,11 @@ namespace TTC2017.SmartGrids.COSEM.InterfaceClasses
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrievePeriodAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(DemandRegister.ClassInstance)).Resolve("period")));
         }
         
         /// <summary>
@@ -258,7 +272,7 @@ namespace TTC2017.SmartGrids.COSEM.InterfaceClasses
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public Number_of_periodsProxy(IDemandRegister modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "number_of_periods")
             {
             }
             
@@ -276,24 +290,6 @@ namespace TTC2017.SmartGrids.COSEM.InterfaceClasses
                     this.ModelElement.Number_of_periods = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.Number_of_periodsChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.Number_of_periodsChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -307,7 +303,7 @@ namespace TTC2017.SmartGrids.COSEM.InterfaceClasses
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public PeriodProxy(IDemandRegister modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "period")
             {
             }
             
@@ -324,24 +320,6 @@ namespace TTC2017.SmartGrids.COSEM.InterfaceClasses
                 {
                     this.ModelElement.Period = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.PeriodChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.PeriodChanged -= handler;
             }
         }
     }

@@ -39,7 +39,7 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
     [XmlNamespacePrefixAttribute("objects")]
     [ModelRepresentationClassAttribute("http://www.transformation-tool-contest.eu/2017/smartGrids/cosem#//COSEMObjects/In" +
         "ternalOperatingStatusGlobal")]
-    public class InternalOperatingStatusGlobal : Registertable, IInternalOperatingStatusGlobal, IModelElement
+    public partial class InternalOperatingStatusGlobal : Registertable, IInternalOperatingStatusGlobal, IModelElement
     {
         
         private static IClass _classInstance;

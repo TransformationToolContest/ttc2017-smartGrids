@@ -40,7 +40,7 @@ namespace TTC2017.SmartGrids.COSEM.InterfaceClasses
     [XmlNamespacePrefixAttribute("inter")]
     [ModelRepresentationClassAttribute("http://www.transformation-tool-contest.eu/2017/smartGrids/cosem#//InterfaceClasse" +
         "s/Statusmapping")]
-    public class Statusmapping : Base, IStatusmapping, IModelElement
+    public partial class Statusmapping : Base, IStatusmapping, IModelElement
     {
         
         private static IClass _classInstance;

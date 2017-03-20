@@ -50,8 +50,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61970/Informative/MarketOperations/" +
         "LoadReductionPriceCurve")]
     [DebuggerDisplayAttribute("LoadReductionPriceCurve {UUID}")]
-    public class LoadReductionPriceCurve : Curve, ILoadReductionPriceCurve, IModelElement
+    public partial class LoadReductionPriceCurve : Curve, ILoadReductionPriceCurve, IModelElement
     {
+        
+        private static Lazy<ITypedElement> _loadBidsReference = new Lazy<ITypedElement>(RetrieveLoadBidsReference);
         
         /// <summary>
         /// The backing field for the LoadBids property
@@ -109,6 +111,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
             }
         }
         
+        private static ITypedElement RetrieveLoadBidsReference()
+        {
+            return ((ITypedElement)(((ModelElement)(LoadReductionPriceCurve.ClassInstance)).Resolve("LoadBids")));
+        }
+        
         /// <summary>
         /// Forwards CollectionChanging notifications for the LoadBids property to the parent model element
         /// </summary>
@@ -116,7 +123,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
         /// <param name="e">The original event data</param>
         private void LoadBidsCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("LoadBids", e);
+            this.OnCollectionChanging("LoadBids", e, _loadBidsReference);
         }
         
         /// <summary>
@@ -126,7 +133,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
         /// <param name="e">The original event data</param>
         private void LoadBidsCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("LoadBids", e);
+            this.OnCollectionChanged("LoadBids", e, _loadBidsReference);
         }
         
         /// <summary>

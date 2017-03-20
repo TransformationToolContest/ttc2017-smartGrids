@@ -53,7 +53,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61970/Informative/InfAssets/DuctInf" +
         "o")]
     [DebuggerDisplayAttribute("DuctInfo {UUID}")]
-    public class DuctInfo : AssetInfo, IDuctInfo, IModelElement
+    public partial class DuctInfo : AssetInfo, IDuctInfo, IModelElement
     {
         
         /// <summary>
@@ -61,15 +61,23 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
         /// </summary>
         private int _yCoord;
         
+        private static Lazy<ITypedElement> _yCoordAttribute = new Lazy<ITypedElement>(RetrieveYCoordAttribute);
+        
         /// <summary>
         /// The backing field for the XCoord property
         /// </summary>
         private int _xCoord;
         
+        private static Lazy<ITypedElement> _xCoordAttribute = new Lazy<ITypedElement>(RetrieveXCoordAttribute);
+        
+        private static Lazy<ITypedElement> _cableInfosReference = new Lazy<ITypedElement>(RetrieveCableInfosReference);
+        
         /// <summary>
         /// The backing field for the CableInfos property
         /// </summary>
         private DuctInfoCableInfosCollection _cableInfos;
+        
+        private static Lazy<ITypedElement> _ductBankInfoReference = new Lazy<ITypedElement>(RetrieveDuctBankInfoReference);
         
         /// <summary>
         /// The backing field for the DuctBankInfo property
@@ -103,10 +111,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
                     int old = this._yCoord;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnYCoordChanging(e);
-                    this.OnPropertyChanging("YCoord", e);
+                    this.OnPropertyChanging("YCoord", e, _yCoordAttribute);
                     this._yCoord = value;
                     this.OnYCoordChanged(e);
-                    this.OnPropertyChanged("YCoord", e);
+                    this.OnPropertyChanged("YCoord", e, _yCoordAttribute);
                 }
             }
         }
@@ -129,10 +137,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
                     int old = this._xCoord;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnXCoordChanging(e);
-                    this.OnPropertyChanging("XCoord", e);
+                    this.OnPropertyChanging("XCoord", e, _xCoordAttribute);
                     this._xCoord = value;
                     this.OnXCoordChanged(e);
-                    this.OnPropertyChanged("XCoord", e);
+                    this.OnPropertyChanged("XCoord", e, _xCoordAttribute);
                 }
             }
         }
@@ -170,7 +178,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
                     IDuctBankInfo old = this._ductBankInfo;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnDuctBankInfoChanging(e);
-                    this.OnPropertyChanging("DuctBankInfo", e);
+                    this.OnPropertyChanging("DuctBankInfo", e, _ductBankInfoReference);
                     this._ductBankInfo = value;
                     if ((old != null))
                     {
@@ -183,7 +191,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
                         value.Deleted += this.OnResetDuctBankInfo;
                     }
                     this.OnDuctBankInfoChanged(e);
-                    this.OnPropertyChanged("DuctBankInfo", e);
+                    this.OnPropertyChanged("DuctBankInfo", e, _ductBankInfoReference);
                 }
             }
         }
@@ -245,6 +253,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> DuctBankInfoChanged;
         
+        private static ITypedElement RetrieveYCoordAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(DuctInfo.ClassInstance)).Resolve("yCoord")));
+        }
+        
         /// <summary>
         /// Raises the YCoordChanging event
         /// </summary>
@@ -269,6 +282,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveXCoordAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(DuctInfo.ClassInstance)).Resolve("xCoord")));
         }
         
         /// <summary>
@@ -297,6 +315,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
             }
         }
         
+        private static ITypedElement RetrieveCableInfosReference()
+        {
+            return ((ITypedElement)(((ModelElement)(DuctInfo.ClassInstance)).Resolve("CableInfos")));
+        }
+        
         /// <summary>
         /// Forwards CollectionChanging notifications for the CableInfos property to the parent model element
         /// </summary>
@@ -304,7 +327,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
         /// <param name="e">The original event data</param>
         private void CableInfosCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("CableInfos", e);
+            this.OnCollectionChanging("CableInfos", e, _cableInfosReference);
         }
         
         /// <summary>
@@ -314,7 +337,12 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
         /// <param name="e">The original event data</param>
         private void CableInfosCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("CableInfos", e);
+            this.OnCollectionChanged("CableInfos", e, _cableInfosReference);
+        }
+        
+        private static ITypedElement RetrieveDuctBankInfoReference()
+        {
+            return ((ITypedElement)(((ModelElement)(DuctInfo.ClassInstance)).Resolve("DuctBankInfo")));
         }
         
         /// <summary>
@@ -617,7 +645,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public YCoordProxy(IDuctInfo modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "yCoord")
             {
             }
             
@@ -635,24 +663,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
                     this.ModelElement.YCoord = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.YCoordChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.YCoordChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -666,7 +676,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public XCoordProxy(IDuctInfo modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "xCoord")
             {
             }
             
@@ -684,24 +694,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
                     this.ModelElement.XCoord = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.XCoordChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.XCoordChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -715,7 +707,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public DuctBankInfoProxy(IDuctInfo modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "DuctBankInfo")
             {
             }
             
@@ -732,24 +724,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
                 {
                     this.ModelElement.DuctBankInfo = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.DuctBankInfoChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.DuctBankInfoChanged -= handler;
             }
         }
     }

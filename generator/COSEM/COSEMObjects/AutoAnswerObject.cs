@@ -39,13 +39,15 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
     [XmlNamespacePrefixAttribute("objects")]
     [ModelRepresentationClassAttribute("http://www.transformation-tool-contest.eu/2017/smartGrids/cosem#//COSEMObjects/Au" +
         "toAnswerObject")]
-    public class AutoAnswerObject : Auto_answer, IAutoAnswerObject, IModelElement
+    public partial class AutoAnswerObject : Auto_answer, IAutoAnswerObject, IModelElement
     {
         
         /// <summary>
         /// The backing field for the Answer property
         /// </summary>
         private Nullable<bool> _answer;
+        
+        private static Lazy<ITypedElement> _answerAttribute = new Lazy<ITypedElement>(RetrieveAnswerAttribute);
         
         private static IClass _classInstance;
         
@@ -66,10 +68,10 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     Nullable<bool> old = this._answer;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnAnswerChanging(e);
-                    this.OnPropertyChanging("Answer", e);
+                    this.OnPropertyChanging("Answer", e, _answerAttribute);
                     this._answer = value;
                     this.OnAnswerChanged(e);
-                    this.OnPropertyChanged("Answer", e);
+                    this.OnPropertyChanged("Answer", e, _answerAttribute);
                 }
             }
         }
@@ -99,6 +101,11 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
         /// Gets fired when the Answer property changed its value
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> AnswerChanged;
+        
+        private static ITypedElement RetrieveAnswerAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(AutoAnswerObject.ClassInstance)).Resolve("Answer")));
+        }
         
         /// <summary>
         /// Raises the AnswerChanging event
@@ -180,7 +187,7 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public AnswerProxy(IAutoAnswerObject modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "Answer")
             {
             }
             
@@ -197,24 +204,6 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                 {
                     this.ModelElement.Answer = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.AnswerChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.AnswerChanged -= handler;
             }
         }
     }

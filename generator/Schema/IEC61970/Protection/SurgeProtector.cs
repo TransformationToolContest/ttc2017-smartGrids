@@ -40,7 +40,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Protection
     [XmlNamespacePrefixAttribute("cimProtection")]
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61970/Protection/SurgeProtector")]
     [DebuggerDisplayAttribute("SurgeProtector {UUID}")]
-    public class SurgeProtector : Equipment, ISurgeProtector, IModelElement
+    public partial class SurgeProtector : Equipment, ISurgeProtector, IModelElement
     {
         
         private static IClass _classInstance;

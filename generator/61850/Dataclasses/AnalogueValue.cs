@@ -39,7 +39,7 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
     [XmlNamespacePrefixAttribute("data")]
     [ModelRepresentationClassAttribute("http://www.transformation-tool-contest.eu/2017/smartGrids/substationStandard#//Da" +
         "taclasses/AnalogueValue")]
-    public class AnalogueValue : ModelElement, IAnalogueValue, IModelElement
+    public partial class AnalogueValue : ModelElement, IAnalogueValue, IModelElement
     {
         
         /// <summary>
@@ -47,10 +47,14 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
         /// </summary>
         private Nullable<int> _i;
         
+        private static Lazy<ITypedElement> _iAttribute = new Lazy<ITypedElement>(RetrieveIAttribute);
+        
         /// <summary>
         /// The backing field for the F property
         /// </summary>
         private Nullable<float> _f;
+        
+        private static Lazy<ITypedElement> _fAttribute = new Lazy<ITypedElement>(RetrieveFAttribute);
         
         private static IClass _classInstance;
         
@@ -72,10 +76,10 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
                     Nullable<int> old = this._i;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnIChanging(e);
-                    this.OnPropertyChanging("I", e);
+                    this.OnPropertyChanging("I", e, _iAttribute);
                     this._i = value;
                     this.OnIChanged(e);
-                    this.OnPropertyChanged("I", e);
+                    this.OnPropertyChanged("I", e, _iAttribute);
                 }
             }
         }
@@ -98,10 +102,10 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
                     Nullable<float> old = this._f;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnFChanging(e);
-                    this.OnPropertyChanging("F", e);
+                    this.OnPropertyChanging("F", e, _fAttribute);
                     this._f = value;
                     this.OnFChanged(e);
-                    this.OnPropertyChanged("F", e);
+                    this.OnPropertyChanged("F", e, _fAttribute);
                 }
             }
         }
@@ -142,6 +146,11 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> FChanged;
         
+        private static ITypedElement RetrieveIAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(AnalogueValue.ClassInstance)).Resolve("i")));
+        }
+        
         /// <summary>
         /// Raises the IChanging event
         /// </summary>
@@ -166,6 +175,11 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveFAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(AnalogueValue.ClassInstance)).Resolve("f")));
         }
         
         /// <summary>
@@ -257,7 +271,7 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public IProxy(IAnalogueValue modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "i")
             {
             }
             
@@ -275,24 +289,6 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
                     this.ModelElement.I = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.IChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.IChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -306,7 +302,7 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public FProxy(IAnalogueValue modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "f")
             {
             }
             
@@ -323,24 +319,6 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
                 {
                     this.ModelElement.F = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.FChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.FChanged -= handler;
             }
         }
     }

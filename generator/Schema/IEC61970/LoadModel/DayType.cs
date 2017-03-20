@@ -43,8 +43,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.LoadModel
     [XmlNamespacePrefixAttribute("cimLoadModel")]
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61970/LoadModel/DayType")]
     [DebuggerDisplayAttribute("DayType {UUID}")]
-    public class DayType : IdentifiedObject, IDayType, IModelElement
+    public partial class DayType : IdentifiedObject, IDayType, IModelElement
     {
+        
+        private static Lazy<ITypedElement> _seasonDayTypeSchedulesReference = new Lazy<ITypedElement>(RetrieveSeasonDayTypeSchedulesReference);
         
         /// <summary>
         /// The backing field for the SeasonDayTypeSchedules property
@@ -101,6 +103,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.LoadModel
             }
         }
         
+        private static ITypedElement RetrieveSeasonDayTypeSchedulesReference()
+        {
+            return ((ITypedElement)(((ModelElement)(DayType.ClassInstance)).Resolve("SeasonDayTypeSchedules")));
+        }
+        
         /// <summary>
         /// Forwards CollectionChanging notifications for the SeasonDayTypeSchedules property to the parent model element
         /// </summary>
@@ -108,7 +115,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.LoadModel
         /// <param name="e">The original event data</param>
         private void SeasonDayTypeSchedulesCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("SeasonDayTypeSchedules", e);
+            this.OnCollectionChanging("SeasonDayTypeSchedules", e, _seasonDayTypeSchedulesReference);
         }
         
         /// <summary>
@@ -118,7 +125,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.LoadModel
         /// <param name="e">The original event data</param>
         private void SeasonDayTypeSchedulesCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("SeasonDayTypeSchedules", e);
+            this.OnCollectionChanged("SeasonDayTypeSchedules", e, _seasonDayTypeSchedulesReference);
         }
         
         /// <summary>

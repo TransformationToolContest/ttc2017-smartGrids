@@ -57,13 +57,15 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Core
     [XmlNamespacePrefixAttribute("cimCore")]
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61970/Core/BasePower")]
     [DebuggerDisplayAttribute("BasePower {UUID}")]
-    public class BasePower : IdentifiedObject, IBasePower, IModelElement
+    public partial class BasePower : IdentifiedObject, IBasePower, IModelElement
     {
         
         /// <summary>
         /// The backing field for the BasePower_ property
         /// </summary>
         private float _basePower_;
+        
+        private static Lazy<ITypedElement> _basePowerAttribute = new Lazy<ITypedElement>(RetrieveBasePowerAttribute);
         
         private static IClass _classInstance;
         
@@ -85,10 +87,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Core
                     float old = this._basePower_;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnBasePower_Changing(e);
-                    this.OnPropertyChanging("BasePower_", e);
+                    this.OnPropertyChanging("BasePower_", e, _basePowerAttribute);
                     this._basePower_ = value;
                     this.OnBasePower_Changed(e);
-                    this.OnPropertyChanged("BasePower_", e);
+                    this.OnPropertyChanged("BasePower_", e, _basePowerAttribute);
                 }
             }
         }
@@ -117,6 +119,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Core
         /// Gets fired when the BasePower_ property changed its value
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> BasePower_Changed;
+        
+        private static ITypedElement RetrieveBasePowerAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(BasePower.ClassInstance)).Resolve("basePower")));
+        }
         
         /// <summary>
         /// Raises the BasePower_Changing event
@@ -197,7 +204,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Core
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public BasePowerProxy(IBasePower modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "basePower")
             {
             }
             
@@ -214,24 +221,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Core
                 {
                     this.ModelElement.BasePower_ = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.BasePower_Changed += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.BasePower_Changed -= handler;
             }
         }
     }

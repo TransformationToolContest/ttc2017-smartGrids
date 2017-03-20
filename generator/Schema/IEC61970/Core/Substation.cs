@@ -57,18 +57,24 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Core
     [XmlNamespacePrefixAttribute("cimCore")]
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61970/Core/Substation")]
     [DebuggerDisplayAttribute("Substation {UUID}")]
-    public class Substation : EquipmentContainer, ISubstation, IModelElement
+    public partial class Substation : EquipmentContainer, ISubstation, IModelElement
     {
+        
+        private static Lazy<ITypedElement> _baysReference = new Lazy<ITypedElement>(RetrieveBaysReference);
         
         /// <summary>
         /// The backing field for the Bays property
         /// </summary>
         private SubstationBaysCollection _bays;
         
+        private static Lazy<ITypedElement> _regionReference = new Lazy<ITypedElement>(RetrieveRegionReference);
+        
         /// <summary>
         /// The backing field for the Region property
         /// </summary>
         private ISubGeographicalRegion _region;
+        
+        private static Lazy<ITypedElement> _voltageLevelsReference = new Lazy<ITypedElement>(RetrieveVoltageLevelsReference);
         
         /// <summary>
         /// The backing field for the VoltageLevels property
@@ -120,7 +126,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Core
                     ISubGeographicalRegion old = this._region;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnRegionChanging(e);
-                    this.OnPropertyChanging("Region", e);
+                    this.OnPropertyChanging("Region", e, _regionReference);
                     this._region = value;
                     if ((old != null))
                     {
@@ -133,7 +139,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Core
                         value.Deleted += this.OnResetRegion;
                     }
                     this.OnRegionChanged(e);
-                    this.OnPropertyChanged("Region", e);
+                    this.OnPropertyChanged("Region", e, _regionReference);
                 }
             }
         }
@@ -189,6 +195,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Core
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> RegionChanged;
         
+        private static ITypedElement RetrieveBaysReference()
+        {
+            return ((ITypedElement)(((ModelElement)(Substation.ClassInstance)).Resolve("Bays")));
+        }
+        
         /// <summary>
         /// Forwards CollectionChanging notifications for the Bays property to the parent model element
         /// </summary>
@@ -196,7 +207,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Core
         /// <param name="e">The original event data</param>
         private void BaysCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("Bays", e);
+            this.OnCollectionChanging("Bays", e, _baysReference);
         }
         
         /// <summary>
@@ -206,7 +217,12 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Core
         /// <param name="e">The original event data</param>
         private void BaysCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("Bays", e);
+            this.OnCollectionChanged("Bays", e, _baysReference);
+        }
+        
+        private static ITypedElement RetrieveRegionReference()
+        {
+            return ((ITypedElement)(((ModelElement)(Substation.ClassInstance)).Resolve("Region")));
         }
         
         /// <summary>
@@ -245,6 +261,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Core
             this.Region = null;
         }
         
+        private static ITypedElement RetrieveVoltageLevelsReference()
+        {
+            return ((ITypedElement)(((ModelElement)(Substation.ClassInstance)).Resolve("VoltageLevels")));
+        }
+        
         /// <summary>
         /// Forwards CollectionChanging notifications for the VoltageLevels property to the parent model element
         /// </summary>
@@ -252,7 +273,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Core
         /// <param name="e">The original event data</param>
         private void VoltageLevelsCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("VoltageLevels", e);
+            this.OnCollectionChanging("VoltageLevels", e, _voltageLevelsReference);
         }
         
         /// <summary>
@@ -262,7 +283,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Core
         /// <param name="e">The original event data</param>
         private void VoltageLevelsCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("VoltageLevels", e);
+            this.OnCollectionChanged("VoltageLevels", e, _voltageLevelsReference);
         }
         
         /// <summary>
@@ -537,7 +558,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Core
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public RegionProxy(ISubstation modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "Region")
             {
             }
             
@@ -554,24 +575,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Core
                 {
                     this.ModelElement.Region = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.RegionChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.RegionChanged -= handler;
             }
         }
     }

@@ -53,13 +53,17 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
     [XmlNamespacePrefixAttribute("cimWires")]
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61970/Wires/VoltageControlZone")]
     [DebuggerDisplayAttribute("VoltageControlZone {UUID}")]
-    public class VoltageControlZone : PowerSystemResource, IVoltageControlZone, IModelElement
+    public partial class VoltageControlZone : PowerSystemResource, IVoltageControlZone, IModelElement
     {
+        
+        private static Lazy<ITypedElement> _regulationScheduleReference = new Lazy<ITypedElement>(RetrieveRegulationScheduleReference);
         
         /// <summary>
         /// The backing field for the RegulationSchedule property
         /// </summary>
         private IRegulationSchedule _regulationSchedule;
+        
+        private static Lazy<ITypedElement> _busbarSectionReference = new Lazy<ITypedElement>(RetrieveBusbarSectionReference);
         
         /// <summary>
         /// The backing field for the BusbarSection property
@@ -86,7 +90,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
                     IRegulationSchedule old = this._regulationSchedule;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnRegulationScheduleChanging(e);
-                    this.OnPropertyChanging("RegulationSchedule", e);
+                    this.OnPropertyChanging("RegulationSchedule", e, _regulationScheduleReference);
                     this._regulationSchedule = value;
                     if ((old != null))
                     {
@@ -99,7 +103,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
                         value.Deleted += this.OnResetRegulationSchedule;
                     }
                     this.OnRegulationScheduleChanged(e);
-                    this.OnPropertyChanged("RegulationSchedule", e);
+                    this.OnPropertyChanged("RegulationSchedule", e, _regulationScheduleReference);
                 }
             }
         }
@@ -122,7 +126,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
                     IBusbarSection old = this._busbarSection;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnBusbarSectionChanging(e);
-                    this.OnPropertyChanging("BusbarSection", e);
+                    this.OnPropertyChanging("BusbarSection", e, _busbarSectionReference);
                     this._busbarSection = value;
                     if ((old != null))
                     {
@@ -135,7 +139,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
                         value.Deleted += this.OnResetBusbarSection;
                     }
                     this.OnBusbarSectionChanged(e);
-                    this.OnPropertyChanged("BusbarSection", e);
+                    this.OnPropertyChanged("BusbarSection", e, _busbarSectionReference);
                 }
             }
         }
@@ -186,6 +190,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> BusbarSectionChanged;
         
+        private static ITypedElement RetrieveRegulationScheduleReference()
+        {
+            return ((ITypedElement)(((ModelElement)(VoltageControlZone.ClassInstance)).Resolve("RegulationSchedule")));
+        }
+        
         /// <summary>
         /// Raises the RegulationScheduleChanging event
         /// </summary>
@@ -220,6 +229,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
         private void OnResetRegulationSchedule(object sender, System.EventArgs eventArgs)
         {
             this.RegulationSchedule = null;
+        }
+        
+        private static ITypedElement RetrieveBusbarSectionReference()
+        {
+            return ((ITypedElement)(((ModelElement)(VoltageControlZone.ClassInstance)).Resolve("BusbarSection")));
         }
         
         /// <summary>
@@ -487,7 +501,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public RegulationScheduleProxy(IVoltageControlZone modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "RegulationSchedule")
             {
             }
             
@@ -505,24 +519,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
                     this.ModelElement.RegulationSchedule = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.RegulationScheduleChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.RegulationScheduleChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -536,7 +532,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public BusbarSectionProxy(IVoltageControlZone modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "BusbarSection")
             {
             }
             
@@ -553,24 +549,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
                 {
                     this.ModelElement.BusbarSection = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.BusbarSectionChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.BusbarSectionChanged -= handler;
             }
         }
     }

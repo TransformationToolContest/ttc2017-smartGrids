@@ -53,13 +53,17 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61970/Informative/InfAssets/ToolInf" +
         "o")]
     [DebuggerDisplayAttribute("ToolInfo {UUID}")]
-    public class ToolInfo : AssetInfo, IToolInfo, IModelElement
+    public partial class ToolInfo : AssetInfo, IToolInfo, IModelElement
     {
         
         /// <summary>
         /// The backing field for the LastCalibrationDate property
         /// </summary>
         private string _lastCalibrationDate;
+        
+        private static Lazy<ITypedElement> _lastCalibrationDateAttribute = new Lazy<ITypedElement>(RetrieveLastCalibrationDateAttribute);
+        
+        private static Lazy<ITypedElement> _crewReference = new Lazy<ITypedElement>(RetrieveCrewReference);
         
         /// <summary>
         /// The backing field for the Crew property
@@ -86,10 +90,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
                     string old = this._lastCalibrationDate;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnLastCalibrationDateChanging(e);
-                    this.OnPropertyChanging("LastCalibrationDate", e);
+                    this.OnPropertyChanging("LastCalibrationDate", e, _lastCalibrationDateAttribute);
                     this._lastCalibrationDate = value;
                     this.OnLastCalibrationDateChanged(e);
-                    this.OnPropertyChanged("LastCalibrationDate", e);
+                    this.OnPropertyChanged("LastCalibrationDate", e, _lastCalibrationDateAttribute);
                 }
             }
         }
@@ -112,7 +116,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
                     ICrew old = this._crew;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnCrewChanging(e);
-                    this.OnPropertyChanging("Crew", e);
+                    this.OnPropertyChanging("Crew", e, _crewReference);
                     this._crew = value;
                     if ((old != null))
                     {
@@ -125,7 +129,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
                         value.Deleted += this.OnResetCrew;
                     }
                     this.OnCrewChanged(e);
-                    this.OnPropertyChanged("Crew", e);
+                    this.OnPropertyChanged("Crew", e, _crewReference);
                 }
             }
         }
@@ -177,6 +181,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> CrewChanged;
         
+        private static ITypedElement RetrieveLastCalibrationDateAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(ToolInfo.ClassInstance)).Resolve("lastCalibrationDate")));
+        }
+        
         /// <summary>
         /// Raises the LastCalibrationDateChanging event
         /// </summary>
@@ -201,6 +210,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveCrewReference()
+        {
+            return ((ITypedElement)(((ModelElement)(ToolInfo.ClassInstance)).Resolve("Crew")));
         }
         
         /// <summary>
@@ -446,7 +460,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public LastCalibrationDateProxy(IToolInfo modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "lastCalibrationDate")
             {
             }
             
@@ -464,24 +478,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
                     this.ModelElement.LastCalibrationDate = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.LastCalibrationDateChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.LastCalibrationDateChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -495,7 +491,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public CrewProxy(IToolInfo modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "Crew")
             {
             }
             
@@ -512,24 +508,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
                 {
                     this.ModelElement.Crew = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.CrewChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.CrewChanged -= handler;
             }
         }
     }

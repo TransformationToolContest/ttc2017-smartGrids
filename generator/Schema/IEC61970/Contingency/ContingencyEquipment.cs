@@ -41,13 +41,17 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Contingency
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61970/Contingency/ContingencyEquipm" +
         "ent")]
     [DebuggerDisplayAttribute("ContingencyEquipment {UUID}")]
-    public class ContingencyEquipment : ContingencyElement, IContingencyEquipment, IModelElement
+    public partial class ContingencyEquipment : ContingencyElement, IContingencyEquipment, IModelElement
     {
         
         /// <summary>
         /// The backing field for the ContingentStatus property
         /// </summary>
         private Nullable<ContingencyEquipmentStatusKind> _contingentStatus;
+        
+        private static Lazy<ITypedElement> _contingentStatusAttribute = new Lazy<ITypedElement>(RetrieveContingentStatusAttribute);
+        
+        private static Lazy<ITypedElement> _equipmentReference = new Lazy<ITypedElement>(RetrieveEquipmentReference);
         
         /// <summary>
         /// The backing field for the Equipment property
@@ -74,10 +78,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Contingency
                     Nullable<ContingencyEquipmentStatusKind> old = this._contingentStatus;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnContingentStatusChanging(e);
-                    this.OnPropertyChanging("ContingentStatus", e);
+                    this.OnPropertyChanging("ContingentStatus", e, _contingentStatusAttribute);
                     this._contingentStatus = value;
                     this.OnContingentStatusChanged(e);
-                    this.OnPropertyChanged("ContingentStatus", e);
+                    this.OnPropertyChanged("ContingentStatus", e, _contingentStatusAttribute);
                 }
             }
         }
@@ -100,7 +104,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Contingency
                     IEquipment old = this._equipment;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnEquipmentChanging(e);
-                    this.OnPropertyChanging("Equipment", e);
+                    this.OnPropertyChanging("Equipment", e, _equipmentReference);
                     this._equipment = value;
                     if ((old != null))
                     {
@@ -113,7 +117,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Contingency
                         value.Deleted += this.OnResetEquipment;
                     }
                     this.OnEquipmentChanged(e);
-                    this.OnPropertyChanged("Equipment", e);
+                    this.OnPropertyChanged("Equipment", e, _equipmentReference);
                 }
             }
         }
@@ -165,6 +169,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Contingency
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> EquipmentChanged;
         
+        private static ITypedElement RetrieveContingentStatusAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(ContingencyEquipment.ClassInstance)).Resolve("contingentStatus")));
+        }
+        
         /// <summary>
         /// Raises the ContingentStatusChanging event
         /// </summary>
@@ -189,6 +198,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Contingency
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveEquipmentReference()
+        {
+            return ((ITypedElement)(((ModelElement)(ContingencyEquipment.ClassInstance)).Resolve("Equipment")));
         }
         
         /// <summary>
@@ -434,7 +448,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Contingency
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public ContingentStatusProxy(IContingencyEquipment modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "contingentStatus")
             {
             }
             
@@ -452,24 +466,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Contingency
                     this.ModelElement.ContingentStatus = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ContingentStatusChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ContingentStatusChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -483,7 +479,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Contingency
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public EquipmentProxy(IContingencyEquipment modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "Equipment")
             {
             }
             
@@ -500,24 +496,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Contingency
                 {
                     this.ModelElement.Equipment = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.EquipmentChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.EquipmentChanged -= handler;
             }
         }
     }

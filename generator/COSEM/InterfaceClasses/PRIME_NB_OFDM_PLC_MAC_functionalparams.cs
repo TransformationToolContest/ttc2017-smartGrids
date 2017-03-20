@@ -40,7 +40,7 @@ namespace TTC2017.SmartGrids.COSEM.InterfaceClasses
     [XmlNamespacePrefixAttribute("inter")]
     [ModelRepresentationClassAttribute("http://www.transformation-tool-contest.eu/2017/smartGrids/cosem#//InterfaceClasse" +
         "s/PRIME_NB_OFDM_PLC_MAC_functionalparams")]
-    public class PRIME_NB_OFDM_PLC_MAC_functionalparams : Base, IPRIME_NB_OFDM_PLC_MAC_functionalparams, IModelElement
+    public partial class PRIME_NB_OFDM_PLC_MAC_functionalparams : Base, IPRIME_NB_OFDM_PLC_MAC_functionalparams, IModelElement
     {
         
         private static IClass _classInstance;

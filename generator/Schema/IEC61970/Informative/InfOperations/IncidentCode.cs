@@ -50,13 +50,17 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfOperations
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61970/Informative/InfOperations/Inc" +
         "identCode")]
     [DebuggerDisplayAttribute("IncidentCode {UUID}")]
-    public class IncidentCode : IdentifiedObject, IIncidentCode, IModelElement
+    public partial class IncidentCode : IdentifiedObject, IIncidentCode, IModelElement
     {
         
         /// <summary>
         /// The backing field for the SubCode property
         /// </summary>
         private string _subCode;
+        
+        private static Lazy<ITypedElement> _subCodeAttribute = new Lazy<ITypedElement>(RetrieveSubCodeAttribute);
+        
+        private static Lazy<ITypedElement> _incidentRecordsReference = new Lazy<ITypedElement>(RetrieveIncidentRecordsReference);
         
         /// <summary>
         /// The backing field for the IncidentRecords property
@@ -90,10 +94,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfOperations
                     string old = this._subCode;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnSubCodeChanging(e);
-                    this.OnPropertyChanging("SubCode", e);
+                    this.OnPropertyChanging("SubCode", e, _subCodeAttribute);
                     this._subCode = value;
                     this.OnSubCodeChanged(e);
-                    this.OnPropertyChanged("SubCode", e);
+                    this.OnPropertyChanged("SubCode", e, _subCodeAttribute);
                 }
             }
         }
@@ -150,6 +154,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfOperations
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> SubCodeChanged;
         
+        private static ITypedElement RetrieveSubCodeAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(IncidentCode.ClassInstance)).Resolve("subCode")));
+        }
+        
         /// <summary>
         /// Raises the SubCodeChanging event
         /// </summary>
@@ -176,6 +185,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfOperations
             }
         }
         
+        private static ITypedElement RetrieveIncidentRecordsReference()
+        {
+            return ((ITypedElement)(((ModelElement)(IncidentCode.ClassInstance)).Resolve("IncidentRecords")));
+        }
+        
         /// <summary>
         /// Forwards CollectionChanging notifications for the IncidentRecords property to the parent model element
         /// </summary>
@@ -183,7 +197,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfOperations
         /// <param name="e">The original event data</param>
         private void IncidentRecordsCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("IncidentRecords", e);
+            this.OnCollectionChanging("IncidentRecords", e, _incidentRecordsReference);
         }
         
         /// <summary>
@@ -193,7 +207,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfOperations
         /// <param name="e">The original event data</param>
         private void IncidentRecordsCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("IncidentRecords", e);
+            this.OnCollectionChanged("IncidentRecords", e, _incidentRecordsReference);
         }
         
         /// <summary>
@@ -388,7 +402,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfOperations
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public SubCodeProxy(IIncidentCode modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "subCode")
             {
             }
             
@@ -405,24 +419,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfOperations
                 {
                     this.ModelElement.SubCode = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.SubCodeChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.SubCodeChanged -= handler;
             }
         }
     }

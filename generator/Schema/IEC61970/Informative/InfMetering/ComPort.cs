@@ -41,7 +41,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfMetering
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61970/Informative/InfMetering/ComPo" +
         "rt")]
     [DebuggerDisplayAttribute("ComPort {UUID}")]
-    public class ComPort : IdentifiedObject, IComPort, IModelElement
+    public partial class ComPort : IdentifiedObject, IComPort, IModelElement
     {
         
         private static IClass _classInstance;

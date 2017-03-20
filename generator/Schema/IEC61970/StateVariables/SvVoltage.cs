@@ -42,7 +42,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.StateVariables
     [XmlNamespacePrefixAttribute("cimStateVariables")]
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61970/StateVariables/SvVoltage")]
     [DebuggerDisplayAttribute("SvVoltage {UUID}")]
-    public class SvVoltage : StateVariable, ISvVoltage, IModelElement
+    public partial class SvVoltage : StateVariable, ISvVoltage, IModelElement
     {
         
         /// <summary>
@@ -50,10 +50,16 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.StateVariables
         /// </summary>
         private float _v;
         
+        private static Lazy<ITypedElement> _vAttribute = new Lazy<ITypedElement>(RetrieveVAttribute);
+        
         /// <summary>
         /// The backing field for the Angle property
         /// </summary>
         private float _angle;
+        
+        private static Lazy<ITypedElement> _angleAttribute = new Lazy<ITypedElement>(RetrieveAngleAttribute);
+        
+        private static Lazy<ITypedElement> _topologicalNodeReference = new Lazy<ITypedElement>(RetrieveTopologicalNodeReference);
         
         /// <summary>
         /// The backing field for the TopologicalNode property
@@ -80,10 +86,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.StateVariables
                     float old = this._v;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnVChanging(e);
-                    this.OnPropertyChanging("V", e);
+                    this.OnPropertyChanging("V", e, _vAttribute);
                     this._v = value;
                     this.OnVChanged(e);
-                    this.OnPropertyChanged("V", e);
+                    this.OnPropertyChanged("V", e, _vAttribute);
                 }
             }
         }
@@ -106,10 +112,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.StateVariables
                     float old = this._angle;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnAngleChanging(e);
-                    this.OnPropertyChanging("Angle", e);
+                    this.OnPropertyChanging("Angle", e, _angleAttribute);
                     this._angle = value;
                     this.OnAngleChanged(e);
-                    this.OnPropertyChanged("Angle", e);
+                    this.OnPropertyChanged("Angle", e, _angleAttribute);
                 }
             }
         }
@@ -132,7 +138,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.StateVariables
                     ITopologicalNode old = this._topologicalNode;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnTopologicalNodeChanging(e);
-                    this.OnPropertyChanging("TopologicalNode", e);
+                    this.OnPropertyChanging("TopologicalNode", e, _topologicalNodeReference);
                     this._topologicalNode = value;
                     if ((old != null))
                     {
@@ -145,7 +151,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.StateVariables
                         value.Deleted += this.OnResetTopologicalNode;
                     }
                     this.OnTopologicalNodeChanged(e);
-                    this.OnPropertyChanged("TopologicalNode", e);
+                    this.OnPropertyChanged("TopologicalNode", e, _topologicalNodeReference);
                 }
             }
         }
@@ -206,6 +212,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.StateVariables
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> TopologicalNodeChanged;
         
+        private static ITypedElement RetrieveVAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(SvVoltage.ClassInstance)).Resolve("v")));
+        }
+        
         /// <summary>
         /// Raises the VChanging event
         /// </summary>
@@ -232,6 +243,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.StateVariables
             }
         }
         
+        private static ITypedElement RetrieveAngleAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(SvVoltage.ClassInstance)).Resolve("angle")));
+        }
+        
         /// <summary>
         /// Raises the AngleChanging event
         /// </summary>
@@ -256,6 +272,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.StateVariables
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveTopologicalNodeReference()
+        {
+            return ((ITypedElement)(((ModelElement)(SvVoltage.ClassInstance)).Resolve("TopologicalNode")));
         }
         
         /// <summary>
@@ -509,7 +530,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.StateVariables
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public VProxy(ISvVoltage modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "v")
             {
             }
             
@@ -527,24 +548,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.StateVariables
                     this.ModelElement.V = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.VChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.VChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -558,7 +561,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.StateVariables
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public AngleProxy(ISvVoltage modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "angle")
             {
             }
             
@@ -576,24 +579,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.StateVariables
                     this.ModelElement.Angle = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.AngleChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.AngleChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -607,7 +592,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.StateVariables
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public TopologicalNodeProxy(ISvVoltage modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "TopologicalNode")
             {
             }
             
@@ -624,24 +609,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.StateVariables
                 {
                     this.ModelElement.TopologicalNode = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.TopologicalNodeChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.TopologicalNodeChanged -= handler;
             }
         }
     }

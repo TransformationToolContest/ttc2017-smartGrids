@@ -41,7 +41,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.OperationalLimits
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61970/OperationalLimits/BranchGroup" +
         "")]
     [DebuggerDisplayAttribute("BranchGroup {UUID}")]
-    public class BranchGroup : IdentifiedObject, IBranchGroup, IModelElement
+    public partial class BranchGroup : IdentifiedObject, IBranchGroup, IModelElement
     {
         
         /// <summary>
@@ -49,30 +49,44 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.OperationalLimits
         /// </summary>
         private bool _monitorReactivePower;
         
+        private static Lazy<ITypedElement> _monitorReactivePowerAttribute = new Lazy<ITypedElement>(RetrieveMonitorReactivePowerAttribute);
+        
         /// <summary>
         /// The backing field for the MinimumReactivePower property
         /// </summary>
         private float _minimumReactivePower;
+        
+        private static Lazy<ITypedElement> _minimumReactivePowerAttribute = new Lazy<ITypedElement>(RetrieveMinimumReactivePowerAttribute);
         
         /// <summary>
         /// The backing field for the MonitorActivePower property
         /// </summary>
         private bool _monitorActivePower;
         
+        private static Lazy<ITypedElement> _monitorActivePowerAttribute = new Lazy<ITypedElement>(RetrieveMonitorActivePowerAttribute);
+        
         /// <summary>
         /// The backing field for the MaximumReactivePower property
         /// </summary>
         private float _maximumReactivePower;
+        
+        private static Lazy<ITypedElement> _maximumReactivePowerAttribute = new Lazy<ITypedElement>(RetrieveMaximumReactivePowerAttribute);
         
         /// <summary>
         /// The backing field for the MaximumActivePower property
         /// </summary>
         private float _maximumActivePower;
         
+        private static Lazy<ITypedElement> _maximumActivePowerAttribute = new Lazy<ITypedElement>(RetrieveMaximumActivePowerAttribute);
+        
         /// <summary>
         /// The backing field for the MinimumActivePower property
         /// </summary>
         private float _minimumActivePower;
+        
+        private static Lazy<ITypedElement> _minimumActivePowerAttribute = new Lazy<ITypedElement>(RetrieveMinimumActivePowerAttribute);
+        
+        private static Lazy<ITypedElement> _branchGroupTerminalReference = new Lazy<ITypedElement>(RetrieveBranchGroupTerminalReference);
         
         /// <summary>
         /// The backing field for the BranchGroupTerminal property
@@ -106,10 +120,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.OperationalLimits
                     bool old = this._monitorReactivePower;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnMonitorReactivePowerChanging(e);
-                    this.OnPropertyChanging("MonitorReactivePower", e);
+                    this.OnPropertyChanging("MonitorReactivePower", e, _monitorReactivePowerAttribute);
                     this._monitorReactivePower = value;
                     this.OnMonitorReactivePowerChanged(e);
-                    this.OnPropertyChanged("MonitorReactivePower", e);
+                    this.OnPropertyChanged("MonitorReactivePower", e, _monitorReactivePowerAttribute);
                 }
             }
         }
@@ -132,10 +146,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.OperationalLimits
                     float old = this._minimumReactivePower;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnMinimumReactivePowerChanging(e);
-                    this.OnPropertyChanging("MinimumReactivePower", e);
+                    this.OnPropertyChanging("MinimumReactivePower", e, _minimumReactivePowerAttribute);
                     this._minimumReactivePower = value;
                     this.OnMinimumReactivePowerChanged(e);
-                    this.OnPropertyChanged("MinimumReactivePower", e);
+                    this.OnPropertyChanged("MinimumReactivePower", e, _minimumReactivePowerAttribute);
                 }
             }
         }
@@ -158,10 +172,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.OperationalLimits
                     bool old = this._monitorActivePower;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnMonitorActivePowerChanging(e);
-                    this.OnPropertyChanging("MonitorActivePower", e);
+                    this.OnPropertyChanging("MonitorActivePower", e, _monitorActivePowerAttribute);
                     this._monitorActivePower = value;
                     this.OnMonitorActivePowerChanged(e);
-                    this.OnPropertyChanged("MonitorActivePower", e);
+                    this.OnPropertyChanged("MonitorActivePower", e, _monitorActivePowerAttribute);
                 }
             }
         }
@@ -184,10 +198,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.OperationalLimits
                     float old = this._maximumReactivePower;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnMaximumReactivePowerChanging(e);
-                    this.OnPropertyChanging("MaximumReactivePower", e);
+                    this.OnPropertyChanging("MaximumReactivePower", e, _maximumReactivePowerAttribute);
                     this._maximumReactivePower = value;
                     this.OnMaximumReactivePowerChanged(e);
-                    this.OnPropertyChanged("MaximumReactivePower", e);
+                    this.OnPropertyChanged("MaximumReactivePower", e, _maximumReactivePowerAttribute);
                 }
             }
         }
@@ -210,10 +224,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.OperationalLimits
                     float old = this._maximumActivePower;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnMaximumActivePowerChanging(e);
-                    this.OnPropertyChanging("MaximumActivePower", e);
+                    this.OnPropertyChanging("MaximumActivePower", e, _maximumActivePowerAttribute);
                     this._maximumActivePower = value;
                     this.OnMaximumActivePowerChanged(e);
-                    this.OnPropertyChanged("MaximumActivePower", e);
+                    this.OnPropertyChanged("MaximumActivePower", e, _maximumActivePowerAttribute);
                 }
             }
         }
@@ -236,10 +250,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.OperationalLimits
                     float old = this._minimumActivePower;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnMinimumActivePowerChanging(e);
-                    this.OnPropertyChanging("MinimumActivePower", e);
+                    this.OnPropertyChanging("MinimumActivePower", e, _minimumActivePowerAttribute);
                     this._minimumActivePower = value;
                     this.OnMinimumActivePowerChanged(e);
-                    this.OnPropertyChanged("MinimumActivePower", e);
+                    this.OnPropertyChanged("MinimumActivePower", e, _minimumActivePowerAttribute);
                 }
             }
         }
@@ -346,6 +360,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.OperationalLimits
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> MinimumActivePowerChanged;
         
+        private static ITypedElement RetrieveMonitorReactivePowerAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(BranchGroup.ClassInstance)).Resolve("monitorReactivePower")));
+        }
+        
         /// <summary>
         /// Raises the MonitorReactivePowerChanging event
         /// </summary>
@@ -370,6 +389,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.OperationalLimits
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveMinimumReactivePowerAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(BranchGroup.ClassInstance)).Resolve("minimumReactivePower")));
         }
         
         /// <summary>
@@ -398,6 +422,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.OperationalLimits
             }
         }
         
+        private static ITypedElement RetrieveMonitorActivePowerAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(BranchGroup.ClassInstance)).Resolve("monitorActivePower")));
+        }
+        
         /// <summary>
         /// Raises the MonitorActivePowerChanging event
         /// </summary>
@@ -422,6 +451,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.OperationalLimits
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveMaximumReactivePowerAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(BranchGroup.ClassInstance)).Resolve("maximumReactivePower")));
         }
         
         /// <summary>
@@ -450,6 +484,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.OperationalLimits
             }
         }
         
+        private static ITypedElement RetrieveMaximumActivePowerAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(BranchGroup.ClassInstance)).Resolve("maximumActivePower")));
+        }
+        
         /// <summary>
         /// Raises the MaximumActivePowerChanging event
         /// </summary>
@@ -474,6 +513,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.OperationalLimits
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveMinimumActivePowerAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(BranchGroup.ClassInstance)).Resolve("minimumActivePower")));
         }
         
         /// <summary>
@@ -502,6 +546,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.OperationalLimits
             }
         }
         
+        private static ITypedElement RetrieveBranchGroupTerminalReference()
+        {
+            return ((ITypedElement)(((ModelElement)(BranchGroup.ClassInstance)).Resolve("BranchGroupTerminal")));
+        }
+        
         /// <summary>
         /// Forwards CollectionChanging notifications for the BranchGroupTerminal property to the parent model element
         /// </summary>
@@ -509,7 +558,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.OperationalLimits
         /// <param name="e">The original event data</param>
         private void BranchGroupTerminalCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("BranchGroupTerminal", e);
+            this.OnCollectionChanging("BranchGroupTerminal", e, _branchGroupTerminalReference);
         }
         
         /// <summary>
@@ -519,7 +568,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.OperationalLimits
         /// <param name="e">The original event data</param>
         private void BranchGroupTerminalCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("BranchGroupTerminal", e);
+            this.OnCollectionChanged("BranchGroupTerminal", e, _branchGroupTerminalReference);
         }
         
         /// <summary>
@@ -759,7 +808,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.OperationalLimits
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public MonitorReactivePowerProxy(IBranchGroup modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "monitorReactivePower")
             {
             }
             
@@ -777,24 +826,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.OperationalLimits
                     this.ModelElement.MonitorReactivePower = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.MonitorReactivePowerChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.MonitorReactivePowerChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -808,7 +839,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.OperationalLimits
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public MinimumReactivePowerProxy(IBranchGroup modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "minimumReactivePower")
             {
             }
             
@@ -826,24 +857,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.OperationalLimits
                     this.ModelElement.MinimumReactivePower = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.MinimumReactivePowerChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.MinimumReactivePowerChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -857,7 +870,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.OperationalLimits
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public MonitorActivePowerProxy(IBranchGroup modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "monitorActivePower")
             {
             }
             
@@ -875,24 +888,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.OperationalLimits
                     this.ModelElement.MonitorActivePower = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.MonitorActivePowerChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.MonitorActivePowerChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -906,7 +901,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.OperationalLimits
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public MaximumReactivePowerProxy(IBranchGroup modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "maximumReactivePower")
             {
             }
             
@@ -924,24 +919,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.OperationalLimits
                     this.ModelElement.MaximumReactivePower = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.MaximumReactivePowerChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.MaximumReactivePowerChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -955,7 +932,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.OperationalLimits
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public MaximumActivePowerProxy(IBranchGroup modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "maximumActivePower")
             {
             }
             
@@ -973,24 +950,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.OperationalLimits
                     this.ModelElement.MaximumActivePower = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.MaximumActivePowerChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.MaximumActivePowerChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1004,7 +963,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.OperationalLimits
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public MinimumActivePowerProxy(IBranchGroup modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "minimumActivePower")
             {
             }
             
@@ -1021,24 +980,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.OperationalLimits
                 {
                     this.ModelElement.MinimumActivePower = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.MinimumActivePowerChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.MinimumActivePowerChanged -= handler;
             }
         }
     }

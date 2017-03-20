@@ -49,8 +49,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.EnergyScheduling
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61970/Informative/EnergyScheduling/" +
         "Profile")]
     [DebuggerDisplayAttribute("Profile {UUID}")]
-    public class Profile : IdentifiedObject, IProfile, IModelElement
+    public partial class Profile : IdentifiedObject, IProfile, IModelElement
     {
+        
+        private static Lazy<ITypedElement> _profileDatasReference = new Lazy<ITypedElement>(RetrieveProfileDatasReference);
         
         /// <summary>
         /// The backing field for the ProfileDatas property
@@ -108,6 +110,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.EnergyScheduling
             }
         }
         
+        private static ITypedElement RetrieveProfileDatasReference()
+        {
+            return ((ITypedElement)(((ModelElement)(Profile.ClassInstance)).Resolve("ProfileDatas")));
+        }
+        
         /// <summary>
         /// Forwards CollectionChanging notifications for the ProfileDatas property to the parent model element
         /// </summary>
@@ -115,7 +122,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.EnergyScheduling
         /// <param name="e">The original event data</param>
         private void ProfileDatasCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("ProfileDatas", e);
+            this.OnCollectionChanging("ProfileDatas", e, _profileDatasReference);
         }
         
         /// <summary>
@@ -125,7 +132,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.EnergyScheduling
         /// <param name="e">The original event data</param>
         private void ProfileDatasCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("ProfileDatas", e);
+            this.OnCollectionChanged("ProfileDatas", e, _profileDatasReference);
         }
         
         /// <summary>

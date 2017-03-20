@@ -39,13 +39,17 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
     [XmlNamespacePrefixAttribute("data")]
     [ModelRepresentationClassAttribute("http://www.transformation-tool-contest.eu/2017/smartGrids/substationStandard#//Da" +
         "taclasses/ControllableAnalogueInfo")]
-    public class ControllableAnalogueInfo : ModelElement, IControllableAnalogueInfo, IModelElement
+    public partial class ControllableAnalogueInfo : ModelElement, IControllableAnalogueInfo, IModelElement
     {
+        
+        private static Lazy<ITypedElement> _aPCReference = new Lazy<ITypedElement>(RetrieveAPCReference);
         
         /// <summary>
         /// The backing field for the APC property
         /// </summary>
         private ObservableAssociationOrderedSet<IAPC> _aPC;
+        
+        private static Lazy<ITypedElement> _c_PrimitiveCDCReference = new Lazy<ITypedElement>(RetrieveC_PrimitiveCDCReference);
         
         /// <summary>
         /// The backing field for the C_PrimitiveCDC property
@@ -121,6 +125,11 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
             }
         }
         
+        private static ITypedElement RetrieveAPCReference()
+        {
+            return ((ITypedElement)(((ModelElement)(ControllableAnalogueInfo.ClassInstance)).Resolve("APC")));
+        }
+        
         /// <summary>
         /// Forwards CollectionChanging notifications for the APC property to the parent model element
         /// </summary>
@@ -128,7 +137,7 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
         /// <param name="e">The original event data</param>
         private void APCCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("APC", e);
+            this.OnCollectionChanging("APC", e, _aPCReference);
         }
         
         /// <summary>
@@ -138,7 +147,12 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
         /// <param name="e">The original event data</param>
         private void APCCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("APC", e);
+            this.OnCollectionChanged("APC", e, _aPCReference);
+        }
+        
+        private static ITypedElement RetrieveC_PrimitiveCDCReference()
+        {
+            return ((ITypedElement)(((ModelElement)(ControllableAnalogueInfo.ClassInstance)).Resolve("C_PrimitiveCDC")));
         }
         
         /// <summary>
@@ -148,7 +162,7 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
         /// <param name="e">The original event data</param>
         private void C_PrimitiveCDCCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("C_PrimitiveCDC", e);
+            this.OnCollectionChanging("C_PrimitiveCDC", e, _c_PrimitiveCDCReference);
         }
         
         /// <summary>
@@ -158,7 +172,7 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
         /// <param name="e">The original event data</param>
         private void C_PrimitiveCDCCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("C_PrimitiveCDC", e);
+            this.OnCollectionChanged("C_PrimitiveCDC", e, _c_PrimitiveCDCReference);
         }
         
         /// <summary>

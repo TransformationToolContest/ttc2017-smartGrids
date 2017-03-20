@@ -39,7 +39,7 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
     [XmlNamespacePrefixAttribute("data")]
     [ModelRepresentationClassAttribute("http://www.transformation-tool-contest.eu/2017/smartGrids/substationStandard#//Da" +
         "taclasses/TimeQuality")]
-    public class TimeQuality : ModelElement, ITimeQuality, IModelElement
+    public partial class TimeQuality : ModelElement, ITimeQuality, IModelElement
     {
         
         /// <summary>
@@ -47,20 +47,28 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
         /// </summary>
         private Nullable<bool> _leapSecondsKnown;
         
+        private static Lazy<ITypedElement> _leapSecondsKnownAttribute = new Lazy<ITypedElement>(RetrieveLeapSecondsKnownAttribute);
+        
         /// <summary>
         /// The backing field for the ClockFailure property
         /// </summary>
         private Nullable<bool> _clockFailure;
+        
+        private static Lazy<ITypedElement> _clockFailureAttribute = new Lazy<ITypedElement>(RetrieveClockFailureAttribute);
         
         /// <summary>
         /// The backing field for the ClockNotSynchronized property
         /// </summary>
         private Nullable<bool> _clockNotSynchronized;
         
+        private static Lazy<ITypedElement> _clockNotSynchronizedAttribute = new Lazy<ITypedElement>(RetrieveClockNotSynchronizedAttribute);
+        
         /// <summary>
         /// The backing field for the TimeAccuracy property
         /// </summary>
         private Nullable<TimeAccuracyKind> _timeAccuracy;
+        
+        private static Lazy<ITypedElement> _timeAccuracyAttribute = new Lazy<ITypedElement>(RetrieveTimeAccuracyAttribute);
         
         private static IClass _classInstance;
         
@@ -82,10 +90,10 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
                     Nullable<bool> old = this._leapSecondsKnown;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnLeapSecondsKnownChanging(e);
-                    this.OnPropertyChanging("LeapSecondsKnown", e);
+                    this.OnPropertyChanging("LeapSecondsKnown", e, _leapSecondsKnownAttribute);
                     this._leapSecondsKnown = value;
                     this.OnLeapSecondsKnownChanged(e);
-                    this.OnPropertyChanged("LeapSecondsKnown", e);
+                    this.OnPropertyChanged("LeapSecondsKnown", e, _leapSecondsKnownAttribute);
                 }
             }
         }
@@ -108,10 +116,10 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
                     Nullable<bool> old = this._clockFailure;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnClockFailureChanging(e);
-                    this.OnPropertyChanging("ClockFailure", e);
+                    this.OnPropertyChanging("ClockFailure", e, _clockFailureAttribute);
                     this._clockFailure = value;
                     this.OnClockFailureChanged(e);
-                    this.OnPropertyChanged("ClockFailure", e);
+                    this.OnPropertyChanged("ClockFailure", e, _clockFailureAttribute);
                 }
             }
         }
@@ -134,10 +142,10 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
                     Nullable<bool> old = this._clockNotSynchronized;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnClockNotSynchronizedChanging(e);
-                    this.OnPropertyChanging("ClockNotSynchronized", e);
+                    this.OnPropertyChanging("ClockNotSynchronized", e, _clockNotSynchronizedAttribute);
                     this._clockNotSynchronized = value;
                     this.OnClockNotSynchronizedChanged(e);
-                    this.OnPropertyChanged("ClockNotSynchronized", e);
+                    this.OnPropertyChanged("ClockNotSynchronized", e, _clockNotSynchronizedAttribute);
                 }
             }
         }
@@ -160,10 +168,10 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
                     Nullable<TimeAccuracyKind> old = this._timeAccuracy;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnTimeAccuracyChanging(e);
-                    this.OnPropertyChanging("TimeAccuracy", e);
+                    this.OnPropertyChanging("TimeAccuracy", e, _timeAccuracyAttribute);
                     this._timeAccuracy = value;
                     this.OnTimeAccuracyChanged(e);
-                    this.OnPropertyChanged("TimeAccuracy", e);
+                    this.OnPropertyChanged("TimeAccuracy", e, _timeAccuracyAttribute);
                 }
             }
         }
@@ -224,6 +232,11 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> TimeAccuracyChanged;
         
+        private static ITypedElement RetrieveLeapSecondsKnownAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(TimeQuality.ClassInstance)).Resolve("leapSecondsKnown")));
+        }
+        
         /// <summary>
         /// Raises the LeapSecondsKnownChanging event
         /// </summary>
@@ -248,6 +261,11 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveClockFailureAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(TimeQuality.ClassInstance)).Resolve("clockFailure")));
         }
         
         /// <summary>
@@ -276,6 +294,11 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
             }
         }
         
+        private static ITypedElement RetrieveClockNotSynchronizedAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(TimeQuality.ClassInstance)).Resolve("clockNotSynchronized")));
+        }
+        
         /// <summary>
         /// Raises the ClockNotSynchronizedChanging event
         /// </summary>
@@ -300,6 +323,11 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveTimeAccuracyAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(TimeQuality.ClassInstance)).Resolve("timeAccuracy")));
         }
         
         /// <summary>
@@ -409,7 +437,7 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public LeapSecondsKnownProxy(ITimeQuality modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "leapSecondsKnown")
             {
             }
             
@@ -427,24 +455,6 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
                     this.ModelElement.LeapSecondsKnown = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.LeapSecondsKnownChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.LeapSecondsKnownChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -458,7 +468,7 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public ClockFailureProxy(ITimeQuality modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "clockFailure")
             {
             }
             
@@ -476,24 +486,6 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
                     this.ModelElement.ClockFailure = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ClockFailureChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ClockFailureChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -507,7 +499,7 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public ClockNotSynchronizedProxy(ITimeQuality modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "clockNotSynchronized")
             {
             }
             
@@ -525,24 +517,6 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
                     this.ModelElement.ClockNotSynchronized = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ClockNotSynchronizedChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ClockNotSynchronizedChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -556,7 +530,7 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public TimeAccuracyProxy(ITimeQuality modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "timeAccuracy")
             {
             }
             
@@ -573,24 +547,6 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
                 {
                     this.ModelElement.TimeAccuracy = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.TimeAccuracyChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.TimeAccuracyChanged -= handler;
             }
         }
     }

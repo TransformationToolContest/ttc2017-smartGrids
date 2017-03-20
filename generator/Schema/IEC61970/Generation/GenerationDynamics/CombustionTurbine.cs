@@ -42,7 +42,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.GenerationDynamics
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61970/Generation/GenerationDynamics" +
         "/CombustionTurbine")]
     [DebuggerDisplayAttribute("CombustionTurbine {UUID}")]
-    public class CombustionTurbine : PrimeMover, ICombustionTurbine, IModelElement
+    public partial class CombustionTurbine : PrimeMover, ICombustionTurbine, IModelElement
     {
         
         /// <summary>
@@ -50,50 +50,72 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.GenerationDynamics
         /// </summary>
         private float _auxPowerVersusFrequency;
         
+        private static Lazy<ITypedElement> _auxPowerVersusFrequencyAttribute = new Lazy<ITypedElement>(RetrieveAuxPowerVersusFrequencyAttribute);
+        
         /// <summary>
         /// The backing field for the PowerVariationByTemp property
         /// </summary>
         private float _powerVariationByTemp;
+        
+        private static Lazy<ITypedElement> _powerVariationByTempAttribute = new Lazy<ITypedElement>(RetrievePowerVariationByTempAttribute);
         
         /// <summary>
         /// The backing field for the AmbientTemp property
         /// </summary>
         private float _ambientTemp;
         
+        private static Lazy<ITypedElement> _ambientTempAttribute = new Lazy<ITypedElement>(RetrieveAmbientTempAttribute);
+        
         /// <summary>
         /// The backing field for the ReferenceTemp property
         /// </summary>
         private float _referenceTemp;
+        
+        private static Lazy<ITypedElement> _referenceTempAttribute = new Lazy<ITypedElement>(RetrieveReferenceTempAttribute);
         
         /// <summary>
         /// The backing field for the HeatRecoveryFlag property
         /// </summary>
         private bool _heatRecoveryFlag;
         
+        private static Lazy<ITypedElement> _heatRecoveryFlagAttribute = new Lazy<ITypedElement>(RetrieveHeatRecoveryFlagAttribute);
+        
         /// <summary>
         /// The backing field for the CapabilityVersusFrequency property
         /// </summary>
         private float _capabilityVersusFrequency;
+        
+        private static Lazy<ITypedElement> _capabilityVersusFrequencyAttribute = new Lazy<ITypedElement>(RetrieveCapabilityVersusFrequencyAttribute);
         
         /// <summary>
         /// The backing field for the AuxPowerVersusVoltage property
         /// </summary>
         private float _auxPowerVersusVoltage;
         
+        private static Lazy<ITypedElement> _auxPowerVersusVoltageAttribute = new Lazy<ITypedElement>(RetrieveAuxPowerVersusVoltageAttribute);
+        
         /// <summary>
         /// The backing field for the TimeConstant property
         /// </summary>
         private float _timeConstant;
+        
+        private static Lazy<ITypedElement> _timeConstantAttribute = new Lazy<ITypedElement>(RetrieveTimeConstantAttribute);
+        
+        private static Lazy<ITypedElement> _heatRecoveryBoilerReference = new Lazy<ITypedElement>(RetrieveHeatRecoveryBoilerReference);
         
         /// <summary>
         /// The backing field for the HeatRecoveryBoiler property
         /// </summary>
         private IHeatRecoveryBoiler _heatRecoveryBoiler;
         
+        private static Lazy<ITypedElement> _cTTempActivePowerCurveReference = new Lazy<ITypedElement>(RetrieveCTTempActivePowerCurveReference);
+        
         /// <summary>
         /// The backing field for the CTTempActivePowerCurve property
         /// </summary>
         private ICTTempActivePowerCurve _cTTempActivePowerCurve;
+        
+        private static Lazy<ITypedElement> _airCompressorReference = new Lazy<ITypedElement>(RetrieveAirCompressorReference);
         
         /// <summary>
         /// The backing field for the AirCompressor property
@@ -120,10 +142,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.GenerationDynamics
                     float old = this._auxPowerVersusFrequency;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnAuxPowerVersusFrequencyChanging(e);
-                    this.OnPropertyChanging("AuxPowerVersusFrequency", e);
+                    this.OnPropertyChanging("AuxPowerVersusFrequency", e, _auxPowerVersusFrequencyAttribute);
                     this._auxPowerVersusFrequency = value;
                     this.OnAuxPowerVersusFrequencyChanged(e);
-                    this.OnPropertyChanged("AuxPowerVersusFrequency", e);
+                    this.OnPropertyChanged("AuxPowerVersusFrequency", e, _auxPowerVersusFrequencyAttribute);
                 }
             }
         }
@@ -146,10 +168,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.GenerationDynamics
                     float old = this._powerVariationByTemp;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnPowerVariationByTempChanging(e);
-                    this.OnPropertyChanging("PowerVariationByTemp", e);
+                    this.OnPropertyChanging("PowerVariationByTemp", e, _powerVariationByTempAttribute);
                     this._powerVariationByTemp = value;
                     this.OnPowerVariationByTempChanged(e);
-                    this.OnPropertyChanged("PowerVariationByTemp", e);
+                    this.OnPropertyChanged("PowerVariationByTemp", e, _powerVariationByTempAttribute);
                 }
             }
         }
@@ -172,10 +194,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.GenerationDynamics
                     float old = this._ambientTemp;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnAmbientTempChanging(e);
-                    this.OnPropertyChanging("AmbientTemp", e);
+                    this.OnPropertyChanging("AmbientTemp", e, _ambientTempAttribute);
                     this._ambientTemp = value;
                     this.OnAmbientTempChanged(e);
-                    this.OnPropertyChanged("AmbientTemp", e);
+                    this.OnPropertyChanged("AmbientTemp", e, _ambientTempAttribute);
                 }
             }
         }
@@ -198,10 +220,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.GenerationDynamics
                     float old = this._referenceTemp;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnReferenceTempChanging(e);
-                    this.OnPropertyChanging("ReferenceTemp", e);
+                    this.OnPropertyChanging("ReferenceTemp", e, _referenceTempAttribute);
                     this._referenceTemp = value;
                     this.OnReferenceTempChanged(e);
-                    this.OnPropertyChanged("ReferenceTemp", e);
+                    this.OnPropertyChanged("ReferenceTemp", e, _referenceTempAttribute);
                 }
             }
         }
@@ -224,10 +246,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.GenerationDynamics
                     bool old = this._heatRecoveryFlag;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnHeatRecoveryFlagChanging(e);
-                    this.OnPropertyChanging("HeatRecoveryFlag", e);
+                    this.OnPropertyChanging("HeatRecoveryFlag", e, _heatRecoveryFlagAttribute);
                     this._heatRecoveryFlag = value;
                     this.OnHeatRecoveryFlagChanged(e);
-                    this.OnPropertyChanged("HeatRecoveryFlag", e);
+                    this.OnPropertyChanged("HeatRecoveryFlag", e, _heatRecoveryFlagAttribute);
                 }
             }
         }
@@ -250,10 +272,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.GenerationDynamics
                     float old = this._capabilityVersusFrequency;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnCapabilityVersusFrequencyChanging(e);
-                    this.OnPropertyChanging("CapabilityVersusFrequency", e);
+                    this.OnPropertyChanging("CapabilityVersusFrequency", e, _capabilityVersusFrequencyAttribute);
                     this._capabilityVersusFrequency = value;
                     this.OnCapabilityVersusFrequencyChanged(e);
-                    this.OnPropertyChanged("CapabilityVersusFrequency", e);
+                    this.OnPropertyChanged("CapabilityVersusFrequency", e, _capabilityVersusFrequencyAttribute);
                 }
             }
         }
@@ -276,10 +298,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.GenerationDynamics
                     float old = this._auxPowerVersusVoltage;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnAuxPowerVersusVoltageChanging(e);
-                    this.OnPropertyChanging("AuxPowerVersusVoltage", e);
+                    this.OnPropertyChanging("AuxPowerVersusVoltage", e, _auxPowerVersusVoltageAttribute);
                     this._auxPowerVersusVoltage = value;
                     this.OnAuxPowerVersusVoltageChanged(e);
-                    this.OnPropertyChanged("AuxPowerVersusVoltage", e);
+                    this.OnPropertyChanged("AuxPowerVersusVoltage", e, _auxPowerVersusVoltageAttribute);
                 }
             }
         }
@@ -302,10 +324,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.GenerationDynamics
                     float old = this._timeConstant;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnTimeConstantChanging(e);
-                    this.OnPropertyChanging("TimeConstant", e);
+                    this.OnPropertyChanging("TimeConstant", e, _timeConstantAttribute);
                     this._timeConstant = value;
                     this.OnTimeConstantChanged(e);
-                    this.OnPropertyChanged("TimeConstant", e);
+                    this.OnPropertyChanged("TimeConstant", e, _timeConstantAttribute);
                 }
             }
         }
@@ -328,7 +350,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.GenerationDynamics
                     IHeatRecoveryBoiler old = this._heatRecoveryBoiler;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnHeatRecoveryBoilerChanging(e);
-                    this.OnPropertyChanging("HeatRecoveryBoiler", e);
+                    this.OnPropertyChanging("HeatRecoveryBoiler", e, _heatRecoveryBoilerReference);
                     this._heatRecoveryBoiler = value;
                     if ((old != null))
                     {
@@ -341,7 +363,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.GenerationDynamics
                         value.Deleted += this.OnResetHeatRecoveryBoiler;
                     }
                     this.OnHeatRecoveryBoilerChanged(e);
-                    this.OnPropertyChanged("HeatRecoveryBoiler", e);
+                    this.OnPropertyChanged("HeatRecoveryBoiler", e, _heatRecoveryBoilerReference);
                 }
             }
         }
@@ -364,7 +386,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.GenerationDynamics
                     ICTTempActivePowerCurve old = this._cTTempActivePowerCurve;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnCTTempActivePowerCurveChanging(e);
-                    this.OnPropertyChanging("CTTempActivePowerCurve", e);
+                    this.OnPropertyChanging("CTTempActivePowerCurve", e, _cTTempActivePowerCurveReference);
                     this._cTTempActivePowerCurve = value;
                     if ((old != null))
                     {
@@ -377,7 +399,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.GenerationDynamics
                         value.Deleted += this.OnResetCTTempActivePowerCurve;
                     }
                     this.OnCTTempActivePowerCurveChanged(e);
-                    this.OnPropertyChanged("CTTempActivePowerCurve", e);
+                    this.OnPropertyChanged("CTTempActivePowerCurve", e, _cTTempActivePowerCurveReference);
                 }
             }
         }
@@ -400,7 +422,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.GenerationDynamics
                     IAirCompressor old = this._airCompressor;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnAirCompressorChanging(e);
-                    this.OnPropertyChanging("AirCompressor", e);
+                    this.OnPropertyChanging("AirCompressor", e, _airCompressorReference);
                     this._airCompressor = value;
                     if ((old != null))
                     {
@@ -413,7 +435,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.GenerationDynamics
                         value.Deleted += this.OnResetAirCompressor;
                     }
                     this.OnAirCompressorChanged(e);
-                    this.OnPropertyChanged("AirCompressor", e);
+                    this.OnPropertyChanged("AirCompressor", e, _airCompressorReference);
                 }
             }
         }
@@ -555,6 +577,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.GenerationDynamics
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> AirCompressorChanged;
         
+        private static ITypedElement RetrieveAuxPowerVersusFrequencyAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(CombustionTurbine.ClassInstance)).Resolve("auxPowerVersusFrequency")));
+        }
+        
         /// <summary>
         /// Raises the AuxPowerVersusFrequencyChanging event
         /// </summary>
@@ -579,6 +606,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.GenerationDynamics
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrievePowerVariationByTempAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(CombustionTurbine.ClassInstance)).Resolve("powerVariationByTemp")));
         }
         
         /// <summary>
@@ -607,6 +639,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.GenerationDynamics
             }
         }
         
+        private static ITypedElement RetrieveAmbientTempAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(CombustionTurbine.ClassInstance)).Resolve("ambientTemp")));
+        }
+        
         /// <summary>
         /// Raises the AmbientTempChanging event
         /// </summary>
@@ -631,6 +668,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.GenerationDynamics
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveReferenceTempAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(CombustionTurbine.ClassInstance)).Resolve("referenceTemp")));
         }
         
         /// <summary>
@@ -659,6 +701,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.GenerationDynamics
             }
         }
         
+        private static ITypedElement RetrieveHeatRecoveryFlagAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(CombustionTurbine.ClassInstance)).Resolve("heatRecoveryFlag")));
+        }
+        
         /// <summary>
         /// Raises the HeatRecoveryFlagChanging event
         /// </summary>
@@ -683,6 +730,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.GenerationDynamics
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveCapabilityVersusFrequencyAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(CombustionTurbine.ClassInstance)).Resolve("capabilityVersusFrequency")));
         }
         
         /// <summary>
@@ -711,6 +763,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.GenerationDynamics
             }
         }
         
+        private static ITypedElement RetrieveAuxPowerVersusVoltageAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(CombustionTurbine.ClassInstance)).Resolve("auxPowerVersusVoltage")));
+        }
+        
         /// <summary>
         /// Raises the AuxPowerVersusVoltageChanging event
         /// </summary>
@@ -737,6 +794,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.GenerationDynamics
             }
         }
         
+        private static ITypedElement RetrieveTimeConstantAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(CombustionTurbine.ClassInstance)).Resolve("timeConstant")));
+        }
+        
         /// <summary>
         /// Raises the TimeConstantChanging event
         /// </summary>
@@ -761,6 +823,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.GenerationDynamics
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveHeatRecoveryBoilerReference()
+        {
+            return ((ITypedElement)(((ModelElement)(CombustionTurbine.ClassInstance)).Resolve("HeatRecoveryBoiler")));
         }
         
         /// <summary>
@@ -799,6 +866,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.GenerationDynamics
             this.HeatRecoveryBoiler = null;
         }
         
+        private static ITypedElement RetrieveCTTempActivePowerCurveReference()
+        {
+            return ((ITypedElement)(((ModelElement)(CombustionTurbine.ClassInstance)).Resolve("CTTempActivePowerCurve")));
+        }
+        
         /// <summary>
         /// Raises the CTTempActivePowerCurveChanging event
         /// </summary>
@@ -833,6 +905,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.GenerationDynamics
         private void OnResetCTTempActivePowerCurve(object sender, System.EventArgs eventArgs)
         {
             this.CTTempActivePowerCurve = null;
+        }
+        
+        private static ITypedElement RetrieveAirCompressorReference()
+        {
+            return ((ITypedElement)(((ModelElement)(CombustionTurbine.ClassInstance)).Resolve("AirCompressor")));
         }
         
         /// <summary>
@@ -1227,7 +1304,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.GenerationDynamics
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public AuxPowerVersusFrequencyProxy(ICombustionTurbine modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "auxPowerVersusFrequency")
             {
             }
             
@@ -1245,24 +1322,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.GenerationDynamics
                     this.ModelElement.AuxPowerVersusFrequency = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.AuxPowerVersusFrequencyChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.AuxPowerVersusFrequencyChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1276,7 +1335,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.GenerationDynamics
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public PowerVariationByTempProxy(ICombustionTurbine modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "powerVariationByTemp")
             {
             }
             
@@ -1294,24 +1353,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.GenerationDynamics
                     this.ModelElement.PowerVariationByTemp = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.PowerVariationByTempChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.PowerVariationByTempChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1325,7 +1366,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.GenerationDynamics
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public AmbientTempProxy(ICombustionTurbine modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "ambientTemp")
             {
             }
             
@@ -1343,24 +1384,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.GenerationDynamics
                     this.ModelElement.AmbientTemp = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.AmbientTempChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.AmbientTempChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1374,7 +1397,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.GenerationDynamics
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public ReferenceTempProxy(ICombustionTurbine modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "referenceTemp")
             {
             }
             
@@ -1392,24 +1415,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.GenerationDynamics
                     this.ModelElement.ReferenceTemp = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ReferenceTempChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ReferenceTempChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1423,7 +1428,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.GenerationDynamics
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public HeatRecoveryFlagProxy(ICombustionTurbine modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "heatRecoveryFlag")
             {
             }
             
@@ -1441,24 +1446,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.GenerationDynamics
                     this.ModelElement.HeatRecoveryFlag = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.HeatRecoveryFlagChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.HeatRecoveryFlagChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1472,7 +1459,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.GenerationDynamics
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public CapabilityVersusFrequencyProxy(ICombustionTurbine modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "capabilityVersusFrequency")
             {
             }
             
@@ -1490,24 +1477,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.GenerationDynamics
                     this.ModelElement.CapabilityVersusFrequency = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.CapabilityVersusFrequencyChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.CapabilityVersusFrequencyChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1521,7 +1490,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.GenerationDynamics
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public AuxPowerVersusVoltageProxy(ICombustionTurbine modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "auxPowerVersusVoltage")
             {
             }
             
@@ -1539,24 +1508,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.GenerationDynamics
                     this.ModelElement.AuxPowerVersusVoltage = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.AuxPowerVersusVoltageChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.AuxPowerVersusVoltageChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1570,7 +1521,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.GenerationDynamics
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public TimeConstantProxy(ICombustionTurbine modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "timeConstant")
             {
             }
             
@@ -1588,24 +1539,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.GenerationDynamics
                     this.ModelElement.TimeConstant = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.TimeConstantChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.TimeConstantChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1619,7 +1552,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.GenerationDynamics
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public HeatRecoveryBoilerProxy(ICombustionTurbine modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "HeatRecoveryBoiler")
             {
             }
             
@@ -1637,24 +1570,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.GenerationDynamics
                     this.ModelElement.HeatRecoveryBoiler = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.HeatRecoveryBoilerChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.HeatRecoveryBoilerChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1668,7 +1583,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.GenerationDynamics
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public CTTempActivePowerCurveProxy(ICombustionTurbine modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "CTTempActivePowerCurve")
             {
             }
             
@@ -1686,24 +1601,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.GenerationDynamics
                     this.ModelElement.CTTempActivePowerCurve = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.CTTempActivePowerCurveChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.CTTempActivePowerCurveChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1717,7 +1614,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.GenerationDynamics
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public AirCompressorProxy(ICombustionTurbine modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "AirCompressor")
             {
             }
             
@@ -1734,24 +1631,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.GenerationDynamics
                 {
                     this.ModelElement.AirCompressor = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.AirCompressorChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.AirCompressorChanged -= handler;
             }
         }
     }

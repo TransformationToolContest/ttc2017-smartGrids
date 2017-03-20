@@ -46,7 +46,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61970/Generation/Production/HydroPu" +
         "mp")]
     [DebuggerDisplayAttribute("HydroPump {UUID}")]
-    public class HydroPump : PowerSystemResource, IHydroPump, IModelElement
+    public partial class HydroPump : PowerSystemResource, IHydroPump, IModelElement
     {
         
         /// <summary>
@@ -54,30 +54,44 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
         /// </summary>
         private float _pumpDischAtMinHead;
         
+        private static Lazy<ITypedElement> _pumpDischAtMinHeadAttribute = new Lazy<ITypedElement>(RetrievePumpDischAtMinHeadAttribute);
+        
         /// <summary>
         /// The backing field for the PumpPowerAtMinHead property
         /// </summary>
         private float _pumpPowerAtMinHead;
+        
+        private static Lazy<ITypedElement> _pumpPowerAtMinHeadAttribute = new Lazy<ITypedElement>(RetrievePumpPowerAtMinHeadAttribute);
         
         /// <summary>
         /// The backing field for the PumpPowerAtMaxHead property
         /// </summary>
         private float _pumpPowerAtMaxHead;
         
+        private static Lazy<ITypedElement> _pumpPowerAtMaxHeadAttribute = new Lazy<ITypedElement>(RetrievePumpPowerAtMaxHeadAttribute);
+        
         /// <summary>
         /// The backing field for the PumpDischAtMaxHead property
         /// </summary>
         private float _pumpDischAtMaxHead;
+        
+        private static Lazy<ITypedElement> _pumpDischAtMaxHeadAttribute = new Lazy<ITypedElement>(RetrievePumpDischAtMaxHeadAttribute);
+        
+        private static Lazy<ITypedElement> _hydroPowerPlantReference = new Lazy<ITypedElement>(RetrieveHydroPowerPlantReference);
         
         /// <summary>
         /// The backing field for the HydroPowerPlant property
         /// </summary>
         private IHydroPowerPlant _hydroPowerPlant;
         
+        private static Lazy<ITypedElement> _synchronousMachineReference = new Lazy<ITypedElement>(RetrieveSynchronousMachineReference);
+        
         /// <summary>
         /// The backing field for the SynchronousMachine property
         /// </summary>
         private ISynchronousMachine _synchronousMachine;
+        
+        private static Lazy<ITypedElement> _hydroPumpOpScheduleReference = new Lazy<ITypedElement>(RetrieveHydroPumpOpScheduleReference);
         
         /// <summary>
         /// The backing field for the HydroPumpOpSchedule property
@@ -104,10 +118,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
                     float old = this._pumpDischAtMinHead;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnPumpDischAtMinHeadChanging(e);
-                    this.OnPropertyChanging("PumpDischAtMinHead", e);
+                    this.OnPropertyChanging("PumpDischAtMinHead", e, _pumpDischAtMinHeadAttribute);
                     this._pumpDischAtMinHead = value;
                     this.OnPumpDischAtMinHeadChanged(e);
-                    this.OnPropertyChanged("PumpDischAtMinHead", e);
+                    this.OnPropertyChanged("PumpDischAtMinHead", e, _pumpDischAtMinHeadAttribute);
                 }
             }
         }
@@ -130,10 +144,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
                     float old = this._pumpPowerAtMinHead;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnPumpPowerAtMinHeadChanging(e);
-                    this.OnPropertyChanging("PumpPowerAtMinHead", e);
+                    this.OnPropertyChanging("PumpPowerAtMinHead", e, _pumpPowerAtMinHeadAttribute);
                     this._pumpPowerAtMinHead = value;
                     this.OnPumpPowerAtMinHeadChanged(e);
-                    this.OnPropertyChanged("PumpPowerAtMinHead", e);
+                    this.OnPropertyChanged("PumpPowerAtMinHead", e, _pumpPowerAtMinHeadAttribute);
                 }
             }
         }
@@ -156,10 +170,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
                     float old = this._pumpPowerAtMaxHead;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnPumpPowerAtMaxHeadChanging(e);
-                    this.OnPropertyChanging("PumpPowerAtMaxHead", e);
+                    this.OnPropertyChanging("PumpPowerAtMaxHead", e, _pumpPowerAtMaxHeadAttribute);
                     this._pumpPowerAtMaxHead = value;
                     this.OnPumpPowerAtMaxHeadChanged(e);
-                    this.OnPropertyChanged("PumpPowerAtMaxHead", e);
+                    this.OnPropertyChanged("PumpPowerAtMaxHead", e, _pumpPowerAtMaxHeadAttribute);
                 }
             }
         }
@@ -182,10 +196,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
                     float old = this._pumpDischAtMaxHead;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnPumpDischAtMaxHeadChanging(e);
-                    this.OnPropertyChanging("PumpDischAtMaxHead", e);
+                    this.OnPropertyChanging("PumpDischAtMaxHead", e, _pumpDischAtMaxHeadAttribute);
                     this._pumpDischAtMaxHead = value;
                     this.OnPumpDischAtMaxHeadChanged(e);
-                    this.OnPropertyChanged("PumpDischAtMaxHead", e);
+                    this.OnPropertyChanged("PumpDischAtMaxHead", e, _pumpDischAtMaxHeadAttribute);
                 }
             }
         }
@@ -208,7 +222,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
                     IHydroPowerPlant old = this._hydroPowerPlant;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnHydroPowerPlantChanging(e);
-                    this.OnPropertyChanging("HydroPowerPlant", e);
+                    this.OnPropertyChanging("HydroPowerPlant", e, _hydroPowerPlantReference);
                     this._hydroPowerPlant = value;
                     if ((old != null))
                     {
@@ -221,7 +235,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
                         value.Deleted += this.OnResetHydroPowerPlant;
                     }
                     this.OnHydroPowerPlantChanged(e);
-                    this.OnPropertyChanged("HydroPowerPlant", e);
+                    this.OnPropertyChanged("HydroPowerPlant", e, _hydroPowerPlantReference);
                 }
             }
         }
@@ -244,7 +258,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
                     ISynchronousMachine old = this._synchronousMachine;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnSynchronousMachineChanging(e);
-                    this.OnPropertyChanging("SynchronousMachine", e);
+                    this.OnPropertyChanging("SynchronousMachine", e, _synchronousMachineReference);
                     this._synchronousMachine = value;
                     if ((old != null))
                     {
@@ -257,7 +271,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
                         value.Deleted += this.OnResetSynchronousMachine;
                     }
                     this.OnSynchronousMachineChanged(e);
-                    this.OnPropertyChanged("SynchronousMachine", e);
+                    this.OnPropertyChanged("SynchronousMachine", e, _synchronousMachineReference);
                 }
             }
         }
@@ -280,7 +294,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
                     IHydroPumpOpSchedule old = this._hydroPumpOpSchedule;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnHydroPumpOpScheduleChanging(e);
-                    this.OnPropertyChanging("HydroPumpOpSchedule", e);
+                    this.OnPropertyChanging("HydroPumpOpSchedule", e, _hydroPumpOpScheduleReference);
                     this._hydroPumpOpSchedule = value;
                     if ((old != null))
                     {
@@ -293,7 +307,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
                         value.Deleted += this.OnResetHydroPumpOpSchedule;
                     }
                     this.OnHydroPumpOpScheduleChanged(e);
-                    this.OnPropertyChanged("HydroPumpOpSchedule", e);
+                    this.OnPropertyChanged("HydroPumpOpSchedule", e, _hydroPumpOpScheduleReference);
                 }
             }
         }
@@ -395,6 +409,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> HydroPumpOpScheduleChanged;
         
+        private static ITypedElement RetrievePumpDischAtMinHeadAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(HydroPump.ClassInstance)).Resolve("pumpDischAtMinHead")));
+        }
+        
         /// <summary>
         /// Raises the PumpDischAtMinHeadChanging event
         /// </summary>
@@ -419,6 +438,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrievePumpPowerAtMinHeadAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(HydroPump.ClassInstance)).Resolve("pumpPowerAtMinHead")));
         }
         
         /// <summary>
@@ -447,6 +471,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
             }
         }
         
+        private static ITypedElement RetrievePumpPowerAtMaxHeadAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(HydroPump.ClassInstance)).Resolve("pumpPowerAtMaxHead")));
+        }
+        
         /// <summary>
         /// Raises the PumpPowerAtMaxHeadChanging event
         /// </summary>
@@ -473,6 +502,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
             }
         }
         
+        private static ITypedElement RetrievePumpDischAtMaxHeadAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(HydroPump.ClassInstance)).Resolve("pumpDischAtMaxHead")));
+        }
+        
         /// <summary>
         /// Raises the PumpDischAtMaxHeadChanging event
         /// </summary>
@@ -497,6 +531,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveHydroPowerPlantReference()
+        {
+            return ((ITypedElement)(((ModelElement)(HydroPump.ClassInstance)).Resolve("HydroPowerPlant")));
         }
         
         /// <summary>
@@ -535,6 +574,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
             this.HydroPowerPlant = null;
         }
         
+        private static ITypedElement RetrieveSynchronousMachineReference()
+        {
+            return ((ITypedElement)(((ModelElement)(HydroPump.ClassInstance)).Resolve("SynchronousMachine")));
+        }
+        
         /// <summary>
         /// Raises the SynchronousMachineChanging event
         /// </summary>
@@ -569,6 +613,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
         private void OnResetSynchronousMachine(object sender, System.EventArgs eventArgs)
         {
             this.SynchronousMachine = null;
+        }
+        
+        private static ITypedElement RetrieveHydroPumpOpScheduleReference()
+        {
+            return ((ITypedElement)(((ModelElement)(HydroPump.ClassInstance)).Resolve("HydroPumpOpSchedule")));
         }
         
         /// <summary>
@@ -927,7 +976,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public PumpDischAtMinHeadProxy(IHydroPump modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "pumpDischAtMinHead")
             {
             }
             
@@ -945,24 +994,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
                     this.ModelElement.PumpDischAtMinHead = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.PumpDischAtMinHeadChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.PumpDischAtMinHeadChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -976,7 +1007,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public PumpPowerAtMinHeadProxy(IHydroPump modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "pumpPowerAtMinHead")
             {
             }
             
@@ -994,24 +1025,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
                     this.ModelElement.PumpPowerAtMinHead = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.PumpPowerAtMinHeadChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.PumpPowerAtMinHeadChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1025,7 +1038,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public PumpPowerAtMaxHeadProxy(IHydroPump modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "pumpPowerAtMaxHead")
             {
             }
             
@@ -1043,24 +1056,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
                     this.ModelElement.PumpPowerAtMaxHead = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.PumpPowerAtMaxHeadChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.PumpPowerAtMaxHeadChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1074,7 +1069,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public PumpDischAtMaxHeadProxy(IHydroPump modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "pumpDischAtMaxHead")
             {
             }
             
@@ -1092,24 +1087,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
                     this.ModelElement.PumpDischAtMaxHead = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.PumpDischAtMaxHeadChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.PumpDischAtMaxHeadChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1123,7 +1100,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public HydroPowerPlantProxy(IHydroPump modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "HydroPowerPlant")
             {
             }
             
@@ -1141,24 +1118,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
                     this.ModelElement.HydroPowerPlant = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.HydroPowerPlantChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.HydroPowerPlantChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1172,7 +1131,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public SynchronousMachineProxy(IHydroPump modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "SynchronousMachine")
             {
             }
             
@@ -1190,24 +1149,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
                     this.ModelElement.SynchronousMachine = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.SynchronousMachineChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.SynchronousMachineChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1221,7 +1162,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public HydroPumpOpScheduleProxy(IHydroPump modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "HydroPumpOpSchedule")
             {
             }
             
@@ -1238,24 +1179,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
                 {
                     this.ModelElement.HydroPumpOpSchedule = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.HydroPumpOpScheduleChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.HydroPumpOpScheduleChanged -= handler;
             }
         }
     }

@@ -40,7 +40,7 @@ namespace TTC2017.SmartGrids.COSEM.InterfaceClasses
     [XmlNamespacePrefixAttribute("inter")]
     [ModelRepresentationClassAttribute("http://www.transformation-tool-contest.eu/2017/smartGrids/cosem#//InterfaceClasse" +
         "s/Auto_answer")]
-    public class Auto_answer : Base, IAuto_answer, IModelElement
+    public partial class Auto_answer : Base, IAuto_answer, IModelElement
     {
         
         private static IClass _classInstance;

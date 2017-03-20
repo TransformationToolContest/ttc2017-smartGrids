@@ -47,7 +47,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Customers
     [XmlNamespacePrefixAttribute("cimCustomers")]
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61968/Customers/ServiceCategory")]
     [DebuggerDisplayAttribute("ServiceCategory {UUID}")]
-    public class ServiceCategory : IdentifiedObject, IServiceCategory, IModelElement
+    public partial class ServiceCategory : IdentifiedObject, IServiceCategory, IModelElement
     {
         
         /// <summary>
@@ -55,20 +55,30 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Customers
         /// </summary>
         private Nullable<ServiceKind> _kind;
         
+        private static Lazy<ITypedElement> _kindAttribute = new Lazy<ITypedElement>(RetrieveKindAttribute);
+        
+        private static Lazy<ITypedElement> _sPAccountingFunctionsReference = new Lazy<ITypedElement>(RetrieveSPAccountingFunctionsReference);
+        
         /// <summary>
         /// The backing field for the SPAccountingFunctions property
         /// </summary>
         private ServiceCategorySPAccountingFunctionsCollection _sPAccountingFunctions;
+        
+        private static Lazy<ITypedElement> _serviceDeliveryPointsReference = new Lazy<ITypedElement>(RetrieveServiceDeliveryPointsReference);
         
         /// <summary>
         /// The backing field for the ServiceDeliveryPoints property
         /// </summary>
         private ServiceCategoryServiceDeliveryPointsCollection _serviceDeliveryPoints;
         
+        private static Lazy<ITypedElement> _customerAgreementsReference = new Lazy<ITypedElement>(RetrieveCustomerAgreementsReference);
+        
         /// <summary>
         /// The backing field for the CustomerAgreements property
         /// </summary>
         private ServiceCategoryCustomerAgreementsCollection _customerAgreements;
+        
+        private static Lazy<ITypedElement> _pricingStructuresReference = new Lazy<ITypedElement>(RetrievePricingStructuresReference);
         
         /// <summary>
         /// The backing field for the PricingStructures property
@@ -111,10 +121,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Customers
                     Nullable<ServiceKind> old = this._kind;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnKindChanging(e);
-                    this.OnPropertyChanging("Kind", e);
+                    this.OnPropertyChanging("Kind", e, _kindAttribute);
                     this._kind = value;
                     this.OnKindChanged(e);
-                    this.OnPropertyChanged("Kind", e);
+                    this.OnPropertyChanged("Kind", e, _kindAttribute);
                 }
             }
         }
@@ -215,6 +225,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Customers
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> KindChanged;
         
+        private static ITypedElement RetrieveKindAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(ServiceCategory.ClassInstance)).Resolve("kind")));
+        }
+        
         /// <summary>
         /// Raises the KindChanging event
         /// </summary>
@@ -241,6 +256,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Customers
             }
         }
         
+        private static ITypedElement RetrieveSPAccountingFunctionsReference()
+        {
+            return ((ITypedElement)(((ModelElement)(ServiceCategory.ClassInstance)).Resolve("SPAccountingFunctions")));
+        }
+        
         /// <summary>
         /// Forwards CollectionChanging notifications for the SPAccountingFunctions property to the parent model element
         /// </summary>
@@ -248,7 +268,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Customers
         /// <param name="e">The original event data</param>
         private void SPAccountingFunctionsCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("SPAccountingFunctions", e);
+            this.OnCollectionChanging("SPAccountingFunctions", e, _sPAccountingFunctionsReference);
         }
         
         /// <summary>
@@ -258,7 +278,12 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Customers
         /// <param name="e">The original event data</param>
         private void SPAccountingFunctionsCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("SPAccountingFunctions", e);
+            this.OnCollectionChanged("SPAccountingFunctions", e, _sPAccountingFunctionsReference);
+        }
+        
+        private static ITypedElement RetrieveServiceDeliveryPointsReference()
+        {
+            return ((ITypedElement)(((ModelElement)(ServiceCategory.ClassInstance)).Resolve("ServiceDeliveryPoints")));
         }
         
         /// <summary>
@@ -268,7 +293,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Customers
         /// <param name="e">The original event data</param>
         private void ServiceDeliveryPointsCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("ServiceDeliveryPoints", e);
+            this.OnCollectionChanging("ServiceDeliveryPoints", e, _serviceDeliveryPointsReference);
         }
         
         /// <summary>
@@ -278,7 +303,12 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Customers
         /// <param name="e">The original event data</param>
         private void ServiceDeliveryPointsCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("ServiceDeliveryPoints", e);
+            this.OnCollectionChanged("ServiceDeliveryPoints", e, _serviceDeliveryPointsReference);
+        }
+        
+        private static ITypedElement RetrieveCustomerAgreementsReference()
+        {
+            return ((ITypedElement)(((ModelElement)(ServiceCategory.ClassInstance)).Resolve("CustomerAgreements")));
         }
         
         /// <summary>
@@ -288,7 +318,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Customers
         /// <param name="e">The original event data</param>
         private void CustomerAgreementsCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("CustomerAgreements", e);
+            this.OnCollectionChanging("CustomerAgreements", e, _customerAgreementsReference);
         }
         
         /// <summary>
@@ -298,7 +328,12 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Customers
         /// <param name="e">The original event data</param>
         private void CustomerAgreementsCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("CustomerAgreements", e);
+            this.OnCollectionChanged("CustomerAgreements", e, _customerAgreementsReference);
+        }
+        
+        private static ITypedElement RetrievePricingStructuresReference()
+        {
+            return ((ITypedElement)(((ModelElement)(ServiceCategory.ClassInstance)).Resolve("PricingStructures")));
         }
         
         /// <summary>
@@ -308,7 +343,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Customers
         /// <param name="e">The original event data</param>
         private void PricingStructuresCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("PricingStructures", e);
+            this.OnCollectionChanging("PricingStructures", e, _pricingStructuresReference);
         }
         
         /// <summary>
@@ -318,7 +353,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Customers
         /// <param name="e">The original event data</param>
         private void PricingStructuresCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("PricingStructures", e);
+            this.OnCollectionChanged("PricingStructures", e, _pricingStructuresReference);
         }
         
         /// <summary>
@@ -626,7 +661,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Customers
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public KindProxy(IServiceCategory modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "kind")
             {
             }
             
@@ -643,24 +678,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Customers
                 {
                     this.ModelElement.Kind = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.KindChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.KindChanged -= handler;
             }
         }
     }

@@ -53,7 +53,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61970/Informative/InfAssets/Failure" +
         "Event")]
     [DebuggerDisplayAttribute("FailureEvent {UUID}")]
-    public class FailureEvent : ActivityRecord, IFailureEvent, IModelElement
+    public partial class FailureEvent : ActivityRecord, IFailureEvent, IModelElement
     {
         
         /// <summary>
@@ -61,20 +61,28 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
         /// </summary>
         private Nullable<FailureIsolationMethodKind> _failureIsolationMethod;
         
+        private static Lazy<ITypedElement> _failureIsolationMethodAttribute = new Lazy<ITypedElement>(RetrieveFailureIsolationMethodAttribute);
+        
         /// <summary>
         /// The backing field for the CorporateCode property
         /// </summary>
         private string _corporateCode;
+        
+        private static Lazy<ITypedElement> _corporateCodeAttribute = new Lazy<ITypedElement>(RetrieveCorporateCodeAttribute);
         
         /// <summary>
         /// The backing field for the FaultLocatingMethod property
         /// </summary>
         private string _faultLocatingMethod;
         
+        private static Lazy<ITypedElement> _faultLocatingMethodAttribute = new Lazy<ITypedElement>(RetrieveFaultLocatingMethodAttribute);
+        
         /// <summary>
         /// The backing field for the Location property
         /// </summary>
         private string _location;
+        
+        private static Lazy<ITypedElement> _locationAttribute = new Lazy<ITypedElement>(RetrieveLocationAttribute);
         
         private static IClass _classInstance;
         
@@ -96,10 +104,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
                     Nullable<FailureIsolationMethodKind> old = this._failureIsolationMethod;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnFailureIsolationMethodChanging(e);
-                    this.OnPropertyChanging("FailureIsolationMethod", e);
+                    this.OnPropertyChanging("FailureIsolationMethod", e, _failureIsolationMethodAttribute);
                     this._failureIsolationMethod = value;
                     this.OnFailureIsolationMethodChanged(e);
-                    this.OnPropertyChanged("FailureIsolationMethod", e);
+                    this.OnPropertyChanged("FailureIsolationMethod", e, _failureIsolationMethodAttribute);
                 }
             }
         }
@@ -122,10 +130,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
                     string old = this._corporateCode;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnCorporateCodeChanging(e);
-                    this.OnPropertyChanging("CorporateCode", e);
+                    this.OnPropertyChanging("CorporateCode", e, _corporateCodeAttribute);
                     this._corporateCode = value;
                     this.OnCorporateCodeChanged(e);
-                    this.OnPropertyChanged("CorporateCode", e);
+                    this.OnPropertyChanged("CorporateCode", e, _corporateCodeAttribute);
                 }
             }
         }
@@ -148,10 +156,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
                     string old = this._faultLocatingMethod;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnFaultLocatingMethodChanging(e);
-                    this.OnPropertyChanging("FaultLocatingMethod", e);
+                    this.OnPropertyChanging("FaultLocatingMethod", e, _faultLocatingMethodAttribute);
                     this._faultLocatingMethod = value;
                     this.OnFaultLocatingMethodChanged(e);
-                    this.OnPropertyChanged("FaultLocatingMethod", e);
+                    this.OnPropertyChanged("FaultLocatingMethod", e, _faultLocatingMethodAttribute);
                 }
             }
         }
@@ -174,10 +182,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
                     string old = this._location;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnLocationChanging(e);
-                    this.OnPropertyChanging("Location", e);
+                    this.OnPropertyChanging("Location", e, _locationAttribute);
                     this._location = value;
                     this.OnLocationChanged(e);
-                    this.OnPropertyChanged("Location", e);
+                    this.OnPropertyChanged("Location", e, _locationAttribute);
                 }
             }
         }
@@ -238,6 +246,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> LocationChanged;
         
+        private static ITypedElement RetrieveFailureIsolationMethodAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(FailureEvent.ClassInstance)).Resolve("failureIsolationMethod")));
+        }
+        
         /// <summary>
         /// Raises the FailureIsolationMethodChanging event
         /// </summary>
@@ -262,6 +275,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveCorporateCodeAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(FailureEvent.ClassInstance)).Resolve("corporateCode")));
         }
         
         /// <summary>
@@ -290,6 +308,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
             }
         }
         
+        private static ITypedElement RetrieveFaultLocatingMethodAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(FailureEvent.ClassInstance)).Resolve("faultLocatingMethod")));
+        }
+        
         /// <summary>
         /// Raises the FaultLocatingMethodChanging event
         /// </summary>
@@ -314,6 +337,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveLocationAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(FailureEvent.ClassInstance)).Resolve("location")));
         }
         
         /// <summary>
@@ -423,7 +451,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public FailureIsolationMethodProxy(IFailureEvent modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "failureIsolationMethod")
             {
             }
             
@@ -441,24 +469,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
                     this.ModelElement.FailureIsolationMethod = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.FailureIsolationMethodChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.FailureIsolationMethodChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -472,7 +482,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public CorporateCodeProxy(IFailureEvent modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "corporateCode")
             {
             }
             
@@ -490,24 +500,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
                     this.ModelElement.CorporateCode = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.CorporateCodeChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.CorporateCodeChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -521,7 +513,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public FaultLocatingMethodProxy(IFailureEvent modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "faultLocatingMethod")
             {
             }
             
@@ -539,24 +531,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
                     this.ModelElement.FaultLocatingMethod = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.FaultLocatingMethodChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.FaultLocatingMethodChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -570,7 +544,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public LocationProxy(IFailureEvent modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "location")
             {
             }
             
@@ -587,24 +561,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
                 {
                     this.ModelElement.Location = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.LocationChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.LocationChanged -= handler;
             }
         }
     }

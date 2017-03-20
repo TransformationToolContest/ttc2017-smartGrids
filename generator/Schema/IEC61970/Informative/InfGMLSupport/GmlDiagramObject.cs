@@ -45,48 +45,66 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfGMLSupport
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61970/Informative/InfGMLSupport/Gml" +
         "DiagramObject")]
     [DebuggerDisplayAttribute("GmlDiagramObject {UUID}")]
-    public class GmlDiagramObject : IdentifiedObject, IGmlDiagramObject, IModelElement
+    public partial class GmlDiagramObject : IdentifiedObject, IGmlDiagramObject, IModelElement
     {
+        
+        private static Lazy<ITypedElement> _gmlRasterSymbolsReference = new Lazy<ITypedElement>(RetrieveGmlRasterSymbolsReference);
         
         /// <summary>
         /// The backing field for the GmlRasterSymbols property
         /// </summary>
         private GmlDiagramObjectGmlRasterSymbolsCollection _gmlRasterSymbols;
         
+        private static Lazy<ITypedElement> _diagramsReference = new Lazy<ITypedElement>(RetrieveDiagramsReference);
+        
         /// <summary>
         /// The backing field for the Diagrams property
         /// </summary>
         private GmlDiagramObjectDiagramsCollection _diagrams;
+        
+        private static Lazy<ITypedElement> _gmlPointSymbolsReference = new Lazy<ITypedElement>(RetrieveGmlPointSymbolsReference);
         
         /// <summary>
         /// The backing field for the GmlPointSymbols property
         /// </summary>
         private GmlDiagramObjectGmlPointSymbolsCollection _gmlPointSymbols;
         
+        private static Lazy<ITypedElement> _gmlPolygonSymbolsReference = new Lazy<ITypedElement>(RetrieveGmlPolygonSymbolsReference);
+        
         /// <summary>
         /// The backing field for the GmlPolygonSymbols property
         /// </summary>
         private GmlDiagramObjectGmlPolygonSymbolsCollection _gmlPolygonSymbols;
+        
+        private static Lazy<ITypedElement> _gmlLineSymbolsReference = new Lazy<ITypedElement>(RetrieveGmlLineSymbolsReference);
         
         /// <summary>
         /// The backing field for the GmlLineSymbols property
         /// </summary>
         private GmlDiagramObjectGmlLineSymbolsCollection _gmlLineSymbols;
         
+        private static Lazy<ITypedElement> _gmlTextSymbolsReference = new Lazy<ITypedElement>(RetrieveGmlTextSymbolsReference);
+        
         /// <summary>
         /// The backing field for the GmlTextSymbols property
         /// </summary>
         private GmlDiagramObjectGmlTextSymbolsCollection _gmlTextSymbols;
+        
+        private static Lazy<ITypedElement> _coordinateSystemsReference = new Lazy<ITypedElement>(RetrieveCoordinateSystemsReference);
         
         /// <summary>
         /// The backing field for the CoordinateSystems property
         /// </summary>
         private GmlDiagramObjectCoordinateSystemsCollection _coordinateSystems;
         
+        private static Lazy<ITypedElement> _gmlObservatinsReference = new Lazy<ITypedElement>(RetrieveGmlObservatinsReference);
+        
         /// <summary>
         /// The backing field for the GmlObservatins property
         /// </summary>
         private GmlDiagramObjectGmlObservatinsCollection _gmlObservatins;
+        
+        private static Lazy<ITypedElement> _gmlSelectorsReference = new Lazy<ITypedElement>(RetrieveGmlSelectorsReference);
         
         /// <summary>
         /// The backing field for the GmlSelectors property
@@ -288,6 +306,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfGMLSupport
             }
         }
         
+        private static ITypedElement RetrieveGmlRasterSymbolsReference()
+        {
+            return ((ITypedElement)(((ModelElement)(GmlDiagramObject.ClassInstance)).Resolve("GmlRasterSymbols")));
+        }
+        
         /// <summary>
         /// Forwards CollectionChanging notifications for the GmlRasterSymbols property to the parent model element
         /// </summary>
@@ -295,7 +318,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfGMLSupport
         /// <param name="e">The original event data</param>
         private void GmlRasterSymbolsCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("GmlRasterSymbols", e);
+            this.OnCollectionChanging("GmlRasterSymbols", e, _gmlRasterSymbolsReference);
         }
         
         /// <summary>
@@ -305,7 +328,12 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfGMLSupport
         /// <param name="e">The original event data</param>
         private void GmlRasterSymbolsCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("GmlRasterSymbols", e);
+            this.OnCollectionChanged("GmlRasterSymbols", e, _gmlRasterSymbolsReference);
+        }
+        
+        private static ITypedElement RetrieveDiagramsReference()
+        {
+            return ((ITypedElement)(((ModelElement)(GmlDiagramObject.ClassInstance)).Resolve("Diagrams")));
         }
         
         /// <summary>
@@ -315,7 +343,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfGMLSupport
         /// <param name="e">The original event data</param>
         private void DiagramsCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("Diagrams", e);
+            this.OnCollectionChanging("Diagrams", e, _diagramsReference);
         }
         
         /// <summary>
@@ -325,7 +353,12 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfGMLSupport
         /// <param name="e">The original event data</param>
         private void DiagramsCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("Diagrams", e);
+            this.OnCollectionChanged("Diagrams", e, _diagramsReference);
+        }
+        
+        private static ITypedElement RetrieveGmlPointSymbolsReference()
+        {
+            return ((ITypedElement)(((ModelElement)(GmlDiagramObject.ClassInstance)).Resolve("GmlPointSymbols")));
         }
         
         /// <summary>
@@ -335,7 +368,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfGMLSupport
         /// <param name="e">The original event data</param>
         private void GmlPointSymbolsCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("GmlPointSymbols", e);
+            this.OnCollectionChanging("GmlPointSymbols", e, _gmlPointSymbolsReference);
         }
         
         /// <summary>
@@ -345,7 +378,12 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfGMLSupport
         /// <param name="e">The original event data</param>
         private void GmlPointSymbolsCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("GmlPointSymbols", e);
+            this.OnCollectionChanged("GmlPointSymbols", e, _gmlPointSymbolsReference);
+        }
+        
+        private static ITypedElement RetrieveGmlPolygonSymbolsReference()
+        {
+            return ((ITypedElement)(((ModelElement)(GmlDiagramObject.ClassInstance)).Resolve("GmlPolygonSymbols")));
         }
         
         /// <summary>
@@ -355,7 +393,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfGMLSupport
         /// <param name="e">The original event data</param>
         private void GmlPolygonSymbolsCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("GmlPolygonSymbols", e);
+            this.OnCollectionChanging("GmlPolygonSymbols", e, _gmlPolygonSymbolsReference);
         }
         
         /// <summary>
@@ -365,7 +403,12 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfGMLSupport
         /// <param name="e">The original event data</param>
         private void GmlPolygonSymbolsCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("GmlPolygonSymbols", e);
+            this.OnCollectionChanged("GmlPolygonSymbols", e, _gmlPolygonSymbolsReference);
+        }
+        
+        private static ITypedElement RetrieveGmlLineSymbolsReference()
+        {
+            return ((ITypedElement)(((ModelElement)(GmlDiagramObject.ClassInstance)).Resolve("GmlLineSymbols")));
         }
         
         /// <summary>
@@ -375,7 +418,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfGMLSupport
         /// <param name="e">The original event data</param>
         private void GmlLineSymbolsCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("GmlLineSymbols", e);
+            this.OnCollectionChanging("GmlLineSymbols", e, _gmlLineSymbolsReference);
         }
         
         /// <summary>
@@ -385,7 +428,12 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfGMLSupport
         /// <param name="e">The original event data</param>
         private void GmlLineSymbolsCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("GmlLineSymbols", e);
+            this.OnCollectionChanged("GmlLineSymbols", e, _gmlLineSymbolsReference);
+        }
+        
+        private static ITypedElement RetrieveGmlTextSymbolsReference()
+        {
+            return ((ITypedElement)(((ModelElement)(GmlDiagramObject.ClassInstance)).Resolve("GmlTextSymbols")));
         }
         
         /// <summary>
@@ -395,7 +443,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfGMLSupport
         /// <param name="e">The original event data</param>
         private void GmlTextSymbolsCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("GmlTextSymbols", e);
+            this.OnCollectionChanging("GmlTextSymbols", e, _gmlTextSymbolsReference);
         }
         
         /// <summary>
@@ -405,7 +453,12 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfGMLSupport
         /// <param name="e">The original event data</param>
         private void GmlTextSymbolsCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("GmlTextSymbols", e);
+            this.OnCollectionChanged("GmlTextSymbols", e, _gmlTextSymbolsReference);
+        }
+        
+        private static ITypedElement RetrieveCoordinateSystemsReference()
+        {
+            return ((ITypedElement)(((ModelElement)(GmlDiagramObject.ClassInstance)).Resolve("CoordinateSystems")));
         }
         
         /// <summary>
@@ -415,7 +468,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfGMLSupport
         /// <param name="e">The original event data</param>
         private void CoordinateSystemsCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("CoordinateSystems", e);
+            this.OnCollectionChanging("CoordinateSystems", e, _coordinateSystemsReference);
         }
         
         /// <summary>
@@ -425,7 +478,12 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfGMLSupport
         /// <param name="e">The original event data</param>
         private void CoordinateSystemsCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("CoordinateSystems", e);
+            this.OnCollectionChanged("CoordinateSystems", e, _coordinateSystemsReference);
+        }
+        
+        private static ITypedElement RetrieveGmlObservatinsReference()
+        {
+            return ((ITypedElement)(((ModelElement)(GmlDiagramObject.ClassInstance)).Resolve("GmlObservatins")));
         }
         
         /// <summary>
@@ -435,7 +493,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfGMLSupport
         /// <param name="e">The original event data</param>
         private void GmlObservatinsCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("GmlObservatins", e);
+            this.OnCollectionChanging("GmlObservatins", e, _gmlObservatinsReference);
         }
         
         /// <summary>
@@ -445,7 +503,12 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfGMLSupport
         /// <param name="e">The original event data</param>
         private void GmlObservatinsCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("GmlObservatins", e);
+            this.OnCollectionChanged("GmlObservatins", e, _gmlObservatinsReference);
+        }
+        
+        private static ITypedElement RetrieveGmlSelectorsReference()
+        {
+            return ((ITypedElement)(((ModelElement)(GmlDiagramObject.ClassInstance)).Resolve("GmlSelectors")));
         }
         
         /// <summary>
@@ -455,7 +518,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfGMLSupport
         /// <param name="e">The original event data</param>
         private void GmlSelectorsCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("GmlSelectors", e);
+            this.OnCollectionChanging("GmlSelectors", e, _gmlSelectorsReference);
         }
         
         /// <summary>
@@ -465,7 +528,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfGMLSupport
         /// <param name="e">The original event data</param>
         private void GmlSelectorsCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("GmlSelectors", e);
+            this.OnCollectionChanged("GmlSelectors", e, _gmlSelectorsReference);
         }
         
         /// <summary>

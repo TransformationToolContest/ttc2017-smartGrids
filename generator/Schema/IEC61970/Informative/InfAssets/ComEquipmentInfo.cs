@@ -53,8 +53,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61970/Informative/InfAssets/ComEqui" +
         "pmentInfo")]
     [DebuggerDisplayAttribute("ComEquipmentInfo {UUID}")]
-    public class ComEquipmentInfo : AssetInfo, IComEquipmentInfo, IModelElement
+    public partial class ComEquipmentInfo : AssetInfo, IComEquipmentInfo, IModelElement
     {
+        
+        private static Lazy<ITypedElement> _deviceFunctionsReference = new Lazy<ITypedElement>(RetrieveDeviceFunctionsReference);
         
         /// <summary>
         /// The backing field for the DeviceFunctions property
@@ -112,6 +114,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
             }
         }
         
+        private static ITypedElement RetrieveDeviceFunctionsReference()
+        {
+            return ((ITypedElement)(((ModelElement)(ComEquipmentInfo.ClassInstance)).Resolve("DeviceFunctions")));
+        }
+        
         /// <summary>
         /// Forwards CollectionChanging notifications for the DeviceFunctions property to the parent model element
         /// </summary>
@@ -119,7 +126,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
         /// <param name="e">The original event data</param>
         private void DeviceFunctionsCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("DeviceFunctions", e);
+            this.OnCollectionChanging("DeviceFunctions", e, _deviceFunctionsReference);
         }
         
         /// <summary>
@@ -129,7 +136,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
         /// <param name="e">The original event data</param>
         private void DeviceFunctionsCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("DeviceFunctions", e);
+            this.OnCollectionChanged("DeviceFunctions", e, _deviceFunctionsReference);
         }
         
         /// <summary>

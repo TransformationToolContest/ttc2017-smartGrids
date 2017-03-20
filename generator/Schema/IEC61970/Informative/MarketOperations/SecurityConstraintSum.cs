@@ -50,28 +50,38 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61970/Informative/MarketOperations/" +
         "SecurityConstraintSum")]
     [DebuggerDisplayAttribute("SecurityConstraintSum {UUID}")]
-    public class SecurityConstraintSum : MarketFactors, ISecurityConstraintSum, IModelElement
+    public partial class SecurityConstraintSum : MarketFactors, ISecurityConstraintSum, IModelElement
     {
+        
+        private static Lazy<ITypedElement> _contingencyConstraintLimitsReference = new Lazy<ITypedElement>(RetrieveContingencyConstraintLimitsReference);
         
         /// <summary>
         /// The backing field for the ContingencyConstraintLimits property
         /// </summary>
         private SecurityConstraintSumContingencyConstraintLimitsCollection _contingencyConstraintLimits;
         
+        private static Lazy<ITypedElement> _defaultConstraintLimitReference = new Lazy<ITypedElement>(RetrieveDefaultConstraintLimitReference);
+        
         /// <summary>
         /// The backing field for the DefaultConstraintLimit property
         /// </summary>
         private IDefaultConstraintLimit _defaultConstraintLimit;
+        
+        private static Lazy<ITypedElement> _baseCaseConstraintLimitReference = new Lazy<ITypedElement>(RetrieveBaseCaseConstraintLimitReference);
         
         /// <summary>
         /// The backing field for the BaseCaseConstraintLimit property
         /// </summary>
         private IBaseCaseConstraintLimit _baseCaseConstraintLimit;
         
+        private static Lazy<ITypedElement> _constraintTermsReference = new Lazy<ITypedElement>(RetrieveConstraintTermsReference);
+        
         /// <summary>
         /// The backing field for the ConstraintTerms property
         /// </summary>
         private SecurityConstraintSumConstraintTermsCollection _constraintTerms;
+        
+        private static Lazy<ITypedElement> _rTOReference = new Lazy<ITypedElement>(RetrieveRTOReference);
         
         /// <summary>
         /// The backing field for the RTO property
@@ -123,7 +133,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
                     IDefaultConstraintLimit old = this._defaultConstraintLimit;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnDefaultConstraintLimitChanging(e);
-                    this.OnPropertyChanging("DefaultConstraintLimit", e);
+                    this.OnPropertyChanging("DefaultConstraintLimit", e, _defaultConstraintLimitReference);
                     this._defaultConstraintLimit = value;
                     if ((old != null))
                     {
@@ -136,7 +146,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
                         value.Deleted += this.OnResetDefaultConstraintLimit;
                     }
                     this.OnDefaultConstraintLimitChanged(e);
-                    this.OnPropertyChanged("DefaultConstraintLimit", e);
+                    this.OnPropertyChanged("DefaultConstraintLimit", e, _defaultConstraintLimitReference);
                 }
             }
         }
@@ -159,7 +169,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
                     IBaseCaseConstraintLimit old = this._baseCaseConstraintLimit;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnBaseCaseConstraintLimitChanging(e);
-                    this.OnPropertyChanging("BaseCaseConstraintLimit", e);
+                    this.OnPropertyChanging("BaseCaseConstraintLimit", e, _baseCaseConstraintLimitReference);
                     this._baseCaseConstraintLimit = value;
                     if ((old != null))
                     {
@@ -172,7 +182,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
                         value.Deleted += this.OnResetBaseCaseConstraintLimit;
                     }
                     this.OnBaseCaseConstraintLimitChanged(e);
-                    this.OnPropertyChanged("BaseCaseConstraintLimit", e);
+                    this.OnPropertyChanged("BaseCaseConstraintLimit", e, _baseCaseConstraintLimitReference);
                 }
             }
         }
@@ -210,7 +220,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
                     IRTO old = this._rTO;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnRTOChanging(e);
-                    this.OnPropertyChanging("RTO", e);
+                    this.OnPropertyChanging("RTO", e, _rTOReference);
                     this._rTO = value;
                     if ((old != null))
                     {
@@ -223,7 +233,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
                         value.Deleted += this.OnResetRTO;
                     }
                     this.OnRTOChanged(e);
-                    this.OnPropertyChanged("RTO", e);
+                    this.OnPropertyChanged("RTO", e, _rTOReference);
                 }
             }
         }
@@ -285,6 +295,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> RTOChanged;
         
+        private static ITypedElement RetrieveContingencyConstraintLimitsReference()
+        {
+            return ((ITypedElement)(((ModelElement)(SecurityConstraintSum.ClassInstance)).Resolve("ContingencyConstraintLimits")));
+        }
+        
         /// <summary>
         /// Forwards CollectionChanging notifications for the ContingencyConstraintLimits property to the parent model element
         /// </summary>
@@ -292,7 +307,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
         /// <param name="e">The original event data</param>
         private void ContingencyConstraintLimitsCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("ContingencyConstraintLimits", e);
+            this.OnCollectionChanging("ContingencyConstraintLimits", e, _contingencyConstraintLimitsReference);
         }
         
         /// <summary>
@@ -302,7 +317,12 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
         /// <param name="e">The original event data</param>
         private void ContingencyConstraintLimitsCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("ContingencyConstraintLimits", e);
+            this.OnCollectionChanged("ContingencyConstraintLimits", e, _contingencyConstraintLimitsReference);
+        }
+        
+        private static ITypedElement RetrieveDefaultConstraintLimitReference()
+        {
+            return ((ITypedElement)(((ModelElement)(SecurityConstraintSum.ClassInstance)).Resolve("DefaultConstraintLimit")));
         }
         
         /// <summary>
@@ -341,6 +361,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
             this.DefaultConstraintLimit = null;
         }
         
+        private static ITypedElement RetrieveBaseCaseConstraintLimitReference()
+        {
+            return ((ITypedElement)(((ModelElement)(SecurityConstraintSum.ClassInstance)).Resolve("BaseCaseConstraintLimit")));
+        }
+        
         /// <summary>
         /// Raises the BaseCaseConstraintLimitChanging event
         /// </summary>
@@ -377,6 +402,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
             this.BaseCaseConstraintLimit = null;
         }
         
+        private static ITypedElement RetrieveConstraintTermsReference()
+        {
+            return ((ITypedElement)(((ModelElement)(SecurityConstraintSum.ClassInstance)).Resolve("ConstraintTerms")));
+        }
+        
         /// <summary>
         /// Forwards CollectionChanging notifications for the ConstraintTerms property to the parent model element
         /// </summary>
@@ -384,7 +414,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
         /// <param name="e">The original event data</param>
         private void ConstraintTermsCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("ConstraintTerms", e);
+            this.OnCollectionChanging("ConstraintTerms", e, _constraintTermsReference);
         }
         
         /// <summary>
@@ -394,7 +424,12 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
         /// <param name="e">The original event data</param>
         private void ConstraintTermsCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("ConstraintTerms", e);
+            this.OnCollectionChanged("ConstraintTerms", e, _constraintTermsReference);
+        }
+        
+        private static ITypedElement RetrieveRTOReference()
+        {
+            return ((ITypedElement)(((ModelElement)(SecurityConstraintSum.ClassInstance)).Resolve("RTO")));
         }
         
         /// <summary>
@@ -792,7 +827,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public DefaultConstraintLimitProxy(ISecurityConstraintSum modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "DefaultConstraintLimit")
             {
             }
             
@@ -810,24 +845,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
                     this.ModelElement.DefaultConstraintLimit = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.DefaultConstraintLimitChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.DefaultConstraintLimitChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -841,7 +858,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public BaseCaseConstraintLimitProxy(ISecurityConstraintSum modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "BaseCaseConstraintLimit")
             {
             }
             
@@ -859,24 +876,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
                     this.ModelElement.BaseCaseConstraintLimit = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.BaseCaseConstraintLimitChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.BaseCaseConstraintLimitChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -890,7 +889,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public RTOProxy(ISecurityConstraintSum modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "RTO")
             {
             }
             
@@ -907,24 +906,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
                 {
                     this.ModelElement.RTO = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.RTOChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.RTOChanged -= handler;
             }
         }
     }

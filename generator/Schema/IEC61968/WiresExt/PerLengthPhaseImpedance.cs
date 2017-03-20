@@ -45,7 +45,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.WiresExt
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61968/WiresExt/PerLengthPhaseImpeda" +
         "nce")]
     [DebuggerDisplayAttribute("PerLengthPhaseImpedance {UUID}")]
-    public class PerLengthPhaseImpedance : IdentifiedObject, IPerLengthPhaseImpedance, IModelElement
+    public partial class PerLengthPhaseImpedance : IdentifiedObject, IPerLengthPhaseImpedance, IModelElement
     {
         
         /// <summary>
@@ -53,10 +53,16 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.WiresExt
         /// </summary>
         private int _conductorCount;
         
+        private static Lazy<ITypedElement> _conductorCountAttribute = new Lazy<ITypedElement>(RetrieveConductorCountAttribute);
+        
+        private static Lazy<ITypedElement> _conductorSegmentsReference = new Lazy<ITypedElement>(RetrieveConductorSegmentsReference);
+        
         /// <summary>
         /// The backing field for the ConductorSegments property
         /// </summary>
         private PerLengthPhaseImpedanceConductorSegmentsCollection _conductorSegments;
+        
+        private static Lazy<ITypedElement> _phaseImpedanceDataReference = new Lazy<ITypedElement>(RetrievePhaseImpedanceDataReference);
         
         /// <summary>
         /// The backing field for the PhaseImpedanceData property
@@ -93,10 +99,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.WiresExt
                     int old = this._conductorCount;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnConductorCountChanging(e);
-                    this.OnPropertyChanging("ConductorCount", e);
+                    this.OnPropertyChanging("ConductorCount", e, _conductorCountAttribute);
                     this._conductorCount = value;
                     this.OnConductorCountChanged(e);
-                    this.OnPropertyChanged("ConductorCount", e);
+                    this.OnPropertyChanged("ConductorCount", e, _conductorCountAttribute);
                 }
             }
         }
@@ -168,6 +174,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.WiresExt
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> ConductorCountChanged;
         
+        private static ITypedElement RetrieveConductorCountAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(PerLengthPhaseImpedance.ClassInstance)).Resolve("conductorCount")));
+        }
+        
         /// <summary>
         /// Raises the ConductorCountChanging event
         /// </summary>
@@ -194,6 +205,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.WiresExt
             }
         }
         
+        private static ITypedElement RetrieveConductorSegmentsReference()
+        {
+            return ((ITypedElement)(((ModelElement)(PerLengthPhaseImpedance.ClassInstance)).Resolve("ConductorSegments")));
+        }
+        
         /// <summary>
         /// Forwards CollectionChanging notifications for the ConductorSegments property to the parent model element
         /// </summary>
@@ -201,7 +217,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.WiresExt
         /// <param name="e">The original event data</param>
         private void ConductorSegmentsCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("ConductorSegments", e);
+            this.OnCollectionChanging("ConductorSegments", e, _conductorSegmentsReference);
         }
         
         /// <summary>
@@ -211,7 +227,12 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.WiresExt
         /// <param name="e">The original event data</param>
         private void ConductorSegmentsCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("ConductorSegments", e);
+            this.OnCollectionChanged("ConductorSegments", e, _conductorSegmentsReference);
+        }
+        
+        private static ITypedElement RetrievePhaseImpedanceDataReference()
+        {
+            return ((ITypedElement)(((ModelElement)(PerLengthPhaseImpedance.ClassInstance)).Resolve("PhaseImpedanceData")));
         }
         
         /// <summary>
@@ -221,7 +242,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.WiresExt
         /// <param name="e">The original event data</param>
         private void PhaseImpedanceDataCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("PhaseImpedanceData", e);
+            this.OnCollectionChanging("PhaseImpedanceData", e, _phaseImpedanceDataReference);
         }
         
         /// <summary>
@@ -231,7 +252,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.WiresExt
         /// <param name="e">The original event data</param>
         private void PhaseImpedanceDataCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("PhaseImpedanceData", e);
+            this.OnCollectionChanged("PhaseImpedanceData", e, _phaseImpedanceDataReference);
         }
         
         /// <summary>
@@ -464,7 +485,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.WiresExt
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public ConductorCountProxy(IPerLengthPhaseImpedance modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "conductorCount")
             {
             }
             
@@ -481,24 +502,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.WiresExt
                 {
                     this.ModelElement.ConductorCount = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ConductorCountChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ConductorCountChanged -= handler;
             }
         }
     }

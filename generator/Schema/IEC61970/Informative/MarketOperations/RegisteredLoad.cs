@@ -50,13 +50,17 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61970/Informative/MarketOperations/" +
         "RegisteredLoad")]
     [DebuggerDisplayAttribute("RegisteredLoad {UUID}")]
-    public class RegisteredLoad : RegisteredResource, IRegisteredLoad, IModelElement
+    public partial class RegisteredLoad : RegisteredResource, IRegisteredLoad, IModelElement
     {
+        
+        private static Lazy<ITypedElement> _loadAreaReference = new Lazy<ITypedElement>(RetrieveLoadAreaReference);
         
         /// <summary>
         /// The backing field for the LoadArea property
         /// </summary>
         private ILoadGroup _loadArea;
+        
+        private static Lazy<ITypedElement> _loadBidsReference = new Lazy<ITypedElement>(RetrieveLoadBidsReference);
         
         /// <summary>
         /// The backing field for the LoadBids property
@@ -90,7 +94,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
                     ILoadGroup old = this._loadArea;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnLoadAreaChanging(e);
-                    this.OnPropertyChanging("LoadArea", e);
+                    this.OnPropertyChanging("LoadArea", e, _loadAreaReference);
                     this._loadArea = value;
                     if ((old != null))
                     {
@@ -103,7 +107,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
                         value.Deleted += this.OnResetLoadArea;
                     }
                     this.OnLoadAreaChanged(e);
-                    this.OnPropertyChanged("LoadArea", e);
+                    this.OnPropertyChanged("LoadArea", e, _loadAreaReference);
                 }
             }
         }
@@ -160,6 +164,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> LoadAreaChanged;
         
+        private static ITypedElement RetrieveLoadAreaReference()
+        {
+            return ((ITypedElement)(((ModelElement)(RegisteredLoad.ClassInstance)).Resolve("LoadArea")));
+        }
+        
         /// <summary>
         /// Raises the LoadAreaChanging event
         /// </summary>
@@ -196,6 +205,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
             this.LoadArea = null;
         }
         
+        private static ITypedElement RetrieveLoadBidsReference()
+        {
+            return ((ITypedElement)(((ModelElement)(RegisteredLoad.ClassInstance)).Resolve("LoadBids")));
+        }
+        
         /// <summary>
         /// Forwards CollectionChanging notifications for the LoadBids property to the parent model element
         /// </summary>
@@ -203,7 +217,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
         /// <param name="e">The original event data</param>
         private void LoadBidsCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("LoadBids", e);
+            this.OnCollectionChanging("LoadBids", e, _loadBidsReference);
         }
         
         /// <summary>
@@ -213,7 +227,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
         /// <param name="e">The original event data</param>
         private void LoadBidsCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("LoadBids", e);
+            this.OnCollectionChanged("LoadBids", e, _loadBidsReference);
         }
         
         /// <summary>
@@ -451,7 +465,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public LoadAreaProxy(IRegisteredLoad modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "LoadArea")
             {
             }
             
@@ -468,24 +482,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
                 {
                     this.ModelElement.LoadArea = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.LoadAreaChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.LoadAreaChanged -= handler;
             }
         }
     }

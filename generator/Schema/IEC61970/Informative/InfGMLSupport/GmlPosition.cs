@@ -45,7 +45,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfGMLSupport
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61970/Informative/InfGMLSupport/Gml" +
         "Position")]
     [DebuggerDisplayAttribute("GmlPosition {UUID}")]
-    public class GmlPosition : PositionPoint, IGmlPosition, IModelElement
+    public partial class GmlPosition : PositionPoint, IGmlPosition, IModelElement
     {
         
         private static IClass _classInstance;

@@ -39,7 +39,7 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
     [XmlNamespacePrefixAttribute("objects")]
     [ModelRepresentationClassAttribute("http://www.transformation-tool-contest.eu/2017/smartGrids/cosem#//COSEMObjects/IE" +
         "CTwistedPairFatalErrorRegister")]
-    public class IECTwistedPairFatalErrorRegister : Data, IIECTwistedPairFatalErrorRegister, IModelElement
+    public partial class IECTwistedPairFatalErrorRegister : Data, IIECTwistedPairFatalErrorRegister, IModelElement
     {
         
         private static IClass _classInstance;

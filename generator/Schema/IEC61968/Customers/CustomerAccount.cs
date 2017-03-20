@@ -47,28 +47,38 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Customers
     [XmlNamespacePrefixAttribute("cimCustomers")]
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61968/Customers/CustomerAccount")]
     [DebuggerDisplayAttribute("CustomerAccount {UUID}")]
-    public class CustomerAccount : Document, ICustomerAccount, IModelElement
+    public partial class CustomerAccount : Document, ICustomerAccount, IModelElement
     {
+        
+        private static Lazy<ITypedElement> _workBillingInfosReference = new Lazy<ITypedElement>(RetrieveWorkBillingInfosReference);
         
         /// <summary>
         /// The backing field for the WorkBillingInfos property
         /// </summary>
         private CustomerAccountWorkBillingInfosCollection _workBillingInfos;
         
+        private static Lazy<ITypedElement> _paymentTransactionsReference = new Lazy<ITypedElement>(RetrievePaymentTransactionsReference);
+        
         /// <summary>
         /// The backing field for the PaymentTransactions property
         /// </summary>
         private CustomerAccountPaymentTransactionsCollection _paymentTransactions;
+        
+        private static Lazy<ITypedElement> _customerAgreementsReference = new Lazy<ITypedElement>(RetrieveCustomerAgreementsReference);
         
         /// <summary>
         /// The backing field for the CustomerAgreements property
         /// </summary>
         private CustomerAccountCustomerAgreementsCollection _customerAgreements;
         
+        private static Lazy<ITypedElement> _erpInvoiceesReference = new Lazy<ITypedElement>(RetrieveErpInvoiceesReference);
+        
         /// <summary>
         /// The backing field for the ErpInvoicees property
         /// </summary>
         private CustomerAccountErpInvoiceesCollection _erpInvoicees;
+        
+        private static Lazy<ITypedElement> _customerBillingInfosReference = new Lazy<ITypedElement>(RetrieveCustomerBillingInfosReference);
         
         /// <summary>
         /// The backing field for the CustomerBillingInfos property
@@ -197,6 +207,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Customers
             }
         }
         
+        private static ITypedElement RetrieveWorkBillingInfosReference()
+        {
+            return ((ITypedElement)(((ModelElement)(CustomerAccount.ClassInstance)).Resolve("WorkBillingInfos")));
+        }
+        
         /// <summary>
         /// Forwards CollectionChanging notifications for the WorkBillingInfos property to the parent model element
         /// </summary>
@@ -204,7 +219,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Customers
         /// <param name="e">The original event data</param>
         private void WorkBillingInfosCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("WorkBillingInfos", e);
+            this.OnCollectionChanging("WorkBillingInfos", e, _workBillingInfosReference);
         }
         
         /// <summary>
@@ -214,7 +229,12 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Customers
         /// <param name="e">The original event data</param>
         private void WorkBillingInfosCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("WorkBillingInfos", e);
+            this.OnCollectionChanged("WorkBillingInfos", e, _workBillingInfosReference);
+        }
+        
+        private static ITypedElement RetrievePaymentTransactionsReference()
+        {
+            return ((ITypedElement)(((ModelElement)(CustomerAccount.ClassInstance)).Resolve("PaymentTransactions")));
         }
         
         /// <summary>
@@ -224,7 +244,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Customers
         /// <param name="e">The original event data</param>
         private void PaymentTransactionsCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("PaymentTransactions", e);
+            this.OnCollectionChanging("PaymentTransactions", e, _paymentTransactionsReference);
         }
         
         /// <summary>
@@ -234,7 +254,12 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Customers
         /// <param name="e">The original event data</param>
         private void PaymentTransactionsCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("PaymentTransactions", e);
+            this.OnCollectionChanged("PaymentTransactions", e, _paymentTransactionsReference);
+        }
+        
+        private static ITypedElement RetrieveCustomerAgreementsReference()
+        {
+            return ((ITypedElement)(((ModelElement)(CustomerAccount.ClassInstance)).Resolve("CustomerAgreements")));
         }
         
         /// <summary>
@@ -244,7 +269,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Customers
         /// <param name="e">The original event data</param>
         private void CustomerAgreementsCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("CustomerAgreements", e);
+            this.OnCollectionChanging("CustomerAgreements", e, _customerAgreementsReference);
         }
         
         /// <summary>
@@ -254,7 +279,12 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Customers
         /// <param name="e">The original event data</param>
         private void CustomerAgreementsCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("CustomerAgreements", e);
+            this.OnCollectionChanged("CustomerAgreements", e, _customerAgreementsReference);
+        }
+        
+        private static ITypedElement RetrieveErpInvoiceesReference()
+        {
+            return ((ITypedElement)(((ModelElement)(CustomerAccount.ClassInstance)).Resolve("ErpInvoicees")));
         }
         
         /// <summary>
@@ -264,7 +294,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Customers
         /// <param name="e">The original event data</param>
         private void ErpInvoiceesCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("ErpInvoicees", e);
+            this.OnCollectionChanging("ErpInvoicees", e, _erpInvoiceesReference);
         }
         
         /// <summary>
@@ -274,7 +304,12 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Customers
         /// <param name="e">The original event data</param>
         private void ErpInvoiceesCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("ErpInvoicees", e);
+            this.OnCollectionChanged("ErpInvoicees", e, _erpInvoiceesReference);
+        }
+        
+        private static ITypedElement RetrieveCustomerBillingInfosReference()
+        {
+            return ((ITypedElement)(((ModelElement)(CustomerAccount.ClassInstance)).Resolve("CustomerBillingInfos")));
         }
         
         /// <summary>
@@ -284,7 +319,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Customers
         /// <param name="e">The original event data</param>
         private void CustomerBillingInfosCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("CustomerBillingInfos", e);
+            this.OnCollectionChanging("CustomerBillingInfos", e, _customerBillingInfosReference);
         }
         
         /// <summary>
@@ -294,7 +329,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Customers
         /// <param name="e">The original event data</param>
         private void CustomerBillingInfosCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("CustomerBillingInfos", e);
+            this.OnCollectionChanged("CustomerBillingInfos", e, _customerBillingInfosReference);
         }
         
         /// <summary>

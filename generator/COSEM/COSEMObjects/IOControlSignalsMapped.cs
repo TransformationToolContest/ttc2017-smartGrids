@@ -39,7 +39,7 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
     [XmlNamespacePrefixAttribute("objects")]
     [ModelRepresentationClassAttribute("http://www.transformation-tool-contest.eu/2017/smartGrids/cosem#//COSEMObjects/IO" +
         "ControlSignalsMapped")]
-    public class IOControlSignalsMapped : Statusmapping, IIOControlSignalsMapped, IModelElement
+    public partial class IOControlSignalsMapped : Statusmapping, IIOControlSignalsMapped, IModelElement
     {
         
         private static IClass _classInstance;

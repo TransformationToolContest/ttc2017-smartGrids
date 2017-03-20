@@ -46,7 +46,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61970/Generation/Production/CAESPla" +
         "nt")]
     [DebuggerDisplayAttribute("CAESPlant {UUID}")]
-    public class CAESPlant : PowerSystemResource, ICAESPlant, IModelElement
+    public partial class CAESPlant : PowerSystemResource, ICAESPlant, IModelElement
     {
         
         /// <summary>
@@ -54,15 +54,23 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
         /// </summary>
         private float _energyStorageCapacity;
         
+        private static Lazy<ITypedElement> _energyStorageCapacityAttribute = new Lazy<ITypedElement>(RetrieveEnergyStorageCapacityAttribute);
+        
         /// <summary>
         /// The backing field for the RatedCapacityP property
         /// </summary>
         private float _ratedCapacityP;
         
+        private static Lazy<ITypedElement> _ratedCapacityPAttribute = new Lazy<ITypedElement>(RetrieveRatedCapacityPAttribute);
+        
+        private static Lazy<ITypedElement> _thermalGeneratingUnitReference = new Lazy<ITypedElement>(RetrieveThermalGeneratingUnitReference);
+        
         /// <summary>
         /// The backing field for the ThermalGeneratingUnit property
         /// </summary>
         private IThermalGeneratingUnit _thermalGeneratingUnit;
+        
+        private static Lazy<ITypedElement> _airCompressorReference = new Lazy<ITypedElement>(RetrieveAirCompressorReference);
         
         /// <summary>
         /// The backing field for the AirCompressor property
@@ -89,10 +97,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
                     float old = this._energyStorageCapacity;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnEnergyStorageCapacityChanging(e);
-                    this.OnPropertyChanging("EnergyStorageCapacity", e);
+                    this.OnPropertyChanging("EnergyStorageCapacity", e, _energyStorageCapacityAttribute);
                     this._energyStorageCapacity = value;
                     this.OnEnergyStorageCapacityChanged(e);
-                    this.OnPropertyChanged("EnergyStorageCapacity", e);
+                    this.OnPropertyChanged("EnergyStorageCapacity", e, _energyStorageCapacityAttribute);
                 }
             }
         }
@@ -115,10 +123,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
                     float old = this._ratedCapacityP;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnRatedCapacityPChanging(e);
-                    this.OnPropertyChanging("RatedCapacityP", e);
+                    this.OnPropertyChanging("RatedCapacityP", e, _ratedCapacityPAttribute);
                     this._ratedCapacityP = value;
                     this.OnRatedCapacityPChanged(e);
-                    this.OnPropertyChanged("RatedCapacityP", e);
+                    this.OnPropertyChanged("RatedCapacityP", e, _ratedCapacityPAttribute);
                 }
             }
         }
@@ -141,7 +149,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
                     IThermalGeneratingUnit old = this._thermalGeneratingUnit;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnThermalGeneratingUnitChanging(e);
-                    this.OnPropertyChanging("ThermalGeneratingUnit", e);
+                    this.OnPropertyChanging("ThermalGeneratingUnit", e, _thermalGeneratingUnitReference);
                     this._thermalGeneratingUnit = value;
                     if ((old != null))
                     {
@@ -154,7 +162,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
                         value.Deleted += this.OnResetThermalGeneratingUnit;
                     }
                     this.OnThermalGeneratingUnitChanged(e);
-                    this.OnPropertyChanged("ThermalGeneratingUnit", e);
+                    this.OnPropertyChanged("ThermalGeneratingUnit", e, _thermalGeneratingUnitReference);
                 }
             }
         }
@@ -177,7 +185,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
                     IAirCompressor old = this._airCompressor;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnAirCompressorChanging(e);
-                    this.OnPropertyChanging("AirCompressor", e);
+                    this.OnPropertyChanging("AirCompressor", e, _airCompressorReference);
                     this._airCompressor = value;
                     if ((old != null))
                     {
@@ -190,7 +198,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
                         value.Deleted += this.OnResetAirCompressor;
                     }
                     this.OnAirCompressorChanged(e);
-                    this.OnPropertyChanged("AirCompressor", e);
+                    this.OnPropertyChanged("AirCompressor", e, _airCompressorReference);
                 }
             }
         }
@@ -262,6 +270,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> AirCompressorChanged;
         
+        private static ITypedElement RetrieveEnergyStorageCapacityAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(CAESPlant.ClassInstance)).Resolve("energyStorageCapacity")));
+        }
+        
         /// <summary>
         /// Raises the EnergyStorageCapacityChanging event
         /// </summary>
@@ -288,6 +301,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
             }
         }
         
+        private static ITypedElement RetrieveRatedCapacityPAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(CAESPlant.ClassInstance)).Resolve("ratedCapacityP")));
+        }
+        
         /// <summary>
         /// Raises the RatedCapacityPChanging event
         /// </summary>
@@ -312,6 +330,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveThermalGeneratingUnitReference()
+        {
+            return ((ITypedElement)(((ModelElement)(CAESPlant.ClassInstance)).Resolve("ThermalGeneratingUnit")));
         }
         
         /// <summary>
@@ -348,6 +371,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
         private void OnResetThermalGeneratingUnit(object sender, System.EventArgs eventArgs)
         {
             this.ThermalGeneratingUnit = null;
+        }
+        
+        private static ITypedElement RetrieveAirCompressorReference()
+        {
+            return ((ITypedElement)(((ModelElement)(CAESPlant.ClassInstance)).Resolve("AirCompressor")));
         }
         
         /// <summary>
@@ -645,7 +673,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public EnergyStorageCapacityProxy(ICAESPlant modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "energyStorageCapacity")
             {
             }
             
@@ -663,24 +691,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
                     this.ModelElement.EnergyStorageCapacity = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.EnergyStorageCapacityChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.EnergyStorageCapacityChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -694,7 +704,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public RatedCapacityPProxy(ICAESPlant modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "ratedCapacityP")
             {
             }
             
@@ -712,24 +722,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
                     this.ModelElement.RatedCapacityP = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.RatedCapacityPChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.RatedCapacityPChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -743,7 +735,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public ThermalGeneratingUnitProxy(ICAESPlant modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "ThermalGeneratingUnit")
             {
             }
             
@@ -761,24 +753,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
                     this.ModelElement.ThermalGeneratingUnit = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ThermalGeneratingUnitChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ThermalGeneratingUnitChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -792,7 +766,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public AirCompressorProxy(ICAESPlant modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "AirCompressor")
             {
             }
             
@@ -809,24 +783,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
                 {
                     this.ModelElement.AirCompressor = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.AirCompressorChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.AirCompressorChanged -= handler;
             }
         }
     }

@@ -39,7 +39,7 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
     [XmlNamespacePrefixAttribute("objects")]
     [ModelRepresentationClassAttribute("http://www.transformation-tool-contest.eu/2017/smartGrids/cosem#//COSEMObjects/El" +
         "ectricityProgramEntries")]
-    public class ElectricityProgramEntries : Data, IElectricityProgramEntries, IModelElement
+    public partial class ElectricityProgramEntries : Data, IElectricityProgramEntries, IModelElement
     {
         
         /// <summary>
@@ -47,35 +47,49 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
         /// </summary>
         private string _activefirmwareidentifier;
         
+        private static Lazy<ITypedElement> _activefirmwareidentifierAttribute = new Lazy<ITypedElement>(RetrieveActivefirmwareidentifierAttribute);
+        
         /// <summary>
         /// The backing field for the Parameterrecordnumber property
         /// </summary>
         private Nullable<int> _parameterrecordnumber;
+        
+        private static Lazy<ITypedElement> _parameterrecordnumberAttribute = new Lazy<ITypedElement>(RetrieveParameterrecordnumberAttribute);
         
         /// <summary>
         /// The backing field for the Timeswitchprogramnumber property
         /// </summary>
         private Nullable<int> _timeswitchprogramnumber;
         
+        private static Lazy<ITypedElement> _timeswitchprogramnumberAttribute = new Lazy<ITypedElement>(RetrieveTimeswitchprogramnumberAttribute);
+        
         /// <summary>
         /// The backing field for the RCRprogramnumber property
         /// </summary>
         private Nullable<int> _rCRprogramnumber;
+        
+        private static Lazy<ITypedElement> _rCRprogramnumberAttribute = new Lazy<ITypedElement>(RetrieveRCRprogramnumberAttribute);
         
         /// <summary>
         /// The backing field for the MeterconnectiondiagramID property
         /// </summary>
         private string _meterconnectiondiagramID;
         
+        private static Lazy<ITypedElement> _meterconnectiondiagramIDAttribute = new Lazy<ITypedElement>(RetrieveMeterconnectiondiagramIDAttribute);
+        
         /// <summary>
         /// The backing field for the Passivecalendarname property
         /// </summary>
         private string _passivecalendarname;
         
+        private static Lazy<ITypedElement> _passivecalendarnameAttribute = new Lazy<ITypedElement>(RetrievePassivecalendarnameAttribute);
+        
         /// <summary>
         /// The backing field for the Activefirmwaresignature property
         /// </summary>
         private string _activefirmwaresignature;
+        
+        private static Lazy<ITypedElement> _activefirmwaresignatureAttribute = new Lazy<ITypedElement>(RetrieveActivefirmwaresignatureAttribute);
         
         private static IClass _classInstance;
         
@@ -96,10 +110,10 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     string old = this._activefirmwareidentifier;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnActivefirmwareidentifierChanging(e);
-                    this.OnPropertyChanging("Activefirmwareidentifier", e);
+                    this.OnPropertyChanging("Activefirmwareidentifier", e, _activefirmwareidentifierAttribute);
                     this._activefirmwareidentifier = value;
                     this.OnActivefirmwareidentifierChanged(e);
-                    this.OnPropertyChanged("Activefirmwareidentifier", e);
+                    this.OnPropertyChanged("Activefirmwareidentifier", e, _activefirmwareidentifierAttribute);
                 }
             }
         }
@@ -121,10 +135,10 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     Nullable<int> old = this._parameterrecordnumber;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnParameterrecordnumberChanging(e);
-                    this.OnPropertyChanging("Parameterrecordnumber", e);
+                    this.OnPropertyChanging("Parameterrecordnumber", e, _parameterrecordnumberAttribute);
                     this._parameterrecordnumber = value;
                     this.OnParameterrecordnumberChanged(e);
-                    this.OnPropertyChanged("Parameterrecordnumber", e);
+                    this.OnPropertyChanged("Parameterrecordnumber", e, _parameterrecordnumberAttribute);
                 }
             }
         }
@@ -146,10 +160,10 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     Nullable<int> old = this._timeswitchprogramnumber;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnTimeswitchprogramnumberChanging(e);
-                    this.OnPropertyChanging("Timeswitchprogramnumber", e);
+                    this.OnPropertyChanging("Timeswitchprogramnumber", e, _timeswitchprogramnumberAttribute);
                     this._timeswitchprogramnumber = value;
                     this.OnTimeswitchprogramnumberChanged(e);
-                    this.OnPropertyChanged("Timeswitchprogramnumber", e);
+                    this.OnPropertyChanged("Timeswitchprogramnumber", e, _timeswitchprogramnumberAttribute);
                 }
             }
         }
@@ -171,10 +185,10 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     Nullable<int> old = this._rCRprogramnumber;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnRCRprogramnumberChanging(e);
-                    this.OnPropertyChanging("RCRprogramnumber", e);
+                    this.OnPropertyChanging("RCRprogramnumber", e, _rCRprogramnumberAttribute);
                     this._rCRprogramnumber = value;
                     this.OnRCRprogramnumberChanged(e);
-                    this.OnPropertyChanged("RCRprogramnumber", e);
+                    this.OnPropertyChanged("RCRprogramnumber", e, _rCRprogramnumberAttribute);
                 }
             }
         }
@@ -196,10 +210,10 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     string old = this._meterconnectiondiagramID;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnMeterconnectiondiagramIDChanging(e);
-                    this.OnPropertyChanging("MeterconnectiondiagramID", e);
+                    this.OnPropertyChanging("MeterconnectiondiagramID", e, _meterconnectiondiagramIDAttribute);
                     this._meterconnectiondiagramID = value;
                     this.OnMeterconnectiondiagramIDChanged(e);
-                    this.OnPropertyChanged("MeterconnectiondiagramID", e);
+                    this.OnPropertyChanged("MeterconnectiondiagramID", e, _meterconnectiondiagramIDAttribute);
                 }
             }
         }
@@ -221,10 +235,10 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     string old = this._passivecalendarname;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnPassivecalendarnameChanging(e);
-                    this.OnPropertyChanging("Passivecalendarname", e);
+                    this.OnPropertyChanging("Passivecalendarname", e, _passivecalendarnameAttribute);
                     this._passivecalendarname = value;
                     this.OnPassivecalendarnameChanged(e);
-                    this.OnPropertyChanged("Passivecalendarname", e);
+                    this.OnPropertyChanged("Passivecalendarname", e, _passivecalendarnameAttribute);
                 }
             }
         }
@@ -246,10 +260,10 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     string old = this._activefirmwaresignature;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnActivefirmwaresignatureChanging(e);
-                    this.OnPropertyChanging("Activefirmwaresignature", e);
+                    this.OnPropertyChanging("Activefirmwaresignature", e, _activefirmwaresignatureAttribute);
                     this._activefirmwaresignature = value;
                     this.OnActivefirmwaresignatureChanged(e);
-                    this.OnPropertyChanged("Activefirmwaresignature", e);
+                    this.OnPropertyChanged("Activefirmwaresignature", e, _activefirmwaresignatureAttribute);
                 }
             }
         }
@@ -340,6 +354,11 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> ActivefirmwaresignatureChanged;
         
+        private static ITypedElement RetrieveActivefirmwareidentifierAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(ElectricityProgramEntries.ClassInstance)).Resolve("Activefirmwareidentifier")));
+        }
+        
         /// <summary>
         /// Raises the ActivefirmwareidentifierChanging event
         /// </summary>
@@ -364,6 +383,11 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveParameterrecordnumberAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(ElectricityProgramEntries.ClassInstance)).Resolve("Parameterrecordnumber")));
         }
         
         /// <summary>
@@ -392,6 +416,11 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             }
         }
         
+        private static ITypedElement RetrieveTimeswitchprogramnumberAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(ElectricityProgramEntries.ClassInstance)).Resolve("Timeswitchprogramnumber")));
+        }
+        
         /// <summary>
         /// Raises the TimeswitchprogramnumberChanging event
         /// </summary>
@@ -416,6 +445,11 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveRCRprogramnumberAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(ElectricityProgramEntries.ClassInstance)).Resolve("RCRprogramnumber")));
         }
         
         /// <summary>
@@ -444,6 +478,11 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             }
         }
         
+        private static ITypedElement RetrieveMeterconnectiondiagramIDAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(ElectricityProgramEntries.ClassInstance)).Resolve("MeterconnectiondiagramID")));
+        }
+        
         /// <summary>
         /// Raises the MeterconnectiondiagramIDChanging event
         /// </summary>
@@ -470,6 +509,11 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             }
         }
         
+        private static ITypedElement RetrievePassivecalendarnameAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(ElectricityProgramEntries.ClassInstance)).Resolve("Passivecalendarname")));
+        }
+        
         /// <summary>
         /// Raises the PassivecalendarnameChanging event
         /// </summary>
@@ -494,6 +538,11 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveActivefirmwaresignatureAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(ElectricityProgramEntries.ClassInstance)).Resolve("Activefirmwaresignature")));
         }
         
         /// <summary>
@@ -630,7 +679,7 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public ActivefirmwareidentifierProxy(IElectricityProgramEntries modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "Activefirmwareidentifier")
             {
             }
             
@@ -648,24 +697,6 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     this.ModelElement.Activefirmwareidentifier = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ActivefirmwareidentifierChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ActivefirmwareidentifierChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -679,7 +710,7 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public ParameterrecordnumberProxy(IElectricityProgramEntries modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "Parameterrecordnumber")
             {
             }
             
@@ -697,24 +728,6 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     this.ModelElement.Parameterrecordnumber = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ParameterrecordnumberChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ParameterrecordnumberChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -728,7 +741,7 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public TimeswitchprogramnumberProxy(IElectricityProgramEntries modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "Timeswitchprogramnumber")
             {
             }
             
@@ -746,24 +759,6 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     this.ModelElement.Timeswitchprogramnumber = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.TimeswitchprogramnumberChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.TimeswitchprogramnumberChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -777,7 +772,7 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public RCRprogramnumberProxy(IElectricityProgramEntries modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "RCRprogramnumber")
             {
             }
             
@@ -795,24 +790,6 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     this.ModelElement.RCRprogramnumber = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.RCRprogramnumberChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.RCRprogramnumberChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -826,7 +803,7 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public MeterconnectiondiagramIDProxy(IElectricityProgramEntries modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "MeterconnectiondiagramID")
             {
             }
             
@@ -844,24 +821,6 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     this.ModelElement.MeterconnectiondiagramID = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.MeterconnectiondiagramIDChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.MeterconnectiondiagramIDChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -875,7 +834,7 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public PassivecalendarnameProxy(IElectricityProgramEntries modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "Passivecalendarname")
             {
             }
             
@@ -893,24 +852,6 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     this.ModelElement.Passivecalendarname = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.PassivecalendarnameChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.PassivecalendarnameChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -924,7 +865,7 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public ActivefirmwaresignatureProxy(IElectricityProgramEntries modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "Activefirmwaresignature")
             {
             }
             
@@ -941,24 +882,6 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                 {
                     this.ModelElement.Activefirmwaresignature = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ActivefirmwaresignatureChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ActivefirmwaresignatureChanged -= handler;
             }
         }
     }

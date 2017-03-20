@@ -57,7 +57,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Core
     [XmlNamespacePrefixAttribute("cimCore")]
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61970/Core/IdentifiedObject")]
     [DebuggerDisplayAttribute("IdentifiedObject {UUID}")]
-    public class IdentifiedObject : Element, IIdentifiedObject, IModelElement
+    public partial class IdentifiedObject : Element, IIdentifiedObject, IModelElement
     {
         
         /// <summary>
@@ -65,30 +65,44 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Core
         /// </summary>
         private string _mRID;
         
+        private static Lazy<ITypedElement> _mRIDAttribute = new Lazy<ITypedElement>(RetrieveMRIDAttribute);
+        
         /// <summary>
         /// The backing field for the Name property
         /// </summary>
         private string _name;
+        
+        private static Lazy<ITypedElement> _nameAttribute = new Lazy<ITypedElement>(RetrieveNameAttribute);
         
         /// <summary>
         /// The backing field for the Description property
         /// </summary>
         private string _description;
         
+        private static Lazy<ITypedElement> _descriptionAttribute = new Lazy<ITypedElement>(RetrieveDescriptionAttribute);
+        
         /// <summary>
         /// The backing field for the PathName property
         /// </summary>
         private string _pathName;
+        
+        private static Lazy<ITypedElement> _pathNameAttribute = new Lazy<ITypedElement>(RetrievePathNameAttribute);
         
         /// <summary>
         /// The backing field for the LocalName property
         /// </summary>
         private string _localName;
         
+        private static Lazy<ITypedElement> _localNameAttribute = new Lazy<ITypedElement>(RetrieveLocalNameAttribute);
+        
         /// <summary>
         /// The backing field for the AliasName property
         /// </summary>
         private string _aliasName;
+        
+        private static Lazy<ITypedElement> _aliasNameAttribute = new Lazy<ITypedElement>(RetrieveAliasNameAttribute);
+        
+        private static Lazy<ITypedElement> _modelingAuthoritySetReference = new Lazy<ITypedElement>(RetrieveModelingAuthoritySetReference);
         
         /// <summary>
         /// The backing field for the ModelingAuthoritySet property
@@ -115,10 +129,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Core
                     string old = this._mRID;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnMRIDChanging(e);
-                    this.OnPropertyChanging("MRID", e);
+                    this.OnPropertyChanging("MRID", e, _mRIDAttribute);
                     this._mRID = value;
                     this.OnMRIDChanged(e);
-                    this.OnPropertyChanged("MRID", e);
+                    this.OnPropertyChanged("MRID", e, _mRIDAttribute);
                 }
             }
         }
@@ -141,10 +155,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Core
                     string old = this._name;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnNameChanging(e);
-                    this.OnPropertyChanging("Name", e);
+                    this.OnPropertyChanging("Name", e, _nameAttribute);
                     this._name = value;
                     this.OnNameChanged(e);
-                    this.OnPropertyChanged("Name", e);
+                    this.OnPropertyChanged("Name", e, _nameAttribute);
                 }
             }
         }
@@ -167,10 +181,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Core
                     string old = this._description;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnDescriptionChanging(e);
-                    this.OnPropertyChanging("Description", e);
+                    this.OnPropertyChanging("Description", e, _descriptionAttribute);
                     this._description = value;
                     this.OnDescriptionChanged(e);
-                    this.OnPropertyChanged("Description", e);
+                    this.OnPropertyChanged("Description", e, _descriptionAttribute);
                 }
             }
         }
@@ -193,10 +207,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Core
                     string old = this._pathName;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnPathNameChanging(e);
-                    this.OnPropertyChanging("PathName", e);
+                    this.OnPropertyChanging("PathName", e, _pathNameAttribute);
                     this._pathName = value;
                     this.OnPathNameChanged(e);
-                    this.OnPropertyChanged("PathName", e);
+                    this.OnPropertyChanged("PathName", e, _pathNameAttribute);
                 }
             }
         }
@@ -219,10 +233,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Core
                     string old = this._localName;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnLocalNameChanging(e);
-                    this.OnPropertyChanging("LocalName", e);
+                    this.OnPropertyChanging("LocalName", e, _localNameAttribute);
                     this._localName = value;
                     this.OnLocalNameChanged(e);
-                    this.OnPropertyChanged("LocalName", e);
+                    this.OnPropertyChanged("LocalName", e, _localNameAttribute);
                 }
             }
         }
@@ -245,10 +259,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Core
                     string old = this._aliasName;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnAliasNameChanging(e);
-                    this.OnPropertyChanging("AliasName", e);
+                    this.OnPropertyChanging("AliasName", e, _aliasNameAttribute);
                     this._aliasName = value;
                     this.OnAliasNameChanged(e);
-                    this.OnPropertyChanged("AliasName", e);
+                    this.OnPropertyChanged("AliasName", e, _aliasNameAttribute);
                 }
             }
         }
@@ -271,7 +285,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Core
                     IModelingAuthoritySet old = this._modelingAuthoritySet;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnModelingAuthoritySetChanging(e);
-                    this.OnPropertyChanging("ModelingAuthoritySet", e);
+                    this.OnPropertyChanging("ModelingAuthoritySet", e, _modelingAuthoritySetReference);
                     this._modelingAuthoritySet = value;
                     if ((old != null))
                     {
@@ -284,7 +298,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Core
                         value.Deleted += this.OnResetModelingAuthoritySet;
                     }
                     this.OnModelingAuthoritySetChanged(e);
-                    this.OnPropertyChanged("ModelingAuthoritySet", e);
+                    this.OnPropertyChanged("ModelingAuthoritySet", e, _modelingAuthoritySetReference);
                 }
             }
         }
@@ -385,6 +399,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Core
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> ModelingAuthoritySetChanged;
         
+        private static ITypedElement RetrieveMRIDAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(IdentifiedObject.ClassInstance)).Resolve("mRID")));
+        }
+        
         /// <summary>
         /// Raises the MRIDChanging event
         /// </summary>
@@ -409,6 +428,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Core
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveNameAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(IdentifiedObject.ClassInstance)).Resolve("name")));
         }
         
         /// <summary>
@@ -437,6 +461,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Core
             }
         }
         
+        private static ITypedElement RetrieveDescriptionAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(IdentifiedObject.ClassInstance)).Resolve("description")));
+        }
+        
         /// <summary>
         /// Raises the DescriptionChanging event
         /// </summary>
@@ -461,6 +490,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Core
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrievePathNameAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(IdentifiedObject.ClassInstance)).Resolve("pathName")));
         }
         
         /// <summary>
@@ -489,6 +523,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Core
             }
         }
         
+        private static ITypedElement RetrieveLocalNameAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(IdentifiedObject.ClassInstance)).Resolve("localName")));
+        }
+        
         /// <summary>
         /// Raises the LocalNameChanging event
         /// </summary>
@@ -515,6 +554,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Core
             }
         }
         
+        private static ITypedElement RetrieveAliasNameAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(IdentifiedObject.ClassInstance)).Resolve("aliasName")));
+        }
+        
         /// <summary>
         /// Raises the AliasNameChanging event
         /// </summary>
@@ -539,6 +583,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Core
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveModelingAuthoritySetReference()
+        {
+            return ((ITypedElement)(((ModelElement)(IdentifiedObject.ClassInstance)).Resolve("ModelingAuthoritySet")));
         }
         
         /// <summary>
@@ -828,7 +877,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Core
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public MRIDProxy(IIdentifiedObject modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "mRID")
             {
             }
             
@@ -846,24 +895,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Core
                     this.ModelElement.MRID = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.MRIDChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.MRIDChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -877,7 +908,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Core
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public NameProxy(IIdentifiedObject modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "name")
             {
             }
             
@@ -895,24 +926,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Core
                     this.ModelElement.Name = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.NameChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.NameChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -926,7 +939,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Core
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public DescriptionProxy(IIdentifiedObject modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "description")
             {
             }
             
@@ -944,24 +957,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Core
                     this.ModelElement.Description = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.DescriptionChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.DescriptionChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -975,7 +970,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Core
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public PathNameProxy(IIdentifiedObject modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "pathName")
             {
             }
             
@@ -993,24 +988,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Core
                     this.ModelElement.PathName = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.PathNameChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.PathNameChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1024,7 +1001,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Core
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public LocalNameProxy(IIdentifiedObject modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "localName")
             {
             }
             
@@ -1042,24 +1019,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Core
                     this.ModelElement.LocalName = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.LocalNameChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.LocalNameChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1073,7 +1032,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Core
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public AliasNameProxy(IIdentifiedObject modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "aliasName")
             {
             }
             
@@ -1091,24 +1050,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Core
                     this.ModelElement.AliasName = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.AliasNameChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.AliasNameChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1122,7 +1063,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Core
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public ModelingAuthoritySetProxy(IIdentifiedObject modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "ModelingAuthoritySet")
             {
             }
             
@@ -1139,24 +1080,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Core
                 {
                     this.ModelElement.ModelingAuthoritySet = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ModelingAuthoritySetChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ModelingAuthoritySetChanged -= handler;
             }
         }
     }

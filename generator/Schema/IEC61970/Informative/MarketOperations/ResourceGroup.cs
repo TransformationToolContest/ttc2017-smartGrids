@@ -50,13 +50,17 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61970/Informative/MarketOperations/" +
         "ResourceGroup")]
     [DebuggerDisplayAttribute("ResourceGroup {UUID}")]
-    public class ResourceGroup : IdentifiedObject, IResourceGroup, IModelElement
+    public partial class ResourceGroup : IdentifiedObject, IResourceGroup, IModelElement
     {
+        
+        private static Lazy<ITypedElement> _resourceGroupReqsReference = new Lazy<ITypedElement>(RetrieveResourceGroupReqsReference);
         
         /// <summary>
         /// The backing field for the ResourceGroupReqs property
         /// </summary>
         private ResourceGroupResourceGroupReqsCollection _resourceGroupReqs;
+        
+        private static Lazy<ITypedElement> _registeredResourcesReference = new Lazy<ITypedElement>(RetrieveRegisteredResourcesReference);
         
         /// <summary>
         /// The backing field for the RegisteredResources property
@@ -132,6 +136,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
             }
         }
         
+        private static ITypedElement RetrieveResourceGroupReqsReference()
+        {
+            return ((ITypedElement)(((ModelElement)(ResourceGroup.ClassInstance)).Resolve("ResourceGroupReqs")));
+        }
+        
         /// <summary>
         /// Forwards CollectionChanging notifications for the ResourceGroupReqs property to the parent model element
         /// </summary>
@@ -139,7 +148,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
         /// <param name="e">The original event data</param>
         private void ResourceGroupReqsCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("ResourceGroupReqs", e);
+            this.OnCollectionChanging("ResourceGroupReqs", e, _resourceGroupReqsReference);
         }
         
         /// <summary>
@@ -149,7 +158,12 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
         /// <param name="e">The original event data</param>
         private void ResourceGroupReqsCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("ResourceGroupReqs", e);
+            this.OnCollectionChanged("ResourceGroupReqs", e, _resourceGroupReqsReference);
+        }
+        
+        private static ITypedElement RetrieveRegisteredResourcesReference()
+        {
+            return ((ITypedElement)(((ModelElement)(ResourceGroup.ClassInstance)).Resolve("RegisteredResources")));
         }
         
         /// <summary>
@@ -159,7 +173,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
         /// <param name="e">The original event data</param>
         private void RegisteredResourcesCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("RegisteredResources", e);
+            this.OnCollectionChanging("RegisteredResources", e, _registeredResourcesReference);
         }
         
         /// <summary>
@@ -169,7 +183,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
         /// <param name="e">The original event data</param>
         private void RegisteredResourcesCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("RegisteredResources", e);
+            this.OnCollectionChanged("RegisteredResources", e, _registeredResourcesReference);
         }
         
         /// <summary>

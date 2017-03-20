@@ -57,23 +57,31 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Core
     [XmlNamespacePrefixAttribute("cimCore")]
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61970/Core/ReportingGroup")]
     [DebuggerDisplayAttribute("ReportingGroup {UUID}")]
-    public class ReportingGroup : IdentifiedObject, IReportingGroup, IModelElement
+    public partial class ReportingGroup : IdentifiedObject, IReportingGroup, IModelElement
     {
+        
+        private static Lazy<ITypedElement> _powerSystemResourceReference = new Lazy<ITypedElement>(RetrievePowerSystemResourceReference);
         
         /// <summary>
         /// The backing field for the PowerSystemResource property
         /// </summary>
         private ReportingGroupPowerSystemResourceCollection _powerSystemResource;
         
+        private static Lazy<ITypedElement> _busNameMarkerReference = new Lazy<ITypedElement>(RetrieveBusNameMarkerReference);
+        
         /// <summary>
         /// The backing field for the BusNameMarker property
         /// </summary>
         private ReportingGroupBusNameMarkerCollection _busNameMarker;
         
+        private static Lazy<ITypedElement> _topologicalNodeReference = new Lazy<ITypedElement>(RetrieveTopologicalNodeReference);
+        
         /// <summary>
         /// The backing field for the TopologicalNode property
         /// </summary>
         private ReportingGroupTopologicalNodeCollection _topologicalNode;
+        
+        private static Lazy<ITypedElement> _reportingSuperGroupReference = new Lazy<ITypedElement>(RetrieveReportingSuperGroupReference);
         
         /// <summary>
         /// The backing field for the ReportingSuperGroup property
@@ -158,7 +166,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Core
                     IReportingSuperGroup old = this._reportingSuperGroup;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnReportingSuperGroupChanging(e);
-                    this.OnPropertyChanging("ReportingSuperGroup", e);
+                    this.OnPropertyChanging("ReportingSuperGroup", e, _reportingSuperGroupReference);
                     this._reportingSuperGroup = value;
                     if ((old != null))
                     {
@@ -171,7 +179,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Core
                         value.Deleted += this.OnResetReportingSuperGroup;
                     }
                     this.OnReportingSuperGroupChanged(e);
-                    this.OnPropertyChanged("ReportingSuperGroup", e);
+                    this.OnPropertyChanged("ReportingSuperGroup", e, _reportingSuperGroupReference);
                 }
             }
         }
@@ -212,6 +220,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Core
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> ReportingSuperGroupChanged;
         
+        private static ITypedElement RetrievePowerSystemResourceReference()
+        {
+            return ((ITypedElement)(((ModelElement)(ReportingGroup.ClassInstance)).Resolve("PowerSystemResource")));
+        }
+        
         /// <summary>
         /// Forwards CollectionChanging notifications for the PowerSystemResource property to the parent model element
         /// </summary>
@@ -219,7 +232,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Core
         /// <param name="e">The original event data</param>
         private void PowerSystemResourceCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("PowerSystemResource", e);
+            this.OnCollectionChanging("PowerSystemResource", e, _powerSystemResourceReference);
         }
         
         /// <summary>
@@ -229,7 +242,12 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Core
         /// <param name="e">The original event data</param>
         private void PowerSystemResourceCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("PowerSystemResource", e);
+            this.OnCollectionChanged("PowerSystemResource", e, _powerSystemResourceReference);
+        }
+        
+        private static ITypedElement RetrieveBusNameMarkerReference()
+        {
+            return ((ITypedElement)(((ModelElement)(ReportingGroup.ClassInstance)).Resolve("BusNameMarker")));
         }
         
         /// <summary>
@@ -239,7 +257,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Core
         /// <param name="e">The original event data</param>
         private void BusNameMarkerCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("BusNameMarker", e);
+            this.OnCollectionChanging("BusNameMarker", e, _busNameMarkerReference);
         }
         
         /// <summary>
@@ -249,7 +267,12 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Core
         /// <param name="e">The original event data</param>
         private void BusNameMarkerCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("BusNameMarker", e);
+            this.OnCollectionChanged("BusNameMarker", e, _busNameMarkerReference);
+        }
+        
+        private static ITypedElement RetrieveTopologicalNodeReference()
+        {
+            return ((ITypedElement)(((ModelElement)(ReportingGroup.ClassInstance)).Resolve("TopologicalNode")));
         }
         
         /// <summary>
@@ -259,7 +282,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Core
         /// <param name="e">The original event data</param>
         private void TopologicalNodeCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("TopologicalNode", e);
+            this.OnCollectionChanging("TopologicalNode", e, _topologicalNodeReference);
         }
         
         /// <summary>
@@ -269,7 +292,12 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Core
         /// <param name="e">The original event data</param>
         private void TopologicalNodeCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("TopologicalNode", e);
+            this.OnCollectionChanged("TopologicalNode", e, _topologicalNodeReference);
+        }
+        
+        private static ITypedElement RetrieveReportingSuperGroupReference()
+        {
+            return ((ITypedElement)(((ModelElement)(ReportingGroup.ClassInstance)).Resolve("ReportingSuperGroup")));
         }
         
         /// <summary>
@@ -618,7 +646,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Core
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public ReportingSuperGroupProxy(IReportingGroup modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "ReportingSuperGroup")
             {
             }
             
@@ -635,24 +663,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Core
                 {
                     this.ModelElement.ReportingSuperGroup = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ReportingSuperGroupChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ReportingSuperGroupChanged -= handler;
             }
         }
     }

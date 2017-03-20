@@ -44,28 +44,38 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.Reservation
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61970/Informative/Reservation/Servi" +
         "ceReservation")]
     [DebuggerDisplayAttribute("ServiceReservation {UUID}")]
-    public class ServiceReservation : Element, IServiceReservation, IModelElement
+    public partial class ServiceReservation : Element, IServiceReservation, IModelElement
     {
+        
+        private static Lazy<ITypedElement> _holdsReference = new Lazy<ITypedElement>(RetrieveHoldsReference);
         
         /// <summary>
         /// The backing field for the Holds property
         /// </summary>
         private IMarketer _holds;
         
+        private static Lazy<ITypedElement> _reserves_TransmissionServiceReference = new Lazy<ITypedElement>(RetrieveReserves_TransmissionServiceReference);
+        
         /// <summary>
         /// The backing field for the Reserves_TransmissionService property
         /// </summary>
         private ServiceReservationReserves_TransmissionServiceCollection _reserves_TransmissionService;
+        
+        private static Lazy<ITypedElement> _reserves_AncillaryServicesReference = new Lazy<ITypedElement>(RetrieveReserves_AncillaryServicesReference);
         
         /// <summary>
         /// The backing field for the Reserves_AncillaryServices property
         /// </summary>
         private ServiceReservationReserves_AncillaryServicesCollection _reserves_AncillaryServices;
         
+        private static Lazy<ITypedElement> _resellsReference = new Lazy<ITypedElement>(RetrieveResellsReference);
+        
         /// <summary>
         /// The backing field for the Resells property
         /// </summary>
         private IMarketer _resells;
+        
+        private static Lazy<ITypedElement> _sellsReference = new Lazy<ITypedElement>(RetrieveSellsReference);
         
         /// <summary>
         /// The backing field for the Sells property
@@ -102,7 +112,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.Reservation
                     IMarketer old = this._holds;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnHoldsChanging(e);
-                    this.OnPropertyChanging("Holds", e);
+                    this.OnPropertyChanging("Holds", e, _holdsReference);
                     this._holds = value;
                     if ((old != null))
                     {
@@ -115,7 +125,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.Reservation
                         value.Deleted += this.OnResetHolds;
                     }
                     this.OnHoldsChanged(e);
-                    this.OnPropertyChanged("Holds", e);
+                    this.OnPropertyChanged("Holds", e, _holdsReference);
                 }
             }
         }
@@ -168,7 +178,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.Reservation
                     IMarketer old = this._resells;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnResellsChanging(e);
-                    this.OnPropertyChanging("Resells", e);
+                    this.OnPropertyChanging("Resells", e, _resellsReference);
                     this._resells = value;
                     if ((old != null))
                     {
@@ -181,7 +191,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.Reservation
                         value.Deleted += this.OnResetResells;
                     }
                     this.OnResellsChanged(e);
-                    this.OnPropertyChanged("Resells", e);
+                    this.OnPropertyChanged("Resells", e, _resellsReference);
                 }
             }
         }
@@ -204,7 +214,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.Reservation
                     ITransmissionProvider old = this._sells;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnSellsChanging(e);
-                    this.OnPropertyChanging("Sells", e);
+                    this.OnPropertyChanging("Sells", e, _sellsReference);
                     this._sells = value;
                     if ((old != null))
                     {
@@ -217,7 +227,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.Reservation
                         value.Deleted += this.OnResetSells;
                     }
                     this.OnSellsChanged(e);
-                    this.OnPropertyChanged("Sells", e);
+                    this.OnPropertyChanged("Sells", e, _sellsReference);
                 }
             }
         }
@@ -279,6 +289,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.Reservation
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> SellsChanged;
         
+        private static ITypedElement RetrieveHoldsReference()
+        {
+            return ((ITypedElement)(((ModelElement)(ServiceReservation.ClassInstance)).Resolve("Holds")));
+        }
+        
         /// <summary>
         /// Raises the HoldsChanging event
         /// </summary>
@@ -315,6 +330,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.Reservation
             this.Holds = null;
         }
         
+        private static ITypedElement RetrieveReserves_TransmissionServiceReference()
+        {
+            return ((ITypedElement)(((ModelElement)(ServiceReservation.ClassInstance)).Resolve("Reserves_TransmissionService")));
+        }
+        
         /// <summary>
         /// Forwards CollectionChanging notifications for the Reserves_TransmissionService property to the parent model element
         /// </summary>
@@ -322,7 +342,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.Reservation
         /// <param name="e">The original event data</param>
         private void Reserves_TransmissionServiceCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("Reserves_TransmissionService", e);
+            this.OnCollectionChanging("Reserves_TransmissionService", e, _reserves_TransmissionServiceReference);
         }
         
         /// <summary>
@@ -332,7 +352,12 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.Reservation
         /// <param name="e">The original event data</param>
         private void Reserves_TransmissionServiceCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("Reserves_TransmissionService", e);
+            this.OnCollectionChanged("Reserves_TransmissionService", e, _reserves_TransmissionServiceReference);
+        }
+        
+        private static ITypedElement RetrieveReserves_AncillaryServicesReference()
+        {
+            return ((ITypedElement)(((ModelElement)(ServiceReservation.ClassInstance)).Resolve("Reserves_AncillaryServices")));
         }
         
         /// <summary>
@@ -342,7 +367,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.Reservation
         /// <param name="e">The original event data</param>
         private void Reserves_AncillaryServicesCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("Reserves_AncillaryServices", e);
+            this.OnCollectionChanging("Reserves_AncillaryServices", e, _reserves_AncillaryServicesReference);
         }
         
         /// <summary>
@@ -352,7 +377,12 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.Reservation
         /// <param name="e">The original event data</param>
         private void Reserves_AncillaryServicesCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("Reserves_AncillaryServices", e);
+            this.OnCollectionChanged("Reserves_AncillaryServices", e, _reserves_AncillaryServicesReference);
+        }
+        
+        private static ITypedElement RetrieveResellsReference()
+        {
+            return ((ITypedElement)(((ModelElement)(ServiceReservation.ClassInstance)).Resolve("Resells")));
         }
         
         /// <summary>
@@ -389,6 +419,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.Reservation
         private void OnResetResells(object sender, System.EventArgs eventArgs)
         {
             this.Resells = null;
+        }
+        
+        private static ITypedElement RetrieveSellsReference()
+        {
+            return ((ITypedElement)(((ModelElement)(ServiceReservation.ClassInstance)).Resolve("Sells")));
         }
         
         /// <summary>
@@ -786,7 +821,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.Reservation
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public HoldsProxy(IServiceReservation modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "Holds")
             {
             }
             
@@ -804,24 +839,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.Reservation
                     this.ModelElement.Holds = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.HoldsChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.HoldsChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -835,7 +852,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.Reservation
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public ResellsProxy(IServiceReservation modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "Resells")
             {
             }
             
@@ -853,24 +870,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.Reservation
                     this.ModelElement.Resells = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ResellsChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ResellsChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -884,7 +883,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.Reservation
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public SellsProxy(IServiceReservation modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "Sells")
             {
             }
             
@@ -901,24 +900,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.Reservation
                 {
                     this.ModelElement.Sells = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.SellsChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.SellsChanged -= handler;
             }
         }
     }

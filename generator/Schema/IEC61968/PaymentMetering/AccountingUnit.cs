@@ -47,7 +47,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.PaymentMetering
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61968/PaymentMetering/AccountingUni" +
         "t")]
     [DebuggerDisplayAttribute("AccountingUnit {UUID}")]
-    public class AccountingUnit : Element, IAccountingUnit, IModelElement
+    public partial class AccountingUnit : Element, IAccountingUnit, IModelElement
     {
         
         /// <summary>
@@ -55,20 +55,28 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.PaymentMetering
         /// </summary>
         private Nullable<TTC2017.SmartGrids.CIM.IEC61970.Domain.Currency> _monetaryUnit;
         
+        private static Lazy<ITypedElement> _monetaryUnitAttribute = new Lazy<ITypedElement>(RetrieveMonetaryUnitAttribute);
+        
         /// <summary>
         /// The backing field for the EnergyUnit property
         /// </summary>
         private float _energyUnit;
+        
+        private static Lazy<ITypedElement> _energyUnitAttribute = new Lazy<ITypedElement>(RetrieveEnergyUnitAttribute);
         
         /// <summary>
         /// The backing field for the Value property
         /// </summary>
         private float _value;
         
+        private static Lazy<ITypedElement> _valueAttribute = new Lazy<ITypedElement>(RetrieveValueAttribute);
+        
         /// <summary>
         /// The backing field for the Multiplier property
         /// </summary>
         private Nullable<UnitMultiplier> _multiplier;
+        
+        private static Lazy<ITypedElement> _multiplierAttribute = new Lazy<ITypedElement>(RetrieveMultiplierAttribute);
         
         private static IClass _classInstance;
         
@@ -90,10 +98,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.PaymentMetering
                     Nullable<TTC2017.SmartGrids.CIM.IEC61970.Domain.Currency> old = this._monetaryUnit;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnMonetaryUnitChanging(e);
-                    this.OnPropertyChanging("MonetaryUnit", e);
+                    this.OnPropertyChanging("MonetaryUnit", e, _monetaryUnitAttribute);
                     this._monetaryUnit = value;
                     this.OnMonetaryUnitChanged(e);
-                    this.OnPropertyChanged("MonetaryUnit", e);
+                    this.OnPropertyChanged("MonetaryUnit", e, _monetaryUnitAttribute);
                 }
             }
         }
@@ -116,10 +124,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.PaymentMetering
                     float old = this._energyUnit;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnEnergyUnitChanging(e);
-                    this.OnPropertyChanging("EnergyUnit", e);
+                    this.OnPropertyChanging("EnergyUnit", e, _energyUnitAttribute);
                     this._energyUnit = value;
                     this.OnEnergyUnitChanged(e);
-                    this.OnPropertyChanged("EnergyUnit", e);
+                    this.OnPropertyChanged("EnergyUnit", e, _energyUnitAttribute);
                 }
             }
         }
@@ -142,10 +150,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.PaymentMetering
                     float old = this._value;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnValueChanging(e);
-                    this.OnPropertyChanging("Value", e);
+                    this.OnPropertyChanging("Value", e, _valueAttribute);
                     this._value = value;
                     this.OnValueChanged(e);
-                    this.OnPropertyChanged("Value", e);
+                    this.OnPropertyChanged("Value", e, _valueAttribute);
                 }
             }
         }
@@ -168,10 +176,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.PaymentMetering
                     Nullable<UnitMultiplier> old = this._multiplier;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnMultiplierChanging(e);
-                    this.OnPropertyChanging("Multiplier", e);
+                    this.OnPropertyChanging("Multiplier", e, _multiplierAttribute);
                     this._multiplier = value;
                     this.OnMultiplierChanged(e);
-                    this.OnPropertyChanged("Multiplier", e);
+                    this.OnPropertyChanged("Multiplier", e, _multiplierAttribute);
                 }
             }
         }
@@ -232,6 +240,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.PaymentMetering
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> MultiplierChanged;
         
+        private static ITypedElement RetrieveMonetaryUnitAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(AccountingUnit.ClassInstance)).Resolve("monetaryUnit")));
+        }
+        
         /// <summary>
         /// Raises the MonetaryUnitChanging event
         /// </summary>
@@ -256,6 +269,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.PaymentMetering
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveEnergyUnitAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(AccountingUnit.ClassInstance)).Resolve("energyUnit")));
         }
         
         /// <summary>
@@ -284,6 +302,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.PaymentMetering
             }
         }
         
+        private static ITypedElement RetrieveValueAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(AccountingUnit.ClassInstance)).Resolve("value")));
+        }
+        
         /// <summary>
         /// Raises the ValueChanging event
         /// </summary>
@@ -308,6 +331,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.PaymentMetering
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveMultiplierAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(AccountingUnit.ClassInstance)).Resolve("multiplier")));
         }
         
         /// <summary>
@@ -417,7 +445,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.PaymentMetering
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public MonetaryUnitProxy(IAccountingUnit modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "monetaryUnit")
             {
             }
             
@@ -435,24 +463,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.PaymentMetering
                     this.ModelElement.MonetaryUnit = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.MonetaryUnitChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.MonetaryUnitChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -466,7 +476,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.PaymentMetering
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public EnergyUnitProxy(IAccountingUnit modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "energyUnit")
             {
             }
             
@@ -484,24 +494,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.PaymentMetering
                     this.ModelElement.EnergyUnit = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.EnergyUnitChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.EnergyUnitChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -515,7 +507,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.PaymentMetering
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public ValueProxy(IAccountingUnit modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "value")
             {
             }
             
@@ -533,24 +525,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.PaymentMetering
                     this.ModelElement.Value = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ValueChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ValueChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -564,7 +538,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.PaymentMetering
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public MultiplierProxy(IAccountingUnit modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "multiplier")
             {
             }
             
@@ -581,24 +555,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.PaymentMetering
                 {
                     this.ModelElement.Multiplier = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.MultiplierChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.MultiplierChanged -= handler;
             }
         }
     }

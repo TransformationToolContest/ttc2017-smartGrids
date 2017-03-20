@@ -42,7 +42,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.GenerationDynamics
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61970/Generation/GenerationDynamics" +
         "/Subcritical")]
     [DebuggerDisplayAttribute("Subcritical {UUID}")]
-    public class Subcritical : FossilSteamSupply, ISubcritical, IModelElement
+    public partial class Subcritical : FossilSteamSupply, ISubcritical, IModelElement
     {
         
         private static IClass _classInstance;

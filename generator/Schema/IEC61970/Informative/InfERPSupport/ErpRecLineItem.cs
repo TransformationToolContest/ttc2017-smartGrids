@@ -56,28 +56,38 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfERPSupport
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61970/Informative/InfERPSupport/Erp" +
         "RecLineItem")]
     [DebuggerDisplayAttribute("ErpRecLineItem {UUID}")]
-    public class ErpRecLineItem : IdentifiedObject, IErpRecLineItem, IModelElement
+    public partial class ErpRecLineItem : IdentifiedObject, IErpRecLineItem, IModelElement
     {
+        
+        private static Lazy<ITypedElement> _statusReference = new Lazy<ITypedElement>(RetrieveStatusReference);
         
         /// <summary>
         /// The backing field for the Status property
         /// </summary>
         private IStatus _status;
         
+        private static Lazy<ITypedElement> _erpJournalEntriesReference = new Lazy<ITypedElement>(RetrieveErpJournalEntriesReference);
+        
         /// <summary>
         /// The backing field for the ErpJournalEntries property
         /// </summary>
         private ErpRecLineItemErpJournalEntriesCollection _erpJournalEntries;
+        
+        private static Lazy<ITypedElement> _erpReceivableReference = new Lazy<ITypedElement>(RetrieveErpReceivableReference);
         
         /// <summary>
         /// The backing field for the ErpReceivable property
         /// </summary>
         private IErpReceivable _erpReceivable;
         
+        private static Lazy<ITypedElement> _erpInvoiceLineItemReference = new Lazy<ITypedElement>(RetrieveErpInvoiceLineItemReference);
+        
         /// <summary>
         /// The backing field for the ErpInvoiceLineItem property
         /// </summary>
         private IErpInvoiceLineItem _erpInvoiceLineItem;
+        
+        private static Lazy<ITypedElement> _erpPaymentsReference = new Lazy<ITypedElement>(RetrieveErpPaymentsReference);
         
         /// <summary>
         /// The backing field for the ErpPayments property
@@ -114,7 +124,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfERPSupport
                     IStatus old = this._status;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnStatusChanging(e);
-                    this.OnPropertyChanging("Status", e);
+                    this.OnPropertyChanging("Status", e, _statusReference);
                     this._status = value;
                     if ((old != null))
                     {
@@ -125,7 +135,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfERPSupport
                         value.Deleted += this.OnResetStatus;
                     }
                     this.OnStatusChanged(e);
-                    this.OnPropertyChanged("Status", e);
+                    this.OnPropertyChanged("Status", e, _statusReference);
                 }
             }
         }
@@ -163,7 +173,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfERPSupport
                     IErpReceivable old = this._erpReceivable;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnErpReceivableChanging(e);
-                    this.OnPropertyChanging("ErpReceivable", e);
+                    this.OnPropertyChanging("ErpReceivable", e, _erpReceivableReference);
                     this._erpReceivable = value;
                     if ((old != null))
                     {
@@ -176,7 +186,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfERPSupport
                         value.Deleted += this.OnResetErpReceivable;
                     }
                     this.OnErpReceivableChanged(e);
-                    this.OnPropertyChanged("ErpReceivable", e);
+                    this.OnPropertyChanged("ErpReceivable", e, _erpReceivableReference);
                 }
             }
         }
@@ -199,7 +209,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfERPSupport
                     IErpInvoiceLineItem old = this._erpInvoiceLineItem;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnErpInvoiceLineItemChanging(e);
-                    this.OnPropertyChanging("ErpInvoiceLineItem", e);
+                    this.OnPropertyChanging("ErpInvoiceLineItem", e, _erpInvoiceLineItemReference);
                     this._erpInvoiceLineItem = value;
                     if ((old != null))
                     {
@@ -212,7 +222,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfERPSupport
                         value.Deleted += this.OnResetErpInvoiceLineItem;
                     }
                     this.OnErpInvoiceLineItemChanged(e);
-                    this.OnPropertyChanged("ErpInvoiceLineItem", e);
+                    this.OnPropertyChanged("ErpInvoiceLineItem", e, _erpInvoiceLineItemReference);
                 }
             }
         }
@@ -289,6 +299,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfERPSupport
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> ErpInvoiceLineItemChanged;
         
+        private static ITypedElement RetrieveStatusReference()
+        {
+            return ((ITypedElement)(((ModelElement)(ErpRecLineItem.ClassInstance)).Resolve("status")));
+        }
+        
         /// <summary>
         /// Raises the StatusChanging event
         /// </summary>
@@ -325,6 +340,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfERPSupport
             this.Status = null;
         }
         
+        private static ITypedElement RetrieveErpJournalEntriesReference()
+        {
+            return ((ITypedElement)(((ModelElement)(ErpRecLineItem.ClassInstance)).Resolve("ErpJournalEntries")));
+        }
+        
         /// <summary>
         /// Forwards CollectionChanging notifications for the ErpJournalEntries property to the parent model element
         /// </summary>
@@ -332,7 +352,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfERPSupport
         /// <param name="e">The original event data</param>
         private void ErpJournalEntriesCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("ErpJournalEntries", e);
+            this.OnCollectionChanging("ErpJournalEntries", e, _erpJournalEntriesReference);
         }
         
         /// <summary>
@@ -342,7 +362,12 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfERPSupport
         /// <param name="e">The original event data</param>
         private void ErpJournalEntriesCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("ErpJournalEntries", e);
+            this.OnCollectionChanged("ErpJournalEntries", e, _erpJournalEntriesReference);
+        }
+        
+        private static ITypedElement RetrieveErpReceivableReference()
+        {
+            return ((ITypedElement)(((ModelElement)(ErpRecLineItem.ClassInstance)).Resolve("ErpReceivable")));
         }
         
         /// <summary>
@@ -381,6 +406,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfERPSupport
             this.ErpReceivable = null;
         }
         
+        private static ITypedElement RetrieveErpInvoiceLineItemReference()
+        {
+            return ((ITypedElement)(((ModelElement)(ErpRecLineItem.ClassInstance)).Resolve("ErpInvoiceLineItem")));
+        }
+        
         /// <summary>
         /// Raises the ErpInvoiceLineItemChanging event
         /// </summary>
@@ -417,6 +447,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfERPSupport
             this.ErpInvoiceLineItem = null;
         }
         
+        private static ITypedElement RetrieveErpPaymentsReference()
+        {
+            return ((ITypedElement)(((ModelElement)(ErpRecLineItem.ClassInstance)).Resolve("ErpPayments")));
+        }
+        
         /// <summary>
         /// Forwards CollectionChanging notifications for the ErpPayments property to the parent model element
         /// </summary>
@@ -424,7 +459,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfERPSupport
         /// <param name="e">The original event data</param>
         private void ErpPaymentsCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("ErpPayments", e);
+            this.OnCollectionChanging("ErpPayments", e, _erpPaymentsReference);
         }
         
         /// <summary>
@@ -434,7 +469,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfERPSupport
         /// <param name="e">The original event data</param>
         private void ErpPaymentsCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("ErpPayments", e);
+            this.OnCollectionChanged("ErpPayments", e, _erpPaymentsReference);
         }
         
         /// <summary>
@@ -796,7 +831,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfERPSupport
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public StatusProxy(IErpRecLineItem modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "status")
             {
             }
             
@@ -814,24 +849,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfERPSupport
                     this.ModelElement.Status = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.StatusChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.StatusChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -845,7 +862,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfERPSupport
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public ErpReceivableProxy(IErpRecLineItem modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "ErpReceivable")
             {
             }
             
@@ -863,24 +880,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfERPSupport
                     this.ModelElement.ErpReceivable = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ErpReceivableChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ErpReceivableChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -894,7 +893,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfERPSupport
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public ErpInvoiceLineItemProxy(IErpRecLineItem modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "ErpInvoiceLineItem")
             {
             }
             
@@ -911,24 +910,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfERPSupport
                 {
                     this.ModelElement.ErpInvoiceLineItem = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ErpInvoiceLineItemChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ErpInvoiceLineItemChanged -= handler;
             }
         }
     }

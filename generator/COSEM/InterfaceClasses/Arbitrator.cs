@@ -40,7 +40,7 @@ namespace TTC2017.SmartGrids.COSEM.InterfaceClasses
     [XmlNamespacePrefixAttribute("inter")]
     [ModelRepresentationClassAttribute("http://www.transformation-tool-contest.eu/2017/smartGrids/cosem#//InterfaceClasse" +
         "s/Arbitrator")]
-    public class Arbitrator : Base, IArbitrator, IModelElement
+    public partial class Arbitrator : Base, IArbitrator, IModelElement
     {
         
         private static IClass _classInstance;

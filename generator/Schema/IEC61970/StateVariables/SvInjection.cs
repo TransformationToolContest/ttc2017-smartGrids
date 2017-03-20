@@ -42,7 +42,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.StateVariables
     [XmlNamespacePrefixAttribute("cimStateVariables")]
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61970/StateVariables/SvInjection")]
     [DebuggerDisplayAttribute("SvInjection {UUID}")]
-    public class SvInjection : StateVariable, ISvInjection, IModelElement
+    public partial class SvInjection : StateVariable, ISvInjection, IModelElement
     {
         
         /// <summary>
@@ -50,10 +50,16 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.StateVariables
         /// </summary>
         private float _qNetInjection;
         
+        private static Lazy<ITypedElement> _qNetInjectionAttribute = new Lazy<ITypedElement>(RetrieveQNetInjectionAttribute);
+        
         /// <summary>
         /// The backing field for the PNetInjection property
         /// </summary>
         private float _pNetInjection;
+        
+        private static Lazy<ITypedElement> _pNetInjectionAttribute = new Lazy<ITypedElement>(RetrievePNetInjectionAttribute);
+        
+        private static Lazy<ITypedElement> _topologicalNodeReference = new Lazy<ITypedElement>(RetrieveTopologicalNodeReference);
         
         /// <summary>
         /// The backing field for the TopologicalNode property
@@ -80,10 +86,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.StateVariables
                     float old = this._qNetInjection;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnQNetInjectionChanging(e);
-                    this.OnPropertyChanging("QNetInjection", e);
+                    this.OnPropertyChanging("QNetInjection", e, _qNetInjectionAttribute);
                     this._qNetInjection = value;
                     this.OnQNetInjectionChanged(e);
-                    this.OnPropertyChanged("QNetInjection", e);
+                    this.OnPropertyChanged("QNetInjection", e, _qNetInjectionAttribute);
                 }
             }
         }
@@ -106,10 +112,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.StateVariables
                     float old = this._pNetInjection;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnPNetInjectionChanging(e);
-                    this.OnPropertyChanging("PNetInjection", e);
+                    this.OnPropertyChanging("PNetInjection", e, _pNetInjectionAttribute);
                     this._pNetInjection = value;
                     this.OnPNetInjectionChanged(e);
-                    this.OnPropertyChanged("PNetInjection", e);
+                    this.OnPropertyChanged("PNetInjection", e, _pNetInjectionAttribute);
                 }
             }
         }
@@ -132,7 +138,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.StateVariables
                     ITopologicalNode old = this._topologicalNode;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnTopologicalNodeChanging(e);
-                    this.OnPropertyChanging("TopologicalNode", e);
+                    this.OnPropertyChanging("TopologicalNode", e, _topologicalNodeReference);
                     this._topologicalNode = value;
                     if ((old != null))
                     {
@@ -145,7 +151,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.StateVariables
                         value.Deleted += this.OnResetTopologicalNode;
                     }
                     this.OnTopologicalNodeChanged(e);
-                    this.OnPropertyChanged("TopologicalNode", e);
+                    this.OnPropertyChanged("TopologicalNode", e, _topologicalNodeReference);
                 }
             }
         }
@@ -206,6 +212,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.StateVariables
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> TopologicalNodeChanged;
         
+        private static ITypedElement RetrieveQNetInjectionAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(SvInjection.ClassInstance)).Resolve("qNetInjection")));
+        }
+        
         /// <summary>
         /// Raises the QNetInjectionChanging event
         /// </summary>
@@ -232,6 +243,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.StateVariables
             }
         }
         
+        private static ITypedElement RetrievePNetInjectionAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(SvInjection.ClassInstance)).Resolve("pNetInjection")));
+        }
+        
         /// <summary>
         /// Raises the PNetInjectionChanging event
         /// </summary>
@@ -256,6 +272,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.StateVariables
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveTopologicalNodeReference()
+        {
+            return ((ITypedElement)(((ModelElement)(SvInjection.ClassInstance)).Resolve("TopologicalNode")));
         }
         
         /// <summary>
@@ -509,7 +530,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.StateVariables
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public QNetInjectionProxy(ISvInjection modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "qNetInjection")
             {
             }
             
@@ -527,24 +548,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.StateVariables
                     this.ModelElement.QNetInjection = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.QNetInjectionChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.QNetInjectionChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -558,7 +561,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.StateVariables
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public PNetInjectionProxy(ISvInjection modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "pNetInjection")
             {
             }
             
@@ -576,24 +579,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.StateVariables
                     this.ModelElement.PNetInjection = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.PNetInjectionChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.PNetInjectionChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -607,7 +592,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.StateVariables
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public TopologicalNodeProxy(ISvInjection modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "TopologicalNode")
             {
             }
             
@@ -624,24 +609,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.StateVariables
                 {
                     this.ModelElement.TopologicalNode = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.TopologicalNodeChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.TopologicalNodeChanged -= handler;
             }
         }
     }

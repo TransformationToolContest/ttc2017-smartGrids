@@ -49,7 +49,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.EnergyScheduling
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61970/Informative/EnergyScheduling/" +
         "AreaReserveSpec")]
     [DebuggerDisplayAttribute("AreaReserveSpec {UUID}")]
-    public class AreaReserveSpec : Element, IAreaReserveSpec, IModelElement
+    public partial class AreaReserveSpec : Element, IAreaReserveSpec, IModelElement
     {
         
         /// <summary>
@@ -57,35 +57,51 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.EnergyScheduling
         /// </summary>
         private float _raiseRegMarginReqt;
         
+        private static Lazy<ITypedElement> _raiseRegMarginReqtAttribute = new Lazy<ITypedElement>(RetrieveRaiseRegMarginReqtAttribute);
+        
         /// <summary>
         /// The backing field for the AreaReserveSpecName property
         /// </summary>
         private string _areaReserveSpecName;
+        
+        private static Lazy<ITypedElement> _areaReserveSpecNameAttribute = new Lazy<ITypedElement>(RetrieveAreaReserveSpecNameAttribute);
         
         /// <summary>
         /// The backing field for the OpReserveReqt property
         /// </summary>
         private float _opReserveReqt;
         
+        private static Lazy<ITypedElement> _opReserveReqtAttribute = new Lazy<ITypedElement>(RetrieveOpReserveReqtAttribute);
+        
         /// <summary>
         /// The backing field for the LowerRegMarginReqt property
         /// </summary>
         private float _lowerRegMarginReqt;
+        
+        private static Lazy<ITypedElement> _lowerRegMarginReqtAttribute = new Lazy<ITypedElement>(RetrieveLowerRegMarginReqtAttribute);
         
         /// <summary>
         /// The backing field for the PrimaryReserveReqt property
         /// </summary>
         private float _primaryReserveReqt;
         
+        private static Lazy<ITypedElement> _primaryReserveReqtAttribute = new Lazy<ITypedElement>(RetrievePrimaryReserveReqtAttribute);
+        
         /// <summary>
         /// The backing field for the SpinningReserveReqt property
         /// </summary>
         private float _spinningReserveReqt;
         
+        private static Lazy<ITypedElement> _spinningReserveReqtAttribute = new Lazy<ITypedElement>(RetrieveSpinningReserveReqtAttribute);
+        
+        private static Lazy<ITypedElement> _reserveEnergyTransactionReference = new Lazy<ITypedElement>(RetrieveReserveEnergyTransactionReference);
+        
         /// <summary>
         /// The backing field for the ReserveEnergyTransaction property
         /// </summary>
         private IReserve _reserveEnergyTransaction;
+        
+        private static Lazy<ITypedElement> _hostControlAreasReference = new Lazy<ITypedElement>(RetrieveHostControlAreasReference);
         
         /// <summary>
         /// The backing field for the HostControlAreas property
@@ -119,10 +135,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.EnergyScheduling
                     float old = this._raiseRegMarginReqt;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnRaiseRegMarginReqtChanging(e);
-                    this.OnPropertyChanging("RaiseRegMarginReqt", e);
+                    this.OnPropertyChanging("RaiseRegMarginReqt", e, _raiseRegMarginReqtAttribute);
                     this._raiseRegMarginReqt = value;
                     this.OnRaiseRegMarginReqtChanged(e);
-                    this.OnPropertyChanged("RaiseRegMarginReqt", e);
+                    this.OnPropertyChanged("RaiseRegMarginReqt", e, _raiseRegMarginReqtAttribute);
                 }
             }
         }
@@ -145,10 +161,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.EnergyScheduling
                     string old = this._areaReserveSpecName;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnAreaReserveSpecNameChanging(e);
-                    this.OnPropertyChanging("AreaReserveSpecName", e);
+                    this.OnPropertyChanging("AreaReserveSpecName", e, _areaReserveSpecNameAttribute);
                     this._areaReserveSpecName = value;
                     this.OnAreaReserveSpecNameChanged(e);
-                    this.OnPropertyChanged("AreaReserveSpecName", e);
+                    this.OnPropertyChanged("AreaReserveSpecName", e, _areaReserveSpecNameAttribute);
                 }
             }
         }
@@ -171,10 +187,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.EnergyScheduling
                     float old = this._opReserveReqt;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnOpReserveReqtChanging(e);
-                    this.OnPropertyChanging("OpReserveReqt", e);
+                    this.OnPropertyChanging("OpReserveReqt", e, _opReserveReqtAttribute);
                     this._opReserveReqt = value;
                     this.OnOpReserveReqtChanged(e);
-                    this.OnPropertyChanged("OpReserveReqt", e);
+                    this.OnPropertyChanged("OpReserveReqt", e, _opReserveReqtAttribute);
                 }
             }
         }
@@ -197,10 +213,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.EnergyScheduling
                     float old = this._lowerRegMarginReqt;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnLowerRegMarginReqtChanging(e);
-                    this.OnPropertyChanging("LowerRegMarginReqt", e);
+                    this.OnPropertyChanging("LowerRegMarginReqt", e, _lowerRegMarginReqtAttribute);
                     this._lowerRegMarginReqt = value;
                     this.OnLowerRegMarginReqtChanged(e);
-                    this.OnPropertyChanged("LowerRegMarginReqt", e);
+                    this.OnPropertyChanged("LowerRegMarginReqt", e, _lowerRegMarginReqtAttribute);
                 }
             }
         }
@@ -223,10 +239,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.EnergyScheduling
                     float old = this._primaryReserveReqt;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnPrimaryReserveReqtChanging(e);
-                    this.OnPropertyChanging("PrimaryReserveReqt", e);
+                    this.OnPropertyChanging("PrimaryReserveReqt", e, _primaryReserveReqtAttribute);
                     this._primaryReserveReqt = value;
                     this.OnPrimaryReserveReqtChanged(e);
-                    this.OnPropertyChanged("PrimaryReserveReqt", e);
+                    this.OnPropertyChanged("PrimaryReserveReqt", e, _primaryReserveReqtAttribute);
                 }
             }
         }
@@ -249,10 +265,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.EnergyScheduling
                     float old = this._spinningReserveReqt;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnSpinningReserveReqtChanging(e);
-                    this.OnPropertyChanging("SpinningReserveReqt", e);
+                    this.OnPropertyChanging("SpinningReserveReqt", e, _spinningReserveReqtAttribute);
                     this._spinningReserveReqt = value;
                     this.OnSpinningReserveReqtChanged(e);
-                    this.OnPropertyChanged("SpinningReserveReqt", e);
+                    this.OnPropertyChanged("SpinningReserveReqt", e, _spinningReserveReqtAttribute);
                 }
             }
         }
@@ -275,7 +291,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.EnergyScheduling
                     IReserve old = this._reserveEnergyTransaction;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnReserveEnergyTransactionChanging(e);
-                    this.OnPropertyChanging("ReserveEnergyTransaction", e);
+                    this.OnPropertyChanging("ReserveEnergyTransaction", e, _reserveEnergyTransactionReference);
                     this._reserveEnergyTransaction = value;
                     if ((old != null))
                     {
@@ -288,7 +304,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.EnergyScheduling
                         value.Deleted += this.OnResetReserveEnergyTransaction;
                     }
                     this.OnReserveEnergyTransactionChanged(e);
-                    this.OnPropertyChanged("ReserveEnergyTransaction", e);
+                    this.OnPropertyChanged("ReserveEnergyTransaction", e, _reserveEnergyTransactionReference);
                 }
             }
         }
@@ -405,6 +421,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.EnergyScheduling
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> ReserveEnergyTransactionChanged;
         
+        private static ITypedElement RetrieveRaiseRegMarginReqtAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(AreaReserveSpec.ClassInstance)).Resolve("raiseRegMarginReqt")));
+        }
+        
         /// <summary>
         /// Raises the RaiseRegMarginReqtChanging event
         /// </summary>
@@ -429,6 +450,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.EnergyScheduling
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveAreaReserveSpecNameAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(AreaReserveSpec.ClassInstance)).Resolve("areaReserveSpecName")));
         }
         
         /// <summary>
@@ -457,6 +483,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.EnergyScheduling
             }
         }
         
+        private static ITypedElement RetrieveOpReserveReqtAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(AreaReserveSpec.ClassInstance)).Resolve("opReserveReqt")));
+        }
+        
         /// <summary>
         /// Raises the OpReserveReqtChanging event
         /// </summary>
@@ -481,6 +512,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.EnergyScheduling
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveLowerRegMarginReqtAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(AreaReserveSpec.ClassInstance)).Resolve("lowerRegMarginReqt")));
         }
         
         /// <summary>
@@ -509,6 +545,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.EnergyScheduling
             }
         }
         
+        private static ITypedElement RetrievePrimaryReserveReqtAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(AreaReserveSpec.ClassInstance)).Resolve("primaryReserveReqt")));
+        }
+        
         /// <summary>
         /// Raises the PrimaryReserveReqtChanging event
         /// </summary>
@@ -535,6 +576,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.EnergyScheduling
             }
         }
         
+        private static ITypedElement RetrieveSpinningReserveReqtAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(AreaReserveSpec.ClassInstance)).Resolve("spinningReserveReqt")));
+        }
+        
         /// <summary>
         /// Raises the SpinningReserveReqtChanging event
         /// </summary>
@@ -559,6 +605,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.EnergyScheduling
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveReserveEnergyTransactionReference()
+        {
+            return ((ITypedElement)(((ModelElement)(AreaReserveSpec.ClassInstance)).Resolve("ReserveEnergyTransaction")));
         }
         
         /// <summary>
@@ -597,6 +648,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.EnergyScheduling
             this.ReserveEnergyTransaction = null;
         }
         
+        private static ITypedElement RetrieveHostControlAreasReference()
+        {
+            return ((ITypedElement)(((ModelElement)(AreaReserveSpec.ClassInstance)).Resolve("HostControlAreas")));
+        }
+        
         /// <summary>
         /// Forwards CollectionChanging notifications for the HostControlAreas property to the parent model element
         /// </summary>
@@ -604,7 +660,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.EnergyScheduling
         /// <param name="e">The original event data</param>
         private void HostControlAreasCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("HostControlAreas", e);
+            this.OnCollectionChanging("HostControlAreas", e, _hostControlAreasReference);
         }
         
         /// <summary>
@@ -614,7 +670,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.EnergyScheduling
         /// <param name="e">The original event data</param>
         private void HostControlAreasCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("HostControlAreas", e);
+            this.OnCollectionChanged("HostControlAreas", e, _hostControlAreasReference);
         }
         
         /// <summary>
@@ -917,7 +973,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.EnergyScheduling
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public RaiseRegMarginReqtProxy(IAreaReserveSpec modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "raiseRegMarginReqt")
             {
             }
             
@@ -935,24 +991,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.EnergyScheduling
                     this.ModelElement.RaiseRegMarginReqt = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.RaiseRegMarginReqtChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.RaiseRegMarginReqtChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -966,7 +1004,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.EnergyScheduling
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public AreaReserveSpecNameProxy(IAreaReserveSpec modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "areaReserveSpecName")
             {
             }
             
@@ -984,24 +1022,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.EnergyScheduling
                     this.ModelElement.AreaReserveSpecName = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.AreaReserveSpecNameChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.AreaReserveSpecNameChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1015,7 +1035,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.EnergyScheduling
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public OpReserveReqtProxy(IAreaReserveSpec modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "opReserveReqt")
             {
             }
             
@@ -1033,24 +1053,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.EnergyScheduling
                     this.ModelElement.OpReserveReqt = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.OpReserveReqtChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.OpReserveReqtChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1064,7 +1066,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.EnergyScheduling
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public LowerRegMarginReqtProxy(IAreaReserveSpec modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "lowerRegMarginReqt")
             {
             }
             
@@ -1082,24 +1084,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.EnergyScheduling
                     this.ModelElement.LowerRegMarginReqt = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.LowerRegMarginReqtChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.LowerRegMarginReqtChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1113,7 +1097,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.EnergyScheduling
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public PrimaryReserveReqtProxy(IAreaReserveSpec modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "primaryReserveReqt")
             {
             }
             
@@ -1131,24 +1115,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.EnergyScheduling
                     this.ModelElement.PrimaryReserveReqt = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.PrimaryReserveReqtChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.PrimaryReserveReqtChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1162,7 +1128,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.EnergyScheduling
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public SpinningReserveReqtProxy(IAreaReserveSpec modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "spinningReserveReqt")
             {
             }
             
@@ -1180,24 +1146,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.EnergyScheduling
                     this.ModelElement.SpinningReserveReqt = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.SpinningReserveReqtChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.SpinningReserveReqtChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1211,7 +1159,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.EnergyScheduling
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public ReserveEnergyTransactionProxy(IAreaReserveSpec modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "ReserveEnergyTransaction")
             {
             }
             
@@ -1228,24 +1176,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.EnergyScheduling
                 {
                     this.ModelElement.ReserveEnergyTransaction = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ReserveEnergyTransactionChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ReserveEnergyTransactionChanged -= handler;
             }
         }
     }

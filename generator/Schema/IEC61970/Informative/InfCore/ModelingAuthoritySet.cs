@@ -40,13 +40,17 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfCore
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61970/Informative/InfCore/ModelingA" +
         "uthoritySet")]
     [DebuggerDisplayAttribute("ModelingAuthoritySet {UUID}")]
-    public class ModelingAuthoritySet : IdentifiedObject, IModelingAuthoritySet, IModelElement
+    public partial class ModelingAuthoritySet : IdentifiedObject, IModelingAuthoritySet, IModelElement
     {
+        
+        private static Lazy<ITypedElement> _identifiedObjectsReference = new Lazy<ITypedElement>(RetrieveIdentifiedObjectsReference);
         
         /// <summary>
         /// The backing field for the IdentifiedObjects property
         /// </summary>
         private ModelingAuthoritySetIdentifiedObjectsCollection _identifiedObjects;
+        
+        private static Lazy<ITypedElement> _modelingAuthorityReference = new Lazy<ITypedElement>(RetrieveModelingAuthorityReference);
         
         /// <summary>
         /// The backing field for the ModelingAuthority property
@@ -95,7 +99,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfCore
                     IModelingAuthority old = this._modelingAuthority;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnModelingAuthorityChanging(e);
-                    this.OnPropertyChanging("ModelingAuthority", e);
+                    this.OnPropertyChanging("ModelingAuthority", e, _modelingAuthorityReference);
                     this._modelingAuthority = value;
                     if ((old != null))
                     {
@@ -108,7 +112,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfCore
                         value.Deleted += this.OnResetModelingAuthority;
                     }
                     this.OnModelingAuthorityChanged(e);
-                    this.OnPropertyChanged("ModelingAuthority", e);
+                    this.OnPropertyChanged("ModelingAuthority", e, _modelingAuthorityReference);
                 }
             }
         }
@@ -150,6 +154,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfCore
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> ModelingAuthorityChanged;
         
+        private static ITypedElement RetrieveIdentifiedObjectsReference()
+        {
+            return ((ITypedElement)(((ModelElement)(ClassInstance)).Resolve("IdentifiedObjects")));
+        }
+        
         /// <summary>
         /// Forwards CollectionChanging notifications for the IdentifiedObjects property to the parent model element
         /// </summary>
@@ -157,7 +166,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfCore
         /// <param name="e">The original event data</param>
         private void IdentifiedObjectsCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("IdentifiedObjects", e);
+            this.OnCollectionChanging("IdentifiedObjects", e, _identifiedObjectsReference);
         }
         
         /// <summary>
@@ -167,7 +176,12 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfCore
         /// <param name="e">The original event data</param>
         private void IdentifiedObjectsCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("IdentifiedObjects", e);
+            this.OnCollectionChanged("IdentifiedObjects", e, _identifiedObjectsReference);
+        }
+        
+        private static ITypedElement RetrieveModelingAuthorityReference()
+        {
+            return ((ITypedElement)(((ModelElement)(ClassInstance)).Resolve("ModelingAuthority")));
         }
         
         /// <summary>
@@ -441,7 +455,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfCore
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public ModelingAuthorityProxy(IModelingAuthoritySet modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "ModelingAuthority")
             {
             }
             
@@ -458,24 +472,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfCore
                 {
                     this.ModelElement.ModelingAuthority = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ModelingAuthorityChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ModelingAuthorityChanged -= handler;
             }
         }
     }

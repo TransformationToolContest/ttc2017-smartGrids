@@ -56,23 +56,31 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfERPSupport
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61970/Informative/InfERPSupport/Erp" +
         "ProjectAccounting")]
     [DebuggerDisplayAttribute("ErpProjectAccounting {UUID}")]
-    public class ErpProjectAccounting : Document, IErpProjectAccounting, IModelElement
+    public partial class ErpProjectAccounting : Document, IErpProjectAccounting, IModelElement
     {
+        
+        private static Lazy<ITypedElement> _projectsReference = new Lazy<ITypedElement>(RetrieveProjectsReference);
         
         /// <summary>
         /// The backing field for the Projects property
         /// </summary>
         private ErpProjectAccountingProjectsCollection _projects;
         
+        private static Lazy<ITypedElement> _workCostDetailsReference = new Lazy<ITypedElement>(RetrieveWorkCostDetailsReference);
+        
         /// <summary>
         /// The backing field for the WorkCostDetails property
         /// </summary>
         private ErpProjectAccountingWorkCostDetailsCollection _workCostDetails;
         
+        private static Lazy<ITypedElement> _erpTimeEntriesReference = new Lazy<ITypedElement>(RetrieveErpTimeEntriesReference);
+        
         /// <summary>
         /// The backing field for the ErpTimeEntries property
         /// </summary>
         private ErpProjectAccountingErpTimeEntriesCollection _erpTimeEntries;
+        
+        private static Lazy<ITypedElement> _worksReference = new Lazy<ITypedElement>(RetrieveWorksReference);
         
         /// <summary>
         /// The backing field for the Works property
@@ -184,6 +192,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfERPSupport
             }
         }
         
+        private static ITypedElement RetrieveProjectsReference()
+        {
+            return ((ITypedElement)(((ModelElement)(ErpProjectAccounting.ClassInstance)).Resolve("Projects")));
+        }
+        
         /// <summary>
         /// Forwards CollectionChanging notifications for the Projects property to the parent model element
         /// </summary>
@@ -191,7 +204,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfERPSupport
         /// <param name="e">The original event data</param>
         private void ProjectsCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("Projects", e);
+            this.OnCollectionChanging("Projects", e, _projectsReference);
         }
         
         /// <summary>
@@ -201,7 +214,12 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfERPSupport
         /// <param name="e">The original event data</param>
         private void ProjectsCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("Projects", e);
+            this.OnCollectionChanged("Projects", e, _projectsReference);
+        }
+        
+        private static ITypedElement RetrieveWorkCostDetailsReference()
+        {
+            return ((ITypedElement)(((ModelElement)(ErpProjectAccounting.ClassInstance)).Resolve("WorkCostDetails")));
         }
         
         /// <summary>
@@ -211,7 +229,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfERPSupport
         /// <param name="e">The original event data</param>
         private void WorkCostDetailsCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("WorkCostDetails", e);
+            this.OnCollectionChanging("WorkCostDetails", e, _workCostDetailsReference);
         }
         
         /// <summary>
@@ -221,7 +239,12 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfERPSupport
         /// <param name="e">The original event data</param>
         private void WorkCostDetailsCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("WorkCostDetails", e);
+            this.OnCollectionChanged("WorkCostDetails", e, _workCostDetailsReference);
+        }
+        
+        private static ITypedElement RetrieveErpTimeEntriesReference()
+        {
+            return ((ITypedElement)(((ModelElement)(ErpProjectAccounting.ClassInstance)).Resolve("ErpTimeEntries")));
         }
         
         /// <summary>
@@ -231,7 +254,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfERPSupport
         /// <param name="e">The original event data</param>
         private void ErpTimeEntriesCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("ErpTimeEntries", e);
+            this.OnCollectionChanging("ErpTimeEntries", e, _erpTimeEntriesReference);
         }
         
         /// <summary>
@@ -241,7 +264,12 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfERPSupport
         /// <param name="e">The original event data</param>
         private void ErpTimeEntriesCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("ErpTimeEntries", e);
+            this.OnCollectionChanged("ErpTimeEntries", e, _erpTimeEntriesReference);
+        }
+        
+        private static ITypedElement RetrieveWorksReference()
+        {
+            return ((ITypedElement)(((ModelElement)(ErpProjectAccounting.ClassInstance)).Resolve("Works")));
         }
         
         /// <summary>
@@ -251,7 +279,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfERPSupport
         /// <param name="e">The original event data</param>
         private void WorksCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("Works", e);
+            this.OnCollectionChanging("Works", e, _worksReference);
         }
         
         /// <summary>
@@ -261,7 +289,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfERPSupport
         /// <param name="e">The original event data</param>
         private void WorksCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("Works", e);
+            this.OnCollectionChanged("Works", e, _worksReference);
         }
         
         /// <summary>

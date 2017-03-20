@@ -39,7 +39,7 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
     [XmlNamespacePrefixAttribute("objects")]
     [ModelRepresentationClassAttribute("http://www.transformation-tool-contest.eu/2017/smartGrids/cosem#//COSEMObjects/In" +
         "ternalControlMapped")]
-    public class InternalControlMapped : Statusmapping, IInternalControlMapped, IModelElement
+    public partial class InternalControlMapped : Statusmapping, IInternalControlMapped, IModelElement
     {
         
         private static IClass _classInstance;

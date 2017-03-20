@@ -40,7 +40,7 @@ namespace TTC2017.SmartGrids.CIM.PackageDependencies
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//PackageDependencies/PackageDependencie" +
         "sCIMVeresion")]
     [DebuggerDisplayAttribute("PackageDependenciesCIMVeresion {UUID}")]
-    public class PackageDependenciesCIMVeresion : Element, IPackageDependenciesCIMVeresion, IModelElement
+    public partial class PackageDependenciesCIMVeresion : Element, IPackageDependenciesCIMVeresion, IModelElement
     {
         
         /// <summary>
@@ -48,10 +48,14 @@ namespace TTC2017.SmartGrids.CIM.PackageDependencies
         /// </summary>
         private DateTime _date;
         
+        private static Lazy<ITypedElement> _dateAttribute = new Lazy<ITypedElement>(RetrieveDateAttribute);
+        
         /// <summary>
         /// The backing field for the Vesion property
         /// </summary>
         private string _vesion;
+        
+        private static Lazy<ITypedElement> _vesionAttribute = new Lazy<ITypedElement>(RetrieveVesionAttribute);
         
         private static IClass _classInstance;
         
@@ -73,10 +77,10 @@ namespace TTC2017.SmartGrids.CIM.PackageDependencies
                     DateTime old = this._date;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnDateChanging(e);
-                    this.OnPropertyChanging("Date", e);
+                    this.OnPropertyChanging("Date", e, _dateAttribute);
                     this._date = value;
                     this.OnDateChanged(e);
-                    this.OnPropertyChanged("Date", e);
+                    this.OnPropertyChanged("Date", e, _dateAttribute);
                 }
             }
         }
@@ -99,10 +103,10 @@ namespace TTC2017.SmartGrids.CIM.PackageDependencies
                     string old = this._vesion;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnVesionChanging(e);
-                    this.OnPropertyChanging("Vesion", e);
+                    this.OnPropertyChanging("Vesion", e, _vesionAttribute);
                     this._vesion = value;
                     this.OnVesionChanged(e);
-                    this.OnPropertyChanged("Vesion", e);
+                    this.OnPropertyChanged("Vesion", e, _vesionAttribute);
                 }
             }
         }
@@ -143,6 +147,11 @@ namespace TTC2017.SmartGrids.CIM.PackageDependencies
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> VesionChanged;
         
+        private static ITypedElement RetrieveDateAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(PackageDependenciesCIMVeresion.ClassInstance)).Resolve("date")));
+        }
+        
         /// <summary>
         /// Raises the DateChanging event
         /// </summary>
@@ -167,6 +176,11 @@ namespace TTC2017.SmartGrids.CIM.PackageDependencies
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveVesionAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(PackageDependenciesCIMVeresion.ClassInstance)).Resolve("vesion")));
         }
         
         /// <summary>
@@ -258,7 +272,7 @@ namespace TTC2017.SmartGrids.CIM.PackageDependencies
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public DateProxy(IPackageDependenciesCIMVeresion modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "date")
             {
             }
             
@@ -276,24 +290,6 @@ namespace TTC2017.SmartGrids.CIM.PackageDependencies
                     this.ModelElement.Date = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.DateChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.DateChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -307,7 +303,7 @@ namespace TTC2017.SmartGrids.CIM.PackageDependencies
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public VesionProxy(IPackageDependenciesCIMVeresion modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "vesion")
             {
             }
             
@@ -324,24 +320,6 @@ namespace TTC2017.SmartGrids.CIM.PackageDependencies
                 {
                     this.ModelElement.Vesion = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.VesionChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.VesionChanged -= handler;
             }
         }
     }

@@ -54,7 +54,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Metering
     [XmlNamespacePrefixAttribute("cimMetering")]
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61968/Metering/MeterAsset")]
     [DebuggerDisplayAttribute("MeterAsset {UUID}")]
-    public class MeterAsset : EndDeviceAsset, IMeterAsset, IModelElement
+    public partial class MeterAsset : EndDeviceAsset, IMeterAsset, IModelElement
     {
         
         /// <summary>
@@ -62,35 +62,51 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Metering
         /// </summary>
         private float _kR;
         
+        private static Lazy<ITypedElement> _kRAttribute = new Lazy<ITypedElement>(RetrieveKRAttribute);
+        
         /// <summary>
         /// The backing field for the KH property
         /// </summary>
         private float _kH;
+        
+        private static Lazy<ITypedElement> _kHAttribute = new Lazy<ITypedElement>(RetrieveKHAttribute);
         
         /// <summary>
         /// The backing field for the FormNumber property
         /// </summary>
         private string _formNumber;
         
+        private static Lazy<ITypedElement> _formNumberAttribute = new Lazy<ITypedElement>(RetrieveFormNumberAttribute);
+        
+        private static Lazy<ITypedElement> _meterAssetModelReference = new Lazy<ITypedElement>(RetrieveMeterAssetModelReference);
+        
         /// <summary>
         /// The backing field for the MeterAssetModel property
         /// </summary>
         private IMeterAssetModel _meterAssetModel;
+        
+        private static Lazy<ITypedElement> _vendingTransactionsReference = new Lazy<ITypedElement>(RetrieveVendingTransactionsReference);
         
         /// <summary>
         /// The backing field for the VendingTransactions property
         /// </summary>
         private MeterAssetVendingTransactionsCollection _vendingTransactions;
         
+        private static Lazy<ITypedElement> _meterServiceWorksReference = new Lazy<ITypedElement>(RetrieveMeterServiceWorksReference);
+        
         /// <summary>
         /// The backing field for the MeterServiceWorks property
         /// </summary>
         private MeterAssetMeterServiceWorksCollection _meterServiceWorks;
         
+        private static Lazy<ITypedElement> _meterReadingsReference = new Lazy<ITypedElement>(RetrieveMeterReadingsReference);
+        
         /// <summary>
         /// The backing field for the MeterReadings property
         /// </summary>
         private MeterAssetMeterReadingsCollection _meterReadings;
+        
+        private static Lazy<ITypedElement> _meterReplacementWorksReference = new Lazy<ITypedElement>(RetrieveMeterReplacementWorksReference);
         
         /// <summary>
         /// The backing field for the MeterReplacementWorks property
@@ -133,10 +149,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Metering
                     float old = this._kR;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnKRChanging(e);
-                    this.OnPropertyChanging("KR", e);
+                    this.OnPropertyChanging("KR", e, _kRAttribute);
                     this._kR = value;
                     this.OnKRChanged(e);
-                    this.OnPropertyChanged("KR", e);
+                    this.OnPropertyChanged("KR", e, _kRAttribute);
                 }
             }
         }
@@ -159,10 +175,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Metering
                     float old = this._kH;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnKHChanging(e);
-                    this.OnPropertyChanging("KH", e);
+                    this.OnPropertyChanging("KH", e, _kHAttribute);
                     this._kH = value;
                     this.OnKHChanged(e);
-                    this.OnPropertyChanged("KH", e);
+                    this.OnPropertyChanged("KH", e, _kHAttribute);
                 }
             }
         }
@@ -185,10 +201,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Metering
                     string old = this._formNumber;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnFormNumberChanging(e);
-                    this.OnPropertyChanging("FormNumber", e);
+                    this.OnPropertyChanging("FormNumber", e, _formNumberAttribute);
                     this._formNumber = value;
                     this.OnFormNumberChanged(e);
-                    this.OnPropertyChanged("FormNumber", e);
+                    this.OnPropertyChanged("FormNumber", e, _formNumberAttribute);
                 }
             }
         }
@@ -211,7 +227,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Metering
                     IMeterAssetModel old = this._meterAssetModel;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnMeterAssetModelChanging(e);
-                    this.OnPropertyChanging("MeterAssetModel", e);
+                    this.OnPropertyChanging("MeterAssetModel", e, _meterAssetModelReference);
                     this._meterAssetModel = value;
                     if ((old != null))
                     {
@@ -224,7 +240,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Metering
                         value.Deleted += this.OnResetMeterAssetModel;
                     }
                     this.OnMeterAssetModelChanged(e);
-                    this.OnPropertyChanged("MeterAssetModel", e);
+                    this.OnPropertyChanged("MeterAssetModel", e, _meterAssetModelReference);
                 }
             }
         }
@@ -355,6 +371,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Metering
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> MeterAssetModelChanged;
         
+        private static ITypedElement RetrieveKRAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(MeterAsset.ClassInstance)).Resolve("kR")));
+        }
+        
         /// <summary>
         /// Raises the KRChanging event
         /// </summary>
@@ -379,6 +400,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Metering
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveKHAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(MeterAsset.ClassInstance)).Resolve("kH")));
         }
         
         /// <summary>
@@ -407,6 +433,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Metering
             }
         }
         
+        private static ITypedElement RetrieveFormNumberAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(MeterAsset.ClassInstance)).Resolve("formNumber")));
+        }
+        
         /// <summary>
         /// Raises the FormNumberChanging event
         /// </summary>
@@ -431,6 +462,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Metering
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveMeterAssetModelReference()
+        {
+            return ((ITypedElement)(((ModelElement)(MeterAsset.ClassInstance)).Resolve("MeterAssetModel")));
         }
         
         /// <summary>
@@ -469,6 +505,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Metering
             this.MeterAssetModel = null;
         }
         
+        private static ITypedElement RetrieveVendingTransactionsReference()
+        {
+            return ((ITypedElement)(((ModelElement)(MeterAsset.ClassInstance)).Resolve("VendingTransactions")));
+        }
+        
         /// <summary>
         /// Forwards CollectionChanging notifications for the VendingTransactions property to the parent model element
         /// </summary>
@@ -476,7 +517,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Metering
         /// <param name="e">The original event data</param>
         private void VendingTransactionsCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("VendingTransactions", e);
+            this.OnCollectionChanging("VendingTransactions", e, _vendingTransactionsReference);
         }
         
         /// <summary>
@@ -486,7 +527,12 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Metering
         /// <param name="e">The original event data</param>
         private void VendingTransactionsCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("VendingTransactions", e);
+            this.OnCollectionChanged("VendingTransactions", e, _vendingTransactionsReference);
+        }
+        
+        private static ITypedElement RetrieveMeterServiceWorksReference()
+        {
+            return ((ITypedElement)(((ModelElement)(MeterAsset.ClassInstance)).Resolve("MeterServiceWorks")));
         }
         
         /// <summary>
@@ -496,7 +542,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Metering
         /// <param name="e">The original event data</param>
         private void MeterServiceWorksCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("MeterServiceWorks", e);
+            this.OnCollectionChanging("MeterServiceWorks", e, _meterServiceWorksReference);
         }
         
         /// <summary>
@@ -506,7 +552,12 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Metering
         /// <param name="e">The original event data</param>
         private void MeterServiceWorksCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("MeterServiceWorks", e);
+            this.OnCollectionChanged("MeterServiceWorks", e, _meterServiceWorksReference);
+        }
+        
+        private static ITypedElement RetrieveMeterReadingsReference()
+        {
+            return ((ITypedElement)(((ModelElement)(MeterAsset.ClassInstance)).Resolve("MeterReadings")));
         }
         
         /// <summary>
@@ -516,7 +567,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Metering
         /// <param name="e">The original event data</param>
         private void MeterReadingsCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("MeterReadings", e);
+            this.OnCollectionChanging("MeterReadings", e, _meterReadingsReference);
         }
         
         /// <summary>
@@ -526,7 +577,12 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Metering
         /// <param name="e">The original event data</param>
         private void MeterReadingsCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("MeterReadings", e);
+            this.OnCollectionChanged("MeterReadings", e, _meterReadingsReference);
+        }
+        
+        private static ITypedElement RetrieveMeterReplacementWorksReference()
+        {
+            return ((ITypedElement)(((ModelElement)(MeterAsset.ClassInstance)).Resolve("MeterReplacementWorks")));
         }
         
         /// <summary>
@@ -536,7 +592,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Metering
         /// <param name="e">The original event data</param>
         private void MeterReplacementWorksCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("MeterReplacementWorks", e);
+            this.OnCollectionChanging("MeterReplacementWorks", e, _meterReplacementWorksReference);
         }
         
         /// <summary>
@@ -546,7 +602,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Metering
         /// <param name="e">The original event data</param>
         private void MeterReplacementWorksCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("MeterReplacementWorks", e);
+            this.OnCollectionChanged("MeterReplacementWorks", e, _meterReplacementWorksReference);
         }
         
         /// <summary>
@@ -934,7 +990,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Metering
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public KRProxy(IMeterAsset modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "kR")
             {
             }
             
@@ -952,24 +1008,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Metering
                     this.ModelElement.KR = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.KRChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.KRChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -983,7 +1021,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Metering
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public KHProxy(IMeterAsset modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "kH")
             {
             }
             
@@ -1001,24 +1039,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Metering
                     this.ModelElement.KH = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.KHChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.KHChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1032,7 +1052,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Metering
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public FormNumberProxy(IMeterAsset modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "formNumber")
             {
             }
             
@@ -1050,24 +1070,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Metering
                     this.ModelElement.FormNumber = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.FormNumberChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.FormNumberChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1081,7 +1083,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Metering
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public MeterAssetModelProxy(IMeterAsset modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "MeterAssetModel")
             {
             }
             
@@ -1098,24 +1100,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Metering
                 {
                     this.ModelElement.MeterAssetModel = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.MeterAssetModelChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.MeterAssetModelChanged -= handler;
             }
         }
     }

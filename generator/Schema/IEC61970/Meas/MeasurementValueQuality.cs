@@ -51,8 +51,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Meas
     [XmlNamespacePrefixAttribute("cimMeas")]
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61970/Meas/MeasurementValueQuality")]
     [DebuggerDisplayAttribute("MeasurementValueQuality {UUID}")]
-    public class MeasurementValueQuality : Quality61850, IMeasurementValueQuality, IModelElement
+    public partial class MeasurementValueQuality : Quality61850, IMeasurementValueQuality, IModelElement
     {
+        
+        private static Lazy<ITypedElement> _measurementValueReference = new Lazy<ITypedElement>(RetrieveMeasurementValueReference);
         
         /// <summary>
         /// The backing field for the MeasurementValue property
@@ -79,7 +81,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Meas
                     IMeasurementValue old = this._measurementValue;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnMeasurementValueChanging(e);
-                    this.OnPropertyChanging("MeasurementValue", e);
+                    this.OnPropertyChanging("MeasurementValue", e, _measurementValueReference);
                     this._measurementValue = value;
                     if ((old != null))
                     {
@@ -92,7 +94,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Meas
                         value.Deleted += this.OnResetMeasurementValue;
                     }
                     this.OnMeasurementValueChanged(e);
-                    this.OnPropertyChanged("MeasurementValue", e);
+                    this.OnPropertyChanged("MeasurementValue", e, _measurementValueReference);
                 }
             }
         }
@@ -132,6 +134,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Meas
         /// Gets fired when the MeasurementValue property changed its value
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> MeasurementValueChanged;
+        
+        private static ITypedElement RetrieveMeasurementValueReference()
+        {
+            return ((ITypedElement)(((ModelElement)(MeasurementValueQuality.ClassInstance)).Resolve("MeasurementValue")));
+        }
         
         /// <summary>
         /// Raises the MeasurementValueChanging event
@@ -355,7 +362,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Meas
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public MeasurementValueProxy(IMeasurementValueQuality modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "MeasurementValue")
             {
             }
             
@@ -372,24 +379,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Meas
                 {
                     this.ModelElement.MeasurementValue = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.MeasurementValueChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.MeasurementValueChanged -= handler;
             }
         }
     }

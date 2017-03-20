@@ -44,23 +44,31 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.Reservation
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61970/Informative/Reservation/Ancil" +
         "laryService")]
     [DebuggerDisplayAttribute("AncillaryService {UUID}")]
-    public class AncillaryService : IdentifiedObject, IAncillaryService, IModelElement
+    public partial class AncillaryService : IdentifiedObject, IAncillaryService, IModelElement
     {
+        
+        private static Lazy<ITypedElement> _openAccessProductReference = new Lazy<ITypedElement>(RetrieveOpenAccessProductReference);
         
         /// <summary>
         /// The backing field for the OpenAccessProduct property
         /// </summary>
         private IOpenAccessProduct _openAccessProduct;
         
+        private static Lazy<ITypedElement> _transmissionProvidersReference = new Lazy<ITypedElement>(RetrieveTransmissionProvidersReference);
+        
         /// <summary>
         /// The backing field for the TransmissionProviders property
         /// </summary>
         private AncillaryServiceTransmissionProvidersCollection _transmissionProviders;
         
+        private static Lazy<ITypedElement> _reservedBy_ServiceReservationReference = new Lazy<ITypedElement>(RetrieveReservedBy_ServiceReservationReference);
+        
         /// <summary>
         /// The backing field for the ReservedBy_ServiceReservation property
         /// </summary>
         private IServiceReservation _reservedBy_ServiceReservation;
+        
+        private static Lazy<ITypedElement> _controlAreaOperatorReference = new Lazy<ITypedElement>(RetrieveControlAreaOperatorReference);
         
         /// <summary>
         /// The backing field for the ControlAreaOperator property
@@ -94,7 +102,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.Reservation
                     IOpenAccessProduct old = this._openAccessProduct;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnOpenAccessProductChanging(e);
-                    this.OnPropertyChanging("OpenAccessProduct", e);
+                    this.OnPropertyChanging("OpenAccessProduct", e, _openAccessProductReference);
                     this._openAccessProduct = value;
                     if ((old != null))
                     {
@@ -107,7 +115,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.Reservation
                         value.Deleted += this.OnResetOpenAccessProduct;
                     }
                     this.OnOpenAccessProductChanged(e);
-                    this.OnPropertyChanged("OpenAccessProduct", e);
+                    this.OnPropertyChanged("OpenAccessProduct", e, _openAccessProductReference);
                 }
             }
         }
@@ -145,7 +153,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.Reservation
                     IServiceReservation old = this._reservedBy_ServiceReservation;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnReservedBy_ServiceReservationChanging(e);
-                    this.OnPropertyChanging("ReservedBy_ServiceReservation", e);
+                    this.OnPropertyChanging("ReservedBy_ServiceReservation", e, _reservedBy_ServiceReservationReference);
                     this._reservedBy_ServiceReservation = value;
                     if ((old != null))
                     {
@@ -158,7 +166,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.Reservation
                         value.Deleted += this.OnResetReservedBy_ServiceReservation;
                     }
                     this.OnReservedBy_ServiceReservationChanged(e);
-                    this.OnPropertyChanged("ReservedBy_ServiceReservation", e);
+                    this.OnPropertyChanged("ReservedBy_ServiceReservation", e, _reservedBy_ServiceReservationReference);
                 }
             }
         }
@@ -181,7 +189,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.Reservation
                     IControlAreaOperator old = this._controlAreaOperator;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnControlAreaOperatorChanging(e);
-                    this.OnPropertyChanging("ControlAreaOperator", e);
+                    this.OnPropertyChanging("ControlAreaOperator", e, _controlAreaOperatorReference);
                     this._controlAreaOperator = value;
                     if ((old != null))
                     {
@@ -194,7 +202,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.Reservation
                         value.Deleted += this.OnResetControlAreaOperator;
                     }
                     this.OnControlAreaOperatorChanged(e);
-                    this.OnPropertyChanged("ControlAreaOperator", e);
+                    this.OnPropertyChanged("ControlAreaOperator", e, _controlAreaOperatorReference);
                 }
             }
         }
@@ -256,6 +264,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.Reservation
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> ControlAreaOperatorChanged;
         
+        private static ITypedElement RetrieveOpenAccessProductReference()
+        {
+            return ((ITypedElement)(((ModelElement)(AncillaryService.ClassInstance)).Resolve("OpenAccessProduct")));
+        }
+        
         /// <summary>
         /// Raises the OpenAccessProductChanging event
         /// </summary>
@@ -292,6 +305,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.Reservation
             this.OpenAccessProduct = null;
         }
         
+        private static ITypedElement RetrieveTransmissionProvidersReference()
+        {
+            return ((ITypedElement)(((ModelElement)(AncillaryService.ClassInstance)).Resolve("TransmissionProviders")));
+        }
+        
         /// <summary>
         /// Forwards CollectionChanging notifications for the TransmissionProviders property to the parent model element
         /// </summary>
@@ -299,7 +317,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.Reservation
         /// <param name="e">The original event data</param>
         private void TransmissionProvidersCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("TransmissionProviders", e);
+            this.OnCollectionChanging("TransmissionProviders", e, _transmissionProvidersReference);
         }
         
         /// <summary>
@@ -309,7 +327,12 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.Reservation
         /// <param name="e">The original event data</param>
         private void TransmissionProvidersCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("TransmissionProviders", e);
+            this.OnCollectionChanged("TransmissionProviders", e, _transmissionProvidersReference);
+        }
+        
+        private static ITypedElement RetrieveReservedBy_ServiceReservationReference()
+        {
+            return ((ITypedElement)(((ModelElement)(AncillaryService.ClassInstance)).Resolve("ReservedBy_ServiceReservation")));
         }
         
         /// <summary>
@@ -346,6 +369,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.Reservation
         private void OnResetReservedBy_ServiceReservation(object sender, System.EventArgs eventArgs)
         {
             this.ReservedBy_ServiceReservation = null;
+        }
+        
+        private static ITypedElement RetrieveControlAreaOperatorReference()
+        {
+            return ((ITypedElement)(((ModelElement)(AncillaryService.ClassInstance)).Resolve("ControlAreaOperator")));
         }
         
         /// <summary>
@@ -705,7 +733,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.Reservation
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public OpenAccessProductProxy(IAncillaryService modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "OpenAccessProduct")
             {
             }
             
@@ -723,24 +751,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.Reservation
                     this.ModelElement.OpenAccessProduct = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.OpenAccessProductChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.OpenAccessProductChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -754,7 +764,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.Reservation
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public ReservedBy_ServiceReservationProxy(IAncillaryService modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "ReservedBy_ServiceReservation")
             {
             }
             
@@ -772,24 +782,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.Reservation
                     this.ModelElement.ReservedBy_ServiceReservation = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ReservedBy_ServiceReservationChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ReservedBy_ServiceReservationChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -803,7 +795,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.Reservation
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public ControlAreaOperatorProxy(IAncillaryService modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "ControlAreaOperator")
             {
             }
             
@@ -820,24 +812,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.Reservation
                 {
                     this.ModelElement.ControlAreaOperator = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ControlAreaOperatorChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ControlAreaOperatorChanged -= handler;
             }
         }
     }

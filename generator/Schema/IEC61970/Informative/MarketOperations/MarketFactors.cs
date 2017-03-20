@@ -50,7 +50,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61970/Informative/MarketOperations/" +
         "MarketFactors")]
     [DebuggerDisplayAttribute("MarketFactors {UUID}")]
-    public class MarketFactors : Document, IMarketFactors, IModelElement
+    public partial class MarketFactors : Document, IMarketFactors, IModelElement
     {
         
         /// <summary>
@@ -58,10 +58,16 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
         /// </summary>
         private DateTime _intervalStartTime;
         
+        private static Lazy<ITypedElement> _intervalStartTimeAttribute = new Lazy<ITypedElement>(RetrieveIntervalStartTimeAttribute);
+        
+        private static Lazy<ITypedElement> _erpInvoicesReference = new Lazy<ITypedElement>(RetrieveErpInvoicesReference);
+        
         /// <summary>
         /// The backing field for the ErpInvoices property
         /// </summary>
         private MarketFactorsErpInvoicesCollection _erpInvoices;
+        
+        private static Lazy<ITypedElement> _marketReference = new Lazy<ITypedElement>(RetrieveMarketReference);
         
         /// <summary>
         /// The backing field for the Market property
@@ -95,10 +101,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
                     DateTime old = this._intervalStartTime;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnIntervalStartTimeChanging(e);
-                    this.OnPropertyChanging("IntervalStartTime", e);
+                    this.OnPropertyChanging("IntervalStartTime", e, _intervalStartTimeAttribute);
                     this._intervalStartTime = value;
                     this.OnIntervalStartTimeChanged(e);
-                    this.OnPropertyChanged("IntervalStartTime", e);
+                    this.OnPropertyChanged("IntervalStartTime", e, _intervalStartTimeAttribute);
                 }
             }
         }
@@ -136,7 +142,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
                     IMarket old = this._market;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnMarketChanging(e);
-                    this.OnPropertyChanging("Market", e);
+                    this.OnPropertyChanging("Market", e, _marketReference);
                     this._market = value;
                     if ((old != null))
                     {
@@ -149,7 +155,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
                         value.Deleted += this.OnResetMarket;
                     }
                     this.OnMarketChanged(e);
-                    this.OnPropertyChanged("Market", e);
+                    this.OnPropertyChanged("Market", e, _marketReference);
                 }
             }
         }
@@ -201,6 +207,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> MarketChanged;
         
+        private static ITypedElement RetrieveIntervalStartTimeAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(MarketFactors.ClassInstance)).Resolve("intervalStartTime")));
+        }
+        
         /// <summary>
         /// Raises the IntervalStartTimeChanging event
         /// </summary>
@@ -227,6 +238,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
             }
         }
         
+        private static ITypedElement RetrieveErpInvoicesReference()
+        {
+            return ((ITypedElement)(((ModelElement)(MarketFactors.ClassInstance)).Resolve("ErpInvoices")));
+        }
+        
         /// <summary>
         /// Forwards CollectionChanging notifications for the ErpInvoices property to the parent model element
         /// </summary>
@@ -234,7 +250,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
         /// <param name="e">The original event data</param>
         private void ErpInvoicesCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("ErpInvoices", e);
+            this.OnCollectionChanging("ErpInvoices", e, _erpInvoicesReference);
         }
         
         /// <summary>
@@ -244,7 +260,12 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
         /// <param name="e">The original event data</param>
         private void ErpInvoicesCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("ErpInvoices", e);
+            this.OnCollectionChanged("ErpInvoices", e, _erpInvoicesReference);
+        }
+        
+        private static ITypedElement RetrieveMarketReference()
+        {
+            return ((ITypedElement)(((ModelElement)(MarketFactors.ClassInstance)).Resolve("Market")));
         }
         
         /// <summary>
@@ -538,7 +559,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public IntervalStartTimeProxy(IMarketFactors modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "intervalStartTime")
             {
             }
             
@@ -556,24 +577,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
                     this.ModelElement.IntervalStartTime = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.IntervalStartTimeChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.IntervalStartTimeChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -587,7 +590,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public MarketProxy(IMarketFactors modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "Market")
             {
             }
             
@@ -604,24 +607,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
                 {
                     this.ModelElement.Market = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.MarketChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.MarketChanged -= handler;
             }
         }
     }

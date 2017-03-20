@@ -43,7 +43,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.ControlArea
     [XmlNamespacePrefixAttribute("cimControlArea")]
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61970/ControlArea/TieFlow")]
     [DebuggerDisplayAttribute("TieFlow {UUID}")]
-    public class TieFlow : Element, ITieFlow, IModelElement
+    public partial class TieFlow : Element, ITieFlow, IModelElement
     {
         
         /// <summary>
@@ -51,15 +51,23 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.ControlArea
         /// </summary>
         private bool _positiveFlowIn;
         
+        private static Lazy<ITypedElement> _positiveFlowInAttribute = new Lazy<ITypedElement>(RetrievePositiveFlowInAttribute);
+        
+        private static Lazy<ITypedElement> _terminalReference = new Lazy<ITypedElement>(RetrieveTerminalReference);
+        
         /// <summary>
         /// The backing field for the Terminal property
         /// </summary>
         private ITerminal _terminal;
         
+        private static Lazy<ITypedElement> _altTieMeasReference = new Lazy<ITypedElement>(RetrieveAltTieMeasReference);
+        
         /// <summary>
         /// The backing field for the AltTieMeas property
         /// </summary>
         private TieFlowAltTieMeasCollection _altTieMeas;
+        
+        private static Lazy<ITypedElement> _controlAreaReference = new Lazy<ITypedElement>(RetrieveControlAreaReference);
         
         /// <summary>
         /// The backing field for the ControlArea property
@@ -93,10 +101,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.ControlArea
                     bool old = this._positiveFlowIn;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnPositiveFlowInChanging(e);
-                    this.OnPropertyChanging("PositiveFlowIn", e);
+                    this.OnPropertyChanging("PositiveFlowIn", e, _positiveFlowInAttribute);
                     this._positiveFlowIn = value;
                     this.OnPositiveFlowInChanged(e);
-                    this.OnPropertyChanged("PositiveFlowIn", e);
+                    this.OnPropertyChanged("PositiveFlowIn", e, _positiveFlowInAttribute);
                 }
             }
         }
@@ -119,7 +127,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.ControlArea
                     ITerminal old = this._terminal;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnTerminalChanging(e);
-                    this.OnPropertyChanging("Terminal", e);
+                    this.OnPropertyChanging("Terminal", e, _terminalReference);
                     this._terminal = value;
                     if ((old != null))
                     {
@@ -132,7 +140,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.ControlArea
                         value.Deleted += this.OnResetTerminal;
                     }
                     this.OnTerminalChanged(e);
-                    this.OnPropertyChanged("Terminal", e);
+                    this.OnPropertyChanged("Terminal", e, _terminalReference);
                 }
             }
         }
@@ -170,7 +178,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.ControlArea
                     IControlArea old = this._controlArea;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnControlAreaChanging(e);
-                    this.OnPropertyChanging("ControlArea", e);
+                    this.OnPropertyChanging("ControlArea", e, _controlAreaReference);
                     this._controlArea = value;
                     if ((old != null))
                     {
@@ -183,7 +191,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.ControlArea
                         value.Deleted += this.OnResetControlArea;
                     }
                     this.OnControlAreaChanged(e);
-                    this.OnPropertyChanged("ControlArea", e);
+                    this.OnPropertyChanged("ControlArea", e, _controlAreaReference);
                 }
             }
         }
@@ -244,6 +252,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.ControlArea
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> ControlAreaChanged;
         
+        private static ITypedElement RetrievePositiveFlowInAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(TieFlow.ClassInstance)).Resolve("positiveFlowIn")));
+        }
+        
         /// <summary>
         /// Raises the PositiveFlowInChanging event
         /// </summary>
@@ -268,6 +281,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.ControlArea
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveTerminalReference()
+        {
+            return ((ITypedElement)(((ModelElement)(TieFlow.ClassInstance)).Resolve("Terminal")));
         }
         
         /// <summary>
@@ -306,6 +324,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.ControlArea
             this.Terminal = null;
         }
         
+        private static ITypedElement RetrieveAltTieMeasReference()
+        {
+            return ((ITypedElement)(((ModelElement)(TieFlow.ClassInstance)).Resolve("AltTieMeas")));
+        }
+        
         /// <summary>
         /// Forwards CollectionChanging notifications for the AltTieMeas property to the parent model element
         /// </summary>
@@ -313,7 +336,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.ControlArea
         /// <param name="e">The original event data</param>
         private void AltTieMeasCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("AltTieMeas", e);
+            this.OnCollectionChanging("AltTieMeas", e, _altTieMeasReference);
         }
         
         /// <summary>
@@ -323,7 +346,12 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.ControlArea
         /// <param name="e">The original event data</param>
         private void AltTieMeasCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("AltTieMeas", e);
+            this.OnCollectionChanged("AltTieMeas", e, _altTieMeasReference);
+        }
+        
+        private static ITypedElement RetrieveControlAreaReference()
+        {
+            return ((ITypedElement)(((ModelElement)(TieFlow.ClassInstance)).Resolve("ControlArea")));
         }
         
         /// <summary>
@@ -659,7 +687,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.ControlArea
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public PositiveFlowInProxy(ITieFlow modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "positiveFlowIn")
             {
             }
             
@@ -677,24 +705,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.ControlArea
                     this.ModelElement.PositiveFlowIn = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.PositiveFlowInChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.PositiveFlowInChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -708,7 +718,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.ControlArea
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public TerminalProxy(ITieFlow modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "Terminal")
             {
             }
             
@@ -726,24 +736,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.ControlArea
                     this.ModelElement.Terminal = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.TerminalChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.TerminalChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -757,7 +749,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.ControlArea
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public ControlAreaProxy(ITieFlow modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "ControlArea")
             {
             }
             
@@ -774,24 +766,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.ControlArea
                 {
                     this.ModelElement.ControlArea = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ControlAreaChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ControlAreaChanged -= handler;
             }
         }
     }

@@ -48,7 +48,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Assets
     [XmlNamespacePrefixAttribute("cimAssets")]
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61968/Assets/AcceptanceTest")]
     [DebuggerDisplayAttribute("AcceptanceTest {UUID}")]
-    public class AcceptanceTest : Element, IAcceptanceTest, IModelElement
+    public partial class AcceptanceTest : Element, IAcceptanceTest, IModelElement
     {
         
         /// <summary>
@@ -56,15 +56,21 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Assets
         /// </summary>
         private DateTime _dateTime;
         
+        private static Lazy<ITypedElement> _dateTimeAttribute = new Lazy<ITypedElement>(RetrieveDateTimeAttribute);
+        
         /// <summary>
         /// The backing field for the Success property
         /// </summary>
         private bool _success;
         
+        private static Lazy<ITypedElement> _successAttribute = new Lazy<ITypedElement>(RetrieveSuccessAttribute);
+        
         /// <summary>
         /// The backing field for the Type property
         /// </summary>
         private string _type;
+        
+        private static Lazy<ITypedElement> _typeAttribute = new Lazy<ITypedElement>(RetrieveTypeAttribute);
         
         private static IClass _classInstance;
         
@@ -86,10 +92,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Assets
                     DateTime old = this._dateTime;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnDateTimeChanging(e);
-                    this.OnPropertyChanging("DateTime", e);
+                    this.OnPropertyChanging("DateTime", e, _dateTimeAttribute);
                     this._dateTime = value;
                     this.OnDateTimeChanged(e);
-                    this.OnPropertyChanged("DateTime", e);
+                    this.OnPropertyChanged("DateTime", e, _dateTimeAttribute);
                 }
             }
         }
@@ -112,10 +118,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Assets
                     bool old = this._success;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnSuccessChanging(e);
-                    this.OnPropertyChanging("Success", e);
+                    this.OnPropertyChanging("Success", e, _successAttribute);
                     this._success = value;
                     this.OnSuccessChanged(e);
-                    this.OnPropertyChanged("Success", e);
+                    this.OnPropertyChanged("Success", e, _successAttribute);
                 }
             }
         }
@@ -138,10 +144,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Assets
                     string old = this._type;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnTypeChanging(e);
-                    this.OnPropertyChanging("Type", e);
+                    this.OnPropertyChanging("Type", e, _typeAttribute);
                     this._type = value;
                     this.OnTypeChanged(e);
-                    this.OnPropertyChanged("Type", e);
+                    this.OnPropertyChanged("Type", e, _typeAttribute);
                 }
             }
         }
@@ -191,6 +197,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Assets
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> TypeChanged;
         
+        private static ITypedElement RetrieveDateTimeAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(AcceptanceTest.ClassInstance)).Resolve("dateTime")));
+        }
+        
         /// <summary>
         /// Raises the DateTimeChanging event
         /// </summary>
@@ -217,6 +228,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Assets
             }
         }
         
+        private static ITypedElement RetrieveSuccessAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(AcceptanceTest.ClassInstance)).Resolve("success")));
+        }
+        
         /// <summary>
         /// Raises the SuccessChanging event
         /// </summary>
@@ -241,6 +257,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Assets
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveTypeAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(AcceptanceTest.ClassInstance)).Resolve("type")));
         }
         
         /// <summary>
@@ -340,7 +361,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Assets
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public DateTimeProxy(IAcceptanceTest modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "dateTime")
             {
             }
             
@@ -358,24 +379,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Assets
                     this.ModelElement.DateTime = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.DateTimeChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.DateTimeChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -389,7 +392,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Assets
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public SuccessProxy(IAcceptanceTest modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "success")
             {
             }
             
@@ -407,24 +410,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Assets
                     this.ModelElement.Success = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.SuccessChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.SuccessChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -438,7 +423,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Assets
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public TypeProxy(IAcceptanceTest modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "type")
             {
             }
             
@@ -455,24 +440,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Assets
                 {
                     this.ModelElement.Type = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.TypeChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.TypeChanged -= handler;
             }
         }
     }

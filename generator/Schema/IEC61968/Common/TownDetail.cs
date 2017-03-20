@@ -51,7 +51,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Common
     [XmlNamespacePrefixAttribute("cimCommon")]
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61968/Common/TownDetail")]
     [DebuggerDisplayAttribute("TownDetail {UUID}")]
-    public class TownDetail : Element, ITownDetail, IModelElement
+    public partial class TownDetail : Element, ITownDetail, IModelElement
     {
         
         /// <summary>
@@ -59,25 +59,35 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Common
         /// </summary>
         private string _country;
         
+        private static Lazy<ITypedElement> _countryAttribute = new Lazy<ITypedElement>(RetrieveCountryAttribute);
+        
         /// <summary>
         /// The backing field for the Code property
         /// </summary>
         private string _code;
+        
+        private static Lazy<ITypedElement> _codeAttribute = new Lazy<ITypedElement>(RetrieveCodeAttribute);
         
         /// <summary>
         /// The backing field for the Name property
         /// </summary>
         private string _name;
         
+        private static Lazy<ITypedElement> _nameAttribute = new Lazy<ITypedElement>(RetrieveNameAttribute);
+        
         /// <summary>
         /// The backing field for the Section property
         /// </summary>
         private string _section;
         
+        private static Lazy<ITypedElement> _sectionAttribute = new Lazy<ITypedElement>(RetrieveSectionAttribute);
+        
         /// <summary>
         /// The backing field for the StateOrProvince property
         /// </summary>
         private string _stateOrProvince;
+        
+        private static Lazy<ITypedElement> _stateOrProvinceAttribute = new Lazy<ITypedElement>(RetrieveStateOrProvinceAttribute);
         
         private static IClass _classInstance;
         
@@ -99,10 +109,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Common
                     string old = this._country;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnCountryChanging(e);
-                    this.OnPropertyChanging("Country", e);
+                    this.OnPropertyChanging("Country", e, _countryAttribute);
                     this._country = value;
                     this.OnCountryChanged(e);
-                    this.OnPropertyChanged("Country", e);
+                    this.OnPropertyChanged("Country", e, _countryAttribute);
                 }
             }
         }
@@ -125,10 +135,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Common
                     string old = this._code;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnCodeChanging(e);
-                    this.OnPropertyChanging("Code", e);
+                    this.OnPropertyChanging("Code", e, _codeAttribute);
                     this._code = value;
                     this.OnCodeChanged(e);
-                    this.OnPropertyChanged("Code", e);
+                    this.OnPropertyChanged("Code", e, _codeAttribute);
                 }
             }
         }
@@ -151,10 +161,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Common
                     string old = this._name;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnNameChanging(e);
-                    this.OnPropertyChanging("Name", e);
+                    this.OnPropertyChanging("Name", e, _nameAttribute);
                     this._name = value;
                     this.OnNameChanged(e);
-                    this.OnPropertyChanged("Name", e);
+                    this.OnPropertyChanged("Name", e, _nameAttribute);
                 }
             }
         }
@@ -177,10 +187,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Common
                     string old = this._section;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnSectionChanging(e);
-                    this.OnPropertyChanging("Section", e);
+                    this.OnPropertyChanging("Section", e, _sectionAttribute);
                     this._section = value;
                     this.OnSectionChanged(e);
-                    this.OnPropertyChanged("Section", e);
+                    this.OnPropertyChanged("Section", e, _sectionAttribute);
                 }
             }
         }
@@ -203,10 +213,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Common
                     string old = this._stateOrProvince;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnStateOrProvinceChanging(e);
-                    this.OnPropertyChanging("StateOrProvince", e);
+                    this.OnPropertyChanging("StateOrProvince", e, _stateOrProvinceAttribute);
                     this._stateOrProvince = value;
                     this.OnStateOrProvinceChanged(e);
-                    this.OnPropertyChanged("StateOrProvince", e);
+                    this.OnPropertyChanged("StateOrProvince", e, _stateOrProvinceAttribute);
                 }
             }
         }
@@ -276,6 +286,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Common
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> StateOrProvinceChanged;
         
+        private static ITypedElement RetrieveCountryAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(TownDetail.ClassInstance)).Resolve("country")));
+        }
+        
         /// <summary>
         /// Raises the CountryChanging event
         /// </summary>
@@ -300,6 +315,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Common
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveCodeAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(TownDetail.ClassInstance)).Resolve("code")));
         }
         
         /// <summary>
@@ -328,6 +348,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Common
             }
         }
         
+        private static ITypedElement RetrieveNameAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(TownDetail.ClassInstance)).Resolve("name")));
+        }
+        
         /// <summary>
         /// Raises the NameChanging event
         /// </summary>
@@ -354,6 +379,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Common
             }
         }
         
+        private static ITypedElement RetrieveSectionAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(TownDetail.ClassInstance)).Resolve("section")));
+        }
+        
         /// <summary>
         /// Raises the SectionChanging event
         /// </summary>
@@ -378,6 +408,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Common
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveStateOrProvinceAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(TownDetail.ClassInstance)).Resolve("stateOrProvince")));
         }
         
         /// <summary>
@@ -495,7 +530,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Common
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public CountryProxy(ITownDetail modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "country")
             {
             }
             
@@ -513,24 +548,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Common
                     this.ModelElement.Country = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.CountryChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.CountryChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -544,7 +561,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Common
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public CodeProxy(ITownDetail modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "code")
             {
             }
             
@@ -562,24 +579,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Common
                     this.ModelElement.Code = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.CodeChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.CodeChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -593,7 +592,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Common
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public NameProxy(ITownDetail modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "name")
             {
             }
             
@@ -611,24 +610,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Common
                     this.ModelElement.Name = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.NameChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.NameChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -642,7 +623,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Common
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public SectionProxy(ITownDetail modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "section")
             {
             }
             
@@ -660,24 +641,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Common
                     this.ModelElement.Section = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.SectionChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.SectionChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -691,7 +654,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Common
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public StateOrProvinceProxy(ITownDetail modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "stateOrProvince")
             {
             }
             
@@ -708,24 +671,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Common
                 {
                     this.ModelElement.StateOrProvince = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.StateOrProvinceChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.StateOrProvinceChanged -= handler;
             }
         }
     }

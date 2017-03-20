@@ -49,28 +49,38 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfWork
     [XmlNamespacePrefixAttribute("cimInfWork")]
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61970/Informative/InfWork/CUGroup")]
     [DebuggerDisplayAttribute("CUGroup {UUID}")]
-    public class CUGroup : IdentifiedObject, ICUGroup, IModelElement
+    public partial class CUGroup : IdentifiedObject, ICUGroup, IModelElement
     {
+        
+        private static Lazy<ITypedElement> _childCUGroupsReference = new Lazy<ITypedElement>(RetrieveChildCUGroupsReference);
         
         /// <summary>
         /// The backing field for the ChildCUGroups property
         /// </summary>
         private CUGroupChildCUGroupsCollection _childCUGroups;
         
+        private static Lazy<ITypedElement> _parentCUGroupsReference = new Lazy<ITypedElement>(RetrieveParentCUGroupsReference);
+        
         /// <summary>
         /// The backing field for the ParentCUGroups property
         /// </summary>
         private CUGroupParentCUGroupsCollection _parentCUGroups;
+        
+        private static Lazy<ITypedElement> _designLocationCUsReference = new Lazy<ITypedElement>(RetrieveDesignLocationCUsReference);
         
         /// <summary>
         /// The backing field for the DesignLocationCUs property
         /// </summary>
         private CUGroupDesignLocationCUsCollection _designLocationCUs;
         
+        private static Lazy<ITypedElement> _compatibleUnitsReference = new Lazy<ITypedElement>(RetrieveCompatibleUnitsReference);
+        
         /// <summary>
         /// The backing field for the CompatibleUnits property
         /// </summary>
         private CUGroupCompatibleUnitsCollection _compatibleUnits;
+        
+        private static Lazy<ITypedElement> _statusReference = new Lazy<ITypedElement>(RetrieveStatusReference);
         
         /// <summary>
         /// The backing field for the Status property
@@ -173,7 +183,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfWork
                     IStatus old = this._status;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnStatusChanging(e);
-                    this.OnPropertyChanging("Status", e);
+                    this.OnPropertyChanging("Status", e, _statusReference);
                     this._status = value;
                     if ((old != null))
                     {
@@ -184,7 +194,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfWork
                         value.Deleted += this.OnResetStatus;
                     }
                     this.OnStatusChanged(e);
-                    this.OnPropertyChanged("Status", e);
+                    this.OnPropertyChanged("Status", e, _statusReference);
                 }
             }
         }
@@ -225,6 +235,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfWork
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> StatusChanged;
         
+        private static ITypedElement RetrieveChildCUGroupsReference()
+        {
+            return ((ITypedElement)(((ModelElement)(CUGroup.ClassInstance)).Resolve("ChildCUGroups")));
+        }
+        
         /// <summary>
         /// Forwards CollectionChanging notifications for the ChildCUGroups property to the parent model element
         /// </summary>
@@ -232,7 +247,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfWork
         /// <param name="e">The original event data</param>
         private void ChildCUGroupsCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("ChildCUGroups", e);
+            this.OnCollectionChanging("ChildCUGroups", e, _childCUGroupsReference);
         }
         
         /// <summary>
@@ -242,7 +257,12 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfWork
         /// <param name="e">The original event data</param>
         private void ChildCUGroupsCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("ChildCUGroups", e);
+            this.OnCollectionChanged("ChildCUGroups", e, _childCUGroupsReference);
+        }
+        
+        private static ITypedElement RetrieveParentCUGroupsReference()
+        {
+            return ((ITypedElement)(((ModelElement)(CUGroup.ClassInstance)).Resolve("ParentCUGroups")));
         }
         
         /// <summary>
@@ -252,7 +272,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfWork
         /// <param name="e">The original event data</param>
         private void ParentCUGroupsCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("ParentCUGroups", e);
+            this.OnCollectionChanging("ParentCUGroups", e, _parentCUGroupsReference);
         }
         
         /// <summary>
@@ -262,7 +282,12 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfWork
         /// <param name="e">The original event data</param>
         private void ParentCUGroupsCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("ParentCUGroups", e);
+            this.OnCollectionChanged("ParentCUGroups", e, _parentCUGroupsReference);
+        }
+        
+        private static ITypedElement RetrieveDesignLocationCUsReference()
+        {
+            return ((ITypedElement)(((ModelElement)(CUGroup.ClassInstance)).Resolve("DesignLocationCUs")));
         }
         
         /// <summary>
@@ -272,7 +297,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfWork
         /// <param name="e">The original event data</param>
         private void DesignLocationCUsCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("DesignLocationCUs", e);
+            this.OnCollectionChanging("DesignLocationCUs", e, _designLocationCUsReference);
         }
         
         /// <summary>
@@ -282,7 +307,12 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfWork
         /// <param name="e">The original event data</param>
         private void DesignLocationCUsCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("DesignLocationCUs", e);
+            this.OnCollectionChanged("DesignLocationCUs", e, _designLocationCUsReference);
+        }
+        
+        private static ITypedElement RetrieveCompatibleUnitsReference()
+        {
+            return ((ITypedElement)(((ModelElement)(CUGroup.ClassInstance)).Resolve("CompatibleUnits")));
         }
         
         /// <summary>
@@ -292,7 +322,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfWork
         /// <param name="e">The original event data</param>
         private void CompatibleUnitsCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("CompatibleUnits", e);
+            this.OnCollectionChanging("CompatibleUnits", e, _compatibleUnitsReference);
         }
         
         /// <summary>
@@ -302,7 +332,12 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfWork
         /// <param name="e">The original event data</param>
         private void CompatibleUnitsCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("CompatibleUnits", e);
+            this.OnCollectionChanged("CompatibleUnits", e, _compatibleUnitsReference);
+        }
+        
+        private static ITypedElement RetrieveStatusReference()
+        {
+            return ((ITypedElement)(((ModelElement)(CUGroup.ClassInstance)).Resolve("status")));
         }
         
         /// <summary>
@@ -688,7 +723,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfWork
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public StatusProxy(ICUGroup modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "status")
             {
             }
             
@@ -705,24 +740,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfWork
                 {
                     this.ModelElement.Status = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.StatusChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.StatusChanged -= handler;
             }
         }
     }

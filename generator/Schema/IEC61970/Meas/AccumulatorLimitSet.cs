@@ -51,13 +51,17 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Meas
     [XmlNamespacePrefixAttribute("cimMeas")]
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61970/Meas/AccumulatorLimitSet")]
     [DebuggerDisplayAttribute("AccumulatorLimitSet {UUID}")]
-    public class AccumulatorLimitSet : LimitSet, IAccumulatorLimitSet, IModelElement
+    public partial class AccumulatorLimitSet : LimitSet, IAccumulatorLimitSet, IModelElement
     {
+        
+        private static Lazy<ITypedElement> _measurementsReference = new Lazy<ITypedElement>(RetrieveMeasurementsReference);
         
         /// <summary>
         /// The backing field for the Measurements property
         /// </summary>
         private AccumulatorLimitSetMeasurementsCollection _measurements;
+        
+        private static Lazy<ITypedElement> _limitsReference = new Lazy<ITypedElement>(RetrieveLimitsReference);
         
         /// <summary>
         /// The backing field for the Limits property
@@ -132,6 +136,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Meas
             }
         }
         
+        private static ITypedElement RetrieveMeasurementsReference()
+        {
+            return ((ITypedElement)(((ModelElement)(AccumulatorLimitSet.ClassInstance)).Resolve("Measurements")));
+        }
+        
         /// <summary>
         /// Forwards CollectionChanging notifications for the Measurements property to the parent model element
         /// </summary>
@@ -139,7 +148,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Meas
         /// <param name="e">The original event data</param>
         private void MeasurementsCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("Measurements", e);
+            this.OnCollectionChanging("Measurements", e, _measurementsReference);
         }
         
         /// <summary>
@@ -149,7 +158,12 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Meas
         /// <param name="e">The original event data</param>
         private void MeasurementsCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("Measurements", e);
+            this.OnCollectionChanged("Measurements", e, _measurementsReference);
+        }
+        
+        private static ITypedElement RetrieveLimitsReference()
+        {
+            return ((ITypedElement)(((ModelElement)(AccumulatorLimitSet.ClassInstance)).Resolve("Limits")));
         }
         
         /// <summary>
@@ -159,7 +173,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Meas
         /// <param name="e">The original event data</param>
         private void LimitsCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("Limits", e);
+            this.OnCollectionChanging("Limits", e, _limitsReference);
         }
         
         /// <summary>
@@ -169,7 +183,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Meas
         /// <param name="e">The original event data</param>
         private void LimitsCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("Limits", e);
+            this.OnCollectionChanged("Limits", e, _limitsReference);
         }
         
         /// <summary>

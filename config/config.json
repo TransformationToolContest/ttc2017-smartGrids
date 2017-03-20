@@ -1,12 +1,14 @@
 {
   "Views": [
     "OutageDetection",
-    "OutageAvoidance"
+    "OutagePrevention"
   ],
   "Tools": ["ModelJoin"],
   "ChangeSets": [
-    "changes/changeSequence1.xmi"
+    "changeSequence1", "changeSequence2"
   ],
+  "Sequences": 100,
+  "SequenceLength": 10,
   "Runs": 5,
   "Timeout": 6000
 }

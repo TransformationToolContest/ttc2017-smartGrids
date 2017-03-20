@@ -39,7 +39,7 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
     [XmlNamespacePrefixAttribute("objects")]
     [ModelRepresentationClassAttribute("http://www.transformation-tool-contest.eu/2017/smartGrids/cosem#//COSEMObjects/Ex" +
         "tendedPhaseAngleMeasurement")]
-    public class ExtendedPhaseAngleMeasurement : Data, IExtendedPhaseAngleMeasurement, IModelElement
+    public partial class ExtendedPhaseAngleMeasurement : Data, IExtendedPhaseAngleMeasurement, IModelElement
     {
         
         /// <summary>
@@ -47,210 +47,294 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
         /// </summary>
         private Nullable<double> _fromUL1toUL2;
         
+        private static Lazy<ITypedElement> _fromUL1toUL2Attribute = new Lazy<ITypedElement>(RetrieveFromUL1toUL2Attribute);
+        
         /// <summary>
         /// The backing field for the FromUL1toUL3 property
         /// </summary>
         private Nullable<double> _fromUL1toUL3;
+        
+        private static Lazy<ITypedElement> _fromUL1toUL3Attribute = new Lazy<ITypedElement>(RetrieveFromUL1toUL3Attribute);
         
         /// <summary>
         /// The backing field for the FromUL1toIL1 property
         /// </summary>
         private Nullable<double> _fromUL1toIL1;
         
+        private static Lazy<ITypedElement> _fromUL1toIL1Attribute = new Lazy<ITypedElement>(RetrieveFromUL1toIL1Attribute);
+        
         /// <summary>
         /// The backing field for the FromUL1toIL2 property
         /// </summary>
         private Nullable<double> _fromUL1toIL2;
+        
+        private static Lazy<ITypedElement> _fromUL1toIL2Attribute = new Lazy<ITypedElement>(RetrieveFromUL1toIL2Attribute);
         
         /// <summary>
         /// The backing field for the FromUL1toIL3 property
         /// </summary>
         private Nullable<double> _fromUL1toIL3;
         
+        private static Lazy<ITypedElement> _fromUL1toIL3Attribute = new Lazy<ITypedElement>(RetrieveFromUL1toIL3Attribute);
+        
         /// <summary>
         /// The backing field for the FromUL1toIL0 property
         /// </summary>
         private Nullable<double> _fromUL1toIL0;
+        
+        private static Lazy<ITypedElement> _fromUL1toIL0Attribute = new Lazy<ITypedElement>(RetrieveFromUL1toIL0Attribute);
         
         /// <summary>
         /// The backing field for the FromUL2toUL1 property
         /// </summary>
         private Nullable<double> _fromUL2toUL1;
         
+        private static Lazy<ITypedElement> _fromUL2toUL1Attribute = new Lazy<ITypedElement>(RetrieveFromUL2toUL1Attribute);
+        
         /// <summary>
         /// The backing field for the FromUL2toUL3 property
         /// </summary>
         private Nullable<double> _fromUL2toUL3;
+        
+        private static Lazy<ITypedElement> _fromUL2toUL3Attribute = new Lazy<ITypedElement>(RetrieveFromUL2toUL3Attribute);
         
         /// <summary>
         /// The backing field for the FromUL2toIL1 property
         /// </summary>
         private Nullable<double> _fromUL2toIL1;
         
+        private static Lazy<ITypedElement> _fromUL2toIL1Attribute = new Lazy<ITypedElement>(RetrieveFromUL2toIL1Attribute);
+        
         /// <summary>
         /// The backing field for the FromUL2toIL2 property
         /// </summary>
         private Nullable<double> _fromUL2toIL2;
+        
+        private static Lazy<ITypedElement> _fromUL2toIL2Attribute = new Lazy<ITypedElement>(RetrieveFromUL2toIL2Attribute);
         
         /// <summary>
         /// The backing field for the FromUL2toIL3 property
         /// </summary>
         private Nullable<double> _fromUL2toIL3;
         
+        private static Lazy<ITypedElement> _fromUL2toIL3Attribute = new Lazy<ITypedElement>(RetrieveFromUL2toIL3Attribute);
+        
         /// <summary>
         /// The backing field for the FromUL2toIL0 property
         /// </summary>
         private Nullable<double> _fromUL2toIL0;
+        
+        private static Lazy<ITypedElement> _fromUL2toIL0Attribute = new Lazy<ITypedElement>(RetrieveFromUL2toIL0Attribute);
         
         /// <summary>
         /// The backing field for the FromUL3toUL1 property
         /// </summary>
         private Nullable<double> _fromUL3toUL1;
         
+        private static Lazy<ITypedElement> _fromUL3toUL1Attribute = new Lazy<ITypedElement>(RetrieveFromUL3toUL1Attribute);
+        
         /// <summary>
         /// The backing field for the FromUL3toUL2 property
         /// </summary>
         private Nullable<double> _fromUL3toUL2;
+        
+        private static Lazy<ITypedElement> _fromUL3toUL2Attribute = new Lazy<ITypedElement>(RetrieveFromUL3toUL2Attribute);
         
         /// <summary>
         /// The backing field for the FromUL3toIL1 property
         /// </summary>
         private Nullable<double> _fromUL3toIL1;
         
+        private static Lazy<ITypedElement> _fromUL3toIL1Attribute = new Lazy<ITypedElement>(RetrieveFromUL3toIL1Attribute);
+        
         /// <summary>
         /// The backing field for the FromUL3toIL2 property
         /// </summary>
         private Nullable<double> _fromUL3toIL2;
+        
+        private static Lazy<ITypedElement> _fromUL3toIL2Attribute = new Lazy<ITypedElement>(RetrieveFromUL3toIL2Attribute);
         
         /// <summary>
         /// The backing field for the FromUL3toIL3 property
         /// </summary>
         private Nullable<double> _fromUL3toIL3;
         
+        private static Lazy<ITypedElement> _fromUL3toIL3Attribute = new Lazy<ITypedElement>(RetrieveFromUL3toIL3Attribute);
+        
         /// <summary>
         /// The backing field for the FromUL3toIL0 property
         /// </summary>
         private Nullable<double> _fromUL3toIL0;
+        
+        private static Lazy<ITypedElement> _fromUL3toIL0Attribute = new Lazy<ITypedElement>(RetrieveFromUL3toIL0Attribute);
         
         /// <summary>
         /// The backing field for the FromIL1toUL1 property
         /// </summary>
         private Nullable<double> _fromIL1toUL1;
         
+        private static Lazy<ITypedElement> _fromIL1toUL1Attribute = new Lazy<ITypedElement>(RetrieveFromIL1toUL1Attribute);
+        
         /// <summary>
         /// The backing field for the FromIL1toUL2 property
         /// </summary>
         private Nullable<double> _fromIL1toUL2;
+        
+        private static Lazy<ITypedElement> _fromIL1toUL2Attribute = new Lazy<ITypedElement>(RetrieveFromIL1toUL2Attribute);
         
         /// <summary>
         /// The backing field for the FromIL1toUL3 property
         /// </summary>
         private Nullable<double> _fromIL1toUL3;
         
+        private static Lazy<ITypedElement> _fromIL1toUL3Attribute = new Lazy<ITypedElement>(RetrieveFromIL1toUL3Attribute);
+        
         /// <summary>
         /// The backing field for the FromIL1toIL2 property
         /// </summary>
         private Nullable<double> _fromIL1toIL2;
+        
+        private static Lazy<ITypedElement> _fromIL1toIL2Attribute = new Lazy<ITypedElement>(RetrieveFromIL1toIL2Attribute);
         
         /// <summary>
         /// The backing field for the FromIL1toIL3 property
         /// </summary>
         private Nullable<double> _fromIL1toIL3;
         
+        private static Lazy<ITypedElement> _fromIL1toIL3Attribute = new Lazy<ITypedElement>(RetrieveFromIL1toIL3Attribute);
+        
         /// <summary>
         /// The backing field for the FromIL1toIL0 property
         /// </summary>
         private Nullable<double> _fromIL1toIL0;
+        
+        private static Lazy<ITypedElement> _fromIL1toIL0Attribute = new Lazy<ITypedElement>(RetrieveFromIL1toIL0Attribute);
         
         /// <summary>
         /// The backing field for the FromIL2toUL1 property
         /// </summary>
         private Nullable<double> _fromIL2toUL1;
         
+        private static Lazy<ITypedElement> _fromIL2toUL1Attribute = new Lazy<ITypedElement>(RetrieveFromIL2toUL1Attribute);
+        
         /// <summary>
         /// The backing field for the FromIL2toUL2 property
         /// </summary>
         private Nullable<double> _fromIL2toUL2;
+        
+        private static Lazy<ITypedElement> _fromIL2toUL2Attribute = new Lazy<ITypedElement>(RetrieveFromIL2toUL2Attribute);
         
         /// <summary>
         /// The backing field for the FromIL2toUL3 property
         /// </summary>
         private Nullable<double> _fromIL2toUL3;
         
+        private static Lazy<ITypedElement> _fromIL2toUL3Attribute = new Lazy<ITypedElement>(RetrieveFromIL2toUL3Attribute);
+        
         /// <summary>
         /// The backing field for the FromIL2toIL1 property
         /// </summary>
         private Nullable<double> _fromIL2toIL1;
+        
+        private static Lazy<ITypedElement> _fromIL2toIL1Attribute = new Lazy<ITypedElement>(RetrieveFromIL2toIL1Attribute);
         
         /// <summary>
         /// The backing field for the FromIL2toIL3 property
         /// </summary>
         private Nullable<double> _fromIL2toIL3;
         
+        private static Lazy<ITypedElement> _fromIL2toIL3Attribute = new Lazy<ITypedElement>(RetrieveFromIL2toIL3Attribute);
+        
         /// <summary>
         /// The backing field for the FromIL2toIL0 property
         /// </summary>
         private Nullable<double> _fromIL2toIL0;
+        
+        private static Lazy<ITypedElement> _fromIL2toIL0Attribute = new Lazy<ITypedElement>(RetrieveFromIL2toIL0Attribute);
         
         /// <summary>
         /// The backing field for the FromIL3toUL1 property
         /// </summary>
         private Nullable<double> _fromIL3toUL1;
         
+        private static Lazy<ITypedElement> _fromIL3toUL1Attribute = new Lazy<ITypedElement>(RetrieveFromIL3toUL1Attribute);
+        
         /// <summary>
         /// The backing field for the FromIL3toUL2 property
         /// </summary>
         private Nullable<double> _fromIL3toUL2;
+        
+        private static Lazy<ITypedElement> _fromIL3toUL2Attribute = new Lazy<ITypedElement>(RetrieveFromIL3toUL2Attribute);
         
         /// <summary>
         /// The backing field for the FromIL3toUL3 property
         /// </summary>
         private Nullable<double> _fromIL3toUL3;
         
+        private static Lazy<ITypedElement> _fromIL3toUL3Attribute = new Lazy<ITypedElement>(RetrieveFromIL3toUL3Attribute);
+        
         /// <summary>
         /// The backing field for the FromIL3toIL1 property
         /// </summary>
         private Nullable<double> _fromIL3toIL1;
+        
+        private static Lazy<ITypedElement> _fromIL3toIL1Attribute = new Lazy<ITypedElement>(RetrieveFromIL3toIL1Attribute);
         
         /// <summary>
         /// The backing field for the FromIL3toIL2 property
         /// </summary>
         private Nullable<double> _fromIL3toIL2;
         
+        private static Lazy<ITypedElement> _fromIL3toIL2Attribute = new Lazy<ITypedElement>(RetrieveFromIL3toIL2Attribute);
+        
         /// <summary>
         /// The backing field for the FromIL3toIL0 property
         /// </summary>
         private Nullable<double> _fromIL3toIL0;
+        
+        private static Lazy<ITypedElement> _fromIL3toIL0Attribute = new Lazy<ITypedElement>(RetrieveFromIL3toIL0Attribute);
         
         /// <summary>
         /// The backing field for the FromIL0toUL1 property
         /// </summary>
         private Nullable<double> _fromIL0toUL1;
         
+        private static Lazy<ITypedElement> _fromIL0toUL1Attribute = new Lazy<ITypedElement>(RetrieveFromIL0toUL1Attribute);
+        
         /// <summary>
         /// The backing field for the FromIL0toUL2 property
         /// </summary>
         private Nullable<double> _fromIL0toUL2;
+        
+        private static Lazy<ITypedElement> _fromIL0toUL2Attribute = new Lazy<ITypedElement>(RetrieveFromIL0toUL2Attribute);
         
         /// <summary>
         /// The backing field for the FromIL0toUL3 property
         /// </summary>
         private Nullable<double> _fromIL0toUL3;
         
+        private static Lazy<ITypedElement> _fromIL0toUL3Attribute = new Lazy<ITypedElement>(RetrieveFromIL0toUL3Attribute);
+        
         /// <summary>
         /// The backing field for the FromIL0toIL1 property
         /// </summary>
         private Nullable<double> _fromIL0toIL1;
+        
+        private static Lazy<ITypedElement> _fromIL0toIL1Attribute = new Lazy<ITypedElement>(RetrieveFromIL0toIL1Attribute);
         
         /// <summary>
         /// The backing field for the FromIL0toIL2 property
         /// </summary>
         private Nullable<double> _fromIL0toIL2;
         
+        private static Lazy<ITypedElement> _fromIL0toIL2Attribute = new Lazy<ITypedElement>(RetrieveFromIL0toIL2Attribute);
+        
         /// <summary>
         /// The backing field for the FromIL0toIL3 property
         /// </summary>
         private Nullable<double> _fromIL0toIL3;
+        
+        private static Lazy<ITypedElement> _fromIL0toIL3Attribute = new Lazy<ITypedElement>(RetrieveFromIL0toIL3Attribute);
         
         private static IClass _classInstance;
         
@@ -271,10 +355,10 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     Nullable<double> old = this._fromUL1toUL2;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnFromUL1toUL2Changing(e);
-                    this.OnPropertyChanging("FromUL1toUL2", e);
+                    this.OnPropertyChanging("FromUL1toUL2", e, _fromUL1toUL2Attribute);
                     this._fromUL1toUL2 = value;
                     this.OnFromUL1toUL2Changed(e);
-                    this.OnPropertyChanged("FromUL1toUL2", e);
+                    this.OnPropertyChanged("FromUL1toUL2", e, _fromUL1toUL2Attribute);
                 }
             }
         }
@@ -296,10 +380,10 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     Nullable<double> old = this._fromUL1toUL3;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnFromUL1toUL3Changing(e);
-                    this.OnPropertyChanging("FromUL1toUL3", e);
+                    this.OnPropertyChanging("FromUL1toUL3", e, _fromUL1toUL3Attribute);
                     this._fromUL1toUL3 = value;
                     this.OnFromUL1toUL3Changed(e);
-                    this.OnPropertyChanged("FromUL1toUL3", e);
+                    this.OnPropertyChanged("FromUL1toUL3", e, _fromUL1toUL3Attribute);
                 }
             }
         }
@@ -321,10 +405,10 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     Nullable<double> old = this._fromUL1toIL1;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnFromUL1toIL1Changing(e);
-                    this.OnPropertyChanging("FromUL1toIL1", e);
+                    this.OnPropertyChanging("FromUL1toIL1", e, _fromUL1toIL1Attribute);
                     this._fromUL1toIL1 = value;
                     this.OnFromUL1toIL1Changed(e);
-                    this.OnPropertyChanged("FromUL1toIL1", e);
+                    this.OnPropertyChanged("FromUL1toIL1", e, _fromUL1toIL1Attribute);
                 }
             }
         }
@@ -346,10 +430,10 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     Nullable<double> old = this._fromUL1toIL2;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnFromUL1toIL2Changing(e);
-                    this.OnPropertyChanging("FromUL1toIL2", e);
+                    this.OnPropertyChanging("FromUL1toIL2", e, _fromUL1toIL2Attribute);
                     this._fromUL1toIL2 = value;
                     this.OnFromUL1toIL2Changed(e);
-                    this.OnPropertyChanged("FromUL1toIL2", e);
+                    this.OnPropertyChanged("FromUL1toIL2", e, _fromUL1toIL2Attribute);
                 }
             }
         }
@@ -371,10 +455,10 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     Nullable<double> old = this._fromUL1toIL3;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnFromUL1toIL3Changing(e);
-                    this.OnPropertyChanging("FromUL1toIL3", e);
+                    this.OnPropertyChanging("FromUL1toIL3", e, _fromUL1toIL3Attribute);
                     this._fromUL1toIL3 = value;
                     this.OnFromUL1toIL3Changed(e);
-                    this.OnPropertyChanged("FromUL1toIL3", e);
+                    this.OnPropertyChanged("FromUL1toIL3", e, _fromUL1toIL3Attribute);
                 }
             }
         }
@@ -396,10 +480,10 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     Nullable<double> old = this._fromUL1toIL0;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnFromUL1toIL0Changing(e);
-                    this.OnPropertyChanging("FromUL1toIL0", e);
+                    this.OnPropertyChanging("FromUL1toIL0", e, _fromUL1toIL0Attribute);
                     this._fromUL1toIL0 = value;
                     this.OnFromUL1toIL0Changed(e);
-                    this.OnPropertyChanged("FromUL1toIL0", e);
+                    this.OnPropertyChanged("FromUL1toIL0", e, _fromUL1toIL0Attribute);
                 }
             }
         }
@@ -421,10 +505,10 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     Nullable<double> old = this._fromUL2toUL1;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnFromUL2toUL1Changing(e);
-                    this.OnPropertyChanging("FromUL2toUL1", e);
+                    this.OnPropertyChanging("FromUL2toUL1", e, _fromUL2toUL1Attribute);
                     this._fromUL2toUL1 = value;
                     this.OnFromUL2toUL1Changed(e);
-                    this.OnPropertyChanged("FromUL2toUL1", e);
+                    this.OnPropertyChanged("FromUL2toUL1", e, _fromUL2toUL1Attribute);
                 }
             }
         }
@@ -446,10 +530,10 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     Nullable<double> old = this._fromUL2toUL3;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnFromUL2toUL3Changing(e);
-                    this.OnPropertyChanging("FromUL2toUL3", e);
+                    this.OnPropertyChanging("FromUL2toUL3", e, _fromUL2toUL3Attribute);
                     this._fromUL2toUL3 = value;
                     this.OnFromUL2toUL3Changed(e);
-                    this.OnPropertyChanged("FromUL2toUL3", e);
+                    this.OnPropertyChanged("FromUL2toUL3", e, _fromUL2toUL3Attribute);
                 }
             }
         }
@@ -471,10 +555,10 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     Nullable<double> old = this._fromUL2toIL1;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnFromUL2toIL1Changing(e);
-                    this.OnPropertyChanging("FromUL2toIL1", e);
+                    this.OnPropertyChanging("FromUL2toIL1", e, _fromUL2toIL1Attribute);
                     this._fromUL2toIL1 = value;
                     this.OnFromUL2toIL1Changed(e);
-                    this.OnPropertyChanged("FromUL2toIL1", e);
+                    this.OnPropertyChanged("FromUL2toIL1", e, _fromUL2toIL1Attribute);
                 }
             }
         }
@@ -496,10 +580,10 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     Nullable<double> old = this._fromUL2toIL2;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnFromUL2toIL2Changing(e);
-                    this.OnPropertyChanging("FromUL2toIL2", e);
+                    this.OnPropertyChanging("FromUL2toIL2", e, _fromUL2toIL2Attribute);
                     this._fromUL2toIL2 = value;
                     this.OnFromUL2toIL2Changed(e);
-                    this.OnPropertyChanged("FromUL2toIL2", e);
+                    this.OnPropertyChanged("FromUL2toIL2", e, _fromUL2toIL2Attribute);
                 }
             }
         }
@@ -521,10 +605,10 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     Nullable<double> old = this._fromUL2toIL3;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnFromUL2toIL3Changing(e);
-                    this.OnPropertyChanging("FromUL2toIL3", e);
+                    this.OnPropertyChanging("FromUL2toIL3", e, _fromUL2toIL3Attribute);
                     this._fromUL2toIL3 = value;
                     this.OnFromUL2toIL3Changed(e);
-                    this.OnPropertyChanged("FromUL2toIL3", e);
+                    this.OnPropertyChanged("FromUL2toIL3", e, _fromUL2toIL3Attribute);
                 }
             }
         }
@@ -546,10 +630,10 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     Nullable<double> old = this._fromUL2toIL0;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnFromUL2toIL0Changing(e);
-                    this.OnPropertyChanging("FromUL2toIL0", e);
+                    this.OnPropertyChanging("FromUL2toIL0", e, _fromUL2toIL0Attribute);
                     this._fromUL2toIL0 = value;
                     this.OnFromUL2toIL0Changed(e);
-                    this.OnPropertyChanged("FromUL2toIL0", e);
+                    this.OnPropertyChanged("FromUL2toIL0", e, _fromUL2toIL0Attribute);
                 }
             }
         }
@@ -571,10 +655,10 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     Nullable<double> old = this._fromUL3toUL1;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnFromUL3toUL1Changing(e);
-                    this.OnPropertyChanging("FromUL3toUL1", e);
+                    this.OnPropertyChanging("FromUL3toUL1", e, _fromUL3toUL1Attribute);
                     this._fromUL3toUL1 = value;
                     this.OnFromUL3toUL1Changed(e);
-                    this.OnPropertyChanged("FromUL3toUL1", e);
+                    this.OnPropertyChanged("FromUL3toUL1", e, _fromUL3toUL1Attribute);
                 }
             }
         }
@@ -596,10 +680,10 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     Nullable<double> old = this._fromUL3toUL2;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnFromUL3toUL2Changing(e);
-                    this.OnPropertyChanging("FromUL3toUL2", e);
+                    this.OnPropertyChanging("FromUL3toUL2", e, _fromUL3toUL2Attribute);
                     this._fromUL3toUL2 = value;
                     this.OnFromUL3toUL2Changed(e);
-                    this.OnPropertyChanged("FromUL3toUL2", e);
+                    this.OnPropertyChanged("FromUL3toUL2", e, _fromUL3toUL2Attribute);
                 }
             }
         }
@@ -621,10 +705,10 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     Nullable<double> old = this._fromUL3toIL1;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnFromUL3toIL1Changing(e);
-                    this.OnPropertyChanging("FromUL3toIL1", e);
+                    this.OnPropertyChanging("FromUL3toIL1", e, _fromUL3toIL1Attribute);
                     this._fromUL3toIL1 = value;
                     this.OnFromUL3toIL1Changed(e);
-                    this.OnPropertyChanged("FromUL3toIL1", e);
+                    this.OnPropertyChanged("FromUL3toIL1", e, _fromUL3toIL1Attribute);
                 }
             }
         }
@@ -646,10 +730,10 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     Nullable<double> old = this._fromUL3toIL2;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnFromUL3toIL2Changing(e);
-                    this.OnPropertyChanging("FromUL3toIL2", e);
+                    this.OnPropertyChanging("FromUL3toIL2", e, _fromUL3toIL2Attribute);
                     this._fromUL3toIL2 = value;
                     this.OnFromUL3toIL2Changed(e);
-                    this.OnPropertyChanged("FromUL3toIL2", e);
+                    this.OnPropertyChanged("FromUL3toIL2", e, _fromUL3toIL2Attribute);
                 }
             }
         }
@@ -671,10 +755,10 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     Nullable<double> old = this._fromUL3toIL3;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnFromUL3toIL3Changing(e);
-                    this.OnPropertyChanging("FromUL3toIL3", e);
+                    this.OnPropertyChanging("FromUL3toIL3", e, _fromUL3toIL3Attribute);
                     this._fromUL3toIL3 = value;
                     this.OnFromUL3toIL3Changed(e);
-                    this.OnPropertyChanged("FromUL3toIL3", e);
+                    this.OnPropertyChanged("FromUL3toIL3", e, _fromUL3toIL3Attribute);
                 }
             }
         }
@@ -696,10 +780,10 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     Nullable<double> old = this._fromUL3toIL0;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnFromUL3toIL0Changing(e);
-                    this.OnPropertyChanging("FromUL3toIL0", e);
+                    this.OnPropertyChanging("FromUL3toIL0", e, _fromUL3toIL0Attribute);
                     this._fromUL3toIL0 = value;
                     this.OnFromUL3toIL0Changed(e);
-                    this.OnPropertyChanged("FromUL3toIL0", e);
+                    this.OnPropertyChanged("FromUL3toIL0", e, _fromUL3toIL0Attribute);
                 }
             }
         }
@@ -721,10 +805,10 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     Nullable<double> old = this._fromIL1toUL1;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnFromIL1toUL1Changing(e);
-                    this.OnPropertyChanging("FromIL1toUL1", e);
+                    this.OnPropertyChanging("FromIL1toUL1", e, _fromIL1toUL1Attribute);
                     this._fromIL1toUL1 = value;
                     this.OnFromIL1toUL1Changed(e);
-                    this.OnPropertyChanged("FromIL1toUL1", e);
+                    this.OnPropertyChanged("FromIL1toUL1", e, _fromIL1toUL1Attribute);
                 }
             }
         }
@@ -746,10 +830,10 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     Nullable<double> old = this._fromIL1toUL2;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnFromIL1toUL2Changing(e);
-                    this.OnPropertyChanging("FromIL1toUL2", e);
+                    this.OnPropertyChanging("FromIL1toUL2", e, _fromIL1toUL2Attribute);
                     this._fromIL1toUL2 = value;
                     this.OnFromIL1toUL2Changed(e);
-                    this.OnPropertyChanged("FromIL1toUL2", e);
+                    this.OnPropertyChanged("FromIL1toUL2", e, _fromIL1toUL2Attribute);
                 }
             }
         }
@@ -771,10 +855,10 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     Nullable<double> old = this._fromIL1toUL3;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnFromIL1toUL3Changing(e);
-                    this.OnPropertyChanging("FromIL1toUL3", e);
+                    this.OnPropertyChanging("FromIL1toUL3", e, _fromIL1toUL3Attribute);
                     this._fromIL1toUL3 = value;
                     this.OnFromIL1toUL3Changed(e);
-                    this.OnPropertyChanged("FromIL1toUL3", e);
+                    this.OnPropertyChanged("FromIL1toUL3", e, _fromIL1toUL3Attribute);
                 }
             }
         }
@@ -796,10 +880,10 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     Nullable<double> old = this._fromIL1toIL2;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnFromIL1toIL2Changing(e);
-                    this.OnPropertyChanging("FromIL1toIL2", e);
+                    this.OnPropertyChanging("FromIL1toIL2", e, _fromIL1toIL2Attribute);
                     this._fromIL1toIL2 = value;
                     this.OnFromIL1toIL2Changed(e);
-                    this.OnPropertyChanged("FromIL1toIL2", e);
+                    this.OnPropertyChanged("FromIL1toIL2", e, _fromIL1toIL2Attribute);
                 }
             }
         }
@@ -821,10 +905,10 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     Nullable<double> old = this._fromIL1toIL3;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnFromIL1toIL3Changing(e);
-                    this.OnPropertyChanging("FromIL1toIL3", e);
+                    this.OnPropertyChanging("FromIL1toIL3", e, _fromIL1toIL3Attribute);
                     this._fromIL1toIL3 = value;
                     this.OnFromIL1toIL3Changed(e);
-                    this.OnPropertyChanged("FromIL1toIL3", e);
+                    this.OnPropertyChanged("FromIL1toIL3", e, _fromIL1toIL3Attribute);
                 }
             }
         }
@@ -846,10 +930,10 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     Nullable<double> old = this._fromIL1toIL0;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnFromIL1toIL0Changing(e);
-                    this.OnPropertyChanging("FromIL1toIL0", e);
+                    this.OnPropertyChanging("FromIL1toIL0", e, _fromIL1toIL0Attribute);
                     this._fromIL1toIL0 = value;
                     this.OnFromIL1toIL0Changed(e);
-                    this.OnPropertyChanged("FromIL1toIL0", e);
+                    this.OnPropertyChanged("FromIL1toIL0", e, _fromIL1toIL0Attribute);
                 }
             }
         }
@@ -871,10 +955,10 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     Nullable<double> old = this._fromIL2toUL1;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnFromIL2toUL1Changing(e);
-                    this.OnPropertyChanging("FromIL2toUL1", e);
+                    this.OnPropertyChanging("FromIL2toUL1", e, _fromIL2toUL1Attribute);
                     this._fromIL2toUL1 = value;
                     this.OnFromIL2toUL1Changed(e);
-                    this.OnPropertyChanged("FromIL2toUL1", e);
+                    this.OnPropertyChanged("FromIL2toUL1", e, _fromIL2toUL1Attribute);
                 }
             }
         }
@@ -896,10 +980,10 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     Nullable<double> old = this._fromIL2toUL2;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnFromIL2toUL2Changing(e);
-                    this.OnPropertyChanging("FromIL2toUL2", e);
+                    this.OnPropertyChanging("FromIL2toUL2", e, _fromIL2toUL2Attribute);
                     this._fromIL2toUL2 = value;
                     this.OnFromIL2toUL2Changed(e);
-                    this.OnPropertyChanged("FromIL2toUL2", e);
+                    this.OnPropertyChanged("FromIL2toUL2", e, _fromIL2toUL2Attribute);
                 }
             }
         }
@@ -921,10 +1005,10 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     Nullable<double> old = this._fromIL2toUL3;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnFromIL2toUL3Changing(e);
-                    this.OnPropertyChanging("FromIL2toUL3", e);
+                    this.OnPropertyChanging("FromIL2toUL3", e, _fromIL2toUL3Attribute);
                     this._fromIL2toUL3 = value;
                     this.OnFromIL2toUL3Changed(e);
-                    this.OnPropertyChanged("FromIL2toUL3", e);
+                    this.OnPropertyChanged("FromIL2toUL3", e, _fromIL2toUL3Attribute);
                 }
             }
         }
@@ -946,10 +1030,10 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     Nullable<double> old = this._fromIL2toIL1;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnFromIL2toIL1Changing(e);
-                    this.OnPropertyChanging("FromIL2toIL1", e);
+                    this.OnPropertyChanging("FromIL2toIL1", e, _fromIL2toIL1Attribute);
                     this._fromIL2toIL1 = value;
                     this.OnFromIL2toIL1Changed(e);
-                    this.OnPropertyChanged("FromIL2toIL1", e);
+                    this.OnPropertyChanged("FromIL2toIL1", e, _fromIL2toIL1Attribute);
                 }
             }
         }
@@ -971,10 +1055,10 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     Nullable<double> old = this._fromIL2toIL3;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnFromIL2toIL3Changing(e);
-                    this.OnPropertyChanging("FromIL2toIL3", e);
+                    this.OnPropertyChanging("FromIL2toIL3", e, _fromIL2toIL3Attribute);
                     this._fromIL2toIL3 = value;
                     this.OnFromIL2toIL3Changed(e);
-                    this.OnPropertyChanged("FromIL2toIL3", e);
+                    this.OnPropertyChanged("FromIL2toIL3", e, _fromIL2toIL3Attribute);
                 }
             }
         }
@@ -996,10 +1080,10 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     Nullable<double> old = this._fromIL2toIL0;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnFromIL2toIL0Changing(e);
-                    this.OnPropertyChanging("FromIL2toIL0", e);
+                    this.OnPropertyChanging("FromIL2toIL0", e, _fromIL2toIL0Attribute);
                     this._fromIL2toIL0 = value;
                     this.OnFromIL2toIL0Changed(e);
-                    this.OnPropertyChanged("FromIL2toIL0", e);
+                    this.OnPropertyChanged("FromIL2toIL0", e, _fromIL2toIL0Attribute);
                 }
             }
         }
@@ -1021,10 +1105,10 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     Nullable<double> old = this._fromIL3toUL1;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnFromIL3toUL1Changing(e);
-                    this.OnPropertyChanging("FromIL3toUL1", e);
+                    this.OnPropertyChanging("FromIL3toUL1", e, _fromIL3toUL1Attribute);
                     this._fromIL3toUL1 = value;
                     this.OnFromIL3toUL1Changed(e);
-                    this.OnPropertyChanged("FromIL3toUL1", e);
+                    this.OnPropertyChanged("FromIL3toUL1", e, _fromIL3toUL1Attribute);
                 }
             }
         }
@@ -1046,10 +1130,10 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     Nullable<double> old = this._fromIL3toUL2;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnFromIL3toUL2Changing(e);
-                    this.OnPropertyChanging("FromIL3toUL2", e);
+                    this.OnPropertyChanging("FromIL3toUL2", e, _fromIL3toUL2Attribute);
                     this._fromIL3toUL2 = value;
                     this.OnFromIL3toUL2Changed(e);
-                    this.OnPropertyChanged("FromIL3toUL2", e);
+                    this.OnPropertyChanged("FromIL3toUL2", e, _fromIL3toUL2Attribute);
                 }
             }
         }
@@ -1071,10 +1155,10 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     Nullable<double> old = this._fromIL3toUL3;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnFromIL3toUL3Changing(e);
-                    this.OnPropertyChanging("FromIL3toUL3", e);
+                    this.OnPropertyChanging("FromIL3toUL3", e, _fromIL3toUL3Attribute);
                     this._fromIL3toUL3 = value;
                     this.OnFromIL3toUL3Changed(e);
-                    this.OnPropertyChanged("FromIL3toUL3", e);
+                    this.OnPropertyChanged("FromIL3toUL3", e, _fromIL3toUL3Attribute);
                 }
             }
         }
@@ -1096,10 +1180,10 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     Nullable<double> old = this._fromIL3toIL1;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnFromIL3toIL1Changing(e);
-                    this.OnPropertyChanging("FromIL3toIL1", e);
+                    this.OnPropertyChanging("FromIL3toIL1", e, _fromIL3toIL1Attribute);
                     this._fromIL3toIL1 = value;
                     this.OnFromIL3toIL1Changed(e);
-                    this.OnPropertyChanged("FromIL3toIL1", e);
+                    this.OnPropertyChanged("FromIL3toIL1", e, _fromIL3toIL1Attribute);
                 }
             }
         }
@@ -1121,10 +1205,10 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     Nullable<double> old = this._fromIL3toIL2;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnFromIL3toIL2Changing(e);
-                    this.OnPropertyChanging("FromIL3toIL2", e);
+                    this.OnPropertyChanging("FromIL3toIL2", e, _fromIL3toIL2Attribute);
                     this._fromIL3toIL2 = value;
                     this.OnFromIL3toIL2Changed(e);
-                    this.OnPropertyChanged("FromIL3toIL2", e);
+                    this.OnPropertyChanged("FromIL3toIL2", e, _fromIL3toIL2Attribute);
                 }
             }
         }
@@ -1146,10 +1230,10 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     Nullable<double> old = this._fromIL3toIL0;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnFromIL3toIL0Changing(e);
-                    this.OnPropertyChanging("FromIL3toIL0", e);
+                    this.OnPropertyChanging("FromIL3toIL0", e, _fromIL3toIL0Attribute);
                     this._fromIL3toIL0 = value;
                     this.OnFromIL3toIL0Changed(e);
-                    this.OnPropertyChanged("FromIL3toIL0", e);
+                    this.OnPropertyChanged("FromIL3toIL0", e, _fromIL3toIL0Attribute);
                 }
             }
         }
@@ -1171,10 +1255,10 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     Nullable<double> old = this._fromIL0toUL1;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnFromIL0toUL1Changing(e);
-                    this.OnPropertyChanging("FromIL0toUL1", e);
+                    this.OnPropertyChanging("FromIL0toUL1", e, _fromIL0toUL1Attribute);
                     this._fromIL0toUL1 = value;
                     this.OnFromIL0toUL1Changed(e);
-                    this.OnPropertyChanged("FromIL0toUL1", e);
+                    this.OnPropertyChanged("FromIL0toUL1", e, _fromIL0toUL1Attribute);
                 }
             }
         }
@@ -1196,10 +1280,10 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     Nullable<double> old = this._fromIL0toUL2;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnFromIL0toUL2Changing(e);
-                    this.OnPropertyChanging("FromIL0toUL2", e);
+                    this.OnPropertyChanging("FromIL0toUL2", e, _fromIL0toUL2Attribute);
                     this._fromIL0toUL2 = value;
                     this.OnFromIL0toUL2Changed(e);
-                    this.OnPropertyChanged("FromIL0toUL2", e);
+                    this.OnPropertyChanged("FromIL0toUL2", e, _fromIL0toUL2Attribute);
                 }
             }
         }
@@ -1221,10 +1305,10 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     Nullable<double> old = this._fromIL0toUL3;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnFromIL0toUL3Changing(e);
-                    this.OnPropertyChanging("FromIL0toUL3", e);
+                    this.OnPropertyChanging("FromIL0toUL3", e, _fromIL0toUL3Attribute);
                     this._fromIL0toUL3 = value;
                     this.OnFromIL0toUL3Changed(e);
-                    this.OnPropertyChanged("FromIL0toUL3", e);
+                    this.OnPropertyChanged("FromIL0toUL3", e, _fromIL0toUL3Attribute);
                 }
             }
         }
@@ -1246,10 +1330,10 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     Nullable<double> old = this._fromIL0toIL1;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnFromIL0toIL1Changing(e);
-                    this.OnPropertyChanging("FromIL0toIL1", e);
+                    this.OnPropertyChanging("FromIL0toIL1", e, _fromIL0toIL1Attribute);
                     this._fromIL0toIL1 = value;
                     this.OnFromIL0toIL1Changed(e);
-                    this.OnPropertyChanged("FromIL0toIL1", e);
+                    this.OnPropertyChanged("FromIL0toIL1", e, _fromIL0toIL1Attribute);
                 }
             }
         }
@@ -1271,10 +1355,10 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     Nullable<double> old = this._fromIL0toIL2;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnFromIL0toIL2Changing(e);
-                    this.OnPropertyChanging("FromIL0toIL2", e);
+                    this.OnPropertyChanging("FromIL0toIL2", e, _fromIL0toIL2Attribute);
                     this._fromIL0toIL2 = value;
                     this.OnFromIL0toIL2Changed(e);
-                    this.OnPropertyChanged("FromIL0toIL2", e);
+                    this.OnPropertyChanged("FromIL0toIL2", e, _fromIL0toIL2Attribute);
                 }
             }
         }
@@ -1296,10 +1380,10 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     Nullable<double> old = this._fromIL0toIL3;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnFromIL0toIL3Changing(e);
-                    this.OnPropertyChanging("FromIL0toIL3", e);
+                    this.OnPropertyChanging("FromIL0toIL3", e, _fromIL0toIL3Attribute);
                     this._fromIL0toIL3 = value;
                     this.OnFromIL0toIL3Changed(e);
-                    this.OnPropertyChanged("FromIL0toIL3", e);
+                    this.OnPropertyChanged("FromIL0toIL3", e, _fromIL0toIL3Attribute);
                 }
             }
         }
@@ -1740,6 +1824,11 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> FromIL0toIL3Changed;
         
+        private static ITypedElement RetrieveFromUL1toUL2Attribute()
+        {
+            return ((ITypedElement)(((ModelElement)(ExtendedPhaseAngleMeasurement.ClassInstance)).Resolve("FromUL1toUL2")));
+        }
+        
         /// <summary>
         /// Raises the FromUL1toUL2Changing event
         /// </summary>
@@ -1764,6 +1853,11 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveFromUL1toUL3Attribute()
+        {
+            return ((ITypedElement)(((ModelElement)(ExtendedPhaseAngleMeasurement.ClassInstance)).Resolve("FromUL1toUL3")));
         }
         
         /// <summary>
@@ -1792,6 +1886,11 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             }
         }
         
+        private static ITypedElement RetrieveFromUL1toIL1Attribute()
+        {
+            return ((ITypedElement)(((ModelElement)(ExtendedPhaseAngleMeasurement.ClassInstance)).Resolve("FromUL1toIL1")));
+        }
+        
         /// <summary>
         /// Raises the FromUL1toIL1Changing event
         /// </summary>
@@ -1816,6 +1915,11 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveFromUL1toIL2Attribute()
+        {
+            return ((ITypedElement)(((ModelElement)(ExtendedPhaseAngleMeasurement.ClassInstance)).Resolve("FromUL1toIL2")));
         }
         
         /// <summary>
@@ -1844,6 +1948,11 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             }
         }
         
+        private static ITypedElement RetrieveFromUL1toIL3Attribute()
+        {
+            return ((ITypedElement)(((ModelElement)(ExtendedPhaseAngleMeasurement.ClassInstance)).Resolve("FromUL1toIL3")));
+        }
+        
         /// <summary>
         /// Raises the FromUL1toIL3Changing event
         /// </summary>
@@ -1868,6 +1977,11 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveFromUL1toIL0Attribute()
+        {
+            return ((ITypedElement)(((ModelElement)(ExtendedPhaseAngleMeasurement.ClassInstance)).Resolve("FromUL1toIL0")));
         }
         
         /// <summary>
@@ -1896,6 +2010,11 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             }
         }
         
+        private static ITypedElement RetrieveFromUL2toUL1Attribute()
+        {
+            return ((ITypedElement)(((ModelElement)(ExtendedPhaseAngleMeasurement.ClassInstance)).Resolve("FromUL2toUL1")));
+        }
+        
         /// <summary>
         /// Raises the FromUL2toUL1Changing event
         /// </summary>
@@ -1920,6 +2039,11 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveFromUL2toUL3Attribute()
+        {
+            return ((ITypedElement)(((ModelElement)(ExtendedPhaseAngleMeasurement.ClassInstance)).Resolve("FromUL2toUL3")));
         }
         
         /// <summary>
@@ -1948,6 +2072,11 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             }
         }
         
+        private static ITypedElement RetrieveFromUL2toIL1Attribute()
+        {
+            return ((ITypedElement)(((ModelElement)(ExtendedPhaseAngleMeasurement.ClassInstance)).Resolve("FromUL2toIL1")));
+        }
+        
         /// <summary>
         /// Raises the FromUL2toIL1Changing event
         /// </summary>
@@ -1972,6 +2101,11 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveFromUL2toIL2Attribute()
+        {
+            return ((ITypedElement)(((ModelElement)(ExtendedPhaseAngleMeasurement.ClassInstance)).Resolve("FromUL2toIL2")));
         }
         
         /// <summary>
@@ -2000,6 +2134,11 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             }
         }
         
+        private static ITypedElement RetrieveFromUL2toIL3Attribute()
+        {
+            return ((ITypedElement)(((ModelElement)(ExtendedPhaseAngleMeasurement.ClassInstance)).Resolve("FromUL2toIL3")));
+        }
+        
         /// <summary>
         /// Raises the FromUL2toIL3Changing event
         /// </summary>
@@ -2024,6 +2163,11 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveFromUL2toIL0Attribute()
+        {
+            return ((ITypedElement)(((ModelElement)(ExtendedPhaseAngleMeasurement.ClassInstance)).Resolve("FromUL2toIL0")));
         }
         
         /// <summary>
@@ -2052,6 +2196,11 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             }
         }
         
+        private static ITypedElement RetrieveFromUL3toUL1Attribute()
+        {
+            return ((ITypedElement)(((ModelElement)(ExtendedPhaseAngleMeasurement.ClassInstance)).Resolve("FromUL3toUL1")));
+        }
+        
         /// <summary>
         /// Raises the FromUL3toUL1Changing event
         /// </summary>
@@ -2076,6 +2225,11 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveFromUL3toUL2Attribute()
+        {
+            return ((ITypedElement)(((ModelElement)(ExtendedPhaseAngleMeasurement.ClassInstance)).Resolve("FromUL3toUL2")));
         }
         
         /// <summary>
@@ -2104,6 +2258,11 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             }
         }
         
+        private static ITypedElement RetrieveFromUL3toIL1Attribute()
+        {
+            return ((ITypedElement)(((ModelElement)(ExtendedPhaseAngleMeasurement.ClassInstance)).Resolve("FromUL3toIL1")));
+        }
+        
         /// <summary>
         /// Raises the FromUL3toIL1Changing event
         /// </summary>
@@ -2128,6 +2287,11 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveFromUL3toIL2Attribute()
+        {
+            return ((ITypedElement)(((ModelElement)(ExtendedPhaseAngleMeasurement.ClassInstance)).Resolve("FromUL3toIL2")));
         }
         
         /// <summary>
@@ -2156,6 +2320,11 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             }
         }
         
+        private static ITypedElement RetrieveFromUL3toIL3Attribute()
+        {
+            return ((ITypedElement)(((ModelElement)(ExtendedPhaseAngleMeasurement.ClassInstance)).Resolve("FromUL3toIL3")));
+        }
+        
         /// <summary>
         /// Raises the FromUL3toIL3Changing event
         /// </summary>
@@ -2180,6 +2349,11 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveFromUL3toIL0Attribute()
+        {
+            return ((ITypedElement)(((ModelElement)(ExtendedPhaseAngleMeasurement.ClassInstance)).Resolve("FromUL3toIL0")));
         }
         
         /// <summary>
@@ -2208,6 +2382,11 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             }
         }
         
+        private static ITypedElement RetrieveFromIL1toUL1Attribute()
+        {
+            return ((ITypedElement)(((ModelElement)(ExtendedPhaseAngleMeasurement.ClassInstance)).Resolve("FromIL1toUL1")));
+        }
+        
         /// <summary>
         /// Raises the FromIL1toUL1Changing event
         /// </summary>
@@ -2232,6 +2411,11 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveFromIL1toUL2Attribute()
+        {
+            return ((ITypedElement)(((ModelElement)(ExtendedPhaseAngleMeasurement.ClassInstance)).Resolve("FromIL1toUL2")));
         }
         
         /// <summary>
@@ -2260,6 +2444,11 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             }
         }
         
+        private static ITypedElement RetrieveFromIL1toUL3Attribute()
+        {
+            return ((ITypedElement)(((ModelElement)(ExtendedPhaseAngleMeasurement.ClassInstance)).Resolve("FromIL1toUL3")));
+        }
+        
         /// <summary>
         /// Raises the FromIL1toUL3Changing event
         /// </summary>
@@ -2284,6 +2473,11 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveFromIL1toIL2Attribute()
+        {
+            return ((ITypedElement)(((ModelElement)(ExtendedPhaseAngleMeasurement.ClassInstance)).Resolve("FromIL1toIL2")));
         }
         
         /// <summary>
@@ -2312,6 +2506,11 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             }
         }
         
+        private static ITypedElement RetrieveFromIL1toIL3Attribute()
+        {
+            return ((ITypedElement)(((ModelElement)(ExtendedPhaseAngleMeasurement.ClassInstance)).Resolve("FromIL1toIL3")));
+        }
+        
         /// <summary>
         /// Raises the FromIL1toIL3Changing event
         /// </summary>
@@ -2336,6 +2535,11 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveFromIL1toIL0Attribute()
+        {
+            return ((ITypedElement)(((ModelElement)(ExtendedPhaseAngleMeasurement.ClassInstance)).Resolve("FromIL1toIL0")));
         }
         
         /// <summary>
@@ -2364,6 +2568,11 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             }
         }
         
+        private static ITypedElement RetrieveFromIL2toUL1Attribute()
+        {
+            return ((ITypedElement)(((ModelElement)(ExtendedPhaseAngleMeasurement.ClassInstance)).Resolve("FromIL2toUL1")));
+        }
+        
         /// <summary>
         /// Raises the FromIL2toUL1Changing event
         /// </summary>
@@ -2388,6 +2597,11 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveFromIL2toUL2Attribute()
+        {
+            return ((ITypedElement)(((ModelElement)(ExtendedPhaseAngleMeasurement.ClassInstance)).Resolve("FromIL2toUL2")));
         }
         
         /// <summary>
@@ -2416,6 +2630,11 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             }
         }
         
+        private static ITypedElement RetrieveFromIL2toUL3Attribute()
+        {
+            return ((ITypedElement)(((ModelElement)(ExtendedPhaseAngleMeasurement.ClassInstance)).Resolve("FromIL2toUL3")));
+        }
+        
         /// <summary>
         /// Raises the FromIL2toUL3Changing event
         /// </summary>
@@ -2440,6 +2659,11 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveFromIL2toIL1Attribute()
+        {
+            return ((ITypedElement)(((ModelElement)(ExtendedPhaseAngleMeasurement.ClassInstance)).Resolve("FromIL2toIL1")));
         }
         
         /// <summary>
@@ -2468,6 +2692,11 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             }
         }
         
+        private static ITypedElement RetrieveFromIL2toIL3Attribute()
+        {
+            return ((ITypedElement)(((ModelElement)(ExtendedPhaseAngleMeasurement.ClassInstance)).Resolve("FromIL2toIL3")));
+        }
+        
         /// <summary>
         /// Raises the FromIL2toIL3Changing event
         /// </summary>
@@ -2492,6 +2721,11 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveFromIL2toIL0Attribute()
+        {
+            return ((ITypedElement)(((ModelElement)(ExtendedPhaseAngleMeasurement.ClassInstance)).Resolve("FromIL2toIL0")));
         }
         
         /// <summary>
@@ -2520,6 +2754,11 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             }
         }
         
+        private static ITypedElement RetrieveFromIL3toUL1Attribute()
+        {
+            return ((ITypedElement)(((ModelElement)(ExtendedPhaseAngleMeasurement.ClassInstance)).Resolve("FromIL3toUL1")));
+        }
+        
         /// <summary>
         /// Raises the FromIL3toUL1Changing event
         /// </summary>
@@ -2544,6 +2783,11 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveFromIL3toUL2Attribute()
+        {
+            return ((ITypedElement)(((ModelElement)(ExtendedPhaseAngleMeasurement.ClassInstance)).Resolve("FromIL3toUL2")));
         }
         
         /// <summary>
@@ -2572,6 +2816,11 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             }
         }
         
+        private static ITypedElement RetrieveFromIL3toUL3Attribute()
+        {
+            return ((ITypedElement)(((ModelElement)(ExtendedPhaseAngleMeasurement.ClassInstance)).Resolve("FromIL3toUL3")));
+        }
+        
         /// <summary>
         /// Raises the FromIL3toUL3Changing event
         /// </summary>
@@ -2596,6 +2845,11 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveFromIL3toIL1Attribute()
+        {
+            return ((ITypedElement)(((ModelElement)(ExtendedPhaseAngleMeasurement.ClassInstance)).Resolve("FromIL3toIL1")));
         }
         
         /// <summary>
@@ -2624,6 +2878,11 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             }
         }
         
+        private static ITypedElement RetrieveFromIL3toIL2Attribute()
+        {
+            return ((ITypedElement)(((ModelElement)(ExtendedPhaseAngleMeasurement.ClassInstance)).Resolve("FromIL3toIL2")));
+        }
+        
         /// <summary>
         /// Raises the FromIL3toIL2Changing event
         /// </summary>
@@ -2648,6 +2907,11 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveFromIL3toIL0Attribute()
+        {
+            return ((ITypedElement)(((ModelElement)(ExtendedPhaseAngleMeasurement.ClassInstance)).Resolve("FromIL3toIL0")));
         }
         
         /// <summary>
@@ -2676,6 +2940,11 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             }
         }
         
+        private static ITypedElement RetrieveFromIL0toUL1Attribute()
+        {
+            return ((ITypedElement)(((ModelElement)(ExtendedPhaseAngleMeasurement.ClassInstance)).Resolve("FromIL0toUL1")));
+        }
+        
         /// <summary>
         /// Raises the FromIL0toUL1Changing event
         /// </summary>
@@ -2700,6 +2969,11 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveFromIL0toUL2Attribute()
+        {
+            return ((ITypedElement)(((ModelElement)(ExtendedPhaseAngleMeasurement.ClassInstance)).Resolve("FromIL0toUL2")));
         }
         
         /// <summary>
@@ -2728,6 +3002,11 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             }
         }
         
+        private static ITypedElement RetrieveFromIL0toUL3Attribute()
+        {
+            return ((ITypedElement)(((ModelElement)(ExtendedPhaseAngleMeasurement.ClassInstance)).Resolve("FromIL0toUL3")));
+        }
+        
         /// <summary>
         /// Raises the FromIL0toUL3Changing event
         /// </summary>
@@ -2752,6 +3031,11 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveFromIL0toIL1Attribute()
+        {
+            return ((ITypedElement)(((ModelElement)(ExtendedPhaseAngleMeasurement.ClassInstance)).Resolve("FromIL0toIL1")));
         }
         
         /// <summary>
@@ -2780,6 +3064,11 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             }
         }
         
+        private static ITypedElement RetrieveFromIL0toIL2Attribute()
+        {
+            return ((ITypedElement)(((ModelElement)(ExtendedPhaseAngleMeasurement.ClassInstance)).Resolve("FromIL0toIL2")));
+        }
+        
         /// <summary>
         /// Raises the FromIL0toIL2Changing event
         /// </summary>
@@ -2804,6 +3093,11 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveFromIL0toIL3Attribute()
+        {
+            return ((ITypedElement)(((ModelElement)(ExtendedPhaseAngleMeasurement.ClassInstance)).Resolve("FromIL0toIL3")));
         }
         
         /// <summary>
@@ -3255,7 +3549,7 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public FromUL1toUL2Proxy(IExtendedPhaseAngleMeasurement modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "FromUL1toUL2")
             {
             }
             
@@ -3273,24 +3567,6 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     this.ModelElement.FromUL1toUL2 = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.FromUL1toUL2Changed += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.FromUL1toUL2Changed -= handler;
-            }
         }
         
         /// <summary>
@@ -3304,7 +3580,7 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public FromUL1toUL3Proxy(IExtendedPhaseAngleMeasurement modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "FromUL1toUL3")
             {
             }
             
@@ -3322,24 +3598,6 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     this.ModelElement.FromUL1toUL3 = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.FromUL1toUL3Changed += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.FromUL1toUL3Changed -= handler;
-            }
         }
         
         /// <summary>
@@ -3353,7 +3611,7 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public FromUL1toIL1Proxy(IExtendedPhaseAngleMeasurement modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "FromUL1toIL1")
             {
             }
             
@@ -3371,24 +3629,6 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     this.ModelElement.FromUL1toIL1 = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.FromUL1toIL1Changed += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.FromUL1toIL1Changed -= handler;
-            }
         }
         
         /// <summary>
@@ -3402,7 +3642,7 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public FromUL1toIL2Proxy(IExtendedPhaseAngleMeasurement modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "FromUL1toIL2")
             {
             }
             
@@ -3420,24 +3660,6 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     this.ModelElement.FromUL1toIL2 = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.FromUL1toIL2Changed += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.FromUL1toIL2Changed -= handler;
-            }
         }
         
         /// <summary>
@@ -3451,7 +3673,7 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public FromUL1toIL3Proxy(IExtendedPhaseAngleMeasurement modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "FromUL1toIL3")
             {
             }
             
@@ -3469,24 +3691,6 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     this.ModelElement.FromUL1toIL3 = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.FromUL1toIL3Changed += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.FromUL1toIL3Changed -= handler;
-            }
         }
         
         /// <summary>
@@ -3500,7 +3704,7 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public FromUL1toIL0Proxy(IExtendedPhaseAngleMeasurement modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "FromUL1toIL0")
             {
             }
             
@@ -3518,24 +3722,6 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     this.ModelElement.FromUL1toIL0 = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.FromUL1toIL0Changed += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.FromUL1toIL0Changed -= handler;
-            }
         }
         
         /// <summary>
@@ -3549,7 +3735,7 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public FromUL2toUL1Proxy(IExtendedPhaseAngleMeasurement modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "FromUL2toUL1")
             {
             }
             
@@ -3567,24 +3753,6 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     this.ModelElement.FromUL2toUL1 = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.FromUL2toUL1Changed += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.FromUL2toUL1Changed -= handler;
-            }
         }
         
         /// <summary>
@@ -3598,7 +3766,7 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public FromUL2toUL3Proxy(IExtendedPhaseAngleMeasurement modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "FromUL2toUL3")
             {
             }
             
@@ -3616,24 +3784,6 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     this.ModelElement.FromUL2toUL3 = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.FromUL2toUL3Changed += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.FromUL2toUL3Changed -= handler;
-            }
         }
         
         /// <summary>
@@ -3647,7 +3797,7 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public FromUL2toIL1Proxy(IExtendedPhaseAngleMeasurement modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "FromUL2toIL1")
             {
             }
             
@@ -3665,24 +3815,6 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     this.ModelElement.FromUL2toIL1 = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.FromUL2toIL1Changed += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.FromUL2toIL1Changed -= handler;
-            }
         }
         
         /// <summary>
@@ -3696,7 +3828,7 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public FromUL2toIL2Proxy(IExtendedPhaseAngleMeasurement modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "FromUL2toIL2")
             {
             }
             
@@ -3714,24 +3846,6 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     this.ModelElement.FromUL2toIL2 = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.FromUL2toIL2Changed += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.FromUL2toIL2Changed -= handler;
-            }
         }
         
         /// <summary>
@@ -3745,7 +3859,7 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public FromUL2toIL3Proxy(IExtendedPhaseAngleMeasurement modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "FromUL2toIL3")
             {
             }
             
@@ -3763,24 +3877,6 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     this.ModelElement.FromUL2toIL3 = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.FromUL2toIL3Changed += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.FromUL2toIL3Changed -= handler;
-            }
         }
         
         /// <summary>
@@ -3794,7 +3890,7 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public FromUL2toIL0Proxy(IExtendedPhaseAngleMeasurement modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "FromUL2toIL0")
             {
             }
             
@@ -3812,24 +3908,6 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     this.ModelElement.FromUL2toIL0 = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.FromUL2toIL0Changed += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.FromUL2toIL0Changed -= handler;
-            }
         }
         
         /// <summary>
@@ -3843,7 +3921,7 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public FromUL3toUL1Proxy(IExtendedPhaseAngleMeasurement modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "FromUL3toUL1")
             {
             }
             
@@ -3861,24 +3939,6 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     this.ModelElement.FromUL3toUL1 = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.FromUL3toUL1Changed += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.FromUL3toUL1Changed -= handler;
-            }
         }
         
         /// <summary>
@@ -3892,7 +3952,7 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public FromUL3toUL2Proxy(IExtendedPhaseAngleMeasurement modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "FromUL3toUL2")
             {
             }
             
@@ -3910,24 +3970,6 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     this.ModelElement.FromUL3toUL2 = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.FromUL3toUL2Changed += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.FromUL3toUL2Changed -= handler;
-            }
         }
         
         /// <summary>
@@ -3941,7 +3983,7 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public FromUL3toIL1Proxy(IExtendedPhaseAngleMeasurement modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "FromUL3toIL1")
             {
             }
             
@@ -3959,24 +4001,6 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     this.ModelElement.FromUL3toIL1 = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.FromUL3toIL1Changed += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.FromUL3toIL1Changed -= handler;
-            }
         }
         
         /// <summary>
@@ -3990,7 +4014,7 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public FromUL3toIL2Proxy(IExtendedPhaseAngleMeasurement modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "FromUL3toIL2")
             {
             }
             
@@ -4008,24 +4032,6 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     this.ModelElement.FromUL3toIL2 = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.FromUL3toIL2Changed += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.FromUL3toIL2Changed -= handler;
-            }
         }
         
         /// <summary>
@@ -4039,7 +4045,7 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public FromUL3toIL3Proxy(IExtendedPhaseAngleMeasurement modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "FromUL3toIL3")
             {
             }
             
@@ -4057,24 +4063,6 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     this.ModelElement.FromUL3toIL3 = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.FromUL3toIL3Changed += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.FromUL3toIL3Changed -= handler;
-            }
         }
         
         /// <summary>
@@ -4088,7 +4076,7 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public FromUL3toIL0Proxy(IExtendedPhaseAngleMeasurement modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "FromUL3toIL0")
             {
             }
             
@@ -4106,24 +4094,6 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     this.ModelElement.FromUL3toIL0 = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.FromUL3toIL0Changed += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.FromUL3toIL0Changed -= handler;
-            }
         }
         
         /// <summary>
@@ -4137,7 +4107,7 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public FromIL1toUL1Proxy(IExtendedPhaseAngleMeasurement modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "FromIL1toUL1")
             {
             }
             
@@ -4155,24 +4125,6 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     this.ModelElement.FromIL1toUL1 = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.FromIL1toUL1Changed += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.FromIL1toUL1Changed -= handler;
-            }
         }
         
         /// <summary>
@@ -4186,7 +4138,7 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public FromIL1toUL2Proxy(IExtendedPhaseAngleMeasurement modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "FromIL1toUL2")
             {
             }
             
@@ -4204,24 +4156,6 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     this.ModelElement.FromIL1toUL2 = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.FromIL1toUL2Changed += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.FromIL1toUL2Changed -= handler;
-            }
         }
         
         /// <summary>
@@ -4235,7 +4169,7 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public FromIL1toUL3Proxy(IExtendedPhaseAngleMeasurement modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "FromIL1toUL3")
             {
             }
             
@@ -4253,24 +4187,6 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     this.ModelElement.FromIL1toUL3 = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.FromIL1toUL3Changed += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.FromIL1toUL3Changed -= handler;
-            }
         }
         
         /// <summary>
@@ -4284,7 +4200,7 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public FromIL1toIL2Proxy(IExtendedPhaseAngleMeasurement modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "FromIL1toIL2")
             {
             }
             
@@ -4302,24 +4218,6 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     this.ModelElement.FromIL1toIL2 = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.FromIL1toIL2Changed += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.FromIL1toIL2Changed -= handler;
-            }
         }
         
         /// <summary>
@@ -4333,7 +4231,7 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public FromIL1toIL3Proxy(IExtendedPhaseAngleMeasurement modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "FromIL1toIL3")
             {
             }
             
@@ -4351,24 +4249,6 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     this.ModelElement.FromIL1toIL3 = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.FromIL1toIL3Changed += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.FromIL1toIL3Changed -= handler;
-            }
         }
         
         /// <summary>
@@ -4382,7 +4262,7 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public FromIL1toIL0Proxy(IExtendedPhaseAngleMeasurement modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "FromIL1toIL0")
             {
             }
             
@@ -4400,24 +4280,6 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     this.ModelElement.FromIL1toIL0 = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.FromIL1toIL0Changed += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.FromIL1toIL0Changed -= handler;
-            }
         }
         
         /// <summary>
@@ -4431,7 +4293,7 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public FromIL2toUL1Proxy(IExtendedPhaseAngleMeasurement modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "FromIL2toUL1")
             {
             }
             
@@ -4449,24 +4311,6 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     this.ModelElement.FromIL2toUL1 = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.FromIL2toUL1Changed += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.FromIL2toUL1Changed -= handler;
-            }
         }
         
         /// <summary>
@@ -4480,7 +4324,7 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public FromIL2toUL2Proxy(IExtendedPhaseAngleMeasurement modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "FromIL2toUL2")
             {
             }
             
@@ -4498,24 +4342,6 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     this.ModelElement.FromIL2toUL2 = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.FromIL2toUL2Changed += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.FromIL2toUL2Changed -= handler;
-            }
         }
         
         /// <summary>
@@ -4529,7 +4355,7 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public FromIL2toUL3Proxy(IExtendedPhaseAngleMeasurement modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "FromIL2toUL3")
             {
             }
             
@@ -4547,24 +4373,6 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     this.ModelElement.FromIL2toUL3 = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.FromIL2toUL3Changed += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.FromIL2toUL3Changed -= handler;
-            }
         }
         
         /// <summary>
@@ -4578,7 +4386,7 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public FromIL2toIL1Proxy(IExtendedPhaseAngleMeasurement modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "FromIL2toIL1")
             {
             }
             
@@ -4596,24 +4404,6 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     this.ModelElement.FromIL2toIL1 = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.FromIL2toIL1Changed += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.FromIL2toIL1Changed -= handler;
-            }
         }
         
         /// <summary>
@@ -4627,7 +4417,7 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public FromIL2toIL3Proxy(IExtendedPhaseAngleMeasurement modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "FromIL2toIL3")
             {
             }
             
@@ -4645,24 +4435,6 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     this.ModelElement.FromIL2toIL3 = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.FromIL2toIL3Changed += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.FromIL2toIL3Changed -= handler;
-            }
         }
         
         /// <summary>
@@ -4676,7 +4448,7 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public FromIL2toIL0Proxy(IExtendedPhaseAngleMeasurement modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "FromIL2toIL0")
             {
             }
             
@@ -4694,24 +4466,6 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     this.ModelElement.FromIL2toIL0 = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.FromIL2toIL0Changed += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.FromIL2toIL0Changed -= handler;
-            }
         }
         
         /// <summary>
@@ -4725,7 +4479,7 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public FromIL3toUL1Proxy(IExtendedPhaseAngleMeasurement modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "FromIL3toUL1")
             {
             }
             
@@ -4743,24 +4497,6 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     this.ModelElement.FromIL3toUL1 = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.FromIL3toUL1Changed += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.FromIL3toUL1Changed -= handler;
-            }
         }
         
         /// <summary>
@@ -4774,7 +4510,7 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public FromIL3toUL2Proxy(IExtendedPhaseAngleMeasurement modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "FromIL3toUL2")
             {
             }
             
@@ -4792,24 +4528,6 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     this.ModelElement.FromIL3toUL2 = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.FromIL3toUL2Changed += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.FromIL3toUL2Changed -= handler;
-            }
         }
         
         /// <summary>
@@ -4823,7 +4541,7 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public FromIL3toUL3Proxy(IExtendedPhaseAngleMeasurement modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "FromIL3toUL3")
             {
             }
             
@@ -4841,24 +4559,6 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     this.ModelElement.FromIL3toUL3 = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.FromIL3toUL3Changed += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.FromIL3toUL3Changed -= handler;
-            }
         }
         
         /// <summary>
@@ -4872,7 +4572,7 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public FromIL3toIL1Proxy(IExtendedPhaseAngleMeasurement modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "FromIL3toIL1")
             {
             }
             
@@ -4890,24 +4590,6 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     this.ModelElement.FromIL3toIL1 = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.FromIL3toIL1Changed += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.FromIL3toIL1Changed -= handler;
-            }
         }
         
         /// <summary>
@@ -4921,7 +4603,7 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public FromIL3toIL2Proxy(IExtendedPhaseAngleMeasurement modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "FromIL3toIL2")
             {
             }
             
@@ -4939,24 +4621,6 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     this.ModelElement.FromIL3toIL2 = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.FromIL3toIL2Changed += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.FromIL3toIL2Changed -= handler;
-            }
         }
         
         /// <summary>
@@ -4970,7 +4634,7 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public FromIL3toIL0Proxy(IExtendedPhaseAngleMeasurement modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "FromIL3toIL0")
             {
             }
             
@@ -4988,24 +4652,6 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     this.ModelElement.FromIL3toIL0 = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.FromIL3toIL0Changed += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.FromIL3toIL0Changed -= handler;
-            }
         }
         
         /// <summary>
@@ -5019,7 +4665,7 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public FromIL0toUL1Proxy(IExtendedPhaseAngleMeasurement modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "FromIL0toUL1")
             {
             }
             
@@ -5037,24 +4683,6 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     this.ModelElement.FromIL0toUL1 = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.FromIL0toUL1Changed += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.FromIL0toUL1Changed -= handler;
-            }
         }
         
         /// <summary>
@@ -5068,7 +4696,7 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public FromIL0toUL2Proxy(IExtendedPhaseAngleMeasurement modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "FromIL0toUL2")
             {
             }
             
@@ -5086,24 +4714,6 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     this.ModelElement.FromIL0toUL2 = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.FromIL0toUL2Changed += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.FromIL0toUL2Changed -= handler;
-            }
         }
         
         /// <summary>
@@ -5117,7 +4727,7 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public FromIL0toUL3Proxy(IExtendedPhaseAngleMeasurement modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "FromIL0toUL3")
             {
             }
             
@@ -5135,24 +4745,6 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     this.ModelElement.FromIL0toUL3 = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.FromIL0toUL3Changed += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.FromIL0toUL3Changed -= handler;
-            }
         }
         
         /// <summary>
@@ -5166,7 +4758,7 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public FromIL0toIL1Proxy(IExtendedPhaseAngleMeasurement modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "FromIL0toIL1")
             {
             }
             
@@ -5184,24 +4776,6 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     this.ModelElement.FromIL0toIL1 = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.FromIL0toIL1Changed += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.FromIL0toIL1Changed -= handler;
-            }
         }
         
         /// <summary>
@@ -5215,7 +4789,7 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public FromIL0toIL2Proxy(IExtendedPhaseAngleMeasurement modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "FromIL0toIL2")
             {
             }
             
@@ -5233,24 +4807,6 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                     this.ModelElement.FromIL0toIL2 = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.FromIL0toIL2Changed += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.FromIL0toIL2Changed -= handler;
-            }
         }
         
         /// <summary>
@@ -5264,7 +4820,7 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public FromIL0toIL3Proxy(IExtendedPhaseAngleMeasurement modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "FromIL0toIL3")
             {
             }
             
@@ -5281,24 +4837,6 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                 {
                     this.ModelElement.FromIL0toIL3 = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.FromIL0toIL3Changed += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.FromIL0toIL3Changed -= handler;
             }
         }
     }

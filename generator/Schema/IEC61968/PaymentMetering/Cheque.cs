@@ -46,7 +46,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.PaymentMetering
     [XmlNamespacePrefixAttribute("cimPaymentMetering")]
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61968/PaymentMetering/Cheque")]
     [DebuggerDisplayAttribute("Cheque {UUID}")]
-    public class Cheque : Element, ICheque, IModelElement
+    public partial class Cheque : Element, ICheque, IModelElement
     {
         
         /// <summary>
@@ -54,25 +54,37 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.PaymentMetering
         /// </summary>
         private string _micrNumber;
         
+        private static Lazy<ITypedElement> _micrNumberAttribute = new Lazy<ITypedElement>(RetrieveMicrNumberAttribute);
+        
         /// <summary>
         /// The backing field for the Date property
         /// </summary>
         private string _date;
+        
+        private static Lazy<ITypedElement> _dateAttribute = new Lazy<ITypedElement>(RetrieveDateAttribute);
         
         /// <summary>
         /// The backing field for the ChequeNumber property
         /// </summary>
         private string _chequeNumber;
         
+        private static Lazy<ITypedElement> _chequeNumberAttribute = new Lazy<ITypedElement>(RetrieveChequeNumberAttribute);
+        
         /// <summary>
         /// The backing field for the Kind property
         /// </summary>
         private Nullable<ChequeKind> _kind;
         
+        private static Lazy<ITypedElement> _kindAttribute = new Lazy<ITypedElement>(RetrieveKindAttribute);
+        
+        private static Lazy<ITypedElement> _bankAccountDetailReference = new Lazy<ITypedElement>(RetrieveBankAccountDetailReference);
+        
         /// <summary>
         /// The backing field for the BankAccountDetail property
         /// </summary>
         private IBankAccountDetail _bankAccountDetail;
+        
+        private static Lazy<ITypedElement> _tenderReference = new Lazy<ITypedElement>(RetrieveTenderReference);
         
         /// <summary>
         /// The backing field for the Tender property
@@ -99,10 +111,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.PaymentMetering
                     string old = this._micrNumber;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnMicrNumberChanging(e);
-                    this.OnPropertyChanging("MicrNumber", e);
+                    this.OnPropertyChanging("MicrNumber", e, _micrNumberAttribute);
                     this._micrNumber = value;
                     this.OnMicrNumberChanged(e);
-                    this.OnPropertyChanged("MicrNumber", e);
+                    this.OnPropertyChanged("MicrNumber", e, _micrNumberAttribute);
                 }
             }
         }
@@ -125,10 +137,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.PaymentMetering
                     string old = this._date;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnDateChanging(e);
-                    this.OnPropertyChanging("Date", e);
+                    this.OnPropertyChanging("Date", e, _dateAttribute);
                     this._date = value;
                     this.OnDateChanged(e);
-                    this.OnPropertyChanged("Date", e);
+                    this.OnPropertyChanged("Date", e, _dateAttribute);
                 }
             }
         }
@@ -151,10 +163,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.PaymentMetering
                     string old = this._chequeNumber;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnChequeNumberChanging(e);
-                    this.OnPropertyChanging("ChequeNumber", e);
+                    this.OnPropertyChanging("ChequeNumber", e, _chequeNumberAttribute);
                     this._chequeNumber = value;
                     this.OnChequeNumberChanged(e);
-                    this.OnPropertyChanged("ChequeNumber", e);
+                    this.OnPropertyChanged("ChequeNumber", e, _chequeNumberAttribute);
                 }
             }
         }
@@ -177,10 +189,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.PaymentMetering
                     Nullable<ChequeKind> old = this._kind;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnKindChanging(e);
-                    this.OnPropertyChanging("Kind", e);
+                    this.OnPropertyChanging("Kind", e, _kindAttribute);
                     this._kind = value;
                     this.OnKindChanged(e);
-                    this.OnPropertyChanged("Kind", e);
+                    this.OnPropertyChanged("Kind", e, _kindAttribute);
                 }
             }
         }
@@ -203,7 +215,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.PaymentMetering
                     IBankAccountDetail old = this._bankAccountDetail;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnBankAccountDetailChanging(e);
-                    this.OnPropertyChanging("BankAccountDetail", e);
+                    this.OnPropertyChanging("BankAccountDetail", e, _bankAccountDetailReference);
                     this._bankAccountDetail = value;
                     if ((old != null))
                     {
@@ -214,7 +226,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.PaymentMetering
                         value.Deleted += this.OnResetBankAccountDetail;
                     }
                     this.OnBankAccountDetailChanged(e);
-                    this.OnPropertyChanged("BankAccountDetail", e);
+                    this.OnPropertyChanged("BankAccountDetail", e, _bankAccountDetailReference);
                 }
             }
         }
@@ -237,7 +249,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.PaymentMetering
                     ITender old = this._tender;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnTenderChanging(e);
-                    this.OnPropertyChanging("Tender", e);
+                    this.OnPropertyChanging("Tender", e, _tenderReference);
                     this._tender = value;
                     if ((old != null))
                     {
@@ -250,7 +262,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.PaymentMetering
                         value.Deleted += this.OnResetTender;
                     }
                     this.OnTenderChanged(e);
-                    this.OnPropertyChanged("Tender", e);
+                    this.OnPropertyChanged("Tender", e, _tenderReference);
                 }
             }
         }
@@ -341,6 +353,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.PaymentMetering
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> TenderChanged;
         
+        private static ITypedElement RetrieveMicrNumberAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(Cheque.ClassInstance)).Resolve("micrNumber")));
+        }
+        
         /// <summary>
         /// Raises the MicrNumberChanging event
         /// </summary>
@@ -365,6 +382,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.PaymentMetering
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveDateAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(Cheque.ClassInstance)).Resolve("date")));
         }
         
         /// <summary>
@@ -393,6 +415,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.PaymentMetering
             }
         }
         
+        private static ITypedElement RetrieveChequeNumberAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(Cheque.ClassInstance)).Resolve("chequeNumber")));
+        }
+        
         /// <summary>
         /// Raises the ChequeNumberChanging event
         /// </summary>
@@ -419,6 +446,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.PaymentMetering
             }
         }
         
+        private static ITypedElement RetrieveKindAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(Cheque.ClassInstance)).Resolve("kind")));
+        }
+        
         /// <summary>
         /// Raises the KindChanging event
         /// </summary>
@@ -443,6 +475,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.PaymentMetering
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveBankAccountDetailReference()
+        {
+            return ((ITypedElement)(((ModelElement)(Cheque.ClassInstance)).Resolve("bankAccountDetail")));
         }
         
         /// <summary>
@@ -479,6 +516,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.PaymentMetering
         private void OnResetBankAccountDetail(object sender, System.EventArgs eventArgs)
         {
             this.BankAccountDetail = null;
+        }
+        
+        private static ITypedElement RetrieveTenderReference()
+        {
+            return ((ITypedElement)(((ModelElement)(Cheque.ClassInstance)).Resolve("Tender")));
         }
         
         /// <summary>
@@ -793,7 +835,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.PaymentMetering
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public MicrNumberProxy(ICheque modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "micrNumber")
             {
             }
             
@@ -811,24 +853,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.PaymentMetering
                     this.ModelElement.MicrNumber = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.MicrNumberChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.MicrNumberChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -842,7 +866,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.PaymentMetering
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public DateProxy(ICheque modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "date")
             {
             }
             
@@ -860,24 +884,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.PaymentMetering
                     this.ModelElement.Date = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.DateChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.DateChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -891,7 +897,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.PaymentMetering
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public ChequeNumberProxy(ICheque modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "chequeNumber")
             {
             }
             
@@ -909,24 +915,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.PaymentMetering
                     this.ModelElement.ChequeNumber = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ChequeNumberChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ChequeNumberChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -940,7 +928,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.PaymentMetering
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public KindProxy(ICheque modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "kind")
             {
             }
             
@@ -958,24 +946,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.PaymentMetering
                     this.ModelElement.Kind = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.KindChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.KindChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -989,7 +959,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.PaymentMetering
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public BankAccountDetailProxy(ICheque modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "bankAccountDetail")
             {
             }
             
@@ -1007,24 +977,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.PaymentMetering
                     this.ModelElement.BankAccountDetail = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.BankAccountDetailChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.BankAccountDetailChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1038,7 +990,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.PaymentMetering
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public TenderProxy(ICheque modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "Tender")
             {
             }
             
@@ -1055,24 +1007,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.PaymentMetering
                 {
                     this.ModelElement.Tender = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.TenderChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.TenderChanged -= handler;
             }
         }
     }

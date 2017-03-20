@@ -56,18 +56,24 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfERPSupport
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61970/Informative/InfERPSupport/Erp" +
         "InventoryCount")]
     [DebuggerDisplayAttribute("ErpInventoryCount {UUID}")]
-    public class ErpInventoryCount : IdentifiedObject, IErpInventoryCount, IModelElement
+    public partial class ErpInventoryCount : IdentifiedObject, IErpInventoryCount, IModelElement
     {
+        
+        private static Lazy<ITypedElement> _statusReference = new Lazy<ITypedElement>(RetrieveStatusReference);
         
         /// <summary>
         /// The backing field for the Status property
         /// </summary>
         private IStatus _status;
         
+        private static Lazy<ITypedElement> _materialItemReference = new Lazy<ITypedElement>(RetrieveMaterialItemReference);
+        
         /// <summary>
         /// The backing field for the MaterialItem property
         /// </summary>
         private IMaterialItem _materialItem;
+        
+        private static Lazy<ITypedElement> _assetModelReference = new Lazy<ITypedElement>(RetrieveAssetModelReference);
         
         /// <summary>
         /// The backing field for the AssetModel property
@@ -94,7 +100,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfERPSupport
                     IStatus old = this._status;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnStatusChanging(e);
-                    this.OnPropertyChanging("Status", e);
+                    this.OnPropertyChanging("Status", e, _statusReference);
                     this._status = value;
                     if ((old != null))
                     {
@@ -105,7 +111,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfERPSupport
                         value.Deleted += this.OnResetStatus;
                     }
                     this.OnStatusChanged(e);
-                    this.OnPropertyChanged("Status", e);
+                    this.OnPropertyChanged("Status", e, _statusReference);
                 }
             }
         }
@@ -128,7 +134,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfERPSupport
                     IMaterialItem old = this._materialItem;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnMaterialItemChanging(e);
-                    this.OnPropertyChanging("MaterialItem", e);
+                    this.OnPropertyChanging("MaterialItem", e, _materialItemReference);
                     this._materialItem = value;
                     if ((old != null))
                     {
@@ -141,7 +147,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfERPSupport
                         value.Deleted += this.OnResetMaterialItem;
                     }
                     this.OnMaterialItemChanged(e);
-                    this.OnPropertyChanged("MaterialItem", e);
+                    this.OnPropertyChanged("MaterialItem", e, _materialItemReference);
                 }
             }
         }
@@ -164,7 +170,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfERPSupport
                     IAssetModel old = this._assetModel;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnAssetModelChanging(e);
-                    this.OnPropertyChanging("AssetModel", e);
+                    this.OnPropertyChanging("AssetModel", e, _assetModelReference);
                     this._assetModel = value;
                     if ((old != null))
                     {
@@ -177,7 +183,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfERPSupport
                         value.Deleted += this.OnResetAssetModel;
                     }
                     this.OnAssetModelChanged(e);
-                    this.OnPropertyChanged("AssetModel", e);
+                    this.OnPropertyChanged("AssetModel", e, _assetModelReference);
                 }
             }
         }
@@ -239,6 +245,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfERPSupport
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> AssetModelChanged;
         
+        private static ITypedElement RetrieveStatusReference()
+        {
+            return ((ITypedElement)(((ModelElement)(ErpInventoryCount.ClassInstance)).Resolve("status")));
+        }
+        
         /// <summary>
         /// Raises the StatusChanging event
         /// </summary>
@@ -275,6 +286,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfERPSupport
             this.Status = null;
         }
         
+        private static ITypedElement RetrieveMaterialItemReference()
+        {
+            return ((ITypedElement)(((ModelElement)(ErpInventoryCount.ClassInstance)).Resolve("MaterialItem")));
+        }
+        
         /// <summary>
         /// Raises the MaterialItemChanging event
         /// </summary>
@@ -309,6 +325,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfERPSupport
         private void OnResetMaterialItem(object sender, System.EventArgs eventArgs)
         {
             this.MaterialItem = null;
+        }
+        
+        private static ITypedElement RetrieveAssetModelReference()
+        {
+            return ((ITypedElement)(((ModelElement)(ErpInventoryCount.ClassInstance)).Resolve("AssetModel")));
         }
         
         /// <summary>
@@ -620,7 +641,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfERPSupport
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public StatusProxy(IErpInventoryCount modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "status")
             {
             }
             
@@ -638,24 +659,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfERPSupport
                     this.ModelElement.Status = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.StatusChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.StatusChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -669,7 +672,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfERPSupport
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public MaterialItemProxy(IErpInventoryCount modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "MaterialItem")
             {
             }
             
@@ -687,24 +690,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfERPSupport
                     this.ModelElement.MaterialItem = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.MaterialItemChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.MaterialItemChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -718,7 +703,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfERPSupport
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public AssetModelProxy(IErpInventoryCount modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "AssetModel")
             {
             }
             
@@ -735,24 +720,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfERPSupport
                 {
                     this.ModelElement.AssetModel = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.AssetModelChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.AssetModelChanged -= handler;
             }
         }
     }

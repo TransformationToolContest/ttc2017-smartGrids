@@ -57,8 +57,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Core
     [XmlNamespacePrefixAttribute("cimCore")]
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61970/Core/ReportingSuperGroup")]
     [DebuggerDisplayAttribute("ReportingSuperGroup {UUID}")]
-    public class ReportingSuperGroup : IdentifiedObject, IReportingSuperGroup, IModelElement
+    public partial class ReportingSuperGroup : IdentifiedObject, IReportingSuperGroup, IModelElement
     {
+        
+        private static Lazy<ITypedElement> _reportingGroupReference = new Lazy<ITypedElement>(RetrieveReportingGroupReference);
         
         /// <summary>
         /// The backing field for the ReportingGroup property
@@ -115,6 +117,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Core
             }
         }
         
+        private static ITypedElement RetrieveReportingGroupReference()
+        {
+            return ((ITypedElement)(((ModelElement)(ReportingSuperGroup.ClassInstance)).Resolve("ReportingGroup")));
+        }
+        
         /// <summary>
         /// Forwards CollectionChanging notifications for the ReportingGroup property to the parent model element
         /// </summary>
@@ -122,7 +129,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Core
         /// <param name="e">The original event data</param>
         private void ReportingGroupCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("ReportingGroup", e);
+            this.OnCollectionChanging("ReportingGroup", e, _reportingGroupReference);
         }
         
         /// <summary>
@@ -132,7 +139,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Core
         /// <param name="e">The original event data</param>
         private void ReportingGroupCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("ReportingGroup", e);
+            this.OnCollectionChanged("ReportingGroup", e, _reportingGroupReference);
         }
         
         /// <summary>

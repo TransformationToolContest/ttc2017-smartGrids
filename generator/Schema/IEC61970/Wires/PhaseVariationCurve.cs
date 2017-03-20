@@ -53,8 +53,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
     [XmlNamespacePrefixAttribute("cimWires")]
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61970/Wires/PhaseVariationCurve")]
     [DebuggerDisplayAttribute("PhaseVariationCurve {UUID}")]
-    public class PhaseVariationCurve : Curve, IPhaseVariationCurve, IModelElement
+    public partial class PhaseVariationCurve : Curve, IPhaseVariationCurve, IModelElement
     {
+        
+        private static Lazy<ITypedElement> _phaseTapChangerReference = new Lazy<ITypedElement>(RetrievePhaseTapChangerReference);
         
         /// <summary>
         /// The backing field for the PhaseTapChanger property
@@ -81,7 +83,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
                     IPhaseTapChanger old = this._phaseTapChanger;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnPhaseTapChangerChanging(e);
-                    this.OnPropertyChanging("PhaseTapChanger", e);
+                    this.OnPropertyChanging("PhaseTapChanger", e, _phaseTapChangerReference);
                     this._phaseTapChanger = value;
                     if ((old != null))
                     {
@@ -94,7 +96,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
                         value.Deleted += this.OnResetPhaseTapChanger;
                     }
                     this.OnPhaseTapChangerChanged(e);
-                    this.OnPropertyChanged("PhaseTapChanger", e);
+                    this.OnPropertyChanged("PhaseTapChanger", e, _phaseTapChangerReference);
                 }
             }
         }
@@ -134,6 +136,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
         /// Gets fired when the PhaseTapChanger property changed its value
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> PhaseTapChangerChanged;
+        
+        private static ITypedElement RetrievePhaseTapChangerReference()
+        {
+            return ((ITypedElement)(((ModelElement)(PhaseVariationCurve.ClassInstance)).Resolve("PhaseTapChanger")));
+        }
         
         /// <summary>
         /// Raises the PhaseTapChangerChanging event
@@ -357,7 +364,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public PhaseTapChangerProxy(IPhaseVariationCurve modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "PhaseTapChanger")
             {
             }
             
@@ -374,24 +381,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Wires
                 {
                     this.ModelElement.PhaseTapChanger = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.PhaseTapChangerChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.PhaseTapChangerChanged -= handler;
             }
         }
     }

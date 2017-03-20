@@ -46,7 +46,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61970/Generation/Production/TargetL" +
         "evelSchedule")]
     [DebuggerDisplayAttribute("TargetLevelSchedule {UUID}")]
-    public class TargetLevelSchedule : Curve, ITargetLevelSchedule, IModelElement
+    public partial class TargetLevelSchedule : Curve, ITargetLevelSchedule, IModelElement
     {
         
         /// <summary>
@@ -54,10 +54,16 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
         /// </summary>
         private float _highLevelLimit;
         
+        private static Lazy<ITypedElement> _highLevelLimitAttribute = new Lazy<ITypedElement>(RetrieveHighLevelLimitAttribute);
+        
         /// <summary>
         /// The backing field for the LowLevelLimit property
         /// </summary>
         private float _lowLevelLimit;
+        
+        private static Lazy<ITypedElement> _lowLevelLimitAttribute = new Lazy<ITypedElement>(RetrieveLowLevelLimitAttribute);
+        
+        private static Lazy<ITypedElement> _reservoirReference = new Lazy<ITypedElement>(RetrieveReservoirReference);
         
         /// <summary>
         /// The backing field for the Reservoir property
@@ -84,10 +90,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
                     float old = this._highLevelLimit;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnHighLevelLimitChanging(e);
-                    this.OnPropertyChanging("HighLevelLimit", e);
+                    this.OnPropertyChanging("HighLevelLimit", e, _highLevelLimitAttribute);
                     this._highLevelLimit = value;
                     this.OnHighLevelLimitChanged(e);
-                    this.OnPropertyChanged("HighLevelLimit", e);
+                    this.OnPropertyChanged("HighLevelLimit", e, _highLevelLimitAttribute);
                 }
             }
         }
@@ -110,10 +116,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
                     float old = this._lowLevelLimit;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnLowLevelLimitChanging(e);
-                    this.OnPropertyChanging("LowLevelLimit", e);
+                    this.OnPropertyChanging("LowLevelLimit", e, _lowLevelLimitAttribute);
                     this._lowLevelLimit = value;
                     this.OnLowLevelLimitChanged(e);
-                    this.OnPropertyChanged("LowLevelLimit", e);
+                    this.OnPropertyChanged("LowLevelLimit", e, _lowLevelLimitAttribute);
                 }
             }
         }
@@ -136,7 +142,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
                     IReservoir old = this._reservoir;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnReservoirChanging(e);
-                    this.OnPropertyChanging("Reservoir", e);
+                    this.OnPropertyChanging("Reservoir", e, _reservoirReference);
                     this._reservoir = value;
                     if ((old != null))
                     {
@@ -149,7 +155,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
                         value.Deleted += this.OnResetReservoir;
                     }
                     this.OnReservoirChanged(e);
-                    this.OnPropertyChanged("Reservoir", e);
+                    this.OnPropertyChanged("Reservoir", e, _reservoirReference);
                 }
             }
         }
@@ -211,6 +217,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> ReservoirChanged;
         
+        private static ITypedElement RetrieveHighLevelLimitAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(TargetLevelSchedule.ClassInstance)).Resolve("highLevelLimit")));
+        }
+        
         /// <summary>
         /// Raises the HighLevelLimitChanging event
         /// </summary>
@@ -237,6 +248,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
             }
         }
         
+        private static ITypedElement RetrieveLowLevelLimitAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(TargetLevelSchedule.ClassInstance)).Resolve("lowLevelLimit")));
+        }
+        
         /// <summary>
         /// Raises the LowLevelLimitChanging event
         /// </summary>
@@ -261,6 +277,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveReservoirReference()
+        {
+            return ((ITypedElement)(((ModelElement)(TargetLevelSchedule.ClassInstance)).Resolve("Reservoir")));
         }
         
         /// <summary>
@@ -515,7 +536,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public HighLevelLimitProxy(ITargetLevelSchedule modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "highLevelLimit")
             {
             }
             
@@ -533,24 +554,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
                     this.ModelElement.HighLevelLimit = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.HighLevelLimitChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.HighLevelLimitChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -564,7 +567,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public LowLevelLimitProxy(ITargetLevelSchedule modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "lowLevelLimit")
             {
             }
             
@@ -582,24 +585,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
                     this.ModelElement.LowLevelLimit = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.LowLevelLimitChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.LowLevelLimitChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -613,7 +598,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public ReservoirProxy(ITargetLevelSchedule modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "Reservoir")
             {
             }
             
@@ -630,24 +615,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
                 {
                     this.ModelElement.Reservoir = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ReservoirChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ReservoirChanged -= handler;
             }
         }
     }

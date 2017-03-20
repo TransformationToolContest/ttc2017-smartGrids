@@ -40,7 +40,7 @@ namespace TTC2017.SmartGrids.COSEM.InterfaceClasses
     [XmlNamespacePrefixAttribute("inter")]
     [ModelRepresentationClassAttribute("http://www.transformation-tool-contest.eu/2017/smartGrids/cosem#//InterfaceClasse" +
         "s/Singleactionschedule")]
-    public class Singleactionschedule : Base, ISingleactionschedule, IModelElement
+    public partial class Singleactionschedule : Base, ISingleactionschedule, IModelElement
     {
         
         private static IClass _classInstance;

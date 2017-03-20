@@ -39,13 +39,17 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
     [XmlNamespacePrefixAttribute("data")]
     [ModelRepresentationClassAttribute("http://www.transformation-tool-contest.eu/2017/smartGrids/substationStandard#//Da" +
         "taclasses/Vector")]
-    public class Vector : ModelElement, IVector, IModelElement
+    public partial class Vector : ModelElement, IVector, IModelElement
     {
+        
+        private static Lazy<ITypedElement> _magReference = new Lazy<ITypedElement>(RetrieveMagReference);
         
         /// <summary>
         /// The backing field for the Mag property
         /// </summary>
         private IAnalogueValue _mag;
+        
+        private static Lazy<ITypedElement> _angReference = new Lazy<ITypedElement>(RetrieveAngReference);
         
         /// <summary>
         /// The backing field for the Ang property
@@ -72,7 +76,7 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
                     IAnalogueValue old = this._mag;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnMagChanging(e);
-                    this.OnPropertyChanging("Mag", e);
+                    this.OnPropertyChanging("Mag", e, _magReference);
                     this._mag = value;
                     if ((old != null))
                     {
@@ -83,7 +87,7 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
                         value.Deleted += this.OnResetMag;
                     }
                     this.OnMagChanged(e);
-                    this.OnPropertyChanged("Mag", e);
+                    this.OnPropertyChanged("Mag", e, _magReference);
                 }
             }
         }
@@ -106,7 +110,7 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
                     IAnalogueValue old = this._ang;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnAngChanging(e);
-                    this.OnPropertyChanging("Ang", e);
+                    this.OnPropertyChanging("Ang", e, _angReference);
                     this._ang = value;
                     if ((old != null))
                     {
@@ -117,7 +121,7 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
                         value.Deleted += this.OnResetAng;
                     }
                     this.OnAngChanged(e);
-                    this.OnPropertyChanged("Ang", e);
+                    this.OnPropertyChanged("Ang", e, _angReference);
                 }
             }
         }
@@ -169,6 +173,11 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> AngChanged;
         
+        private static ITypedElement RetrieveMagReference()
+        {
+            return ((ITypedElement)(((ModelElement)(Vector.ClassInstance)).Resolve("mag")));
+        }
+        
         /// <summary>
         /// Raises the MagChanging event
         /// </summary>
@@ -203,6 +212,11 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
         private void OnResetMag(object sender, System.EventArgs eventArgs)
         {
             this.Mag = null;
+        }
+        
+        private static ITypedElement RetrieveAngReference()
+        {
+            return ((ITypedElement)(((ModelElement)(Vector.ClassInstance)).Resolve("ang")));
         }
         
         /// <summary>
@@ -471,7 +485,7 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public MagProxy(IVector modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "mag")
             {
             }
             
@@ -489,24 +503,6 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
                     this.ModelElement.Mag = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.MagChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.MagChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -520,7 +516,7 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public AngProxy(IVector modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "ang")
             {
             }
             
@@ -537,24 +533,6 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
                 {
                     this.ModelElement.Ang = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.AngChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.AngChanged -= handler;
             }
         }
     }

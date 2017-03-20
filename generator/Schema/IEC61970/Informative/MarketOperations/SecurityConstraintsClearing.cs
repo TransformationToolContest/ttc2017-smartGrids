@@ -50,7 +50,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61970/Informative/MarketOperations/" +
         "SecurityConstraintsClearing")]
     [DebuggerDisplayAttribute("SecurityConstraintsClearing {UUID}")]
-    public class SecurityConstraintsClearing : MarketFactors, ISecurityConstraintsClearing, IModelElement
+    public partial class SecurityConstraintsClearing : MarketFactors, ISecurityConstraintsClearing, IModelElement
     {
         
         /// <summary>
@@ -58,15 +58,21 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
         /// </summary>
         private float _mwLimit;
         
+        private static Lazy<ITypedElement> _mwLimitAttribute = new Lazy<ITypedElement>(RetrieveMwLimitAttribute);
+        
         /// <summary>
         /// The backing field for the MwFlow property
         /// </summary>
         private float _mwFlow;
         
+        private static Lazy<ITypedElement> _mwFlowAttribute = new Lazy<ITypedElement>(RetrieveMwFlowAttribute);
+        
         /// <summary>
         /// The backing field for the ShadowPrice property
         /// </summary>
         private float _shadowPrice;
+        
+        private static Lazy<ITypedElement> _shadowPriceAttribute = new Lazy<ITypedElement>(RetrieveShadowPriceAttribute);
         
         private static IClass _classInstance;
         
@@ -88,10 +94,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
                     float old = this._mwLimit;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnMwLimitChanging(e);
-                    this.OnPropertyChanging("MwLimit", e);
+                    this.OnPropertyChanging("MwLimit", e, _mwLimitAttribute);
                     this._mwLimit = value;
                     this.OnMwLimitChanged(e);
-                    this.OnPropertyChanged("MwLimit", e);
+                    this.OnPropertyChanged("MwLimit", e, _mwLimitAttribute);
                 }
             }
         }
@@ -114,10 +120,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
                     float old = this._mwFlow;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnMwFlowChanging(e);
-                    this.OnPropertyChanging("MwFlow", e);
+                    this.OnPropertyChanging("MwFlow", e, _mwFlowAttribute);
                     this._mwFlow = value;
                     this.OnMwFlowChanged(e);
-                    this.OnPropertyChanged("MwFlow", e);
+                    this.OnPropertyChanged("MwFlow", e, _mwFlowAttribute);
                 }
             }
         }
@@ -140,10 +146,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
                     float old = this._shadowPrice;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnShadowPriceChanging(e);
-                    this.OnPropertyChanging("ShadowPrice", e);
+                    this.OnPropertyChanging("ShadowPrice", e, _shadowPriceAttribute);
                     this._shadowPrice = value;
                     this.OnShadowPriceChanged(e);
-                    this.OnPropertyChanged("ShadowPrice", e);
+                    this.OnPropertyChanged("ShadowPrice", e, _shadowPriceAttribute);
                 }
             }
         }
@@ -194,6 +200,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> ShadowPriceChanged;
         
+        private static ITypedElement RetrieveMwLimitAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(SecurityConstraintsClearing.ClassInstance)).Resolve("mwLimit")));
+        }
+        
         /// <summary>
         /// Raises the MwLimitChanging event
         /// </summary>
@@ -220,6 +231,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
             }
         }
         
+        private static ITypedElement RetrieveMwFlowAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(SecurityConstraintsClearing.ClassInstance)).Resolve("mwFlow")));
+        }
+        
         /// <summary>
         /// Raises the MwFlowChanging event
         /// </summary>
@@ -244,6 +260,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveShadowPriceAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(SecurityConstraintsClearing.ClassInstance)).Resolve("shadowPrice")));
         }
         
         /// <summary>
@@ -344,7 +365,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public MwLimitProxy(ISecurityConstraintsClearing modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "mwLimit")
             {
             }
             
@@ -362,24 +383,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
                     this.ModelElement.MwLimit = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.MwLimitChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.MwLimitChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -393,7 +396,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public MwFlowProxy(ISecurityConstraintsClearing modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "mwFlow")
             {
             }
             
@@ -411,24 +414,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
                     this.ModelElement.MwFlow = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.MwFlowChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.MwFlowChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -442,7 +427,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public ShadowPriceProxy(ISecurityConstraintsClearing modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "shadowPrice")
             {
             }
             
@@ -459,24 +444,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.MarketOperations
                 {
                     this.ModelElement.ShadowPrice = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ShadowPriceChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ShadowPriceChanged -= handler;
             }
         }
     }

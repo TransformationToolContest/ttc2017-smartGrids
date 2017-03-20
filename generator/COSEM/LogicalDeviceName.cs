@@ -39,8 +39,10 @@ namespace TTC2017.SmartGrids.COSEM
     [XmlNamespacePrefixAttribute("cosem")]
     [ModelRepresentationClassAttribute("http://www.transformation-tool-contest.eu/2017/smartGrids/cosem#//LogicalDeviceNa" +
         "me")]
-    public class LogicalDeviceName : ModelElement, ILogicalDeviceName, IModelElement
+    public partial class LogicalDeviceName : ModelElement, ILogicalDeviceName, IModelElement
     {
+        
+        private static Lazy<ITypedElement> _nameReference = new Lazy<ITypedElement>(RetrieveNameReference);
         
         /// <summary>
         /// The backing field for the Name property
@@ -68,7 +70,7 @@ namespace TTC2017.SmartGrids.COSEM
                     ISAPAssignmentCurrent old = this._name;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnNameChanging(e);
-                    this.OnPropertyChanging("Name", e);
+                    this.OnPropertyChanging("Name", e, _nameReference);
                     this._name = value;
                     if ((old != null))
                     {
@@ -81,7 +83,7 @@ namespace TTC2017.SmartGrids.COSEM
                         value.Deleted += this.OnResetName;
                     }
                     this.OnNameChanged(e);
-                    this.OnPropertyChanged("Name", e);
+                    this.OnPropertyChanged("Name", e, _nameReference);
                 }
             }
         }
@@ -133,6 +135,11 @@ namespace TTC2017.SmartGrids.COSEM
         /// Gets fired when the Name property changed its value
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> NameChanged;
+        
+        private static ITypedElement RetrieveNameReference()
+        {
+            return ((ITypedElement)(((ModelElement)(LogicalDeviceName.ClassInstance)).Resolve("name")));
+        }
         
         /// <summary>
         /// Raises the NameChanging event
@@ -506,7 +513,7 @@ namespace TTC2017.SmartGrids.COSEM
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public NameProxy(ILogicalDeviceName modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "name")
             {
             }
             
@@ -523,24 +530,6 @@ namespace TTC2017.SmartGrids.COSEM
                 {
                     this.ModelElement.Name = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.NameChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.NameChanged -= handler;
             }
         }
     }

@@ -39,7 +39,7 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
     [XmlNamespacePrefixAttribute("objects")]
     [ModelRepresentationClassAttribute("http://www.transformation-tool-contest.eu/2017/smartGrids/cosem#//COSEMObjects/Ev" +
         "entLog")]
-    public class EventLog : Profilegeneric, IEventLog, IModelElement
+    public partial class EventLog : Profilegeneric, IEventLog, IModelElement
     {
         
         private static IClass _classInstance;

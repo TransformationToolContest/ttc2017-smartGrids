@@ -51,7 +51,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Common
     [XmlNamespacePrefixAttribute("cimCommon")]
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61968/Common/CoordinateSystem")]
     [DebuggerDisplayAttribute("CoordinateSystem {UUID}")]
-    public class CoordinateSystem : Element, ICoordinateSystem, IModelElement
+    public partial class CoordinateSystem : Element, ICoordinateSystem, IModelElement
     {
         
         /// <summary>
@@ -59,20 +59,30 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Common
         /// </summary>
         private string _name;
         
+        private static Lazy<ITypedElement> _nameAttribute = new Lazy<ITypedElement>(RetrieveNameAttribute);
+        
+        private static Lazy<ITypedElement> _gmlDiagramObjectsReference = new Lazy<ITypedElement>(RetrieveGmlDiagramObjectsReference);
+        
         /// <summary>
         /// The backing field for the GmlDiagramObjects property
         /// </summary>
         private CoordinateSystemGmlDiagramObjectsCollection _gmlDiagramObjects;
+        
+        private static Lazy<ITypedElement> _diagramsReference = new Lazy<ITypedElement>(RetrieveDiagramsReference);
         
         /// <summary>
         /// The backing field for the Diagrams property
         /// </summary>
         private CoordinateSystemDiagramsCollection _diagrams;
         
+        private static Lazy<ITypedElement> _locationReference = new Lazy<ITypedElement>(RetrieveLocationReference);
+        
         /// <summary>
         /// The backing field for the Location property
         /// </summary>
         private ILocation _location;
+        
+        private static Lazy<ITypedElement> _positionPointsReference = new Lazy<ITypedElement>(RetrievePositionPointsReference);
         
         /// <summary>
         /// The backing field for the PositionPoints property
@@ -112,10 +122,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Common
                     string old = this._name;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnNameChanging(e);
-                    this.OnPropertyChanging("Name", e);
+                    this.OnPropertyChanging("Name", e, _nameAttribute);
                     this._name = value;
                     this.OnNameChanged(e);
-                    this.OnPropertyChanged("Name", e);
+                    this.OnPropertyChanged("Name", e, _nameAttribute);
                 }
             }
         }
@@ -168,7 +178,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Common
                     ILocation old = this._location;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnLocationChanging(e);
-                    this.OnPropertyChanging("Location", e);
+                    this.OnPropertyChanging("Location", e, _locationReference);
                     this._location = value;
                     if ((old != null))
                     {
@@ -181,7 +191,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Common
                         value.Deleted += this.OnResetLocation;
                     }
                     this.OnLocationChanged(e);
-                    this.OnPropertyChanged("Location", e);
+                    this.OnPropertyChanged("Location", e, _locationReference);
                 }
             }
         }
@@ -247,6 +257,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Common
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> LocationChanged;
         
+        private static ITypedElement RetrieveNameAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(CoordinateSystem.ClassInstance)).Resolve("name")));
+        }
+        
         /// <summary>
         /// Raises the NameChanging event
         /// </summary>
@@ -273,6 +288,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Common
             }
         }
         
+        private static ITypedElement RetrieveGmlDiagramObjectsReference()
+        {
+            return ((ITypedElement)(((ModelElement)(CoordinateSystem.ClassInstance)).Resolve("GmlDiagramObjects")));
+        }
+        
         /// <summary>
         /// Forwards CollectionChanging notifications for the GmlDiagramObjects property to the parent model element
         /// </summary>
@@ -280,7 +300,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Common
         /// <param name="e">The original event data</param>
         private void GmlDiagramObjectsCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("GmlDiagramObjects", e);
+            this.OnCollectionChanging("GmlDiagramObjects", e, _gmlDiagramObjectsReference);
         }
         
         /// <summary>
@@ -290,7 +310,12 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Common
         /// <param name="e">The original event data</param>
         private void GmlDiagramObjectsCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("GmlDiagramObjects", e);
+            this.OnCollectionChanged("GmlDiagramObjects", e, _gmlDiagramObjectsReference);
+        }
+        
+        private static ITypedElement RetrieveDiagramsReference()
+        {
+            return ((ITypedElement)(((ModelElement)(CoordinateSystem.ClassInstance)).Resolve("Diagrams")));
         }
         
         /// <summary>
@@ -300,7 +325,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Common
         /// <param name="e">The original event data</param>
         private void DiagramsCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("Diagrams", e);
+            this.OnCollectionChanging("Diagrams", e, _diagramsReference);
         }
         
         /// <summary>
@@ -310,7 +335,12 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Common
         /// <param name="e">The original event data</param>
         private void DiagramsCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("Diagrams", e);
+            this.OnCollectionChanged("Diagrams", e, _diagramsReference);
+        }
+        
+        private static ITypedElement RetrieveLocationReference()
+        {
+            return ((ITypedElement)(((ModelElement)(CoordinateSystem.ClassInstance)).Resolve("Location")));
         }
         
         /// <summary>
@@ -349,6 +379,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Common
             this.Location = null;
         }
         
+        private static ITypedElement RetrievePositionPointsReference()
+        {
+            return ((ITypedElement)(((ModelElement)(CoordinateSystem.ClassInstance)).Resolve("PositionPoints")));
+        }
+        
         /// <summary>
         /// Forwards CollectionChanging notifications for the PositionPoints property to the parent model element
         /// </summary>
@@ -356,7 +391,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Common
         /// <param name="e">The original event data</param>
         private void PositionPointsCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("PositionPoints", e);
+            this.OnCollectionChanging("PositionPoints", e, _positionPointsReference);
         }
         
         /// <summary>
@@ -366,7 +401,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Common
         /// <param name="e">The original event data</param>
         private void PositionPointsCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("PositionPoints", e);
+            this.OnCollectionChanged("PositionPoints", e, _positionPointsReference);
         }
         
         /// <summary>
@@ -699,7 +734,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Common
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public NameProxy(ICoordinateSystem modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "name")
             {
             }
             
@@ -717,24 +752,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Common
                     this.ModelElement.Name = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.NameChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.NameChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -748,7 +765,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Common
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public LocationProxy(ICoordinateSystem modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "Location")
             {
             }
             
@@ -765,24 +782,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Common
                 {
                     this.ModelElement.Location = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.LocationChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.LocationChanged -= handler;
             }
         }
     }

@@ -49,13 +49,17 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.EnergyScheduling
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61970/Informative/EnergyScheduling/" +
         "EnergyProfile")]
     [DebuggerDisplayAttribute("EnergyProfile {UUID}")]
-    public class EnergyProfile : Profile, IEnergyProfile, IModelElement
+    public partial class EnergyProfile : Profile, IEnergyProfile, IModelElement
     {
+        
+        private static Lazy<ITypedElement> _transactionBidReference = new Lazy<ITypedElement>(RetrieveTransactionBidReference);
         
         /// <summary>
         /// The backing field for the TransactionBid property
         /// </summary>
         private ITransactionBid _transactionBid;
+        
+        private static Lazy<ITypedElement> _energyTransactionReference = new Lazy<ITypedElement>(RetrieveEnergyTransactionReference);
         
         /// <summary>
         /// The backing field for the EnergyTransaction property
@@ -82,7 +86,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.EnergyScheduling
                     ITransactionBid old = this._transactionBid;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnTransactionBidChanging(e);
-                    this.OnPropertyChanging("TransactionBid", e);
+                    this.OnPropertyChanging("TransactionBid", e, _transactionBidReference);
                     this._transactionBid = value;
                     if ((old != null))
                     {
@@ -95,7 +99,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.EnergyScheduling
                         value.Deleted += this.OnResetTransactionBid;
                     }
                     this.OnTransactionBidChanged(e);
-                    this.OnPropertyChanged("TransactionBid", e);
+                    this.OnPropertyChanged("TransactionBid", e, _transactionBidReference);
                 }
             }
         }
@@ -118,7 +122,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.EnergyScheduling
                     IEnergyTransaction old = this._energyTransaction;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnEnergyTransactionChanging(e);
-                    this.OnPropertyChanging("EnergyTransaction", e);
+                    this.OnPropertyChanging("EnergyTransaction", e, _energyTransactionReference);
                     this._energyTransaction = value;
                     if ((old != null))
                     {
@@ -131,7 +135,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.EnergyScheduling
                         value.Deleted += this.OnResetEnergyTransaction;
                     }
                     this.OnEnergyTransactionChanged(e);
-                    this.OnPropertyChanged("EnergyTransaction", e);
+                    this.OnPropertyChanged("EnergyTransaction", e, _energyTransactionReference);
                 }
             }
         }
@@ -183,6 +187,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.EnergyScheduling
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> EnergyTransactionChanged;
         
+        private static ITypedElement RetrieveTransactionBidReference()
+        {
+            return ((ITypedElement)(((ModelElement)(EnergyProfile.ClassInstance)).Resolve("TransactionBid")));
+        }
+        
         /// <summary>
         /// Raises the TransactionBidChanging event
         /// </summary>
@@ -217,6 +226,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.EnergyScheduling
         private void OnResetTransactionBid(object sender, System.EventArgs eventArgs)
         {
             this.TransactionBid = null;
+        }
+        
+        private static ITypedElement RetrieveEnergyTransactionReference()
+        {
+            return ((ITypedElement)(((ModelElement)(EnergyProfile.ClassInstance)).Resolve("EnergyTransaction")));
         }
         
         /// <summary>
@@ -485,7 +499,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.EnergyScheduling
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public TransactionBidProxy(IEnergyProfile modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "TransactionBid")
             {
             }
             
@@ -503,24 +517,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.EnergyScheduling
                     this.ModelElement.TransactionBid = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.TransactionBidChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.TransactionBidChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -534,7 +530,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.EnergyScheduling
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public EnergyTransactionProxy(IEnergyProfile modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "EnergyTransaction")
             {
             }
             
@@ -551,24 +547,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.EnergyScheduling
                 {
                     this.ModelElement.EnergyTransaction = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.EnergyTransactionChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.EnergyTransactionChanged -= handler;
             }
         }
     }

@@ -51,7 +51,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Common
     [XmlNamespacePrefixAttribute("cimCommon")]
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61968/Common/ElectronicAddress")]
     [DebuggerDisplayAttribute("ElectronicAddress {UUID}")]
-    public class ElectronicAddress : Element, IElectronicAddress, IModelElement
+    public partial class ElectronicAddress : Element, IElectronicAddress, IModelElement
     {
         
         /// <summary>
@@ -59,30 +59,44 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Common
         /// </summary>
         private string _lan;
         
+        private static Lazy<ITypedElement> _lanAttribute = new Lazy<ITypedElement>(RetrieveLanAttribute);
+        
         /// <summary>
         /// The backing field for the Email property
         /// </summary>
         private string _email;
+        
+        private static Lazy<ITypedElement> _emailAttribute = new Lazy<ITypedElement>(RetrieveEmailAttribute);
         
         /// <summary>
         /// The backing field for the UserID property
         /// </summary>
         private string _userID;
         
+        private static Lazy<ITypedElement> _userIDAttribute = new Lazy<ITypedElement>(RetrieveUserIDAttribute);
+        
         /// <summary>
         /// The backing field for the Web property
         /// </summary>
         private string _web;
+        
+        private static Lazy<ITypedElement> _webAttribute = new Lazy<ITypedElement>(RetrieveWebAttribute);
         
         /// <summary>
         /// The backing field for the Password property
         /// </summary>
         private string _password;
         
+        private static Lazy<ITypedElement> _passwordAttribute = new Lazy<ITypedElement>(RetrievePasswordAttribute);
+        
         /// <summary>
         /// The backing field for the Radio property
         /// </summary>
         private string _radio;
+        
+        private static Lazy<ITypedElement> _radioAttribute = new Lazy<ITypedElement>(RetrieveRadioAttribute);
+        
+        private static Lazy<ITypedElement> _statusReference = new Lazy<ITypedElement>(RetrieveStatusReference);
         
         /// <summary>
         /// The backing field for the Status property
@@ -109,10 +123,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Common
                     string old = this._lan;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnLanChanging(e);
-                    this.OnPropertyChanging("Lan", e);
+                    this.OnPropertyChanging("Lan", e, _lanAttribute);
                     this._lan = value;
                     this.OnLanChanged(e);
-                    this.OnPropertyChanged("Lan", e);
+                    this.OnPropertyChanged("Lan", e, _lanAttribute);
                 }
             }
         }
@@ -135,10 +149,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Common
                     string old = this._email;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnEmailChanging(e);
-                    this.OnPropertyChanging("Email", e);
+                    this.OnPropertyChanging("Email", e, _emailAttribute);
                     this._email = value;
                     this.OnEmailChanged(e);
-                    this.OnPropertyChanged("Email", e);
+                    this.OnPropertyChanged("Email", e, _emailAttribute);
                 }
             }
         }
@@ -161,10 +175,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Common
                     string old = this._userID;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnUserIDChanging(e);
-                    this.OnPropertyChanging("UserID", e);
+                    this.OnPropertyChanging("UserID", e, _userIDAttribute);
                     this._userID = value;
                     this.OnUserIDChanged(e);
-                    this.OnPropertyChanged("UserID", e);
+                    this.OnPropertyChanged("UserID", e, _userIDAttribute);
                 }
             }
         }
@@ -187,10 +201,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Common
                     string old = this._web;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnWebChanging(e);
-                    this.OnPropertyChanging("Web", e);
+                    this.OnPropertyChanging("Web", e, _webAttribute);
                     this._web = value;
                     this.OnWebChanged(e);
-                    this.OnPropertyChanged("Web", e);
+                    this.OnPropertyChanged("Web", e, _webAttribute);
                 }
             }
         }
@@ -213,10 +227,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Common
                     string old = this._password;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnPasswordChanging(e);
-                    this.OnPropertyChanging("Password", e);
+                    this.OnPropertyChanging("Password", e, _passwordAttribute);
                     this._password = value;
                     this.OnPasswordChanged(e);
-                    this.OnPropertyChanged("Password", e);
+                    this.OnPropertyChanged("Password", e, _passwordAttribute);
                 }
             }
         }
@@ -239,10 +253,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Common
                     string old = this._radio;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnRadioChanging(e);
-                    this.OnPropertyChanging("Radio", e);
+                    this.OnPropertyChanging("Radio", e, _radioAttribute);
                     this._radio = value;
                     this.OnRadioChanged(e);
-                    this.OnPropertyChanged("Radio", e);
+                    this.OnPropertyChanged("Radio", e, _radioAttribute);
                 }
             }
         }
@@ -265,7 +279,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Common
                     IStatus old = this._status;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnStatusChanging(e);
-                    this.OnPropertyChanging("Status", e);
+                    this.OnPropertyChanging("Status", e, _statusReference);
                     this._status = value;
                     if ((old != null))
                     {
@@ -276,7 +290,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Common
                         value.Deleted += this.OnResetStatus;
                     }
                     this.OnStatusChanged(e);
-                    this.OnPropertyChanged("Status", e);
+                    this.OnPropertyChanged("Status", e, _statusReference);
                 }
             }
         }
@@ -377,6 +391,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Common
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> StatusChanged;
         
+        private static ITypedElement RetrieveLanAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(ElectronicAddress.ClassInstance)).Resolve("lan")));
+        }
+        
         /// <summary>
         /// Raises the LanChanging event
         /// </summary>
@@ -401,6 +420,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Common
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveEmailAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(ElectronicAddress.ClassInstance)).Resolve("email")));
         }
         
         /// <summary>
@@ -429,6 +453,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Common
             }
         }
         
+        private static ITypedElement RetrieveUserIDAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(ElectronicAddress.ClassInstance)).Resolve("userID")));
+        }
+        
         /// <summary>
         /// Raises the UserIDChanging event
         /// </summary>
@@ -453,6 +482,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Common
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveWebAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(ElectronicAddress.ClassInstance)).Resolve("web")));
         }
         
         /// <summary>
@@ -481,6 +515,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Common
             }
         }
         
+        private static ITypedElement RetrievePasswordAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(ElectronicAddress.ClassInstance)).Resolve("password")));
+        }
+        
         /// <summary>
         /// Raises the PasswordChanging event
         /// </summary>
@@ -507,6 +546,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Common
             }
         }
         
+        private static ITypedElement RetrieveRadioAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(ElectronicAddress.ClassInstance)).Resolve("radio")));
+        }
+        
         /// <summary>
         /// Raises the RadioChanging event
         /// </summary>
@@ -531,6 +575,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Common
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveStatusReference()
+        {
+            return ((ITypedElement)(((ModelElement)(ElectronicAddress.ClassInstance)).Resolve("status")));
         }
         
         /// <summary>
@@ -820,7 +869,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Common
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public LanProxy(IElectronicAddress modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "lan")
             {
             }
             
@@ -838,24 +887,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Common
                     this.ModelElement.Lan = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.LanChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.LanChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -869,7 +900,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Common
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public EmailProxy(IElectronicAddress modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "email")
             {
             }
             
@@ -887,24 +918,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Common
                     this.ModelElement.Email = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.EmailChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.EmailChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -918,7 +931,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Common
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public UserIDProxy(IElectronicAddress modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "userID")
             {
             }
             
@@ -936,24 +949,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Common
                     this.ModelElement.UserID = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.UserIDChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.UserIDChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -967,7 +962,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Common
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public WebProxy(IElectronicAddress modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "web")
             {
             }
             
@@ -985,24 +980,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Common
                     this.ModelElement.Web = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.WebChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.WebChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1016,7 +993,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Common
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public PasswordProxy(IElectronicAddress modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "password")
             {
             }
             
@@ -1034,24 +1011,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Common
                     this.ModelElement.Password = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.PasswordChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.PasswordChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1065,7 +1024,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Common
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public RadioProxy(IElectronicAddress modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "radio")
             {
             }
             
@@ -1083,24 +1042,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Common
                     this.ModelElement.Radio = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.RadioChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.RadioChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1114,7 +1055,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Common
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public StatusProxy(IElectronicAddress modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "status")
             {
             }
             
@@ -1131,24 +1072,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Common
                 {
                     this.ModelElement.Status = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.StatusChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.StatusChanged -= handler;
             }
         }
     }

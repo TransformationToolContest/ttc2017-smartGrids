@@ -47,13 +47,17 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.Financial
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61970/Informative/Financial/Custome" +
         "rConsumer")]
     [DebuggerDisplayAttribute("CustomerConsumer {UUID}")]
-    public class CustomerConsumer : ErpOrganisation, ICustomerConsumer, IModelElement
+    public partial class CustomerConsumer : ErpOrganisation, ICustomerConsumer, IModelElement
     {
+        
+        private static Lazy<ITypedElement> _tieLinesReference = new Lazy<ITypedElement>(RetrieveTieLinesReference);
         
         /// <summary>
         /// The backing field for the TieLines property
         /// </summary>
         private CustomerConsumerTieLinesCollection _tieLines;
+        
+        private static Lazy<ITypedElement> _servicePointReference = new Lazy<ITypedElement>(RetrieveServicePointReference);
         
         /// <summary>
         /// The backing field for the ServicePoint property
@@ -129,6 +133,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.Financial
             }
         }
         
+        private static ITypedElement RetrieveTieLinesReference()
+        {
+            return ((ITypedElement)(((ModelElement)(CustomerConsumer.ClassInstance)).Resolve("TieLines")));
+        }
+        
         /// <summary>
         /// Forwards CollectionChanging notifications for the TieLines property to the parent model element
         /// </summary>
@@ -136,7 +145,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.Financial
         /// <param name="e">The original event data</param>
         private void TieLinesCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("TieLines", e);
+            this.OnCollectionChanging("TieLines", e, _tieLinesReference);
         }
         
         /// <summary>
@@ -146,7 +155,12 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.Financial
         /// <param name="e">The original event data</param>
         private void TieLinesCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("TieLines", e);
+            this.OnCollectionChanged("TieLines", e, _tieLinesReference);
+        }
+        
+        private static ITypedElement RetrieveServicePointReference()
+        {
+            return ((ITypedElement)(((ModelElement)(CustomerConsumer.ClassInstance)).Resolve("ServicePoint")));
         }
         
         /// <summary>
@@ -156,7 +170,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.Financial
         /// <param name="e">The original event data</param>
         private void ServicePointCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("ServicePoint", e);
+            this.OnCollectionChanging("ServicePoint", e, _servicePointReference);
         }
         
         /// <summary>
@@ -166,7 +180,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.Financial
         /// <param name="e">The original event data</param>
         private void ServicePointCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("ServicePoint", e);
+            this.OnCollectionChanged("ServicePoint", e, _servicePointReference);
         }
         
         /// <summary>

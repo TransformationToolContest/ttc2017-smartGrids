@@ -42,13 +42,17 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.GenerationDynamics
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61970/Generation/GenerationDynamics" +
         "/HeatRecoveryBoiler")]
     [DebuggerDisplayAttribute("HeatRecoveryBoiler {UUID}")]
-    public class HeatRecoveryBoiler : FossilSteamSupply, IHeatRecoveryBoiler, IModelElement
+    public partial class HeatRecoveryBoiler : FossilSteamSupply, IHeatRecoveryBoiler, IModelElement
     {
         
         /// <summary>
         /// The backing field for the SteamSupplyRating2 property
         /// </summary>
         private float _steamSupplyRating2;
+        
+        private static Lazy<ITypedElement> _steamSupplyRating2Attribute = new Lazy<ITypedElement>(RetrieveSteamSupplyRating2Attribute);
+        
+        private static Lazy<ITypedElement> _combustionTurbinesReference = new Lazy<ITypedElement>(RetrieveCombustionTurbinesReference);
         
         /// <summary>
         /// The backing field for the CombustionTurbines property
@@ -82,10 +86,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.GenerationDynamics
                     float old = this._steamSupplyRating2;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnSteamSupplyRating2Changing(e);
-                    this.OnPropertyChanging("SteamSupplyRating2", e);
+                    this.OnPropertyChanging("SteamSupplyRating2", e, _steamSupplyRating2Attribute);
                     this._steamSupplyRating2 = value;
                     this.OnSteamSupplyRating2Changed(e);
-                    this.OnPropertyChanged("SteamSupplyRating2", e);
+                    this.OnPropertyChanged("SteamSupplyRating2", e, _steamSupplyRating2Attribute);
                 }
             }
         }
@@ -142,6 +146,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.GenerationDynamics
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> SteamSupplyRating2Changed;
         
+        private static ITypedElement RetrieveSteamSupplyRating2Attribute()
+        {
+            return ((ITypedElement)(((ModelElement)(HeatRecoveryBoiler.ClassInstance)).Resolve("steamSupplyRating2")));
+        }
+        
         /// <summary>
         /// Raises the SteamSupplyRating2Changing event
         /// </summary>
@@ -168,6 +177,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.GenerationDynamics
             }
         }
         
+        private static ITypedElement RetrieveCombustionTurbinesReference()
+        {
+            return ((ITypedElement)(((ModelElement)(HeatRecoveryBoiler.ClassInstance)).Resolve("CombustionTurbines")));
+        }
+        
         /// <summary>
         /// Forwards CollectionChanging notifications for the CombustionTurbines property to the parent model element
         /// </summary>
@@ -175,7 +189,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.GenerationDynamics
         /// <param name="e">The original event data</param>
         private void CombustionTurbinesCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("CombustionTurbines", e);
+            this.OnCollectionChanging("CombustionTurbines", e, _combustionTurbinesReference);
         }
         
         /// <summary>
@@ -185,7 +199,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.GenerationDynamics
         /// <param name="e">The original event data</param>
         private void CombustionTurbinesCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("CombustionTurbines", e);
+            this.OnCollectionChanged("CombustionTurbines", e, _combustionTurbinesReference);
         }
         
         /// <summary>
@@ -380,7 +394,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.GenerationDynamics
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public SteamSupplyRating2Proxy(IHeatRecoveryBoiler modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "steamSupplyRating2")
             {
             }
             
@@ -397,24 +411,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.GenerationDynamics
                 {
                     this.ModelElement.SteamSupplyRating2 = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.SteamSupplyRating2Changed += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.SteamSupplyRating2Changed -= handler;
             }
         }
     }

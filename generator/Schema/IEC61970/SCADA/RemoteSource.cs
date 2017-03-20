@@ -40,7 +40,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.SCADA
     [XmlNamespacePrefixAttribute("cimSCADA")]
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61970/SCADA/RemoteSource")]
     [DebuggerDisplayAttribute("RemoteSource {UUID}")]
-    public class RemoteSource : RemotePoint, IRemoteSource, IModelElement
+    public partial class RemoteSource : RemotePoint, IRemoteSource, IModelElement
     {
         
         /// <summary>
@@ -48,20 +48,30 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.SCADA
         /// </summary>
         private float _deadband;
         
+        private static Lazy<ITypedElement> _deadbandAttribute = new Lazy<ITypedElement>(RetrieveDeadbandAttribute);
+        
         /// <summary>
         /// The backing field for the SensorMinimum property
         /// </summary>
         private float _sensorMinimum;
+        
+        private static Lazy<ITypedElement> _sensorMinimumAttribute = new Lazy<ITypedElement>(RetrieveSensorMinimumAttribute);
         
         /// <summary>
         /// The backing field for the ScanInterval property
         /// </summary>
         private float _scanInterval;
         
+        private static Lazy<ITypedElement> _scanIntervalAttribute = new Lazy<ITypedElement>(RetrieveScanIntervalAttribute);
+        
         /// <summary>
         /// The backing field for the SensorMaximum property
         /// </summary>
         private float _sensorMaximum;
+        
+        private static Lazy<ITypedElement> _sensorMaximumAttribute = new Lazy<ITypedElement>(RetrieveSensorMaximumAttribute);
+        
+        private static Lazy<ITypedElement> _measurementValueReference = new Lazy<ITypedElement>(RetrieveMeasurementValueReference);
         
         /// <summary>
         /// The backing field for the MeasurementValue property
@@ -88,10 +98,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.SCADA
                     float old = this._deadband;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnDeadbandChanging(e);
-                    this.OnPropertyChanging("Deadband", e);
+                    this.OnPropertyChanging("Deadband", e, _deadbandAttribute);
                     this._deadband = value;
                     this.OnDeadbandChanged(e);
-                    this.OnPropertyChanged("Deadband", e);
+                    this.OnPropertyChanged("Deadband", e, _deadbandAttribute);
                 }
             }
         }
@@ -114,10 +124,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.SCADA
                     float old = this._sensorMinimum;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnSensorMinimumChanging(e);
-                    this.OnPropertyChanging("SensorMinimum", e);
+                    this.OnPropertyChanging("SensorMinimum", e, _sensorMinimumAttribute);
                     this._sensorMinimum = value;
                     this.OnSensorMinimumChanged(e);
-                    this.OnPropertyChanged("SensorMinimum", e);
+                    this.OnPropertyChanged("SensorMinimum", e, _sensorMinimumAttribute);
                 }
             }
         }
@@ -140,10 +150,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.SCADA
                     float old = this._scanInterval;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnScanIntervalChanging(e);
-                    this.OnPropertyChanging("ScanInterval", e);
+                    this.OnPropertyChanging("ScanInterval", e, _scanIntervalAttribute);
                     this._scanInterval = value;
                     this.OnScanIntervalChanged(e);
-                    this.OnPropertyChanged("ScanInterval", e);
+                    this.OnPropertyChanged("ScanInterval", e, _scanIntervalAttribute);
                 }
             }
         }
@@ -166,10 +176,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.SCADA
                     float old = this._sensorMaximum;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnSensorMaximumChanging(e);
-                    this.OnPropertyChanging("SensorMaximum", e);
+                    this.OnPropertyChanging("SensorMaximum", e, _sensorMaximumAttribute);
                     this._sensorMaximum = value;
                     this.OnSensorMaximumChanged(e);
-                    this.OnPropertyChanged("SensorMaximum", e);
+                    this.OnPropertyChanged("SensorMaximum", e, _sensorMaximumAttribute);
                 }
             }
         }
@@ -192,7 +202,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.SCADA
                     IMeasurementValue old = this._measurementValue;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnMeasurementValueChanging(e);
-                    this.OnPropertyChanging("MeasurementValue", e);
+                    this.OnPropertyChanging("MeasurementValue", e, _measurementValueReference);
                     this._measurementValue = value;
                     if ((old != null))
                     {
@@ -205,7 +215,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.SCADA
                         value.Deleted += this.OnResetMeasurementValue;
                     }
                     this.OnMeasurementValueChanged(e);
-                    this.OnPropertyChanged("MeasurementValue", e);
+                    this.OnPropertyChanged("MeasurementValue", e, _measurementValueReference);
                 }
             }
         }
@@ -286,6 +296,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.SCADA
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> MeasurementValueChanged;
         
+        private static ITypedElement RetrieveDeadbandAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(RemoteSource.ClassInstance)).Resolve("deadband")));
+        }
+        
         /// <summary>
         /// Raises the DeadbandChanging event
         /// </summary>
@@ -310,6 +325,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.SCADA
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveSensorMinimumAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(RemoteSource.ClassInstance)).Resolve("sensorMinimum")));
         }
         
         /// <summary>
@@ -338,6 +358,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.SCADA
             }
         }
         
+        private static ITypedElement RetrieveScanIntervalAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(RemoteSource.ClassInstance)).Resolve("scanInterval")));
+        }
+        
         /// <summary>
         /// Raises the ScanIntervalChanging event
         /// </summary>
@@ -364,6 +389,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.SCADA
             }
         }
         
+        private static ITypedElement RetrieveSensorMaximumAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(RemoteSource.ClassInstance)).Resolve("sensorMaximum")));
+        }
+        
         /// <summary>
         /// Raises the SensorMaximumChanging event
         /// </summary>
@@ -388,6 +418,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.SCADA
             {
                 handler.Invoke(this, eventArgs);
             }
+        }
+        
+        private static ITypedElement RetrieveMeasurementValueReference()
+        {
+            return ((ITypedElement)(((ModelElement)(RemoteSource.ClassInstance)).Resolve("MeasurementValue")));
         }
         
         /// <summary>
@@ -659,7 +694,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.SCADA
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public DeadbandProxy(IRemoteSource modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "deadband")
             {
             }
             
@@ -677,24 +712,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.SCADA
                     this.ModelElement.Deadband = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.DeadbandChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.DeadbandChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -708,7 +725,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.SCADA
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public SensorMinimumProxy(IRemoteSource modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "sensorMinimum")
             {
             }
             
@@ -726,24 +743,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.SCADA
                     this.ModelElement.SensorMinimum = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.SensorMinimumChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.SensorMinimumChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -757,7 +756,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.SCADA
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public ScanIntervalProxy(IRemoteSource modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "scanInterval")
             {
             }
             
@@ -775,24 +774,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.SCADA
                     this.ModelElement.ScanInterval = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ScanIntervalChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.ScanIntervalChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -806,7 +787,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.SCADA
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public SensorMaximumProxy(IRemoteSource modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "sensorMaximum")
             {
             }
             
@@ -824,24 +805,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.SCADA
                     this.ModelElement.SensorMaximum = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.SensorMaximumChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.SensorMaximumChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -855,7 +818,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.SCADA
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public MeasurementValueProxy(IRemoteSource modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "MeasurementValue")
             {
             }
             
@@ -872,24 +835,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.SCADA
                 {
                     this.ModelElement.MeasurementValue = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.MeasurementValueChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.MeasurementValueChanged -= handler;
             }
         }
     }

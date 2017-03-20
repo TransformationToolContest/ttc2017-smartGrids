@@ -44,43 +44,59 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.Reservation
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61970/Informative/Reservation/Servi" +
         "cePoint")]
     [DebuggerDisplayAttribute("ServicePoint {UUID}")]
-    public class ServicePoint : IdentifiedObject, IServicePoint, IModelElement
+    public partial class ServicePoint : IdentifiedObject, IServicePoint, IModelElement
     {
+        
+        private static Lazy<ITypedElement> _customerConsumerReference = new Lazy<ITypedElement>(RetrieveCustomerConsumerReference);
         
         /// <summary>
         /// The backing field for the CustomerConsumer property
         /// </summary>
         private ICustomerConsumer _customerConsumer;
         
+        private static Lazy<ITypedElement> _transmissionProviderReference = new Lazy<ITypedElement>(RetrieveTransmissionProviderReference);
+        
         /// <summary>
         /// The backing field for the TransmissionProvider property
         /// </summary>
         private ITransmissionProvider _transmissionProvider;
+        
+        private static Lazy<ITypedElement> _hasAPOR_Reference = new Lazy<ITypedElement>(RetrieveHasAPOR_Reference);
         
         /// <summary>
         /// The backing field for the HasAPOR_ property
         /// </summary>
         private ServicePointHasAPOR_Collection _hasAPOR_;
         
+        private static Lazy<ITypedElement> _generationProviderReference = new Lazy<ITypedElement>(RetrieveGenerationProviderReference);
+        
         /// <summary>
         /// The backing field for the GenerationProvider property
         /// </summary>
         private IGenerationProvider _generationProvider;
+        
+        private static Lazy<ITypedElement> _declare_TiePointReference = new Lazy<ITypedElement>(RetrieveDeclare_TiePointReference);
         
         /// <summary>
         /// The backing field for the Declare_TiePoint property
         /// </summary>
         private ITiePoint _declare_TiePoint;
         
+        private static Lazy<ITypedElement> _hasAPOD_Reference = new Lazy<ITypedElement>(RetrieveHasAPOD_Reference);
+        
         /// <summary>
         /// The backing field for the HasAPOD_ property
         /// </summary>
         private ServicePointHasAPOD_Collection _hasAPOD_;
         
+        private static Lazy<ITypedElement> _energyProductsReference = new Lazy<ITypedElement>(RetrieveEnergyProductsReference);
+        
         /// <summary>
         /// The backing field for the EnergyProducts property
         /// </summary>
         private ServicePointEnergyProductsCollection _energyProducts;
+        
+        private static Lazy<ITypedElement> _memberOfReference = new Lazy<ITypedElement>(RetrieveMemberOfReference);
         
         /// <summary>
         /// The backing field for the MemberOf property
@@ -120,7 +136,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.Reservation
                     ICustomerConsumer old = this._customerConsumer;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnCustomerConsumerChanging(e);
-                    this.OnPropertyChanging("CustomerConsumer", e);
+                    this.OnPropertyChanging("CustomerConsumer", e, _customerConsumerReference);
                     this._customerConsumer = value;
                     if ((old != null))
                     {
@@ -133,7 +149,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.Reservation
                         value.Deleted += this.OnResetCustomerConsumer;
                     }
                     this.OnCustomerConsumerChanged(e);
-                    this.OnPropertyChanged("CustomerConsumer", e);
+                    this.OnPropertyChanged("CustomerConsumer", e, _customerConsumerReference);
                 }
             }
         }
@@ -156,7 +172,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.Reservation
                     ITransmissionProvider old = this._transmissionProvider;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnTransmissionProviderChanging(e);
-                    this.OnPropertyChanging("TransmissionProvider", e);
+                    this.OnPropertyChanging("TransmissionProvider", e, _transmissionProviderReference);
                     this._transmissionProvider = value;
                     if ((old != null))
                     {
@@ -169,7 +185,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.Reservation
                         value.Deleted += this.OnResetTransmissionProvider;
                     }
                     this.OnTransmissionProviderChanged(e);
-                    this.OnPropertyChanged("TransmissionProvider", e);
+                    this.OnPropertyChanged("TransmissionProvider", e, _transmissionProviderReference);
                 }
             }
         }
@@ -207,7 +223,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.Reservation
                     IGenerationProvider old = this._generationProvider;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnGenerationProviderChanging(e);
-                    this.OnPropertyChanging("GenerationProvider", e);
+                    this.OnPropertyChanging("GenerationProvider", e, _generationProviderReference);
                     this._generationProvider = value;
                     if ((old != null))
                     {
@@ -220,7 +236,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.Reservation
                         value.Deleted += this.OnResetGenerationProvider;
                     }
                     this.OnGenerationProviderChanged(e);
-                    this.OnPropertyChanged("GenerationProvider", e);
+                    this.OnPropertyChanged("GenerationProvider", e, _generationProviderReference);
                 }
             }
         }
@@ -243,7 +259,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.Reservation
                     ITiePoint old = this._declare_TiePoint;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnDeclare_TiePointChanging(e);
-                    this.OnPropertyChanging("Declare_TiePoint", e);
+                    this.OnPropertyChanging("Declare_TiePoint", e, _declare_TiePointReference);
                     this._declare_TiePoint = value;
                     if ((old != null))
                     {
@@ -256,7 +272,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.Reservation
                         value.Deleted += this.OnResetDeclare_TiePoint;
                     }
                     this.OnDeclare_TiePointChanged(e);
-                    this.OnPropertyChanged("Declare_TiePoint", e);
+                    this.OnPropertyChanged("Declare_TiePoint", e, _declare_TiePointReference);
                 }
             }
         }
@@ -309,7 +325,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.Reservation
                     ISubControlArea old = this._memberOf;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnMemberOfChanging(e);
-                    this.OnPropertyChanging("MemberOf", e);
+                    this.OnPropertyChanging("MemberOf", e, _memberOfReference);
                     this._memberOf = value;
                     if ((old != null))
                     {
@@ -322,7 +338,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.Reservation
                         value.Deleted += this.OnResetMemberOf;
                     }
                     this.OnMemberOfChanged(e);
-                    this.OnPropertyChanged("MemberOf", e);
+                    this.OnPropertyChanged("MemberOf", e, _memberOfReference);
                 }
             }
         }
@@ -404,6 +420,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.Reservation
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> MemberOfChanged;
         
+        private static ITypedElement RetrieveCustomerConsumerReference()
+        {
+            return ((ITypedElement)(((ModelElement)(ServicePoint.ClassInstance)).Resolve("CustomerConsumer")));
+        }
+        
         /// <summary>
         /// Raises the CustomerConsumerChanging event
         /// </summary>
@@ -438,6 +459,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.Reservation
         private void OnResetCustomerConsumer(object sender, System.EventArgs eventArgs)
         {
             this.CustomerConsumer = null;
+        }
+        
+        private static ITypedElement RetrieveTransmissionProviderReference()
+        {
+            return ((ITypedElement)(((ModelElement)(ServicePoint.ClassInstance)).Resolve("TransmissionProvider")));
         }
         
         /// <summary>
@@ -476,6 +502,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.Reservation
             this.TransmissionProvider = null;
         }
         
+        private static ITypedElement RetrieveHasAPOR_Reference()
+        {
+            return ((ITypedElement)(((ModelElement)(ServicePoint.ClassInstance)).Resolve("HasAPOR_")));
+        }
+        
         /// <summary>
         /// Forwards CollectionChanging notifications for the HasAPOR_ property to the parent model element
         /// </summary>
@@ -483,7 +514,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.Reservation
         /// <param name="e">The original event data</param>
         private void HasAPOR_CollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("HasAPOR_", e);
+            this.OnCollectionChanging("HasAPOR_", e, _hasAPOR_Reference);
         }
         
         /// <summary>
@@ -493,7 +524,12 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.Reservation
         /// <param name="e">The original event data</param>
         private void HasAPOR_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("HasAPOR_", e);
+            this.OnCollectionChanged("HasAPOR_", e, _hasAPOR_Reference);
+        }
+        
+        private static ITypedElement RetrieveGenerationProviderReference()
+        {
+            return ((ITypedElement)(((ModelElement)(ServicePoint.ClassInstance)).Resolve("GenerationProvider")));
         }
         
         /// <summary>
@@ -532,6 +568,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.Reservation
             this.GenerationProvider = null;
         }
         
+        private static ITypedElement RetrieveDeclare_TiePointReference()
+        {
+            return ((ITypedElement)(((ModelElement)(ServicePoint.ClassInstance)).Resolve("Declare_TiePoint")));
+        }
+        
         /// <summary>
         /// Raises the Declare_TiePointChanging event
         /// </summary>
@@ -568,6 +609,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.Reservation
             this.Declare_TiePoint = null;
         }
         
+        private static ITypedElement RetrieveHasAPOD_Reference()
+        {
+            return ((ITypedElement)(((ModelElement)(ServicePoint.ClassInstance)).Resolve("HasAPOD_")));
+        }
+        
         /// <summary>
         /// Forwards CollectionChanging notifications for the HasAPOD_ property to the parent model element
         /// </summary>
@@ -575,7 +621,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.Reservation
         /// <param name="e">The original event data</param>
         private void HasAPOD_CollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("HasAPOD_", e);
+            this.OnCollectionChanging("HasAPOD_", e, _hasAPOD_Reference);
         }
         
         /// <summary>
@@ -585,7 +631,12 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.Reservation
         /// <param name="e">The original event data</param>
         private void HasAPOD_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("HasAPOD_", e);
+            this.OnCollectionChanged("HasAPOD_", e, _hasAPOD_Reference);
+        }
+        
+        private static ITypedElement RetrieveEnergyProductsReference()
+        {
+            return ((ITypedElement)(((ModelElement)(ServicePoint.ClassInstance)).Resolve("EnergyProducts")));
         }
         
         /// <summary>
@@ -595,7 +646,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.Reservation
         /// <param name="e">The original event data</param>
         private void EnergyProductsCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("EnergyProducts", e);
+            this.OnCollectionChanging("EnergyProducts", e, _energyProductsReference);
         }
         
         /// <summary>
@@ -605,7 +656,12 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.Reservation
         /// <param name="e">The original event data</param>
         private void EnergyProductsCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("EnergyProducts", e);
+            this.OnCollectionChanged("EnergyProducts", e, _energyProductsReference);
+        }
+        
+        private static ITypedElement RetrieveMemberOfReference()
+        {
+            return ((ITypedElement)(((ModelElement)(ServicePoint.ClassInstance)).Resolve("MemberOf")));
         }
         
         /// <summary>
@@ -1126,7 +1182,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.Reservation
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public CustomerConsumerProxy(IServicePoint modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "CustomerConsumer")
             {
             }
             
@@ -1144,24 +1200,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.Reservation
                     this.ModelElement.CustomerConsumer = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.CustomerConsumerChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.CustomerConsumerChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1175,7 +1213,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.Reservation
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public TransmissionProviderProxy(IServicePoint modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "TransmissionProvider")
             {
             }
             
@@ -1193,24 +1231,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.Reservation
                     this.ModelElement.TransmissionProvider = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.TransmissionProviderChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.TransmissionProviderChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1224,7 +1244,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.Reservation
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public GenerationProviderProxy(IServicePoint modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "GenerationProvider")
             {
             }
             
@@ -1242,24 +1262,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.Reservation
                     this.ModelElement.GenerationProvider = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.GenerationProviderChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.GenerationProviderChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1273,7 +1275,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.Reservation
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public Declare_TiePointProxy(IServicePoint modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "Declare_TiePoint")
             {
             }
             
@@ -1291,24 +1293,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.Reservation
                     this.ModelElement.Declare_TiePoint = value;
                 }
             }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.Declare_TiePointChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.Declare_TiePointChanged -= handler;
-            }
         }
         
         /// <summary>
@@ -1322,7 +1306,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.Reservation
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public MemberOfProxy(IServicePoint modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "MemberOf")
             {
             }
             
@@ -1339,24 +1323,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.Reservation
                 {
                     this.ModelElement.MemberOf = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.MemberOfChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.MemberOfChanged -= handler;
             }
         }
     }

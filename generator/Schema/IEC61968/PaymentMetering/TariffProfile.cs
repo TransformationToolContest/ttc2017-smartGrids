@@ -47,7 +47,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.PaymentMetering
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61968/PaymentMetering/TariffProfile" +
         "")]
     [DebuggerDisplayAttribute("TariffProfile {UUID}")]
-    public class TariffProfile : Document, ITariffProfile, IModelElement
+    public partial class TariffProfile : Document, ITariffProfile, IModelElement
     {
         
         /// <summary>
@@ -55,15 +55,23 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.PaymentMetering
         /// </summary>
         private string _tariffCycle;
         
+        private static Lazy<ITypedElement> _tariffCycleAttribute = new Lazy<ITypedElement>(RetrieveTariffCycleAttribute);
+        
+        private static Lazy<ITypedElement> _timeTariffIntervalsReference = new Lazy<ITypedElement>(RetrieveTimeTariffIntervalsReference);
+        
         /// <summary>
         /// The backing field for the TimeTariffIntervals property
         /// </summary>
         private TariffProfileTimeTariffIntervalsCollection _timeTariffIntervals;
         
+        private static Lazy<ITypedElement> _tariffsReference = new Lazy<ITypedElement>(RetrieveTariffsReference);
+        
         /// <summary>
         /// The backing field for the Tariffs property
         /// </summary>
         private TariffProfileTariffsCollection _tariffs;
+        
+        private static Lazy<ITypedElement> _consumptionTariffIntervalsReference = new Lazy<ITypedElement>(RetrieveConsumptionTariffIntervalsReference);
         
         /// <summary>
         /// The backing field for the ConsumptionTariffIntervals property
@@ -103,10 +111,10 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.PaymentMetering
                     string old = this._tariffCycle;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
                     this.OnTariffCycleChanging(e);
-                    this.OnPropertyChanging("TariffCycle", e);
+                    this.OnPropertyChanging("TariffCycle", e, _tariffCycleAttribute);
                     this._tariffCycle = value;
                     this.OnTariffCycleChanged(e);
-                    this.OnPropertyChanged("TariffCycle", e);
+                    this.OnPropertyChanged("TariffCycle", e, _tariffCycleAttribute);
                 }
             }
         }
@@ -193,6 +201,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.PaymentMetering
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> TariffCycleChanged;
         
+        private static ITypedElement RetrieveTariffCycleAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(TariffProfile.ClassInstance)).Resolve("tariffCycle")));
+        }
+        
         /// <summary>
         /// Raises the TariffCycleChanging event
         /// </summary>
@@ -219,6 +232,11 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.PaymentMetering
             }
         }
         
+        private static ITypedElement RetrieveTimeTariffIntervalsReference()
+        {
+            return ((ITypedElement)(((ModelElement)(TariffProfile.ClassInstance)).Resolve("TimeTariffIntervals")));
+        }
+        
         /// <summary>
         /// Forwards CollectionChanging notifications for the TimeTariffIntervals property to the parent model element
         /// </summary>
@@ -226,7 +244,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.PaymentMetering
         /// <param name="e">The original event data</param>
         private void TimeTariffIntervalsCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("TimeTariffIntervals", e);
+            this.OnCollectionChanging("TimeTariffIntervals", e, _timeTariffIntervalsReference);
         }
         
         /// <summary>
@@ -236,7 +254,12 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.PaymentMetering
         /// <param name="e">The original event data</param>
         private void TimeTariffIntervalsCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("TimeTariffIntervals", e);
+            this.OnCollectionChanged("TimeTariffIntervals", e, _timeTariffIntervalsReference);
+        }
+        
+        private static ITypedElement RetrieveTariffsReference()
+        {
+            return ((ITypedElement)(((ModelElement)(TariffProfile.ClassInstance)).Resolve("Tariffs")));
         }
         
         /// <summary>
@@ -246,7 +269,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.PaymentMetering
         /// <param name="e">The original event data</param>
         private void TariffsCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("Tariffs", e);
+            this.OnCollectionChanging("Tariffs", e, _tariffsReference);
         }
         
         /// <summary>
@@ -256,7 +279,12 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.PaymentMetering
         /// <param name="e">The original event data</param>
         private void TariffsCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("Tariffs", e);
+            this.OnCollectionChanged("Tariffs", e, _tariffsReference);
+        }
+        
+        private static ITypedElement RetrieveConsumptionTariffIntervalsReference()
+        {
+            return ((ITypedElement)(((ModelElement)(TariffProfile.ClassInstance)).Resolve("ConsumptionTariffIntervals")));
         }
         
         /// <summary>
@@ -266,7 +294,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.PaymentMetering
         /// <param name="e">The original event data</param>
         private void ConsumptionTariffIntervalsCollectionChanging(object sender, NMF.Collections.ObjectModel.NotifyCollectionChangingEventArgs e)
         {
-            this.OnCollectionChanging("ConsumptionTariffIntervals", e);
+            this.OnCollectionChanging("ConsumptionTariffIntervals", e, _consumptionTariffIntervalsReference);
         }
         
         /// <summary>
@@ -276,7 +304,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.PaymentMetering
         /// <param name="e">The original event data</param>
         private void ConsumptionTariffIntervalsCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnCollectionChanged("ConsumptionTariffIntervals", e);
+            this.OnCollectionChanged("ConsumptionTariffIntervals", e, _consumptionTariffIntervalsReference);
         }
         
         /// <summary>
@@ -547,7 +575,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.PaymentMetering
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
             public TariffCycleProxy(ITariffProfile modelElement) : 
-                    base(modelElement)
+                    base(modelElement, "tariffCycle")
             {
             }
             
@@ -564,24 +592,6 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.PaymentMetering
                 {
                     this.ModelElement.TariffCycle = value;
                 }
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be subscribed to the property change event</param>
-            protected override void RegisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.TariffCycleChanged += handler;
-            }
-            
-            /// <summary>
-            /// Registers an event handler to subscribe specifically on the changed event for this property
-            /// </summary>
-            /// <param name="handler">The handler that should be unsubscribed from the property change event</param>
-            protected override void UnregisterChangeEventHandler(System.EventHandler<NMF.Expressions.ValueChangedEventArgs> handler)
-            {
-                this.ModelElement.TariffCycleChanged -= handler;
             }
         }
     }
