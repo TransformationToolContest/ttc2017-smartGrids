@@ -29,6 +29,7 @@ namespace TTC2017.SmartGrids.SubstationStandard.Enumerations
 {
     
     
+    [TypeConverterAttribute(typeof(CMVAngleReferenceKindConverter))]
     [ModelRepresentationClassAttribute("http://www.transformation-tool-contest.eu/2017/smartGrids/substationStandard#//En" +
         "umerations/CMVAngleReferenceKind")]
     public enum CMVAngleReferenceKind

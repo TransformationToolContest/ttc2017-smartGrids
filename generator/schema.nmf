@@ -5799,7 +5799,7 @@
   <Types xsi:type="nmeta:Class" IsAbstract="True" IdentifierScope="Global" Identifier="#//Element/UUID" Name="Element">
     <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//String" Name="UUID" />
   </Types>
-  <Types xsi:type="nmeta:Class" Name="CIM">
+  <Types xsi:type="nmeta:Class" Name="CIMRoot">
     <References IsContainment="True" ReferenceType="#//Element" IsOrdered="True" IsUnique="True" UpperBound="-1" Name="IDobject" />
   </Types>
   <Types xsi:type="nmeta:Class" BaseTypes="#//Element" Name="Stereotype" />

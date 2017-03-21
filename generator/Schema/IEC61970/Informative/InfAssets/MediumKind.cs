@@ -45,6 +45,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssets
 {
     
     
+    [TypeConverterAttribute(typeof(MediumKindConverter))]
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61970/Informative/InfAssets/MediumK" +
         "ind")]
     public enum MediumKind

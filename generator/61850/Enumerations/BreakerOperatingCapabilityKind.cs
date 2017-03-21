@@ -29,6 +29,7 @@ namespace TTC2017.SmartGrids.SubstationStandard.Enumerations
 {
     
     
+    [TypeConverterAttribute(typeof(BreakerOperatingCapabilityKindConverter))]
     [ModelRepresentationClassAttribute("http://www.transformation-tool-contest.eu/2017/smartGrids/substationStandard#//En" +
         "umerations/BreakerOperatingCapabilityKind")]
     public enum BreakerOperatingCapabilityKind

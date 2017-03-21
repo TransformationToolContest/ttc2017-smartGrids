@@ -26,7 +26,6 @@ using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Diagnostics;
 using System.Linq;
-using TTC2017.SmartGrids.COSEM.COSEMObjects;
 using TTC2017.SmartGrids.COSEM.InterfaceClasses;
 
 namespace TTC2017.SmartGrids.COSEM.COSEMObjects
@@ -34,11 +33,11 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
     
     
     /// <summary>
-    /// The public interface for Disconnectcontrolobject
+    /// The public interface for DisconnectControlObject
     /// </summary>
     [DefaultImplementationTypeAttribute(typeof(DisconnectControlObject))]
     [XmlDefaultImplementationTypeAttribute(typeof(DisconnectControlObject))]
-    public interface IDisconnectcontrolobject : IModelElement, TTC2017.SmartGrids.COSEM.InterfaceClasses.IDisconnectControl
+    public interface IDisconnectControlObject : IModelElement, TTC2017.SmartGrids.COSEM.InterfaceClasses.IDisconnectControl
     {
     }
 }

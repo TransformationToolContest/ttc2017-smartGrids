@@ -50,15 +50,6 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
         }
         
         /// <summary>
-        /// The _ctlNum property
-        /// </summary>
-        Nullable<int> _CtlNum
-        {
-            get;
-            set;
-        }
-        
-        /// <summary>
         /// The stSeld property
         /// </summary>
         Nullable<bool> StSeld
@@ -131,15 +122,6 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
         }
         
         /// <summary>
-        /// The _origin property
-        /// </summary>
-        IOriginator _Origin
-        {
-            get;
-            set;
-        }
-        
-        /// <summary>
         /// The subQ property
         /// </summary>
         IQuality SubQ
@@ -175,16 +157,6 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
         /// Gets fired when the CtlNum property changed its value
         /// </summary>
         event System.EventHandler<ValueChangedEventArgs> CtlNumChanged;
-        
-        /// <summary>
-        /// Gets fired before the _CtlNum property changes its value
-        /// </summary>
-        event System.EventHandler<ValueChangedEventArgs> _CtlNumChanging;
-        
-        /// <summary>
-        /// Gets fired when the _CtlNum property changed its value
-        /// </summary>
-        event System.EventHandler<ValueChangedEventArgs> _CtlNumChanged;
         
         /// <summary>
         /// Gets fired before the StSeld property changes its value
@@ -265,16 +237,6 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
         /// Gets fired when the Origin property changed its value
         /// </summary>
         event System.EventHandler<ValueChangedEventArgs> OriginChanged;
-        
-        /// <summary>
-        /// Gets fired before the _Origin property changes its value
-        /// </summary>
-        event System.EventHandler<ValueChangedEventArgs> _OriginChanging;
-        
-        /// <summary>
-        /// Gets fired when the _Origin property changed its value
-        /// </summary>
-        event System.EventHandler<ValueChangedEventArgs> _OriginChanged;
         
         /// <summary>
         /// Gets fired before the SubQ property changes its value

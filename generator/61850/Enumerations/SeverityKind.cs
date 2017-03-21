@@ -29,6 +29,7 @@ namespace TTC2017.SmartGrids.SubstationStandard.Enumerations
 {
     
     
+    [TypeConverterAttribute(typeof(SeverityKindConverter))]
     [ModelRepresentationClassAttribute("http://www.transformation-tool-contest.eu/2017/smartGrids/substationStandard#//En" +
         "umerations/SeverityKind")]
     public enum SeverityKind

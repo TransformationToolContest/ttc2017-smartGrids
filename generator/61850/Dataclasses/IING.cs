@@ -50,24 +50,6 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
         }
         
         /// <summary>
-        /// The _setVal property
-        /// </summary>
-        Nullable<int> _SetVal
-        {
-            get;
-            set;
-        }
-        
-        /// <summary>
-        /// The __setVal property
-        /// </summary>
-        Nullable<int> @__SetVal
-        {
-            get;
-            set;
-        }
-        
-        /// <summary>
         /// The minVal property
         /// </summary>
         Nullable<int> MinVal
@@ -103,26 +85,6 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
         /// Gets fired when the SetVal property changed its value
         /// </summary>
         event System.EventHandler<ValueChangedEventArgs> SetValChanged;
-        
-        /// <summary>
-        /// Gets fired before the _SetVal property changes its value
-        /// </summary>
-        event System.EventHandler<ValueChangedEventArgs> _SetValChanging;
-        
-        /// <summary>
-        /// Gets fired when the _SetVal property changed its value
-        /// </summary>
-        event System.EventHandler<ValueChangedEventArgs> _SetValChanged;
-        
-        /// <summary>
-        /// Gets fired before the __SetVal property changes its value
-        /// </summary>
-        event System.EventHandler<ValueChangedEventArgs> @__SetValChanging;
-        
-        /// <summary>
-        /// Gets fired when the __SetVal property changed its value
-        /// </summary>
-        event System.EventHandler<ValueChangedEventArgs> @__SetValChanged;
         
         /// <summary>
         /// Gets fired before the MinVal property changes its value

@@ -33,11 +33,11 @@ namespace TTC2017.SmartGrids.COSEM
     
     
     /// <summary>
-    /// The public interface for COSEM
+    /// The public interface for COSEMRoot
     /// </summary>
-    [DefaultImplementationTypeAttribute(typeof(COSEM))]
-    [XmlDefaultImplementationTypeAttribute(typeof(COSEM))]
-    public interface ICOSEM : IModelElement
+    [DefaultImplementationTypeAttribute(typeof(COSEMRoot))]
+    [XmlDefaultImplementationTypeAttribute(typeof(COSEMRoot))]
+    public interface ICOSEMRoot : IModelElement
     {
         
         /// <summary>

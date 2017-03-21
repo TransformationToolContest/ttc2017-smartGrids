@@ -50,13 +50,6 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
         private static Lazy<ITypedElement> _ctlNumAttribute = new Lazy<ITypedElement>(RetrieveCtlNumAttribute);
         
         /// <summary>
-        /// The backing field for the _CtlNum property
-        /// </summary>
-        private Nullable<int> @__ctlNum;
-        
-        private static Lazy<ITypedElement> @__ctlNumAttribute = new Lazy<ITypedElement>(Retrieve_CtlNumAttribute);
-        
-        /// <summary>
         /// The backing field for the StSeld property
         /// </summary>
         private Nullable<bool> _stSeld;
@@ -112,13 +105,6 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
         /// </summary>
         private IOriginator _origin;
         
-        private static Lazy<ITypedElement> @__originReference = new Lazy<ITypedElement>(Retrieve_OriginReference);
-        
-        /// <summary>
-        /// The backing field for the _Origin property
-        /// </summary>
-        private IOriginator @__origin;
-        
         private static Lazy<ITypedElement> _subQReference = new Lazy<ITypedElement>(RetrieveSubQReference);
         
         /// <summary>
@@ -164,32 +150,6 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
                     this._ctlNum = value;
                     this.OnCtlNumChanged(e);
                     this.OnPropertyChanged("CtlNum", e, _ctlNumAttribute);
-                }
-            }
-        }
-        
-        /// <summary>
-        /// The _ctlNum property
-        /// </summary>
-        [XmlElementNameAttribute("_ctlNum")]
-        [XmlAttributeAttribute(true)]
-        public virtual Nullable<int> _CtlNum
-        {
-            get
-            {
-                return this.@__ctlNum;
-            }
-            set
-            {
-                if ((this.@__ctlNum != value))
-                {
-                    Nullable<int> old = this.@__ctlNum;
-                    ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
-                    this.On_CtlNumChanging(e);
-                    this.OnPropertyChanging("_CtlNum", e, @__ctlNumAttribute);
-                    this.@__ctlNum = value;
-                    this.On_CtlNumChanged(e);
-                    this.OnPropertyChanged("_CtlNum", e, @__ctlNumAttribute);
                 }
             }
         }
@@ -419,40 +379,6 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
         }
         
         /// <summary>
-        /// The _origin property
-        /// </summary>
-        [XmlElementNameAttribute("_origin")]
-        [XmlAttributeAttribute(true)]
-        public virtual IOriginator _Origin
-        {
-            get
-            {
-                return this.@__origin;
-            }
-            set
-            {
-                if ((this.@__origin != value))
-                {
-                    IOriginator old = this.@__origin;
-                    ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
-                    this.On_OriginChanging(e);
-                    this.OnPropertyChanging("_Origin", e, @__originReference);
-                    this.@__origin = value;
-                    if ((old != null))
-                    {
-                        old.Deleted -= this.OnReset_Origin;
-                    }
-                    if ((value != null))
-                    {
-                        value.Deleted += this.OnReset_Origin;
-                    }
-                    this.On_OriginChanged(e);
-                    this.OnPropertyChanged("_Origin", e, @__originReference);
-                }
-            }
-        }
-        
-        /// <summary>
         /// The subQ property
         /// </summary>
         [XmlElementNameAttribute("subQ")]
@@ -592,16 +518,6 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
         public event System.EventHandler<ValueChangedEventArgs> CtlNumChanged;
         
         /// <summary>
-        /// Gets fired before the _CtlNum property changes its value
-        /// </summary>
-        public event System.EventHandler<ValueChangedEventArgs> _CtlNumChanging;
-        
-        /// <summary>
-        /// Gets fired when the _CtlNum property changed its value
-        /// </summary>
-        public event System.EventHandler<ValueChangedEventArgs> _CtlNumChanged;
-        
-        /// <summary>
         /// Gets fired before the StSeld property changes its value
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> StSeldChanging;
@@ -682,16 +598,6 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
         public event System.EventHandler<ValueChangedEventArgs> OriginChanged;
         
         /// <summary>
-        /// Gets fired before the _Origin property changes its value
-        /// </summary>
-        public event System.EventHandler<ValueChangedEventArgs> _OriginChanging;
-        
-        /// <summary>
-        /// Gets fired when the _Origin property changed its value
-        /// </summary>
-        public event System.EventHandler<ValueChangedEventArgs> _OriginChanged;
-        
-        /// <summary>
         /// Gets fired before the SubQ property changes its value
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> SubQChanging;
@@ -746,37 +652,6 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
         protected virtual void OnCtlNumChanged(ValueChangedEventArgs eventArgs)
         {
             System.EventHandler<ValueChangedEventArgs> handler = this.CtlNumChanged;
-            if ((handler != null))
-            {
-                handler.Invoke(this, eventArgs);
-            }
-        }
-        
-        private static ITypedElement Retrieve_CtlNumAttribute()
-        {
-            return ((ITypedElement)(((ModelElement)(ControllableStatusInfo.ClassInstance)).Resolve("_ctlNum")));
-        }
-        
-        /// <summary>
-        /// Raises the _CtlNumChanging event
-        /// </summary>
-        /// <param name="eventArgs">The event data</param>
-        protected virtual void On_CtlNumChanging(ValueChangedEventArgs eventArgs)
-        {
-            System.EventHandler<ValueChangedEventArgs> handler = this._CtlNumChanging;
-            if ((handler != null))
-            {
-                handler.Invoke(this, eventArgs);
-            }
-        }
-        
-        /// <summary>
-        /// Raises the _CtlNumChanged event
-        /// </summary>
-        /// <param name="eventArgs">The event data</param>
-        protected virtual void On_CtlNumChanged(ValueChangedEventArgs eventArgs)
-        {
-            System.EventHandler<ValueChangedEventArgs> handler = this._CtlNumChanged;
             if ((handler != null))
             {
                 handler.Invoke(this, eventArgs);
@@ -1051,47 +926,6 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
             this.Origin = null;
         }
         
-        private static ITypedElement Retrieve_OriginReference()
-        {
-            return ((ITypedElement)(((ModelElement)(ControllableStatusInfo.ClassInstance)).Resolve("_origin")));
-        }
-        
-        /// <summary>
-        /// Raises the _OriginChanging event
-        /// </summary>
-        /// <param name="eventArgs">The event data</param>
-        protected virtual void On_OriginChanging(ValueChangedEventArgs eventArgs)
-        {
-            System.EventHandler<ValueChangedEventArgs> handler = this._OriginChanging;
-            if ((handler != null))
-            {
-                handler.Invoke(this, eventArgs);
-            }
-        }
-        
-        /// <summary>
-        /// Raises the _OriginChanged event
-        /// </summary>
-        /// <param name="eventArgs">The event data</param>
-        protected virtual void On_OriginChanged(ValueChangedEventArgs eventArgs)
-        {
-            System.EventHandler<ValueChangedEventArgs> handler = this._OriginChanged;
-            if ((handler != null))
-            {
-                handler.Invoke(this, eventArgs);
-            }
-        }
-        
-        /// <summary>
-        /// Handles the event that the _Origin property must reset
-        /// </summary>
-        /// <param name="sender">The object that sent this reset request</param>
-        /// <param name="eventArgs">The event data for the reset event</param>
-        private void OnReset_Origin(object sender, System.EventArgs eventArgs)
-        {
-            this._Origin = null;
-        }
-        
         private static ITypedElement RetrieveSubQReference()
         {
             return ((ITypedElement)(((ModelElement)(ControllableStatusInfo.ClassInstance)).Resolve("subQ")));
@@ -1227,10 +1061,6 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
             {
                 return this.CtlNum;
             }
-            if ((attribute == "_CTLNUM"))
-            {
-                return this._CtlNum;
-            }
             if ((attribute == "STSELD"))
             {
                 return this.StSeld;
@@ -1275,11 +1105,6 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
                 this.Origin = ((IOriginator)(value));
                 return;
             }
-            if ((feature == "_ORIGIN"))
-            {
-                this._Origin = ((IOriginator)(value));
-                return;
-            }
             if ((feature == "SUBQ"))
             {
                 this.SubQ = ((IQuality)(value));
@@ -1298,11 +1123,6 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
             if ((feature == "CTLNUM"))
             {
                 this.CtlNum = ((int)(value));
-                return;
-            }
-            if ((feature == "_CTLNUM"))
-            {
-                this._CtlNum = ((int)(value));
                 return;
             }
             if ((feature == "STSELD"))
@@ -1353,10 +1173,6 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
             {
                 return new OriginProxy(this);
             }
-            if ((attribute == "_Origin"))
-            {
-                return new _OriginProxy(this);
-            }
             if ((attribute == "SubQ"))
             {
                 return new SubQProxy(this);
@@ -1386,10 +1202,6 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
             if ((reference == "Origin"))
             {
                 return new OriginProxy(this);
-            }
-            if ((reference == "_Origin"))
-            {
-                return new _OriginProxy(this);
             }
             if ((reference == "SubQ"))
             {
@@ -1451,10 +1263,6 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
                     {
                         count = (count + 1);
                     }
-                    if ((this._parent._Origin != null))
-                    {
-                        count = (count + 1);
-                    }
                     if ((this._parent.SubQ != null))
                     {
                         count = (count + 1);
@@ -1475,7 +1283,6 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
             {
                 this._parent.OperTmChanged += this.PropagateValueChanges;
                 this._parent.OriginChanged += this.PropagateValueChanges;
-                this._parent._OriginChanged += this.PropagateValueChanges;
                 this._parent.SubQChanged += this.PropagateValueChanges;
                 this._parent.CtlModelChanged += this.PropagateValueChanges;
                 this._parent.SboClassChanged += this.PropagateValueChanges;
@@ -1485,7 +1292,6 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
             {
                 this._parent.OperTmChanged -= this.PropagateValueChanges;
                 this._parent.OriginChanged -= this.PropagateValueChanges;
-                this._parent._OriginChanged -= this.PropagateValueChanges;
                 this._parent.SubQChanged -= this.PropagateValueChanges;
                 this._parent.CtlModelChanged -= this.PropagateValueChanges;
                 this._parent.SboClassChanged -= this.PropagateValueChanges;
@@ -1512,15 +1318,6 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
                     if ((originCasted != null))
                     {
                         this._parent.Origin = originCasted;
-                        return;
-                    }
-                }
-                if ((this._parent._Origin == null))
-                {
-                    IOriginator _originCasted = item.As<IOriginator>();
-                    if ((_originCasted != null))
-                    {
-                        this._parent._Origin = _originCasted;
                         return;
                     }
                 }
@@ -1560,7 +1357,6 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
             {
                 this._parent.OperTm = null;
                 this._parent.Origin = null;
-                this._parent._Origin = null;
                 this._parent.SubQ = null;
                 this._parent.CtlModel = null;
                 this._parent.SboClass = null;
@@ -1578,10 +1374,6 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
                     return true;
                 }
                 if ((item == this._parent.Origin))
-                {
-                    return true;
-                }
-                if ((item == this._parent._Origin))
                 {
                     return true;
                 }
@@ -1615,11 +1407,6 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
                 if ((this._parent.Origin != null))
                 {
                     array[arrayIndex] = this._parent.Origin;
-                    arrayIndex = (arrayIndex + 1);
-                }
-                if ((this._parent._Origin != null))
-                {
-                    array[arrayIndex] = this._parent._Origin;
                     arrayIndex = (arrayIndex + 1);
                 }
                 if ((this._parent.SubQ != null))
@@ -1656,11 +1443,6 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
                     this._parent.Origin = null;
                     return true;
                 }
-                if ((this._parent._Origin == item))
-                {
-                    this._parent._Origin = null;
-                    return true;
-                }
                 if ((this._parent.SubQ == item))
                 {
                     this._parent.SubQ = null;
@@ -1685,7 +1467,7 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
             /// <returns>A generic enumerator</returns>
             public override IEnumerator<IModelElement> GetEnumerator()
             {
-                return Enumerable.Empty<IModelElement>().Concat(this._parent.OperTm).Concat(this._parent.Origin).Concat(this._parent._Origin).Concat(this._parent.SubQ).Concat(this._parent.CtlModel).Concat(this._parent.SboClass).GetEnumerator();
+                return Enumerable.Empty<IModelElement>().Concat(this._parent.OperTm).Concat(this._parent.Origin).Concat(this._parent.SubQ).Concat(this._parent.CtlModel).Concat(this._parent.SboClass).GetEnumerator();
             }
         }
         
@@ -1716,37 +1498,6 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
                 set
                 {
                     this.ModelElement.CtlNum = value;
-                }
-            }
-        }
-        
-        /// <summary>
-        /// Represents a proxy to represent an incremental access to the _ctlNum property
-        /// </summary>
-        private sealed class _CtlNumProxy : ModelPropertyChange<IControllableStatusInfo, Nullable<int>>
-        {
-            
-            /// <summary>
-            /// Creates a new observable property access proxy
-            /// </summary>
-            /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
-            public _CtlNumProxy(IControllableStatusInfo modelElement) : 
-                    base(modelElement, "_ctlNum")
-            {
-            }
-            
-            /// <summary>
-            /// Gets or sets the value of this expression
-            /// </summary>
-            public override Nullable<int> Value
-            {
-                get
-                {
-                    return this.ModelElement._CtlNum;
-                }
-                set
-                {
-                    this.ModelElement._CtlNum = value;
                 }
             }
         }
@@ -1995,37 +1746,6 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
                 set
                 {
                     this.ModelElement.Origin = value;
-                }
-            }
-        }
-        
-        /// <summary>
-        /// Represents a proxy to represent an incremental access to the _origin property
-        /// </summary>
-        private sealed class _OriginProxy : ModelPropertyChange<IControllableStatusInfo, IOriginator>
-        {
-            
-            /// <summary>
-            /// Creates a new observable property access proxy
-            /// </summary>
-            /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
-            public _OriginProxy(IControllableStatusInfo modelElement) : 
-                    base(modelElement, "_origin")
-            {
-            }
-            
-            /// <summary>
-            /// Gets or sets the value of this expression
-            /// </summary>
-            public override IOriginator Value
-            {
-                get
-                {
-                    return this.ModelElement._Origin;
-                }
-                set
-                {
-                    this.ModelElement._Origin = value;
                 }
             }
         }

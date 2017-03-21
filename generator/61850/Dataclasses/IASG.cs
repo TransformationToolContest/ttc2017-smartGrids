@@ -50,24 +50,6 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
         }
         
         /// <summary>
-        /// The _setMag property
-        /// </summary>
-        IAnalogueValue _SetMag
-        {
-            get;
-            set;
-        }
-        
-        /// <summary>
-        /// The __setMag property
-        /// </summary>
-        IAnalogueValue @__SetMag
-        {
-            get;
-            set;
-        }
-        
-        /// <summary>
         /// The units property
         /// </summary>
         IUnits Units
@@ -121,26 +103,6 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
         /// Gets fired when the SetMag property changed its value
         /// </summary>
         event System.EventHandler<ValueChangedEventArgs> SetMagChanged;
-        
-        /// <summary>
-        /// Gets fired before the _SetMag property changes its value
-        /// </summary>
-        event System.EventHandler<ValueChangedEventArgs> _SetMagChanging;
-        
-        /// <summary>
-        /// Gets fired when the _SetMag property changed its value
-        /// </summary>
-        event System.EventHandler<ValueChangedEventArgs> _SetMagChanged;
-        
-        /// <summary>
-        /// Gets fired before the __SetMag property changes its value
-        /// </summary>
-        event System.EventHandler<ValueChangedEventArgs> @__SetMagChanging;
-        
-        /// <summary>
-        /// Gets fired when the __SetMag property changed its value
-        /// </summary>
-        event System.EventHandler<ValueChangedEventArgs> @__SetMagChanged;
         
         /// <summary>
         /// Gets fired before the Units property changes its value

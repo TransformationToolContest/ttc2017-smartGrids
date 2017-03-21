@@ -387,8 +387,6 @@
     </Types>
     <Types xsi:type="nmeta:Class" BaseTypes="#//InterfaceClasses/Statusmapping" Name="I_O_control_signal_objects_contentsmappedtoareferencetable" />
     <Types xsi:type="nmeta:Class" BaseTypes="#//InterfaceClasses/Profilegeneric" Name="I_O_control_signal_objects_global" />
-    <Types xsi:type="nmeta:Class" BaseTypes="#//InterfaceClasses/DisconnectControl" Name="Disconnectcontrolobject" />
-    <Types xsi:type="nmeta:Class" BaseTypes="#//InterfaceClasses/Arbitrator" Name="GeneralpurposeArbitrator" />
     <Types xsi:type="nmeta:Class" BaseTypes="#//InterfaceClasses/Data" Name="IOControlSignalsManufacturer">
       <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//String" Name="value" />
     </Types>
@@ -448,9 +446,9 @@
     <Types xsi:type="nmeta:Class" BaseTypes="#//InterfaceClasses/Data" Name="ReadingFactorAndCT_VTratio">
       <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Double" Name="Readingfactorforpower" />
       <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Double" Name="Readingfactorforenergy" />
-      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Integer" Name="Transformerratio_currentzähler" />
-      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Integer" Name="Transformerratio_voltagezähler" />
-      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Integer" Name="Overalltransformerratiozähler" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Integer" Name="Transformerratio_currentzaehler" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Integer" Name="Transformerratio_voltagezaehler" />
+      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Integer" Name="Overalltransformerratiozaehler" />
       <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Integer" Name="Transformerratio_currentnenner" />
       <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Integer" Name="Transformerratio_voltagenenner" />
       <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Integer" Name="Overalltransformer_rationenner" />
@@ -934,7 +932,7 @@
   <Types xsi:type="nmeta:Class" Name="LogicalDeviceName">
     <References IsContainment="True" ReferenceType="#//COSEMObjects/SAPAssignmentCurrent" IsOrdered="True" IsUnique="True" LowerBound="1" Name="name" />
   </Types>
-  <Types xsi:type="nmeta:Class" Name="COSEM">
+  <Types xsi:type="nmeta:Class" Name="COSEMRoot">
     <References IsContainment="True" ReferenceType="#//PhysicalDevice" IsOrdered="True" IsUnique="True" UpperBound="-1" Name="PhysicalDevice" />
     <References IsContainment="True" ReferenceType="#//LogicalDevice" IsOrdered="True" IsUnique="True" UpperBound="-1" Name="LogicalDevice" />
   </Types>

@@ -59,27 +59,27 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
         }
         
         /// <summary>
-        /// The Transformerratio_currentzähler property
+        /// The Transformerratio_currentzaehler property
         /// </summary>
-        Nullable<int> Transformerratio_currentzähler
+        Nullable<int> Transformerratio_currentzaehler
         {
             get;
             set;
         }
         
         /// <summary>
-        /// The Transformerratio_voltagezähler property
+        /// The Transformerratio_voltagezaehler property
         /// </summary>
-        Nullable<int> Transformerratio_voltagezähler
+        Nullable<int> Transformerratio_voltagezaehler
         {
             get;
             set;
         }
         
         /// <summary>
-        /// The Overalltransformerratiozähler property
+        /// The Overalltransformerratiozaehler property
         /// </summary>
-        Nullable<int> Overalltransformerratiozähler
+        Nullable<int> Overalltransformerratiozaehler
         {
             get;
             set;
@@ -133,34 +133,34 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
         event System.EventHandler<ValueChangedEventArgs> ReadingfactorforenergyChanged;
         
         /// <summary>
-        /// Gets fired before the Transformerratio_currentzähler property changes its value
+        /// Gets fired before the Transformerratio_currentzaehler property changes its value
         /// </summary>
-        event System.EventHandler<ValueChangedEventArgs> Transformerratio_currentzählerChanging;
+        event System.EventHandler<ValueChangedEventArgs> Transformerratio_currentzaehlerChanging;
         
         /// <summary>
-        /// Gets fired when the Transformerratio_currentzähler property changed its value
+        /// Gets fired when the Transformerratio_currentzaehler property changed its value
         /// </summary>
-        event System.EventHandler<ValueChangedEventArgs> Transformerratio_currentzählerChanged;
+        event System.EventHandler<ValueChangedEventArgs> Transformerratio_currentzaehlerChanged;
         
         /// <summary>
-        /// Gets fired before the Transformerratio_voltagezähler property changes its value
+        /// Gets fired before the Transformerratio_voltagezaehler property changes its value
         /// </summary>
-        event System.EventHandler<ValueChangedEventArgs> Transformerratio_voltagezählerChanging;
+        event System.EventHandler<ValueChangedEventArgs> Transformerratio_voltagezaehlerChanging;
         
         /// <summary>
-        /// Gets fired when the Transformerratio_voltagezähler property changed its value
+        /// Gets fired when the Transformerratio_voltagezaehler property changed its value
         /// </summary>
-        event System.EventHandler<ValueChangedEventArgs> Transformerratio_voltagezählerChanged;
+        event System.EventHandler<ValueChangedEventArgs> Transformerratio_voltagezaehlerChanged;
         
         /// <summary>
-        /// Gets fired before the Overalltransformerratiozähler property changes its value
+        /// Gets fired before the Overalltransformerratiozaehler property changes its value
         /// </summary>
-        event System.EventHandler<ValueChangedEventArgs> OveralltransformerratiozählerChanging;
+        event System.EventHandler<ValueChangedEventArgs> OveralltransformerratiozaehlerChanging;
         
         /// <summary>
-        /// Gets fired when the Overalltransformerratiozähler property changed its value
+        /// Gets fired when the Overalltransformerratiozaehler property changed its value
         /// </summary>
-        event System.EventHandler<ValueChangedEventArgs> OveralltransformerratiozählerChanged;
+        event System.EventHandler<ValueChangedEventArgs> OveralltransformerratiozaehlerChanged;
         
         /// <summary>
         /// Gets fired before the Transformerratio_currentnenner property changes its value

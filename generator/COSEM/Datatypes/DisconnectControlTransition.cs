@@ -31,6 +31,7 @@ namespace TTC2017.SmartGrids.COSEM.Datatypes
 {
     
     
+    [TypeConverterAttribute(typeof(DisconnectControlTransitionConverter))]
     [ModelRepresentationClassAttribute("http://www.transformation-tool-contest.eu/2017/smartGrids/cosem#//Datatypes/Disco" +
         "nnectControlTransition")]
     public enum DisconnectControlTransition

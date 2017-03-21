@@ -32,11 +32,11 @@ namespace TTC2017.SmartGrids.CIM
     
     
     /// <summary>
-    /// The public interface for CIM
+    /// The public interface for CIMRoot
     /// </summary>
-    [DefaultImplementationTypeAttribute(typeof(CIM))]
-    [XmlDefaultImplementationTypeAttribute(typeof(CIM))]
-    public interface ICIM : IModelElement
+    [DefaultImplementationTypeAttribute(typeof(CIMRoot))]
+    [XmlDefaultImplementationTypeAttribute(typeof(CIMRoot))]
+    public interface ICIMRoot : IModelElement
     {
         
         /// <summary>

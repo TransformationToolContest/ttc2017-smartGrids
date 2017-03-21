@@ -32,12 +32,12 @@ namespace TTC2017.SmartGrids.CIM
     
     
     /// <summary>
-    /// The default implementation of the CIM class
+    /// The default implementation of the CIMRoot class
     /// </summary>
     [XmlNamespaceAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14")]
     [XmlNamespacePrefixAttribute("cim")]
-    [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//CIM")]
-    public partial class CIM : ModelElement, ICIM, IModelElement
+    [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//CIMRoot")]
+    public partial class CIMRoot : ModelElement, ICIMRoot, IModelElement
     {
         
         private static Lazy<ITypedElement> _iDobjectReference = new Lazy<ITypedElement>(RetrieveIDobjectReference);
@@ -49,7 +49,7 @@ namespace TTC2017.SmartGrids.CIM
         
         private static IClass _classInstance;
         
-        public CIM()
+        public CIMRoot()
         {
             this._iDobject = new ObservableCompositionOrderedSet<IElement>(this);
             this._iDobject.CollectionChanging += this.IDobjectCollectionChanging;
@@ -78,7 +78,7 @@ namespace TTC2017.SmartGrids.CIM
         {
             get
             {
-                return base.Children.Concat(new CIMChildrenCollection(this));
+                return base.Children.Concat(new CIMRootChildrenCollection(this));
             }
         }
         
@@ -89,7 +89,7 @@ namespace TTC2017.SmartGrids.CIM
         {
             get
             {
-                return base.ReferencedElements.Concat(new CIMReferencedElementsCollection(this));
+                return base.ReferencedElements.Concat(new CIMRootReferencedElementsCollection(this));
             }
         }
         
@@ -102,7 +102,7 @@ namespace TTC2017.SmartGrids.CIM
             {
                 if ((_classInstance == null))
                 {
-                    _classInstance = ((IClass)(MetaRepository.Instance.Resolve("http://iec.ch/TC57/2009/CIM-schema-cim14#//CIM")));
+                    _classInstance = ((IClass)(MetaRepository.Instance.Resolve("http://iec.ch/TC57/2009/CIM-schema-cim14#//CIMRoot")));
                 }
                 return _classInstance;
             }
@@ -110,7 +110,7 @@ namespace TTC2017.SmartGrids.CIM
         
         private static ITypedElement RetrieveIDobjectReference()
         {
-            return ((ITypedElement)(((ModelElement)(CIM.ClassInstance)).Resolve("IDobject")));
+            return ((ITypedElement)(((ModelElement)(CIMRoot.ClassInstance)).Resolve("IDobject")));
         }
         
         /// <summary>
@@ -205,23 +205,23 @@ namespace TTC2017.SmartGrids.CIM
         {
             if ((_classInstance == null))
             {
-                _classInstance = ((IClass)(MetaRepository.Instance.Resolve("http://iec.ch/TC57/2009/CIM-schema-cim14#//CIM")));
+                _classInstance = ((IClass)(MetaRepository.Instance.Resolve("http://iec.ch/TC57/2009/CIM-schema-cim14#//CIMRoot")));
             }
             return _classInstance;
         }
         
         /// <summary>
-        /// The collection class to to represent the children of the CIM class
+        /// The collection class to to represent the children of the CIMRoot class
         /// </summary>
-        public class CIMChildrenCollection : ReferenceCollection, ICollectionExpression<IModelElement>, ICollection<IModelElement>
+        public class CIMRootChildrenCollection : ReferenceCollection, ICollectionExpression<IModelElement>, ICollection<IModelElement>
         {
             
-            private CIM _parent;
+            private CIMRoot _parent;
             
             /// <summary>
             /// Creates a new instance
             /// </summary>
-            public CIMChildrenCollection(CIM parent)
+            public CIMRootChildrenCollection(CIMRoot parent)
             {
                 this._parent = parent;
             }
@@ -335,17 +335,17 @@ namespace TTC2017.SmartGrids.CIM
         }
         
         /// <summary>
-        /// The collection class to to represent the children of the CIM class
+        /// The collection class to to represent the children of the CIMRoot class
         /// </summary>
-        public class CIMReferencedElementsCollection : ReferenceCollection, ICollectionExpression<IModelElement>, ICollection<IModelElement>
+        public class CIMRootReferencedElementsCollection : ReferenceCollection, ICollectionExpression<IModelElement>, ICollection<IModelElement>
         {
             
-            private CIM _parent;
+            private CIMRoot _parent;
             
             /// <summary>
             /// Creates a new instance
             /// </summary>
-            public CIMReferencedElementsCollection(CIM parent)
+            public CIMRootReferencedElementsCollection(CIMRoot parent)
             {
                 this._parent = parent;
             }

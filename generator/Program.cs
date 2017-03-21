@@ -43,8 +43,8 @@ namespace TTC2017.SmartGrids.Generator
 
     class Program
     {
-        private CIM.CIM cim;
-        private COSEM.COSEM cosem;
+        private CIM.CIMRoot cim;
+        private COSEM.COSEMRoot cosem;
         private SubstationStandard.Substandard substation;
         private Random rnd = new Random();
 
@@ -70,9 +70,9 @@ namespace TTC2017.SmartGrids.Generator
             Console.WriteLine("Initializing repository");
             var repository = new ModelRepository();
             Console.WriteLine("Loading CIM model");
-            cim = repository.Resolve(options.CimPath).RootElements[0] as CIM.CIM;
+            cim = repository.Resolve(options.CimPath).RootElements[0] as CIM.CIMRoot;
             Console.WriteLine("Loading COSEM model");
-            cosem = repository.Resolve(options.CosemPath).RootElements[0] as COSEM.COSEM;
+            cosem = repository.Resolve(options.CosemPath).RootElements[0] as COSEM.COSEMRoot;
             Console.WriteLine("Loading Substandard model");
             substation = repository.Resolve(options.SubstationPath).RootElements[0] as SubstationStandard.Substandard;
 

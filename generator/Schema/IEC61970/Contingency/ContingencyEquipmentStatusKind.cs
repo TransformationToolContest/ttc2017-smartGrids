@@ -33,6 +33,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Contingency
 {
     
     
+    [TypeConverterAttribute(typeof(ContingencyEquipmentStatusKindConverter))]
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61970/Contingency/ContingencyEquipm" +
         "entStatusKind")]
     public enum ContingencyEquipmentStatusKind

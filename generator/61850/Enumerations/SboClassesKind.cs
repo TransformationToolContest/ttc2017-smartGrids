@@ -29,6 +29,7 @@ namespace TTC2017.SmartGrids.SubstationStandard.Enumerations
 {
     
     
+    [TypeConverterAttribute(typeof(SboClassesKindConverter))]
     [ModelRepresentationClassAttribute("http://www.transformation-tool-contest.eu/2017/smartGrids/substationStandard#//En" +
         "umerations/SboClassesKind")]
     public enum SboClassesKind

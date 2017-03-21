@@ -1,13 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <changes:ModelChangeSet xmi:version="2.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xmi="http://www.omg.org/XMI" xmlns:changes="http://nmf.codeplex.com/changes">
-  <changes xsi:type="changes:CompositionListInsertion" index="-1" feature="http://www.transformation-tool-contest.eu/2017/smartGrids/cosem#//COSEM/PhysicalDevice" affectedElement="..\..\models/COSEM.xmi#//">
-    <addedElement xmlns:cosem="http://www.transformation-tool-contest.eu/2017/smartGrids/cosem" xsi:type="cosem:PhysicalDevice" ID="e368b072-f5c8-4483-a8ed-e84008dabec9">
-      <AutoConnect Connection="True" />
-      <ElectricityValues ActivePowerpL1="45" ActivePowerpall="45" ActivePowermL1="230" ActivePowermall="230" ReactivePowerpL1="10" ReactivePowerpall="10" ReactivePowermL1="32" ReactivePowermall="32" ReactivePowerQIall="22" ReactivePowerQIIIL1="22" ApparentPowerpL1="68" ApparentPowerpAll="68" ApparentPowermL1="300" ApparentPowermAll="300" CurrentL1="382" CurrentAll="382" VoltageL1="40" VoltageAll="40" SupplyFrequencyL1="50" SupplyFrequencyL2="50" SupplyFrequencyL3="50" SupplyFrequencyAll="50" Angles="90" />
-    </addedElement>
-  </changes>
-  <changes xsi:type="changes:CompositionListInsertion" index="-1" feature="http://www.transformation-tool-contest.eu/2017/smartGrids/cosem#//COSEM/PhysicalDevice" affectedElement="..\..\models/COSEM.xmi#//">
-    <addedElement xmlns:cosem="http://www.transformation-tool-contest.eu/2017/smartGrids/cosem" xsi:type="cosem:PhysicalDevice" ID="c9971246-80aa-40b6-9bc5-9d574e48afc4">
+  <changes xsi:type="changes:CompositionListInsertion" index="-1" feature="http://www.transformation-tool-contest.eu/2017/smartGrids/cosem#//COSEMRoot/PhysicalDevice" affectedElement="..\..\models/COSEM.xmi#//">
+    <addedElement xmlns:cosem="http://www.transformation-tool-contest.eu/2017/smartGrids/cosem" xsi:type="cosem:PhysicalDevice" ID="5f58341e-2544-4696-901c-2925c3a25577">
       <AutoConnect Connection="True" />
       <ElectricityValues ActivePowerpL1="45" ActivePowerpall="45" ActivePowermL1="230" ActivePowermall="230" ReactivePowerpL1="10" ReactivePowerpall="10" ReactivePowermL1="32" ReactivePowermall="32" ReactivePowerQIall="22" ReactivePowerQIIIL1="22" ApparentPowerpL1="68" ApparentPowerpAll="68" ApparentPowermL1="300" ApparentPowermAll="300" CurrentL1="382" CurrentAll="382" VoltageL1="40" VoltageAll="40" SupplyFrequencyL1="50" SupplyFrequencyL2="50" SupplyFrequencyL3="50" SupplyFrequencyAll="50" Angles="90" />
     </addedElement>

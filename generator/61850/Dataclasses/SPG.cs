@@ -49,20 +49,6 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
         
         private static Lazy<ITypedElement> _setValAttribute = new Lazy<ITypedElement>(RetrieveSetValAttribute);
         
-        /// <summary>
-        /// The backing field for the _SetVal property
-        /// </summary>
-        private Nullable<bool> @__setVal;
-        
-        private static Lazy<ITypedElement> @__setValAttribute = new Lazy<ITypedElement>(Retrieve_SetValAttribute);
-        
-        /// <summary>
-        /// The backing field for the __SetVal property
-        /// </summary>
-        private Nullable<bool> ___setVal;
-        
-        private static Lazy<ITypedElement> ___setValAttribute = new Lazy<ITypedElement>(Retrieve__SetValAttribute);
-        
         private static IClass _classInstance;
         
         /// <summary>
@@ -92,58 +78,6 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
         }
         
         /// <summary>
-        /// The _setVal property
-        /// </summary>
-        [XmlElementNameAttribute("_setVal")]
-        [XmlAttributeAttribute(true)]
-        public virtual Nullable<bool> _SetVal
-        {
-            get
-            {
-                return this.@__setVal;
-            }
-            set
-            {
-                if ((this.@__setVal != value))
-                {
-                    Nullable<bool> old = this.@__setVal;
-                    ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
-                    this.On_SetValChanging(e);
-                    this.OnPropertyChanging("_SetVal", e, @__setValAttribute);
-                    this.@__setVal = value;
-                    this.On_SetValChanged(e);
-                    this.OnPropertyChanged("_SetVal", e, @__setValAttribute);
-                }
-            }
-        }
-        
-        /// <summary>
-        /// The __setVal property
-        /// </summary>
-        [XmlElementNameAttribute("__setVal")]
-        [XmlAttributeAttribute(true)]
-        public virtual Nullable<bool> @__SetVal
-        {
-            get
-            {
-                return this.___setVal;
-            }
-            set
-            {
-                if ((this.___setVal != value))
-                {
-                    Nullable<bool> old = this.___setVal;
-                    ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
-                    this.On__SetValChanging(e);
-                    this.OnPropertyChanging("__SetVal", e, ___setValAttribute);
-                    this.___setVal = value;
-                    this.On__SetValChanged(e);
-                    this.OnPropertyChanged("__SetVal", e, ___setValAttribute);
-                }
-            }
-        }
-        
-        /// <summary>
         /// Gets the Class model for this type
         /// </summary>
         public new static IClass ClassInstance
@@ -168,26 +102,6 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
         /// Gets fired when the SetVal property changed its value
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> SetValChanged;
-        
-        /// <summary>
-        /// Gets fired before the _SetVal property changes its value
-        /// </summary>
-        public event System.EventHandler<ValueChangedEventArgs> _SetValChanging;
-        
-        /// <summary>
-        /// Gets fired when the _SetVal property changed its value
-        /// </summary>
-        public event System.EventHandler<ValueChangedEventArgs> _SetValChanged;
-        
-        /// <summary>
-        /// Gets fired before the __SetVal property changes its value
-        /// </summary>
-        public event System.EventHandler<ValueChangedEventArgs> @__SetValChanging;
-        
-        /// <summary>
-        /// Gets fired when the __SetVal property changed its value
-        /// </summary>
-        public event System.EventHandler<ValueChangedEventArgs> @__SetValChanged;
         
         private static ITypedElement RetrieveSetValAttribute()
         {
@@ -220,68 +134,6 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
             }
         }
         
-        private static ITypedElement Retrieve_SetValAttribute()
-        {
-            return ((ITypedElement)(((ModelElement)(SPG.ClassInstance)).Resolve("_setVal")));
-        }
-        
-        /// <summary>
-        /// Raises the _SetValChanging event
-        /// </summary>
-        /// <param name="eventArgs">The event data</param>
-        protected virtual void On_SetValChanging(ValueChangedEventArgs eventArgs)
-        {
-            System.EventHandler<ValueChangedEventArgs> handler = this._SetValChanging;
-            if ((handler != null))
-            {
-                handler.Invoke(this, eventArgs);
-            }
-        }
-        
-        /// <summary>
-        /// Raises the _SetValChanged event
-        /// </summary>
-        /// <param name="eventArgs">The event data</param>
-        protected virtual void On_SetValChanged(ValueChangedEventArgs eventArgs)
-        {
-            System.EventHandler<ValueChangedEventArgs> handler = this._SetValChanged;
-            if ((handler != null))
-            {
-                handler.Invoke(this, eventArgs);
-            }
-        }
-        
-        private static ITypedElement Retrieve__SetValAttribute()
-        {
-            return ((ITypedElement)(((ModelElement)(SPG.ClassInstance)).Resolve("__setVal")));
-        }
-        
-        /// <summary>
-        /// Raises the __SetValChanging event
-        /// </summary>
-        /// <param name="eventArgs">The event data</param>
-        protected virtual void On__SetValChanging(ValueChangedEventArgs eventArgs)
-        {
-            System.EventHandler<ValueChangedEventArgs> handler = this.@__SetValChanging;
-            if ((handler != null))
-            {
-                handler.Invoke(this, eventArgs);
-            }
-        }
-        
-        /// <summary>
-        /// Raises the __SetValChanged event
-        /// </summary>
-        /// <param name="eventArgs">The event data</param>
-        protected virtual void On__SetValChanged(ValueChangedEventArgs eventArgs)
-        {
-            System.EventHandler<ValueChangedEventArgs> handler = this.@__SetValChanged;
-            if ((handler != null))
-            {
-                handler.Invoke(this, eventArgs);
-            }
-        }
-        
         /// <summary>
         /// Resolves the given attribute name
         /// </summary>
@@ -293,14 +145,6 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
             if ((attribute == "SETVAL"))
             {
                 return this.SetVal;
-            }
-            if ((attribute == "_SETVAL"))
-            {
-                return this._SetVal;
-            }
-            if ((attribute == "__SETVAL"))
-            {
-                return this.@__SetVal;
             }
             return base.GetAttributeValue(attribute, index);
         }
@@ -315,16 +159,6 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
             if ((feature == "SETVAL"))
             {
                 this.SetVal = ((bool)(value));
-                return;
-            }
-            if ((feature == "_SETVAL"))
-            {
-                this._SetVal = ((bool)(value));
-                return;
-            }
-            if ((feature == "__SETVAL"))
-            {
-                this.@__SetVal = ((bool)(value));
                 return;
             }
             base.SetFeature(feature, value);
@@ -370,68 +204,6 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
                 set
                 {
                     this.ModelElement.SetVal = value;
-                }
-            }
-        }
-        
-        /// <summary>
-        /// Represents a proxy to represent an incremental access to the _setVal property
-        /// </summary>
-        private sealed class _SetValProxy : ModelPropertyChange<ISPG, Nullable<bool>>
-        {
-            
-            /// <summary>
-            /// Creates a new observable property access proxy
-            /// </summary>
-            /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
-            public _SetValProxy(ISPG modelElement) : 
-                    base(modelElement, "_setVal")
-            {
-            }
-            
-            /// <summary>
-            /// Gets or sets the value of this expression
-            /// </summary>
-            public override Nullable<bool> Value
-            {
-                get
-                {
-                    return this.ModelElement._SetVal;
-                }
-                set
-                {
-                    this.ModelElement._SetVal = value;
-                }
-            }
-        }
-        
-        /// <summary>
-        /// Represents a proxy to represent an incremental access to the __setVal property
-        /// </summary>
-        private sealed class @__SetValProxy : ModelPropertyChange<ISPG, Nullable<bool>>
-        {
-            
-            /// <summary>
-            /// Creates a new observable property access proxy
-            /// </summary>
-            /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
-            public @__SetValProxy(ISPG modelElement) : 
-                    base(modelElement, "__setVal")
-            {
-            }
-            
-            /// <summary>
-            /// Gets or sets the value of this expression
-            /// </summary>
-            public override Nullable<bool> Value
-            {
-                get
-                {
-                    return this.ModelElement.@__SetVal;
-                }
-                set
-                {
-                    this.ModelElement.@__SetVal = value;
                 }
             }
         }

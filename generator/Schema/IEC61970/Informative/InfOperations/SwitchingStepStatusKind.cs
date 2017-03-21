@@ -42,6 +42,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfOperations
 {
     
     
+    [TypeConverterAttribute(typeof(SwitchingStepStatusKindConverter))]
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61970/Informative/InfOperations/Swi" +
         "tchingStepStatusKind")]
     public enum SwitchingStepStatusKind

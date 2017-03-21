@@ -38,6 +38,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Generation.Production
 {
     
     
+    [TypeConverterAttribute(typeof(FuelTypeConverter))]
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61970/Generation/Production/FuelTyp" +
         "e")]
     public enum FuelType

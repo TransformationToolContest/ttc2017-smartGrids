@@ -33,12 +33,12 @@ namespace TTC2017.SmartGrids.COSEM
     
     
     /// <summary>
-    /// The default implementation of the COSEM class
+    /// The default implementation of the COSEMRoot class
     /// </summary>
     [XmlNamespaceAttribute("http://www.transformation-tool-contest.eu/2017/smartGrids/cosem")]
     [XmlNamespacePrefixAttribute("cosem")]
-    [ModelRepresentationClassAttribute("http://www.transformation-tool-contest.eu/2017/smartGrids/cosem#//COSEM")]
-    public partial class COSEM : ModelElement, ICOSEM, IModelElement
+    [ModelRepresentationClassAttribute("http://www.transformation-tool-contest.eu/2017/smartGrids/cosem#//COSEMRoot")]
+    public partial class COSEMRoot : ModelElement, ICOSEMRoot, IModelElement
     {
         
         private static Lazy<ITypedElement> _physicalDeviceReference = new Lazy<ITypedElement>(RetrievePhysicalDeviceReference);
@@ -57,7 +57,7 @@ namespace TTC2017.SmartGrids.COSEM
         
         private static IClass _classInstance;
         
-        public COSEM()
+        public COSEMRoot()
         {
             this._physicalDevice = new ObservableCompositionOrderedSet<IPhysicalDevice>(this);
             this._physicalDevice.CollectionChanging += this.PhysicalDeviceCollectionChanging;
@@ -104,7 +104,7 @@ namespace TTC2017.SmartGrids.COSEM
         {
             get
             {
-                return base.Children.Concat(new COSEMChildrenCollection(this));
+                return base.Children.Concat(new COSEMRootChildrenCollection(this));
             }
         }
         
@@ -115,7 +115,7 @@ namespace TTC2017.SmartGrids.COSEM
         {
             get
             {
-                return base.ReferencedElements.Concat(new COSEMReferencedElementsCollection(this));
+                return base.ReferencedElements.Concat(new COSEMRootReferencedElementsCollection(this));
             }
         }
         
@@ -128,7 +128,7 @@ namespace TTC2017.SmartGrids.COSEM
             {
                 if ((_classInstance == null))
                 {
-                    _classInstance = ((IClass)(MetaRepository.Instance.Resolve("http://www.transformation-tool-contest.eu/2017/smartGrids/cosem#//COSEM")));
+                    _classInstance = ((IClass)(MetaRepository.Instance.Resolve("http://www.transformation-tool-contest.eu/2017/smartGrids/cosem#//COSEMRoot")));
                 }
                 return _classInstance;
             }
@@ -136,7 +136,7 @@ namespace TTC2017.SmartGrids.COSEM
         
         private static ITypedElement RetrievePhysicalDeviceReference()
         {
-            return ((ITypedElement)(((ModelElement)(COSEM.ClassInstance)).Resolve("PhysicalDevice")));
+            return ((ITypedElement)(((ModelElement)(COSEMRoot.ClassInstance)).Resolve("PhysicalDevice")));
         }
         
         /// <summary>
@@ -161,7 +161,7 @@ namespace TTC2017.SmartGrids.COSEM
         
         private static ITypedElement RetrieveLogicalDeviceReference()
         {
-            return ((ITypedElement)(((ModelElement)(COSEM.ClassInstance)).Resolve("LogicalDevice")));
+            return ((ITypedElement)(((ModelElement)(COSEMRoot.ClassInstance)).Resolve("LogicalDevice")));
         }
         
         /// <summary>
@@ -280,23 +280,23 @@ namespace TTC2017.SmartGrids.COSEM
         {
             if ((_classInstance == null))
             {
-                _classInstance = ((IClass)(MetaRepository.Instance.Resolve("http://www.transformation-tool-contest.eu/2017/smartGrids/cosem#//COSEM")));
+                _classInstance = ((IClass)(MetaRepository.Instance.Resolve("http://www.transformation-tool-contest.eu/2017/smartGrids/cosem#//COSEMRoot")));
             }
             return _classInstance;
         }
         
         /// <summary>
-        /// The collection class to to represent the children of the COSEM class
+        /// The collection class to to represent the children of the COSEMRoot class
         /// </summary>
-        public class COSEMChildrenCollection : ReferenceCollection, ICollectionExpression<IModelElement>, ICollection<IModelElement>
+        public class COSEMRootChildrenCollection : ReferenceCollection, ICollectionExpression<IModelElement>, ICollection<IModelElement>
         {
             
-            private COSEM _parent;
+            private COSEMRoot _parent;
             
             /// <summary>
             /// Creates a new instance
             /// </summary>
-            public COSEMChildrenCollection(COSEM parent)
+            public COSEMRootChildrenCollection(COSEMRoot parent)
             {
                 this._parent = parent;
             }
@@ -444,17 +444,17 @@ namespace TTC2017.SmartGrids.COSEM
         }
         
         /// <summary>
-        /// The collection class to to represent the children of the COSEM class
+        /// The collection class to to represent the children of the COSEMRoot class
         /// </summary>
-        public class COSEMReferencedElementsCollection : ReferenceCollection, ICollectionExpression<IModelElement>, ICollection<IModelElement>
+        public class COSEMRootReferencedElementsCollection : ReferenceCollection, ICollectionExpression<IModelElement>, ICollection<IModelElement>
         {
             
-            private COSEM _parent;
+            private COSEMRoot _parent;
             
             /// <summary>
             /// Creates a new instance
             /// </summary>
-            public COSEMReferencedElementsCollection(COSEM parent)
+            public COSEMRootReferencedElementsCollection(COSEMRoot parent)
             {
                 this._parent = parent;
             }

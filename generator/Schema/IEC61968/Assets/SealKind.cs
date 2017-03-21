@@ -41,6 +41,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.Assets
 {
     
     
+    [TypeConverterAttribute(typeof(SealKindConverter))]
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61968/Assets/SealKind")]
     public enum SealKind
     {

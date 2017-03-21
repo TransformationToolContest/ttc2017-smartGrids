@@ -63,26 +63,12 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
         /// </summary>
         private IAnalogueValue _setMag;
         
-        private static Lazy<ITypedElement> @__setMagReference = new Lazy<ITypedElement>(Retrieve_SetMagReference);
-        
-        /// <summary>
-        /// The backing field for the _SetMag property
-        /// </summary>
-        private IAnalogueValue @__setMag;
-        
         private static Lazy<ITypedElement> _originReference = new Lazy<ITypedElement>(RetrieveOriginReference);
         
         /// <summary>
         /// The backing field for the Origin property
         /// </summary>
         private IOriginator _origin;
-        
-        private static Lazy<ITypedElement> @__originReference = new Lazy<ITypedElement>(Retrieve_OriginReference);
-        
-        /// <summary>
-        /// The backing field for the _Origin property
-        /// </summary>
-        private IOriginator @__origin;
         
         private static Lazy<ITypedElement> _operTmReference = new Lazy<ITypedElement>(RetrieveOperTmReference);
         
@@ -236,40 +222,6 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
         }
         
         /// <summary>
-        /// The _setMag property
-        /// </summary>
-        [XmlElementNameAttribute("_setMag")]
-        [XmlAttributeAttribute(true)]
-        public virtual IAnalogueValue _SetMag
-        {
-            get
-            {
-                return this.@__setMag;
-            }
-            set
-            {
-                if ((this.@__setMag != value))
-                {
-                    IAnalogueValue old = this.@__setMag;
-                    ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
-                    this.On_SetMagChanging(e);
-                    this.OnPropertyChanging("_SetMag", e, @__setMagReference);
-                    this.@__setMag = value;
-                    if ((old != null))
-                    {
-                        old.Deleted -= this.OnReset_SetMag;
-                    }
-                    if ((value != null))
-                    {
-                        value.Deleted += this.OnReset_SetMag;
-                    }
-                    this.On_SetMagChanged(e);
-                    this.OnPropertyChanged("_SetMag", e, @__setMagReference);
-                }
-            }
-        }
-        
-        /// <summary>
         /// The origin property
         /// </summary>
         [XmlElementNameAttribute("origin")]
@@ -299,40 +251,6 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
                     }
                     this.OnOriginChanged(e);
                     this.OnPropertyChanged("Origin", e, _originReference);
-                }
-            }
-        }
-        
-        /// <summary>
-        /// The _origin property
-        /// </summary>
-        [XmlElementNameAttribute("_origin")]
-        [XmlAttributeAttribute(true)]
-        public virtual IOriginator _Origin
-        {
-            get
-            {
-                return this.@__origin;
-            }
-            set
-            {
-                if ((this.@__origin != value))
-                {
-                    IOriginator old = this.@__origin;
-                    ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
-                    this.On_OriginChanging(e);
-                    this.OnPropertyChanging("_Origin", e, @__originReference);
-                    this.@__origin = value;
-                    if ((old != null))
-                    {
-                        old.Deleted -= this.OnReset_Origin;
-                    }
-                    if ((value != null))
-                    {
-                        value.Deleted += this.OnReset_Origin;
-                    }
-                    this.On_OriginChanged(e);
-                    this.OnPropertyChanged("_Origin", e, @__originReference);
                 }
             }
         }
@@ -701,16 +619,6 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
         public event System.EventHandler<ValueChangedEventArgs> SetMagChanged;
         
         /// <summary>
-        /// Gets fired before the _SetMag property changes its value
-        /// </summary>
-        public event System.EventHandler<ValueChangedEventArgs> _SetMagChanging;
-        
-        /// <summary>
-        /// Gets fired when the _SetMag property changed its value
-        /// </summary>
-        public event System.EventHandler<ValueChangedEventArgs> _SetMagChanged;
-        
-        /// <summary>
         /// Gets fired before the Origin property changes its value
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> OriginChanging;
@@ -719,16 +627,6 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
         /// Gets fired when the Origin property changed its value
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> OriginChanged;
-        
-        /// <summary>
-        /// Gets fired before the _Origin property changes its value
-        /// </summary>
-        public event System.EventHandler<ValueChangedEventArgs> _OriginChanging;
-        
-        /// <summary>
-        /// Gets fired when the _Origin property changed its value
-        /// </summary>
-        public event System.EventHandler<ValueChangedEventArgs> _OriginChanged;
         
         /// <summary>
         /// Gets fired before the OperTm property changes its value
@@ -923,47 +821,6 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
             this.SetMag = null;
         }
         
-        private static ITypedElement Retrieve_SetMagReference()
-        {
-            return ((ITypedElement)(((ModelElement)(APC.ClassInstance)).Resolve("_setMag")));
-        }
-        
-        /// <summary>
-        /// Raises the _SetMagChanging event
-        /// </summary>
-        /// <param name="eventArgs">The event data</param>
-        protected virtual void On_SetMagChanging(ValueChangedEventArgs eventArgs)
-        {
-            System.EventHandler<ValueChangedEventArgs> handler = this._SetMagChanging;
-            if ((handler != null))
-            {
-                handler.Invoke(this, eventArgs);
-            }
-        }
-        
-        /// <summary>
-        /// Raises the _SetMagChanged event
-        /// </summary>
-        /// <param name="eventArgs">The event data</param>
-        protected virtual void On_SetMagChanged(ValueChangedEventArgs eventArgs)
-        {
-            System.EventHandler<ValueChangedEventArgs> handler = this._SetMagChanged;
-            if ((handler != null))
-            {
-                handler.Invoke(this, eventArgs);
-            }
-        }
-        
-        /// <summary>
-        /// Handles the event that the _SetMag property must reset
-        /// </summary>
-        /// <param name="sender">The object that sent this reset request</param>
-        /// <param name="eventArgs">The event data for the reset event</param>
-        private void OnReset_SetMag(object sender, System.EventArgs eventArgs)
-        {
-            this._SetMag = null;
-        }
-        
         private static ITypedElement RetrieveOriginReference()
         {
             return ((ITypedElement)(((ModelElement)(APC.ClassInstance)).Resolve("origin")));
@@ -1003,47 +860,6 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
         private void OnResetOrigin(object sender, System.EventArgs eventArgs)
         {
             this.Origin = null;
-        }
-        
-        private static ITypedElement Retrieve_OriginReference()
-        {
-            return ((ITypedElement)(((ModelElement)(APC.ClassInstance)).Resolve("_origin")));
-        }
-        
-        /// <summary>
-        /// Raises the _OriginChanging event
-        /// </summary>
-        /// <param name="eventArgs">The event data</param>
-        protected virtual void On_OriginChanging(ValueChangedEventArgs eventArgs)
-        {
-            System.EventHandler<ValueChangedEventArgs> handler = this._OriginChanging;
-            if ((handler != null))
-            {
-                handler.Invoke(this, eventArgs);
-            }
-        }
-        
-        /// <summary>
-        /// Raises the _OriginChanged event
-        /// </summary>
-        /// <param name="eventArgs">The event data</param>
-        protected virtual void On_OriginChanged(ValueChangedEventArgs eventArgs)
-        {
-            System.EventHandler<ValueChangedEventArgs> handler = this._OriginChanged;
-            if ((handler != null))
-            {
-                handler.Invoke(this, eventArgs);
-            }
-        }
-        
-        /// <summary>
-        /// Handles the event that the _Origin property must reset
-        /// </summary>
-        /// <param name="sender">The object that sent this reset request</param>
-        /// <param name="eventArgs">The event data for the reset event</param>
-        private void OnReset_Origin(object sender, System.EventArgs eventArgs)
-        {
-            this._Origin = null;
         }
         
         private static ITypedElement RetrieveOperTmReference()
@@ -1446,19 +1262,9 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
                 this.SetMag = ((IAnalogueValue)(value));
                 return;
             }
-            if ((feature == "_SETMAG"))
-            {
-                this._SetMag = ((IAnalogueValue)(value));
-                return;
-            }
             if ((feature == "ORIGIN"))
             {
                 this.Origin = ((IOriginator)(value));
-                return;
-            }
-            if ((feature == "_ORIGIN"))
-            {
-                this._Origin = ((IOriginator)(value));
                 return;
             }
             if ((feature == "OPERTM"))
@@ -1530,17 +1336,9 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
             {
                 return new SetMagProxy(this);
             }
-            if ((attribute == "_SetMag"))
-            {
-                return new _SetMagProxy(this);
-            }
             if ((attribute == "Origin"))
             {
                 return new OriginProxy(this);
-            }
-            if ((attribute == "_Origin"))
-            {
-                return new _OriginProxy(this);
             }
             if ((attribute == "OperTm"))
             {
@@ -1592,17 +1390,9 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
             {
                 return new SetMagProxy(this);
             }
-            if ((reference == "_SetMag"))
-            {
-                return new _SetMagProxy(this);
-            }
             if ((reference == "Origin"))
             {
                 return new OriginProxy(this);
-            }
-            if ((reference == "_Origin"))
-            {
-                return new _OriginProxy(this);
             }
             if ((reference == "OperTm"))
             {
@@ -1684,15 +1474,7 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
                     {
                         count = (count + 1);
                     }
-                    if ((this._parent._SetMag != null))
-                    {
-                        count = (count + 1);
-                    }
                     if ((this._parent.Origin != null))
-                    {
-                        count = (count + 1);
-                    }
-                    if ((this._parent._Origin != null))
                     {
                         count = (count + 1);
                     }
@@ -1739,9 +1521,7 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
             protected override void AttachCore()
             {
                 this._parent.SetMagChanged += this.PropagateValueChanges;
-                this._parent._SetMagChanged += this.PropagateValueChanges;
                 this._parent.OriginChanged += this.PropagateValueChanges;
-                this._parent._OriginChanged += this.PropagateValueChanges;
                 this._parent.OperTmChanged += this.PropagateValueChanges;
                 this._parent.QChanged += this.PropagateValueChanges;
                 this._parent.TChanged += this.PropagateValueChanges;
@@ -1756,9 +1536,7 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
             protected override void DetachCore()
             {
                 this._parent.SetMagChanged -= this.PropagateValueChanges;
-                this._parent._SetMagChanged -= this.PropagateValueChanges;
                 this._parent.OriginChanged -= this.PropagateValueChanges;
-                this._parent._OriginChanged -= this.PropagateValueChanges;
                 this._parent.OperTmChanged -= this.PropagateValueChanges;
                 this._parent.QChanged -= this.PropagateValueChanges;
                 this._parent.TChanged -= this.PropagateValueChanges;
@@ -1785,30 +1563,12 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
                         return;
                     }
                 }
-                if ((this._parent._SetMag == null))
-                {
-                    IAnalogueValue _setMagCasted = item.As<IAnalogueValue>();
-                    if ((_setMagCasted != null))
-                    {
-                        this._parent._SetMag = _setMagCasted;
-                        return;
-                    }
-                }
                 if ((this._parent.Origin == null))
                 {
                     IOriginator originCasted = item.As<IOriginator>();
                     if ((originCasted != null))
                     {
                         this._parent.Origin = originCasted;
-                        return;
-                    }
-                }
-                if ((this._parent._Origin == null))
-                {
-                    IOriginator _originCasted = item.As<IOriginator>();
-                    if ((_originCasted != null))
-                    {
-                        this._parent._Origin = _originCasted;
                         return;
                     }
                 }
@@ -1901,9 +1661,7 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
             public override void Clear()
             {
                 this._parent.SetMag = null;
-                this._parent._SetMag = null;
                 this._parent.Origin = null;
-                this._parent._Origin = null;
                 this._parent.OperTm = null;
                 this._parent.Q = null;
                 this._parent.T = null;
@@ -1926,15 +1684,7 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
                 {
                     return true;
                 }
-                if ((item == this._parent._SetMag))
-                {
-                    return true;
-                }
                 if ((item == this._parent.Origin))
-                {
-                    return true;
-                }
-                if ((item == this._parent._Origin))
                 {
                     return true;
                 }
@@ -1989,19 +1739,9 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
                     array[arrayIndex] = this._parent.SetMag;
                     arrayIndex = (arrayIndex + 1);
                 }
-                if ((this._parent._SetMag != null))
-                {
-                    array[arrayIndex] = this._parent._SetMag;
-                    arrayIndex = (arrayIndex + 1);
-                }
                 if ((this._parent.Origin != null))
                 {
                     array[arrayIndex] = this._parent.Origin;
-                    arrayIndex = (arrayIndex + 1);
-                }
-                if ((this._parent._Origin != null))
-                {
-                    array[arrayIndex] = this._parent._Origin;
                     arrayIndex = (arrayIndex + 1);
                 }
                 if ((this._parent.OperTm != null))
@@ -2063,19 +1803,9 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
                     this._parent.SetMag = null;
                     return true;
                 }
-                if ((this._parent._SetMag == item))
-                {
-                    this._parent._SetMag = null;
-                    return true;
-                }
                 if ((this._parent.Origin == item))
                 {
                     this._parent.Origin = null;
-                    return true;
-                }
-                if ((this._parent._Origin == item))
-                {
-                    this._parent._Origin = null;
                     return true;
                 }
                 if ((this._parent.OperTm == item))
@@ -2132,7 +1862,7 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
             /// <returns>A generic enumerator</returns>
             public override IEnumerator<IModelElement> GetEnumerator()
             {
-                return Enumerable.Empty<IModelElement>().Concat(this._parent.SetMag).Concat(this._parent._SetMag).Concat(this._parent.Origin).Concat(this._parent._Origin).Concat(this._parent.OperTm).Concat(this._parent.Q).Concat(this._parent.T).Concat(this._parent.CtlModel).Concat(this._parent.Units).Concat(this._parent.SVC).Concat(this._parent.MinVal).Concat(this._parent.MaxVal).Concat(this._parent.StepSize).GetEnumerator();
+                return Enumerable.Empty<IModelElement>().Concat(this._parent.SetMag).Concat(this._parent.Origin).Concat(this._parent.OperTm).Concat(this._parent.Q).Concat(this._parent.T).Concat(this._parent.CtlModel).Concat(this._parent.Units).Concat(this._parent.SVC).Concat(this._parent.MinVal).Concat(this._parent.MaxVal).Concat(this._parent.StepSize).GetEnumerator();
             }
         }
         
@@ -2230,37 +1960,6 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
         }
         
         /// <summary>
-        /// Represents a proxy to represent an incremental access to the _setMag property
-        /// </summary>
-        private sealed class _SetMagProxy : ModelPropertyChange<IAPC, IAnalogueValue>
-        {
-            
-            /// <summary>
-            /// Creates a new observable property access proxy
-            /// </summary>
-            /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
-            public _SetMagProxy(IAPC modelElement) : 
-                    base(modelElement, "_setMag")
-            {
-            }
-            
-            /// <summary>
-            /// Gets or sets the value of this expression
-            /// </summary>
-            public override IAnalogueValue Value
-            {
-                get
-                {
-                    return this.ModelElement._SetMag;
-                }
-                set
-                {
-                    this.ModelElement._SetMag = value;
-                }
-            }
-        }
-        
-        /// <summary>
         /// Represents a proxy to represent an incremental access to the origin property
         /// </summary>
         private sealed class OriginProxy : ModelPropertyChange<IAPC, IOriginator>
@@ -2287,37 +1986,6 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
                 set
                 {
                     this.ModelElement.Origin = value;
-                }
-            }
-        }
-        
-        /// <summary>
-        /// Represents a proxy to represent an incremental access to the _origin property
-        /// </summary>
-        private sealed class _OriginProxy : ModelPropertyChange<IAPC, IOriginator>
-        {
-            
-            /// <summary>
-            /// Creates a new observable property access proxy
-            /// </summary>
-            /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
-            public _OriginProxy(IAPC modelElement) : 
-                    base(modelElement, "_origin")
-            {
-            }
-            
-            /// <summary>
-            /// Gets or sets the value of this expression
-            /// </summary>
-            public override IOriginator Value
-            {
-                get
-                {
-                    return this.ModelElement._Origin;
-                }
-                set
-                {
-                    this.ModelElement._Origin = value;
                 }
             }
         }

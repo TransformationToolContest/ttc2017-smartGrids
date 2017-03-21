@@ -49,20 +49,6 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
         /// </summary>
         private IAnalogueValue _setMag;
         
-        private static Lazy<ITypedElement> @__setMagReference = new Lazy<ITypedElement>(Retrieve_SetMagReference);
-        
-        /// <summary>
-        /// The backing field for the _SetMag property
-        /// </summary>
-        private IAnalogueValue @__setMag;
-        
-        private static Lazy<ITypedElement> ___setMagReference = new Lazy<ITypedElement>(Retrieve__SetMagReference);
-        
-        /// <summary>
-        /// The backing field for the __SetMag property
-        /// </summary>
-        private IAnalogueValue ___setMag;
-        
         private static Lazy<ITypedElement> _unitsReference = new Lazy<ITypedElement>(RetrieveUnitsReference);
         
         /// <summary>
@@ -130,74 +116,6 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
                     }
                     this.OnSetMagChanged(e);
                     this.OnPropertyChanged("SetMag", e, _setMagReference);
-                }
-            }
-        }
-        
-        /// <summary>
-        /// The _setMag property
-        /// </summary>
-        [XmlElementNameAttribute("_setMag")]
-        [XmlAttributeAttribute(true)]
-        public virtual IAnalogueValue _SetMag
-        {
-            get
-            {
-                return this.@__setMag;
-            }
-            set
-            {
-                if ((this.@__setMag != value))
-                {
-                    IAnalogueValue old = this.@__setMag;
-                    ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
-                    this.On_SetMagChanging(e);
-                    this.OnPropertyChanging("_SetMag", e, @__setMagReference);
-                    this.@__setMag = value;
-                    if ((old != null))
-                    {
-                        old.Deleted -= this.OnReset_SetMag;
-                    }
-                    if ((value != null))
-                    {
-                        value.Deleted += this.OnReset_SetMag;
-                    }
-                    this.On_SetMagChanged(e);
-                    this.OnPropertyChanged("_SetMag", e, @__setMagReference);
-                }
-            }
-        }
-        
-        /// <summary>
-        /// The __setMag property
-        /// </summary>
-        [XmlElementNameAttribute("__setMag")]
-        [XmlAttributeAttribute(true)]
-        public virtual IAnalogueValue @__SetMag
-        {
-            get
-            {
-                return this.___setMag;
-            }
-            set
-            {
-                if ((this.___setMag != value))
-                {
-                    IAnalogueValue old = this.___setMag;
-                    ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
-                    this.On__SetMagChanging(e);
-                    this.OnPropertyChanging("__SetMag", e, ___setMagReference);
-                    this.___setMag = value;
-                    if ((old != null))
-                    {
-                        old.Deleted -= this.OnReset__SetMag;
-                    }
-                    if ((value != null))
-                    {
-                        value.Deleted += this.OnReset__SetMag;
-                    }
-                    this.On__SetMagChanged(e);
-                    this.OnPropertyChanged("__SetMag", e, ___setMagReference);
                 }
             }
         }
@@ -410,26 +328,6 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
         public event System.EventHandler<ValueChangedEventArgs> SetMagChanged;
         
         /// <summary>
-        /// Gets fired before the _SetMag property changes its value
-        /// </summary>
-        public event System.EventHandler<ValueChangedEventArgs> _SetMagChanging;
-        
-        /// <summary>
-        /// Gets fired when the _SetMag property changed its value
-        /// </summary>
-        public event System.EventHandler<ValueChangedEventArgs> _SetMagChanged;
-        
-        /// <summary>
-        /// Gets fired before the __SetMag property changes its value
-        /// </summary>
-        public event System.EventHandler<ValueChangedEventArgs> @__SetMagChanging;
-        
-        /// <summary>
-        /// Gets fired when the __SetMag property changed its value
-        /// </summary>
-        public event System.EventHandler<ValueChangedEventArgs> @__SetMagChanged;
-        
-        /// <summary>
         /// Gets fired before the Units property changes its value
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> UnitsChanging;
@@ -518,88 +416,6 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
         private void OnResetSetMag(object sender, System.EventArgs eventArgs)
         {
             this.SetMag = null;
-        }
-        
-        private static ITypedElement Retrieve_SetMagReference()
-        {
-            return ((ITypedElement)(((ModelElement)(ASG.ClassInstance)).Resolve("_setMag")));
-        }
-        
-        /// <summary>
-        /// Raises the _SetMagChanging event
-        /// </summary>
-        /// <param name="eventArgs">The event data</param>
-        protected virtual void On_SetMagChanging(ValueChangedEventArgs eventArgs)
-        {
-            System.EventHandler<ValueChangedEventArgs> handler = this._SetMagChanging;
-            if ((handler != null))
-            {
-                handler.Invoke(this, eventArgs);
-            }
-        }
-        
-        /// <summary>
-        /// Raises the _SetMagChanged event
-        /// </summary>
-        /// <param name="eventArgs">The event data</param>
-        protected virtual void On_SetMagChanged(ValueChangedEventArgs eventArgs)
-        {
-            System.EventHandler<ValueChangedEventArgs> handler = this._SetMagChanged;
-            if ((handler != null))
-            {
-                handler.Invoke(this, eventArgs);
-            }
-        }
-        
-        /// <summary>
-        /// Handles the event that the _SetMag property must reset
-        /// </summary>
-        /// <param name="sender">The object that sent this reset request</param>
-        /// <param name="eventArgs">The event data for the reset event</param>
-        private void OnReset_SetMag(object sender, System.EventArgs eventArgs)
-        {
-            this._SetMag = null;
-        }
-        
-        private static ITypedElement Retrieve__SetMagReference()
-        {
-            return ((ITypedElement)(((ModelElement)(ASG.ClassInstance)).Resolve("__setMag")));
-        }
-        
-        /// <summary>
-        /// Raises the __SetMagChanging event
-        /// </summary>
-        /// <param name="eventArgs">The event data</param>
-        protected virtual void On__SetMagChanging(ValueChangedEventArgs eventArgs)
-        {
-            System.EventHandler<ValueChangedEventArgs> handler = this.@__SetMagChanging;
-            if ((handler != null))
-            {
-                handler.Invoke(this, eventArgs);
-            }
-        }
-        
-        /// <summary>
-        /// Raises the __SetMagChanged event
-        /// </summary>
-        /// <param name="eventArgs">The event data</param>
-        protected virtual void On__SetMagChanged(ValueChangedEventArgs eventArgs)
-        {
-            System.EventHandler<ValueChangedEventArgs> handler = this.@__SetMagChanged;
-            if ((handler != null))
-            {
-                handler.Invoke(this, eventArgs);
-            }
-        }
-        
-        /// <summary>
-        /// Handles the event that the __SetMag property must reset
-        /// </summary>
-        /// <param name="sender">The object that sent this reset request</param>
-        /// <param name="eventArgs">The event data for the reset event</param>
-        private void OnReset__SetMag(object sender, System.EventArgs eventArgs)
-        {
-            this.@__SetMag = null;
         }
         
         private static ITypedElement RetrieveUnitsReference()
@@ -819,16 +635,6 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
                 this.SetMag = ((IAnalogueValue)(value));
                 return;
             }
-            if ((feature == "_SETMAG"))
-            {
-                this._SetMag = ((IAnalogueValue)(value));
-                return;
-            }
-            if ((feature == "__SETMAG"))
-            {
-                this.@__SetMag = ((IAnalogueValue)(value));
-                return;
-            }
             if ((feature == "UNITS"))
             {
                 this.Units = ((IUnits)(value));
@@ -868,14 +674,6 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
             {
                 return new SetMagProxy(this);
             }
-            if ((attribute == "_SetMag"))
-            {
-                return new _SetMagProxy(this);
-            }
-            if ((attribute == "__SetMag"))
-            {
-                return new @__SetMagProxy(this);
-            }
             if ((attribute == "Units"))
             {
                 return new UnitsProxy(this);
@@ -909,14 +707,6 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
             if ((reference == "SetMag"))
             {
                 return new SetMagProxy(this);
-            }
-            if ((reference == "_SetMag"))
-            {
-                return new _SetMagProxy(this);
-            }
-            if ((reference == "__SetMag"))
-            {
-                return new @__SetMagProxy(this);
             }
             if ((reference == "Units"))
             {
@@ -982,14 +772,6 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
                     {
                         count = (count + 1);
                     }
-                    if ((this._parent._SetMag != null))
-                    {
-                        count = (count + 1);
-                    }
-                    if ((this._parent.@__SetMag != null))
-                    {
-                        count = (count + 1);
-                    }
                     if ((this._parent.Units != null))
                     {
                         count = (count + 1);
@@ -1017,8 +799,6 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
             protected override void AttachCore()
             {
                 this._parent.SetMagChanged += this.PropagateValueChanges;
-                this._parent._SetMagChanged += this.PropagateValueChanges;
-                this._parent.@__SetMagChanged += this.PropagateValueChanges;
                 this._parent.UnitsChanged += this.PropagateValueChanges;
                 this._parent.SVCChanged += this.PropagateValueChanges;
                 this._parent.MinValChanged += this.PropagateValueChanges;
@@ -1029,8 +809,6 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
             protected override void DetachCore()
             {
                 this._parent.SetMagChanged -= this.PropagateValueChanges;
-                this._parent._SetMagChanged -= this.PropagateValueChanges;
-                this._parent.@__SetMagChanged -= this.PropagateValueChanges;
                 this._parent.UnitsChanged -= this.PropagateValueChanges;
                 this._parent.SVCChanged -= this.PropagateValueChanges;
                 this._parent.MinValChanged -= this.PropagateValueChanges;
@@ -1050,24 +828,6 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
                     if ((setMagCasted != null))
                     {
                         this._parent.SetMag = setMagCasted;
-                        return;
-                    }
-                }
-                if ((this._parent._SetMag == null))
-                {
-                    IAnalogueValue _setMagCasted = item.As<IAnalogueValue>();
-                    if ((_setMagCasted != null))
-                    {
-                        this._parent._SetMag = _setMagCasted;
-                        return;
-                    }
-                }
-                if ((this._parent.@__SetMag == null))
-                {
-                    IAnalogueValue @__setMagCasted = item.As<IAnalogueValue>();
-                    if ((@__setMagCasted != null))
-                    {
-                        this._parent.@__SetMag = @__setMagCasted;
                         return;
                     }
                 }
@@ -1124,8 +884,6 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
             public override void Clear()
             {
                 this._parent.SetMag = null;
-                this._parent._SetMag = null;
-                this._parent.@__SetMag = null;
                 this._parent.Units = null;
                 this._parent.SVC = null;
                 this._parent.MinVal = null;
@@ -1141,14 +899,6 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
             public override bool Contains(IModelElement item)
             {
                 if ((item == this._parent.SetMag))
-                {
-                    return true;
-                }
-                if ((item == this._parent._SetMag))
-                {
-                    return true;
-                }
-                if ((item == this._parent.@__SetMag))
                 {
                     return true;
                 }
@@ -1185,16 +935,6 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
                 if ((this._parent.SetMag != null))
                 {
                     array[arrayIndex] = this._parent.SetMag;
-                    arrayIndex = (arrayIndex + 1);
-                }
-                if ((this._parent._SetMag != null))
-                {
-                    array[arrayIndex] = this._parent._SetMag;
-                    arrayIndex = (arrayIndex + 1);
-                }
-                if ((this._parent.@__SetMag != null))
-                {
-                    array[arrayIndex] = this._parent.@__SetMag;
                     arrayIndex = (arrayIndex + 1);
                 }
                 if ((this._parent.Units != null))
@@ -1236,16 +976,6 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
                     this._parent.SetMag = null;
                     return true;
                 }
-                if ((this._parent._SetMag == item))
-                {
-                    this._parent._SetMag = null;
-                    return true;
-                }
-                if ((this._parent.@__SetMag == item))
-                {
-                    this._parent.@__SetMag = null;
-                    return true;
-                }
                 if ((this._parent.Units == item))
                 {
                     this._parent.Units = null;
@@ -1280,7 +1010,7 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
             /// <returns>A generic enumerator</returns>
             public override IEnumerator<IModelElement> GetEnumerator()
             {
-                return Enumerable.Empty<IModelElement>().Concat(this._parent.SetMag).Concat(this._parent._SetMag).Concat(this._parent.@__SetMag).Concat(this._parent.Units).Concat(this._parent.SVC).Concat(this._parent.MinVal).Concat(this._parent.MaxVal).Concat(this._parent.StepSize).GetEnumerator();
+                return Enumerable.Empty<IModelElement>().Concat(this._parent.SetMag).Concat(this._parent.Units).Concat(this._parent.SVC).Concat(this._parent.MinVal).Concat(this._parent.MaxVal).Concat(this._parent.StepSize).GetEnumerator();
             }
         }
         
@@ -1311,68 +1041,6 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
                 set
                 {
                     this.ModelElement.SetMag = value;
-                }
-            }
-        }
-        
-        /// <summary>
-        /// Represents a proxy to represent an incremental access to the _setMag property
-        /// </summary>
-        private sealed class _SetMagProxy : ModelPropertyChange<IASG, IAnalogueValue>
-        {
-            
-            /// <summary>
-            /// Creates a new observable property access proxy
-            /// </summary>
-            /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
-            public _SetMagProxy(IASG modelElement) : 
-                    base(modelElement, "_setMag")
-            {
-            }
-            
-            /// <summary>
-            /// Gets or sets the value of this expression
-            /// </summary>
-            public override IAnalogueValue Value
-            {
-                get
-                {
-                    return this.ModelElement._SetMag;
-                }
-                set
-                {
-                    this.ModelElement._SetMag = value;
-                }
-            }
-        }
-        
-        /// <summary>
-        /// Represents a proxy to represent an incremental access to the __setMag property
-        /// </summary>
-        private sealed class @__SetMagProxy : ModelPropertyChange<IASG, IAnalogueValue>
-        {
-            
-            /// <summary>
-            /// Creates a new observable property access proxy
-            /// </summary>
-            /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
-            public @__SetMagProxy(IASG modelElement) : 
-                    base(modelElement, "__setMag")
-            {
-            }
-            
-            /// <summary>
-            /// Gets or sets the value of this expression
-            /// </summary>
-            public override IAnalogueValue Value
-            {
-                get
-                {
-                    return this.ModelElement.@__SetMag;
-                }
-                set
-                {
-                    this.ModelElement.@__SetMag = value;
                 }
             }
         }

@@ -37,6 +37,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfAssetModels
 {
     
     
+    [TypeConverterAttribute(typeof(TransformerConstructionKindConverter))]
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61970/Informative/InfAssetModels/Tr" +
         "ansformerConstructionKind")]
     public enum TransformerConstructionKind

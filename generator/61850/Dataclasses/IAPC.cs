@@ -68,27 +68,9 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
         }
         
         /// <summary>
-        /// The _setMag property
-        /// </summary>
-        IAnalogueValue _SetMag
-        {
-            get;
-            set;
-        }
-        
-        /// <summary>
         /// The origin property
         /// </summary>
         IOriginator Origin
-        {
-            get;
-            set;
-        }
-        
-        /// <summary>
-        /// The _origin property
-        /// </summary>
-        IOriginator _Origin
         {
             get;
             set;
@@ -206,16 +188,6 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
         event System.EventHandler<ValueChangedEventArgs> SetMagChanged;
         
         /// <summary>
-        /// Gets fired before the _SetMag property changes its value
-        /// </summary>
-        event System.EventHandler<ValueChangedEventArgs> _SetMagChanging;
-        
-        /// <summary>
-        /// Gets fired when the _SetMag property changed its value
-        /// </summary>
-        event System.EventHandler<ValueChangedEventArgs> _SetMagChanged;
-        
-        /// <summary>
         /// Gets fired before the Origin property changes its value
         /// </summary>
         event System.EventHandler<ValueChangedEventArgs> OriginChanging;
@@ -224,16 +196,6 @@ namespace TTC2017.SmartGrids.SubstationStandard.Dataclasses
         /// Gets fired when the Origin property changed its value
         /// </summary>
         event System.EventHandler<ValueChangedEventArgs> OriginChanged;
-        
-        /// <summary>
-        /// Gets fired before the _Origin property changes its value
-        /// </summary>
-        event System.EventHandler<ValueChangedEventArgs> _OriginChanging;
-        
-        /// <summary>
-        /// Gets fired when the _Origin property changed its value
-        /// </summary>
-        event System.EventHandler<ValueChangedEventArgs> _OriginChanged;
         
         /// <summary>
         /// Gets fired before the OperTm property changes its value

@@ -57,25 +57,25 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
         private static Lazy<ITypedElement> _readingfactorforenergyAttribute = new Lazy<ITypedElement>(RetrieveReadingfactorforenergyAttribute);
         
         /// <summary>
-        /// The backing field for the Transformerratio_currentzähler property
+        /// The backing field for the Transformerratio_currentzaehler property
         /// </summary>
-        private Nullable<int> _transformerratio_currentzähler;
+        private Nullable<int> _transformerratio_currentzaehler;
         
-        private static Lazy<ITypedElement> _transformerratio_currentzählerAttribute = new Lazy<ITypedElement>(RetrieveTransformerratio_currentzählerAttribute);
+        private static Lazy<ITypedElement> _transformerratio_currentzaehlerAttribute = new Lazy<ITypedElement>(RetrieveTransformerratio_currentzaehlerAttribute);
         
         /// <summary>
-        /// The backing field for the Transformerratio_voltagezähler property
+        /// The backing field for the Transformerratio_voltagezaehler property
         /// </summary>
-        private Nullable<int> _transformerratio_voltagezähler;
+        private Nullable<int> _transformerratio_voltagezaehler;
         
-        private static Lazy<ITypedElement> _transformerratio_voltagezählerAttribute = new Lazy<ITypedElement>(RetrieveTransformerratio_voltagezählerAttribute);
+        private static Lazy<ITypedElement> _transformerratio_voltagezaehlerAttribute = new Lazy<ITypedElement>(RetrieveTransformerratio_voltagezaehlerAttribute);
         
         /// <summary>
-        /// The backing field for the Overalltransformerratiozähler property
+        /// The backing field for the Overalltransformerratiozaehler property
         /// </summary>
-        private Nullable<int> _overalltransformerratiozähler;
+        private Nullable<int> _overalltransformerratiozaehler;
         
-        private static Lazy<ITypedElement> _overalltransformerratiozählerAttribute = new Lazy<ITypedElement>(RetrieveOveralltransformerratiozählerAttribute);
+        private static Lazy<ITypedElement> _overalltransformerratiozaehlerAttribute = new Lazy<ITypedElement>(RetrieveOveralltransformerratiozaehlerAttribute);
         
         /// <summary>
         /// The backing field for the Transformerratio_currentnenner property
@@ -151,76 +151,76 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
         }
         
         /// <summary>
-        /// The Transformerratio_currentzähler property
+        /// The Transformerratio_currentzaehler property
         /// </summary>
         [XmlAttributeAttribute(true)]
-        public virtual Nullable<int> Transformerratio_currentzähler
+        public virtual Nullable<int> Transformerratio_currentzaehler
         {
             get
             {
-                return this._transformerratio_currentzähler;
+                return this._transformerratio_currentzaehler;
             }
             set
             {
-                if ((this._transformerratio_currentzähler != value))
+                if ((this._transformerratio_currentzaehler != value))
                 {
-                    Nullable<int> old = this._transformerratio_currentzähler;
+                    Nullable<int> old = this._transformerratio_currentzaehler;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
-                    this.OnTransformerratio_currentzählerChanging(e);
-                    this.OnPropertyChanging("Transformerratio_currentzähler", e, _transformerratio_currentzählerAttribute);
-                    this._transformerratio_currentzähler = value;
-                    this.OnTransformerratio_currentzählerChanged(e);
-                    this.OnPropertyChanged("Transformerratio_currentzähler", e, _transformerratio_currentzählerAttribute);
+                    this.OnTransformerratio_currentzaehlerChanging(e);
+                    this.OnPropertyChanging("Transformerratio_currentzaehler", e, _transformerratio_currentzaehlerAttribute);
+                    this._transformerratio_currentzaehler = value;
+                    this.OnTransformerratio_currentzaehlerChanged(e);
+                    this.OnPropertyChanged("Transformerratio_currentzaehler", e, _transformerratio_currentzaehlerAttribute);
                 }
             }
         }
         
         /// <summary>
-        /// The Transformerratio_voltagezähler property
+        /// The Transformerratio_voltagezaehler property
         /// </summary>
         [XmlAttributeAttribute(true)]
-        public virtual Nullable<int> Transformerratio_voltagezähler
+        public virtual Nullable<int> Transformerratio_voltagezaehler
         {
             get
             {
-                return this._transformerratio_voltagezähler;
+                return this._transformerratio_voltagezaehler;
             }
             set
             {
-                if ((this._transformerratio_voltagezähler != value))
+                if ((this._transformerratio_voltagezaehler != value))
                 {
-                    Nullable<int> old = this._transformerratio_voltagezähler;
+                    Nullable<int> old = this._transformerratio_voltagezaehler;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
-                    this.OnTransformerratio_voltagezählerChanging(e);
-                    this.OnPropertyChanging("Transformerratio_voltagezähler", e, _transformerratio_voltagezählerAttribute);
-                    this._transformerratio_voltagezähler = value;
-                    this.OnTransformerratio_voltagezählerChanged(e);
-                    this.OnPropertyChanged("Transformerratio_voltagezähler", e, _transformerratio_voltagezählerAttribute);
+                    this.OnTransformerratio_voltagezaehlerChanging(e);
+                    this.OnPropertyChanging("Transformerratio_voltagezaehler", e, _transformerratio_voltagezaehlerAttribute);
+                    this._transformerratio_voltagezaehler = value;
+                    this.OnTransformerratio_voltagezaehlerChanged(e);
+                    this.OnPropertyChanged("Transformerratio_voltagezaehler", e, _transformerratio_voltagezaehlerAttribute);
                 }
             }
         }
         
         /// <summary>
-        /// The Overalltransformerratiozähler property
+        /// The Overalltransformerratiozaehler property
         /// </summary>
         [XmlAttributeAttribute(true)]
-        public virtual Nullable<int> Overalltransformerratiozähler
+        public virtual Nullable<int> Overalltransformerratiozaehler
         {
             get
             {
-                return this._overalltransformerratiozähler;
+                return this._overalltransformerratiozaehler;
             }
             set
             {
-                if ((this._overalltransformerratiozähler != value))
+                if ((this._overalltransformerratiozaehler != value))
                 {
-                    Nullable<int> old = this._overalltransformerratiozähler;
+                    Nullable<int> old = this._overalltransformerratiozaehler;
                     ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
-                    this.OnOveralltransformerratiozählerChanging(e);
-                    this.OnPropertyChanging("Overalltransformerratiozähler", e, _overalltransformerratiozählerAttribute);
-                    this._overalltransformerratiozähler = value;
-                    this.OnOveralltransformerratiozählerChanged(e);
-                    this.OnPropertyChanged("Overalltransformerratiozähler", e, _overalltransformerratiozählerAttribute);
+                    this.OnOveralltransformerratiozaehlerChanging(e);
+                    this.OnPropertyChanging("Overalltransformerratiozaehler", e, _overalltransformerratiozaehlerAttribute);
+                    this._overalltransformerratiozaehler = value;
+                    this.OnOveralltransformerratiozaehlerChanged(e);
+                    this.OnPropertyChanged("Overalltransformerratiozaehler", e, _overalltransformerratiozaehlerAttribute);
                 }
             }
         }
@@ -337,34 +337,34 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
         public event System.EventHandler<ValueChangedEventArgs> ReadingfactorforenergyChanged;
         
         /// <summary>
-        /// Gets fired before the Transformerratio_currentzähler property changes its value
+        /// Gets fired before the Transformerratio_currentzaehler property changes its value
         /// </summary>
-        public event System.EventHandler<ValueChangedEventArgs> Transformerratio_currentzählerChanging;
+        public event System.EventHandler<ValueChangedEventArgs> Transformerratio_currentzaehlerChanging;
         
         /// <summary>
-        /// Gets fired when the Transformerratio_currentzähler property changed its value
+        /// Gets fired when the Transformerratio_currentzaehler property changed its value
         /// </summary>
-        public event System.EventHandler<ValueChangedEventArgs> Transformerratio_currentzählerChanged;
+        public event System.EventHandler<ValueChangedEventArgs> Transformerratio_currentzaehlerChanged;
         
         /// <summary>
-        /// Gets fired before the Transformerratio_voltagezähler property changes its value
+        /// Gets fired before the Transformerratio_voltagezaehler property changes its value
         /// </summary>
-        public event System.EventHandler<ValueChangedEventArgs> Transformerratio_voltagezählerChanging;
+        public event System.EventHandler<ValueChangedEventArgs> Transformerratio_voltagezaehlerChanging;
         
         /// <summary>
-        /// Gets fired when the Transformerratio_voltagezähler property changed its value
+        /// Gets fired when the Transformerratio_voltagezaehler property changed its value
         /// </summary>
-        public event System.EventHandler<ValueChangedEventArgs> Transformerratio_voltagezählerChanged;
+        public event System.EventHandler<ValueChangedEventArgs> Transformerratio_voltagezaehlerChanged;
         
         /// <summary>
-        /// Gets fired before the Overalltransformerratiozähler property changes its value
+        /// Gets fired before the Overalltransformerratiozaehler property changes its value
         /// </summary>
-        public event System.EventHandler<ValueChangedEventArgs> OveralltransformerratiozählerChanging;
+        public event System.EventHandler<ValueChangedEventArgs> OveralltransformerratiozaehlerChanging;
         
         /// <summary>
-        /// Gets fired when the Overalltransformerratiozähler property changed its value
+        /// Gets fired when the Overalltransformerratiozaehler property changed its value
         /// </summary>
-        public event System.EventHandler<ValueChangedEventArgs> OveralltransformerratiozählerChanged;
+        public event System.EventHandler<ValueChangedEventArgs> OveralltransformerratiozaehlerChanged;
         
         /// <summary>
         /// Gets fired before the Transformerratio_currentnenner property changes its value
@@ -458,18 +458,18 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             }
         }
         
-        private static ITypedElement RetrieveTransformerratio_currentzählerAttribute()
+        private static ITypedElement RetrieveTransformerratio_currentzaehlerAttribute()
         {
-            return ((ITypedElement)(((ModelElement)(ReadingFactorAndCT_VTratio.ClassInstance)).Resolve("Transformerratio_currentzähler")));
+            return ((ITypedElement)(((ModelElement)(ReadingFactorAndCT_VTratio.ClassInstance)).Resolve("Transformerratio_currentzaehler")));
         }
         
         /// <summary>
-        /// Raises the Transformerratio_currentzählerChanging event
+        /// Raises the Transformerratio_currentzaehlerChanging event
         /// </summary>
         /// <param name="eventArgs">The event data</param>
-        protected virtual void OnTransformerratio_currentzählerChanging(ValueChangedEventArgs eventArgs)
+        protected virtual void OnTransformerratio_currentzaehlerChanging(ValueChangedEventArgs eventArgs)
         {
-            System.EventHandler<ValueChangedEventArgs> handler = this.Transformerratio_currentzählerChanging;
+            System.EventHandler<ValueChangedEventArgs> handler = this.Transformerratio_currentzaehlerChanging;
             if ((handler != null))
             {
                 handler.Invoke(this, eventArgs);
@@ -477,61 +477,30 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
         }
         
         /// <summary>
-        /// Raises the Transformerratio_currentzählerChanged event
+        /// Raises the Transformerratio_currentzaehlerChanged event
         /// </summary>
         /// <param name="eventArgs">The event data</param>
-        protected virtual void OnTransformerratio_currentzählerChanged(ValueChangedEventArgs eventArgs)
+        protected virtual void OnTransformerratio_currentzaehlerChanged(ValueChangedEventArgs eventArgs)
         {
-            System.EventHandler<ValueChangedEventArgs> handler = this.Transformerratio_currentzählerChanged;
+            System.EventHandler<ValueChangedEventArgs> handler = this.Transformerratio_currentzaehlerChanged;
             if ((handler != null))
             {
                 handler.Invoke(this, eventArgs);
             }
         }
         
-        private static ITypedElement RetrieveTransformerratio_voltagezählerAttribute()
+        private static ITypedElement RetrieveTransformerratio_voltagezaehlerAttribute()
         {
-            return ((ITypedElement)(((ModelElement)(ReadingFactorAndCT_VTratio.ClassInstance)).Resolve("Transformerratio_voltagezähler")));
+            return ((ITypedElement)(((ModelElement)(ReadingFactorAndCT_VTratio.ClassInstance)).Resolve("Transformerratio_voltagezaehler")));
         }
         
         /// <summary>
-        /// Raises the Transformerratio_voltagezählerChanging event
+        /// Raises the Transformerratio_voltagezaehlerChanging event
         /// </summary>
         /// <param name="eventArgs">The event data</param>
-        protected virtual void OnTransformerratio_voltagezählerChanging(ValueChangedEventArgs eventArgs)
+        protected virtual void OnTransformerratio_voltagezaehlerChanging(ValueChangedEventArgs eventArgs)
         {
-            System.EventHandler<ValueChangedEventArgs> handler = this.Transformerratio_voltagezählerChanging;
-            if ((handler != null))
-            {
-                handler.Invoke(this, eventArgs);
-            }
-        }
-        
-        /// <summary>
-        /// Raises the Transformerratio_voltagezählerChanged event
-        /// </summary>
-        /// <param name="eventArgs">The event data</param>
-        protected virtual void OnTransformerratio_voltagezählerChanged(ValueChangedEventArgs eventArgs)
-        {
-            System.EventHandler<ValueChangedEventArgs> handler = this.Transformerratio_voltagezählerChanged;
-            if ((handler != null))
-            {
-                handler.Invoke(this, eventArgs);
-            }
-        }
-        
-        private static ITypedElement RetrieveOveralltransformerratiozählerAttribute()
-        {
-            return ((ITypedElement)(((ModelElement)(ReadingFactorAndCT_VTratio.ClassInstance)).Resolve("Overalltransformerratiozähler")));
-        }
-        
-        /// <summary>
-        /// Raises the OveralltransformerratiozählerChanging event
-        /// </summary>
-        /// <param name="eventArgs">The event data</param>
-        protected virtual void OnOveralltransformerratiozählerChanging(ValueChangedEventArgs eventArgs)
-        {
-            System.EventHandler<ValueChangedEventArgs> handler = this.OveralltransformerratiozählerChanging;
+            System.EventHandler<ValueChangedEventArgs> handler = this.Transformerratio_voltagezaehlerChanging;
             if ((handler != null))
             {
                 handler.Invoke(this, eventArgs);
@@ -539,12 +508,43 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
         }
         
         /// <summary>
-        /// Raises the OveralltransformerratiozählerChanged event
+        /// Raises the Transformerratio_voltagezaehlerChanged event
         /// </summary>
         /// <param name="eventArgs">The event data</param>
-        protected virtual void OnOveralltransformerratiozählerChanged(ValueChangedEventArgs eventArgs)
+        protected virtual void OnTransformerratio_voltagezaehlerChanged(ValueChangedEventArgs eventArgs)
         {
-            System.EventHandler<ValueChangedEventArgs> handler = this.OveralltransformerratiozählerChanged;
+            System.EventHandler<ValueChangedEventArgs> handler = this.Transformerratio_voltagezaehlerChanged;
+            if ((handler != null))
+            {
+                handler.Invoke(this, eventArgs);
+            }
+        }
+        
+        private static ITypedElement RetrieveOveralltransformerratiozaehlerAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(ReadingFactorAndCT_VTratio.ClassInstance)).Resolve("Overalltransformerratiozaehler")));
+        }
+        
+        /// <summary>
+        /// Raises the OveralltransformerratiozaehlerChanging event
+        /// </summary>
+        /// <param name="eventArgs">The event data</param>
+        protected virtual void OnOveralltransformerratiozaehlerChanging(ValueChangedEventArgs eventArgs)
+        {
+            System.EventHandler<ValueChangedEventArgs> handler = this.OveralltransformerratiozaehlerChanging;
+            if ((handler != null))
+            {
+                handler.Invoke(this, eventArgs);
+            }
+        }
+        
+        /// <summary>
+        /// Raises the OveralltransformerratiozaehlerChanged event
+        /// </summary>
+        /// <param name="eventArgs">The event data</param>
+        protected virtual void OnOveralltransformerratiozaehlerChanged(ValueChangedEventArgs eventArgs)
+        {
+            System.EventHandler<ValueChangedEventArgs> handler = this.OveralltransformerratiozaehlerChanged;
             if ((handler != null))
             {
                 handler.Invoke(this, eventArgs);
@@ -660,17 +660,17 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             {
                 return this.Readingfactorforenergy;
             }
-            if ((attribute == "TRANSFORMERRATIO_CURRENTZÄHLER"))
+            if ((attribute == "TRANSFORMERRATIO_CURRENTZAEHLER"))
             {
-                return this.Transformerratio_currentzähler;
+                return this.Transformerratio_currentzaehler;
             }
-            if ((attribute == "TRANSFORMERRATIO_VOLTAGEZÄHLER"))
+            if ((attribute == "TRANSFORMERRATIO_VOLTAGEZAEHLER"))
             {
-                return this.Transformerratio_voltagezähler;
+                return this.Transformerratio_voltagezaehler;
             }
-            if ((attribute == "OVERALLTRANSFORMERRATIOZÄHLER"))
+            if ((attribute == "OVERALLTRANSFORMERRATIOZAEHLER"))
             {
-                return this.Overalltransformerratiozähler;
+                return this.Overalltransformerratiozaehler;
             }
             if ((attribute == "TRANSFORMERRATIO_CURRENTNENNER"))
             {
@@ -704,19 +704,19 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
                 this.Readingfactorforenergy = ((double)(value));
                 return;
             }
-            if ((feature == "TRANSFORMERRATIO_CURRENTZÄHLER"))
+            if ((feature == "TRANSFORMERRATIO_CURRENTZAEHLER"))
             {
-                this.Transformerratio_currentzähler = ((int)(value));
+                this.Transformerratio_currentzaehler = ((int)(value));
                 return;
             }
-            if ((feature == "TRANSFORMERRATIO_VOLTAGEZÄHLER"))
+            if ((feature == "TRANSFORMERRATIO_VOLTAGEZAEHLER"))
             {
-                this.Transformerratio_voltagezähler = ((int)(value));
+                this.Transformerratio_voltagezaehler = ((int)(value));
                 return;
             }
-            if ((feature == "OVERALLTRANSFORMERRATIOZÄHLER"))
+            if ((feature == "OVERALLTRANSFORMERRATIOZAEHLER"))
             {
-                this.Overalltransformerratiozähler = ((int)(value));
+                this.Overalltransformerratiozaehler = ((int)(value));
                 return;
             }
             if ((feature == "TRANSFORMERRATIO_CURRENTNENNER"))
@@ -813,17 +813,17 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
         }
         
         /// <summary>
-        /// Represents a proxy to represent an incremental access to the Transformerratio_currentzähler property
+        /// Represents a proxy to represent an incremental access to the Transformerratio_currentzaehler property
         /// </summary>
-        private sealed class Transformerratio_currentzählerProxy : ModelPropertyChange<IReadingFactorAndCT_VTratio, Nullable<int>>
+        private sealed class Transformerratio_currentzaehlerProxy : ModelPropertyChange<IReadingFactorAndCT_VTratio, Nullable<int>>
         {
             
             /// <summary>
             /// Creates a new observable property access proxy
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
-            public Transformerratio_currentzählerProxy(IReadingFactorAndCT_VTratio modelElement) : 
-                    base(modelElement, "Transformerratio_currentzähler")
+            public Transformerratio_currentzaehlerProxy(IReadingFactorAndCT_VTratio modelElement) : 
+                    base(modelElement, "Transformerratio_currentzaehler")
             {
             }
             
@@ -834,27 +834,27 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             {
                 get
                 {
-                    return this.ModelElement.Transformerratio_currentzähler;
+                    return this.ModelElement.Transformerratio_currentzaehler;
                 }
                 set
                 {
-                    this.ModelElement.Transformerratio_currentzähler = value;
+                    this.ModelElement.Transformerratio_currentzaehler = value;
                 }
             }
         }
         
         /// <summary>
-        /// Represents a proxy to represent an incremental access to the Transformerratio_voltagezähler property
+        /// Represents a proxy to represent an incremental access to the Transformerratio_voltagezaehler property
         /// </summary>
-        private sealed class Transformerratio_voltagezählerProxy : ModelPropertyChange<IReadingFactorAndCT_VTratio, Nullable<int>>
+        private sealed class Transformerratio_voltagezaehlerProxy : ModelPropertyChange<IReadingFactorAndCT_VTratio, Nullable<int>>
         {
             
             /// <summary>
             /// Creates a new observable property access proxy
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
-            public Transformerratio_voltagezählerProxy(IReadingFactorAndCT_VTratio modelElement) : 
-                    base(modelElement, "Transformerratio_voltagezähler")
+            public Transformerratio_voltagezaehlerProxy(IReadingFactorAndCT_VTratio modelElement) : 
+                    base(modelElement, "Transformerratio_voltagezaehler")
             {
             }
             
@@ -865,27 +865,27 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             {
                 get
                 {
-                    return this.ModelElement.Transformerratio_voltagezähler;
+                    return this.ModelElement.Transformerratio_voltagezaehler;
                 }
                 set
                 {
-                    this.ModelElement.Transformerratio_voltagezähler = value;
+                    this.ModelElement.Transformerratio_voltagezaehler = value;
                 }
             }
         }
         
         /// <summary>
-        /// Represents a proxy to represent an incremental access to the Overalltransformerratiozähler property
+        /// Represents a proxy to represent an incremental access to the Overalltransformerratiozaehler property
         /// </summary>
-        private sealed class OveralltransformerratiozählerProxy : ModelPropertyChange<IReadingFactorAndCT_VTratio, Nullable<int>>
+        private sealed class OveralltransformerratiozaehlerProxy : ModelPropertyChange<IReadingFactorAndCT_VTratio, Nullable<int>>
         {
             
             /// <summary>
             /// Creates a new observable property access proxy
             /// </summary>
             /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
-            public OveralltransformerratiozählerProxy(IReadingFactorAndCT_VTratio modelElement) : 
-                    base(modelElement, "Overalltransformerratiozähler")
+            public OveralltransformerratiozaehlerProxy(IReadingFactorAndCT_VTratio modelElement) : 
+                    base(modelElement, "Overalltransformerratiozaehler")
             {
             }
             
@@ -896,11 +896,11 @@ namespace TTC2017.SmartGrids.COSEM.COSEMObjects
             {
                 get
                 {
-                    return this.ModelElement.Overalltransformerratiozähler;
+                    return this.ModelElement.Overalltransformerratiozaehler;
                 }
                 set
                 {
-                    this.ModelElement.Overalltransformerratiozähler = value;
+                    this.ModelElement.Overalltransformerratiozaehler = value;
                 }
             }
         }

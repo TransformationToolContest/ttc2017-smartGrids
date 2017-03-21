@@ -39,6 +39,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61970.Informative.InfCommon
 {
     
     
+    [TypeConverterAttribute(typeof(DCPolarityKindConverter))]
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61970/Informative/InfCommon/DCPolar" +
         "ityKind")]
     public enum DCPolarityKind

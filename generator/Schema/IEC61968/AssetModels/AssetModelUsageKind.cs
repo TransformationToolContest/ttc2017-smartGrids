@@ -39,6 +39,7 @@ namespace TTC2017.SmartGrids.CIM.IEC61968.AssetModels
 {
     
     
+    [TypeConverterAttribute(typeof(AssetModelUsageKindConverter))]
     [ModelRepresentationClassAttribute("http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61968/AssetModels/AssetModelUsageKi" +
         "nd")]
     public enum AssetModelUsageKind

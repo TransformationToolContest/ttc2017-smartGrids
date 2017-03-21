@@ -1269,12 +1269,10 @@
     <Types xsi:type="nmeta:Class" Name="ControllableStatusInfo">
       <References ReferenceType="#//Dataclasses/TimeStamp" IsOrdered="True" IsUnique="True" LowerBound="1" Name="operTm" />
       <References ReferenceType="#//Dataclasses/Originator" IsOrdered="True" IsUnique="True" LowerBound="1" Name="origin" />
-      <References ReferenceType="#//Dataclasses/Originator" IsOrdered="True" IsUnique="True" LowerBound="1" Name="_origin" />
       <References ReferenceType="#//Dataclasses/Quality" IsOrdered="True" IsUnique="True" LowerBound="1" Name="subQ" />
       <References ReferenceType="#//Dataclasses/CtlModels" IsOrdered="True" IsUnique="True" LowerBound="1" Name="ctlModel" />
       <References ReferenceType="#//Dataclasses/SboClasses" IsOrdered="True" IsUnique="True" LowerBound="1" Name="sboClass" />
       <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Integer" Name="ctlNum" />
-      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Integer" Name="_ctlNum" />
       <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Boolean" Name="stSeld" />
       <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Boolean" Name="subEna" />
       <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//String" Name="subID" />
@@ -1335,9 +1333,7 @@
     </Types>
     <Types xsi:type="nmeta:Class" Name="APC">
       <References ReferenceType="#//Dataclasses/AnalogueValue" IsOrdered="True" IsUnique="True" LowerBound="1" Name="setMag" />
-      <References ReferenceType="#//Dataclasses/AnalogueValue" IsOrdered="True" IsUnique="True" LowerBound="1" Name="_setMag" />
       <References ReferenceType="#//Dataclasses/Originator" IsOrdered="True" IsUnique="True" LowerBound="1" Name="origin" />
-      <References ReferenceType="#//Dataclasses/Originator" IsOrdered="True" IsUnique="True" LowerBound="1" Name="_origin" />
       <References ReferenceType="#//Dataclasses/TimeStamp" IsOrdered="True" IsUnique="True" LowerBound="1" Name="operTm" />
       <References ReferenceType="#//Dataclasses/Quality" IsOrdered="True" IsUnique="True" LowerBound="1" Name="q" />
       <References ReferenceType="#//Dataclasses/TimeStamp" IsOrdered="True" IsUnique="True" LowerBound="1" Name="t" />
@@ -1352,13 +1348,9 @@
     </Types>
     <Types xsi:type="nmeta:Class" Name="SPG">
       <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Boolean" Name="setVal" />
-      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Boolean" Name="_setVal" />
-      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Boolean" Name="__setVal" />
     </Types>
     <Types xsi:type="nmeta:Class" Name="ING">
       <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Integer" Name="setVal" />
-      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Integer" Name="_setVal" />
-      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Integer" Name="__setVal" />
       <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Integer" Name="minVal" />
       <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Integer" Name="maxVal" />
       <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Integer" Name="stepSize" />
@@ -1369,8 +1361,6 @@
     </Types>
     <Types xsi:type="nmeta:Class" Name="ASG">
       <References ReferenceType="#//Dataclasses/AnalogueValue" IsOrdered="True" IsUnique="True" LowerBound="1" Name="setMag" />
-      <References ReferenceType="#//Dataclasses/AnalogueValue" IsOrdered="True" IsUnique="True" LowerBound="1" Name="_setMag" />
-      <References ReferenceType="#//Dataclasses/AnalogueValue" IsOrdered="True" IsUnique="True" LowerBound="1" Name="__setMag" />
       <References ReferenceType="#//Dataclasses/Units" IsOrdered="True" IsUnique="True" LowerBound="1" Name="units" />
       <References ReferenceType="#//Dataclasses/ScaledValueConfig" IsOrdered="True" IsUnique="True" LowerBound="1" Name="sVC" />
       <References ReferenceType="#//Dataclasses/AnalogueValue" IsOrdered="True" IsUnique="True" LowerBound="1" Name="minVal" />
@@ -1379,26 +1369,12 @@
     </Types>
     <Types xsi:type="nmeta:Class" Name="CURVE">
       <References ReferenceType="#//Dataclasses/CurveChar" IsOrdered="True" IsUnique="True" LowerBound="1" Name="setCharact" />
-      <References ReferenceType="#//Dataclasses/CurveChar" IsOrdered="True" IsUnique="True" LowerBound="1" Name="_setCharact" />
-      <References ReferenceType="#//Dataclasses/CurveChar" IsOrdered="True" IsUnique="True" LowerBound="1" Name="__setCharact" />
       <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Float" Name="setParA" />
       <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Float" Name="setParB" />
       <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Float" Name="setParC" />
       <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Float" Name="setParD" />
       <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Float" Name="setParE" />
       <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Float" Name="setParF" />
-      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Float" Name="_setParA" />
-      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Float" Name="_setParB" />
-      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Float" Name="_setParC" />
-      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Float" Name="_setParD" />
-      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Float" Name="_setParE" />
-      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Float" Name="_setParF" />
-      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Float" Name="__setParA" />
-      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Float" Name="__setParB" />
-      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Float" Name="__setParC" />
-      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Float" Name="__setParD" />
-      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Float" Name="__setParE" />
-      <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Float" Name="__setParF" />
     </Types>
     <Types xsi:type="nmeta:Class" Name="DescriptionInfo">
       <References ReferenceType="#//Dataclasses/DPL" IsOrdered="True" IsUnique="True" LowerBound="1" UpperBound="-1" Name="DPL" />
