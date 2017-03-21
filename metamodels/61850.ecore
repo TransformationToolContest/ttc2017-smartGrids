@@ -2095,10 +2095,7 @@
           eType="#//Dataclasses/TimeStamp"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="origin" lowerBound="1"
           eType="#//Dataclasses/Originator"/>
-      <eStructuralFeatures xsi:type="ecore:EReference" name="_origin" lowerBound="1"
-          eType="#//Dataclasses/Originator"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="ctlNum" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
-      <eStructuralFeatures xsi:type="ecore:EAttribute" name="_ctlNum" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="stSeld" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="subEna" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="subQ" lowerBound="1"
@@ -2177,11 +2174,7 @@
     <eClassifiers xsi:type="ecore:EClass" name="APC">
       <eStructuralFeatures xsi:type="ecore:EReference" name="setMag" lowerBound="1"
           eType="#//Dataclasses/AnalogueValue"/>
-      <eStructuralFeatures xsi:type="ecore:EReference" name="_setMag" lowerBound="1"
-          eType="#//Dataclasses/AnalogueValue"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="origin" lowerBound="1"
-          eType="#//Dataclasses/Originator"/>
-      <eStructuralFeatures xsi:type="ecore:EReference" name="_origin" lowerBound="1"
           eType="#//Dataclasses/Originator"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="operTm" lowerBound="1"
           eType="#//Dataclasses/TimeStamp"/>
@@ -2203,13 +2196,9 @@
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="SPG">
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="setVal" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
-      <eStructuralFeatures xsi:type="ecore:EAttribute" name="_setVal" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
-      <eStructuralFeatures xsi:type="ecore:EAttribute" name="__setVal" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="ING">
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="setVal" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
-      <eStructuralFeatures xsi:type="ecore:EAttribute" name="_setVal" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
-      <eStructuralFeatures xsi:type="ecore:EAttribute" name="__setVal" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="minVal" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="maxVal" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="stepSize" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
@@ -2220,10 +2209,6 @@
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="ASG">
       <eStructuralFeatures xsi:type="ecore:EReference" name="setMag" lowerBound="1"
-          eType="#//Dataclasses/AnalogueValue"/>
-      <eStructuralFeatures xsi:type="ecore:EReference" name="_setMag" lowerBound="1"
-          eType="#//Dataclasses/AnalogueValue"/>
-      <eStructuralFeatures xsi:type="ecore:EReference" name="__setMag" lowerBound="1"
           eType="#//Dataclasses/AnalogueValue"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="units" lowerBound="1"
           eType="#//Dataclasses/Units"/>
@@ -2244,22 +2229,6 @@
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="setParD" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EFloat"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="setParE" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EFloat"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="setParF" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EFloat"/>
-      <eStructuralFeatures xsi:type="ecore:EReference" name="_setCharact" lowerBound="1"
-          eType="#//Dataclasses/CurveChar"/>
-      <eStructuralFeatures xsi:type="ecore:EAttribute" name="_setParA" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EFloat"/>
-      <eStructuralFeatures xsi:type="ecore:EAttribute" name="_setParB" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EFloat"/>
-      <eStructuralFeatures xsi:type="ecore:EAttribute" name="_setParC" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EFloat"/>
-      <eStructuralFeatures xsi:type="ecore:EAttribute" name="_setParD" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EFloat"/>
-      <eStructuralFeatures xsi:type="ecore:EAttribute" name="_setParE" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EFloat"/>
-      <eStructuralFeatures xsi:type="ecore:EAttribute" name="_setParF" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EFloat"/>
-      <eStructuralFeatures xsi:type="ecore:EReference" name="__setCharact" lowerBound="1"
-          eType="#//Dataclasses/CurveChar"/>
-      <eStructuralFeatures xsi:type="ecore:EAttribute" name="__setParA" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EFloat"/>
-      <eStructuralFeatures xsi:type="ecore:EAttribute" name="__setParB" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EFloat"/>
-      <eStructuralFeatures xsi:type="ecore:EAttribute" name="__setParC" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EFloat"/>
-      <eStructuralFeatures xsi:type="ecore:EAttribute" name="__setParD" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EFloat"/>
-      <eStructuralFeatures xsi:type="ecore:EAttribute" name="__setParE" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EFloat"/>
-      <eStructuralFeatures xsi:type="ecore:EAttribute" name="__setParF" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EFloat"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="DescriptionInfo">
       <eStructuralFeatures xsi:type="ecore:EReference" name="DPL" lowerBound="1" upperBound="-1"

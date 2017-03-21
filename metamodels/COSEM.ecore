@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="COSEM" nsURI="http://www.transformation-tool-contest.eu/2017/smartGrids/cosem" nsPrefix="cosem">
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="COSEM" nsURI="http://www.transformation-tool-contest.eu/2017/smartGrids/cosem"
+    nsPrefix="cosem">
   <eClassifiers xsi:type="ecore:EClass" name="LogicalDevice">
     <eStructuralFeatures xsi:type="ecore:EReference" name="AA" lowerBound="1" eType="#//COSEMObjects/CurrentAssociation"
         containment="true"/>
@@ -102,7 +103,7 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="name" lowerBound="1" eType="#//COSEMObjects/SAPAssignmentCurrent"
         containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="COSEM">
+  <eClassifiers xsi:type="ecore:EClass" name="COSEMRoot">
     <eStructuralFeatures xsi:type="ecore:EReference" name="PhysicalDevice" upperBound="-1"
         eType="#//PhysicalDevice" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="LogicalDevice" upperBound="-1"
@@ -345,9 +346,6 @@
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="LocalTime" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="LocalDate" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="ClockObject" eSuperTypes="#//InterfaceClasses/Clock">
-      <eStructuralFeatures xsi:type="ecore:EAttribute" name="Time" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-    </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="UNIXClock" eSuperTypes="#//InterfaceClasses/Data">
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     </eClassifiers>
@@ -549,8 +547,6 @@
         eSuperTypes="#//InterfaceClasses/Statusmapping"/>
     <eClassifiers xsi:type="ecore:EClass" name="I_O_control_signal_objects_global"
         eSuperTypes="#//InterfaceClasses/Profilegeneric"/>
-    <eClassifiers xsi:type="ecore:EClass" name="Disconnectcontrolobject" eSuperTypes="#//InterfaceClasses/DisconnectControl"/>
-    <eClassifiers xsi:type="ecore:EClass" name="GeneralpurposeArbitrator" eSuperTypes="#//InterfaceClasses/Arbitrator"/>
     <eClassifiers xsi:type="ecore:EClass" name="IOControlSignalsManufacturer" eSuperTypes="#//InterfaceClasses/Data">
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     </eClassifiers>
@@ -628,11 +624,11 @@
           eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDouble"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="Readingfactorforenergy"
           eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDouble"/>
-      <eStructuralFeatures xsi:type="ecore:EAttribute" name="Transformerratio_currentzähler"
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="Transformerratio_currentzaehler"
           eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
-      <eStructuralFeatures xsi:type="ecore:EAttribute" name="Transformerratio_voltagezähler"
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="Transformerratio_voltagezaehler"
           eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
-      <eStructuralFeatures xsi:type="ecore:EAttribute" name="Overalltransformerratiozähler"
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="Overalltransformerratiozaehler"
           eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="Transformerratio_currentnenner"
           eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>

@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="mjtrace" nsURI="http://www.transformation-tool-contest.eu/2017/smartGrids/VoltagePhaseMeasurements.trace" nsPrefix="mjt">
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="outagePreventionMjtrace" nsURI="http://www.transformation-tool-contest.eu/2017/smartGrids/VoltagePhaseMeasurements.trace"
+    nsPrefix="outagePreventionMjt">
   <eClassifiers xsi:type="ecore:EClass" name="join_MeterAsset_MMXU_PMUVoltageMeter">
     <eStructuralFeatures xsi:type="ecore:EReference" name="left" ordered="false" eType="ecore:EClass schema.ecore#//IEC61968/Metering/MeterAsset"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="right" ordered="false"
