@@ -38,6 +38,7 @@ def generate(conf):
     """
     Generates additional change sequences
     """
+    clean_dir("changes")
     set_working_directory("generator")
     generator_bin = os.path.join("bin", "Release", "Generator.exe")
     models_dir = os.path.join(BASE_DIRECTORY, "models")
@@ -50,7 +51,7 @@ def generate(conf):
                                "--cimOut", os.path.join(full_change_path, "CIM_DCIM"),
                                "--cosemOut", os.path.join(full_change_path, "COSEM"),
                                "--substationOut", os.path.join(full_change_path, "Substandard"),
-                               "-n", conf.SequenceLength, "-d", conf.Sequences])
+                               "-n", str(conf.SequenceLength), "-d", str(conf.Sequences)])
 
 
 def benchmark(conf):
