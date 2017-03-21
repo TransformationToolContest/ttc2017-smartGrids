@@ -1,0 +1,968 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/ModelJoin/src/main/java" modelPluginID="ModelJoin"
+    modelName="COSEM" rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container"
+    importerID="org.eclipse.emf.importer.ecore" complianceLevel="8.0" copyrightFields="false"
+    operationReflection="true" importOrganizing="true">
+  <foreignModel>COSEM.ecore</foreignModel>
+  <genPackages prefix="COSEM" disposableProviderFactory="true" ecorePackage="COSEM.ecore#/">
+    <genClasses ecoreClass="COSEM.ecore#//LogicalDevice">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference COSEM.ecore#//LogicalDevice/AA"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference COSEM.ecore#//LogicalDevice/name"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference COSEM.ecore#//LogicalDevice/AutoConnect"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference COSEM.ecore#//LogicalDevice/BillingPeriodValues"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference COSEM.ecore#//LogicalDevice/ElectricityID"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference COSEM.ecore#//LogicalDevice/ProgramEntries"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference COSEM.ecore#//LogicalDevice/OutputPulse"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference COSEM.ecore#//LogicalDevice/ReadingFactor"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference COSEM.ecore#//LogicalDevice/NominalValues"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference COSEM.ecore#//LogicalDevice/InputPulse"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference COSEM.ecore#//LogicalDevice/MeasurementPeriod"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference COSEM.ecore#//LogicalDevice/TimeEntries"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference COSEM.ecore#//LogicalDevice/TransformerLineLosses"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference COSEM.ecore#//LogicalDevice/MeasurementAlgorithm"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference COSEM.ecore#//LogicalDevice/MeteringPoint"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference COSEM.ecore#//LogicalDevice/ElectricityRelatedStatus"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference COSEM.ecore#//LogicalDevice/RegisterMonitor"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference COSEM.ecore#//LogicalDevice/ElectricityValues"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference COSEM.ecore#//LogicalDevice/MeasurementValueTypes"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference COSEM.ecore#//LogicalDevice/Harmonics"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference COSEM.ecore#//LogicalDevice/Tariffs"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference COSEM.ecore#//LogicalDevice/Phaseangles"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute COSEM.ecore#//LogicalDevice/ID"/>
+    </genClasses>
+    <genClasses ecoreClass="COSEM.ecore#//PhysicalDevice">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference COSEM.ecore#//PhysicalDevice/managementLogicalDevice"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute COSEM.ecore#//PhysicalDevice/ID"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference COSEM.ecore#//PhysicalDevice/LogicalDevice"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference COSEM.ecore#//PhysicalDevice/ElectricityRelatedStatus"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference COSEM.ecore#//PhysicalDevice/AA"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference COSEM.ecore#//PhysicalDevice/AutoConnect"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference COSEM.ecore#//PhysicalDevice/BillingPeriodValues"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference COSEM.ecore#//PhysicalDevice/ElectricityID"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference COSEM.ecore#//PhysicalDevice/ProgramEntries"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference COSEM.ecore#//PhysicalDevice/OutputPulse"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference COSEM.ecore#//PhysicalDevice/ReadingFactor"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference COSEM.ecore#//PhysicalDevice/NominalValues"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference COSEM.ecore#//PhysicalDevice/InputPulse"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference COSEM.ecore#//PhysicalDevice/MeasurementPeriod"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference COSEM.ecore#//PhysicalDevice/TimeEntries"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference COSEM.ecore#//PhysicalDevice/TransformerLineLosses"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference COSEM.ecore#//PhysicalDevice/MeasurementAlgorithm"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference COSEM.ecore#//PhysicalDevice/MeteringPoint"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference COSEM.ecore#//PhysicalDevice/RegisterMonitor"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference COSEM.ecore#//PhysicalDevice/ElectricityValues"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference COSEM.ecore#//PhysicalDevice/MeasurementValueTypes"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference COSEM.ecore#//PhysicalDevice/Harmonics"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference COSEM.ecore#//PhysicalDevice/Tariffs"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference COSEM.ecore#//PhysicalDevice/Phaseangles"/>
+    </genClasses>
+    <genClasses ecoreClass="COSEM.ecore#//ManagementLogicalDevice"/>
+    <genClasses ecoreClass="COSEM.ecore#//LogicalDeviceName">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference COSEM.ecore#//LogicalDeviceName/name"/>
+    </genClasses>
+    <genClasses ecoreClass="COSEM.ecore#//COSEM">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference COSEM.ecore#//COSEM/PhysicalDevice"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference COSEM.ecore#//COSEM/LogicalDevice"/>
+    </genClasses>
+    <nestedGenPackages prefix="Datatypes" disposableProviderFactory="true" ecorePackage="COSEM.ecore#//Datatypes">
+      <genEnums typeSafeEnumCompatible="false" ecoreEnum="COSEM.ecore#//Datatypes/Units">
+        <genEnumLiterals ecoreEnumLiteral="COSEM.ecore#//Datatypes/Units/year"/>
+        <genEnumLiterals ecoreEnumLiteral="COSEM.ecore#//Datatypes/Units/month"/>
+        <genEnumLiterals ecoreEnumLiteral="COSEM.ecore#//Datatypes/Units/week"/>
+        <genEnumLiterals ecoreEnumLiteral="COSEM.ecore#//Datatypes/Units/day"/>
+        <genEnumLiterals ecoreEnumLiteral="COSEM.ecore#//Datatypes/Units/hour"/>
+        <genEnumLiterals ecoreEnumLiteral="COSEM.ecore#//Datatypes/Units/min"/>
+        <genEnumLiterals ecoreEnumLiteral="COSEM.ecore#//Datatypes/Units/second"/>
+        <genEnumLiterals ecoreEnumLiteral="COSEM.ecore#//Datatypes/Units/degree"/>
+        <genEnumLiterals ecoreEnumLiteral="COSEM.ecore#//Datatypes/Units/degree_celsius"/>
+        <genEnumLiterals ecoreEnumLiteral="COSEM.ecore#//Datatypes/Units/currency"/>
+        <genEnumLiterals ecoreEnumLiteral="COSEM.ecore#//Datatypes/Units/metre"/>
+        <genEnumLiterals ecoreEnumLiteral="COSEM.ecore#//Datatypes/Units/metre_per_second"/>
+        <genEnumLiterals ecoreEnumLiteral="COSEM.ecore#//Datatypes/Units/cubic_metre"/>
+        <genEnumLiterals ecoreEnumLiteral="COSEM.ecore#//Datatypes/Units/cubic_metre_per_hour"/>
+        <genEnumLiterals ecoreEnumLiteral="COSEM.ecore#//Datatypes/Units/litre"/>
+        <genEnumLiterals ecoreEnumLiteral="COSEM.ecore#//Datatypes/Units/kilogram"/>
+        <genEnumLiterals ecoreEnumLiteral="COSEM.ecore#//Datatypes/Units/newton"/>
+        <genEnumLiterals ecoreEnumLiteral="COSEM.ecore#//Datatypes/Units/newton_meter"/>
+        <genEnumLiterals ecoreEnumLiteral="COSEM.ecore#//Datatypes/Units/pascal"/>
+        <genEnumLiterals ecoreEnumLiteral="COSEM.ecore#//Datatypes/Units/bar"/>
+        <genEnumLiterals ecoreEnumLiteral="COSEM.ecore#//Datatypes/Units/joule"/>
+        <genEnumLiterals ecoreEnumLiteral="COSEM.ecore#//Datatypes/Units/joule_per_hour"/>
+        <genEnumLiterals ecoreEnumLiteral="COSEM.ecore#//Datatypes/Units/watt"/>
+        <genEnumLiterals ecoreEnumLiteral="COSEM.ecore#//Datatypes/Units/volt_ampere"/>
+        <genEnumLiterals ecoreEnumLiteral="COSEM.ecore#//Datatypes/Units/var"/>
+        <genEnumLiterals ecoreEnumLiteral="COSEM.ecore#//Datatypes/Units/watt_hour"/>
+        <genEnumLiterals ecoreEnumLiteral="COSEM.ecore#//Datatypes/Units/volt_ampere_hour"/>
+        <genEnumLiterals ecoreEnumLiteral="COSEM.ecore#//Datatypes/Units/var_hour"/>
+        <genEnumLiterals ecoreEnumLiteral="COSEM.ecore#//Datatypes/Units/ampere"/>
+        <genEnumLiterals ecoreEnumLiteral="COSEM.ecore#//Datatypes/Units/coulomb"/>
+        <genEnumLiterals ecoreEnumLiteral="COSEM.ecore#//Datatypes/Units/volt"/>
+        <genEnumLiterals ecoreEnumLiteral="COSEM.ecore#//Datatypes/Units/volt_per_metre"/>
+        <genEnumLiterals ecoreEnumLiteral="COSEM.ecore#//Datatypes/Units/farad"/>
+        <genEnumLiterals ecoreEnumLiteral="COSEM.ecore#//Datatypes/Units/ohm"/>
+        <genEnumLiterals ecoreEnumLiteral="COSEM.ecore#//Datatypes/Units/weber"/>
+        <genEnumLiterals ecoreEnumLiteral="COSEM.ecore#//Datatypes/Units/tesla"/>
+        <genEnumLiterals ecoreEnumLiteral="COSEM.ecore#//Datatypes/Units/ampere_per_metre"/>
+        <genEnumLiterals ecoreEnumLiteral="COSEM.ecore#//Datatypes/Units/henry"/>
+        <genEnumLiterals ecoreEnumLiteral="COSEM.ecore#//Datatypes/Units/hertz"/>
+        <genEnumLiterals ecoreEnumLiteral="COSEM.ecore#//Datatypes/Units/active_energy_meter_constant"/>
+        <genEnumLiterals ecoreEnumLiteral="COSEM.ecore#//Datatypes/Units/reactive_energy_meter_constant"/>
+        <genEnumLiterals ecoreEnumLiteral="COSEM.ecore#//Datatypes/Units/apparent_energy_meter_constant"/>
+        <genEnumLiterals ecoreEnumLiteral="COSEM.ecore#//Datatypes/Units/volt_squared_hours"/>
+        <genEnumLiterals ecoreEnumLiteral="COSEM.ecore#//Datatypes/Units/ampere_squared_hours"/>
+        <genEnumLiterals ecoreEnumLiteral="COSEM.ecore#//Datatypes/Units/kilogram_per_second"/>
+        <genEnumLiterals ecoreEnumLiteral="COSEM.ecore#//Datatypes/Units/siemens"/>
+        <genEnumLiterals ecoreEnumLiteral="COSEM.ecore#//Datatypes/Units/kelvin"/>
+        <genEnumLiterals ecoreEnumLiteral="COSEM.ecore#//Datatypes/Units/percentage"/>
+        <genEnumLiterals ecoreEnumLiteral="COSEM.ecore#//Datatypes/Units/Ampere_hour"/>
+        <genEnumLiterals ecoreEnumLiteral="COSEM.ecore#//Datatypes/Units/energy_per_volume"/>
+        <genEnumLiterals ecoreEnumLiteral="COSEM.ecore#//Datatypes/Units/mole_percent"/>
+        <genEnumLiterals ecoreEnumLiteral="COSEM.ecore#//Datatypes/Units/calorific_value"/>
+        <genEnumLiterals ecoreEnumLiteral="COSEM.ecore#//Datatypes/Units/mass_density"/>
+        <genEnumLiterals ecoreEnumLiteral="COSEM.ecore#//Datatypes/Units/pascal_second"/>
+        <genEnumLiterals ecoreEnumLiteral="COSEM.ecore#//Datatypes/Units/Joule_kilogram"/>
+        <genEnumLiterals ecoreEnumLiteral="COSEM.ecore#//Datatypes/Units/Signal_strength_milliwatt"/>
+        <genEnumLiterals ecoreEnumLiteral="COSEM.ecore#//Datatypes/Units/Signal_strenght_microvolt"/>
+        <genEnumLiterals ecoreEnumLiteral="COSEM.ecore#//Datatypes/Units/count"/>
+      </genEnums>
+      <genEnums typeSafeEnumCompatible="false" ecoreEnum="COSEM.ecore#//Datatypes/DisconnectControlState">
+        <genEnumLiterals ecoreEnumLiteral="COSEM.ecore#//Datatypes/DisconnectControlState/Disconnected"/>
+        <genEnumLiterals ecoreEnumLiteral="COSEM.ecore#//Datatypes/DisconnectControlState/Connected"/>
+        <genEnumLiterals ecoreEnumLiteral="COSEM.ecore#//Datatypes/DisconnectControlState/Ready_for_reconnection"/>
+      </genEnums>
+      <genEnums typeSafeEnumCompatible="false" ecoreEnum="COSEM.ecore#//Datatypes/DisconnectControlTransition">
+        <genEnumLiterals ecoreEnumLiteral="COSEM.ecore#//Datatypes/DisconnectControlTransition/remote_reconnect"/>
+        <genEnumLiterals ecoreEnumLiteral="COSEM.ecore#//Datatypes/DisconnectControlTransition/remote_disconnect"/>
+        <genEnumLiterals ecoreEnumLiteral="COSEM.ecore#//Datatypes/DisconnectControlTransition/manual_reconnect"/>
+        <genEnumLiterals ecoreEnumLiteral="COSEM.ecore#//Datatypes/DisconnectControlTransition/manual_disconnect"/>
+        <genEnumLiterals ecoreEnumLiteral="COSEM.ecore#//Datatypes/DisconnectControlTransition/local_disconnect"/>
+        <genEnumLiterals ecoreEnumLiteral="COSEM.ecore#//Datatypes/DisconnectControlTransition/local_reconnect"/>
+      </genEnums>
+      <genClasses ecoreClass="COSEM.ecore#//Datatypes/scal_unit_type">
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute COSEM.ecore#//Datatypes/scal_unit_type/scaler"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute COSEM.ecore#//Datatypes/scal_unit_type/Unit"/>
+      </genClasses>
+    </nestedGenPackages>
+    <nestedGenPackages prefix="InterfaceClasses" disposableProviderFactory="true"
+        ecorePackage="COSEM.ecore#//InterfaceClasses">
+      <genClasses ecoreClass="COSEM.ecore#//InterfaceClasses/S_FSK_PHY_MACsetup"/>
+      <genClasses ecoreClass="COSEM.ecore#//InterfaceClasses/S_FSKActiveinitiator"/>
+      <genClasses ecoreClass="COSEM.ecore#//InterfaceClasses/S_FSKMACsynctimeouts"/>
+      <genClasses ecoreClass="COSEM.ecore#//InterfaceClasses/S_FSKMACcounters"/>
+      <genClasses ecoreClass="COSEM.ecore#//InterfaceClasses/IEC61334_4_32LLCsetup"/>
+      <genClasses ecoreClass="COSEM.ecore#//InterfaceClasses/S_FSKReportingsystemlist"/>
+      <genClasses ecoreClass="COSEM.ecore#//InterfaceClasses/t61334_32_LLC_SSCS_setup"/>
+      <genClasses ecoreClass="COSEM.ecore#//InterfaceClasses/PRIME_NB_OFDM_PLC_Phy_layer_counters"/>
+      <genClasses ecoreClass="COSEM.ecore#//InterfaceClasses/PRIME_NB_OFDM_PLC_MACsetup"/>
+      <genClasses ecoreClass="COSEM.ecore#//InterfaceClasses/PRIME_NB_OFDM_PLC_MAC_counters"/>
+      <genClasses ecoreClass="COSEM.ecore#//InterfaceClasses/PRIME_NB_OFDM_PLC_MAC_functionalparams"/>
+      <genClasses ecoreClass="COSEM.ecore#//InterfaceClasses/PRIME_NB_OFDM_PLC_MACnetworkadmindata"/>
+      <genClasses ecoreClass="COSEM.ecore#//InterfaceClasses/PRIME_NB_OFDM_PLC_Application_identification"/>
+      <genClasses ecoreClass="COSEM.ecore#//InterfaceClasses/G3_PLC_MAC_layer_counters"/>
+      <genClasses ecoreClass="COSEM.ecore#//InterfaceClasses/G3_PLC_MAC_setup"/>
+      <genClasses ecoreClass="COSEM.ecore#//InterfaceClasses/G3_PLC_6LoWPAN"/>
+      <genClasses ecoreClass="COSEM.ecore#//InterfaceClasses/ZigBee_SAS_startup"/>
+      <genClasses ecoreClass="COSEM.ecore#//InterfaceClasses/ZigBee_SAS_join"/>
+      <genClasses ecoreClass="COSEM.ecore#//InterfaceClasses/ZigBee_SAS_APS_fragmentation"/>
+      <genClasses ecoreClass="COSEM.ecore#//InterfaceClasses/ZigBeenetworkcontrol"/>
+      <genClasses ecoreClass="COSEM.ecore#//InterfaceClasses/ZigBeetunnelsetup"/>
+      <genClasses ecoreClass="COSEM.ecore#//InterfaceClasses/TCP_UDPsetup"/>
+      <genClasses ecoreClass="COSEM.ecore#//InterfaceClasses/IPv4setup"/>
+      <genClasses ecoreClass="COSEM.ecore#//InterfaceClasses/IPv6setup"/>
+      <genClasses ecoreClass="COSEM.ecore#//InterfaceClasses/MACaddresssetup"/>
+      <genClasses ecoreClass="COSEM.ecore#//InterfaceClasses/PPPsetup"/>
+      <genClasses ecoreClass="COSEM.ecore#//InterfaceClasses/SMTPsetup"/>
+      <genClasses ecoreClass="COSEM.ecore#//InterfaceClasses/Modemconfiguration"/>
+      <genClasses ecoreClass="COSEM.ecore#//InterfaceClasses/Auto_answer"/>
+      <genClasses ecoreClass="COSEM.ecore#//InterfaceClasses/Auto_connect"/>
+      <genClasses ecoreClass="COSEM.ecore#//InterfaceClasses/GPRS_modem_setup"/>
+      <genClasses ecoreClass="COSEM.ecore#//InterfaceClasses/GSM_Diagnostic"/>
+      <genClasses ecoreClass="COSEM.ecore#//InterfaceClasses/IEC_twisted_pair_setup"/>
+      <genClasses ecoreClass="COSEM.ecore#//InterfaceClasses/M_Bus_slave_port_setup"/>
+      <genClasses ecoreClass="COSEM.ecore#//InterfaceClasses/M_Bus_client"/>
+      <genClasses ecoreClass="COSEM.ecore#//InterfaceClasses/Wireless_Mode_Q_Channel"/>
+      <genClasses ecoreClass="COSEM.ecore#//InterfaceClasses/M_Bus_master_port_setup"/>
+      <genClasses ecoreClass="COSEM.ecore#//InterfaceClasses/DLMS_COSEM_Server_M_Bus_port_setup"/>
+      <genClasses ecoreClass="COSEM.ecore#//InterfaceClasses/M_Bus_diagnostic"/>
+      <genClasses ecoreClass="COSEM.ecore#//InterfaceClasses/Scripttable">
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference COSEM.ecore#//InterfaceClasses/Scripttable/includes"/>
+        <genOperations ecoreOperation="COSEM.ecore#//InterfaceClasses/Scripttable/execute"/>
+      </genClasses>
+      <genClasses ecoreClass="COSEM.ecore#//InterfaceClasses/Script"/>
+      <genClasses ecoreClass="COSEM.ecore#//InterfaceClasses/Schedule"/>
+      <genClasses ecoreClass="COSEM.ecore#//InterfaceClasses/Specialdaystable"/>
+      <genClasses ecoreClass="COSEM.ecore#//InterfaceClasses/Activitycalendar"/>
+      <genClasses ecoreClass="COSEM.ecore#//InterfaceClasses/Registermonitor"/>
+      <genClasses ecoreClass="COSEM.ecore#//InterfaceClasses/Singleactionschedule"/>
+      <genClasses ecoreClass="COSEM.ecore#//InterfaceClasses/Parametermonitor"/>
+      <genClasses ecoreClass="COSEM.ecore#//InterfaceClasses/Sensormanager"/>
+      <genClasses ecoreClass="COSEM.ecore#//InterfaceClasses/Arbitrator"/>
+      <genClasses ecoreClass="COSEM.ecore#//InterfaceClasses/DisconnectControl">
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute COSEM.ecore#//InterfaceClasses/DisconnectControl/state"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute COSEM.ecore#//InterfaceClasses/DisconnectControl/transition"/>
+      </genClasses>
+      <genClasses ecoreClass="COSEM.ecore#//InterfaceClasses/Limiter"/>
+      <genClasses ecoreClass="COSEM.ecore#//InterfaceClasses/Account"/>
+      <genClasses ecoreClass="COSEM.ecore#//InterfaceClasses/Credit"/>
+      <genClasses ecoreClass="COSEM.ecore#//InterfaceClasses/Charge"/>
+      <genClasses ecoreClass="COSEM.ecore#//InterfaceClasses/Tokengateway"/>
+      <genClasses ecoreClass="COSEM.ecore#//InterfaceClasses/IEC_local_port_setup"/>
+      <genClasses ecoreClass="COSEM.ecore#//InterfaceClasses/IEC_HDLC_setup"/>
+      <genClasses ecoreClass="COSEM.ecore#//InterfaceClasses/IEC_8802_2_LLC_Type_1"/>
+      <genClasses ecoreClass="COSEM.ecore#//InterfaceClasses/IEC_8802_2_LLC_G3_NB"/>
+      <genClasses ecoreClass="COSEM.ecore#//InterfaceClasses/IEC8802_2LLCType3"/>
+      <genClasses ecoreClass="COSEM.ecore#//InterfaceClasses/Register">
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute COSEM.ecore#//InterfaceClasses/Register/value"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference COSEM.ecore#//InterfaceClasses/Register/scaler_unit"/>
+        <genOperations ecoreOperation="COSEM.ecore#//InterfaceClasses/Register/reset"/>
+      </genClasses>
+      <genClasses ecoreClass="COSEM.ecore#//InterfaceClasses/SAPAssignment">
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference COSEM.ecore#//InterfaceClasses/SAPAssignment/ldnname"/>
+      </genClasses>
+      <genClasses ecoreClass="COSEM.ecore#//InterfaceClasses/AssociationLN">
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference COSEM.ecore#//InterfaceClasses/AssociationLN/AA"/>
+      </genClasses>
+      <genClasses ecoreClass="COSEM.ecore#//InterfaceClasses/Data"/>
+      <genClasses ecoreClass="COSEM.ecore#//InterfaceClasses/ExtendedRegister"/>
+      <genClasses ecoreClass="COSEM.ecore#//InterfaceClasses/DemandRegister">
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute COSEM.ecore#//InterfaceClasses/DemandRegister/number_of_periods"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute COSEM.ecore#//InterfaceClasses/DemandRegister/period"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute COSEM.ecore#//InterfaceClasses/DemandRegister/current_average_value"/>
+        <genOperations ecoreOperation="COSEM.ecore#//InterfaceClasses/DemandRegister/calculate_current_average_value"/>
+        <genOperations ecoreOperation="COSEM.ecore#//InterfaceClasses/DemandRegister/calculate_last_average_value"/>
+      </genClasses>
+      <genClasses ecoreClass="COSEM.ecore#//InterfaceClasses/RegisterActivation"/>
+      <genClasses ecoreClass="COSEM.ecore#//InterfaceClasses/Profilegeneric"/>
+      <genClasses ecoreClass="COSEM.ecore#//InterfaceClasses/Base">
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute COSEM.ecore#//InterfaceClasses/Base/logical_name"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute COSEM.ecore#//InterfaceClasses/Base/OBIScode"/>
+      </genClasses>
+      <genClasses ecoreClass="COSEM.ecore#//InterfaceClasses/Utilitytables"/>
+      <genClasses ecoreClass="COSEM.ecore#//InterfaceClasses/Registertable"/>
+      <genClasses ecoreClass="COSEM.ecore#//InterfaceClasses/Compactdata">
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute COSEM.ecore#//InterfaceClasses/Compactdata/compact_buffer"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute COSEM.ecore#//InterfaceClasses/Compactdata/template_id"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute COSEM.ecore#//InterfaceClasses/Compactdata/template_description"/>
+      </genClasses>
+      <genClasses ecoreClass="COSEM.ecore#//InterfaceClasses/Statusmapping"/>
+      <genClasses ecoreClass="COSEM.ecore#//InterfaceClasses/AssociationSN"/>
+      <genClasses ecoreClass="COSEM.ecore#//InterfaceClasses/Imagetransfer"/>
+      <genClasses ecoreClass="COSEM.ecore#//InterfaceClasses/Dataprotection"/>
+      <genClasses ecoreClass="COSEM.ecore#//InterfaceClasses/Pushsetup"/>
+      <genClasses ecoreClass="COSEM.ecore#//InterfaceClasses/Securitysetup"/>
+      <genClasses ecoreClass="COSEM.ecore#//InterfaceClasses/Clock">
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute COSEM.ecore#//InterfaceClasses/Clock/time"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute COSEM.ecore#//InterfaceClasses/Clock/time_zone"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute COSEM.ecore#//InterfaceClasses/Clock/status"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute COSEM.ecore#//InterfaceClasses/Clock/daylight_savings_begin"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute COSEM.ecore#//InterfaceClasses/Clock/daylight_savings_end"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute COSEM.ecore#//InterfaceClasses/Clock/daylight_savings_deviation"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute COSEM.ecore#//InterfaceClasses/Clock/daylight_savings_enabled"/>
+        <genOperations ecoreOperation="COSEM.ecore#//InterfaceClasses/Clock/adjust_to_quarter"/>
+        <genOperations ecoreOperation="COSEM.ecore#//InterfaceClasses/Clock/adjust_to_measuring_period"/>
+        <genOperations ecoreOperation="COSEM.ecore#//InterfaceClasses/Clock/adjust_to_minute"/>
+        <genOperations ecoreOperation="COSEM.ecore#//InterfaceClasses/Clock/adjust_to_present_time"/>
+        <genOperations ecoreOperation="COSEM.ecore#//InterfaceClasses/Clock/present_adjusting_time"/>
+        <genOperations ecoreOperation="COSEM.ecore#//InterfaceClasses/Clock/shift_time"/>
+      </genClasses>
+      <genClasses ecoreClass="COSEM.ecore#//InterfaceClasses/ApplicationAssociation"/>
+    </nestedGenPackages>
+    <nestedGenPackages prefix="COSEMObjects" disposableProviderFactory="true" loadInitialization="true"
+        literalsInterface="false" ecorePackage="COSEM.ecore#//COSEMObjects">
+      <genClasses ecoreClass="COSEM.ecore#//COSEMObjects/ProgramEntries">
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute COSEM.ecore#//COSEMObjects/ProgramEntries/ActiveFirmwareIdentifier"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute COSEM.ecore#//COSEMObjects/ProgramEntries/ActiveFirmwareVersion"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute COSEM.ecore#//COSEMObjects/ProgramEntries/ActiveFirmwareSignature"/>
+      </genClasses>
+      <genClasses ecoreClass="COSEM.ecore#//COSEMObjects/BillingPeriodValues">
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute COSEM.ecore#//COSEMObjects/BillingPeriodValues/BillingPeriodCounter"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute COSEM.ecore#//COSEMObjects/BillingPeriodValues/NumberAvailableBillingPeriods"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute COSEM.ecore#//COSEMObjects/BillingPeriodValues/TimestampRecentBillingPeriod"/>
+      </genClasses>
+      <genClasses ecoreClass="COSEM.ecore#//COSEMObjects/TimeEntries">
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute COSEM.ecore#//COSEMObjects/TimeEntries/LocalTime"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute COSEM.ecore#//COSEMObjects/TimeEntries/LocalDate"/>
+      </genClasses>
+      <genClasses ecoreClass="COSEM.ecore#//COSEMObjects/UNIXClock">
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute COSEM.ecore#//COSEMObjects/UNIXClock/value"/>
+      </genClasses>
+      <genClasses ecoreClass="COSEM.ecore#//COSEMObjects/ModemConfigurationObject"/>
+      <genClasses ecoreClass="COSEM.ecore#//COSEMObjects/AutoConnectObject">
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute COSEM.ecore#//COSEMObjects/AutoConnectObject/Connection"/>
+      </genClasses>
+      <genClasses ecoreClass="COSEM.ecore#//COSEMObjects/AutoAnswerObject">
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute COSEM.ecore#//COSEMObjects/AutoAnswerObject/Answer"/>
+      </genClasses>
+      <genClasses ecoreClass="COSEM.ecore#//COSEMObjects/ScriptTable">
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference COSEM.ecore#//COSEMObjects/ScriptTable/globalMeterReset"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference COSEM.ecore#//COSEMObjects/ScriptTable/MDIReset"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference COSEM.ecore#//COSEMObjects/ScriptTable/Tariffication"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference COSEM.ecore#//COSEMObjects/ScriptTable/AcitvateTest"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference COSEM.ecore#//COSEMObjects/ScriptTable/ActivateNormal"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference COSEM.ecore#//COSEMObjects/ScriptTable/SetOutput"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference COSEM.ecore#//COSEMObjects/ScriptTable/SwitchOptical"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference COSEM.ecore#//COSEMObjects/ScriptTable/PowerQuality"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference COSEM.ecore#//COSEMObjects/ScriptTable/Disconnect"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference COSEM.ecore#//COSEMObjects/ScriptTable/Image"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference COSEM.ecore#//COSEMObjects/ScriptTable/Push"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference COSEM.ecore#//COSEMObjects/ScriptTable/Broadcast"/>
+      </genClasses>
+      <genClasses ecoreClass="COSEM.ecore#//COSEMObjects/GlobalMeterReset"/>
+      <genClasses ecoreClass="COSEM.ecore#//COSEMObjects/MDIReset"/>
+      <genClasses ecoreClass="COSEM.ecore#//COSEMObjects/Tariffication"/>
+      <genClasses ecoreClass="COSEM.ecore#//COSEMObjects/ActivateTestMode"/>
+      <genClasses ecoreClass="COSEM.ecore#//COSEMObjects/ActivateNormalMode"/>
+      <genClasses ecoreClass="COSEM.ecore#//COSEMObjects/SetOutputSignal"/>
+      <genClasses ecoreClass="COSEM.ecore#//COSEMObjects/SwitchOpticalTestOutput"/>
+      <genClasses ecoreClass="COSEM.ecore#//COSEMObjects/PowerQualityMeasurementManagement"/>
+      <genClasses ecoreClass="COSEM.ecore#//COSEMObjects/DisconnectControl"/>
+      <genClasses ecoreClass="COSEM.ecore#//COSEMObjects/ImageActivation"/>
+      <genClasses ecoreClass="COSEM.ecore#//COSEMObjects/Push"/>
+      <genClasses ecoreClass="COSEM.ecore#//COSEMObjects/Broadcast"/>
+      <genClasses ecoreClass="COSEM.ecore#//COSEMObjects/SpecialDays"/>
+      <genClasses ecoreClass="COSEM.ecore#//COSEMObjects/ScheduleObject"/>
+      <genClasses ecoreClass="COSEM.ecore#//COSEMObjects/ActivityCalendarObject"/>
+      <genClasses ecoreClass="COSEM.ecore#//COSEMObjects/RegisterActivationObject"/>
+      <genClasses ecoreClass="COSEM.ecore#//COSEMObjects/SingleActionScheduleObject">
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference COSEM.ecore#//COSEMObjects/SingleActionScheduleObject/disconnect"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference COSEM.ecore#//COSEMObjects/SingleActionScheduleObject/BillingPeriodEnd"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference COSEM.ecore#//COSEMObjects/SingleActionScheduleObject/Image"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference COSEM.ecore#//COSEMObjects/SingleActionScheduleObject/Output"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference COSEM.ecore#//COSEMObjects/SingleActionScheduleObject/Push"/>
+      </genClasses>
+      <genClasses ecoreClass="COSEM.ecore#//COSEMObjects/DisconnectControlSchedule"/>
+      <genClasses ecoreClass="COSEM.ecore#//COSEMObjects/EndOfBillingPeriodSchedule"/>
+      <genClasses ecoreClass="COSEM.ecore#//COSEMObjects/ImageActivationSchedule"/>
+      <genClasses ecoreClass="COSEM.ecore#//COSEMObjects/OutputControlSchedule"/>
+      <genClasses ecoreClass="COSEM.ecore#//COSEMObjects/PushSchedule"/>
+      <genClasses ecoreClass="COSEM.ecore#//COSEMObjects/RegisterMonitorObject"/>
+      <genClasses ecoreClass="COSEM.ecore#//COSEMObjects/AlarmMonitor"/>
+      <genClasses ecoreClass="COSEM.ecore#//COSEMObjects/ParameterMonitorObject"/>
+      <genClasses ecoreClass="COSEM.ecore#//COSEMObjects/LimiterObject"/>
+      <genClasses ecoreClass="COSEM.ecore#//COSEMObjects/AccountObject"/>
+      <genClasses ecoreClass="COSEM.ecore#//COSEMObjects/CreditObject"/>
+      <genClasses ecoreClass="COSEM.ecore#//COSEMObjects/ChargeObject"/>
+      <genClasses ecoreClass="COSEM.ecore#//COSEMObjects/TokenGatewayObject"/>
+      <genClasses ecoreClass="COSEM.ecore#//COSEMObjects/MaxCreditLimit">
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute COSEM.ecore#//COSEMObjects/MaxCreditLimit/value"/>
+      </genClasses>
+      <genClasses ecoreClass="COSEM.ecore#//COSEMObjects/MaxVendLimit">
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute COSEM.ecore#//COSEMObjects/MaxVendLimit/value"/>
+      </genClasses>
+      <genClasses ecoreClass="COSEM.ecore#//COSEMObjects/IECOpticalPortSetup"/>
+      <genClasses ecoreClass="COSEM.ecore#//COSEMObjects/IECElectricalPortSetup"/>
+      <genClasses ecoreClass="COSEM.ecore#//COSEMObjects/StandardReadout">
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute COSEM.ecore#//COSEMObjects/StandardReadout/GeneralLocalPortReadout"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute COSEM.ecore#//COSEMObjects/StandardReadout/GeneralDisplayReadout"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute COSEM.ecore#//COSEMObjects/StandardReadout/AlternateDisplayReadout"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute COSEM.ecore#//COSEMObjects/StandardReadout/ServiceDisplayReadout"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute COSEM.ecore#//COSEMObjects/StandardReadout/ListConfigMeterData"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute COSEM.ecore#//COSEMObjects/StandardReadout/AdditionalReadout"/>
+      </genClasses>
+      <genClasses ecoreClass="COSEM.ecore#//COSEMObjects/StandardReadoutParam"/>
+      <genClasses ecoreClass="COSEM.ecore#//COSEMObjects/IECHDLCSetupObject"/>
+      <genClasses ecoreClass="COSEM.ecore#//COSEMObjects/IECTwistedPairSetupObject"/>
+      <genClasses ecoreClass="COSEM.ecore#//COSEMObjects/IECTwistedPairMACAddressSetup"/>
+      <genClasses ecoreClass="COSEM.ecore#//COSEMObjects/IECTwistedPairFatalErrorRegister"/>
+      <genClasses ecoreClass="COSEM.ecore#//COSEMObjects/IEC62056_3_1ShortReadout"/>
+      <genClasses ecoreClass="COSEM.ecore#//COSEMObjects/IEC62056_3_1LongReadout"/>
+      <genClasses ecoreClass="COSEM.ecore#//COSEMObjects/IEC_62056_3_1AlternateReadoutProfile"/>
+      <genClasses ecoreClass="COSEM.ecore#//COSEMObjects/M_BusSlavePortSetupObject"/>
+      <genClasses ecoreClass="COSEM.ecore#//COSEMObjects/M_BusClientObject"/>
+      <genClasses ecoreClass="COSEM.ecore#//COSEMObjects/M_BusValue"/>
+      <genClasses ecoreClass="COSEM.ecore#//COSEMObjects/M_BusProfileGeneric"/>
+      <genClasses ecoreClass="COSEM.ecore#//COSEMObjects/M_BusDisconnectControl"/>
+      <genClasses ecoreClass="COSEM.ecore#//COSEMObjects/M_BusControlLog"/>
+      <genClasses ecoreClass="COSEM.ecore#//COSEMObjects/M_BusMasterPortSetupObject"/>
+      <genClasses ecoreClass="COSEM.ecore#//COSEMObjects/WirelessModeQChannelObject"/>
+      <genClasses ecoreClass="COSEM.ecore#//COSEMObjects/DLMS_COSEMServerM_BusPortSetupObject"/>
+      <genClasses ecoreClass="COSEM.ecore#//COSEMObjects/M_BusDiagnosticObject"/>
+      <genClasses ecoreClass="COSEM.ecore#//COSEMObjects/TCP_UDPSetupObject"/>
+      <genClasses ecoreClass="COSEM.ecore#//COSEMObjects/IPv4SetupObject"/>
+      <genClasses ecoreClass="COSEM.ecore#//COSEMObjects/MACAddressSetupObject"/>
+      <genClasses ecoreClass="COSEM.ecore#//COSEMObjects/PPPSetupObject"/>
+      <genClasses ecoreClass="COSEM.ecore#//COSEMObjects/GPRSModemSetupObject"/>
+      <genClasses ecoreClass="COSEM.ecore#//COSEMObjects/SMTPSetupObject"/>
+      <genClasses ecoreClass="COSEM.ecore#//COSEMObjects/GSMDiagnosticObject"/>
+      <genClasses ecoreClass="COSEM.ecore#//COSEMObjects/IPv6SetupObject"/>
+      <genClasses ecoreClass="COSEM.ecore#//COSEMObjects/PushSetupObject"/>
+      <genClasses ecoreClass="COSEM.ecore#//COSEMObjects/S_FSKPhy_MACSetupObject"/>
+      <genClasses ecoreClass="COSEM.ecore#//COSEMObjects/S_FSKActiveInitiatorObject"/>
+      <genClasses ecoreClass="COSEM.ecore#//COSEMObjects/S_FSKMACSynchronizationTimeouts"/>
+      <genClasses ecoreClass="COSEM.ecore#//COSEMObjects/S_FSKMACCountersObject"/>
+      <genClasses ecoreClass="COSEM.ecore#//COSEMObjects/IEC61334_4_32LLCSetupObject"/>
+      <genClasses ecoreClass="COSEM.ecore#//COSEMObjects/S_FSKReportingSystemListObject"/>
+      <genClasses ecoreClass="COSEM.ecore#//COSEMObjects/ISO_IEC8802_2LLCType1SetupObject"/>
+      <genClasses ecoreClass="COSEM.ecore#//COSEMObjects/ISO_IEC8802_2LLCType2Setup"/>
+      <genClasses ecoreClass="COSEM.ecore#//COSEMObjects/ISO_IEC8802_2LLCType3Setup"/>
+      <genClasses ecoreClass="COSEM.ecore#//COSEMObjects/t61334_4_32LLCSSCSsetupobject"/>
+      <genClasses ecoreClass="COSEM.ecore#//COSEMObjects/PRIME_NB_OFDM_PLC_Physical_layer_counters_object"/>
+      <genClasses ecoreClass="COSEM.ecore#//COSEMObjects/PRIME_NB_OFDM_PLC_MAC_setup_object"/>
+      <genClasses ecoreClass="COSEM.ecore#//COSEMObjects/PRIME_NB_OFDM_PLC_MAC_functional_parameters_object"/>
+      <genClasses ecoreClass="COSEM.ecore#//COSEMObjects/PRIME_NB_OFDM_PLC_MAC_counters_object"/>
+      <genClasses ecoreClass="COSEM.ecore#//COSEMObjects/PRIME_NB_OFDM_PLC_MAC_network_administration_data_object"/>
+      <genClasses ecoreClass="COSEM.ecore#//COSEMObjects/PRIME_NB_OFDM_PLC_MAC_address_setup"/>
+      <genClasses ecoreClass="COSEM.ecore#//COSEMObjects/PRIME_NB_OFDM_PLC_Application_identification_object"/>
+      <genClasses ecoreClass="COSEM.ecore#//COSEMObjects/G3_PLC_MAC_layer_counters_object"/>
+      <genClasses ecoreClass="COSEM.ecore#//COSEMObjects/G3_PLC_MAC_setup_object"/>
+      <genClasses ecoreClass="COSEM.ecore#//COSEMObjects/G3_PLC_6LoWPAN_adaptation_layer_setup_object"/>
+      <genClasses ecoreClass="COSEM.ecore#//COSEMObjects/ZigBee_SAS_startup_object"/>
+      <genClasses ecoreClass="COSEM.ecore#//COSEMObjects/ZigBee_SAS_join_object"/>
+      <genClasses ecoreClass="COSEM.ecore#//COSEMObjects/ZigBee_SAS_APS_fragmentation_object"/>
+      <genClasses ecoreClass="COSEM.ecore#//COSEMObjects/ZigBee_network_control_object"/>
+      <genClasses ecoreClass="COSEM.ecore#//COSEMObjects/ZigBee_tunnel_setup_object"/>
+      <genClasses ecoreClass="COSEM.ecore#//COSEMObjects/CurrentAssociation"/>
+      <genClasses ecoreClass="COSEM.ecore#//COSEMObjects/SAPAssignmentCurrent"/>
+      <genClasses ecoreClass="COSEM.ecore#//COSEMObjects/SecuritySetupObject"/>
+      <genClasses ecoreClass="COSEM.ecore#//COSEMObjects/InvocationCounter">
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute COSEM.ecore#//COSEMObjects/InvocationCounter/value"/>
+      </genClasses>
+      <genClasses ecoreClass="COSEM.ecore#//COSEMObjects/DataProtectionObject"/>
+      <genClasses ecoreClass="COSEM.ecore#//COSEMObjects/ImageTransferObject"/>
+      <genClasses ecoreClass="COSEM.ecore#//COSEMObjects/UtilitiesTableObject">
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute COSEM.ecore#//COSEMObjects/UtilitiesTableObject/Standard"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute COSEM.ecore#//COSEMObjects/UtilitiesTableObject/Manufacturer"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute COSEM.ecore#//COSEMObjects/UtilitiesTableObject/StdPending"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute COSEM.ecore#//COSEMObjects/UtilitiesTableObject/MfgPending"/>
+      </genClasses>
+      <genClasses ecoreClass="COSEM.ecore#//COSEMObjects/CompactDataObject"/>
+      <genClasses ecoreClass="COSEM.ecore#//COSEMObjects/DeviceID">
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute COSEM.ecore#//COSEMObjects/DeviceID/value"/>
+      </genClasses>
+      <genClasses ecoreClass="COSEM.ecore#//COSEMObjects/MeteringPointID">
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute COSEM.ecore#//COSEMObjects/MeteringPointID/value"/>
+      </genClasses>
+      <genClasses ecoreClass="COSEM.ecore#//COSEMObjects/ParameterChangesObject">
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute COSEM.ecore#//COSEMObjects/ParameterChangesObject/NumberConfigProgramChanges"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute COSEM.ecore#//COSEMObjects/ParameterChangesObject/DateLastConfigChange"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute COSEM.ecore#//COSEMObjects/ParameterChangesObject/DateLastSwitchChange"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute COSEM.ecore#//COSEMObjects/ParameterChangesObject/DateLastRippleControlChange"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute COSEM.ecore#//COSEMObjects/ParameterChangesObject/StatusSecuritySwitches"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute COSEM.ecore#//COSEMObjects/ParameterChangesObject/DateLastCalibration"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute COSEM.ecore#//COSEMObjects/ParameterChangesObject/DateNextConfig"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute COSEM.ecore#//COSEMObjects/ParameterChangesObject/DateActivationPassivCalendar"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute COSEM.ecore#//COSEMObjects/ParameterChangesObject/NumberProtectedConfigChanges"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute COSEM.ecore#//COSEMObjects/ParameterChangesObject/DateLastProtectedConfigChange"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute COSEM.ecore#//COSEMObjects/ParameterChangesObject/DateLastClockSynch"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute COSEM.ecore#//COSEMObjects/ParameterChangesObject/DateLastFirmwareActivation"/>
+      </genClasses>
+      <genClasses ecoreClass="COSEM.ecore#//COSEMObjects/I_O_control_signal_objects_contentsmanufacturerspecific">
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute COSEM.ecore#//COSEMObjects/I_O_control_signal_objects_contentsmanufacturerspecific/value"/>
+      </genClasses>
+      <genClasses ecoreClass="COSEM.ecore#//COSEMObjects/I_O_control_signal_objects_contentsmappedtoareferencetable"/>
+      <genClasses ecoreClass="COSEM.ecore#//COSEMObjects/I_O_control_signal_objects_global"/>
+      <genClasses ecoreClass="COSEM.ecore#//COSEMObjects/IOControlSignalsManufacturer">
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute COSEM.ecore#//COSEMObjects/IOControlSignalsManufacturer/value"/>
+      </genClasses>
+      <genClasses ecoreClass="COSEM.ecore#//COSEMObjects/IOControlSignalsMapped"/>
+      <genClasses ecoreClass="COSEM.ecore#//COSEMObjects/IOControlSignalsGlobal"/>
+      <genClasses ecoreClass="COSEM.ecore#//COSEMObjects/DisconnectControlObject"/>
+      <genClasses ecoreClass="COSEM.ecore#//COSEMObjects/GeneralPurposeArbitrator"/>
+      <genClasses ecoreClass="COSEM.ecore#//COSEMObjects/InternalControlManu">
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute COSEM.ecore#//COSEMObjects/InternalControlManu/value"/>
+      </genClasses>
+      <genClasses ecoreClass="COSEM.ecore#//COSEMObjects/InternalControlMapped"/>
+      <genClasses ecoreClass="COSEM.ecore#//COSEMObjects/InternalControlGlobal"/>
+      <genClasses ecoreClass="COSEM.ecore#//COSEMObjects/InternalOperatingStatusManu"/>
+      <genClasses ecoreClass="COSEM.ecore#//COSEMObjects/InternalOperatingStatusMapped"/>
+      <genClasses ecoreClass="COSEM.ecore#//COSEMObjects/InternalOperatingStatusGlobal"/>
+      <genClasses ecoreClass="COSEM.ecore#//COSEMObjects/StatusRegisterManu"/>
+      <genClasses ecoreClass="COSEM.ecore#//COSEMObjects/StatusRegisterMapped"/>
+      <genClasses ecoreClass="COSEM.ecore#//COSEMObjects/ErrorRegisterObject">
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute COSEM.ecore#//COSEMObjects/ErrorRegisterObject/value"/>
+      </genClasses>
+      <genClasses ecoreClass="COSEM.ecore#//COSEMObjects/ErrorProfileObject"/>
+      <genClasses ecoreClass="COSEM.ecore#//COSEMObjects/ErrorTableObject"/>
+      <genClasses ecoreClass="COSEM.ecore#//COSEMObjects/AlarmRegisterObject">
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute COSEM.ecore#//COSEMObjects/AlarmRegisterObject/value"/>
+      </genClasses>
+      <genClasses ecoreClass="COSEM.ecore#//COSEMObjects/AlarmFilterObject">
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute COSEM.ecore#//COSEMObjects/AlarmFilterObject/value"/>
+      </genClasses>
+      <genClasses ecoreClass="COSEM.ecore#//COSEMObjects/AlarmDescriptorObject">
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute COSEM.ecore#//COSEMObjects/AlarmDescriptorObject/value"/>
+      </genClasses>
+      <genClasses ecoreClass="COSEM.ecore#//COSEMObjects/EventLog"/>
+      <genClasses ecoreClass="COSEM.ecore#//COSEMObjects/ElectricityID">
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute COSEM.ecore#//COSEMObjects/ElectricityID/value"/>
+      </genClasses>
+      <genClasses ecoreClass="COSEM.ecore#//COSEMObjects/ElectricityProgramEntries">
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute COSEM.ecore#//COSEMObjects/ElectricityProgramEntries/Activefirmwareidentifier"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute COSEM.ecore#//COSEMObjects/ElectricityProgramEntries/Parameterrecordnumber"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute COSEM.ecore#//COSEMObjects/ElectricityProgramEntries/Timeswitchprogramnumber"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute COSEM.ecore#//COSEMObjects/ElectricityProgramEntries/RCRprogramnumber"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute COSEM.ecore#//COSEMObjects/ElectricityProgramEntries/MeterconnectiondiagramID"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute COSEM.ecore#//COSEMObjects/ElectricityProgramEntries/Passivecalendarname"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute COSEM.ecore#//COSEMObjects/ElectricityProgramEntries/Activefirmwaresignature"/>
+      </genClasses>
+      <genClasses ecoreClass="COSEM.ecore#//COSEMObjects/OutputPulseValues_constants">
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute COSEM.ecore#//COSEMObjects/OutputPulseValues_constants/ActiveenergymetrologicalLED"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute COSEM.ecore#//COSEMObjects/OutputPulseValues_constants/ReactiveenergymetrologicalLED"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute COSEM.ecore#//COSEMObjects/OutputPulseValues_constants/ApparentenergymetrologicalLED"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute COSEM.ecore#//COSEMObjects/OutputPulseValues_constants/Activeenergyoutputpulse"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute COSEM.ecore#//COSEMObjects/OutputPulseValues_constants/Reactiveenergyoutputpulse"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute COSEM.ecore#//COSEMObjects/OutputPulseValues_constants/Apparentenergyoutputpulse"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute COSEM.ecore#//COSEMObjects/OutputPulseValues_constants/Volt_squaredhoursmetrologicalLED"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute COSEM.ecore#//COSEMObjects/OutputPulseValues_constants/Ampere_squaredhoursmetrologicalLED"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute COSEM.ecore#//COSEMObjects/OutputPulseValues_constants/Volt_squaredhoursoutputpulse"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute COSEM.ecore#//COSEMObjects/OutputPulseValues_constants/Ampere_squaredhoursoutputpulse"/>
+      </genClasses>
+      <genClasses ecoreClass="COSEM.ecore#//COSEMObjects/ReadingFactorAndCT_VTratio">
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute COSEM.ecore#//COSEMObjects/ReadingFactorAndCT_VTratio/Readingfactorforpower"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute COSEM.ecore#//COSEMObjects/ReadingFactorAndCT_VTratio/Readingfactorforenergy"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute COSEM.ecore#//COSEMObjects/ReadingFactorAndCT_VTratio/Transformerratio_currentzähler"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute COSEM.ecore#//COSEMObjects/ReadingFactorAndCT_VTratio/Transformerratio_voltagezähler"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute COSEM.ecore#//COSEMObjects/ReadingFactorAndCT_VTratio/Overalltransformerratiozähler"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute COSEM.ecore#//COSEMObjects/ReadingFactorAndCT_VTratio/Transformerratio_currentnenner"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute COSEM.ecore#//COSEMObjects/ReadingFactorAndCT_VTratio/Transformerratio_voltagenenner"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute COSEM.ecore#//COSEMObjects/ReadingFactorAndCT_VTratio/Overalltransformer_rationenner"/>
+      </genClasses>
+      <genClasses ecoreClass="COSEM.ecore#//COSEMObjects/ElectricityNominalValues">
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute COSEM.ecore#//COSEMObjects/ElectricityNominalValues/Voltage"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute COSEM.ecore#//COSEMObjects/ElectricityNominalValues/Nominalcurrent"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute COSEM.ecore#//COSEMObjects/ElectricityNominalValues/Frequency"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute COSEM.ecore#//COSEMObjects/ElectricityNominalValues/Maximumcurrent"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute COSEM.ecore#//COSEMObjects/ElectricityNominalValues/Reference_voltage_for_power_quality_measurement"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute COSEM.ecore#//COSEMObjects/ElectricityNominalValues/Reference_voltage_for_aux_power_supply"/>
+      </genClasses>
+      <genClasses ecoreClass="COSEM.ecore#//COSEMObjects/InputPulseValuesOrConstants">
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute COSEM.ecore#//COSEMObjects/InputPulseValuesOrConstants/ActiveEnergy"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute COSEM.ecore#//COSEMObjects/InputPulseValuesOrConstants/Reactive_energy"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute COSEM.ecore#//COSEMObjects/InputPulseValuesOrConstants/Apparent_energy"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute COSEM.ecore#//COSEMObjects/InputPulseValuesOrConstants/Volt_squared_hours"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute COSEM.ecore#//COSEMObjects/InputPulseValuesOrConstants/Ampere_squared_hours"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute COSEM.ecore#//COSEMObjects/InputPulseValuesOrConstants/Unitless_quantities"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute COSEM.ecore#//COSEMObjects/InputPulseValuesOrConstants/Active_energy_export"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute COSEM.ecore#//COSEMObjects/InputPulseValuesOrConstants/Reactive_energy_export"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute COSEM.ecore#//COSEMObjects/InputPulseValuesOrConstants/Apparent_energy_export"/>
+      </genClasses>
+      <genClasses ecoreClass="COSEM.ecore#//COSEMObjects/MeasurementPeriod_recordingInterval_billingPeriodDuration">
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute COSEM.ecore#//COSEMObjects/MeasurementPeriod_recordingInterval_billingPeriodDuration/Measurement_period_1_for_averaging_scheme_1"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute COSEM.ecore#//COSEMObjects/MeasurementPeriod_recordingInterval_billingPeriodDuration/Measurement_period_2_for_averagingscheme_2"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute COSEM.ecore#//COSEMObjects/MeasurementPeriod_recordingInterval_billingPeriodDuration/Measurement_period_3_for_instantaneous_value"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute COSEM.ecore#//COSEMObjects/MeasurementPeriod_recordingInterval_billingPeriodDuration/Measurement_period_4_for_test_value"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute COSEM.ecore#//COSEMObjects/MeasurementPeriod_recordingInterval_billingPeriodDuration/Recording_interval_1_for_loadprofile"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute COSEM.ecore#//COSEMObjects/MeasurementPeriod_recordingInterval_billingPeriodDuration/Recording_interval_2_for_loadprofile"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute COSEM.ecore#//COSEMObjects/MeasurementPeriod_recordingInterval_billingPeriodDuration/Billingperiod"/>
+      </genClasses>
+      <genClasses ecoreClass="COSEM.ecore#//COSEMObjects/ElectricityTimeEntries">
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute COSEM.ecore#//COSEMObjects/ElectricityTimeEntries/Time_expired_since_last_end_of_billing_period"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute COSEM.ecore#//COSEMObjects/ElectricityTimeEntries/Localtime"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute COSEM.ecore#//COSEMObjects/ElectricityTimeEntries/Localdate"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute COSEM.ecore#//COSEMObjects/ElectricityTimeEntries/Weekday"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute COSEM.ecore#//COSEMObjects/ElectricityTimeEntries/Timeoflastreset"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute COSEM.ecore#//COSEMObjects/ElectricityTimeEntries/Dateoflastreset"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute COSEM.ecore#//COSEMObjects/ElectricityTimeEntries/Outputpulseduration"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute COSEM.ecore#//COSEMObjects/ElectricityTimeEntries/Clocksynchronizationwindow"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute COSEM.ecore#//COSEMObjects/ElectricityTimeEntries/Clock_synchronization_method"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute COSEM.ecore#//COSEMObjects/ElectricityTimeEntries/Clock_time_shift_limit"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute COSEM.ecore#//COSEMObjects/ElectricityTimeEntries/Billing_period_reset_lockout_time"/>
+      </genClasses>
+      <genClasses ecoreClass="COSEM.ecore#//COSEMObjects/Coefficients">
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute COSEM.ecore#//COSEMObjects/Coefficients/Transformer_magnetic_losses"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute COSEM.ecore#//COSEMObjects/Coefficients/Transformer_iron_losses"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute COSEM.ecore#//COSEMObjects/Coefficients/Line_resistance_losses"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute COSEM.ecore#//COSEMObjects/Coefficients/Line_reactance_losses"/>
+      </genClasses>
+      <genClasses ecoreClass="COSEM.ecore#//COSEMObjects/MeasurementMethods">
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute COSEM.ecore#//COSEMObjects/MeasurementMethods/Algorithm_for_active_power_measurement"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute COSEM.ecore#//COSEMObjects/MeasurementMethods/Algorithm_for_active_energy_management"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute COSEM.ecore#//COSEMObjects/MeasurementMethods/Algorithm_for_reactive_power_measurement"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute COSEM.ecore#//COSEMObjects/MeasurementMethods/Algorithm_for_reactive_energy_measurement"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute COSEM.ecore#//COSEMObjects/MeasurementMethods/Algorithm_for_apparent_power_measurement"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute COSEM.ecore#//COSEMObjects/MeasurementMethods/Algorithm_for_apparent_energy_measurement"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute COSEM.ecore#//COSEMObjects/MeasurementMethods/Algorithm_for_power_factor_calculation"/>
+      </genClasses>
+      <genClasses ecoreClass="COSEM.ecore#//COSEMObjects/ElectricityMeteringPointID">
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute COSEM.ecore#//COSEMObjects/ElectricityMeteringPointID/value"/>
+      </genClasses>
+      <genClasses ecoreClass="COSEM.ecore#//COSEMObjects/ElectricityRelatedStatusData">
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute COSEM.ecore#//COSEMObjects/ElectricityRelatedStatusData/Status_information_missing_voltage"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute COSEM.ecore#//COSEMObjects/ElectricityRelatedStatusData/Status_information_missing_current"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute COSEM.ecore#//COSEMObjects/ElectricityRelatedStatusData/Status_information_current_without_voltage"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute COSEM.ecore#//COSEMObjects/ElectricityRelatedStatusData/Status_information_auxiliary_power_supply"/>
+      </genClasses>
+      <genClasses ecoreClass="COSEM.ecore#//COSEMObjects/ElectricityRelatedStatusDataMapped"/>
+      <genClasses ecoreClass="COSEM.ecore#//COSEMObjects/BatteryEntries">
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute COSEM.ecore#//COSEMObjects/BatteryEntries/Battery_use_time_counter"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute COSEM.ecore#//COSEMObjects/BatteryEntries/Battery_charge_display"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute COSEM.ecore#//COSEMObjects/BatteryEntries/Date_of_next_battery_change"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute COSEM.ecore#//COSEMObjects/BatteryEntries/Battery_voltage"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute COSEM.ecore#//COSEMObjects/BatteryEntries/Battery_initial_capacity"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute COSEM.ecore#//COSEMObjects/BatteryEntries/Battery_installation_date_and_time"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute COSEM.ecore#//COSEMObjects/BatteryEntries/Battery_estimated_remaining_use_time"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute COSEM.ecore#//COSEMObjects/BatteryEntries/Aux_supply_use_time_counter"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute COSEM.ecore#//COSEMObjects/BatteryEntries/Aux_voltage"/>
+      </genClasses>
+      <genClasses ecoreClass="COSEM.ecore#//COSEMObjects/PowerFailureMonitoring">
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute COSEM.ecore#//COSEMObjects/PowerFailureMonitoring/FailuresAllPhases"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute COSEM.ecore#//COSEMObjects/PowerFailureMonitoring/FailuresL1"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute COSEM.ecore#//COSEMObjects/PowerFailureMonitoring/FailuresL2"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute COSEM.ecore#//COSEMObjects/PowerFailureMonitoring/FailuresL3"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute COSEM.ecore#//COSEMObjects/PowerFailureMonitoring/FailuresAny"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute COSEM.ecore#//COSEMObjects/PowerFailureMonitoring/Auxiliarysupply"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute COSEM.ecore#//COSEMObjects/PowerFailureMonitoring/LongFailsAll"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute COSEM.ecore#//COSEMObjects/PowerFailureMonitoring/LongFailsL1"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute COSEM.ecore#//COSEMObjects/PowerFailureMonitoring/LongFailsL2"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute COSEM.ecore#//COSEMObjects/PowerFailureMonitoring/LongFailsL3"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute COSEM.ecore#//COSEMObjects/PowerFailureMonitoring/LongFailsAny"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute COSEM.ecore#//COSEMObjects/PowerFailureMonitoring/TimeAll"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute COSEM.ecore#//COSEMObjects/PowerFailureMonitoring/TimeL1"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute COSEM.ecore#//COSEMObjects/PowerFailureMonitoring/TimeL2"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute COSEM.ecore#//COSEMObjects/PowerFailureMonitoring/TimeL3"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute COSEM.ecore#//COSEMObjects/PowerFailureMonitoring/TimeAny"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute COSEM.ecore#//COSEMObjects/PowerFailureMonitoring/DurationAll"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute COSEM.ecore#//COSEMObjects/PowerFailureMonitoring/DurationL1"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute COSEM.ecore#//COSEMObjects/PowerFailureMonitoring/DurationL2"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute COSEM.ecore#//COSEMObjects/PowerFailureMonitoring/DurationL3"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute COSEM.ecore#//COSEMObjects/PowerFailureMonitoring/DurationAny"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute COSEM.ecore#//COSEMObjects/PowerFailureMonitoring/Time_threshold_long_powerfailure"/>
+      </genClasses>
+      <genClasses ecoreClass="COSEM.ecore#//COSEMObjects/OperatingTime">
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute COSEM.ecore#//COSEMObjects/OperatingTime/Timeofoperation"/>
+      </genClasses>
+      <genClasses ecoreClass="COSEM.ecore#//COSEMObjects/EnvironmentRelatedParameters">
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute COSEM.ecore#//COSEMObjects/EnvironmentRelatedParameters/ambient_temperature"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute COSEM.ecore#//COSEMObjects/EnvironmentRelatedParameters/Ambient_pressure"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute COSEM.ecore#//COSEMObjects/EnvironmentRelatedParameters/Relative_humidity"/>
+      </genClasses>
+      <genClasses ecoreClass="COSEM.ecore#//COSEMObjects/StatusRegister"/>
+      <genClasses ecoreClass="COSEM.ecore#//COSEMObjects/EventCode">
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute COSEM.ecore#//COSEMObjects/EventCode/event_code_object"/>
+      </genClasses>
+      <genClasses ecoreClass="COSEM.ecore#//COSEMObjects/CommunicationPortLogParameters">
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute COSEM.ecore#//COSEMObjects/CommunicationPortLogParameters/Reserved"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute COSEM.ecore#//COSEMObjects/CommunicationPortLogParameters/Number_connections"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute COSEM.ecore#//COSEMObjects/CommunicationPortLogParameters/Communication_port_parameter"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute COSEM.ecore#//COSEMObjects/CommunicationPortLogParameters/GSM_field_strength"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute COSEM.ecore#//COSEMObjects/CommunicationPortLogParameters/Communicationaddress"/>
+      </genClasses>
+      <genClasses ecoreClass="COSEM.ecore#//COSEMObjects/ConsumerMessage">
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute COSEM.ecore#//COSEMObjects/ConsumerMessage/Consumer_message_via_local_consumer_information_port"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute COSEM.ecore#//COSEMObjects/ConsumerMessage/Consumer_message_via_meter_display"/>
+      </genClasses>
+      <genClasses ecoreClass="COSEM.ecore#//COSEMObjects/CurrentlyActiveTariff">
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute COSEM.ecore#//COSEMObjects/CurrentlyActiveTariff/value"/>
+      </genClasses>
+      <genClasses ecoreClass="COSEM.ecore#//COSEMObjects/EventCounterObject">
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute COSEM.ecore#//COSEMObjects/EventCounterObject/value"/>
+      </genClasses>
+      <genClasses ecoreClass="COSEM.ecore#//COSEMObjects/ProfileEntryDigitalSignatureObject">
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute COSEM.ecore#//COSEMObjects/ProfileEntryDigitalSignatureObject/value"/>
+      </genClasses>
+      <genClasses ecoreClass="COSEM.ecore#//COSEMObjects/MeterTemperEventRelatedObject">
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute COSEM.ecore#//COSEMObjects/MeterTemperEventRelatedObject/Meter_open_event_counter"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute COSEM.ecore#//COSEMObjects/MeterTemperEventRelatedObject/Meter_open_event_timestamp"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute COSEM.ecore#//COSEMObjects/MeterTemperEventRelatedObject/Meter_open_event_duration"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute COSEM.ecore#//COSEMObjects/MeterTemperEventRelatedObject/Meter_open_event_cumulative_duration"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute COSEM.ecore#//COSEMObjects/MeterTemperEventRelatedObject/Terminal_cover_open_event_counter"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute COSEM.ecore#//COSEMObjects/MeterTemperEventRelatedObject/Terminal_cover_open_event_time"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute COSEM.ecore#//COSEMObjects/MeterTemperEventRelatedObject/Terminal_cover_open_event_duration"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute COSEM.ecore#//COSEMObjects/MeterTemperEventRelatedObject/Terminal_cover_open_event_cumulative_duration"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute COSEM.ecore#//COSEMObjects/MeterTemperEventRelatedObject/Tilt_event_counter"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute COSEM.ecore#//COSEMObjects/MeterTemperEventRelatedObject/Tilt_event_time"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute COSEM.ecore#//COSEMObjects/MeterTemperEventRelatedObject/Tilt_event_duration"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute COSEM.ecore#//COSEMObjects/MeterTemperEventRelatedObject/Tilt_event_cumulative_duration"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute COSEM.ecore#//COSEMObjects/MeterTemperEventRelatedObject/Strong_DC_magnetic_field_event_counter"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute COSEM.ecore#//COSEMObjects/MeterTemperEventRelatedObject/Strong_DC_magnetic_field_event_time"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute COSEM.ecore#//COSEMObjects/MeterTemperEventRelatedObject/Strong_DC_magnetic_field_event_duration"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute COSEM.ecore#//COSEMObjects/MeterTemperEventRelatedObject/Strong_DC_magnetic_field_event_cumulative_duration"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute COSEM.ecore#//COSEMObjects/MeterTemperEventRelatedObject/Supply_control_switch_event_counter"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute COSEM.ecore#//COSEMObjects/MeterTemperEventRelatedObject/Supply_control_switch_event_time"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute COSEM.ecore#//COSEMObjects/MeterTemperEventRelatedObject/Supply_control_switch_event_duration"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute COSEM.ecore#//COSEMObjects/MeterTemperEventRelatedObject/Supply_control_switch_event_cumulative_duration"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute COSEM.ecore#//COSEMObjects/MeterTemperEventRelatedObject/Metrology_tamper_event_counter"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute COSEM.ecore#//COSEMObjects/MeterTemperEventRelatedObject/Metrology_tamper_event_time"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute COSEM.ecore#//COSEMObjects/MeterTemperEventRelatedObject/Metrology_tamper_event_duration"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute COSEM.ecore#//COSEMObjects/MeterTemperEventRelatedObject/Metrology_tamper_event_cumulative_duration"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute COSEM.ecore#//COSEMObjects/MeterTemperEventRelatedObject/Communication_tamper_event_counter"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute COSEM.ecore#//COSEMObjects/MeterTemperEventRelatedObject/Communication_tamper_event_time"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute COSEM.ecore#//COSEMObjects/MeterTemperEventRelatedObject/Communication_tamper_event_duration"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute COSEM.ecore#//COSEMObjects/MeterTemperEventRelatedObject/Communication_tamper_event_cumulative_duration"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute COSEM.ecore#//COSEMObjects/MeterTemperEventRelatedObject/Manufacturer_specific"/>
+      </genClasses>
+      <genClasses ecoreClass="COSEM.ecore#//COSEMObjects/ElectricityValues">
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute COSEM.ecore#//COSEMObjects/ElectricityValues/ActivePowerpL1"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute COSEM.ecore#//COSEMObjects/ElectricityValues/ActivePowerpall"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute COSEM.ecore#//COSEMObjects/ElectricityValues/ActivePowerpL2"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute COSEM.ecore#//COSEMObjects/ElectricityValues/ActivePowerpL3"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute COSEM.ecore#//COSEMObjects/ElectricityValues/ActivePowermL2"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute COSEM.ecore#//COSEMObjects/ElectricityValues/ActivePowermL1"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute COSEM.ecore#//COSEMObjects/ElectricityValues/ActivePowermL3"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute COSEM.ecore#//COSEMObjects/ElectricityValues/ActivePowermall"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute COSEM.ecore#//COSEMObjects/ElectricityValues/ReactivePowerpL1"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute COSEM.ecore#//COSEMObjects/ElectricityValues/ReactivePowerpL2"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute COSEM.ecore#//COSEMObjects/ElectricityValues/ReactivePowerpL3"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute COSEM.ecore#//COSEMObjects/ElectricityValues/ReactivePowerpall"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute COSEM.ecore#//COSEMObjects/ElectricityValues/ReactivePowermL1"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute COSEM.ecore#//COSEMObjects/ElectricityValues/ReactivePowermL2"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute COSEM.ecore#//COSEMObjects/ElectricityValues/ReactivePowermL3"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute COSEM.ecore#//COSEMObjects/ElectricityValues/ReactivePowermall"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute COSEM.ecore#//COSEMObjects/ElectricityValues/ReactivePowerQIL1"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute COSEM.ecore#//COSEMObjects/ElectricityValues/ReactivePowerQIL2"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute COSEM.ecore#//COSEMObjects/ElectricityValues/ReactivePowerQIL3"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute COSEM.ecore#//COSEMObjects/ElectricityValues/ReactivePowerQIall"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute COSEM.ecore#//COSEMObjects/ElectricityValues/ReactivePowerQIIL1"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute COSEM.ecore#//COSEMObjects/ElectricityValues/ReactivePowerQIIL2"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute COSEM.ecore#//COSEMObjects/ElectricityValues/ReactivePowerQIIL3"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute COSEM.ecore#//COSEMObjects/ElectricityValues/ReactivePowerQIIall"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute COSEM.ecore#//COSEMObjects/ElectricityValues/ReactivePowerQIIIL1"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute COSEM.ecore#//COSEMObjects/ElectricityValues/ReactivePowerQIIIL2"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute COSEM.ecore#//COSEMObjects/ElectricityValues/ReactivePowerQIIIL3"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute COSEM.ecore#//COSEMObjects/ElectricityValues/ReactivePowerQIIIall"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute COSEM.ecore#//COSEMObjects/ElectricityValues/ReactivePowerQIVL1"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute COSEM.ecore#//COSEMObjects/ElectricityValues/ReactivePowerQIVL2"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute COSEM.ecore#//COSEMObjects/ElectricityValues/ReactivePowerQIVL3"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute COSEM.ecore#//COSEMObjects/ElectricityValues/ReactivePowerQIVall"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute COSEM.ecore#//COSEMObjects/ElectricityValues/ApparentPowerpL1"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute COSEM.ecore#//COSEMObjects/ElectricityValues/ApparentPowerpL2"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute COSEM.ecore#//COSEMObjects/ElectricityValues/ApparentPowerpL3"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute COSEM.ecore#//COSEMObjects/ElectricityValues/ApparentPowerpAll"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute COSEM.ecore#//COSEMObjects/ElectricityValues/ApparentPowermL1"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute COSEM.ecore#//COSEMObjects/ElectricityValues/ApparentPowermL2"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute COSEM.ecore#//COSEMObjects/ElectricityValues/ApparentPowermL3"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute COSEM.ecore#//COSEMObjects/ElectricityValues/ApparentPowermAll"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute COSEM.ecore#//COSEMObjects/ElectricityValues/CurrentL1"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute COSEM.ecore#//COSEMObjects/ElectricityValues/CurrentL2"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute COSEM.ecore#//COSEMObjects/ElectricityValues/CurrentL3"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute COSEM.ecore#//COSEMObjects/ElectricityValues/CurrentAll"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute COSEM.ecore#//COSEMObjects/ElectricityValues/VoltageL1"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute COSEM.ecore#//COSEMObjects/ElectricityValues/VoltageL2"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute COSEM.ecore#//COSEMObjects/ElectricityValues/VoltageL3"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute COSEM.ecore#//COSEMObjects/ElectricityValues/VoltageAll"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute COSEM.ecore#//COSEMObjects/ElectricityValues/PowerFactorL1"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute COSEM.ecore#//COSEMObjects/ElectricityValues/PowerFactorL2"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute COSEM.ecore#//COSEMObjects/ElectricityValues/PowerFactorL3"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute COSEM.ecore#//COSEMObjects/ElectricityValues/PowerFactorAll"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute COSEM.ecore#//COSEMObjects/ElectricityValues/SupplyFrequencyL1"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute COSEM.ecore#//COSEMObjects/ElectricityValues/SupplyFrequencyL2"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute COSEM.ecore#//COSEMObjects/ElectricityValues/SupplyFrequencyL3"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute COSEM.ecore#//COSEMObjects/ElectricityValues/SupplyFrequencyAll"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute COSEM.ecore#//COSEMObjects/ElectricityValues/ActivePowerAbsPL1"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute COSEM.ecore#//COSEMObjects/ElectricityValues/ActivePowerAbsPL2"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute COSEM.ecore#//COSEMObjects/ElectricityValues/ActivePowerAbsPL3"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute COSEM.ecore#//COSEMObjects/ElectricityValues/ActivePowerAbsPAll"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute COSEM.ecore#//COSEMObjects/ElectricityValues/ActivePowerAbsML1"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute COSEM.ecore#//COSEMObjects/ElectricityValues/ActivePowerAbsML2"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute COSEM.ecore#//COSEMObjects/ElectricityValues/ActivePowerAbsML3"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute COSEM.ecore#//COSEMObjects/ElectricityValues/ActivePowerAbsMAll"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute COSEM.ecore#//COSEMObjects/ElectricityValues/ActivePowerQIL1"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute COSEM.ecore#//COSEMObjects/ElectricityValues/ActivePowerQIL2"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute COSEM.ecore#//COSEMObjects/ElectricityValues/ActivePowerQIL3"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute COSEM.ecore#//COSEMObjects/ElectricityValues/ActivePowerQIall"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute COSEM.ecore#//COSEMObjects/ElectricityValues/ActivePowerQIIL1"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute COSEM.ecore#//COSEMObjects/ElectricityValues/ActivePowerQIIL2"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute COSEM.ecore#//COSEMObjects/ElectricityValues/ActivePowerQIIL3"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute COSEM.ecore#//COSEMObjects/ElectricityValues/ActivePowerQIIall"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute COSEM.ecore#//COSEMObjects/ElectricityValues/ActivePowerQIIIL1"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute COSEM.ecore#//COSEMObjects/ElectricityValues/ActivePowerQIIIL2"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute COSEM.ecore#//COSEMObjects/ElectricityValues/ActivePowerQIIIL3"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute COSEM.ecore#//COSEMObjects/ElectricityValues/ActivePowerQIIIall"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute COSEM.ecore#//COSEMObjects/ElectricityValues/ActivePowerQIVL1"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute COSEM.ecore#//COSEMObjects/ElectricityValues/ActivePowerQIVL2"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute COSEM.ecore#//COSEMObjects/ElectricityValues/ActivePowerQIVL3"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute COSEM.ecore#//COSEMObjects/ElectricityValues/ActivePowerQIVall"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute COSEM.ecore#//COSEMObjects/ElectricityValues/Angles"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute COSEM.ecore#//COSEMObjects/ElectricityValues/Pulses"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute COSEM.ecore#//COSEMObjects/ElectricityValues/Ampere_squaredHours"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute COSEM.ecore#//COSEMObjects/ElectricityValues/Volt_squaredHours"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute COSEM.ecore#//COSEMObjects/ElectricityValues/NeutralCurrent"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute COSEM.ecore#//COSEMObjects/ElectricityValues/NeutralVoltage"/>
+      </genClasses>
+      <genClasses ecoreClass="COSEM.ecore#//COSEMObjects/MeasurementValues">
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute COSEM.ecore#//COSEMObjects/MeasurementValues/Billing_period_average"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute COSEM.ecore#//COSEMObjects/MeasurementValues/Cumulative_minimum"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute COSEM.ecore#//COSEMObjects/MeasurementValues/Cumulative_maximum"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute COSEM.ecore#//COSEMObjects/MeasurementValues/Minimum"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute COSEM.ecore#//COSEMObjects/MeasurementValues/Current_average"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute COSEM.ecore#//COSEMObjects/MeasurementValues/Last_average"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute COSEM.ecore#//COSEMObjects/MeasurementValues/Maximum"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute COSEM.ecore#//COSEMObjects/MeasurementValues/Instantaneous_value"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute COSEM.ecore#//COSEMObjects/MeasurementValues/Time_integral"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute COSEM.ecore#//COSEMObjects/MeasurementValues/Under_limit_threshold"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute COSEM.ecore#//COSEMObjects/MeasurementValues/Under_limit_occurrence_counter"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute COSEM.ecore#//COSEMObjects/MeasurementValues/Under_limit_duration"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute COSEM.ecore#//COSEMObjects/MeasurementValues/Under_limit_magnitude"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute COSEM.ecore#//COSEMObjects/MeasurementValues/Over_limit_threshold"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute COSEM.ecore#//COSEMObjects/MeasurementValues/Over_limit_occurrence_counter"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute COSEM.ecore#//COSEMObjects/MeasurementValues/Over_limit_duration"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute COSEM.ecore#//COSEMObjects/MeasurementValues/Over_limit_magnitude"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute COSEM.ecore#//COSEMObjects/MeasurementValues/Missing_threshold"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute COSEM.ecore#//COSEMObjects/MeasurementValues/Missing_occurrence_counter"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute COSEM.ecore#//COSEMObjects/MeasurementValues/Missing_duration"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute COSEM.ecore#//COSEMObjects/MeasurementValues/Missing_magnitude"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute COSEM.ecore#//COSEMObjects/MeasurementValues/Time_threshold_for_under_limit"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute COSEM.ecore#//COSEMObjects/MeasurementValues/Time_threshold_for_over_limit"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute COSEM.ecore#//COSEMObjects/MeasurementValues/Time_threshold_for_missing_magnitude"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute COSEM.ecore#//COSEMObjects/MeasurementValues/Contracted_value"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute COSEM.ecore#//COSEMObjects/MeasurementValues/Minimum_for_recording_interval"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute COSEM.ecore#//COSEMObjects/MeasurementValues/Maximum_for_recording_interval"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute COSEM.ecore#//COSEMObjects/MeasurementValues/Test_average"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference COSEM.ecore#//COSEMObjects/MeasurementValues/calculations"/>
+      </genClasses>
+      <genClasses ecoreClass="COSEM.ecore#//COSEMObjects/ElectricityHarmonics">
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute COSEM.ecore#//COSEMObjects/ElectricityHarmonics/total"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute COSEM.ecore#//COSEMObjects/ElectricityHarmonics/fundamental_harmonic"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute COSEM.ecore#//COSEMObjects/ElectricityHarmonics/harmonic"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute COSEM.ecore#//COSEMObjects/ElectricityHarmonics/Total_Harmoni_Distortion"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute COSEM.ecore#//COSEMObjects/ElectricityHarmonics/Total_Demand_Distortion"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute COSEM.ecore#//COSEMObjects/ElectricityHarmonics/All_harmonics"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute COSEM.ecore#//COSEMObjects/ElectricityHarmonics/All_harmonics_to_nominal_value_ratio"/>
+      </genClasses>
+      <genClasses ecoreClass="COSEM.ecore#//COSEMObjects/ExtendedPhaseAngleMeasurement">
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute COSEM.ecore#//COSEMObjects/ExtendedPhaseAngleMeasurement/FromUL1toUL2"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute COSEM.ecore#//COSEMObjects/ExtendedPhaseAngleMeasurement/FromUL1toUL3"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute COSEM.ecore#//COSEMObjects/ExtendedPhaseAngleMeasurement/FromUL1toIL1"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute COSEM.ecore#//COSEMObjects/ExtendedPhaseAngleMeasurement/FromUL1toIL2"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute COSEM.ecore#//COSEMObjects/ExtendedPhaseAngleMeasurement/FromUL1toIL3"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute COSEM.ecore#//COSEMObjects/ExtendedPhaseAngleMeasurement/FromUL1toIL0"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute COSEM.ecore#//COSEMObjects/ExtendedPhaseAngleMeasurement/FromUL2toUL1"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute COSEM.ecore#//COSEMObjects/ExtendedPhaseAngleMeasurement/FromUL2toUL3"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute COSEM.ecore#//COSEMObjects/ExtendedPhaseAngleMeasurement/FromUL2toIL1"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute COSEM.ecore#//COSEMObjects/ExtendedPhaseAngleMeasurement/FromUL2toIL2"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute COSEM.ecore#//COSEMObjects/ExtendedPhaseAngleMeasurement/FromUL2toIL3"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute COSEM.ecore#//COSEMObjects/ExtendedPhaseAngleMeasurement/FromUL2toIL0"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute COSEM.ecore#//COSEMObjects/ExtendedPhaseAngleMeasurement/FromUL3toUL1"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute COSEM.ecore#//COSEMObjects/ExtendedPhaseAngleMeasurement/FromUL3toUL2"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute COSEM.ecore#//COSEMObjects/ExtendedPhaseAngleMeasurement/FromUL3toIL1"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute COSEM.ecore#//COSEMObjects/ExtendedPhaseAngleMeasurement/FromUL3toIL2"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute COSEM.ecore#//COSEMObjects/ExtendedPhaseAngleMeasurement/FromUL3toIL3"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute COSEM.ecore#//COSEMObjects/ExtendedPhaseAngleMeasurement/FromUL3toIL0"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute COSEM.ecore#//COSEMObjects/ExtendedPhaseAngleMeasurement/FromIL1toUL1"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute COSEM.ecore#//COSEMObjects/ExtendedPhaseAngleMeasurement/FromIL1toUL2"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute COSEM.ecore#//COSEMObjects/ExtendedPhaseAngleMeasurement/FromIL1toUL3"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute COSEM.ecore#//COSEMObjects/ExtendedPhaseAngleMeasurement/FromIL1toIL2"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute COSEM.ecore#//COSEMObjects/ExtendedPhaseAngleMeasurement/FromIL1toIL3"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute COSEM.ecore#//COSEMObjects/ExtendedPhaseAngleMeasurement/FromIL1toIL0"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute COSEM.ecore#//COSEMObjects/ExtendedPhaseAngleMeasurement/FromIL2toUL1"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute COSEM.ecore#//COSEMObjects/ExtendedPhaseAngleMeasurement/FromIL2toUL2"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute COSEM.ecore#//COSEMObjects/ExtendedPhaseAngleMeasurement/FromIL2toUL3"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute COSEM.ecore#//COSEMObjects/ExtendedPhaseAngleMeasurement/FromIL2toIL1"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute COSEM.ecore#//COSEMObjects/ExtendedPhaseAngleMeasurement/FromIL2toIL3"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute COSEM.ecore#//COSEMObjects/ExtendedPhaseAngleMeasurement/FromIL2toIL0"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute COSEM.ecore#//COSEMObjects/ExtendedPhaseAngleMeasurement/FromIL3toUL1"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute COSEM.ecore#//COSEMObjects/ExtendedPhaseAngleMeasurement/FromIL3toUL2"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute COSEM.ecore#//COSEMObjects/ExtendedPhaseAngleMeasurement/FromIL3toUL3"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute COSEM.ecore#//COSEMObjects/ExtendedPhaseAngleMeasurement/FromIL3toIL1"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute COSEM.ecore#//COSEMObjects/ExtendedPhaseAngleMeasurement/FromIL3toIL2"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute COSEM.ecore#//COSEMObjects/ExtendedPhaseAngleMeasurement/FromIL3toIL0"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute COSEM.ecore#//COSEMObjects/ExtendedPhaseAngleMeasurement/FromIL0toUL1"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute COSEM.ecore#//COSEMObjects/ExtendedPhaseAngleMeasurement/FromIL0toUL2"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute COSEM.ecore#//COSEMObjects/ExtendedPhaseAngleMeasurement/FromIL0toUL3"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute COSEM.ecore#//COSEMObjects/ExtendedPhaseAngleMeasurement/FromIL0toIL1"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute COSEM.ecore#//COSEMObjects/ExtendedPhaseAngleMeasurement/FromIL0toIL2"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute COSEM.ecore#//COSEMObjects/ExtendedPhaseAngleMeasurement/FromIL0toIL3"/>
+      </genClasses>
+      <genClasses ecoreClass="COSEM.ecore#//COSEMObjects/TransformerAndLineLosses">
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute COSEM.ecore#//COSEMObjects/TransformerAndLineLosses/Active_line_losses_P"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute COSEM.ecore#//COSEMObjects/TransformerAndLineLosses/Active_line_losses_M"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute COSEM.ecore#//COSEMObjects/TransformerAndLineLosses/Active_line_losses"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute COSEM.ecore#//COSEMObjects/TransformerAndLineLosses/Active_transformer_losses_P"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute COSEM.ecore#//COSEMObjects/TransformerAndLineLosses/Active_transformer_losses_M"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute COSEM.ecore#//COSEMObjects/TransformerAndLineLosses/Active_transformer_losses"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute COSEM.ecore#//COSEMObjects/TransformerAndLineLosses/Active_losses_P"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute COSEM.ecore#//COSEMObjects/TransformerAndLineLosses/Active_losses_M"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute COSEM.ecore#//COSEMObjects/TransformerAndLineLosses/Active_losses"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute COSEM.ecore#//COSEMObjects/TransformerAndLineLosses/Reactive_line_losses_P"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute COSEM.ecore#//COSEMObjects/TransformerAndLineLosses/Reactive_line_losses_M"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute COSEM.ecore#//COSEMObjects/TransformerAndLineLosses/Reactive_line_losses"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute COSEM.ecore#//COSEMObjects/TransformerAndLineLosses/Reactive_transformer_losses_P"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute COSEM.ecore#//COSEMObjects/TransformerAndLineLosses/Reactive_transformer_losses_M"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute COSEM.ecore#//COSEMObjects/TransformerAndLineLosses/Reactive_transformer_losses"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute COSEM.ecore#//COSEMObjects/TransformerAndLineLosses/Reactive_losses_P"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute COSEM.ecore#//COSEMObjects/TransformerAndLineLosses/Reactive_losses_M"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute COSEM.ecore#//COSEMObjects/TransformerAndLineLosses/Reactive_losses"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute COSEM.ecore#//COSEMObjects/TransformerAndLineLosses/Total_normalized_transformer_losses"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute COSEM.ecore#//COSEMObjects/TransformerAndLineLosses/Total_normalized_line_losses"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute COSEM.ecore#//COSEMObjects/TransformerAndLineLosses/Compensated_active_gross_P"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute COSEM.ecore#//COSEMObjects/TransformerAndLineLosses/Compensated_active_net_P"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute COSEM.ecore#//COSEMObjects/TransformerAndLineLosses/Compensated_active_gross_M"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute COSEM.ecore#//COSEMObjects/TransformerAndLineLosses/Compensated_active_net_M"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute COSEM.ecore#//COSEMObjects/TransformerAndLineLosses/Compensated_reactive_gross_P"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute COSEM.ecore#//COSEMObjects/TransformerAndLineLosses/Compensated_reactive_net_P"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute COSEM.ecore#//COSEMObjects/TransformerAndLineLosses/Compensated_reactive_gross_M"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute COSEM.ecore#//COSEMObjects/TransformerAndLineLosses/Compensated_reactive_net_M"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute COSEM.ecore#//COSEMObjects/TransformerAndLineLosses/L1active_line_losses"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute COSEM.ecore#//COSEMObjects/TransformerAndLineLosses/L1active_line_losses_M"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute COSEM.ecore#//COSEMObjects/TransformerAndLineLosses/L1active_transformer_losses_P"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute COSEM.ecore#//COSEMObjects/TransformerAndLineLosses/L1active_transformer_losses_M"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute COSEM.ecore#//COSEMObjects/TransformerAndLineLosses/L1active_transformer_losses"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute COSEM.ecore#//COSEMObjects/TransformerAndLineLosses/L1active_losses_P"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute COSEM.ecore#//COSEMObjects/TransformerAndLineLosses/L1active_losses_M"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute COSEM.ecore#//COSEMObjects/TransformerAndLineLosses/L1active_losses"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute COSEM.ecore#//COSEMObjects/TransformerAndLineLosses/L1reactive_line_losses_P"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute COSEM.ecore#//COSEMObjects/TransformerAndLineLosses/L1reactive_line_losses_M"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute COSEM.ecore#//COSEMObjects/TransformerAndLineLosses/L1reactive_line_losses"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute COSEM.ecore#//COSEMObjects/TransformerAndLineLosses/L1reactive_transformer_losses_P"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute COSEM.ecore#//COSEMObjects/TransformerAndLineLosses/L1reactive_transformer_losses_M"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute COSEM.ecore#//COSEMObjects/TransformerAndLineLosses/L1reactive_transformer_losses"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute COSEM.ecore#//COSEMObjects/TransformerAndLineLosses/L1Reactive_losses_P"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute COSEM.ecore#//COSEMObjects/TransformerAndLineLosses/L1Reactive_losses_M"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute COSEM.ecore#//COSEMObjects/TransformerAndLineLosses/L1Reactive_losses"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute COSEM.ecore#//COSEMObjects/TransformerAndLineLosses/L1Ampere_squared_hours"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute COSEM.ecore#//COSEMObjects/TransformerAndLineLosses/L1Volt_squared_hours"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute COSEM.ecore#//COSEMObjects/TransformerAndLineLosses/L2active_line_losses_P"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute COSEM.ecore#//COSEMObjects/TransformerAndLineLosses/L2active_line_losses_M"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute COSEM.ecore#//COSEMObjects/TransformerAndLineLosses/L2active_transformer_losses_P"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute COSEM.ecore#//COSEMObjects/TransformerAndLineLosses/L2active_transformer_losses_M"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute COSEM.ecore#//COSEMObjects/TransformerAndLineLosses/L2active_transformer_losses"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute COSEM.ecore#//COSEMObjects/TransformerAndLineLosses/L2active_losses_P"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute COSEM.ecore#//COSEMObjects/TransformerAndLineLosses/L2active_losses_M"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute COSEM.ecore#//COSEMObjects/TransformerAndLineLosses/L2active_losses"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute COSEM.ecore#//COSEMObjects/TransformerAndLineLosses/L2reactive_line_losses_P"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute COSEM.ecore#//COSEMObjects/TransformerAndLineLosses/L2reactive_line_losses_M"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute COSEM.ecore#//COSEMObjects/TransformerAndLineLosses/L2reactive_line_losses"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute COSEM.ecore#//COSEMObjects/TransformerAndLineLosses/L2reactive_transformer_losses"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute COSEM.ecore#//COSEMObjects/TransformerAndLineLosses/L2reactive_transformer_losses_P"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute COSEM.ecore#//COSEMObjects/TransformerAndLineLosses/L2reactive_transformer_losses_M"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute COSEM.ecore#//COSEMObjects/TransformerAndLineLosses/L2reactive_losses"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute COSEM.ecore#//COSEMObjects/TransformerAndLineLosses/L2reactive_losses_P"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute COSEM.ecore#//COSEMObjects/TransformerAndLineLosses/L2reactive_losses_M"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute COSEM.ecore#//COSEMObjects/TransformerAndLineLosses/L2Ampere_squared_hours"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute COSEM.ecore#//COSEMObjects/TransformerAndLineLosses/L2Volt_squared_hours"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute COSEM.ecore#//COSEMObjects/TransformerAndLineLosses/L3Active_line_losses_P"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute COSEM.ecore#//COSEMObjects/TransformerAndLineLosses/L3Active_line_losses_M"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute COSEM.ecore#//COSEMObjects/TransformerAndLineLosses/L3active_transformer_losses_P"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute COSEM.ecore#//COSEMObjects/TransformerAndLineLosses/L3active_transformer_losses_M"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute COSEM.ecore#//COSEMObjects/TransformerAndLineLosses/L3active_transformer_losses"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute COSEM.ecore#//COSEMObjects/TransformerAndLineLosses/L3active_losses_P"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute COSEM.ecore#//COSEMObjects/TransformerAndLineLosses/L3active_losses_M"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute COSEM.ecore#//COSEMObjects/TransformerAndLineLosses/L3active_losses"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute COSEM.ecore#//COSEMObjects/TransformerAndLineLosses/L3reactive_line_losses_P"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute COSEM.ecore#//COSEMObjects/TransformerAndLineLosses/L3reactive_line_losses_M"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute COSEM.ecore#//COSEMObjects/TransformerAndLineLosses/L3reactive_line_losses"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute COSEM.ecore#//COSEMObjects/TransformerAndLineLosses/L3reactive_transformer_losses_P"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute COSEM.ecore#//COSEMObjects/TransformerAndLineLosses/L3reactive_transformer_losses_M"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute COSEM.ecore#//COSEMObjects/TransformerAndLineLosses/L3reactive_transformer_losses"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute COSEM.ecore#//COSEMObjects/TransformerAndLineLosses/L3reactive_losses_P"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute COSEM.ecore#//COSEMObjects/TransformerAndLineLosses/L3reactive_losses_M"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute COSEM.ecore#//COSEMObjects/TransformerAndLineLosses/L3reactive_losses"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute COSEM.ecore#//COSEMObjects/TransformerAndLineLosses/L3Ampere_squared_hours"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute COSEM.ecore#//COSEMObjects/TransformerAndLineLosses/L3Volt_Squared_hours"/>
+      </genClasses>
+    </nestedGenPackages>
+  </genPackages>
+</genmodel:GenModel>

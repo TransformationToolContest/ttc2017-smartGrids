@@ -1,0 +1,549 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+
+<!--
+-->
+
+<plugin>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated 61850 -->
+      <package
+            uri="http://www.transformation-tool-contest.eu/2017/smartGrids/substationStandard"
+            class="substationStandard.SubstationStandardPackage"
+            genModel="metamodels/61850.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated 61850 -->
+      <package
+            uri="http://www.transformation-tool-contest.eu/2017/smartGrids/substationStandard/DomainLNs"
+            class="substationStandard.LNNodes.DomainLNs.DomainLNsPackage"
+            genModel="metamodels/61850.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated 61850 -->
+      <package
+            uri="http://www.transformation-tool-contest.eu/2017/smartGrids/substationStandard/groupP"
+            class="substationStandard.LNNodes.LNGroupP.LNGroupPPackage"
+            genModel="metamodels/61850.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated 61850 -->
+      <package
+            uri="http://www.transformation-tool-contest.eu/2017/smartGrids/substationStandard/groupR"
+            class="substationStandard.LNNodes.LNGroupR.LNGroupRPackage"
+            genModel="metamodels/61850.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated 61850 -->
+      <package
+            uri="http://www.transformation-tool-contest.eu/2017/smartGrids/substationStandard/groupC"
+            class="substationStandard.LNNodes.LNGroupC.LNGroupCPackage"
+            genModel="metamodels/61850.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated 61850 -->
+      <package
+            uri="http://www.transformation-tool-contest.eu/2017/smartGrids/substationStandard/groupA"
+            class="substationStandard.LNNodes.LNGroupA.LNGroupAPackage"
+            genModel="metamodels/61850.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated 61850 -->
+      <package
+            uri="http://www.transformation-tool-contest.eu/2017/smartGrids/substationStandard/groupM"
+            class="substationStandard.LNNodes.LNGroupM.LNGroupMPackage"
+            genModel="metamodels/61850.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated 61850 -->
+      <package
+            uri="http://www.transformation-tool-contest.eu/2017/smartGrids/substationStandard/groupX"
+            class="substationStandard.LNNodes.LNGroupX.LNGroupXPackage"
+            genModel="metamodels/61850.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated 61850 -->
+      <package
+            uri="http://www.transformation-tool-contest.eu/2017/smartGrids/substationStandard/groupT"
+            class="substationStandard.LNNodes.LNGroupT.LNGroupTPackage"
+            genModel="metamodels/61850.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated 61850 -->
+      <package
+            uri="http://www.transformation-tool-contest.eu/2017/smartGrids/substationStandard/groupY"
+            class="substationStandard.LNNodes.LNGroupY.LNGroupYPackage"
+            genModel="metamodels/61850.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated 61850 -->
+      <package
+            uri="http://www.transformation-tool-contest.eu/2017/smartGrids/substationStandard/groupZ"
+            class="substationStandard.LNNodes.LNGroupZ.LNGroupZPackage"
+            genModel="metamodels/61850.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated 61850 -->
+      <package
+            uri="http://www.transformation-tool-contest.eu/2017/smartGrids/dataclasses"
+            class="substationStandard.Dataclasses.DataclassesPackage"
+            genModel="metamodels/61850.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated 61850 -->
+      <package
+            uri="http://www.transformation-tool-contest.eu/2017/smartGrids/enumerations"
+            class="substationStandard.Enumerations.EnumerationsPackage"
+            genModel="metamodels/61850.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated COSEM -->
+      <package
+            uri="http://www.transformation-tool-contest.eu/2017/smartGrids/cosem"
+            class="COSEM.COSEMPackage"
+            genModel="metamodels/COSEM.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated COSEM -->
+      <package
+            uri="data"
+            class="COSEM.Datatypes.DatatypesPackage"
+            genModel="metamodels/COSEM.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated COSEM -->
+      <package
+            uri="interface"
+            class="COSEM.InterfaceClasses.InterfaceClassesPackage"
+            genModel="metamodels/COSEM.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated COSEM -->
+      <package
+            uri="objects"
+            class="COSEM.COSEMObjects.COSEMObjectsPackage"
+            genModel="metamodels/COSEM.genmodel"/>
+   </extension>
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated schema -->
+      <package
+            uri="http://iec.ch/TC57/2009/CIM-schema-cim14"
+            class="CIM.CIMPackage"
+            genModel="metamodels/schema.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated schema -->
+      <package
+            uri="http://iec.ch/TC57/2009/CIM-schema-cim14#IEC61970"
+            class="CIM.IEC61970.IEC61970Package"
+            genModel="metamodels/schema.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated schema -->
+      <package
+            uri="http://iec.ch/TC57/2009/CIM-schema-cim14#OperationalLimits"
+            class="CIM.IEC61970.OperationalLimits.OperationalLimitsPackage"
+            genModel="metamodels/schema.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated schema -->
+      <package
+            uri="http://iec.ch/TC57/2009/CIM-schema-cim14#EnergyScheduling"
+            class="CIM.IEC61970.Informative.EnergyScheduling.EnergySchedulingPackage"
+            genModel="metamodels/schema.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated schema -->
+      <package
+            uri="http://iec.ch/TC57/2009/CIM-schema-cim14#InfERPSupport"
+            class="CIM.IEC61970.Informative.InfERPSupport.InfERPSupportPackage"
+            genModel="metamodels/schema.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated schema -->
+      <package
+            uri="http://iec.ch/TC57/2009/CIM-schema-cim14#InfAssetModels"
+            class="CIM.IEC61970.Informative.InfAssetModels.InfAssetModelsPackage"
+            genModel="metamodels/schema.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated schema -->
+      <package
+            uri="http://iec.ch/TC57/2009/CIM-schema-cim14#InfAssets"
+            class="CIM.IEC61970.Informative.InfAssets.InfAssetsPackage"
+            genModel="metamodels/schema.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated schema -->
+      <package
+            uri="http://iec.ch/TC57/2009/CIM-schema-cim14#InfGMLSupport"
+            class="CIM.IEC61970.Informative.InfGMLSupport.InfGMLSupportPackage"
+            genModel="metamodels/schema.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated schema -->
+      <package
+            uri="http://iec.ch/TC57/2009/CIM-schema-cim14#InfCore"
+            class="CIM.IEC61970.Informative.InfCore.InfCorePackage"
+            genModel="metamodels/schema.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated schema -->
+      <package
+            uri="http://iec.ch/TC57/2009/CIM-schema-cim14#MarketOperations"
+            class="CIM.IEC61970.Informative.MarketOperations.MarketOperationsPackage"
+            genModel="metamodels/schema.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated schema -->
+      <package
+            uri="http://iec.ch/TC57/2009/CIM-schema-cim14#InfOperations"
+            class="CIM.IEC61970.Informative.InfOperations.InfOperationsPackage"
+            genModel="metamodels/schema.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated schema -->
+      <package
+            uri="http://iec.ch/TC57/2009/CIM-schema-cim14#InfWork"
+            class="CIM.IEC61970.Informative.InfWork.InfWorkPackage"
+            genModel="metamodels/schema.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated schema -->
+      <package
+            uri="http://iec.ch/TC57/2009/CIM-schema-cim14#InfPaymentMetering"
+            class="CIM.IEC61970.Informative.InfPaymentMetering.InfPaymentMeteringPackage"
+            genModel="metamodels/schema.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated schema -->
+      <package
+            uri="http://iec.ch/TC57/2009/CIM-schema-cim14#InfCommon"
+            class="CIM.IEC61970.Informative.InfCommon.InfCommonPackage"
+            genModel="metamodels/schema.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated schema -->
+      <package
+            uri="http://iec.ch/TC57/2009/CIM-schema-cim14#InfLocations"
+            class="CIM.IEC61970.Informative.InfLocations.InfLocationsPackage"
+            genModel="metamodels/schema.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated schema -->
+      <package
+            uri="http://iec.ch/TC57/2009/CIM-schema-cim14#Financial"
+            class="CIM.IEC61970.Informative.Financial.FinancialPackage"
+            genModel="metamodels/schema.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated schema -->
+      <package
+            uri="http://iec.ch/TC57/2009/CIM-schema-cim14#Reservation"
+            class="CIM.IEC61970.Informative.Reservation.ReservationPackage"
+            genModel="metamodels/schema.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated schema -->
+      <package
+            uri="http://iec.ch/TC57/2009/CIM-schema-cim14#InfMetering"
+            class="CIM.IEC61970.Informative.InfMetering.InfMeteringPackage"
+            genModel="metamodels/schema.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated schema -->
+      <package
+            uri="http://iec.ch/TC57/2009/CIM-schema-cim14#InfCustomers"
+            class="CIM.IEC61970.Informative.InfCustomers.InfCustomersPackage"
+            genModel="metamodels/schema.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated schema -->
+      <package
+            uri="http://iec.ch/TC57/2009/CIM-schema-cim14#InfLoadControl"
+            class="CIM.IEC61970.Informative.InfLoadControl.InfLoadControlPackage"
+            genModel="metamodels/schema.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated schema -->
+      <package
+            uri="http://iec.ch/TC57/2009/CIM-schema-cim14#InfTypeAsset"
+            class="CIM.IEC61970.Informative.InfTypeAsset.InfTypeAssetPackage"
+            genModel="metamodels/schema.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated schema -->
+      <package
+            uri="http://iec.ch/TC57/2009/CIM-schema-cim14#Meas"
+            class="CIM.IEC61970.Meas.MeasPackage"
+            genModel="metamodels/schema.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated schema -->
+      <package
+            uri="http://iec.ch/TC57/2009/CIM-schema-cim14#GenerationDynamics"
+            class="CIM.IEC61970.Generation.GenerationDynamics.GenerationDynamicsPackage"
+            genModel="metamodels/schema.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated schema -->
+      <package
+            uri="http://iec.ch/TC57/2009/CIM-schema-cim14#Production"
+            class="CIM.IEC61970.Generation.Production.ProductionPackage"
+            genModel="metamodels/schema.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated schema -->
+      <package
+            uri="http://iec.ch/TC57/2009/CIM-schema-cim14#SCADA"
+            class="CIM.IEC61970.SCADA.SCADAPackage"
+            genModel="metamodels/schema.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated schema -->
+      <package
+            uri="http://iec.ch/TC57/2009/CIM-schema-cim14#Wires"
+            class="CIM.IEC61970.Wires.WiresPackage"
+            genModel="metamodels/schema.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated schema -->
+      <package
+            uri="http://iec.ch/TC57/2009/CIM-schema-cim14#Core"
+            class="CIM.IEC61970.Core.CorePackage"
+            genModel="metamodels/schema.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated schema -->
+      <package
+            uri="http://iec.ch/TC57/2009/CIM-schema-cim14#StateVariables"
+            class="CIM.IEC61970.StateVariables.StateVariablesPackage"
+            genModel="metamodels/schema.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated schema -->
+      <package
+            uri="http://iec.ch/TC57/2009/CIM-schema-cim14#Equivalents"
+            class="CIM.IEC61970.Equivalents.EquivalentsPackage"
+            genModel="metamodels/schema.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated schema -->
+      <package
+            uri="http://iec.ch/TC57/2009/CIM-schema-cim14#Domain"
+            class="CIM.IEC61970.Domain.DomainPackage"
+            genModel="metamodels/schema.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated schema -->
+      <package
+            uri="http://iec.ch/TC57/2009/CIM-schema-cim14#LoadModel"
+            class="CIM.IEC61970.LoadModel.LoadModelPackage"
+            genModel="metamodels/schema.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated schema -->
+      <package
+            uri="http://iec.ch/TC57/2009/CIM-schema-cim14#Protection"
+            class="CIM.IEC61970.Protection.ProtectionPackage"
+            genModel="metamodels/schema.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated schema -->
+      <package
+            uri="http://iec.ch/TC57/2009/CIM-schema-cim14#Outage"
+            class="CIM.IEC61970.Outage.OutagePackage"
+            genModel="metamodels/schema.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated schema -->
+      <package
+            uri="http://iec.ch/TC57/2009/CIM-schema-cim14#ControlArea"
+            class="CIM.IEC61970.ControlArea.ControlAreaPackage"
+            genModel="metamodels/schema.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated schema -->
+      <package
+            uri="http://iec.ch/TC57/2009/CIM-schema-cim14#Contingency"
+            class="CIM.IEC61970.Contingency.ContingencyPackage"
+            genModel="metamodels/schema.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated schema -->
+      <package
+            uri="http://iec.ch/TC57/2009/CIM-schema-cim14#Topology"
+            class="CIM.IEC61970.Topology.TopologyPackage"
+            genModel="metamodels/schema.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated schema -->
+      <package
+            uri="http://iec.ch/TC57/2009/CIM-schema-cim14#PackageDependencies"
+            class="CIM.PackageDependencies.PackageDependenciesPackage"
+            genModel="metamodels/schema.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated schema -->
+      <package
+            uri="http://iec.ch/TC57/2009/CIM-schema-cim14#IEC61968"
+            class="CIM.IEC61968.IEC61968Package"
+            genModel="metamodels/schema.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated schema -->
+      <package
+            uri="http://iec.ch/TC57/2009/CIM-schema-cim14#Metering"
+            class="CIM.IEC61968.Metering.MeteringPackage"
+            genModel="metamodels/schema.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated schema -->
+      <package
+            uri="http://iec.ch/TC57/2009/CIM-schema-cim14#WiresExt"
+            class="CIM.IEC61968.WiresExt.WiresExtPackage"
+            genModel="metamodels/schema.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated schema -->
+      <package
+            uri="http://iec.ch/TC57/2009/CIM-schema-cim14#Common"
+            class="CIM.IEC61968.Common.CommonPackage"
+            genModel="metamodels/schema.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated schema -->
+      <package
+            uri="http://iec.ch/TC57/2009/CIM-schema-cim14#AssetModels"
+            class="CIM.IEC61968.AssetModels.AssetModelsPackage"
+            genModel="metamodels/schema.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated schema -->
+      <package
+            uri="http://iec.ch/TC57/2009/CIM-schema-cim14#PaymentMetering"
+            class="CIM.IEC61968.PaymentMetering.PaymentMeteringPackage"
+            genModel="metamodels/schema.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated schema -->
+      <package
+            uri="http://iec.ch/TC57/2009/CIM-schema-cim14#Customers"
+            class="CIM.IEC61968.Customers.CustomersPackage"
+            genModel="metamodels/schema.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated schema -->
+      <package
+            uri="http://iec.ch/TC57/2009/CIM-schema-cim14#LoadControl"
+            class="CIM.IEC61968.LoadControl.LoadControlPackage"
+            genModel="metamodels/schema.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated schema -->
+      <package
+            uri="http://iec.ch/TC57/2009/CIM-schema-cim14#Assets"
+            class="CIM.IEC61968.Assets.AssetsPackage"
+            genModel="metamodels/schema.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated schema -->
+      <package
+            uri="http://iec.ch/TC57/2009/CIM-schema-cim14#Work"
+            class="CIM.IEC61968.Work.WorkPackage"
+            genModel="metamodels/schema.genmodel"/>
+   </extension>
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated outageDetection-target -->
+      <package
+            uri="http://www.transformation-tool-contest.eu/2017/smartGrids/ConsumerReachabilityView"
+            class="outageDetectionJointarget.OutageDetectionJointargetPackage"
+            genModel="metamodels/outageDetection-target.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated outageDetection-target -->
+      <package
+            uri="http://www.transformation-tool-contest.eu/2017/smartGrids/ConsumerReachabilityView.trace"
+            class="outageDetectionMjtrace.OutageDetectionMjtracePackage"
+            genModel="metamodels/outageDetection-target.genmodel"/>
+   </extension>
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated outagePrevention-target -->
+      <package
+            uri="http://www.transformation-tool-contest.eu/2017/smartGrids/VoltagePhaseMeasurements"
+            class="outagePreventionJointarget.OutagePreventionJointargetPackage"
+            genModel="metamodels/outagePrevention-target.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated outagePrevention-target -->
+      <package
+            uri="http://www.transformation-tool-contest.eu/2017/smartGrids/VoltagePhaseMeasurements.trace"
+            class="outagePreventionMjtrace.OutagePreventionMjtracePackage"
+            genModel="metamodels/outagePrevention-target.genmodel"/>
+   </extension>
+</plugin>

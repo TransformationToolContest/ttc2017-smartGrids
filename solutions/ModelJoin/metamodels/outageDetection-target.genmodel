@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/ModelJoin/src/main/java" modelPluginID="ModelJoin"
+    modelName="OutageDetection-target" rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container"
+    importerID="org.eclipse.emf.importer.ecore" complianceLevel="8.0" copyrightFields="false"
+    usedGenPackages="61850.genmodel#//substationStandard COSEM.genmodel#//COSEM schema.genmodel#//CIM"
+    operationReflection="true" importOrganizing="true">
+  <foreignModel>outageDetection-target.ecore</foreignModel>
+  <genPackages prefix="OutageDetectionJointarget" disposableProviderFactory="true"
+      ecorePackage="outageDetection-target.ecore#/">
+    <genClasses ecoreClass="outageDetection-target.ecore#//EnergyConsumer">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference outageDetection-target.ecore#//EnergyConsumer/Location"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute outageDetection-target.ecore#//EnergyConsumer/Reachability"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute outageDetection-target.ecore#//EnergyConsumer/PowerA"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute outageDetection-target.ecore#//EnergyConsumer/ID"/>
+    </genClasses>
+    <genClasses ecoreClass="outageDetection-target.ecore#//Location">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference outageDetection-target.ecore#//Location/Position"/>
+    </genClasses>
+    <genClasses ecoreClass="outageDetection-target.ecore#//PositionPoint">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute outageDetection-target.ecore#//PositionPoint/xPosition"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute outageDetection-target.ecore#//PositionPoint/yPosition"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute outageDetection-target.ecore#//PositionPoint/zPosition"/>
+    </genClasses>
+  </genPackages>
+  <genPackages prefix="OutageDetectionMjtrace" disposableProviderFactory="true" ecorePackage="outageDetection-trace.ecore#/">
+    <genClasses ecoreClass="outageDetection-trace.ecore#//join_MeterAsset_PhysicalDevice_EnergyConsumer">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference outageDetection-trace.ecore#//join_MeterAsset_PhysicalDevice_EnergyConsumer/left"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference outageDetection-trace.ecore#//join_MeterAsset_PhysicalDevice_EnergyConsumer/right"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference outageDetection-trace.ecore#//join_MeterAsset_PhysicalDevice_EnergyConsumer/target"/>
+    </genClasses>
+    <genClasses ecoreClass="outageDetection-trace.ecore#//ref_Location_Location_Location">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference outageDetection-trace.ecore#//ref_Location_Location_Location/source"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference outageDetection-trace.ecore#//ref_Location_Location_Location/target"/>
+    </genClasses>
+    <genClasses ecoreClass="outageDetection-trace.ecore#//ref_PositionPoint_PositionPoint_Position">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference outageDetection-trace.ecore#//ref_PositionPoint_PositionPoint_Position/source"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference outageDetection-trace.ecore#//ref_PositionPoint_PositionPoint_Position/target"/>
+    </genClasses>
+  </genPackages>
+</genmodel:GenModel>

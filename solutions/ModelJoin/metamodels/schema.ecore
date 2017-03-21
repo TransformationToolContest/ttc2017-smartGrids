@@ -8,7 +8,7 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="UUID" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
         iD="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="CIM">
+  <eClassifiers xsi:type="ecore:EClass" name="CIMRoot">
     <eStructuralFeatures xsi:type="ecore:EReference" name="IDobject" upperBound="-1"
         eType="#//Element" containment="true"/>
   </eClassifiers>
@@ -25410,13 +25410,13 @@
         <eLiterals name="min" value="19"/>
         <eLiterals name="deg" value="20"/>
         <eLiterals name="Js" value="21"/>
-        <eLiterals name="s" value="22"/>
+        <eLiterals name="small_s" value="22"/>
         <eLiterals name="Wh" value="23"/>
         <eLiterals name="m3" value="24"/>
         <eLiterals name="ºC" value="25"/>
         <eLiterals name="VVAr" value="26"/>
         <eLiterals name="sminus1" value="27"/>
-        <eLiterals name="h_" value="28"/>
+        <eLiterals name="small_h" value="28"/>
         <eLiterals name="W" value="29"/>
         <eLiterals name="ohm" value="30"/>
         <eLiterals name="Hz" value="31"/>
@@ -25436,7 +25436,7 @@
         <eLiterals name="USD_per_Wh" value="1"/>
       </eClassifiers>
       <eClassifiers xsi:type="ecore:EEnum" name="UnitMultiplier">
-        <eLiterals name="m"/>
+        <eLiterals name="small_m"/>
         <eLiterals name="p" value="1"/>
         <eLiterals name="c" value="2"/>
         <eLiterals name="T" value="3"/>

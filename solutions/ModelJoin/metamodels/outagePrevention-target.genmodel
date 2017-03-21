@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/ModelJoin/src/main/java" modelPluginID="ModelJoin"
+    modelName="OutagePrevention-target" rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container"
+    importerID="org.eclipse.emf.importer.ecore" complianceLevel="8.0" copyrightFields="false"
+    usedGenPackages="61850.genmodel#//substationStandard COSEM.genmodel#//COSEM schema.genmodel#//CIM"
+    operationReflection="true" importOrganizing="true">
+  <foreignModel>outagePrevention-target.ecore</foreignModel>
+  <genPackages prefix="OutagePreventionJointarget" disposableProviderFactory="true"
+      ecorePackage="outagePrevention-target.ecore#/">
+    <genClasses ecoreClass="outagePrevention-target.ecore#//PMUVoltageMeter">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute outagePrevention-target.ecore#//PMUVoltageMeter/mRID"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute outagePrevention-target.ecore#//PMUVoltageMeter/VoltageAMag"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute outagePrevention-target.ecore#//PMUVoltageMeter/VoltageAAng"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute outagePrevention-target.ecore#//PMUVoltageMeter/VoltageBMag"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute outagePrevention-target.ecore#//PMUVoltageMeter/VoltageBAng"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute outagePrevention-target.ecore#//PMUVoltageMeter/VoltageCMag"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute outagePrevention-target.ecore#//PMUVoltageMeter/VoltageCAng"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute outagePrevention-target.ecore#//PMUVoltageMeter/VoltageNeutMag"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute outagePrevention-target.ecore#//PMUVoltageMeter/VoltageNeutAng"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute outagePrevention-target.ecore#//PMUVoltageMeter/VoltageNetMag"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute outagePrevention-target.ecore#//PMUVoltageMeter/VoltageNetAng"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute outagePrevention-target.ecore#//PMUVoltageMeter/VoltageResMag"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute outagePrevention-target.ecore#//PMUVoltageMeter/VoltageResAng"/>
+    </genClasses>
+    <genClasses ecoreClass="outagePrevention-target.ecore#//PrivateMeterVoltage">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute outagePrevention-target.ecore#//PrivateMeterVoltage/ID"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute outagePrevention-target.ecore#//PrivateMeterVoltage/VoltageA"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute outagePrevention-target.ecore#//PrivateMeterVoltage/VoltageB"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute outagePrevention-target.ecore#//PrivateMeterVoltage/VoltageC"/>
+    </genClasses>
+    <genClasses ecoreClass="outagePrevention-target.ecore#//Asset">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference outagePrevention-target.ecore#//Asset/Location"/>
+    </genClasses>
+    <genClasses ecoreClass="outagePrevention-target.ecore#//Location">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference outagePrevention-target.ecore#//Location/Position"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference outagePrevention-target.ecore#//Location/PowerSystemResources"/>
+    </genClasses>
+    <genClasses ecoreClass="outagePrevention-target.ecore#//PositionPoint">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute outagePrevention-target.ecore#//PositionPoint/xPosition"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute outagePrevention-target.ecore#//PositionPoint/yPosition"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute outagePrevention-target.ecore#//PositionPoint/zPosition"/>
+    </genClasses>
+    <genClasses ecoreClass="outagePrevention-target.ecore#//PowerSystemResource"/>
+    <genClasses ecoreClass="outagePrevention-target.ecore#//ConductingEquipment">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference outagePrevention-target.ecore#//ConductingEquipment/Terminals"/>
+    </genClasses>
+    <genClasses ecoreClass="outagePrevention-target.ecore#//Terminal">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference outagePrevention-target.ecore#//Terminal/TieFlow"/>
+    </genClasses>
+    <genClasses ecoreClass="outagePrevention-target.ecore#//TieFlow">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference outagePrevention-target.ecore#//TieFlow/ControlArea"/>
+    </genClasses>
+    <genClasses ecoreClass="outagePrevention-target.ecore#//ControlArea">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute outagePrevention-target.ecore#//ControlArea/mRID"/>
+    </genClasses>
+    <genClasses ecoreClass="outagePrevention-target.ecore#//EndDeviceAsset">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference outagePrevention-target.ecore#//EndDeviceAsset/ServiceDeliveryPoint"/>
+    </genClasses>
+    <genClasses ecoreClass="outagePrevention-target.ecore#//ServiceDeliveryPoint">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference outagePrevention-target.ecore#//ServiceDeliveryPoint/EnergyConsumer"/>
+    </genClasses>
+    <genClasses ecoreClass="outagePrevention-target.ecore#//EnergyConsumer">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute outagePrevention-target.ecore#//EnergyConsumer/mRID"/>
+    </genClasses>
+    <genClasses ecoreClass="outagePrevention-target.ecore#//ConformLoad">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference outagePrevention-target.ecore#//ConformLoad/LoadGroup"/>
+    </genClasses>
+    <genClasses ecoreClass="outagePrevention-target.ecore#//ConformLoadGroup"/>
+    <genClasses ecoreClass="outagePrevention-target.ecore#//LoadGroup">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference outagePrevention-target.ecore#//LoadGroup/SubLoadArea"/>
+    </genClasses>
+    <genClasses ecoreClass="outagePrevention-target.ecore#//SubLoadArea">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference outagePrevention-target.ecore#//SubLoadArea/LoadArea"/>
+    </genClasses>
+    <genClasses ecoreClass="outagePrevention-target.ecore#//LoadArea">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference outagePrevention-target.ecore#//LoadArea/ControlArea"/>
+    </genClasses>
+    <genClasses ecoreClass="outagePrevention-target.ecore#//NonConformLoad">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference outagePrevention-target.ecore#//NonConformLoad/LoadGroup"/>
+    </genClasses>
+    <genClasses ecoreClass="outagePrevention-target.ecore#//NonConformLoadGroup"/>
+  </genPackages>
+  <genPackages prefix="OutagePreventionMjtrace" disposableProviderFactory="true" ecorePackage="outagePrevention-trace.ecore#/">
+    <genClasses ecoreClass="outagePrevention-trace.ecore#//join_MeterAsset_MMXU_PMUVoltageMeter">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference outagePrevention-trace.ecore#//join_MeterAsset_MMXU_PMUVoltageMeter/left"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference outagePrevention-trace.ecore#//join_MeterAsset_MMXU_PMUVoltageMeter/right"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference outagePrevention-trace.ecore#//join_MeterAsset_MMXU_PMUVoltageMeter/target"/>
+    </genClasses>
+    <genClasses ecoreClass="outagePrevention-trace.ecore#//join_MeterAsset_PhysicalDevice_PrivateMeterVoltage">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference outagePrevention-trace.ecore#//join_MeterAsset_PhysicalDevice_PrivateMeterVoltage/left"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference outagePrevention-trace.ecore#//join_MeterAsset_PhysicalDevice_PrivateMeterVoltage/right"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference outagePrevention-trace.ecore#//join_MeterAsset_PhysicalDevice_PrivateMeterVoltage/target"/>
+    </genClasses>
+    <genClasses ecoreClass="outagePrevention-trace.ecore#//ref_Location_Location_Location">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference outagePrevention-trace.ecore#//ref_Location_Location_Location/source"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference outagePrevention-trace.ecore#//ref_Location_Location_Location/target"/>
+    </genClasses>
+    <genClasses ecoreClass="outagePrevention-trace.ecore#//ref_PositionPoint_PositionPoint_Position">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference outagePrevention-trace.ecore#//ref_PositionPoint_PositionPoint_Position/source"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference outagePrevention-trace.ecore#//ref_PositionPoint_PositionPoint_Position/target"/>
+    </genClasses>
+    <genClasses ecoreClass="outagePrevention-trace.ecore#//ref_PowerSystemResource_PowerSystemResource_PowerSystemResources">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference outagePrevention-trace.ecore#//ref_PowerSystemResource_PowerSystemResource_PowerSystemResources/source"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference outagePrevention-trace.ecore#//ref_PowerSystemResource_PowerSystemResource_PowerSystemResources/target"/>
+    </genClasses>
+    <genClasses ecoreClass="outagePrevention-trace.ecore#//ref_Terminal_Terminal_Terminals">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference outagePrevention-trace.ecore#//ref_Terminal_Terminal_Terminals/source"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference outagePrevention-trace.ecore#//ref_Terminal_Terminal_Terminals/target"/>
+    </genClasses>
+    <genClasses ecoreClass="outagePrevention-trace.ecore#//ref_TieFlow_TieFlow_TieFlow">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference outagePrevention-trace.ecore#//ref_TieFlow_TieFlow_TieFlow/source"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference outagePrevention-trace.ecore#//ref_TieFlow_TieFlow_TieFlow/target"/>
+    </genClasses>
+    <genClasses ecoreClass="outagePrevention-trace.ecore#//ref_ControlArea_ControlArea_ControlArea">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference outagePrevention-trace.ecore#//ref_ControlArea_ControlArea_ControlArea/source"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference outagePrevention-trace.ecore#//ref_ControlArea_ControlArea_ControlArea/target"/>
+    </genClasses>
+    <genClasses ecoreClass="outagePrevention-trace.ecore#//ref_ServiceDeliveryPoint_ServiceDeliveryPoint_ServiceDeliveryPoint">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference outagePrevention-trace.ecore#//ref_ServiceDeliveryPoint_ServiceDeliveryPoint_ServiceDeliveryPoint/source"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference outagePrevention-trace.ecore#//ref_ServiceDeliveryPoint_ServiceDeliveryPoint_ServiceDeliveryPoint/target"/>
+    </genClasses>
+    <genClasses ecoreClass="outagePrevention-trace.ecore#//ref_EnergyConsumer_EnergyConsumer_EnergyConsumer">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference outagePrevention-trace.ecore#//ref_EnergyConsumer_EnergyConsumer_EnergyConsumer/source"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference outagePrevention-trace.ecore#//ref_EnergyConsumer_EnergyConsumer_EnergyConsumer/target"/>
+    </genClasses>
+    <genClasses ecoreClass="outagePrevention-trace.ecore#//ref_ConformLoadGroup_ConformLoadGroup_LoadGroup">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference outagePrevention-trace.ecore#//ref_ConformLoadGroup_ConformLoadGroup_LoadGroup/source"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference outagePrevention-trace.ecore#//ref_ConformLoadGroup_ConformLoadGroup_LoadGroup/target"/>
+    </genClasses>
+    <genClasses ecoreClass="outagePrevention-trace.ecore#//ref_SubLoadArea_SubLoadArea_SubLoadArea">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference outagePrevention-trace.ecore#//ref_SubLoadArea_SubLoadArea_SubLoadArea/source"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference outagePrevention-trace.ecore#//ref_SubLoadArea_SubLoadArea_SubLoadArea/target"/>
+    </genClasses>
+    <genClasses ecoreClass="outagePrevention-trace.ecore#//ref_LoadArea_LoadArea_LoadArea">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference outagePrevention-trace.ecore#//ref_LoadArea_LoadArea_LoadArea/source"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference outagePrevention-trace.ecore#//ref_LoadArea_LoadArea_LoadArea/target"/>
+    </genClasses>
+    <genClasses ecoreClass="outagePrevention-trace.ecore#//ref_NonConformLoadGroup_NonConformLoadGroup_LoadGroup">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference outagePrevention-trace.ecore#//ref_NonConformLoadGroup_NonConformLoadGroup_LoadGroup/source"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference outagePrevention-trace.ecore#//ref_NonConformLoadGroup_NonConformLoadGroup_LoadGroup/target"/>
+    </genClasses>
+  </genPackages>
+</genmodel:GenModel>
