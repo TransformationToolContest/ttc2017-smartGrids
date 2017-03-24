@@ -11,7 +11,6 @@ import org.eclipse.core.runtime.IStatus;
 import org.eclipse.emf.common.util.BasicDiagnostic;
 import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.URI;
-import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
@@ -60,16 +59,6 @@ public class App {
 
 		return new BasicModelExtent(mRes.getContents());
 	}
-	
-	private void registerMetamodel(String metamodel) {
-		Resource mmRes = this.rs.getResource(URI.createFileURI(new File(metamodel).getAbsolutePath()), true);
-
-		EObject eObject = mmRes.getContents().get(0);
-		if (eObject instanceof EPackage) {
-			EPackage p = (EPackage) eObject;
-			EPackage.Registry.INSTANCE.put(p.getNsURI(), p);
-		}
-	}
 
 	public void build() {
 
@@ -85,13 +74,13 @@ public class App {
 
 		this.rs.getResourceFactoryRegistry().getExtensionToFactoryMap().put("ecore", new EcoreResourceFactoryImpl());
 		
-		CIM.CIMPackage.eINSTANCE.getCIMFactory();
-		COSEM.COSEMPackage.eINSTANCE.getCOSEMFactory();
-		substationStandard.SubstationStandardPackage.eINSTANCE.getSubstationStandardFactory();
-		outageDetectionJointarget.OutageDetectionJointargetPackage.eINSTANCE.getOutageDetectionJointargetFactory();
-		outageDetectionMjtrace.OutageDetectionMjtracePackage.eINSTANCE.getOutageDetectionMjtraceFactory();
-		outagePreventionJointarget.OutagePreventionJointargetPackage.eINSTANCE.getOutagePreventionJointargetFactory();
-		outagePreventionMjtrace.OutagePreventionMjtracePackage.eINSTANCE.getOutagePreventionMjtraceFactory();
+		EPackage.Registry.INSTANCE.put(CIM.CIMPackage.eINSTANCE.getNsURI(), CIM.CIMPackage.eINSTANCE);
+		EPackage.Registry.INSTANCE.put(substationStandard.SubstationStandardPackage.eINSTANCE.getNsURI(), substationStandard.SubstationStandardPackage.eINSTANCE);
+		EPackage.Registry.INSTANCE.put(COSEM.COSEMPackage.eINSTANCE.getNsURI(), COSEM.COSEMPackage.eINSTANCE);
+		EPackage.Registry.INSTANCE.put(outageDetectionJointarget.OutageDetectionJointargetPackage.eINSTANCE.getNsURI(), outageDetectionJointarget.OutageDetectionJointargetPackage.eINSTANCE);
+		EPackage.Registry.INSTANCE.put(outageDetectionMjtrace.OutageDetectionMjtracePackage.eINSTANCE.getNsURI(), outageDetectionMjtrace.OutageDetectionMjtracePackage.eINSTANCE);
+		EPackage.Registry.INSTANCE.put(outagePreventionJointarget.OutagePreventionJointargetPackage.eINSTANCE.getNsURI(), outagePreventionJointarget.OutagePreventionJointargetPackage.eINSTANCE);
+		EPackage.Registry.INSTANCE.put(outagePreventionMjtrace.OutagePreventionMjtracePackage.eINSTANCE.getNsURI(), outagePreventionMjtrace.OutagePreventionMjtracePackage.eINSTANCE);
 
 		URI txURI = URI.createFileURI(new File("transformations/" + this.transformation + ".qvto").getAbsolutePath());
 		TransformationExecutor executor = new TransformationExecutor(txURI);
@@ -124,7 +113,7 @@ public class App {
 		List<ModelExtent> modelExtents = new ArrayList<ModelExtent>();
 		long loadModelsstart = System.nanoTime();
 		modelExtents.add(this.createModelExtent(cim));
-		if (this.transformation == "OutagePrevention") {
+		if ("OutagePrevention".equals(this.transformation)) {
 			modelExtents.add(this.createModelExtent(substation));
 		}
 		modelExtents.add(this.createModelExtent(cosem));
@@ -144,7 +133,7 @@ public class App {
 		if (result.getSeverity() == Diagnostic.OK) {
 			// the output objects got captured in the output extent
 			XMIResource outResource = (XMIResource) rs
-					.createResource(URI.createFileURI(new File("out.xmi").getAbsolutePath()));
+					.createResource(URI.createFileURI(new File(this.transformation + ".xmi").getAbsolutePath()));
 			outResource.getContents().addAll(output.getContents());
 			try {
 				outResource.save(null);
