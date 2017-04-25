@@ -1,8 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <changes:ModelChangeSet xmi:version="2.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xmi="http://www.omg.org/XMI" xmlns:changes="http://nmf.codeplex.com/changes">
-  <changes xsi:type="changes:AssociationListInsertion" addedElement="$1" index="1" affectedElement="../../models/CIM_DCIM.xmi#_5706322Loc" feature="http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61968/Common/Location/Assets" />
-  <changes xsi:type="changes:AssociationListInsertion" addedElement="$1" index="2" affectedElement="../../models/CIM_DCIM.xmi#_1710201SDL" feature="http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61968/Metering/ServiceDeliveryPoint/EndDeviceAssets" />
-  <changes xsi:type="changes:CompositionListInsertion" index="10342" affectedElement="../../models/CIM_DCIM.xmi#//" feature="http://iec.ch/TC57/2009/CIM-schema-cim14#//CIMRoot/IDobject">
-    <addedElement xmlns:cimMetering="http://iec.ch/TC57/2009/CIM-schema-cim14#Metering" xsi:type="cimMetering:MeterAsset" ServiceDeliveryPoint="../../models/CIM_DCIM.xmi#_1710201SDL" Location="../../models/CIM_DCIM.xmi#_5706322Loc" mRID="b347907d-86e0-4ea7-bda1-6f768045e477" name="b347907d-86e0-4ea7-bda1-6f768045e477" UUID="b347907d-86e0-4ea7-bda1-6f768045e477" />
-  </changes>
+  <changes xsi:type="changes:AssociationListDeletion" deletedElement="../../models/CIM_DCIM.xmi#f75f273b-7631-4e7c-8c55-c77589e6243c" index="1" affectedElement="../../models/CIM_DCIM.xmi#_372322Loc" feature="http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61968/Common/Location/Assets" />
+  <changes xsi:type="changes:AssociationListDeletion" deletedElement="../../models/CIM_DCIM.xmi#f75f273b-7631-4e7c-8c55-c77589e6243c" index="1" affectedElement="../../models/CIM_DCIM.xmi#_2800201SDL" feature="http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61968/Metering/ServiceDeliveryPoint/EndDeviceAssets" />
+  <changes xsi:type="changes:CompositionListDeletion" deletedElement="../../models/CIM_DCIM.xmi#f75f273b-7631-4e7c-8c55-c77589e6243c" index="10348" affectedElement="../../models/CIM_DCIM.xmi#//" feature="http://iec.ch/TC57/2009/CIM-schema-cim14#//CIMRoot/IDobject" />
 </changes:ModelChangeSet>

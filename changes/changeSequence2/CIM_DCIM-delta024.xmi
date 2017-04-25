@@ -1,2 +1,11 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<changes:ModelChangeSet xmi:version="2.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xmi="http://www.omg.org/XMI" xmlns:changes="http://nmf.codeplex.com/changes" />
+<changes:ModelChangeSet xmi:version="2.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xmi="http://www.omg.org/XMI" xmlns:changes="http://nmf.codeplex.com/changes">
+  <changes xsi:type="changes:AssociationListDeletion" deletedElement="../../models/CIM_DCIM.xmi#eaad950b-4b5e-41fd-9272-ce1d039f2759" index="1" affectedElement="../../models/CIM_DCIM.xmi#_8260201Loc" feature="http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61968/Common/Location/Assets" />
+  <changes xsi:type="changes:AssociationListDeletion" deletedElement="../../models/CIM_DCIM.xmi#eaad950b-4b5e-41fd-9272-ce1d039f2759" affectedElement="../../models/CIM_DCIM.xmi#_7422201SDL" feature="http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61968/Metering/ServiceDeliveryPoint/EndDeviceAssets" />
+  <changes xsi:type="changes:CompositionListDeletion" deletedElement="../../models/CIM_DCIM.xmi#eaad950b-4b5e-41fd-9272-ce1d039f2759" index="10331" affectedElement="../../models/CIM_DCIM.xmi#//" feature="http://iec.ch/TC57/2009/CIM-schema-cim14#//CIMRoot/IDobject" />
+  <changes xsi:type="changes:AssociationListInsertion" addedElement="#//@changes.5/addedElement" index="1" affectedElement="../../models/CIM_DCIM.xmi#_3795201Loc" feature="http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61968/Common/Location/Assets" />
+  <changes xsi:type="changes:AssociationListInsertion" addedElement="#//@changes.5/addedElement" affectedElement="../../models/CIM_DCIM.xmi#_1656201SDL" feature="http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61968/Metering/ServiceDeliveryPoint/EndDeviceAssets" />
+  <changes xsi:type="changes:CompositionListInsertion" index="10335" affectedElement="../../models/CIM_DCIM.xmi#//" feature="http://iec.ch/TC57/2009/CIM-schema-cim14#//CIMRoot/IDobject">
+    <addedElement xmlns:cimMetering="http://iec.ch/TC57/2009/CIM-schema-cim14#Metering" xsi:type="cimMetering:MeterAsset" ServiceDeliveryPoint="../../models/CIM_DCIM.xmi#_1656201SDL" Location="../../models/CIM_DCIM.xmi#_3795201Loc" mRID="10ddbd87-3294-43d4-a8d1-86437b72de4c" name="10ddbd87-3294-43d4-a8d1-86437b72de4c" UUID="10ddbd87-3294-43d4-a8d1-86437b72de4c" />
+  </changes>
+</changes:ModelChangeSet>

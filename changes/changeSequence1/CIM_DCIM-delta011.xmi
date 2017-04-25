@@ -1,8 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <changes:ModelChangeSet xmi:version="2.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xmi="http://www.omg.org/XMI" xmlns:changes="http://nmf.codeplex.com/changes">
-  <changes xsi:type="changes:AssociationListInsertion" addedElement="$1" index="1" affectedElement="../../models/CIM_DCIM.xmi#_4915201Loc" feature="http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61968/Common/Location/Assets" />
-  <changes xsi:type="changes:AssociationListInsertion" addedElement="$1" affectedElement="../../models/CIM_DCIM.xmi#_1710201SDL" feature="http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61968/Metering/ServiceDeliveryPoint/EndDeviceAssets" />
-  <changes xsi:type="changes:CompositionListInsertion" index="10338" affectedElement="../../models/CIM_DCIM.xmi#//" feature="http://iec.ch/TC57/2009/CIM-schema-cim14#//CIMRoot/IDobject">
-    <addedElement xmlns:cimMetering="http://iec.ch/TC57/2009/CIM-schema-cim14#Metering" xsi:type="cimMetering:MeterAsset" ServiceDeliveryPoint="../../models/CIM_DCIM.xmi#_1710201SDL" Location="../../models/CIM_DCIM.xmi#_4915201Loc" mRID="67f431e3-dff7-4e75-a555-2fa6558c17da" name="67f431e3-dff7-4e75-a555-2fa6558c17da" UUID="67f431e3-dff7-4e75-a555-2fa6558c17da" />
-  </changes>
+  <changes xsi:type="changes:AssociationChange" newValue="../../models/CIM_DCIM.xmi#_3030201Pos" oldValue="../../models/CIM_DCIM.xmi#_314201Pos" feature="http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61968/Common/Location/Position" affectedElement="../../models/CIM_DCIM.xmi#_314201Loc" />
+  <changes xsi:type="changes:AssociationListDeletion" deletedElement="../../models/CIM_DCIM.xmi#_5837201SmartMeter" affectedElement="../../models/CIM_DCIM.xmi#_5837201SDL" feature="http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61968/Metering/ServiceDeliveryPoint/EndDeviceAssets" />
+  <changes xsi:type="changes:AssociationListDeletion" deletedElement="../../models/CIM_DCIM.xmi#_5837201SmartMeter" affectedElement="../../models/CIM_DCIM.xmi#_5837201Loc" feature="http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61968/Common/Location/Assets" />
+  <changes xsi:type="changes:CompositionListDeletion" deletedElement="../../models/CIM_DCIM.xmi#_5837201SmartMeter" index="8185" affectedElement="../../models/CIM_DCIM.xmi#//" feature="http://iec.ch/TC57/2009/CIM-schema-cim14#//CIMRoot/IDobject" />
 </changes:ModelChangeSet>

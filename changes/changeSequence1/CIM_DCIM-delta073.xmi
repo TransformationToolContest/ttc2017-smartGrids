@@ -1,16 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <changes:ModelChangeSet xmi:version="2.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xmi="http://www.omg.org/XMI" xmlns:changes="http://nmf.codeplex.com/changes">
-  <changes xsi:type="changes:AssociationListInsertion" addedElement="$1" affectedElement="../../models/CIM_DCIM.xmi#_50309201Loc" feature="http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61968/Common/Location/Assets" />
-  <changes xsi:type="changes:AssociationListInsertion" addedElement="$1" index="2" affectedElement="../../models/CIM_DCIM.xmi#_7684201SDL" feature="http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61968/Metering/ServiceDeliveryPoint/EndDeviceAssets" />
-  <changes xsi:type="changes:CompositionListInsertion" index="10344" affectedElement="../../models/CIM_DCIM.xmi#//" feature="http://iec.ch/TC57/2009/CIM-schema-cim14#//CIMRoot/IDobject">
-    <addedElement xmlns:cimMetering="http://iec.ch/TC57/2009/CIM-schema-cim14#Metering" xsi:type="cimMetering:MeterAsset" ServiceDeliveryPoint="../../models/CIM_DCIM.xmi#_7684201SDL" Location="../../models/CIM_DCIM.xmi#_50309201Loc" mRID="3d549201-7a5e-4ac8-8e9b-7efafca9c841" name="3d549201-7a5e-4ac8-8e9b-7efafca9c841" UUID="3d549201-7a5e-4ac8-8e9b-7efafca9c841" />
-  </changes>
-  <changes xsi:type="changes:AssociationListDeletion" deletedElement="../../models/CIM_DCIM.xmi#e8f80058-adf8-4a54-bb46-d496dc4af805" affectedElement="../../models/CIM_DCIM.xmi#_8114201Loc" feature="http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61968/Common/Location/Assets" />
-  <changes xsi:type="changes:AssociationListDeletion" deletedElement="../../models/CIM_DCIM.xmi#e8f80058-adf8-4a54-bb46-d496dc4af805" affectedElement="../../models/CIM_DCIM.xmi#_3794201SDL" feature="http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61968/Metering/ServiceDeliveryPoint/EndDeviceAssets" />
-  <changes xsi:type="changes:CompositionListDeletion" deletedElement="../../models/CIM_DCIM.xmi#e8f80058-adf8-4a54-bb46-d496dc4af805" index="10324" affectedElement="../../models/CIM_DCIM.xmi#//" feature="http://iec.ch/TC57/2009/CIM-schema-cim14#//CIMRoot/IDobject" />
-  <changes xsi:type="changes:ElementaryChangeTransaction">
-    <sourceChange xsi:type="changes:AssociationChange" newValue="../../models/CIM_DCIM.xmi#_3390201Loc" oldValue="../../models/CIM_DCIM.xmi#_1908201Loc" feature="http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61968/Assets/Asset/Location" affectedElement="../../models/CIM_DCIM.xmi#_314322PMUMeter" />
-    <nestedChanges xsi:type="changes:AssociationListDeletion" deletedElement="../../models/CIM_DCIM.xmi#_314322PMUMeter" index="1" affectedElement="../../models/CIM_DCIM.xmi#_1908201Loc" feature="http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61968/Common/Location/Assets" />
-    <nestedChanges xsi:type="changes:AssociationListInsertion" addedElement="../../models/CIM_DCIM.xmi#_314322PMUMeter" index="1" affectedElement="../../models/CIM_DCIM.xmi#_3390201Loc" feature="http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61968/Common/Location/Assets" />
+  <changes xsi:type="changes:AssociationListInsertion" addedElement="#//@changes.2/addedElement" index="1" affectedElement="../../models/CIM_DCIM.xmi#_4847322Loc" feature="http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61968/Common/Location/Assets" />
+  <changes xsi:type="changes:AssociationListInsertion" addedElement="#//@changes.2/addedElement" index="1" affectedElement="../../models/CIM_DCIM.xmi#_7040201SDL" feature="http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61968/Metering/ServiceDeliveryPoint/EndDeviceAssets" />
+  <changes xsi:type="changes:CompositionListInsertion" index="10332" affectedElement="../../models/CIM_DCIM.xmi#//" feature="http://iec.ch/TC57/2009/CIM-schema-cim14#//CIMRoot/IDobject">
+    <addedElement xmlns:cimMetering="http://iec.ch/TC57/2009/CIM-schema-cim14#Metering" xsi:type="cimMetering:MeterAsset" ServiceDeliveryPoint="../../models/CIM_DCIM.xmi#_7040201SDL" Location="../../models/CIM_DCIM.xmi#_4847322Loc" mRID="6d6b8277-5131-4701-93b4-d71bca275138" name="6d6b8277-5131-4701-93b4-d71bca275138" UUID="6d6b8277-5131-4701-93b4-d71bca275138" />
   </changes>
 </changes:ModelChangeSet>

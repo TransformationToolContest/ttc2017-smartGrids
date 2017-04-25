@@ -220,7 +220,9 @@ namespace TTC2017.SmartGrids.Generator
                 ID = uuid,
                 AutoConnect = new COSEM.COSEMObjects.AutoConnectObject
                 {
-                    Connection = true
+                    Connection = true,
+                    Logical_name = Guid.NewGuid().ToString(),
+                    OBIScode = Guid.NewGuid().ToString()
                 },
                 ElectricityValues = new COSEM.COSEMObjects.ElectricityValues
                 {
@@ -246,7 +248,8 @@ namespace TTC2017.SmartGrids.Generator
                     SupplyFrequencyL2 = 50,
                     SupplyFrequencyL3 = 50,
                     VoltageAll = 40,
-                    VoltageL1 = 40
+                    VoltageL1 = 40,
+                    Logical_name = Guid.NewGuid().ToString()
                 }
             };
             var meterAsset = new CIM.IEC61968.Metering.MeterAsset

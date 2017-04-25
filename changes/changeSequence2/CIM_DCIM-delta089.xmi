@@ -1,6 +1,9 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <changes:ModelChangeSet xmi:version="2.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xmi="http://www.omg.org/XMI" xmlns:changes="http://nmf.codeplex.com/changes">
-  <changes xsi:type="changes:AssociationListDeletion" deletedElement="../../models/CIM_DCIM.xmi#8975f995-667f-4172-bd47-3c68888c6eab" affectedElement="../../models/CIM_DCIM.xmi#_2905201Loc" feature="http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61968/Common/Location/Assets" />
-  <changes xsi:type="changes:AssociationListDeletion" deletedElement="../../models/CIM_DCIM.xmi#8975f995-667f-4172-bd47-3c68888c6eab" affectedElement="../../models/CIM_DCIM.xmi#_5855201SDL" feature="http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61968/Metering/ServiceDeliveryPoint/EndDeviceAssets" />
-  <changes xsi:type="changes:CompositionListDeletion" deletedElement="../../models/CIM_DCIM.xmi#8975f995-667f-4172-bd47-3c68888c6eab" index="10328" affectedElement="../../models/CIM_DCIM.xmi#//" feature="http://iec.ch/TC57/2009/CIM-schema-cim14#//CIMRoot/IDobject" />
+  <changes xsi:type="changes:AssociationListInsertion" addedElement="#//@changes.2/addedElement" index="1" affectedElement="../../models/CIM_DCIM.xmi#_8243201Loc" feature="http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61968/Common/Location/Assets" />
+  <changes xsi:type="changes:AssociationListInsertion" addedElement="#//@changes.2/addedElement" affectedElement="../../models/CIM_DCIM.xmi#_7040201SDL" feature="http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61968/Metering/ServiceDeliveryPoint/EndDeviceAssets" />
+  <changes xsi:type="changes:CompositionListInsertion" index="10343" affectedElement="../../models/CIM_DCIM.xmi#//" feature="http://iec.ch/TC57/2009/CIM-schema-cim14#//CIMRoot/IDobject">
+    <addedElement xmlns:cimMetering="http://iec.ch/TC57/2009/CIM-schema-cim14#Metering" xsi:type="cimMetering:MeterAsset" ServiceDeliveryPoint="../../models/CIM_DCIM.xmi#_7040201SDL" Location="../../models/CIM_DCIM.xmi#_8243201Loc" mRID="c5327a83-c8d1-49ff-b97a-666e7177ed1a" name="c5327a83-c8d1-49ff-b97a-666e7177ed1a" UUID="c5327a83-c8d1-49ff-b97a-666e7177ed1a" />
+  </changes>
+  <changes xsi:type="changes:AssociationChange" newValue="../../models/CIM_DCIM.xmi#_5357322Pos" oldValue="../../models/CIM_DCIM.xmi#_2905201Pos" feature="http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61968/Common/Location/Position" affectedElement="../../models/CIM_DCIM.xmi#_2905201Loc" />
 </changes:ModelChangeSet>

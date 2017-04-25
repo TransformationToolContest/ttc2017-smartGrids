@@ -1,23 +1,13 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <changes:ModelChangeSet xmi:version="2.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xmi="http://www.omg.org/XMI" xmlns:changes="http://nmf.codeplex.com/changes">
-  <changes xsi:type="changes:AssociationListInsertion" addedElement="$1" index="1" affectedElement="../../models/CIM_DCIM.xmi#_825201Loc" feature="http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61968/Common/Location/Assets" />
-  <changes xsi:type="changes:AssociationListInsertion" addedElement="$1" index="1" affectedElement="../../models/CIM_DCIM.xmi#_1656201SDL" feature="http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61968/Metering/ServiceDeliveryPoint/EndDeviceAssets" />
-  <changes xsi:type="changes:CompositionListInsertion" index="10338" affectedElement="../../models/CIM_DCIM.xmi#//" feature="http://iec.ch/TC57/2009/CIM-schema-cim14#//CIMRoot/IDobject">
-    <addedElement xmlns:cimMetering="http://iec.ch/TC57/2009/CIM-schema-cim14#Metering" xsi:type="cimMetering:MeterAsset" ServiceDeliveryPoint="../../models/CIM_DCIM.xmi#_1656201SDL" Location="../../models/CIM_DCIM.xmi#_825201Loc" mRID="bf80e036-31b4-43a5-b7f7-d495e68f4612" name="bf80e036-31b4-43a5-b7f7-d495e68f4612" UUID="bf80e036-31b4-43a5-b7f7-d495e68f4612" />
+  <changes xsi:type="changes:AssociationListInsertion" addedElement="#//@changes.2/addedElement" index="1" affectedElement="../../models/CIM_DCIM.xmi#_7971201Loc" feature="http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61968/Common/Location/Assets" />
+  <changes xsi:type="changes:AssociationListInsertion" addedElement="#//@changes.2/addedElement" index="1" affectedElement="../../models/CIM_DCIM.xmi#_2800201SDL" feature="http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61968/Metering/ServiceDeliveryPoint/EndDeviceAssets" />
+  <changes xsi:type="changes:CompositionListInsertion" index="10347" affectedElement="../../models/CIM_DCIM.xmi#//" feature="http://iec.ch/TC57/2009/CIM-schema-cim14#//CIMRoot/IDobject">
+    <addedElement xmlns:cimMetering="http://iec.ch/TC57/2009/CIM-schema-cim14#Metering" xsi:type="cimMetering:MeterAsset" ServiceDeliveryPoint="../../models/CIM_DCIM.xmi#_2800201SDL" Location="../../models/CIM_DCIM.xmi#_7971201Loc" mRID="1b5fa1c3-a833-4ac4-9b2c-5aeabd8bbbf3" name="1b5fa1c3-a833-4ac4-9b2c-5aeabd8bbbf3" UUID="1b5fa1c3-a833-4ac4-9b2c-5aeabd8bbbf3" />
   </changes>
-  <changes xsi:type="changes:ElementaryChangeTransaction">
-    <sourceChange xsi:type="changes:AssociationChange" newValue="../../models/CIM_DCIM.xmi#_6945201Loc" oldValue="../../models/CIM_DCIM.xmi#_634322Loc" feature="http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61968/Assets/Asset/Location" affectedElement="../../models/CIM_DCIM.xmi#_634322PMUMeter" />
-    <nestedChanges xsi:type="changes:AssociationListDeletion" deletedElement="../../models/CIM_DCIM.xmi#_634322PMUMeter" affectedElement="../../models/CIM_DCIM.xmi#_634322Loc" feature="http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61968/Common/Location/Assets" />
-    <nestedChanges xsi:type="changes:AssociationListInsertion" addedElement="../../models/CIM_DCIM.xmi#_634322PMUMeter" affectedElement="../../models/CIM_DCIM.xmi#_6945201Loc" feature="http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61968/Common/Location/Assets" />
-  </changes>
-  <changes xsi:type="changes:ElementaryChangeTransaction">
-    <sourceChange xsi:type="changes:AssociationChange" newValue="../../models/CIM_DCIM.xmi#_2882322Loc" oldValue="../../models/CIM_DCIM.xmi#_7520201Loc" feature="http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61968/Assets/Asset/Location" affectedElement="../../models/CIM_DCIM.xmi#_8153201PMUMeter" />
-    <nestedChanges xsi:type="changes:AssociationListDeletion" deletedElement="../../models/CIM_DCIM.xmi#_8153201PMUMeter" affectedElement="../../models/CIM_DCIM.xmi#_7520201Loc" feature="http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61968/Common/Location/Assets" />
-    <nestedChanges xsi:type="changes:AssociationListInsertion" addedElement="../../models/CIM_DCIM.xmi#_8153201PMUMeter" index="1" affectedElement="../../models/CIM_DCIM.xmi#_2882322Loc" feature="http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61968/Common/Location/Assets" />
-  </changes>
-  <changes xsi:type="changes:AssociationListInsertion" addedElement="$13" affectedElement="../../models/CIM_DCIM.xmi#_1594201Loc" feature="http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61968/Common/Location/Assets" />
-  <changes xsi:type="changes:AssociationListInsertion" addedElement="$13" index="1" affectedElement="../../models/CIM_DCIM.xmi#_3801201SDL" feature="http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61968/Metering/ServiceDeliveryPoint/EndDeviceAssets" />
-  <changes xsi:type="changes:CompositionListInsertion" index="10339" affectedElement="../../models/CIM_DCIM.xmi#//" feature="http://iec.ch/TC57/2009/CIM-schema-cim14#//CIMRoot/IDobject">
-    <addedElement xmlns:cimMetering="http://iec.ch/TC57/2009/CIM-schema-cim14#Metering" xsi:type="cimMetering:MeterAsset" ServiceDeliveryPoint="../../models/CIM_DCIM.xmi#_3801201SDL" Location="../../models/CIM_DCIM.xmi#_1594201Loc" mRID="b1066183-04ca-44e5-803d-e8349c52ccf6" name="b1066183-04ca-44e5-803d-e8349c52ccf6" UUID="b1066183-04ca-44e5-803d-e8349c52ccf6" />
+  <changes xsi:type="changes:AssociationListInsertion" addedElement="#//@changes.5/addedElement" affectedElement="../../models/CIM_DCIM.xmi#_2765201Loc" feature="http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61968/Common/Location/Assets" />
+  <changes xsi:type="changes:AssociationListInsertion" addedElement="#//@changes.5/addedElement" index="4" affectedElement="../../models/CIM_DCIM.xmi#_5855201SDL" feature="http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61968/Metering/ServiceDeliveryPoint/EndDeviceAssets" />
+  <changes xsi:type="changes:CompositionListInsertion" index="10348" affectedElement="../../models/CIM_DCIM.xmi#//" feature="http://iec.ch/TC57/2009/CIM-schema-cim14#//CIMRoot/IDobject">
+    <addedElement xmlns:cimMetering="http://iec.ch/TC57/2009/CIM-schema-cim14#Metering" xsi:type="cimMetering:MeterAsset" ServiceDeliveryPoint="../../models/CIM_DCIM.xmi#_5855201SDL" Location="../../models/CIM_DCIM.xmi#_2765201Loc" mRID="c4c57d44-3b45-4487-8c54-b63357728ba8" name="c4c57d44-3b45-4487-8c54-b63357728ba8" UUID="c4c57d44-3b45-4487-8c54-b63357728ba8" />
   </changes>
 </changes:ModelChangeSet>

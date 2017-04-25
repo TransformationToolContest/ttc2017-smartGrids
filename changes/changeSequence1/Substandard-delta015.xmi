@@ -1,66 +1,36 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <changes:ModelChangeSet xmi:version="2.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xmi="http://www.omg.org/XMI" xmlns:changes="http://nmf.codeplex.com/changes">
-  <changes xsi:type="changes:CompositionListInsertion" index="15" affectedElement="../../models/Substandard.xmi#//" feature="http://www.transformation-tool-contest.eu/2017/smartGrids/substationStandard#//Substandard/NamePlt">
-    <addedElement xmlns:data="http://www.transformation-tool-contest.eu/2017/smartGrids/dataclasses" xsi:type="data:LPL" IdNs="c57a042c-1169-4d54-9aba-e6b1e2d36189" />
+  <changes xsi:type="changes:CompositionListInsertion" index="13" affectedElement="../../models/Substandard.xmi#//" feature="http://www.transformation-tool-contest.eu/2017/smartGrids/substationStandard#//Substandard/NamePlt">
+    <addedElement xmlns:data="http://www.transformation-tool-contest.eu/2017/smartGrids/dataclasses" xsi:type="data:LPL" IdNs="_5355322PMUMeter" />
   </changes>
-  <changes xsi:type="changes:CompositionListInsertion" index="57" affectedElement="../../models/Substandard.xmi#//" feature="http://www.transformation-tool-contest.eu/2017/smartGrids/substationStandard#//Substandard/AnalogueValue">
+  <changes xsi:type="changes:CompositionListInsertion" index="51" affectedElement="../../models/Substandard.xmi#//" feature="http://www.transformation-tool-contest.eu/2017/smartGrids/substationStandard#//Substandard/AnalogueValue">
     <addedElement xmlns:data="http://www.transformation-tool-contest.eu/2017/smartGrids/dataclasses" xsi:type="data:AnalogueValue" f="42" />
   </changes>
-  <changes xsi:type="changes:CompositionListInsertion" index="58" affectedElement="../../models/Substandard.xmi#//" feature="http://www.transformation-tool-contest.eu/2017/smartGrids/substationStandard#//Substandard/AnalogueValue">
+  <changes xsi:type="changes:CompositionListInsertion" index="52" affectedElement="../../models/Substandard.xmi#//" feature="http://www.transformation-tool-contest.eu/2017/smartGrids/substationStandard#//Substandard/AnalogueValue">
     <addedElement xmlns:data="http://www.transformation-tool-contest.eu/2017/smartGrids/dataclasses" xsi:type="data:AnalogueValue" f="23" />
   </changes>
-  <changes xsi:type="changes:CompositionListInsertion" index="30" affectedElement="../../models/Substandard.xmi#//" feature="http://www.transformation-tool-contest.eu/2017/smartGrids/substationStandard#//Substandard/Vector">
-    <addedElement xmlns:data="http://www.transformation-tool-contest.eu/2017/smartGrids/dataclasses" xsi:type="data:Vector" mag="$4" ang="$6" />
+  <changes xsi:type="changes:CompositionListInsertion" index="26" affectedElement="../../models/Substandard.xmi#//" feature="http://www.transformation-tool-contest.eu/2017/smartGrids/substationStandard#//Substandard/Vector">
+    <addedElement xmlns:data="http://www.transformation-tool-contest.eu/2017/smartGrids/dataclasses" xsi:type="data:Vector" mag="#//@changes.1/addedElement" ang="#//@changes.2/addedElement" />
   </changes>
-  <changes xsi:type="changes:CompositionListInsertion" index="30" affectedElement="../../models/Substandard.xmi#//" feature="http://www.transformation-tool-contest.eu/2017/smartGrids/substationStandard#//Substandard/CMV">
-    <addedElement xmlns:data="http://www.transformation-tool-contest.eu/2017/smartGrids/dataclasses" xsi:type="data:CMV" cVal="$8" />
+  <changes xsi:type="changes:CompositionListInsertion" index="26" affectedElement="../../models/Substandard.xmi#//" feature="http://www.transformation-tool-contest.eu/2017/smartGrids/substationStandard#//Substandard/CMV">
+    <addedElement xmlns:data="http://www.transformation-tool-contest.eu/2017/smartGrids/dataclasses" xsi:type="data:CMV" cVal="#//@changes.3/addedElement" />
   </changes>
-  <changes xsi:type="changes:CompositionListInsertion" index="59" affectedElement="../../models/Substandard.xmi#//" feature="http://www.transformation-tool-contest.eu/2017/smartGrids/substationStandard#//Substandard/AnalogueValue">
+  <changes xsi:type="changes:CompositionListInsertion" index="53" affectedElement="../../models/Substandard.xmi#//" feature="http://www.transformation-tool-contest.eu/2017/smartGrids/substationStandard#//Substandard/AnalogueValue">
     <addedElement xmlns:data="http://www.transformation-tool-contest.eu/2017/smartGrids/dataclasses" xsi:type="data:AnalogueValue" f="8.15" />
   </changes>
-  <changes xsi:type="changes:CompositionListInsertion" index="31" affectedElement="../../models/Substandard.xmi#//" feature="http://www.transformation-tool-contest.eu/2017/smartGrids/substationStandard#//Substandard/Vector">
-    <addedElement xmlns:data="http://www.transformation-tool-contest.eu/2017/smartGrids/dataclasses" xsi:type="data:Vector" mag="$12" />
+  <changes xsi:type="changes:CompositionListInsertion" index="27" affectedElement="../../models/Substandard.xmi#//" feature="http://www.transformation-tool-contest.eu/2017/smartGrids/substationStandard#//Substandard/Vector">
+    <addedElement xmlns:data="http://www.transformation-tool-contest.eu/2017/smartGrids/dataclasses" xsi:type="data:Vector" mag="#//@changes.5/addedElement" />
   </changes>
-  <changes xsi:type="changes:CompositionListInsertion" index="31" affectedElement="../../models/Substandard.xmi#//" feature="http://www.transformation-tool-contest.eu/2017/smartGrids/substationStandard#//Substandard/CMV">
-    <addedElement xmlns:data="http://www.transformation-tool-contest.eu/2017/smartGrids/dataclasses" xsi:type="data:CMV" cVal="$14" />
+  <changes xsi:type="changes:CompositionListInsertion" index="27" affectedElement="../../models/Substandard.xmi#//" feature="http://www.transformation-tool-contest.eu/2017/smartGrids/substationStandard#//Substandard/CMV">
+    <addedElement xmlns:data="http://www.transformation-tool-contest.eu/2017/smartGrids/dataclasses" xsi:type="data:CMV" cVal="#//@changes.6/addedElement" />
   </changes>
-  <changes xsi:type="changes:CompositionListInsertion" index="15" affectedElement="../../models/Substandard.xmi#//" feature="http://www.transformation-tool-contest.eu/2017/smartGrids/substationStandard#//Substandard/WYE">
-    <addedElement xmlns:data="http://www.transformation-tool-contest.eu/2017/smartGrids/dataclasses" xsi:type="data:WYE" phsA="$10" neut="$16" />
+  <changes xsi:type="changes:CompositionListInsertion" index="13" affectedElement="../../models/Substandard.xmi#//" feature="http://www.transformation-tool-contest.eu/2017/smartGrids/substationStandard#//Substandard/WYE">
+    <addedElement xmlns:data="http://www.transformation-tool-contest.eu/2017/smartGrids/dataclasses" xsi:type="data:WYE" phsA="#//@changes.4/addedElement" neut="#//@changes.7/addedElement" />
   </changes>
-  <changes xsi:type="changes:CompositionListInsertion" index="880" affectedElement="../../models/Substandard.xmi#//" feature="http://www.transformation-tool-contest.eu/2017/smartGrids/substationStandard#//Substandard/LN">
-    <addedElement xmlns:groupm="http://www.transformation-tool-contest.eu/2017/smartGrids/substationStandard/groupM" xsi:type="groupm:MMXU" PhV="$18" NamePlt="$2" />
+  <changes xsi:type="changes:CompositionListInsertion" index="878" affectedElement="../../models/Substandard.xmi#//" feature="http://www.transformation-tool-contest.eu/2017/smartGrids/substationStandard#//Substandard/LN">
+    <addedElement xmlns:groupm="http://www.transformation-tool-contest.eu/2017/smartGrids/substationStandard/groupM" xsi:type="groupm:MMXU" PhV="#//@changes.8/addedElement" NamePlt="#//@changes.0/addedElement" />
   </changes>
-  <changes xsi:type="changes:CompositionListInsertion" index="16" affectedElement="../../models/Substandard.xmi#//" feature="http://www.transformation-tool-contest.eu/2017/smartGrids/substationStandard#//Substandard/NamePlt">
-    <addedElement xmlns:data="http://www.transformation-tool-contest.eu/2017/smartGrids/dataclasses" xsi:type="data:LPL" IdNs="_8121201PMUMeter" />
-  </changes>
-  <changes xsi:type="changes:CompositionListInsertion" index="60" affectedElement="../../models/Substandard.xmi#//" feature="http://www.transformation-tool-contest.eu/2017/smartGrids/substationStandard#//Substandard/AnalogueValue">
-    <addedElement xmlns:data="http://www.transformation-tool-contest.eu/2017/smartGrids/dataclasses" xsi:type="data:AnalogueValue" f="42" />
-  </changes>
-  <changes xsi:type="changes:CompositionListInsertion" index="61" affectedElement="../../models/Substandard.xmi#//" feature="http://www.transformation-tool-contest.eu/2017/smartGrids/substationStandard#//Substandard/AnalogueValue">
-    <addedElement xmlns:data="http://www.transformation-tool-contest.eu/2017/smartGrids/dataclasses" xsi:type="data:AnalogueValue" f="23" />
-  </changes>
-  <changes xsi:type="changes:CompositionListInsertion" index="32" affectedElement="../../models/Substandard.xmi#//" feature="http://www.transformation-tool-contest.eu/2017/smartGrids/substationStandard#//Substandard/Vector">
-    <addedElement xmlns:data="http://www.transformation-tool-contest.eu/2017/smartGrids/dataclasses" xsi:type="data:Vector" mag="$24" ang="$26" />
-  </changes>
-  <changes xsi:type="changes:CompositionListInsertion" index="32" affectedElement="../../models/Substandard.xmi#//" feature="http://www.transformation-tool-contest.eu/2017/smartGrids/substationStandard#//Substandard/CMV">
-    <addedElement xmlns:data="http://www.transformation-tool-contest.eu/2017/smartGrids/dataclasses" xsi:type="data:CMV" cVal="$28" />
-  </changes>
-  <changes xsi:type="changes:CompositionListInsertion" index="62" affectedElement="../../models/Substandard.xmi#//" feature="http://www.transformation-tool-contest.eu/2017/smartGrids/substationStandard#//Substandard/AnalogueValue">
-    <addedElement xmlns:data="http://www.transformation-tool-contest.eu/2017/smartGrids/dataclasses" xsi:type="data:AnalogueValue" f="8.15" />
-  </changes>
-  <changes xsi:type="changes:CompositionListInsertion" index="33" affectedElement="../../models/Substandard.xmi#//" feature="http://www.transformation-tool-contest.eu/2017/smartGrids/substationStandard#//Substandard/Vector">
-    <addedElement xmlns:data="http://www.transformation-tool-contest.eu/2017/smartGrids/dataclasses" xsi:type="data:Vector" mag="$32" />
-  </changes>
-  <changes xsi:type="changes:CompositionListInsertion" index="33" affectedElement="../../models/Substandard.xmi#//" feature="http://www.transformation-tool-contest.eu/2017/smartGrids/substationStandard#//Substandard/CMV">
-    <addedElement xmlns:data="http://www.transformation-tool-contest.eu/2017/smartGrids/dataclasses" xsi:type="data:CMV" cVal="$34" />
-  </changes>
-  <changes xsi:type="changes:CompositionListInsertion" index="16" affectedElement="../../models/Substandard.xmi#//" feature="http://www.transformation-tool-contest.eu/2017/smartGrids/substationStandard#//Substandard/WYE">
-    <addedElement xmlns:data="http://www.transformation-tool-contest.eu/2017/smartGrids/dataclasses" xsi:type="data:WYE" phsA="$30" neut="$36" />
-  </changes>
-  <changes xsi:type="changes:CompositionListInsertion" index="881" affectedElement="../../models/Substandard.xmi#//" feature="http://www.transformation-tool-contest.eu/2017/smartGrids/substationStandard#//Substandard/LN">
-    <addedElement xmlns:groupm="http://www.transformation-tool-contest.eu/2017/smartGrids/substationStandard/groupM" xsi:type="groupm:MMXU" PhV="$38" NamePlt="$22" />
-  </changes>
-  <changes xsi:type="changes:AttributeChange" newValue="43.0452" oldValue="42.52" feature="http://www.transformation-tool-contest.eu/2017/smartGrids/substationStandard#//Dataclasses/AnalogueValue/f" affectedElement="../../models/Substandard.xmi#//@AnalogueValue.48" />
-  <changes xsi:type="changes:AttributeChange" newValue="23.6633" oldValue="23.33" feature="http://www.transformation-tool-contest.eu/2017/smartGrids/substationStandard#//Dataclasses/AnalogueValue/f" affectedElement="../../models/Substandard.xmi#//@AnalogueValue.49" />
-  <changes xsi:type="changes:AttributeChange" newValue="8.514815" oldValue="8.3315" feature="http://www.transformation-tool-contest.eu/2017/smartGrids/substationStandard#//Dataclasses/AnalogueValue/f" affectedElement="../../models/Substandard.xmi#//@AnalogueValue.50" />
+  <changes xsi:type="changes:AttributeChange" newValue="44.11141" oldValue="43.5756531" feature="http://www.transformation-tool-contest.eu/2017/smartGrids/substationStandard#//Dataclasses/AnalogueValue/f" affectedElement="../../models/Substandard.xmi#//@AnalogueValue.24" />
+  <changes xsi:type="changes:AttributeChange" newValue="24.3399334" oldValue="23.9999332" feature="http://www.transformation-tool-contest.eu/2017/smartGrids/substationStandard#//Dataclasses/AnalogueValue/f" affectedElement="../../models/Substandard.xmi#//@AnalogueValue.25" />
+  <changes xsi:type="changes:AttributeChange" newValue="8.886963" oldValue="8.699964" feature="http://www.transformation-tool-contest.eu/2017/smartGrids/substationStandard#//Dataclasses/AnalogueValue/f" affectedElement="../../models/Substandard.xmi#//@AnalogueValue.26" />
 </changes:ModelChangeSet>

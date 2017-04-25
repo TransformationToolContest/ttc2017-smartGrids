@@ -386,12 +386,12 @@ namespace TTC2017.SmartGrids.COSEM
                     if ((old != null))
                     {
                         old.Parent = null;
-                        old.Deleted -= this.OnResetAutoConnect;
+                        old.ParentChanged -= this.OnResetAutoConnect;
                     }
                     if ((value != null))
                     {
                         value.Parent = this;
-                        value.Deleted += this.OnResetAutoConnect;
+                        value.ParentChanged += this.OnResetAutoConnect;
                     }
                     this.OnAutoConnectChanged(e);
                     this.OnPropertyChanged("AutoConnect", e, _autoConnectReference);
@@ -890,12 +890,12 @@ namespace TTC2017.SmartGrids.COSEM
                     if ((old != null))
                     {
                         old.Parent = null;
-                        old.Deleted -= this.OnResetElectricityValues;
+                        old.ParentChanged -= this.OnResetElectricityValues;
                     }
                     if ((value != null))
                     {
                         value.Parent = this;
-                        value.Deleted += this.OnResetElectricityValues;
+                        value.ParentChanged += this.OnResetElectricityValues;
                     }
                     this.OnElectricityValuesChanged(e);
                     this.OnPropertyChanged("ElectricityValues", e, _electricityValuesReference);

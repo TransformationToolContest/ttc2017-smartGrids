@@ -866,7 +866,7 @@
   <LN xmlns:groupy="http://www.transformation-tool-contest.eu/2017/smartGrids/substationStandard/groupY" xsi:type="groupy:YLTC" NamePlt="#//@LPL.0" />
   <LN xmlns:groupy="http://www.transformation-tool-contest.eu/2017/smartGrids/substationStandard/groupY" xsi:type="groupy:YLTC" NamePlt="#//@LPL.0" />
   <LN xmlns:groupm="http://www.transformation-tool-contest.eu/2017/smartGrids/substationStandard/groupM" xsi:type="groupm:MMXU" PhV="#//@WYE.0" NamePlt="#//@NamePlt.0" />
-  <NamePlt IdNs="_2284201PMUMeter" />
+  <NamePlt IdNs="_8042201PMUMeter" />
   <LPL IdNs="_7814201" />
   <LPL IdNs="_7842201" />
   <LPL IdNs="_7881201" />
