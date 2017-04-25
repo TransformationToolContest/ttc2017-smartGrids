@@ -867,8 +867,8 @@
   <LN xmlns:groupy="http://www.transformation-tool-contest.eu/2017/smartGrids/substationStandard/groupY" xsi:type="groupy:YLTC" NamePlt="#//@LPL.0" />
   <LN xmlns:groupm="http://www.transformation-tool-contest.eu/2017/smartGrids/substationStandard/groupM" xsi:type="groupm:MMXU" PhV="#//@WYE.0" NamePlt="#//@NamePlt.0" />
   <LN xmlns:groupm="http://www.transformation-tool-contest.eu/2017/smartGrids/substationStandard/groupM" xsi:type="groupm:MMXU" PhV="#//@WYE.1" NamePlt="#//@NamePlt.1" />
-  <NamePlt IdNs="_5708322PMUMeter" />
-  <NamePlt IdNs="_8195201PMUMeter" />
+  <NamePlt IdNs="_5325322PMUMeter" />
+  <NamePlt IdNs="_7990201PMUMeter" />
   <LPL IdNs="_7814201" />
   <LPL IdNs="_7842201" />
   <LPL IdNs="_7881201" />
@@ -3829,12 +3829,12 @@
   <AnalogueValue f="100" />
   <AnalogueValue f="100" />
   <AnalogueValue f="100" />
-  <AnalogueValue f="43.0452" />
-  <AnalogueValue f="23.6633" />
-  <AnalogueValue f="8.514815" />
   <AnalogueValue f="42.52" />
   <AnalogueValue f="23.33" />
   <AnalogueValue f="8.3315" />
+  <AnalogueValue f="42" />
+  <AnalogueValue f="23" />
+  <AnalogueValue f="8.15" />
   <CMV cVal="#//@Vector.0" />
   <CMV cVal="#//@Vector.1" />
   <CMV cVal="#//@Vector.2" />

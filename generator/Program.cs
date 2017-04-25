@@ -150,11 +150,11 @@ namespace TTC2017.SmartGrids.Generator
                 substationRecorder.Stop();
 
                 Console.WriteLine("Saving modified CIM model");
-                repository.Save(cim, options.CimOutPath + string.Format("-out{0:000}.xmi", d));
+                repository.Serializer.Serialize(cim, options.CimOutPath + string.Format("-out{0:000}.xmi", d));
                 Console.WriteLine("Saving modified COSEM model");
-                repository.Save(cosem, options.CosemOutPath + string.Format("-out{0:000}.xmi", d));
+                repository.Serializer.Serialize(cosem, options.CosemOutPath + string.Format("-out{0:000}.xmi", d));
                 Console.WriteLine("Saving modified Substandard model");
-                repository.Save(substation, options.SubstationOutPath + string.Format("-out{0:000}.xmi", d));
+                repository.Serializer.Serialize(substation, options.SubstationOutPath + string.Format("-out{0:000}.xmi", d));
                 
                 Console.WriteLine("Saving CIM changes");
                 repository.Save(cimRecorder.GetModelChanges(), options.CimOutPath + string.Format("-delta{0:000}.xmi", d));

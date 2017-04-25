@@ -1,5 +1,9 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <changes:ModelChangeSet xmi:version="2.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xmi="http://www.omg.org/XMI" xmlns:changes="http://nmf.codeplex.com/changes">
-  <changes xsi:type="changes:AssociationListDeletion" deletedElement="file:///D:/Projekte/TTC%202017/Smart%20Grids/models/CIM_DCIM.xmi#10117bed-1209-495d-9a10-794e4902056e/10117bed-1209-495d-9a10-794e4902056e" feature="http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61968/Common/Location/Assets" affectedElement="..\..\models/CIM_DCIM.xmi#_188201Loc" />
-  <changes xsi:type="changes:AssociationListDeletion" deletedElement="file:///D:/Projekte/TTC%202017/Smart%20Grids/models/CIM_DCIM.xmi#10117bed-1209-495d-9a10-794e4902056e/10117bed-1209-495d-9a10-794e4902056e" index="3" feature="http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61968/Metering/ServiceDeliveryPoint/EndDeviceAssets" affectedElement="..\..\models/CIM_DCIM.xmi#_50310201SDL" />
+  <changes xsi:type="changes:AssociationListInsertion" addedElement="$1" affectedElement="../../models/CIM_DCIM.xmi#_4670201Loc" feature="http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61968/Common/Location/Assets" />
+  <changes xsi:type="changes:AssociationListInsertion" addedElement="$1" index="1" affectedElement="../../models/CIM_DCIM.xmi#_5855201SDL" feature="http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61968/Metering/ServiceDeliveryPoint/EndDeviceAssets" />
+  <changes xsi:type="changes:CompositionListInsertion" index="10344" affectedElement="../../models/CIM_DCIM.xmi#//" feature="http://iec.ch/TC57/2009/CIM-schema-cim14#//CIMRoot/IDobject">
+    <addedElement xmlns:cimMetering="http://iec.ch/TC57/2009/CIM-schema-cim14#Metering" xsi:type="cimMetering:MeterAsset" ServiceDeliveryPoint="../../models/CIM_DCIM.xmi#_5855201SDL" Location="../../models/CIM_DCIM.xmi#_4670201Loc" mRID="d8d0778d-af19-4eec-85c6-8f4133e1fa0d" name="d8d0778d-af19-4eec-85c6-8f4133e1fa0d" UUID="d8d0778d-af19-4eec-85c6-8f4133e1fa0d" />
+  </changes>
+  <changes xsi:type="changes:AssociationChange" newValue="../../models/CIM_DCIM.xmi#_3868201Pos" oldValue="../../models/CIM_DCIM.xmi#_5271201Pos" feature="http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61968/Common/Location/Position" affectedElement="../../models/CIM_DCIM.xmi#_5271201Loc" />
 </changes:ModelChangeSet>

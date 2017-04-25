@@ -1,5 +1,2 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<changes:ModelChangeSet xmi:version="2.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xmi="http://www.omg.org/XMI" xmlns:changes="http://nmf.codeplex.com/changes">
-  <changes xsi:type="changes:AssociationListDeletion" deletedElement="file:///D:/Projekte/TTC%202017/Smart%20Grids/models/CIM_DCIM.xmi#3939b197-81f9-4756-b09d-2c24ebb0302b/3939b197-81f9-4756-b09d-2c24ebb0302b" feature="http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61968/Common/Location/Assets" affectedElement="..\..\models/CIM_DCIM.xmi#_7109201Loc" />
-  <changes xsi:type="changes:AssociationListDeletion" deletedElement="file:///D:/Projekte/TTC%202017/Smart%20Grids/models/CIM_DCIM.xmi#3939b197-81f9-4756-b09d-2c24ebb0302b/3939b197-81f9-4756-b09d-2c24ebb0302b" index="3" feature="http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61968/Metering/ServiceDeliveryPoint/EndDeviceAssets" affectedElement="..\..\models/CIM_DCIM.xmi#_1710201SDL" />
-</changes:ModelChangeSet>
+<changes:ModelChangeSet xmi:version="2.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xmi="http://www.omg.org/XMI" xmlns:changes="http://nmf.codeplex.com/changes" />

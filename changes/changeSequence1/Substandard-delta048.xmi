@@ -1,6 +1,2 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<changes:ModelChangeSet xmi:version="2.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xmi="http://www.omg.org/XMI" xmlns:changes="http://nmf.codeplex.com/changes">
-  <changes xsi:type="changes:AttributeChange" oldValue="43.5756531" newValue="44.11141" feature="http://www.transformation-tool-contest.eu/2017/smartGrids/substationStandard#//Dataclasses/AnalogueValue/f" affectedElement="..\..\models/Substandard.xmi#//@AnalogueValue.48" />
-  <changes xsi:type="changes:AttributeChange" oldValue="23.9999332" newValue="24.3399334" feature="http://www.transformation-tool-contest.eu/2017/smartGrids/substationStandard#//Dataclasses/AnalogueValue/f" affectedElement="..\..\models/Substandard.xmi#//@AnalogueValue.49" />
-  <changes xsi:type="changes:AttributeChange" oldValue="8.699964" newValue="8.886963" feature="http://www.transformation-tool-contest.eu/2017/smartGrids/substationStandard#//Dataclasses/AnalogueValue/f" affectedElement="..\..\models/Substandard.xmi#//@AnalogueValue.50" />
-</changes:ModelChangeSet>
+<changes:ModelChangeSet xmi:version="2.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xmi="http://www.omg.org/XMI" xmlns:changes="http://nmf.codeplex.com/changes" />

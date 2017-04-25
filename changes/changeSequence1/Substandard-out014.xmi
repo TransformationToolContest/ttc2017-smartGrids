@@ -875,16 +875,26 @@
   <LN xmlns:groupm="http://www.transformation-tool-contest.eu/2017/smartGrids/substationStandard/groupM" xsi:type="groupm:MMXU" PhV="#//@WYE.7" NamePlt="#//@NamePlt.7" />
   <LN xmlns:groupm="http://www.transformation-tool-contest.eu/2017/smartGrids/substationStandard/groupM" xsi:type="groupm:MMXU" PhV="#//@WYE.8" NamePlt="#//@NamePlt.8" />
   <LN xmlns:groupm="http://www.transformation-tool-contest.eu/2017/smartGrids/substationStandard/groupM" xsi:type="groupm:MMXU" PhV="#//@WYE.9" NamePlt="#//@NamePlt.9" />
-  <NamePlt IdNs="_5828201PMUMeter" />
-  <NamePlt IdNs="_2302201PMUMeter" />
-  <NamePlt IdNs="_2217201PMUMeter" />
-  <NamePlt IdNs="_7835201PMUMeter" />
-  <NamePlt IdNs="_3389201PMUMeter" />
-  <NamePlt IdNs="_1787322PMUMeter" />
-  <NamePlt IdNs="_8157201PMUMeter" />
-  <NamePlt IdNs="_606201PMUMeter" />
-  <NamePlt IdNs="_2017322PMUMeter" />
-  <NamePlt IdNs="_5840201PMUMeter" />
+  <LN xmlns:groupm="http://www.transformation-tool-contest.eu/2017/smartGrids/substationStandard/groupM" xsi:type="groupm:MMXU" PhV="#//@WYE.10" NamePlt="#//@NamePlt.10" />
+  <LN xmlns:groupm="http://www.transformation-tool-contest.eu/2017/smartGrids/substationStandard/groupM" xsi:type="groupm:MMXU" PhV="#//@WYE.11" NamePlt="#//@NamePlt.11" />
+  <LN xmlns:groupm="http://www.transformation-tool-contest.eu/2017/smartGrids/substationStandard/groupM" xsi:type="groupm:MMXU" PhV="#//@WYE.12" NamePlt="#//@NamePlt.12" />
+  <LN xmlns:groupm="http://www.transformation-tool-contest.eu/2017/smartGrids/substationStandard/groupM" xsi:type="groupm:MMXU" PhV="#//@WYE.13" NamePlt="#//@NamePlt.13" />
+  <LN xmlns:groupm="http://www.transformation-tool-contest.eu/2017/smartGrids/substationStandard/groupM" xsi:type="groupm:MMXU" PhV="#//@WYE.14" NamePlt="#//@NamePlt.14" />
+  <NamePlt IdNs="_2284201PMUMeter" />
+  <NamePlt IdNs="_2965201PMUMeter" />
+  <NamePlt IdNs="_3230322PMUMeter" />
+  <NamePlt IdNs="_8224201PMUMeter" />
+  <NamePlt IdNs="_1594322PMUMeter" />
+  <NamePlt IdNs="_1710201SmartMeter" />
+  <NamePlt IdNs="_3034201PMUMeter" />
+  <NamePlt IdNs="_8047201PMUMeter" />
+  <NamePlt IdNs="_8006201PMUMeter" />
+  <NamePlt IdNs="_8152201PMUMeter" />
+  <NamePlt IdNs="_2831322PMUMeter" />
+  <NamePlt IdNs="_3045201PMUMeter" />
+  <NamePlt IdNs="_5288322PMUMeter" />
+  <NamePlt IdNs="_8241201PMUMeter" />
+  <NamePlt IdNs="_8216201PMUMeter" />
   <LPL IdNs="_7814201" />
   <LPL IdNs="_7842201" />
   <LPL IdNs="_7881201" />
@@ -3841,6 +3851,11 @@
   <WYE phsA="#//@CMV.14" neut="#//@CMV.15" />
   <WYE phsA="#//@CMV.16" neut="#//@CMV.17" />
   <WYE phsA="#//@CMV.18" neut="#//@CMV.19" />
+  <WYE phsA="#//@CMV.20" neut="#//@CMV.21" />
+  <WYE phsA="#//@CMV.22" neut="#//@CMV.23" />
+  <WYE phsA="#//@CMV.24" neut="#//@CMV.25" />
+  <WYE phsA="#//@CMV.26" neut="#//@CMV.27" />
+  <WYE phsA="#//@CMV.28" neut="#//@CMV.29" />
   <AnalogueValue f="100" />
   <AnalogueValue f="100" />
   <AnalogueValue f="100" />
@@ -3853,33 +3868,48 @@
   <AnalogueValue f="100" />
   <AnalogueValue f="100" />
   <AnalogueValue f="100" />
-  <AnalogueValue f="45.1990471" />
-  <AnalogueValue f="25.0301666" />
-  <AnalogueValue f="9.266591" />
-  <AnalogueValue f="44.652523" />
-  <AnalogueValue f="24.6833324" />
-  <AnalogueValue f="9.075832" />
   <AnalogueValue f="45.7510376" />
   <AnalogueValue f="25.3804684" />
   <AnalogueValue f="9.459257" />
-  <AnalogueValue f="42.52" />
-  <AnalogueValue f="23.33" />
-  <AnalogueValue f="8.3315" />
-  <AnalogueValue f="44.652523" />
-  <AnalogueValue f="24.6833324" />
-  <AnalogueValue f="9.075832" />
   <AnalogueValue f="43.5756531" />
   <AnalogueValue f="23.9999332" />
   <AnalogueValue f="8.699964" />
+  <AnalogueValue f="42.52" />
+  <AnalogueValue f="23.33" />
+  <AnalogueValue f="8.3315" />
+  <AnalogueValue f="43.0452" />
+  <AnalogueValue f="23.6633" />
+  <AnalogueValue f="8.514815" />
+  <AnalogueValue f="42" />
+  <AnalogueValue f="23" />
+  <AnalogueValue f="8.15" />
+  <AnalogueValue f="42.52" />
+  <AnalogueValue f="23.33" />
+  <AnalogueValue f="8.3315" />
+  <AnalogueValue f="42.52" />
+  <AnalogueValue f="23.33" />
+  <AnalogueValue f="8.3315" />
+  <AnalogueValue f="42" />
+  <AnalogueValue f="23" />
+  <AnalogueValue f="8.15" />
   <AnalogueValue f="42" />
   <AnalogueValue f="23" />
   <AnalogueValue f="8.15" />
   <AnalogueValue f="43.0452" />
   <AnalogueValue f="23.6633" />
   <AnalogueValue f="8.514815" />
+  <AnalogueValue f="42" />
+  <AnalogueValue f="23" />
+  <AnalogueValue f="8.15" />
   <AnalogueValue f="42.52" />
   <AnalogueValue f="23.33" />
   <AnalogueValue f="8.3315" />
+  <AnalogueValue f="42.52" />
+  <AnalogueValue f="23.33" />
+  <AnalogueValue f="8.3315" />
+  <AnalogueValue f="42" />
+  <AnalogueValue f="23" />
+  <AnalogueValue f="8.15" />
   <AnalogueValue f="42" />
   <AnalogueValue f="23" />
   <AnalogueValue f="8.15" />
@@ -3903,6 +3933,16 @@
   <CMV cVal="#//@Vector.17" />
   <CMV cVal="#//@Vector.18" />
   <CMV cVal="#//@Vector.19" />
+  <CMV cVal="#//@Vector.20" />
+  <CMV cVal="#//@Vector.21" />
+  <CMV cVal="#//@Vector.22" />
+  <CMV cVal="#//@Vector.23" />
+  <CMV cVal="#//@Vector.24" />
+  <CMV cVal="#//@Vector.25" />
+  <CMV cVal="#//@Vector.26" />
+  <CMV cVal="#//@Vector.27" />
+  <CMV cVal="#//@Vector.28" />
+  <CMV cVal="#//@Vector.29" />
   <Vector mag="#//@AnalogueValue.12" ang="#//@AnalogueValue.13" />
   <Vector mag="#//@AnalogueValue.14" />
   <Vector mag="#//@AnalogueValue.15" ang="#//@AnalogueValue.16" />
@@ -3923,4 +3963,14 @@
   <Vector mag="#//@AnalogueValue.38" />
   <Vector mag="#//@AnalogueValue.39" ang="#//@AnalogueValue.40" />
   <Vector mag="#//@AnalogueValue.41" />
+  <Vector mag="#//@AnalogueValue.42" ang="#//@AnalogueValue.43" />
+  <Vector mag="#//@AnalogueValue.44" />
+  <Vector mag="#//@AnalogueValue.45" ang="#//@AnalogueValue.46" />
+  <Vector mag="#//@AnalogueValue.47" />
+  <Vector mag="#//@AnalogueValue.48" ang="#//@AnalogueValue.49" />
+  <Vector mag="#//@AnalogueValue.50" />
+  <Vector mag="#//@AnalogueValue.51" ang="#//@AnalogueValue.52" />
+  <Vector mag="#//@AnalogueValue.53" />
+  <Vector mag="#//@AnalogueValue.54" ang="#//@AnalogueValue.55" />
+  <Vector mag="#//@AnalogueValue.56" />
 </sub:Substandard>

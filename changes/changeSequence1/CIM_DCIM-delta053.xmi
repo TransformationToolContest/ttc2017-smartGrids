@@ -1,10 +1,2 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<changes:ModelChangeSet xmi:version="2.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xmi="http://www.omg.org/XMI" xmlns:changes="http://nmf.codeplex.com/changes">
-  <changes xsi:type="changes:AssociationChange" oldValue="..\..\models/CIM_DCIM.xmi#_2965201Pos" newValue="..\..\models/CIM_DCIM.xmi#_3872322Pos" feature="http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61968/Common/Location/Position" affectedElement="..\..\models/CIM_DCIM.xmi#_2965201Loc" />
-  <changes xsi:type="changes:AssociationChange" oldValue="..\..\models/CIM_DCIM.xmi#_2839201Pos" newValue="..\..\models/CIM_DCIM.xmi#_7455201Pos" feature="http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61968/Common/Location/Position" affectedElement="..\..\models/CIM_DCIM.xmi#_2839201Loc" />
-  <changes xsi:type="changes:AssociationListInsertion" addedElement="#//@changes.4/addedElement" index="1" feature="http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61968/Common/Location/Assets" affectedElement="..\..\models/CIM_DCIM.xmi#_5790322Loc" />
-  <changes xsi:type="changes:AssociationListInsertion" addedElement="#//@changes.4/addedElement" index="2" feature="http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61968/Metering/ServiceDeliveryPoint/EndDeviceAssets" affectedElement="..\..\models/CIM_DCIM.xmi#_6263201SDL" />
-  <changes xsi:type="changes:CompositionListInsertion" index="10379" feature="http://iec.ch/TC57/2009/CIM-schema-cim14#//CIMRoot/IDobject" affectedElement="..\..\models/CIM_DCIM.xmi#//">
-    <addedElement xmlns:cimMetering="http://iec.ch/TC57/2009/CIM-schema-cim14#Metering" xsi:type="cimMetering:MeterAsset" ServiceDeliveryPoint="..\..\models/CIM_DCIM.xmi#_6263201SDL" Location="..\..\models/CIM_DCIM.xmi#_5790322Loc" mRID="b5c4044f-accd-4b09-b644-f1b2da588c42" name="b5c4044f-accd-4b09-b644-f1b2da588c42" UUID="b5c4044f-accd-4b09-b644-f1b2da588c42" />
-  </changes>
-</changes:ModelChangeSet>
+<changes:ModelChangeSet xmi:version="2.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xmi="http://www.omg.org/XMI" xmlns:changes="http://nmf.codeplex.com/changes" />

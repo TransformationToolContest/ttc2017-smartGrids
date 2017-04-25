@@ -1,10 +1,18 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <changes:ModelChangeSet xmi:version="2.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xmi="http://www.omg.org/XMI" xmlns:changes="http://nmf.codeplex.com/changes">
-  <changes xsi:type="changes:AssociationListDeletion" deletedElement="file:///D:/Projekte/TTC%202017/Smart%20Grids/models/CIM_DCIM.xmi#c09c8b5b-c203-408d-9be2-e32e8132d489/c09c8b5b-c203-408d-9be2-e32e8132d489" index="1" feature="http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61968/Common/Location/Assets" affectedElement="..\..\models/CIM_DCIM.xmi#_1809322Loc" />
-  <changes xsi:type="changes:AssociationListDeletion" deletedElement="file:///D:/Projekte/TTC%202017/Smart%20Grids/models/CIM_DCIM.xmi#c09c8b5b-c203-408d-9be2-e32e8132d489/c09c8b5b-c203-408d-9be2-e32e8132d489" feature="http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61968/Metering/ServiceDeliveryPoint/EndDeviceAssets" affectedElement="..\..\models/CIM_DCIM.xmi#_50310201SDL" />
-  <changes xsi:type="changes:AssociationListInsertion" addedElement="#//@changes.4/addedElement" index="1" feature="http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61968/Common/Location/Assets" affectedElement="..\..\models/CIM_DCIM.xmi#_7435201Loc" />
-  <changes xsi:type="changes:AssociationListInsertion" addedElement="#//@changes.4/addedElement" index="3" feature="http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61968/Metering/ServiceDeliveryPoint/EndDeviceAssets" affectedElement="..\..\models/CIM_DCIM.xmi#_3801201SDL" />
-  <changes xsi:type="changes:CompositionListInsertion" index="10375" feature="http://iec.ch/TC57/2009/CIM-schema-cim14#//CIMRoot/IDobject" affectedElement="..\..\models/CIM_DCIM.xmi#//">
-    <addedElement xmlns:cimMetering="http://iec.ch/TC57/2009/CIM-schema-cim14#Metering" xsi:type="cimMetering:MeterAsset" ServiceDeliveryPoint="..\..\models/CIM_DCIM.xmi#_3801201SDL" Location="..\..\models/CIM_DCIM.xmi#_7435201Loc" mRID="75e08209-803c-405e-9bd5-47c4a60f3811" name="75e08209-803c-405e-9bd5-47c4a60f3811" UUID="75e08209-803c-405e-9bd5-47c4a60f3811" />
+  <changes xsi:type="changes:ElementaryChangeTransaction">
+    <sourceChange xsi:type="changes:AssociationChange" newValue="../../models/CIM_DCIM.xmi#_7970201Loc" oldValue="../../models/CIM_DCIM.xmi#_2208201Loc" feature="http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61968/Assets/Asset/Location" affectedElement="../../models/CIM_DCIM.xmi#_2208201PMUMeter" />
+    <nestedChanges xsi:type="changes:AssociationListDeletion" deletedElement="../../models/CIM_DCIM.xmi#_2208201PMUMeter" affectedElement="../../models/CIM_DCIM.xmi#_2208201Loc" feature="http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61968/Common/Location/Assets" />
+    <nestedChanges xsi:type="changes:AssociationListInsertion" addedElement="../../models/CIM_DCIM.xmi#_2208201PMUMeter" index="1" affectedElement="../../models/CIM_DCIM.xmi#_7970201Loc" feature="http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61968/Common/Location/Assets" />
+  </changes>
+  <changes xsi:type="changes:ElementaryChangeTransaction">
+    <sourceChange xsi:type="changes:AssociationChange" newValue="../../models/CIM_DCIM.xmi#_2220201Loc" oldValue="../../models/CIM_DCIM.xmi#_2040322Loc" feature="http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61968/Assets/Asset/Location" affectedElement="../../models/CIM_DCIM.xmi#_2040322PMUMeter" />
+    <nestedChanges xsi:type="changes:AssociationListDeletion" deletedElement="../../models/CIM_DCIM.xmi#_2040322PMUMeter" affectedElement="../../models/CIM_DCIM.xmi#_2040322Loc" feature="http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61968/Common/Location/Assets" />
+    <nestedChanges xsi:type="changes:AssociationListInsertion" addedElement="../../models/CIM_DCIM.xmi#_2040322PMUMeter" index="1" affectedElement="../../models/CIM_DCIM.xmi#_2220201Loc" feature="http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61968/Common/Location/Assets" />
+  </changes>
+  <changes xsi:type="changes:AssociationListInsertion" addedElement="$9" affectedElement="../../models/CIM_DCIM.xmi#_3198201Loc" feature="http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61968/Common/Location/Assets" />
+  <changes xsi:type="changes:AssociationListInsertion" addedElement="$9" index="2" affectedElement="../../models/CIM_DCIM.xmi#_1661201SDL" feature="http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61968/Metering/ServiceDeliveryPoint/EndDeviceAssets" />
+  <changes xsi:type="changes:CompositionListInsertion" index="10343" affectedElement="../../models/CIM_DCIM.xmi#//" feature="http://iec.ch/TC57/2009/CIM-schema-cim14#//CIMRoot/IDobject">
+    <addedElement xmlns:cimMetering="http://iec.ch/TC57/2009/CIM-schema-cim14#Metering" xsi:type="cimMetering:MeterAsset" ServiceDeliveryPoint="../../models/CIM_DCIM.xmi#_1661201SDL" Location="../../models/CIM_DCIM.xmi#_3198201Loc" mRID="85a98b9f-1073-4155-bb1c-6bd9ac4efdc6" name="85a98b9f-1073-4155-bb1c-6bd9ac4efdc6" UUID="85a98b9f-1073-4155-bb1c-6bd9ac4efdc6" />
   </changes>
 </changes:ModelChangeSet>
