@@ -94,16 +94,16 @@ public class App {
 		long end = System.nanoTime();
 
 		System.out.println("ModelJoin;" + this.transformation + ";" + changeSet + ";" + runIndex + ";;Initialization;Time;" + Long.toString(end-start));
-		
-		this.runIteration(changePath + "\\CIM_DCIM-out000.xmi",
-						  changePath + "\\COSEM-out000.xmi",
-						  changePath + "\\Substandard-out000.xmi",
+
+		this.runIteration(changePath + "/CIM_DCIM-out000.xmi",
+						  changePath + "/COSEM-out000.xmi",
+						  changePath + "/Substandard-out000.xmi",
 						  0, changeSet, runIndex, "Initial", executor, context);
 		
 		for (int i = 1; i <= sequenceLength; i++) {
-			this.runIteration(changePath + String.format("\\CIM_DCIM-out%03d.xmi", i),
-							  changePath + String.format("\\COSEM-out%03d.xmi", i),
-							  changePath + String.format("\\Substandard-out%03d.xmi", i),
+			this.runIteration(changePath + String.format("/CIM_DCIM-out%03d.xmi", i),
+							  changePath + String.format("/COSEM-out%03d.xmi", i),
+							  changePath + String.format("/Substandard-out%03d.xmi", i),
 							  i, changeSet, runIndex, "Update", executor, context);
 		}
 	}
