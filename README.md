@@ -27,13 +27,27 @@ The `config` directory contains the configuration for the scripts:
 
 The script runs the benchmark for the given number of runs, for the specified tools and change sequences.
 
-The benchmark results are stored in a CSV file. The header for the CSV file is stored in the `output/header.csv` file. 
+The benchmark results are stored in a CSV file. The header for the CSV file is stored in the `output/header.csv` file.
 
 ## Reporting and visualization
 
 Make sure you read the `README.md` file in the `reporting` directory and install all the requirements for R.
 
+## Running the example solution
+
+1. Start with Eclipse Modeling or Eclipse for DSL Developers.
+1. Add the <http://download.eclipse.org/mmt/qvto/updates/releases> update site and install the **QVT Operational SDK**, version **3.6.0.v20160606-1156**.
+1. Import the `solutions/ModelJoin` project.
+1. If you get compile errors related to character encoding, change the encoding of the project to **ISO-8859-1**.
+
+Run the `de.fzi.ttc2017.smartGrids.App` class as a Java Application with the required settings. For example:
+
+* Arguments
+  * `-view outageDetection`
+* Environment
+  * `ChangePath`: `../../changes/changeSequence1`
+  * `Sequences`: `1`
+
 ## Implementing the benchmark for a new tool
 
 To implement a tool, you need to create a new directory in the solutions directory and give it a suitable name.
-
