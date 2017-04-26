@@ -2,7 +2,7 @@
 
 ## Case description
 
-The `paper/2017_TTC_SmartGrid.pdf` file contains the [case description](https://github.com/georghinkel/ttc2017smartGrids/blob/master/paper/2017_TTC_SmartGrid.pdf).
+The `docs/2017_TTC_SmartGrid.pdf` file contains the [case description](https://georghinkel.github.io/ttc2017smartGrids/2017_TTC_SmartGrid.pdf).
 
 ## Prerequisites
 
