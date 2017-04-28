@@ -1,0 +1,5 @@
+obj/
+Generator.sln
+Generator.csproj.user
+.vs/
+packages/

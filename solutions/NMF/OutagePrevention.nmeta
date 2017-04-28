@@ -1,0 +1,75 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<nmeta:Namespace xmi:version="2.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" Uri="http://www.transformation-tool-contest.eu/2017/smartGrids/VoltagePhaseMeasurements" Prefix="outagePreventionJt" Name="outagePreventionJointarget" xmlns:xmi="http://www.omg.org/XMI" xmlns:nmeta="http://nmf.codeplex.com/nmeta/">
+  <Types xsi:type="nmeta:Class" BaseTypes="#//Asset #//EndDeviceAsset" Name="PMUVoltageMeter">
+    <Attributes IsOrdered="True" IsUnique="True" LowerBound="1" Type="http://nmf.codeplex.com/nmeta/#//String" Name="mRID" />
+    <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Double" Name="VoltageAMag" />
+    <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Double" Name="VoltageAAng" />
+    <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Double" Name="VoltageBMag" />
+    <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Double" Name="VoltageBAng" />
+    <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Double" Name="VoltageCMag" />
+    <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Double" Name="VoltageCAng" />
+    <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Double" Name="VoltageNeutMag" />
+    <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Double" Name="VoltageNeutAng" />
+    <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Double" Name="VoltageNetMag" />
+    <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Double" Name="VoltageNetAng" />
+    <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Double" Name="VoltageResMag" />
+    <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Double" Name="VoltageResAng" />
+  </Types>
+  <Types xsi:type="nmeta:Class" BaseTypes="#//Asset #//EndDeviceAsset" Name="PrivateMeterVoltage">
+    <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//String" Name="ID" />
+    <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Double" Name="VoltageA" />
+    <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Double" Name="VoltageB" />
+    <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Double" Name="VoltageC" />
+  </Types>
+  <Types xsi:type="nmeta:Class" Name="Asset">
+    <References ReferenceType="#//Location" IsOrdered="True" IsUnique="True" Name="Location" />
+  </Types>
+  <Types xsi:type="nmeta:Class" Name="Location">
+    <References ReferenceType="#//PositionPoint" IsOrdered="True" IsUnique="True" Name="Position" />
+    <References ReferenceType="#//PowerSystemResource" IsOrdered="True" IsUnique="True" UpperBound="-1" Name="PowerSystemResources" />
+  </Types>
+  <Types xsi:type="nmeta:Class" Name="PositionPoint">
+    <Attributes IsOrdered="True" IsUnique="True" LowerBound="1" Type="http://nmf.codeplex.com/nmeta/#//String" Name="xPosition" />
+    <Attributes IsOrdered="True" IsUnique="True" LowerBound="1" Type="http://nmf.codeplex.com/nmeta/#//String" Name="yPosition" />
+    <Attributes IsOrdered="True" IsUnique="True" LowerBound="1" Type="http://nmf.codeplex.com/nmeta/#//String" Name="zPosition" />
+  </Types>
+  <Types xsi:type="nmeta:Class" Name="PowerSystemResource" />
+  <Types xsi:type="nmeta:Class" BaseTypes="#//PowerSystemResource" Name="ConductingEquipment">
+    <References ReferenceType="#//Terminal" IsOrdered="True" IsUnique="True" UpperBound="-1" Name="Terminals" />
+  </Types>
+  <Types xsi:type="nmeta:Class" Name="Terminal">
+    <References ReferenceType="#//TieFlow" IsOrdered="True" IsUnique="True" UpperBound="-1" Name="TieFlow" />
+  </Types>
+  <Types xsi:type="nmeta:Class" Name="TieFlow">
+    <References ReferenceType="#//ControlArea" IsOrdered="True" IsUnique="True" Name="ControlArea" />
+  </Types>
+  <Types xsi:type="nmeta:Class" Name="ControlArea">
+    <Attributes IsOrdered="True" IsUnique="True" LowerBound="1" Type="http://nmf.codeplex.com/nmeta/#//String" Name="mRID" />
+  </Types>
+  <Types xsi:type="nmeta:Class" Name="EndDeviceAsset">
+    <References ReferenceType="#//ServiceDeliveryPoint" IsOrdered="True" IsUnique="True" Name="ServiceDeliveryPoint" />
+  </Types>
+  <Types xsi:type="nmeta:Class" Name="ServiceDeliveryPoint">
+    <References ReferenceType="#//EnergyConsumer" IsOrdered="True" IsUnique="True" Name="EnergyConsumer" />
+  </Types>
+  <Types xsi:type="nmeta:Class" Name="EnergyConsumer">
+    <Attributes IsOrdered="True" IsUnique="True" LowerBound="1" Type="http://nmf.codeplex.com/nmeta/#//String" Name="mRID" />
+  </Types>
+  <Types xsi:type="nmeta:Class" BaseTypes="#//EnergyConsumer" Name="ConformLoad">
+    <References ReferenceType="#//ConformLoadGroup" IsOrdered="True" IsUnique="True" Name="LoadGroup" />
+  </Types>
+  <Types xsi:type="nmeta:Class" BaseTypes="#//LoadGroup" Name="ConformLoadGroup" />
+  <Types xsi:type="nmeta:Class" Name="LoadGroup">
+    <References ReferenceType="#//SubLoadArea" IsOrdered="True" IsUnique="True" Name="SubLoadArea" />
+  </Types>
+  <Types xsi:type="nmeta:Class" Name="SubLoadArea">
+    <References ReferenceType="#//LoadArea" IsOrdered="True" IsUnique="True" Name="LoadArea" />
+  </Types>
+  <Types xsi:type="nmeta:Class" Name="LoadArea">
+    <References ReferenceType="#//ControlArea" IsOrdered="True" IsUnique="True" Name="ControlArea" />
+  </Types>
+  <Types xsi:type="nmeta:Class" BaseTypes="#//EnergyConsumer" Name="NonConformLoad">
+    <References ReferenceType="#//NonConformLoadGroup" IsOrdered="True" IsUnique="True" Name="LoadGroup" />
+  </Types>
+  <Types xsi:type="nmeta:Class" BaseTypes="#//LoadGroup" Name="NonConformLoadGroup" />
+</nmeta:Namespace>
