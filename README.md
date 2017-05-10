@@ -10,6 +10,11 @@ The `docs/2017_TTC_SmartGrid.pdf` file contains the [case description](https://g
 * Python 2.7 or higher
 * R
 
+## Solution Prerequisites
+
+* ModelJoin: Java 1.8
+* NMF: .NET Framework 4.5.1 and MSBuild on the path
+
 ## Using the framework
 
 The `scripts` directory contains the `run.py` script which is used for the following purposes:
