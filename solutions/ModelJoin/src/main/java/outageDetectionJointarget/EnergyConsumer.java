@@ -17,6 +17,7 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link outageDetectionJointarget.EnergyConsumer#getReachability <em>Reachability</em>}</li>
  *   <li>{@link outageDetectionJointarget.EnergyConsumer#getPowerA <em>Power A</em>}</li>
  *   <li>{@link outageDetectionJointarget.EnergyConsumer#getID <em>ID</em>}</li>
+ *   <li>{@link outageDetectionJointarget.EnergyConsumer#getControlAreaID <em>Control Area ID</em>}</li>
  * </ul>
  *
  * @see outageDetectionJointarget.OutageDetectionJointargetPackage#getEnergyConsumer()
@@ -129,5 +130,31 @@ public interface EnergyConsumer extends EObject {
 	 * @generated
 	 */
 	void setID(String value);
+
+	/**
+	 * Returns the value of the '<em><b>Control Area ID</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Control Area ID</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Control Area ID</em>' attribute.
+	 * @see #setControlAreaID(String)
+	 * @see outageDetectionJointarget.OutageDetectionJointargetPackage#getEnergyConsumer_ControlAreaID()
+	 * @model annotation="edu.kit.ipd.sdq.mdsd.mj.createdBy operator='keepcalculated' formula='if CIM.IEC61968.Metering.MeterAsset.ServiceDeliveryPoint.EnergyConsumer->oclIsKindOf(CIM.IEC61970.LoadModel.ConformLoad) then CIM.IEC61968.Metering.MeterAsset.ServiceDeliveryPoint.EnergyConsumer.ConformLoadGroup.SubLoadArea.LoadArea.ControlArea.mRID else CIM.IEC61968.Metering.MeterAsset.ServiceDeliveryPoint.EnergyConsumer.NonConformLoadGroup.SubLoadArea.LoadArea.ControlArea.mRID endif'"
+	 * @generated
+	 */
+	String getControlAreaID();
+
+	/**
+	 * Sets the value of the '{@link outageDetectionJointarget.EnergyConsumer#getControlAreaID <em>Control Area ID</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Control Area ID</em>' attribute.
+	 * @see #getControlAreaID()
+	 * @generated
+	 */
+	void setControlAreaID(String value);
 
 } // EnergyConsumer

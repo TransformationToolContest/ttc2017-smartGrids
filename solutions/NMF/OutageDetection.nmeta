@@ -5,6 +5,7 @@
     <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Integer" Name="Reachability" />
     <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//Double" Name="PowerA" />
     <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//String" Name="ID" />
+    <Attributes IsOrdered="True" IsUnique="True" Type="http://nmf.codeplex.com/nmeta/#//String" Name="ControlAreaID" />
   </Types>
   <Types xsi:type="nmeta:Class" Name="Location">
     <References ReferenceType="#//PositionPoint" IsOrdered="True" IsUnique="True" Name="Position" />

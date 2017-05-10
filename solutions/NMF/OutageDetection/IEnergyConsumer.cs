@@ -67,6 +67,15 @@ namespace TTC2017.SmartGrids.OutageDetectionJointarget
         }
         
         /// <summary>
+        /// The ControlAreaID property
+        /// </summary>
+        string ControlAreaID
+        {
+            get;
+            set;
+        }
+        
+        /// <summary>
         /// The Location property
         /// </summary>
         ILocation Location
@@ -104,6 +113,16 @@ namespace TTC2017.SmartGrids.OutageDetectionJointarget
         /// Gets fired when the ID property changed its value
         /// </summary>
         event System.EventHandler<ValueChangedEventArgs> IDChanged;
+        
+        /// <summary>
+        /// Gets fired before the ControlAreaID property changes its value
+        /// </summary>
+        event System.EventHandler<ValueChangedEventArgs> ControlAreaIDChanging;
+        
+        /// <summary>
+        /// Gets fired when the ControlAreaID property changed its value
+        /// </summary>
+        event System.EventHandler<ValueChangedEventArgs> ControlAreaIDChanged;
         
         /// <summary>
         /// Gets fired before the Location property changes its value

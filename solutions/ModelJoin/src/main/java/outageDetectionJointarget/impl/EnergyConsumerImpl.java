@@ -26,6 +26,7 @@ import outageDetectionJointarget.OutageDetectionJointargetPackage;
  *   <li>{@link outageDetectionJointarget.impl.EnergyConsumerImpl#getReachability <em>Reachability</em>}</li>
  *   <li>{@link outageDetectionJointarget.impl.EnergyConsumerImpl#getPowerA <em>Power A</em>}</li>
  *   <li>{@link outageDetectionJointarget.impl.EnergyConsumerImpl#getID <em>ID</em>}</li>
+ *   <li>{@link outageDetectionJointarget.impl.EnergyConsumerImpl#getControlAreaID <em>Control Area ID</em>}</li>
  * </ul>
  *
  * @generated
@@ -100,6 +101,26 @@ public class EnergyConsumerImpl extends MinimalEObjectImpl.Container implements 
 	 * @ordered
 	 */
 	protected String id = ID_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #getControlAreaID() <em>Control Area ID</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getControlAreaID()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String CONTROL_AREA_ID_EDEFAULT = null;
+
+	/**
+	 * The cached value of the '{@link #getControlAreaID() <em>Control Area ID</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getControlAreaID()
+	 * @generated
+	 * @ordered
+	 */
+	protected String controlAreaID = CONTROL_AREA_ID_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -226,6 +247,27 @@ public class EnergyConsumerImpl extends MinimalEObjectImpl.Container implements 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public String getControlAreaID() {
+		return controlAreaID;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setControlAreaID(String newControlAreaID) {
+		String oldControlAreaID = controlAreaID;
+		controlAreaID = newControlAreaID;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, OutageDetectionJointargetPackage.ENERGY_CONSUMER__CONTROL_AREA_ID, oldControlAreaID, controlAreaID));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
@@ -238,6 +280,8 @@ public class EnergyConsumerImpl extends MinimalEObjectImpl.Container implements 
 				return getPowerA();
 			case OutageDetectionJointargetPackage.ENERGY_CONSUMER__ID:
 				return getID();
+			case OutageDetectionJointargetPackage.ENERGY_CONSUMER__CONTROL_AREA_ID:
+				return getControlAreaID();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -261,6 +305,9 @@ public class EnergyConsumerImpl extends MinimalEObjectImpl.Container implements 
 				return;
 			case OutageDetectionJointargetPackage.ENERGY_CONSUMER__ID:
 				setID((String)newValue);
+				return;
+			case OutageDetectionJointargetPackage.ENERGY_CONSUMER__CONTROL_AREA_ID:
+				setControlAreaID((String)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -286,6 +333,9 @@ public class EnergyConsumerImpl extends MinimalEObjectImpl.Container implements 
 			case OutageDetectionJointargetPackage.ENERGY_CONSUMER__ID:
 				setID(ID_EDEFAULT);
 				return;
+			case OutageDetectionJointargetPackage.ENERGY_CONSUMER__CONTROL_AREA_ID:
+				setControlAreaID(CONTROL_AREA_ID_EDEFAULT);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -306,6 +356,8 @@ public class EnergyConsumerImpl extends MinimalEObjectImpl.Container implements 
 				return powerA != POWER_A_EDEFAULT;
 			case OutageDetectionJointargetPackage.ENERGY_CONSUMER__ID:
 				return ID_EDEFAULT == null ? id != null : !ID_EDEFAULT.equals(id);
+			case OutageDetectionJointargetPackage.ENERGY_CONSUMER__CONTROL_AREA_ID:
+				return CONTROL_AREA_ID_EDEFAULT == null ? controlAreaID != null : !CONTROL_AREA_ID_EDEFAULT.equals(controlAreaID);
 		}
 		return super.eIsSet(featureID);
 	}
@@ -326,6 +378,8 @@ public class EnergyConsumerImpl extends MinimalEObjectImpl.Container implements 
 		result.append(powerA);
 		result.append(", ID: ");
 		result.append(id);
+		result.append(", ControlAreaID: ");
+		result.append(controlAreaID);
 		result.append(')');
 		return result.toString();
 	}

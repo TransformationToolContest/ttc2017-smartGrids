@@ -1,6 +1,6 @@
-import "platform:/resource/CIM/model/61850.ecore"
-import "platform:/resource/CIM/model/schema.ecore"
-import "platform:/resource/CIM/model/COSEM.ecore"
+import "platform:/resource/ModelJoin/metamodels/61850.ecore"
+import "platform:/resource/ModelJoin/metamodels/schema.ecore"
+import "platform:/resource/ModelJoin/metamodels/COSEM.ecore"
 target "VoltagePhaseMeasurements"
 
 theta join CIM.IEC61968.Metering.MeterAsset with substationStandard.LNNodes.LNGroupM.MMXU where "CIM.IEC61968.Metering.MeterAsset.mRID = substationStandard.LNNodes.LNGroupM.MMXU.NamePlt.IdNs" as jointarget.PMUVoltageMeter {

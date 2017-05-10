@@ -10,136 +10,119 @@
       <!-- @generated 61850 -->
       <package
             uri="http://www.transformation-tool-contest.eu/2017/smartGrids/substationStandard"
-            class="substationStandard.SubstationStandardPackage"
-            genModel="metamodels/61850.genmodel"/>
+            class="substationStandard.SubstationStandardPackage"/>
    </extension>
 
    <extension point="org.eclipse.emf.ecore.generated_package">
       <!-- @generated 61850 -->
       <package
             uri="http://www.transformation-tool-contest.eu/2017/smartGrids/substationStandard/DomainLNs"
-            class="substationStandard.LNNodes.DomainLNs.DomainLNsPackage"
-            genModel="metamodels/61850.genmodel"/>
+            class="substationStandard.LNNodes.DomainLNs.DomainLNsPackage"/>
    </extension>
 
    <extension point="org.eclipse.emf.ecore.generated_package">
       <!-- @generated 61850 -->
       <package
             uri="http://www.transformation-tool-contest.eu/2017/smartGrids/substationStandard/groupP"
-            class="substationStandard.LNNodes.LNGroupP.LNGroupPPackage"
-            genModel="metamodels/61850.genmodel"/>
+            class="substationStandard.LNNodes.LNGroupP.LNGroupPPackage"/>
    </extension>
 
    <extension point="org.eclipse.emf.ecore.generated_package">
       <!-- @generated 61850 -->
       <package
             uri="http://www.transformation-tool-contest.eu/2017/smartGrids/substationStandard/groupR"
-            class="substationStandard.LNNodes.LNGroupR.LNGroupRPackage"
-            genModel="metamodels/61850.genmodel"/>
+            class="substationStandard.LNNodes.LNGroupR.LNGroupRPackage"/>
    </extension>
 
    <extension point="org.eclipse.emf.ecore.generated_package">
       <!-- @generated 61850 -->
       <package
             uri="http://www.transformation-tool-contest.eu/2017/smartGrids/substationStandard/groupC"
-            class="substationStandard.LNNodes.LNGroupC.LNGroupCPackage"
-            genModel="metamodels/61850.genmodel"/>
+            class="substationStandard.LNNodes.LNGroupC.LNGroupCPackage"/>
    </extension>
 
    <extension point="org.eclipse.emf.ecore.generated_package">
       <!-- @generated 61850 -->
       <package
             uri="http://www.transformation-tool-contest.eu/2017/smartGrids/substationStandard/groupA"
-            class="substationStandard.LNNodes.LNGroupA.LNGroupAPackage"
-            genModel="metamodels/61850.genmodel"/>
+            class="substationStandard.LNNodes.LNGroupA.LNGroupAPackage"/>
    </extension>
 
    <extension point="org.eclipse.emf.ecore.generated_package">
       <!-- @generated 61850 -->
       <package
             uri="http://www.transformation-tool-contest.eu/2017/smartGrids/substationStandard/groupM"
-            class="substationStandard.LNNodes.LNGroupM.LNGroupMPackage"
-            genModel="metamodels/61850.genmodel"/>
+            class="substationStandard.LNNodes.LNGroupM.LNGroupMPackage"/>
    </extension>
 
    <extension point="org.eclipse.emf.ecore.generated_package">
       <!-- @generated 61850 -->
       <package
             uri="http://www.transformation-tool-contest.eu/2017/smartGrids/substationStandard/groupX"
-            class="substationStandard.LNNodes.LNGroupX.LNGroupXPackage"
-            genModel="metamodels/61850.genmodel"/>
+            class="substationStandard.LNNodes.LNGroupX.LNGroupXPackage"/>
    </extension>
 
    <extension point="org.eclipse.emf.ecore.generated_package">
       <!-- @generated 61850 -->
       <package
             uri="http://www.transformation-tool-contest.eu/2017/smartGrids/substationStandard/groupT"
-            class="substationStandard.LNNodes.LNGroupT.LNGroupTPackage"
-            genModel="metamodels/61850.genmodel"/>
+            class="substationStandard.LNNodes.LNGroupT.LNGroupTPackage"/>
    </extension>
 
    <extension point="org.eclipse.emf.ecore.generated_package">
       <!-- @generated 61850 -->
       <package
             uri="http://www.transformation-tool-contest.eu/2017/smartGrids/substationStandard/groupY"
-            class="substationStandard.LNNodes.LNGroupY.LNGroupYPackage"
-            genModel="metamodels/61850.genmodel"/>
+            class="substationStandard.LNNodes.LNGroupY.LNGroupYPackage"/>
    </extension>
 
    <extension point="org.eclipse.emf.ecore.generated_package">
       <!-- @generated 61850 -->
       <package
             uri="http://www.transformation-tool-contest.eu/2017/smartGrids/substationStandard/groupZ"
-            class="substationStandard.LNNodes.LNGroupZ.LNGroupZPackage"
-            genModel="metamodels/61850.genmodel"/>
+            class="substationStandard.LNNodes.LNGroupZ.LNGroupZPackage"/>
    </extension>
 
    <extension point="org.eclipse.emf.ecore.generated_package">
       <!-- @generated 61850 -->
       <package
             uri="http://www.transformation-tool-contest.eu/2017/smartGrids/dataclasses"
-            class="substationStandard.Dataclasses.DataclassesPackage"
-            genModel="metamodels/61850.genmodel"/>
+            class="substationStandard.Dataclasses.DataclassesPackage"/>
    </extension>
 
    <extension point="org.eclipse.emf.ecore.generated_package">
       <!-- @generated 61850 -->
       <package
             uri="http://www.transformation-tool-contest.eu/2017/smartGrids/enumerations"
-            class="substationStandard.Enumerations.EnumerationsPackage"
-            genModel="metamodels/61850.genmodel"/>
+            class="substationStandard.Enumerations.EnumerationsPackage"/>
    </extension>
 
    <extension point="org.eclipse.emf.ecore.generated_package">
       <!-- @generated COSEM -->
       <package
             uri="http://www.transformation-tool-contest.eu/2017/smartGrids/cosem"
-            class="COSEM.COSEMPackage"
-            genModel="metamodels/COSEM.genmodel"/>
+            class="COSEM.COSEMPackage"/>
    </extension>
 
    <extension point="org.eclipse.emf.ecore.generated_package">
       <!-- @generated COSEM -->
       <package
             uri="data"
-            class="COSEM.Datatypes.DatatypesPackage"
-            genModel="metamodels/COSEM.genmodel"/>
+            class="COSEM.Datatypes.DatatypesPackage"/>
    </extension>
 
    <extension point="org.eclipse.emf.ecore.generated_package">
       <!-- @generated COSEM -->
       <package
             uri="interface"
-            class="COSEM.InterfaceClasses.InterfaceClassesPackage"
-            genModel="metamodels/COSEM.genmodel"/>
+            class="COSEM.InterfaceClasses.InterfaceClassesPackage"/>
    </extension>
 
    <extension point="org.eclipse.emf.ecore.generated_package">
       <!-- @generated COSEM -->
       <package
             uri="objects"
-            class="COSEM.COSEMObjects.COSEMObjectsPackage"
-            genModel="metamodels/COSEM.genmodel"/>
+            class="COSEM.COSEMObjects.COSEMObjectsPackage"/>
    </extension>
    <extension point="org.eclipse.emf.ecore.generated_package">
       <!-- @generated schema -->

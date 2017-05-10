@@ -1,6 +1,6 @@
-import "platform:/resource/CIM/model/61850.ecore"
-import "platform:/resource/CIM/model/schema.ecore"
-import "platform:/resource/CIM/model/COSEM.ecore"
+import "platform:/resource/ModelJoin/metamodels/61850.ecore"
+import "platform:/resource/ModelJoin/metamodels/schema.ecore"
+import "platform:/resource/ModelJoin/metamodels/COSEM.ecore"
 target "ConsumerReachabilityView"
 
 theta join CIM.IEC61968.Metering.MeterAsset with COSEM.PhysicalDevice where "CIM.IEC61968.Metering.MeterAsset.mRID = COSEM.PhysicalDevice.ID" as jointarget.EnergyConsumer {

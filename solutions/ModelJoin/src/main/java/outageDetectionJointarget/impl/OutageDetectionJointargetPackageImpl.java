@@ -176,6 +176,15 @@ public class OutageDetectionJointargetPackageImpl extends EPackageImpl implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EAttribute getEnergyConsumer_ControlAreaID() {
+		return (EAttribute)energyConsumerEClass.getEStructuralFeatures().get(4);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getLocation() {
 		return locationEClass;
 	}
@@ -258,6 +267,7 @@ public class OutageDetectionJointargetPackageImpl extends EPackageImpl implement
 		createEAttribute(energyConsumerEClass, ENERGY_CONSUMER__REACHABILITY);
 		createEAttribute(energyConsumerEClass, ENERGY_CONSUMER__POWER_A);
 		createEAttribute(energyConsumerEClass, ENERGY_CONSUMER__ID);
+		createEAttribute(energyConsumerEClass, ENERGY_CONSUMER__CONTROL_AREA_ID);
 
 		locationEClass = createEClass(LOCATION);
 		createEReference(locationEClass, LOCATION__POSITION);
@@ -303,6 +313,7 @@ public class OutageDetectionJointargetPackageImpl extends EPackageImpl implement
 		initEAttribute(getEnergyConsumer_Reachability(), ecorePackage.getEInt(), "Reachability", null, 0, 1, EnergyConsumer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getEnergyConsumer_PowerA(), ecorePackage.getEDouble(), "PowerA", null, 0, 1, EnergyConsumer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getEnergyConsumer_ID(), ecorePackage.getEString(), "ID", null, 0, 1, EnergyConsumer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getEnergyConsumer_ControlAreaID(), ecorePackage.getEString(), "ControlAreaID", null, 0, 1, EnergyConsumer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(locationEClass, Location.class, "Location", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getLocation_Position(), this.getPositionPoint(), null, "Position", null, 0, 1, Location.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -478,6 +489,13 @@ public class OutageDetectionJointargetPackageImpl extends EPackageImpl implement
 		   new String[] {
 			 "operator", "keepcalculated",
 			 "formula", "CIM.IEC61968.Metering.MeterAsset.ServiceDeliveryPoint.EnergyConsumer.mRID"
+		   });	
+		addAnnotation
+		  (getEnergyConsumer_ControlAreaID(), 
+		   source, 
+		   new String[] {
+			 "operator", "keepcalculated",
+			 "formula", "if CIM.IEC61968.Metering.MeterAsset.ServiceDeliveryPoint.EnergyConsumer->oclIsKindOf(CIM.IEC61970.LoadModel.ConformLoad) then CIM.IEC61968.Metering.MeterAsset.ServiceDeliveryPoint.EnergyConsumer.ConformLoadGroup.SubLoadArea.LoadArea.ControlArea.mRID else CIM.IEC61968.Metering.MeterAsset.ServiceDeliveryPoint.EnergyConsumer.NonConformLoadGroup.SubLoadArea.LoadArea.ControlArea.mRID endif"
 		   });	
 		addAnnotation
 		  (locationEClass, 

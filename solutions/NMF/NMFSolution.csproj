@@ -37,32 +37,32 @@
       <HintPath>packages\CommandLineParser.1.9.71\lib\net45\CommandLine.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="NMF.Collections, Version=1.0.79.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>packages\NMF-Repository.1.0.79\lib\net40\NMF.Collections.dll</HintPath>
+    <Reference Include="NMF.Collections, Version=1.0.81.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>packages\NMF-Repository.1.0.81\lib\net40\NMF.Collections.dll</HintPath>
     </Reference>
-    <Reference Include="NMF.Expressions, Version=1.0.79.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>packages\NMF-Expressions.1.0.79\lib\net40\NMF.Expressions.dll</HintPath>
+    <Reference Include="NMF.Expressions, Version=1.0.81.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>packages\NMF-Expressions.1.0.81\lib\net40\NMF.Expressions.dll</HintPath>
     </Reference>
-    <Reference Include="NMF.Expressions.Linq, Version=1.0.79.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>packages\NMF-Expressions.1.0.79\lib\net40\NMF.Expressions.Linq.dll</HintPath>
+    <Reference Include="NMF.Expressions.Linq, Version=1.0.81.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>packages\NMF-Expressions.1.0.81\lib\net40\NMF.Expressions.Linq.dll</HintPath>
     </Reference>
-    <Reference Include="NMF.Models, Version=1.0.79.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>packages\NMF-Repository.1.0.79\lib\net40\NMF.Models.dll</HintPath>
+    <Reference Include="NMF.Models, Version=1.0.81.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>packages\NMF-Repository.1.0.81\lib\net40\NMF.Models.dll</HintPath>
     </Reference>
-    <Reference Include="NMF.Serialization, Version=1.0.79.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>packages\NMF-Repository.1.0.79\lib\net40\NMF.Serialization.dll</HintPath>
+    <Reference Include="NMF.Serialization, Version=1.0.81.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>packages\NMF-Repository.1.0.81\lib\net40\NMF.Serialization.dll</HintPath>
     </Reference>
-    <Reference Include="NMF.Synchronizations, Version=1.0.79.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>packages\NMF-Synchronizations.1.0.79\lib\net40\NMF.Synchronizations.dll</HintPath>
+    <Reference Include="NMF.Synchronizations, Version=1.0.81.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>packages\NMF-Synchronizations.1.0.81\lib\net40\NMF.Synchronizations.dll</HintPath>
     </Reference>
-    <Reference Include="NMF.Transformations, Version=1.0.79.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>packages\NMF-Transformations.1.0.79\lib\net40\NMF.Transformations.dll</HintPath>
+    <Reference Include="NMF.Transformations, Version=1.0.81.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>packages\NMF-Transformations.1.0.81\lib\net40\NMF.Transformations.dll</HintPath>
     </Reference>
-    <Reference Include="NMF.Transformations.Core, Version=1.0.79.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>packages\NMF-Transformations.1.0.79\lib\net40\NMF.Transformations.Core.dll</HintPath>
+    <Reference Include="NMF.Transformations.Core, Version=1.0.81.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>packages\NMF-Transformations.1.0.81\lib\net40\NMF.Transformations.Core.dll</HintPath>
     </Reference>
-    <Reference Include="NMF.Utilities, Version=1.0.79.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>packages\NMF-Utilities.1.0.79\lib\net40\NMF.Utilities.dll</HintPath>
+    <Reference Include="NMF.Utilities, Version=1.0.81.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>packages\NMF-Utilities.1.0.81\lib\net40\NMF.Utilities.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />

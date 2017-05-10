@@ -103,13 +103,22 @@ public interface OutageDetectionJointargetPackage extends EPackage {
 	int ENERGY_CONSUMER__ID = 3;
 
 	/**
+	 * The feature id for the '<em><b>Control Area ID</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ENERGY_CONSUMER__CONTROL_AREA_ID = 4;
+
+	/**
 	 * The number of structural features of the '<em>Energy Consumer</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ENERGY_CONSUMER_FEATURE_COUNT = 4;
+	int ENERGY_CONSUMER_FEATURE_COUNT = 5;
 
 	/**
 	 * The number of operations of the '<em>Energy Consumer</em>' class.
@@ -268,6 +277,17 @@ public interface OutageDetectionJointargetPackage extends EPackage {
 	EAttribute getEnergyConsumer_ID();
 
 	/**
+	 * Returns the meta object for the attribute '{@link outageDetectionJointarget.EnergyConsumer#getControlAreaID <em>Control Area ID</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Control Area ID</em>'.
+	 * @see outageDetectionJointarget.EnergyConsumer#getControlAreaID()
+	 * @see #getEnergyConsumer()
+	 * @generated
+	 */
+	EAttribute getEnergyConsumer_ControlAreaID();
+
+	/**
 	 * Returns the meta object for class '{@link outageDetectionJointarget.Location <em>Location</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -395,6 +415,14 @@ public interface OutageDetectionJointargetPackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute ENERGY_CONSUMER__ID = eINSTANCE.getEnergyConsumer_ID();
+
+		/**
+		 * The meta object literal for the '<em><b>Control Area ID</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute ENERGY_CONSUMER__CONTROL_AREA_ID = eINSTANCE.getEnergyConsumer_ControlAreaID();
 
 		/**
 		 * The meta object literal for the '{@link outageDetectionJointarget.impl.LocationImpl <em>Location</em>}' class.

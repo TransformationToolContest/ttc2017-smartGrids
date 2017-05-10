@@ -36,8 +36,8 @@ rightAllEnergyConsumer->forEach(rightEnergyConsumer) {
 	-- keep outgoing references
 
 
-	var refAllLocation_6fe075db_f0bb_47b4_a0af_c12646dcf2ed = __jointarget.objectsOfType(_jointarget::EnergyConsumer);
-	refAllLocation_6fe075db_f0bb_47b4_a0af_c12646dcf2ed->forEach(elem) {
+	var refAllLocation_ab0169c2_2cfb_4ac2_b42c_6195bbcc9a55 = __jointarget.objectsOfType(_jointarget::EnergyConsumer);
+	refAllLocation_ab0169c2_2cfb_4ac2_b42c_6195bbcc9a55->forEach(elem) {
 		elem.invresolve()->selectByKind(_CIM::IEC61968::Assets::Asset)->collect(Location)->selectByKind(_CIM::IEC61968::Common::Location)->forEach(refElem) {
 			-- if source object at the end of the reference has already been mapped, update the reference with the mapped element
 			if (refElem.resolve()->notEmpty()) then {
@@ -52,8 +52,8 @@ rightAllEnergyConsumer->forEach(rightEnergyConsumer) {
 	-- keep outgoing references
 
 
-	var refAllPosition_1ab87f5f_92a7_461f_85c5_86b9bca2782e = __jointarget.objectsOfType(_jointarget::Location);
-	refAllPosition_1ab87f5f_92a7_461f_85c5_86b9bca2782e->forEach(elem) {
+	var refAllPosition_c412d6c7_fa86_4057_9c17_5d00b0074659 = __jointarget.objectsOfType(_jointarget::Location);
+	refAllPosition_c412d6c7_fa86_4057_9c17_5d00b0074659->forEach(elem) {
 		elem.invresolve()->selectByKind(_CIM::IEC61968::Common::Location)->collect(Position)->selectByKind(_CIM::IEC61968::Common::PositionPoint)->forEach(refElem) {
 			-- if source object at the end of the reference has already been mapped, update the reference with the mapped element
 			if (refElem.resolve()->notEmpty()) then {
@@ -69,16 +69,16 @@ rightAllEnergyConsumer->forEach(rightEnergyConsumer) {
 
 
 	-- keep attributes
-	var keepAttPositionPoint_07c5576a_ee8c_4d31_a9e7_379e2d479e8b = __jointarget.objectsOfType(_jointarget::PositionPoint);
-			keepAttPositionPoint_07c5576a_ee8c_4d31_a9e7_379e2d479e8b->forEach(elem) {
+	var keepAttPositionPoint_4854d43a_79ab_4893_a810_e86046267893 = __jointarget.objectsOfType(_jointarget::PositionPoint);
+			keepAttPositionPoint_4854d43a_79ab_4893_a810_e86046267893->forEach(elem) {
 				var sourceClass = elem.invresolveone(_CIM::IEC61968::Common::PositionPoint);
 				elem.map update_attribute_xPosition(sourceClass.xPosition)	
 				};
-			keepAttPositionPoint_07c5576a_ee8c_4d31_a9e7_379e2d479e8b->forEach(elem) {
+			keepAttPositionPoint_4854d43a_79ab_4893_a810_e86046267893->forEach(elem) {
 				var sourceClass = elem.invresolveone(_CIM::IEC61968::Common::PositionPoint);
 				elem.map update_attribute_yPosition(sourceClass.yPosition)	
 				};
-			keepAttPositionPoint_07c5576a_ee8c_4d31_a9e7_379e2d479e8b->forEach(elem) {
+			keepAttPositionPoint_4854d43a_79ab_4893_a810_e86046267893->forEach(elem) {
 				var sourceClass = elem.invresolveone(_CIM::IEC61968::Common::PositionPoint);
 				elem.map update_attribute_zPosition(sourceClass.zPosition)	
 				};
@@ -86,21 +86,26 @@ rightAllEnergyConsumer->forEach(rightEnergyConsumer) {
 
 
 	-- keep calculated
-	var keepAttEnergyConsumer_722935b7_4db1_4c7f_abb3_d2785104d19e = __jointarget.objectsOfType(_jointarget::EnergyConsumer);
-keepAttEnergyConsumer_722935b7_4db1_4c7f_abb3_d2785104d19e->forEach(elem) {
+	var keepAttEnergyConsumer_fbf5b131_d3ff_4425_9108_504bb0e937c9 = __jointarget.objectsOfType(_jointarget::EnergyConsumer);
+keepAttEnergyConsumer_fbf5b131_d3ff_4425_9108_504bb0e937c9->forEach(elem) {
 	var leftElement = elem.invresolveone(_CIM::IEC61968::Metering::MeterAsset);
 	var rightElement =  elem.invresolveone(_COSEM::PhysicalDevice);
 	elem.map update_attribute_Reachability(leftElement, rightElement)	
 	};
-keepAttEnergyConsumer_722935b7_4db1_4c7f_abb3_d2785104d19e->forEach(elem) {
+keepAttEnergyConsumer_fbf5b131_d3ff_4425_9108_504bb0e937c9->forEach(elem) {
 	var leftElement = elem.invresolveone(_CIM::IEC61968::Metering::MeterAsset);
 	var rightElement =  elem.invresolveone(_COSEM::PhysicalDevice);
 	elem.map update_attribute_PowerA(leftElement, rightElement)	
 	};
-keepAttEnergyConsumer_722935b7_4db1_4c7f_abb3_d2785104d19e->forEach(elem) {
+keepAttEnergyConsumer_fbf5b131_d3ff_4425_9108_504bb0e937c9->forEach(elem) {
 	var leftElement = elem.invresolveone(_CIM::IEC61968::Metering::MeterAsset);
 	var rightElement =  elem.invresolveone(_COSEM::PhysicalDevice);
 	elem.map update_attribute_ID(leftElement, rightElement)	
+	};
+keepAttEnergyConsumer_fbf5b131_d3ff_4425_9108_504bb0e937c9->forEach(elem) {
+	var leftElement = elem.invresolveone(_CIM::IEC61968::Metering::MeterAsset);
+	var rightElement =  elem.invresolveone(_COSEM::PhysicalDevice);
+	elem.map update_attribute_ControlAreaID(leftElement, rightElement)	
 	};
 
 
@@ -215,13 +220,20 @@ mapping inout _jointarget::PositionPoint::update_attribute_zPosition(attValue : 
 -- # Keep calculated Mappings
 -- ##
 mapping inout _jointarget::EnergyConsumer::update_attribute_Reachability(leftElement : _CIM::IEC61968::Metering::MeterAsset, rightElement : _COSEM::PhysicalDevice) {
-	self.Reachability:=rightElement.AutoConnect.Connection.oclAsType(Integer);
+	self.Reachability:=if rightElement.AutoConnect.Connection then 1 else 0 endif;
 }
 mapping inout _jointarget::EnergyConsumer::update_attribute_PowerA(leftElement : _CIM::IEC61968::Metering::MeterAsset, rightElement : _COSEM::PhysicalDevice) {
 	self.PowerA:=rightElement.ElectricityValues.ApparentPowermL1;
 }
 mapping inout _jointarget::EnergyConsumer::update_attribute_ID(leftElement : _CIM::IEC61968::Metering::MeterAsset, rightElement : _COSEM::PhysicalDevice) {
 	self.ID:=leftElement.ServiceDeliveryPoint.EnergyConsumer.mRID;
+}
+mapping inout _jointarget::EnergyConsumer::update_attribute_ControlAreaID(leftElement : _CIM::IEC61968::Metering::MeterAsset, rightElement : _COSEM::PhysicalDevice) {
+	self.ControlAreaID:=if leftElement.ServiceDeliveryPoint.EnergyConsumer.oclIsKindOf(_CIM::IEC61970::LoadModel::ConformLoad) then 
+		leftElement.ServiceDeliveryPoint.EnergyConsumer.oclAsType(_CIM::IEC61970::LoadModel::ConformLoad).LoadGroup.SubLoadArea.LoadArea.ControlArea.mRID
+	else 
+		leftElement.ServiceDeliveryPoint.EnergyConsumer.oclAsType(_CIM::IEC61970::LoadModel::NonConformLoad).LoadGroup.SubLoadArea.LoadArea.ControlArea.mRID 
+	endif;
 }
 
 

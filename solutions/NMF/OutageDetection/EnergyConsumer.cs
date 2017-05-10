@@ -63,6 +63,13 @@ namespace TTC2017.SmartGrids.OutageDetectionJointarget
         
         private static Lazy<ITypedElement> _iDAttribute = new Lazy<ITypedElement>(RetrieveIDAttribute);
         
+        /// <summary>
+        /// The backing field for the ControlAreaID property
+        /// </summary>
+        private string _controlAreaID;
+        
+        private static Lazy<ITypedElement> _controlAreaIDAttribute = new Lazy<ITypedElement>(RetrieveControlAreaIDAttribute);
+        
         private static Lazy<ITypedElement> _locationReference = new Lazy<ITypedElement>(RetrieveLocationReference);
         
         /// <summary>
@@ -143,6 +150,31 @@ namespace TTC2017.SmartGrids.OutageDetectionJointarget
                     this._iD = value;
                     this.OnIDChanged(e);
                     this.OnPropertyChanged("ID", e, _iDAttribute);
+                }
+            }
+        }
+        
+        /// <summary>
+        /// The ControlAreaID property
+        /// </summary>
+        [XmlAttributeAttribute(true)]
+        public string ControlAreaID
+        {
+            get
+            {
+                return this._controlAreaID;
+            }
+            set
+            {
+                if ((this._controlAreaID != value))
+                {
+                    string old = this._controlAreaID;
+                    ValueChangedEventArgs e = new ValueChangedEventArgs(old, value);
+                    this.OnControlAreaIDChanging(e);
+                    this.OnPropertyChanging("ControlAreaID", e, _controlAreaIDAttribute);
+                    this._controlAreaID = value;
+                    this.OnControlAreaIDChanged(e);
+                    this.OnPropertyChanged("ControlAreaID", e, _controlAreaIDAttribute);
                 }
             }
         }
@@ -236,6 +268,16 @@ namespace TTC2017.SmartGrids.OutageDetectionJointarget
         /// Gets fired when the ID property changed its value
         /// </summary>
         public event System.EventHandler<ValueChangedEventArgs> IDChanged;
+        
+        /// <summary>
+        /// Gets fired before the ControlAreaID property changes its value
+        /// </summary>
+        public event System.EventHandler<ValueChangedEventArgs> ControlAreaIDChanging;
+        
+        /// <summary>
+        /// Gets fired when the ControlAreaID property changed its value
+        /// </summary>
+        public event System.EventHandler<ValueChangedEventArgs> ControlAreaIDChanged;
         
         /// <summary>
         /// Gets fired before the Location property changes its value
@@ -340,6 +382,37 @@ namespace TTC2017.SmartGrids.OutageDetectionJointarget
             }
         }
         
+        private static ITypedElement RetrieveControlAreaIDAttribute()
+        {
+            return ((ITypedElement)(((ModelElement)(TTC2017.SmartGrids.OutageDetectionJointarget.EnergyConsumer.ClassInstance)).Resolve("ControlAreaID")));
+        }
+        
+        /// <summary>
+        /// Raises the ControlAreaIDChanging event
+        /// </summary>
+        /// <param name="eventArgs">The event data</param>
+        protected virtual void OnControlAreaIDChanging(ValueChangedEventArgs eventArgs)
+        {
+            System.EventHandler<ValueChangedEventArgs> handler = this.ControlAreaIDChanging;
+            if ((handler != null))
+            {
+                handler.Invoke(this, eventArgs);
+            }
+        }
+        
+        /// <summary>
+        /// Raises the ControlAreaIDChanged event
+        /// </summary>
+        /// <param name="eventArgs">The event data</param>
+        protected virtual void OnControlAreaIDChanged(ValueChangedEventArgs eventArgs)
+        {
+            System.EventHandler<ValueChangedEventArgs> handler = this.ControlAreaIDChanged;
+            if ((handler != null))
+            {
+                handler.Invoke(this, eventArgs);
+            }
+        }
+        
         private static ITypedElement RetrieveLocationReference()
         {
             return ((ITypedElement)(((ModelElement)(TTC2017.SmartGrids.OutageDetectionJointarget.EnergyConsumer.ClassInstance)).Resolve("Location")));
@@ -401,6 +474,10 @@ namespace TTC2017.SmartGrids.OutageDetectionJointarget
             {
                 return this.ID;
             }
+            if ((attribute == "CONTROLAREAID"))
+            {
+                return this.ControlAreaID;
+            }
             return base.GetAttributeValue(attribute, index);
         }
         
@@ -429,6 +506,11 @@ namespace TTC2017.SmartGrids.OutageDetectionJointarget
             if ((feature == "ID"))
             {
                 this.ID = ((string)(value));
+                return;
+            }
+            if ((feature == "CONTROLAREAID"))
+            {
+                this.ControlAreaID = ((string)(value));
                 return;
             }
             base.SetFeature(feature, value);
@@ -684,6 +766,37 @@ namespace TTC2017.SmartGrids.OutageDetectionJointarget
                 set
                 {
                     this.ModelElement.ID = value;
+                }
+            }
+        }
+        
+        /// <summary>
+        /// Represents a proxy to represent an incremental access to the ControlAreaID property
+        /// </summary>
+        private sealed class ControlAreaIDProxy : ModelPropertyChange<IEnergyConsumer, string>
+        {
+            
+            /// <summary>
+            /// Creates a new observable property access proxy
+            /// </summary>
+            /// <param name="modelElement">The model instance element for which to create the property access proxy</param>
+            public ControlAreaIDProxy(IEnergyConsumer modelElement) : 
+                    base(modelElement, "ControlAreaID")
+            {
+            }
+            
+            /// <summary>
+            /// Gets or sets the value of this expression
+            /// </summary>
+            public override string Value
+            {
+                get
+                {
+                    return this.ModelElement.ControlAreaID;
+                }
+                set
+                {
+                    this.ModelElement.ControlAreaID = value;
                 }
             }
         }

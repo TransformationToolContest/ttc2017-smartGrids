@@ -93,7 +93,7 @@ public class App {
 		context.setLog(log);
 		long end = System.nanoTime();
 
-		System.out.println("ModelJoin;" + this.transformation + ";" + changeSet + ";" + runIndex + ";;Initialization;Time;" + Long.toString(end-start));
+		System.out.println("ModelJoin;" + this.transformation + ";" + changeSet + ";" + runIndex + ";;Loading;Time;" + Long.toString(end-start));
 
 		this.runIteration(changePath + "/CIM_DCIM-out000.xmi",
 						  changePath + "/COSEM-out000.xmi",
@@ -113,7 +113,7 @@ public class App {
 		List<ModelExtent> modelExtents = new ArrayList<ModelExtent>();
 		long loadModelsstart = System.nanoTime();
 		modelExtents.add(this.createModelExtent(cim));
-		if ("OutagePrevention".equals(this.transformation)) {
+		if ("outagePrevention".equals(this.transformation)) {
 			modelExtents.add(this.createModelExtent(substation));
 		}
 		modelExtents.add(this.createModelExtent(cosem));

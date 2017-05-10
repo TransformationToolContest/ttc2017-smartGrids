@@ -3,7 +3,7 @@
     "OutageDetection",
     "OutagePrevention"
   ],
-  "Tools": ["ModelJoin"],
+  "Tools": ["NMF", "ModelJoin"],
   "ChangeSets": [
     "changeSequence1", "changeSequence2"
   ],
