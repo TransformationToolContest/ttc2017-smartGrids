@@ -111,11 +111,17 @@ namespace TTC2017.SmartGrids.Generator
             CreateDirectory(options.SubstationOutPath);
 
             Console.WriteLine("Saving modified CIM model");
-            repository.Save(cim, options.CimOutPath + string.Format("-out{0:000}.xmi", 0));
+            var cimPath = options.CimOutPath + string.Format("-out{0:000}.xmi", 0);
+            repository.Save(cim, cimPath);
+            cim.Model.ModelUri = new Uri(Path.GetFullPath(cimPath));
             Console.WriteLine("Saving modified COSEM model");
-            repository.Save(cosem, options.CosemOutPath + string.Format("-out{0:000}.xmi", 0));
+            var cosemPath = options.CosemOutPath + string.Format("-out{0:000}.xmi", 0);
+            repository.Save(cosem, cosemPath);
+            cosem.Model.ModelUri = new Uri(Path.GetFullPath(cosemPath));
             Console.WriteLine("Saving modified Substandard model");
-            repository.Save(substation, options.SubstationOutPath + string.Format("-out{0:000}.xmi", 0));
+            var subStandardPath = options.SubstationOutPath + string.Format("-out{0:000}.xmi", 0);
+            repository.Save(substation, subStandardPath);
+            substation.Model.ModelUri = new Uri(Path.GetFullPath(subStandardPath));
 
             for (int d = 1; d <= options.Deltas; d++)
             {

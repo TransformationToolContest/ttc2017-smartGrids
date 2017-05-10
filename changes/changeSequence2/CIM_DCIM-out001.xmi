@@ -7293,7 +7293,7 @@
   <IDobject xmlns:cimCommon="http://iec.ch/TC57/2009/CIM-schema-cim14#Common" xsi:type="cimCommon:Location" Assets="_2056322PMUMeter" Position="_2056322Pos" mRID="_2056322Loc" name="_2056322Loc" UUID="_2056322Loc" />
   <IDobject xmlns:cimCommon="http://iec.ch/TC57/2009/CIM-schema-cim14#Common" xsi:type="cimCommon:PositionPoint" xPosition="x" yPosition="y" zPosition="z" Location="_2056322Loc" UUID="_2056322Pos" />
   <IDobject xmlns:cimMetering="http://iec.ch/TC57/2009/CIM-schema-cim14#Metering" xsi:type="cimMetering:MeterAsset" Measurements="_2059322" Location="_2059322Loc" mRID="_2059322PMUMeter" name="_2059322PMUMeter" UUID="_2059322PMUMeter" />
-  <IDobject xmlns:cimCommon="http://iec.ch/TC57/2009/CIM-schema-cim14#Common" xsi:type="cimCommon:Location" Assets="_2059322PMUMeter" Position="_2059322Pos" mRID="_2059322Loc" name="_2059322Loc" UUID="_2059322Loc" />
+  <IDobject xmlns:cimCommon="http://iec.ch/TC57/2009/CIM-schema-cim14#Common" xsi:type="cimCommon:Location" Assets="_2059322PMUMeter 51dc8d2d-f21f-49fc-b293-0a72aadbb2f7" Position="_2059322Pos" mRID="_2059322Loc" name="_2059322Loc" UUID="_2059322Loc" />
   <IDobject xmlns:cimCommon="http://iec.ch/TC57/2009/CIM-schema-cim14#Common" xsi:type="cimCommon:PositionPoint" xPosition="x" yPosition="y" zPosition="z" Location="_2059322Loc" UUID="_2059322Pos" />
   <IDobject xmlns:cimMetering="http://iec.ch/TC57/2009/CIM-schema-cim14#Metering" xsi:type="cimMetering:MeterAsset" Measurements="_2062322" Location="_2062322Loc" mRID="_2062322PMUMeter" name="_2062322PMUMeter" UUID="_2062322PMUMeter" />
   <IDobject xmlns:cimCommon="http://iec.ch/TC57/2009/CIM-schema-cim14#Common" xsi:type="cimCommon:Location" Assets="_2062322PMUMeter" Position="_2062322Pos" mRID="_2062322Loc" name="_2062322Loc" UUID="_2062322Loc" />
@@ -8153,7 +8153,7 @@
   <IDobject xmlns:cimMetering="http://iec.ch/TC57/2009/CIM-schema-cim14#Metering" xsi:type="cimMetering:MeterAsset" ServiceDeliveryPoint="_3801201SDL" Location="_3801201Loc" mRID="_3801201SmartMeter" name="_3801201SmartMeter" UUID="_3801201SmartMeter" />
   <IDobject xmlns:cimCommon="http://iec.ch/TC57/2009/CIM-schema-cim14#Common" xsi:type="cimCommon:Location" Assets="_3801201SmartMeter" Position="_3801201Pos" mRID="_3801201Loc" name="_3801201Loc" UUID="_3801201Loc" />
   <IDobject xmlns:cimCommon="http://iec.ch/TC57/2009/CIM-schema-cim14#Common" xsi:type="cimCommon:PositionPoint" xPosition="x" yPosition="y" zPosition="z" Location="_3801201Loc" UUID="_3801201Pos" />
-  <IDobject xmlns:cimMetering="http://iec.ch/TC57/2009/CIM-schema-cim14#Metering" xsi:type="cimMetering:ServiceDeliveryPoint" EndDeviceAssets="_4800201SmartMeter" mRID="_4800201SDL" name="_4800201SDL" UUID="_4800201SDL" />
+  <IDobject xmlns:cimMetering="http://iec.ch/TC57/2009/CIM-schema-cim14#Metering" xsi:type="cimMetering:ServiceDeliveryPoint" EndDeviceAssets="_4800201SmartMeter 51dc8d2d-f21f-49fc-b293-0a72aadbb2f7" mRID="_4800201SDL" name="_4800201SDL" UUID="_4800201SDL" />
   <IDobject xmlns:cimMetering="http://iec.ch/TC57/2009/CIM-schema-cim14#Metering" xsi:type="cimMetering:MeterAsset" ServiceDeliveryPoint="_4800201SDL" Location="_4800201Loc" mRID="_4800201SmartMeter" name="_4800201SmartMeter" UUID="_4800201SmartMeter" />
   <IDobject xmlns:cimCommon="http://iec.ch/TC57/2009/CIM-schema-cim14#Common" xsi:type="cimCommon:Location" Assets="_4800201SmartMeter" Position="_4800201Pos" mRID="_4800201Loc" name="_4800201Loc" UUID="_4800201Loc" />
   <IDobject xmlns:cimCommon="http://iec.ch/TC57/2009/CIM-schema-cim14#Common" xsi:type="cimCommon:PositionPoint" xPosition="x" yPosition="y" zPosition="z" Location="_4800201Loc" UUID="_4800201Pos" />
@@ -10339,4 +10339,5 @@
   <IDobject xmlns:cimControlArea="http://iec.ch/TC57/2009/CIM-schema-cim14#ControlArea" xsi:type="cimControlArea:TieFlow" Terminal="_50516303" ControlArea="Hertz50ControlArea" UUID="_50516303tieFlow" />
   <IDobject xmlns:cimControlArea="http://iec.ch/TC57/2009/CIM-schema-cim14#ControlArea" xsi:type="cimControlArea:TieFlow" Terminal="_50523303" ControlArea="TennetControlGroup" UUID="_50523303tieFlow" />
   <IDobject xmlns:cimControlArea="http://iec.ch/TC57/2009/CIM-schema-cim14#ControlArea" xsi:type="cimControlArea:TieFlow" Terminal="_50532303" ControlArea="AmprionControlArea" UUID="_50532303tieFlow" />
+  <IDobject xmlns:cimMetering="http://iec.ch/TC57/2009/CIM-schema-cim14#Metering" xsi:type="cimMetering:MeterAsset" ServiceDeliveryPoint="_4800201SDL" Location="_2059322Loc" mRID="51dc8d2d-f21f-49fc-b293-0a72aadbb2f7" name="51dc8d2d-f21f-49fc-b293-0a72aadbb2f7" UUID="51dc8d2d-f21f-49fc-b293-0a72aadbb2f7" />
 </cim:CIMRoot>
