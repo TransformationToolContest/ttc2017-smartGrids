@@ -88,7 +88,7 @@ for(row in 1:nrow(config$Summarize_Functions)){
         settings <- setLabels(settings, "ChangeSet", "Time (ms)")
         settings <- setAxis(settings, "Discrete", yAxis)
         for (extension in config$Extension){
-          fileName <- paste(rootPath, scenario, "-", view, "-GroupBy-Tool-",metric, "-", name, ".", extension, sep='')
+          fileName <- paste(rootPath, view, "-GroupBy-Tool-",metric, "-", name, ".", extension, sep='')
           savePlot(subData2, settings, phases, fileName)
         }
         write.csv(ddply(subData2, c("Tool", "ChangeSet"), summarise, N=length(MetricValue), mean=mean(MetricValue), sd=sd(MetricValue)), file = paste(rootPath, scenario, "-", view, "-GroupBy-Tool-",metric, "-", name, ".csv", sep=''))
@@ -100,14 +100,14 @@ for(row in 1:nrow(config$Summarize_Functions)){
         settings <- setLabels(settings, "Iterations", "Time (ms)")
         settings <- setAxis(settings, "Continuous", yAxis)
         for(size in uniqueSizes){
-          subData3 <- subset(subData2, Size==size)
-          title <- paste(scenario, ", ", query, ", ChangeSet: ", size, ", Function:  ", concatPhases(phases), sep='')
+          subData3 <- subset(subData2, ChangeSet==size)
+          title <- paste(view, ", ChangeSet: ", size, ", Function:  ", concatPhases(phases), sep='')
           for (extension in config$Extension){
-            fileName <- paste(rootPath, scenario, "-", query, "-ChangeSet-", size, "-GroupBy-Tool-", metric, "-", name, ".", extension, sep='')
+            fileName <- paste(rootPath, view, "-ChangeSet-", size, "-GroupBy-Tool-", metric, "-", name, ".", extension, sep='')
             settings <- setTitle(settings, title)
             savePlot(subData3, settings, phases, fileName)
           }
-          write.csv(subData3, file = paste(rootPath, scenario, "-", query, "-ChangeSet-", size, "-GroupBy-Tool-", metric, "-", name, ".csv", sep=''))
+          write.csv(subData3, file = paste(rootPath, view, "-ChangeSet-", size, "-GroupBy-Tool-", metric, "-", name, ".csv", sep=''))
         }
       }     
     }
