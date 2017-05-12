@@ -91,7 +91,7 @@ for(row in 1:nrow(config$Summarize_Functions)){
           fileName <- paste(rootPath, view, "-GroupBy-Tool-",metric, "-", name, ".", extension, sep='')
           savePlot(subData2, settings, phases, fileName)
         }
-        write.csv(ddply(subData2, c("Tool", "ChangeSet"), summarise, N=length(MetricValue), mean=mean(MetricValue), sd=sd(MetricValue)), file = paste(rootPath, scenario, "-", view, "-GroupBy-Tool-",metric, "-", name, ".csv", sep=''))
+        write.csv(ddply(subData2, c("Tool", "ChangeSet"), summarise, N=length(MetricValue), mean=mean(MetricValue), sd=sd(MetricValue)), file = paste(rootPath, view, "-GroupBy-Tool-",metric, "-", name, ".csv", sep=''))
       }
       
       if (config$Dimensions$X_Dimensions$Iteration){

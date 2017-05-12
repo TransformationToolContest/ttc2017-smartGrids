@@ -65,7 +65,7 @@ savePlot <-function(results, settings, phases, fileName){
     plot <- plot + scale_y_log10(breaks = 10^seq(round(log10(minValue)), round(log10(maxValue)), by=1), 
                                 labels = 10^seq(round(log10(minValue)), round(log10(maxValue)), by=1))
   }
-  ggsave(plot,filename = fileName, width=6, height=3.5, dpi=192)
+  ggsave(plot,filename = fileName, width=10, height=5, dpi=192)
   print(fileName)
 
 
