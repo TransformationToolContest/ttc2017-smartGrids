@@ -1,13 +1,13 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<changes:ModelChangeSet xmi:version="2.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xmi="http://www.omg.org/XMI" xmlns:changes="http://nmf.codeplex.com/changes">
-  <changes xsi:type="changes:AssociationListInsertion" addedElement="#//@changes.2/addedElement" index="1" affectedElement="CIM_DCIM-out000.xmi#_5616201Loc" feature="http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61968/Common/Location/Assets" />
-  <changes xsi:type="changes:AssociationListInsertion" addedElement="#//@changes.2/addedElement" index="2" affectedElement="CIM_DCIM-out000.xmi#_5837201SDL" feature="http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61968/Metering/ServiceDeliveryPoint/EndDeviceAssets" />
-  <changes xsi:type="changes:CompositionListInsertion" index="10339" affectedElement="CIM_DCIM-out000.xmi#//" feature="http://iec.ch/TC57/2009/CIM-schema-cim14#//CIMRoot/IDobject">
+<changes:ModelChangeSet xmi:version="2.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xmi="http://www.omg.org/XMI" xmlns:changes="http://nmf.codeplex.com/changes" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore">
+  <changes xsi:type="changes:AssociationListInsertion" addedElement="#//@changes.2/addedElement" index="1" affectedElement="CIM_DCIM-out000.xmi#_5616201Loc" feature="ecore:EReference http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61968/Common/Location/Assets" />
+  <changes xsi:type="changes:AssociationListInsertion" addedElement="#//@changes.2/addedElement" index="2" affectedElement="CIM_DCIM-out000.xmi#_5837201SDL" feature="ecore:EReference http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61968/Metering/ServiceDeliveryPoint/EndDeviceAssets" />
+  <changes xsi:type="changes:CompositionListInsertion" index="10339" affectedElement="CIM_DCIM-out000.xmi#//" feature="ecore:EReference http://iec.ch/TC57/2009/CIM-schema-cim14#//CIMRoot/IDobject">
     <addedElement xmlns:cimMetering="http://iec.ch/TC57/2009/CIM-schema-cim14#Metering" xsi:type="cimMetering:MeterAsset" ServiceDeliveryPoint="CIM_DCIM-out000.xmi#_5837201SDL" Location="CIM_DCIM-out000.xmi#_5616201Loc" mRID="b57d2b58-951a-4a05-9816-f022a3987992" name="b57d2b58-951a-4a05-9816-f022a3987992" UUID="b57d2b58-951a-4a05-9816-f022a3987992" />
   </changes>
-  <changes xsi:type="changes:AssociationListInsertion" addedElement="#//@changes.5/addedElement" index="1" affectedElement="CIM_DCIM-out000.xmi#_4726322Loc" feature="http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61968/Common/Location/Assets" />
-  <changes xsi:type="changes:AssociationListInsertion" addedElement="#//@changes.5/addedElement" affectedElement="CIM_DCIM-out000.xmi#_3801201SDL" feature="http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61968/Metering/ServiceDeliveryPoint/EndDeviceAssets" />
-  <changes xsi:type="changes:CompositionListInsertion" index="10340" affectedElement="CIM_DCIM-out000.xmi#//" feature="http://iec.ch/TC57/2009/CIM-schema-cim14#//CIMRoot/IDobject">
+  <changes xsi:type="changes:AssociationListInsertion" addedElement="#//@changes.5/addedElement" index="1" affectedElement="CIM_DCIM-out000.xmi#_4726322Loc" feature="ecore:EReference http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61968/Common/Location/Assets" />
+  <changes xsi:type="changes:AssociationListInsertion" addedElement="#//@changes.5/addedElement" affectedElement="CIM_DCIM-out000.xmi#_3801201SDL" feature="ecore:EReference http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61968/Metering/ServiceDeliveryPoint/EndDeviceAssets" />
+  <changes xsi:type="changes:CompositionListInsertion" index="10340" affectedElement="CIM_DCIM-out000.xmi#//" feature="ecore:EReference http://iec.ch/TC57/2009/CIM-schema-cim14#//CIMRoot/IDobject">
     <addedElement xmlns:cimMetering="http://iec.ch/TC57/2009/CIM-schema-cim14#Metering" xsi:type="cimMetering:MeterAsset" ServiceDeliveryPoint="CIM_DCIM-out000.xmi#_3801201SDL" Location="CIM_DCIM-out000.xmi#_4726322Loc" mRID="4271f613-cb44-4cdb-9e68-76bf2a4960cf" name="4271f613-cb44-4cdb-9e68-76bf2a4960cf" UUID="4271f613-cb44-4cdb-9e68-76bf2a4960cf" />
   </changes>
 </changes:ModelChangeSet>

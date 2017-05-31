@@ -1,4 +1,4 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<changes:ModelChangeSet xmi:version="2.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xmi="http://www.omg.org/XMI" xmlns:changes="http://nmf.codeplex.com/changes">
-  <changes xsi:type="changes:AssociationChange" newValue="CIM_DCIM-out000.xmi#_8017201Pos" oldValue="CIM_DCIM-out000.xmi#_6242201Pos" affectedElement="CIM_DCIM-out000.xmi#_4666322Loc" feature="http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61968/Common/Location/Position" />
+<changes:ModelChangeSet xmi:version="2.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xmi="http://www.omg.org/XMI" xmlns:changes="http://nmf.codeplex.com/changes" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore">
+  <changes xsi:type="changes:AssociationChange" newValue="CIM_DCIM-out000.xmi#_8017201Pos" oldValue="CIM_DCIM-out000.xmi#_6242201Pos" affectedElement="CIM_DCIM-out000.xmi#_4666322Loc" feature="ecore:EReference http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61968/Common/Location/Position" />
 </changes:ModelChangeSet>
