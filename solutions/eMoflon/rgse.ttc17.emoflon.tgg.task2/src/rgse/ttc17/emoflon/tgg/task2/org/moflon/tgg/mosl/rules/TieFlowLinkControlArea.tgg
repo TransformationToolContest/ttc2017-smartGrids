@@ -1,0 +1,49 @@
+#using rgse.ttc17.emoflon.tgg.task2.*
+#using AttrCondDefLibrary.*
+
+#rule TieFlowLinkControlArea #with rgse.ttc17.emoflon.tgg.task2
+
+#source { 
+	pair : MeterAssetMMXUPair{
+		-a->meter
+	}
+	meter : MeterAsset {
+		-Location->srcLocation
+	}
+	srcLocation : Location {
+		-PowerSystemResources->srcResource
+	}
+	srcResource : ConductingEquipment {
+		-Terminals->srcTerminal
+	}
+	srcTerminal : Terminal {
+		-TieFlow->srcTieFlow
+	}
+	srcTieFlow : TieFlow {
+		++ -ControlArea->srcControlArea
+	}
+	srcControlArea : ControlArea {
+	}
+}
+
+#target {
+	trgControlArea : ControlArea {
+	}
+	trgTieFlow : TieFlow {
+		++-ControlArea->trgControlArea
+	}
+}
+
+#correspondence {
+	controlAreaToControlArea : ControlAreaToControlSrea {
+		#src->srcControlArea
+		#trg->trgControlArea
+	}
+	flowToFlow : TieFlowToTieFlow {
+		#src->srcTieFlow
+		#trg->trgTieFlow
+	}	
+}
+
+#attributeConditions {
+}

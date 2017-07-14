@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<changes:ModelChangeSet xmi:version="2.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xmi="http://www.omg.org/XMI" xmlns:changes="http://nmf.codeplex.com/changes" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore">
+  <changes xsi:type="changes:CompositionListInsertion" index="21" affectedElement="COSEM-out000.xmi#//" feature="ecore:EReference http://www.transformation-tool-contest.eu/2017/smartGrids/cosem#//COSEMRoot/PhysicalDevice">
+    <addedElement xmlns:cosem="http://www.transformation-tool-contest.eu/2017/smartGrids/cosem" xsi:type="cosem:PhysicalDevice" ID="3fdf7fd1-d686-43b8-8d34-8bef125f33fd">
+      <AutoConnect Connection="True" logical_name="1fac3a72-f132-45d9-9ded-362105329a37" OBIScode="deb198a9-0c34-4a22-97db-015de3ee7316" />
+      <ElectricityValues ActivePowerpL1="45" ActivePowerpall="45" ActivePowermL1="230" ActivePowermall="230" ReactivePowerpL1="10" ReactivePowerpall="10" ReactivePowermL1="32" ReactivePowermall="32" ReactivePowerQIall="22" ReactivePowerQIIIL1="22" ApparentPowerpL1="68" ApparentPowerpAll="68" ApparentPowermL1="300" ApparentPowermAll="300" CurrentL1="382" CurrentAll="382" VoltageL1="40" VoltageAll="40" SupplyFrequencyL1="50" SupplyFrequencyL2="50" SupplyFrequencyL3="50" SupplyFrequencyAll="50" Angles="90" logical_name="9f722977-52ad-4def-bf2b-04ee4f1103b2" />
+    </addedElement>
+  </changes>
+  <changes xsi:type="changes:CompositionListInsertion" index="22" affectedElement="COSEM-out000.xmi#//" feature="ecore:EReference http://www.transformation-tool-contest.eu/2017/smartGrids/cosem#//COSEMRoot/PhysicalDevice">
+    <addedElement xmlns:cosem="http://www.transformation-tool-contest.eu/2017/smartGrids/cosem" xsi:type="cosem:PhysicalDevice" ID="b8f9bca6-61f5-447f-8df5-fe7309d0806a">
+      <AutoConnect Connection="True" logical_name="4681b727-1d6e-4880-af0e-1f5489075e3c" OBIScode="6bf6352b-45ed-46a0-8307-1ee30806b554" />
+      <ElectricityValues ActivePowerpL1="45" ActivePowerpall="45" ActivePowermL1="230" ActivePowermall="230" ReactivePowerpL1="10" ReactivePowerpall="10" ReactivePowermL1="32" ReactivePowermall="32" ReactivePowerQIall="22" ReactivePowerQIIIL1="22" ApparentPowerpL1="68" ApparentPowerpAll="68" ApparentPowermL1="300" ApparentPowermAll="300" CurrentL1="382" CurrentAll="382" VoltageL1="40" VoltageAll="40" SupplyFrequencyL1="50" SupplyFrequencyL2="50" SupplyFrequencyL3="50" SupplyFrequencyAll="50" Angles="90" logical_name="4704d0c9-9fd1-4d25-b3b5-10eea8fec6dd" />
+    </addedElement>
+  </changes>
+  <changes xsi:type="changes:CompositionListDeletion" deletedElement="COSEM-out000.xmi#//@PhysicalDevice.2" index="2" affectedElement="COSEM-out000.xmi#//" feature="ecore:EReference http://www.transformation-tool-contest.eu/2017/smartGrids/cosem#//COSEMRoot/PhysicalDevice" />
+  <changes xsi:type="changes:AttributeChange" newValue="True" oldValue="False" affectedElement="COSEM-out000.xmi#//@PhysicalDevice.5/@AutoConnect/" feature="ecore:EAttribute http://www.transformation-tool-contest.eu/2017/smartGrids/cosem#//COSEMObjects/AutoConnectObject/Connection" />
+  <changes xsi:type="changes:CompositionListInsertion" index="22" affectedElement="COSEM-out000.xmi#//" feature="ecore:EReference http://www.transformation-tool-contest.eu/2017/smartGrids/cosem#//COSEMRoot/PhysicalDevice">
+    <addedElement xmlns:cosem="http://www.transformation-tool-contest.eu/2017/smartGrids/cosem" xsi:type="cosem:PhysicalDevice" ID="0d45bd9a-3cec-4dbf-8fc9-78c9159ed3bb">
+      <AutoConnect Connection="True" logical_name="f18898df-b6af-4fda-9eed-277f998cd026" OBIScode="d2f9d7fa-70ed-41df-bf31-02d1c9511ded" />
+      <ElectricityValues ActivePowerpL1="45" ActivePowerpall="45" ActivePowermL1="230" ActivePowermall="230" ReactivePowerpL1="10" ReactivePowerpall="10" ReactivePowermL1="32" ReactivePowermall="32" ReactivePowerQIall="22" ReactivePowerQIIIL1="22" ApparentPowerpL1="68" ApparentPowerpAll="68" ApparentPowermL1="300" ApparentPowermAll="300" CurrentL1="382" CurrentAll="382" VoltageL1="40" VoltageAll="40" SupplyFrequencyL1="50" SupplyFrequencyL2="50" SupplyFrequencyL3="50" SupplyFrequencyAll="50" Angles="90" logical_name="0b80b677-b75a-4030-854f-674cad1ec949" />
+    </addedElement>
+  </changes>
+  <changes xsi:type="changes:AttributeChange" newValue="True" oldValue="False" affectedElement="COSEM-out000.xmi#//@PhysicalDevice.15/@AutoConnect/" feature="ecore:EAttribute http://www.transformation-tool-contest.eu/2017/smartGrids/cosem#//COSEMObjects/AutoConnectObject/Connection" />
+  <changes xsi:type="changes:CompositionListInsertion" index="23" affectedElement="COSEM-out000.xmi#//" feature="ecore:EReference http://www.transformation-tool-contest.eu/2017/smartGrids/cosem#//COSEMRoot/PhysicalDevice">
+    <addedElement xmlns:cosem="http://www.transformation-tool-contest.eu/2017/smartGrids/cosem" xsi:type="cosem:PhysicalDevice" ID="ec7612fb-c158-49da-bbaf-77444286a0ce">
+      <AutoConnect Connection="True" logical_name="0e759678-9814-4f90-b119-ca94f59a30c8" OBIScode="d73c31a1-03e8-4a86-b7ad-ab18e6de8e2a" />
+      <ElectricityValues ActivePowerpL1="45" ActivePowerpall="45" ActivePowermL1="230" ActivePowermall="230" ReactivePowerpL1="10" ReactivePowerpall="10" ReactivePowermL1="32" ReactivePowermall="32" ReactivePowerQIall="22" ReactivePowerQIIIL1="22" ApparentPowerpL1="68" ApparentPowerpAll="68" ApparentPowermL1="300" ApparentPowermAll="300" CurrentL1="382" CurrentAll="382" VoltageL1="40" VoltageAll="40" SupplyFrequencyL1="50" SupplyFrequencyL2="50" SupplyFrequencyL3="50" SupplyFrequencyAll="50" Angles="90" logical_name="0d09ac2d-2335-49b1-83f2-49bf9980737f" />
+    </addedElement>
+  </changes>
+</changes:ModelChangeSet>

@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="outageDetectionJointarget" nsURI="http://www.transformation-tool-contest.eu/2017/smartGrids/ConsumerReachabilityView"
+    nsPrefix="outageDtJt">
+  <eAnnotations source="edu.kit.ipd.sdq.mdsd.mj.sourceModels" references="schema.ecore#/ COSEM.ecore#/ 61850.ecore#/"/>
+  <eAnnotations source="edu.kit.ipd.sdq.mdsd.mj.traceModel" references="outageDetection-trace.ecore#/"/>
+  <eClassifiers xsi:type="ecore:EClass" name="EnergyConsumer">
+    <eAnnotations source="edu.kit.ipd.sdq.mdsd.mj.classTrace.left" references="schema.ecore#//IEC61968/Metering/MeterAsset"/>
+    <eAnnotations source="edu.kit.ipd.sdq.mdsd.mj.classTrace.right" references="COSEM.ecore#//PhysicalDevice"/>
+    <eAnnotations source="edu.kit.ipd.sdq.mdsd.mj.classTrace.jointrace" references="outageDetection-trace.ecore#//join_MeterAsset_PhysicalDevice_EnergyConsumer"/>
+    <eAnnotations source="edu.kit.ipd.sdq.mdsd.mj.createdBy">
+      <details key="order" value="1"/>
+      <details key="operator" value="thetajoin"/>
+      <details key="condition" value="CIM.IEC61968.Metering.MeterAsset.mRID = COSEM.PhysicalDevice.ID"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="Location" eType="#//Location">
+      <eAnnotations source="http://iec.ch/TC57/2009/CIM-schema-cim14">
+        <details key="Documentation" value="Location of this asset."/>
+      </eAnnotations>
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="Documentation" value="Location of this asset."/>
+      </eAnnotations>
+      <eAnnotations source="edu.kit.ipd.sdq.mdsd.mj.createdBy">
+        <details key="operator" value="keepoutgoing"/>
+      </eAnnotations>
+      <eAnnotations source="edu.kit.ipd.sdq.mdsd.mj.classTrace.oftype" references="schema.ecore#//IEC61968/Common/Location"/>
+      <eAnnotations source="edu.kit.ipd.sdq.mdsd.mj.classTrace.reference" references="schema.ecore#//IEC61968/Assets/Asset/Location"/>
+      <eAnnotations source="edu.kit.ipd.sdq.mdsd.mj.classTrace" references="schema.ecore#//IEC61968/Metering/MeterAsset"/>
+      <eAnnotations source="edu.kit.ipd.sdq.mdsd.mj.classTrace.reftrace" references="outageDetection-trace.ecore#//ref_Location_Location_Location"/>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="Reachability" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt">
+      <eAnnotations source="edu.kit.ipd.sdq.mdsd.mj.createdBy">
+        <details key="operator" value="keepcalculated"/>
+        <details key="formula" value="COSEM.PhysicalDevice.AutoConnect.Connection"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="PowerA" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDouble">
+      <eAnnotations source="edu.kit.ipd.sdq.mdsd.mj.createdBy">
+        <details key="operator" value="keepcalculated"/>
+        <details key="formula" value="COSEM.PhysicalDevice.ElectricityValues.ApparentPowermL1"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="ID" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
+      <eAnnotations source="edu.kit.ipd.sdq.mdsd.mj.createdBy">
+        <details key="operator" value="keepcalculated"/>
+        <details key="formula" value="CIM.IEC61968.Metering.MeterAsset.ServiceDeliveryPoint.EnergyConsumer.mRID"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="ControlAreaID" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
+      <eAnnotations source="edu.kit.ipd.sdq.mdsd.mj.createdBy">
+        <details key="operator" value="keepcalculated"/>
+        <details key="formula" value="if CIM.IEC61968.Metering.MeterAsset.ServiceDeliveryPoint.EnergyConsumer->oclIsKindOf(CIM.IEC61970.LoadModel.ConformLoad) then CIM.IEC61968.Metering.MeterAsset.ServiceDeliveryPoint.EnergyConsumer.ConformLoadGroup.SubLoadArea.LoadArea.ControlArea.mRID else CIM.IEC61968.Metering.MeterAsset.ServiceDeliveryPoint.EnergyConsumer.NonConformLoadGroup.SubLoadArea.LoadArea.ControlArea.mRID endif"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Location">
+    <eAnnotations source="edu.kit.ipd.sdq.mdsd.mj.classTrace" references="schema.ecore#//IEC61968/Common/Location"/>
+    <eAnnotations source="edu.kit.ipd.sdq.mdsd.mj.createdBy">
+      <details key="operator" value="keepoutgoing"/>
+      <details key="order" value="2"/>
+    </eAnnotations>
+    <eAnnotations source="edu.kit.ipd.sdq.mdsd.mj.classTrace.reftrace" references="outageDetection-trace.ecore#//ref_Location_Location_Location"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="Position" eType="#//PositionPoint">
+      <eAnnotations source="edu.kit.ipd.sdq.mdsd.mj.createdBy">
+        <details key="operator" value="keepoutgoing"/>
+      </eAnnotations>
+      <eAnnotations source="edu.kit.ipd.sdq.mdsd.mj.classTrace.oftype" references="schema.ecore#//IEC61968/Common/PositionPoint"/>
+      <eAnnotations source="edu.kit.ipd.sdq.mdsd.mj.classTrace.reference" references="schema.ecore#//IEC61968/Common/Location/Position"/>
+      <eAnnotations source="edu.kit.ipd.sdq.mdsd.mj.classTrace" references="schema.ecore#//IEC61968/Common/Location"/>
+      <eAnnotations source="edu.kit.ipd.sdq.mdsd.mj.classTrace.reftrace" references="outageDetection-trace.ecore#//ref_PositionPoint_PositionPoint_Position"/>
+    </eStructuralFeatures>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="PositionPoint">
+    <eAnnotations source="edu.kit.ipd.sdq.mdsd.mj.classTrace" references="schema.ecore#//IEC61968/Common/PositionPoint"/>
+    <eAnnotations source="edu.kit.ipd.sdq.mdsd.mj.createdBy">
+      <details key="operator" value="keepoutgoing"/>
+      <details key="order" value="3"/>
+    </eAnnotations>
+    <eAnnotations source="edu.kit.ipd.sdq.mdsd.mj.classTrace.reftrace" references="outageDetection-trace.ecore#//ref_PositionPoint_PositionPoint_Position"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="xPosition" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
+      <eAnnotations source="http://iec.ch/TC57/2009/CIM-schema-cim14">
+        <details key="Documentation" value="X axis position."/>
+      </eAnnotations>
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="Documentation" value="X axis position."/>
+      </eAnnotations>
+      <eAnnotations source="edu.kit.ipd.sdq.mdsd.mj.createdBy">
+        <details key="operator" value="keepattributes"/>
+      </eAnnotations>
+      <eAnnotations source="edu.kit.ipd.sdq.mdsd.mj.classTrace" references="schema.ecore#//IEC61968/Common/PositionPoint"/>
+      <eAnnotations source="edu.kit.ipd.sdq.mdsd.mj.classTrace.attribute" references="schema.ecore#//IEC61968/Common/PositionPoint/xPosition"/>
+      <eAnnotations source="edu.kit.ipd.sdq.mdsd.mj.classTrace.context" references="#//PositionPoint"/>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="yPosition" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
+      <eAnnotations source="http://iec.ch/TC57/2009/CIM-schema-cim14">
+        <details key="Documentation" value="Y axis position."/>
+      </eAnnotations>
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="Documentation" value="Y axis position."/>
+      </eAnnotations>
+      <eAnnotations source="edu.kit.ipd.sdq.mdsd.mj.createdBy">
+        <details key="operator" value="keepattributes"/>
+      </eAnnotations>
+      <eAnnotations source="edu.kit.ipd.sdq.mdsd.mj.classTrace" references="schema.ecore#//IEC61968/Common/PositionPoint"/>
+      <eAnnotations source="edu.kit.ipd.sdq.mdsd.mj.classTrace.attribute" references="schema.ecore#//IEC61968/Common/PositionPoint/yPosition"/>
+      <eAnnotations source="edu.kit.ipd.sdq.mdsd.mj.classTrace.context" references="#//PositionPoint"/>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="zPosition" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
+      <eAnnotations source="http://iec.ch/TC57/2009/CIM-schema-cim14">
+        <details key="Documentation" value="(if applicable) Z axis position."/>
+      </eAnnotations>
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="Documentation" value="(if applicable) Z axis position."/>
+      </eAnnotations>
+      <eAnnotations source="edu.kit.ipd.sdq.mdsd.mj.createdBy">
+        <details key="operator" value="keepattributes"/>
+      </eAnnotations>
+      <eAnnotations source="edu.kit.ipd.sdq.mdsd.mj.classTrace" references="schema.ecore#//IEC61968/Common/PositionPoint"/>
+      <eAnnotations source="edu.kit.ipd.sdq.mdsd.mj.classTrace.attribute" references="schema.ecore#//IEC61968/Common/PositionPoint/zPosition"/>
+      <eAnnotations source="edu.kit.ipd.sdq.mdsd.mj.classTrace.context" references="#//PositionPoint"/>
+    </eStructuralFeatures>
+  </eClassifiers>
+</ecore:EPackage>

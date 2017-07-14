@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<changes:ModelChangeSet xmi:version="2.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xmi="http://www.omg.org/XMI" xmlns:changes="http://nmf.codeplex.com/changes" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore">
+  <changes xsi:type="changes:AssociationListDeletion" deletedElement="CIM_DCIM-out000.xmi#9b7a9844-c195-4e39-9b23-88ebf837124d" affectedElement="CIM_DCIM-out000.xmi#_7684201Loc" feature="ecore:EReference http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61968/Common/Location/Assets" />
+  <changes xsi:type="changes:AssociationListDeletion" deletedElement="CIM_DCIM-out000.xmi#9b7a9844-c195-4e39-9b23-88ebf837124d" affectedElement="CIM_DCIM-out000.xmi#_7684201SDL" feature="ecore:EReference http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61968/Metering/ServiceDeliveryPoint/EndDeviceAssets" />
+  <changes xsi:type="changes:CompositionListDeletion" deletedElement="CIM_DCIM-out000.xmi#9b7a9844-c195-4e39-9b23-88ebf837124d" index="10324" affectedElement="CIM_DCIM-out000.xmi#//" feature="ecore:EReference http://iec.ch/TC57/2009/CIM-schema-cim14#//CIMRoot/IDobject" />
+  <changes xsi:type="changes:AssociationListInsertion" addedElement="#//@changes.5/@addedElement" index="1" affectedElement="CIM_DCIM-out000.xmi#_7946201Loc" feature="ecore:EReference http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61968/Common/Location/Assets" />
+  <changes xsi:type="changes:AssociationListInsertion" addedElement="#//@changes.5/@addedElement" affectedElement="CIM_DCIM-out000.xmi#_1661201SDL" feature="ecore:EReference http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61968/Metering/ServiceDeliveryPoint/EndDeviceAssets" />
+  <changes xsi:type="changes:CompositionListInsertion" index="10324" affectedElement="CIM_DCIM-out000.xmi#//" feature="ecore:EReference http://iec.ch/TC57/2009/CIM-schema-cim14#//CIMRoot/IDobject">
+    <addedElement xmlns:cimMetering="http://iec.ch/TC57/2009/CIM-schema-cim14#Metering" xsi:type="cimMetering:MeterAsset" ServiceDeliveryPoint="CIM_DCIM-out000.xmi#_1661201SDL" Location="CIM_DCIM-out000.xmi#_7946201Loc" mRID="32d0371c-6482-4c8c-b448-e5a449c9df4b" name="32d0371c-6482-4c8c-b448-e5a449c9df4b" UUID="32d0371c-6482-4c8c-b448-e5a449c9df4b" />
+  </changes>
+</changes:ModelChangeSet>

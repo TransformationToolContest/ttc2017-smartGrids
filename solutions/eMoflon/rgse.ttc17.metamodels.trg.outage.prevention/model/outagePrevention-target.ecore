@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="outagePreventionJointarget" nsURI="platform:/plugin/rgse.ttc17.metamodels.trg.outage.prevention/model/outagePrevention-target.ecore"
+    nsPrefix="outagePreventionJt">
+  <eClassifiers xsi:type="ecore:EClass" name="PMUVoltageMeter" eSuperTypes="#//Asset #//EndDeviceAsset">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="mRID" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="VoltageAMag" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDouble"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="VoltageAAng" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDouble"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="VoltageBMag" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDouble"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="VoltageBAng" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDouble"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="VoltageCMag" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDouble"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="VoltageCAng" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDouble"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="VoltageNeutMag" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDouble"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="VoltageNeutAng" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDouble"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="VoltageNetMag" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDouble"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="VoltageNetAng" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDouble"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="VoltageResMag" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDouble"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="VoltageResAng" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDouble"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="PrivateMeterVoltage" eSuperTypes="#//Asset #//EndDeviceAsset">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="ID" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="VoltageA" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDouble"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="VoltageB" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDouble"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="VoltageC" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDouble"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Asset">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="Location" eType="#//Location"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Location">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="Position" eType="#//PositionPoint"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="PowerSystemResources" upperBound="-1"
+        eType="#//PowerSystemResource"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="PositionPoint">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="xPosition" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="yPosition" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="zPosition" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="PowerSystemResource"/>
+  <eClassifiers xsi:type="ecore:EClass" name="ConductingEquipment" eSuperTypes="#//PowerSystemResource">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="Terminals" upperBound="-1"
+        eType="#//Terminal"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Terminal">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="TieFlow" upperBound="-1"
+        eType="#//TieFlow"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="TieFlow">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="ControlArea" eType="#//ControlArea"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ControlArea">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="mRID" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="EndDeviceAsset">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="ServiceDeliveryPoint" eType="#//ServiceDeliveryPoint"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ServiceDeliveryPoint">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="EnergyConsumer" eType="#//EnergyConsumer"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="EnergyConsumer">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="mRID" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ConformLoad" eSuperTypes="#//EnergyConsumer">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="LoadGroup" eType="#//ConformLoadGroup"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ConformLoadGroup" eSuperTypes="#//LoadGroup"/>
+  <eClassifiers xsi:type="ecore:EClass" name="LoadGroup">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="SubLoadArea" eType="#//SubLoadArea"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="SubLoadArea">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="LoadArea" eType="#//LoadArea"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="LoadArea">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="ControlArea" eType="#//ControlArea"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="NonConformLoad" eSuperTypes="#//EnergyConsumer">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="LoadGroup" eType="#//NonConformLoadGroup"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="NonConformLoadGroup" eSuperTypes="#//LoadGroup"/>
+</ecore:EPackage>

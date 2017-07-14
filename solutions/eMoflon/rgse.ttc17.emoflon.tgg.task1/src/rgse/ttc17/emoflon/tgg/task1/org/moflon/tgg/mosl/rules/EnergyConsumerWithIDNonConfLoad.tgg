@@ -1,0 +1,32 @@
+#using rgse.ttc17.emoflon.tgg.task1.*
+#using AttrCondDefLibrary.*
+
+#rule EnergyConsumerWithIDNonConfLoad #extends EnergyConsumerWithID #with rgse.ttc17.emoflon.tgg.task1
+
+#source { 
+	consumer : NonConformLoad {
+		-LoadGroup->group	
+	}
+	group : NonConformLoadGroup{
+		-SubLoadArea->area
+	}
+	area : SubLoadArea {
+		-ControlArea->control
+	}
+	control : ControlArea{
+		
+	}
+}
+
+#target {
+	++ trgConsumer : EnergyConsumer {
+		
+	}
+}
+
+#correspondence {	
+}
+
+#attributeConditions {
+	eq(control.mRID, trgConsumer.ControlAreaID)
+}

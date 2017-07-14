@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<changes:ModelChangeSet xmi:version="2.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xmi="http://www.omg.org/XMI" xmlns:changes="http://nmf.codeplex.com/changes" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore">
+  <changes xsi:type="changes:AssociationListInsertion" addedElement="#//@changes.2/@addedElement" affectedElement="CIM_DCIM-out000.xmi#_2961309Loc" feature="ecore:EReference http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61968/Common/Location/Assets" />
+  <changes xsi:type="changes:AssociationListInsertion" addedElement="#//@changes.2/@addedElement" index="2" affectedElement="CIM_DCIM-out000.xmi#_1710201SDL" feature="ecore:EReference http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61968/Metering/ServiceDeliveryPoint/EndDeviceAssets" />
+  <changes xsi:type="changes:CompositionListInsertion" index="10344" affectedElement="CIM_DCIM-out000.xmi#//" feature="ecore:EReference http://iec.ch/TC57/2009/CIM-schema-cim14#//CIMRoot/IDobject">
+    <addedElement xmlns:cimMetering="http://iec.ch/TC57/2009/CIM-schema-cim14#Metering" xsi:type="cimMetering:MeterAsset" ServiceDeliveryPoint="CIM_DCIM-out000.xmi#_1710201SDL" Location="CIM_DCIM-out000.xmi#_2961309Loc" mRID="1e1e14b1-944b-4bc7-bbc6-eb023e8d5270" name="1e1e14b1-944b-4bc7-bbc6-eb023e8d5270" UUID="1e1e14b1-944b-4bc7-bbc6-eb023e8d5270" />
+  </changes>
+  <changes xsi:type="changes:AssociationListDeletion" deletedElement="CIM_DCIM-out000.xmi#f1277b9d-fe5f-4ef0-a1a3-3a213cc06be3" index="1" affectedElement="CIM_DCIM-out000.xmi#_1544322Loc" feature="ecore:EReference http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61968/Common/Location/Assets" />
+  <changes xsi:type="changes:AssociationListDeletion" deletedElement="CIM_DCIM-out000.xmi#f1277b9d-fe5f-4ef0-a1a3-3a213cc06be3" affectedElement="CIM_DCIM-out000.xmi#_50310201SDL" feature="ecore:EReference http://iec.ch/TC57/2009/CIM-schema-cim14#//IEC61968/Metering/ServiceDeliveryPoint/EndDeviceAssets" />
+  <changes xsi:type="changes:CompositionListDeletion" deletedElement="CIM_DCIM-out000.xmi#f1277b9d-fe5f-4ef0-a1a3-3a213cc06be3" index="10331" affectedElement="CIM_DCIM-out000.xmi#//" feature="ecore:EReference http://iec.ch/TC57/2009/CIM-schema-cim14#//CIMRoot/IDobject" />
+</changes:ModelChangeSet>

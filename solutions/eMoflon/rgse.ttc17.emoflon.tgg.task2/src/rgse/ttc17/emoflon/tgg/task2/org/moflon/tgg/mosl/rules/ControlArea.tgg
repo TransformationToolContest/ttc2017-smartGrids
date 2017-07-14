@@ -1,0 +1,27 @@
+#using rgse.ttc17.emoflon.tgg.task2.*
+#using AttrCondDefLibrary.*
+
+#rule ControlArea #with rgse.ttc17.emoflon.tgg.task2
+
+#source { 
+	++srcControlArea : ControlArea {
+		
+	}
+}
+
+#target {
+	++trgControlArea : ControlArea {
+		
+	}
+}
+
+#correspondence {
+	++controlAreaToControlArea : ControlAreaToControlSrea {
+		#src->srcControlArea
+		#trg->trgControlArea
+	}	
+}
+
+#attributeConditions {
+	eq(srcControlArea.mRID, trgControlArea.mRID)
+}

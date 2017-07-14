@@ -1,0 +1,50 @@
+#using rgse.ttc17.emoflon.tgg.task1.*
+#using AttrCondDefLibrary.*
+
+#rule EnergyConsumer #with rgse.ttc17.emoflon.tgg.task1
+
+#source { 
+	++pair : MeterAssetPhysicalDevicePair {
+		++-a->asset
+		++-b->device
+	}
+	device: PhysicalDevice {
+		-AutoConnect->connect	
+		-ElectricityValues->electric
+	}
+	connect : AutoConnectObject {
+		
+	}
+	electric : ElectricityValues{
+		
+	}
+	
+	asset : MeterAsset {
+		-ServiceDeliveryPoint->deliver
+	}
+	deliver : ServiceDeliveryPoint{
+	}
+}
+
+#target {
+	++ trgConsumer : EnergyConsumer {
+		
+	}
+}
+
+#correspondence {	
+	++ deviceCorr : PhysicalDeviceToEnergyConsumer {
+		#src->device
+		#trg->trgConsumer
+	}
+	++ assetCorr :MeterAssetToEnergyConsumer{
+		#src->asset
+		#trg->trgConsumer
+	}
+	
+}
+
+#attributeConditions {
+	castBooleanToInteger(connect.Connection, trgConsumer.Reachability)
+	eq(electric.ApparentPowermL1, trgConsumer.PowerA)
+}

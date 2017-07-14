@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="ASCII"?>
+<xmi:XMI xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:outagePreventionJt="platform:/plugin/rgse.ttc17.metamodels.trg.outage.prevention/model/outagePrevention-target.ecore">
+  <outagePreventionJt:PrivateMeterVoltage ServiceDeliveryPoint="/15" ID="_5837201SmartMeter" VoltageA="40.0"/>
+  <outagePreventionJt:PrivateMeterVoltage ServiceDeliveryPoint="/6" ID="_1710201SmartMeter" VoltageA="40.0"/>
+  <outagePreventionJt:ServiceDeliveryPoint/>
+  <outagePreventionJt:ServiceDeliveryPoint/>
+  <outagePreventionJt:PrivateMeterVoltage ServiceDeliveryPoint="/18" ID="_7684201SmartMeter" VoltageA="40.0"/>
+  <outagePreventionJt:PrivateMeterVoltage ServiceDeliveryPoint="/23" ID="_1648201SmartMeter" VoltageA="40.0"/>
+  <outagePreventionJt:ServiceDeliveryPoint/>
+  <outagePreventionJt:ServiceDeliveryPoint/>
+  <outagePreventionJt:PrivateMeterVoltage ServiceDeliveryPoint="/31" ID="_4800201SmartMeter" VoltageA="40.0"/>
+  <outagePreventionJt:ServiceDeliveryPoint/>
+  <outagePreventionJt:PrivateMeterVoltage ServiceDeliveryPoint="/11" ID="_3794201SmartMeter" VoltageA="40.0"/>
+  <outagePreventionJt:ServiceDeliveryPoint/>
+  <outagePreventionJt:PrivateMeterVoltage ServiceDeliveryPoint="/9" ID="_6263201SmartMeter" VoltageA="40.0"/>
+  <outagePreventionJt:ServiceDeliveryPoint/>
+  <outagePreventionJt:PrivateMeterVoltage ServiceDeliveryPoint="/32" ID="_1656201SmartMeter" VoltageA="40.0"/>
+  <outagePreventionJt:ServiceDeliveryPoint/>
+  <outagePreventionJt:ServiceDeliveryPoint/>
+  <outagePreventionJt:PrivateMeterVoltage ServiceDeliveryPoint="/36" ID="_7040201SmartMeter" VoltageA="40.0"/>
+  <outagePreventionJt:ServiceDeliveryPoint/>
+  <outagePreventionJt:ControlArea mRID="TennetControlGroup"/>
+  <outagePreventionJt:PrivateMeterVoltage ServiceDeliveryPoint="/16" ID="_7422201SmartMeter" VoltageA="40.0"/>
+  <outagePreventionJt:ServiceDeliveryPoint/>
+  <outagePreventionJt:PrivateMeterVoltage ServiceDeliveryPoint="/13" ID="_2800201SmartMeter" VoltageA="40.0"/>
+  <outagePreventionJt:ServiceDeliveryPoint/>
+  <outagePreventionJt:ServiceDeliveryPoint/>
+  <outagePreventionJt:PrivateMeterVoltage ServiceDeliveryPoint="/3" ID="_50310201SmartMeter" VoltageA="40.0"/>
+  <outagePreventionJt:ControlArea mRID="AmprionControlArea"/>
+  <outagePreventionJt:PrivateMeterVoltage ServiceDeliveryPoint="/21" ID="_5850201SmartMeter" VoltageA="40.0"/>
+  <outagePreventionJt:ControlArea mRID="Hertz50ControlArea"/>
+  <outagePreventionJt:PrivateMeterVoltage ServiceDeliveryPoint="/24" ID="_4731201SmartMeter" VoltageA="40.0"/>
+  <outagePreventionJt:ControlArea mRID="TransnetControlArea"/>
+  <outagePreventionJt:ServiceDeliveryPoint/>
+  <outagePreventionJt:ServiceDeliveryPoint/>
+  <outagePreventionJt:ServiceDeliveryPoint/>
+  <outagePreventionJt:PrivateMeterVoltage ServiceDeliveryPoint="/33" ID="_1661201SmartMeter" VoltageA="40.0"/>
+  <outagePreventionJt:PrivateMeterVoltage ServiceDeliveryPoint="/2" ID="_5855201SmartMeter" VoltageA="40.0"/>
+  <outagePreventionJt:ServiceDeliveryPoint/>
+  <outagePreventionJt:PrivateMeterVoltage ServiceDeliveryPoint="/7" ID="_3801201SmartMeter" VoltageA="40.0"/>
+</xmi:XMI>

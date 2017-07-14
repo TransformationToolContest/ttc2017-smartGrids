@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="outageDetectionMjtrace" nsURI="http://www.transformation-tool-contest.eu/2017/smartGrids/ConsumerReachabilityView.trace"
+    nsPrefix="outageDtMjt">
+  <eClassifiers xsi:type="ecore:EClass" name="join_MeterAsset_PhysicalDevice_EnergyConsumer">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="left" ordered="false" eType="ecore:EClass schema.ecore#//IEC61968/Metering/MeterAsset"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="right" ordered="false"
+        eType="ecore:EClass COSEM.ecore#//PhysicalDevice"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="target" ordered="false"
+        eType="ecore:EClass outageDetection-target.ecore#//EnergyConsumer"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ref_Location_Location_Location">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="source" ordered="false"
+        eType="ecore:EClass schema.ecore#//IEC61968/Common/Location"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="target" ordered="false"
+        eType="ecore:EClass outageDetection-target.ecore#//Location"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ref_PositionPoint_PositionPoint_Position">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="source" ordered="false"
+        eType="ecore:EClass schema.ecore#//IEC61968/Common/PositionPoint"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="target" ordered="false"
+        eType="ecore:EClass outageDetection-target.ecore#//PositionPoint"/>
+  </eClassifiers>
+</ecore:EPackage>

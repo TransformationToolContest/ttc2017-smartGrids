@@ -1,0 +1,27 @@
+#using rgse.ttc17.emoflon.tgg.task1.*
+#using AttrCondDefLibrary.*
+
+#rule EnergyConsumerWithID #extends EnergyConsumer #with rgse.ttc17.emoflon.tgg.task1
+
+#source { 
+	deliver : ServiceDeliveryPoint{
+		-EnergyConsumer->consumer
+	}
+	consumer : EnergyConsumer{
+		
+	}
+}
+
+#target {
+	++ trgConsumer : EnergyConsumer {
+		
+	}
+}
+
+#correspondence {
+	
+}
+
+#attributeConditions {
+	eq(consumer.mRID, trgConsumer.ID)
+}

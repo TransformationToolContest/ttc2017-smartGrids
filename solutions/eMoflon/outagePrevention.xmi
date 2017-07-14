@@ -1,0 +1,337 @@
+<?xml version="1.0" encoding="ASCII"?>
+<xmi:XMI xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:outagePreventionJt="platform:/plugin/rgse.ttc17.metamodels.trg.outage.prevention/model/outagePrevention-target.ecore">
+  <outagePreventionJt:PMUVoltageMeter Location="/91" mRID="_5747322PMUMeter" VoltageAMag="43.04520034790039" VoltageAAng="23.663299560546875" VoltageNeutMag="8.514815330505371"/>
+  <outagePreventionJt:PositionPoint xPosition="x" yPosition="y" zPosition="z"/>
+  <outagePreventionJt:PositionPoint xPosition="x" yPosition="y" zPosition="z"/>
+  <outagePreventionJt:Location Position="/47"/>
+  <outagePreventionJt:PositionPoint xPosition="x" yPosition="y" zPosition="z"/>
+  <outagePreventionJt:PositionPoint xPosition="x" yPosition="y" zPosition="z"/>
+  <outagePreventionJt:Location Position="/160"/>
+  <outagePreventionJt:Location Position="/248"/>
+  <outagePreventionJt:PMUVoltageMeter Location="/213" mRID="_1924322PMUMeter" VoltageAMag="43.575653076171875" VoltageAAng="23.99993324279785" VoltageNeutMag="8.699963569641113"/>
+  <outagePreventionJt:PMUVoltageMeter Location="/315" mRID="_8155201PMUMeter" VoltageAMag="43.04520034790039" VoltageAAng="23.663299560546875" VoltageNeutMag="8.514815330505371"/>
+  <outagePreventionJt:PositionPoint xPosition="x" yPosition="y" zPosition="z"/>
+  <outagePreventionJt:PMUVoltageMeter Location="/110" mRID="_4913201PMUMeter" VoltageAMag="42.0" VoltageAAng="23.0" VoltageNeutMag="8.149999618530273"/>
+  <outagePreventionJt:PositionPoint xPosition="x" yPosition="y" zPosition="z"/>
+  <outagePreventionJt:PositionPoint xPosition="x" yPosition="y" zPosition="z"/>
+  <outagePreventionJt:Location Position="/291"/>
+  <outagePreventionJt:PMUVoltageMeter Location="/71" mRID="_2223201PMUMeter" VoltageAMag="46.87163162231445" VoltageAAng="26.091617584228516" VoltageNeutMag="9.850388526916504"/>
+  <outagePreventionJt:PMUVoltageMeter Location="/7" mRID="_2054322PMUMeter" VoltageAMag="42.0" VoltageAAng="23.0" VoltageNeutMag="8.149999618530273"/>
+  <outagePreventionJt:Location Position="/331"/>
+  <outagePreventionJt:Location Position="/131"/>
+  <outagePreventionJt:PMUVoltageMeter Location="/134" mRID="_3027201PMUMeter" VoltageAMag="43.575653076171875" VoltageAAng="23.99993324279785" VoltageNeutMag="8.699963569641113"/>
+  <outagePreventionJt:PositionPoint xPosition="x" yPosition="y" zPosition="z"/>
+  <outagePreventionJt:PMUVoltageMeter Location="/123" mRID="_8240201PMUMeter" VoltageAMag="42.0" VoltageAAng="23.0" VoltageNeutMag="8.149999618530273"/>
+  <outagePreventionJt:PMUVoltageMeter Location="/322" mRID="_7970201PMUMeter" VoltageAMag="44.652523040771484" VoltageAAng="24.683332443237305" VoltageNeutMag="9.07583236694336"/>
+  <outagePreventionJt:PMUVoltageMeter mRID="_1492322PMUMeter" VoltageAMag="42.52000045776367" VoltageAAng="23.329999923706055" VoltageNeutMag="8.331500053405762"/>
+  <outagePreventionJt:PositionPoint xPosition="x" yPosition="y" zPosition="z"/>
+  <outagePreventionJt:Location Position="/144"/>
+  <outagePreventionJt:PMUVoltageMeter Location="/34" mRID="_8165201PMUMeter" VoltageAMag="42.52000045776367" VoltageAAng="23.329999923706055" VoltageNeutMag="8.331500053405762"/>
+  <outagePreventionJt:PositionPoint xPosition="x" yPosition="y" zPosition="z"/>
+  <outagePreventionJt:PMUVoltageMeter Location="/165" mRID="_206322PMUMeter" VoltageAMag="42.0" VoltageAAng="23.0" VoltageNeutMag="8.149999618530273"/>
+  <outagePreventionJt:PositionPoint xPosition="x" yPosition="y" zPosition="z"/>
+  <outagePreventionJt:PMUVoltageMeter Location="/14" mRID="_1927322PMUMeter" VoltageAMag="43.575653076171875" VoltageAAng="23.99993324279785" VoltageNeutMag="8.699963569641113"/>
+  <outagePreventionJt:PositionPoint xPosition="x" yPosition="y" zPosition="z"/>
+  <outagePreventionJt:Location Position="/260"/>
+  <outagePreventionJt:PositionPoint xPosition="x" yPosition="y" zPosition="z"/>
+  <outagePreventionJt:Location Position="/170"/>
+  <outagePreventionJt:PMUVoltageMeter Location="/38" mRID="_7967201PMUMeter" VoltageAMag="43.575653076171875" VoltageAAng="23.99993324279785" VoltageNeutMag="8.699963569641113"/>
+  <outagePreventionJt:Location Position="/95"/>
+  <outagePreventionJt:Location Position="/51"/>
+  <outagePreventionJt:Location Position="/78"/>
+  <outagePreventionJt:Location Position="/318"/>
+  <outagePreventionJt:Location Position="/31"/>
+  <outagePreventionJt:PMUVoltageMeter Location="/126" mRID="_5357322PMUMeter" VoltageAMag="42.52000045776367" VoltageAAng="23.329999923706055" VoltageNeutMag="8.331500053405762"/>
+  <outagePreventionJt:PMUVoltageMeter Location="/303" mRID="_3259322PMUMeter" VoltageAMag="46.87163162231445" VoltageAAng="26.091617584228516" VoltageNeutMag="9.850388526916504"/>
+  <outagePreventionJt:PMUVoltageMeter Location="/261" mRID="_3730322PMUMeter" VoltageAMag="42.0" VoltageAAng="23.0" VoltageNeutMag="8.149999618530273"/>
+  <outagePreventionJt:Location Position="/333" PowerSystemResources="/73"/>
+  <outagePreventionJt:PMUVoltageMeter Location="/251" mRID="_5370201PMUMeter" VoltageAMag="42.52000045776367" VoltageAAng="23.329999923706055" VoltageNeutMag="8.331500053405762"/>
+  <outagePreventionJt:PowerSystemResource/>
+  <outagePreventionJt:PositionPoint xPosition="x" yPosition="y" zPosition="z"/>
+  <outagePreventionJt:Location Position="/1"/>
+  <outagePreventionJt:PMUVoltageMeter Location="/133" mRID="_7045201PMUMeter" VoltageAMag="42.0" VoltageAAng="23.0" VoltageNeutMag="8.149999618530273"/>
+  <outagePreventionJt:PowerSystemResource/>
+  <outagePreventionJt:PositionPoint xPosition="x" yPosition="y" zPosition="z"/>
+  <outagePreventionJt:PMUVoltageMeter Location="/205" mRID="_7440201PMUMeter" VoltageAMag="44.11140823364258" VoltageAAng="24.339933395385742" VoltageNeutMag="8.886962890625"/>
+  <outagePreventionJt:Location Position="/116"/>
+  <outagePreventionJt:Location Position="/215"/>
+  <outagePreventionJt:ControlArea mRID="TransnetControlArea"/>
+  <outagePreventionJt:TieFlow ControlArea="/255"/>
+  <outagePreventionJt:Location Position="/24"/>
+  <outagePreventionJt:PrivateMeterVoltage ServiceDeliveryPoint="/229" ID="_7422201SmartMeter" VoltageA="48.62893224618496" VoltageB="1.7257864492369854" VoltageC="1.7257864492369854"/>
+  <outagePreventionJt:PowerSystemResource/>
+  <outagePreventionJt:PositionPoint xPosition="x" yPosition="y" zPosition="z"/>
+  <outagePreventionJt:PMUVoltageMeter Location="/293" mRID="_82514201PMUMeter" VoltageAMag="42.0" VoltageAAng="23.0" VoltageNeutMag="8.149999618530273"/>
+  <outagePreventionJt:PositionPoint xPosition="x" yPosition="y" zPosition="z"/>
+  <outagePreventionJt:PMUVoltageMeter Location="/295" mRID="_599201PMUMeter" VoltageAMag="43.04520034790039" VoltageAAng="23.663299560546875" VoltageNeutMag="8.514815330505371"/>
+  <outagePreventionJt:PMUVoltageMeter Location="/316" mRID="_5763322PMUMeter" VoltageAMag="44.11140823364258" VoltageAAng="24.339933395385742" VoltageNeutMag="8.886962890625"/>
+  <outagePreventionJt:PMUVoltageMeter Location="/327" mRID="_5812322PMUMeter" VoltageAMag="43.04520034790039" VoltageAAng="23.663299560546875" VoltageNeutMag="8.514815330505371"/>
+  <outagePreventionJt:Location Position="/319"/>
+  <outagePreventionJt:Location Position="/27"/>
+  <outagePreventionJt:PMUVoltageMeter Location="/117" mRID="_6267201PMUMeter" VoltageAMag="43.575653076171875" VoltageAAng="23.99993324279785" VoltageNeutMag="8.699963569641113"/>
+  <outagePreventionJt:PMUVoltageMeter Location="/243" mRID="_3850322PMUMeter" VoltageAMag="42.52000045776367" VoltageAAng="23.329999923706055" VoltageNeutMag="8.331500053405762"/>
+  <outagePreventionJt:PositionPoint xPosition="x" yPosition="y" zPosition="z"/>
+  <outagePreventionJt:Location Position="/86"/>
+  <outagePreventionJt:Location Position="/223"/>
+  <outagePreventionJt:PowerSystemResource/>
+  <outagePreventionJt:PositionPoint xPosition="x" yPosition="y" zPosition="z"/>
+  <outagePreventionJt:Location Position="/154"/>
+  <outagePreventionJt:PMUVoltageMeter Location="/75" mRID="_8013201PMUMeter" VoltageAMag="43.575653076171875" VoltageAAng="23.99993324279785" VoltageNeutMag="8.699963569641113"/>
+  <outagePreventionJt:PMUVoltageMeter Location="/209" mRID="_454201PMUMeter" VoltageAMag="45.75103759765625" VoltageAAng="25.380468368530273" VoltageNeutMag="9.459257125854492"/>
+  <outagePreventionJt:PositionPoint xPosition="x" yPosition="y" zPosition="z"/>
+  <outagePreventionJt:PMUVoltageMeter Location="/72" mRID="_2011322PMUMeter" VoltageAMag="42.0" VoltageAAng="23.0" VoltageNeutMag="8.149999618530273"/>
+  <outagePreventionJt:PMUVoltageMeter Location="/297" mRID="_3808322PMUMeter" VoltageAMag="42.52000045776367" VoltageAAng="23.329999923706055" VoltageNeutMag="8.331500053405762"/>
+  <outagePreventionJt:Location Position="/273"/>
+  <outagePreventionJt:PMUVoltageMeter Location="/99" mRID="_869201PMUMeter" VoltageAMag="44.652523040771484" VoltageAAng="24.683332443237305" VoltageNeutMag="9.07583236694336"/>
+  <outagePreventionJt:PositionPoint xPosition="x" yPosition="y" zPosition="z"/>
+  <outagePreventionJt:PrivateMeterVoltage ServiceDeliveryPoint="/200" ID="bebb1aa4-118c-4da2-8f3e-904b9f21060c" VoltageA="40.0"/>
+  <outagePreventionJt:Location Position="/159"/>
+  <outagePreventionJt:PositionPoint xPosition="x" yPosition="y" zPosition="z"/>
+  <outagePreventionJt:PrivateMeterVoltage ServiceDeliveryPoint="/199" ID="e1aeffc7-8ee1-4fd6-a686-69d099cc3482" VoltageA="41.005" VoltageB="0.201" VoltageC="0.201"/>
+  <outagePreventionJt:ControlArea mRID="TennetControlGroup"/>
+  <outagePreventionJt:PMUVoltageMeter mRID="_2812201PMUMeter" VoltageAMag="42.0" VoltageAAng="23.0" VoltageNeutMag="8.149999618530273"/>
+  <outagePreventionJt:Location/>
+  <outagePreventionJt:Location Position="/288"/>
+  <outagePreventionJt:PMUVoltageMeter Location="/239" mRID="_6230322PMUMeter" VoltageAMag="42.52000045776367" VoltageAAng="23.329999923706055" VoltageNeutMag="8.331500053405762"/>
+  <outagePreventionJt:Location Position="/129" PowerSystemResources="/50"/>
+  <outagePreventionJt:PMUVoltageMeter Location="/149" mRID="_1746201PMUMeter" VoltageAMag="45.75103759765625" VoltageAAng="25.380468368530273" VoltageNeutMag="9.459257125854492"/>
+  <outagePreventionJt:PositionPoint xPosition="x" yPosition="y" zPosition="z"/>
+  <outagePreventionJt:PositionPoint xPosition="x" yPosition="y" zPosition="z"/>
+  <outagePreventionJt:PowerSystemResource/>
+  <outagePreventionJt:PositionPoint xPosition="x" yPosition="y" zPosition="z"/>
+  <outagePreventionJt:Location Position="/60"/>
+  <outagePreventionJt:PrivateMeterVoltage ServiceDeliveryPoint="/276" ID="1df3ffc5-585c-42d9-aebe-fb074cc5a897" VoltageA="40.0"/>
+  <outagePreventionJt:PowerSystemResource/>
+  <outagePreventionJt:PMUVoltageMeter Location="/81" mRID="_2007322PMUMeter" VoltageAMag="42.52000045776367" VoltageAAng="23.329999923706055" VoltageNeutMag="8.331500053405762"/>
+  <outagePreventionJt:PositionPoint xPosition="x" yPosition="y" zPosition="z"/>
+  <outagePreventionJt:ServiceDeliveryPoint/>
+  <outagePreventionJt:PMUVoltageMeter Location="/309" mRID="_1923322PMUMeter" VoltageAMag="42.0" VoltageAAng="23.0" VoltageNeutMag="8.149999618530273"/>
+  <outagePreventionJt:PMUVoltageMeter Location="/329" mRID="_1541322PMUMeter" VoltageAMag="42.52000045776367" VoltageAAng="23.329999923706055" VoltageNeutMag="8.331500053405762"/>
+  <outagePreventionJt:PrivateMeterVoltage ServiceDeliveryPoint="/231" ID="76fca3b6-87e5-4105-b525-3ffd951ec7a2" VoltageA="40.0"/>
+  <outagePreventionJt:Location Position="/181"/>
+  <outagePreventionJt:PowerSystemResource/>
+  <outagePreventionJt:Location Position="/10"/>
+  <outagePreventionJt:PMUVoltageMeter Location="/190" mRID="_6373322PMUMeter" VoltageAMag="43.575653076171875" VoltageAAng="23.99993324279785" VoltageNeutMag="8.699963569641113"/>
+  <outagePreventionJt:PositionPoint xPosition="x" yPosition="y" zPosition="z"/>
+  <outagePreventionJt:ServiceDeliveryPoint/>
+  <outagePreventionJt:PMUVoltageMeter Location="/157" mRID="_7890201PMUMeter" VoltageAMag="43.575653076171875" VoltageAAng="23.99993324279785" VoltageNeutMag="8.699963569641113"/>
+  <outagePreventionJt:PMUVoltageMeter Location="/300" mRID="_2812201PMUMeter" VoltageAMag="42.52000045776367" VoltageAAng="23.329999923706055" VoltageNeutMag="8.331500053405762"/>
+  <outagePreventionJt:PositionPoint xPosition="x" yPosition="y" zPosition="z"/>
+  <outagePreventionJt:Location Position="/174"/>
+  <outagePreventionJt:PMUVoltageMeter Location="/145" mRID="_7891201PMUMeter" VoltageAMag="42.52000045776367" VoltageAAng="23.329999923706055" VoltageNeutMag="8.331500053405762"/>
+  <outagePreventionJt:PositionPoint xPosition="x" yPosition="y" zPosition="z"/>
+  <outagePreventionJt:PMUVoltageMeter Location="/37" mRID="_7587322PMUMeter" VoltageAMag="43.04520034790039" VoltageAAng="23.663299560546875" VoltageNeutMag="8.514815330505371"/>
+  <outagePreventionJt:PositionPoint xPosition="x" yPosition="y" zPosition="z"/>
+  <outagePreventionJt:PMUVoltageMeter Location="/196" mRID="_634322PMUMeter" VoltageAMag="44.11140823364258" VoltageAAng="24.339933395385742" VoltageNeutMag="8.886962890625"/>
+  <outagePreventionJt:Location Position="/193"/>
+  <outagePreventionJt:PositionPoint xPosition="x" yPosition="y" zPosition="z"/>
+  <outagePreventionJt:PowerSystemResource/>
+  <outagePreventionJt:Location Position="/166" PowerSystemResources="/101"/>
+  <outagePreventionJt:PrivateMeterVoltage ServiceDeliveryPoint="/146" ID="b8f9bca6-61f5-447f-8df5-fe7309d0806a" VoltageA="40.5" VoltageB="0.1" VoltageC="0.1"/>
+  <outagePreventionJt:PMUVoltageMeter Location="/25" mRID="_8227201PMUMeter" VoltageAMag="43.04520034790039" VoltageAAng="23.663299560546875" VoltageNeutMag="8.514815330505371"/>
+  <outagePreventionJt:PositionPoint xPosition="x" yPosition="y" zPosition="z"/>
+  <outagePreventionJt:PMUVoltageMeter Location="/279" mRID="_2871322PMUMeter" VoltageAMag="43.575653076171875" VoltageAAng="23.99993324279785" VoltageNeutMag="8.699963569641113"/>
+  <outagePreventionJt:PositionPoint xPosition="x" yPosition="y" zPosition="z"/>
+  <outagePreventionJt:PositionPoint xPosition="x" yPosition="y" zPosition="z"/>
+  <outagePreventionJt:Location Position="/313"/>
+  <outagePreventionJt:Location Position="/292" PowerSystemResources="/264"/>
+  <outagePreventionJt:ServiceDeliveryPoint/>
+  <outagePreventionJt:PMUVoltageMeter mRID="_1923322PMUMeter" VoltageAMag="42.0" VoltageAAng="23.0" VoltageNeutMag="8.149999618530273"/>
+  <outagePreventionJt:PrivateMeterVoltage ServiceDeliveryPoint="/231" ID="3934d452-a172-4e11-9870-cdd7051b11e4" VoltageA="41.005" VoltageB="0.201" VoltageC="0.201"/>
+  <outagePreventionJt:PMUVoltageMeter mRID="_82514201PMUMeter" VoltageAMag="42.0" VoltageAAng="23.0" VoltageNeutMag="8.149999618530273"/>
+  <outagePreventionJt:Location Position="/175"/>
+  <outagePreventionJt:PMUVoltageMeter Location="/85" mRID="_1520322PMUMeter" VoltageAMag="44.652523040771484" VoltageAAng="24.683332443237305" VoltageNeutMag="9.07583236694336"/>
+  <outagePreventionJt:PMUVoltageMeter Location="/32" mRID="_1953322PMUMeter" VoltageAMag="44.11140823364258" VoltageAAng="24.339933395385742" VoltageNeutMag="8.886962890625"/>
+  <outagePreventionJt:PMUVoltageMeter Location="/183" mRID="_5616201PMUMeter" VoltageAMag="43.04520034790039" VoltageAAng="23.663299560546875" VoltageNeutMag="8.514815330505371"/>
+  <outagePreventionJt:ServiceDeliveryPoint/>
+  <outagePreventionJt:PositionPoint xPosition="x" yPosition="y" zPosition="z"/>
+  <outagePreventionJt:Location Position="/112"/>
+  <outagePreventionJt:ServiceDeliveryPoint/>
+  <outagePreventionJt:PrivateMeterVoltage ServiceDeliveryPoint="/146" ID="ec7612fb-c158-49da-bbaf-77444286a0ce" VoltageA="40.0"/>
+  <outagePreventionJt:PMUVoltageMeter Location="/176" mRID="_688322PMUMeter" VoltageAMag="42.0" VoltageAAng="23.0" VoltageNeutMag="8.149999618530273"/>
+  <outagePreventionJt:Location/>
+  <outagePreventionJt:PositionPoint xPosition="x" yPosition="y" zPosition="z"/>
+  <outagePreventionJt:PrivateMeterVoltage ServiceDeliveryPoint="/231" ID="1acf4f95-ab01-4564-bfc6-21421edc3e50" VoltageA="41.005" VoltageB="0.201" VoltageC="0.201"/>
+  <outagePreventionJt:PowerSystemResource/>
+  <outagePreventionJt:ServiceDeliveryPoint/>
+  <outagePreventionJt:PositionPoint xPosition="x" yPosition="y" zPosition="z"/>
+  <outagePreventionJt:Location Position="/257"/>
+  <outagePreventionJt:PMUVoltageMeter mRID="_634322PMUMeter" VoltageAMag="43.575653076171875" VoltageAAng="23.99993324279785" VoltageNeutMag="8.699963569641113"/>
+  <outagePreventionJt:Location Position="/96"/>
+  <outagePreventionJt:Location Position="/33"/>
+  <outagePreventionJt:PositionPoint xPosition="x" yPosition="y" zPosition="z"/>
+  <outagePreventionJt:PositionPoint xPosition="x" yPosition="y" zPosition="z"/>
+  <outagePreventionJt:PrivateMeterVoltage ServiceDeliveryPoint="/231" ID="e02789d9-864e-40a3-b90f-c28da5d8b3eb" VoltageA="41.005" VoltageB="0.201" VoltageC="0.201"/>
+  <outagePreventionJt:PrivateMeterVoltage ServiceDeliveryPoint="/113" ID="c5ff7075-c4b2-46bc-a8a4-89c5b0498452" VoltageA="41.005" VoltageB="0.201" VoltageC="0.201"/>
+  <outagePreventionJt:Location Position="/282"/>
+  <outagePreventionJt:PMUVoltageMeter Location="/93" mRID="_2211201PMUMeter" VoltageAMag="43.04520034790039" VoltageAAng="23.663299560546875" VoltageNeutMag="8.514815330505371"/>
+  <outagePreventionJt:Location/>
+  <outagePreventionJt:PositionPoint xPosition="x" yPosition="y" zPosition="z"/>
+  <outagePreventionJt:PositionPoint xPosition="x" yPosition="y" zPosition="z"/>
+  <outagePreventionJt:PositionPoint xPosition="x" yPosition="y" zPosition="z"/>
+  <outagePreventionJt:PMUVoltageMeter Location="/246" mRID="2654160a-725f-41e9-b798-6ee16931d2eb" VoltageAMag="42.0" VoltageAAng="23.0" VoltageNeutMag="8.149999618530273"/>
+  <outagePreventionJt:PositionPoint xPosition="x" yPosition="y" zPosition="z"/>
+  <outagePreventionJt:Location Position="/172"/>
+  <outagePreventionJt:PositionPoint xPosition="x" yPosition="y" zPosition="z"/>
+  <outagePreventionJt:PositionPoint xPosition="x" yPosition="y" zPosition="z"/>
+  <outagePreventionJt:PositionPoint xPosition="x" yPosition="y" zPosition="z"/>
+  <outagePreventionJt:PositionPoint xPosition="x" yPosition="y" zPosition="z"/>
+  <outagePreventionJt:Location Position="/13"/>
+  <outagePreventionJt:PositionPoint xPosition="x" yPosition="y" zPosition="z"/>
+  <outagePreventionJt:PrivateMeterVoltage ServiceDeliveryPoint="/104" ID="208a702f-9998-4475-918c-cd4630e82018" VoltageA="41.005" VoltageB="0.201" VoltageC="0.201"/>
+  <outagePreventionJt:Location Position="/242"/>
+  <outagePreventionJt:PMUVoltageMeter Location="/233" mRID="_1600322PMUMeter" VoltageAMag="42.0" VoltageAAng="23.0" VoltageNeutMag="8.149999618530273"/>
+  <outagePreventionJt:PositionPoint xPosition="x" yPosition="y" zPosition="z"/>
+  <outagePreventionJt:PrivateMeterVoltage ServiceDeliveryPoint="/153" ID="3c510e9b-eca3-4c8c-80fa-fb5ce00ecaaa" VoltageA="42.55050250500001" VoltageB="0.510100501" VoltageC="0.510100501"/>
+  <outagePreventionJt:Location Position="/283"/>
+  <outagePreventionJt:Location Position="/4"/>
+  <outagePreventionJt:PMUVoltageMeter Location="/171" mRID="_8016201PMUMeter" VoltageAMag="43.04520034790039" VoltageAAng="23.663299560546875" VoltageNeutMag="8.514815330505371"/>
+  <outagePreventionJt:PMUVoltageMeter Location="/54" mRID="_7993201PMUMeter" VoltageAMag="42.52000045776367" VoltageAAng="23.329999923706055" VoltageNeutMag="8.331500053405762"/>
+  <outagePreventionJt:PMUVoltageMeter Location="/67" mRID="_794322PMUMeter" VoltageAMag="42.0" VoltageAAng="23.0" VoltageNeutMag="8.149999618530273"/>
+  <outagePreventionJt:PMUVoltageMeter Location="/6" mRID="_5619201PMUMeter" VoltageAMag="44.652523040771484" VoltageAAng="24.683332443237305" VoltageNeutMag="9.07583236694336"/>
+  <outagePreventionJt:PMUVoltageMeter Location="/220" mRID="_858322PMUMeter" VoltageAMag="42.52000045776367" VoltageAAng="23.329999923706055" VoltageNeutMag="8.331500053405762"/>
+  <outagePreventionJt:Location Position="/266"/>
+  <outagePreventionJt:PMUVoltageMeter mRID="_7970201PMUMeter" VoltageAMag="42.52000045776367" VoltageAAng="23.329999923706055" VoltageNeutMag="8.331500053405762"/>
+  <outagePreventionJt:PMUVoltageMeter Location="/44" mRID="_3761322PMUMeter" VoltageAMag="44.11140823364258" VoltageAAng="24.339933395385742" VoltageNeutMag="8.886962890625"/>
+  <outagePreventionJt:PositionPoint xPosition="x" yPosition="y" zPosition="z"/>
+  <outagePreventionJt:PositionPoint xPosition="x" yPosition="y" zPosition="z"/>
+  <outagePreventionJt:PMUVoltageMeter Location="/90" mRID="_2861322PMUMeter" VoltageAMag="50.37038040161133" VoltageAAng="28.31197738647461" VoltageNeutMag="11.071586608886719"/>
+  <outagePreventionJt:Location Position="/312"/>
+  <outagePreventionJt:Location Position="/103" PowerSystemResources="/97"/>
+  <outagePreventionJt:PositionPoint xPosition="x" yPosition="y" zPosition="z"/>
+  <outagePreventionJt:ServiceDeliveryPoint/>
+  <outagePreventionJt:ServiceDeliveryPoint/>
+  <outagePreventionJt:PMUVoltageMeter mRID="_5619201PMUMeter" VoltageAMag="43.04520034790039" VoltageAAng="23.663299560546875" VoltageNeutMag="8.514815330505371"/>
+  <outagePreventionJt:Location Position="/124"/>
+  <outagePreventionJt:PMUVoltageMeter Location="/25" mRID="_1907201PMUMeter" VoltageAMag="42.0" VoltageAAng="23.0" VoltageNeutMag="8.149999618530273"/>
+  <outagePreventionJt:PositionPoint xPosition="x" yPosition="y" zPosition="z"/>
+  <outagePreventionJt:Location Position="/275" PowerSystemResources="/287"/>
+  <outagePreventionJt:PMUVoltageMeter Location="/197" mRID="_2825322PMUMeter" VoltageAMag="43.575653076171875" VoltageAAng="23.99993324279785" VoltageNeutMag="8.699963569641113"/>
+  <outagePreventionJt:PMUVoltageMeter mRID="_8016201PMUMeter" VoltageAMag="42.52000045776367" VoltageAAng="23.329999923706055" VoltageNeutMag="8.331500053405762"/>
+  <outagePreventionJt:PrivateMeterVoltage ServiceDeliveryPoint="/200" ID="3fdf7fd1-d686-43b8-8d34-8bef125f33fd" VoltageA="40.0"/>
+  <outagePreventionJt:Location Position="/256"/>
+  <outagePreventionJt:PMUVoltageMeter Location="/232" mRID="_281322PMUMeter" VoltageAMag="42.0" VoltageAAng="23.0" VoltageNeutMag="8.149999618530273"/>
+  <outagePreventionJt:ServiceDeliveryPoint/>
+  <outagePreventionJt:PrivateMeterVoltage ServiceDeliveryPoint="/211" ID="3c5f02fc-d1e2-448b-a622-3c3d6bd8bc4f" VoltageA="40.0"/>
+  <outagePreventionJt:Location Position="/98"/>
+  <outagePreventionJt:Location Position="/177"/>
+  <outagePreventionJt:PositionPoint xPosition="x" yPosition="y" zPosition="z"/>
+  <outagePreventionJt:PMUVoltageMeter Location="/301" mRID="_10887201PMUMeter" VoltageAMag="43.04520034790039" VoltageAAng="23.663299560546875" VoltageNeutMag="8.514815330505371"/>
+  <outagePreventionJt:PMUVoltageMeter Location="/18" mRID="_2770322PMUMeter" VoltageAMag="44.652523040771484" VoltageAAng="24.683332443237305" VoltageNeutMag="9.07583236694336"/>
+  <outagePreventionJt:PMUVoltageMeter Location="/245" mRID="_2280201PMUMeter" VoltageAMag="42.52000045776367" VoltageAAng="23.329999923706055" VoltageNeutMag="8.331500053405762"/>
+  <outagePreventionJt:PMUVoltageMeter Location="/48" mRID="_1579322PMUMeter" VoltageAMag="43.575653076171875" VoltageAAng="23.99993324279785" VoltageNeutMag="8.699963569641113"/>
+  <outagePreventionJt:Location Position="/237"/>
+  <outagePreventionJt:ControlArea mRID="AmprionControlArea"/>
+  <outagePreventionJt:PrivateMeterVoltage ServiceDeliveryPoint="/135" ID="4b8eec8a-96e6-4d4d-a918-72ad867cec52" VoltageA="40.5" VoltageB="0.1" VoltageC="0.1"/>
+  <outagePreventionJt:PositionPoint xPosition="x" yPosition="y" zPosition="z"/>
+  <outagePreventionJt:Location Position="/173"/>
+  <outagePreventionJt:PMUVoltageMeter Location="/241" mRID="_5288322PMUMeter" VoltageAMag="42.0" VoltageAAng="23.0" VoltageNeutMag="8.149999618530273"/>
+  <outagePreventionJt:PrivateMeterVoltage ServiceDeliveryPoint="/211" ID="23617ef5-4fff-4e81-86af-952e5c3d3ba9" VoltageA="40.0"/>
+  <outagePreventionJt:PMUVoltageMeter Location="/158" mRID="_7943201PMUMeter" VoltageAMag="43.04520034790039" VoltageAAng="23.663299560546875" VoltageNeutMag="8.514815330505371"/>
+  <outagePreventionJt:PMUVoltageMeter Location="/66" mRID="_5309322PMUMeter" VoltageAMag="42.52000045776367" VoltageAAng="23.329999923706055" VoltageNeutMag="8.331500053405762"/>
+  <outagePreventionJt:ServiceDeliveryPoint/>
+  <outagePreventionJt:Location Position="/204"/>
+  <outagePreventionJt:ServiceDeliveryPoint/>
+  <outagePreventionJt:Location Position="/198"/>
+  <outagePreventionJt:Location Position="/12"/>
+  <outagePreventionJt:PMUVoltageMeter Location="/163" mRID="_4783322PMUMeter" VoltageAMag="44.652523040771484" VoltageAAng="24.683332443237305" VoltageNeutMag="9.07583236694336"/>
+  <outagePreventionJt:PMUVoltageMeter Location="/57" mRID="_4656322PMUMeter" VoltageAMag="42.0" VoltageAAng="23.0" VoltageNeutMag="8.149999618530273"/>
+  <outagePreventionJt:PositionPoint xPosition="x" yPosition="y" zPosition="z"/>
+  <outagePreventionJt:PositionPoint xPosition="x" yPosition="y" zPosition="z"/>
+  <outagePreventionJt:PMUVoltageMeter Location="/149" mRID="_1660201PMUMeter" VoltageAMag="43.04520034790039" VoltageAAng="23.663299560546875" VoltageNeutMag="8.514815330505371"/>
+  <outagePreventionJt:Location Position="/119"/>
+  <outagePreventionJt:PMUVoltageMeter Location="/296" mRID="_3196322PMUMeter" VoltageAMag="45.75103759765625" VoltageAAng="25.380468368530273" VoltageNeutMag="9.459257125854492"/>
+  <outagePreventionJt:Location Position="/304"/>
+  <outagePreventionJt:PositionPoint xPosition="x" yPosition="y" zPosition="z"/>
+  <outagePreventionJt:Location Position="/150"/>
+  <outagePreventionJt:PMUVoltageMeter Location="/259" mRID="_50365201PMUMeter" VoltageAMag="43.04520034790039" VoltageAAng="23.663299560546875" VoltageNeutMag="8.514815330505371"/>
+  <outagePreventionJt:Location Position="/121"/>
+  <outagePreventionJt:Location Position="/168" PowerSystemResources="/152"/>
+  <outagePreventionJt:PositionPoint xPosition="x" yPosition="y" zPosition="z"/>
+  <outagePreventionJt:PositionPoint xPosition="x" yPosition="y" zPosition="z"/>
+  <outagePreventionJt:PositionPoint xPosition="x" yPosition="y" zPosition="z"/>
+  <outagePreventionJt:PrivateMeterVoltage ServiceDeliveryPoint="/143" ID="4f67ca58-9c60-494b-9638-c5cd01907f07" VoltageA="40.5" VoltageB="0.1" VoltageC="0.1"/>
+  <outagePreventionJt:Location Position="/262"/>
+  <outagePreventionJt:PMUVoltageMeter Location="/311" mRID="_8268201PMUMeter" VoltageAMag="42.0" VoltageAAng="23.0" VoltageNeutMag="8.149999618530273"/>
+  <outagePreventionJt:PrivateMeterVoltage ServiceDeliveryPoint="/276" ID="2654160a-725f-41e9-b798-6ee16931d2eb" VoltageA="40.0"/>
+  <outagePreventionJt:PMUVoltageMeter Location="/325" mRID="_1577322PMUMeter" VoltageAMag="48.01475143432617" VoltageAAng="26.817058563232422" VoltageNeutMag="10.249381065368652"/>
+  <outagePreventionJt:ControlArea mRID="Hertz50ControlArea"/>
+  <outagePreventionJt:PositionPoint xPosition="x" yPosition="y" zPosition="z"/>
+  <outagePreventionJt:PositionPoint xPosition="x" yPosition="y" zPosition="z"/>
+  <outagePreventionJt:PositionPoint xPosition="x" yPosition="y" zPosition="z"/>
+  <outagePreventionJt:Location Position="/2"/>
+  <outagePreventionJt:PositionPoint xPosition="x" yPosition="y" zPosition="z"/>
+  <outagePreventionJt:Location Position="/258"/>
+  <outagePreventionJt:PositionPoint xPosition="x" yPosition="y" zPosition="z"/>
+  <outagePreventionJt:Terminal TieFlow="/56"/>
+  <outagePreventionJt:PowerSystemResource/>
+  <outagePreventionJt:PrivateMeterVoltage ServiceDeliveryPoint="/211" ID="fa9be5a2-a4f1-40a6-9fe2-bcaccad6b6a2" VoltageA="43.07600753005001" VoltageB="0.61520150601" VoltageC="0.61520150601"/>
+  <outagePreventionJt:PositionPoint xPosition="x" yPosition="y" zPosition="z"/>
+  <outagePreventionJt:PositionPoint xPosition="x" yPosition="y" zPosition="z"/>
+  <outagePreventionJt:PowerSystemResource/>
+  <outagePreventionJt:PMUVoltageMeter Location="/320" mRID="_4509322PMUMeter" VoltageAMag="42.0" VoltageAAng="23.0" VoltageNeutMag="8.149999618530273"/>
+  <outagePreventionJt:PMUVoltageMeter Location="/214" mRID="_1937322PMUMeter" VoltageAMag="44.11140823364258" VoltageAAng="24.339933395385742" VoltageNeutMag="8.886962890625"/>
+  <outagePreventionJt:Location Position="/247" PowerSystemResources="/59"/>
+  <outagePreventionJt:PMUVoltageMeter Location="/301" mRID="_5722322PMUMeter" VoltageAMag="42.0" VoltageAAng="23.0" VoltageNeutMag="8.149999618530273"/>
+  <outagePreventionJt:PositionPoint xPosition="x" yPosition="y" zPosition="z"/>
+  <outagePreventionJt:PMUVoltageMeter Location="/184" mRID="_456201PMUMeter" VoltageAMag="42.0" VoltageAAng="23.0" VoltageNeutMag="8.149999618530273"/>
+  <outagePreventionJt:PositionPoint xPosition="x" yPosition="y" zPosition="z"/>
+  <outagePreventionJt:ServiceDeliveryPoint/>
+  <outagePreventionJt:Location Position="/132"/>
+  <outagePreventionJt:PMUVoltageMeter Location="/308" mRID="_5674322PMUMeter" VoltageAMag="42.52000045776367" VoltageAAng="23.329999923706055" VoltageNeutMag="8.331500053405762"/>
+  <outagePreventionJt:Location Position="/194"/>
+  <outagePreventionJt:PMUVoltageMeter Location="/202" mRID="_5256322PMUMeter" VoltageAMag="43.04520034790039" VoltageAAng="23.663299560546875" VoltageNeutMag="8.514815330505371"/>
+  <outagePreventionJt:PrivateMeterVoltage ServiceDeliveryPoint="/143" ID="9bf1b9dd-a1f8-4c10-9348-260f0ec4f05d" VoltageA="43.07600753005001" VoltageB="0.61520150601" VoltageC="0.61520150601"/>
+  <outagePreventionJt:PositionPoint xPosition="x" yPosition="y" zPosition="z"/>
+  <outagePreventionJt:PositionPoint xPosition="x" yPosition="y" zPosition="z"/>
+  <outagePreventionJt:PositionPoint xPosition="x" yPosition="y" zPosition="z"/>
+  <outagePreventionJt:PMUVoltageMeter Location="/139" mRID="_2046322PMUMeter" VoltageAMag="43.575653076171875" VoltageAAng="23.99993324279785" VoltageNeutMag="8.699963569641113"/>
+  <outagePreventionJt:PMUVoltageMeter Location="/53" mRID="_3803201PMUMeter" VoltageAMag="42.0" VoltageAAng="23.0" VoltageNeutMag="8.149999618530273"/>
+  <outagePreventionJt:PowerSystemResource/>
+  <outagePreventionJt:PositionPoint xPosition="x" yPosition="y" zPosition="z"/>
+  <outagePreventionJt:PrivateMeterVoltage ServiceDeliveryPoint="/199" ID="c8411147-2f9e-4042-af1e-ec8d70fbe68a" VoltageA="41.005" VoltageB="0.201" VoltageC="0.201"/>
+  <outagePreventionJt:PMUVoltageMeter Location="/39" mRID="_2302201PMUMeter" VoltageAMag="43.04520034790039" VoltageAAng="23.663299560546875" VoltageNeutMag="8.514815330505371"/>
+  <outagePreventionJt:PositionPoint xPosition="x" yPosition="y" zPosition="z"/>
+  <outagePreventionJt:PositionPoint xPosition="x" yPosition="y" zPosition="z"/>
+  <outagePreventionJt:Location Position="/236"/>
+  <outagePreventionJt:PMUVoltageMeter Location="/155" mRID="_3305322PMUMeter" VoltageAMag="44.11140823364258" VoltageAAng="24.339933395385742" VoltageNeutMag="8.886962890625"/>
+  <outagePreventionJt:Location/>
+  <outagePreventionJt:Location PowerSystemResources="/328"/>
+  <outagePreventionJt:Location Position="/70"/>
+  <outagePreventionJt:PMUVoltageMeter Location="/17" mRID="_3428201PMUMeter" VoltageAMag="42.0" VoltageAAng="23.0" VoltageNeutMag="8.149999618530273"/>
+  <outagePreventionJt:PrivateMeterVoltage ServiceDeliveryPoint="/146" ID="faf26525-4747-4e55-a43b-80d22192e3ba" VoltageA="42.55050250500001" VoltageB="0.510100501" VoltageC="0.510100501"/>
+  <outagePreventionJt:Location/>
+  <outagePreventionJt:Location Position="/29"/>
+  <outagePreventionJt:PMUVoltageMeter Location="/277" mRID="_1233322PMUMeter" VoltageAMag="42.0" VoltageAAng="23.0" VoltageNeutMag="8.149999618530273"/>
+  <outagePreventionJt:Location Position="/167" PowerSystemResources="/321"/>
+  <outagePreventionJt:PositionPoint xPosition="x" yPosition="y" zPosition="z"/>
+  <outagePreventionJt:PMUVoltageMeter Location="/40" mRID="_7828201PMUMeter" VoltageAMag="42.0" VoltageAAng="23.0" VoltageNeutMag="8.149999618530273"/>
+  <outagePreventionJt:PMUVoltageMeter Location="/108" mRID="_2009322PMUMeter" VoltageAMag="42.0" VoltageAAng="23.0" VoltageNeutMag="8.149999618530273"/>
+  <outagePreventionJt:PMUVoltageMeter Location="/230" mRID="_50313201PMUMeter" VoltageAMag="42.0" VoltageAAng="23.0" VoltageNeutMag="8.149999618530273"/>
+  <outagePreventionJt:Location Position="/5" PowerSystemResources="/46"/>
+  <outagePreventionJt:Location Position="/20"/>
+  <outagePreventionJt:PMUVoltageMeter Location="/3" mRID="_1492322PMUMeter" VoltageAMag="43.04520034790039" VoltageAAng="23.663299560546875" VoltageNeutMag="8.514815330505371"/>
+  <outagePreventionJt:Location Position="/332"/>
+  <outagePreventionJt:PositionPoint xPosition="x" yPosition="y" zPosition="z"/>
+  <outagePreventionJt:PositionPoint xPosition="x" yPosition="y" zPosition="z"/>
+  <outagePreventionJt:PositionPoint xPosition="x" yPosition="y" zPosition="z"/>
+  <outagePreventionJt:Location Position="/83" PowerSystemResources="/109"/>
+  <outagePreventionJt:Location Position="/74" PowerSystemResources="/125"/>
+  <outagePreventionJt:PMUVoltageMeter mRID="_10887201PMUMeter" VoltageAMag="43.04520034790039" VoltageAAng="23.663299560546875" VoltageNeutMag="8.514815330505371"/>
+  <outagePreventionJt:PositionPoint xPosition="x" yPosition="y" zPosition="z"/>
+  <outagePreventionJt:PositionPoint xPosition="x" yPosition="y" zPosition="z"/>
+  <outagePreventionJt:Location Position="/284"/>
+  <outagePreventionJt:PowerSystemResource/>
+  <outagePreventionJt:Location Position="/62"/>
+  <outagePreventionJt:PMUVoltageMeter Location="/36" mRID="_6266201PMUMeter" VoltageAMag="44.11140823364258" VoltageAAng="24.339933395385742" VoltageNeutMag="8.886962890625"/>
+  <outagePreventionJt:PMUVoltageMeter Location="/179" mRID="_3190322PMUMeter" VoltageAMag="42.0" VoltageAAng="23.0" VoltageNeutMag="8.149999618530273"/>
+  <outagePreventionJt:Location Position="/249" PowerSystemResources="/268"/>
+  <outagePreventionJt:PMUVoltageMeter Location="/271" mRID="_2820322PMUMeter" VoltageAMag="43.575653076171875" VoltageAAng="23.99993324279785" VoltageNeutMag="8.699963569641113"/>
+  <outagePreventionJt:Location Position="/314"/>
+  <outagePreventionJt:PowerSystemResource/>
+  <outagePreventionJt:Location Position="/267"/>
+  <outagePreventionJt:PMUVoltageMeter Location="/224" mRID="_4849322PMUMeter" VoltageAMag="42.52000045776367" VoltageAAng="23.329999923706055" VoltageNeutMag="8.331500053405762"/>
+  <outagePreventionJt:PositionPoint xPosition="x" yPosition="y" zPosition="z"/>
+  <outagePreventionJt:PositionPoint xPosition="x" yPosition="y" zPosition="z"/>
+  <outagePreventionJt:PositionPoint xPosition="x" yPosition="y" zPosition="z"/>
+</xmi:XMI>

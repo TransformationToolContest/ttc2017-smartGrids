@@ -1,0 +1,69 @@
+#using rgse.ttc17.emoflon.tgg.task2.*
+#using AttrCondDefLibrary.*
+
+#rule EnergyConsumer #with rgse.ttc17.emoflon.tgg.task2
+
+#source { 
+	pair : MeterAssetPhysicalDevicePair {
+		-a->asset
+	}
+	asset : MeterAsset {
+		-ServiceDeliveryPoint->srcDeliver
+	}
+	srcDeliver : ServiceDeliveryPoint {
+		++-EnergyConsumer->srcConsumer
+	}
+	++srcConsumer : EnergyConsumer {
+		
+	}
+}
+
+#target {
+	trgDeliver : ServiceDeliveryPoint {
+		++-EnergyConsumer->trgConsumer
+	}
+	++ trgConsumer : EnergyConsumer{
+		
+	}
+	
+}
+
+#correspondence {
+	deliverToDeliver : ServiceDeliveryPointToServiceDeliveryPoint {
+		#src->srcDeliver
+		#trg->trgDeliver
+	}
+	++consumerToConsumer : EnergyConsumerToEnergyConsumer {
+		#src->srcConsumer
+		#trg->trgConsumer
+	}
+}
+
+#attributeConditions {
+	eq(srcConsumer.mRID, trgConsumer.mRID)
+}
+
+#rule ConformLoad #extends EnergyConsumer #with rgse.ttc17.emoflon.tgg.task2
+
+#source { 
+	++srcConsumer : ConformLoad { }
+}
+#target { 
+	++trgConsumer : ConformLoad { }
+}
+
+#rule NonConformLoad #extends EnergyConsumer #with rgse.ttc17.emoflon.tgg.task2
+
+#source { 
+	++srcConsumer : NonConformLoad { }
+
+}
+#target { 
+	++trgConsumer : NonConformLoad { }
+}
+
+#rule StationSupply #extends EnergyConsumer #with rgse.ttc17.emoflon.tgg.task2
+
+#source { 
+	++srcConsumer : StationSupply {	}
+}

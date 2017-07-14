@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="outagePreventionMjtrace" nsURI="http://www.transformation-tool-contest.eu/2017/smartGrids/VoltagePhaseMeasurements.trace"
+    nsPrefix="outagePreventionMjt">
+  <eClassifiers xsi:type="ecore:EClass" name="join_MeterAsset_MMXU_PMUVoltageMeter">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="left" ordered="false" eType="ecore:EClass schema.ecore#//IEC61968/Metering/MeterAsset"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="right" ordered="false"
+        eType="ecore:EClass 61850.ecore#//LNNodes/LNGroupM/MMXU"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="target" ordered="false"
+        eType="ecore:EClass outagePrevention-target.ecore#//PMUVoltageMeter"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="join_MeterAsset_PhysicalDevice_PrivateMeterVoltage">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="left" ordered="false" eType="ecore:EClass schema.ecore#//IEC61968/Metering/MeterAsset"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="right" ordered="false"
+        eType="ecore:EClass COSEM.ecore#//PhysicalDevice"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="target" ordered="false"
+        eType="ecore:EClass outagePrevention-target.ecore#//PrivateMeterVoltage"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ref_Location_Location_Location">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="source" ordered="false"
+        eType="ecore:EClass schema.ecore#//IEC61968/Common/Location"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="target" ordered="false"
+        eType="ecore:EClass outagePrevention-target.ecore#//Location"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ref_PositionPoint_PositionPoint_Position">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="source" ordered="false"
+        eType="ecore:EClass schema.ecore#//IEC61968/Common/PositionPoint"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="target" ordered="false"
+        eType="ecore:EClass outagePrevention-target.ecore#//PositionPoint"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ref_PowerSystemResource_PowerSystemResource_PowerSystemResources">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="source" ordered="false"
+        eType="ecore:EClass schema.ecore#//IEC61970/Core/PowerSystemResource"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="target" ordered="false"
+        eType="ecore:EClass outagePrevention-target.ecore#//PowerSystemResource"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ref_Terminal_Terminal_Terminals">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="source" ordered="false"
+        eType="ecore:EClass schema.ecore#//IEC61970/Core/Terminal"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="target" ordered="false"
+        eType="ecore:EClass outagePrevention-target.ecore#//Terminal"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ref_TieFlow_TieFlow_TieFlow">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="source" ordered="false"
+        eType="ecore:EClass schema.ecore#//IEC61970/ControlArea/TieFlow"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="target" ordered="false"
+        eType="ecore:EClass outagePrevention-target.ecore#//TieFlow"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ref_ControlArea_ControlArea_ControlArea">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="source" ordered="false"
+        eType="ecore:EClass schema.ecore#//IEC61970/ControlArea/ControlArea"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="target" ordered="false"
+        eType="ecore:EClass outagePrevention-target.ecore#//ControlArea"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ref_ServiceDeliveryPoint_ServiceDeliveryPoint_ServiceDeliveryPoint">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="source" ordered="false"
+        eType="ecore:EClass schema.ecore#//IEC61968/Metering/ServiceDeliveryPoint"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="target" ordered="false"
+        eType="ecore:EClass outagePrevention-target.ecore#//ServiceDeliveryPoint"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ref_EnergyConsumer_EnergyConsumer_EnergyConsumer">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="source" ordered="false"
+        eType="ecore:EClass schema.ecore#//IEC61970/Wires/EnergyConsumer"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="target" ordered="false"
+        eType="ecore:EClass outagePrevention-target.ecore#//EnergyConsumer"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ref_ConformLoadGroup_ConformLoadGroup_LoadGroup">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="source" ordered="false"
+        eType="ecore:EClass schema.ecore#//IEC61970/LoadModel/ConformLoadGroup"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="target" ordered="false"
+        eType="ecore:EClass outagePrevention-target.ecore#//ConformLoadGroup"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ref_SubLoadArea_SubLoadArea_SubLoadArea">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="source" ordered="false"
+        eType="ecore:EClass schema.ecore#//IEC61970/LoadModel/SubLoadArea"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="target" ordered="false"
+        eType="ecore:EClass outagePrevention-target.ecore#//SubLoadArea"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ref_LoadArea_LoadArea_LoadArea">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="source" ordered="false"
+        eType="ecore:EClass schema.ecore#//IEC61970/LoadModel/LoadArea"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="target" ordered="false"
+        eType="ecore:EClass outagePrevention-target.ecore#//LoadArea"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ref_NonConformLoadGroup_NonConformLoadGroup_LoadGroup">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="source" ordered="false"
+        eType="ecore:EClass schema.ecore#//IEC61970/LoadModel/NonConformLoadGroup"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="target" ordered="false"
+        eType="ecore:EClass outagePrevention-target.ecore#//NonConformLoadGroup"/>
+  </eClassifiers>
+</ecore:EPackage>

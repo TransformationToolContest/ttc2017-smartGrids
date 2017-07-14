@@ -1,0 +1,51 @@
+#using rgse.ttc17.emoflon.tgg.task2.*
+#using AttrCondDefLibrary.*
+
+#rule PositionPoint  #with rgse.ttc17.emoflon.tgg.task2
+
+#source {
+	pair : MeterAssetMMXUPair{
+		-a->meter
+	}
+	meter : MeterAsset {
+		-Location->location
+	}
+	location : Location {
+		++-Position->positionPoint
+	}
+	++positionPoint : PositionPoint {
+	}
+}
+
+#target {
+	trgLocation : Location {
+		++-Position->trgPositionPoint
+	}
+	++trgPositionPoint : PositionPoint {
+	}
+}
+
+#correspondence {
+	++positionCorr : PositionPointToPositionPoint {
+		#src->positionPoint
+		#trg->trgPositionPoint
+	}
+	locationCorr : LocationToLocation {
+		#src->location
+		#trg->trgLocation
+	}
+}
+
+#attributeConditions {
+	eq(positionPoint.xPosition, trgPositionPoint.xPosition)
+	eq(positionPoint.yPosition, trgPositionPoint.yPosition)
+	eq(positionPoint.zPosition, trgPositionPoint.zPosition)
+}
+
+#rule GmlPosition #extends PositionPoint  #with rgse.ttc17.emoflon.tgg.task2
+
+#source {
+	++positionPoint : GmlPosition {
+	}
+}
+

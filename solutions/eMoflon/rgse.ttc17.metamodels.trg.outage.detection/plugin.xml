@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+
+<!--
+-->
+
+<plugin>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated outageDetection-target -->
+      <package
+            uri="platform:/plugin/rgse.ttc17.metamodels.trg.outage.detection/model/outageDetection-target.ecore"
+            class="outageDetectionJointarget.OutageDetectionJointargetPackage"
+            genModel="model/outageDetection-target.genmodel"/>
+   </extension>
+   <extension
+         point="org.eclipse.emf.ecore.uri_mapping">
+      <mapping
+            source="http://www.transformation-tool-contest.eu/2017/smartGrids/ConsumerReachabilityView"
+            target="platform:/plugin/rgse.ttc17.metamodels.trg.outage.detection/model/outageDetection-target.ecore">
+      </mapping>
+   </extension>
+
+</plugin>

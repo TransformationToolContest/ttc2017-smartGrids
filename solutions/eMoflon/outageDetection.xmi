@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="ASCII"?>
+<xmi:XMI xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:outageDtJt="platform:/plugin/rgse.ttc17.metamodels.trg.outage.detection/model/outageDetection-target.ecore">
+  <outageDtJt:Location Position="/32"/>
+  <outageDtJt:EnergyConsumer Location="/21" Reachability="1" PowerA="300.0"/>
+  <outageDtJt:EnergyConsumer Location="/41" PowerA="306.23100000000005"/>
+  <outageDtJt:EnergyConsumer Location="/56" PowerA="319.0712466863102"/>
+  <outageDtJt:PositionPoint xPosition="x" yPosition="y" zPosition="z"/>
+  <outageDtJt:EnergyConsumer Location="/50" Reachability="1" PowerA="315.81311553100016"/>
+  <outageDtJt:EnergyConsumer Location="/49" Reachability="1" PowerA="300.0"/>
+  <outageDtJt:PositionPoint xPosition="x" yPosition="y" zPosition="z"/>
+  <outageDtJt:Location Position="/42"/>
+  <outageDtJt:EnergyConsumer Location="/62" Reachability="1" PowerA="306.23100000000005"/>
+  <outageDtJt:PositionPoint xPosition="x" yPosition="y" zPosition="z"/>
+  <outageDtJt:Location Position="/54"/>
+  <outageDtJt:PositionPoint xPosition="x" yPosition="y" zPosition="z"/>
+  <outageDtJt:EnergyConsumer Location="/8" PowerA="306.23100000000005"/>
+  <outageDtJt:EnergyConsumer Location="/40" Reachability="1" PowerA="300.0"/>
+  <outageDtJt:PositionPoint xPosition="x" yPosition="y" zPosition="z"/>
+  <outageDtJt:PositionPoint xPosition="x" yPosition="y" zPosition="z"/>
+  <outageDtJt:Location Position="/57"/>
+  <outageDtJt:PositionPoint xPosition="x" yPosition="y" zPosition="z"/>
+  <outageDtJt:PositionPoint xPosition="x" yPosition="y" zPosition="z"/>
+  <outageDtJt:Location Position="/10"/>
+  <outageDtJt:Location Position="/68"/>
+  <outageDtJt:PositionPoint xPosition="x" yPosition="y" zPosition="z"/>
+  <outageDtJt:EnergyConsumer Location="/51" Reachability="1" PowerA="353.4993799263471"/>
+  <outageDtJt:PositionPoint xPosition="x" yPosition="y" zPosition="z"/>
+  <outageDtJt:PositionPoint xPosition="x" yPosition="y" zPosition="z"/>
+  <outageDtJt:PositionPoint xPosition="x" yPosition="y" zPosition="z"/>
+  <outageDtJt:EnergyConsumer Location="/33" Reachability="1" PowerA="315.81311553100016"/>
+  <outageDtJt:Location Position="/19"/>
+  <outageDtJt:EnergyConsumer Location="/64" Reachability="1" PowerA="300.0"/>
+  <outageDtJt:Location Position="/12"/>
+  <outageDtJt:EnergyConsumer Location="/20" Reachability="1" PowerA="306.23100000000005"/>
+  <outageDtJt:PositionPoint xPosition="x" yPosition="y" zPosition="z"/>
+  <outageDtJt:Location Position="/39"/>
+  <outageDtJt:EnergyConsumer Location="/35" PowerA="306.23100000000005"/>
+  <outageDtJt:Location Position="/26"/>
+  <outageDtJt:EnergyConsumer Location="/0" Reachability="1" PowerA="303.1"/>
+  <outageDtJt:EnergyConsumer Location="/58" Reachability="1" PowerA="306.23100000000005"/>
+  <outageDtJt:Location Position="/46"/>
+  <outageDtJt:PositionPoint xPosition="x" yPosition="y" zPosition="z"/>
+  <outageDtJt:Location Position="/22"/>
+  <outageDtJt:Location Position="/43"/>
+  <outageDtJt:PositionPoint xPosition="x" yPosition="y" zPosition="z"/>
+  <outageDtJt:PositionPoint xPosition="x" yPosition="y" zPosition="z"/>
+  <outageDtJt:Location Position="/15"/>
+  <outageDtJt:EnergyConsumer Location="/17" Reachability="1" PowerA="300.0"/>
+  <outageDtJt:PositionPoint xPosition="x" yPosition="y" zPosition="z"/>
+  <outageDtJt:EnergyConsumer Location="/67" Reachability="1" PowerA="306.23100000000005"/>
+  <outageDtJt:EnergyConsumer Location="/30" PowerA="303.1"/>
+  <outageDtJt:Location Position="/24"/>
+  <outageDtJt:Location Position="/63"/>
+  <outageDtJt:Location Position="/25"/>
+  <outageDtJt:EnergyConsumer Location="/60" Reachability="1" PowerA="300.0"/>
+  <outageDtJt:EnergyConsumer Location="/44" Reachability="1" PowerA="300.0"/>
+  <outageDtJt:PositionPoint xPosition="x" yPosition="y" zPosition="z"/>
+  <outageDtJt:PositionPoint xPosition="x" yPosition="y" zPosition="z"/>
+  <outageDtJt:Location Position="/59"/>
+  <outageDtJt:PositionPoint xPosition="x" yPosition="y" zPosition="z"/>
+  <outageDtJt:Location Position="/18"/>
+  <outageDtJt:PositionPoint xPosition="x" yPosition="y" zPosition="z"/>
+  <outageDtJt:Location Position="/4"/>
+  <outageDtJt:EnergyConsumer Location="/11" Reachability="1" PowerA="300.0"/>
+  <outageDtJt:Location Position="/16"/>
+  <outageDtJt:PositionPoint xPosition="x" yPosition="y" zPosition="z"/>
+  <outageDtJt:Location Position="/55"/>
+  <outageDtJt:EnergyConsumer Location="/28" PowerA="319.0712466863102"/>
+  <outageDtJt:EnergyConsumer Location="/38" Reachability="1" PowerA="303.1"/>
+  <outageDtJt:Location Position="/7"/>
+  <outageDtJt:PositionPoint xPosition="x" yPosition="y" zPosition="z"/>
+</xmi:XMI>

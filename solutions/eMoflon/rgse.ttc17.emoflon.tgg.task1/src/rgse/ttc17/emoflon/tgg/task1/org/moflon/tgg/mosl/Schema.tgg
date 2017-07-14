@@ -1,0 +1,48 @@
+// Add imports here
+#import "platform:/plugin/rgse.ttc17.metamodels.src/model/Gluemodel.ecore"
+#import "platform:/plugin/rgse.ttc17.metamodels.trg.outage.detection/model/outageDetection-target.ecore"
+
+#schema rgse.ttc17.emoflon.tgg.task1
+	
+#source {
+	gluemodel
+}
+
+#target { 
+	outageDetectionJointarget
+} 
+
+#correspondence {
+	ControlAreaToEnergyConsumer {
+		#src->ControlArea
+		#trg->EnergyConsumer
+	}
+	PositionPointToPositionPoint {
+		#src-> PositionPoint
+		#trg-> PositionPoint
+	}
+	
+	LocationToLocation {
+		#src->Location
+		#trg->Location
+	}
+	
+	MeterAssetToEnergyConsumer{
+		#src->MeterAsset
+		#trg->EnergyConsumer
+	}
+	PhysicalDeviceToEnergyConsumer{
+		#src->PhysicalDevice
+		#trg->EnergyConsumer
+	}
+	
+}
+
+#attributeConditions {
+	
+	#userDefined
+	castBooleanToInteger(0:EBoolean,1:EInt){
+		#sync: BB, BF
+		#gen:
+	}
+}

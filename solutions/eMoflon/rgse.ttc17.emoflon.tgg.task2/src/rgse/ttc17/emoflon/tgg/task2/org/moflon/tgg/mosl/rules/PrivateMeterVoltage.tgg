@@ -1,0 +1,41 @@
+#using rgse.ttc17.emoflon.tgg.task2.*
+#using AttrCondDefLibrary.*
+
+#rule PrivateMeterVoltage #with rgse.ttc17.emoflon.tgg.task2
+
+#source { 
+	++ pair : MeterAssetPhysicalDevicePair {
+		++-a->asset
+		++-b->device
+	}
+	device : PhysicalDevice {
+		-ElectricityValues->values
+	}	
+	values : ElectricityValues {	
+	}
+	asset : MeterAsset {
+	}
+}
+
+#target {
+	++ meter : PrivateMeterVoltage {	
+	}
+}
+
+#correspondence {
+	++ assetToMeter : MeterAssetToPrivateMeterVoltage {
+		#src->asset
+		#trg->meter
+	}
+	++ mmxuToMeter : PhysicalDeviceToPrivateMeterVoltage {
+		#src->device
+		#trg->meter
+	}
+}
+
+#attributeConditions {
+	eq(device.ID, meter.ID)
+	eq(values.VoltageL1, meter.VoltageA)
+	eq(values.VoltageL2, meter.VoltageB)
+	eq(values.VoltageL3, meter.VoltageC)
+}

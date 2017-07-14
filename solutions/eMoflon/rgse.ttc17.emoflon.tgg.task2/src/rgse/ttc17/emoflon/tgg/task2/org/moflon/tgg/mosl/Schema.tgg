@@ -1,0 +1,98 @@
+// Add imports here
+#import "platform:/plugin/rgse.ttc17.metamodels.src/model/Gluemodel.ecore"
+#import "platform:/plugin/rgse.ttc17.metamodels.trg.outage.prevention/model/outagePrevention-target.ecore"
+
+#schema rgse.ttc17.emoflon.tgg.task2
+	
+#source {
+	gluemodel
+}
+
+#target { 
+	outagePreventionJointarget
+} 
+
+#correspondence {
+	MeterAssetToMMXUToVoltageMeter {
+		#src->MeterAssetMMXUPair
+		#trg->PMUVoltageMeter
+	}
+	MeterAssetToPMUVoltageMeter {
+		#src->MeterAsset
+		#trg->PMUVoltageMeter
+	}
+	
+	MMXUToPMUVoltageMeter {
+		#src->MMXU
+		#trg->PMUVoltageMeter
+	}
+	
+	LocationToLocation {
+		#src->Location
+		#trg->Location
+	}
+	
+	PositionPointToPositionPoint {
+		#src->PositionPoint
+		#trg->PositionPoint
+	}
+	
+	PowerSystemResourceToPowerSystemResource {
+		#src->PowerSystemResource
+		#trg->PowerSystemResource
+	}
+	
+	TerminalToTerminal {
+		#src->Terminal
+		#trg->Terminal
+	}
+	
+	TieFlowToTieFlow {
+		#src->TieFlow
+		#trg->TieFlow
+	}
+	ControlAreaToControlSrea {
+		#src->ControlArea
+		#trg->ControlArea
+	}
+	MeterAssetToPrivateMeterVoltage {
+		#src->MeterAsset
+		#trg->PrivateMeterVoltage
+	}
+	PhysicalDeviceToPrivateMeterVoltage {
+		#src->PhysicalDevice
+		#trg->PrivateMeterVoltage
+	}
+	ServiceDeliveryPointToServiceDeliveryPoint {
+		#src->ServiceDeliveryPoint
+		#trg->ServiceDeliveryPoint
+	}
+	EnergyConsumerToEnergyConsumer {
+		#src->EnergyConsumer
+		#trg->EnergyConsumer
+	}
+	ConformLoadGroupToConformLoadGroup {
+		#src->ConformLoadGroup
+		#trg->ConformLoadGroup
+	}
+	NonConformLoadGroupNonToConformLoadGroup {
+		#src->NonConformLoadGroup
+		#trg->NonConformLoadGroup
+	}
+	SubLoadAreaToSubLoadArea {
+		#src->SubLoadArea
+		#trg->SubLoadArea
+	}
+	LoadAreaToLoadArea {
+		#src->LoadArea
+		#trg->LoadArea
+	}
+}
+
+#attributeConditions {
+	#userDefined
+	eqFloatDouble(0:EFloat, 1:EDouble){
+		#sync: BB, BF
+		#gen:
+	}
+}

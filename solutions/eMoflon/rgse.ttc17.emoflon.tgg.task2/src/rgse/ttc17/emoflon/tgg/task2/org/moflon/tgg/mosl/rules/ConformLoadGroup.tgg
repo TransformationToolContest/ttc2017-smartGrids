@@ -1,0 +1,43 @@
+#using rgse.ttc17.emoflon.tgg.task2.*
+#using AttrCondDefLibrary.*
+
+#rule ConformLoadGroup #with rgse.ttc17.emoflon.tgg.task2
+
+#source { 
+	pair : MeterAssetPhysicalDevicePair {
+		-a->asset
+	}
+	asset : MeterAsset {
+		-ServiceDeliveryPoint->srcDeliver
+	}
+	srcDeliver : ServiceDeliveryPoint {
+		-EnergyConsumer->srcConsumer
+	}
+	srcConsumer : ConformLoad {
+		++-LoadGroup->srcGroup
+	}
+	++ srcGroup : ConformLoadGroup{
+	}
+}
+
+#target {
+	trgConsumer : ConformLoad {
+		++-LoadGroup->trgGroup
+	}
+	++trgGroup : ConformLoadGroup {
+	}
+}
+
+#correspondence {
+	++groupToGroup : ConformLoadGroupToConformLoadGroup {
+		#src->srcGroup
+		#trg->trgGroup
+	}
+	consumerToConsumer : EnergyConsumerToEnergyConsumer {
+		#src->srcConsumer
+		#trg->trgConsumer
+	}
+}
+
+#attributeConditions {
+}

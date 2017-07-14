@@ -1,0 +1,41 @@
+#using rgse.ttc17.emoflon.tgg.task2.*
+#using AttrCondDefLibrary.*
+
+#rule PowerSystemResource #with rgse.ttc17.emoflon.tgg.task2
+
+#source { 
+	pair : MeterAssetMMXUPair{
+		-a->meter
+	}
+	
+	meter : MeterAsset {
+		-Location->srcLocation
+	}
+	srcLocation : Location {
+		++ -PowerSystemResources->srcResource
+	}
+	srcResource : PowerSystemResource {
+	}
+}
+
+#target {
+	trgLocation : Location {
+		++-PowerSystemResources->trgResource
+	}
+	++ trgResource : PowerSystemResource {
+	}	
+}
+
+#correspondence {
+	locationToLocation : LocationToLocation {
+		#src->srcLocation
+		#trg->trgLocation
+	}
+	++resourceToResource : PowerSystemResourceToPowerSystemResource {
+		#src->srcResource
+		#trg->trgResource
+	}
+}
+
+#attributeConditions {
+}

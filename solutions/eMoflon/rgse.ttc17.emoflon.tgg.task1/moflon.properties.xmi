@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="ASCII"?>
+<org.moflon.core.propertycontainer:MoflonPropertiesContainer xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:org.moflon.core.propertycontainer="platform:/plugin/org.moflon.core.propertycontainer/model/Propertycontainer.ecore" projectName="rgse.ttc17.emoflon.tgg.task1">
+  <dependencies value="platform:/plugin/rgse.ttc17.metamodels.trg.outage.detection/model/outageDetection-target.ecore"/>
+  <metaModelProject MetaModelProjectName="NO_META_MODEL_PROJECT_NAME_SET_YET"/>
+  <replaceGenModel/>
+  <sdmCodegeneratorHandlerId value="DEMOCLES_REVERSE_NAVI"/>
+  <tGGBuildMode buildMode="FORWARD"/>
+  <importMappings key="platform:/plugin/rgse.ttc17.metamodels.src/model/Gluemodel.ecore" value="../../rgse.ttc17.metamodels.src/model/Gluemodel.ecore"/>
+  <additionalUsedGenPackages value="platform:/plugin/rgse.ttc17.metamodels.trg.outage.detection/model/outageDetection-target.genmodel"/>
+</org.moflon.core.propertycontainer:MoflonPropertiesContainer>

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+
+<!--
+-->
+
+<plugin>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated outagePrevention-target -->
+      <package
+            uri="platform:/plugin/rgse.ttc17.metamodels.trg.outage.prevention/model/outagePrevention-target.ecore"
+            class="outagePreventionJointarget.OutagePreventionJointargetPackage"
+            genModel="model/outagePrevention-target.genmodel"/>
+   </extension>
+   <extension
+         point="org.eclipse.emf.ecore.uri_mapping">
+      <mapping
+            source="http://www.transformation-tool-contest.eu/2017/smartGrids/VoltagePhaseMeasurements"
+            target="platform:/plugin/rgse.ttc17.metamodels.trg.outage.preventionn/model/outagePrevention-target.ecore">
+      </mapping>
+   </extension>
+
+</plugin>

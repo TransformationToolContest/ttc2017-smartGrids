@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<changes:ModelChangeSet
+    xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:changes="http://nmf.codeplex.com/changes"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore">
+  <changes xsi:type="changes:AttributeChange">
+    <feature
+        xsi:type="ecore:EReference"
+        href="../../../plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EGenericType/eRawType"/>
+  </changes>
+</changes:ModelChangeSet>

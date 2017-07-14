@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rgse.ttc17:Root
+    xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:rgse.ttc17="platform:/plugin/rgse.ttc17.metamodels.src/model/Gluemodel.ecore"
+    xsi:schemaLocation="platform:/plugin/rgse.ttc17.metamodels.src/model/Gluemodel.ecore Gluemodel.ecore">
+  <cim/>
+  <cosem>
+    <PhysicalDevice/>
+  </cosem>
+</rgse.ttc17:Root>

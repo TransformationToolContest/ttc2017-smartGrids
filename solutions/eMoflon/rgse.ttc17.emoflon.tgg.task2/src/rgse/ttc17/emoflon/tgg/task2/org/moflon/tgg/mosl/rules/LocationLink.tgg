@@ -1,0 +1,37 @@
+#using rgse.ttc17.emoflon.tgg.task2.*
+#using AttrCondDefLibrary.*
+
+#rule LocationLink #with rgse.ttc17.emoflon.tgg.task2
+
+#source { 
+	pair : MeterAssetMMXUPair {
+		-a->asset
+	}
+	asset : MeterAsset {
+		++-Location->location
+	}
+	location : Location {
+	}
+}
+
+#target {
+	consumer : PMUVoltageMeter {
+		++-Location->trgLocation
+	}
+	trgLocation : Location {
+	}
+}
+
+#correspondence {
+	assetToPMU : MeterAssetToPMUVoltageMeter {
+		#src->asset
+		#trg->consumer
+	}
+	locationCorr : LocationToLocation {
+		#src->location
+		#trg->trgLocation
+	}
+}
+
+#attributeConditions {
+}

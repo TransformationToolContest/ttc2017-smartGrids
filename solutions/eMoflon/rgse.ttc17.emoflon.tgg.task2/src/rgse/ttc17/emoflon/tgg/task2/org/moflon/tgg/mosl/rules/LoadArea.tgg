@@ -1,0 +1,49 @@
+#using rgse.ttc17.emoflon.tgg.task2.*
+#using AttrCondDefLibrary.*
+
+#rule LoadArea #with rgse.ttc17.emoflon.tgg.task2
+
+#source { 
+	pair : MeterAssetPhysicalDevicePair {
+		-a->asset
+	}
+	asset : MeterAsset {
+		-ServiceDeliveryPoint->srcDeliver
+	}
+	srcDeliver : ServiceDeliveryPoint {
+		-EnergyConsumer->srcConsumer
+	}
+	srcConsumer : ConformLoad {
+		-LoadGroup->srcGroup
+	}
+	srcGroup : ConformLoadGroup{
+		-SubLoadArea->srcArea
+	}
+	srcArea : SubLoadArea {
+		++-LoadArea->srcLoadArea
+	}
+	++ srcLoadArea : LoadArea {
+	}
+}
+
+#target {
+	trgArea : SubLoadArea {
+		++-LoadArea->trgLoadArea
+	}
+	++trgLoadArea : LoadArea {
+	}
+}
+
+#correspondence {
+	++laodToLoad : LoadAreaToLoadArea {
+		#src->srcLoadArea
+		#trg->trgLoadArea
+	}
+	areaToArea : SubLoadAreaToSubLoadArea {
+		#src->srcArea
+		#trg->trgArea
+	}
+}
+
+#attributeConditions {
+}

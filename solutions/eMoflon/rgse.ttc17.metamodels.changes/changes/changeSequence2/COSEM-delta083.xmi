@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<changes:ModelChangeSet xmi:version="2.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xmi="http://www.omg.org/XMI" xmlns:changes="http://nmf.codeplex.com/changes" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore">
+  <changes xsi:type="changes:CompositionListInsertion" index="22" affectedElement="COSEM-out000.xmi#//" feature="ecore:EReference http://www.transformation-tool-contest.eu/2017/smartGrids/cosem#//COSEMRoot/PhysicalDevice">
+    <addedElement xmlns:cosem="http://www.transformation-tool-contest.eu/2017/smartGrids/cosem" xsi:type="cosem:PhysicalDevice" ID="6b0aa50c-3d0e-40f3-a0d4-45e0d4b6e9c8">
+      <AutoConnect Connection="True" logical_name="55e2d598-aaae-47e6-8c63-595cea84f8d0" OBIScode="0d952deb-49b6-454f-8fbb-d1343cd28be4" />
+      <ElectricityValues ActivePowerpL1="45" ActivePowerpall="45" ActivePowermL1="230" ActivePowermall="230" ReactivePowerpL1="10" ReactivePowerpall="10" ReactivePowermL1="32" ReactivePowermall="32" ReactivePowerQIall="22" ReactivePowerQIIIL1="22" ApparentPowerpL1="68" ApparentPowerpAll="68" ApparentPowermL1="303.1" ApparentPowermL2="0.1" ApparentPowermL3="0.1" ApparentPowermAll="300" CurrentL1="382" CurrentAll="382" VoltageL1="40.5" VoltageL2="0.1" VoltageL3="0.1" VoltageAll="40" SupplyFrequencyL1="50" SupplyFrequencyL2="50" SupplyFrequencyL3="50" SupplyFrequencyAll="50" Angles="90" logical_name="0f0dbaab-de54-4de2-9fbb-9c4c236f88ea" />
+    </addedElement>
+  </changes>
+  <changes xsi:type="changes:AttributeChange" newValue="False" oldValue="True" affectedElement="COSEM-out000.xmi#//@PhysicalDevice.3/@AutoConnect" feature="ecore:EAttribute http://www.transformation-tool-contest.eu/2017/smartGrids/cosem#//COSEMObjects/AutoConnectObject/Connection" />
+  <changes xsi:type="changes:AttributeChange" newValue="True" oldValue="False" affectedElement="COSEM-out000.xmi#//@PhysicalDevice.6/@AutoConnect" feature="ecore:EAttribute http://www.transformation-tool-contest.eu/2017/smartGrids/cosem#//COSEMObjects/AutoConnectObject/Connection" />
+  <changes xsi:type="changes:AttributeChange" newValue="True" oldValue="False" affectedElement="COSEM-out000.xmi#//@PhysicalDevice.3/@AutoConnect" feature="ecore:EAttribute http://www.transformation-tool-contest.eu/2017/smartGrids/cosem#//COSEMObjects/AutoConnectObject/Connection" />
+</changes:ModelChangeSet>

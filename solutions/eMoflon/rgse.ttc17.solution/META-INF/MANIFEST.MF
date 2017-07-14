@@ -1,0 +1,14 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Solution
+Bundle-SymbolicName: rgse.ttc17.solution
+Bundle-Version: 1.0.0.qualifier
+Bundle-Vendor: University of Koblenz-Landau
+Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Require-Bundle: org.eclipse.emf.ecore,
+ org.moflon.tgg.language,
+ rgse.ttc17.emoflon.tgg.task2,
+ rgse.ttc17.emoflon.tgg.task1,
+ rgse.ttc17.metamodels.src,
+ org.moflon.tgg.runtime,
+ rgse.ttc17.metamodels.changes

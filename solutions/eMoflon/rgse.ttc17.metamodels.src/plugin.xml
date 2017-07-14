@@ -1,0 +1,593 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+
+<!--
+-->
+
+<plugin>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated Gluemodel -->
+      <package
+            uri="platform:/plugin/rgse.ttc17.metamodels.src/model/Gluemodel.ecore"
+            class="gluemodel.GluemodelPackage"
+            genModel="model/Gluemodel.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated Gluemodel -->
+      <package
+            uri="http://www.transformation-tool-contest.eu/2017/smartGrids/cosem"
+            class="gluemodel.COSEM.COSEMPackage"
+            genModel="model/Gluemodel.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated Gluemodel -->
+      <package
+            uri="data"
+            class="gluemodel.COSEM.Datatypes.DatatypesPackage"
+            genModel="model/Gluemodel.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated Gluemodel -->
+      <package
+            uri="interface"
+            class="gluemodel.COSEM.InterfaceClasses.InterfaceClassesPackage"
+            genModel="model/Gluemodel.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated Gluemodel -->
+      <package
+            uri="objects"
+            class="gluemodel.COSEM.COSEMObjects.COSEMObjectsPackage"
+            genModel="model/Gluemodel.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated Gluemodel -->
+      <package
+            uri="http://iec.ch/TC57/2009/CIM-schema-cim14"
+            class="gluemodel.CIM.CIMPackage"
+            genModel="model/Gluemodel.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated Gluemodel -->
+      <package
+            uri="http://iec.ch/TC57/2009/CIM-schema-cim14#IEC61970"
+            class="gluemodel.CIM.IEC61970.IEC61970Package"
+            genModel="model/Gluemodel.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated Gluemodel -->
+      <package
+            uri="http://iec.ch/TC57/2009/CIM-schema-cim14#OperationalLimits"
+            class="gluemodel.CIM.IEC61970.OperationalLimits.OperationalLimitsPackage"
+            genModel="model/Gluemodel.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated Gluemodel -->
+      <package
+            uri="http://iec.ch/TC57/2009/CIM-schema-cim14#EnergyScheduling"
+            class="gluemodel.CIM.IEC61970.Informative.EnergyScheduling.EnergySchedulingPackage"
+            genModel="model/Gluemodel.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated Gluemodel -->
+      <package
+            uri="http://iec.ch/TC57/2009/CIM-schema-cim14#InfERPSupport"
+            class="gluemodel.CIM.IEC61970.Informative.InfERPSupport.InfERPSupportPackage"
+            genModel="model/Gluemodel.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated Gluemodel -->
+      <package
+            uri="http://iec.ch/TC57/2009/CIM-schema-cim14#InfAssetModels"
+            class="gluemodel.CIM.IEC61970.Informative.InfAssetModels.InfAssetModelsPackage"
+            genModel="model/Gluemodel.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated Gluemodel -->
+      <package
+            uri="http://iec.ch/TC57/2009/CIM-schema-cim14#InfAssets"
+            class="gluemodel.CIM.IEC61970.Informative.InfAssets.InfAssetsPackage"
+            genModel="model/Gluemodel.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated Gluemodel -->
+      <package
+            uri="http://iec.ch/TC57/2009/CIM-schema-cim14#InfGMLSupport"
+            class="gluemodel.CIM.IEC61970.Informative.InfGMLSupport.InfGMLSupportPackage"
+            genModel="model/Gluemodel.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated Gluemodel -->
+      <package
+            uri="http://iec.ch/TC57/2009/CIM-schema-cim14#InfCore"
+            class="gluemodel.CIM.IEC61970.Informative.InfCore.InfCorePackage"
+            genModel="model/Gluemodel.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated Gluemodel -->
+      <package
+            uri="http://iec.ch/TC57/2009/CIM-schema-cim14#MarketOperations"
+            class="gluemodel.CIM.IEC61970.Informative.MarketOperations.MarketOperationsPackage"
+            genModel="model/Gluemodel.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated Gluemodel -->
+      <package
+            uri="http://iec.ch/TC57/2009/CIM-schema-cim14#InfOperations"
+            class="gluemodel.CIM.IEC61970.Informative.InfOperations.InfOperationsPackage"
+            genModel="model/Gluemodel.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated Gluemodel -->
+      <package
+            uri="http://iec.ch/TC57/2009/CIM-schema-cim14#InfWork"
+            class="gluemodel.CIM.IEC61970.Informative.InfWork.InfWorkPackage"
+            genModel="model/Gluemodel.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated Gluemodel -->
+      <package
+            uri="http://iec.ch/TC57/2009/CIM-schema-cim14#InfPaymentMetering"
+            class="gluemodel.CIM.IEC61970.Informative.InfPaymentMetering.InfPaymentMeteringPackage"
+            genModel="model/Gluemodel.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated Gluemodel -->
+      <package
+            uri="http://iec.ch/TC57/2009/CIM-schema-cim14#InfCommon"
+            class="gluemodel.CIM.IEC61970.Informative.InfCommon.InfCommonPackage"
+            genModel="model/Gluemodel.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated Gluemodel -->
+      <package
+            uri="http://iec.ch/TC57/2009/CIM-schema-cim14#InfLocations"
+            class="gluemodel.CIM.IEC61970.Informative.InfLocations.InfLocationsPackage"
+            genModel="model/Gluemodel.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated Gluemodel -->
+      <package
+            uri="http://iec.ch/TC57/2009/CIM-schema-cim14#Financial"
+            class="gluemodel.CIM.IEC61970.Informative.Financial.FinancialPackage"
+            genModel="model/Gluemodel.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated Gluemodel -->
+      <package
+            uri="http://iec.ch/TC57/2009/CIM-schema-cim14#Reservation"
+            class="gluemodel.CIM.IEC61970.Informative.Reservation.ReservationPackage"
+            genModel="model/Gluemodel.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated Gluemodel -->
+      <package
+            uri="http://iec.ch/TC57/2009/CIM-schema-cim14#InfMetering"
+            class="gluemodel.CIM.IEC61970.Informative.InfMetering.InfMeteringPackage"
+            genModel="model/Gluemodel.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated Gluemodel -->
+      <package
+            uri="http://iec.ch/TC57/2009/CIM-schema-cim14#InfCustomers"
+            class="gluemodel.CIM.IEC61970.Informative.InfCustomers.InfCustomersPackage"
+            genModel="model/Gluemodel.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated Gluemodel -->
+      <package
+            uri="http://iec.ch/TC57/2009/CIM-schema-cim14#InfLoadControl"
+            class="gluemodel.CIM.IEC61970.Informative.InfLoadControl.InfLoadControlPackage"
+            genModel="model/Gluemodel.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated Gluemodel -->
+      <package
+            uri="http://iec.ch/TC57/2009/CIM-schema-cim14#InfTypeAsset"
+            class="gluemodel.CIM.IEC61970.Informative.InfTypeAsset.InfTypeAssetPackage"
+            genModel="model/Gluemodel.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated Gluemodel -->
+      <package
+            uri="http://iec.ch/TC57/2009/CIM-schema-cim14#Meas"
+            class="gluemodel.CIM.IEC61970.Meas.MeasPackage"
+            genModel="model/Gluemodel.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated Gluemodel -->
+      <package
+            uri="http://iec.ch/TC57/2009/CIM-schema-cim14#GenerationDynamics"
+            class="gluemodel.CIM.IEC61970.Generation.GenerationDynamics.GenerationDynamicsPackage"
+            genModel="model/Gluemodel.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated Gluemodel -->
+      <package
+            uri="http://iec.ch/TC57/2009/CIM-schema-cim14#Production"
+            class="gluemodel.CIM.IEC61970.Generation.Production.ProductionPackage"
+            genModel="model/Gluemodel.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated Gluemodel -->
+      <package
+            uri="http://iec.ch/TC57/2009/CIM-schema-cim14#SCADA"
+            class="gluemodel.CIM.IEC61970.SCADA.SCADAPackage"
+            genModel="model/Gluemodel.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated Gluemodel -->
+      <package
+            uri="http://iec.ch/TC57/2009/CIM-schema-cim14#Wires"
+            class="gluemodel.CIM.IEC61970.Wires.WiresPackage"
+            genModel="model/Gluemodel.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated Gluemodel -->
+      <package
+            uri="http://iec.ch/TC57/2009/CIM-schema-cim14#Core"
+            class="gluemodel.CIM.IEC61970.Core.CorePackage"
+            genModel="model/Gluemodel.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated Gluemodel -->
+      <package
+            uri="http://iec.ch/TC57/2009/CIM-schema-cim14#StateVariables"
+            class="gluemodel.CIM.IEC61970.StateVariables.StateVariablesPackage"
+            genModel="model/Gluemodel.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated Gluemodel -->
+      <package
+            uri="http://iec.ch/TC57/2009/CIM-schema-cim14#Equivalents"
+            class="gluemodel.CIM.IEC61970.Equivalents.EquivalentsPackage"
+            genModel="model/Gluemodel.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated Gluemodel -->
+      <package
+            uri="http://iec.ch/TC57/2009/CIM-schema-cim14#Domain"
+            class="gluemodel.CIM.IEC61970.Domain.DomainPackage"
+            genModel="model/Gluemodel.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated Gluemodel -->
+      <package
+            uri="http://iec.ch/TC57/2009/CIM-schema-cim14#LoadModel"
+            class="gluemodel.CIM.IEC61970.LoadModel.LoadModelPackage"
+            genModel="model/Gluemodel.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated Gluemodel -->
+      <package
+            uri="http://iec.ch/TC57/2009/CIM-schema-cim14#Protection"
+            class="gluemodel.CIM.IEC61970.Protection.ProtectionPackage"
+            genModel="model/Gluemodel.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated Gluemodel -->
+      <package
+            uri="http://iec.ch/TC57/2009/CIM-schema-cim14#Outage"
+            class="gluemodel.CIM.IEC61970.Outage.OutagePackage"
+            genModel="model/Gluemodel.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated Gluemodel -->
+      <package
+            uri="http://iec.ch/TC57/2009/CIM-schema-cim14#ControlArea"
+            class="gluemodel.CIM.IEC61970.ControlArea.ControlAreaPackage"
+            genModel="model/Gluemodel.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated Gluemodel -->
+      <package
+            uri="http://iec.ch/TC57/2009/CIM-schema-cim14#Contingency"
+            class="gluemodel.CIM.IEC61970.Contingency.ContingencyPackage"
+            genModel="model/Gluemodel.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated Gluemodel -->
+      <package
+            uri="http://iec.ch/TC57/2009/CIM-schema-cim14#Topology"
+            class="gluemodel.CIM.IEC61970.Topology.TopologyPackage"
+            genModel="model/Gluemodel.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated Gluemodel -->
+      <package
+            uri="http://iec.ch/TC57/2009/CIM-schema-cim14#PackageDependencies"
+            class="gluemodel.CIM.PackageDependencies.PackageDependenciesPackage"
+            genModel="model/Gluemodel.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated Gluemodel -->
+      <package
+            uri="http://iec.ch/TC57/2009/CIM-schema-cim14#IEC61968"
+            class="gluemodel.CIM.IEC61968.IEC61968Package"
+            genModel="model/Gluemodel.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated Gluemodel -->
+      <package
+            uri="http://iec.ch/TC57/2009/CIM-schema-cim14#Metering"
+            class="gluemodel.CIM.IEC61968.Metering.MeteringPackage"
+            genModel="model/Gluemodel.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated Gluemodel -->
+      <package
+            uri="http://iec.ch/TC57/2009/CIM-schema-cim14#WiresExt"
+            class="gluemodel.CIM.IEC61968.WiresExt.WiresExtPackage"
+            genModel="model/Gluemodel.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated Gluemodel -->
+      <package
+            uri="http://iec.ch/TC57/2009/CIM-schema-cim14#Common"
+            class="gluemodel.CIM.IEC61968.Common.CommonPackage"
+            genModel="model/Gluemodel.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated Gluemodel -->
+      <package
+            uri="http://iec.ch/TC57/2009/CIM-schema-cim14#AssetModels"
+            class="gluemodel.CIM.IEC61968.AssetModels.AssetModelsPackage"
+            genModel="model/Gluemodel.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated Gluemodel -->
+      <package
+            uri="http://iec.ch/TC57/2009/CIM-schema-cim14#PaymentMetering"
+            class="gluemodel.CIM.IEC61968.PaymentMetering.PaymentMeteringPackage"
+            genModel="model/Gluemodel.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated Gluemodel -->
+      <package
+            uri="http://iec.ch/TC57/2009/CIM-schema-cim14#Customers"
+            class="gluemodel.CIM.IEC61968.Customers.CustomersPackage"
+            genModel="model/Gluemodel.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated Gluemodel -->
+      <package
+            uri="http://iec.ch/TC57/2009/CIM-schema-cim14#LoadControl"
+            class="gluemodel.CIM.IEC61968.LoadControl.LoadControlPackage"
+            genModel="model/Gluemodel.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated Gluemodel -->
+      <package
+            uri="http://iec.ch/TC57/2009/CIM-schema-cim14#Assets"
+            class="gluemodel.CIM.IEC61968.Assets.AssetsPackage"
+            genModel="model/Gluemodel.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated Gluemodel -->
+      <package
+            uri="http://iec.ch/TC57/2009/CIM-schema-cim14#Work"
+            class="gluemodel.CIM.IEC61968.Work.WorkPackage"
+            genModel="model/Gluemodel.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated Gluemodel -->
+      <package
+            uri="http://www.transformation-tool-contest.eu/2017/smartGrids/substationStandard"
+            class="gluemodel.substationStandard.SubstationStandardPackage"
+            genModel="model/Gluemodel.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated Gluemodel -->
+      <package
+            uri="http://www.transformation-tool-contest.eu/2017/smartGrids/substationStandard/DomainLNs"
+            class="gluemodel.substationStandard.LNNodes.DomainLNs.DomainLNsPackage"
+            genModel="model/Gluemodel.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated Gluemodel -->
+      <package
+            uri="http://www.transformation-tool-contest.eu/2017/smartGrids/substationStandard/groupP"
+            class="gluemodel.substationStandard.LNNodes.LNGroupP.LNGroupPPackage"
+            genModel="model/Gluemodel.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated Gluemodel -->
+      <package
+            uri="http://www.transformation-tool-contest.eu/2017/smartGrids/substationStandard/groupR"
+            class="gluemodel.substationStandard.LNNodes.LNGroupR.LNGroupRPackage"
+            genModel="model/Gluemodel.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated Gluemodel -->
+      <package
+            uri="http://www.transformation-tool-contest.eu/2017/smartGrids/substationStandard/groupC"
+            class="gluemodel.substationStandard.LNNodes.LNGroupC.LNGroupCPackage"
+            genModel="model/Gluemodel.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated Gluemodel -->
+      <package
+            uri="http://www.transformation-tool-contest.eu/2017/smartGrids/substationStandard/groupA"
+            class="gluemodel.substationStandard.LNNodes.LNGroupA.LNGroupAPackage"
+            genModel="model/Gluemodel.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated Gluemodel -->
+      <package
+            uri="http://www.transformation-tool-contest.eu/2017/smartGrids/substationStandard/groupM"
+            class="gluemodel.substationStandard.LNNodes.LNGroupM.LNGroupMPackage"
+            genModel="model/Gluemodel.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated Gluemodel -->
+      <package
+            uri="http://www.transformation-tool-contest.eu/2017/smartGrids/substationStandard/groupX"
+            class="gluemodel.substationStandard.LNNodes.LNGroupX.LNGroupXPackage"
+            genModel="model/Gluemodel.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated Gluemodel -->
+      <package
+            uri="http://www.transformation-tool-contest.eu/2017/smartGrids/substationStandard/groupT"
+            class="gluemodel.substationStandard.LNNodes.LNGroupT.LNGroupTPackage"
+            genModel="model/Gluemodel.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated Gluemodel -->
+      <package
+            uri="http://www.transformation-tool-contest.eu/2017/smartGrids/substationStandard/groupY"
+            class="gluemodel.substationStandard.LNNodes.LNGroupY.LNGroupYPackage"
+            genModel="model/Gluemodel.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated Gluemodel -->
+      <package
+            uri="http://www.transformation-tool-contest.eu/2017/smartGrids/substationStandard/groupZ"
+            class="gluemodel.substationStandard.LNNodes.LNGroupZ.LNGroupZPackage"
+            genModel="model/Gluemodel.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated Gluemodel -->
+      <package
+            uri="http://www.transformation-tool-contest.eu/2017/smartGrids/dataclasses"
+            class="gluemodel.substationStandard.Dataclasses.DataclassesPackage"
+            genModel="model/Gluemodel.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated Gluemodel -->
+      <package
+            uri="http://www.transformation-tool-contest.eu/2017/smartGrids/enumerations"
+            class="gluemodel.substationStandard.Enumerations.EnumerationsPackage"
+            genModel="model/Gluemodel.genmodel"/>
+   </extension>
+</plugin>

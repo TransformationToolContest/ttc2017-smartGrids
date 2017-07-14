@@ -1,0 +1,52 @@
+#using rgse.ttc17.emoflon.tgg.task2.*
+#using AttrCondDefLibrary.*
+
+#rule PMUVoltageMeter #with rgse.ttc17.emoflon.tgg.task2
+
+#source { 
+	++ pair : MeterAssetMMXUPair {
+		++-a->asset
+		++-b->mmxu
+	}
+	mmxu : MMXU {
+	}
+	
+	asset : MeterAsset {
+	}
+}
+
+#target {
+	++ meter : PMUVoltageMeter {
+	}
+}
+
+#correspondence {
+	++pairToMeter : MeterAssetToMMXUToVoltageMeter{
+		#src->pair
+		#trg->meter
+	}
+	++ assetToMeter : MeterAssetToPMUVoltageMeter {
+		#src->asset
+		#trg->meter
+	}
+	++ mmxuToMeter : MMXUToPMUVoltageMeter {
+		#src->mmxu
+		#trg->meter
+	}
+}
+
+#attributeConditions {
+	eq(asset.mRID, meter.mRID)
+	eq(pair.AMag,meter.VoltageAMag)
+	eq(pair.AAng,meter.VoltageAAng)
+	eq(pair.BMag,meter.VoltageBMag)
+	eq(pair.BAng,meter.VoltageBAng)
+	eq(pair.CMag,meter.VoltageCMag)
+	eq(pair.CAng,meter.VoltageCAng)
+	eq(pair.NeutMag,meter.VoltageNeutMag)
+	eq(pair.NeutAng,meter.VoltageNeutAng)
+	eq(pair.NetMag,meter.VoltageNetMag)
+	eq(pair.NetAng,meter.VoltageNetAng)
+	eq(pair.ResMag,meter.VoltageResMag)
+	eq(pair.ResAng,meter.VoltageResAng)
+}

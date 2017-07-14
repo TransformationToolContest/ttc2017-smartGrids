@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/rgse.ttc17.metamodels.trg.outage.detection/src" modelPluginID="rgse.ttc17.metamodels.trg"
+    modelName="OutageDetection-target" rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container"
+    importerID="org.eclipse.emf.importer.ecore" complianceLevel="8.0" copyrightFields="false"
+    operationReflection="true" importOrganizing="true">
+  <foreignModel>outageDetection-target.ecore</foreignModel>
+  <genPackages prefix="OutageDetectionJointarget" disposableProviderFactory="true"
+      ecorePackage="outageDetection-target.ecore#/">
+    <genClasses ecoreClass="outageDetection-target.ecore#//EnergyConsumer">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference outageDetection-target.ecore#//EnergyConsumer/Location"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute outageDetection-target.ecore#//EnergyConsumer/Reachability"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute outageDetection-target.ecore#//EnergyConsumer/PowerA"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute outageDetection-target.ecore#//EnergyConsumer/ID"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute outageDetection-target.ecore#//EnergyConsumer/ControlAreaID"/>
+    </genClasses>
+    <genClasses ecoreClass="outageDetection-target.ecore#//Location">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference outageDetection-target.ecore#//Location/Position"/>
+    </genClasses>
+    <genClasses ecoreClass="outageDetection-target.ecore#//PositionPoint">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute outageDetection-target.ecore#//PositionPoint/xPosition"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute outageDetection-target.ecore#//PositionPoint/yPosition"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute outageDetection-target.ecore#//PositionPoint/zPosition"/>
+    </genClasses>
+  </genPackages>
+</genmodel:GenModel>

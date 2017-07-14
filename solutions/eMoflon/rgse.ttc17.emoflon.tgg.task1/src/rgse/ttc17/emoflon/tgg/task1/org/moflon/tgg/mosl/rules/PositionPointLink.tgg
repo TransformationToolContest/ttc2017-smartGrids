@@ -1,0 +1,40 @@
+#using rgse.ttc17.emoflon.tgg.task1.*
+#using AttrCondDefLibrary.*
+
+#rule PositionPointLink  #with rgse.ttc17.emoflon.tgg.task1
+
+#source {
+	pair : MeterAssetPhysicalDevicePair {
+		-a->asset
+	}
+	asset : MeterAsset{
+		-Location->srcLocation
+	}
+	srcLocation : Location {
+		++-Position->positionPoint
+	}
+	positionPoint : PositionPoint {
+	}
+}
+
+#target {
+	trgLocation : Location {
+		++-Position->trgPositionPoint
+	}
+	trgPositionPoint : PositionPoint {
+	}
+}
+
+#correspondence {
+	locationToLocation : LocationToLocation {
+		#src->srcLocation
+		#trg->trgLocation
+	}
+	positionCorr : PositionPointToPositionPoint {
+		#src->positionPoint
+		#trg->trgPositionPoint
+	}
+}
+
+#attributeConditions {
+}

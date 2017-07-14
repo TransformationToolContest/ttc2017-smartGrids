@@ -1,0 +1,38 @@
+#using rgse.ttc17.emoflon.tgg.task1.*
+#using AttrCondDefLibrary.*
+
+#rule LocationLink #with rgse.ttc17.emoflon.tgg.task1
+
+#source { 
+	pair : MeterAssetPhysicalDevicePair {
+		-a->asset
+	}
+	asset : MeterAsset{
+		++-Location->location
+	}
+	location : Location {
+		
+	}
+}
+
+#target {
+	consumer : EnergyConsumer {
+		++-Location->trgLocation
+	}
+	trgLocation : Location {
+	}
+}
+
+#correspondence {
+	assetToConumer : MeterAssetToEnergyConsumer {
+		#src->asset
+		#trg->consumer
+	}
+	locationCorr : LocationToLocation {
+		#src->location
+		#trg->trgLocation
+	}
+}
+
+#attributeConditions {
+}

@@ -1,0 +1,40 @@
+#using rgse.ttc17.emoflon.tgg.task2.*
+#using AttrCondDefLibrary.*
+
+#rule EnergyConsumerLinkServiceDeliveryPoint #with rgse.ttc17.emoflon.tgg.task2
+
+#source { 
+	pair : MeterAssetPhysicalDevicePair {
+		-a->asset
+	}
+	asset : MeterAsset {
+		-ServiceDeliveryPoint->srcDeliver
+	}
+	srcDeliver : ServiceDeliveryPoint {
+		++-EnergyConsumer->srcConsumer
+	}
+	srcConsumer : EnergyConsumer {
+	}
+}
+
+#target {
+	trgDeliver : ServiceDeliveryPoint {
+		++-EnergyConsumer->trgConsumer
+	}
+	trgConsumer : EnergyConsumer{
+	}	
+}
+
+#correspondence {
+	deliverToDeliver : ServiceDeliveryPointToServiceDeliveryPoint {
+		#src->srcDeliver
+		#trg->trgDeliver
+	}
+	consumerToConsumer : EnergyConsumerToEnergyConsumer {
+		#src->srcConsumer
+		#trg->trgConsumer
+	}
+}
+
+#attributeConditions {
+}

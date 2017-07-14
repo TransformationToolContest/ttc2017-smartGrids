@@ -1,0 +1,38 @@
+#using rgse.ttc17.emoflon.tgg.task2.*
+#using AttrCondDefLibrary.*
+
+#rule ServiceDeliveryPointLinkMeterAsset #with rgse.ttc17.emoflon.tgg.task2
+
+#source { 
+	pair : MeterAssetPhysicalDevicePair {
+		-a->asset
+	}
+	asset : MeterAsset {
+		++-ServiceDeliveryPoint->srcDeliver
+	}
+	srcDeliver : ServiceDeliveryPoint {
+	}
+}
+
+#target {
+	meter : PrivateMeterVoltage {
+		++-ServiceDeliveryPoint->trgDeliver	
+	}
+	trgDeliver : ServiceDeliveryPoint {
+		
+	}
+}
+
+#correspondence {
+	assetToMeter : MeterAssetToPrivateMeterVoltage {
+		#src->asset
+		#trg->meter
+	}
+	deliverToDeliver : ServiceDeliveryPointToServiceDeliveryPoint {
+		#src->srcDeliver
+		#trg->trgDeliver
+	}
+}
+
+#attributeConditions {
+}
