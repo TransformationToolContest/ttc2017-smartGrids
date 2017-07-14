@@ -43,7 +43,6 @@ savePlot <-function(results, settings, phases, fileName){
     geom_point(aes_string(shape = settings@group, colour=settings@group), size=pointSize) +
     scale_shape_manual(values=1:nlevels(data[[settings@group]])) +
     ylab(settings@yLabel) +
-    xlab(settings@xLabel) +
     ggtitle(label = settings@title) +
     bwTheme
   
@@ -63,7 +62,7 @@ savePlot <-function(results, settings, phases, fileName){
   }
   else if (settings@yAxis == "Log10"){
     plot <- plot + scale_y_log10(breaks = 10^seq(round(log10(minValue)), round(log10(maxValue)), by=1), 
-                                labels = 10^seq(round(log10(minValue)), round(log10(maxValue)), by=1))
+                                 labels = 10^seq(round(log10(minValue)), round(log10(maxValue)), by=1))
   }
   ggsave(plot,filename = fileName, width=10, height=5, dpi=192)
   print(fileName)
