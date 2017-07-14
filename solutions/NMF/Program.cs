@@ -29,20 +29,22 @@ namespace TTC2017.SmartGrids.NMFSolution
         private string transformationName;
         private string changeSet;
         private string runIndex;
+        private string tool;
 
         static void Main(string[] args)
         {
             var program = new Program();
             program.transformationName = args[0];
-            program.Run();
+            program.Run(args.Length < 2 || args[1] != "batch");
         }
 
-        private void Run()
+        private void Run(bool incremental)
         { 
             changeSet = Environment.GetEnvironmentVariable("ChangeSet");
             var changePath = Environment.GetEnvironmentVariable("ChangePath");
             runIndex = Environment.GetEnvironmentVariable("RunIndex");
             var sequences = int.Parse(Environment.GetEnvironmentVariable("Sequences"));
+            tool = Environment.GetEnvironmentVariable("Tool");
 
             var stopwatch = new Stopwatch();
             stopwatch.Start();
@@ -54,16 +56,28 @@ namespace TTC2017.SmartGrids.NMFSolution
             RunInitial(changePath + "\\CIM_DCIM-out000.xmi",
                        changePath + "\\COSEM-out000.xmi",
                        changePath + "\\Substandard-out000.xmi");
-
-            for (int i = 1; i <= sequences; i++)
+            if (incremental)
             {
-                RunUpdates(changePath + $"\\CIM_DCIM-delta{i.ToString("000")}.xmi",
-                           changePath + $"\\COSEM-delta{i.ToString("000")}.xmi",
-                           changePath + $"\\Substandard-delta{i.ToString("000")}.xmi", i);
+                for (int i = 1; i <= sequences; i++)
+                {
+                    RunUpdates(changePath + $"\\CIM_DCIM-delta{i.ToString("000")}.xmi",
+                               changePath + $"\\COSEM-delta{i.ToString("000")}.xmi",
+                               changePath + $"\\Substandard-delta{i.ToString("000")}.xmi", i);
+                }
+            }
+            else
+            {
+                for (int i = 1; i <= sequences; i++)
+                {
+                    RunInitial(changePath + $"\\CIM_DCIM-out{i.ToString("000")}.xmi",
+                               changePath + $"\\COSEM-out{i.ToString("000")}.xmi",
+                               changePath + $"\\Substandard-out{i.ToString("000")}.xmi", i);
+                }
+
             }
         }
 
-        private void RunInitial(string cimPath, string cosemPath, string subStandardPath)
+        private void RunInitial(string cimPath, string cosemPath, string subStandardPath, int index = 0)
         {
             var needSubstandard = transformationName == OutagePrevention;
             var stopwatch = new Stopwatch();
@@ -74,7 +88,7 @@ namespace TTC2017.SmartGrids.NMFSolution
             substation = needSubstandard ? repository.Resolve(subStandardPath).RootElements[0] as SubstationStandard.Substandard : null;
             stopwatch.Stop();
 
-            Emit(stopwatch, "Loading");
+            if (index == 0) Emit(stopwatch, "Loading");
 
             if (needSubstandard)
             {
@@ -104,8 +118,14 @@ namespace TTC2017.SmartGrids.NMFSolution
                 stopwatch.Stop();
                 elementCount = () => result.RootElements.Count;
             }
-
-            Emit(stopwatch, "Initial");
+            if (index == 0)
+            {
+                Emit(stopwatch, "Initial");
+            }
+            else
+            {
+                Emit(stopwatch, "Update", index);
+            }
         }
 
         private void RunUpdates(string cimUpdatePath, string cosemUpdatePath, string substandardUpdatePath, int iteration)
@@ -129,12 +149,12 @@ namespace TTC2017.SmartGrids.NMFSolution
 
         private void Emit(Stopwatch stopwatch, string phase, int? iteration = null)
         {
-            Console.WriteLine($"NMF;{transformationName};{changeSet};{runIndex};{iteration};{phase};Time;{stopwatch.Elapsed.Ticks * 100}");
+            Console.WriteLine($"{tool};{transformationName};{changeSet};{runIndex};{iteration};{phase};Time;{stopwatch.Elapsed.Ticks * 100}");
             if (elementCount != null)
             {
-                Console.WriteLine($"NMF;{transformationName};{changeSet};{runIndex};{iteration};{phase};Elements;{elementCount()}");
+                Console.WriteLine($"{tool};{transformationName};{changeSet};{runIndex};{iteration};{phase};Elements;{elementCount()}");
             }
-            Console.WriteLine($"NMF;{transformationName};{changeSet};{runIndex};{iteration};{phase};Memory;{Environment.WorkingSet}");
+            Console.WriteLine($"{tool};{transformationName};{changeSet};{runIndex};{iteration};{phase};Memory;{Environment.WorkingSet}");
         }
     }
 }

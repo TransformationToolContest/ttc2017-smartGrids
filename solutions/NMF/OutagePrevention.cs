@@ -86,10 +86,7 @@ namespace TTC2017.SmartGrids
 
         public class PowerSystemResource2PowerSystemResource : SynchronizationRule<CIM.IEC61970.Core.IPowerSystemResource, IPowerSystemResource>
         {
-            public override void DeclareSynchronization()
-            {
-
-            }
+            public override void DeclareSynchronization() { }
         }
 
         public class ConductingEquipment2ConductingEquipment : SynchronizationRule<CIM.IEC61970.Core.IConductingEquipment, IConductingEquipment>
